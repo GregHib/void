@@ -19,6 +19,7 @@ hs_err_pid*
 *.project
 *.classpath
 .idea/*
+.gradle/
 .gradle/*
 
 # player saves
