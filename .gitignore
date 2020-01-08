@@ -1,0 +1,31 @@
+# cache
+*.idx*
+*.dylib
+*.dll
+*.dat*
+*.jct
+
+# class files
+*.class
+/bin
+/out
+
+# virtual machine crash logs
+hs_err_pid*
+
+# ide files
+/target
+*.iml
+*.project
+*.classpath
+.idea/*
+.gradle/*
+
+# player saves
+/data/saves/characters/*
+
+# maps
+*.os
+
+# archives
+*.rar
