@@ -18,8 +18,8 @@ import org.redrune.util.PCUtils
 @ChannelHandler.Sharable
 object NetworkBinder {
 
-    private val bossGroup: EventLoopGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
-    private val workerGroup: EventLoopGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
+    private val bossGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
+    private val workerGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
 
     /**
      * Networking is configured, initialized, and then the port specified [NetworkConstants.PORT_ID] is bound

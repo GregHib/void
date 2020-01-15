@@ -1,6 +1,6 @@
 package org.redrune.network.codec.login
 
-import UTIL.buffer.FixedBuffer
+import util.buffer.FixedBuffer
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelFutureListener
 import io.netty.channel.ChannelHandlerContext

@@ -47,7 +47,7 @@ class FileRequestDecoder : ByteToMessageDecoder() {
                 requests.add(FileRequest(indexId, archiveId, false))
             }
             1 -> {
-                ctx.writeAndFlush(Cache.getCacheArchive(indexId, archiveId, true))
+                ctx.writeAndFlush(Cache.getArchive(indexId, archiveId, true))
             }
             2, 3 -> {
                 requests.clear()
@@ -55,7 +55,7 @@ class FileRequestDecoder : ByteToMessageDecoder() {
         }
         while (requests.size > 0) {
             val request = requests.removeFirst()
-            ctx.writeAndFlush(Cache.getCacheArchive(request.indexId, request.archiveId, request.priority))
+            ctx.writeAndFlush(Cache.getArchive(request.indexId, request.archiveId, request.priority))
         }
     }
 

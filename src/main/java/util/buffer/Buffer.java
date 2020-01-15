@@ -1,4 +1,4 @@
-package UTIL.buffer;
+package util.buffer;
 
 import java.util.Arrays;
 

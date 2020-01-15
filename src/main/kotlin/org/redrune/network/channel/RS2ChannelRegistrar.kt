@@ -7,7 +7,7 @@ import org.redrune.network.NetworkConstants
 import org.redrune.network.NetworkSession
 
 @ChannelHandler.Sharable
-class RS2ChannelRegistrar : ChannelInboundHandlerAdapter() {
+class   RS2ChannelRegistrar : ChannelInboundHandlerAdapter() {
 
     override fun channelRegistered(ctx: ChannelHandlerContext) {
         println("RS2ChannelRegistrar.channelRegistered")
