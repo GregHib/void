@@ -61,13 +61,13 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
         println("indexId = [${indexId}], archiveId = [${archiveId}], priority = [${priority}]")
         return if (indexId == 255 && archiveId == 255) {
             println("$versionTable")
-            Unpooled.copiedBuffer(versionTable)
+            Unpooled.wrappedBuffer(versionTable)
         } else if (indexId == 255) {
             println("${index255.getArchiveData(archiveId)}")
-            Unpooled.copiedBuffer(index255.getArchiveData(archiveId))
+            Unpooled.wrappedBuffer(index255.getArchiveData(archiveId))
         } else {
             println("${indexes[indexId].mainFile.getArchiveData(archiveId)}")
-            Unpooled.copiedBuffer(indexes[indexId].mainFile.getArchiveData(archiveId))
+            Unpooled.wrappedBuffer(indexes[indexId].mainFile.getArchiveData(archiveId))
         }
     }
 

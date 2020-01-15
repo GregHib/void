@@ -7,7 +7,6 @@ import java.security.SecureRandom
 
 object RSA {
 
-
     /**
      * Encrypt/decrypts bytes with key and modulus
      */
