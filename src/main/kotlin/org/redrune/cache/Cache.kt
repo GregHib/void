@@ -61,13 +61,13 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
         println("indexId = [${indexId}], archiveId = [${archiveId}], priority = [${priority}]")
         return if (indexId == 255 && archiveId == 255) {
             println("$versionTable")
-            Unpooled.wrappedBuffer(versionTable)
+            Unpooled.copiedBuffer(versionTable)
         } else if (indexId == 255) {
             println("${index255.getArchiveData(archiveId)}")
-            Unpooled.wrappedBuffer(index255.getArchiveData(archiveId))
+            Unpooled.copiedBuffer(index255.getArchiveData(archiveId))
         } else {
             println("${indexes[indexId].mainFile.getArchiveData(archiveId)}")
-            Unpooled.wrappedBuffer(indexes[indexId].mainFile.getArchiveData(archiveId))
+            Unpooled.copiedBuffer(indexes[indexId].mainFile.getArchiveData(archiveId))
         }
     }
 
@@ -129,9 +129,9 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
                 temp.put(Whirlpool.whirlpool(bytes, 0, bytes.size))
                 (temp as Buffer).flip()
 
-                if (modulus != null && private != null) {
+                /*if (modulus != null && private != null) {
                     temp = RSA.crypt(temp, modulus, private)
-                }
+                }*/
 
                 buffer.write(temp.array())
             }
