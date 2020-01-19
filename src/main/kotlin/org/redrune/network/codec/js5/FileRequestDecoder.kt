@@ -23,7 +23,6 @@ class FileRequestDecoder : ByteToMessageDecoder() {
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         val session: NetworkSession? = ctx.channel().attr(NetworkConstants.SESSION_KEY).get()
         session?.state = NetworkSession.SessionState.HANDSHAKE
-        println(buf.readableBytes())
         while (buf.readableBytes() >= 4) {
             val priority = buf.readUnsignedByte().toInt()
             handleRequest(ctx, buf, priority)

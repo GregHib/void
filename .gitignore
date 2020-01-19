@@ -10,8 +10,9 @@
 /bin
 /out
 
-# virtual machine crash logs
+# error logs
 hs_err_pid*
+error.log
 
 # ide files
 /target
@@ -33,3 +34,4 @@ build
 # archives
 *.rar
 /.gradle/
+

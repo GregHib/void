@@ -1,9 +1,12 @@
 package org.redrune
 
 import com.google.common.base.Stopwatch
+import mu.KLogger
+import mu.KotlinLogging
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkBinder
+import org.redrune.util.Loggable
 import org.redrune.util.YAMLParser
 import java.util.concurrent.TimeUnit
 
@@ -11,7 +14,9 @@ import java.util.concurrent.TimeUnit
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-object GameServer {
+object GameServer : Loggable {
+
+    override val logger: KLogger = KotlinLogging.logger {}
 
     /**
      * The
@@ -26,13 +31,16 @@ object GameServer {
     /**
      * The instance of the network
      */
-    private val network = NetworkBinder
+    private val network = NetworkBinder()
 
     /**
      * The instance of the yaml parser
      */
     private val yamlParser = YAMLParser
 
+    /**
+     * The instance of the game cycle worker
+     */
     private val mainWorker = GameCycleWorker
 
     /**
@@ -56,8 +64,9 @@ object GameServer {
      * Runs the server
      */
     fun run() {
-        println("Cache read from ${cache.path}")
-        println("${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms")
+        logger.info { "Cache read from ${cache.path}" }
+        logger.info { "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms" }
         running = network.init()
     }
+
 }

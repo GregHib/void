@@ -6,7 +6,10 @@ import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelOption
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import mu.KLogger
+import mu.KotlinLogging
 import org.redrune.network.channel.RS2ChannelInitializer
+import org.redrune.util.Loggable
 import org.redrune.util.PCUtils
 
 /**
@@ -14,7 +17,7 @@ import org.redrune.util.PCUtils
  * @since 2020-01-07
  */
 @ChannelHandler.Sharable
-object NetworkBinder {
+class NetworkBinder : Loggable {
 
     private val bossGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
     private val workerGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
@@ -42,19 +45,21 @@ object NetworkBinder {
 
             val future = bootstrap.bind(NetworkConstants.PORT_ID).sync().channel()
 
-            println("Network bound to port: ${NetworkConstants.PORT_ID}.")
+            logger.info { "Network bound to port: ${NetworkConstants.PORT_ID}." }
 
             future.closeFuture().sync()
 
             return true
         } catch (e: Exception) {
-            e.printStackTrace()
+            logger.error("Error initializing network", e)
             return false
         } finally {
             workerGroup.shutdownGracefully()
             bossGroup.shutdownGracefully()
-            println("Network shutdown complete.")
+            logger.info { "Network shutdown complete." }
         }
     }
+
+    override val logger: KLogger = KotlinLogging.logger {}
 
 }
