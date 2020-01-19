@@ -4,6 +4,8 @@ import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import org.redrune.cache.Cache
+import org.redrune.network.NetworkConstants
+import org.redrune.network.NetworkSession
 import java.util.*
 
 /**
@@ -17,7 +19,11 @@ class FileRequestDecoder : ByteToMessageDecoder() {
      */
     private val requests = LinkedList<FileRequest>()
 
+
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
+        val session: NetworkSession? = ctx.channel().attr(NetworkConstants.SESSION_KEY).get()
+        session?.state = NetworkSession.SessionState.HANDSHAKE
+        println(buf.readableBytes())
         while (buf.readableBytes() >= 4) {
             val priority = buf.readUnsignedByte().toInt()
             handleRequest(ctx, buf, priority)

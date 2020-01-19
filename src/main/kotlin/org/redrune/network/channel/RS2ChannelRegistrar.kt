@@ -10,16 +10,12 @@ import org.redrune.network.NetworkSession
 class   RS2ChannelRegistrar : ChannelInboundHandlerAdapter() {
 
     override fun channelRegistered(ctx: ChannelHandlerContext) {
-        println("RS2ChannelRegistrar.channelRegistered")
         val session: NetworkSession? = ctx.channel().attr(NetworkConstants.SESSION_KEY).get()
-        if (session == null) {
-            println("Channel disconnected with no session")
-            return
-        }
-
+        session?.state = NetworkSession.SessionState.REGISTERED
     }
 
-    override fun channelUnregistered(ctx: ChannelHandlerContext?) {
-        println("RS2ChannelRegistrar.channelUnregistered")
+    override fun channelUnregistered(ctx: ChannelHandlerContext) {
+        val session: NetworkSession? = ctx.channel().attr(NetworkConstants.SESSION_KEY).get()
+        session?.state = NetworkSession.SessionState.DEREGISTERED
     }
 }

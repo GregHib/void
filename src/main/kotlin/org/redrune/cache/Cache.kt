@@ -4,14 +4,8 @@ import com.alex.store.Store
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import org.redrune.GameConstants
-import org.redrune.cache.secure.RSA
-import org.redrune.cache.secure.Whirlpool
+import org.redrune.network.NetworkConstants
 import org.redrune.network.packet.struct.OutgoingPacket
-import java.io.ByteArrayOutputStream
-import java.io.DataOutputStream
-import java.math.BigInteger
-import java.nio.Buffer
-import java.nio.ByteBuffer
 import kotlin.experimental.and
 
 /**
@@ -21,19 +15,9 @@ import kotlin.experimental.and
 object Cache : Store(GameConstants.CACHE_DIRECTORY) {
 
     /**
-     * The modulus value for rsa
-     */
-    private val rsaMod = BigInteger(GameConstants.RSA_MODULUS, 16)
-
-    /**
-     * The private rsa key
-     */
-    private val rsaPriv = BigInteger(GameConstants.RSA_PRIVATE, 16)
-
-    /**
      * The version table data
      */
-    private val versionTable = createVersionTable(true, rsaMod, rsaPriv)
+    private val versionTable = generateIndex255Archive255Current(NetworkConstants.FILE_SERVER_RSA_PRIVATE, NetworkConstants.FILE_SERVER_RSA_MODULUS);
 
     /**
      * Creates a buffer with data in the specified cache location
@@ -58,16 +42,10 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
      * Gets the {@code Packet} instance of the cache archive located in the parameterized places
      */
     fun getArchive(indexId: Int, archiveId: Int, priority: Boolean): ByteBuf? {
-        println("indexId = [${indexId}], archiveId = [${archiveId}], priority = [${priority}]")
         return if (indexId == 255 && archiveId == 255) {
-            println("$versionTable")
-            Unpooled.wrappedBuffer(versionTable)
-        } else if (indexId == 255) {
-            println("${index255.getArchiveData(archiveId)}")
-            Unpooled.wrappedBuffer(index255.getArchiveData(archiveId))
+            Unpooled.copiedBuffer(getContainerPacketData(255, 255, versionTable))
         } else {
-            println("${indexes[indexId].mainFile.getArchiveData(archiveId)}")
-            Unpooled.wrappedBuffer(indexes[indexId].mainFile.getArchiveData(archiveId))
+            return getArchivePacketData(indexId, archiveId, priority)?.buffer
         }
     }
 
@@ -100,48 +78,4 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
         return packet
     }
 
-    /**
-     * Generating the version table data
-     * @return ByteArray
-     */
-    private fun createVersionTable(whirlpool: Boolean, modulus: BigInteger?, private: BigInteger?): ByteArray {
-        val bout = ByteArrayOutputStream()
-        DataOutputStream(bout).use { buffer ->
-            run {
-                if (whirlpool) {
-                    buffer.writeByte(indexes.size)
-                }
-
-                for (i in 0 until indexes.size) {
-                    buffer.writeInt(indexes[i].crc)
-                    buffer.writeInt(indexes[i].table?.revision ?: 0)
-                    if (whirlpool) {
-                        buffer.write(indexes[i].whirlpool ?: ByteArray(64))
-                        //keys?
-                    }
-                }
-            }
-
-            if (whirlpool) {
-                val bytes = bout.toByteArray()
-                var temp = ByteBuffer.allocate(65)
-                temp.put(1)
-                temp.put(Whirlpool.whirlpool(bytes, 0, bytes.size))
-                (temp as Buffer).flip()
-
-                if (modulus != null && private != null) {
-                    temp = RSA.crypt(temp, modulus, private)
-                }
-
-                buffer.write(temp.array())
-            }
-
-            val data = bout.toByteArray()
-            val out = ByteBuffer.allocate(5 + data.size)
-            out.put(0)
-            out.putInt(data.size)
-            out.put(data)
-            return out.array()
-        }
-    }
 }

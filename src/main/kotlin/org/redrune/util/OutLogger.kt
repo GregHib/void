@@ -1,4 +1,4 @@
-package org.redrune.utility.functions
+package org.redrune.util
 
 import java.io.OutputStream
 import java.io.PrintStream
@@ -12,41 +12,39 @@ import java.util.*
  * @author Tyluur<itstyluur@gmail.com>
  * @since Apr 9, 2015
  */
-class OutLogger(out: OutputStream?) : PrintStream(out) {
+class OutLogger(out: OutputStream) : PrintStream(out) {
+
     override fun print(message: Boolean) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
     }
 
     override fun print(message: Int) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
     }
 
     override fun print(message: Long) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
     }
 
     override fun print(message: Double) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
     }
 
     override fun print(message: String) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
     }
 
     override fun print(message: Any) {
-        val element =
-            getProperElement(Thread.currentThread().stackTrace)
-        prettyLog("""${element.fileName}:${element.lineNumber}#${element.methodName}""", "" + message)
+        prettyLog(elementConversion(getProperElement(Thread.currentThread().stackTrace)), "" + message)
+    }
+
+    /**
+     * Converts the [StackTraceElement] instance to a detailed description of the source
+     */
+    private fun elementConversion(element: StackTraceElement): String {
+        val fileName = element.fileName ?: ""
+        val endIndex = fileName.indexOf(".")
+        return "${fileName.substring(0, (if (endIndex == -1) fileName.length else endIndex))}:${element.lineNumber}#${element.methodName}"
     }
 
     /**
@@ -58,8 +56,7 @@ class OutLogger(out: OutputStream?) : PrintStream(out) {
      * The text that is being outputted
      */
     private fun prettyLog(description: String, text: String) {
-        val pretext = "[$description][$formattedDate]  $text"
-        super.print(pretext)
+        super.print("[$description][$formattedDate]  $text")
     }
 
     /**

@@ -37,6 +37,14 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     }
 
     /**
+     * Writing a long to the [buffer]
+     */
+    fun writeLong(value: Long): OutgoingPacket {
+        buffer.writeLong(value)
+        return this
+    }
+
+    /**
      * Write the bytes of another buffer to the [buffer]
      */
     fun writeBytes(other: ByteBuf): OutgoingPacket {
@@ -56,6 +64,25 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
      */
     fun writeShort(value: Int): OutgoingPacket {
         buffer.writeShort(value)
+        return this
+    }
+
+    /**
+     * Writing a string to the [buffer]
+     */
+    fun writeString(value: String): OutgoingPacket {
+        buffer.writeBytes(value.toByteArray())
+        buffer.writeByte(0)
+        return this
+    }
+
+    /**
+     * Writing a GJ string to the [buffer]
+     */
+    fun writeGJString(value: String) : OutgoingPacket {
+        buffer.writeByte(0)
+        buffer.writeBytes(value.toByteArray())
+        buffer.writeByte(0)
         return this
     }
 

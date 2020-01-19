@@ -1,4 +1,4 @@
-package org.redrune.network.codec
+package org.redrune.network.codec.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
@@ -7,15 +7,15 @@ import io.netty.handler.codec.ReplayingDecoder
 import org.redrune.network.NetworkConstants
 import org.redrune.network.NetworkSession
 import org.redrune.network.packet.PacketConstants
-import org.redrune.network.packet.struct.PacketHeader
 import org.redrune.network.packet.struct.IncomingPacket
+import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
-class RS2PacketDecoder(session: NetworkSession) : ReplayingDecoder<RS2PacketDecoder.PacketStage>() {
+class RS2PacketDecoder(private val session: NetworkSession) : ReplayingDecoder<RS2PacketDecoder.PacketStage>() {
     /**
      * The opcode of the current packed being decoded
      */
@@ -34,7 +34,8 @@ class RS2PacketDecoder(session: NetworkSession) : ReplayingDecoder<RS2PacketDeco
     override fun decode(ctx: ChannelHandlerContext, `in`: ByteBuf, out: MutableList<Any>) {
         when (state()) {
             PacketStage.VERSION -> {
-                opcode = `in`.readUnsignedByte().toInt()
+                val encryptedOpcode = `in`.readUnsignedByte().toInt()
+                opcode = encryptedOpcode - (session.isaacPair?.decodingRandom?.nextInt()!! and 0xFF)
                 checkpoint(PacketStage.PAYLOAD_LENGTH)
             }
             PacketStage.PAYLOAD_LENGTH -> {

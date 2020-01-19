@@ -84,6 +84,18 @@ object YAMLParser {
         return getBool(key) ?: default
     }
 
+    fun getDouble(key: String, default: Double): Double {
+        return getDouble(key) ?: default
+    }
+
+    fun getDouble(key: String): Double? {
+        return if(map?.containsKey(key) == true) {
+            map!![key]?.toString()?.toDoubleOrNull()
+        } else {
+            null
+        }
+    }
+
     /**
      * Gets the amount of settings registered
      * @return Int

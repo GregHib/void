@@ -1,4 +1,4 @@
-package org.redrune.network.codec
+package org.redrune.network.codec.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
@@ -7,9 +7,13 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.network.NetworkConstants
 import org.redrune.network.NetworkSession
-import org.redrune.network.packet.struct.PacketHeader
 import org.redrune.network.packet.struct.OutgoingPacket
+import org.redrune.network.packet.struct.PacketHeader
 
+/**
+ * @author Tyluur <contact@kiaira.tech>
+ * @since 2020-01-18
+ */
 @ChannelHandler.Sharable
 class RS2PacketEncoder : MessageToByteEncoder<OutgoingPacket>() {
 
@@ -23,15 +27,19 @@ class RS2PacketEncoder : MessageToByteEncoder<OutgoingPacket>() {
                 response = packet.buffer
             } else { // the length of the packet
                 val length: Int = packet.buffer.readableBytes()
-                // create the buffer
                 response = Unpooled.buffer(length + 3)
-                // the id of the packet
                 val opcode: Int = packet.opcode
-                // the packet header
                 val header = packet.header
-                // if there was no cipher
-                if (opcode >= 128) {
-                    response.writeByte((opcode shr 8) + 128)
+                val cipher = session.isaacPair?.encodingRandom
+                if (cipher != null) {
+                    if (opcode >= 128) {
+                        response.writeByte(((opcode shr 8) + 128) + cipher.nextInt())
+                        response.writeByte(opcode + cipher.nextInt())
+                    } else {
+                        response.writeByte(opcode + cipher.nextInt())
+                    }
+                } else {
+                    writeSmart(opcode, response)
                 }
                 response.writeByte(opcode)
                 if (header == PacketHeader.BYTE) {
@@ -54,5 +62,14 @@ class RS2PacketEncoder : MessageToByteEncoder<OutgoingPacket>() {
             e.printStackTrace()
         }
     }
+
+    private fun writeSmart(value: Int, response: ByteBuf) {
+        if (value >= 128) {
+            response.writeShort(value + 32768)
+        } else {
+            response.writeByte(value)
+        }
+    }
+
 
 }

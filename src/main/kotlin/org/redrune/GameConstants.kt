@@ -10,16 +10,25 @@ class GameConstants {
 
     companion object {
 
+        /**
+         * The name of the server
+         */
+        val SERVER_NAME = YAMLParser.getString("name")
+
+        /**
+         * The major build version
+         */
+        val BUILD_MAJOR = YAMLParser.getInt("buildMajor")
+
+        /**
+         * The minor build version
+         */
+        val BUILD_MINOR = YAMLParser.getDouble("buildMinor")
+
+        /**
+         * The location of the cache
+         */
         val CACHE_DIRECTORY = YAMLParser.getString("cachePath")
 
-        /**
-         * The rsa modulus
-         */
-        val RSA_MODULUS = YAMLParser.getString("rsaModulus")
-
-        /**
-         * The private rsa key
-         */
-        val RSA_PRIVATE = YAMLParser.getString("rsaPrivate")
     }
 }

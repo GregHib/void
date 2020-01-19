@@ -1,9 +1,11 @@
 package org.redrune
 
+import com.google.common.base.Stopwatch
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkBinder
 import org.redrune.util.YAMLParser
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -31,18 +33,31 @@ object GameServer {
      */
     private val yamlParser = YAMLParser
 
+    private val mainWorker = GameCycleWorker
+
+    /**
+     * If the game server is running
+     */
+    var running = false
+
+    /**
+     * The stopwatch instance
+     */
+    val stopwatch = Stopwatch.createStarted()
+
     // yaml must load first bc cache uses it
     init {
         yamlParser.load()
         cache = Cache
+        mainWorker.start()
     }
 
     /**
      * Runs the server
      */
     fun run() {
-        println("Loaded ${yamlParser.getSize()} configurations.")
-        println("Cache read from ${cache.path}.")
-        network.init()
+        println("Cache read from ${cache.path}")
+        println("${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms")
+        running = network.init()
     }
 }

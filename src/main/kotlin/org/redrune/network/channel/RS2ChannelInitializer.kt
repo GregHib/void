@@ -6,8 +6,8 @@ import io.netty.channel.ChannelPipeline
 import io.netty.channel.socket.SocketChannel
 import org.redrune.network.NetworkConstants
 import org.redrune.network.NetworkSession
-import org.redrune.network.codec.RS2PacketEncoder
 import org.redrune.network.codec.handshake.HandshakeDecoder
+import org.redrune.network.codec.packet.RS2PacketEncoder
 
 /**
  * @author Tyluur <contact@kiaira.tech>
