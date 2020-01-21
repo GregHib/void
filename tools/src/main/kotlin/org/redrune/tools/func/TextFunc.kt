@@ -43,7 +43,7 @@ class TextFunc {
 }
 
 /**
- * Formats a name for protocol, all lowercase, replacing all spaces with underscores
+ * Formats a name for protocol, all lowercase, replaces all spaces with underscores
  * @return The formatted name
  */
 fun String?.protocolFormat(): String {
