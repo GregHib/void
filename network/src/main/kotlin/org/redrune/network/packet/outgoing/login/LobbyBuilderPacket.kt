@@ -1,25 +1,33 @@
+/*
 package org.redrune.network.packet.outgoing.login
 
-import org.redrune.network.packet.struct.OutgoingPacket
 import org.redrune.network.packet.struct.PacketHeader
 import org.redrune.tools.func.TextFunc
 
 class LobbyBuilderPacket : OutgoingPacket(2, PacketHeader.BYTE) {
-    
+
     init {
         // leave the cast because of json boxing.
         // leave the cast because of json boxing.
-        val lastLogin = System.currentTimeMillis() /*((Number) player.getVariables().getAttribute(AttributeKey.LAST_LONGIN_STAMP, System.currentTimeMillis())).longValue();*/
+        val lastLogin = System.currentTimeMillis() */
+/*((Number) player.getVariables().getAttribute(AttributeKey.LAST_LONGIN_STAMP, System.currentTimeMillis())).longValue();*//*
+
         val now = System.currentTimeMillis()
         val jag = 1014753880308L
         val since_jag = (now - jag) / 1000 / 60 / 60 / 24
         val since_log = (now - lastLogin) / 1000 / 60 / 60 / 24
-        var lastIp: String = /*player.getAttributes().getLastIP()*/"127.0.0.1"
-       /* if (lastIp == null) {
+        var lastIp: String = */
+/*player.getAttributes().getLastIP()*//*
+"127.0.0.1"
+       */
+/* if (lastIp == null) {
             lastIp = Misc.getIpAddress(player.getSession().getChannel())
-        }*/
+        }*//*
 
-        writeByte(2/*player.getDominantRight().getClientRight()*/) // rights
+
+        writeByte(2*/
+/*player.getDominantRight().getClientRight()*//*
+) // rights
 
         writeByte(0) // blackmarks
 
@@ -56,7 +64,9 @@ class LobbyBuilderPacket : OutgoingPacket(2, PacketHeader.BYTE) {
 
         writeByte(1) //   Script 6909
 
-        writeGJString("username"/*player.getUsername()*/)
+        writeGJString("username"*/
+/*player.getUsername()*//*
+)
 
         writeByte(0) // //Script 6911r
 
@@ -69,5 +79,5 @@ class LobbyBuilderPacket : OutgoingPacket(2, PacketHeader.BYTE) {
 
         writeGJString("127.0.0.1")
     }
-    
-}
+
+}*/

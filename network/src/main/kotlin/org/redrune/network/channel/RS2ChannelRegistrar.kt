@@ -10,11 +10,11 @@ class   RS2ChannelRegistrar : ChannelInboundHandlerAdapter() {
 
     override fun channelRegistered(ctx: ChannelHandlerContext) {
         val session: NetworkSession? = ctx.channel().attr(NetworkSession.SESSION_KEY).get()
-        session?.state = NetworkSession.SessionState.REGISTERED
+        session?.onRegistry()
     }
 
     override fun channelUnregistered(ctx: ChannelHandlerContext) {
         val session: NetworkSession? = ctx.channel().attr(NetworkSession.SESSION_KEY).get()
-        session?.state = NetworkSession.SessionState.DEREGISTERED
+        session?.onRemove()
     }
 }

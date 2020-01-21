@@ -5,8 +5,10 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
 import org.redrune.network.NetworkSession
-import org.redrune.network.packet.PacketConstants
-import org.redrune.network.packet.struct.IncomingPacket
+import org.redrune.network.packet.Packet
+import org.redrune.network.packet.PacketReader
+import org.redrune.network.packet.PacketWriter
+import org.redrune.tools.constants.PacketConstants
 import org.redrune.network.packet.struct.PacketHeader
 
 /**
@@ -57,7 +59,7 @@ class RS2PacketDecoder(private val session: NetworkSession) : ReplayingDecoder<R
                     val payload = ByteArray(length)
                     `in`.readBytes(payload, 0, length)
                     `in`.markReaderIndex()
-                    out.add(IncomingPacket(opcode, PacketHeader.STANDARD, Unpooled.copiedBuffer(payload)))
+                    out.add(PacketWriter(opcode = opcode, buffer = Unpooled.copiedBuffer(payload)).toPacket())
                 } catch (e: Exception) {
                     println("Packet[$opcode, $length]")
                     ctx.fireExceptionCaught(e)

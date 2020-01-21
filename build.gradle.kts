@@ -39,6 +39,7 @@ allprojects {
         //Utilities
         implementation("com.google.guava:guava:19.0")
         implementation("org.apache.commons:commons-lang3:3.0")
+//        implementation("io.github.classgraph:classgraph:4.8.60")
 
         //Testing
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")

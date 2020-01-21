@@ -34,6 +34,7 @@ class FileRequestDecoder : ByteToMessageDecoder() {
     private fun handleRequest(ctx: ChannelHandlerContext, buf: ByteBuf, priority: Int) {
         val indexId: Int = buf.readUnsignedByte().toInt()
         val archiveId = buf.readUnsignedShort()
+        println("indexId=$indexId, archiveId=$archiveId")
         if (indexId != 255) {
             if (Cache.indexes.lastIndex <= indexId || Cache.indexes[indexId] == null || !Cache.indexes[indexId].archiveExists(
                     archiveId
@@ -52,6 +53,7 @@ class FileRequestDecoder : ByteToMessageDecoder() {
             }
             1 -> {
                 ctx.writeAndFlush(Cache.getArchive(indexId, archiveId, true))
+                println("Sent request for [indexId=$indexId, archiveId=$archiveId, priority=true]")
             }
             2, 3 -> {
                 requests.clear()
@@ -59,7 +61,8 @@ class FileRequestDecoder : ByteToMessageDecoder() {
         }
         while (requests.size > 0) {
             val request = requests.removeFirst()
-            ctx.writeAndFlush(Cache.getArchive(request.indexId, request.archiveId, request.priority))
+            ctx.channel().writeAndFlush(Cache.getArchive(request.indexId, request.archiveId, request.priority))
+            println("sent data for $request")
         }
     }
 

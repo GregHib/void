@@ -1,13 +1,14 @@
 package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
+import io.netty.buffer.DefaultByteBufHolder
 import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-abstract class Packet(
+data class Packet(
         /**
          * The opcode of the packet
          */

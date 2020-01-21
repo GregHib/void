@@ -9,24 +9,76 @@ import io.netty.channel.socket.nio.NioServerSocketChannel
 import mu.KLogger
 import mu.KotlinLogging
 import org.redrune.network.channel.RS2ChannelInitializer
+import org.redrune.network.codec.message.Message
+import org.redrune.network.codec.message.MessageDecoder
+import org.redrune.network.codec.message.MessageEncoder
+import org.redrune.network.message.encode.LoginResponseMessageEncoder
 import org.redrune.tools.PCUtils
 import org.redrune.tools.constants.NetworkConstants
+import kotlin.reflect.KClass
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
 @ChannelHandler.Sharable
-class NetworkBinder {
-
-    private val bossGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
-    private val workerGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
-    private val logger: KLogger = KotlinLogging.logger {}
+object NetworkBinder {
 
     /**
-     * Networking is configured, initialized, and then the port specified [NetworkConstants.PORT_ID] is bound
+     * The map of encoders
      */
-    fun init(): Boolean {
+    private val decoders = arrayOfNulls<MessageDecoder<*>>(256)
+
+    /**
+     * The map of the packete ncoders
+     */
+    private val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
+
+    /**
+     * The logger for this class
+     */
+    private val logger: KLogger = KotlinLogging.logger {}
+
+    private fun <T : Message> bindEncoder(type: KClass<T>, encoder: MessageEncoder<T>) {
+        if (encoders.contains(type)) {
+            throw IllegalArgumentException("Cannot have duplicate encoders $type $encoder")
+        }
+        encoders[type] = encoder
+    }
+
+    private inline fun <reified T : Message> bindEncoder(encoder: MessageEncoder<T>) {
+        bindEncoder(T::class, encoder)
+    }
+
+    fun bindDecoder(decoder: MessageDecoder<*>) {
+        if (decoders.contains(decoder)) {
+            throw IllegalArgumentException("Cannot have duplicate decoders $decoder")
+        }
+        decoder.opcodes.forEach { opcode ->
+            if (decoders[opcode] != null) {
+                throw IllegalArgumentException("Cannot have duplicate decoders $decoder $opcode")
+            }
+            decoders[opcode] = decoder
+        }
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Message> getEncoder(clazz: KClass<T>): MessageEncoder<T>? {
+        return encoders[clazz] as? MessageEncoder<T>
+    }
+
+    fun getDecoder(opcode: Int): MessageDecoder<*>? {
+        return decoders[opcode]
+    }
+
+    private fun bindCodec() {
+        bindEncoder(LoginResponseMessageEncoder())
+
+    }
+
+    private fun bindSocket(): Boolean {
+        val bossGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
+        val workerGroup = NioEventLoopGroup(PCUtils.PROCESSOR_COUNT)
         try {
 
             val bootstrap = ServerBootstrap()
@@ -58,6 +110,19 @@ class NetworkBinder {
             workerGroup.shutdownGracefully()
             bossGroup.shutdownGracefully()
             logger.info { "Network shutdown complete." }
+        }
+    }
+
+    /**
+     * Networking is configured, initialized, and then the port specified [NetworkConstants.PORT_ID] is bound
+     */
+    fun init(): Boolean {
+        return try {
+            bindCodec()
+            bindSocket()
+        } catch (e: Exception) {
+            logger.error("Unable to initialize network", e)
+            false;
         }
     }
 

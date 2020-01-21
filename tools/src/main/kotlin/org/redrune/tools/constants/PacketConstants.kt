@@ -1,4 +1,4 @@
-package org.redrune.network.packet
+package org.redrune.tools.constants
 
 /**
  * Unchanging information about packets is held in this class

@@ -1,8 +1,7 @@
-package org.redrune.network.packet
+package org.redrune.network.codec.message
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-18
  */
-abstract class Message {
-}
+interface Message

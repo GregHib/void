@@ -8,8 +8,6 @@ import io.netty.handler.codec.ByteToMessageDecoder
 import org.redrune.cache.Cache
 import org.redrune.network.NetworkSession
 import org.redrune.network.codec.packet.RS2PacketDecoder
-import org.redrune.network.packet.outgoing.login.LobbyBuilderPacket
-import org.redrune.network.packet.outgoing.login.LoginResponsePacket
 import org.redrune.tools.LoginReturnCode
 import org.redrune.tools.buf.FixedBuffer
 import org.redrune.tools.constants.NetworkConstants
@@ -39,16 +37,14 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
         if (opcode != 16 && opcode != 18 && opcode != 19) {
             println("Received unexpected world login opcode: $opcode")
             session = NetworkSession(ctx.channel())
-            session?.write(LoginResponsePacket(LoginReturnCode.BETA_TESTERS_ONLY))
-                    ?.addListener(ChannelFutureListener.CLOSE)
+            sendResponse(LoginReturnCode.BETA_TESTERS_ONLY)
             return
         }
         val revision = buf.readInt()
         if (revision != NetworkConstants.PROTOCOL_NUMBER) {
             println("Received unexpected protocol number: $revision")
             session = NetworkSession(ctx.channel())
-            session?.write(LoginResponsePacket(LoginReturnCode.BETA_TESTERS_ONLY))
-                    ?.addListener(ChannelFutureListener.CLOSE)
+            sendResponse(LoginReturnCode.BETA_TESTERS_ONLY)
             return
         }
         session = NetworkSession(ctx.channel())
@@ -142,9 +138,9 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
             outCipher[i] = isaacSeed[i] + 50
         }
         session?.isaacPair = IsaacRandomPair(IsaacRandom(inCipher), IsaacRandom(outCipher))
-        session?.write(LobbyBuilderPacket())
+//        session?.write(LobbyBuilderPacket())
         session?.state = NetworkSession.SessionState.LOBBY
-        ctx.pipeline().replace("decoder", "decoder", session?.let { RS2PacketDecoder(it) })
+        ctx.pipeline().replace("packet.decoder", "packet.decoder", session?.let { RS2PacketDecoder(it) })
     }
 
     private fun decodeWorldLogin(ctx: ChannelHandlerContext, buffer: FixedBuffer, out: MutableList<Any>) {
@@ -152,7 +148,7 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
     }
 
     private fun sendResponse(returnCode: LoginReturnCode) {
-        session?.write(LoginResponsePacket(returnCode))?.addListener(ChannelFutureListener.CLOSE)
+//        session?.write(LoginResponsePacket(returnCode))?.addListener(ChannelFutureListener.CLOSE)
     }
 
 

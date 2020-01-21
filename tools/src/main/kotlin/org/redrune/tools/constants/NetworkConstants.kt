@@ -23,6 +23,17 @@ class NetworkConstants {
          */
         const val PORT_ID = 43594
 
+
+        /**
+         * The number of seconds before a connection becomes idle.
+         */
+        const val IDLE_TIME = 15
+
+        /**
+         * The localhost ip address
+         */
+        const val LOCALHOST = "127.0.0.1"
+
         /**
          * The keys sent during grab server decoding
          */

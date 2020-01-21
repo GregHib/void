@@ -29,11 +29,6 @@ object GameServer {
     private val gameThread = GameCycleWorker
 
     /**
-     * The instance of the network
-     */
-    private val network = NetworkBinder()
-
-    /**
      * The instance of the yaml parser
      */
     private val yamlParser = YAMLParser
@@ -66,7 +61,7 @@ object GameServer {
     fun run() {
         logger.info { "Cache read from ${cache.path}" }
         logger.info { "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms" }
-        running = network.init()
+        running = NetworkBinder.init()
     }
 
 }

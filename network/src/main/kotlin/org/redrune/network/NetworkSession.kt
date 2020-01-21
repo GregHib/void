@@ -3,8 +3,13 @@ package org.redrune.network
 import io.netty.channel.Channel
 import io.netty.channel.ChannelFuture
 import io.netty.util.AttributeKey
-import org.redrune.network.packet.struct.OutgoingPacket
+import mu.KLogger
+import mu.KLogging
+import mu.KotlinLogging
+import org.redrune.network.packet.Packet
+import org.redrune.tools.constants.NetworkConstants
 import org.redrune.tools.crypto.IsaacRandomPair
+import java.net.InetSocketAddress
 
 /**
  * This class represents the network session from the client (player) to the server
@@ -32,7 +37,7 @@ class NetworkSession(
      * Writes a packet to the channel
      * @return ChannelFuture
      */
-    fun write(packet: OutgoingPacket, flush: Boolean = true): ChannelFuture {
+    fun write(packet: Packet, flush: Boolean = true): ChannelFuture {
         return if (flush) channel.writeAndFlush(packet) else channel.write(packet)
     }
 
@@ -44,6 +49,29 @@ class NetworkSession(
         CREATED, REGISTERED, HANDSHAKE, LOBBY_DECODING, LOBBY, GAME, DEREGISTERED
     }
 
+    fun messageReceived(message: Any) {
+        println(message)
+    }
+
+    fun onRegistry() {
+        state = SessionState.REGISTERED
+        logger.info("Registered session $this")
+    }
+
+    fun onRemove() {
+        state = SessionState.DEREGISTERED
+        logger.info("Removed session $this")
+    }
+
+    fun getHost(): String {
+        return (channel.remoteAddress() as? InetSocketAddress)?.address?.hostAddress ?: NetworkConstants.LOCALHOST
+    }
+
+    override fun toString(): String {
+        return "state=$state, host=${getHost()}"
+    }
+
+
     companion object {
 
         /**
@@ -51,4 +79,6 @@ class NetworkSession(
          */
         val SESSION_KEY: AttributeKey<NetworkSession> = AttributeKey.valueOf<NetworkSession>("session.key")
     }
+
+    private val logger = KotlinLogging.logger{}
 }

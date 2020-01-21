@@ -1,3 +1,3 @@
-package org.redrune.network.packet.incoming
+package org.redrune.network.packet.struct
 
 annotation class PacketDefinition(val bindings: IntArray)

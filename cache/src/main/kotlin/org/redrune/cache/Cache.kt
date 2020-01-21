@@ -3,8 +3,15 @@ package org.redrune.cache
 import com.alex.store.Store
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
+import org.redrune.cache.secure.RSA
+import org.redrune.cache.secure.Whirlpool
 import org.redrune.tools.constants.GameConstants
 import org.redrune.tools.constants.NetworkConstants
+import java.io.ByteArrayOutputStream
+import java.io.DataOutputStream
+import java.math.BigInteger
+import java.nio.Buffer
+import java.nio.ByteBuffer
 import kotlin.experimental.and
 
 /**
@@ -16,7 +23,8 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
     /**
      * The version table data
      */
-    private val versionTable = generateIndex255Archive255Current(NetworkConstants.FILE_SERVER_RSA_PRIVATE, NetworkConstants.FILE_SERVER_RSA_MODULUS);
+    private val versionTable = createVersionTable(true, NetworkConstants.FILE_SERVER_RSA_MODULUS, NetworkConstants.FILE_SERVER_RSA_PRIVATE)
+//            generateIndex255Archive255Current(NetworkConstants.FILE_SERVER_RSA_PRIVATE, NetworkConstants.FILE_SERVER_RSA_MODULUS);
 
     /**
      * Creates a buffer with data in the specified cache location
@@ -35,6 +43,47 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
             buffer.writeByte(archive[index].toInt())
         }
         return buffer
+    }
+
+    private fun createVersionTable(whirlpool: Boolean, modulus: BigInteger?, private: BigInteger?): ByteArray {
+        val bout = ByteArrayOutputStream()
+        DataOutputStream(bout).use { buffer ->
+            Cache.run {
+                if(whirlpool) {
+                    buffer.writeByte(indexes.size)
+                }
+
+                for (i in 0 until indexes.size) {
+                    buffer.writeInt(indexes[i].crc)
+                    buffer.writeInt(indexes[i].table?.revision ?: 0)
+                    if(whirlpool) {
+                        buffer.write(indexes[i].whirlpool ?: ByteArray(64))
+                        //keys?
+                    }
+                }
+            }
+
+            if(whirlpool) {
+                val bytes = bout.toByteArray()
+                var temp = ByteBuffer.allocate(65)
+                temp.put(1)
+                temp.put(Whirlpool.whirlpool(bytes, 0, bytes.size))
+                (temp as Buffer).flip()
+
+                if (modulus != null && private != null) {
+                    temp = RSA.crypt(temp, modulus, private)
+                }
+
+                buffer.write(temp.array())
+            }
+
+            val data = bout.toByteArray()
+            val out = ByteBuffer.allocate(5 + data.size)
+            out.put(0)
+            out.putInt(data.size)
+            out.put(data)
+            return out.array()
+        }
     }
 
     /**

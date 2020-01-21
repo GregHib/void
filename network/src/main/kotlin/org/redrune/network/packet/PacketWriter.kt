@@ -1,29 +1,35 @@
-package org.redrune.network.packet.struct
+package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import org.redrune.network.packet.Packet
+import org.redrune.network.packet.struct.PacketHeader
+import javax.crypto.Cipher
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since 2020-01-07
+ * @since 2020-01-21
  */
-open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, header, Unpooled.buffer()) {
+class PacketWriter(
 
-    /**
-     * Constructing an outgoing packet with -1 for the opcode and a standard header
-     */
-    constructor() : this(-1)
+        /**
+         * The opcode of the packet, default as -1
+         */
+        private val opcode: Int = -1,
 
-    /**
-     * Constructing an outgoing packet by only specifying the opcode, the header will default to standard
-     */
-    constructor(opcode: Int) : this(opcode, PacketHeader.STANDARD)
+        /**
+         * The [PacketHeader] of the packet, default to [PacketHeader.STANDARD]
+         */
+        private val header: PacketHeader = PacketHeader.STANDARD,
+
+        /**
+         * The buffer of the packet
+         */
+        private val buffer: ByteBuf = Unpooled.buffer()) {
 
     /**
      * Writing a byte to the [buffer]
      */
-    fun writeByte(value: Int): OutgoingPacket {
+    fun writeByte(value: Int): PacketWriter {
         buffer.writeByte(value)
         return this
     }
@@ -31,7 +37,7 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Writing an integer to the [buffer]
      */
-    fun writeInt(value: Int): OutgoingPacket {
+    fun writeInt(value: Int): PacketWriter {
         buffer.writeInt(value)
         return this
     }
@@ -39,7 +45,7 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Writing a long to the [buffer]
      */
-    fun writeLong(value: Long): OutgoingPacket {
+    fun writeLong(value: Long): PacketWriter {
         buffer.writeLong(value)
         return this
     }
@@ -47,7 +53,7 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Write the bytes of another buffer to the [buffer]
      */
-    fun writeBytes(other: ByteBuf): OutgoingPacket {
+    fun writeBytes(other: ByteBuf): PacketWriter {
         buffer.writeBytes(other)
         return this
     }
@@ -62,7 +68,7 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Writes a short to the [buffer]
      */
-    fun writeShort(value: Int): OutgoingPacket {
+    fun writeShort(value: Int): PacketWriter {
         buffer.writeShort(value)
         return this
     }
@@ -70,7 +76,7 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Writing a string to the [buffer]
      */
-    fun writeString(value: String): OutgoingPacket {
+    fun writeString(value: String): PacketWriter {
         buffer.writeBytes(value.toByteArray())
         buffer.writeByte(0)
         return this
@@ -79,11 +85,16 @@ open class OutgoingPacket(opcode: Int, header: PacketHeader) : Packet(opcode, he
     /**
      * Writing a GJ string to the [buffer]
      */
-    fun writeGJString(value: String) : OutgoingPacket {
+    fun writeGJString(value: String): PacketWriter {
         buffer.writeByte(0)
         buffer.writeBytes(value.toByteArray())
         buffer.writeByte(0)
         return this
     }
 
+    /**
+     * Constructs a [Packet] from the [buffer]
+     * @return Packet
+     */
+    fun toPacket(): Packet = Packet(opcode = opcode, header = header, buffer = buffer)
 }

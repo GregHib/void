@@ -6,7 +6,7 @@ import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.network.NetworkSession
-import org.redrune.network.packet.struct.OutgoingPacket
+import org.redrune.network.packet.Packet
 import org.redrune.network.packet.struct.PacketHeader
 
 /**
@@ -14,9 +14,9 @@ import org.redrune.network.packet.struct.PacketHeader
  * @since 2020-01-18
  */
 @ChannelHandler.Sharable
-class RS2PacketEncoder : MessageToByteEncoder<OutgoingPacket>() {
+class RS2PacketEncoder : MessageToByteEncoder<Packet>() {
 
-    override fun encode(ctx: ChannelHandlerContext, packet: OutgoingPacket, out: ByteBuf) {
+    override fun encode(ctx: ChannelHandlerContext, packet: Packet, out: ByteBuf) {
 
         try { // the session
             val session: NetworkSession = ctx.channel().attr(NetworkSession.SESSION_KEY).get()
@@ -24,7 +24,7 @@ class RS2PacketEncoder : MessageToByteEncoder<OutgoingPacket>() {
             val response: ByteBuf
             if (packet.isRaw()) {
                 response = packet.buffer
-            } else { // the length of the packet
+            } else {
                 val length: Int = packet.buffer.readableBytes()
                 response = Unpooled.buffer(length + 3)
                 val opcode: Int = packet.opcode
