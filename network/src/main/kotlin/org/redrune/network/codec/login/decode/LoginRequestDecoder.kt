@@ -1,8 +1,7 @@
-package org.redrune.network.codec.login
+package org.redrune.network.codec.login.decode
 
 import com.alex.utils.Utils
 import io.netty.buffer.ByteBuf
-import io.netty.channel.ChannelFutureListener
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import org.redrune.cache.Cache

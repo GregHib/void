@@ -9,10 +9,12 @@ import io.netty.channel.socket.nio.NioServerSocketChannel
 import mu.KLogger
 import mu.KotlinLogging
 import org.redrune.network.channel.RS2ChannelInitializer
+import org.redrune.network.codec.handshake.decode.HandshakeMessageDecoder
+import org.redrune.network.codec.handshake.encode.HandshakeMessageEncoder
 import org.redrune.network.codec.message.Message
 import org.redrune.network.codec.message.MessageDecoder
 import org.redrune.network.codec.message.MessageEncoder
-import org.redrune.network.message.encode.LoginResponseMessageEncoder
+import org.redrune.network.codec.login.encode.LoginResponseMessageEncoder
 import org.redrune.tools.PCUtils
 import org.redrune.tools.constants.NetworkConstants
 import kotlin.reflect.KClass
@@ -73,7 +75,9 @@ object NetworkBinder {
 
     private fun bindCodec() {
         bindEncoder(LoginResponseMessageEncoder())
+        bindEncoder(HandshakeMessageEncoder())
 
+        bindDecoder(HandshakeMessageDecoder())
     }
 
     private fun bindSocket(): Boolean {

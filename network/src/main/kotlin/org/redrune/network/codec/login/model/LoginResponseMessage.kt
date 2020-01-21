@@ -1,4 +1,4 @@
-package org.redrune.network.message.model
+package org.redrune.network.codec.login.model
 
 import org.redrune.network.codec.message.Message
 import org.redrune.tools.LoginReturnCode

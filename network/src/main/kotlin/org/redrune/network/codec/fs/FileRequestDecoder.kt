@@ -1,4 +1,4 @@
-package org.redrune.network.codec.js5
+package org.redrune.network.codec.fs
 
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext

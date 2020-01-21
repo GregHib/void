@@ -4,13 +4,11 @@ import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.ChannelPipeline
 import io.netty.channel.socket.SocketChannel
-import io.netty.handler.timeout.IdleStateHandler
 import org.redrune.network.NetworkSession
 import org.redrune.network.codec.handshake.HandshakeDecoder
 import org.redrune.network.codec.packet.RS2PacketEncoder
 import org.redrune.network.message.RS2MessageDecoder
 import org.redrune.network.message.RS2MessageEncoder
-import org.redrune.tools.constants.NetworkConstants
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -31,13 +29,11 @@ class RS2ChannelInitializer : ChannelInitializer<SocketChannel>() {
 
     override fun initChannel(ch: SocketChannel) {
         val pipeline: ChannelPipeline = ch.pipeline()
-        pipeline.addLast("timeout", IdleStateHandler(NetworkConstants.IDLE_TIME, 0, 0))
-
+        pipeline.addLast("packet.decoder", HandshakeDecoder())
         pipeline.addLast("message.decoder", RS2MessageDecoder())
-        pipeline.addLast("message.encoder", RS2MessageEncoder())
 
         pipeline.addLast("packet.encoder", RS2PacketEncoder())
-        pipeline.addLast("packet.decoder", HandshakeDecoder())
+        pipeline.addLast("message.encoder", RS2MessageEncoder())
 
         pipeline.addLast("handler", channelReader)
         pipeline.addLast("registrar", channelRegistrar)

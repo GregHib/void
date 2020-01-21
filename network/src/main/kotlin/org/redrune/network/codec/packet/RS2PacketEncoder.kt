@@ -17,6 +17,7 @@ import org.redrune.network.packet.struct.PacketHeader
 class RS2PacketEncoder : MessageToByteEncoder<Packet>() {
 
     override fun encode(ctx: ChannelHandlerContext, packet: Packet, out: ByteBuf) {
+        println("RS2PacketEncoder.encode")
 
         try { // the session
             val session: NetworkSession = ctx.channel().attr(NetworkSession.SESSION_KEY).get()

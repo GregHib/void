@@ -1,6 +1,7 @@
 package org.redrune.network.codec.message
 
 import org.redrune.network.packet.Packet
+import org.redrune.network.packet.PacketReader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -9,7 +10,7 @@ import org.redrune.network.packet.Packet
 abstract class MessageDecoder<T : Message>(val opcodes: IntArray) {
 
     /**
-     * Decoding a [Packet] into a [Message] of type [T]
+     * Decoding a [PacketReader] into a [Message] of type [T]
      */
-    abstract fun decode(packet: Packet): T
+    abstract fun decode(packet: PacketReader): T
 }

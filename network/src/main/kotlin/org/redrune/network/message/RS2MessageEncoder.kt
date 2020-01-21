@@ -15,6 +15,8 @@ class RS2MessageEncoder : MessageToMessageEncoder<Message>() {
 
     @Suppress("UNCHECKED_CAST")
     override fun encode(ctx: ChannelHandlerContext, msg: Message, out: MutableList<Any>) {
+        println("RS2MessageEncoder.encode")
+
         val encoder = NetworkBinder.getEncoder(msg::class) as? MessageEncoder<Message>
         if (encoder == null) {
             logger.info("Unable to find encoder for message $msg")

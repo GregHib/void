@@ -1,4 +1,4 @@
-package org.redrune.network.codec.js5
+package org.redrune.network.codec.fs
 
 /**
  * Representing a request for a file from the server
