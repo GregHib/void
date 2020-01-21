@@ -12,7 +12,7 @@
 
 # error logs
 hs_err_pid*
-error.log
+data/logs/error.log
 
 # ide files
 /target
