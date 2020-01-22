@@ -22,7 +22,7 @@ data class Packet(
          * The buffer of the packet
          */
         val buffer: ByteBuf
-) {
+) : DefaultByteBufHolder(buffer) {
 
     /**
      * The length of the packet

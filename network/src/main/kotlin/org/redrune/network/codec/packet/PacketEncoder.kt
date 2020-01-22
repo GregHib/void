@@ -5,22 +5,21 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
-import org.redrune.network.NetworkSession
+import org.redrune.network.session.Session
 import org.redrune.network.packet.Packet
 import org.redrune.network.packet.struct.PacketHeader
+import org.redrune.network.session.GameSession
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-18
  */
 @ChannelHandler.Sharable
-class RS2PacketEncoder : MessageToByteEncoder<Packet>() {
+class PacketEncoder : MessageToByteEncoder<Packet>() {
 
     override fun encode(ctx: ChannelHandlerContext, packet: Packet, out: ByteBuf) {
-        println("RS2PacketEncoder.encode")
-
         try { // the session
-            val session: NetworkSession = ctx.channel().attr(NetworkSession.SESSION_KEY).get()
+            val session: GameSession = ctx.channel().attr(Session.SESSION_KEY).get() as GameSession
             // the encoded response
             val response: ByteBuf
             if (packet.isRaw()) {

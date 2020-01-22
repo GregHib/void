@@ -4,19 +4,17 @@ import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
-import org.redrune.network.NetworkSession
-import org.redrune.network.packet.Packet
-import org.redrune.network.packet.PacketReader
-import org.redrune.network.packet.PacketWriter
+import org.redrune.network.session.Session
+import org.redrune.network.packet.PacketBuilder
+import org.redrune.network.session.GameSession
 import org.redrune.tools.constants.PacketConstants
-import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
-class RS2PacketDecoder(private val session: NetworkSession) : ReplayingDecoder<RS2PacketDecoder.PacketStage>() {
+class PacketDecoder(private val session: GameSession) : ReplayingDecoder<PacketDecoder.PacketStage>() {
     /**
      * The opcode of the current packed being decoded
      */
@@ -29,7 +27,7 @@ class RS2PacketDecoder(private val session: NetworkSession) : ReplayingDecoder<R
 
     init {
         state(PacketStage.VERSION)
-        session.channel.attr(NetworkSession.SESSION_KEY).setIfAbsent(session)
+        session.channel.attr(Session.SESSION_KEY).setIfAbsent(session)
     }
 
     override fun decode(ctx: ChannelHandlerContext, `in`: ByteBuf, out: MutableList<Any>) {
@@ -59,7 +57,7 @@ class RS2PacketDecoder(private val session: NetworkSession) : ReplayingDecoder<R
                     val payload = ByteArray(length)
                     `in`.readBytes(payload, 0, length)
                     `in`.markReaderIndex()
-                    out.add(PacketWriter(opcode = opcode, buffer = Unpooled.copiedBuffer(payload)).toPacket())
+                    out.add(PacketBuilder(opcode = opcode, buffer = Unpooled.copiedBuffer(payload)).build())
                 } catch (e: Exception) {
                     println("Packet[$opcode, $length]")
                     ctx.fireExceptionCaught(e)

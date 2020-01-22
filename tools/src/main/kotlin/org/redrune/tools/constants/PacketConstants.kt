@@ -25,15 +25,6 @@ class PacketConstants {
          */
         const val PACKET_SIZE_LIMIT = 7500
 
-        /**
-         * The js5-request opcode.
-         */
-        const val JS5_REQUEST_OPCODE: Byte = 15
-        /**
-         * The login request opcode.
-         */
-        const val LOGIN_REQUEST_OPCODE: Byte = 14
-
         init {
             for (id in 0..255) {
                 PACKET_LENGTHS[id] = -4

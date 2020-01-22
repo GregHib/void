@@ -3,13 +3,12 @@ package org.redrune.network.packet
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import org.redrune.network.packet.struct.PacketHeader
-import javax.crypto.Cipher
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since 2020-01-21
+ * @since January 22, 2020
  */
-class PacketWriter(
+class PacketBuilder(
 
         /**
          * The opcode of the packet, default as -1
@@ -29,7 +28,7 @@ class PacketWriter(
     /**
      * Writing a byte to the [buffer]
      */
-    fun writeByte(value: Int): PacketWriter {
+    fun writeByte(value: Int): PacketBuilder {
         buffer.writeByte(value)
         return this
     }
@@ -37,7 +36,7 @@ class PacketWriter(
     /**
      * Writing an integer to the [buffer]
      */
-    fun writeInt(value: Int): PacketWriter {
+    fun writeInt(value: Int): PacketBuilder {
         buffer.writeInt(value)
         return this
     }
@@ -45,7 +44,7 @@ class PacketWriter(
     /**
      * Writing a long to the [buffer]
      */
-    fun writeLong(value: Long): PacketWriter {
+    fun writeLong(value: Long): PacketBuilder {
         buffer.writeLong(value)
         return this
     }
@@ -53,7 +52,7 @@ class PacketWriter(
     /**
      * Write the bytes of another buffer to the [buffer]
      */
-    fun writeBytes(other: ByteBuf): PacketWriter {
+    fun writeBytes(other: ByteBuf): PacketBuilder {
         buffer.writeBytes(other)
         return this
     }
@@ -68,7 +67,7 @@ class PacketWriter(
     /**
      * Writes a short to the [buffer]
      */
-    fun writeShort(value: Int): PacketWriter {
+    fun writeShort(value: Int): PacketBuilder {
         buffer.writeShort(value)
         return this
     }
@@ -76,7 +75,7 @@ class PacketWriter(
     /**
      * Writing a string to the [buffer]
      */
-    fun writeString(value: String): PacketWriter {
+    fun writeString(value: String): PacketBuilder {
         buffer.writeBytes(value.toByteArray())
         buffer.writeByte(0)
         return this
@@ -85,7 +84,7 @@ class PacketWriter(
     /**
      * Writing a GJ string to the [buffer]
      */
-    fun writeGJString(value: String): PacketWriter {
+    fun writeGJString(value: String): PacketBuilder {
         buffer.writeByte(0)
         buffer.writeBytes(value.toByteArray())
         buffer.writeByte(0)
@@ -96,5 +95,5 @@ class PacketWriter(
      * Constructs a [Packet] from the [buffer]
      * @return Packet
      */
-    fun toPacket(): Packet = Packet(opcode = opcode, header = header, buffer = buffer)
+    fun build(): Packet = Packet(opcode = opcode, header = header, buffer = buffer)
 }

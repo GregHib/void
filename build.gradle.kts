@@ -16,7 +16,6 @@ allprojects {
     group = "redrune"
     version = "0.0.1"
 
-
     repositories {
         mavenCentral()
         mavenLocal()
@@ -28,8 +27,10 @@ allprojects {
     dependencies {
         //Main
         implementation(kotlin("stdlib-jdk8"))
+        implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
         compile(group = "org.yaml", name = "snakeyaml", version = "1.8")
+        compile(group = "io.github.classgraph", name="classgraph", version="4.6.3")
 
         //Logging
         implementation("io.github.microutils:kotlin-logging:1.7.7")

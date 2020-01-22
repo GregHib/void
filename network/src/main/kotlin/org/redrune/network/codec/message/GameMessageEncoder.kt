@@ -1,9 +1,10 @@
-package org.redrune.network.message
+package org.redrune.network.codec.message
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageEncoder
 import mu.KotlinLogging
 import org.redrune.network.NetworkBinder
+import org.redrune.network.codec.CodecRegistry
 import org.redrune.network.codec.message.Message
 import org.redrune.network.codec.message.MessageEncoder
 
@@ -11,13 +12,13 @@ import org.redrune.network.codec.message.MessageEncoder
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-21
  */
-class RS2MessageEncoder : MessageToMessageEncoder<Message>() {
+class GameMessageEncoder : MessageToMessageEncoder<Message>() {
 
     @Suppress("UNCHECKED_CAST")
     override fun encode(ctx: ChannelHandlerContext, msg: Message, out: MutableList<Any>) {
-        println("RS2MessageEncoder.encode")
+        println("message being encoded into packet! $msg")
 
-        val encoder = NetworkBinder.getEncoder(msg::class) as? MessageEncoder<Message>
+        val encoder = CodecRegistry.getEncoder(msg::class) as? MessageEncoder<Message>
         if (encoder == null) {
             logger.info("Unable to find encoder for message $msg")
         } else {

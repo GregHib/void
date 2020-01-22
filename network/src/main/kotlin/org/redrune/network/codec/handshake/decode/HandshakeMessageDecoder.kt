@@ -1,6 +1,6 @@
 package org.redrune.network.codec.handshake.decode
 
-import org.redrune.network.codec.handshake.decode.message.HandshakeMessage
+import org.redrune.network.codec.handshake.model.HandshakeMessage
 import org.redrune.network.codec.message.MessageDecoder
 import org.redrune.network.packet.PacketReader
 import kotlin.experimental.and

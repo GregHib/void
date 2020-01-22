@@ -6,6 +6,7 @@ import mu.KotlinLogging
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkBinder
+import org.redrune.network.codec.CodecRegistry
 import org.redrune.tools.YAMLParser
 import org.redrune.tools.constants.GameConstants
 import java.util.concurrent.TimeUnit
@@ -61,7 +62,9 @@ object GameServer {
     fun run() {
         logger.info { "Cache read from ${cache.path}" }
         logger.info { "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms" }
-        running = NetworkBinder.init()
+        CodecRegistry.bindCodec()
+        NetworkBinder.bind()
+        running = true
     }
 
 }

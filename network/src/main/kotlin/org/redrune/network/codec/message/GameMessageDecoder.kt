@@ -1,9 +1,10 @@
-package org.redrune.network.message
+package org.redrune.network.codec.message
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import mu.KotlinLogging
 import org.redrune.network.NetworkBinder
+import org.redrune.network.codec.CodecRegistry
 import org.redrune.network.packet.Packet
 import org.redrune.network.packet.PacketReader
 
@@ -13,11 +14,11 @@ import org.redrune.network.packet.PacketReader
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-21
  */
-class RS2MessageDecoder : MessageToMessageDecoder<Packet>() {
+class GameMessageDecoder : MessageToMessageDecoder<Packet>() {
     override fun decode(ctx: ChannelHandlerContext, packet: Packet, out: MutableList<Any>) {
-        println("RS2MessageDecoder.decode")
+        println("packet being decoded into message!!!! ${packet.opcode}")
 
-        val decoder = NetworkBinder.getDecoder(packet.opcode)
+        val decoder = CodecRegistry.getDecoder(packet.opcode)
         if (decoder == null) {
             logger.info("Unable to find decoder for packet #${packet.opcode}")
         } else {

@@ -1,3 +1,4 @@
+/*
 package org.redrune.network.codec.login.decode
 
 import com.alex.utils.Utils
@@ -5,7 +6,7 @@ import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import org.redrune.cache.Cache
-import org.redrune.network.NetworkSession
+import org.redrune.network.session.NetworkSession
 import org.redrune.network.codec.packet.RS2PacketDecoder
 import org.redrune.tools.LoginReturnCode
 import org.redrune.tools.buf.FixedBuffer
@@ -111,7 +112,8 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
             sendResponse(LoginReturnCode.INVALID_CREDENTIALS)
             return
         }
-        /*if (World.getLobbyPlayers().size >= org.redrune.utility.constants.GameConstants.PLAYERS_LIMIT - 10) {
+        */
+/*if (World.getLobbyPlayers().size >= org.redrune.utility.constants.GameConstants.PLAYERS_LIMIT - 10) {
             session!!.write(LoginResponseCodePacketBuilder(org.redrune.utility.game.entity.actor.player.LoginReturnCode.FULL_WORLD)).addListener(ChannelFutureListener.CLOSE)
             return
         }
@@ -130,7 +132,8 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
                 sendResponse(LoginReturnCode.INVALID_LOGIN_SERVER)
                 return
             }
-        }*/
+        }*//*
+
         val inCipher = isaacSeed.copyOf(isaacSeed.size)
         val outCipher = IntArray(4)
         for (i in isaacSeed.indices) {
@@ -138,7 +141,6 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
         }
         session?.isaacPair = IsaacRandomPair(IsaacRandom(inCipher), IsaacRandom(outCipher))
 //        session?.write(LobbyBuilderPacket())
-        session?.state = NetworkSession.SessionState.LOBBY
         ctx.pipeline().replace("packet.decoder", "packet.decoder", session?.let { RS2PacketDecoder(it) })
     }
 
@@ -151,4 +153,4 @@ class LoginRequestDecoder : ByteToMessageDecoder() {
     }
 
 
-}
+}*/
