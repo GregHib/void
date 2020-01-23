@@ -1,14 +1,13 @@
 package org.redrune
 
 import com.google.common.base.Stopwatch
-import mu.KLogger
-import mu.KotlinLogging
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
-import org.redrune.network.NetworkBinder
+import org.redrune.network.NetworkInitializer
 import org.redrune.network.codec.CodecRegistry
 import org.redrune.tools.YAMLParser
 import org.redrune.tools.constants.GameConstants
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -17,27 +16,15 @@ import java.util.concurrent.TimeUnit
  */
 object GameServer {
 
-    private val logger: KLogger = KotlinLogging.logger {}
+    /**
+     * The logger for this class
+     */
+    private val logger = LoggerFactory.getLogger(GameServer::class.java)
 
     /**
-     * The
+     * The instance of the network
      */
-    private val cache: Cache
-
-    /**
-     * The instance of the game thread
-     */
-    private val gameThread = GameCycleWorker
-
-    /**
-     * The instance of the yaml parser
-     */
-    private val yamlParser = YAMLParser
-
-    /**
-     * The instance of the game cycle worker
-     */
-    private val mainWorker = GameCycleWorker
+    private val network = NetworkInitializer()
 
     /**
      * If the game server is running
@@ -51,19 +38,22 @@ object GameServer {
 
     // yaml must load first bc cache uses it
     init {
-        yamlParser.load()
-        cache = Cache
-        mainWorker.start()
+        YAMLParser.load()
+        GameCycleWorker.start()
     }
 
     /**
      * Runs the server
      */
     fun run() {
-        logger.info { "Cache read from ${cache.path}" }
-        logger.info { "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms" }
+        logger.info("Cache read from ${Cache.path}")
+        logger.info(
+            "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(
+                TimeUnit.MILLISECONDS
+            )} ms"
+        )
         CodecRegistry.bindCodec()
-        NetworkBinder.bind()
+        network.bind()
         running = true
     }
 

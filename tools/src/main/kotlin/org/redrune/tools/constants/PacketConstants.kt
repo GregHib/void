@@ -6,24 +6,11 @@ package org.redrune.tools.constants
 class PacketConstants {
 
     companion object {
+
         /**
          * The array consisting of the expected lengths of incoming packets
          */
         val PACKET_LENGTHS = intArrayOf(255)
-
-        /**
-         * The time that makes a player inactive for logic packets
-         */
-        const val MAX_PACKETS_DECODER_PING_DELAY: Long = 30000
-
-        /**
-         * The maximum size of an incoming packet
-         */
-        const val RECEIVE_DATA_LIMIT = 7500
-        /**
-         * The maximum size of an outgoing packet
-         */
-        const val PACKET_SIZE_LIMIT = 7500
 
         init {
             for (id in 0..255) {

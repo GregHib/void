@@ -1,4 +1,4 @@
-package org.redrune.network.codec.message
+package org.redrune.network.message
 
 /**
  * @author Tyluur <contact@kiaira.tech>

@@ -1,12 +1,11 @@
-package org.redrune.network.codec.message
+package org.redrune.network.message
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
-import mu.KotlinLogging
-import org.redrune.network.NetworkBinder
 import org.redrune.network.codec.CodecRegistry
 import org.redrune.network.packet.Packet
 import org.redrune.network.packet.PacketReader
+import org.slf4j.LoggerFactory
 
 /**
  * This class invokes the transformation of a [Packet] to a [Message] from the pipeline
@@ -28,5 +27,8 @@ class GameMessageDecoder : MessageToMessageDecoder<Packet>() {
         }
     }
 
-    private val logger = KotlinLogging.logger {}
+    /**
+     * The logger for this class
+     */
+    private val logger = LoggerFactory.getLogger(GameMessageDecoder::class.java)
 }

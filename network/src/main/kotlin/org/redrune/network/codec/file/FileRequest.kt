@@ -1,8 +1,7 @@
-package org.redrune.network.codec.fs
+package org.redrune.network.codec.file
 
 /**
- * Representing a request for a file from the server
  * @author Tyluur <contact@kiaira.tech>
- * @since 2020-01-07
+ * @since January 23, 2020 2:16 a.m.
  */
 data class FileRequest(val indexId: Int, val archiveId: Int, val priority: Boolean)

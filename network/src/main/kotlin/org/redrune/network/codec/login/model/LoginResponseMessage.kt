@@ -1,6 +1,6 @@
 package org.redrune.network.codec.login.model
 
-import org.redrune.network.codec.message.Message
-import org.redrune.tools.LoginReturnCode
+import org.redrune.network.message.Message
+import org.redrune.tools.ReturnCode
 
-data class LoginResponseMessage(val code: LoginReturnCode) : Message
+class LoginResponseMessage(val code: ReturnCode) : Message

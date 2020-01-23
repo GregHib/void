@@ -216,7 +216,8 @@ class Whirlpool {
         // process data in chunks of 8 bits:
         while (sourceBits > 8) { // at least source[sourcePos] and source[sourcePos+1] contain data.
             // take a byte from the source:
-            b = source[sourcePos].toInt() shl sourceGap and 0xff or (source[sourcePos + 1].toInt() and 0xff).ushr(8 - sourceGap)
+            b =
+                source[sourcePos].toInt() shl sourceGap and 0xff or (source[sourcePos + 1].toInt() and 0xff).ushr(8 - sourceGap)
             if (b < 0 || b >= 256) {
                 throw RuntimeException("LOGIC ERROR")
             }

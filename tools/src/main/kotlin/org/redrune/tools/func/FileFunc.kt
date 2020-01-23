@@ -1,7 +1,6 @@
 package org.redrune.tools.func
 
 import io.github.classgraph.ClassGraph
-import io.github.classgraph.ClassInfo
 import io.github.classgraph.ClassInfoList
 
 class FileFunc {

@@ -1,14 +1,13 @@
-package org.redrune.network.codec.packet
+package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
-import org.redrune.network.session.Session
-import org.redrune.network.packet.Packet
 import org.redrune.network.packet.struct.PacketHeader
 import org.redrune.network.session.GameSession
+import org.redrune.network.session.Session
 
 /**
  * @author Tyluur <contact@kiaira.tech>

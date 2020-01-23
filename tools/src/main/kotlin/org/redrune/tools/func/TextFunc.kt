@@ -5,10 +5,50 @@ import java.util.*
 class TextFunc {
 
     companion object {
-        private val VALID_CHARS = charArrayOf('_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9')
+        private val VALID_CHARS = charArrayOf(
+            '_',
+            'a',
+            'b',
+            'c',
+            'd',
+            'e',
+            'f',
+            'g',
+            'h',
+            'i',
+            'j',
+            'k',
+            'l',
+            'm',
+            'n',
+            'o',
+            'p',
+            'q',
+            'r',
+            's',
+            't',
+            'u',
+            'v',
+            'w',
+            'x',
+            'y',
+            'z',
+            '0',
+            '1',
+            '2',
+            '3',
+            '4',
+            '5',
+            '6',
+            '7',
+            '8',
+            '9'
+        )
 
         fun invalidAccountName(name: String): Boolean {
-            return name.length < 2 || name.length > 12 || name.startsWith("_") || name.endsWith("_") || name.contains("__") || containsInvalidCharacter(name)
+            return name.length < 2 || name.length > 12 || name.startsWith("_") || name.endsWith("_") || name.contains("__") || containsInvalidCharacter(
+                name
+            )
         }
 
         fun containsInvalidCharacter(name: String): Boolean {
@@ -63,12 +103,14 @@ fun String?.displayFormat(): String {
     val formatted = StringBuilder()
     var newWord = true
     for (char in this.toLowerCase().replace("_", " ")) {
-        formatted.append(if (newWord) {
-            newWord = false
-            char.toUpperCase()
-        } else {
-            char
-        })
+        formatted.append(
+            if (newWord) {
+                newWord = false
+                char.toUpperCase()
+            } else {
+                char
+            }
+        )
         if (char == ' ') {
             newWord = true
         }

@@ -23,7 +23,8 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
     /**
      * The version table data
      */
-    private val versionTable = createVersionTable(true, NetworkConstants.FILE_SERVER_RSA_MODULUS, NetworkConstants.FILE_SERVER_RSA_PRIVATE)
+    private val versionTable =
+        createVersionTable(true, NetworkConstants.FILE_SERVER_RSA_MODULUS, NetworkConstants.FILE_SERVER_RSA_PRIVATE)
 //            generateIndex255Archive255Current(NetworkConstants.FILE_SERVER_RSA_PRIVATE, NetworkConstants.FILE_SERVER_RSA_MODULUS);
 
     /**
@@ -49,21 +50,21 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
         val bout = ByteArrayOutputStream()
         DataOutputStream(bout).use { buffer ->
             Cache.run {
-                if(whirlpool) {
+                if (whirlpool) {
                     buffer.writeByte(indexes.size)
                 }
 
                 for (i in 0 until indexes.size) {
                     buffer.writeInt(indexes[i].crc)
                     buffer.writeInt(indexes[i].table?.revision ?: 0)
-                    if(whirlpool) {
+                    if (whirlpool) {
                         buffer.write(indexes[i].whirlpool ?: ByteArray(64))
                         //keys?
                     }
                 }
             }
 
-            if(whirlpool) {
+            if (whirlpool) {
                 val bytes = bout.toByteArray()
                 var temp = ByteBuffer.allocate(65)
                 temp.put(1)
@@ -103,10 +104,10 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
     @Suppress("DEPRECATED_IDENTITY_EQUALS")
     fun getArchivePacketData(indexId: Int, archiveId: Int, priority: Boolean): ByteBuf? {
         val archive: ByteArray =
-                (if (indexId == 255) index255 else indexes[indexId].mainFile).getArchiveData(archiveId) ?: return null
+            (if (indexId == 255) index255 else indexes[indexId].mainFile).getArchiveData(archiveId) ?: return null
         val compression: Int = (archive[0] and 0xff.toByte()).toInt()
         val length: Int =
-                ((archive[1] and 0xff.toByte()).toInt() shl 24) + ((archive[2] and 0xff.toByte()).toInt() shl 16) + ((archive[3] and 0xff.toByte()).toInt() shl 8) + (archive[4] and 0xff.toByte())
+            ((archive[1] and 0xff.toByte()).toInt() shl 24) + ((archive[2] and 0xff.toByte()).toInt() shl 16) + ((archive[3] and 0xff.toByte()).toInt() shl 8) + (archive[4] and 0xff.toByte())
         var settings = compression
         if (!priority) {
             settings = settings or 0x80

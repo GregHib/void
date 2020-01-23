@@ -30,12 +30,11 @@ allprojects {
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
         compile(group = "org.yaml", name = "snakeyaml", version = "1.8")
-        compile(group = "io.github.classgraph", name="classgraph", version="4.6.3")
+        compile(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
 
         //Logging
-        implementation("io.github.microutils:kotlin-logging:1.7.7")
-        implementation("org.slf4j:slf4j-api:1.7.21")
-        implementation("org.apache.logging.log4j:log4j-slf4j-impl:2.11.2")
+        implementation("org.slf4j:slf4j-api:1.7.30")
+        implementation("ch.qos.logback:logback-classic:1.2.3")
 
         //Utilities
         implementation("com.google.guava:guava:19.0")

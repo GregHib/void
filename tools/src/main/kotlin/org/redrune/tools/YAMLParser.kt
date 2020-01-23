@@ -12,19 +12,19 @@ object YAMLParser {
     private var yaml: Yaml? = null
 
     fun load() {
-        if(yaml == null) {
+        if (yaml == null) {
             yaml = Yaml()
         }
 
         val file = File(Paths.get("../data/settings.yml").toString())
-        if(file.exists()) {
+        if (file.exists()) {
             val stream = file.inputStream()
             map = yaml?.load(stream) as Map<String, Any>?
         }
     }
 
     fun init(string: String) {
-        if(yaml == null) {
+        if (yaml == null) {
             yaml = Yaml()
         }
 
@@ -36,8 +36,8 @@ object YAMLParser {
         map = null
     }
 
-    fun <T: Any?> get(key: String, default: T): T {
-        return if(map?.containsKey(key) == true) {
+    fun <T : Any?> get(key: String, default: T): T {
+        return if (map?.containsKey(key) == true) {
             map!![key] as T
         } else {
             default
@@ -45,7 +45,7 @@ object YAMLParser {
     }
 
     fun getString(key: String): String? {
-        return if(map?.containsKey(key) == true) {
+        return if (map?.containsKey(key) == true) {
             map!![key]?.toString()
         } else {
             null
@@ -57,7 +57,7 @@ object YAMLParser {
     }
 
     fun getInt(key: String): Int? {
-        return if(map?.containsKey(key) == true) {
+        return if (map?.containsKey(key) == true) {
             map!![key]?.toString()?.toIntOrNull()
         } else {
             null
@@ -69,7 +69,7 @@ object YAMLParser {
     }
 
     fun getBool(key: String): Boolean? {
-        return if(map?.containsKey(key) == true) {
+        return if (map?.containsKey(key) == true) {
             val value = map!![key]?.toString()
             when {
                 value.equals("true", true) -> true
@@ -90,7 +90,7 @@ object YAMLParser {
     }
 
     fun getDouble(key: String): Double? {
-        return if(map?.containsKey(key) == true) {
+        return if (map?.containsKey(key) == true) {
             map!![key]?.toString()?.toDoubleOrNull()
         } else {
             null
@@ -101,5 +101,5 @@ object YAMLParser {
      * Gets the amount of settings registered
      * @return Int
      */
-    fun getSize() : Int = map!!.size
+    fun getSize(): Int = map!!.size
 }

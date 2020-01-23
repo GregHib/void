@@ -10,20 +10,21 @@ import org.redrune.network.packet.struct.PacketHeader
  */
 class PacketBuilder(
 
-        /**
-         * The opcode of the packet, default as -1
-         */
-        private val opcode: Int = -1,
+    /**
+     * The opcode of the packet, default as -1
+     */
+    private val opcode: Int = -1,
 
-        /**
-         * The [PacketHeader] of the packet, default to [PacketHeader.STANDARD]
-         */
-        private val header: PacketHeader = PacketHeader.STANDARD,
+    /**
+     * The [PacketHeader] of the packet, default to [PacketHeader.STANDARD]
+     */
+    private val header: PacketHeader = PacketHeader.STANDARD,
 
-        /**
-         * The buffer of the packet
-         */
-        private val buffer: ByteBuf = Unpooled.buffer()) {
+    /**
+     * The buffer of the packet
+     */
+    private val buffer: ByteBuf = Unpooled.buffer()
+) {
 
     /**
      * Writing a byte to the [buffer]

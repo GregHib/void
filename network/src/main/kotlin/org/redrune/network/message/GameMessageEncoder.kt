@@ -1,18 +1,20 @@
-package org.redrune.network.codec.message
+package org.redrune.network.message
 
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageEncoder
-import mu.KotlinLogging
-import org.redrune.network.NetworkBinder
 import org.redrune.network.codec.CodecRegistry
-import org.redrune.network.codec.message.Message
-import org.redrune.network.codec.message.MessageEncoder
+import org.slf4j.LoggerFactory
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-21
  */
 class GameMessageEncoder : MessageToMessageEncoder<Message>() {
+
+    /**
+     * The logger for this class
+     */
+    private val logger = LoggerFactory.getLogger(GameMessageEncoder::class.java)
 
     @Suppress("UNCHECKED_CAST")
     override fun encode(ctx: ChannelHandlerContext, msg: Message, out: MutableList<Any>) {
@@ -27,6 +29,4 @@ class GameMessageEncoder : MessageToMessageEncoder<Message>() {
             logger.info("Successfully encoded packet #${packet.opcode} and from message $msg")
         }
     }
-
-    private val logger = KotlinLogging.logger {}
 }

@@ -1,16 +1,9 @@
 package org.redrune.network.codec
 
-import io.github.classgraph.ClassGraph
-import io.github.classgraph.ClassInfoList
-import mu.KotlinLogging
-import org.redrune.network.codec.handshake.decode.HandshakeMessageDecoder
-import org.redrune.network.codec.handshake.encode.HandshakeMessageEncoder
-import org.redrune.network.codec.login.encode.LoginResponseMessageEncoder
-import org.redrune.network.codec.message.Message
-import org.redrune.network.codec.message.MessageDecoder
-import org.redrune.network.codec.message.MessageEncoder
-import org.redrune.network.packet.struct.FrameDefinition
-import org.redrune.tools.func.FileFunc
+import org.redrune.network.message.Message
+import org.redrune.network.message.MessageDecoder
+import org.redrune.network.message.MessageEncoder
+import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 /**
@@ -22,29 +15,23 @@ object CodecRegistry {
     @JvmStatic
     fun main(args: Array<String>) {
         bindCodec()
-        println(encoders)
-        println(decoders)
     }
 
     fun bindCodec() {
-        val encoderClasses = FileFunc.getClasses((ClassInfoList.ClassInfoFilter {
-            it.extendsSuperclass(MessageEncoder::class.simpleName)
-        }))
-        val decoderClasses = FileFunc.getClasses((ClassInfoList.ClassInfoFilter {
-            it.extendsSuperclass(MessageDecoder::class.simpleName) && it.hasAnnotation(FrameDefinition::class.simpleName)
-        }))
-        println(encoderClasses)
+        /* val encoderClasses = FileFunc.getClasses((ClassInfoList.ClassInfoFilter {
+             it.extendsSuperclass(MessageEncoder::class.simpleName)
+         }))
+         val decoderClasses = FileFunc.getClasses((ClassInfoList.ClassInfoFilter {
+             it.extendsSuperclass(MessageDecoder::class.simpleName) && it.hasAnnotation(FrameDefinition::class.simpleName)
+         }))
+         println(encoderClasses)*/
 //        encoderClasses.forEach { bindEncoder(it)}
-/*
-        bindEncoder(LoginResponseMessageEncoder())
-        bindEncoder(HandshakeMessageEncoder())
-
-        bindDecoder(HandshakeMessageDecoder())*/
 
         run {
-            logger.info("Bound ${decoders.size} decoders and ${encoders.size} encoders")
+            logger.info("Bound ${decoders.filterNotNull().size} decoders and ${encoders.size} encoders")
         }
     }
+
     /**
      * The map of encoders
      */
@@ -59,7 +46,7 @@ object CodecRegistry {
         bindEncoder(T::class, encoder)
     }
 
-    fun bindDecoder(decoder: MessageDecoder<*>) {
+    private fun bindDecoder(decoder: MessageDecoder<*>) {
         if (decoders.contains(decoder)) {
             throw IllegalArgumentException("Cannot have duplicate decoders $decoder")
         }
@@ -91,5 +78,5 @@ object CodecRegistry {
     /**
      * The logger for this class
      */
-    private val logger = KotlinLogging.logger {}
+    private val logger = LoggerFactory.getLogger(CodecRegistry::class.java)
 }

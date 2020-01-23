@@ -1,6 +1,5 @@
-package org.redrune.network.codec.message
+package org.redrune.network.message
 
-import org.redrune.network.packet.Packet
 import org.redrune.network.packet.PacketReader
 
 /**

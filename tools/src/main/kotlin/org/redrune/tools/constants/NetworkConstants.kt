@@ -16,18 +16,12 @@ class NetworkConstants {
         /**
          * The runescape protocol number of the server
          */
-        val PROTOCOL_NUMBER = YAMLParser.getInt("clientBuild")
+        val CLIENT_MAJOR_BUILD = YAMLParser.getInt("clientBuild")
 
         /**
          * The port the server listens on
          */
         const val PORT_ID = 43594
-
-
-        /**
-         * The number of seconds before a connection becomes idle.
-         */
-        const val IDLE_TIME = 15
 
         /**
          * The localhost ip address
@@ -38,33 +32,33 @@ class NetworkConstants {
          * The keys sent during grab server decoding
          */
         val GRAB_SERVER_KEYS = intArrayOf(
-                1362,
-                77448,
-                44880,
-                39771,
-                24563,
-                363672,
-                44375,
-                0,
-                1614,
-                0,
-                5340,
-                142976,
-                741080,
-                188204,
-                358294,
-                416732,
-                828327,
-                19517,
-                22963,
-                16769,
-                1244,
-                11976,
-                10,
-                15,
-                119,
-                817677,
-                1624243
+            1362,
+            77448,
+            44880,
+            39771,
+            24563,
+            363672,
+            44375,
+            0,
+            1614,
+            0,
+            5340,
+            142976,
+            741080,
+            188204,
+            358294,
+            416732,
+            828327,
+            19517,
+            22963,
+            16769,
+            1244,
+            11976,
+            10,
+            15,
+            119,
+            817677,
+            1624243
         )
 
         /**
@@ -91,8 +85,8 @@ class NetworkConstants {
          * The list of exceptions that are ignored
          */
         val IGNORED_EXCEPTIONS: ImmutableList<String> = ImmutableList.of(
-                "An existing connection was forcibly closed by the remote host",
-                "An established connection was aborted by the software in your host machine"
+            "An existing connection was forcibly closed by the remote host",
+            "An established connection was aborted by the software in your host machine"
         )
 
         /**

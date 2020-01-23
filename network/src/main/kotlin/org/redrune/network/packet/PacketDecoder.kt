@@ -1,11 +1,9 @@
-package org.redrune.network.codec.packet
+package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
-import org.redrune.network.session.Session
-import org.redrune.network.packet.PacketBuilder
 import org.redrune.network.session.GameSession
 import org.redrune.tools.constants.PacketConstants
 
@@ -27,7 +25,6 @@ class PacketDecoder(private val session: GameSession) : ReplayingDecoder<PacketD
 
     init {
         state(PacketStage.VERSION)
-        session.channel.attr(Session.SESSION_KEY).setIfAbsent(session)
     }
 
     override fun decode(ctx: ChannelHandlerContext, `in`: ByteBuf, out: MutableList<Any>) {

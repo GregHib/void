@@ -1,8 +1,7 @@
 package org.redrune.network.session
 
-import com.sun.jmx.remote.internal.ArrayQueue
 import io.netty.channel.Channel
-import org.redrune.network.codec.message.Message
+import org.redrune.network.message.Message
 import org.redrune.tools.crypto.IsaacRandomPair
 import java.util.*
 
@@ -18,14 +17,11 @@ class GameSession(channel: Channel) : Session(channel) {
 
     private val messageQueue = ArrayDeque<Message>()
 
-    override fun messageReceived(message: Any) {
-        println("Received message $message")
+    override fun messageReceived(msg: Any) {
+        println("Received message $msg")
         synchronized(messageQueue) {
-            messageQueue.add(message as Message)
+            messageQueue.add(msg as Message)
         }
-    }
-
-    override fun onInactive() {
     }
 
 }

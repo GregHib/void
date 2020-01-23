@@ -9,19 +9,19 @@ import org.redrune.network.packet.struct.PacketHeader
  * @since 2020-01-07
  */
 data class Packet(
-        /**
-         * The opcode of the packet
-         */
-        val opcode: Int,
-        /**
-         * The header of the packet
-         */
-        val header: PacketHeader,
+    /**
+     * The opcode of the packet
+     */
+    val opcode: Int,
+    /**
+     * The header of the packet
+     */
+    val header: PacketHeader,
 
-        /**
-         * The buffer of the packet
-         */
-        val buffer: ByteBuf
+    /**
+     * The buffer of the packet
+     */
+    val buffer: ByteBuf
 ) : DefaultByteBufHolder(buffer) {
 
     /**

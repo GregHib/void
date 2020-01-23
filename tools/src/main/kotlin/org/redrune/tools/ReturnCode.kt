@@ -1,11 +1,12 @@
 package org.redrune.tools
 
 /**
- * Holds the return codes that can be sent to the client when attempting to login.
+ * Holds the return codes that can be sent to the client
  *
  * @author Tyluur <itstyluur@gmail.com>
  */
-enum class LoginReturnCode(val opcode: Int) {
+enum class ReturnCode(val opcode: Int) {
+
     /**
      * An unexpected server response occured.
      */
@@ -18,6 +19,7 @@ enum class LoginReturnCode(val opcode: Int) {
      * A successful login.
      */
     SUCCESSFUL(2),
+
     /**
      * Invalid username or password has been entered.
      */

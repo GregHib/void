@@ -1,13 +1,8 @@
 package org.redrune.network.session
 
 import io.netty.channel.Channel
-import io.netty.channel.ChannelFuture
 import io.netty.util.AttributeKey
-import mu.KotlinLogging
-import org.redrune.network.codec.message.Message
-import org.redrune.network.packet.Packet
 import org.redrune.tools.constants.NetworkConstants
-import org.redrune.tools.crypto.IsaacRandomPair
 import java.net.InetSocketAddress
 
 /**
@@ -17,31 +12,35 @@ import java.net.InetSocketAddress
  * @since 2020-01-07
  */
 abstract class Session(
-        /**
-         * The channel for the connection
-         */
-        var channel: Channel
+    /**
+     * The channel for the connection
+     */
+    var channel: Channel
 ) {
 
     /**
-     * When a message of type [M] is received, this function is invoked
+     * When a message is received, this function is invoked
      */
-    abstract fun messageReceived(message: Any)
+    abstract fun messageReceived(msg: Any)
 
     /**
-     * This function is called when the session is inactive
+     * Sends a message to the channel by [Channel.writeAndFlush]
      */
-    abstract fun onInactive()
+    fun send(msg: Any) {
+        channel.writeAndFlush(msg)
+    }
 
     fun getHost(): String = (channel.remoteAddress() as? InetSocketAddress)?.address?.hostAddress
-            ?: NetworkConstants.LOCALHOST
+        ?: NetworkConstants.LOCALHOST
 
     companion object {
-
         /**
          * The attribute that contains the key for a session.
          */
         val SESSION_KEY: AttributeKey<Session> = AttributeKey.valueOf<Session>("session.key")
+
+
+        val ENCRYPTION_KEY = AttributeKey.valueOf<Int>("encryption.key")!!
     }
 
 }
