@@ -11,5 +11,4 @@
     <root level="info">
         <appender-ref ref="console"/>
     </root>
-    <logger name="io.netty" level="WARN"/>
 </configuration>

@@ -19,25 +19,12 @@ data class FileContents(
 
         other as FileContents
 
-        if (index != other.index) return false
-        if (archive != other.archive) return false
-        if (settings != other.settings) return false
-        if (length != other.length) return false
         if (!data.contentEquals(other.data)) return false
-        if (size != other.size) return false
-        if (encryption != other.encryption) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = index
-        result = 31 * result + archive
-        result = 31 * result + settings
-        result = 31 * result + length
-        result = 31 * result + data.contentHashCode()
-        result = 31 * result + size
-        result = 31 * result + encryption
-        return result
+        return data.contentHashCode()
     }
 }

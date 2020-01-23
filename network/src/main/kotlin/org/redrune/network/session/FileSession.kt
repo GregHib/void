@@ -10,9 +10,11 @@ import org.redrune.network.codec.file.FileResponse
  */
 class FileSession(channel: Channel) : Session(channel) {
     override fun messageReceived(msg: Any) {
+        println("session received msg $msg")
         if (msg is FileRequest) {
             send(FileResponse(msg.indexId, msg.archiveId, msg.priority))
+        } else {
+            println("Unexpected type - $msg")
         }
-        println("message=$msg")
     }
 }

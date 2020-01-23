@@ -92,10 +92,23 @@ object Cache : Store(GameConstants.CACHE_DIRECTORY) {
      */
     fun getArchive(indexId: Int, archiveId: Int, priority: Boolean): ByteBuf? {
         return if (indexId == 255 && archiveId == 255) {
-            Unpooled.copiedBuffer(getContainerPacketData(255, 255, versionTable))
+            return Unpooled.copiedBuffer(getContainerPacketData(255, 255, versionTable))
+
         } else {
             return getArchivePacketData(indexId, archiveId, priority)
         }
+    }
+
+    fun getArchive(index: Int, archive: Int): ByteArray? {
+        if (index == 255 && archive == 255) {
+            return versionTable
+        }
+
+        if (index == 255) {
+            return index255.getArchiveData(archive)
+        }
+
+        return indexes[index].mainFile.getArchiveData(archive)
     }
 
     /**

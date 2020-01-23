@@ -20,9 +20,7 @@ class HandshakeEncoder : MessageToByteEncoder<HandshakeResponse>() {
         if (state != HandshakeState.SUCCESSFUL) {
             return
         }
-        for (i in 0..26) {
-            out.writeInt(NetworkConstants.GRAB_SERVER_KEYS[i])
-        }
+        NetworkConstants.GRAB_SERVER_KEYS.forEach { out.writeInt(it) }
         ctx.channel().attr<Session>(Session.SESSION_KEY).set(FileSession(ctx.channel()))
         ctx.pipeline().apply {
             replace("handshake.encoder", "file.encoder", FileResponseEncoder())

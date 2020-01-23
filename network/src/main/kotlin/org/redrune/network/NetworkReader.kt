@@ -5,6 +5,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter
 import io.netty.util.ReferenceCountUtil
 import org.redrune.network.session.Session
 import org.slf4j.LoggerFactory
+import java.util.logging.Level
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -23,7 +24,7 @@ class NetworkReader : ChannelInboundHandlerAdapter() {
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
         try {
-            println("msg = [${msg}]")
+            println("channelRead:\t[${msg}]")
             val channel = ctx.channel()
             val session = channel.attr(Session.SESSION_KEY).get()
             session?.messageReceived(msg)
@@ -33,7 +34,10 @@ class NetworkReader : ChannelInboundHandlerAdapter() {
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, e: Throwable) {
-        logger.warn("Exception caught, closing channel...", e)
-        ctx.close()
+        if (!e.message!!.contains("An existing connection was forcibly closed by the remote host")) {
+            logger.error("Exception occurred for channel: " + ctx.channel() + ", closing...", e)
+        }
+        ctx.channel().close()
     }
+
 }

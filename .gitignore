@@ -8,7 +8,9 @@
 # class files
 *.class
 /bin
+/bin/*
 /out
+/out/*
 
 # error logs
 hs_err_pid*
