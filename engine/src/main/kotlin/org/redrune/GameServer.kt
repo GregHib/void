@@ -1,13 +1,14 @@
 package org.redrune
 
 import com.google.common.base.Stopwatch
+import mu.KotlinLogging
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkInitializer
 import org.redrune.network.codec.CodecRegistry
 import org.redrune.tools.YAMLParser
 import org.redrune.tools.constants.GameConstants
-import org.slf4j.LoggerFactory
+import org.redrune.util.OutLogger
 import java.util.concurrent.TimeUnit
 
 /**
@@ -15,11 +16,11 @@ import java.util.concurrent.TimeUnit
  * @since 2020-01-07
  */
 object GameServer {
+    init {
+        System.setOut(OutLogger(System.out))
+    }
 
-    /**
-     * The logger for this class
-     */
-    private val logger = LoggerFactory.getLogger(GameServer::class.java)
+    private val logger = KotlinLogging.logger {}
 
     /**
      * The instance of the network

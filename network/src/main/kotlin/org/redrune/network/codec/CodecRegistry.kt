@@ -1,9 +1,9 @@
 package org.redrune.network.codec
 
+import mu.KotlinLogging
 import org.redrune.network.message.Message
 import org.redrune.network.message.MessageDecoder
 import org.redrune.network.message.MessageEncoder
-import org.slf4j.LoggerFactory
 import kotlin.reflect.KClass
 
 /**
@@ -74,9 +74,5 @@ object CodecRegistry {
         encoders[type] = encoder
     }
 
-
-    /**
-     * The logger for this class
-     */
-    private val logger = LoggerFactory.getLogger(CodecRegistry::class.java)
+    private val logger = KotlinLogging.logger {}
 }

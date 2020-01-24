@@ -1,4 +1,4 @@
-package org.redrune.network.session
+package org.redrune.network
 
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
@@ -33,13 +33,21 @@ abstract class Session(
     fun getHost(): String = (channel.remoteAddress() as? InetSocketAddress)?.address?.hostAddress
         ?: NetworkConstants.LOCALHOST
 
+    fun printPipeline() {
+        val pipelineHandlers: StringBuilder = StringBuilder("")
+        channel.pipeline().forEach { pipelineHandlers.append("${it.value.javaClass.simpleName}, ") }
+        println(pipelineHandlers)
+    }
+
     companion object {
         /**
-         * The attribute that contains the key for a session.
+         * The attribute that maps to the session of a channel
          */
         val SESSION_KEY: AttributeKey<Session> = AttributeKey.valueOf<Session>("session.key")
 
-
+        /**
+         * The attribute that maps to the encryption key
+         */
         val ENCRYPTION_KEY = AttributeKey.valueOf<Int>("encryption.key")!!
     }
 

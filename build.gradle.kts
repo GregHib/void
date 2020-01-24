@@ -31,6 +31,7 @@ allprojects {
         implementation("io.netty:netty-all:4.1.44.Final")
         compile(group = "org.yaml", name = "snakeyaml", version = "1.8")
         compile(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
+        compile("io.github.microutils:kotlin-logging:1.7.7")
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")

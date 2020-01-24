@@ -7,15 +7,14 @@ import io.netty.channel.EventLoopGroup
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import org.redrune.tools.constants.NetworkConstants
-import org.slf4j.LoggerFactory
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since January 22, 2020
  */
 class NetworkBootstrap(
-    private val bossGroup: EventLoopGroup = createGroup(true),
-    private val workerGroup: EventLoopGroup = createGroup(false)
+    bossGroup: EventLoopGroup = createGroup(true),
+    workerGroup: EventLoopGroup = createGroup(false)
 ) : ServerBootstrap() {
 
     init {
@@ -41,7 +40,5 @@ class NetworkBootstrap(
             }
             return NioEventLoopGroup(serverWorkersCount)
         }
-
-        private val logger = LoggerFactory.getLogger(NetworkBootstrap::class.java)
     }
 }

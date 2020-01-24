@@ -2,6 +2,6 @@ package org.redrune.network.codec.handshake
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since January 23, 2020 1:51 a.m.
+ * @since January 24, 2020 12:48 a.m.
  */
-class HandshakeRequest(var majorBuild: Int)
+data class HandshakeMessage(val version: Int)

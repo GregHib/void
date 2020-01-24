@@ -4,7 +4,7 @@ import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
-import org.redrune.network.session.GameSession
+import org.redrune.network.codec.game.GameSession
 import org.redrune.tools.constants.PacketConstants
 
 /**

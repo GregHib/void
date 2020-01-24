@@ -5,9 +5,9 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
+import org.redrune.network.Session
+import org.redrune.network.codec.game.GameSession
 import org.redrune.network.packet.struct.PacketHeader
-import org.redrune.network.session.GameSession
-import org.redrune.network.session.Session
 
 /**
  * @author Tyluur <contact@kiaira.tech>

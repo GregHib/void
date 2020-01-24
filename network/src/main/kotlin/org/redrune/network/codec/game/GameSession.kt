@@ -1,6 +1,7 @@
-package org.redrune.network.session
+package org.redrune.network.codec.game
 
 import io.netty.channel.Channel
+import org.redrune.network.Session
 import org.redrune.network.message.Message
 import org.redrune.tools.crypto.IsaacRandomPair
 import java.util.*

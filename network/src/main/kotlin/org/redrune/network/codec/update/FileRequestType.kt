@@ -1,10 +1,9 @@
-package org.redrune.network.codec.file
+package org.redrune.network.codec.update
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since January 23, 2020 2:23 a.m.
  */
-// TODO: document this
 enum class FileRequestType(val opcode: Int, val priority: Boolean = false) {
 
     FILE_REQUEST(0),

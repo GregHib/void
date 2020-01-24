@@ -3,12 +3,11 @@ package org.redrune.network
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.socket.SocketChannel
-import org.redrune.network.codec.service.ServiceDecoder
-import org.redrune.network.codec.service.ServiceEncoder
-import org.redrune.network.session.ServiceSession
-import org.redrune.network.session.Session
+import io.netty.handler.timeout.ReadTimeoutHandler
+import mu.KotlinLogging
+import org.redrune.network.codec.handshake.HandshakeDecoder
+import org.redrune.network.codec.handshake.HandshakeSession
 import org.redrune.tools.constants.NetworkConstants.Companion.PORT_ID
-import org.slf4j.LoggerFactory
 import java.net.InetSocketAddress
 
 /**
@@ -18,23 +17,11 @@ import java.net.InetSocketAddress
 @ChannelHandler.Sharable
 class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
-    /**
-     * The logger for this class
-     */
-    private val logger = LoggerFactory.getLogger(NetworkInitializer::class.java)
+    private val logger = KotlinLogging.logger {}
 
     override fun initChannel(ch: SocketChannel) {
-        val pipeline = ch.pipeline()
-
-        pipeline.apply {
-            addLast("service.decoder", ServiceDecoder())
-            addLast("service.encoder", ServiceEncoder())
-        }
-        pipeline.apply {
-            addLast("reader", NetworkReader())
-        }
-
-        ch.attr(Session.SESSION_KEY).set(ServiceSession(pipeline.channel()))
+        ch.pipeline().addLast(ReadTimeoutHandler(5), HandshakeDecoder(), NetworkHandler())
+        ch.attr(Session.SESSION_KEY).set(HandshakeSession(ch))
     }
 
     @Throws(InterruptedException::class)

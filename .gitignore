@@ -37,3 +37,4 @@ build
 *.rar
 /.gradle/
 
+*.lock
