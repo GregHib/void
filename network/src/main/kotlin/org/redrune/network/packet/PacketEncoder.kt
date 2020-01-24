@@ -7,7 +7,6 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.network.Session
 import org.redrune.network.codec.game.GameSession
-import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>

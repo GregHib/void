@@ -2,7 +2,6 @@ package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -10,7 +9,7 @@ import org.redrune.network.packet.struct.PacketHeader
  */
 class PacketReader(
     private val opcode: Int = -1,
-    private val header: PacketHeader = PacketHeader.STANDARD,
+    private val header: PacketHeader = PacketHeader.FIXED,
     private val buffer: ByteBuf
 ) {
 

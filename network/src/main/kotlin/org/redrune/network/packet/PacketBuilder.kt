@@ -2,7 +2,6 @@ package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -16,9 +15,9 @@ class PacketBuilder(
     private val opcode: Int = -1,
 
     /**
-     * The [PacketHeader] of the packet, default to [PacketHeader.STANDARD]
+     * The [PacketHeader] of the packet, default to [PacketHeader.FIXED]
      */
-    private val header: PacketHeader = PacketHeader.STANDARD,
+    private val header: PacketHeader = PacketHeader.FIXED,
 
     /**
      * The buffer of the packet
