@@ -4,15 +4,17 @@ import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
-import org.redrune.network.codec.game.GameSession
-import org.redrune.tools.constants.PacketConstants
+import mu.KotlinLogging
+import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-@Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
-class PacketDecoder(private val session: GameSession) : ReplayingDecoder<PacketDecoder.PacketStage>() {
+abstract class PacketDecoder :
+    ReplayingDecoder<PacketDecoder.PacketStage>(PacketStage.READ_OPCODE) {
+    private val logger = KotlinLogging.logger {}
+
     /**
      * The opcode of the current packed being decoded
      */
@@ -23,48 +25,83 @@ class PacketDecoder(private val session: GameSession) : ReplayingDecoder<PacketD
      */
     private var length = 0
 
-    init {
-        state(PacketStage.VERSION)
+    /**
+     * If the length is variable
+     */
+    private var header = PacketHeader.FIXED
+
+    enum class PacketStage {
+        READ_OPCODE, READ_LENGTH, READ_PAYLOAD
     }
 
-    override fun decode(ctx: ChannelHandlerContext, `in`: ByteBuf, out: MutableList<Any>) {
+    @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA")
+    override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         when (state()) {
-            PacketStage.VERSION -> {
-                val encryptedOpcode = `in`.readUnsignedByte().toInt()
-                opcode = encryptedOpcode - (session.isaacPair?.decodingRandom?.nextInt()!! and 0xFF)
-                checkpoint(PacketStage.PAYLOAD_LENGTH)
-            }
-            PacketStage.PAYLOAD_LENGTH -> {
-                length = PacketConstants.PACKET_LENGTHS[opcode]
-                when (length) {
-                    -1 -> {
-                        length = `in`.readUnsignedByte().toInt()
-                    }
-                    -2 -> {
-                        length = `in`.readUnsignedShort()
-                    }
-                    -3 -> {
-                        length = `in`.readInt()
-                    }
+            PacketStage.READ_OPCODE -> {
+                if (!buf.isReadable) {
+                    return
                 }
-                checkpoint(PacketStage.PAYLOAD)
+                opcode = readOpcode(buf)
+                checkpoint(PacketStage.READ_LENGTH)
             }
-            PacketStage.PAYLOAD -> {
-                try {
-                    val payload = ByteArray(length)
-                    `in`.readBytes(payload, 0, length)
-                    `in`.markReaderIndex()
-                    out.add(PacketBuilder(opcode = opcode, buffer = Unpooled.copiedBuffer(payload)).build())
-                } catch (e: Exception) {
-                    println("Packet[$opcode, $length]")
-                    ctx.fireExceptionCaught(e)
+            PacketStage.READ_LENGTH -> {
+                if (!buf.isReadable) {
+                    logger.warn { "Unable to read length of buffer [opcode=$opcode]" }
+                    return
                 }
-                checkpoint(PacketStage.VERSION)
+                length = getLength(ctx, opcode)
+                    ?: throw IllegalArgumentException("Invalid opcode, unable to identify packet size [opcode=$opcode]")
+                header = getHeader(length, buf)
+                checkpoint(PacketStage.READ_PAYLOAD)
+            }
+            PacketStage.READ_PAYLOAD -> {
+                if (buf.readableBytes() < length) {
+                    logger.warn { "Unable to read payload of buffer [opcode=$opcode, length=$length, readableBytes=${buf.readableBytes()}]" }
+                    return
+                }
+                val payload = buf.readBytes(length)
+                out.add(
+                    Packet(
+                        opcode = opcode,
+                        header = this.header,
+                        buffer = Unpooled.copiedBuffer(payload)
+                    )
+                )
+                checkpoint(PacketStage.READ_OPCODE)
             }
         }
     }
 
-    enum class PacketStage {
-        VERSION, PAYLOAD_LENGTH, PAYLOAD
+    /**
+     * Returns the packet opcode
+     * @param buf The buffer to read from
+     * @return The packets opcode
+     */
+    open fun readOpcode(buf: ByteBuf): Int {
+        return buf.readUnsignedByte().toInt()
     }
+
+    open fun getHeader(length: Int, buf: ByteBuf): PacketHeader {
+        return when (length) {
+            -1 -> {
+                buf.readUnsignedByte().toInt()
+                PacketHeader.VARIABLE_BYTE
+            }
+            -2 -> {
+                buf.readUnsignedShort()
+                PacketHeader.VARIABLE_SHORT
+            }
+            else -> {
+                throw  IllegalStateException("Unable to find header for packet $opcode")
+            }
+        }
+    }
+
+    /**
+     * Returns the expected size of a packet
+     * @param ctx Channel context
+     * @param opcode The packet who's size to get
+     * @return The expected size (if any)
+     */
+    abstract fun getLength(ctx: ChannelHandlerContext, opcode: Int): Int?
 }

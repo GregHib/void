@@ -5,7 +5,6 @@ import mu.KotlinLogging
 import org.redrune.cache.Cache
 import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkInitializer
-import org.redrune.network.codec.CodecRegistry
 import org.redrune.tools.YAMLParser
 import org.redrune.tools.constants.GameConstants
 import org.redrune.util.OutLogger
@@ -35,7 +34,7 @@ object GameServer {
     /**
      * The stopwatch instance
      */
-    val stopwatch = Stopwatch.createStarted()
+    val stopwatch: Stopwatch = Stopwatch.createStarted()
 
     // yaml must load first bc cache uses it
     init {
@@ -48,13 +47,12 @@ object GameServer {
      */
     fun run() {
         logger.info("Cache read from ${Cache.path}")
+        network.bind()
         logger.info(
             "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(
                 TimeUnit.MILLISECONDS
             )} ms"
         )
-        CodecRegistry.bindCodec()
-        network.bind()
         running = true
     }
 

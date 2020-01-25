@@ -2,6 +2,8 @@ package org.redrune.network
 
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
+import org.redrune.network.codec.CodecRepository
+import org.redrune.network.message.Message
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 
@@ -15,13 +17,18 @@ abstract class Session(
     /**
      * The channel for the connection
      */
-    var channel: Channel
+    var channel: Channel,
+
+    /**
+     * The codec for this session
+     */
+    val codec: CodecRepository
 ) {
 
     /**
      * When a message is received, this function is invoked
      */
-    abstract fun messageReceived(msg: Any)
+    abstract fun messageReceived(msg: Message)
 
     /**
      * Sends a message to the channel by [Channel.writeAndFlush]

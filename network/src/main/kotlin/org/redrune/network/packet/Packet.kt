@@ -2,6 +2,7 @@ package org.redrune.network.packet
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.DefaultByteBufHolder
+import org.redrune.network.packet.struct.PacketHeader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -32,7 +33,7 @@ data class Packet(
      * If the packet is raw, meaning it was built with no opcode
      */
     fun isRaw(): Boolean {
-        return opcode == -1
+        return opcode == -1 || header == PacketHeader.RAW
     }
 
 }

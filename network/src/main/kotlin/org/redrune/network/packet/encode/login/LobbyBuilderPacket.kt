@@ -1,7 +1,7 @@
 /*
 package org.redrune.network.packet.outgoing.login
 
-import org.redrune.network.packet.PacketHeader
+import org.redrune.network.packet.struct.PacketHeader
 import org.redrune.tools.func.TextFunc
 
 class LobbyBuilderPacket : OutgoingPacket(2, PacketHeader.BYTE) {

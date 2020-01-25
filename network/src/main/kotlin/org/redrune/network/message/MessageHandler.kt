@@ -1,16 +1,14 @@
 package org.redrune.network.message
 
-import org.redrune.network.packet.Packet
-import org.redrune.network.packet.PacketBuilder
+import org.redrune.network.Session
 import java.lang.reflect.ParameterizedType
 import kotlin.reflect.KClass
 
-
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since January 24, 2020 3:47 p.m.
+ * @since January 24, 2020 5:18 p.m.
  */
-abstract class MessageEncoder<T : Message> {
+abstract class MessageHandler<T : Message> {
 
     fun getGenericTypeClass(): KClass<T> {
         return try {
@@ -24,9 +22,7 @@ abstract class MessageEncoder<T : Message> {
     }
 
     /**
-     * Encodes a message of type [T] into a [Packet]
-     * @return Packet
+     * Handling the message, invoked after a message has been decoded and passed to the pipeline
      */
-    abstract fun encode(buf: PacketBuilder, msg: T)
-
+    abstract fun handle(session: Session, msg: T)
 }
