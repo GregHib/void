@@ -22,6 +22,7 @@ allprojects {
         jcenter()
         maven(url = "https://repo.maven.apache.org/maven2")
         maven(url = "https://jitpack.io")
+
     }
 
     dependencies {
@@ -29,6 +30,7 @@ allprojects {
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
+        implementation("com.github.Displee:RS-Cache-Library:5.2")
         compile(group = "org.yaml", name = "snakeyaml", version = "1.8")
         compile(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
         compile("io.github.microutils:kotlin-logging:1.7.7")

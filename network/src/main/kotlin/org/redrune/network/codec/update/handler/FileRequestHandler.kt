@@ -12,19 +12,7 @@ import org.redrune.network.codec.update.message.FileRequest
 class FileRequestHandler : UpdateMessageHandler<FileRequest>() {
     override fun handle(session: Session, msg: FileRequest) {
         val (index, archive, priority) = msg
-
-        if (archive < 0) {
-            return
-        }
-        if (index != 255) {
-            if (Cache.indexes.size <= index || !Cache.indexes[index].archiveExists(archive)) {
-                return
-            }
-        } else if (archive != 255) {
-            if (Cache.indexes.size <= archive) {
-                return
-            }
-        }
+        if (!Cache.valid(index, archive)) return
         session.send(msg)
     }
 }
