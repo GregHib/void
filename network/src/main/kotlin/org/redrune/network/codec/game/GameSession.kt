@@ -17,8 +17,4 @@ class GameSession(channel: Channel, codec: CodecRepository) : Session(channel, c
      */
     var isaacPair: IsaacRandomPair? = null
 
-    override fun messageReceived(msg: Message) {
-        println("Received message $msg")
-    }
-
 }

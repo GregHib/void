@@ -13,18 +13,4 @@ import org.redrune.network.message.MessageHandler
  */
 class HandshakeSession(channel: Channel, codec: CodecRepository) : Session(channel, codec) {
 
-    private val logger = KotlinLogging.logger {}
-
-    @Suppress("UNCHECKED_CAST")
-    override fun messageReceived(msg: Message) {
-        val handler = codec.handler(msg::class) as? MessageHandler<Message>
-            ?: run {
-                logger.warn("No handler for message: $msg")
-                return
-            }
-
-        handler.handle(this, msg)
-    }
-
-
 }

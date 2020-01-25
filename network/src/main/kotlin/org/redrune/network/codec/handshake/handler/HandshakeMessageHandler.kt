@@ -4,14 +4,17 @@ import org.redrune.network.Session
 import org.redrune.network.codec.handshake.message.HandshakeMessage
 import org.redrune.network.codec.handshake.message.HandshakeResponse
 import org.redrune.network.codec.handshake.message.ResponseValue
+import org.redrune.network.codec.update.UpdateCodecRepository
 import org.redrune.network.codec.update.UpdateMessageHandler
+import org.redrune.network.codec.update.UpdateSession
+import org.redrune.network.message.MessageHandler
 import org.redrune.tools.constants.NetworkConstants
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since January 24, 2020 5:19 p.m.
  */
-class HandshakeMessageHandler : UpdateMessageHandler<HandshakeMessage>() {
+class HandshakeMessageHandler : MessageHandler<HandshakeMessage>() {
 
     override fun handle(session: Session, msg: HandshakeMessage) {
         val response: HandshakeResponse =
@@ -20,6 +23,7 @@ class HandshakeMessageHandler : UpdateMessageHandler<HandshakeMessage>() {
             else
                 HandshakeResponse(ResponseValue.OUT_OF_DATE)
         session.send(response)
+        session.channel.attr(Session.SESSION_KEY).set(UpdateSession(session.channel, UpdateCodecRepository))
     }
 
 }

@@ -10,9 +10,4 @@ import org.redrune.network.message.Message
  * @since January 23, 2020 12:50 a.m.
  */
 class UpdateSession(channel: Channel, codec: CodecRepository) : Session(channel, codec) {
-    override fun messageReceived(msg: Message) {
-        /*   if (msg is FileRequest) {
-
-           }*/
-    }
 }

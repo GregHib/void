@@ -10,6 +10,5 @@ import org.redrune.network.message.Message
  * @since January 24, 2020 3:23 p.m.
  */
 class LoginSession(channel: Channel, codec: CodecRepository) : Session(channel, codec) {
-    override fun messageReceived(msg: Message) {
-    }
+
 }

@@ -1,9 +1,5 @@
 package org.redrune.network.codec
 
-import org.redrune.network.codec.update.UpdateCodecRepository
-import org.redrune.network.codec.update.UpdateMessageDecoder
-import org.redrune.network.codec.update.UpdateMessageEncoder
-import org.redrune.network.codec.update.UpdateMessageHandler
 import org.redrune.network.message.Message
 import org.redrune.network.message.MessageDecoder
 import org.redrune.network.message.MessageEncoder
@@ -30,7 +26,7 @@ abstract class CodecRepository {
     inline fun <reified T : MessageDecoder<*>> bindDecoders() {
         val decoders = FileFunc.getChildClassesOf<T>()
         for (clazz in decoders) {
-            val decoder = clazz as UpdateMessageDecoder<*>
+            val decoder = clazz as MessageDecoder<*>
             bindDecoder(decoder)
         }
     }
@@ -38,18 +34,18 @@ abstract class CodecRepository {
     inline fun <reified T : MessageHandler<*>> bindHandlers() {
         val handlers = FileFunc.getChildClassesOf<T>()
         for (clazz in handlers) {
-            val handler = clazz as UpdateMessageHandler<*>
+            val handler = clazz as MessageHandler<*>
             val type: KClass<*> = handler.getGenericTypeClass()
-            UpdateCodecRepository.bindHandler(type, handler)
+            bindHandler(type, handler)
         }
     }
 
     inline fun <reified T : MessageEncoder<*>> bindEncoders() {
         val encoders = FileFunc.getChildClassesOf<T>()
         for (clazz in encoders) {
-            val encoder = clazz as UpdateMessageEncoder<*>
+            val encoder = clazz as MessageEncoder<*>
             val type: KClass<*> = encoder.getGenericTypeClass()
-            UpdateCodecRepository.bindEncoder(type, encoder)
+            bindEncoder(type, encoder)
         }
     }
 

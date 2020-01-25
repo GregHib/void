@@ -2,8 +2,10 @@ package org.redrune.network
 
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
+import mu.KotlinLogging
 import org.redrune.network.codec.CodecRepository
 import org.redrune.network.message.Message
+import org.redrune.network.message.MessageHandler
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 
@@ -25,10 +27,19 @@ abstract class Session(
     val codec: CodecRepository
 ) {
 
+    private val logger = KotlinLogging.logger {}
+
     /**
      * When a message is received, this function is invoked
      */
-    abstract fun messageReceived(msg: Message)
+    open fun messageReceived(msg: Message) {
+        val handler = codec.handler(msg::class) as? MessageHandler<Message>
+            ?: run {
+                logger.warn("No handler for message: $msg, codec=$codec")
+                return
+            }
+        handler.handle(this, msg)
+    }
 
     /**
      * Sends a message to the channel by [Channel.writeAndFlush]

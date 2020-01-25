@@ -8,6 +8,4 @@ import org.redrune.network.message.MessageDecoder
  * @since January 24, 2020 9:11 p.m.
  */
 abstract class UpdateMessageDecoder<T : Message>(length: Int, vararg opcodes: Int) :
-    MessageDecoder<T>(length, *opcodes) {
-
-}
+    MessageDecoder<T>(length, *opcodes)

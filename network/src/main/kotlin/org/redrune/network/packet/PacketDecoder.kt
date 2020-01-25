@@ -5,6 +5,9 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ReplayingDecoder
 import mu.KotlinLogging
+import org.redrune.network.Session
+import org.redrune.network.codec.update.UpdateCodecRepository
+import org.redrune.network.codec.update.UpdateSession
 import org.redrune.network.packet.struct.PacketHeader
 
 /**
