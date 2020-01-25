@@ -3,7 +3,7 @@ package org.redrune.network.codec.update.encode
 import com.google.common.primitives.Ints
 import io.netty.buffer.Unpooled
 import org.redrune.cache.Cache
-import org.redrune.network.codec.handshake.UpdateMessageEncoder
+import org.redrune.network.codec.update.UpdateMessageEncoder
 import org.redrune.network.codec.update.message.FileRequest
 import org.redrune.network.packet.PacketBuilder
 

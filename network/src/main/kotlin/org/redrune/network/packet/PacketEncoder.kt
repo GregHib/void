@@ -17,13 +17,7 @@ import org.redrune.network.packet.struct.PacketHeader
 open class PacketEncoder : MessageToByteEncoder<Packet>() {
 
     override fun encode(ctx: ChannelHandlerContext, packet: Packet, out: ByteBuf) {
-        println("encoding $packet")
-        try {
-            out.writeBytes(getContents(packet, ctx))
-            println("encoded contents of packet $packet")
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+        out.writeBytes(getContents(packet, ctx))
     }
 
     open fun getContents(packet: Packet, ctx: ChannelHandlerContext): ByteBuf {

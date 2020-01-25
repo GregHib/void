@@ -10,7 +10,6 @@ import io.netty.channel.ChannelHandlerContext
 class SimplePacketEncoder : PacketEncoder() {
 
     override fun getContents(packet: Packet, ctx: ChannelHandlerContext): ByteBuf {
-        println("yo were getting contex")
         return packet.buffer
     }
 }

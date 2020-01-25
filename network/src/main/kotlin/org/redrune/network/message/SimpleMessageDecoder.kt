@@ -20,7 +20,7 @@ class SimpleMessageDecoder(private val codec: CodecRepository) : MessageToMessag
         val decoder = codec.decoder(msg.opcode) as? MessageDecoder<Message>
 
         if (decoder == null) {
-            logger.info {  "Unable to find decoder for [packet=$msg]" }
+            logger.info { "Unable to find decoder for [packet=$msg]" }
             return
         }
         out.add(decoder.decode(PacketReader(msg), ctx))

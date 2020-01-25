@@ -1,8 +1,9 @@
 package org.redrune.network.codec
 
-import org.redrune.network.codec.handshake.UpdateMessageDecoder
-import org.redrune.network.codec.handshake.UpdateMessageEncoder
-import org.redrune.network.codec.handshake.UpdateMessageHandler
+import org.redrune.network.codec.update.UpdateCodecRepository
+import org.redrune.network.codec.update.UpdateMessageDecoder
+import org.redrune.network.codec.update.UpdateMessageEncoder
+import org.redrune.network.codec.update.UpdateMessageHandler
 import org.redrune.network.message.Message
 import org.redrune.network.message.MessageDecoder
 import org.redrune.network.message.MessageEncoder
@@ -31,7 +32,6 @@ abstract class CodecRepository {
         for (clazz in decoders) {
             val decoder = clazz as UpdateMessageDecoder<*>
             bindDecoder(decoder)
-            println("bound $decoders")
         }
     }
 

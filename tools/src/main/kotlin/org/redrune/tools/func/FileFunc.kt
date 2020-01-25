@@ -7,7 +7,7 @@ class FileFunc {
 
     companion object {
 
-       inline fun <reified T : Any> getChildClassesOf(name: String?): MutableList<Class<*>>? {
+        inline fun <reified T : Any> getChildClassesOf(name: String?): MutableList<Class<*>>? {
             val classGraph = ClassGraph().enableClassInfo()
             val result = classGraph.scan()
             println("name=$name")

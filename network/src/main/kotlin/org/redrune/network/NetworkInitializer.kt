@@ -3,12 +3,9 @@ package org.redrune.network
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelInitializer
 import io.netty.channel.socket.SocketChannel
-import io.netty.handler.logging.LogLevel
-import io.netty.handler.logging.LoggingHandler
-import io.netty.handler.timeout.ReadTimeoutHandler
 import mu.KotlinLogging
-import org.redrune.network.codec.UpdateCodecRepository
 import org.redrune.network.codec.handshake.HandshakeSession
+import org.redrune.network.codec.update.UpdateCodecRepository
 import org.redrune.network.message.SimpleMessageDecoder
 import org.redrune.network.message.SimpleMessageEncoder
 import org.redrune.network.packet.SimplePacketDecoder
@@ -30,8 +27,8 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
     override fun initChannel(ch: SocketChannel) {
         ch.pipeline().apply {
             addLast(
-                LoggingHandler(LogLevel.INFO),
-                ReadTimeoutHandler(5),
+//                LoggingHandler(LogLevel.INFO),
+//                ReadTimeoutHandler(5),
                 // client -> packet -> message
                 SimplePacketDecoder(updateCodec),
                 // message -> handler

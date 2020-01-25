@@ -44,7 +44,10 @@ class OutLogger(out: OutputStream) : PrintStream(out) {
     private fun elementConversion(element: StackTraceElement): String {
         val fileName = element.fileName ?: ""
         val endIndex = fileName.indexOf(".")
-        return "${fileName.substring(0, (if (endIndex == -1) fileName.length else endIndex))}:${element.lineNumber}#${element.methodName}"
+        return "${fileName.substring(
+            0,
+            (if (endIndex == -1) fileName.length else endIndex)
+        )}:${element.lineNumber}#${element.methodName}"
     }
 
     /**

@@ -2,8 +2,8 @@ package org.redrune.network.codec.handshake.decode
 
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.network.codec.handshake.HandshakeOpcodes
-import org.redrune.network.codec.handshake.UpdateMessageDecoder
 import org.redrune.network.codec.handshake.message.HandshakeMessage
+import org.redrune.network.codec.update.UpdateMessageDecoder
 import org.redrune.network.packet.PacketReader
 
 /**

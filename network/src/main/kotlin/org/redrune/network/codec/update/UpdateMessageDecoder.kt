@@ -1,4 +1,4 @@
-package org.redrune.network.codec.handshake
+package org.redrune.network.codec.update
 
 import org.redrune.network.message.Message
 import org.redrune.network.message.MessageDecoder

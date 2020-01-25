@@ -16,7 +16,6 @@ class SimplePacketDecoder(private val codec: CodecRepository) : PacketDecoder() 
     }
 
     override fun getLength(ctx: ChannelHandlerContext, opcode: Int): Int? {
-        println("Codec=$codec")
         return codec.decoder(opcode)?.length
     }
 }

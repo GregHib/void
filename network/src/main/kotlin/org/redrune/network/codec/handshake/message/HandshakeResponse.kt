@@ -8,7 +8,7 @@ import org.redrune.network.message.Message
  */
 data class HandshakeResponse(val responseValue: Int) : Message
 
-class HandshakeResponseValue {
+class ResponseValue {
     companion object {
         /**
          * Establishes successful client connection between the server and the client.

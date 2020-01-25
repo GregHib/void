@@ -1,6 +1,6 @@
 package org.redrune.network.codec.update.encode
 
-import org.redrune.network.codec.handshake.UpdateMessageEncoder
+import org.redrune.network.codec.update.UpdateMessageEncoder
 import org.redrune.network.codec.update.message.ClientResponseMessage
 import org.redrune.network.packet.PacketBuilder
 

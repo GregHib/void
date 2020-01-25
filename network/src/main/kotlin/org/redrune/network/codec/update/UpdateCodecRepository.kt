@@ -1,8 +1,6 @@
-package org.redrune.network.codec
+package org.redrune.network.codec.update
 
-import org.redrune.network.codec.handshake.UpdateMessageDecoder
-import org.redrune.network.codec.handshake.UpdateMessageEncoder
-import org.redrune.network.codec.handshake.UpdateMessageHandler
+import org.redrune.network.codec.CodecRepository
 
 /**
  * @author Tyluur <contact@kiaira.tech>

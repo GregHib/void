@@ -2,7 +2,7 @@ package org.redrune.network.codec.update.handler
 
 import org.redrune.cache.Cache
 import org.redrune.network.Session
-import org.redrune.network.codec.handshake.UpdateMessageHandler
+import org.redrune.network.codec.update.UpdateMessageHandler
 import org.redrune.network.codec.update.message.FileRequest
 
 /**

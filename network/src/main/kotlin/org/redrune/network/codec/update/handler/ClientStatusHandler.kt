@@ -2,7 +2,7 @@ package org.redrune.network.codec.update.handler
 
 import mu.KotlinLogging
 import org.redrune.network.Session
-import org.redrune.network.codec.handshake.UpdateMessageHandler
+import org.redrune.network.codec.update.UpdateMessageHandler
 import org.redrune.network.codec.update.message.ClientStatusMessage
 import org.redrune.tools.ReturnCode
 

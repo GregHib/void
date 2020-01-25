@@ -10,7 +10,7 @@ import org.redrune.network.packet.PacketReader
  * @author Tyluur <contact@kiaira.tech>
  * @since January 24, 2020 3:25 p.m.
  */
-abstract class MessageDecoder<T: Message>(val length: Int, vararg val opcodes: Int) {
+abstract class MessageDecoder<T : Message>(val length: Int, vararg val opcodes: Int) {
 
     /**
      * Handling the decoding of a packet into a [Message] of type [T]

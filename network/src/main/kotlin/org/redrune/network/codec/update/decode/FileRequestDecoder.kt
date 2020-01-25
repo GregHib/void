@@ -1,7 +1,7 @@
 package org.redrune.network.codec.update.decode
 
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.network.codec.handshake.UpdateMessageDecoder
+import org.redrune.network.codec.update.UpdateMessageDecoder
 import org.redrune.network.codec.update.message.FileRequest
 import org.redrune.network.codec.update.message.FileRequestType.FILE_REQUEST
 import org.redrune.network.codec.update.message.FileRequestType.PRIORITY_FILE_REQUEST

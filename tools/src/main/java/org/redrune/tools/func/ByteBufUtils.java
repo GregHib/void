@@ -12,6 +12,10 @@ import java.nio.charset.StandardCharsets;
  */
 public final class ByteBufUtils {
 
+    private ByteBufUtils() {
+
+    }
+
     public static ByteBuf rsa(ByteBuf buf, String modulus, String exponent) {
         byte[] bytes = new byte[buf.readableBytes()];
         buf.readBytes(bytes);
@@ -56,10 +60,6 @@ public final class ByteBufUtils {
         buffer.writeByte(0);
         buffer.writeBytes(str.getBytes(StandardCharsets.ISO_8859_1));
         buffer.writeByte(0);
-    }
-
-    private ByteBufUtils() {
-
     }
 
 }
