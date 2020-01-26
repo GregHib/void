@@ -3,9 +3,10 @@ package org.redrune.network
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
 import mu.KotlinLogging
-import org.redrune.network.codec.CodecRepository
+import org.redrune.network.codec.handshake.message.ResponseValue
+import org.redrune.network.codec.handshake.message.VersionMessage
+import org.redrune.network.codec.update.message.VersionResponseMessage
 import org.redrune.network.message.Message
-import org.redrune.network.message.MessageHandler
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 
@@ -15,16 +16,11 @@ import java.net.InetSocketAddress
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-abstract class Session(
+open class Session(
     /**
      * The channel for the connection
      */
-    var channel: Channel,
-
-    /**
-     * The codec for this session
-     */
-    val codec: CodecRepository
+    var channel: Channel
 ) {
 
     private val logger = KotlinLogging.logger {}
@@ -32,13 +28,34 @@ abstract class Session(
     /**
      * When a message is received, this function is invoked
      */
-    open fun messageReceived(msg: Message) {
-        val handler = codec.handler(msg::class) as? MessageHandler<Message>
-            ?: run {
-                logger.warn("No handler for message: $msg, codec=$codec")
-                return
+    open fun messageReceived(msg: Any) {
+        println("REceived msg $msg")
+        if (msg is VersionMessage) {
+            val version = msg.version
+
+            if (version == NetworkConstants.CLIENT_MAJOR_BUILD) {
+                send(VersionResponseMessage(ResponseValue.SUCCESSFUL))
+            } else {
+                send(VersionResponseMessage(ResponseValue.OUT_OF_DATE))
             }
-        handler.handle(this, msg)
+        }
+        send(msg)
+    }
+
+    /**
+     * When a message is received, this function is invoked
+     */
+    open fun messageReceived(msg: Message) {
+        println("Received msg $msg")
+        if (msg is VersionMessage) {
+            val version = msg.version
+
+            if (version == NetworkConstants.CLIENT_MAJOR_BUILD) {
+                send(VersionResponseMessage(ResponseValue.SUCCESSFUL))
+            } else {
+                send(VersionResponseMessage(ResponseValue.OUT_OF_DATE))
+            }
+        }
     }
 
     /**

@@ -1,19 +1,20 @@
 package org.redrune.network.codec.update.encode
 
 import com.google.common.primitives.Ints
-import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import io.netty.channel.ChannelHandlerContext
-import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.cache.Cache
+import org.redrune.network.codec.update.UpdateMessageEncoder
 import org.redrune.network.codec.update.message.FileRequest
+import org.redrune.network.packet.PacketBuilder
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since January 25, 2020 6:51 p.m.
+ * @since January 23, 2020 8:45 p.m.
  */
-class FileRequestEncoder : MessageToByteEncoder<FileRequest>() {
-    override fun encode(ctx: ChannelHandlerContext, msg: FileRequest, out: ByteBuf) {
+class FileRequestEncoderOld : UpdateMessageEncoder<FileRequest>() {
+
+    @Suppress("DEPRECATED_IDENTITY_EQUALS")
+    override fun encode(buf: PacketBuilder, msg: FileRequest) {
         val (indexId, archiveId, priority) = msg
         val data: ByteArray = Cache.getFile(indexId, archiveId)
         val compression: Int = data[0].toInt() and 0xff
@@ -34,6 +35,6 @@ class FileRequestEncoder : MessageToByteEncoder<FileRequest>() {
             }
             outBuffer.writeByte(data[offset].toInt())
         }
-        out.writeBytes(outBuffer)
+        buf.writeBytes(outBuffer)
     }
 }

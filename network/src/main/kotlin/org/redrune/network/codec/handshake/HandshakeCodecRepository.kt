@@ -4,12 +4,8 @@ import org.redrune.network.codec.CodecRepository
 import org.redrune.network.codec.handshake.decode.HandshakeMessageDecoder
 import org.redrune.network.codec.handshake.encode.HandshakeResponseEncoder
 import org.redrune.network.codec.handshake.handler.HandshakeMessageHandler
-import org.redrune.network.codec.handshake.message.HandshakeMessage
+import org.redrune.network.codec.handshake.message.VersionMessage
 import org.redrune.network.codec.handshake.message.HandshakeResponse
-import org.redrune.network.codec.update.UpdateCodecRepository
-import org.redrune.network.codec.update.UpdateMessageDecoder
-import org.redrune.network.codec.update.UpdateMessageEncoder
-import org.redrune.network.codec.update.UpdateMessageHandler
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -18,7 +14,7 @@ import org.redrune.network.codec.update.UpdateMessageHandler
 object HandshakeCodecRepository : CodecRepository() {
     override fun initialize() {
         bindDecoder(HandshakeMessageDecoder())
-        bindHandler(HandshakeMessage::class, HandshakeMessageHandler())
+        bindHandler(VersionMessage::class, HandshakeMessageHandler())
         bindEncoder(HandshakeResponse::class, HandshakeResponseEncoder())
     }
 

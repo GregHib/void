@@ -4,6 +4,7 @@ import org.redrune.network.message.Message
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since January 24, 2020 12:48 a.m.
+ * @since January 25, 2020 3:05 p.m.
  */
-data class HandshakeMessage(val version: Int) : Message
+class LoginHandshakeResponse(val statusCode: Int) : Message {
+}
