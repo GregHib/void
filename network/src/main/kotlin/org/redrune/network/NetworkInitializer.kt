@@ -5,8 +5,12 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.socket.SocketChannel
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
+import io.netty.handler.timeout.IdleStateHandler
+import io.netty.handler.timeout.ReadTimeoutHandler
 import mu.KotlinLogging
-import org.redrune.network.codec.handshake.HandshakeDecoder
+import org.redrune.network.codec.handshake.HandshakeSession
+import org.redrune.network.codec.handshake.request.HandshakeRequestDecoder
+import org.redrune.tools.constants.NetworkConstants
 import org.redrune.tools.constants.NetworkConstants.Companion.PORT_ID
 import java.net.InetSocketAddress
 
@@ -21,10 +25,11 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
     override fun initChannel(ch: SocketChannel) {
         val pipeline = ch.pipeline()
-        pipeline.addFirst(LoggingHandler(LogLevel.INFO))
-        pipeline.addLast("handshake.decoder", HandshakeDecoder())
+        pipeline.addLast(LoggingHandler(LogLevel.INFO))
+        pipeline.addLast(ReadTimeoutHandler(NetworkConstants.TIMEOUT_RATE))
+        pipeline.addLast("handshake.decoder", HandshakeRequestDecoder())
         pipeline.addLast("handler", NetworkHandler())
-        ch.attr(Session.SESSION_KEY).set(Session(ch))
+        ch.attr(Session.SESSION_KEY).set(HandshakeSession(ch))
     }
 
     @Throws(InterruptedException::class)

@@ -1,5 +1,6 @@
 package org.redrune.network.codec.update.message
 
+import org.redrune.network.codec.handshake.request.HandshakeRequestType
 import org.redrune.network.message.Message
 
 /**
@@ -26,5 +27,13 @@ enum class FileRequestType(val opcode: Int, val priority: Boolean = false) {
 
     CONNECTION_INITIATED(6),
 
-    CONNECTION_TERMINATED(7)
+    CONNECTION_TERMINATED(7);
+
+    companion object {
+        val types = values().associateBy(FileRequestType::opcode)
+
+        fun valueOf(opcode: Int): FileRequestType? {
+            return types[opcode]
+        }
+    }
 }

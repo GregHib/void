@@ -12,7 +12,7 @@ import org.redrune.network.codec.update.message.VersionResponseMessage
 class VersionResponseEncoder  : MessageToByteEncoder<VersionResponseMessage>() {
     override fun encode(ctx: ChannelHandlerContext, msg: VersionResponseMessage, out: ByteBuf) {
         println("encoding $msg")
-        out.writeByte(msg.response)
+        out.writeByte(msg.opcode)
     }
 
 }

@@ -2,6 +2,7 @@ package org.redrune.network.codec.game
 
 import io.netty.channel.Channel
 import org.redrune.network.Session
+import org.redrune.network.message.Message
 import org.redrune.tools.crypto.IsaacRandomPair
 
 /**
@@ -14,5 +15,9 @@ class GameSession(channel: Channel) : Session(channel) {
      * The cipher for incoming packets
      */
     var isaacPair: IsaacRandomPair? = null
+
+    override fun messageReceived(msg: Message) {
+
+    }
 
 }
