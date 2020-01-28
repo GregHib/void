@@ -10,8 +10,8 @@ import org.redrune.network.codec.handshake.response.HandshakeResponseMessage
 import org.redrune.network.codec.update.UpdateDecoder
 import org.redrune.network.codec.update.UpdateSession
 import org.redrune.network.codec.update.encode.FileRequestEncoder
-import org.redrune.network.codec.update.encode.VersionResponseEncoder
 import org.redrune.network.message.Message
+import org.redrune.tools.constants.NetworkConstants
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -24,14 +24,16 @@ class HandshakeSession(channel: Channel) : Session(channel) {
     override fun messageReceived(msg: Message) {
         logger.info { "Msg $msg received" }
         if (msg is HandshakeRequestMessage) {
-            val type = msg.type
-            when (type) {
+            when (val type = msg.type) {
                 HandshakeRequestType.UPDATE -> {
-                    logger.info { "Received update type" }
+                    if (msg.version != NetworkConstants.CLIENT_MAJOR_BUILD) {
+                        logger.warn { "Received unexpected client version, ${msg.version}, closed connection"}
+                        channel.close()
+                        return
+                    }
                     pipeline.addFirst(
                         HandshakeResponseEncoder(),
                         FileRequestEncoder(),
-                        VersionResponseEncoder(),
                         UpdateDecoder()
                     )
                     channel.attr(SESSION_KEY).set(UpdateSession(channel))

@@ -2,7 +2,7 @@ package org.redrune.network.codec.update.decode
 
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.network.codec.update.UpdateMessageDecoder
-import org.redrune.network.codec.update.message.FileRequest
+import org.redrune.network.codec.update.message.FileRequestMessage
 import org.redrune.network.codec.update.message.FileRequestType.FILE_REQUEST
 import org.redrune.network.codec.update.message.FileRequestType.PRIORITY_FILE_REQUEST
 import org.redrune.network.packet.PacketReader
@@ -13,12 +13,12 @@ import org.redrune.network.packet.PacketReader
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-class FileRequestDecoder : UpdateMessageDecoder<FileRequest>(3, FILE_REQUEST.opcode, PRIORITY_FILE_REQUEST.opcode) {
+class FileRequestDecoder : UpdateMessageDecoder<FileRequestMessage>(3, FILE_REQUEST.opcode, PRIORITY_FILE_REQUEST.opcode) {
 
-    override fun decode(reader: PacketReader, ctx: ChannelHandlerContext): FileRequest {
+    override fun decode(reader: PacketReader, ctx: ChannelHandlerContext): FileRequestMessage {
         val indexId: Int = reader.readUnsignedByte()
         val archiveId: Int = reader.readUnsignedShort()
-        return FileRequest(indexId, archiveId, reader.opcode == 1)
+        return FileRequestMessage(indexId, archiveId, reader.opcode == 1)
     }
 
 }

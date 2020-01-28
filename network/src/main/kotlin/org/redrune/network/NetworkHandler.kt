@@ -22,28 +22,13 @@ class NetworkHandler : ChannelInboundHandlerAdapter() {
     }
 
     override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
-        try {
-            println("Received msg=$msg")
-            val session = ctx.channel().attr(Session.SESSION_KEY).get()
-            ctx.channel().attr(Session.SESSION_KEY).get().printPipeline()
-            if (session != null && msg is Message) {
-                session.messageReceived(msg)
-            }
-        } finally {
-            println("retaining msg = $msg")
+        println("Received msg=$msg")
+        val session = ctx.channel().attr(Session.SESSION_KEY).get()
+        ctx.channel().attr(Session.SESSION_KEY).get().printPipeline()
 
-            if (msg is ByteBuf) {
-                val bldr = StringBuilder()
-                ByteBufUtil.appendPrettyHexDump(bldr, msg)
-                println("$bldr\n")
-            }
-            ReferenceCountUtil.retain(msg)
+        if (session != null && msg is Message) {
+            session.messageReceived(msg)
         }
-    }
-
-    override fun channelReadComplete(ctx: ChannelHandlerContext) {
-        ctx.flush()
-        System.out.println("nw we flsug!@#!@#!@#")
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, e: Throwable) {

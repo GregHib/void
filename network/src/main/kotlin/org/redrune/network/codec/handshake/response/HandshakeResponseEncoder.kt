@@ -20,8 +20,6 @@ class HandshakeResponseEncoder : MessageToByteEncoder<HandshakeResponseMessage>(
 
     override fun encode(ctx: ChannelHandlerContext, msg: HandshakeResponseMessage, out: ByteBuf) {
         ctx.pipeline().remove(this)
-        println("Encoding msg $msg")
-        val out = Unpooled.buffer()
         when (val type = msg.requestType) {
             UPDATE -> {
                 out.writeByte(SUCCESSFUL.opcode)
@@ -31,6 +29,5 @@ class HandshakeResponseEncoder : MessageToByteEncoder<HandshakeResponseMessage>(
                 logger.warn { "Unable to encode handshake response, unexpected[type=$type]" }
             }
         }
-        ctx.writeAndFlush(out)
     }
 }

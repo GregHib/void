@@ -5,6 +5,7 @@ import io.netty.buffer.ByteBufUtil
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import mu.KotlinLogging
+import org.redrune.network.Session
 
 
 /**
@@ -19,26 +20,17 @@ class HandshakeRequestDecoder : ByteToMessageDecoder() {
         if (!msg.isReadable) {
             return
         }
-
         val opcode = msg.readUnsignedByte().toInt()
-        var additionalBuf: ByteBuf? = null
-        if (msg.isReadable) {
-            additionalBuf = msg.readBytes(msg.readableBytes())
-        }
-        println("opcode=$opcode")
+        val version = msg.readUnsignedInt().toInt()
         ctx.pipeline().remove(this)
         val type = HandshakeRequestType.valueOf(opcode)
         if (type == null) {
             logger.warn { "Unable to identify expected service! [opcode=$opcode]" }
         } else {
-            out.add(HandshakeRequestMessage(type))
+            out.add(HandshakeRequestMessage(type, version))
             logger.info { "Service $type requested, passing to handler " }
         }
-        val bldr = StringBuilder()
-        ByteBufUtil.appendPrettyHexDump(bldr, additionalBuf)
-        print("$bldr\n")
     }
-
 
 
 }

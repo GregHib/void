@@ -6,14 +6,14 @@ import io.netty.buffer.Unpooled
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.cache.Cache
-import org.redrune.network.codec.update.message.FileRequest
+import org.redrune.network.codec.update.message.FileRequestMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since January 25, 2020 6:51 p.m.
  */
-class FileRequestEncoder : MessageToByteEncoder<FileRequest>() {
-    override fun encode(ctx: ChannelHandlerContext, msg: FileRequest, out: ByteBuf) {
+class FileRequestEncoder : MessageToByteEncoder<FileRequestMessage>() {
+    override fun encode(ctx: ChannelHandlerContext, msg: FileRequestMessage, out: ByteBuf) {
         val (indexId, archiveId, priority) = msg
         val data: ByteArray = Cache.getFile(indexId, archiveId)
         val compression: Int = data[0].toInt() and 0xff
