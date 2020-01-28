@@ -15,7 +15,7 @@ import org.redrune.network.codec.update.message.FileRequestMessage
 class FileRequestEncoder : MessageToByteEncoder<FileRequestMessage>() {
     override fun encode(ctx: ChannelHandlerContext, msg: FileRequestMessage, out: ByteBuf) {
         val (indexId, archiveId, priority) = msg
-        val data: ByteArray = Cache.getFile(indexId, archiveId)
+        val data = Cache.getFile(indexId, archiveId) ?: return
         val compression: Int = data[0].toInt() and 0xff
         val length = Ints.fromBytes(data[1], data[2], data[3], data[4])
         var attributes = compression
