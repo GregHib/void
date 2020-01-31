@@ -1,4 +1,4 @@
-package org.redrune.tools
+package org.redrune.tools.constants
 
 /**
  * Holds the return codes that can be sent to the client

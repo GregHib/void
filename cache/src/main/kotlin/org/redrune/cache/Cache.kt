@@ -1,6 +1,6 @@
 package org.redrune.cache
 
-import mu.KotlinLogging
+import com.github.michaelbull.logging.InlineLogger
 import org.displee.CacheLibrary
 import org.redrune.cache.secure.RSA
 import org.redrune.cache.secure.Whirlpool
@@ -19,9 +19,13 @@ import java.nio.ByteBuffer
  */
 object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY) {
 
-    private val logger = KotlinLogging.logger {}
+    private val logger = InlineLogger()
 
     private val versionTable: ByteArray = createVersionTable(FILE_SERVER_RSA_MODULUS, FILE_SERVER_RSA_PRIVATE)
+
+    fun load() {
+        logger.info { "Cache read from $path" }
+    }
 
     fun getFile(indexId: Int, archiveId: Int): ByteArray? {
         if (indexId == 255 && archiveId == 255) {
@@ -40,52 +44,52 @@ object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY) {
         return archiveSector.data
     }
 
-        private fun createVersionTable(modulus: BigInteger, private: BigInteger): ByteArray {
-            val bout = ByteArrayOutputStream()
-            DataOutputStream(bout).use { buffer ->
-                Cache.run {
-                    buffer.writeByte(indices.size)
+    private fun createVersionTable(modulus: BigInteger, private: BigInteger): ByteArray {
+        val bout = ByteArrayOutputStream()
+        DataOutputStream(bout).use { buffer ->
+            Cache.run {
+                buffer.writeByte(indices.size)
 
-                    for (i in indices.indices) {
-                        buffer.writeInt(indices[i].crc)
-                        buffer.writeInt(indices[i].revision)
-                        buffer.write(indices[i].whirlpool ?: ByteArray(64))
-                    }
+                for (i in indices.indices) {
+                    buffer.writeInt(indices[i].crc)
+                    buffer.writeInt(indices[i].revision)
+                    buffer.write(indices[i].whirlpool ?: ByteArray(64))
                 }
-
-                val bytes = bout.toByteArray()
-                var temp = ByteBuffer.allocate(65)
-                temp.put(1)
-                temp.put(Whirlpool.whirlpool(bytes, 0, bytes.size))
-                (temp as Buffer).flip()
-
-                temp = RSA.crypt(temp, modulus, private)
-
-                buffer.write(temp.array())
-
-                val data = bout.toByteArray()
-                val out = ByteBuffer.allocate(5 + data.size)
-                out.put(0)
-                out.putInt(data.size)
-                out.put(data)
-                return out.array()
             }
-        }
 
-        fun valid(index: Int, archive: Int): Boolean {
-            if (archive < 0) {
+            val bytes = bout.toByteArray()
+            var temp = ByteBuffer.allocate(65)
+            temp.put(1)
+            temp.put(Whirlpool.whirlpool(bytes, 0, bytes.size))
+            (temp as Buffer).flip()
+
+            temp = RSA.crypt(temp, modulus, private)
+
+            buffer.write(temp.array())
+
+            val data = bout.toByteArray()
+            val out = ByteBuffer.allocate(5 + data.size)
+            out.put(0)
+            out.putInt(data.size)
+            out.put(data)
+            return out.array()
+        }
+    }
+
+    fun valid(index: Int, archive: Int): Boolean {
+        if (archive < 0) {
+            return false
+        }
+        if (index != 255) {
+            if (Cache.indices.size <= index || Cache.indices[index].getArchive(archive) == null) {
                 return false
             }
-            if (index != 255) {
-                if (Cache.indices.size <= index || Cache.indices[index].getArchive(archive) == null) {
-                    return false
-                }
-            } else if (archive != 255) {
-                if (Cache.indices.size <= archive) {
-                    return false
-                }
+        } else if (archive != 255) {
+            if (Cache.indices.size <= archive) {
+                return false
             }
-            return true
         }
-
+        return true
     }
+
+}

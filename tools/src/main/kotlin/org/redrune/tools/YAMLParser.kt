@@ -8,6 +8,7 @@ import java.nio.file.Paths
  * This class parses data from a .yaml file
  */
 object YAMLParser {
+
     private var map: Map<String, Any>? = null
     private var yaml: Yaml? = null
 

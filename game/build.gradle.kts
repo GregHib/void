@@ -1,2 +1,3 @@
 dependencies {
+    compile(project(":engine"))
 }

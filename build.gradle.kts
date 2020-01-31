@@ -22,6 +22,7 @@ allprojects {
         jcenter()
         maven(url = "https://repo.maven.apache.org/maven2")
         maven(url = "https://jitpack.io")
+        maven(url = "https://dl.bintray.com/michaelbull/maven")
 
     }
 
@@ -33,7 +34,7 @@ allprojects {
         implementation("com.github.Displee:RS-Cache-Library:5.2")
         compile(group = "org.yaml", name = "snakeyaml", version = "1.8")
         compile(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
-        compile("io.github.microutils:kotlin-logging:1.7.7")
+        compile(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.1")
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
@@ -42,20 +43,10 @@ allprojects {
         //Utilities
         implementation("com.google.guava:guava:19.0")
         implementation("org.apache.commons:commons-lang3:3.0")
-//        implementation("io.github.classgraph:classgraph:4.8.60")
 
         //Testing
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
     }
-
-/*
-    idea {
-        module {
-            inheritOutputDirs = false
-            outputDir = file("${project.buildDir}/classes/kotlin/main")
-            testOutputDir = file("${project.buildDir}/classes/kotlin/test")
-        }
-    }*/
 
     tasks {
         compileKotlin {

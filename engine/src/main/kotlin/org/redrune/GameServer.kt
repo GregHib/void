@@ -1,30 +1,22 @@
 package org.redrune
 
+import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
-import mu.KotlinLogging
 import org.redrune.cache.Cache
-import org.redrune.engine.GameCycleWorker
 import org.redrune.network.NetworkInitializer
 import org.redrune.tools.YAMLParser
-import org.redrune.tools.constants.GameConstants
-import org.redrune.util.OutLogger
-import java.util.concurrent.TimeUnit
+import org.redrune.tools.constants.GameConstants.Companion.BUILD_MAJOR
+import org.redrune.tools.constants.GameConstants.Companion.BUILD_MINOR
+import org.redrune.tools.constants.GameConstants.Companion.SERVER_NAME
+import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
 object GameServer {
-    init {
-        System.setOut(OutLogger(System.out))
-    }
 
-    private val logger = KotlinLogging.logger {}
-
-    /**
-     * The instance of the network
-     */
-    private val network = NetworkInitializer()
+    private val logger = InlineLogger()
 
     /**
      * If the game server is running
@@ -36,23 +28,14 @@ object GameServer {
      */
     val stopwatch: Stopwatch = Stopwatch.createStarted()
 
-    // yaml must load first bc cache uses it
-    init {
-        YAMLParser.load()
-        GameCycleWorker.start()
-    }
-
     /**
      * Runs the server
      */
     fun run() {
-        logger.info("Cache read from ${Cache.path}")
-        network.bind()
-        logger.info(
-            "${GameConstants.SERVER_NAME} v${GameConstants.BUILD_MAJOR}.${GameConstants.BUILD_MINOR} successfully booted in ${stopwatch.elapsed(
-                TimeUnit.MILLISECONDS
-            )} ms"
-        )
+        YAMLParser.load()
+        Cache.load()
+        NetworkInitializer.bind()
+        logger.info { "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted in ${stopwatch.elapsed(MILLISECONDS)} ms" }
         running = true
     }
 
