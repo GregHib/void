@@ -7,6 +7,9 @@ import io.netty.channel.socket.SocketChannel
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
 import io.netty.handler.timeout.ReadTimeoutHandler
+import org.redrune.network.codec.handshake.HandshakeDecoder
+import org.redrune.network.model.packet.data.DataPacketDecoder
+import org.redrune.network.session.HandshakeSession
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 
@@ -19,10 +22,15 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
     override fun initChannel(ch: SocketChannel) {
         val pipeline = ch.pipeline()
-        pipeline.addLast(LoggingHandler(LogLevel.INFO))
-        pipeline.addLast(ReadTimeoutHandler(NetworkConstants.TIMEOUT_RATE))
+        with(pipeline) {
+            addLast(LoggingHandler(LogLevel.INFO))
+            addLast(ReadTimeoutHandler(NetworkConstants.TIMEOUT_RATE))
+            addLast("packet.decoder", DataPacketDecoder())
+            addLast("handshake.decoder", HandshakeDecoder())
+            addLast("network.handler", NetworkHandler())
+        }
+        ch.setSession(HandshakeSession(ch))
     }
-
 
     companion object {
 
