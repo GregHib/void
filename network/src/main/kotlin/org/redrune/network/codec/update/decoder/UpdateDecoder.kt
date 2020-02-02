@@ -14,8 +14,7 @@ import org.redrune.network.codec.update.message.impl.FileRequestMessage
  */
 class UpdateDecoder : ByteToMessageDecoder() {
 
-    private var state =
-        DecodeState.DECODE_VERSION
+    private var state = DecodeState.DECODE_VERSION
 
     private val logger = InlineLogger()
 
@@ -53,7 +52,7 @@ class UpdateDecoder : ByteToMessageDecoder() {
                     UpdateRequestType.ENCRYPTION -> {
                         val key = buf.readUnsignedByte().toInt()
                         val mark = buf.readUnsignedShort()
-                        logger.info { "Received file encryption info [key=$key, mark=$mark]"}
+                        logger.info { "Received file encryption info [key=$key, mark=$mark]" }
                     }
                     else -> {
                         buf.readerIndex(buf.readerIndex() + 3);

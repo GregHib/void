@@ -1,4 +1,4 @@
-package org.redrune.network.codec.handshake
+package org.redrune.network.codec.handshake.message
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.DefaultByteBufHolder

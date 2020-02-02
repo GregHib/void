@@ -1,4 +1,4 @@
-package org.redrune.network.codec.handshake
+package org.redrune.network.codec.handshake.message
 
 /**
  * @author Tyluur <contact@kiaira.tech>

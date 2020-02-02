@@ -14,7 +14,7 @@ import org.redrune.tools.constants.NetworkConstants
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-01
  */
-class UpdateHandler : NetworkHandler<UpdateMessage>() {
+class UpdateHandler(codecRepository: UpdateCodecRepository) : NetworkHandler<UpdateMessage>(codecRepository) {
 
     private val logger = InlineLogger()
 
@@ -29,7 +29,7 @@ class UpdateHandler : NetworkHandler<UpdateMessage>() {
                     else
                         UpdateStatusCode.JS5_RESPONSE_CONNECT_OUTOFDATE
                 }
-                logger.info { "response=${response.invoke()}"}
+                logger.info { "response=${response.invoke()}" }
                 val responseMessage =
                     VersionResponseMessage(response.invoke())
                 send(ctx, responseMessage)
