@@ -21,7 +21,7 @@ object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY) {
 
     private val logger = InlineLogger()
 
-    private val versionTable: ByteArray = createVersionTable(FILE_SERVER_RSA_MODULUS, FILE_SERVER_RSA_PRIVATE)
+    private val versionTable = createVersionTable(FILE_SERVER_RSA_MODULUS, FILE_SERVER_RSA_PRIVATE)
 
     fun load() {
         logger.info { "Cache read from $path" }
@@ -47,7 +47,7 @@ object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY) {
     private fun createVersionTable(modulus: BigInteger, private: BigInteger): ByteArray {
         val bout = ByteArrayOutputStream()
         DataOutputStream(bout).use { buffer ->
-            Cache.run {
+            run {
                 buffer.writeByte(indices.size)
 
                 for (i in indices.indices) {
@@ -81,11 +81,11 @@ object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY) {
             return false
         }
         if (index != 255) {
-            if (Cache.indices.size <= index || Cache.indices[index].getArchive(archive) == null) {
+            if (indices.size <= index || indices[index].getArchive(archive) == null) {
                 return false
             }
         } else if (archive != 255) {
-            if (Cache.indices.size <= archive) {
+            if (indices.size <= archive) {
                 return false
             }
         }

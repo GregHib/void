@@ -8,15 +8,26 @@ import org.redrune.tools.YAMLParser
 import org.redrune.tools.constants.GameConstants.Companion.BUILD_MAJOR
 import org.redrune.tools.constants.GameConstants.Companion.BUILD_MINOR
 import org.redrune.tools.constants.GameConstants.Companion.SERVER_NAME
+import org.redrune.world.World
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-07
  */
-object GameServer {
+class GameServer(
+    /**
+     * The world this server represents
+     */
+    val world: World
+) {
 
     private val logger = InlineLogger()
+
+    /**
+     * The instance of the network
+     */
+    private val network = NetworkInitializer()
 
     /**
      * If the game server is running
@@ -26,7 +37,7 @@ object GameServer {
     /**
      * The stopwatch instance
      */
-    val stopwatch: Stopwatch = Stopwatch.createStarted()
+    val stopwatch = Stopwatch.createStarted()
 
     /**
      * Runs the server
@@ -34,8 +45,12 @@ object GameServer {
     fun run() {
         YAMLParser.load()
         Cache.load()
-        NetworkInitializer.bind()
-        logger.info { "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted in ${stopwatch.elapsed(MILLISECONDS)} ms" }
+        network.bind()
+        logger.info {
+            "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted world ${world.id} in ${stopwatch.elapsed(
+                MILLISECONDS
+            )} ms"
+        }
         running = true
     }
 

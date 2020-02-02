@@ -1,39 +1,28 @@
 package org.redrune.network
 
-import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.Channel
 import io.netty.channel.ChannelHandlerContext
-import io.netty.channel.ChannelInboundHandlerAdapter
-import org.redrune.network.session.Session
-
-class NetworkHandler : ChannelInboundHandlerAdapter() {
-
-    private val logger = InlineLogger()
-
-    override fun channelActive(ctx: ChannelHandlerContext) {
-        logger.info { "Channel connected: " + ctx.channel().remoteAddress() + "." }
-    }
-
-    override fun channelRead(ctx: ChannelHandlerContext, msg: Any) {
-        ctx.channel().getSession().messageReceived(msg)
-    }
-
-}
+import io.netty.channel.SimpleChannelInboundHandler
 
 /**
- * Gets the object in the [Session.SESSION_KEY] attribute
- * @receiver Channel
- * @return Session
+ * @author Tyluur <contact@kiaira.tech>
+ * @since 2020-02-01
  */
-fun Channel.getSession(): Session {
-    return attr(Session.SESSION_KEY).get()
-}
+abstract class NetworkHandler<I> : SimpleChannelInboundHandler<I>() {
 
-/**
- * Sets the [Session.SESSION_KEY] attribute
- * @receiver Channel
- * @param session Session
- */
-fun Channel.setSession(session: Session) {
-    attr(Session.SESSION_KEY).set(session)
+    /*
+    private val decoders = arrayOfNulls<MessageDecoder<*>>(256)
+    private val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
+     */
+    override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
+        cause.printStackTrace()
+        ctx.close()
+    }
+
+    /**
+     * Sends a message to through the pipeline
+     */
+    fun send(ctx: ChannelHandlerContext, msg: Any) {
+        ctx.pipeline().writeAndFlush(msg)
+    }
+
 }
