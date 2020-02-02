@@ -1,15 +1,12 @@
 package org.redrune.network.session
 
-import io.netty.buffer.ByteBuf
-import io.netty.buffer.ByteBufUtil
 import io.netty.channel.Channel
-import io.netty.util.AttributeKey
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-31
  */
-abstract class Session(
+open class Session(
     val channel: Channel
 ) {
 

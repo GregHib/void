@@ -1,7 +1,8 @@
 package org.redrune.network
 
+import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import io.netty.channel.SimpleChannelInboundHandler
+import io.netty.channel.ChannelInboundHandlerAdapter
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -9,20 +10,9 @@ import io.netty.channel.SimpleChannelInboundHandler
  */
 abstract class NetworkHandler<I> : SimpleChannelInboundHandler<I>() {
 
-    /*
-    private val decoders = arrayOfNulls<MessageDecoder<*>>(256)
-    private val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
-     */
-    override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
-        cause.printStackTrace()
-        ctx.close()
-    }
+    private val logger = InlineLogger()
 
-    /**
-     * Sends a message to through the pipeline
-     */
-    fun send(ctx: ChannelHandlerContext, msg: Any) {
-        ctx.pipeline().writeAndFlush(msg)
+    override fun channelActive(ctx: ChannelHandlerContext) {
+        logger.info("Channel connected: " + ctx.channel().remoteAddress() + ".")
     }
-
 }

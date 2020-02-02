@@ -6,8 +6,7 @@ import io.netty.channel.ChannelInitializer
 import io.netty.channel.socket.SocketChannel
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
-import org.redrune.network.codec.handshake.HandshakeDecoder
-import org.redrune.network.codec.handshake.HandshakeHandler
+import io.netty.handler.timeout.ReadTimeoutHandler
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 
@@ -18,8 +17,6 @@ import java.net.InetSocketAddress
 @ChannelHandler.Sharable
 class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
-    private val logger = InlineLogger()
-
     override fun initChannel(ch: SocketChannel) {
         val pipeline = ch.pipeline()
         with(pipeline) {
@@ -27,19 +24,24 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
         }
     }
 
-    @Throws(InterruptedException::class)
-    fun bind(): Boolean {
-        return try {
-            val bootstrap = NetworkBootstrap()
-            bootstrap.childHandler(NetworkInitializer())
-            bootstrap.bind(InetSocketAddress(NetworkConstants.PORT_ID)).sync()
-            logger.info { "Network bound to port: ${NetworkConstants.PORT_ID}" }
-            true
-        } catch (e: Exception) {
-            logger.error(e) { "Error initializing network" }
-            false
+
+    companion object {
+
+        private val logger = InlineLogger()
+
+        @Throws(InterruptedException::class)
+        fun bind(): Boolean {
+            return try {
+                val bootstrap = NetworkBootstrap()
+                bootstrap.childHandler(NetworkInitializer())
+                bootstrap.bind(InetSocketAddress(NetworkConstants.PORT_ID)).sync()
+                logger.info { "Network bound to port: ${NetworkConstants.PORT_ID}" }
+                true
+            } catch (e: Exception) {
+                logger.error(e) { "Error initializing network" }
+                false
+            }
         }
     }
-
 }
 
