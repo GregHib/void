@@ -45,7 +45,7 @@ class GameServer(
     fun run() {
         YAMLParser.load()
         Cache.load()
-        network.bind()
+        network.init().bind()
         logger.info {
             "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted world ${world.id} in ${stopwatch.elapsed(
                 MILLISECONDS

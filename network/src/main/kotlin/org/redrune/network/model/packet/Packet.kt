@@ -8,10 +8,19 @@ import io.netty.buffer.ByteBuf
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-31
  */
-abstract class Packet(val payload: ByteBuf) {
+data class Packet(
+    val opcode: Int,
+    val payload: ByteBuf
+) {
 
     /**
      * The initial length of the packet
      */
     val length = payload.readableBytes()
+
+    /**
+     *
+     * The [PacketType] type of packet
+     */
+    val type = PacketType.byLength(length)
 }

@@ -1,11 +1,11 @@
-package org.redrune.tools.constants
+package org.redrune.network.codec.login
 
 /**
  * Holds the return codes that can be sent to the client
  *
  * @author Tyluur <itstyluur@gmail.com>
  */
-enum class ReturnCode(val opcode: Int) {
+enum class LoginResponseCode(val opcode: Int) {
 
     /**
      * An unexpected server response occured.

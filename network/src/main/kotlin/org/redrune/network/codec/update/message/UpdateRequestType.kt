@@ -21,6 +21,7 @@ enum class UpdateRequestType(val opcode: Int, val priority: Boolean = false) {
     CONNECTION_TERMINATED(7);
 
     companion object {
+
         val types = values().associateBy(UpdateRequestType::opcode)
 
         fun valueOf(opcode: Int): UpdateRequestType? {

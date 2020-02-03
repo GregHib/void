@@ -6,12 +6,16 @@ import io.netty.buffer.ByteBufUtil
 import io.netty.channel.Channel
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelInitializer
+import io.netty.channel.ChannelPipeline
 import io.netty.channel.socket.SocketChannel
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
-import org.redrune.network.codec.handshake.HandshakeCodecRepository
-import org.redrune.network.codec.handshake.HandshakeDecoder
-import org.redrune.network.codec.handshake.HandshakeHandler
+import org.redrune.network.codec.handshake.HandshakeCodec
+import org.redrune.network.codec.login.LoginCodec
+import org.redrune.network.codec.update.UpdateCodec
+import org.redrune.network.model.message.InboundMessageDecoder
+import org.redrune.network.model.message.OutboundSimpleMessageEncoder
+import org.redrune.network.model.packet.SimplePacketDecoder
 import org.redrune.network.session.Session
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
@@ -28,12 +32,21 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
     override fun initChannel(ch: SocketChannel) {
         val pipeline = ch.pipeline()
         with(pipeline) {
-            addLast(
-                LoggingHandler(LogLevel.INFO),
-                HandshakeDecoder(),
-                HandshakeHandler(HandshakeCodecRepository())
-            )
+            addLast(LoggingHandler(LogLevel.INFO))
+
+            // todo design this better for changing codec
+            addLast("packet.decoder", SimplePacketDecoder(HandshakeCodec))
+            addLast("message.decoder", InboundMessageDecoder(HandshakeCodec))
+            addLast("network.handler", NetworkHandler(HandshakeCodec))
+            addLast("message.encode", OutboundSimpleMessageEncoder(HandshakeCodec))
         }
+    }
+
+    fun init() : NetworkInitializer {
+        HandshakeCodec.load()
+        UpdateCodec.load()
+        LoginCodec.load()
+        return this
     }
 
     @Throws(InterruptedException::class)
@@ -74,9 +87,9 @@ fun Channel.setSession(session: Session) {
  * @receiver Channel
  * @return String
  */
-fun Channel.getPipelineContents(): MutableList<String>? {
+fun ChannelPipeline.getPipelineContents(): MutableList<String>? {
     val list = mutableListOf<String>()
-    val names = pipeline().names()
+    val names = names()
     names.forEach { list.add(it) }
     return names
 }

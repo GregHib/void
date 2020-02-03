@@ -4,7 +4,7 @@ package org.redrune.network.codec.handshake.message
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-31
  */
-enum class HandshakeRequestType(val opcode: Int) {
+enum class ServiceType(val opcode: Int) {
 
     LOGIN(14),
 
@@ -57,10 +57,10 @@ enum class HandshakeRequestType(val opcode: Int) {
     ;
 
     companion object {
-        val types = values().associateBy(HandshakeRequestType::opcode)
+        val types = values().associateBy(ServiceType::opcode)
 
-        fun valueOf(opcode: Int): HandshakeRequestType? {
-            return types[opcode]
+        fun valueOf(opcode: Int): ServiceType {
+            return types[opcode] ?: throw IllegalStateException("Unable to identify service type by opcode=$opcode")
         }
     }
 }

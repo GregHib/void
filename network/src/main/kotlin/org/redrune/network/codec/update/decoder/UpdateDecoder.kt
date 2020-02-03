@@ -1,20 +1,10 @@
 package org.redrune.network.codec.update.decoder
 
-import com.github.michaelbull.logging.InlineLogger
-import io.netty.buffer.ByteBuf
-import io.netty.channel.ChannelHandlerContext
-import io.netty.handler.codec.ByteToMessageDecoder
-import org.redrune.network.codec.update.message.UpdateRequestType
-import org.redrune.network.codec.update.message.impl.ClientVersionMessage
-import org.redrune.network.codec.update.message.impl.FileRequestMessage
-
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-01-31
  */
-class UpdateDecoder : ByteToMessageDecoder() {
-
-    private var state = DecodeState.DECODE_VERSION
+/*class UpdateDecoder : ByteToMessageDecoder() {
 
     private val logger = InlineLogger()
 
@@ -63,5 +53,4 @@ class UpdateDecoder : ByteToMessageDecoder() {
         }
     }
 
-    private enum class DecodeState { DECODE_VERSION, DECODE_FILE_REQUEST }
-}
+}*/

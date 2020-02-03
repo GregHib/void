@@ -1,6 +1,6 @@
 <configuration>
     <property name="ENCODER_PATTERN"
-              value="%date{MMM dd}, %date{yyyy h:mm:ss a} [%thread] %logger %method%n%level: %msg%n"/>
+              value="[%level] [%thread] [%d{M.dd.yyyy hh:mm:ss.SSS}] [%logger{0}:%line#%method] : %msg%n"/>
     <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
 
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">

@@ -4,7 +4,7 @@ package org.redrune.network.codec.update.message
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-02
  */
-object UpdateStatusCode {
+object UpdateResponseCode {
 
     const val JS5_RESPONSE_CONNECTED = -2
     const val JS5_RESPONSE_DISCONNECTED = -1

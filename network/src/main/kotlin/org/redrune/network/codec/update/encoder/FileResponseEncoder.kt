@@ -1,19 +1,19 @@
 package org.redrune.network.codec.update.encoder
 
 import com.google.common.primitives.Ints
-import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import io.netty.channel.ChannelHandlerContext
-import io.netty.handler.codec.MessageToByteEncoder
 import org.redrune.cache.Cache
 import org.redrune.network.codec.update.message.impl.FileRequestMessage
+import org.redrune.network.model.message.MessageEncoder
+import org.redrune.network.model.packet.PacketBuilder
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-02
  */
-class FileResponseEncoder : MessageToByteEncoder<FileRequestMessage>() {
-    override fun encode(ctx: ChannelHandlerContext, msg: FileRequestMessage, out: ByteBuf) {
+class FileResponseEncoder : MessageEncoder<FileRequestMessage>() {
+
+    override fun encode(out: PacketBuilder, msg: FileRequestMessage) {
         println("encoding msg=$msg")
         val (indexId, archiveId, priority) = msg
         val data = Cache.getFile(indexId, archiveId) ?: return
