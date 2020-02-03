@@ -10,7 +10,7 @@ import io.netty.channel.ChannelPipeline
 import io.netty.channel.socket.SocketChannel
 import io.netty.handler.logging.LogLevel
 import io.netty.handler.logging.LoggingHandler
-import org.redrune.network.codec.handshake.HandshakeCodec
+import org.redrune.network.codec.service.ServiceCodec
 import org.redrune.network.codec.login.LoginCodec
 import org.redrune.network.codec.update.UpdateCodec
 import org.redrune.network.model.message.InboundMessageDecoder
@@ -35,15 +35,15 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
             addLast(LoggingHandler(LogLevel.INFO))
 
             // todo design this better for changing codec
-            addLast("packet.decoder", SimplePacketDecoder(HandshakeCodec))
-            addLast("message.decoder", InboundMessageDecoder(HandshakeCodec))
-            addLast("network.handler", NetworkHandler(HandshakeCodec))
-            addLast("message.encode", OutboundSimpleMessageEncoder(HandshakeCodec))
+            addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
+            addLast("message.decoder", InboundMessageDecoder(ServiceCodec))
+            addLast("network.handler", NetworkHandler(ServiceCodec))
+            addLast("message.encode", OutboundSimpleMessageEncoder(ServiceCodec))
         }
     }
 
     fun init() : NetworkInitializer {
-        HandshakeCodec.load()
+        ServiceCodec.load()
         UpdateCodec.load()
         LoginCodec.load()
         return this

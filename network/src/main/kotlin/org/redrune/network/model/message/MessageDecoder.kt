@@ -9,19 +9,19 @@ import org.redrune.network.model.packet.PacketType
  * @since 2020-02-02
  */
 abstract class MessageDecoder(
-    /**
-     * The relevant opcodes for this decoder
-     */
-    // TODO change to vararg int
-    val opcodes: IntArray,
 
     /**
      * The expected packet length of the message being decoded
      */
-    val length: Int
+    val length: Int,
+
+    /**
+     * The relevant opcodes for this decoder
+     */
+    vararg val opcodes: Int
 ) {
 
-    constructor(type: PacketType, opcodes: IntArray) : this(opcodes, type.id)
+    constructor(type: PacketType, vararg opcodes: Int) : this(type.id, *opcodes)
 
     /**
      * Decodes a [Packet] into a [Message]

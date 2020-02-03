@@ -11,7 +11,7 @@ import org.redrune.network.model.packet.PacketReader
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-02
  */
-class ConnectionEventMessageDecoder : MessageDecoder(intArrayOf(CONNECTED, DISCONNECT), 3) {
+class ConnectionEventMessageDecoder : MessageDecoder(3, CONNECTED, DISCONNECT) {
     override fun decode(reader: PacketReader): Message {
         val value = reader.readTriByte()
         return ConnectionEventMessage(value)

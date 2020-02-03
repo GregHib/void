@@ -22,5 +22,5 @@ data class Packet(
      *
      * The [PacketType] type of packet
      */
-    val type = PacketType.byLength(length)
+    val type = PacketType.valueOf(length)
 }

@@ -6,21 +6,19 @@ package org.redrune.network.model.packet
  */
 enum class PacketType(val id: Int) {
 
-    // TODO see if to include this
-    RAW(-4),
-
-    // TODO see how to merge this with bylength
-    FIXED(0), BYTE(-1), SHORT(-2), INT(-3);
+    FIXED(0),
+    BYTE(-1),
+    SHORT(-2),
+    INT(-3),
+    RAW(-4);
 
     companion object {
-        fun byLength(length: Int) : PacketType {
-            return when {
-                length >= 0 -> FIXED
-                length == -1 -> BYTE
-                length == -2 -> SHORT
-                length == -3 -> INT
-                else -> throw IllegalStateException("Packet length $length was unexpected")
-            }
+
+        val types = values().associateBy(PacketType::id)
+
+        fun valueOf(length: Int): PacketType {
+            return types[length] ?: throw IllegalStateException("Unable to identify packet type by [length=$length]")
         }
+
     }
 }

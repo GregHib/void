@@ -2,8 +2,8 @@ package org.redrune.network.codec.login
 
 import org.redrune.network.codec.Codec
 import org.redrune.network.codec.login.decoder.LobbyLoginMessageDecoder
-import org.redrune.network.codec.login.encoder.LoginHandshakeResponseMessageEncoder
-import org.redrune.network.codec.login.message.LoginHandshakeResponseMessage
+import org.redrune.network.codec.login.encoder.LoginServiceResponseMessageEncoder
+import org.redrune.network.codec.login.message.LoginServiceResponseMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -13,7 +13,7 @@ object LoginCodec : Codec() {
     override fun load() {
         bindDecoder(LobbyLoginMessageDecoder())
 
-        bindEncoder(LoginHandshakeResponseMessage::class, LoginHandshakeResponseMessageEncoder())
+        bindEncoder(LoginServiceResponseMessage::class, LoginServiceResponseMessageEncoder())
 
         report()
     }

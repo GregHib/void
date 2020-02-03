@@ -1,10 +1,10 @@
-package org.redrune.network.codec.handshake.handler
+package org.redrune.network.codec.service.handler
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.network.NetworkHandler
-import org.redrune.network.codec.handshake.message.ServiceType
-import org.redrune.network.codec.handshake.message.impl.ServiceVersionHandshakeMessage
+import org.redrune.network.codec.service.message.ServiceType
+import org.redrune.network.codec.service.message.impl.VersionBoundServiceMessage
 import org.redrune.network.codec.update.UpdateCodec
 import org.redrune.network.codec.update.message.UpdateResponseCode
 import org.redrune.network.codec.update.message.impl.VersionResponseMessage
@@ -18,11 +18,11 @@ import org.redrune.tools.constants.NetworkConstants
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-02
  */
-class ServiceVersionMessageHandler : MessageHandler<ServiceVersionHandshakeMessage>() {
+class VersionBoundServiceMessageHandler : MessageHandler<VersionBoundServiceMessage>() {
 
     private val logger = InlineLogger()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: ServiceVersionHandshakeMessage) {
+    override fun handle(ctx: ChannelHandlerContext, msg: VersionBoundServiceMessage) {
         val pipeline = ctx.pipeline()
         msg.apply {
             val js5Response =
