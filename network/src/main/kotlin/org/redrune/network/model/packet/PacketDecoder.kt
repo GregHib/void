@@ -33,17 +33,6 @@ abstract class PacketDecoder(val codec: Codec) : ByteToMessageDecoder() {
      */
     private var length = 0
 
-    /**
-     * Reads the opcode of a buffer
-     * @return Int The opcode
-     */
-    abstract fun readOpcode(buf: ByteBuf): Int
-
-    /**
-     * Finds the expected length of a packet by the opcode and returns it
-     */
-    abstract fun expectedLength(opcode: Int, buf: ByteBuf): Int
-
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         try {
             logger.debug { "Packet(opcode=$opcode, length=$length), state=$state\n${buf.getHexContents()}" }
@@ -74,13 +63,39 @@ abstract class PacketDecoder(val codec: Codec) : ByteToMessageDecoder() {
                 state = DECODE_OPCODE
 
                 val packet = Packet(opcode, payload)
-                logger.debug { "Constructed packet $packet"}
+                logger.debug { "Constructed packet $packet" }
                 out.add(PacketReader(packet))
             }
         } catch (e: IOException) {
             e.printStackTrace()
         }
     }
+
+    /**
+     * Reads the opcode of a buffer
+     * @return Int The opcode
+     */
+    open fun readOpcode(buf: ByteBuf): Int {
+        return buf.readUnsignedByte().toInt()
+    }
+
+    /**
+     * Finds the expected length of a packet by the opcode and returns it
+     */
+    open fun expectedLength(opcode: Int, buf: ByteBuf): Int {
+        val expected = codec.getLength(opcode)
+        return if (expected < 0) {
+            when (expected) {
+                -1 -> buf.readUnsignedByte().toInt()
+                -2 -> buf.readUnsignedShort()
+                -3 -> buf.readUnsignedInt().toInt()
+                else -> throw IllegalStateException("Expected packet length is between [-1 - -3], we received $expected")
+            }
+        } else {
+            expected
+        }
+    }
+
 
     /**
      * The decoder can be in any of these states at any time

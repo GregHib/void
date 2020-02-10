@@ -17,6 +17,7 @@ enum class PacketType(val id: Int) {
         val types = values().associateBy(PacketType::id)
 
         fun valueOf(length: Int): PacketType {
+            if (length >= 0) return PacketType.FIXED
             return types[length] ?: throw IllegalStateException("Unable to identify packet type by [length=$length]")
         }
 

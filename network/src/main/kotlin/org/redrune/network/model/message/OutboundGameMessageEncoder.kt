@@ -21,6 +21,6 @@ class OutboundGameMessageEncoder(
 
     @Suppress("UNCHECKED_CAST")
     override fun encode(ctx: ChannelHandlerContext, msg: Message, out: ByteBuf) {
-        // TODO
+
     }
 }

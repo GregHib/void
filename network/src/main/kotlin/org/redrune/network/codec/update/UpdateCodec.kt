@@ -12,7 +12,7 @@ import org.redrune.network.codec.update.handler.FileRequestMessageHandler
 import org.redrune.network.codec.update.message.impl.ClientEventMessage
 import org.redrune.network.codec.update.message.impl.ConnectionEventMessage
 import org.redrune.network.codec.update.message.impl.FileRequestMessage
-import org.redrune.network.codec.update.message.impl.VersionResponseMessage
+import org.redrune.network.codec.update.message.impl.UpdateServiceVersionResponseMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -29,7 +29,7 @@ object UpdateCodec : Codec() {
         bindHandler(ConnectionEventMessage::class, ConnectionEventMessageHandler())
         bindHandler(FileRequestMessage::class, FileRequestMessageHandler())
 
-        bindEncoder(VersionResponseMessage::class, VersionResponseEncoder())
+        bindEncoder(UpdateServiceVersionResponseMessage::class, VersionResponseEncoder())
         bindEncoder(FileRequestMessage::class, FileResponseEncoder())
 
         report()

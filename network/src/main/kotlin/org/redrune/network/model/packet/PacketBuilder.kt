@@ -70,6 +70,14 @@ class PacketBuilder(
         return this
     }
 
+
+    fun writeGJString(data: String): PacketBuilder {
+        writeByte(0)
+        writeBytes(data.toByteArray())
+        writeByte(0)
+        return this
+    }
+
     fun toPacket(): Packet {
         check(!(mode !== AccessMode.BYTE)) { "Must be in byte access mode to convert to a packet" }
         return Packet(opcode, buffer)
@@ -296,6 +304,7 @@ class PacketBuilder(
         buffer.writerIndex((bitIndex + 7) / 8)
         return this
     }
+
 
     companion object {
         /**

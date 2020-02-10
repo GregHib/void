@@ -7,7 +7,7 @@ import org.redrune.network.codec.service.message.ServiceType
 import org.redrune.network.codec.service.message.impl.VersionBoundServiceMessage
 import org.redrune.network.codec.update.UpdateCodec
 import org.redrune.network.codec.update.message.UpdateResponseCode
-import org.redrune.network.codec.update.message.impl.VersionResponseMessage
+import org.redrune.network.codec.update.message.impl.UpdateServiceVersionResponseMessage
 import org.redrune.network.model.message.InboundMessageDecoder
 import org.redrune.network.model.message.MessageHandler
 import org.redrune.network.model.message.OutboundSimpleMessageEncoder
@@ -37,7 +37,7 @@ class VersionBoundServiceMessageHandler : MessageHandler<VersionBoundServiceMess
                     pipeline.replace("message.decoder", "message.decoder", InboundMessageDecoder(UpdateCodec))
                     pipeline.replace("network.handler", "network.handler", NetworkHandler(UpdateCodec))
                     pipeline.replace("message.encode", "message.encode", OutboundSimpleMessageEncoder(UpdateCodec))
-                    pipeline.writeAndFlush(VersionResponseMessage(js5Response))
+                    pipeline.writeAndFlush(UpdateServiceVersionResponseMessage(js5Response))
                     logger.info { "Finished and wrote response" }
                 }
             }

@@ -1,6 +1,7 @@
 package org.redrune.network.codec.login.decoder
 
 import com.github.michaelbull.logging.InlineLogger
+import io.netty.channel.ChannelFutureListener
 import org.redrune.cache.Cache
 import org.redrune.network.codec.login.LoginHeader
 import org.redrune.network.codec.login.LoginOpcodes
@@ -9,6 +10,7 @@ import org.redrune.network.model.message.Message
 import org.redrune.network.model.message.MessageDecoder
 import org.redrune.network.model.packet.PacketReader
 import org.redrune.network.model.packet.PacketType
+
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -31,11 +33,12 @@ class LobbyLoginMessageDecoder : MessageDecoder(PacketType.SHORT, LoginOpcodes.L
         val affiliate = reader.readInt()
         val crcMap = mutableMapOf<Int, Pair<Int, Int>>()
 
-        for (index in 0..37) {
+        for (index in 0..35) {
             val indexCrc = Cache.indices[index].crc
             val clientCrc = reader.readInt()
             crcMap.put(index, Pair(indexCrc, clientCrc))
         }
+
         return LobbyLoginMessage(username, password, highDefinition, resizeable, settings, affiliate, isaacKeys, crcMap)
     }
 
