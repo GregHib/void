@@ -1,3 +1,9 @@
+/*
+TODO:
+  1) restructure gradle with build-versions
+  2) remove main/test from src
+  3) ktlint for code cleanup
+*/
 plugins {
     kotlin("jvm") version "1.3.61"
 }

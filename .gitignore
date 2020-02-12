@@ -51,3 +51,4 @@ gradlew
 gradlew.bat
 
 *.lock
+/game/out/production/resources/logback.xml
