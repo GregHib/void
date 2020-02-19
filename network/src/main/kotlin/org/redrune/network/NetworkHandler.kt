@@ -1,53 +1,75 @@
 package org.redrune.network
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.ChannelHandlerContext
-import io.netty.channel.SimpleChannelInboundHandler
-import org.redrune.network.codec.Codec
-import org.redrune.network.model.message.Message
-import java.io.IOException
+import io.netty.buffer.ByteBuf
+import io.netty.buffer.ByteBufUtil
+import io.netty.buffer.Unpooled
+import io.netty.channel.*
+import org.redrune.network.session.Session
+import org.redrune.tools.func.NetworkFunc
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since 2020-02-01
  */
-class NetworkHandler(private val codec: Codec) : SimpleChannelInboundHandler<Message>() {
+@ChannelHandler.Sharable
+class NetworkHandler : ChannelInboundHandlerAdapter() {
 
     private val logger = InlineLogger()
 
-    override fun channelRegistered(ctx: ChannelHandlerContext) {
-        logger.debug { "Channel registered: " + ctx.channel().remoteAddress() + "." }
-    }
-
-    override fun channelActive(ctx: ChannelHandlerContext) {
-        logger.debug { "Channel active: " + ctx.channel().remoteAddress() + "." }
-    }
-
-    override fun channelUnregistered(ctx: ChannelHandlerContext) {
-        logger.debug { "Channel unregistered: " + ctx.channel().remoteAddress() + "." }
-    }
-
     override fun channelInactive(ctx: ChannelHandlerContext) {
-        logger.debug { "Channel inactive: " + ctx.channel().remoteAddress() + "." }
+        logger.info { "Channel inactive: " + ctx.channel().remoteAddress() + "." }
     }
 
     override fun exceptionCaught(ctx: ChannelHandlerContext, cause: Throwable) {
         cause.printStackTrace()
-//        ctx.close()
     }
 
+}
 
-    @Suppress("UNCHECKED_CAST")
-    override fun channelRead0(ctx: ChannelHandlerContext, msg: Message) {
-        logger.info { "Attempting to read message $msg" }
-        try {
-            val handler = codec.handle(msg::class, ctx, msg)
+/**
+ * Gets the object in the [Session.SESSION_KEY] attribute
+ * @receiver Channel
+ * @return Session
+ */
+fun Channel.getSession(): Session {
+    return attr(Session.SESSION_KEY).get()
+}
 
-            logger.info { "Handled msg $msg with handler $handler" }
-            logger.info { "Pipeline = ${ctx.pipeline().getPipelineContents()}" }
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
+/**
+ * Sets the [Session.SESSION_KEY] attribute
+ */
+fun Channel.setSession(session: Session) {
+    attr(Session.SESSION_KEY).set(session)
+}
+
+/**
+ * Returns the contents of the pipeline in order from head to tail as a [List] of type [String]
+ * @receiver Channel
+ * @return String
+ */
+fun ChannelPipeline.getPipelineContents(): MutableList<String>? {
+    val list = mutableListOf<String>()
+    val names = names()
+    names.forEach { list.add(it) }
+    return names
+}
+
+/**
+ * Returns the contents of the buffer in a readable format (hexadecimal)
+ */
+// TODO convert to one lined hex dump
+fun ByteBuf.getHexContents(): String {
+    return ByteBufUtil.hexDump(toByteArraySafe())
+}
+
+fun ByteBuf.toByteArraySafe(): ByteArray {
+    if (this.hasArray()) {
+        return this.array()
     }
 
+    val bytes = ByteArray(this.readableBytes())
+    this.getBytes(this.readerIndex(), bytes)
+
+    return bytes
 }

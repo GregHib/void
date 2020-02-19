@@ -1,40 +1,34 @@
 package org.redrune.network.codec
 
-import io.netty.channel.ChannelHandlerContext
-import org.redrune.network.model.message.Message
-import org.redrune.network.model.message.MessageHandler
-import org.redrune.network.model.packet.Packet
-import org.redrune.network.model.packet.PacketBuilder
-import org.redrune.network.model.packet.PacketReader
+import org.redrune.network.message.Message
+import org.redrune.network.message.codec.MessageDecoder
+import org.redrune.network.message.codec.MessageEncoder
+import org.redrune.network.message.codec.MessageHandler
 import kotlin.reflect.KClass
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since 2020-02-02
+ * @since February 18, 2020
  */
 interface CodecFunction {
 
     /**
-     * Decodes from the packet reader and returns a message
+     * Finds a decoder by its opcode
      */
-    fun decode(reader: PacketReader): Message
+    fun decoder(opcode: Int): MessageDecoder<*>?
 
     /**
-     * Handles a message and returns if it was successful
+     * Finds the handler of a message
+     * @param clazz KClass<M>
+     * @return MessageHandler<M>?
      */
-    fun <T : Message> handle(clazz: KClass<*>, ctx: ChannelHandlerContext, msg: T): MessageHandler<T>
+    fun <M : Message> handler(clazz: KClass<M>): MessageHandler<M>?
 
     /**
-     * Encodes a message and returns if it was successful
+     * Finds the encoder of a message
+     * @param clazz KClass<M>
+     * @return MessageEncoder<M>?
      */
-    fun <T : Message> encode(
-        clazz: KClass<*>,
-        msg: T,
-        out: PacketBuilder
-    ): Packet
+    fun <M : Message> encoder(clazz: KClass<M>): MessageEncoder<M>?
 
-    /**
-     * Gets the size of a packet
-     */
-    fun getLength(opcode: Int): Int
 }

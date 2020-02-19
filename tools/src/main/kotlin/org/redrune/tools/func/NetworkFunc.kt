@@ -1,6 +1,7 @@
 package org.redrune.tools.func
 
 import java.util.*
+import kotlin.experimental.and
 
 
 /**
@@ -10,6 +11,7 @@ import java.util.*
 class NetworkFunc {
 
     companion object {
+
         /**
          * Converts an IP-Address as string to Integer.
          *
@@ -24,6 +26,8 @@ class NetworkFunc {
             }
             return ip[0] shl 24 or (ip[1] shl 16) or (ip[2] shl 8) or ip[3]
         }
+
     }
+
 
 }
