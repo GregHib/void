@@ -13,7 +13,7 @@ import org.redrune.tools.func.NetworkFunc
  * @since 2020-02-01
  */
 @ChannelHandler.Sharable
-class NetworkHandler : ChannelInboundHandlerAdapter() {
+object NetworkHandler : ChannelInboundHandlerAdapter() {
 
     private val logger = InlineLogger()
 
@@ -48,11 +48,10 @@ fun Channel.setSession(session: Session) {
  * @receiver Channel
  * @return String
  */
-fun ChannelPipeline.getPipelineContents(): MutableList<String>? {
-    val list = mutableListOf<String>()
-    val names = names()
-    names.forEach { list.add(it) }
-    return names
+fun ChannelPipeline.getPipelineContents(): String {
+    val list = mutableMapOf<String, String>()
+    forEach { list[it.key] = it.value.javaClass.simpleName }
+    return list.toString()
 }
 
 /**
@@ -72,4 +71,8 @@ fun ByteBuf.toByteArraySafe(): ByteArray {
     this.getBytes(this.readerIndex(), bytes)
 
     return bytes
+}
+
+fun ChannelPipeline.replace(name: String, handler: ChannelHandler): ChannelHandler? {
+    return replace(name, name, handler)
 }

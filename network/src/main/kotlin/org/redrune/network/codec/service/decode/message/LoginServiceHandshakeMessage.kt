@@ -6,6 +6,4 @@ import org.redrune.network.message.Message
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LoginServiceHandshakeMessage : Message {
-
-}
+class LoginServiceHandshakeMessage : Message

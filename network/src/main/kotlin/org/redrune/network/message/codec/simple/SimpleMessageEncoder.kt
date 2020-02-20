@@ -23,7 +23,7 @@ class SimpleMessageEncoder(private val codec: Codec) : MessageToByteEncoder<Mess
     override fun encode(ctx: ChannelHandlerContext, msg: Message, out: ByteBuf) {
         val encoder = codec.encoder(msg::class) as? MessageEncoder<Message>
         if (encoder == null) {
-            logger.warn { "Unable to find encoder! [msg=$msg]" }
+            logger.warn { "Unable to find encoder! [msg=$msg, codec=${codec.javaClass.simpleName}]" }
             return
         }
         val builder = PacketBuilder(buffer = out)

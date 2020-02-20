@@ -138,11 +138,9 @@ open class PacketWriter(
         return this
     }
 
-    fun writeGJString(value: String?): PacketWriter {
+    fun writeGJString(value: String): PacketWriter {
         writeByte(0)
-        if (value != null) {
-            writeBytes(value.toByteArray())
-        }
+        writeBytes(value.toByteArray())
         writeByte(0)
         return this
     }

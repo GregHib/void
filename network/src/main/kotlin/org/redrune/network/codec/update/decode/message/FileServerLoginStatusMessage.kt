@@ -1,4 +1,4 @@
-package org.redrune.network.codec.file.decode.message
+package org.redrune.network.codec.update.decode.message
 
 import org.redrune.network.message.Message
 

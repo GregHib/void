@@ -2,13 +2,11 @@ package org.redrune.network.packet.codec.impl
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
-import io.netty.channel.ChannelHandler
 import org.redrune.network.codec.Codec
-import org.redrune.network.packet.type.SimplePacket
 import org.redrune.network.packet.codec.PacketDecoder
 
 /**
- * Handling the decoding of a [SimplePacket]
+ * Handling the decoding of a simple packet, which is a packet whose contents are [opcode, buffer]
  *
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020

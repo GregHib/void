@@ -1,4 +1,4 @@
-package org.redrune.network.message.codec.game
+package org.redrune.network.message.codec.rs
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
@@ -16,7 +16,7 @@ import org.redrune.tools.crypto.cipher.IsaacCipher
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class GameMessageEncoder(private val codec: Codec, private val cipher: IsaacCipher) : MessageToByteEncoder<Message>() {
+class RSMessageEncoder(private val codec: Codec, private val cipher: IsaacCipher) : MessageToByteEncoder<Message>() {
 
     private val logger = InlineLogger()
 
@@ -30,6 +30,7 @@ class GameMessageEncoder(private val codec: Codec, private val cipher: IsaacCiph
         val builder = PacketBuilder(buffer = out, cipher = cipher)
         encoder.encode(builder, msg)
         builder.writeSize()
+        logger.info { "Encoding successful [encoder=${encoder.javaClass.simpleName}, msg=$msg, codec=${codec.javaClass.simpleName}" }
     }
 
 }

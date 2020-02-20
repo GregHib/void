@@ -1,4 +1,4 @@
-package org.redrune.network.message.codec.game
+package org.redrune.network.message.codec
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandler
@@ -7,7 +7,6 @@ import io.netty.channel.SimpleChannelInboundHandler
 import org.redrune.network.getPipelineContents
 import org.redrune.network.codec.Codec
 import org.redrune.network.message.Message
-import org.redrune.network.message.codec.MessageHandler
 import java.io.IOException
 
 /**
@@ -15,7 +14,7 @@ import java.io.IOException
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class GameMessageHandler(private val codec: Codec) : SimpleChannelInboundHandler<Message>() {
+class ChannelMessageHandler(private val codec: Codec) : SimpleChannelInboundHandler<Message>() {
 
     private val logger = InlineLogger()
 

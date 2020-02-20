@@ -2,14 +2,15 @@ package org.redrune.network.codec.service.handle.impl
 
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.tools.constants.FileServerResponseCodes
-import org.redrune.network.codec.file.FileCodec
-import org.redrune.network.codec.file.encode.message.FileServerVersionMessage
+import org.redrune.network.codec.update.UpdateCodec
+import org.redrune.network.codec.update.encode.message.FileServerVersionMessage
 import org.redrune.network.codec.service.handle.ServiceMessageHandler
 import org.redrune.network.codec.service.decode.message.FileServiceHandshakeMessage
-import org.redrune.network.message.codec.game.GameMessageDecoder
-import org.redrune.network.message.codec.game.GameMessageHandler
+import org.redrune.network.message.codec.rs.RSMessageDecoder
+import org.redrune.network.message.codec.ChannelMessageHandler
 import org.redrune.network.message.codec.simple.SimpleMessageEncoder
 import org.redrune.network.packet.codec.impl.SimplePacketDecoder
+import org.redrune.network.replace
 import org.redrune.tools.constants.NetworkConstants
 
 /**
@@ -30,12 +31,13 @@ class FileServiceHandshakeMessageHandler : ServiceMessageHandler<FileServiceHand
         val pipeline = ctx.pipeline()
         // TODO translate into build function
         pipeline.apply {
-            replace("packet.decoder", "packet.decoder", SimplePacketDecoder(FileCodec))
-            replace("message.decoder", "message.decoder", GameMessageDecoder(FileCodec))
-            replace("message.handler", "message.handler", GameMessageHandler(FileCodec))
-            replace("message.encoder", "message.encoder", SimpleMessageEncoder(FileCodec))
+            replace("packet.decoder", SimplePacketDecoder(UpdateCodec))
+            replace("message.decoder", RSMessageDecoder(UpdateCodec))
+            replace("message.handler",
+                ChannelMessageHandler(UpdateCodec)
+            )
+            replace("message.encoder", SimpleMessageEncoder(UpdateCodec))
         }
-
         pipeline.writeAndFlush(FileServerVersionMessage(response))
     }
 }

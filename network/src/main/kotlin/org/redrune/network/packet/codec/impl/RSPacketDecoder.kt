@@ -8,10 +8,12 @@ import org.redrune.network.packet.codec.PacketDecoder
 import org.redrune.tools.crypto.cipher.IsaacCipher
 
 /**
+ * This packet decoder decodes runescape packets which are built in this manner [opcode, length, buffer], with the opcode decryption requiring an [IsaacCipher]
+ *
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class GamePacketDecoder(private val codec: Codec, private val cipher: IsaacCipher) : PacketDecoder() {
+class RSPacketDecoder(private val codec: Codec, private val cipher: IsaacCipher) : PacketDecoder() {
 
     private val logger = InlineLogger()
 
@@ -22,7 +24,7 @@ class GamePacketDecoder(private val codec: Codec, private val cipher: IsaacCiphe
     override fun getExpectedLength(buf: ByteBuf, opcode: Int): Int? {
         val decoder = codec.decoder(opcode)
         if (decoder == null) {
-            logger.warn {  "Unable to identify length of packet [opcode=$opcode]" }
+            logger.warn {  "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
             return null
         }
         return decoder.length
