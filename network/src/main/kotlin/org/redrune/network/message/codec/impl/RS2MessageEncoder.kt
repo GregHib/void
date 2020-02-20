@@ -1,4 +1,4 @@
-package org.redrune.network.message.codec.rs
+package org.redrune.network.message.codec.impl
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
@@ -16,7 +16,7 @@ import org.redrune.tools.crypto.cipher.IsaacCipher
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class RSMessageEncoder(private val codec: Codec, private val cipher: IsaacCipher) : MessageToByteEncoder<Message>() {
+class RS2MessageEncoder(private val codec: Codec, private val cipher: IsaacCipher) : MessageToByteEncoder<Message>() {
 
     private val logger = InlineLogger()
 

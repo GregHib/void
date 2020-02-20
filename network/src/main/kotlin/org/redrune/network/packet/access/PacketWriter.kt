@@ -48,6 +48,7 @@ open class PacketWriter(
             else -> {
             }
         }
+        println("write opcode $opcode")
     }
 
     fun writeSize() {
@@ -138,7 +139,7 @@ open class PacketWriter(
         return this
     }
 
-    fun writeGJString(value: String): PacketWriter {
+    fun writePrefixedString(value: String): PacketWriter {
         writeByte(0)
         writeBytes(value.toByteArray())
         writeByte(0)

@@ -1,4 +1,4 @@
-package org.redrune.network.message.codec.simple
+package org.redrune.network.message.codec.impl
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
@@ -11,11 +11,13 @@ import org.redrune.network.message.codec.MessageEncoder
 import org.redrune.network.packet.access.PacketBuilder
 
 /**
+ * Messages that are encoded with the size must use this codec
+ *
  * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
+ * @since February 20, 2020
  */
 @ChannelHandler.Sharable
-class SimpleMessageEncoder(private val codec: Codec) : MessageToByteEncoder<Message>() {
+class SizedMessageEncoder(private val codec: Codec) : MessageToByteEncoder<Message>() {
 
     private val logger = InlineLogger()
 
@@ -29,6 +31,7 @@ class SimpleMessageEncoder(private val codec: Codec) : MessageToByteEncoder<Mess
         val builder = PacketBuilder(buffer = out)
         encoder.encode(builder, msg)
         builder.writeSize()
+        logger.info { "Encoding successful [encoder=${encoder.javaClass.simpleName}, msg=$msg, codec=${codec.javaClass.simpleName}" }
     }
 
 }

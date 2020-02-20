@@ -6,9 +6,9 @@ package org.redrune.network.packet.codec
  */
 enum class DecoderState {
 
-    OPCODE,
+    DECODE_OPCODE,
 
-    LENGTH,
+    DECODE_LENGTH,
 
-    BUFFER
+    DECODE_PAYLOAD
 }

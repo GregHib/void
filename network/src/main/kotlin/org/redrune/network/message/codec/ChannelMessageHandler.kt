@@ -30,14 +30,10 @@ class ChannelMessageHandler(private val codec: Codec) : SimpleChannelInboundHand
 
             handler.handle(ctx, msg)
 
-            logger.info { "Handled msg $msg with handler ${handler.javaClass.simpleName}, using pipeline${ctx.pipeline().getPipelineContents()}" }
+            logger.info { "Handled successfully[msg=$msg, codec=${codec.javaClass.simpleName}, handler=${handler.javaClass.simpleName}, pipeline=${ctx.pipeline().getPipelineContents()}]" }
         } catch (e: IOException) {
             e.printStackTrace()
         }
-    }
-
-    override fun channelReadComplete(ctx: ChannelHandlerContext) {
-        ctx.flush()
     }
 
 }

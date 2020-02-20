@@ -1,4 +1,4 @@
-package org.redrune.network.message.codec.rs
+package org.redrune.network.message.codec.impl
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandler
@@ -12,7 +12,7 @@ import org.redrune.network.packet.access.PacketReader
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class RSMessageDecoder(private val codec: Codec) : MessageToMessageDecoder<PacketReader>() {
+class RS2MessageDecoder(private val codec: Codec) : MessageToMessageDecoder<PacketReader>() {
 
     private val logger = InlineLogger()
 

@@ -22,7 +22,7 @@ class SimplePacketDecoder(private val codec: Codec) : PacketDecoder() {
     override fun getExpectedLength(buf: ByteBuf, opcode: Int): Int? {
         val decoder = codec.decoder(opcode)
         if (decoder == null) {
-            logger.warn { "Unable to identify length of packet [opcode=$opcode]" }
+            logger.warn { "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
             return null
         }
         return decoder.length
