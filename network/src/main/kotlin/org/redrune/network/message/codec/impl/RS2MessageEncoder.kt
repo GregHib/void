@@ -9,6 +9,7 @@ import org.redrune.network.codec.Codec
 import org.redrune.network.message.Message
 import org.redrune.network.message.codec.MessageEncoder
 import org.redrune.network.packet.access.PacketBuilder
+import org.redrune.tools.crypto.ISAACCipher
 import org.redrune.tools.crypto.cipher.IsaacCipher
 
 /**
@@ -16,7 +17,7 @@ import org.redrune.tools.crypto.cipher.IsaacCipher
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class RS2MessageEncoder(private val codec: Codec, private val cipher: IsaacCipher) : MessageToByteEncoder<Message>() {
+class RS2MessageEncoder(private val codec: Codec, private val cipher: ISAACCipher) : MessageToByteEncoder<Message>() {
 
     private val logger = InlineLogger()
 

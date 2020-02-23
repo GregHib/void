@@ -7,6 +7,7 @@ import io.netty.handler.codec.ByteToMessageDecoder
 import org.redrune.network.packet.PacketType
 import org.redrune.network.packet.PacketType.*
 import org.redrune.network.packet.access.PacketReader
+import org.redrune.network.packet.codec.DecoderState.*
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -19,8 +20,7 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
     /**
      * The current state of the decoder
      */
-    protected var state: DecoderState =
-        DecoderState.DECODE_OPCODE
+    private var state: DecoderState = DECODE_OPCODE
 
     /**
      * The read opcode of the packet
@@ -35,7 +35,7 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
     /**
      * The type of packet
      */
-    protected var type = FIXED
+    private var type = FIXED
 
     /**
      * Handles reading the opcode from the buffer
@@ -45,27 +45,27 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
     /**
      * Getting the expected length of a buffer by the opcode identified [opcode]. If th
      */
-    abstract fun getExpectedLength(buf: ByteBuf, opcode: Int): Int?
+    abstract fun getExpectedLength(opcode: Int): Int?
 
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
-        if (state == DecoderState.DECODE_OPCODE) {
+        if (state == DECODE_OPCODE) {
             if (!buf.isReadable) {
                 logger.warn { "Unable to decode opcode from buffer - buffer is not readable." }
                 return
             }
             opcode = readOpcode(buf)
-            length = getExpectedLength(buf, opcode) ?: buf.readableBytes()
+            length = getExpectedLength(opcode) ?: buf.readableBytes()
             type = PacketType.byLength(length)
-            state = if (length < 0) DecoderState.DECODE_LENGTH else DecoderState.DECODE_PAYLOAD
-            logger.info { "Identified opcode! [opcode=$opcode, expectedLength=$length, readable=${buf.readableBytes()}]" }
+            state = if (length < 0) DECODE_LENGTH else DECODE_PAYLOAD
+            logger.info { "Identified opcode! [opcode=$opcode, expectedLength=$length, readable=${buf.readableBytes()}, nextState=$state]" }
         }
-        if (state == DecoderState.DECODE_LENGTH) {
-            if (buf.readableBytes() < if(length == -1) 1 else 2) {
+        if (state == DECODE_LENGTH) {
+            if (buf.readableBytes() < if (length == -1) 1 else 2) {
                 logger.warn { "Unable to decode length from buffer [opcode=$opcode] - buffer is not readable [readable=${buf.readableBytes()}]." }
                 return
             }
             // when the packet is of a variable length, the expected length is overwritten by the length encoded next
-            when(type) {
+            when (type) {
                 BYTE -> {
                     length = buf.readUnsignedByte().toInt()
                 }
@@ -74,22 +74,22 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
                 }
             }
             logger.info { "Identified length! [opcode=$opcode, length=$length, type=$type]" }
-            state = DecoderState.DECODE_PAYLOAD
+            state = DECODE_PAYLOAD
         }
-        if (state == DecoderState.DECODE_PAYLOAD) {
+        if (state == DECODE_PAYLOAD) {
             if (buf.readableBytes() < length) {
                 logger.warn { "Unable to decode payload from buffer - length=$length, readable=${buf.readableBytes()}." }
                 return
             }
 
             //Copy from unsafe buffer
-            val buffer = buf.readBytes(length)
+            val payload = buf.readBytes(length)
 
             //Handle data
-            out.add(PacketReader(opcode, type, buffer))
+            out.add(PacketReader(opcode, type, payload))
 
             //Reset state
-            state = DecoderState.DECODE_OPCODE
+            state = DECODE_OPCODE
 
             logger.info { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
         }

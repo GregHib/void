@@ -6,6 +6,7 @@ import org.redrune.network.packet.DataType
 import org.redrune.network.packet.Endian
 import org.redrune.network.packet.Modifier
 import org.redrune.network.packet.PacketType
+import org.redrune.tools.crypto.ISAACCipher
 import org.redrune.tools.crypto.cipher.IsaacCipher
 
 /**
@@ -19,7 +20,7 @@ open class PacketWriter(
     protected var opcode: Int? = null,
     protected var type: PacketType = PacketType.FIXED,
     protected open val buffer: ByteBuf = Unpooled.buffer(),
-    protected open val cipher: IsaacCipher? = null
+    protected open val cipher: ISAACCipher? = null
 ) {
     private var sizeIndex = 0
     private var bitIndex = 0

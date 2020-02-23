@@ -2,7 +2,7 @@ package org.redrune.network.packet.access
 
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
-import org.redrune.network.getHexContents
+import org.redrune.tools.func.getHexContents
 import org.redrune.network.packet.DataType
 import org.redrune.network.packet.Endian
 import org.redrune.network.packet.Modifier

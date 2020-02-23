@@ -24,3 +24,19 @@ open class Session(
         val SESSION_KEY: AttributeKey<Session> = AttributeKey.valueOf<Session>("session.key")
     }
 }
+
+/**
+ * Gets the object in the [Session.SESSION_KEY] attribute
+ * @receiver Channel
+ * @return Session
+ */
+fun Channel.getSession(): Session {
+    return attr(Session.SESSION_KEY).get()
+}
+
+/**
+ * Sets the [Session.SESSION_KEY] attribute
+ */
+fun Channel.setSession(session: Session) {
+    attr(Session.SESSION_KEY).set(session)
+}

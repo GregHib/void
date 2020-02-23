@@ -1,5 +1,9 @@
 package org.redrune.tools.func
 
+import io.netty.buffer.ByteBuf
+import io.netty.buffer.ByteBufUtil
+import io.netty.channel.ChannelHandler
+import io.netty.channel.ChannelPipeline
 import java.util.*
 import kotlin.experimental.and
 
@@ -30,4 +34,37 @@ class NetworkFunc {
     }
 
 
+}
+
+/**
+ * Returns the contents of the pipeline in order from head to tail as a [List] of type [String]
+ * @receiver Channel
+ * @return String
+ */
+fun ChannelPipeline.getPipelineContents(): String {
+    val list = mutableMapOf<String, String>()
+    forEach { list[it.key] = it.value.javaClass.simpleName }
+    return list.toString()
+}
+
+/**
+ * Returns the contents of the buffer in a readable format (hexadecimal)
+ */
+fun ByteBuf.getHexContents(): String {
+    return ByteBufUtil.hexDump(toByteArraySafe())
+}
+
+fun ChannelPipeline.replace(name: String, handler: ChannelHandler): ChannelHandler? {
+    return replace(name, name, handler)
+}
+
+fun ByteBuf.toByteArraySafe(): ByteArray {
+    if (this.hasArray()) {
+        return this.array()
+    }
+
+    val bytes = ByteArray(this.readableBytes())
+    this.getBytes(this.readerIndex(), bytes)
+
+    return bytes
 }

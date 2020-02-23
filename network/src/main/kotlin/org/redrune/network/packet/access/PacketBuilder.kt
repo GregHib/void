@@ -1,6 +1,7 @@
 package org.redrune.network.packet.access
 
 import io.netty.buffer.ByteBuf
+import org.redrune.tools.crypto.ISAACCipher
 import org.redrune.tools.crypto.cipher.IsaacCipher
 
 /**
@@ -10,7 +11,7 @@ import org.redrune.tools.crypto.cipher.IsaacCipher
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class PacketBuilder(override val buffer: ByteBuf, override val cipher: IsaacCipher? = null) : PacketWriter() {
+class PacketBuilder(override val buffer: ByteBuf, override val cipher: ISAACCipher? = null) : PacketWriter() {
 
     init {
         println("packet builder init!")

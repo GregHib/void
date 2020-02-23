@@ -25,7 +25,7 @@ package org.redrune.tools.crypto.cipher
  *
  * @author Bob Jenkins
  */
-class IsaacCipher(seed: IntArray) {
+class IsaacCipher(val seed: IntArray) {
     /**
      * The results given to the user.
      */
