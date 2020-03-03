@@ -14,7 +14,6 @@ import org.redrune.tools.constants.GameOpcodes.REFRESH_WORLDS
 class WorldListRefreshMessageDecoder : GameMessageDecoder<WorldListRefreshMessage>() {
 
     override fun decode(packet: PacketReader): WorldListRefreshMessage {
-        // TODO validate this is crc, it seems to be 0 for a full request
         val crc = packet.readInt()
         return WorldListRefreshMessage(crc)
     }
