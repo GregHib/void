@@ -27,15 +27,6 @@ build
 rebel.xml
 rebel-remote.xml
 
-# player saves
-/data/saves/characters/*
-
-# maps
-*.os
-
-# archives
-*.rar
-
 ### Gradle ###
 .gradle
 /build/
