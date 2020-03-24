@@ -7,6 +7,8 @@ class FileFunc {
 
     companion object {
 
+        val RESULT = ClassGraph().enableClassInfo().scan()
+
         inline fun <reified T : Any> getChildClassesOf(name: String?): MutableList<Class<*>>? {
             val classGraph = ClassGraph().enableClassInfo()
             val result = classGraph.scan()
@@ -14,12 +16,9 @@ class FileFunc {
             return result.getSubclasses(name).loadClasses() as MutableList<Class<*>>?
         }
 
-
         inline fun <reified T> getChildClassesOf(): ArrayList<Any> {
-            val classGraph = ClassGraph().enableClassInfo()
-            val result = classGraph.scan()
             val name = T::class.qualifiedName
-            val list = result.getSubclasses(name).loadClasses() as MutableList<Class<*>>?
+            val list = RESULT.getSubclasses(name).loadClasses() as MutableList<Class<*>>?
             val classes = ArrayList<Any>()
             list?.forEach { classes.add(it.newInstance()) }
             return classes

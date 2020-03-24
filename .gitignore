@@ -10,7 +10,7 @@
 /bin
 /bin/*
 /out
-/out/*
+**/out/
 
 # error logs
 hs_err_pid*
@@ -24,6 +24,8 @@ data/logs/error.log
 .idea/*
 build/*
 build
+rebel.xml
+rebel-remote.xml
 
 # player saves
 /data/saves/characters/*
@@ -46,9 +48,8 @@ gradle-app.setting
 
 # Cache of project
 .gradletasknamecache
-/.gradle/
+/gradle/
 gradlew
 gradlew.bat
 
 *.lock
-/game/out/production/resources/logback.xml

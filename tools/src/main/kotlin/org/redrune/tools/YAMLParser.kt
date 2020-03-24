@@ -17,7 +17,7 @@ object YAMLParser {
             yaml = Yaml()
         }
 
-        val file = File(Paths.get("../data/settings.yml").toString())
+        val file = File("../data/settings.yml")
         if (file.exists()) {
             val stream = file.inputStream()
             map = yaml?.load(stream) as Map<String, Any>?

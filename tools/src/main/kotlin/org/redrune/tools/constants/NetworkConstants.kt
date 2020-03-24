@@ -7,7 +7,7 @@ import java.math.BigInteger
 /**
  * This class contains constant values for networking
  *
- * @author Tyluur <itstyluur></itstyluur>@gmail.com>
+ * @author Tyluur <itstyluur@gmail.com>
  * @since 8/30/2017
  */
 class NetworkConstants {

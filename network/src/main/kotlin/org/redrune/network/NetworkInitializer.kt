@@ -1,24 +1,25 @@
 package org.redrune.network
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.buffer.ByteBuf
-import io.netty.buffer.ByteBufUtil
-import io.netty.channel.Channel
-import io.netty.channel.ChannelHandler
-import io.netty.channel.ChannelInitializer
-import io.netty.channel.ChannelPipeline
+import com.google.common.base.Stopwatch
+import io.netty.bootstrap.ServerBootstrap
+import io.netty.buffer.PooledByteBufAllocator
+import io.netty.channel.*
+import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
-import io.netty.handler.logging.LogLevel
-import io.netty.handler.logging.LoggingHandler
-import org.redrune.network.codec.service.ServiceCodec
-import org.redrune.network.codec.login.LoginCodec
+import io.netty.channel.socket.nio.NioServerSocketChannel
+import org.redrune.core.network.message.codec.impl.RS2MessageDecoder
+import org.redrune.core.network.message.codec.impl.RawMessageEncoder
+import org.redrune.core.network.packet.codec.impl.SimplePacketDecoder
+import org.redrune.core.network.session.Session
+import org.redrune.core.network.session.setSession
 import org.redrune.network.codec.update.UpdateCodec
-import org.redrune.network.model.message.InboundMessageDecoder
-import org.redrune.network.model.message.OutboundSimpleMessageEncoder
-import org.redrune.network.model.packet.SimplePacketDecoder
-import org.redrune.network.session.Session
+import org.redrune.network.codec.game.GameCodec
+import org.redrune.network.codec.login.LoginCodec
+import org.redrune.network.codec.service.ServiceCodec
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -31,21 +32,30 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
     override fun initChannel(ch: SocketChannel) {
         val pipeline = ch.pipeline()
-        with(pipeline) {
-            addLast(LoggingHandler(LogLevel.INFO))
-
-            // todo design this better for changing codec
+        pipeline.apply {
+            //            addLast(LoggingHandler(LogLevel.INFO))
             addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
-            addLast("message.decoder", InboundMessageDecoder(ServiceCodec))
-            addLast("network.handler", NetworkHandler(ServiceCodec))
-            addLast("message.encode", OutboundSimpleMessageEncoder(ServiceCodec))
+            addLast("message.decoder",
+                RS2MessageDecoder(ServiceCodec)
+            )
+            addLast("message.handler",
+                NetworkChannelHandler(ServiceCodec)
+            )
+            addLast("message.encoder",
+                RawMessageEncoder(ServiceCodec)
+            )
         }
+        ch.setSession(Session(ch))
     }
 
-    fun init() : NetworkInitializer {
-        ServiceCodec.load()
-        UpdateCodec.load()
-        LoginCodec.load()
+    // TODO: do this upon construction of codec
+    fun init(): NetworkInitializer {
+        val stopwatch = Stopwatch.createStarted()
+        ServiceCodec.register()
+        UpdateCodec.register()
+        LoginCodec.register()
+        GameCodec.register()
+        logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs"}
         return this
     }
 
@@ -65,40 +75,36 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
 
 }
 
-
 /**
- * Gets the object in the [Session.SESSION_KEY] attribute
- * @receiver Channel
- * @return Session
+ * @author Tyluur <contact@kiaira.tech>
+ * @since January 22, 2020
  */
-fun Channel.getSession(): Session {
-    return attr(Session.SESSION_KEY).get()
-}
+private class NetworkBootstrap(
+    bossGroup: EventLoopGroup = createGroup(true),
+    workerGroup: EventLoopGroup = createGroup(false)
+) : ServerBootstrap() {
 
-/**
- * Sets the [Session.SESSION_KEY] attribute
- */
-fun Channel.setSession(session: Session) {
-    attr(Session.SESSION_KEY).set(session)
-}
+    init {
+        group(bossGroup, workerGroup)
+        channel(NioServerSocketChannel::class.java)
+        option(ChannelOption.SO_BACKLOG, 25)
+        option(ChannelOption.SO_REUSEADDR, true)
+        option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
+        option(ChannelOption.CONNECT_TIMEOUT_MILLIS, NetworkConstants.TIMEOUT_RATE)
+        childOption(ChannelOption.TCP_NODELAY, true)
+        childOption(ChannelOption.SO_KEEPALIVE, true)
+        childOption(ChannelOption.WRITE_BUFFER_WATER_MARK, WriteBufferWaterMark(8 * 1024, 32 * 1024))
+    }
 
-/**
- * Returns the contents of the pipeline in order from head to tail as a [List] of type [String]
- * @receiver Channel
- * @return String
- */
-fun ChannelPipeline.getPipelineContents(): MutableList<String>? {
-    val list = mutableListOf<String>()
-    val names = names()
-    names.forEach { list.add(it) }
-    return names
-}
-
-/**
- * Returns the contents of the buffer in a readable format (hexadecimal)
- */
-fun ByteBuf.getHexContents(): String {
-    val dump = StringBuilder()
-    ByteBufUtil.appendPrettyHexDump(dump, this)
-    return dump.toString()
+    companion object {
+        fun createGroup(boss: Boolean): NioEventLoopGroup {
+            val serverWorkersCount = if (boss) {
+                1
+            } else {
+                val processors = Runtime.getRuntime().availableProcessors()
+                if (processors >= 6) processors - if (processors >= 12) 7 else 5 else 1
+            }
+            return NioEventLoopGroup(serverWorkersCount)
+        }
+    }
 }
