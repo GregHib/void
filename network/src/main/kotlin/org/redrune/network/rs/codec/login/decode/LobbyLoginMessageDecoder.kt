@@ -7,6 +7,7 @@ import org.redrune.core.network.model.packet.PacketType
 import org.redrune.network.rs.codec.login.LoginMessageDecoder
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
 import org.redrune.utility.constants.ServiceOpcodes
+import org.redrune.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -14,6 +15,9 @@ import org.redrune.utility.constants.ServiceOpcodes
  */
 @PacketMetaData(opcodes = [ServiceOpcodes.LOBBY_LOGIN], length = PacketType.VARIABLE_LENGTH_SHORT)
 class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
+
+    private val cache by inject<Cache>()
+
     override fun decode(packet: PacketReader): LobbyLoginMessage {
         val triple = LoginHeaderDecoder.decode(packet)
         val password = triple.second!!
@@ -28,7 +32,7 @@ class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
         val crcMap = mutableMapOf<Int, Pair<Int, Int>>()
 
         for (index in 0..35) {
-            val indexCrc = Cache.index(index).crc
+            val indexCrc = cache.index(index).crc
             val clientCrc = packet.readInt()
             crcMap[index] = Pair(indexCrc, clientCrc)
         }
