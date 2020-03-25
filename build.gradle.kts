@@ -5,7 +5,7 @@ TODO:
   3) ktlint for code cleanup
 */
 plugins {
-    kotlin("jvm") version "1.3.61"
+    kotlin("jvm") version "1.3.70"
 }
 
 buildscript {
