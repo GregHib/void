@@ -5,5 +5,5 @@ plugins {
 dependencies {
     compile(project(":cache"))
     compile(project(":network"))
-    compile(project(":tools"))
+    compile(project(":utility"))
 }

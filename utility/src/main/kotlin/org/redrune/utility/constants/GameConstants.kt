@@ -1,6 +1,6 @@
-package org.redrune.tools.constants
+package org.redrune.utility.constants
 
-import org.redrune.tools.YAMLParser
+import org.redrune.utility.YAMLParser
 
 /**
  * @author Tyluur <contact@kiaira.tech>

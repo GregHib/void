@@ -5,8 +5,8 @@ import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.update.decode.UpdateMessageDecoder
 import org.redrune.network.codec.update.decode.message.UpdateRequestMessage
-import org.redrune.tools.constants.FileServerOpcodes.FILE_REQUEST
-import org.redrune.tools.constants.FileServerOpcodes.PRIORITY_FILE_REQUEST
+import org.redrune.utility.constants.FileServerOpcodes.FILE_REQUEST
+import org.redrune.utility.constants.FileServerOpcodes.PRIORITY_FILE_REQUEST
 
 /**
  * @author Tyluur <contact@kiaira.tech>

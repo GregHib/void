@@ -7,7 +7,7 @@ import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.login.decode.LoginHeader
 import org.redrune.network.codec.login.decode.LoginMessageDecoder
 import org.redrune.network.codec.login.decode.message.LobbyLoginMessage
-import org.redrune.tools.constants.ServiceOpcodes
+import org.redrune.utility.constants.ServiceOpcodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>

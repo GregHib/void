@@ -1,3 +1,3 @@
 dependencies {
-    implementation(project(":tools"))
+    implementation(project(":utility"))
 }

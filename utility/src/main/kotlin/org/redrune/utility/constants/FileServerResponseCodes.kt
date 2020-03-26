@@ -1,4 +1,4 @@
-package org.redrune.tools.constants
+package org.redrune.utility.constants
 
 /**
  * @author Tyluur <contact@kiaira.tech>

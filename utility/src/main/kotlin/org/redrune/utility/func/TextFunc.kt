@@ -1,4 +1,4 @@
-package org.redrune.tools.func
+package org.redrune.utility.func
 
 import java.util.*
 

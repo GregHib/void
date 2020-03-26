@@ -1,7 +1,7 @@
-package org.redrune.tools.constants
+package org.redrune.utility.constants
 
 import com.google.common.collect.ImmutableList
-import org.redrune.tools.YAMLParser
+import org.redrune.utility.YAMLParser
 import java.math.BigInteger
 
 /**

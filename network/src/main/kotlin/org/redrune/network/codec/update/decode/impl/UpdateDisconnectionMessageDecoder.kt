@@ -4,7 +4,7 @@ import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.update.decode.UpdateMessageDecoder
 import org.redrune.network.codec.update.decode.message.UpdateDisconnectionMessage
-import org.redrune.tools.constants.FileServerOpcodes.DISCONNECTED
+import org.redrune.utility.constants.FileServerOpcodes.DISCONNECTED
 
 /**
  * @author Tyluur <contact@kiaira.tech>

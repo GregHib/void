@@ -2,9 +2,9 @@ package org.redrune.cache
 
 import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
-import org.redrune.tools.constants.GameConstants
-import org.redrune.tools.constants.NetworkConstants.Companion.FILE_SERVER_RSA_MODULUS
-import org.redrune.tools.constants.NetworkConstants.Companion.FILE_SERVER_RSA_PRIVATE
+import org.redrune.utility.constants.GameConstants
+import org.redrune.utility.constants.NetworkConstants.Companion.FILE_SERVER_RSA_MODULUS
+import org.redrune.utility.constants.NetworkConstants.Companion.FILE_SERVER_RSA_PRIVATE
 
 /**
  * @author Tyluur <contact@kiaira.tech>

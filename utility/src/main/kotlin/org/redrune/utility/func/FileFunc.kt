@@ -1,4 +1,4 @@
-package org.redrune.tools.func
+package org.redrune.utility.func
 
 import io.github.classgraph.ClassGraph
 import io.github.classgraph.ClassInfoList

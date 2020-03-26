@@ -1,8 +1,7 @@
-package org.redrune.tools
+package org.redrune.utility
 
 import org.yaml.snakeyaml.Yaml
 import java.io.File
-import java.nio.file.Paths
 
 /**
  * This class parses data from a .yaml file

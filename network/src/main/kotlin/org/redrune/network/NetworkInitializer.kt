@@ -17,7 +17,7 @@ import org.redrune.network.codec.game.GameCodec
 import org.redrune.network.codec.login.LoginCodec
 import org.redrune.network.codec.service.ServiceCodec
 import org.redrune.network.codec.update.UpdateCodec
-import org.redrune.tools.constants.NetworkConstants
+import org.redrune.utility.constants.NetworkConstants
 import java.net.InetSocketAddress
 import java.util.concurrent.TimeUnit
 

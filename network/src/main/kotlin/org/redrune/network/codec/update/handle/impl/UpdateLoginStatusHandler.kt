@@ -6,7 +6,7 @@ import org.redrune.core.network.model.session.getSession
 import org.redrune.network.codec.update.decode.message.UpdateLoginStatusMessage
 import org.redrune.network.codec.update.encode.message.UpdateRegistryResponse
 import org.redrune.network.codec.update.handle.UpdateMessageHandler
-import org.redrune.tools.constants.LoginResponseCodes
+import org.redrune.utility.constants.LoginResponseCodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>

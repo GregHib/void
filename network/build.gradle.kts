@@ -1,4 +1,4 @@
 dependencies {
     implementation(project(":cache"))
-    implementation(project(":tools"))
+    implementation(project(":utility"))
 }

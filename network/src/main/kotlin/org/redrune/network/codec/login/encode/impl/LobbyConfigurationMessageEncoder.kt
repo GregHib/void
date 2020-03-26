@@ -5,7 +5,7 @@ import org.redrune.core.network.model.packet.access.PacketBuilder
 import org.redrune.core.tools.utility.NetworkUtility
 import org.redrune.network.codec.login.encode.LoginMessageEncoder
 import org.redrune.network.codec.login.encode.message.LobbyConfigurationMessage
-import org.redrune.tools.constants.GameOpcodes.LOBBY_DETAILS
+import org.redrune.utility.constants.GameOpcodes.LOBBY_DETAILS
 
 /**
  * @author Tyluur <contact@kiaira.tech>

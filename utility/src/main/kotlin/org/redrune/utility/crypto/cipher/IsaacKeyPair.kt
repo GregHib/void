@@ -1,4 +1,4 @@
-package org.redrune.tools.crypto.cipher
+package org.redrune.utility.crypto.cipher
 
 import org.redrune.core.tools.crypto.IsaacCipher
 

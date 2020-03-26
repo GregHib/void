@@ -10,8 +10,8 @@ import org.redrune.network.codec.service.decode.message.UpdateHandshakeMessage
 import org.redrune.network.codec.service.handle.ServiceMessageHandler
 import org.redrune.network.codec.update.UpdateCodec
 import org.redrune.network.codec.update.encode.message.UpdateVersionMessage
-import org.redrune.tools.constants.FileServerResponseCodes
-import org.redrune.tools.constants.NetworkConstants
+import org.redrune.utility.constants.FileServerResponseCodes
+import org.redrune.utility.constants.NetworkConstants
 
 /**
  * @author Tyluur <contact@kiaira.tech>

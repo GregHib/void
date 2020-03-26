@@ -13,7 +13,7 @@ import org.redrune.network.codec.login.LoginCodec
 import org.redrune.network.codec.login.decode.message.LobbyLoginMessage
 import org.redrune.network.codec.login.encode.message.LobbyConfigurationMessage
 import org.redrune.network.codec.login.handle.LoginMessageHandler
-import org.redrune.tools.crypto.cipher.IsaacKeyPair
+import org.redrune.utility.crypto.cipher.IsaacKeyPair
 
 /**
  * @author Tyluur <contact@kiaira.tech>
