@@ -5,8 +5,8 @@ import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.SimpleChannelInboundHandler
 import org.redrune.core.network.codec.Codec
-import org.redrune.core.network.message.Message
-import org.redrune.core.network.message.codec.MessageHandler
+import org.redrune.core.network.model.message.Message
+import org.redrune.core.network.model.message.codec.MessageHandler
 import org.redrune.core.tools.utility.getPipelineContents
 import java.io.IOException
 

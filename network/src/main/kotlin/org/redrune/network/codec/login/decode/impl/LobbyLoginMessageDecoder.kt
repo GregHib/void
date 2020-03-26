@@ -1,9 +1,9 @@
 package org.redrune.network.codec.login.decode.impl
 
 import org.redrune.cache.Cache
-import org.redrune.core.network.packet.PacketMetaData
-import org.redrune.core.network.packet.PacketType
-import org.redrune.core.network.packet.access.PacketReader
+import org.redrune.core.network.model.packet.PacketMetaData
+import org.redrune.core.network.model.packet.PacketType
+import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.login.decode.LoginHeader
 import org.redrune.network.codec.login.decode.LoginMessageDecoder
 import org.redrune.network.codec.login.decode.message.LobbyLoginMessage

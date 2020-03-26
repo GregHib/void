@@ -1,4 +1,4 @@
-rootProject.name = "redrune-rsps"
+rootProject.name = "redrune-game-server"
 
 include("cache")
 include("engine")

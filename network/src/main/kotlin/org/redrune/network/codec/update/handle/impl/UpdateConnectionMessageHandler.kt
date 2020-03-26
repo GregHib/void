@@ -2,7 +2,7 @@ package org.redrune.network.codec.update.handle.impl
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.core.network.session.getSession
+import org.redrune.core.network.model.session.getSession
 import org.redrune.network.codec.update.decode.message.UpdateConnectionMessage
 import org.redrune.network.codec.update.encode.message.UpdateRegistryResponse
 import org.redrune.network.codec.update.handle.UpdateMessageHandler

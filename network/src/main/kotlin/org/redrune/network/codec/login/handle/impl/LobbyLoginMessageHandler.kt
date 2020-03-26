@@ -1,11 +1,11 @@
 package org.redrune.network.codec.login.handle.impl
 
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.core.network.message.codec.impl.RS2MessageDecoder
-import org.redrune.core.network.message.codec.impl.RS2MessageEncoder
-import org.redrune.core.network.message.codec.impl.SizedMessageEncoder
-import org.redrune.core.network.packet.codec.impl.RS2PacketDecoder
-import org.redrune.core.network.session.getSession
+import org.redrune.core.network.model.message.codec.impl.RS2MessageDecoder
+import org.redrune.core.network.model.message.codec.impl.RS2MessageEncoder
+import org.redrune.core.network.model.message.codec.impl.SizedMessageEncoder
+import org.redrune.core.network.model.packet.codec.impl.RS2PacketDecoder
+import org.redrune.core.network.model.session.getSession
 import org.redrune.core.tools.utility.replace
 import org.redrune.network.NetworkChannelHandler
 import org.redrune.network.codec.game.GameCodec

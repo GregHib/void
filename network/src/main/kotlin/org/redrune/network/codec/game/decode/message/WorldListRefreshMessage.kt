@@ -1,6 +1,6 @@
 package org.redrune.network.codec.game.decode.message
 
-import org.redrune.core.network.message.Message
+import org.redrune.core.network.model.message.Message
 
 /**
  * @author Tyluur <contact@kiaira.tech>

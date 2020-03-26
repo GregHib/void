@@ -8,15 +8,15 @@ import io.netty.channel.*
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
-import org.redrune.core.network.message.codec.impl.RS2MessageDecoder
-import org.redrune.core.network.message.codec.impl.RawMessageEncoder
-import org.redrune.core.network.packet.codec.impl.SimplePacketDecoder
-import org.redrune.core.network.session.Session
-import org.redrune.core.network.session.setSession
-import org.redrune.network.codec.update.UpdateCodec
+import org.redrune.core.network.model.message.codec.impl.RS2MessageDecoder
+import org.redrune.core.network.model.message.codec.impl.RawMessageEncoder
+import org.redrune.core.network.model.packet.codec.impl.SimplePacketDecoder
+import org.redrune.core.network.model.session.Session
+import org.redrune.core.network.model.session.setSession
 import org.redrune.network.codec.game.GameCodec
 import org.redrune.network.codec.login.LoginCodec
 import org.redrune.network.codec.service.ServiceCodec
+import org.redrune.network.codec.update.UpdateCodec
 import org.redrune.tools.constants.NetworkConstants
 import java.net.InetSocketAddress
 import java.util.concurrent.TimeUnit
@@ -35,13 +35,16 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
         pipeline.apply {
             //            addLast(LoggingHandler(LogLevel.INFO))
             addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
-            addLast("message.decoder",
+            addLast(
+                "message.decoder",
                 RS2MessageDecoder(ServiceCodec)
             )
-            addLast("message.handler",
+            addLast(
+                "message.handler",
                 NetworkChannelHandler(ServiceCodec)
             )
-            addLast("message.encoder",
+            addLast(
+                "message.encoder",
                 RawMessageEncoder(ServiceCodec)
             )
         }
@@ -55,7 +58,7 @@ class NetworkInitializer : ChannelInitializer<SocketChannel>() {
         UpdateCodec.register()
         LoginCodec.register()
         GameCodec.register()
-        logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs"}
+        logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }
         return this
     }
 

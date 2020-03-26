@@ -1,7 +1,7 @@
 package org.redrune.network.codec.update.decode.impl
 
-import org.redrune.core.network.packet.PacketMetaData
-import org.redrune.core.network.packet.access.PacketReader
+import org.redrune.core.network.model.packet.PacketMetaData
+import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.update.decode.UpdateMessageDecoder
 import org.redrune.network.codec.update.decode.message.UpdateDisconnectionMessage
 import org.redrune.tools.constants.FileServerOpcodes.DISCONNECTED

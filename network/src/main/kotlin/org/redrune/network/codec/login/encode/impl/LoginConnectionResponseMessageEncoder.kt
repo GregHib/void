@@ -1,6 +1,6 @@
 package org.redrune.network.codec.login.encode.impl
 
-import org.redrune.core.network.packet.access.PacketBuilder
+import org.redrune.core.network.model.packet.access.PacketBuilder
 import org.redrune.network.codec.login.encode.LoginMessageEncoder
 import org.redrune.network.codec.login.encode.message.LoginConnectionResponseMessage
 

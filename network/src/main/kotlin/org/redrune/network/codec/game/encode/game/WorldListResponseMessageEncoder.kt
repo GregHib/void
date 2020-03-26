@@ -1,7 +1,7 @@
 package org.redrune.network.codec.game.encode.game
 
-import org.redrune.core.network.packet.PacketType
-import org.redrune.core.network.packet.access.PacketBuilder
+import org.redrune.core.network.model.packet.PacketType
+import org.redrune.core.network.model.packet.access.PacketBuilder
 import org.redrune.network.codec.game.encode.GameMessageEncoder
 import org.redrune.network.codec.game.encode.message.WorldListResponseMessage
 

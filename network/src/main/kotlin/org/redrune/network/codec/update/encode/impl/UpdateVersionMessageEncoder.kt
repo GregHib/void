@@ -1,6 +1,6 @@
 package org.redrune.network.codec.update.encode.impl
 
-import org.redrune.core.network.packet.access.PacketBuilder
+import org.redrune.core.network.model.packet.access.PacketBuilder
 import org.redrune.network.codec.update.encode.UpdateMessageEncoder
 import org.redrune.network.codec.update.encode.message.UpdateVersionMessage
 import org.redrune.tools.constants.FileServerResponseCodes

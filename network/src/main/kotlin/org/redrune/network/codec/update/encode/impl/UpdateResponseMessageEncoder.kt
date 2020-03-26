@@ -1,7 +1,7 @@
 package org.redrune.network.codec.update.encode.impl
 
 import io.netty.buffer.Unpooled
-import org.redrune.core.network.packet.access.PacketBuilder
+import org.redrune.core.network.model.packet.access.PacketBuilder
 import org.redrune.network.codec.update.encode.UpdateMessageEncoder
 import org.redrune.network.codec.update.encode.message.UpdateResponseMessage
 

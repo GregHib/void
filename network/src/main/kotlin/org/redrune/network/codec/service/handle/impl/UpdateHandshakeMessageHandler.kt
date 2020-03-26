@@ -1,9 +1,9 @@
 package org.redrune.network.codec.service.handle.impl
 
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.core.network.message.codec.impl.RS2MessageDecoder
-import org.redrune.core.network.message.codec.impl.RawMessageEncoder
-import org.redrune.core.network.packet.codec.impl.SimplePacketDecoder
+import org.redrune.core.network.model.message.codec.impl.RS2MessageDecoder
+import org.redrune.core.network.model.message.codec.impl.RawMessageEncoder
+import org.redrune.core.network.model.packet.codec.impl.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
 import org.redrune.network.NetworkChannelHandler
 import org.redrune.network.codec.service.decode.message.UpdateHandshakeMessage

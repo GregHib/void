@@ -1,7 +1,7 @@
 # Game Settings
 name: "RedRune"
 port: 43594
-cachePath: "../data/cache/"
+cachePath: "./data/cache/"
 clientBuild: 667
 
 # Version

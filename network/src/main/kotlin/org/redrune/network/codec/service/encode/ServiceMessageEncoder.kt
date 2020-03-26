@@ -1,7 +1,7 @@
 package org.redrune.network.codec.service.encode
 
-import org.redrune.core.network.message.Message
-import org.redrune.core.network.message.codec.MessageEncoder
+import org.redrune.core.network.model.message.Message
+import org.redrune.core.network.model.message.codec.MessageEncoder
 
 /**
  * @author Tyluur <contact@kiaira.tech>

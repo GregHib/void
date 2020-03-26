@@ -1,7 +1,7 @@
 package org.redrune.network.codec.service.decode.impl
 
-import org.redrune.core.network.packet.PacketMetaData
-import org.redrune.core.network.packet.access.PacketReader
+import org.redrune.core.network.model.packet.PacketMetaData
+import org.redrune.core.network.model.packet.access.PacketReader
 import org.redrune.network.codec.service.decode.ServiceMessageDecoder
 import org.redrune.network.codec.service.decode.message.UpdateHandshakeMessage
 import org.redrune.tools.constants.ServiceOpcodes.FILE_SERVICE

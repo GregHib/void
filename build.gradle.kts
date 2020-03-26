@@ -19,7 +19,7 @@ allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    group = "redrune"
+    group = "org.redrune"
     version = "0.0.2"
 
     repositories {
@@ -29,7 +29,6 @@ allprojects {
         maven(url = "https://repo.maven.apache.org/maven2")
         maven(url = "https://jitpack.io")
         maven(url = "https://dl.bintray.com/michaelbull/maven")
-        maven(url = "https://redrune.bintray.com/redrune-rsps")
     }
 
     dependencies {
@@ -45,7 +44,7 @@ allprojects {
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
         implementation("ch.qos.logback:logback-classic:1.2.3")
-        implementation("redrune-network-core:redrune-network-core:0.0.1")
+        implementation("org.redrune.core:redrune-network:0.0.3")
 
         //Utilities
         implementation("com.google.guava:guava:19.0")
