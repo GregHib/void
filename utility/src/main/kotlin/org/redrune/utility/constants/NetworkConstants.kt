@@ -19,9 +19,9 @@ class NetworkConstants {
         val CLIENT_MAJOR_BUILD = YAMLParser.getInt("clientBuild")
 
         /**
-         * The port the server listens on
+         * The base port id, port ids are defined by base + world id
          */
-        const val PORT_ID = 43594
+        const val PORT_ID = 43593
 
         /**
          * The localhost ip address

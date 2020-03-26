@@ -7,6 +7,8 @@ import io.netty.channel.SimpleChannelInboundHandler
 import org.redrune.core.network.codec.Codec
 import org.redrune.core.network.model.message.Message
 import org.redrune.core.network.model.message.codec.MessageHandler
+import org.redrune.core.network.model.session.Session
+import org.redrune.core.network.model.session.setSession
 import org.redrune.core.tools.utility.getPipelineContents
 import java.io.IOException
 
@@ -18,6 +20,10 @@ import java.io.IOException
 class NetworkChannelHandler(private val codec: Codec) : SimpleChannelInboundHandler<Message>() {
 
     private val logger = InlineLogger()
+
+    override fun channelRegistered(ctx: ChannelHandlerContext) {
+        ctx.channel().setSession(Session(ctx.channel()))
+    }
 
     override fun channelInactive(ctx: ChannelHandlerContext) {
         logger.info { "Channel inactive: " + ctx.channel().remoteAddress() + "." }
@@ -39,7 +45,10 @@ class NetworkChannelHandler(private val codec: Codec) : SimpleChannelInboundHand
 
             handler.handle(ctx, msg)
 
-            logger.info { "Handled successfully[msg=$msg, codec=${codec.javaClass.simpleName}, handler=${handler.javaClass.simpleName}, pipeline=${ctx.pipeline().getPipelineContents()}]" }
+            logger.info {
+                "Handled successfully[msg=$msg, codec=${codec.javaClass.simpleName}, handler=${handler.javaClass.simpleName}, pipeline=${ctx.pipeline()
+                    .getPipelineContents()}]"
+            }
         } catch (e: IOException) {
             e.printStackTrace()
         }
