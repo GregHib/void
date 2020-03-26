@@ -3,17 +3,18 @@ package org.redrune
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
 import org.redrune.cache.Cache
+import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
+import org.redrune.core.network.codec.message.encode.RawMessageEncoder
+import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
+import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.network.connection.ConnectionPipeline
 import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
-import org.redrune.core.network.model.message.codec.impl.RS2MessageDecoder
-import org.redrune.core.network.model.message.codec.impl.RawMessageEncoder
-import org.redrune.core.network.model.packet.codec.impl.SimplePacketDecoder
-import org.redrune.network.NetworkChannelHandler
-import org.redrune.network.codec.game.GameCodec
-import org.redrune.network.codec.login.LoginCodec
-import org.redrune.network.codec.service.ServiceCodec
-import org.redrune.network.codec.update.UpdateCodec
+import org.redrune.network.rs.codec.NetworkEventHandler
+import org.redrune.network.rs.codec.game.GameCodec
+import org.redrune.network.rs.codec.login.LoginCodec
+import org.redrune.network.rs.codec.service.ServiceCodec
+import org.redrune.network.rs.codec.update.UpdateCodec
 import org.redrune.utility.YAMLParser
 import org.redrune.utility.constants.GameConstants.Companion.BUILD_MAJOR
 import org.redrune.utility.constants.GameConstants.Companion.BUILD_MINOR
@@ -51,8 +52,8 @@ class GameServer(
         val server = NetworkServer(settings)
         val pipeline = ConnectionPipeline {
             it.addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
-            it.addLast("message.decoder", RS2MessageDecoder(ServiceCodec))
-            it.addLast("message.handler", NetworkChannelHandler(ServiceCodec))
+            it.addLast("message.decoder", OpcodeMessageDecoder(ServiceCodec))
+            it.addLast("message.handler", NetworkMessageHandler(ServiceCodec, NetworkEventHandler()))
             it.addLast("message.encoder", RawMessageEncoder(ServiceCodec))
         }
         server.configure(pipeline)
@@ -74,7 +75,7 @@ class GameServer(
         logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }
     }
 
-    fun run() {
+    fun start() {
         preload()
         bind()
 

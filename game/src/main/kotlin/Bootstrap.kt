@@ -6,7 +6,7 @@ fun main() {
     try {
         val world = World(1)
 
-        GameServer(world).run()
+        GameServer(world).start()
     } catch (e: Exception) {
         e.printStackTrace()
         exitProcess(1)
