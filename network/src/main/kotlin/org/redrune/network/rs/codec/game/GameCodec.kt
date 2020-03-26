@@ -1,9 +1,10 @@
 package org.redrune.network.rs.codec.game
 
 import org.redrune.core.network.codec.Codec
-import org.redrune.network.rs.codec.game.decode.GameMessageDecoder
-import org.redrune.network.rs.codec.game.encode.GameMessageEncoder
-import org.redrune.network.rs.codec.game.handle.GameMessageHandler
+import org.redrune.core.network.codec.message.MessageDecoder
+import org.redrune.core.network.codec.message.MessageEncoder
+import org.redrune.core.network.codec.message.MessageHandler
+import org.redrune.core.network.model.message.Message
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -18,3 +19,21 @@ object GameCodec : Codec() {
         report()
     }
 }
+
+/**
+ * @author Tyluur <contact@kiaira.tech>
+ * @since February 18, 2020
+ */
+abstract class GameMessageEncoder<M : Message> : MessageEncoder<M>()
+
+/**
+ * @author Tyluur <contact@kiaira.tech>
+ * @since February 18, 2020
+ */
+abstract class GameMessageDecoder<M : Message> : MessageDecoder<M>()
+
+/**
+ * @author Tyluur <contact@kiaira.tech>
+ * @since February 18, 2020
+ */
+abstract class GameMessageHandler<M : Message> : MessageHandler<M>()
