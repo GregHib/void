@@ -44,7 +44,7 @@ allprojects {
         implementation(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.2")
         implementation(group = "org.koin", name = "koin-core", version = koinVersion)
         implementation(group = "org.koin", name = "koin-logger-slf4j", version = koinVersion)
-
+        implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.3.5")
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
