@@ -1,5 +1,6 @@
 package org.redrune.utility.func
 
+import org.jetbrains.kotlin.util.suffixIfNot
 import java.util.*
 
 class TextFunc {
@@ -80,6 +81,10 @@ class TextFunc {
         }
 
     }
+}
+
+fun String.plural(count: Int, plural: String = "s"): String {
+    return if (count == 1) this else suffixIfNot(plural)
 }
 
 /**
