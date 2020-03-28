@@ -2,21 +2,28 @@ package org.redrune.cache
 
 import com.displee.cache.CacheLibrary
 import com.github.michaelbull.logging.InlineLogger
-import org.redrune.utility.constants.GameConstants
-import org.redrune.utility.constants.NetworkConstants.Companion.FILE_SERVER_RSA_MODULUS
-import org.redrune.utility.constants.NetworkConstants.Companion.FILE_SERVER_RSA_PRIVATE
+import org.koin.dsl.module
+import java.math.BigInteger
 
 /**
  * @author Tyluur <contact@kiaira.tech>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since 2020-01-07
  */
-object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY!!) {
+
+val cacheModule = module {
+    single { Cache(getProperty("cachePath"), getProperty<String>("fsRsaPrivate"), getProperty<String>("fsRsaModulus")) }
+}
+
+class Cache(directory: String, exponent: BigInteger, modulus: BigInteger) : CacheLibrary(directory) {
+
+    constructor(directory: String, exponent: String, modulus: String) : this(directory, BigInteger(exponent, 16), BigInteger(modulus, 16))
 
     private val logger = InlineLogger()
 
-    private val versionTable = Cache.generateNewUkeys(FILE_SERVER_RSA_PRIVATE, FILE_SERVER_RSA_MODULUS)
+    private val versionTable = generateNewUkeys(exponent, modulus)
 
-    fun load() {
+    init {
         logger.info { "Cache read from $path" }
     }
 
@@ -24,7 +31,7 @@ object Cache : CacheLibrary(GameConstants.CACHE_DIRECTORY!!) {
         if (indexId == 255 && archiveId == 255) {
             return versionTable
         }
-        val index = if(indexId == 255) index255 else index(indexId)
+        val index = if (indexId == 255) index255 else index(indexId)
         if (index == null) {
             logger.warn { "Unable to find valid index for file request [indexId=$indexId, archiveId=$archiveId]}" }
             return null

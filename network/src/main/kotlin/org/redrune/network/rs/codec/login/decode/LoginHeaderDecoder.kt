@@ -5,7 +5,8 @@ import org.redrune.cache.secure.RSA
 import org.redrune.cache.secure.Xtea
 import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.utility.constants.LoginResponseCodes
-import org.redrune.utility.constants.NetworkConstants
+import org.redrune.utility.getProperty
+import java.math.BigInteger
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -14,6 +15,9 @@ import org.redrune.utility.constants.NetworkConstants
 object LoginHeaderDecoder {
 
     private val logger = InlineLogger()
+    private val clientMajorBuild = getProperty<Int>("clientBuild")
+    private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
+    private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)
 
     /**
      * Decodes login message
@@ -23,7 +27,7 @@ object LoginHeaderDecoder {
      */
     fun decode(reader: PacketReader, extra: Boolean = false): Triple<LoginResponseCodes, String?, IntArray?> {
         val version = reader.readInt()
-        if (version != NetworkConstants.CLIENT_MAJOR_BUILD) {
+        if (version != clientMajorBuild) {
             return Triple(LoginResponseCodes.GAME_UPDATED, null, null)
         }
 
@@ -38,7 +42,7 @@ object LoginHeaderDecoder {
         }
         val data = ByteArray(rsaBlockSize)
         reader.readBytes(data)
-        val rsa = RSA.crypt(data, NetworkConstants.LOGIN_RSA_MODULUS, NetworkConstants.LOGIN_RSA_PRIVATE)
+        val rsa = RSA.crypt(data, loginRSAModulus, loginRSAPrivate)
         val rsaBuffer = PacketReader(rsa)
         val sessionId = rsaBuffer.readUnsignedByte()
         if (sessionId != 10) {//rsa block start check

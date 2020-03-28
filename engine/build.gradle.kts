@@ -3,7 +3,7 @@ plugins {
 }
 
 dependencies {
-    compile(project(":cache"))
-    compile(project(":network"))
-    compile(project(":utility"))
+    implementation(project(":cache"))
+    implementation(project(":network"))
+    implementation(project(":utility"))
 }
