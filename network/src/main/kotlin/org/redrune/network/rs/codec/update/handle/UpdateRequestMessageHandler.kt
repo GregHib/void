@@ -3,7 +3,7 @@ package org.redrune.network.rs.codec.update.handle
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.primitives.Ints
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.cache.Cache
+import org.redrune.cache.CacheDelegate
 import org.redrune.network.rs.codec.update.UpdateMessageHandler
 import org.redrune.network.rs.codec.update.decode.message.UpdateRequestMessage
 import org.redrune.network.rs.codec.update.encode.message.UpdateResponseMessage
@@ -16,7 +16,7 @@ import org.redrune.utility.inject
 class UpdateRequestMessageHandler : UpdateMessageHandler<UpdateRequestMessage>() {
 
     private val logger = InlineLogger()
-    private val cache by inject<Cache>()
+    private val cache by inject<CacheDelegate>()
 
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateRequestMessage) {
         val (indexId, archiveId, priority) = msg

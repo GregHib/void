@@ -1,6 +1,6 @@
 package org.redrune.network.rs.codec.login.decode
 
-import org.redrune.cache.Cache
+import org.redrune.cache.CacheDelegate
 import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.core.network.model.packet.PacketType
@@ -16,7 +16,7 @@ import org.redrune.utility.inject
 @PacketMetaData(opcodes = [ServiceOpcodes.LOBBY_LOGIN], length = PacketType.VARIABLE_LENGTH_SHORT)
 class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
 
-    private val cache by inject<Cache>()
+    private val cache by inject<CacheDelegate>()
 
     override fun decode(packet: PacketReader): LobbyLoginMessage {
         val triple = LoginHeaderDecoder.decode(packet)
