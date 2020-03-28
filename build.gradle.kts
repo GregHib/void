@@ -4,14 +4,18 @@ TODO:
   2) remove main/test from src
   3) ktlint for code cleanup
 */
-plugins {
-    kotlin("jvm") version "1.3.70"
-}
-
 buildscript {
     repositories {
         jcenter()
     }
+
+    dependencies {
+        classpath(kotlin("gradle-plugin", version = "1.3.71"))
+    }
+}
+
+plugins {
+    kotlin("jvm") version "1.3.71"
 }
 
 val koinVersion = "2.1.5"

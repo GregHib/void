@@ -3,6 +3,7 @@ package org.redrune
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
 import org.koin.core.context.startKoin
+import org.koin.logger.slf4jLogger
 import org.redrune.cache.cacheModule
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
 import org.redrune.core.network.codec.message.encode.RawMessageEncoder
@@ -13,6 +14,7 @@ import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
 import org.redrune.core.tools.function.NetworkUtils
 import org.redrune.core.tools.function.NetworkUtils.Companion.loadCodecs
+import org.redrune.engine.script.ScriptLoader
 import org.redrune.network.rs.codec.NetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
@@ -64,10 +66,12 @@ class GameServer(
      */
     private fun preload() {
         startKoin {
+            slf4jLogger()
             modules(cacheModule)
             fileProperties("/game.properties")
             fileProperties("/rsa.properties")
         }
+        ScriptLoader()
 
         val stopwatch = Stopwatch.createStarted()
         loadCodecs(ServiceCodec, UpdateCodec, LoginCodec, GameCodec)
