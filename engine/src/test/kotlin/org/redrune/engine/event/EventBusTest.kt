@@ -1,47 +1,36 @@
 package org.redrune.engine.event
 
-import io.mockk.every
+import io.mockk.*
 import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
-import io.mockk.mockkClass
-import io.mockk.verify
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import org.koin.test.KoinTest
-import org.koin.test.KoinTestRule
-import org.koin.test.mock.MockProviderRule
 import org.koin.test.mock.declareMock
+import org.redrune.engine.script.KoinMock
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
  * @since March 27, 2020
  */
 @ExtendWith(MockKExtension::class)
-internal class EventBusTest : KoinTest {
+internal class EventBusTest : KoinMock() {
 
     private class TestEvent : Event() {
         companion object : EventCompanion<TestEvent>()
     }
 
-    @get:Rule
-    val koinTestRule = KoinTestRule.create {
-        printLogger()
-        modules(eventBusModule)
-    }
-
-    @get:Rule
-    val mockProvider = MockProviderRule.create { clazz ->
-        mockkClass(clazz)
+    @BeforeEach
+    fun setup() {
+        loadModules(eventBusModule)
     }
 
     @Test
     fun then() {
         // Given
         val bus = declareMock<EventBus> {
-            every { addLast<TestEvent>(any(), any()) } answers {}
+            every { addLast<TestEvent>(any(), any()) } just Runs
         }
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         // When
@@ -57,7 +46,7 @@ internal class EventBusTest : KoinTest {
     fun `Then filtered`() {
         // Given
         val bus = declareMock<EventBus> {
-            every { addLast<TestEvent>(any(), any()) } answers {}
+            every { addLast<TestEvent>(any(), any()) } just Runs
         }
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         val filter: TestEvent.() -> Boolean = mockk(relaxed = true)
@@ -71,7 +60,7 @@ internal class EventBusTest : KoinTest {
     fun `Register handler`() {
         // Given
         val bus = declareMock<EventBus> {
-            every { addLast<TestEvent>(any(), any()) } answers {}
+            every { addLast<TestEvent>(any(), any()) } just Runs
         }
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         // When

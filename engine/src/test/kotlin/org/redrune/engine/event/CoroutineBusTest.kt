@@ -5,11 +5,11 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verify
 import junit.framework.Assert.assertEquals
-import org.junit.Rule
-import org.junit.Test
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.test.KoinTest
-import org.koin.test.KoinTestRule
 import org.koin.test.inject
+import org.redrune.engine.script.koin.KoinTestExtension
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -24,8 +24,9 @@ class CoroutineBusTest : KoinTest {
 
     val bus by inject<EventBus>()
 
-    @get:Rule
-    val koinTestRule = KoinTestRule.create {
+    @JvmField
+    @RegisterExtension
+    val koinTestExtension = KoinTestExtension.create {
         printLogger()
         modules(eventBusModule)
     }
