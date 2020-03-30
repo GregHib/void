@@ -38,13 +38,13 @@ allprojects {
         implementation("io.netty:netty-all:4.1.44.Final")
         implementation(group = "com.displee", name = "rs-cache-library", version = "6.3")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.8")
-        implementation(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
+        implementation(group = "io.github.classgraph", name = "classgraph", version = "4.8.65")
         implementation(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.2")
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
         implementation("ch.qos.logback:logback-classic:1.2.3")
-        implementation("org.redrune.core:redrune-network:0.0.4")
+        implementation("org.redrune.core:redrune-network:0.0.7")
 
         //Utilities
         implementation("com.google.guava:guava:19.0")

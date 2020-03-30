@@ -1,5 +1,6 @@
 package org.redrune.network.rs.codec.game
 
+import com.github.michaelbull.logging.InlineLogger
 import org.redrune.core.network.codec.Codec
 import org.redrune.core.network.codec.message.MessageDecoder
 import org.redrune.core.network.codec.message.MessageEncoder
@@ -12,11 +13,13 @@ import org.redrune.core.network.model.message.Message
  */
 object GameCodec : Codec() {
 
+    private val logger = InlineLogger()
+
     override fun register() {
         bindDecoders<GameMessageDecoder<*>>()
         bindHandlers<GameMessageHandler<*>>()
         bindEncoders<GameMessageEncoder<*>>()
-        report()
+//        report(logger)
     }
 }
 

@@ -1,5 +1,6 @@
 package org.redrune.network.rs.codec.service
 
+import com.github.michaelbull.logging.InlineLogger
 import org.redrune.core.network.codec.Codec
 import org.redrune.core.network.codec.message.MessageDecoder
 import org.redrune.core.network.codec.message.MessageEncoder
@@ -15,11 +16,13 @@ import org.redrune.network.rs.codec.service.ServiceMessageHandler
  */
 object ServiceCodec : Codec() {
 
+    private val logger = InlineLogger()
+
     override fun register() {
         bindDecoders<ServiceMessageDecoder<*>>()
         bindHandlers<ServiceMessageHandler<*>>()
         bindEncoders<ServiceMessageEncoder<*>>()
-        report()
+//        report(logger)
     }
 }
 

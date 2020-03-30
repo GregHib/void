@@ -3,6 +3,7 @@ package org.redrune
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
 import org.redrune.cache.Cache
+import org.redrune.core.network.codec.Codec
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
 import org.redrune.core.network.codec.message.encode.RawMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
@@ -21,7 +22,6 @@ import org.redrune.utility.constants.GameConstants.Companion.BUILD_MINOR
 import org.redrune.utility.constants.GameConstants.Companion.SERVER_NAME
 import org.redrune.utility.constants.NetworkConstants
 import org.redrune.world.World
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
 /**
@@ -66,19 +66,20 @@ class GameServer(
     fun preload() {
         YAMLParser.load()
         Cache.load()
-
-        val stopwatch = Stopwatch.createStarted()
-        ServiceCodec.register()
-        UpdateCodec.register()
-        LoginCodec.register()
-        GameCodec.register()
-        logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }
+        registerCodecs(GameCodec, ServiceCodec, LoginCodec, UpdateCodec)
     }
+
+    private fun registerCodecs(vararg codecs: Codec) {
+        for (codec in codecs) {
+            codec.register()
+            codec.report()
+        }
+    }
+
 
     fun start() {
         preload()
         bind()
-
         logger.info {
             "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted world ${world.id} in ${stopwatch.elapsed(
                 MILLISECONDS
