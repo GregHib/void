@@ -42,5 +42,4 @@ gradle-app.setting
 /gradle/
 gradlew
 gradlew.bat
-
 *.lock
