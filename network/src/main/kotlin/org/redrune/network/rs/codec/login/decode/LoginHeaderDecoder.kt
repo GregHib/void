@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import org.redrune.cache.secure.RSA
 import org.redrune.cache.secure.Xtea
 import org.redrune.core.network.codec.packet.access.PacketReader
-import org.redrune.utility.constants.LoginResponseCodes
+import org.redrune.utility.constants.network.LoginResponseCodes
 import org.redrune.utility.getProperty
 import java.math.BigInteger
 

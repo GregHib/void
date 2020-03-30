@@ -4,7 +4,7 @@ import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.update.UpdateMessageDecoder
 import org.redrune.network.rs.codec.update.decode.message.UpdateConnectionMessage
-import org.redrune.utility.constants.FileServerOpcodes.CONNECTED
+import org.redrune.utility.constants.network.FileServerOpcodes.CONNECTED
 
 /**
  * @author Tyluur <contact@kiaira.tech>

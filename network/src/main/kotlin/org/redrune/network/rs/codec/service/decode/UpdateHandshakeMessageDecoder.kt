@@ -4,7 +4,7 @@ import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.service.ServiceMessageDecoder
 import org.redrune.network.rs.codec.service.decode.message.UpdateHandshakeMessage
-import org.redrune.utility.constants.ServiceOpcodes.FILE_SERVICE
+import org.redrune.utility.constants.network.ServiceOpcodes.FILE_SERVICE
 
 /**
  * @author Tyluur <contact@kiaira.tech>

@@ -3,7 +3,7 @@ package org.redrune.network.rs.codec.update.encode
 import org.redrune.core.network.codec.packet.access.PacketBuilder
 import org.redrune.network.rs.codec.update.UpdateMessageEncoder
 import org.redrune.network.rs.codec.update.encode.message.UpdateVersionMessage
-import org.redrune.utility.constants.FileServerResponseCodes
+import org.redrune.utility.constants.network.FileServerResponseCodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>

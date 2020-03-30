@@ -6,7 +6,7 @@ import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.core.network.model.packet.PacketType
 import org.redrune.network.rs.codec.login.LoginMessageDecoder
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
-import org.redrune.utility.constants.ServiceOpcodes
+import org.redrune.utility.constants.network.ServiceOpcodes
 import org.redrune.utility.inject
 
 /**

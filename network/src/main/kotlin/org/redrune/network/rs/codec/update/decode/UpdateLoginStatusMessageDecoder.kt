@@ -4,8 +4,8 @@ import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.update.UpdateMessageDecoder
 import org.redrune.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
-import org.redrune.utility.constants.FileServerOpcodes.STATUS_LOGGED_IN
-import org.redrune.utility.constants.FileServerOpcodes.STATUS_LOGGED_OUT
+import org.redrune.utility.constants.network.FileServerOpcodes.STATUS_LOGGED_IN
+import org.redrune.utility.constants.network.FileServerOpcodes.STATUS_LOGGED_OUT
 
 /**
  * @author Tyluur <contact@kiaira.tech>

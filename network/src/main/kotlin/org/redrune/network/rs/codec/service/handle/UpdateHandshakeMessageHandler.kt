@@ -12,7 +12,7 @@ import org.redrune.network.rs.codec.service.ServiceMessageHandler
 import org.redrune.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import org.redrune.network.rs.codec.update.UpdateCodec
 import org.redrune.network.rs.codec.update.encode.message.UpdateVersionMessage
-import org.redrune.utility.constants.FileServerResponseCodes
+import org.redrune.utility.constants.network.FileServerResponseCodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>

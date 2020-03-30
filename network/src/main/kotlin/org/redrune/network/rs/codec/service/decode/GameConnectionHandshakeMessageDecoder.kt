@@ -4,7 +4,7 @@ import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.service.ServiceMessageDecoder
 import org.redrune.network.rs.codec.service.decode.message.GameConnectionHandshakeMessage
-import org.redrune.utility.constants.ServiceOpcodes.GAME_CONNECTION
+import org.redrune.utility.constants.network.ServiceOpcodes.GAME_CONNECTION
 
 /**
  * @author Tyluur <contact@kiaira.tech>

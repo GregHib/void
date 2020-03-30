@@ -4,7 +4,7 @@ import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.game.GameMessageDecoder
 import org.redrune.network.rs.codec.game.decode.message.WorldListRefreshMessage
-import org.redrune.utility.constants.GameOpcodes.REFRESH_WORLDS
+import org.redrune.utility.constants.game.GameOpcodes.REFRESH_WORLDS
 
 /**
  * @author Tyluur <contact@kiaira.tech>

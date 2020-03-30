@@ -1,4 +1,4 @@
-package org.redrune.utility.constants
+package org.redrune.utility.constants.game
 
 object GameOpcodes {
 
