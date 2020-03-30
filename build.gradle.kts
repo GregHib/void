@@ -14,6 +14,8 @@ buildscript {
     }
 }
 
+val koinVersion = "2.1.5"
+
 allprojects {
     apply(plugin = "kotlin")
     apply(plugin = "idea")
@@ -38,13 +40,16 @@ allprojects {
         implementation("io.netty:netty-all:4.1.44.Final")
         implementation(group = "com.displee", name = "rs-cache-library", version = "6.3")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.8")
-        implementation(group = "io.github.classgraph", name = "classgraph", version = "4.8.65")
+        implementation(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
         implementation(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.2")
+        implementation(group = "org.koin", name = "koin-core", version = koinVersion)
+        implementation(group = "org.koin", name = "koin-logger-slf4j", version = koinVersion)
+
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
         implementation("ch.qos.logback:logback-classic:1.2.3")
-        implementation("org.redrune.core:redrune-network:0.0.7")
+        implementation("org.redrune.core:redrune-network:0.0.5")
 
         //Utilities
         implementation("com.google.guava:guava:19.0")
@@ -52,6 +57,8 @@ allprojects {
 
         //Testing
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+        testImplementation(group = "org.koin", name = "koin-test", version = koinVersion)
+        testImplementation(group = "io.mockk", name = "mockk", version = "1.9.3")
     }
 
     tasks {

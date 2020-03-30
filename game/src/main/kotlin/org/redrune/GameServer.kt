@@ -2,8 +2,9 @@ package org.redrune
 
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
-import org.redrune.cache.Cache
-import org.redrune.core.network.codec.Codec
+import org.koin.core.context.startKoin
+import org.koin.logger.slf4jLogger
+import org.redrune.cache.cacheModule
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
 import org.redrune.core.network.codec.message.encode.RawMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
@@ -16,11 +17,7 @@ import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.service.ServiceCodec
 import org.redrune.network.rs.codec.update.UpdateCodec
-import org.redrune.utility.YAMLParser
-import org.redrune.utility.constants.GameConstants.Companion.BUILD_MAJOR
-import org.redrune.utility.constants.GameConstants.Companion.BUILD_MINOR
-import org.redrune.utility.constants.GameConstants.Companion.SERVER_NAME
-import org.redrune.utility.constants.NetworkConstants
+import org.redrune.utility.getProperty
 import org.redrune.world.World
 import java.util.concurrent.TimeUnit.MILLISECONDS
 
@@ -48,7 +45,8 @@ class GameServer(
     var running = false
 
     private fun bind() {
-        val settings = ConnectionSettings("localhost", NetworkConstants.PORT_ID + world.id)
+        val port = getProperty<Int>("port")!!
+        val settings = ConnectionSettings("localhost", port + world.id)
         val server = NetworkServer(settings)
         val pipeline = ConnectionPipeline {
             it.addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
@@ -64,24 +62,26 @@ class GameServer(
      * Tasks that need to be done before the server is loaded called here
      */
     fun preload() {
-        YAMLParser.load()
-        Cache.load()
-        registerCodecs(GameCodec, ServiceCodec, LoginCodec, UpdateCodec)
-    }
-
-    private fun registerCodecs(vararg codecs: Codec) {
-        for (codec in codecs) {
-            codec.register()
-            codec.report()
+        startKoin {
+            slf4jLogger()
+            modules(cacheModule)
+            fileProperties("/redrune.properties")
         }
-    }
 
+        val stopwatch = Stopwatch.createStarted()
+        ServiceCodec.register()
+        UpdateCodec.register()
+        LoginCodec.register()
+        GameCodec.register()
+        logger.info { "Took ${stopwatch.elapsed(MILLISECONDS)}ms to prepare all codecs" }
+    }
 
     fun start() {
         preload()
         bind()
+
         logger.info {
-            "$SERVER_NAME v$BUILD_MAJOR.$BUILD_MINOR successfully booted world ${world.id} in ${stopwatch.elapsed(
+            "${getProperty<String>("name")} v${getProperty<String>("buildMajor")}.${getProperty<String>("buildMinor")} successfully booted world ${world.id} in ${stopwatch.elapsed(
                 MILLISECONDS
             )} ms"
         }
