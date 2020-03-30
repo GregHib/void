@@ -12,6 +12,7 @@ import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.network.connection.ConnectionPipeline
 import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
+import org.redrune.core.tools.function.NetworkUtils
 import org.redrune.network.rs.codec.NetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
@@ -69,10 +70,7 @@ class GameServer(
         }
 
         val stopwatch = Stopwatch.createStarted()
-        ServiceCodec.register()
-        UpdateCodec.register()
-        LoginCodec.register()
-        GameCodec.register()
+        NetworkUtils.loadCodecs(ServiceCodec, UpdateCodec, LoginCodec, GameCodec)
         logger.info { "Took ${stopwatch.elapsed(MILLISECONDS)}ms to prepare all codecs" }
     }
 
@@ -81,9 +79,11 @@ class GameServer(
         bind()
 
         logger.info {
-            "${getProperty<String>("name")} v${getProperty<String>("buildMajor")}.${getProperty<String>("buildMinor")} successfully booted world ${world.id} in ${stopwatch.elapsed(
-                MILLISECONDS
-            )} ms"
+            val name = getProperty<String>("name")
+            val major = getProperty<Int>("buildMajor")
+            val minor = getProperty<Float>("buildMinor")
+
+            "$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(MILLISECONDS)} ms"
         }
         running = true
     }

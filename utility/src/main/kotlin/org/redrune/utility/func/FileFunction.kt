@@ -1,6 +1,7 @@
 package org.redrune.utility.func
 
 import io.github.classgraph.ClassGraph
+import org.redrune.core.network.codec.Codec
 
 class FileFunction {
 
