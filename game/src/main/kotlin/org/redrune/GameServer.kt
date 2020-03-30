@@ -64,7 +64,6 @@ class GameServer(
      */
     fun preload() {
         startKoin {
-            slf4jLogger()
             modules(cacheModule)
             fileProperties("/redrune.properties")
         }
