@@ -8,6 +8,7 @@ import org.redrune.engine.entity.list.player.Players
 import org.redrune.engine.entity.list.proj.Projectiles
 import org.redrune.engine.entity.model.*
 import org.redrune.engine.entity.tile.Tiles
+import org.redrune.engine.event.priority
 import org.redrune.engine.event.then
 import org.redrune.utility.inject
 
@@ -20,7 +21,7 @@ val objects: Objects by inject()
 val items: FloorItems by inject()
 val projectiles: Projectiles by inject()
 
-Registered then {
+Registered priority 9 then {
     val tile = tiles[entity]
     when (entity) {
         is Player -> players[tile] = entity

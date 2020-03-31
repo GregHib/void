@@ -9,5 +9,6 @@ import kotlinx.coroutines.channels.SendChannel
 class EventHandler<T : Event> {
     var next: EventHandler<T>? = null
     lateinit var actor: SendChannel<T>
+    var priority: Int = 0
 }
 

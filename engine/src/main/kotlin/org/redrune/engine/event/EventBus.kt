@@ -14,14 +14,9 @@ import kotlin.reflect.KClass
  */
 abstract class EventBus {
     /**
-     * Attaches [handler] to the start of the handler chain
+     * Attaches [handler] to the handler chain
      */
-    abstract fun <T : Event> addFirst(clazz: KClass<T>?, handler: EventHandler<T>)
-
-    /**
-     * Attaches [handler] to the end of the handler chain
-     */
-    abstract fun <T : Event> addLast(clazz: KClass<T>?, handler: EventHandler<T>)
+    abstract fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>)
 
     /**
      * Returns [EventHandler] with matching [clazz]
@@ -40,7 +35,7 @@ abstract class EventBus {
 }
 
 /**
- * Creates an event handler
+ * Registers a simple event handler without filter or priority
  */
 inline infix fun <reified T : Event, reified C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
@@ -49,17 +44,13 @@ inline infix fun <reified T : Event, reified C : EventCompanion<T>> C.then(noinl
 }
 
 /**
- * Create an [EventHandler] with a filter
+ * Registers an event handler using a [EventHandlerBuilder]
  */
-inline infix fun <T : Event, reified C : EventCompanion<T>> C.where(noinline filter: T.() -> Boolean) = C::class to filter
-
-/**
- * Creates an event handler with a filter
- */
-inline infix fun <reified T : Event, reified C : EventCompanion<T>> Pair<KClass<C>, T.() -> Boolean>.then(noinline action: T.(T) -> Unit) = runBlocking {
+inline infix fun <reified T : Event, reified C : EventCompanion<T>> EventHandlerBuilder<T, C>.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
-    setActor(handler, action, second)
-    register(first, handler)
+    setActor(handler, action, filter)
+    handler.priority = priority
+    register(type, handler)
 }
 
 /**
@@ -67,7 +58,7 @@ inline infix fun <reified T : Event, reified C : EventCompanion<T>> Pair<KClass<
  */
 fun <C : EventCompanion<T>, T : Event> register(clazz: KClass<C>, handler: EventHandler<T>) {
     val bus: EventBus = get()
-    bus.addLast(clazz.java.declaringClass.kotlin as? KClass<T>, handler)
+    bus.add(clazz.java.declaringClass.kotlin as? KClass<T>, handler)
 }
 
 /**

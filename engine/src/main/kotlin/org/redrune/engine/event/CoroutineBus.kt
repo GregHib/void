@@ -17,27 +17,32 @@ class CoroutineBus : EventBus() {
 
     private val handlers = mutableMapOf<KClass<*>, EventHandler<*>>()
 
-    override fun <T : Event> addFirst(clazz: KClass<T>?, handler: EventHandler<T>) {
-        checkNotNull(clazz) { "Event must have a companion object." }
-        val current = get(clazz)
-        handlers[clazz] = handler
-        handler.next = current
-    }
-
-    override fun <T : Event> addLast(clazz: KClass<T>?, handler: EventHandler<T>) {
+    override fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>) {
         checkNotNull(clazz) { "Event must have a companion object." }
         var last = get(clazz)
+        var next: EventHandler<T>?
+
         while (last != null) {
-            if (last.next == null) {
+            next = last.next
+
+            if (next == null) {
+                // Append
+                last.next = handler
                 break
             }
-            last = last.next
+
+            if (next.priority <= handler.priority) {
+                // Insert
+                last.next = handler
+                handler.next = next
+                break
+            }
+
+            last = next
         }
 
         if (last == null) {
             handlers[clazz] = handler
-        } else {
-            last.next = handler
         }
     }
 
