@@ -1,12 +1,12 @@
 package rs.dusk.network.rs.codec.login.decode
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.cache.secure.RSA
-import rs.dusk.cache.secure.Xtea
-import rs.dusk.core.io.read.BufferReader
-import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.utility.constants.network.LoginResponseCodes
-import rs.dusk.utility.getProperty
+import org.redrune.cache.secure.RSA
+import org.redrune.cache.secure.Xtea
+import org.redrune.core.io.read.BufferReader
+import org.redrune.core.network.codec.packet.access.PacketReader
+import org.redrune.utility.constants.network.LoginResponseCode
+import org.redrune.utility.getProperty
 import java.math.BigInteger
 
 /**
@@ -26,10 +26,10 @@ object LoginHeaderDecoder {
      * @param extra Whether to read extra byte
      * @return Triple(password, server seed, client seed)
      */
-    fun decode(reader: PacketReader, extra: Boolean = false): Triple<LoginResponseCodes, String?, IntArray?> {
+    fun decode(reader: PacketReader, extra: Boolean = false): Triple<LoginResponseCode, String?, IntArray?> {
         val version = reader.readInt()
         if (version != clientMajorBuild) {
-            return Triple(LoginResponseCodes.GAME_UPDATED, null, null)
+            return Triple(LoginResponseCode.GameUpdated, null, null)
         }
 
         if (extra) {
@@ -39,7 +39,7 @@ object LoginHeaderDecoder {
         val rsaBlockSize = reader.readUnsignedShort()//RSA block size
         if (rsaBlockSize > reader.readableBytes()) {
             logger.warn { "Received bad rsa block size [size=$rsaBlockSize, readable=${reader.readableBytes()}" }
-            return Triple(LoginResponseCodes.BAD_SESSION_ID, null, null)
+            return Triple(LoginResponseCode.BadSessionId, null, null)
         }
         val data = ByteArray(rsaBlockSize)
         reader.readBytes(data)
@@ -48,7 +48,7 @@ object LoginHeaderDecoder {
         val sessionId = rsaBuffer.readUnsignedByte()
         if (sessionId != 10) {//rsa block start check
             logger.warn { "Bad session id received ($sessionId)" }
-            return Triple(LoginResponseCodes.BAD_SESSION_ID, null, null)
+            return Triple(LoginResponseCode.BadSessionId, null, null)
         }
 
         val isaacKeys = IntArray(4)
@@ -60,14 +60,14 @@ object LoginHeaderDecoder {
         val passBlock = rsaBuffer.readLong()
         if (passBlock != 0L) {//password should start here (marked by 0L)
             logger.info { "Rsa start marked by 0L was not true ($passBlock)" }
-            return Triple(LoginResponseCodes.BAD_SESSION_ID, null, null)
+            return Triple(LoginResponseCode.BadSessionId, null, null)
         }
 
         val password: String = rsaBuffer.readString()
         val serverSeed = rsaBuffer.readLong()
         val clientSeed = rsaBuffer.readLong()
         Xtea.decipher(reader.buffer, isaacKeys)
-        return Triple(LoginResponseCodes.SUCCESSFUL, password, isaacKeys)
+        return Triple(LoginResponseCode.Successful, password, isaacKeys)
     }
 
 }

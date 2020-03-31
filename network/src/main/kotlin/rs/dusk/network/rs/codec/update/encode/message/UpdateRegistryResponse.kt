@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.update.encode.message
 
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.utility.constants.network.LoginResponseCodes
+import org.redrune.core.network.model.message.Message
+import org.redrune.utility.constants.network.LoginResponseCode
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -9,6 +9,6 @@ import rs.dusk.utility.constants.network.LoginResponseCodes
  */
 data class UpdateRegistryResponse(val opcode: Int) : Message {
 
-    constructor(response: LoginResponseCodes) : this(response.opcode)
+    constructor(response: LoginResponseCode) : this(response.opcode)
 
 }
