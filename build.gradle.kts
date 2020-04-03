@@ -58,6 +58,12 @@ allprojects {
         //Utilities
         implementation("com.google.guava:guava:19.0")
         implementation("org.apache.commons:commons-lang3:3.0")
+        implementation("org.jetbrains.exposed:exposed-core:0.22.1")
+        implementation("org.jetbrains.exposed:exposed-jdbc:0.22.1")
+        implementation("com.fasterxml.jackson.core:jackson-core:2.10.3")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3")
+        implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.3")
+        implementation("org.postgresql:postgresql:42.2.11")
 
         //Testing
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")

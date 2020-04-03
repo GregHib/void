@@ -7,6 +7,7 @@ import org.redrune.engine.model.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Player(override var id: Int, override var tile: Tile) : Entity, Movable {
-
+data class Player(override var id: Int = -1, override var tile: Tile) : Entity, Movable {
+    @Transient
+    var index: Int = -1
 }
