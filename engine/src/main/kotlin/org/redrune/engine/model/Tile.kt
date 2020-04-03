@@ -4,7 +4,7 @@ package org.redrune.engine.model
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Tile(val value: Int) {// FIXME #46
+inline class Tile(val value: Int) {
 
     constructor(x: Int, y: Int, plane: Int) : this(y + (x shl 14) + (plane shl 28))
 
