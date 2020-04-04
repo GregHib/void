@@ -71,7 +71,7 @@ class GameServer(
             slf4jLogger()
             modules(eventBusModule, cacheModule, fileLoaderModule, ymlPlayerModule/*, sqlPlayerModule*/)
             fileProperties("/game.properties")
-            fileProperties("/rsa.properties")
+            fileProperties("/private.properties")
         }
         ScriptLoader()
         NetworkRegistry().register()

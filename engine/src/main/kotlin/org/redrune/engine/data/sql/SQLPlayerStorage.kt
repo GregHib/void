@@ -16,14 +16,12 @@ import org.redrune.utility.PlayersTable
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class SQLPlayerStorage : StorageStrategy<Player> {
+class SQLPlayerStorage(url: String, user: String, password: String) : StorageStrategy<Player> {
 
     private val logger = InlineLogger()
 
     init {
-        // TODO should this be external?
-        //      How to get details from a secure place. Program args?
-        Database.connect("jdbc:postgresql://localhost:5432/testdb", driver = "org.postgresql.Driver", user = "postgres", password = "abc123")
+        Database.connect(url = url, driver = "org.postgresql.Driver", user = user, password = password)
         logger.info { "Database connection established." }
     }
 
@@ -33,19 +31,18 @@ class SQLPlayerStorage : StorageStrategy<Player> {
             if (details == null) {
                 return@transaction null
             } else {
-                val playerId = details[DetailsTable.id]
+                val playerId = details[DetailsTable.id].value
                 val player = PlayersTable.select { PlayersTable.id eq playerId }.firstOrNull() ?: throw IllegalStateException("Unable to find player $name")
                 val x = player[PlayersTable.x]
                 val y = player[PlayersTable.y]
                 val plane = player[PlayersTable.plane]
                 val tile = Tile(x, y, plane)
-                Player(playerId.value, tile)
+                Player(playerId, tile)
             }
         }
     }
 
     override fun save(name: String, data: Player) {
-        //TODO update everything
         PlayersTable.update({ PlayersTable.id eq data.id }) {
             it[x] = data.tile.x
             it[y] = data.tile.y
@@ -56,5 +53,5 @@ class SQLPlayerStorage : StorageStrategy<Player> {
 }
 
 val sqlPlayerModule = module {
-    single { SQLPlayerStorage() as StorageStrategy<Player> }
+    single { SQLPlayerStorage(getProperty("databaseUrl"), getProperty("databaseUser"), getProperty("databasePassword")) as StorageStrategy<Player> }
 }
