@@ -66,7 +66,8 @@ allprojects {
         implementation("org.postgresql:postgresql:42.2.11")
 
         //Testing
-        testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.2")
+        testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.1")
+        testImplementation("org.junit.jupiter:junit-jupiter-params:5.6.1")
         testImplementation(group = "org.koin", name = "koin-test", version = koinVersion)
         testImplementation(group = "io.mockk", name = "mockk", version = "1.9.3")
     }

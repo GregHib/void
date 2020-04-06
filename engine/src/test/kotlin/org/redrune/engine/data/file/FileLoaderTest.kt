@@ -2,6 +2,8 @@ package org.redrune.engine.data.file
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import java.io.File
 
 /**
@@ -10,20 +12,36 @@ import java.io.File
  */
 internal class FileLoaderTest {
 
-    private data class TestData(val message: String)
 
-    @Test
-    fun `Load data`() {
+    private enum class TestEnum {
+        FIRST,
+        SECOND
+    }
+
+    private data class TestData(val message: String, val value: TestEnum)
+
+    @ValueSource(
+        strings = ["""
+        message: "Test message"
+        value: SECOND
+    """, """
+        message: Test message
+        value: SECOND
+    """]
+    )
+    @ParameterizedTest
+    fun `Load data`(text: String) {
         // Given
         val path = "test.yml"
         val file = File(path)
-        file.writeText("message: \"Test message\"")
+        file.writeText(text)
         val loader = FileLoader()
         // When
         val result = loader.load<TestData>(path)
         // Then
         assertNotNull(result)
         assertEquals("Test message", result!!.message)
+        assertEquals(TestEnum.SECOND, result.value)
         // Teardown
         file.delete()
     }
@@ -44,14 +62,18 @@ internal class FileLoaderTest {
         // Given
         val path = "test.yml"
         val loader = FileLoader()
-        val data = TestData("Test message")
+        val data = TestData("Test message", TestEnum.FIRST)
         // When
         loader.save(path, data)
         // Then
         val file = File(path)
         assert(file.exists())
-        println(file.readText())
-        assertEquals("message: \"Test message\"", file.readText().trim())
+        assertEquals(
+            """
+            message: Test message
+            value: FIRST
+        """.trimIndent(), file.readText().trim()
+        )
         // Teardown
         file.delete()
     }

@@ -12,7 +12,7 @@ import java.io.File
  * @since April 03, 2020
  */
 class FileLoader {
-    val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER))
+    val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).enable(YAMLGenerator.Feature.MINIMIZE_QUOTES))
     private val logger = InlineLogger()
 
     init {
