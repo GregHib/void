@@ -34,7 +34,7 @@ class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
         val crcMap = mutableMapOf<Int, Pair<Int, Int>>()
 
         for (index in 0..35) {
-            val indexCrc = cache.index(index).crc
+            val indexCrc = cache.getIndexCrc(index)
             val clientCrc = packet.readInt()
             crcMap[index] = Pair(indexCrc, clientCrc)
         }
