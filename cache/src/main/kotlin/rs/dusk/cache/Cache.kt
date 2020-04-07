@@ -24,4 +24,10 @@ interface Cache {
     fun lastIndexId(indexId: Int): Int
 
     fun archiveCount(indexId: Int, archiveId: Int): Int
+
+    fun lastFileId(indexId: Int, archive: Int): Int
+
+    fun lastArchiveId(indexId: Int): Int
+
+    fun getArchiveId(index: Int, name: String): Int
 }
