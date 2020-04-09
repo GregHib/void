@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.factory
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.sync.Mutex
@@ -19,7 +18,6 @@ import org.redrune.utility.inject
  */
 class PlayerFactory {
 
-    private val logger = InlineLogger()
     private val loader: PlayerLoader by inject()
     private val bus: EventBus by inject()
     private val indexer: IndexAllocator by inject()
