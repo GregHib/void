@@ -40,25 +40,25 @@ abstract class EventBus {
 inline infix fun <reified T : Event, reified C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
     setActor(handler, action, null)
-    register(C::class, handler)
+    register(T::class, handler)
 }
 
 /**
  * Registers an event handler using a [EventHandlerBuilder]
  */
-inline infix fun <reified T : Event, reified C : EventCompanion<T>> EventHandlerBuilder<T, C>.then(noinline action: T.(T) -> Unit) = runBlocking {
+inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
     setActor(handler, action, filter)
     handler.priority = priority
-    register(type, handler)
+    register(T::class, handler)
 }
 
 /**
  * Registers [handler] with the current [EventBus]
  */
-fun <C : EventCompanion<T>, T : Event> register(clazz: KClass<C>, handler: EventHandler<T>) {
+fun <T : Event> register(clazz: KClass<T>, handler: EventHandler<T>) {
     val bus: EventBus = get()
-    bus.add(clazz.java.declaringClass.kotlin as? KClass<T>, handler)
+    bus.add(clazz, handler)
 }
 
 /**

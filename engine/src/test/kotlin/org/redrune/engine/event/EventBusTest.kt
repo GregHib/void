@@ -38,7 +38,7 @@ internal class EventBusTest : KoinMock() {
         // Then
         verify {
             bus.add<TestEvent>(any(), any())
-//            register(any<KClass<EventCompanion<TestEvent>>>(), any()).hint(Unit::class) FIXME
+//            register(any<KClass<TestEvent>>(), any()).hint(Unit::class) FIXME
         }
     }
 
@@ -64,7 +64,7 @@ internal class EventBusTest : KoinMock() {
         }
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         // When
-        register(TestEvent.Companion::class, handler)
+        register(TestEvent::class, handler)
         // Then
         verify { bus.add(any(), handler) }
     }

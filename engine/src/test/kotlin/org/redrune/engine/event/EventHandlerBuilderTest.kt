@@ -38,7 +38,7 @@ internal class EventHandlerBuilderTest {
     @Test
     fun `Builder where sets builder filter`() {
         // Given
-        val builder = mockk<EventHandlerBuilder<TestEvent, EventCompanion<TestEvent>>>(relaxed = true)
+        val builder = mockk<EventHandlerBuilder<TestEvent>>(relaxed = true)
         val filter = mockk<TestEvent.() -> Boolean>(relaxed = true)
         // When
         builder where filter
