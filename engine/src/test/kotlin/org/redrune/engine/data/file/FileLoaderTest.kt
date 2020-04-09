@@ -56,25 +56,4 @@ internal class FileLoaderTest {
         // Then
         assertNull(result)
     }
-
-    @Test
-    fun save() {
-        // Given
-        val path = "test.yml"
-        val loader = FileLoader()
-        val data = TestData("Test message", TestEnum.FIRST)
-        // When
-        loader.save(path, data)
-        // Then
-        val file = File(path)
-        assert(file.exists())
-        assertEquals(
-            """
-            message: Test message
-            value: FIRST
-        """.trimIndent(), file.readText().trim()
-        )
-        // Teardown
-        file.delete()
-    }
 }
