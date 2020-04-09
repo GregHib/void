@@ -12,10 +12,9 @@ import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.network.connection.ConnectionPipeline
 import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
-import org.redrune.core.tools.function.NetworkUtils
 import org.redrune.core.tools.function.NetworkUtils.Companion.loadCodecs
 import org.redrune.engine.script.ScriptLoader
-import org.redrune.network.rs.codec.NetworkEventHandler
+import org.redrune.network.NetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.service.ServiceCodec
@@ -54,7 +53,9 @@ class GameServer(
         val pipeline = ConnectionPipeline {
             it.addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
             it.addLast("message.decoder", OpcodeMessageDecoder(ServiceCodec))
-            it.addLast("message.handler", NetworkMessageHandler(ServiceCodec, NetworkEventHandler()))
+            it.addLast("message.handler", NetworkMessageHandler(ServiceCodec,
+                NetworkEventHandler()
+            ))
             it.addLast("message.encoder", RawMessageEncoder(ServiceCodec))
         }
         server.configure(pipeline)
@@ -66,18 +67,17 @@ class GameServer(
      */
     private fun preload() {
         startKoin {
-            slf4jLogger()
             modules(cacheModule)
             fileProperties("/game.properties")
             fileProperties("/rsa.properties")
         }
         ScriptLoader()
 
-        val stopwatch = Stopwatch.createStarted()
-        loadCodecs(ServiceCodec, UpdateCodec, LoginCodec, GameCodec)
-        logger.info { "Took ${stopwatch.elapsed(MILLISECONDS)}ms to prepare all codecs" }
     }
 
+    /**
+     * The start of the engine
+     */
     fun start() {
         preload()
         bind()

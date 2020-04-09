@@ -13,13 +13,10 @@ import org.redrune.core.network.model.message.Message
  */
 object GameCodec : Codec() {
 
-    private val logger = InlineLogger()
-
     override fun register() {
         bindDecoders<GameMessageDecoder<*>>()
         bindHandlers<GameMessageHandler<*>>()
         bindEncoders<GameMessageEncoder<*>>()
-//        report(logger)
     }
 }
 

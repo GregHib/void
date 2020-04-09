@@ -8,7 +8,7 @@ import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.RS2PacketDecoder
 import org.redrune.core.network.model.session.getSession
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.rs.codec.NetworkEventHandler
+import org.redrune.network.NetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
@@ -40,7 +40,9 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
         with(pipeline) {
             replace("packet.decoder", RS2PacketDecoder(GameCodec, keyPair.inCipher))
             replace("message.decoder", OpcodeMessageDecoder(GameCodec))
-            replace("message.handler", NetworkMessageHandler(GameCodec, NetworkEventHandler()))
+            replace("message.handler", NetworkMessageHandler(GameCodec,
+                NetworkEventHandler()
+            ))
             replace("message.encoder", RS2MessageEncoder(GameCodec, keyPair.outCipher))
         }
     }

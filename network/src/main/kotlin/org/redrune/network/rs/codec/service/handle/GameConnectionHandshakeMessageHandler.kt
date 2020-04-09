@@ -6,7 +6,7 @@ import org.redrune.core.network.codec.message.encode.RawMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.rs.codec.NetworkEventHandler
+import org.redrune.network.NetworkEventHandler
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.login.encode.message.LoginConnectionResponseMessage
 import org.redrune.network.rs.codec.service.decode.message.GameConnectionHandshakeMessage
@@ -23,7 +23,9 @@ class GameConnectionHandshakeMessageHandler : ServiceMessageHandler<GameConnecti
         pipeline.apply {
             replace("packet.decoder", SimplePacketDecoder(LoginCodec))
             replace("message.decoder", OpcodeMessageDecoder(LoginCodec))
-            replace("message.handler", NetworkMessageHandler(LoginCodec, NetworkEventHandler()))
+            replace("message.handler", NetworkMessageHandler(LoginCodec,
+                NetworkEventHandler()
+            ))
             replace("message.encoder", RawMessageEncoder(LoginCodec))
         }
         ctx.pipeline().writeAndFlush(LoginConnectionResponseMessage(0))

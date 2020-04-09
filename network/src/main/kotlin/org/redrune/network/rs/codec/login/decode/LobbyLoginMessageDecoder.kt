@@ -4,16 +4,18 @@ import org.redrune.cache.CacheDelegate
 import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.core.network.model.packet.PacketType
+import org.redrune.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
 import org.redrune.network.rs.codec.login.LoginMessageDecoder
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
 import org.redrune.utility.constants.network.ServiceOpcodes
+import org.redrune.utility.constants.network.ServiceOpcodes.LOBBY_LOGIN
 import org.redrune.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-@PacketMetaData(opcodes = [ServiceOpcodes.LOBBY_LOGIN], length = PacketType.VARIABLE_LENGTH_SHORT)
+@PacketMetaData(opcodes = [LOBBY_LOGIN], length = VARIABLE_LENGTH_SHORT)
 class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
 
     private val cache by inject<CacheDelegate>()

@@ -1,8 +1,12 @@
-package org.redrune.network.rs.codec
+package org.redrune.network
 
 import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
+import org.redrune.core.network.codec.message.MessageDecoder
+import org.redrune.core.network.codec.message.MessageEncoder
+import org.redrune.core.network.codec.message.MessageHandler
 import org.redrune.core.network.connection.ConnectionEvent
+import org.redrune.core.network.model.message.Message
 import org.redrune.core.network.model.session.Session
 import org.redrune.core.network.model.session.setSession
 
