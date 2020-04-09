@@ -20,10 +20,10 @@ class UpdateLoginStatusHandler : UpdateMessageHandler<UpdateLoginStatusMessage>(
         val (login, value) = msg
         if (value != 0) {
             ctx.writeAndFlush(UpdateRegistryResponse(LoginResponseCodes.BAD_SESSION_ID))
-            logger.warn { "Invalid login id ${ctx.channel().getSession().getHost()} $value" }
+            logger.warn { "Invalid login id ${ctx.channel().getSession().getIp()} $value" }
             return
         }
 
-        logger.info { "Client is ${if (login) "logged in" else "logged out"} ${ctx.channel().getSession().getHost()}" }
+        logger.info { "Client is ${if (login) "logged in" else "logged out"} ${ctx.channel().getSession().getIp()}" }
     }
 }

@@ -8,12 +8,13 @@ import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.RS2PacketDecoder
 import org.redrune.core.network.model.session.getSession
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.NetworkEventHandler
+import org.redrune.network.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
 import org.redrune.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 import org.redrune.network.rs.codec.login.LoginMessageHandler
+import org.redrune.network.rs.session.GameSession
 import org.redrune.utility.crypto.cipher.IsaacKeyPair
 
 /**
@@ -32,7 +33,7 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
         pipeline.writeAndFlush(
             LobbyConfigurationMessage(
                 msg.username,
-                ctx.channel().getSession().getHost(),
+                ctx.channel().getSession().getIp(),
                 System.currentTimeMillis()
             )
         )
@@ -41,7 +42,7 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
             replace("packet.decoder", RS2PacketDecoder(GameCodec, keyPair.inCipher))
             replace("message.decoder", OpcodeMessageDecoder(GameCodec))
             replace("message.handler", NetworkMessageHandler(GameCodec,
-                NetworkEventHandler()
+                ServerNetworkEventHandler(GameSession(channel()))
             ))
             replace("message.encoder", RS2MessageEncoder(GameCodec, keyPair.outCipher))
         }

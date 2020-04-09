@@ -7,11 +7,12 @@ import org.redrune.core.network.codec.message.encode.RawMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.NetworkEventHandler
+import org.redrune.network.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.service.ServiceMessageHandler
 import org.redrune.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import org.redrune.network.rs.codec.update.UpdateCodec
 import org.redrune.network.rs.codec.update.encode.message.UpdateVersionMessage
+import org.redrune.network.rs.session.UpdateSession
 import org.redrune.utility.constants.network.FileServerResponseCodes
 
 /**
@@ -35,9 +36,12 @@ class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessa
         pipeline.apply {
             replace("packet.decoder", SimplePacketDecoder(UpdateCodec))
             replace("message.decoder", OpcodeMessageDecoder(UpdateCodec))
-            replace("message.handler", NetworkMessageHandler(UpdateCodec,
-                NetworkEventHandler()
-            ))
+            replace(
+                "message.handler", NetworkMessageHandler(
+                    UpdateCodec,
+                    ServerNetworkEventHandler(UpdateSession(channel()))
+                )
+            )
             replace("message.encoder", RawMessageEncoder(UpdateCodec))
         }
         pipeline.writeAndFlush(UpdateVersionMessage(response))

@@ -3,7 +3,6 @@ package org.redrune
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
 import org.koin.core.context.startKoin
-import org.koin.logger.slf4jLogger
 import org.redrune.cache.cacheModule
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
 import org.redrune.core.network.codec.message.encode.RawMessageEncoder
@@ -14,11 +13,9 @@ import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
 import org.redrune.core.tools.function.NetworkUtils.Companion.loadCodecs
 import org.redrune.engine.script.ScriptLoader
-import org.redrune.network.NetworkEventHandler
-import org.redrune.network.rs.codec.game.GameCodec
-import org.redrune.network.rs.codec.login.LoginCodec
+import org.redrune.network.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.service.ServiceCodec
-import org.redrune.network.rs.codec.update.UpdateCodec
+import org.redrune.network.rs.session.ServiceSession
 import org.redrune.utility.getProperty
 import org.redrune.world.World
 import java.util.concurrent.TimeUnit.MILLISECONDS
@@ -54,7 +51,7 @@ class GameServer(
             it.addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
             it.addLast("message.decoder", OpcodeMessageDecoder(ServiceCodec))
             it.addLast("message.handler", NetworkMessageHandler(ServiceCodec,
-                NetworkEventHandler()
+                ServerNetworkEventHandler(ServiceSession(it.channel()))
             ))
             it.addLast("message.encoder", RawMessageEncoder(ServiceCodec))
         }
