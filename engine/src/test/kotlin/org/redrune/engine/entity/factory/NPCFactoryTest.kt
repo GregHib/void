@@ -20,7 +20,7 @@ import org.redrune.engine.script.KoinMock
 import org.redrune.utility.get
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
 @ExtendWith(MockKExtension::class)

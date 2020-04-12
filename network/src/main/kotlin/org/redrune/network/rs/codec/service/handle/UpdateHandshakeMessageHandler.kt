@@ -3,7 +3,7 @@ package org.redrune.network.rs.codec.service.handle
 import io.netty.channel.ChannelHandlerContext
 import org.koin.java.KoinJavaComponent
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
-import org.redrune.core.network.codec.message.encode.RawMessageEncoder
+import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
@@ -42,7 +42,7 @@ class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessa
                     ServerNetworkEventHandler(UpdateSession(channel()))
                 )
             )
-            replace("message.encoder", RawMessageEncoder(UpdateCodec))
+            replace("message.encoder", GenericMessageEncoder(UpdateCodec))
         }
         pipeline.writeAndFlush(UpdateVersionMessage(response))
     }

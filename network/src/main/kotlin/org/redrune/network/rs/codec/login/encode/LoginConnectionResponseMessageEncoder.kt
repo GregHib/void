@@ -1,6 +1,6 @@
 package org.redrune.network.rs.codec.login.encode
 
-import org.redrune.core.network.codec.packet.access.PacketBuilder
+import org.redrune.core.network.codec.packet.access.PacketWriter
 import org.redrune.network.rs.codec.login.LoginMessageEncoder
 import org.redrune.network.rs.codec.login.encode.message.LoginConnectionResponseMessage
 
@@ -14,7 +14,7 @@ import org.redrune.network.rs.codec.login.encode.message.LoginConnectionResponse
  */
 class LoginConnectionResponseMessageEncoder : LoginMessageEncoder<LoginConnectionResponseMessage>() {
 
-    override fun encode(builder: PacketBuilder, msg: LoginConnectionResponseMessage) {
+    override fun encode(builder: PacketWriter, msg: LoginConnectionResponseMessage) {
         builder.writeByte(msg.opcode)
     }
 }

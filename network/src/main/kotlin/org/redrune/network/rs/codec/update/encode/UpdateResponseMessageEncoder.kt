@@ -1,7 +1,7 @@
 package org.redrune.network.rs.codec.update.encode
 
 import io.netty.buffer.Unpooled
-import org.redrune.core.network.codec.packet.access.PacketBuilder
+import org.redrune.core.network.codec.packet.access.PacketWriter
 import org.redrune.network.rs.codec.update.UpdateMessageEncoder
 import org.redrune.network.rs.codec.update.encode.message.UpdateResponseMessage
 
@@ -12,7 +12,7 @@ import org.redrune.network.rs.codec.update.encode.message.UpdateResponseMessage
 class UpdateResponseMessageEncoder : UpdateMessageEncoder<UpdateResponseMessage>() {
 
     @Suppress("DEPRECATED_IDENTITY_EQUALS")
-    override fun encode(builder: PacketBuilder, msg: UpdateResponseMessage) {
+    override fun encode(builder: PacketWriter, msg: UpdateResponseMessage) {
         val (indexId, archiveId, data, compression, length, attributes) = msg
 
         val buffer = Unpooled.buffer()

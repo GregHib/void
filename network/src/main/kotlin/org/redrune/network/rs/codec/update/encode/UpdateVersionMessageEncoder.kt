@@ -1,6 +1,6 @@
 package org.redrune.network.rs.codec.update.encode
 
-import org.redrune.core.network.codec.packet.access.PacketBuilder
+import org.redrune.core.network.codec.packet.access.PacketWriter
 import org.redrune.network.rs.codec.update.UpdateMessageEncoder
 import org.redrune.network.rs.codec.update.encode.message.UpdateVersionMessage
 import org.redrune.utility.constants.network.FileServerResponseCodes
@@ -11,7 +11,7 @@ import org.redrune.utility.constants.network.FileServerResponseCodes
  */
 class UpdateVersionMessageEncoder : UpdateMessageEncoder<UpdateVersionMessage>() {
 
-    override fun encode(builder: PacketBuilder, msg: UpdateVersionMessage) {
+    override fun encode(builder: PacketWriter, msg: UpdateVersionMessage) {
         builder.writeByte(msg.opcode)
         if (msg.opcode == FileServerResponseCodes.JS5_RESPONSE_OK) {
             GRAB_SERVER_KEYS.forEach {

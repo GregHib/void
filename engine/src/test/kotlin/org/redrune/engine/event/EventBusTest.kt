@@ -11,7 +11,7 @@ import org.koin.test.mock.declareMock
 import org.redrune.engine.script.KoinMock
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 27, 2020
  */
 @ExtendWith(MockKExtension::class)

@@ -18,7 +18,6 @@ class NetworkRegistry {
     private val logger = InlineLogger()
 
     fun register() {
-        NetworkUtils.loadCodecs(ServiceCodec, UpdateCodec, LoginCodec, GameCodec)
         val stopwatch = Stopwatch.createStarted()
         NetworkUtils.loadCodecs(ServiceCodec, UpdateCodec, LoginCodec, GameCodec)
         logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }

@@ -2,18 +2,18 @@ package org.redrune.network.rs.codec.login.handle
 
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
-import org.redrune.core.network.codec.message.encode.RS2MessageEncoder
-import org.redrune.core.network.codec.message.encode.SizedMessageEncoder
+import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
+import org.redrune.core.network.codec.packet.access.PacketBuilder
 import org.redrune.core.network.codec.packet.decode.RS2PacketDecoder
 import org.redrune.core.network.model.session.getSession
 import org.redrune.core.tools.utility.replace
 import org.redrune.network.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
+import org.redrune.network.rs.codec.login.LoginMessageHandler
 import org.redrune.network.rs.codec.login.decode.message.LobbyLoginMessage
 import org.redrune.network.rs.codec.login.encode.message.LobbyConfigurationMessage
-import org.redrune.network.rs.codec.login.LoginMessageHandler
 import org.redrune.network.rs.session.GameSession
 import org.redrune.utility.crypto.cipher.IsaacKeyPair
 
@@ -26,7 +26,7 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
     override fun handle(ctx: ChannelHandlerContext, msg: LobbyLoginMessage) {
         val pipeline = ctx.pipeline()
         val keyPair = IsaacKeyPair(msg.isaacSeed)
-        pipeline.replace("message.encoder", SizedMessageEncoder(LoginCodec))
+        pipeline.replace("message.encoder", GenericMessageEncoder(LoginCodec, PacketBuilder(sized = true)))
 
         println("issac seed = ${msg.isaacSeed.contentToString()}")
 
@@ -39,12 +39,15 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
         )
 
         with(pipeline) {
-            replace("packet.decoder", RS2PacketDecoder(GameCodec, keyPair.inCipher))
+            replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher, GameCodec))
             replace("message.decoder", OpcodeMessageDecoder(GameCodec))
-            replace("message.handler", NetworkMessageHandler(GameCodec,
-                ServerNetworkEventHandler(GameSession(channel()))
-            ))
-            replace("message.encoder", RS2MessageEncoder(GameCodec, keyPair.outCipher))
+            replace(
+                "message.handler", NetworkMessageHandler(
+                    GameCodec,
+                    ServerNetworkEventHandler(GameSession(channel()))
+                )
+            )
+            replace("message.encoder", GenericMessageEncoder(GameCodec, PacketBuilder(keyPair.outCipher)))
         }
     }
 }

@@ -10,7 +10,7 @@ import org.redrune.engine.entity.model.Player
 import org.redrune.engine.script.KoinMock
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
 internal class PlayerLoaderTest : KoinMock() {

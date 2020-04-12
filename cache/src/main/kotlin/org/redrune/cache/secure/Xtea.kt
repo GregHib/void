@@ -24,7 +24,7 @@ object Xtea {
      * @throws IllegalArgumentException if the key is not exactly 4 elements
      * long.
      */
-    fun decipher(buffer: ByteBuffer, key: IntArray, start: Int, end: Int) {
+    fun decipher(buffer: ByteBuffer, key: IntArray, start: Int = buffer.position(), end: Int = buffer.remaining()) {
         if (key.size != 4) {
             throw IllegalArgumentException()
         }

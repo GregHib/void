@@ -3,6 +3,7 @@ package org.redrune.network.rs.codec.login.decode
 import com.github.michaelbull.logging.InlineLogger
 import org.redrune.cache.secure.RSA
 import org.redrune.cache.secure.Xtea
+import org.redrune.core.io.read.BufferReader
 import org.redrune.core.network.codec.packet.access.PacketReader
 import org.redrune.utility.constants.network.LoginResponseCodes
 import org.redrune.utility.getProperty
@@ -43,7 +44,7 @@ object LoginHeaderDecoder {
         val data = ByteArray(rsaBlockSize)
         reader.readBytes(data)
         val rsa = RSA.crypt(data, loginRSAModulus, loginRSAPrivate)
-        val rsaBuffer = PacketReader(rsa)
+        val rsaBuffer = BufferReader(rsa)
         val sessionId = rsaBuffer.readUnsignedByte()
         if (sessionId != 10) {//rsa block start check
             logger.warn { "Bad session id received ($sessionId)" }
@@ -65,7 +66,7 @@ object LoginHeaderDecoder {
         val password: String = rsaBuffer.readString()
         val serverSeed = rsaBuffer.readLong()
         val clientSeed = rsaBuffer.readLong()
-        Xtea.decipher(reader.getBuffer(), isaacKeys)
+        Xtea.decipher(reader.buffer, isaacKeys)
         return Triple(LoginResponseCodes.SUCCESSFUL, password, isaacKeys)
     }
 

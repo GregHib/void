@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.redrune.engine.entity.model.Player
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 04, 2020
  */
 @ExtendWith(MockKExtension::class)

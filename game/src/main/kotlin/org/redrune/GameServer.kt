@@ -6,13 +6,12 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import org.redrune.cache.cacheModule
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
-import org.redrune.core.network.codec.message.encode.RawMessageEncoder
+import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.network.connection.ConnectionPipeline
 import org.redrune.core.network.connection.ConnectionSettings
 import org.redrune.core.network.connection.server.NetworkServer
-import org.redrune.core.tools.function.NetworkUtils.Companion.loadCodecs
 import org.redrune.engine.Startup
 import org.redrune.engine.data.file.fileLoaderModule
 import org.redrune.engine.data.file.ymlPlayerModule
@@ -24,7 +23,6 @@ import org.redrune.network.NetworkRegistry
 import org.redrune.network.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.service.ServiceCodec
 import org.redrune.network.rs.session.ServiceSession
-import org.redrune.network.rs.codec.update.UpdateCodec
 import org.redrune.utility.get
 import org.redrune.utility.getProperty
 import org.redrune.world.World
@@ -60,10 +58,13 @@ class GameServer(
         val pipeline = ConnectionPipeline {
             it.addLast("packet.decoder", SimplePacketDecoder(ServiceCodec))
             it.addLast("message.decoder", OpcodeMessageDecoder(ServiceCodec))
-            it.addLast("message.handler", NetworkMessageHandler(ServiceCodec,
-                ServerNetworkEventHandler(ServiceSession(it.channel()))
-            ))
-            it.addLast("message.encoder", RawMessageEncoder(ServiceCodec))
+            it.addLast(
+                "message.handler", NetworkMessageHandler(
+                    ServiceCodec,
+                    ServerNetworkEventHandler(ServiceSession(it.channel()))
+                )
+            )
+            it.addLast("message.encoder", GenericMessageEncoder(ServiceCodec))
         }
         server.configure(pipeline)
         server.start()

@@ -1,7 +1,7 @@
 package org.redrune.network.rs.codec.update.decode
 
+import org.redrune.core.io.DataType
 import org.redrune.core.network.codec.packet.access.PacketReader
-import org.redrune.core.network.model.packet.DataType
 import org.redrune.core.network.model.packet.PacketMetaData
 import org.redrune.network.rs.codec.update.UpdateMessageDecoder
 import org.redrune.network.rs.codec.update.decode.message.UpdateRequestMessage

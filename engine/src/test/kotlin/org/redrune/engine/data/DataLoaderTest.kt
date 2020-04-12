@@ -5,7 +5,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Test
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
 internal class DataLoaderTest {

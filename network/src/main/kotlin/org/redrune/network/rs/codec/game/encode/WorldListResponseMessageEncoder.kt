@@ -1,6 +1,6 @@
 package org.redrune.network.rs.codec.game.encode
 
-import org.redrune.core.network.codec.packet.access.PacketBuilder
+import org.redrune.core.network.codec.packet.access.PacketWriter
 import org.redrune.core.network.model.packet.PacketType
 import org.redrune.network.rs.codec.game.GameMessageEncoder
 import org.redrune.network.rs.codec.game.encode.message.WorldListResponseMessage
@@ -11,7 +11,7 @@ import org.redrune.network.rs.codec.game.encode.message.WorldListResponseMessage
  */
 class WorldListResponseMessageEncoder : GameMessageEncoder<WorldListResponseMessage>() {
 
-    override fun encode(builder: PacketBuilder, msg: WorldListResponseMessage) {
+    override fun encode(builder: PacketWriter, msg: WorldListResponseMessage) {
         val (full) = msg
         builder.writeOpcode(88, PacketType.SHORT)
         builder.writeByte(1)

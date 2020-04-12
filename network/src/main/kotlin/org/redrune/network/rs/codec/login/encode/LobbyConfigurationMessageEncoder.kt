@@ -1,6 +1,6 @@
 package org.redrune.network.rs.codec.login.encode
 
-import org.redrune.core.network.codec.packet.access.PacketBuilder
+import org.redrune.core.network.codec.packet.access.PacketWriter
 import org.redrune.core.network.model.packet.PacketType
 import org.redrune.core.tools.utility.NetworkUtility
 import org.redrune.network.rs.codec.login.LoginMessageEncoder
@@ -13,7 +13,7 @@ import org.redrune.utility.constants.game.GameOpcodes.LOBBY_DETAILS
  */
 class LobbyConfigurationMessageEncoder : LoginMessageEncoder<LobbyConfigurationMessage>() {
 
-    override fun encode(builder: PacketBuilder, msg: LobbyConfigurationMessage) {
+    override fun encode(builder: PacketWriter, msg: LobbyConfigurationMessage) {
         val (username, lastIpAddress, lastLogin) = msg
         val now = System.currentTimeMillis()
         val jag = 1014753880308L

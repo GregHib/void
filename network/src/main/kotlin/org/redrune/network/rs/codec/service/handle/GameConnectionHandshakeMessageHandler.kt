@@ -2,7 +2,7 @@ package org.redrune.network.rs.codec.service.handle
 
 import io.netty.channel.ChannelHandlerContext
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
-import org.redrune.core.network.codec.message.encode.RawMessageEncoder
+import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
@@ -30,7 +30,7 @@ class GameConnectionHandshakeMessageHandler : ServiceMessageHandler<GameConnecti
                     ServerNetworkEventHandler(LoginSession(channel()))
                 )
             )
-            replace("message.encoder", RawMessageEncoder(LoginCodec))
+            replace("message.encoder", GenericMessageEncoder(LoginCodec))
         }
         ctx.pipeline().writeAndFlush(LoginConnectionResponseMessage(0))
     }
