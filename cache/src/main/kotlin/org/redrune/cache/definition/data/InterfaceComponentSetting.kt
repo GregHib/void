@@ -5,7 +5,7 @@ package org.redrune.cache.definition.data
  * @since April 07, 2020
  */
 data class InterfaceComponentSetting(var setting: Int, var anInt7413: Int) {
-    fun method2743(i: Int): Int {
+    fun method2743(): Int {
         return setting and 0x3fda8 shr 11
     }
 
