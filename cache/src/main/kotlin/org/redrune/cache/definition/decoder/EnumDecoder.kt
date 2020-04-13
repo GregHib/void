@@ -4,7 +4,7 @@ import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.ENUMS
 import org.redrune.cache.definition.Parameterized.Companion.calculateCapacity
 import org.redrune.cache.definition.data.EnumDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

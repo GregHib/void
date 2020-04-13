@@ -3,7 +3,7 @@ package org.redrune.cache.definition.decoder
 import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.VAR_BIT
 import org.redrune.cache.definition.data.VarBitDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

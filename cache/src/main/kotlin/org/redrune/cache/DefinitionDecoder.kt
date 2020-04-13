@@ -1,7 +1,7 @@
 package org.redrune.cache
 
-import org.redrune.storage.BufferReader
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.BufferReader
+import org.redrune.core.io.read.Reader
 import org.redrune.utility.inject
 import java.util.concurrent.ConcurrentHashMap
 

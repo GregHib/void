@@ -4,7 +4,7 @@ import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.SPRITES
 import org.redrune.cache.definition.data.IndexedSprite
 import org.redrune.cache.definition.data.SpriteDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

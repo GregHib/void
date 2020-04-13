@@ -4,7 +4,7 @@ import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.QUICK_CHAT_MENUS
 import org.redrune.cache.Indices.QUICK_CHAT_MESSAGES
 import org.redrune.cache.definition.data.QuickChatOptionDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -5,8 +5,8 @@ import org.redrune.cache.Indices.INTERFACES
 import org.redrune.cache.definition.data.InterfaceComponentDefinition
 import org.redrune.cache.definition.data.InterfaceComponentSetting
 import org.redrune.cache.definition.data.InterfaceDefinition
-import org.redrune.storage.BufferReader
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.BufferReader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

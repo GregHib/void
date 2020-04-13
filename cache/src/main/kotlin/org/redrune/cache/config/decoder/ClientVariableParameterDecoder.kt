@@ -3,7 +3,7 @@ package org.redrune.cache.config.decoder
 import org.redrune.cache.Configs.VARC
 import org.redrune.cache.config.ConfigDecoder
 import org.redrune.cache.config.data.ClientVariableParameterDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

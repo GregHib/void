@@ -3,7 +3,7 @@ package org.redrune.cache.config.decoder
 import org.redrune.cache.Configs.HIT_SPLATS
 import org.redrune.cache.config.ConfigDecoder
 import org.redrune.cache.config.data.HitSplatDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

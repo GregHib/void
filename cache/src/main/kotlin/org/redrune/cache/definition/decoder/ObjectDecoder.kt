@@ -3,7 +3,7 @@ package org.redrune.cache.definition.decoder
 import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.OBJECTS
 import org.redrune.cache.definition.data.ObjectDefinition
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

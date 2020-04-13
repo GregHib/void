@@ -4,7 +4,7 @@ import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.WORLD_MAP
 import org.redrune.cache.definition.data.WorldMapDefinition
 import org.redrune.cache.definition.data.WorldMapSection
-import org.redrune.storage.Reader
+import org.redrune.core.io.read.Reader
 import java.util.*
 
 /**
