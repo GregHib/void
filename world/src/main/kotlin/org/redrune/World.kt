@@ -1,4 +1,4 @@
-package org.redrune.world
+package org.redrune
 
 /**
  * @author Tyluur <contact@kiaira.tech>

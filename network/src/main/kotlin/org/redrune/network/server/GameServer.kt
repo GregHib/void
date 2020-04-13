@@ -1,4 +1,4 @@
-package org.redrune
+package org.redrune.network.server
 
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
@@ -6,7 +6,6 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import org.redrune.cache.cacheModule
 import org.redrune.core.network.codec.message.decode.OpcodeMessageDecoder
-import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.network.connection.ConnectionPipeline
@@ -20,24 +19,26 @@ import org.redrune.engine.event.EventBus
 import org.redrune.engine.event.eventBusModule
 import org.redrune.engine.script.ScriptLoader
 import org.redrune.network.NetworkRegistry
-import org.redrune.network.ServerNetworkEventHandler
+import org.redrune.network.rs.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.service.ServiceCodec
 import org.redrune.network.rs.session.ServiceSession
-import org.redrune.utility.get
 import org.redrune.utility.getProperty
-import org.redrune.world.World
-import java.util.concurrent.TimeUnit.MILLISECONDS
+import org.redrune.World
+import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
+import org.redrune.utility.func.PreloadableTask
+import org.redrune.utility.get
+import java.util.concurrent.TimeUnit
 
 /**
  * @author Tyluur <contact@kiaira.tech>
- * @since 2020-01-07
+ * @since April 13, 2020
  */
 class GameServer(
     /**
      * The world this server represents
      */
     private val world: World
-) {
+) : PreloadableTask {
 
     private val logger = InlineLogger()
 
@@ -70,10 +71,7 @@ class GameServer(
         server.start()
     }
 
-    /**
-     * Tasks that need to be done before the server is loaded called here
-     */
-    private fun preload() {
+    override fun preload() {
         startKoin {
             slf4jLogger()
             modules(eventBusModule, cacheModule, fileLoaderModule, ymlPlayerModule/*, sqlPlayerModule*/, entityFactoryModule)
@@ -84,10 +82,7 @@ class GameServer(
         NetworkRegistry().register()
     }
 
-    /**
-     * The start of the engine
-     */
-    fun start() {
+    override fun run() {
         preload()
         bind()
 
@@ -99,9 +94,16 @@ class GameServer(
             val major = getProperty<Int>("buildMajor")
             val minor = getProperty<Float>("buildMinor")
 
-            "$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(MILLISECONDS)} ms"
+            "$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms"
         }
         running = true
     }
 
+}
+
+fun main() {
+    val world = World(1)
+    val server = GameServer(world)
+
+    server.run()
 }

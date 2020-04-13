@@ -8,7 +8,7 @@ import org.redrune.core.network.codec.packet.access.PacketBuilder
 import org.redrune.core.network.codec.packet.decode.RS2PacketDecoder
 import org.redrune.core.network.model.session.getSession
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.ServerNetworkEventHandler
+import org.redrune.network.rs.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.game.GameCodec
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.login.LoginMessageHandler

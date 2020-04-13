@@ -6,7 +6,7 @@ import org.redrune.core.network.codec.message.encode.GenericMessageEncoder
 import org.redrune.core.network.codec.message.handle.NetworkMessageHandler
 import org.redrune.core.network.codec.packet.decode.SimplePacketDecoder
 import org.redrune.core.tools.utility.replace
-import org.redrune.network.ServerNetworkEventHandler
+import org.redrune.network.rs.ServerNetworkEventHandler
 import org.redrune.network.rs.codec.login.LoginCodec
 import org.redrune.network.rs.codec.login.encode.message.LoginConnectionResponseMessage
 import org.redrune.network.rs.codec.service.ServiceMessageHandler

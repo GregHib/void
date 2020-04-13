@@ -2,7 +2,7 @@ rootProject.name = "redrune-game-server"
 
 include("cache")
 include("engine")
-include("game")
+include("world")
 include("network")
 include("tools")
 include("utility")

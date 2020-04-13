@@ -1,4 +1,4 @@
-package org.redrune.network
+package org.redrune.network.rs
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandler

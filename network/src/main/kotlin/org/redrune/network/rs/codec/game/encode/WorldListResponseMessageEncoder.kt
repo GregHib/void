@@ -11,28 +11,28 @@ import org.redrune.network.rs.codec.game.encode.message.WorldListResponseMessage
  */
 class WorldListResponseMessageEncoder : GameMessageEncoder<WorldListResponseMessage>() {
 
-    override fun encode(builder: PacketWriter, msg: WorldListResponseMessage) {
+    override fun encode(writer: PacketWriter, msg: WorldListResponseMessage) {
         val (full) = msg
-        builder.writeOpcode(88, PacketType.SHORT)
-        builder.writeByte(1)
-        builder.writeByte(2)
-        builder.writeByte(if (full) 1 else 0)
+        writer.writeOpcode(88, PacketType.SHORT)
+        writer.writeByte(1)
+        writer.writeByte(2)
+        writer.writeByte(if (full) 1 else 0)
         if (full) {
             // TODO pass network core to individual repo, for now write junk data
-            builder.writeSmart(1)
-            builder.writeSmart(38) // canada
-            builder.writePrefixedString("Canada")
-            builder.writeSmart(0)
-            builder.writeSmart(2)
-            builder.writeSmart(1)
-            builder.writeSmart(1) // worldId
-            builder.writeByte(0)
-            builder.writeInt(0x1)
-            builder.writePrefixedString("Game World")
-            builder.writePrefixedString("127.0.0.1")
-            builder.writeInt(0x94DA4A87.toInt())
+            writer.writeSmart(1)
+            writer.writeSmart(38) // canada
+            writer.writePrefixedString("Canada")
+            writer.writeSmart(0)
+            writer.writeSmart(2)
+            writer.writeSmart(1)
+            writer.writeSmart(1) // worldId
+            writer.writeByte(0)
+            writer.writeInt(0x1)
+            writer.writePrefixedString("Game World")
+            writer.writePrefixedString("127.0.0.1")
+            writer.writeInt(0x94DA4A87.toInt())
         }
-        builder.writeSmart(1)
-        builder.writeShort(1337)
+        writer.writeSmart(1)
+        writer.writeShort(1337)
     }
 }
