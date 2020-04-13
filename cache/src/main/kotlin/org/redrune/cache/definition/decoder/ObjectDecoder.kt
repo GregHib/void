@@ -24,14 +24,14 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
                     skip(buffer)
                 }
                 val length = buffer.readUnsignedByte()
-                modelIds = ByteArray(length)
-                modelTypes = arrayOfNulls(length)
+                modelIds = arrayOfNulls(length)
+                modelTypes = ByteArray(length)
                 repeat(length) { count ->
-                    modelIds!![count] = buffer.readByte().toByte()
+                    modelTypes!![count] = buffer.readByte().toByte()
                     val size = buffer.readUnsignedByte()
-                    modelTypes!![count] = IntArray(size)
+                    modelIds!![count] = IntArray(size)
                     repeat(size) { index ->
-                        modelTypes!![count]!![index] = buffer.readShort()
+                        modelIds!![count]!![index] = buffer.readShort()
                     }
                 }
                 if (opcode == 5 && !lowDetail) {
@@ -47,7 +47,7 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             }
             18 -> projectileClipped = false
             19 -> interactive = buffer.readUnsignedByte()
-            21 -> contouredGround = 1.toByte()
+            21 -> contouredGround = 1
             22 -> delayShading = true
             23 -> culling = 1
             24 -> {
@@ -60,7 +60,7 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             28 -> offsetMultiplier = buffer.readUnsignedByte() shl 2
             29 -> brightness = buffer.readByte()
             in 30..34 -> options!![opcode - 30] = buffer.readString()
-            39 -> contrast = 5 * buffer.readByte()
+            39 -> contrast = buffer.readByte() * 5
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
             42 -> {
@@ -126,19 +126,19 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             }
             81 -> {
                 contouredGround = 2.toByte()
-                anInt3023 = 256 * buffer.readUnsignedByte()
+                anInt3023 = buffer.readUnsignedByte() * 256
             }
             82 -> aBoolean2990 = true
             88 -> aBoolean2972 = false
             89 -> animateImmediately = false
             91 -> isMembers = true
             93 -> {
-                contouredGround = 3.toByte()
+                contouredGround = 3
                 anInt3023 = buffer.readShort()
             }
-            94 -> contouredGround = 4.toByte()
+            94 -> contouredGround = 4
             95 -> {
-                contouredGround = 5.toByte()
+                contouredGround = 5
                 anInt3023 = buffer.readUnsignedShort()
             }
             97 -> aBoolean3056 = true
@@ -188,7 +188,7 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
                 }
             }
             162 -> {
-                contouredGround = 3.toByte()
+                contouredGround = 3
                 anInt3023 = buffer.readInt()
             }
             163 -> {

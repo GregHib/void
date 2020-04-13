@@ -11,8 +11,8 @@ import org.redrune.cache.definition.Recolourable
 @Suppress("ArrayInDataClass")
 data class ObjectDefinition(
     override var id: Int = -1,
-    var modelIds: ByteArray? = null,
-    var modelTypes: Array<IntArray?>? = null,
+    var modelIds: Array<IntArray?>? = null,
+    var modelTypes: ByteArray? = null,
     var name: String = "null",
     var sizeX: Int = 1,
     var sizeY: Int = 1,
