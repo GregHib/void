@@ -13,12 +13,21 @@ abstract class DefinitionDecoder<T : Definition>(internal val index: Int) {
 
     protected val cache: Cache by inject()
 
-    protected val dataCache = ConcurrentHashMap<Int, T?>()
+    protected val dataCache = ConcurrentHashMap<Int, T>()
 
     open val size: Int
         get() = cache.lastIndexId(index) * 256 + (cache.archiveCount(index, cache.lastIndexId(index)))
 
-    fun get(id: Int) = dataCache.getOrPut(id) { readData(id) }
+    fun get(id: Int): T? {
+        var value = dataCache[id]
+        if (value == null) {
+            value = readData(id)
+            if (value != null) {
+                dataCache[id] = value
+            }
+        }
+        return value
+    }
 
     fun getSafe(id: Int) = get(id) ?: create()
 
@@ -52,9 +61,9 @@ abstract class DefinitionDecoder<T : Definition>(internal val index: Int) {
         }
     }
 
-    protected open fun getFile(id: Int) = id
+    open fun getFile(id: Int) = id
 
-    protected open fun getArchive(id: Int) = id
+    open fun getArchive(id: Int) = id
 
     protected abstract fun T.read(opcode: Int, buffer: Reader)
 

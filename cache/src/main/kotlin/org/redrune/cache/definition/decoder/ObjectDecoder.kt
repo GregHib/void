@@ -24,16 +24,17 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
                     skip(buffer)
                 }
                 val length = buffer.readUnsignedByte()
-                modelIds = arrayOfNulls(length)
+                val modelIds = arrayOfNulls<IntArray>(length)
                 modelTypes = ByteArray(length)
                 repeat(length) { count ->
                     modelTypes!![count] = buffer.readByte().toByte()
                     val size = buffer.readUnsignedByte()
-                    modelIds!![count] = IntArray(size)
+                    modelIds[count] = IntArray(size)
                     repeat(size) { index ->
-                        modelIds!![count]!![index] = buffer.readShort()
+                        modelIds[count]!![index] = buffer.readShort()
                     }
                 }
+                this.modelIds = modelIds.filterNotNull().toTypedArray()
                 if (opcode == 5 && !lowDetail) {
                     skip(buffer)
                 }

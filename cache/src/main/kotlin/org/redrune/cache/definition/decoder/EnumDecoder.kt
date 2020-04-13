@@ -2,7 +2,6 @@ package org.redrune.cache.definition.decoder
 
 import org.redrune.cache.DefinitionDecoder
 import org.redrune.cache.Indices.ENUMS
-import org.redrune.cache.definition.Parameterized.Companion.calculateCapacity
 import org.redrune.cache.definition.data.EnumDefinition
 import org.redrune.core.io.read.Reader
 
@@ -26,7 +25,7 @@ class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
             4 -> defaultInt = buffer.readInt()
             5, 6 -> {
                 length = buffer.readShort()
-                val hashtable = HashMap<Int, Any>(calculateCapacity(length))
+                val hashtable = HashMap<Int, Any>()
                 repeat(length) {
                     val id = buffer.readInt()
                     hashtable[id] = if (opcode == 5) {
