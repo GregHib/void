@@ -12,7 +12,6 @@ import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
 import rs.dusk.core.network.connection.ConnectionPipeline
 import rs.dusk.core.network.connection.ConnectionSettings
 import rs.dusk.core.network.connection.server.NetworkServer
-import rs.dusk.engine.script.ScriptLoader
 import rs.dusk.network.rs.ServerNetworkEventHandler
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
@@ -68,8 +67,6 @@ class LobbyServer(
             fileProperties("/game.properties")
             fileProperties("/rsa.properties")
         }
-        ScriptLoader()
-
     }
 
     override fun run() {

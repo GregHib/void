@@ -21,6 +21,9 @@ class YMLPlayerStorage(private val path: String, private val loader: FileLoader)
     }
 }
 
+@Suppress("USELESS_CAST")
 val ymlPlayerModule = module {
-    single { YMLPlayerStorage(getProperty("savePath"), get()) }
+    single {
+        YMLPlayerStorage(getProperty("savePath"), get()) as StorageStrategy<Player>
+    }
 }

@@ -52,6 +52,7 @@ class SQLPlayerStorage(url: String, user: String, password: String) : StorageStr
 
 }
 
+@Suppress("USELESS_CAST")
 val sqlPlayerModule = module {
-    single { SQLPlayerStorage(getProperty("databaseUrl"), getProperty("databaseUser"), getProperty("databasePassword")) }
+    single { SQLPlayerStorage(getProperty("databaseUrl"), getProperty("databaseUser"), getProperty("databasePassword")) as StorageStrategy<Player> }
 }

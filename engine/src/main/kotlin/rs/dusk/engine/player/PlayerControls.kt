@@ -19,6 +19,7 @@ class PlayerControls : PlayerController {
 
 }
 
+@Suppress("USELESS_CAST")
 val controlModule = module {
-    single { PlayerControls() }
+    single { PlayerControls() as PlayerController }
 }

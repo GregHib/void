@@ -6,8 +6,9 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import java.math.BigInteger
 
+@Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
 val cacheModule = module {
-    single(createdAtStart = true) { CacheDelegate(getProperty("cachePath"), getProperty<String>("fsRsaPrivate"), getProperty<String>("fsRsaModulus")) }
+    single(createdAtStart = true) { CacheDelegate(getProperty("cachePath"), getProperty<String>("fsRsaPrivate"), getProperty<String>("fsRsaModulus")) as Cache }
 }
 
 /**

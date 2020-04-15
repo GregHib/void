@@ -8,8 +8,9 @@ import kotlin.reflect.KClass
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 26, 2020
  */
+@Suppress("USELESS_CAST")
 val eventBusModule = module {
-    single { CoroutineBus() }
+    single { CoroutineBus() as EventBus }
 }
 
 @Suppress("UNCHECKED_CAST")

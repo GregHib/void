@@ -19,7 +19,7 @@ import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.script.ScriptLoader
+import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.NetworkRegistry
 import rs.dusk.network.rs.ServerNetworkEventHandler
 import rs.dusk.network.rs.codec.service.ServiceCodec
@@ -74,11 +74,11 @@ class GameServer(
     override fun preload() {
         startKoin {
             slf4jLogger()
-            modules(eventBusModule, cacheModule, fileLoaderModule, ymlPlayerModule/*, sqlPlayerModule*/, entityFactoryModule)
+            modules(eventBusModule, cacheModule, fileLoaderModule, ymlPlayerModule/*, sqlPlayerModule*/, entityFactoryModule, scriptModule)
             fileProperties("/game.properties")
             fileProperties("/private.properties")
         }
-        ScriptLoader()
+
         NetworkRegistry().register()
     }
 
