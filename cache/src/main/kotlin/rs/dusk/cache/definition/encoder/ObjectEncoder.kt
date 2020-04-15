@@ -3,6 +3,7 @@ package rs.dusk.cache.definition.encoder
 import rs.dusk.cache.DefinitionEncoder
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.core.io.write.Writer
+import kotlin.math.roundToInt
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -72,7 +73,8 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
         }
 
         val animations = definition.animations
-        if (animations != null) {
+        val percents = definition.percents
+        if (animations != null && percents == null) {
             writeByte(24)
             writeShort(animations[0])
         }
@@ -308,13 +310,12 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeByte(105)
         }
 
-        val anIntArray2995 = definition.anIntArray2995
-        if (anIntArray2995 != null && animations != null) {
+        if (percents != null && animations != null) {
             writeByte(106)
             writeByte(animations.size)
             repeat(animations.size) {
                 writeShort(animations[it])
-                writeByte(anIntArray2995[it])// FIXME revert
+                writeByte(((percents[it] / 65535.0) * 100).roundToInt())
             }
         }
 

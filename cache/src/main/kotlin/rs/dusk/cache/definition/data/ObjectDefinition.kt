@@ -67,7 +67,7 @@ data class ObjectDefinition(
     var anInt3024: Int = 255,
     var invertMapScene: Boolean = false,
     var animations: IntArray? = null,
-    var anIntArray2995: IntArray? = null,
+    var percents: IntArray? = null,
     var mapDefinitionId: Int = -1,
     var anIntArray2981: IntArray? = null,
     var aByte2974: Byte = 0,

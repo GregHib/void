@@ -161,17 +161,17 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
                 val length = buffer.readUnsignedByte()
                 var total = 0
                 animations = IntArray(length)
-                anIntArray2995 = IntArray(length)
+                percents = IntArray(length)
                 repeat(length) { count ->
                     animations!![count] = buffer.readShort()
                     if (animations!![count] == 65535) {
                         animations!![count] = -1
                     }
-                    anIntArray2995!![count] = buffer.readUnsignedByte()
-                    total += anIntArray2995!![count]
+                    percents!![count] = buffer.readUnsignedByte()
+                    total += percents!![count]
                 }
                 repeat(length) { count ->
-                    anIntArray2995!![count] = 65535 * anIntArray2995!![count] / total
+                    percents!![count] = 65535 * percents!![count] / total
                 }
             }
             107 -> mapDefinitionId = buffer.readShort()
