@@ -25,7 +25,7 @@ allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    group = "org.redrune"
+    group = "rs.dusk"
     version = "0.0.2"
 
     repositories {
