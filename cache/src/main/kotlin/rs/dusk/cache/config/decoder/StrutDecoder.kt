@@ -1,0 +1,21 @@
+package rs.dusk.cache.config.decoder
+
+import rs.dusk.cache.Configs.STRUTS
+import rs.dusk.cache.config.ConfigDecoder
+import rs.dusk.cache.config.data.StructDefinition
+import rs.dusk.core.io.read.Reader
+
+/**
+ * @author Greg Hibberd <greg@greghibberd.com>
+ * @since April 08, 2020
+ */
+class StrutDecoder : ConfigDecoder<StructDefinition>(STRUTS) {
+
+    override fun create() = StructDefinition()
+
+    override fun StructDefinition.read(opcode: Int, buffer: Reader) {
+        if (opcode == 249) {
+            readParameters(buffer)
+        }
+    }
+}
