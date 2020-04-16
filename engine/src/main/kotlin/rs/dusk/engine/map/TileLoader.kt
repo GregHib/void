@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.collision
+package rs.dusk.engine.map
 
 import rs.dusk.core.io.read.BufferReader
 
@@ -8,17 +8,15 @@ import rs.dusk.core.io.read.BufferReader
  */
 class TileLoader {
 
-    fun load(data: ByteArray): Array<Array<ByteArray>> {
+    fun load(data: ByteArray): TileSettings {
         val buffer = BufferReader(data)
-        var config: Int
         val tileSettings = Array(4) { Array(64) { ByteArray(64) } }
-        val i = 0
         //For every region tile
         for (plane in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
                     loop@ while (true) {
-                        config = buffer.readUnsignedByte()
+                        val config = buffer.readUnsignedByte()
                         when {
                             config == 0 -> break@loop
                             config == 1 -> {
@@ -29,7 +27,7 @@ class TileLoader {
                                 val attrOpcode = config
                                 val overlayId = buffer.readByte()
                                 val overlayPath = (config - 2) / 4
-                                val overlayRotation = 3 and (config - 2 + i)
+                                val overlayRotation = 3 and (config - 2)
                             }
                             config <= 81 -> {
                                 val settings = (config - 49).toByte()

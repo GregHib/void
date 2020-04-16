@@ -13,7 +13,13 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-typealias Xteas = Map<Region, Xtea>
+data class Xteas(val delegate: Map<Int, Xtea>) : Map<Int, Xtea> by delegate {
+
+    operator fun get(region: Region): Xtea? {
+        return this[region.id]
+    }
+
+}
 
 val xteaModule = module {
     single(createdAtStart = true) { loadXteas(getProperty("xteaPath")) }
@@ -21,7 +27,7 @@ val xteaModule = module {
 
 fun loadXteas(directory: String): Xteas {
     val file = File(directory)
-    val xteas = mutableMapOf<Region, Xtea>()
+    val xteas = mutableMapOf<Int, IntArray>()
     val time = measureTimeMillis {
         when {
             file.isDirectory || file.extension == "txt" -> fromFiles(xteas, file)
@@ -30,34 +36,34 @@ fun loadXteas(directory: String): Xteas {
         }
     }
     println("Loaded ${xteas.size} ${"xtea".plural(xteas.size)} in ${time}ms.")
-    return xteas
+    return Xteas(xteas)
 }
 
-private fun fromFiles(xteas: MutableMap<Region, Xtea>, file: File) {
+private fun fromFiles(xteas: MutableMap<Int, IntArray>, file: File) {
     file.listFiles { f -> f.extension == "txt" }?.forEach { f ->
-        val region = Region(f.nameWithoutExtension.toInt())
+        val region = f.nameWithoutExtension.toInt()
         val lines = f.readLines()
-        xteas[region] = Xtea { lines[it].toInt() }
+        xteas[region] = IntArray(4) { lines[it].toInt() }
     }
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun fromJson(xteas: MutableMap<Region, Xtea>, file: File) {
+private fun fromJson(xteas: MutableMap<Int, IntArray>, file: File) {
     val mapper = ObjectMapper(JsonFactory())
     val map = mapper.readValue(file, Array<Any>::class.java)
     map.forEach {
         val entry = it as? LinkedHashMap<String, Any> ?: return@forEach
         val id = entry["mapsquare"]?.toString()?.toInt() ?: return@forEach
         val keys = entry["key"] as? ArrayList<Int> ?: return@forEach
-        xteas[Region(id)] = Xtea(keys.toTypedArray().toIntArray())
+        xteas[id] = keys.toTypedArray().toIntArray()
     }
 }
 
-private fun fromData(xteas: MutableMap<Region, Xtea>, file: File) {
+private fun fromData(xteas: MutableMap<Int, IntArray>, file: File) {
     val raf = RandomAccessFile(file, "r")
     while (raf.filePointer < raf.length()) {
-        val region = Region(raf.readShort().toInt())
-        xteas[region] = Xtea { raf.readInt() }
+        val region = raf.readShort().toInt()
+        xteas[region] = IntArray(4) { raf.readInt() }
     }
     raf.close()
 }

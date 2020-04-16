@@ -37,7 +37,10 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
         }
 
 
-    override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?) = delegate.data(index, archive, file, xtea)
+    override fun getFile(index: Int, archive: Int, file: Int, xtea: IntArray?) =
+        delegate.data(index, archive, file, xtea)
+
+    override fun getFile(index: Int, name: String, xtea: IntArray?) = delegate.data(index, name, xtea)
 
     override fun getArchive(indexId: Int, archiveId: Int): ByteArray? {
         if (indexId == 255 && archiveId == 255) {

@@ -7,13 +7,13 @@ import rs.dusk.engine.model.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-typealias Collisions = MutableMap<Tile, Int>
+data class Collisions(val delegate: MutableMap<Tile, Int> = mutableMapOf()) :
+    MutableMap<Tile, Int> by delegate
 
 @Suppress("USELESS_CAST")
-val locationModule = module {
-    single {
-        mutableMapOf<Tile, Int>() as Collisions
-    }
+val collisionModule = module {
+    single { Collisions() }
+    single { CollisionLoader() }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {

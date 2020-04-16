@@ -9,9 +9,11 @@ import rs.dusk.engine.model.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-typealias Locations = Multimap<Tile, Location>
+data class Locations(val delegate: Multimap<Tile, Location> = HashMultimap.create()) :
+    Multimap<Tile, Location> by delegate
 
 val locationModule = module {
-    single { HashMultimap.create<Tile, Location>() as Locations }
+    single { Locations() }
+    single { LocationLoader() }
 }
 

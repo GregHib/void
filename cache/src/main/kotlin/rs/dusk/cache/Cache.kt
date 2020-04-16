@@ -13,6 +13,8 @@ interface Cache {
 
     fun getFile(index: Int, archive: Int, file: Int = 0, xtea: IntArray? = null): ByteArray?
 
+    fun getFile(index: Int, name: String, xtea: IntArray? = null): ByteArray?
+
     fun getArchive(indexId: Int, archiveId: Int): ByteArray?
 
     fun generateVersionTable(exponent: BigInteger, modulus: BigInteger): ByteArray

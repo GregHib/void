@@ -1,6 +1,9 @@
 package rs.dusk.engine.map.location
 
 import rs.dusk.core.io.read.BufferReader
+import rs.dusk.engine.map.BRIDGE_TILE
+import rs.dusk.engine.map.TileSettings
+import rs.dusk.engine.map.isTile
 import rs.dusk.engine.model.Tile
 import rs.dusk.utility.inject
 
@@ -12,7 +15,7 @@ class LocationLoader {
 
     val locations: Locations by inject()
 
-    fun load(data: ByteArray, overlays: Array<Array<IntArray>>?) {
+    fun load(data: ByteArray, settings: TileSettings) {
         val stream = BufferReader(data)
         var objectId = -1
         while (true) {
@@ -43,7 +46,7 @@ class LocationLoader {
                 }
 
                 // Decrease bridges
-                if (overlays != null && overlays[1][localX][localY] and BRIDGE_TILE == BRIDGE_TILE) {
+                if (settings.isTile(1, localX, localY, BRIDGE_TILE)) {
                     plane--
                 }
 
@@ -56,9 +59,5 @@ class LocationLoader {
                 locations.put(Tile(localX, localY, plane), Location(objectId, type, rotation))
             }
         }
-    }
-
-    companion object {
-        const val BRIDGE_TILE = 0x2
     }
 }
