@@ -23,7 +23,7 @@ class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO
             6 -> fontSize = buffer.readUnsignedByte()
             7 -> {
                 val setting = buffer.readUnsignedByte()
-                if (0x1 and setting == 0) {
+                if (setting and 0x1 == 0) {
                     aBoolean1047 = false
                 }
                 if (setting and 0x2 == 2) {
@@ -43,7 +43,7 @@ class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO
                 anInt1087 = buffer.readInt()
                 anInt1042 = buffer.readInt()
             }
-            in 10..14 -> aStringArray1065[opcode + -10] = buffer.readString()
+            in 10..14 -> aStringArray1065[opcode - 10] = buffer.readString()
             15 -> {
                 val length = buffer.readUnsignedByte()
                 anIntArray1049 = IntArray(length * 2)
