@@ -1,4 +1,4 @@
-package rs.dusk
+package rs.dusk.network.server
 
 /**
  * @author Tyluur <contact@kiaira.tech>

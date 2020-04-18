@@ -14,5 +14,7 @@ interface PreloadableTask {
     /**
      * The running of the task
      */
-    fun run()
+    fun run() {
+        preload()
+    }
 }
