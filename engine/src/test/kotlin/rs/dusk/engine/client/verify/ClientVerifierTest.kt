@@ -1,4 +1,4 @@
-package org.redrune.engine.client.verify
+package rs.dusk.engine.client.verify
 
 import io.mockk.mockk
 import io.mockk.verify
@@ -9,9 +9,9 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.test.KoinTest
 import org.koin.test.inject
-import org.redrune.core.network.model.message.Message
-import org.redrune.engine.entity.model.Player
-import org.redrune.engine.script.koin.KoinTestExtension
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.script.koin.KoinTestExtension
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>

@@ -1,8 +1,8 @@
-package org.redrune.engine.client.verify
+package rs.dusk.engine.client.verify
 
 import org.koin.dsl.module
-import org.redrune.core.network.model.message.Message
-import org.redrune.engine.entity.model.Player
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.engine.entity.model.Player
 import kotlin.collections.set
 import kotlin.reflect.KClass
 
@@ -11,7 +11,7 @@ import kotlin.reflect.KClass
  * @since April 09, 2020
  */
 val clientVerificationModule = module {
-    single { ClientVerifier() as ClientVerification }
+    single { ClientVerifier() }
 }
 
 class ClientVerifier : ClientVerification() {

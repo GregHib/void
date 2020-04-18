@@ -1,4 +1,4 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
 import java.util.*
 

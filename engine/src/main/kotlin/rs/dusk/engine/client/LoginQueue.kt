@@ -1,6 +1,6 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
-import org.redrune.core.network.model.session.Session
+import rs.dusk.core.network.model.session.Session
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

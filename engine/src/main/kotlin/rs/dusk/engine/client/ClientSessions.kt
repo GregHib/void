@@ -1,19 +1,19 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import org.redrune.core.network.model.message.Message
-import org.redrune.core.network.model.session.Session
-import org.redrune.engine.client.verify.ClientVerification
-import org.redrune.engine.entity.model.Player
-import org.redrune.utility.inject
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.client.verify.ClientVerification
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
 val clientSessionModule = module {
-    single { ClientSessions() as Sessions }
+    single { ClientSessions() }
 }
 
 class ClientSessions : Sessions {

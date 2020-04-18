@@ -1,17 +1,17 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import org.redrune.core.network.model.session.Session
-import org.redrune.engine.entity.factory.PlayerFactory
-import org.redrune.utility.inject
+import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.entity.factory.PlayerFactory
+import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
 val clientLoginQueueModule = module {
-    single { PlayerLoginQueue() as LoginQueue }
+    single { PlayerLoginQueue() }
 }
 
 class PlayerLoginQueue : LoginQueue {

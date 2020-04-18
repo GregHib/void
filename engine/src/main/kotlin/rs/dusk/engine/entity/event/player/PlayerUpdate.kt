@@ -1,6 +1,6 @@
-package org.redrune.engine.entity.event.player
+package rs.dusk.engine.entity.event.player
 
-import org.redrune.core.network.model.message.Message
+import rs.dusk.core.network.model.message.Message
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

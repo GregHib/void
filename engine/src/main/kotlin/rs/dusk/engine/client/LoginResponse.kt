@@ -1,6 +1,6 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
-import org.redrune.engine.entity.model.Player
+import rs.dusk.engine.entity.model.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

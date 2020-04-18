@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.update.encode.message
 
-import org.redrune.core.network.model.message.Message
-import org.redrune.utility.constants.network.LoginResponseCode
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.network.rs.codec.login.decode.LoginResponseCode
 
 /**
  * @author Tyluur <contact@kiaira.tech>

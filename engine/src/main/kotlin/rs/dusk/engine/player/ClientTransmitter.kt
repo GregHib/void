@@ -1,6 +1,6 @@
-package org.redrune.engine.player
+package rs.dusk.engine.player
 
-import org.redrune.engine.entity.event.player.PlayerUpdate
+import rs.dusk.engine.entity.event.player.PlayerUpdate
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

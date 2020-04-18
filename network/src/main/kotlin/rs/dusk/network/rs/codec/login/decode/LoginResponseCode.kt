@@ -1,4 +1,4 @@
-package org.redrune.utility.constants.network
+package rs.dusk.network.rs.codec.login.decode
 
 /**
  * @author Greg Hibb

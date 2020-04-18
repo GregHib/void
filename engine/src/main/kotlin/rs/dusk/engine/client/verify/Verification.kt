@@ -1,7 +1,7 @@
-package org.redrune.engine.client.verify
+package rs.dusk.engine.client.verify
 
-import org.redrune.core.network.model.message.Message
-import org.redrune.engine.entity.model.Player
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.engine.entity.model.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

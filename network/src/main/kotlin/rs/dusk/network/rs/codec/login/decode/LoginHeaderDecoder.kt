@@ -1,12 +1,11 @@
 package rs.dusk.network.rs.codec.login.decode
 
 import com.github.michaelbull.logging.InlineLogger
-import org.redrune.cache.secure.RSA
-import org.redrune.cache.secure.Xtea
-import org.redrune.core.io.read.BufferReader
-import org.redrune.core.network.codec.packet.access.PacketReader
-import org.redrune.utility.constants.network.LoginResponseCode
-import org.redrune.utility.getProperty
+import rs.dusk.cache.secure.RSA
+import rs.dusk.cache.secure.Xtea
+import rs.dusk.core.io.read.BufferReader
+import rs.dusk.core.network.codec.packet.access.PacketReader
+import rs.dusk.utility.getProperty
 import java.math.BigInteger
 
 /**

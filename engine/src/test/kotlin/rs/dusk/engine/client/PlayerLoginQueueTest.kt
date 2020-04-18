@@ -1,4 +1,4 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
 import io.mockk.every
 import io.mockk.mockk
@@ -9,11 +9,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.inject
-import org.koin.test.mock.declareMock
-import org.redrune.core.network.model.session.Session
-import org.redrune.engine.entity.factory.PlayerFactory
-import org.redrune.engine.entity.model.Player
-import org.redrune.engine.script.KoinMock
+import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.entity.factory.PlayerFactory
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.script.KoinMock
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>

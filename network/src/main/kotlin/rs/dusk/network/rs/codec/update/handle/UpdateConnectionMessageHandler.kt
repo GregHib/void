@@ -2,11 +2,10 @@ package rs.dusk.network.rs.codec.update.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.core.network.model.session.getSession
-import org.redrune.network.rs.codec.update.UpdateMessageHandler
-import org.redrune.network.rs.codec.update.decode.message.UpdateConnectionMessage
-import org.redrune.network.rs.codec.update.encode.message.UpdateRegistryResponse
-import org.redrune.utility.constants.network.LoginResponseCode
+import rs.dusk.core.network.model.session.getSession
+import rs.dusk.network.rs.codec.update.UpdateMessageHandler
+import rs.dusk.network.rs.codec.update.decode.message.UpdateConnectionMessage
+import rs.dusk.network.rs.codec.update.encode.message.UpdateRegistryResponse
 
 /**
  * @author Tyluur <contact@kiaira.tech>

@@ -1,9 +1,9 @@
-package org.redrune.engine.player
+package rs.dusk.engine.player
 
 import org.koin.dsl.module
-import org.redrune.engine.entity.event.player.PlayerUpdate
-import org.redrune.engine.entity.model.Player
-import org.redrune.utility.get
+import rs.dusk.engine.entity.event.player.PlayerUpdate
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -18,7 +18,7 @@ class Transmitter : ClientTransmitter {
 }
 
 val transmitterModule = module {
-    single { Transmitter() as ClientTransmitter }
+    single { Transmitter() }
 }
 
 fun Player.send(update: PlayerUpdate) = get<ClientTransmitter>().send(update)

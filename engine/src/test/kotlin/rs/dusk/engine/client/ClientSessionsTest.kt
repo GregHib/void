@@ -1,4 +1,4 @@
-package org.redrune.engine.client
+package rs.dusk.engine.client
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
@@ -6,13 +6,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.inject
-import org.koin.test.mock.declareMock
-import org.redrune.core.network.model.message.Message
-import org.redrune.core.network.model.session.Session
-import org.redrune.engine.client.verify.ClientVerification
-import org.redrune.engine.client.verify.clientVerificationModule
-import org.redrune.engine.entity.model.Player
-import org.redrune.engine.script.KoinMock
+import rs.dusk.core.network.model.message.Message
+import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.client.verify.ClientVerification
+import rs.dusk.engine.client.verify.clientVerificationModule
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.script.KoinMock
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
