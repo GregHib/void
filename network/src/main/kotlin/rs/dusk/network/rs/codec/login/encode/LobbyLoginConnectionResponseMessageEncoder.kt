@@ -2,7 +2,7 @@ package rs.dusk.network.rs.codec.login.encode
 
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.login.LoginMessageEncoder
-import rs.dusk.network.rs.codec.login.encode.message.LoginConnectionResponseMessage
+import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionResponseMessage
 
 
 /**
@@ -12,9 +12,9 @@ import rs.dusk.network.rs.codec.login.encode.message.LoginConnectionResponseMess
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LoginConnectionResponseMessageEncoder : LoginMessageEncoder<LoginConnectionResponseMessage>() {
+class LobbyLoginConnectionResponseMessageEncoder : LoginMessageEncoder<LobbyLoginConnectionResponseMessage>() {
 
-    override fun encode(builder: PacketWriter, msg: LoginConnectionResponseMessage) {
+    override fun encode(builder: PacketWriter, msg: LobbyLoginConnectionResponseMessage) {
         builder.writeByte(msg.opcode)
     }
 }

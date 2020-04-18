@@ -12,6 +12,7 @@ import rs.dusk.network.rs.codec.update.decode.message.UpdateDisconnectionMessage
 class UpdateDisconnectionMessageHandler : UpdateMessageHandler<UpdateDisconnectionMessage>() {
 
     private val logger = InlineLogger()
+
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateDisconnectionMessage) {
         if (msg.value != 0) {
             logger.warn { "Invalid disconnect id"  }

@@ -12,6 +12,7 @@ import org.koin.test.inject
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.script.koin.KoinTestExtension
+import rs.dusk.network.rs.codec.game.MessageCompanion
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>

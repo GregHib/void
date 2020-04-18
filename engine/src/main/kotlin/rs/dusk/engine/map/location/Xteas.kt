@@ -2,6 +2,7 @@ package rs.dusk.engine.map.location
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import rs.dusk.engine.model.Region
 import rs.dusk.utility.func.plural
@@ -25,6 +26,8 @@ val xteaModule = module {
     single(createdAtStart = true) { loadXteas(getProperty("xteaPath")) }
 }
 
+private val logger = InlineLogger()
+
 fun loadXteas(directory: String): Xteas {
     val file = File(directory)
     val xteas = mutableMapOf<Int, IntArray>()
@@ -35,7 +38,7 @@ fun loadXteas(directory: String): Xteas {
             else -> fromData(xteas, file)
         }
     }
-    println("Loaded ${xteas.size} ${"xtea".plural(xteas.size)} in ${time}ms.")
+    logger.info { "Loaded ${xteas.size} ${"xtea".plural(xteas.size)} in ${time}ms." }
     return Xteas(xteas)
 }
 

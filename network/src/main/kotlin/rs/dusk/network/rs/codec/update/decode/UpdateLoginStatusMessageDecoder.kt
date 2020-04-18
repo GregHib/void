@@ -2,10 +2,10 @@ package rs.dusk.network.rs.codec.update.decode
 
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketMetaData
+import rs.dusk.network.rs.codec.update.FileServerOpcodes.STATUS_LOGGED_IN
+import rs.dusk.network.rs.codec.update.FileServerOpcodes.STATUS_LOGGED_OUT
 import rs.dusk.network.rs.codec.update.UpdateMessageDecoder
 import rs.dusk.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
-import rs.dusk.utility.constants.network.FileServerOpcodes.STATUS_LOGGED_IN
-import rs.dusk.utility.constants.network.FileServerOpcodes.STATUS_LOGGED_OUT
 
 /**
  * @author Tyluur <contact@kiaira.tech>

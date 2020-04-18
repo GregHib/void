@@ -2,11 +2,11 @@ package rs.dusk.network.rs.codec.update.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import org.redrune.core.network.model.session.getSession
-import org.redrune.network.rs.codec.update.UpdateMessageHandler
-import org.redrune.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
-import org.redrune.network.rs.codec.update.encode.message.UpdateRegistryResponse
-import org.redrune.utility.constants.network.LoginResponseCode
+import rs.dusk.core.network.model.session.getSession
+import rs.dusk.network.rs.codec.LoginResponseCode
+import rs.dusk.network.rs.codec.update.UpdateMessageHandler
+import rs.dusk.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
+import rs.dusk.network.rs.codec.update.encode.message.UpdateRegistryResponse
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -19,7 +19,7 @@ class UpdateLoginStatusHandler : UpdateMessageHandler<UpdateLoginStatusMessage>(
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateLoginStatusMessage) {
         val (login, value) = msg
         if (value != 0) {
-            ctx.writeAndFlush(UpdateRegistryResponse(LoginResponseCodes.BadSessionId))
+            ctx.writeAndFlush(UpdateRegistryResponse(LoginResponseCode.BadSessionId))
             logger.warn { "Invalid login id ${ctx.channel().getSession().getIp()} $value" }
             return
         }

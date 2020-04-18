@@ -3,7 +3,7 @@ package rs.dusk.network.rs.codec.update.handle
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.primitives.Ints
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.cache.CacheDelegate
+import rs.dusk.cache.Cache
 import rs.dusk.network.rs.codec.update.UpdateMessageHandler
 import rs.dusk.network.rs.codec.update.decode.message.UpdateRequestMessage
 import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
@@ -16,7 +16,7 @@ import rs.dusk.utility.inject
 class UpdateRequestMessageHandler : UpdateMessageHandler<UpdateRequestMessage>() {
 
     private val logger = InlineLogger()
-    private val cache by inject<CacheDelegate>()
+    private val cache: Cache by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateRequestMessage) {
         val (indexId, archiveId, priority) = msg

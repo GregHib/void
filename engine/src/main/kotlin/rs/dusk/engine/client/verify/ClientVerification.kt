@@ -2,6 +2,7 @@ package rs.dusk.engine.client.verify
 
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.model.Player
+import rs.dusk.network.rs.codec.game.MessageCompanion
 import rs.dusk.utility.get
 import kotlin.reflect.KClass
 
@@ -23,12 +24,12 @@ abstract class ClientVerification {
     /**
      * Runs [Verification] verification on [message]
      */
-    abstract fun <T : Message> verify(clazz: KClass<T>, player: Player, message: T)
+    abstract fun <T : Message> verify(player: Player, clazz: KClass<T>, message: T)
 
     /**
      * Helper function for verifying messages
      */
-    inline fun <reified T : Message> verify(player: Player, event: T) = verify(T::class, player, event)
+    inline fun <reified T : Message> verify(player: Player, event: T) = verify(player, T::class, event)
 }
 
 /**

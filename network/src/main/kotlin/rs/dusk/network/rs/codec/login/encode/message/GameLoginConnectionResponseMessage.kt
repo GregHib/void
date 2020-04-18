@@ -6,4 +6,4 @@ import rs.dusk.core.network.model.message.Message
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-data class LoginConnectionResponseMessage(val opcode: Int) : Message
+data class GameLoginConnectionResponseMessage(val opcode: Int) : Message

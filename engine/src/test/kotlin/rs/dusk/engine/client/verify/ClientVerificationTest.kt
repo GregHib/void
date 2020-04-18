@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.network.rs.codec.game.MessageCompanion
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>

@@ -10,8 +10,9 @@ import kotlin.reflect.KClass
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
+@Suppress("USELESS_CAST")
 val clientVerificationModule = module {
-    single { ClientVerifier() }
+    single { ClientVerifier() as ClientVerification }
 }
 
 class ClientVerifier : ClientVerification() {
@@ -29,8 +30,9 @@ class ClientVerifier : ClientVerification() {
         return verifications[clazz] as? Verification<T>
     }
 
-    override fun <T : Message> verify(clazz: KClass<T>, player: Player, message: T) {
-        val verifier = get(clazz) ?: throw IllegalArgumentException("No verification found for player message $player - $clazz")
+    override fun <T : Message> verify(player: Player, clazz: KClass<T>, message: T) {
+        val verifier =
+            get(clazz) ?: throw IllegalArgumentException("No verification found for player $player - $message")
         verifier.block(message, player)
     }
 

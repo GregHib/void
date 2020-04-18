@@ -1,9 +1,9 @@
 package rs.dusk.network.rs.codec.update.encode
 
 import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.network.rs.codec.service.FileServerResponseCodes
 import rs.dusk.network.rs.codec.update.UpdateMessageEncoder
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
-import rs.dusk.utility.constants.network.FileServerResponseCodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>

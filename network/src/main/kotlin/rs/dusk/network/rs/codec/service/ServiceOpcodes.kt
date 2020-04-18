@@ -1,4 +1,4 @@
-package rs.dusk.utility.constants.network
+package rs.dusk.network.rs.codec.service
 
 /**
  * @author Tyluur <contact@kiaira.tech>

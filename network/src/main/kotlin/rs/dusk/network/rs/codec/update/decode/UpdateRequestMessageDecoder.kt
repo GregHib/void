@@ -3,10 +3,10 @@ package rs.dusk.network.rs.codec.update.decode
 import rs.dusk.core.io.DataType
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketMetaData
+import rs.dusk.network.rs.codec.update.FileServerOpcodes.FILE_REQUEST
+import rs.dusk.network.rs.codec.update.FileServerOpcodes.PRIORITY_FILE_REQUEST
 import rs.dusk.network.rs.codec.update.UpdateMessageDecoder
 import rs.dusk.network.rs.codec.update.decode.message.UpdateRequestMessage
-import rs.dusk.utility.constants.network.FileServerOpcodes.FILE_REQUEST
-import rs.dusk.utility.constants.network.FileServerOpcodes.PRIORITY_FILE_REQUEST
 
 /**
  * @author Tyluur <contact@kiaira.tech>

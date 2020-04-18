@@ -3,31 +3,46 @@ package rs.dusk.engine.client
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.verify.ClientVerification
+import rs.dusk.engine.entity.event.player.PlayerUpdate
 import rs.dusk.engine.entity.model.Player
+import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
-interface Sessions {
+abstract class Sessions {
 
     /**
      * Links a client session with a player
      */
-    fun register(session: Session, player: Player)
+    abstract fun register(session: Session, player: Player)
 
     /**
      * Removes the link between a player an client session.
      */
-    fun deregister(session: Session)
+    abstract fun deregister(session: Session)
 
     /**
      * Returns player for [session]
      */
-    fun get(session: Session): Player?
+    abstract fun get(session: Session): Player?
+
+
+    /**
+     * Returns session for [player]
+     */
+    abstract fun get(player: Player): Session?
+
+    /**
+     * Sends [message] to the session linked with [player]
+     */
+    abstract fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T)
 
     /**
      * Sends [message] to the player linked with [session] via [ClientVerification]
      */
-    fun send(session: Session, message: Message)
+    abstract fun <T : Message> send(session: Session, clazz: KClass<T>, message: T)
+
+    inline fun <reified T : Message> send(session: Session, event: T) = send(session, T::class, event)
 }

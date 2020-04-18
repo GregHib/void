@@ -1,12 +1,12 @@
 package rs.dusk.network.rs.codec.login.decode
 
-import rs.dusk.cache.CacheDelegate
+import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
 import rs.dusk.network.rs.codec.login.LoginMessageDecoder
 import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
-import rs.dusk.utility.constants.network.ServiceOpcodes.LOBBY_LOGIN
+import rs.dusk.network.rs.codec.service.ServiceOpcodes.LOBBY_LOGIN
 import rs.dusk.utility.inject
 
 /**
@@ -16,7 +16,7 @@ import rs.dusk.utility.inject
 @PacketMetaData(opcodes = [LOBBY_LOGIN], length = VARIABLE_LENGTH_SHORT)
 class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
 
-    private val cache by inject<CacheDelegate>()
+    private val cache: Cache by inject()
 
     override fun decode(packet: PacketReader): LobbyLoginMessage {
         val triple = LoginHeaderDecoder.decode(packet)

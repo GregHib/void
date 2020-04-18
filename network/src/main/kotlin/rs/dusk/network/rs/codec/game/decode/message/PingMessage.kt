@@ -1,9 +1,9 @@
-package rs.dusk.engine.client.verify
+package rs.dusk.network.rs.codec.game.decode.message
 
 import rs.dusk.core.network.model.message.Message
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @since March 27, 2020
+ * @since April 18, 2020
  */
-open class MessageCompanion<T : Message>
+object PingMessage : Message

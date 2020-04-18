@@ -34,8 +34,8 @@ internal class ClientSessionsTest : KoinMock() {
         // When
         sessions.register(session, player)
         // Then
-        assert(sessions.sessions.containsKey(session))
-        assertEquals(player, sessions.sessions[session])
+        assert(sessions.players.containsKey(session))
+        assertEquals(player, sessions.players[session])
     }
 
     @Test
@@ -43,12 +43,12 @@ internal class ClientSessionsTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val session: Session = mockk(relaxed = true)
-        sessions.sessions[session] = player
+        sessions.players[session] = player
         // When
         sessions.deregister(session)
         // Then
-        assertFalse(sessions.sessions.containsKey(session))
-        assertNull(sessions.sessions[session])
+        assertFalse(sessions.players.containsKey(session))
+        assertNull(sessions.players[session])
     }
 
     @Test
@@ -56,7 +56,7 @@ internal class ClientSessionsTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val session: Session = mockk(relaxed = true)
-        sessions.sessions[session] = player
+        sessions.players[session] = player
         // When
         val result = sessions.get(session)
         // Then
@@ -78,7 +78,7 @@ internal class ClientSessionsTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val session: Session = mockk(relaxed = true)
-        sessions.sessions[session] = player
+        sessions.players[session] = player
         val message: Message = mockk(relaxed = true)
         val verification: ClientVerification = declareMock {
             every { verify(any(), player, message) } just Runs

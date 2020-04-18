@@ -1,4 +1,4 @@
-package rs.dusk.network.rs.codec.login.decode
+package rs.dusk.network.rs.codec
 
 /**
  * @author Greg Hibb

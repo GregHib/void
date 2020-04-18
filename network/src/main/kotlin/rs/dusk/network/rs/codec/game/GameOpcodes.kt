@@ -1,4 +1,4 @@
-package rs.dusk.utility.constants.game
+package rs.dusk.network.rs.codec.game
 
 object GameOpcodes {
 

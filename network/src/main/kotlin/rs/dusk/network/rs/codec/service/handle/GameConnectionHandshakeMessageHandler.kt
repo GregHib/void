@@ -8,7 +8,7 @@ import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
 import rs.dusk.core.tools.utility.replace
 import rs.dusk.network.rs.ServerNetworkEventHandler
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.encode.message.LoginConnectionResponseMessage
+import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.service.ServiceMessageHandler
 import rs.dusk.network.rs.codec.service.decode.message.GameConnectionHandshakeMessage
 import rs.dusk.network.rs.session.LoginSession
@@ -32,7 +32,7 @@ class GameConnectionHandshakeMessageHandler : ServiceMessageHandler<GameConnecti
             )
             replace("message.encoder", GenericMessageEncoder(LoginCodec))
         }
-        ctx.pipeline().writeAndFlush(LoginConnectionResponseMessage(0))
+        ctx.pipeline().writeAndFlush(LobbyLoginConnectionResponseMessage(0))
     }
 
 }

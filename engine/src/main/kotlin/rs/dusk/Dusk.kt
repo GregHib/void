@@ -4,11 +4,17 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Startup
+import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.indexAllocatorModule
+import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
+import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.map.location.xteaModule
+import rs.dusk.engine.map.loginTestModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
@@ -39,7 +45,13 @@ object Dusk : PreloadableTask {
                 fileLoaderModule,
                 ymlPlayerModule/*, sqlPlayerModule*/,
                 entityFactoryModule,
-                scriptModule
+                scriptModule,
+                clientSessionModule,
+                clientVerificationModule,
+                playerLoaderModule,
+                indexAllocatorModule,
+                loginTestModule,
+                xteaModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

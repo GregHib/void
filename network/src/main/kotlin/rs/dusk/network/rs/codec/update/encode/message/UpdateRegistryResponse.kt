@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.update.encode.message
 
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.network.rs.codec.login.decode.LoginResponseCode
+import rs.dusk.network.rs.codec.LoginResponseCode
 
 /**
  * @author Tyluur <contact@kiaira.tech>

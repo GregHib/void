@@ -8,12 +8,12 @@ import rs.dusk.core.network.codec.message.handle.NetworkMessageHandler
 import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
 import rs.dusk.core.tools.utility.replace
 import rs.dusk.network.rs.ServerNetworkEventHandler
+import rs.dusk.network.rs.codec.service.FileServerResponseCodes
 import rs.dusk.network.rs.codec.service.ServiceMessageHandler
 import rs.dusk.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
 import rs.dusk.network.rs.session.UpdateSession
-import rs.dusk.utility.constants.network.FileServerResponseCodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>
