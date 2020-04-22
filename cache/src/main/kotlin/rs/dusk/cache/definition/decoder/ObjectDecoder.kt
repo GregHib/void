@@ -64,13 +64,7 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             39 -> contrast = buffer.readByte() * 5
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
-            42 -> {
-                val length = buffer.readUnsignedByte()
-                recolourPalette = ByteArray(length)
-                repeat(length) { count ->
-                    recolourPalette!![count] = buffer.readByte().toByte()
-                }
-            }
+            42 -> readColourPalette(buffer)
             62 -> mirrored = true
             64 -> castsShadow = false
             65 -> modelSizeX = buffer.readShort()

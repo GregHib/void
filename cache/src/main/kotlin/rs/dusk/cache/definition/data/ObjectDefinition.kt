@@ -1,6 +1,7 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
+import rs.dusk.cache.definition.ColourPalette
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 
@@ -29,7 +30,7 @@ data class ObjectDefinition(
     override var modifiedColours: ShortArray? = null,
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
-    var recolourPalette: ByteArray? = null,
+    override var recolourPalette: ByteArray? = null,
     var mirrored: Boolean = false,
     var castsShadow: Boolean = true,
     var modelSizeX: Int = 128,
@@ -87,4 +88,4 @@ data class ObjectDefinition(
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
     override var params: HashMap<Long, Any>? = null
-) : Definition, Recolourable, Parameterized
+) : Definition, Recolourable, ColourPalette, Parameterized

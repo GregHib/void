@@ -48,13 +48,7 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
             in 35..39 -> options[opcode - 35] = buffer.readString()
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
-            42 -> {
-                val length = buffer.readUnsignedByte()
-                recolourPalette = ByteArray(length)
-                repeat(length) { count ->
-                    recolourPalette!![count] = buffer.readByte().toByte()
-                }
-            }
+            42 -> readColourPalette(buffer)
             65 -> unnoted = true
             78 -> tertiaryMaleModel = buffer.readShort()
             79 -> tertiaryFemaleModel = buffer.readShort()

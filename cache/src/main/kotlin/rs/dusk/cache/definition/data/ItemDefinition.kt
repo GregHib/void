@@ -1,6 +1,7 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
+import rs.dusk.cache.definition.ColourPalette
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 
@@ -32,7 +33,7 @@ data class ItemDefinition(
     override var modifiedColours: ShortArray? = null,
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
-    var recolourPalette: ByteArray? = null,
+    override var recolourPalette: ByteArray? = null,
     var unnoted: Boolean = false,
     var tertiaryMaleModel: Int = -1,
     var tertiaryFemaleModel: Int = -1,
@@ -73,4 +74,4 @@ data class ItemDefinition(
     var bindId: Int = -1,
     var bindTemplateId: Int = -1,
     override var params: HashMap<Long, Any>? = null
-) : Definition, Recolourable, Parameterized
+) : Definition, Recolourable, ColourPalette, Parameterized
