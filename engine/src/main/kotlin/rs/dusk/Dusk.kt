@@ -3,6 +3,7 @@ package rs.dusk
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheModule
+import rs.dusk.engine.Engine
 import rs.dusk.engine.Startup
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.indexAllocatorModule
@@ -10,6 +11,7 @@ import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
+import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
@@ -31,9 +33,11 @@ object Dusk : Runnable {
     fun main(args: Array<String>) {
         val world = World(1)
         val server = GameServer(world)
+        val engine = Engine()
 
         run()
         server.run()
+        engine.start()
     }
 
     fun preload() {
@@ -52,7 +56,8 @@ object Dusk : Runnable {
                 playerLoaderModule,
                 indexAllocatorModule,
                 loginTestModule,
-                xteaModule
+                xteaModule,
+                engineModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
