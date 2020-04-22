@@ -19,14 +19,13 @@ import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
-import rs.dusk.utility.func.PreloadableTask
 import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-object Dusk : PreloadableTask {
+object Dusk : Runnable {
 
     @JvmStatic
     fun main(args: Array<String>) {
@@ -37,7 +36,7 @@ object Dusk : PreloadableTask {
         server.run()
     }
 
-    override fun preload() {
+    fun preload() {
         startKoin {
             slf4jLogger()
             modules(
@@ -61,7 +60,7 @@ object Dusk : PreloadableTask {
     }
 
     override fun run() {
-        super.run()
+        preload()
         val bus: EventBus = get()
         bus.emit(Startup())
     }

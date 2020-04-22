@@ -15,7 +15,6 @@ import rs.dusk.network.NetworkRegistry
 import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
-import rs.dusk.utility.func.PreloadableTask
 import rs.dusk.utility.get
 import rs.dusk.utility.getProperty
 import java.util.concurrent.TimeUnit
@@ -29,7 +28,7 @@ class GameServer(
      * The world this server represents
      */
     private val world: World
-) : PreloadableTask {
+) : Runnable {
 
     private val logger = InlineLogger()
 
@@ -65,12 +64,8 @@ class GameServer(
         server.start()
     }
 
-    override fun preload() {
-        NetworkRegistry().register()
-    }
-
     override fun run() {
-        super.run()
+        NetworkRegistry().register()
         bind()
 
         logger.info {
