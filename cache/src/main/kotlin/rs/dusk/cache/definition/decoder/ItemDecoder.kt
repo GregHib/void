@@ -118,17 +118,20 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
 
     override fun ItemDefinition.changeValues() {
         if (notedTemplateId != -1) {
-            toNote(getSafe(notedTemplateId), getSafe(noteId))
+            toNote(get(notedTemplateId), get(noteId))
         }
         if (lendTemplateId != -1) {
-            toLend(getSafe(lendId), getSafe(lendTemplateId))
+            toLend(get(lendId), get(lendTemplateId))
         }
         if (bindTemplateId != -1) {
-            toBind(getSafe(bindTemplateId), getSafe(bindId))
+            toBind(get(bindTemplateId), get(bindId))
         }
     }
 
-    fun ItemDefinition.toLend(item: ItemDefinition, template: ItemDefinition) {
+    fun ItemDefinition.toLend(item: ItemDefinition?, template: ItemDefinition?) {
+        if (item == null || template == null) {
+            return
+        }
         modifiedColours = item.modifiedColours
         primaryMaleDialogueHead = item.primaryMaleDialogueHead
         secondaryMaleDialogueHead = item.secondaryMaleDialogueHead
@@ -168,7 +171,10 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
         options[4] = "Discard"
     }
 
-    fun ItemDefinition.toNote(template: ItemDefinition, item: ItemDefinition) {
+    fun ItemDefinition.toNote(template: ItemDefinition?, item: ItemDefinition?) {
+        if (item == null || template == null) {
+            return
+        }
         spriteTranslateY = template.spriteTranslateY
         originalColours = template.originalColours
         cost = item.cost
@@ -187,7 +193,10 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
         modifiedColours = template.modifiedColours
     }
 
-    fun ItemDefinition.toBind(template: ItemDefinition, item: ItemDefinition) {
+    fun ItemDefinition.toBind(template: ItemDefinition?, item: ItemDefinition?) {
+        if (item == null || template == null) {
+            return
+        }
         cost = 0
         tertiaryMaleModel = item.tertiaryMaleModel
         stackable = item.stackable
