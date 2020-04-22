@@ -1,6 +1,7 @@
 package rs.dusk.engine.entity.model
 
 import rs.dusk.engine.model.Tile
+import rs.dusk.engine.view.Viewport
 
 /**
  * A player controlled by client or bot
@@ -10,4 +11,6 @@ import rs.dusk.engine.model.Tile
 data class Player(override var id: Int = -1, override var tile: Tile) : Entity, Movable {
     @Transient
     var index: Int = -1
+
+    val viewport = Viewport()
 }
