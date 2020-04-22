@@ -74,9 +74,9 @@ class ItemDecoder : DefinitionDecoder<ItemDefinition>(ITEMS) {
                 stackIds!![opcode - 100] = buffer.readShort()
                 stackAmounts!![opcode - 100] = buffer.readShort()
             }
-            110 -> groundScaleX = buffer.readShort()
-            111 -> groundScaleY = buffer.readShort()
-            112 -> groundScaleZ = buffer.readShort()
+            110 -> floorScaleX = buffer.readShort()
+            111 -> floorScaleY = buffer.readShort()
+            112 -> floorScaleZ = buffer.readShort()
             113 -> ambience = buffer.readByte()
             114 -> diffusion = buffer.readByte() * 5
             115 -> team = buffer.readUnsignedByte()
