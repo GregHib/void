@@ -6,7 +6,6 @@ import org.junit.Assert.assertNotNull
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.IndexAllocator
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.model.Player
@@ -36,16 +35,13 @@ internal class PlayerFactoryTest : KoinMock() {
         val bus: EventBus = declareMock {
             every { emit(any<Registered>()) } just Runs
         }
-        val alloc: IndexAllocator = declareMock {
-            every { obtain() } returns 4
-        }
         // When
         val result = factory.spawn("Test")
         // Then
         assertNotNull(result)
         verifyOrder {
             loader.load("Test")
-            player.index = 4
+            player.index = 0
             bus.emit<Registered>(any())
         }
     }
