@@ -15,21 +15,21 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-internal class PooledListTest {
+internal class PooledMapListTest {
 
-    lateinit var list: PooledList<Entity>
+    lateinit var list: PooledMapList<Entity>
     lateinit var entity: Entity
     var hash: Int = -1
 
     @BeforeEach
     fun setup() {
-        list = object : PooledList<Entity> {
-            override val delegate: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity>> = Int2ObjectOpenHashMap()
+        list = object : PooledMapList<Entity> {
+            override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity>> = Int2ObjectOpenHashMap()
             override val pool: LinkedList<ObjectLinkedOpenHashSet<Entity>> = LinkedList()
         }
         entity = mockk()
         val tile = Tile(10, 20, 1)
-        hash = tile.value
+        hash = tile.id
         every { entity.tile } returns tile
     }
 
@@ -41,7 +41,7 @@ internal class PooledListTest {
         // When
         list.add(hash, entity)
         // Then
-        val result = list.delegate[hash]
+        val result = list.data[hash]
         assertNotNull(result)
         assertEquals(set, result)
         assert(result.contains(entity))
@@ -52,7 +52,7 @@ internal class PooledListTest {
         // When
         list.add(hash, entity)
         // Then
-        val result = list.delegate[hash]
+        val result = list.data[hash]
         assertNotNull(result)
         assert(result.contains(entity))
     }
@@ -70,7 +70,7 @@ internal class PooledListTest {
         // Given
         val set = ObjectLinkedOpenHashSet<Entity>()
         set.add(entity)
-        list.delegate[hash] = set
+        list.data[hash] = set
         // When
         val result = list[hash]
         // Then
@@ -92,12 +92,12 @@ internal class PooledListTest {
         // Given
         val set = ObjectLinkedOpenHashSet<Entity>()
         set.add(entity)
-        list.delegate[hash] = set
+        list.data[hash] = set
         // When
         val result = list.remove(hash, entity)
         // Then
         assertTrue(result)
-        assert(!list.delegate.containsKey(hash))
+        assert(!list.data.containsKey(hash))
         assert(list.pool.contains(set))
     }
 
@@ -107,12 +107,12 @@ internal class PooledListTest {
         val set = ObjectLinkedOpenHashSet<Entity>()
         set.add(entity)
         set.add(mockk())
-        list.delegate[hash] = set
+        list.data[hash] = set
         // When
         val result = list.remove(hash, entity)
         // Then
         assertTrue(result)
-        assert(list.delegate.containsKey(hash))
+        assert(list.data.containsKey(hash))
     }
 
 }

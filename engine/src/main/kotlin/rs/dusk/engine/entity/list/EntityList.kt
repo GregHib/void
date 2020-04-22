@@ -22,19 +22,19 @@ interface EntityList<T : Entity> {
 
     operator fun get(hash: Int): Set<T>?
 
-    operator fun get(tile: Tile) = get(tile.value)
+    operator fun get(tile: Tile) = get(tile.id)
 
     operator fun get(x: Int, y: Int, plane: Int = 0) = get(Tile(x, y, plane))
 
     fun add(hash: Int, entity: T): Boolean
 
-    fun add(tile: Tile, entity: T) = add(tile.value, entity)
+    fun add(tile: Tile, entity: T) = add(tile.id, entity)
 
     fun add(x: Int, y: Int, plane: Int = 0, entity: T) = add(Tile(x, y, plane), entity)
 
     fun remove(hash: Int, entity: T): Boolean
 
-    fun remove(tile: Tile, entity: T) = remove(tile.value, entity)
+    fun remove(tile: Tile, entity: T) = remove(tile.id, entity)
 
     fun remove(x: Int, y: Int, plane: Int = 0, entity: T) = remove(Tile(x, y, plane), entity)
 
@@ -42,10 +42,13 @@ interface EntityList<T : Entity> {
 
     operator fun set(hash: Int, entity: T) = add(hash, entity)
 
-    operator fun set(tile: Tile, entity: T) = set(tile.value, entity)
+    operator fun set(tile: Tile, entity: T) = add(tile, entity)
 
-    operator fun set(x: Int, y: Int, plane: Int = 0, entity: T) = set(Tile(x, y, plane), entity)
+    operator fun set(x: Int, y: Int, plane: Int = 0, entity: T) = add(x, y, plane, entity)
 }
+
+const val MAX_PLAYERS = 2048
+const val MAX_NPCS = 10000
 
 @Suppress("USELESS_CAST")
 val entityListModule = module {

@@ -2,6 +2,7 @@ package rs.dusk.engine.entity.list.npc
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import rs.dusk.engine.entity.list.MAX_NPCS
 import rs.dusk.engine.entity.model.NPC
 import java.util.*
 
@@ -10,6 +11,6 @@ import java.util.*
  * @since March 28, 2020
  */
 data class NPCList(
-    override val delegate: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC>> = Int2ObjectOpenHashMap(),
+    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC>> = Int2ObjectOpenHashMap(MAX_NPCS),
     override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC>> = LinkedList()
 ) : NPCs

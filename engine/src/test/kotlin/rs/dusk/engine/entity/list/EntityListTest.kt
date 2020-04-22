@@ -15,7 +15,7 @@ internal class EntityListTest {
     lateinit var list: EntityList<Entity>
     lateinit var entity: Entity
     val tile = Tile(10, 20, 1)
-    val hash = tile.value
+    val hash = tile.id
 
     @BeforeEach
     fun setup() {

@@ -8,9 +8,8 @@ import rs.dusk.engine.view.Viewport
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Player(override var id: Int = -1, override var tile: Tile) : Entity, Movable {
+data class Player(override var id: Int = -1, override var tile: Tile, val viewport: Viewport = Viewport()) : Entity,
+    Movable {
     @Transient
     var index: Int = -1
-
-    val viewport = Viewport()
 }

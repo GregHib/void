@@ -1,5 +1,8 @@
 package rs.dusk.engine.view
 
+import rs.dusk.engine.model.Chunk
+import rs.dusk.engine.model.Tile
+
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
@@ -12,6 +15,27 @@ object Spiral {
         STEPS = (0..15).map {
             outwards(it)
         }.toTypedArray()
+    }
+
+    inline fun spiral(tile: Tile, radius: Int, action: (Tile) -> Unit) {
+        val x = tile.x
+        val y = tile.y
+        val plane = tile.plane
+        for ((sx, sy) in STEPS[radius]) {
+            val cx = x + sx
+            val cy = y + sy
+            action.invoke(Tile(cx, cy, plane))
+        }
+    }
+
+    inline fun spiral(chunk: Chunk, radius: Int, action: (Chunk) -> Unit) {
+        val x = chunk.x
+        val y = chunk.y
+        for ((sx, sy) in STEPS[radius]) {
+            val cx = x + sx
+            val cy = y + sy
+            action.invoke(Chunk(cx, cy))
+        }
     }
 
     /**
