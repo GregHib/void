@@ -10,6 +10,7 @@ import rs.dusk.cache.definition.Recolourable
 @Suppress("ArrayInDataClass")
 data class IdentityKitDefinition(
     override var id: Int = -1,
+    var bodyPartId: Int = 0,
     var modelIds: IntArray? = null,
     override var originalColours: ShortArray? = null,
     override var modifiedColours: ShortArray? = null,

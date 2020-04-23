@@ -15,7 +15,7 @@ class IdentityKitDecoder : ConfigDecoder<IdentityKitDefinition>(IDENTITY_KIT) {
 
     override fun IdentityKitDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> buffer.readUnsignedByte()
+            1 -> bodyPartId = buffer.readUnsignedByte()
             2 -> {
                 val length = buffer.readUnsignedByte()
                 modelIds = IntArray(length)
