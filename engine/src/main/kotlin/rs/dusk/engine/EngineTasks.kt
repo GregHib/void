@@ -1,12 +1,13 @@
 package rs.dusk.engine
 
 import org.koin.dsl.module
+import java.util.*
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-data class EngineTasks(val delegate: MutableList<Runnable> = mutableListOf()) : MutableList<Runnable> by delegate
+data class EngineTasks(val data: PriorityQueue<EngineTask> = PriorityQueue<EngineTask>()) : Queue<EngineTask> by data
 
 val engineModule = module {
     single { EngineTasks() }

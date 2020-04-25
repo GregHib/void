@@ -5,6 +5,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
+import rs.dusk.engine.EngineTask
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
@@ -31,7 +32,7 @@ val viewportModule = module {
     single(createdAtStart = true) { ViewportTask(get()) }
 }
 
-class ViewportTask(tasks: EngineTasks) : Runnable {
+class ViewportTask(tasks: EngineTasks) : EngineTask() {
 
     val set: Deque<Deferred<Unit>> = LinkedList()
     val players: Players by inject()
