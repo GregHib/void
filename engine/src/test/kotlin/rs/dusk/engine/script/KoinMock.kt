@@ -15,13 +15,15 @@ import rs.dusk.engine.script.koin.MockProviderExtension
 @ExtendWith(MockKExtension::class)
 abstract class KoinMock : KoinTest {
 
-    private val modules = mutableListOf<Module>()
+    open val modules: List<Module>? = null
 
     @JvmField
     @RegisterExtension
     val koinTestExtension = KoinTestExtension.create {
         printLogger()
-        modules(modules)
+        if (modules != null) {
+            modules(modules!!)
+        }
     }
 
     @JvmField

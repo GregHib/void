@@ -6,9 +6,9 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.inject
+import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.model.Player
@@ -19,12 +19,10 @@ import rs.dusk.engine.script.KoinMock
  * @since April 09, 2020
  */
 internal class PlayerLoginQueueTest : KoinMock() {
-    @BeforeEach
-    fun setup() {
-        loadModules(clientLoginQueueModule)
-    }
 
     val loginQueue: LoginQueue by inject()
+
+    override val modules = listOf(clientLoginQueueModule)
 
     @Test
     fun `Successful login`() = runBlocking {

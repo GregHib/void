@@ -6,7 +6,6 @@ import io.mockk.junit5.MockKExtension
 import io.mockk.just
 import io.mockk.verify
 import org.junit.Assert.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.dsl.module
@@ -26,10 +25,7 @@ import rs.dusk.utility.get
 @ExtendWith(MockKExtension::class)
 internal class NPCFactoryTest : KoinMock() {
 
-    @BeforeEach
-    fun setup() {
-        loadModules(module { single { NPCFactory() } }, eventBusModule)
-    }
+    override val modules = listOf(module { single { NPCFactory() } }, eventBusModule)
 
     @Test
     fun `Spawn registers`() {

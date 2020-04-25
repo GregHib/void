@@ -37,7 +37,7 @@ abstract class EventBus {
 /**
  * Registers a simple event handler without filter or priority
  */
-inline infix fun <reified T : Event, reified C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
+inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
     setActor(handler, action, null)
     register(T::class, handler)

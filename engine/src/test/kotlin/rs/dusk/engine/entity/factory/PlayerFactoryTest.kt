@@ -3,10 +3,10 @@ package rs.dusk.engine.entity.factory
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
+import rs.dusk.engine.client.IndexAllocator
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.model.Player
@@ -21,12 +21,9 @@ import rs.dusk.utility.get
  */
 internal class PlayerFactoryTest : KoinMock() {
 
-    @BeforeEach
-    fun setup() {
-        loadModules(module {
-            single { PlayerFactory() }
-        }, eventBusModule)
-    }
+    override val modules = listOf(module {
+        single { PlayerFactory() }
+    }, eventBusModule)
 
     @Test
     fun `Spawn registers`() = runBlocking {
@@ -39,8 +36,11 @@ internal class PlayerFactoryTest : KoinMock() {
         val bus: EventBus = declareMock {
             every { emit(any<Registered>()) } just Runs
         }
+        val alloc: IndexAllocator = declareMock {
+            every { obtain() } returns 4
+        }
         // When
-        val result = factory.spawn(0)
+        val result = factory.spawn("Test")
         // Then
         assertNotNull(result)
         verifyOrder {

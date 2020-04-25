@@ -4,7 +4,6 @@ import io.mockk.*
 import io.mockk.junit5.MockKExtension
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.test.mock.declareMock
@@ -21,10 +20,7 @@ internal class EventBusTest : KoinMock() {
         companion object : EventCompanion<TestEvent>()
     }
 
-    @BeforeEach
-    fun setup() {
-        loadModules(eventBusModule)
-    }
+    override val modules = listOf(eventBusModule)
 
     @Test
     fun then() {

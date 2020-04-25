@@ -5,7 +5,6 @@ import io.mockk.every
 import io.mockk.just
 import io.mockk.verify
 import org.junit.Assert.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
@@ -21,10 +20,7 @@ import rs.dusk.utility.get
  */
 internal class ProjectileFactoryTest : KoinMock() {
 
-    @BeforeEach
-    fun setup() {
-        loadModules(module { single { ProjectileFactory() } }, eventBusModule)
-    }
+    override val modules = listOf(module { single { ProjectileFactory() } }, eventBusModule)
 
     @Test
     fun `Spawn registers`() {

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.inject
+import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.verify.ClientVerification
@@ -81,7 +82,7 @@ internal class ClientSessionsTest : KoinMock() {
         sessions.players[session] = player
         val message: Message = mockk(relaxed = true)
         val verification: ClientVerification = declareMock {
-            every { verify(any(), player, message) } just Runs
+            every { verify(any(), any(), message) } just Runs
         }
         // When
         sessions.send(session, message)

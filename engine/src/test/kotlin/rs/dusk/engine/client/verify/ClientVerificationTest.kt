@@ -1,8 +1,8 @@
 package rs.dusk.engine.client.verify
 
 import io.mockk.*
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.script.KoinMock
@@ -18,10 +18,7 @@ internal class ClientVerificationTest : KoinMock() {
         companion object : MessageCompanion<TestMessage>()
     }
 
-    @BeforeEach
-    fun setup() {
-        loadModules(clientVerificationModule)
-    }
+    override val modules = listOf(clientVerificationModule)
 
     @Test
     fun verify() {

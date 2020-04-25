@@ -10,8 +10,9 @@ import rs.dusk.utility.inject
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
+@Suppress("USELESS_CAST")
 val clientLoginQueueModule = module {
-    single { PlayerLoginQueue() }
+    single { PlayerLoginQueue() as LoginQueue }
 }
 
 class PlayerLoginQueue : LoginQueue {
