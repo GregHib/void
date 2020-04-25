@@ -11,7 +11,7 @@ import rs.dusk.engine.model.Tile
 data class NPC(
     override val id: Int,
     override var tile: Tile,
-    val visuals: Visuals = Visuals()
-) : Entity {
-    var index: Int = -1
+    override val visuals: Visuals = Visuals()
+) : Entity, Indexed {
+    override var index: Int = -1
 }

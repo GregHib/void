@@ -1,18 +1,28 @@
 package rs.dusk.engine.entity.model.visual
 
+import kotlin.reflect.KClass
+
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
 data class Visuals(
     var flag: Int = 0,
-    var aspects: MutableMap<Int, Visual> = mutableMapOf(),
+    var aspects: MutableMap<KClass<out Visual>, Visual> = mutableMapOf(),
     var encoded: ByteArray? = null
 ) {
 
-    fun add(flag: Int, visual: Visual) {
-        this.flag = this.flag or flag
-        aspects[flag] = visual
+    fun <V : Visual> add(mask: Int, clazz: KClass<V>, visual: V) {
+        flag = flag or mask
+        aspects[clazz] = visual
+    }
+
+    inline fun <reified V : Visual> add(mask: Int, visual: V) = add(mask, V::class, visual)
+
+    fun clear() {
+        flag = 0
+        aspects.clear()
+        encoded = null
     }
 
     override fun equals(other: Any?): Boolean {

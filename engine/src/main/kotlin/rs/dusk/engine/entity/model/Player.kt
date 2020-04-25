@@ -13,8 +13,8 @@ data class Player(
     override var id: Int = -1,
     override var tile: Tile,
     @Transient val viewport: Viewport = Viewport(),
-    @Transient val visuals: Visuals = Visuals()
-) : Entity, Movable {
+    @Transient override val visuals: Visuals = Visuals()
+) : Entity, Movable, Indexed {
     @Transient
-    var index: Int = -1
+    override var index: Int = -1
 }

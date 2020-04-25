@@ -2,12 +2,7 @@ package rs.dusk.engine.view
 
 import io.mockk.every
 import io.mockk.mockk
-import org.junit.jupiter.api.AfterEach
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.context.startKoin
-import org.koin.core.context.stopKoin
-import org.koin.test.KoinTest
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.entityListModule
@@ -16,6 +11,7 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.model.Tile
+import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -23,19 +19,9 @@ import java.util.concurrent.atomic.AtomicInteger
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-internal class ViewportTaskTest : KoinTest {
+internal class ViewportTaskTest : KoinMock() {
 
-    @BeforeEach
-    fun setup() {
-        startKoin {
-            modules(engineModule, entityListModule, viewportModule)
-        }
-    }
-
-    @AfterEach
-    fun teardown() {
-        stopKoin()
-    }
+    override val modules = listOf(engineModule, entityListModule, viewportModule)
 
     @Test
     fun `Viewport task adds itself to engine tasks`() {
