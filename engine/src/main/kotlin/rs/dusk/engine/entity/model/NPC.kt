@@ -1,5 +1,6 @@
 package rs.dusk.engine.entity.model
 
+import rs.dusk.engine.entity.model.visual.Visuals
 import rs.dusk.engine.model.Tile
 
 /**
@@ -7,4 +8,8 @@ import rs.dusk.engine.model.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class NPC(override val id: Int, override var tile: Tile) : Entity
+data class NPC(
+    override val id: Int,
+    override var tile: Tile,
+    val visuals: Visuals = Visuals()
+) : Entity

@@ -1,5 +1,6 @@
 package rs.dusk.engine.entity.model
 
+import rs.dusk.engine.entity.model.visual.Visuals
 import rs.dusk.engine.model.Tile
 import rs.dusk.engine.view.Viewport
 
@@ -8,8 +9,12 @@ import rs.dusk.engine.view.Viewport
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Player(override var id: Int = -1, override var tile: Tile, val viewport: Viewport = Viewport()) : Entity,
-    Movable {
+data class Player(
+    override var id: Int = -1,
+    override var tile: Tile,
+    @Transient val viewport: Viewport = Viewport(),
+    @Transient val visuals: Visuals = Visuals()
+) : Entity, Movable {
     @Transient
     var index: Int = -1
 }
