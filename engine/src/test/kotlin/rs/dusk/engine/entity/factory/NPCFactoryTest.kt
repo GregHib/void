@@ -35,7 +35,7 @@ internal class NPCFactoryTest : KoinMock() {
             every { emit(any<Registered>()) } just Runs
         }
         // When
-        val npc = factory.spawn(1, 10, 20, 1, Direction.NONE)
+        val npc = factory.spawn(1, 10, 20, 1, Direction.NONE)!!
         // Then
         assertEquals(1, npc.id)
         verify { bus.emit<Registered>(any()) }

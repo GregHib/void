@@ -6,7 +6,6 @@ import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.Startup
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.client.indexAllocatorModule
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
@@ -54,7 +53,6 @@ object Dusk : Runnable {
                 clientSessionModule,
                 clientVerificationModule,
                 playerLoaderModule,
-                indexAllocatorModule,
                 loginTestModule,
                 xteaModule,
                 engineModule

@@ -1,6 +1,5 @@
 package rs.dusk.engine.client
 
-import org.koin.dsl.module
 import java.util.*
 
 /**
@@ -29,8 +28,4 @@ class IndexAllocator(private val max: Int) {
         }
         return free.poll()
     }
-}
-
-val indexAllocatorModule = module {
-    single { IndexAllocator(2048) }
 }

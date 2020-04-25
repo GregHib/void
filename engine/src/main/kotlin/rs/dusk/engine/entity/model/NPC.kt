@@ -12,4 +12,6 @@ data class NPC(
     override val id: Int,
     override var tile: Tile,
     val visuals: Visuals = Visuals()
-) : Entity
+) : Entity {
+    var index: Int = -1
+}

@@ -10,6 +10,7 @@ import rs.dusk.engine.client.IndexAllocator
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.event.Registered
+import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.event.EventBus
 import rs.dusk.utility.inject
 
@@ -22,7 +23,7 @@ class PlayerFactory {
     private val logger = InlineLogger()
     private val loader: PlayerLoader by inject()
     private val bus: EventBus by inject()
-    private val indexer: IndexAllocator by inject()
+    private val indexer = IndexAllocator(MAX_PLAYERS)
     private val sessions: Sessions by inject()
     private val mutex = Mutex()
 
