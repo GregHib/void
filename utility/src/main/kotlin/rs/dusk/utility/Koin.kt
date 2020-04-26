@@ -21,7 +21,7 @@ fun <T> getProperty(key: String, defaultValue: T): T = getKoin().getProperty(key
 inline fun <reified T> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null
-): Lazy<T> = getKoin().inject()
+): Lazy<T> = getKoin().inject(qualifier, parameters)
 
 inline fun <reified S, reified P> bind(
     noinline parameters: ParametersDefinition? = null
