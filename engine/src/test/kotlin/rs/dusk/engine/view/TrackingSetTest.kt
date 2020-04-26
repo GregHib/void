@@ -19,85 +19,105 @@ internal class TrackingSetTest {
     }
 
     @Test
-    fun `Switch current and removal sets`() {
+    fun `Prep removal set`() {
         // Given
-        val current = set.current
-        val remove = set.remove
+        val npc = NPC(1, Tile(0))
+        set.current.add(npc)
         set.total = 1
         // When
-        set.switch()
+        set.prep()
         // Then
-        assertEquals(current, set.remove)
-        assertEquals(remove, set.current)
+        assert(set.remove.contains(npc))
         assertEquals(0, set.total)
     }
 
     @Test
-    fun `Update previously unseen entity is added`() {
+    fun `Update current sets`() {
+        // Given
+        val toAdd = NPC(1, Tile(0))
+        val toRemove = NPC(2, Tile(0))
+        val npc1 = NPC(3, Tile(0))
+        val npc2 = NPC(4, Tile(0))
+        set.current.addAll(listOf(npc1, toRemove, npc2))
+        set.remove.add(toRemove)
+        set.add.add(toAdd)
+        set.total = 3
+        // When
+        set.update()
+        // Then
+        assert(set.add.isEmpty())
+        assert(set.remove.isEmpty())
+        assert(set.current.contains(toAdd))
+        assert(!set.current.contains(toRemove))
+        assertEquals(3, set.total)
+    }
+
+    @Test
+    fun `Previously unseen entity is added`() {
         // Given
         val npc = NPC(1, Tile(0))
         val entities = setOf(npc)
         // When
-        set.update(entities)
+        set.track(entities)
         // Then
         assert(set.add.contains(npc))
     }
 
     @Test
-    fun `Update seen entity is not changed`() {
+    fun `Tracked and seen entity is not removed`() {
         // Given
         val npc = NPC(1, Tile(0))
         set.remove.add(npc)
         val entities = setOf(npc)
         // When
-        set.update(entities)
+        set.track(entities)
         // Then
-        assert(set.current.contains(npc))
+        assert(!set.remove.contains(npc))
         assert(!set.add.contains(npc))
     }
 
     @Test
-    fun `Update exceeding maximum entities`() {
+    fun `Track exceeding maximum entities`() {
         // Given
         val npc = NPC(11, Tile(0))
         set.total = 10
         val entities = setOf(npc)
         // When
-        set.update(entities)
+        set.track(entities)
         // Then
         assert(!set.add.contains(npc))
     }
 
     @Test
-    fun `Update within view`() {
+    fun `Track within view`() {
         // Given
         val npc = NPC(1, Tile(15, 15, 0))
         val entities = setOf(npc)
         // When
-        set.update(entities, 0, 0)
+        set.track(entities, 0, 0)
         // Then
         assert(set.add.contains(npc))
     }
 
     @Test
-    fun `Update outside of view`() {
+    fun `Track outside of view`() {
         // Given
         val npc = NPC(1, Tile(16, 16, 0))
         val entities = setOf(npc)
         // When
-        set.update(entities, 0, 0)
+        set.track(entities, 0, 0)
         // Then
         assert(!set.add.contains(npc))
     }
 
     @Test
-    fun `Update within exceeding maximum entities`() {
+    fun `Track within exceeding maximum entities`() {
         // Given
         val npc = NPC(11, Tile(15, 15, 0))
         set.total = 10
         val entities = setOf(npc)
         // When
-        set.update(entities, 0, 0)
+        set.track(entities, 0, 0)
         // Then
         assert(!set.add.contains(npc))
     }

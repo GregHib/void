@@ -2,7 +2,6 @@ package rs.dusk.engine.view
 
 import rs.dusk.engine.entity.model.Entity
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
-import java.util.*
 import kotlin.math.abs
 
 /**
@@ -13,24 +12,33 @@ class TrackingSet<T : Entity>(
     val maximum: Int,
     val radius: Int = VIEW_RADIUS,
     var total: Int = 0,
-    val add: Deque<T> = LinkedList(),
-    var remove: MutableSet<T> = mutableSetOf(),
-    var current: MutableSet<T> = mutableSetOf()
+    val add: LinkedHashSet<T> = LinkedHashSet(),
+    val remove: MutableSet<T> = mutableSetOf(),
+    val current: LinkedHashSet<T> = LinkedHashSet()
 ) {
     /**
-     * Moves all entities to the removal list by switching the sets
+     * Moves all entities to the removal list
      */
-    fun switch() {
-        val temp = current
-        current = remove
-        remove = temp
+    fun prep() {
+        remove.addAll(current)
         total = 0
+    }
+
+    /**
+     * Updates [current] by adding all [add] and removing all [remove]
+     */
+    fun update() {
+        current.removeAll(remove)
+        current.addAll(add)
+        remove.clear()
+        add.clear()
+        total = current.size
     }
 
     /**
      * Tracks changes of all entities in a [set]
      */
-    fun update(set: Set<T>): Boolean {
+    fun track(set: Set<T>): Boolean {
         for (entity in set) {
             if (total >= maximum) {
                 return false
@@ -43,7 +51,7 @@ class TrackingSet<T : Entity>(
     /**
      * Tracks changes of entities in the [set] within view of [x], [y]
      */
-    fun update(set: Set<T>, x: Int, y: Int): Boolean {
+    fun track(set: Set<T>, x: Int, y: Int): Boolean {
         for (entity in set) {
             if (total >= maximum) {
                 return false
@@ -56,19 +64,17 @@ class TrackingSet<T : Entity>(
     }
 
     /**
-     * Tracking is done by removing all current entities (switching sets)
-     * and moving visible ones back into the current list, leaving entities
+     * Tracking is done by adding all current entities for removal
+     * and deleting visible ones, leaving entities
      * which have just been removed in the removal set.
      *
      * Note:
-     *  Switch must be called before use
-     *  Due to the switch `remove` is full with current visible entities
-     *  Before the switch `remove` will always be empty from the last tick
+     *  [prep] must be called before use
+     *  Due to the prep `remove` is full with current visible entities
+     *  Before the prep `remove` will always be empty from the last tick
      */
     private fun track(entity: T) {
-        if (remove.remove(entity)) {
-            current.add(entity)
-        } else {
+        if (!remove.remove(entity)) {
             add.add(entity)
         }
         total++

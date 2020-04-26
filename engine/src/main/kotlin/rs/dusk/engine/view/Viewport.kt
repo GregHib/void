@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 import rs.dusk.engine.EngineTask
 import rs.dusk.engine.EngineTasks
+import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
@@ -23,6 +24,7 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 21, 2020
  */
+@Suppress("ArrayInDataClass")
 data class Viewport(
     val players: TrackingSet<Player> = TrackingSet(LOCAL_PLAYER_CAP),
     val npcs: TrackingSet<NPC> = TrackingSet(LOCAL_NPC_CAP)
@@ -57,7 +59,7 @@ class ViewportTask(tasks: EngineTasks) : EngineTask() {
          * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
          */
         fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int) = GlobalScope.async {
-            set.switch()
+            set.prep()
             val entityCount = nearbyEntityCount(list, tile)
             if (entityCount >= cap) {
                 gatherByTile(tile, list, set)
@@ -72,7 +74,7 @@ class ViewportTask(tasks: EngineTasks) : EngineTask() {
         fun <T : Entity> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
             Spiral.spiral(tile, VIEW_RADIUS) { t ->
                 val p = list[t]
-                if (p != null && !set.update(p)) {
+                if (p != null && !set.track(p)) {
                     return
                 }
             }
@@ -86,7 +88,7 @@ class ViewportTask(tasks: EngineTasks) : EngineTask() {
             val y = tile.y
             Spiral.spiral(tile.chunk, 2) { chunk ->
                 val entities = list[chunk]
-                if (entities != null && !set.update(entities, x, y)) {
+                if (entities != null && !set.track(entities, x, y)) {
                     return
                 }
             }
