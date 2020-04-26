@@ -1,6 +1,7 @@
 package rs.dusk.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
+import com.google.common.collect.HashBiMap
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
@@ -24,18 +25,15 @@ val clientSessionModule = module {
 class ClientSessions : Sessions() {
 
     private val logger = InlineLogger()
-    val players = mutableMapOf<Session, Player>()
-    val sessions = mutableMapOf<Player, Session>()
+    val players = HashBiMap.create<Session, Player>()
     val verification: ClientVerification by inject()
 
     override fun register(session: Session, player: Player) {
         players[session] = player
-        sessions[player] = session
     }
 
     override fun deregister(session: Session) {
-        val player = players.remove(session)
-        sessions.remove(player)
+        players.remove(session)
     }
 
     override fun get(session: Session): Player? {
@@ -43,7 +41,7 @@ class ClientSessions : Sessions() {
     }
 
     override fun get(player: Player): Session? {
-        return sessions[player]
+        return players.inverse()[player]
     }
 
     override fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T) {
