@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.model.visual.visuals.ColourOverlay
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class ColourOverlayEncoder(private val npc: Boolean) : VisualEncoder<ColourOverlay>(ColourOverlay::class) {
+class ColourOverlayEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<ColourOverlay>(mask) {
 
     override fun encode(writer: Writer, visual: ColourOverlay) {
         val (delay, duration, colour) = visual

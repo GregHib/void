@@ -1,29 +1,33 @@
 package rs.dusk.engine.entity.model.visual
 
-import kotlin.reflect.KClass
-
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
 data class Visuals(
     var flag: Int = 0,
-    var aspects: MutableMap<KClass<out Visual>, Visual> = mutableMapOf(),
-    var encoded: ByteArray? = null
+    var aspects: MutableMap<Int, Visual> = mutableMapOf(),
+    var encoded: MutableMap<Int, ByteArray> = mutableMapOf(),
+    var update: ByteArray? = null
 ) {
 
-    inline fun <reified T : Visual> getOrPut(clazz: KClass<T>, put: () -> T): T {
-        return aspects.getOrPut(clazz, put) as T
+    inline fun <reified T : Visual> getOrPut(mask: Int, put: () -> T): T {
+        return aspects.getOrPut(mask, put) as T
     }
 
     fun flag(mask: Int) {
         flag = flag or mask
     }
 
+    fun flagged(mask: Int): Boolean {
+        return flag and mask != 0
+    }
+
     fun clear() {
         flag = 0
         aspects.clear()
-        encoded = null
+        encoded.clear()
+        update = null
     }
 
     override fun equals(other: Any?): Boolean {
@@ -34,10 +38,11 @@ data class Visuals(
 
         if (flag != other.flag) return false
         if (aspects != other.aspects) return false
-        if (encoded != null) {
-            if (other.encoded == null) return false
-            if (!encoded!!.contentEquals(other.encoded!!)) return false
-        } else if (other.encoded != null) return false
+        if (encoded != other.encoded) return false
+        if (update != null) {
+            if (other.update == null) return false
+            if (!update!!.contentEquals(other.update!!)) return false
+        } else if (other.update != null) return false
 
         return true
     }
@@ -45,7 +50,8 @@ data class Visuals(
     override fun hashCode(): Int {
         var result = flag
         result = 31 * result + aspects.hashCode()
-        result = 31 * result + (encoded?.contentHashCode() ?: 0)
+        result = 31 * result + encoded.hashCode()
+        result = 31 * result + (update?.contentHashCode() ?: 0)
         return result
     }
 }

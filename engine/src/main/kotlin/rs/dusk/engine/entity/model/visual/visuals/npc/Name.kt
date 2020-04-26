@@ -9,9 +9,11 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class Name(var name: String = "") : Visual
 
-fun NPC.getName() = visuals.getOrPut(Name::class) { Name() }
+const val NAME_MASK = 0x40000
 
-fun NPC.flagName() = visuals.flag(0x40000)
+fun NPC.flagName() = visuals.flag(NAME_MASK)
+
+fun NPC.getName() = visuals.getOrPut(NAME_MASK) { Name() }
 
 fun NPC.setName(name: String = "") {
     val n = getName()

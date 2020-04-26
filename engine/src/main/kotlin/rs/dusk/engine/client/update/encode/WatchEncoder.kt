@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.model.visual.visuals.Watch
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class WatchEncoder(private val npc: Boolean) : VisualEncoder<Watch>(Watch::class) {
+class WatchEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Watch>(mask) {
 
     override fun encode(writer: Writer, visual: Watch) {
         writer.writeShort(

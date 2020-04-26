@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -11,22 +10,28 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class Watch(var index: Int = -1) : Visual
 
-fun Player.flagWatch() = visuals.flag(0x10)
+const val PLAYER_WATCH_MASK = 0x10
 
-fun NPC.flagWatch() = visuals.flag(0x1)
+const val NPC_WATCH_MASK = 0x1
 
-fun Indexed.flagWatch() {
-    if (this is Player) flagWatch() else if (this is NPC) flagWatch()
-}
+fun Player.flagWatch() = visuals.flag(PLAYER_WATCH_MASK)
 
-fun Indexed.getWatch() = visuals.getOrPut(Watch::class) { Watch() }
+fun NPC.flagWatch() = visuals.flag(NPC_WATCH_MASK)
 
-fun NPC.watch(npc: NPC) = setWatch(npc.index)
+fun Player.getWatch() = visuals.getOrPut(PLAYER_WATCH_MASK) { Watch() }
+
+fun NPC.getWatch() = visuals.getOrPut(NPC_WATCH_MASK) { Watch() }
+
+fun NPC.watch(player: Player) = setWatch(player.index or 0x8000)
 
 fun Player.watch(player: Player) = setWatch(player.index or 0x8000)
 
-fun Indexed.setWatch(targetIndex: Int) {
-    val watch = getWatch()
-    watch.index = targetIndex
+fun Player.setWatch(targetIndex: Int = -1) {
+    getWatch().index = targetIndex
+    flagWatch()
+}
+
+fun NPC.setWatch(targetIndex: Int = -1) {
+    getWatch().index = targetIndex
     flagWatch()
 }

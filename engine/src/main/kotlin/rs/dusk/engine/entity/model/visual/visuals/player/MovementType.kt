@@ -17,9 +17,11 @@ data class MovementType(var type: Int = NONE) : Visual {
     }
 }
 
-fun Player.flagMovementType() = visuals.flag(0x200)
+const val MOVEMENT_TYPE_MASK = 0x200
 
-fun Player.getMovementType() = visuals.getOrPut(MovementType::class) { MovementType() }
+fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
+
+fun Player.getMovementType() = visuals.getOrPut(MOVEMENT_TYPE_MASK) { MovementType() }
 
 fun Player.setMovementType(type: Int) {
     getMovementType().type = type

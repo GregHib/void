@@ -9,9 +9,11 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class CombatLevel(var level: Int = 1) : Visual
 
-fun NPC.getCombatLevel() = visuals.getOrPut(CombatLevel::class) { CombatLevel() }
+const val COMBAT_LEVEL_MASK = 0x80000
 
-fun NPC.flagCombatLevel() = visuals.flag(0x80000)
+fun NPC.flagCombatLevel() = visuals.flag(COMBAT_LEVEL_MASK)
+
+fun NPC.getCombatLevel() = visuals.getOrPut(COMBAT_LEVEL_MASK) { CombatLevel() }
 
 fun NPC.setCombatLevel(level: Int) {
     val combat = getCombatLevel()

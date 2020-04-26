@@ -14,9 +14,11 @@ data class Turn(
     var directionY: Int = 0
 ) : Visual
 
-fun NPC.getTurn() = visuals.getOrPut(Turn::class) { Turn() }
+const val TURN_MASK = 0x8
 
-fun NPC.flagTurn() = visuals.flag(0x8)
+fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
+
+fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 
 fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1) {
     val turn = getTurn()

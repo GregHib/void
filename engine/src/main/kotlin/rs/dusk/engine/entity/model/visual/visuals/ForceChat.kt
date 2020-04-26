@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -11,18 +10,24 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class ForceChat(var text: String = "") : Visual
 
-fun Player.flagForceChat() = visuals.flag(0x4000)
+const val PLAYER_FORCE_CHAT_MASK = 0x4000
 
-fun NPC.flagForceChat() = visuals.flag(0x2)
+const val NPC_FORCE_CHAT_MASK = 0x2
 
-fun Indexed.flagForceChat() {
-    if (this is Player) flagForceChat() else if (this is NPC) flagForceChat()
+fun Player.flagForceChat() = visuals.flag(PLAYER_FORCE_CHAT_MASK)
+
+fun NPC.flagForceChat() = visuals.flag(NPC_FORCE_CHAT_MASK)
+
+fun Player.getForceChat() = visuals.getOrPut(PLAYER_FORCE_CHAT_MASK) { ForceChat() }
+
+fun NPC.getForceChat() = visuals.getOrPut(NPC_FORCE_CHAT_MASK) { ForceChat() }
+
+fun Player.setForceChat(text: String = "") {
+    getForceChat().text = text
+    flagForceChat()
 }
 
-fun Indexed.getForceChat() = visuals.getOrPut(ForceChat::class) { ForceChat() }
-
-fun Indexed.setForceChat(text: String = "") {
-    val chat = getForceChat()
-    chat.text = text
+fun NPC.setForceChat(text: String = "") {
+    getForceChat().text = text
     flagForceChat()
 }

@@ -3,7 +3,6 @@ package rs.dusk.engine.entity.model.visual
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -17,10 +16,9 @@ internal class VisualsTest {
         // Given
         val visuals = Visuals()
         val visual = mockk<Visual>()
-        val clazz = visual::class as KClass<Visual>
-        visuals.aspects[visual::class] = visual
+        visuals.aspects[1] = visual
         // When
-        val result = visuals.getOrPut(clazz) { mockk() }
+        val result = visuals.getOrPut<Visual>(1) { mockk() }
         // Then
         assertEquals(visual, result)
     }
@@ -30,9 +28,8 @@ internal class VisualsTest {
         // Given
         val visuals = Visuals()
         val visual = mockk<Visual>()
-        val clazz = visual::class as KClass<Visual>
         // When
-        val result = visuals.getOrPut(clazz) { visual }
+        val result = visuals.getOrPut(1) { visual }
         // Then
         assertEquals(visual, result)
     }
@@ -54,7 +51,7 @@ internal class VisualsTest {
         val visuals = Visuals()
         val visual = mockk<Visual>()
         visuals.flag = 0x200
-        visuals.aspects[visual::class] = visual
+        visuals.aspects[0x200] = visual
         // When
         visuals.clear()
         // Then

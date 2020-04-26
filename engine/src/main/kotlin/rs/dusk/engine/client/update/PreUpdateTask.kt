@@ -14,7 +14,6 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.visual.Visual
 import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.Visuals
 import rs.dusk.utility.inject
 import java.util.*
 
@@ -49,35 +48,42 @@ class PreUpdateTask(tasks: EngineTasks) : EngineTask() {
 
     fun update(entity: Indexed, encoders: Array<VisualEncoder<Visual>>, mask: Int) = GlobalScope.async {
         val visuals = entity.visuals
-        if (visuals.flag == 0) {
+        val flag = visuals.flag
+        if (flag == 0) {
             return@async
         }
-        val writer = BufferWriter()
-        writer.writeFlag(visuals, mask)
+        val w = BufferWriter()
+        w.writeFlag(flag, mask)
         encoders.forEach { encoder ->
-            val visual = visuals.aspects[encoder.clazz] ?: return@forEach
-            encoder.encode(writer, visual)
+            if (visuals.flagged(encoder.mask)) {
+                val writer = BufferWriter()
+                val visual = visuals.aspects[encoder.mask] ?: return@forEach
+                encoder.encode(writer, visual)
+                val data = writer.toArray()
+                visuals.encoded[encoder.mask] = data
+                w.writeBytes(data)
+            }
         }
-        visuals.encoded = writer.buffer.array()
+        visuals.update = w.toArray()
     }
 
-    fun Writer.writeFlag(visuals: Visuals, mask: Int) {
-        var dataFlag = visuals.flag
+    fun Writer.writeFlag(dataFlag: Int, mask: Int) {
+        var flag = dataFlag
 
-        if (dataFlag >= 0x100) {
-            dataFlag = dataFlag or 0x80
+        if (flag >= 0x100) {
+            flag = flag or 0x80
         }
-        if (dataFlag >= 0x10000) {
-            dataFlag = dataFlag or mask
+        if (flag >= 0x10000) {
+            flag = flag or mask
         }
 
-        writeByte(dataFlag)
+        writeByte(flag)
 
-        if (dataFlag >= 0x100) {
-            writeByte(dataFlag shr 8)
+        if (flag >= 0x100) {
+            writeByte(flag shr 8)
         }
-        if (dataFlag >= 0x10000) {
-            writeByte(dataFlag shr 16)
+        if (flag >= 0x10000) {
+            writeByte(flag shr 16)
         }
     }
 

@@ -9,9 +9,11 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class MovementSpeed(var running: Boolean = false) : Visual
 
-fun Player.flagMovementSpeed() = visuals.flag(0x1)
+const val MOVEMENT_SPEED_MASK = 0x1
 
-fun Player.getMovementSpeed() = visuals.getOrPut(MovementSpeed::class) { MovementSpeed() }
+fun Player.flagMovementSpeed() = visuals.flag(MOVEMENT_SPEED_MASK)
+
+fun Player.getMovementSpeed() = visuals.getOrPut(MOVEMENT_SPEED_MASK) { MovementSpeed() }
 
 fun Player.setMovementSpeed(running: Boolean) {
     getMovementSpeed().running = running

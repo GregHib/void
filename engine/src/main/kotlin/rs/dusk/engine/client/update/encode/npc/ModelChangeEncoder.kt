@@ -4,13 +4,14 @@ import rs.dusk.core.io.Endian
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.entity.model.visual.VisualEncoder
+import rs.dusk.engine.entity.model.visual.visuals.npc.MODEL_CHANGE_MASK
 import rs.dusk.engine.entity.model.visual.visuals.npc.ModelChange
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class ModelChangeEncoder : VisualEncoder<ModelChange>(ModelChange::class) {
+class ModelChangeEncoder : VisualEncoder<ModelChange>(MODEL_CHANGE_MASK) {
 
     override fun encode(writer: Writer, visual: ModelChange) {
         val (models, colours, textures) = visual

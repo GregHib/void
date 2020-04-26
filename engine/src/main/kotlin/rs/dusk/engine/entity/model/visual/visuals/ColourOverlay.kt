@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -15,20 +14,31 @@ data class ColourOverlay(
     var colour: Int = 0
 ) : Visual
 
-fun Player.flagColourOverlay() = visuals.flag(0x20000)
+const val PLAYER_COLOUR_OVERLAY_MASK = 0x20000
 
-fun NPC.flagColourOverlay() = visuals.flag(0x200)
+const val NPC_COLOUR_OVERLAY_MASK = 0x200
 
-fun Indexed.flagColourOverlay() {
-    if (this is Player) flagColourOverlay() else if (this is NPC) flagColourOverlay()
+fun Player.flagColourOverlay() = visuals.flag(PLAYER_COLOUR_OVERLAY_MASK)
+
+fun NPC.flagColourOverlay() = visuals.flag(NPC_COLOUR_OVERLAY_MASK)
+
+fun Player.getColourOverlay() = visuals.getOrPut(PLAYER_COLOUR_OVERLAY_MASK) { ColourOverlay() }
+
+fun NPC.getColourOverlay() = visuals.getOrPut(NPC_COLOUR_OVERLAY_MASK) { ColourOverlay() }
+
+fun Player.setColourOverlay(delay: Int = 0, duration: Int = 0, colour: Int = 0) {
+    setColourOverlay(getColourOverlay(), delay, duration, colour)
+    flagColourOverlay()
 }
 
-fun Indexed.getColourOverlay() = visuals.getOrPut(ColourOverlay::class) { ColourOverlay() }
+fun NPC.setColourOverlay(delay: Int = 0, duration: Int = 0, colour: Int = 0) {
+    setColourOverlay(getColourOverlay(), delay, duration, colour)
+    flagColourOverlay()
+}
 
-fun Indexed.setColourOverlay(delay: Int = 0, duration: Int = 0, colour: Int = 0) {
-    val overlay = getColourOverlay()
+private fun setColourOverlay(overlay: ColourOverlay, delay: Int, duration: Int, colour: Int) {
     overlay.delay = delay
     overlay.duration = duration
     overlay.colour = colour
-    flagColourOverlay()
 }
+

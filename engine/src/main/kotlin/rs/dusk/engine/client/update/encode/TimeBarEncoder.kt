@@ -10,7 +10,7 @@ import rs.dusk.utility.func.toInt
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class TimeBarEncoder(private val npc: Boolean) : VisualEncoder<TimeBar>(TimeBar::class) {
+class TimeBarEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<TimeBar>(mask) {
 
     override fun encode(writer: Writer, visual: TimeBar) {
         val (full, exponentialDelay, delay, increment) = visual

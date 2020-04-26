@@ -1,7 +1,6 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
 import rs.dusk.engine.entity.model.Hit
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -16,17 +15,25 @@ data class Hits(
     var target: Int = -1
 ) : Visual
 
-fun Player.flagHits() = visuals.flag(0x4)
+const val PLAYER_HITS_MASK = 0x4
 
-fun NPC.flagHits() = visuals.flag(0x40)
+const val NPC_HITS_MASK = 0x40
 
-fun Indexed.flagHits() {
-    if (this is Player) flagHits() else if (this is NPC) flagHits()
+fun Player.flagHits() = visuals.flag(PLAYER_HITS_MASK)
+
+fun NPC.flagHits() = visuals.flag(NPC_HITS_MASK)
+
+fun Player.getHits() = visuals.getOrPut(PLAYER_HITS_MASK) { Hits() }
+
+fun NPC.getHits() = visuals.getOrPut(NPC_HITS_MASK) { Hits() }
+
+fun Player.addHit(hit: Hit) {
+    val hits = getHits()
+    hits.hits.add(hit)
+    flagHits()
 }
 
-fun Indexed.getHits() = visuals.getOrPut(Hits::class) { Hits() }
-
-fun Indexed.addHit(hit: Hit) {
+fun NPC.addHit(hit: Hit) {
     val hits = getHits()
     hits.hits.add(hit)
     flagHits()

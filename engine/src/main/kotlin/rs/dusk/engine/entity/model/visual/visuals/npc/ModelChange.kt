@@ -44,9 +44,11 @@ data class ModelChange(
 
 }
 
-fun NPC.getModelChange() = visuals.getOrPut(ModelChange::class) { ModelChange() }
+const val MODEL_CHANGE_MASK = 0x800
 
-fun NPC.flagModelChange() = visuals.flag(0x800)
+fun NPC.flagModelChange() = visuals.flag(MODEL_CHANGE_MASK)
+
+fun NPC.getModelChange() = visuals.getOrPut(MODEL_CHANGE_MASK) { ModelChange() }
 
 fun NPC.setModelChange(models: IntArray? = null, colours: IntArray? = null, textures: IntArray? = null) {
     val change = getModelChange()

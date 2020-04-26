@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.model.visual.visuals.Animation
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class AnimationEncoder(private val npc: Boolean) : VisualEncoder<Animation>(Animation::class) {
+class AnimationEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Animation>(mask) {
 
     override fun encode(writer: Writer, visual: Animation) {
         val (first, second, third, fourth, speed) = visual

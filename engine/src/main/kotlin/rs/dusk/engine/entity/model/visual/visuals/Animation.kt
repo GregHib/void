@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -17,18 +16,29 @@ data class Animation(
     var speed: Int = 0
 ) : Visual
 
-fun Player.flagAnimation() = visuals.flag(0x40)
+const val PLAYER_ANIMATION_MASK = 0x40
 
-fun NPC.flagAnimation() = visuals.flag(0x10)
+const val NPC_ANIMATION_MASK = 0x10
 
-fun Indexed.flagAnimation() {
-    if (this is Player) flagAnimation() else if (this is NPC) flagAnimation()
+fun Player.flagAnimation() = visuals.flag(PLAYER_ANIMATION_MASK)
+
+fun NPC.flagAnimation() = visuals.flag(NPC_ANIMATION_MASK)
+
+fun Player.getAnimation() = visuals.getOrPut(PLAYER_ANIMATION_MASK) { Animation() }
+
+fun NPC.getAnimation() = visuals.getOrPut(NPC_ANIMATION_MASK) { Animation() }
+
+fun Player.setAnimation(id: Int, speed: Int = 0) {
+    setAnimation(getAnimation(), id, speed)
+    flagAnimation()
 }
 
-fun Indexed.getAnimation() = visuals.getOrPut(Animation::class) { Animation() }
+fun NPC.setAnimation(id: Int, speed: Int = 0) {
+    setAnimation(getAnimation(), id, speed)
+    flagAnimation()
+}
 
-fun Indexed.setAnimation(id: Int, speed: Int) {
-    val anim = Animation()
+private fun setAnimation(anim: Animation, id: Int, speed: Int) {
     when {
         anim.first == -1 -> {
             anim.first = id
@@ -38,5 +48,4 @@ fun Indexed.setAnimation(id: Int, speed: Int) {
         anim.third == -1 -> anim.third = id
         anim.fourth == -1 -> anim.fourth = id
     }
-    flagAnimation()
 }

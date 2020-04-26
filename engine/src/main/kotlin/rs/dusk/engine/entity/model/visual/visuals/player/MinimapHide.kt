@@ -9,4 +9,6 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class MinimapHide(var hidden: Boolean = false) : Visual
 
-fun Player.flagMinimapHide() = visuals.flag(0x400)
+const val MINIMAP_HIDE_MASK = 0x400
+
+fun Player.flagMinimapHide() = visuals.flag(MINIMAP_HIDE_MASK)

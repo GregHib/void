@@ -9,9 +9,11 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual
 
-fun Player.getFace() = visuals.getOrPut(Face::class) { Face() }
+const val FACE_MASK = 0x20
 
-fun Player.flagFace() = visuals.flag(0x20)
+fun Player.flagFace() = visuals.flag(FACE_MASK)
+
+fun Player.getFace() = visuals.getOrPut(FACE_MASK) { Face() }
 
 fun Player.face(deltaX: Int = 0, deltaY: Int = -1) {
     val face = getFace()

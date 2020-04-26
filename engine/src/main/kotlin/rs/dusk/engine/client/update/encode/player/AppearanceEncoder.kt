@@ -1,16 +1,18 @@
 package rs.dusk.engine.client.update.encode.player
 
 import rs.dusk.cache.secure.Encryption.encryptMD5
+import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.entity.model.visual.VisualEncoder
+import rs.dusk.engine.entity.model.visual.visuals.player.APPEARANCE_MASK
 import rs.dusk.engine.entity.model.visual.visuals.player.Appearance
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class AppearanceEncoder : VisualEncoder<Appearance>(Appearance::class) {
+class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
 
     override fun encode(writer: Writer, visual: Appearance) {
         val buffer = BufferWriter()
@@ -80,9 +82,8 @@ class AppearanceEncoder : VisualEncoder<Appearance>(Appearance::class) {
             }
         }
 
-        val data = ByteArray(buffer.position())
-        System.arraycopy(buffer.buffer.array(), 0, data, 0, data.size)
-        val encrypted = encryptMD5(data) ?: return
+        val encrypted = encryptMD5(buffer.toArray()) ?: return
+        writer.writeByte(encrypted.size, Modifier.SUBTRACT)
         writer.writeBytes(encrypted)
     }
 

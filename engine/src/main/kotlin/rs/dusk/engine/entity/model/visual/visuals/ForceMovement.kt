@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -19,28 +18,51 @@ data class ForceMovement(
     var direction: Direction = Direction.NONE
 ) : Visual
 
-fun Player.flagForceMovement() = visuals.flag(0x1000)
+const val PLAYER_FORCE_MOVEMENT_MASK = 0x1000
 
-fun NPC.flagForceMovement() = visuals.flag(0x400)
+const val NPC_FORCE_MOVEMENT_MASK = 0x400
 
-fun Indexed.flagForceMovement() {
-    if (this is Player) flagForceMovement() else if (this is NPC) flagForceMovement()
-}
+fun Player.flagForceMovement() = visuals.flag(PLAYER_FORCE_MOVEMENT_MASK)
 
-fun Indexed.getForceMovement() = visuals.getOrPut(ForceMovement::class) { ForceMovement() }
+fun NPC.flagForceMovement() = visuals.flag(NPC_FORCE_MOVEMENT_MASK)
 
-fun Indexed.setForceMovement(
+fun Player.getForceMovement() = visuals.getOrPut(PLAYER_FORCE_MOVEMENT_MASK) { ForceMovement() }
+
+fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMovement() }
+
+fun Player.setForceMovement(
     tile1: Tile,
     delay1: Int = 0,
     tile2: Tile = Tile(0),
     delay2: Int = 0,
     direction: Direction = Direction.NONE
 ) {
-    val move = getForceMovement()
+    setForceMovement(getForceMovement(), tile1, delay1, tile2, delay2, direction)
+    flagForceMovement()
+}
+
+fun NPC.setForceMovement(
+    tile1: Tile,
+    delay1: Int = 0,
+    tile2: Tile = Tile(0),
+    delay2: Int = 0,
+    direction: Direction = Direction.NONE
+) {
+    setForceMovement(getForceMovement(), tile1, delay1, tile2, delay2, direction)
+    flagForceMovement()
+}
+
+private fun setForceMovement(
+    move: ForceMovement,
+    tile1: Tile,
+    delay1: Int,
+    tile2: Tile,
+    delay2: Int,
+    direction: Direction
+) {
     move.tile1 = tile1
     move.delay1 = delay1
     move.tile2 = tile2
     move.delay2 = delay2
     move.direction = direction
-    flagForceMovement()
 }

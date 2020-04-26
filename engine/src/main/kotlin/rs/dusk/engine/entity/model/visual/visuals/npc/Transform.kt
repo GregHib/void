@@ -12,9 +12,11 @@ data class Transform(
     var id: Int = -1
 ) : Visual
 
-fun NPC.flagTransform() = visuals.flag(0x20)
+const val TRANSFORM_MASK = 0x20
 
-fun NPC.getTransform() = visuals.getOrPut(Transform::class) { Transform() }
+fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
+
+fun NPC.getTransform() = visuals.getOrPut(TRANSFORM_MASK) { Transform() }
 
 fun NPC.setTransform(id: Int = -1) {
     val transform = getTransform()

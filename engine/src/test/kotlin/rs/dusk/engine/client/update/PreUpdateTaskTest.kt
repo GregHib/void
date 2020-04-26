@@ -23,7 +23,6 @@ import rs.dusk.engine.entity.model.visual.Visuals
 import rs.dusk.engine.model.Chunk
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
-import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
@@ -105,10 +104,8 @@ internal class PreUpdateTaskTest : KoinMock() {
         val visuals: Visuals = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         val visual: Visual = mockk(relaxed = true)
-        val clazz = visual::class as KClass<Visual>
         every { player.visuals } returns visuals
         every { visuals.aspects[any()] } returns visual
-        every { playerEncoder.clazz } returns clazz
         players.add(Chunk(0, 0), player)
         every { visuals.flag } returns 0x100
         // When
@@ -126,12 +123,10 @@ internal class PreUpdateTaskTest : KoinMock() {
     fun `Write small flag`() {
         // Given
         val updateTask: PreUpdateTask = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        every { visuals.flag } returns 0x10
         val writer = BufferWriter()
         // When
         with(updateTask) {
-            writer.writeFlag(visuals, 0x800)
+            writer.writeFlag(0x10, 0x800)
         }
         // Then
         val reader = BufferReader(writer.buffer.array())
@@ -142,12 +137,10 @@ internal class PreUpdateTaskTest : KoinMock() {
     fun `Write medium flag`() {
         // Given
         val updateTask: PreUpdateTask = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        every { visuals.flag } returns 0x100
         val writer = BufferWriter()
         // When
         with(updateTask) {
-            writer.writeFlag(visuals, 0x800)
+            writer.writeFlag(0x100, 0x800)
         }
         // Then
         val reader = BufferReader(writer.buffer.array())
@@ -159,12 +152,10 @@ internal class PreUpdateTaskTest : KoinMock() {
     fun `Write large flag`() {
         // Given
         val updateTask: PreUpdateTask = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        every { visuals.flag } returns 0x10000
         val writer = BufferWriter()
         // When
         with(updateTask) {
-            writer.writeFlag(visuals, 0x800)
+            writer.writeFlag(0x10000, 0x800)
         }
         // Then
         val reader = BufferReader(writer.buffer.array())

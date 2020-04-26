@@ -90,9 +90,11 @@ data class Appearance(
     }
 }
 
-fun Player.getAppearance() = visuals.getOrPut(Appearance::class) { Appearance() }
+const val APPEARANCE_MASK = 0x8
 
-fun Player.flagAppearance() = visuals.flag(0x8)
+fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
+
+fun Player.getAppearance() = visuals.getOrPut(APPEARANCE_MASK) { Appearance() }
 
 private fun Player.flag(action: Appearance.() -> Unit) {
     val appearance = getAppearance()

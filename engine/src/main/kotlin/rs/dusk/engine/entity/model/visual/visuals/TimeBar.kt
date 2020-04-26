@@ -1,6 +1,5 @@
 package rs.dusk.engine.entity.model.visual.visuals
 
-import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.Visual
@@ -16,21 +15,31 @@ data class TimeBar(
     var increment: Int = 0
 ) : Visual
 
-fun Player.flagTimeBar() = visuals.flag(0x2000)
+const val PLAYER_TIME_BAR_MASK = 0x2000
 
-fun NPC.flagTimeBar() = visuals.flag(0x100)
+const val NPC_TIME_BAR_MASK = 0x100
 
-fun Indexed.flagTimeBar() {
-    if (this is Player) flagTimeBar() else if (this is NPC) flagTimeBar()
+fun Player.flagTimeBar() = visuals.flag(PLAYER_TIME_BAR_MASK)
+
+fun NPC.flagTimeBar() = visuals.flag(NPC_TIME_BAR_MASK)
+
+fun Player.getTimeBar() = visuals.getOrPut(PLAYER_TIME_BAR_MASK) { TimeBar() }
+
+fun NPC.getTimeBar() = visuals.getOrPut(NPC_TIME_BAR_MASK) { TimeBar() }
+
+fun Player.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
+    setTimeBar(getTimeBar(), full, exponentialDelay, delay, increment)
+    flagTimeBar()
 }
 
-fun Indexed.getTimeBar() = visuals.getOrPut(TimeBar::class) { TimeBar() }
+fun NPC.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
+    setTimeBar(getTimeBar(), full, exponentialDelay, delay, increment)
+    flagTimeBar()
+}
 
-fun Indexed.setTimeBar(full: Boolean = false, exponentialDelay: Int = 0, delay: Int = 0, increment: Int = 0) {
-    val bar = getTimeBar()
+private fun setTimeBar(bar: TimeBar, full: Boolean, exponentialDelay: Int, delay: Int, increment: Int) {
     bar.full = full
     bar.exponentialDelay = exponentialDelay
     bar.delay = delay
     bar.increment = increment
-    flagTimeBar()
 }

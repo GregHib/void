@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.model.visual.visuals.ForceMovement
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class ForceMovementEncoder(private val npc: Boolean) : VisualEncoder<ForceMovement>(ForceMovement::class) {
+class ForceMovementEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<ForceMovement>(mask) {
 
     override fun encode(writer: Writer, visual: ForceMovement) {
         val (tile1, delay1, tile2, delay2, direction) = visual

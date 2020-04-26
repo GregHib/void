@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.model.visual.visuals.Hits
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class HitsEncoder(private val npc: Boolean) : VisualEncoder<Hits>(Hits::class) {
+class HitsEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Hits>(mask) {
 
     override fun encode(writer: Writer, visual: Hits) {
         val (damage, player, other) = visual

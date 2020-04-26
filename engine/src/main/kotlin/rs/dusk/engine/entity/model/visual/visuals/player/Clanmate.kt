@@ -9,9 +9,11 @@ import rs.dusk.engine.entity.model.visual.Visual
  */
 data class Clanmate(var clanmate: Boolean = false) : Visual
 
-fun Player.getClanmate() = visuals.getOrPut(Clanmate::class) { Clanmate() }
+const val CLANMATE_MASK = 0x100000
 
-fun Player.flagClanmate() = visuals.flag(0x100000)
+fun Player.flagClanmate() = visuals.flag(CLANMATE_MASK)
+
+fun Player.getClanmate() = visuals.getOrPut(CLANMATE_MASK) { Clanmate() }
 
 fun Player.setClanmate(clanmate: Boolean = false) {
     val mate = getClanmate()
