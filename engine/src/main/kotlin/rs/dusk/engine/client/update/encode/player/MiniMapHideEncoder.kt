@@ -12,7 +12,7 @@ import rs.dusk.engine.entity.model.visual.visuals.player.MiniMapHide
 class MiniMapHideEncoder : VisualEncoder<MiniMapHide>(MiniMapHide::class) {
 
     override fun encode(writer: Writer, visual: MiniMapHide) {
-        writer.writeByte(visual.hide, Modifier.SUBTRACT)
+        writer.writeByte(visual.hidden, Modifier.SUBTRACT)
     }
 
 }

@@ -8,5 +8,10 @@ import rs.dusk.engine.model.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class ForceMovement(val tile1: Tile, val delay1: Int, val tile2: Tile, val delay2: Int, val direction: Direction) :
-    Visual
+data class ForceMovement(
+    var tile1: Tile,
+    var delay1: Int = 0,
+    var tile2: Tile? = null,
+    var delay2: Int = 0,
+    var direction: Direction = Direction.NONE
+) : Visual

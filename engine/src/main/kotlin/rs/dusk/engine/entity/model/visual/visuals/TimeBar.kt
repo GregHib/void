@@ -7,8 +7,8 @@ import rs.dusk.engine.entity.model.visual.Visual
  * @since April 25, 2020
  */
 data class TimeBar(
-    val full: Boolean = false,
-    val exponentialDelay: Int = 0,
-    val delay: Int = 0,
-    val increment: Int = 0
+    var full: Boolean = false,
+    var exponentialDelay: Int = 0,
+    var delay: Int = 0,
+    var increment: Int = 0
 ) : Visual
