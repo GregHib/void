@@ -12,12 +12,13 @@ data class Visuals(
     var encoded: ByteArray? = null
 ) {
 
-    fun <V : Visual> add(mask: Int, clazz: KClass<V>, visual: V) {
-        flag = flag or mask
-        aspects[clazz] = visual
+    inline fun <reified T : Visual> getOrPut(clazz: KClass<T>, put: () -> T): T {
+        return aspects.getOrPut(clazz, put) as T
     }
 
-    inline fun <reified V : Visual> add(mask: Int, visual: V) = add(mask, V::class, visual)
+    fun flag(mask: Int) {
+        flag = flag or mask
+    }
 
     fun clear() {
         flag = 0

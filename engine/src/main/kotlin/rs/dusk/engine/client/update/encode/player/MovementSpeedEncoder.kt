@@ -12,7 +12,7 @@ import rs.dusk.engine.entity.model.visual.visuals.player.MovementSpeed
 class MovementSpeedEncoder : VisualEncoder<MovementSpeed>(MovementSpeed::class) {
 
     override fun encode(writer: Writer, visual: MovementSpeed) {
-        writer.writeByte(visual.value, Modifier.SUBTRACT)
+        writer.writeByte(visual.running, Modifier.SUBTRACT)
     }
 
 }

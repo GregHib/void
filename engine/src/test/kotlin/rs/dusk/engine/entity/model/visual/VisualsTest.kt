@@ -3,23 +3,49 @@ package rs.dusk.engine.entity.model.visual
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import kotlin.reflect.KClass
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 26, 2020
  */
+@Suppress("UNCHECKED_CAST")
 internal class VisualsTest {
 
     @Test
-    fun `Add appends to flag`() {
+    fun `Get visual aspect`() {
+        // Given
+        val visuals = Visuals()
+        val visual = mockk<Visual>()
+        val clazz = visual::class as KClass<Visual>
+        visuals.aspects[visual::class] = visual
+        // When
+        val result = visuals.getOrPut(clazz) { mockk() }
+        // Then
+        assertEquals(visual, result)
+    }
+
+    @Test
+    fun `Put visual aspect`() {
+        // Given
+        val visuals = Visuals()
+        val visual = mockk<Visual>()
+        val clazz = visual::class as KClass<Visual>
+        // When
+        val result = visuals.getOrPut(clazz) { visual }
+        // Then
+        assertEquals(visual, result)
+    }
+
+    @Test
+    fun `Dirty flag`() {
         // Given
         val visuals = Visuals()
         val visual = mockk<Visual>()
         // When
-        visuals.add(0x100, visual)
+        visuals.flag(0x100)
         // Then
         assertEquals(0x100, visuals.flag)
-        assert(visuals.aspects.containsValue(visual))
     }
 
     @Test

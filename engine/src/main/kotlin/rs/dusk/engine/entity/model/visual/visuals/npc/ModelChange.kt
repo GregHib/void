@@ -1,13 +1,17 @@
 package rs.dusk.engine.entity.model.visual.visuals.npc
 
+import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.visual.Visual
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class ModelChange(var models: IntArray? = null, var colours: IntArray? = null, var textures: IntArray? = null) :
-    Visual {
+data class ModelChange(
+    var models: IntArray? = null,
+    var colours: IntArray? = null,
+    var textures: IntArray? = null
+) : Visual {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -38,4 +42,16 @@ data class ModelChange(var models: IntArray? = null, var colours: IntArray? = nu
         return result
     }
 
+}
+
+fun NPC.getModelChange() = visuals.getOrPut(ModelChange::class) { ModelChange() }
+
+fun NPC.flagModelChange() = visuals.flag(0x800)
+
+fun NPC.setModelChange(models: IntArray? = null, colours: IntArray? = null, textures: IntArray? = null) {
+    val change = getModelChange()
+    change.models = models
+    change.colours = colours
+    change.textures = textures
+    flagModelChange()
 }
