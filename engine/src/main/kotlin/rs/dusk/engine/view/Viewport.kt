@@ -27,8 +27,24 @@ import java.util.*
 @Suppress("ArrayInDataClass")
 data class Viewport(
     val players: TrackingSet<Player> = TrackingSet(LOCAL_PLAYER_CAP),
-    val npcs: TrackingSet<NPC> = TrackingSet(LOCAL_NPC_CAP)
-)
+    val npcs: TrackingSet<NPC> = TrackingSet(LOCAL_NPC_CAP),
+    val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
+) {
+
+    fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
+
+    fun isIdle(index: Int) = idlePlayers[index] and 0x1 != 0
+
+    fun setIdle(index: Int) {
+        idlePlayers[index] = idlePlayers[index] or 2
+    }
+
+    fun shift() {
+        for (index in idlePlayers.indices) {
+            idlePlayers[index] = idlePlayers[index] shr 1
+        }
+    }
+}
 
 val viewportModule = module {
     single(createdAtStart = true) { ViewportTask(get()) }
