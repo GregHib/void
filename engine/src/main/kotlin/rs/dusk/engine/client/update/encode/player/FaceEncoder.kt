@@ -2,7 +2,7 @@ package rs.dusk.engine.client.update.encode.player
 
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.visuals.player.FACE_MASK
+import rs.dusk.engine.entity.model.visual.visuals.player.FACE_DIRECTION_MASK
 import rs.dusk.engine.entity.model.visual.visuals.player.Face
 import kotlin.math.atan2
 
@@ -10,7 +10,7 @@ import kotlin.math.atan2
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class FaceEncoder : VisualEncoder<Face>(FACE_MASK) {
+class FaceEncoder : VisualEncoder<Face>(FACE_DIRECTION_MASK) {
 
     override fun encode(writer: Writer, visual: Face) {
         writer.writeShort(getFaceDirection(visual.deltaX, visual.deltaY))

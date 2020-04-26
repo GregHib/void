@@ -1,8 +1,6 @@
 package rs.dusk.engine.client.update.encode.player
 
-import rs.dusk.cache.secure.Encryption.encryptMD5
 import rs.dusk.core.io.Modifier
-import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.entity.model.visual.VisualEncoder
 import rs.dusk.engine.entity.model.visual.visuals.player.APPEARANCE_MASK
@@ -15,7 +13,6 @@ import rs.dusk.engine.entity.model.visual.visuals.player.Appearance
 class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
 
     override fun encode(writer: Writer, visual: Appearance) {
-        val buffer = BufferWriter()
         val (male,
             skillLevel,
             size,
@@ -33,18 +30,19 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             displayName,
             combatLevel,
             summoningCombatLevel) = visual
-        buffer.apply {
+        writer.apply {
+            val start = position()
+            writeByte(0)// Save space for size later
             var flag = 0
-            flag = flag or 0x1// Gender
-            flag = flag or 0x2// Display name
+//            flag = flag or 0x1// Gender
+//            flag = flag or 0x2// Display name
             if (skillLevel != -1) {
                 flag = flag or 0x4// Display skill level rather than combat
             }
-            flag = flag or (size shl 3 and 0x7)
+//            flag = flag or (size shl 3 and 0x7)
 //            flag = flag and ((1 and 0xf2) shr 6)// Something about trimming title
             writeByte(flag)
             writeByte(title)
-            writeString(prefix)
             writeByte(skull)
             writeByte(headIcon)
             writeByte(hidden)
@@ -54,9 +52,25 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 writeShort(transform)
                 writeByte(0)
             } else {
-                for (item in 0 until 13) {
-                    writeEmpty()
-                }
+//                for (item in 0 until 15) {
+//                    writeEmpty()
+//                }
+                writeBytes(byteArrayOf(0, 0, 0, 0, 1, 18, 0, 1, 26, 1, 36, 1, 0, 1, 33, 1, 42, 1, 10, 0))
+                /*
+                    Hat    0
+                    Cape   1
+                    Amulet 2
+                    Weapon 3
+                    Chest  4  2
+                    Shield 5
+                    Arms   -  3
+                    Legs   7  5
+                    Hair      0
+                    Braclt 9  4
+                    Feet   10 6
+                    Beard  11 1
+                    Aura   12
+                 */
                 writeShort(0)
             }
             colours.forEach { colour ->
@@ -80,11 +94,11 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 writeShort(0)
                 writeByte(0)
             }
+            val end = position()
+            position(start)
+            writeByte(end - 1, Modifier.SUBTRACT)
+            position(end)
         }
-
-        val encrypted = encryptMD5(buffer.toArray()) ?: return
-        writer.writeByte(encrypted.size, Modifier.SUBTRACT)
-        writer.writeBytes(encrypted)
     }
 
     private fun Writer.writeEmpty() = writeByte(0)

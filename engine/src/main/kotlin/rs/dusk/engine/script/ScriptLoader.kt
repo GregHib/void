@@ -28,6 +28,7 @@ class ScriptLoader(private val scriptModule: String) {
                 .scan().use { scanResult ->
                     for (script in scanResult.allClasses.filter { it.extendsSuperclass("kotlin.script.templates.standard.ScriptTemplateWithArgs") }) {
                         val klass = script.loadClass()
+                        println("Load class $script $klass")
                         klass.constructors.first().newInstance(arguments)
                         scripts++
                     }

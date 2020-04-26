@@ -3,7 +3,9 @@ package rs.dusk.engine.data
 import org.koin.dsl.module
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.Tile.Companion.add
 import rs.dusk.utility.getProperty
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -15,9 +17,10 @@ class PlayerLoader(strategy: StorageStrategy<Player>) : DataLoader<Player>(strat
     private val y = getProperty("homeY", 0)
     private val plane = getProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
+    val counter = AtomicInteger(0)// Temp
 
     override fun load(name: String): Player {
-        return super.load(name) ?: Player(-1, tile)
+        return super.load(name) ?: Player(-1, tile.add(counter.getAndIncrement()))
     }
 }
 

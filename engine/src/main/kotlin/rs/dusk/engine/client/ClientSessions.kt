@@ -45,12 +45,12 @@ class ClientSessions : Sessions() {
     }
 
     override fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T) {
-        val session = get(player) ?: return logger.debug { "Unable to find session for player $player." }
+        val session = get(player) ?: return logger.warn { "Unable to find session for player $player." }
         session.send(message)
     }
 
     override fun <T : Message> send(session: Session, clazz: KClass<T>, message: T) {
-        val player = get(session) ?: return logger.debug { "Unable to find player for session $session." }
+        val player = get(session) ?: return logger.warn { "Unable to find player for session $session." }
         verification.verify(player, clazz, message)
     }
 }

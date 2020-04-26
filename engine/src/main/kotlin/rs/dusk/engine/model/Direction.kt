@@ -59,5 +59,9 @@ enum class Direction(val deltaX: Int, val deltaY: Int, val value: Int) {
         val cardinal = values().filter { it.isCardinal() && it.deltaX != it.deltaY }
         val ordinal = values().filter { it.isDiagonal() }
         val all = values().copyOfRange(0, size - 1)
+
+        fun fromDelta(deltaX: Int, deltaY: Int): Direction? {
+            return all.firstOrNull { it.deltaX == deltaX && it.deltaY == deltaY }
+        }
     }
 }

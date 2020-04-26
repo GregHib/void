@@ -8,7 +8,6 @@ import rs.dusk.engine.entity.model.*
 import rs.dusk.engine.entity.model.visual.visuals.player.face
 import rs.dusk.engine.entity.model.visual.visuals.player.movementSpeed
 import rs.dusk.engine.entity.model.visual.visuals.player.movementType
-import rs.dusk.engine.entity.model.visual.visuals.player.setName
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
 import rs.dusk.utility.inject
@@ -26,7 +25,6 @@ Registered priority 9 then {
             players[entity.tile.chunk] = entity
             players.addAtIndex(entity.index, entity)
             entity.viewport.players.current.add(entity)
-            entity.setName("Greg")
             entity.movementSpeed = false
             entity.movementType = 0
             entity.face()

@@ -7,5 +7,8 @@ import org.koin.dsl.module
  * @since April 25, 2020
  */
 val clientUpdateModule = module {
-    single(createdAtStart = true) { PreUpdateTask(get()) }
+    single(createdAtStart = true) { PostUpdateTask(get()) }
+    single(createdAtStart = true) { PreUpdateEncodingTask(get()) }
+    single(createdAtStart = true) { PreUpdateCalculationTask(get()) }
+    single(createdAtStart = true) { PlayerUpdater(get()) }
 }

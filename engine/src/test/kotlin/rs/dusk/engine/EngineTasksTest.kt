@@ -33,15 +33,15 @@ internal class EngineTasksTest {
     @Test
     fun `Ordered by priority`() {
         // Given
-        val high = object : EngineTask(4) {
+        val high = object : EngineTask(priority = 4) {
             override fun run() {
             }
         }
-        val medium = object : EngineTask(2) {
+        val medium = object : EngineTask(priority = 2) {
             override fun run() {
             }
         }
-        val low = object : EngineTask(1) {
+        val low = object : EngineTask(priority = 1) {
             override fun run() {
             }
         }
@@ -49,9 +49,9 @@ internal class EngineTasksTest {
         tasks.data.add(low)
         // When
         tasks.add(high)
+        tasks.sort()
         // Then
-        assertEquals(high, tasks.poll())
-        assertEquals(medium, tasks.poll())
-        assertEquals(low, tasks.poll())
+        assertEquals(high, tasks.first())
+        assertEquals(low, tasks.last())
     }
 }

@@ -19,7 +19,7 @@ data class Appearance(
     var hidden: Boolean = false,
     var transform: Int = -1,
     val look: IntArray = intArrayOf(0, 10, 18, 26, 33, 36, 42),
-    val colours: IntArray = intArrayOf(0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    val colours: IntArray = IntArray(10),
     var equipment: IntArray = intArrayOf(
         -1,
         -1,

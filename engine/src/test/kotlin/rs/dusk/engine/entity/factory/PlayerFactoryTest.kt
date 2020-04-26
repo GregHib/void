@@ -41,7 +41,7 @@ internal class PlayerFactoryTest : KoinMock() {
         assertNotNull(result)
         verifyOrder {
             loader.load("Test")
-            player.index = 0
+            player.index = 1
             bus.emit<Registered>(any())
         }
     }

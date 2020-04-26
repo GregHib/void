@@ -24,7 +24,7 @@ internal class IndexAllocatorTest {
         val value = allocator.obtain()
         // Then
         assertNotNull(value)
-        assertEquals(0, value)
+        assertEquals(1, value)
     }
 
     @Test

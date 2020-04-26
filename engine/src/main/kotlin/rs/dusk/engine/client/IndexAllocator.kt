@@ -7,7 +7,7 @@ import java.util.*
  * @since March 31, 2020
  */
 class IndexAllocator(private val max: Int) {
-    var cap = 0
+    var cap = 1
     val free: Deque<Int> = LinkedList()
 
     fun release(index: Int) {

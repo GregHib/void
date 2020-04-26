@@ -11,6 +11,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_PLAYERS
+import rs.dusk.engine.entity.model.visual.visuals.player.setName
 import rs.dusk.engine.event.EventBus
 import rs.dusk.utility.inject
 
@@ -41,6 +42,7 @@ class PlayerFactory {
             sessions.register(session, player)
         }
         logger.info { "Player save loaded $name ${player.index}." }
+        player.setName(name)
         bus.emit(Registered(player))
         player
     }

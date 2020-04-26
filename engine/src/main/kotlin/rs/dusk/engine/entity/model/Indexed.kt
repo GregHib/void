@@ -9,4 +9,6 @@ import rs.dusk.engine.entity.model.visual.Visuals
 interface Indexed {
     val index: Int
     val visuals: Visuals
+    val movement: Movement
+    val changes: Changes
 }

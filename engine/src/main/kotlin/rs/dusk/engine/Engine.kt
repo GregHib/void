@@ -30,6 +30,7 @@ class Engine {
 
     fun start() {
         val tasks: EngineTasks = get()
+        tasks.sort()
         val tick = Tick(tasks)
         executor.scheduleAtFixedRate(tick, ENGINE_DELAY, ENGINE_DELAY, TimeUnit.MILLISECONDS)
     }

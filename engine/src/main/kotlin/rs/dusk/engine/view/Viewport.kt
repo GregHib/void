@@ -1,12 +1,10 @@
 package rs.dusk.engine.view
 
-import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
-import rs.dusk.engine.EngineTask
 import rs.dusk.engine.EngineTasks
+import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
@@ -18,7 +16,6 @@ import rs.dusk.engine.model.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP
 import rs.dusk.utility.inject
-import java.util.*
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -50,24 +47,17 @@ val viewportModule = module {
     single(createdAtStart = true) { ViewportTask(get()) }
 }
 
-class ViewportTask(tasks: EngineTasks) : EngineTask() {
+class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
 
-    val set: Deque<Deferred<Unit>> = LinkedList()
     val players: Players by inject()
     val npcs: NPCs by inject()
 
-    init {
-        tasks.add(this)
-    }
-
-    override fun run() = runBlocking {
+    override fun run() {
         players.forEach { player ->
-            set.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP))
-            set.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP))
+            defers.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP))
+            defers.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP))
         }
-        while (set.isNotEmpty()) {
-            set.poll().await()
-        }
+        super.run()
     }
 
     companion object {

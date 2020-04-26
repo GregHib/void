@@ -13,6 +13,7 @@ import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
+import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.model.visual.visualUpdatingModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
@@ -20,6 +21,7 @@ import rs.dusk.engine.map.location.xteaModule
 import rs.dusk.engine.map.loginTestModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
+import rs.dusk.engine.view.viewportModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.utility.get
@@ -51,6 +53,7 @@ object Dusk : Runnable {
                 fileLoaderModule,
                 ymlPlayerModule/*, sqlPlayerModule*/,
                 entityFactoryModule,
+                entityListModule,
                 scriptModule,
                 clientSessionModule,
                 clientVerificationModule,
@@ -59,7 +62,8 @@ object Dusk : Runnable {
                 xteaModule,
                 engineModule,
                 visualUpdatingModule,
-                clientUpdateModule
+                clientUpdateModule,
+                viewportModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

@@ -14,7 +14,6 @@ import rs.dusk.network.rs.codec.game.decode.message.PingMessage
 class PingMessageDecoder : GameMessageDecoder<PingMessage>() {
 
     override fun decode(packet: PacketReader): PingMessage {
-        println("Ping")
         return PingMessage
     }
 
