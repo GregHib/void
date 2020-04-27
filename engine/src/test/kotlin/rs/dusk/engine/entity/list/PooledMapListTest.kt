@@ -26,6 +26,7 @@ internal class PooledMapListTest {
         list = object : PooledMapList<Entity> {
             override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity>> = Int2ObjectOpenHashMap()
             override val pool: LinkedList<ObjectLinkedOpenHashSet<Entity>> = LinkedList()
+            override val indexed: Array<Entity?> = arrayOfNulls(10)
         }
         entity = mockk()
         val tile = Tile(10, 20, 1)

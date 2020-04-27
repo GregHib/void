@@ -13,8 +13,15 @@ import java.util.*
  */
 interface PooledMapList<T : Entity> : EntityList<T> {
 
+    val indexed: Array<T?>
     val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>
     val pool: LinkedList<ObjectLinkedOpenHashSet<T>>
+
+    fun getAtIndex(index: Int): T? = indexed[index]
+
+    fun addAtIndex(index: Int, entity: T) {
+        indexed[index] = entity
+    }
 
     override operator fun get(hash: Int): Set<T>? = data.get(hash)
 
@@ -51,9 +58,9 @@ interface PooledMapList<T : Entity> : EntityList<T> {
 
     operator fun set(chunk: Chunk, entity: T) = add(chunk, entity)
 
-    override fun forEach(action: (T) -> Unit) = data.forEach { (hash, set) ->
-        if (hash and PLANE_OFFSET != 0) {// Assume chunks are faster to iterate and contain everything tiles do
-            set.forEach(action)
+    override fun forEach(action: (T) -> Unit) = indexed.forEach {
+        if (it != null) {
+            action(it)
         }
     }
 
