@@ -15,7 +15,9 @@ fun Player.flagMovementSpeed() = visuals.flag(MOVEMENT_SPEED_MASK)
 
 fun Player.getMovementSpeed() = visuals.getOrPut(MOVEMENT_SPEED_MASK) { MovementSpeed() }
 
-fun Player.setMovementSpeed(running: Boolean) {
-    getMovementSpeed().running = running
-    flagMovementSpeed()
-}
+var Player.movementSpeed: Boolean
+    get() = getMovementSpeed().running
+    set(value) {
+        getMovementSpeed().running = value
+        flagMovementSpeed()
+    }

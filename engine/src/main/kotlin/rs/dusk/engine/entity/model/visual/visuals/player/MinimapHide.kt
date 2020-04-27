@@ -12,3 +12,12 @@ data class MinimapHide(var hidden: Boolean = false) : Visual
 const val MINIMAP_HIDE_MASK = 0x400
 
 fun Player.flagMinimapHide() = visuals.flag(MINIMAP_HIDE_MASK)
+
+fun Player.getMinimapHide() = visuals.getOrPut(MINIMAP_HIDE_MASK) { MinimapHide() }
+
+var Player.minimapHidden: Boolean
+    get() = getMinimapHide().hidden
+    set(value) {
+        getMinimapHide().hidden = value
+        flagMinimapHide()
+    }

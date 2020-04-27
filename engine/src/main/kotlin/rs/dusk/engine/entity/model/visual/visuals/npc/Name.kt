@@ -15,8 +15,9 @@ fun NPC.flagName() = visuals.flag(NAME_MASK)
 
 fun NPC.getName() = visuals.getOrPut(NAME_MASK) { Name() }
 
-fun NPC.setName(name: String = "") {
-    val n = getName()
-    n.name = name
-    flagName()
-}
+var NPC.name: String
+    get() = getName().name
+    set(value) {
+        getName().name = value
+        flagName()
+    }

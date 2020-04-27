@@ -15,8 +15,9 @@ fun NPC.flagCombatLevel() = visuals.flag(COMBAT_LEVEL_MASK)
 
 fun NPC.getCombatLevel() = visuals.getOrPut(COMBAT_LEVEL_MASK) { CombatLevel() }
 
-fun NPC.setCombatLevel(level: Int) {
-    val combat = getCombatLevel()
-    combat.level = level
-    flagCombatLevel()
-}
+var NPC.combatLevel: Int
+    get() = getCombatLevel().level
+    set(value) {
+        getCombatLevel().level = value
+        flagCombatLevel()
+    }

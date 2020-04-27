@@ -22,12 +22,16 @@ fun Player.getForceChat() = visuals.getOrPut(PLAYER_FORCE_CHAT_MASK) { ForceChat
 
 fun NPC.getForceChat() = visuals.getOrPut(NPC_FORCE_CHAT_MASK) { ForceChat() }
 
-fun Player.setForceChat(text: String = "") {
-    getForceChat().text = text
-    flagForceChat()
-}
+var Player.forceChat: String
+    get() = getForceChat().text
+    set(value) {
+        getForceChat().text = value
+        flagForceChat()
+    }
 
-fun NPC.setForceChat(text: String = "") {
-    getForceChat().text = text
-    flagForceChat()
-}
+var NPC.forceChat: String
+    get() = getForceChat().text
+    set(value) {
+        getForceChat().text = value
+        flagForceChat()
+    }

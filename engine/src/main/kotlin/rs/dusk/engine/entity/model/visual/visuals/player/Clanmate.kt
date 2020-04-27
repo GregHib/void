@@ -13,10 +13,11 @@ const val CLANMATE_MASK = 0x100000
 
 fun Player.flagClanmate() = visuals.flag(CLANMATE_MASK)
 
-fun Player.getClanmate() = visuals.getOrPut(CLANMATE_MASK) { Clanmate() }
+private fun Player.getClanmate() = visuals.getOrPut(CLANMATE_MASK) { Clanmate() }
 
-fun Player.setClanmate(clanmate: Boolean = false) {
-    val mate = getClanmate()
-    mate.clanmate = clanmate
-    flagClanmate()
-}
+var Player.clanmate: Boolean
+    get() = getClanmate().clanmate
+    set(value) {
+        getClanmate().clanmate = value
+        flagClanmate()
+    }

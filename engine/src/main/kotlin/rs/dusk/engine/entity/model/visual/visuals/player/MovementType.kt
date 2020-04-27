@@ -23,7 +23,9 @@ fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
 
 fun Player.getMovementType() = visuals.getOrPut(MOVEMENT_TYPE_MASK) { MovementType() }
 
-fun Player.setMovementType(type: Int) {
-    getMovementType().type = type
-    flagMovementType()
-}
+var Player.movementType: Int
+    get() = getMovementType().type
+    set(value) {
+        getMovementType().type = value
+        flagMovementType()
+    }
