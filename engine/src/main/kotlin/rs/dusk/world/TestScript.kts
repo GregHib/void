@@ -1,4 +1,4 @@
-package rs.dusk.script
+package rs.dusk.world
 
 import rs.dusk.cache.Cache
 import rs.dusk.utility.inject

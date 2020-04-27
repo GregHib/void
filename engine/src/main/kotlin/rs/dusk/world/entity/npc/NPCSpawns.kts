@@ -1,4 +1,4 @@
-package rs.dusk.game.entity.npc
+package rs.dusk.world.entity.npc
 
 import rs.dusk.engine.Startup
 import rs.dusk.engine.data.file.FileLoader
