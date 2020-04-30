@@ -24,10 +24,19 @@ abstract class Sessions {
     abstract fun deregister(session: Session)
 
     /**
+     * Checks if [session] is linked
+     */
+    abstract fun contains(session: Session): Boolean
+
+    /**
+     * Checks if [player] is linked
+     */
+    abstract fun contains(player: Player): Boolean
+
+    /**
      * Returns player for [session]
      */
     abstract fun get(session: Session): Player?
-
 
     /**
      * Returns session for [player]

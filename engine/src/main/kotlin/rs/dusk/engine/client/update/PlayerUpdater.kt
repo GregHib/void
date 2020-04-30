@@ -7,6 +7,7 @@ import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.player.Players
@@ -33,9 +34,13 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
     val players: Players by inject()
     private val logger = InlineLogger()
 
+    val sessions: Sessions by inject()
+
     override fun run() {
         players.forEach {
-            defers.add(update(it))
+            if (sessions.contains(it)) {
+                defers.add(update(it))
+            }
         }
 
         val took = measureTimeMillis {
@@ -112,7 +117,6 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                         writeBits(12, value)
                     }
                 }
-                println("Write update $index")
                 updates.writeBytes(player.visuals.update ?: continue)
             }
         }
@@ -177,7 +181,6 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 writeBits(6, player.tile.y and 0x3f)
                 writeBits(1, true)
                 viewport.setIdle(index)
-                println("Write $index ${player.visuals.base?.toList()}")
                 updates.writeBytes(player.visuals.base ?: continue)
             }
         }

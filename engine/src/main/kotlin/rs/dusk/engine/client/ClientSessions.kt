@@ -44,6 +44,14 @@ class ClientSessions : Sessions() {
         return players.inverse()[player]
     }
 
+    override fun contains(session: Session): Boolean {
+        return players.containsKey(session)
+    }
+
+    override fun contains(player: Player): Boolean {
+        return players.inverse().containsKey(player)
+    }
+
     override fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T) {
         val session = get(player) ?: return logger.warn { "Unable to find session for player $player." }
         session.send(message)
