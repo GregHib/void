@@ -18,7 +18,6 @@ import rs.dusk.engine.entity.model.visual.visualUpdatingModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.map.location.xteaModule
-import rs.dusk.engine.map.loginTestModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.engine.view.viewportModule
@@ -58,7 +57,6 @@ object Dusk : Runnable {
                 clientSessionModule,
                 clientVerificationModule,
                 playerLoaderModule,
-                loginTestModule,
                 xteaModule,
                 engineModule,
                 visualUpdatingModule,
