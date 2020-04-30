@@ -1,6 +1,7 @@
 package rs.dusk.network.rs.codec.game.decode.message
 
 import rs.dusk.core.network.model.message.Message
+import rs.dusk.network.rs.codec.game.MessageCompanion
 
 /**
  * Notification that the player has changed their screen mode and might need a gameframe refresh
@@ -9,4 +10,7 @@ import rs.dusk.core.network.model.message.Message
  * @param height The client window height
  * @param antialiasLevel The client antialias level
  */
-data class ScreenChangeMessage(val displayMode: Int, val width: Int, val height: Int, val antialiasLevel: Int) : Message
+data class ScreenChangeMessage(val displayMode: Int, val width: Int, val height: Int, val antialiasLevel: Int) :
+    Message {
+    companion object : MessageCompanion<ScreenChangeMessage>()
+}

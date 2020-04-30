@@ -13,10 +13,6 @@ import rs.dusk.network.rs.codec.game.decode.message.WorldListRefreshMessage
 @PacketMetaData(opcodes = [REFRESH_WORLDS], length = 4)
 class WorldListRefreshMessageDecoder : GameMessageDecoder<WorldListRefreshMessage>() {
 
-    override fun decode(packet: PacketReader): WorldListRefreshMessage {
-        val crc = packet.readInt()
-        return WorldListRefreshMessage(crc)
-    }
-
+    override fun decode(packet: PacketReader) = WorldListRefreshMessage(packet.readInt())
 
 }
