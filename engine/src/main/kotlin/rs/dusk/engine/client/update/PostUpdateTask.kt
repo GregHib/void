@@ -8,6 +8,7 @@ import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.Tile
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
 
@@ -38,6 +39,7 @@ class PostUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks, -1) {
 
     fun updatePlayer(player: Player) = GlobalScope.async {
         player.viewport.players.update()
+        player.movement.delta = Tile(0)
     }
 
 }

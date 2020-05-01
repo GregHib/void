@@ -11,6 +11,7 @@ data class Tile(val x: Int, val y: Int, val plane: Int = 0) {
     val id by lazy { (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28) }
     val chunk by lazy { Chunk(x / 8, y / 8) }
     val region by lazy { Region(x / 64, y / 64) }
+    val regionPlane by lazy { RegionPlane(x / 64, y / 64, plane) }
 
     companion object {
 

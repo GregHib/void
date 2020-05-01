@@ -17,6 +17,9 @@ interface PooledMapList<T : Entity> : EntityList<T> {
     val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>
     val pool: LinkedList<ObjectLinkedOpenHashSet<T>>
 
+    val count: Int
+        get() = indexed.count { it != null }
+
     fun getAtIndex(index: Int): T? = indexed[index]
 
     fun addAtIndex(index: Int, entity: T) {

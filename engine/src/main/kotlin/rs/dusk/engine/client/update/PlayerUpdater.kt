@@ -21,6 +21,7 @@ import rs.dusk.engine.entity.model.Changes.Companion.TELE
 import rs.dusk.engine.entity.model.Changes.Companion.WALK
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.view.TrackingSet
+import rs.dusk.engine.view.Viewport
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
@@ -31,9 +32,8 @@ import kotlin.system.measureTimeMillis
  */
 class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
 
-    val players: Players by inject()
     private val logger = InlineLogger()
-
+    val players: Players by inject()
     val sessions: Sessions by inject()
 
     override fun run() {
@@ -46,6 +46,7 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         val took = measureTimeMillis {
             super.run()
         }
+
         if (took > 0) {
             logger.info { "Player update took ${took}ms" }
         }
@@ -58,10 +59,10 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         val writer = BufferWriter()
         val updates = BufferWriter()
 
-        writer.processLocals(updates, entities, player, true)
-        writer.processLocals(updates, entities, player, false)
-        writer.processGlobals(updates, entities, player, true)
-        writer.processGlobals(updates, entities, player, false)
+        writer.processLocals(updates, entities, viewport, true)
+        writer.processLocals(updates, entities, viewport, false)
+        writer.processGlobals(updates, entities, viewport, true)
+        writer.processGlobals(updates, entities, viewport, false)
 
         viewport.shift()
 
@@ -71,15 +72,12 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
     fun Writer.processLocals(
         updates: Writer,
         set: TrackingSet<Player>,
-        client: Player,
+        viewport: Viewport,
         active: Boolean
     ) {
-        val viewport = client.viewport
         var skip = -1
-        startBitAccess()
-
         var index: Int
-        var changes: Changes
+        startBitAccess()
         for (player in set.current) {
             index = player.index
 
@@ -87,9 +85,8 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 continue
             }
 
-            changes = player.changes
             val remove = set.remove.contains(player)
-            val updateType = if (remove) 0 else changes.localUpdate
+            val updateType = if (remove) 0 else player.changes.localUpdate
 
             if (updateType == -1) {
                 skip++
@@ -103,13 +100,13 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             }
 
             writeBits(1, true)
-            writeBits(1, updateType == 0 && !remove)
+            writeBits(1, player.visuals.update != null && !remove)
             writeBits(2, updateType)
 
             if (remove) {
-                encodeRegion(changes)
+                encodeRegion(player.changes)
             } else {
-                val value = changes.localValue
+                val value = player.changes.localValue
                 when (updateType) {
                     WALK, RUN -> writeBits(updateType + 2, value)
                     TELE -> {
@@ -131,14 +128,13 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
     fun Writer.processGlobals(
         updates: Writer,
         set: TrackingSet<Player>,
-        client: Player,
+        viewport: Viewport,
         active: Boolean
     ) {
-        val viewport = client.viewport
         var skip = -1
-        startBitAccess()
+        var added = 0
         var player: Player?
-        var changes: Changes
+        startBitAccess()
         for (index in 1 until MAX_PLAYERS) {
 
             if (viewport.isActive(index) == active) {
@@ -157,11 +153,9 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 continue
             }
 
-            changes = player.changes
             val add = set.add.contains(player)
-            val updateType = if (add) 0 else if (changes.regionValue != -1) changes.regionUpdate else -1
 
-            if (updateType == -1) {
+            if (!add) {
                 skip++
                 viewport.setIdle(index)
                 continue
@@ -173,15 +167,21 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             }
 
             writeBits(1, true)
-            writeBits(2, updateType)
+            writeBits(2, 0)
 
             if (add) {
-                encodeRegion(changes)
+                encodeRegion(player.changes)
                 writeBits(6, player.tile.x and 0x3f)
                 writeBits(6, player.tile.y and 0x3f)
                 writeBits(1, true)
                 viewport.setIdle(index)
-                updates.writeBytes(player.visuals.base ?: continue)
+                val update = player.visuals.base
+                if (update != null) {
+                    updates.writeBytes(update)
+                }
+                if (++added > NEW_PLAYERS_CAP) {
+                    break
+                }
             }
         }
         if (skip > -1) {
@@ -221,5 +221,9 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 OTHER_REGION -> writeBits(18, value)
             }
         }
+    }
+
+    companion object {
+        private const val NEW_PLAYERS_CAP = 40
     }
 }

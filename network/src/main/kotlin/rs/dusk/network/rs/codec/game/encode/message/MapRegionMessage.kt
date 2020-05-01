@@ -12,8 +12,9 @@ data class MapRegionMessage(
     val forceReload: Boolean,
     val mapSize: Int,
     val xteas: Array<IntArray>,
-    val positions: IntArray?,
-    val location: Int?
+    val clientIndex: Int? = null,
+    val clientTile: Int? = null,
+    val playerRegions: IntArray? = null
 ) : Message {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
@@ -26,11 +27,12 @@ data class MapRegionMessage(
         if (forceReload != other.forceReload) return false
         if (mapSize != other.mapSize) return false
         if (!xteas.contentDeepEquals(other.xteas)) return false
-        if (positions != null) {
-            if (other.positions == null) return false
-            if (!positions.contentEquals(other.positions)) return false
-        } else if (other.positions != null) return false
-        if (location != other.location) return false
+        if (clientIndex != other.clientIndex) return false
+        if (playerRegions != null) {
+            if (other.playerRegions == null) return false
+            if (!playerRegions.contentEquals(other.playerRegions)) return false
+        } else if (other.playerRegions != null) return false
+        if (clientTile != other.clientTile) return false
 
         return true
     }
@@ -41,8 +43,9 @@ data class MapRegionMessage(
         result = 31 * result + forceReload.hashCode()
         result = 31 * result + mapSize
         result = 31 * result + xteas.contentDeepHashCode()
-        result = 31 * result + (positions?.contentHashCode() ?: 0)
-        result = 31 * result + (location ?: 0)
+        result = 31 * result + (clientIndex ?: 0)
+        result = 31 * result + (playerRegions?.contentHashCode() ?: 0)
+        result = 31 * result + (clientTile ?: 0)
         return result
     }
 

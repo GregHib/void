@@ -5,6 +5,7 @@ import kotlinx.coroutines.async
 import org.koin.dsl.module
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
@@ -51,9 +52,13 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
+    val sessions: Sessions by inject()
 
     override fun run() {
         players.forEach { player ->
+            if (!sessions.contains(player)) {
+                return@forEach
+            }
             defers.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP))
             defers.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP))
         }

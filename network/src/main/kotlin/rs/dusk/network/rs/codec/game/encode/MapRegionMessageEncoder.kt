@@ -15,42 +15,28 @@ import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 class MapRegionMessageEncoder : GameMessageEncoder<MapRegionMessage>() {
 
     override fun encode(builder: PacketWriter, msg: MapRegionMessage) {
-        val (chunkX, chunkY, forceRefresh, mapSize, xteas, positions, location) = msg
+        val (chunkX, chunkY, forceRefresh, mapSize, xteas, clientIndex, clientTile, playerRegions) = msg
         builder.apply {
             writeOpcode(REGION, PacketType.SHORT)
-
-            if (positions != null && location != null) {
+            if (playerRegions != null && clientTile != null && clientIndex != null) {
                 startBitAccess()
-                //Send current player position
-                writeBits(30, location)
-
-                //Update player locations
-                positions.forEach { hash ->
-                    writeBits(18, hash)
+                writeBits(30, clientTile)
+                playerRegions.forEachIndexed { index, region ->
+                    if (index != clientIndex) {
+                        writeBits(18, region)
+                    }
                 }
-
-                //Iterate up to max number of players
-                //Positions doesn't include self & not zero indexed so +2
-                for (i in positions.size + 2 until PLAYERS_LIMIT) {
-                    writeBits(18, 0)
-                }
-
                 finishBitAccess()
             }
-            writeByte(mapSize, Modifier.INVERSE)//Map type
-            writeByte(forceRefresh)//Force next map load refresh
+            writeByte(mapSize, Modifier.INVERSE)
+            writeByte(forceRefresh)
             writeShort(chunkX, order = Endian.LITTLE)
             writeShort(chunkY)
-            //Needed as it is used to calculate number of regions
             xteas.forEach {
                 it.forEach { key ->
                     writeInt(key)
                 }
             }
         }
-    }
-
-    companion object {
-        const val PLAYERS_LIMIT = 2048
     }
 }

@@ -1,5 +1,11 @@
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.verify.verify
+import rs.dusk.engine.entity.event.Deregistered
+import rs.dusk.engine.entity.event.Registered
+import rs.dusk.engine.entity.list.MAX_PLAYERS
+import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.event.then
+import rs.dusk.engine.event.where
 import rs.dusk.engine.map.location.Xtea
 import rs.dusk.engine.map.location.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
@@ -16,9 +22,19 @@ fun forNearbyRegions(chunkX: Int, chunkY: Int, mapHash: Int, action: (Int) -> Un
     }
 }
 
-fun hash30Bit(x: Int, y: Int, plane: Int = 0): Int {
-    return y + (x shl 14) + (plane shl 28)
+val regions = IntArray(MAX_PLAYERS - 1)
+
+Registered where { entity is Player } then {
+    val player = entity as Player
+    regions[player.index - 1] = player.tile.regionPlane.id
 }
+
+Deregistered where { entity is Player } then {
+    val player = entity as Player
+    regions[player.index - 1] = 0
+}
+
+// TODO on region or plane change update positions
 
 GameLoginMessage verify { player ->
     val list = mutableListOf<Xtea>()
@@ -38,8 +54,9 @@ GameLoginMessage verify { player ->
             forceReload = false,
             mapSize = 0,
             xteas = list.toTypedArray(),
-            positions = intArrayOf(player.tile.region.id),
-            location = hash30Bit(player.tile.x, player.tile.y, player.tile.plane)
+            clientIndex = player.index - 1,
+            playerRegions = regions,
+            clientTile = player.tile.id
         )
     )
 }

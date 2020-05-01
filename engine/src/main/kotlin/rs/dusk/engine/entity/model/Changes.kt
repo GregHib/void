@@ -5,10 +5,10 @@ package rs.dusk.engine.entity.model
  * @since April 26, 2020
  */
 data class Changes(
-    var localUpdate: Int = -1,
+    var localUpdate: Int = 0,
     var localValue: Int = 0,
-    var regionUpdate: Int = 0,
-    var regionValue: Int = 0
+    var regionUpdate: Int = NONE,
+    var regionValue: Int = -1
 ) {
 
     companion object {

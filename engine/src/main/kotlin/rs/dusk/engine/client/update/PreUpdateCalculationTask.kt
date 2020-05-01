@@ -53,28 +53,29 @@ class PreUpdateCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1
         val delta = movement.delta
         val region = delta.region
 
-        changes.localUpdate = when {
-            region.id == 0 && delta.plane == 0 -> if (player.visuals.update != null) NONE else -1
+        changes.regionUpdate = when {
+            region.id == 0 && delta.plane == 0 -> NONE
             region.id == 0 && delta.plane != 0 -> HEIGHT
             region.x == -1 || region.y == -1 || region.x == 1 || region.y == 1 -> LOCAL_REGION
             else -> OTHER_REGION
         }
 
-        changes.localValue = when (changes.localUpdate) {
+        changes.regionValue = when (changes.regionUpdate) {
             HEIGHT -> delta.plane
             LOCAL_REGION -> (delta.plane shl 3) or (getDirection(region.x, region.y) and 0x7)
             OTHER_REGION -> (region.y and 0xff) or (region.x and 0xff shl 8) or (delta.plane shl 16)
             else -> -1
         }
 
-        changes.regionUpdate = when {
+        changes.localUpdate = when {
             movement.direction != -1 && movement.run -> RUN
             movement.direction != -1 && !movement.run -> WALK
             moveType == TELEPORT -> TELE
-            else -> NONE
+            player.visuals.update != null -> NONE
+            else -> -1
         }
 
-        changes.regionValue = when (changes.regionUpdate) {
+        changes.localValue = when (changes.localUpdate) {
             WALK, RUN -> movement.direction
             TELE -> (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
             else -> -1

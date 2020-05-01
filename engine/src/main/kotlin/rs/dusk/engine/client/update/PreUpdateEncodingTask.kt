@@ -52,9 +52,9 @@ class PreUpdateEncodingTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 2) {
         players.forEach { player ->
             defers.add(update(player, playerEncoders, playerMasks, 0x800))
         }
-        npcs.forEach { npc ->
-            defers.add(update(npc, npcEncoders, npcMasks, 0x8000))
-        }
+//        npcs.forEach { npc ->
+//            defers.add(update(npc, npcEncoders, npcMasks, 0x8000))
+//        }
         val took = measureTimeMillis {
             super.run()
         }
@@ -81,7 +81,7 @@ class PreUpdateEncodingTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 2) {
                     return@forEach
                 }
                 // Re-encode flagged aspects
-                val visual = visuals.aspects[encoder.mask] ?: return@forEach
+                val visual = visuals.aspects[encoder.mask] ?: return@forEach// FIXME npc masks can overlap with players
                 val writer = BufferWriter()
                 encoder.encode(writer, visual)
                 val encoded = writer.toArray()
@@ -95,6 +95,15 @@ class PreUpdateEncodingTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 2) {
             // Re-write base
             val updateBase = masks.any { mask -> visuals.flagged(mask) }
             if (updateBase) {
+                masks.forEach {
+                    if (visuals.encoded[it] == null) {
+                        val writer = BufferWriter()
+                        val visual = visuals.aspects[mask]
+                            ?: return@forEach logger.warn { "Unable to find base visual ${mask}." }
+                        encoders.first { en -> en.mask == mask }.encode(writer, visual)
+                        visuals.encoded[it] = writer.toArray()
+                    }
+                }
                 val writer = BufferWriter()
                 writer.writeFlag(masks.sum(), mask)
                 masks.forEach { mask ->
@@ -106,6 +115,7 @@ class PreUpdateEncodingTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 2) {
 
             visuals.flag = 0
         }
+
 
     fun Writer.writeFlag(dataFlag: Int, mask: Int) {
         var flag = dataFlag
