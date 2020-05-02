@@ -26,17 +26,17 @@ fun Player.getColourOverlay() = visuals.getOrPut(PLAYER_COLOUR_OVERLAY_MASK) { C
 
 fun NPC.getColourOverlay() = visuals.getOrPut(NPC_COLOUR_OVERLAY_MASK) { ColourOverlay() }
 
-fun Player.setColourOverlay(delay: Int = 0, duration: Int = 0, colour: Int = 0) {
-    setColourOverlay(getColourOverlay(), delay, duration, colour)
+fun Player.setColourOverlay(colour: Int = 0, delay: Int = 0, duration: Int = 0) {
+    setColourOverlay(getColourOverlay(), colour, delay, duration)
     flagColourOverlay()
 }
 
-fun NPC.setColourOverlay(delay: Int = 0, duration: Int = 0, colour: Int = 0) {
-    setColourOverlay(getColourOverlay(), delay, duration, colour)
+fun NPC.setColourOverlay(colour: Int = 0, delay: Int = 0, duration: Int = 0) {
+    setColourOverlay(getColourOverlay(), colour, delay, duration)
     flagColourOverlay()
 }
 
-private fun setColourOverlay(overlay: ColourOverlay, delay: Int, duration: Int, colour: Int) {
+private fun setColourOverlay(overlay: ColourOverlay, colour: Int, delay: Int, duration: Int) {
     overlay.delay = delay
     overlay.duration = duration
     overlay.colour = colour

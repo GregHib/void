@@ -21,7 +21,7 @@ class ForceMovementEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<
             writeByte(tile2.y, if (npc) Modifier.INVERSE else Modifier.ADD)
             writeShort(delay1, order = if (npc) Endian.BIG else Endian.LITTLE)
             writeShort(delay2, Modifier.ADD, Endian.LITTLE)
-            writeByte(direction.ordinal, if (npc) Modifier.SUBTRACT else Modifier.ADD)
+            writeByte(direction.ordinal / 2, if (npc) Modifier.SUBTRACT else Modifier.ADD)
         }
     }
 

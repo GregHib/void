@@ -22,9 +22,9 @@ fun Player.getWatch() = visuals.getOrPut(PLAYER_WATCH_MASK) { Watch() }
 
 fun NPC.getWatch() = visuals.getOrPut(NPC_WATCH_MASK) { Watch() }
 
-fun NPC.watch(player: Player) = setWatch(player.index or 0x8000)
+fun NPC.watch(player: Player?) = setWatch(if (player == null) -1 else player.index or 0x8000)
 
-fun Player.watch(player: Player) = setWatch(player.index or 0x8000)
+fun Player.watch(player: Player?) = setWatch(if (player == null) -1 else player.index or 0x8000)
 
 fun Player.setWatch(targetIndex: Int = -1) {
     getWatch().index = targetIndex

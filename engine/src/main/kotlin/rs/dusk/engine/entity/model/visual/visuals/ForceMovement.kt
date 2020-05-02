@@ -11,10 +11,10 @@ import rs.dusk.engine.model.Tile
  * @since April 25, 2020
  */
 data class ForceMovement(
-    var tile1: Tile = Tile(0),
-    var delay1: Int = 0,
-    var tile2: Tile = Tile(0),
-    var delay2: Int = 0,
+    var start: Tile = Tile(0),
+    var startDelay: Int = 0,
+    var end: Tile = Tile(0),
+    var endDelay: Int = 0,
     var direction: Direction = Direction.NONE
 ) : Visual
 
@@ -30,39 +30,47 @@ fun Player.getForceMovement() = visuals.getOrPut(PLAYER_FORCE_MOVEMENT_MASK) { F
 
 fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMovement() }
 
+/**
+ * @param endDelta The delta position to move towards
+ * @param endDelay Number of client cycles to take moving
+ * @param startDelta The delta position to start at
+ * @param startDelay Client cycles until starting the movement
+ * @param direction The cardinal direction to face during movement
+ */
 fun Player.setForceMovement(
-    tile1: Tile,
-    delay1: Int = 0,
-    tile2: Tile = Tile(0),
-    delay2: Int = 0,
+    endDelta: Tile = Tile(0),
+    endDelay: Int = 0,
+    startDelta: Tile = Tile(0),
+    startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
-    setForceMovement(getForceMovement(), tile1, delay1, tile2, delay2, direction)
+    setForceMovement(getForceMovement(), startDelta, startDelay, endDelta, endDelay, direction)
     flagForceMovement()
 }
 
 fun NPC.setForceMovement(
-    tile1: Tile,
-    delay1: Int = 0,
-    tile2: Tile = Tile(0),
-    delay2: Int = 0,
+    endDelta: Tile = Tile(0),
+    endDelay: Int = 0,
+    startDelta: Tile = Tile(0),
+    startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
-    setForceMovement(getForceMovement(), tile1, delay1, tile2, delay2, direction)
+    setForceMovement(getForceMovement(), startDelta, startDelay, endDelta, endDelay, direction)
     flagForceMovement()
 }
 
 private fun setForceMovement(
     move: ForceMovement,
-    tile1: Tile,
-    delay1: Int,
-    tile2: Tile,
-    delay2: Int,
+    start: Tile,
+    startDelay: Int,
+    end: Tile,
+    endDelay: Int,
     direction: Direction
 ) {
-    move.tile1 = tile1
-    move.delay1 = delay1
-    move.tile2 = tile2
-    move.delay2 = delay2
+    check(endDelay > startDelay) { "End delay ($endDelay) must be after start delay ($startDelay)." }
+    move.start = start
+    move.startDelay = startDelay
+    move.end = end
+    move.endDelay = endDelay
     move.direction = direction
 }
