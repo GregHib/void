@@ -15,5 +15,25 @@ data class NPC(
     override val changes: Changes = Changes(),
     override val movement: Movement = Movement()
 ) : Entity, Indexed {
+
+    constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {
+        this.index = index
+    }
+
     override var index: Int = -1
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+        other as NPC
+        return index == other.index
+    }
+
+    override fun hashCode(): Int {
+        return index
+    }
+
+    override fun toString(): String {
+        return "NPC(id=$id, index=$index, tile=$tile)"
+    }
 }

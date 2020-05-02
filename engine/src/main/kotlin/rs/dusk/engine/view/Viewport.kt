@@ -24,8 +24,8 @@ import rs.dusk.utility.inject
  */
 @Suppress("ArrayInDataClass")
 data class Viewport(
-    val players: TrackingSet<Player> = TrackingSet(LOCAL_PLAYER_CAP),
-    val npcs: TrackingSet<NPC> = TrackingSet(LOCAL_NPC_CAP),
+    val players: TrackingSet<Player> = EntityTrackingSet(LOCAL_PLAYER_CAP),
+    val npcs: TrackingSet<NPC> = EntityTrackingSet(LOCAL_NPC_CAP),
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
 ) {
 

@@ -221,7 +221,7 @@ internal class ViewportTaskTest : KoinMock() {
     }
 
     fun addToView(viewport: Viewport, npc: NPC): NPC {
-        viewport.npcs.current.add(npc)
+        viewport.npcs.add(npc)
         return npc
     }
 

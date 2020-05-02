@@ -1,6 +1,7 @@
 package rs.dusk.engine.view
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.model.NPC
@@ -11,17 +12,17 @@ import rs.dusk.engine.model.Tile
  * @since April 24, 2020
  */
 internal class TrackingSetTest {
-    lateinit var set: TrackingSet<NPC>
+    lateinit var set: EntityTrackingSet<NPC>
 
     @BeforeEach
     fun setup() {
-        set = TrackingSet(maximum = 10, radius = 15)
+        set = EntityTrackingSet(maximum = 10, radius = 15)
     }
 
     @Test
     fun `Prep removal set`() {
         // Given
-        val npc = NPC(1, Tile(0))
+        val npc = NPC(index = 1)
         set.current.add(npc)
         set.total = 1
         // When
@@ -34,10 +35,10 @@ internal class TrackingSetTest {
     @Test
     fun `Update current sets`() {
         // Given
-        val toAdd = NPC(1, Tile(0))
-        val toRemove = NPC(2, Tile(0))
-        val npc1 = NPC(3, Tile(0))
-        val npc2 = NPC(4, Tile(0))
+        val toAdd = NPC(index = 1)
+        val toRemove = NPC(index = 2)
+        val npc1 = NPC(index = 3)
+        val npc2 = NPC(index = 4)
         set.current.addAll(listOf(npc1, toRemove, npc2))
         set.remove.add(toRemove)
         set.add.add(toAdd)
@@ -48,14 +49,14 @@ internal class TrackingSetTest {
         assert(set.add.isEmpty())
         assert(set.remove.isEmpty())
         assert(set.current.contains(toAdd))
-        assert(!set.current.contains(toRemove))
+        assertFalse(set.current.contains(toRemove))
         assertEquals(3, set.total)
     }
 
     @Test
     fun `Previously unseen entity is added`() {
         // Given
-        val npc = NPC(1, Tile(0))
+        val npc = NPC(index = 1)
         val entities = setOf(npc)
         // When
         set.track(entities)
@@ -66,7 +67,7 @@ internal class TrackingSetTest {
     @Test
     fun `Tracked and seen entity is not removed`() {
         // Given
-        val npc = NPC(1, Tile(0))
+        val npc = NPC(index = 1)
         set.remove.add(npc)
         val entities = setOf(npc)
         // When
@@ -79,7 +80,7 @@ internal class TrackingSetTest {
     @Test
     fun `Track exceeding maximum entities`() {
         // Given
-        val npc = NPC(11, Tile(0))
+        val npc = NPC(index = 11, tile = Tile(0))
         set.total = 10
         val entities = setOf(npc)
         // When
@@ -91,7 +92,7 @@ internal class TrackingSetTest {
     @Test
     fun `Track within view`() {
         // Given
-        val npc = NPC(1, Tile(15, 15, 0))
+        val npc = NPC(index = 1, tile = Tile(15, 15, 0))
         val entities = setOf(npc)
         // When
         set.track(entities, 0, 0)
@@ -102,7 +103,7 @@ internal class TrackingSetTest {
     @Test
     fun `Track outside of view`() {
         // Given
-        val npc = NPC(1, Tile(16, 16, 0))
+        val npc = NPC(index = 1, tile = Tile(16, 16, 0))
         val entities = setOf(npc)
         // When
         set.track(entities, 0, 0)
@@ -113,7 +114,7 @@ internal class TrackingSetTest {
     @Test
     fun `Track within exceeding maximum entities`() {
         // Given
-        val npc = NPC(11, Tile(15, 15, 0))
+        val npc = NPC(index = 11, tile = Tile(15, 15, 0))
         set.total = 10
         val entities = setOf(npc)
         // When
@@ -125,8 +126,8 @@ internal class TrackingSetTest {
     @Test
     fun `Clear all entities`() {
         // Given
-        set.add.add(NPC(0, Tile(0)))
-        set.remove.add(NPC(0, Tile(0)))
+        set.add.add(NPC(index = 0, tile = Tile(0)))
+        set.remove.add(NPC(index = 0, tile = Tile(0)))
         set.total = 2
         // When
         set.clear()

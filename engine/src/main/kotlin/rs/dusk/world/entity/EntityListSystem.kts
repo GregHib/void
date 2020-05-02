@@ -24,7 +24,7 @@ Registered priority 9 then {
             players[entity.tile] = entity
             players[entity.tile.chunk] = entity
             players.addAtIndex(entity.index, entity)
-            entity.viewport.players.current.add(entity)
+            entity.viewport.players.add(entity)
             entity.movement.delta = entity.tile
             entity.movementSpeed = false
             entity.movementType = 0
