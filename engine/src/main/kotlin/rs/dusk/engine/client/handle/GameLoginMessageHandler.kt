@@ -15,6 +15,7 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.factory.PlayerFactory
+import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
@@ -49,7 +50,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 			val player = factory.spawn(msg.username, session).await()
 				?: return@launch logger.warn { "Unable to load player '${msg.username}'." }
 
-			pipeline.writeAndFlush(GameLoginDetails())
+			pipeline.writeAndFlush(GameLoginDetails(2, player.index, player.name))
 
 			with(pipeline) {
 				replace(

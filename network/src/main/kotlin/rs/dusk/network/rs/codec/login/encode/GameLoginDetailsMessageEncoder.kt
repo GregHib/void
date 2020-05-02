@@ -13,19 +13,20 @@ import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 class GameLoginDetailsMessageEncoder : LoginMessageEncoder<GameLoginDetails>() {
 
     override fun encode(builder: PacketWriter, msg: GameLoginDetails) {
+        val (rights, clientIndex, displayName) = msg
         builder.apply {
             writeOpcode(LOGIN_DETAILS, PacketType.BYTE)
-            writeByte(2)//Rights
+            writeByte(rights)
             writeByte(0)//Unknown - something to do with skipping chat messages
             writeByte(0)
             writeByte(0)
             writeByte(0)
             writeByte(0)//Moves chat box position
-            writeShort(1)//Player index
+            writeShort(clientIndex)
             writeByte(true)
             writeMedium(0)
             writeByte(true)
-            writeString("Greg")//Display name
+            writeString(displayName)
         }
     }
 
