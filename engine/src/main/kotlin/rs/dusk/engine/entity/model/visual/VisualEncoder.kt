@@ -31,7 +31,7 @@ val visualUpdatingModule = module {
             HitsEncoder(false, PLAYER_HITS_MASK),
             AppearanceEncoder(),
             ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
-            MinimapHideEncoder(),
+            MinimapHighlightEncoder(),
             MovementSpeedEncoder(),
             WatchEncoder(false, PLAYER_WATCH_MASK),
             ForceMovementEncoder(false, PLAYER_FORCE_MOVEMENT_MASK),
