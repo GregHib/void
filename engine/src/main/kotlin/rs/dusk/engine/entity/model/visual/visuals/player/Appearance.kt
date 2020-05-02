@@ -102,78 +102,116 @@ private fun Player.flag(action: Appearance.() -> Unit) {
     flagAppearance()
 }
 
-fun Player.setGender(male: Boolean = false) = flag {
-    this.male = male
-}
+var Player.male: Boolean
+    get() = getAppearance().male
+    set(value) = flag {
+        male = value
+    }
 
 fun Player.setSkillLevel(level: Int = -1) = flag {
     skillLevel = level
 }
 
-fun Player.setSize(size: Int = 1) = flag {
-    this.size = size
-}
+var Player.size: Int
+    get() = getAppearance().size
+    set(value) = flag {
+        size = value
+    }
 
 fun Player.setTrimTitle(trim: Boolean = false) = flag {
     this.trimTitle = trim
 }
 
-fun Player.setTitle(title: Int = -1) = flag {
-    this.title = title
+var Player.title: Int
+    get() = getAppearance().title
+    set(value) = flag {
+        title = value
+    }
+
+var Player.prefix: String
+    get() = getAppearance().prefix
+    set(value) = flag {
+        prefix = value
+    }
+
+var Player.skull: Int
+    get() = getAppearance().skull
+    set(value) = flag {
+        skull = value
+    }
+
+fun Player.skull() {
+    skull = 1
 }
 
-fun Player.setPrefix(prefix: String = "") = flag {
-    this.prefix = prefix
+fun Player.unskull() {
+    skull = -1
 }
 
-fun Player.setSkull(skull: Int = -1) = flag {
-    this.skull = skull
+var Player.headIcon: Int
+    get() = getAppearance().headIcon
+    set(value) = flag {
+        headIcon = value
+    }
+
+var Player.hidden: Boolean
+    get() = getAppearance().hidden
+    set(value) = flag {
+        hidden = value
+    }
+
+fun Player.hide() {
+    hidden = true
 }
 
-fun Player.skull() = setSkull(1)
-
-fun Player.unskull() = setSkull(-1)
-
-fun Player.setHeadIcon(icon: Int = -1) = flag {
-    this.headIcon = icon
+fun Player.show() {
+    hidden = false
 }
 
-fun Player.setHidden(hidden: Boolean = false) = flag {
-    this.hidden = hidden
-}
-
-fun Player.hide() = setHidden(true)
-
-fun Player.show() = setHidden(false)
-
-fun Player.transform(transform: Int = -1) = flag {
-    this.transform = transform
-}
+var Player.transform: Int
+    get() = getAppearance().transform
+    set(value) = flag {
+        transform = value
+    }
 
 fun Player.setLook(index: Int, look: Int) = flag {
     this.look[index] = look
 }
 
+val Player.looks: IntArray
+    get() = getAppearance().look
+
 fun Player.setColour(index: Int, colour: Int) = flag {
     this.colours[index] = colour
 }
+
+val Player.colours: IntArray
+    get() = getAppearance().colours
 
 fun Player.setEquipment(equipment: IntArray) = flag {
     this.equipment = equipment
 }
 
-fun Player.setEmote(emote: Int = 1426) = flag {
-    this.emote = emote
-}
+var Player.emote: Int
+    get() = getAppearance().emote
+    set(value) = flag {
+        emote = value
+    }
 
-fun Player.setName(displayName: String) = flag {
-    this.displayName = displayName
-}
+var Player.name: String
+    get() = getAppearance().displayName
+    set(value) = flag {
+        displayName = value
+    }
 
-fun Player.setCombatLevel(level: Int = 3) = flag {
-    this.combatLevel = level
-}
+var Player.combatLevel: Int
+    get() = getAppearance().combatLevel
+    set(value) = flag {
+        combatLevel = value
+    }
 
-fun Player.setSummoningCombatLevel(level: Int = 0) = flag {
-    this.summoningCombatLevel = level
-}
+var Player.summoningCombatLevel: Int
+    get() = getAppearance().summoningCombatLevel
+    set(value) = flag {
+        summoningCombatLevel = value
+    }

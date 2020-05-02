@@ -9,6 +9,7 @@ import org.koin.test.mock.declareMock
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.script.KoinMock
@@ -29,6 +30,7 @@ internal class PlayerFactoryTest : KoinMock() {
         // Given
         val factory: PlayerFactory = get()
         val player: Player = mockk(relaxed = true)
+        every { player.name = any() } just Runs
         val loader: PlayerLoader = declareMock {
             every { load("Test") } returns player
         }
@@ -36,12 +38,13 @@ internal class PlayerFactoryTest : KoinMock() {
             every { emit(any<Registered>()) } just Runs
         }
         // When
-        val result = factory.spawn("Test")
+        val result = factory.spawn("Test").await()
         // Then
         assertNotNull(result)
         verifyOrder {
             loader.load("Test")
             player.index = 1
+            player.name = "Test"
             bus.emit<Registered>(any())
         }
     }
