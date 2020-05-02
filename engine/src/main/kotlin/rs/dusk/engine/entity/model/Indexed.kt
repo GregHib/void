@@ -6,9 +6,13 @@ import rs.dusk.engine.entity.model.visual.Visuals
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-interface Indexed {
+interface Indexed : Comparable<Indexed> {
     val index: Int
     val visuals: Visuals
     val movement: Movement
     val changes: Changes
+
+    override fun compareTo(other: Indexed): Int {
+        return index.compareTo(other.index)
+    }
 }

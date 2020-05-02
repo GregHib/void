@@ -2,6 +2,8 @@ package rs.dusk.engine.view
 
 import rs.dusk.engine.entity.model.Entity
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
+import java.util.*
+import kotlin.collections.LinkedHashSet
 import kotlin.math.abs
 
 /**
@@ -14,7 +16,7 @@ class TrackingSet<T : Entity>(
     var total: Int = 0,
     val add: LinkedHashSet<T> = LinkedHashSet(),
     val remove: MutableSet<T> = mutableSetOf(),
-    val current: LinkedHashSet<T> = LinkedHashSet()
+    val current: MutableSet<T> = TreeSet()
 ) {
     /**
      * Moves all entities to the removal list
