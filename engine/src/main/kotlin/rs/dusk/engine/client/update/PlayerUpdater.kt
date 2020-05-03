@@ -59,17 +59,18 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         val writer = BufferWriter()
         val updates = BufferWriter()
 
-        writer.processLocals(updates, entities, viewport, true)
-        writer.processLocals(updates, entities, viewport, false)
-        writer.processGlobals(updates, entities, viewport, true)
-        writer.processGlobals(updates, entities, viewport, false)
+        processLocals(writer, updates, entities, viewport, true)
+        processLocals(writer, updates, entities, viewport, false)
+        processGlobals(writer, updates, entities, viewport, true)
+        processGlobals(writer, updates, entities, viewport, false)
 
         viewport.shift()
 
         player.send(PlayerUpdateMessage(writer.buffer, updates.buffer))
     }
 
-    fun Writer.processLocals(
+    fun processLocals(
+        sync: Writer,
         updates: Writer,
         set: TrackingSet<Player>,
         viewport: Viewport,
@@ -77,7 +78,7 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
     ) {
         var skip = -1
         var index: Int
-        startBitAccess()
+        sync.startBitAccess()
         for (player in set.current) {
             index = player.index
 
@@ -95,23 +96,23 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             }
 
             if (skip > -1) {
-                writeSkip(skip)
+                writeSkip(sync, skip)
                 skip = -1
             }
 
-            writeBits(1, true)
-            writeBits(1, player.visuals.update != null && !remove)
-            writeBits(2, updateType)
+            sync.writeBits(1, true)
+            sync.writeBits(1, player.visuals.update != null && !remove)
+            sync.writeBits(2, updateType)
 
             if (remove) {
-                encodeRegion(player.changes)
+                encodeRegion(sync, player.changes)
             } else {
                 val value = player.changes.localValue
                 when (updateType) {
-                    WALK, RUN -> writeBits(updateType + 2, value)
+                    WALK, RUN -> sync.writeBits(updateType + 2, value)
                     TELE -> {
-                        writeBits(1, false)// Exit teleport support not needed
-                        writeBits(12, value)
+                        sync.writeBits(1, false)// Exit teleport support not needed
+                        sync.writeBits(12, value)
                     }
                 }
                 updates.writeBytes(player.visuals.update ?: continue)
@@ -119,13 +120,14 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         }
 
         if (skip > -1) {
-            writeSkip(skip)
+            writeSkip(sync, skip)
         }
 
-        finishBitAccess()
+        sync.finishBitAccess()
     }
 
-    fun Writer.processGlobals(
+    fun processGlobals(
+        sync: Writer,
         updates: Writer,
         set: TrackingSet<Player>,
         viewport: Viewport,
@@ -134,7 +136,7 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         var skip = -1
         var added = 0
         var player: Player?
-        startBitAccess()
+        sync.startBitAccess()
         for (index in 1 until MAX_PLAYERS) {
 
             if (viewport.isActive(index) == active) {
@@ -143,13 +145,13 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
 
             player = players.getAtIndex(index)
 
-            if (player != null && set.current.contains(player)) {
-                continue
-            }
-
             if (player == null) {
                 skip++
                 viewport.setIdle(index)
+                continue
+            }
+
+            if (set.current.contains(player)) {
                 continue
             }
 
@@ -162,63 +164,63 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             }
 
             if (skip > -1) {
-                writeSkip(skip)
+                writeSkip(sync, skip)
                 skip = -1
             }
 
-            writeBits(1, true)
-            writeBits(2, 0)
+            sync.writeBits(1, true)
+            sync.writeBits(2, 0)
 
             if (add) {
-                encodeRegion(player.changes)
-                writeBits(6, player.tile.x and 0x3f)
-                writeBits(6, player.tile.y and 0x3f)
-                writeBits(1, true)
+                encodeRegion(sync, player.changes)
+                sync.writeBits(6, player.tile.x and 0x3f)
+                sync.writeBits(6, player.tile.y and 0x3f)
+                sync.writeBits(1, true)
                 viewport.setIdle(index)
                 val update = player.visuals.base
                 if (update != null) {
                     updates.writeBytes(update)
                 }
-                if (++added > NEW_PLAYERS_CAP) {
+                if (++added >= NEW_PLAYERS_CAP) {
                     break
                 }
             }
         }
         if (skip > -1) {
-            writeSkip(skip)
+            writeSkip(sync, skip)
         }
-        finishBitAccess()
+        sync.finishBitAccess()
     }
 
-    fun Writer.writeSkip(skip: Int) {
-        writeBits(1, 0)
+    fun writeSkip(sync: Writer, skip: Int) {
+        sync.writeBits(1, 0)
         when {
-            skip == 0 -> writeBits(2, 0)
+            skip == 0 -> sync.writeBits(2, 0)
             skip < 32 -> {
-                writeBits(2, 1)
-                writeBits(5, skip)
+                sync.writeBits(2, 1)
+                sync.writeBits(5, skip)
             }
             skip < 256 -> {
-                writeBits(2, 2)
-                writeBits(8, skip)
+                sync.writeBits(2, 2)
+                sync.writeBits(8, skip)
             }
             skip < 2048 -> {
-                writeBits(2, 3)
-                writeBits(11, skip)
+                sync.writeBits(2, 3)
+                sync.writeBits(11, skip)
             }
         }
     }
 
-    fun Writer.encodeRegion(changes: Changes) {
+    fun encodeRegion(sync: Writer, changes: Changes) {
         val change = changes.regionUpdate
-        writeBits(1, change != NONE)
+        sync.writeBits(1, change != NONE)
         if (change != NONE) {
-            writeBits(2, change)
+            sync.writeBits(2, change)
             val value = changes.regionValue
             when (change) {
-                HEIGHT -> writeBits(2, value)
-                LOCAL_REGION -> writeBits(5, value)
-                OTHER_REGION -> writeBits(18, value)
+                HEIGHT -> sync.writeBits(2, value)
+                LOCAL_REGION -> sync.writeBits(5, value)
+                OTHER_REGION -> sync.writeBits(18, value)
             }
         }
     }
