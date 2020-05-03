@@ -10,7 +10,6 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.npc.NPCs
@@ -43,14 +42,6 @@ internal class PreUpdateEncodingTaskTest : KoinMock() {
 
     override val modules = listOf(engineModule, entityListModule, clientUpdateModule, encoderModule)
 
-    @Test
-    fun `Adds self to task list`() {
-        // Given
-        val tasks: EngineTasks = get()
-        val updateTask: PreUpdateEncodingTask = get()
-        // Then
-        assert(tasks.contains(updateTask))
-    }
 
     @Test
     fun `Run runs all in parallel`() {
