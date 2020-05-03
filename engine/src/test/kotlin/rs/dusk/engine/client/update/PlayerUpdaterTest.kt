@@ -17,10 +17,10 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Changes
+import rs.dusk.engine.entity.model.Changes.Companion.ADJACENT_REGION
+import rs.dusk.engine.entity.model.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.HEIGHT
-import rs.dusk.engine.entity.model.Changes.Companion.LOCAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.NONE
-import rs.dusk.engine.entity.model.Changes.Companion.OTHER_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.RUN
 import rs.dusk.engine.entity.model.Changes.Companion.TELE
 import rs.dusk.engine.entity.model.Changes.Companion.WALK
@@ -459,7 +459,7 @@ internal class PlayerUpdaterTest : KoinMock() {
     }
 
     @TestFactory
-    fun `Encode region`() = intArrayOf(NONE, HEIGHT, LOCAL_REGION, OTHER_REGION).mapIndexed { index, updateType ->
+    fun `Encode region`() = intArrayOf(NONE, HEIGHT, ADJACENT_REGION, GLOBAL_REGION).mapIndexed { index, updateType ->
         dynamicTest("Encode region change $updateType") {
             // Given
             val changes: Changes = mockk(relaxed = true)

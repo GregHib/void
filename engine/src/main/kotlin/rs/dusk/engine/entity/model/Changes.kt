@@ -21,7 +21,7 @@ data class Changes(
 
         // Region
         const val HEIGHT = 1
-        const val LOCAL_REGION = 2
-        const val OTHER_REGION = 3
+        const val ADJACENT_REGION = 2
+        const val GLOBAL_REGION = 3
     }
 }

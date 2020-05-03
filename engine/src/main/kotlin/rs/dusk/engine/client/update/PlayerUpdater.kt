@@ -12,10 +12,10 @@ import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Changes
+import rs.dusk.engine.entity.model.Changes.Companion.ADJACENT_REGION
+import rs.dusk.engine.entity.model.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.HEIGHT
-import rs.dusk.engine.entity.model.Changes.Companion.LOCAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.NONE
-import rs.dusk.engine.entity.model.Changes.Companion.OTHER_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.RUN
 import rs.dusk.engine.entity.model.Changes.Companion.TELE
 import rs.dusk.engine.entity.model.Changes.Companion.WALK
@@ -219,8 +219,8 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             val value = changes.regionValue
             when (change) {
                 HEIGHT -> sync.writeBits(2, value)
-                LOCAL_REGION -> sync.writeBits(5, value)
-                OTHER_REGION -> sync.writeBits(18, value)
+                ADJACENT_REGION -> sync.writeBits(5, value)
+                GLOBAL_REGION -> sync.writeBits(18, value)
             }
         }
     }

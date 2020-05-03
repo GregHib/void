@@ -4,29 +4,13 @@ package rs.dusk.engine.model
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-inline class RegionPlane(val id: Int) {
+data class RegionPlane(val x: Int, val y: Int, val plane: Int) {
 
-    constructor(
-        regionX: Int,
-        regionY: Int,
-        plane: Int
-    ) : this((regionY and 0xff) + ((regionX and 0xff) shl 8) + ((plane and 0x3) shl 16))
+    constructor(id: Int) : this(id shr 8, id and 0xff, id shr 16)
 
-    val x: Int
-        get() = id shr 8
+    val id by lazy { (y and 0xff) + ((x and 0xff) shl 8) + ((plane and 0x3) shl 16) }
+    val region by lazy { Region(x, y) }
+    val chunk by lazy { Chunk(x * 8, y * 8) }
+    val tile by lazy { Tile(x * 64, y * 64, plane) }
 
-    val y: Int
-        get() = id and 0xff
-
-    val plane: Int
-        get() = id shr 16
-
-    val region
-        get() = Region(x, y)
-
-    val chunk
-        get() = Chunk(x * 8, y * 8)
-
-    val tile
-        get() = Tile(x * 64, y * 64, plane)
 }

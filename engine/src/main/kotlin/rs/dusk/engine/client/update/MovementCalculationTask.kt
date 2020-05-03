@@ -5,12 +5,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
-import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.entity.model.Changes.Companion.ADJACENT_REGION
+import rs.dusk.engine.entity.model.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.HEIGHT
-import rs.dusk.engine.entity.model.Changes.Companion.LOCAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.NONE
-import rs.dusk.engine.entity.model.Changes.Companion.OTHER_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.RUN
 import rs.dusk.engine.entity.model.Changes.Companion.TELE
 import rs.dusk.engine.entity.model.Changes.Companion.WALK
@@ -25,19 +24,15 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class PreUpdateCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1) {
+class MovementCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1) {
 
     private val logger = InlineLogger()
     val players: Players by inject()
-    val npcs: NPCs by inject()
 
     override fun run() {
         players.forEach { player ->
             defers.add(updatePlayer(player))
         }
-//        npcs.forEach { npc ->
-//            defers.add(update(npc.changes, npc.movement.delta))
-//        }
         val took = measureTimeMillis {
             super.run()
         }
@@ -56,21 +51,21 @@ class PreUpdateCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1
         changes.regionUpdate = when {
             region.id == 0 && delta.plane == 0 -> NONE
             region.id == 0 && delta.plane != 0 -> HEIGHT
-            region.x == -1 || region.y == -1 || region.x == 1 || region.y == 1 -> LOCAL_REGION
-            else -> OTHER_REGION
+            region.x == -1 || region.y == -1 || region.x == 1 || region.y == 1 -> ADJACENT_REGION
+            else -> GLOBAL_REGION
         }
 
         changes.regionValue = when (changes.regionUpdate) {
             HEIGHT -> delta.plane
-            LOCAL_REGION -> (delta.plane shl 3) or (getDirection(region.x, region.y) and 0x7)
-            OTHER_REGION -> (region.y and 0xff) or (region.x and 0xff shl 8) or (delta.plane shl 16)
+            ADJACENT_REGION -> (delta.plane shl 3) or (getDirection(region.x, region.y) and 0x7)
+            GLOBAL_REGION -> (region.y and 0xff) or (region.x and 0xff shl 8) or (delta.plane shl 16)
             else -> -1
         }
 
         changes.localUpdate = when {
-            movement.direction != -1 && movement.run -> RUN
-            movement.direction != -1 && !movement.run -> WALK
-            moveType == TELEPORT -> TELE
+            delta.id != 0 && movement.direction != -1 && movement.run -> RUN
+            delta.id != 0 && movement.direction != -1 && !movement.run -> WALK
+            delta.id != 0 && moveType == TELEPORT -> TELE
             player.visuals.update != null -> NONE
             else -> -1
         }
