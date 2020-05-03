@@ -214,9 +214,10 @@ internal class ViewportTaskTest : KoinMock() {
     val counter = AtomicInteger(0)
 
     fun addEntity(x: Int, y: Int, plane: Int): NPC {
-//        val npc: NPC = mockk(relaxed = true)// FIXME #46 can't mock tile
+        val npc: NPC = mockk(relaxed = true)
         val tile = Tile(x, y, plane)
-        val npc = NPC(counter.getAndIncrement(), tile)
+        every { npc.index } returns counter.getAndIncrement()
+        every { npc.tile } returns tile
         return npc
     }
 

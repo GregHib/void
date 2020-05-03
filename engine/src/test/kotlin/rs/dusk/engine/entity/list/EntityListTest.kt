@@ -49,7 +49,7 @@ internal class EntityListTest {
         list[10, 20, 1]
         // Then
         verifyOrder {
-//            list[any<Tile>()] FIXME https://github.com/mockk/mockk/issues/152
+            list[any<Tile>()]
             list[hash]
         }
     }
@@ -68,7 +68,7 @@ internal class EntityListTest {
         list.add(10, 20, 1, entity)
         // Then
         verifyOrder {
-//            list.add(any<Tile>(), entity)
+            list.add(any<Tile>(), entity)
             list.add(hash, entity)
         }
     }
@@ -95,7 +95,6 @@ internal class EntityListTest {
         list[10, 20, 1] = entity
         // Then
         verifyOrder {
-//            list[any<Tile>()] = entity
             list.add(hash, entity)
         }
     }
@@ -114,7 +113,7 @@ internal class EntityListTest {
         list.remove(10, 20, 1, entity)
         // Then
         verifyOrder {
-//            list.remove(any<Tile>(), entity)
+            list.remove(any<Tile>(), entity)
             list.remove(hash, entity)
         }
     }
