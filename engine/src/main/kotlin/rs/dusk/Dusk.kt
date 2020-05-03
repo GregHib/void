@@ -16,6 +16,7 @@ import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.map.location.xteaModule
 import rs.dusk.engine.map.loginTestModule
 import rs.dusk.engine.script.scriptModule
+import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.utility.func.PreloadableTask
@@ -40,6 +41,7 @@ object Dusk : PreloadableTask {
         startKoin {
             slf4jLogger()
             modules(
+                codecRepositoryModule,
                 eventBusModule,
                 cacheModule,
                 fileLoaderModule,

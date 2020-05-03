@@ -1,6 +1,6 @@
 package rs.dusk.utility.crypto.cipher
 
-import rs.dusk.core.tools.crypto.IsaacCipher
+import rs.dusk.core.utility.crypto.IsaacCipher
 
 /**
  * @author Tyluur <contact@kiaira.tech>

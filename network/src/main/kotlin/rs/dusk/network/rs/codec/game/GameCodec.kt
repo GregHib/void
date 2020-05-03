@@ -10,7 +10,7 @@ import rs.dusk.core.network.model.message.Message
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-object GameCodec : Codec() {
+class GameCodec : Codec() {
 
     override fun register() {
         bindDecoders<GameMessageDecoder<*>>()

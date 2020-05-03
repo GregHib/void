@@ -11,7 +11,7 @@ import rs.dusk.core.network.model.message.Message
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-object LoginCodec : Codec() {
+class LoginCodec : Codec() {
 
     private val logger = InlineLogger()
 

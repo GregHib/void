@@ -2,11 +2,9 @@ package rs.dusk.network
 
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
-import rs.dusk.core.tools.function.NetworkUtils
-import rs.dusk.network.rs.codec.game.GameCodec
-import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.service.ServiceCodec
-import rs.dusk.network.rs.codec.update.UpdateCodec
+import org.koin.dsl.module
+import rs.dusk.core.network.codec.CodecRepository
+import rs.dusk.utility.inject
 import java.util.concurrent.TimeUnit
 
 /**
@@ -15,16 +13,16 @@ import java.util.concurrent.TimeUnit
  */
 class NetworkRegistry {
 
-    private val logger = InlineLogger()
+	private val logger = InlineLogger()
+	val repository: CodecRepository by inject()
 
-    fun register() {
-        val stopwatch = Stopwatch.createStarted()
-        NetworkUtils.loadCodecs(
-            ServiceCodec,
-            UpdateCodec,
-            LoginCodec,
-            GameCodec
-        )
-        logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }
-    }
+	fun register() {
+		val stopwatch = Stopwatch.createStarted()
+		repository.registerAll()
+		logger.info { "Took ${stopwatch.elapsed(TimeUnit.MILLISECONDS)}ms to prepare all codecs" }
+	}
+}
+
+val codecRepositoryModule = module {
+	single { CodecRepository() }
 }

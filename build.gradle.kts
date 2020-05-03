@@ -1,9 +1,3 @@
-/*
-TODO:
-  1) restructure gradle with build-versions
-  2) remove main/test from src
-  3) ktlint for code cleanup
-*/
 buildscript {
     repositories {
         jcenter()
@@ -41,13 +35,20 @@ allprojects {
 
     dependencies {
         //Main
+        implementation(group = "rs.dusk.core", name = "network", version = "0.1.0")
+        implementation(group = "rs.dusk.core", name = "utility", version = "0.1.0")
+
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
         implementation(group = "com.displee", name = "rs-cache-library", version = "6.3")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.8")
         implementation(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
-        implementation(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.2")
+        implementation(
+            group = "com.michael-bull.kotlin-inline-logger",
+            name = "kotlin-inline-logger-jvm",
+            version = "1.0.2"
+        )
         implementation(group = "org.koin", name = "koin-core", version = koinVersion)
         implementation(group = "org.koin", name = "koin-logger-slf4j", version = koinVersion)
         implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.3.5")
@@ -55,7 +56,6 @@ allprojects {
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")
         implementation("ch.qos.logback:logback-classic:1.2.3")
-        implementation("rs.dusk.core:dusk-shared:0.0.10")
 
         //Utilities
         implementation("com.google.guava:guava:19.0")
