@@ -88,6 +88,7 @@ fun String.plural(count: Int, plural: String = "s"): String {
 }
 
 fun Boolean?.toInt() = if (this == true) 1 else 0
+fun Int?.toBoolean() = this == 1
 
 /**
  * Formats a name for protocol; all lowercase, replaces all spaces with underscores
