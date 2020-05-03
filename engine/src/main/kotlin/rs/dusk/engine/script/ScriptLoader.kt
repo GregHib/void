@@ -11,29 +11,25 @@ import kotlin.system.measureTimeMillis
  * @since March 28, 2020
  */
 val scriptModule = module {
-    single(createdAtStart = true) { ScriptLoader(getProperty("scriptModule")) }
+    single(createdAtStart = true) { loadScripts(getProperty("scriptModule")) }
 }
 
-class ScriptLoader(private val scriptModule: String) {
-
-    private val logger = InlineLogger()
-
-    init {
-        var scripts = 0
-        val time = measureTimeMillis {
-            val arguments = emptyArray<String>()
-            ClassGraph()
-                    .enableClassInfo()
-                    .filterClasspathElements { it.contains(scriptModule) && !it.contains("tmp") }
-                .scan().use { scanResult ->
-                    for (script in scanResult.allClasses.filter { it.extendsSuperclass("kotlin.script.templates.standard.ScriptTemplateWithArgs") }) {
-                        val klass = script.loadClass()
-                        klass.constructors.first().newInstance(arguments)
-                        scripts++
-                    }
+fun loadScripts(scriptModule: String) {
+    val logger = InlineLogger()
+    var scripts = 0
+    val time = measureTimeMillis {
+        val arguments = emptyArray<String>()
+        ClassGraph()
+            .enableClassInfo()
+            .filterClasspathElements { it.contains(scriptModule) && !it.contains("tmp") }
+            .scan().use { scanResult ->
+                for (script in scanResult.allClasses.filter { it.extendsSuperclass("kotlin.script.templates.standard.ScriptTemplateWithArgs") }) {
+                    val klass = script.loadClass()
+                    klass.constructors.first().newInstance(arguments)
+                    scripts++
                 }
-        }
-
-        logger.info { "$scripts $scriptModule ${"script".plural(scripts)} loaded in ${time}ms" }
+            }
     }
+
+    logger.info { "$scripts $scriptModule ${"script".plural(scripts)} loaded in ${time}ms" }
 }

@@ -19,6 +19,11 @@ abstract class EventBus {
     abstract fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>)
 
     /**
+     * Clears all handlers
+     */
+    abstract fun clear()
+
+    /**
      * Returns [EventHandler] with matching [clazz]
      */
     abstract fun <T : Event> get(clazz: KClass<T>): EventHandler<T>?

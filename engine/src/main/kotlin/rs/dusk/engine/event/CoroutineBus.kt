@@ -47,6 +47,10 @@ class CoroutineBus : EventBus() {
         }
     }
 
+    override fun clear() {
+        handlers.clear()
+    }
+
     override fun <T : Event> get(clazz: KClass<T>): EventHandler<T>? {
         return handlers[clazz] as? EventHandler<T>
     }
