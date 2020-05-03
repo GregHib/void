@@ -30,6 +30,18 @@ internal class RegionTest {
         val x = region.x
         val y = region.y
         // Then
+        assertEquals(-10, x)
+        assertEquals(-50, y)
+    }
+
+    @Test
+    fun `Negative values safe`() {
+        // Given
+        val region = Region.createSafe(-10, -50)
+        // When
+        val x = region.x
+        val y = region.y
+        // Then
         assertEquals(246, x)
         assertEquals(206, y)
     }
@@ -50,7 +62,7 @@ internal class RegionTest {
     @Test
     fun `Overflow values`() {
         // Given
-        val region = Region(257, 258)
+        val region = Region.createSafe(257, 258)
         // When
         val x = region.x
         val y = region.y

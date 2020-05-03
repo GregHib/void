@@ -4,19 +4,15 @@ package rs.dusk.engine.model
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-inline class Chunk(val id: Int) {
+data class Chunk(val x: Int, val y: Int) {
 
-    constructor(chunkX: Int, chunkY: Int) : this((chunkY and 0xfff) + ((chunkX and 0xfff) shl 12))
+    constructor(id: Int) : this(id shr 12, id and 0xfff)
 
-    val x: Int
-        get() = id shr 12
+    val id by lazy { (y and 0xfff) + ((x and 0xfff) shl 12) }
+    val region by lazy { Region(x / 8, y / 8) }
+    val tile by lazy { Tile(x * 8, y * 8, 0) }
 
-    val y: Int
-        get() = id and 0xfff
-
-    val region
-        get() = Region(x / 8, y / 8)
-
-    val tile
-        get() = Tile(x * 8, y * 8, 0)
+    companion object {
+        fun createSafe(x: Int, y: Int) = Chunk(x and 0xfff, y and 0xfff)
+    }
 }

@@ -34,6 +34,20 @@ internal class TileTest {
         val y = tile.y
         val plane = tile.plane
         // Then
+        assertEquals(-10, x)
+        assertEquals(-50, y)
+        assertEquals(-2, plane)
+    }
+
+    @Test
+    fun `Negative values safe`() {
+        // Given
+        val tile = Tile.createSafe(-10, -50, -2)
+        // When
+        val x = tile.x
+        val y = tile.y
+        val plane = tile.plane
+        // Then
         assertEquals(16374, x)
         assertEquals(16334, y)
         assertEquals(2, plane)
@@ -56,7 +70,7 @@ internal class TileTest {
     @Test
     fun `Overflow values`() {
         // Given
-        val tile = Tile(16384, 16385, 6)
+        val tile = Tile.createSafe(16384, 16385, 6)
         // When
         val x = tile.x
         val y = tile.y

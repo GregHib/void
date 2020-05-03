@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.script.KoinMock
+import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -34,7 +35,7 @@ internal class EventBusTest : KoinMock() {
         // Then
         verify {
             bus.add<TestEvent>(any(), any())
-//            register(any<KClass<TestEvent>>(), any()).hint(Unit::class) FIXME
+            register(any<KClass<TestEvent>>(), any())
         }
     }
 
