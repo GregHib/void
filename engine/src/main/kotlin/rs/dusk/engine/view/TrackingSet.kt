@@ -14,6 +14,7 @@ interface TrackingSet<T : Entity> {
     val add: Set<T>
     val remove: Set<T>
     val current: Set<T>
+    val local: Set<T>
 
     /**
      * Moves all entities to the removal list

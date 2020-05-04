@@ -16,7 +16,8 @@ class EntityTrackingSet<T : Entity>(
     override var total: Int = 0,
     override val add: LinkedHashSet<T> = LinkedHashSet(),
     override val remove: MutableSet<T> = mutableSetOf(),
-    override val current: MutableSet<T> = TreeSet()
+    override val current: MutableSet<T> = TreeSet(),// Ordered locals
+    override val local: MutableSet<T> = mutableSetOf()// Duplicate of current for O(1) lookup
 ) : TrackingSet<T> {
 
     override fun prep() {
@@ -27,6 +28,8 @@ class EntityTrackingSet<T : Entity>(
     override fun update() {
         current.removeAll(remove)
         current.addAll(add)
+        local.removeAll(remove)
+        local.addAll(add)
         remove.clear()
         add.clear()
         total = current.size
@@ -34,6 +37,7 @@ class EntityTrackingSet<T : Entity>(
 
     override fun add(self: T) {
         current.add(self)
+        local.add(self)
     }
 
     override fun track(set: Set<T>): Boolean {
@@ -62,6 +66,7 @@ class EntityTrackingSet<T : Entity>(
         add.clear()
         remove.clear()
         current.clear()
+        local.clear()
         total = 0
     }
 

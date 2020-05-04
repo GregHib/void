@@ -64,8 +64,6 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         processGlobals(writer, updates, entities, viewport, true)
         processGlobals(writer, updates, entities, viewport, false)
 
-        viewport.shift()
-
         player.send(PlayerUpdateMessage(writer.buffer, updates.buffer))
     }
 
@@ -151,7 +149,7 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 continue
             }
 
-            if (set.current.contains(player)) {
+            if (set.local.contains(player)) {
                 continue
             }
 

@@ -40,6 +40,7 @@ class PostUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks, -1) {
     }
 
     fun updatePlayer(player: Player) = GlobalScope.async<Unit> {
+        player.viewport.shift()
         player.viewport.players.update()
         player.movement.delta = Tile(0)
         player.getAnimation().apply {
