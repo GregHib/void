@@ -6,4 +6,4 @@ import rs.dusk.core.network.model.message.Message
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
-typealias PlayerUpdate = Message
+typealias ClientUpdate = Message

@@ -18,10 +18,10 @@ import rs.dusk.engine.entity.model.visual.visuals.player.MOVEMENT_TYPE_MASK
 val clientUpdateModule = module {
     single(createdAtStart = true) { PostUpdateTask(get()) }
     single(createdAtStart = true) { MovementCalculationTask(get()) }
-    single(createdAtStart = true) { PlayerUpdater(get()) }
+    single(createdAtStart = true) { PlayerUpdateTask(get()) }
 
     single(qualifier = named("playerVisualEncoder"), createdAtStart = true) {
-        VisualEncodingTask(
+        VisualsEncodeTask(
             get<Players>(),
             get(named("playerVisualEncoders")),
             intArrayOf(
@@ -35,7 +35,7 @@ val clientUpdateModule = module {
         )
     }
     single(qualifier = named("npcVisualEncoder"), createdAtStart = true) {
-        VisualEncodingTask(
+        VisualsEncodeTask(
             get<NPCs>(),
             get(named("npcVisualEncoders")),
             intArrayOf(

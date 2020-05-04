@@ -6,7 +6,7 @@ import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.verify.ClientVerification
-import rs.dusk.engine.entity.event.player.PlayerUpdate
+import rs.dusk.engine.entity.event.player.ClientUpdate
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
@@ -52,8 +52,8 @@ class ClientSessions : Sessions() {
         return players.inverse().containsKey(player)
     }
 
-    override fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T) {
-        val session = get(player) ?: return logger.warn { "Unable to find session for player $player." }
+    override fun <T : ClientUpdate> send(player: Player, clazz: KClass<T>, message: T) {
+        val session = get(player) ?: return// logger.warn { "Unable to find session for player $player." }
         session.send(message)
     }
 
@@ -63,4 +63,4 @@ class ClientSessions : Sessions() {
     }
 }
 
-inline fun <reified T : PlayerUpdate> Player.send(update: T) = get<Sessions>().send(this, T::class, update)
+inline fun <reified T : ClientUpdate> Player.send(update: T) = get<Sessions>().send(this, T::class, update)

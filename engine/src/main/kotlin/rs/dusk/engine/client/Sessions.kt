@@ -3,7 +3,7 @@ package rs.dusk.engine.client
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.verify.ClientVerification
-import rs.dusk.engine.entity.event.player.PlayerUpdate
+import rs.dusk.engine.entity.event.player.ClientUpdate
 import rs.dusk.engine.entity.model.Player
 import kotlin.reflect.KClass
 
@@ -46,7 +46,7 @@ abstract class Sessions {
     /**
      * Sends [message] to the session linked with [player]
      */
-    abstract fun <T : PlayerUpdate> send(player: Player, clazz: KClass<T>, message: T)
+    abstract fun <T : ClientUpdate> send(player: Player, clazz: KClass<T>, message: T)
 
     /**
      * Sends [message] to the player linked with [session] via [ClientVerification]

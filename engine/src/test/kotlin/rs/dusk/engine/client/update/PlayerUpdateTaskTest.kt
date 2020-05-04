@@ -35,14 +35,14 @@ import rs.dusk.utility.func.toInt
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
  * @since May 02, 2020
  */
-internal class PlayerUpdaterTest : KoinMock() {
+internal class PlayerUpdateTaskTest : KoinMock() {
 
-    lateinit var updater: PlayerUpdater
+    lateinit var updateTask: PlayerUpdateTask
     override val modules = listOf(entityListModule, clientSessionModule)
 
     @BeforeEach
     fun setup() {
-        updater = spyk(PlayerUpdater(EngineTasks()))
+        updateTask = spyk(PlayerUpdateTask(EngineTasks()))
     }
 
     @Test
@@ -61,10 +61,10 @@ internal class PlayerUpdaterTest : KoinMock() {
             every { send(player, any(), any<PlayerUpdateMessage>()) } just Runs
         }
         // When
-        updater.run()
+        updateTask.run()
         // Then
         coVerify {
-            updater.update(player)
+            updateTask.update(player)
         }
     }
 
@@ -86,10 +86,10 @@ internal class PlayerUpdaterTest : KoinMock() {
             every { contains(player) } returns false
         }
         // When
-        updater.run()
+        updateTask.run()
         // Then
         coVerify(exactly = 0) {
-            updater.update(player)
+            updateTask.update(player)
         }
     }
 
@@ -103,14 +103,14 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { viewport.players } returns entities
         // When
         runBlocking {
-            updater.update(player).await()
+            updateTask.update(player).await()
         }
         // Then
         verifyOrder {
-            updater.processLocals(any(), any(), entities, viewport, true)
-            updater.processLocals(any(), any(), entities, viewport, false)
-            updater.processGlobals(any(), any(), entities, viewport, true)
-            updater.processGlobals(any(), any(), entities, viewport, false)
+            updateTask.processLocals(any(), any(), entities, viewport, true)
+            updateTask.processLocals(any(), any(), entities, viewport, false)
+            updateTask.processGlobals(any(), any(), entities, viewport, true)
+            updateTask.processGlobals(any(), any(), entities, viewport, false)
         }
     }
 
@@ -133,7 +133,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { idlePlayer.changes.localUpdate } returns -1
         every { activePlayer.changes.localUpdate } returns -1
         // When
-        updater.processLocals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, active)
+        updateTask.processLocals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, active)
         // Then
         verify(exactly = (!active).toInt()) { viewport.setIdle(idleIndex) }
         verify(exactly = active.toInt()) { viewport.setIdle(activeIndex) }
@@ -150,7 +150,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { entities.remove.contains(player) } returns true
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -158,7 +158,7 @@ internal class PlayerUpdaterTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(1, false)// Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
-            updater.encodeRegion(sync, player.changes)
+            updateTask.encodeRegion(sync, player.changes)
             sync.finishBitAccess()
         }
     }
@@ -177,7 +177,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.changes.localUpdate } returns type
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -201,7 +201,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.changes.localUpdate } returns TELE
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -226,7 +226,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.changes.localUpdate } returns NONE
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, updates, entities, viewport, true)
+        updateTask.processLocals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -251,7 +251,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.visuals.update } returns null
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, updates, entities, viewport, true)
+        updateTask.processLocals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) {
             viewport.setIdle(any())
@@ -276,11 +276,11 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.changes.localUpdate } returns -1
         every { entities.current } returns setOf(player)
         // When
-        updater.processLocals(sync, updates, entities, viewport, true)
+        updateTask.processLocals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             viewport.setIdle(any())
-            updater.writeSkip(sync, 0)
+            updateTask.writeSkip(sync, 0)
         }
     }
 
@@ -299,11 +299,11 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { skipPlayer.changes.localUpdate } returns -1
         every { entities.current } returns linkedSetOf(skipPlayer, player)
         // When
-        updater.processLocals(sync, updates, entities, viewport, true)
+        updateTask.processLocals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             viewport.setIdle(index)
-            updater.writeSkip(sync, 0)
+            updateTask.writeSkip(sync, 0)
             sync.writeBits(1, true)
         }
     }
@@ -327,7 +327,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.index } returns index
         every { entities.local.contains(player) } returns true
         // When
-        updater.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
+        updateTask.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) {
             entities.add.contains(player)
@@ -358,18 +358,18 @@ internal class PlayerUpdaterTest : KoinMock() {
         every { player.index } returns index
         every { entities.add.contains(player) } returns true
         // When
-        updater.processGlobals(sync, updates, entities, viewport, true)
+        updateTask.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             sync.startBitAccess()
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
             sync.writeBits(1, false)// Encode region
-            sync.writeBits(6, 0)
+            sync.writeBits(6, 17)
             sync.writeBits(6, 14)
             sync.writeBits(1, true)
             updates.writeBytes(any<ByteArray>())
-            updater.writeSkip(sync, 2045)
+            updateTask.writeSkip(sync, 2045)
             sync.finishBitAccess()
         }
     }
@@ -401,7 +401,7 @@ internal class PlayerUpdaterTest : KoinMock() {
 
         every { entities.add.contains(any()) } returns true
         // When
-        updater.processGlobals(sync, updates, entities, viewport, true)
+        updateTask.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) {
             last!!.visuals.addition
@@ -426,11 +426,11 @@ internal class PlayerUpdaterTest : KoinMock() {
         }
         every { entities.add.contains(player) } returns true
         // When
-        updater.processGlobals(sync, updates, entities, viewport, true)
+        updateTask.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
-            updater.writeSkip(sync, 2044)
-            updater.writeSkip(sync, 0)
+            updateTask.writeSkip(sync, 2044)
+            updateTask.writeSkip(sync, 0)
         }
     }
 
@@ -440,7 +440,7 @@ internal class PlayerUpdaterTest : KoinMock() {
             // Given
             val writer: Writer = mockk(relaxed = true)
             // When
-            updater.writeSkip(writer, skip)
+            updateTask.writeSkip(writer, skip)
             // Then
             verifyOrder {
                 writer.writeBits(1, 0)
@@ -469,7 +469,7 @@ internal class PlayerUpdaterTest : KoinMock() {
             every { changes.regionUpdate } returns updateType
             every { changes.regionValue } returns value
             // When
-            updater.encodeRegion(writer, changes)
+            updateTask.encodeRegion(writer, changes)
             // Then
             verifyOrder {
                 writer.writeBits(1, updateType != NONE)

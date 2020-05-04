@@ -18,7 +18,7 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class VisualEncodingTask<T : Indexed>(
+class VisualsEncodeTask<T : Indexed>(
     val entities: PooledMapList<T>,
     val encoders: Array<VisualEncoder<Visual>>,
     val addMasks: IntArray, // Order of these is important
