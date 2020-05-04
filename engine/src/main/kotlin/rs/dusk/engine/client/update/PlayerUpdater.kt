@@ -177,7 +177,7 @@ class PlayerUpdater(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 sync.writeBits(6, player.tile.y and 0x3f)
                 sync.writeBits(1, true)
                 viewport.setIdle(index)
-                val update = player.visuals.base
+                val update = player.visuals.addition
                 if (update != null) {
                     updates.writeBytes(update)
                 }

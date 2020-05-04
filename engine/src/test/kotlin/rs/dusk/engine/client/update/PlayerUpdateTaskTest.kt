@@ -58,7 +58,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         }
         declareMock<Sessions> {
             every { contains(player) } returns true
-            every { send(player, any(), any<PlayerUpdateMessage>()) } answers {}
+            every { send(player, any(), any<PlayerUpdateMessage>()) } just Runs
         }
         // When
         updater.run()
@@ -325,7 +325,7 @@ internal class PlayerUpdaterTest : KoinMock() {
             }
         }
         every { player.index } returns index
-        every { entities.current.contains(player) } returns true
+        every { entities.local.contains(player) } returns true
         // When
         updater.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -404,7 +404,7 @@ internal class PlayerUpdaterTest : KoinMock() {
         updater.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) {
-            last!!.visuals.base
+            last!!.visuals.addition
         }
     }
 
