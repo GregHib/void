@@ -13,8 +13,9 @@ import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.connection.event.ConnectionEventListener
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
+import rs.dusk.engine.client.LoginQueue
+import rs.dusk.engine.client.LoginResponse
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.game.GameCodec
@@ -31,46 +32,37 @@ import rs.dusk.utility.inject
  */
 class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
-	val logger = InlineLogger()
-	val sessions: Sessions by inject()
-	val factory: PlayerFactory by inject()
-	val repository: CodecRepository by inject()
+    val logger = InlineLogger()
+    val sessions: Sessions by inject()
+    val login: LoginQueue by inject()
+    val repository: CodecRepository by inject()
 
-	override fun handle(ctx: ChannelHandlerContext, msg: GameLoginMessage) {
-		val pipeline = ctx.pipeline()
-		val keyPair = IsaacKeyPair(msg.isaacKeys)
-		val gameCodec = repository.get(GameCodec::class)
-		pipeline.replace(
-			"message.encoder",
-			GenericMessageEncoder(repository.get(LoginCodec::class), PacketBuilder(sized = true))
-		)
+    override fun handle(ctx: ChannelHandlerContext, msg: GameLoginMessage) {
+        val pipeline = ctx.pipeline()
+        val keyPair = IsaacKeyPair(msg.isaacKeys)
+        val loginCodec = repository.get(LoginCodec::class)
+        pipeline.replace("message.encoder", GenericMessageEncoder(loginCodec, PacketBuilder(sized = true)))
 
-		GlobalScope.launch {
-			val session = ctx.channel().getSession()
-			val player = factory.spawn(msg.username, session).await()
-				?: return@launch logger.warn { "Unable to load player '${msg.username}'." }
+        GlobalScope.launch {
+            val session = ctx.channel().getSession()
+            when (val response = login.add(msg.username, session).await()) {
+                LoginResponse.Full -> TODO()
+                LoginResponse.Failure -> logger.warn { "Unable to load player '${msg.username}'." }
+                is LoginResponse.Success -> {
+                    val gameCodec = repository.get(GameCodec::class)
+                    pipeline.writeAndFlush(GameLoginDetails(2, response.player.index, response.player.name))
+                    with(pipeline) {
+                        replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher, gameCodec))
+                        replace("message.decoder", OpcodeMessageDecoder(gameCodec))
+                        replace("message.reader", MessageReader(gameCodec))
+                        replace("message.encoder", GenericMessageEncoder(gameCodec, PacketBuilder(keyPair.outCipher)))
+                        replace("connection.listener", ConnectionEventListener(ServerConnectionEventChain(session)))
+                    }
 
-			pipeline.writeAndFlush(GameLoginDetails(2, player.index, player.name))
-
-			with(pipeline) {
-				replace(
-					"packet.decoder", RS2PacketDecoder(
-						keyPair.inCipher,
-						gameCodec
-					)
-				)
-				replace("message.decoder", OpcodeMessageDecoder(gameCodec))
-				replace(
-					"message.reader", MessageReader(
-						gameCodec
-					)
-				)
-				replace("message.encoder", GenericMessageEncoder(gameCodec, PacketBuilder(keyPair.outCipher)))
-				replace("connection.listener", ConnectionEventListener(ServerConnectionEventChain(session)))
-			}
-
-			sessions.send(session, msg)
-		}
-	}
+                    sessions.send(session, msg)
+                }
+            }
+        }
+    }
 
 }

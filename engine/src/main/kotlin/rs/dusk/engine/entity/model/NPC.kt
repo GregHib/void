@@ -14,7 +14,7 @@ data class NPC(
     override val visuals: Visuals = Visuals(),
     override val changes: Changes = Changes(),
     override val movement: Movement = Movement()
-) : Entity, Indexed {
+) : Indexed {
 
     constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {
         this.index = index

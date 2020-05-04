@@ -10,7 +10,7 @@ data class Visuals(
     var aspects: MutableMap<Int, Visual> = mutableMapOf(),
     var encoded: MutableMap<Int, ByteArray> = mutableMapOf(),
     var update: ByteArray? = null,
-    var base: ByteArray? = null
+    var addition: ByteArray? = null
 ) {
 
     inline fun <reified T : Visual> getOrPut(mask: Int, put: () -> T): T {
@@ -30,6 +30,6 @@ data class Visuals(
         aspects.clear()
         encoded.clear()
         update = null
-        base = null
+        addition = null
     }
 }

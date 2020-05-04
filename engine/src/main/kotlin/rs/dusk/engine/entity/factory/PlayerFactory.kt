@@ -42,7 +42,7 @@ class PlayerFactory {
             sessions.register(session, player)
         }
         player.name = name
-        logger.info { "Player save loaded $name ${player.index}." }
+        logger.info { "Player save loaded $name index ${player.index}." }
         bus.emit(Registered(player))
         player
     }

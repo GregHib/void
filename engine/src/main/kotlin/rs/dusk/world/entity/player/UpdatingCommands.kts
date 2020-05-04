@@ -1,4 +1,5 @@
 import kotlinx.coroutines.runBlocking
+import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Hit
@@ -14,14 +15,17 @@ import java.util.concurrent.atomic.AtomicInteger
 
 val factory: PlayerFactory by inject()
 val players: Players by inject()
+val login: LoginQueue by inject()
 
 val botCounter = AtomicInteger(0)
 
 Command where { prefix == "bot" } then {
     runBlocking {
-        factory.spawn("Bot ${botCounter.getAndIncrement()}").await()
-//    val bot = players.indexed.first { it != null && it.name.startsWith("Bot") }!!
-//    bot.setAnimation(863)
+        (0 until 1000).map {
+            login.add("Bot ${botCounter.getAndIncrement()}")
+        }.forEach {
+            it.await()
+        }
     }
 }
 

@@ -5,6 +5,7 @@ import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.Startup
+import rs.dusk.engine.client.clientLoginQueueModule
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.clientUpdateModule
 import rs.dusk.engine.client.verify.clientVerificationModule
@@ -19,8 +20,8 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.map.location.xteaModule
 import rs.dusk.engine.script.scriptModule
-import rs.dusk.network.codecRepositoryModule
 import rs.dusk.engine.view.viewportModule
+import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.utility.get
@@ -61,7 +62,8 @@ object Dusk : Runnable {
                 engineModule,
                 visualUpdatingModule,
                 clientUpdateModule,
-                viewportModule
+                viewportModule,
+                clientLoginQueueModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.model.visual.Visuals
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-interface Indexed : Comparable<Indexed> {
+interface Indexed : Entity, Comparable<Indexed> {
     val index: Int
     val visuals: Visuals
     val movement: Movement

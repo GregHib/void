@@ -16,6 +16,7 @@ import rs.dusk.engine.script.koin.MockProviderExtension
 abstract class KoinMock : KoinTest {
 
     open val modules: List<Module>? = null
+    open val properties: List<Pair<String, Any>>? = null
 
     @JvmField
     @RegisterExtension
@@ -23,6 +24,9 @@ abstract class KoinMock : KoinTest {
         printLogger()
         if (modules != null) {
             modules(modules!!)
+        }
+        if (properties != null) {
+            properties(properties!!.toMap())
         }
     }
 

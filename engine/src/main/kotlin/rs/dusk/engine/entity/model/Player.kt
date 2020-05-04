@@ -17,7 +17,7 @@ data class Player(
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val changes: Changes = Changes(),
     @Transient override val movement: Movement = Movement()
-) : Entity, Movable, Indexed {
+) : Indexed, Movable {
     @Transient
     override var index: Int = -1
 
