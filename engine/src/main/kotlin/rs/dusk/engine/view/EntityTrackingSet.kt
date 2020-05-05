@@ -11,9 +11,11 @@ import kotlin.math.abs
  * @since April 21, 2020
  */
 class EntityTrackingSet<T : Entity>(
+    val tickMax: Int,
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS,
     override var total: Int = 0,
+    var added: Int = 0,
     override val add: LinkedHashSet<T> = LinkedHashSet(),
     override val remove: MutableSet<T> = mutableSetOf(),
     override val current: MutableSet<T> = TreeSet(),// Ordered locals
@@ -23,6 +25,7 @@ class EntityTrackingSet<T : Entity>(
     override fun prep() {
         remove.addAll(current)
         total = 0
+        added = 0
     }
 
     override fun update() {
@@ -40,8 +43,11 @@ class EntityTrackingSet<T : Entity>(
         local.add(self)
     }
 
-    override fun track(set: Set<T>): Boolean {
+    override fun track(set: Set<T?>): Boolean {
         for (entity in set) {
+            if (entity == null) {
+                continue
+            }
             if (total >= maximum) {
                 return false
             }
@@ -50,8 +56,11 @@ class EntityTrackingSet<T : Entity>(
         return true
     }
 
-    override fun track(set: Set<T>, x: Int, y: Int): Boolean {
+    override fun track(set: Set<T?>, x: Int, y: Int): Boolean {
         for (entity in set) {
+            if (entity == null) {
+                continue
+            }
             if (total >= maximum) {
                 return false
             }
@@ -82,7 +91,10 @@ class EntityTrackingSet<T : Entity>(
      */
     private fun track(entity: T) {
         if (!remove.remove(entity)) {
-            add.add(entity)
+            if (added < tickMax) {
+                add.add(entity)
+                added++
+            }
         }
         total++
     }

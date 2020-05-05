@@ -16,7 +16,7 @@ internal class TrackingSetTest {
 
     @BeforeEach
     fun setup() {
-        set = EntityTrackingSet(maximum = 10, radius = 15)
+        set = EntityTrackingSet(tickMax = 4, maximum = 10, radius = 15)
     }
 
     @Test
@@ -90,6 +90,18 @@ internal class TrackingSetTest {
     }
 
     @Test
+    fun `Track exceeding maximum tick entities`() {
+        // Given
+        val npc = NPC(index = 5, tile = Tile(0))
+        set.added = 4
+        val entities = setOf(npc)
+        // When
+        set.track(entities)
+        // Then
+        assert(!set.add.contains(npc))
+    }
+
+    @Test
     fun `Track within view`() {
         // Given
         val npc = NPC(index = 1, tile = Tile(15, 15, 0))
@@ -116,6 +128,18 @@ internal class TrackingSetTest {
         // Given
         val npc = NPC(index = 11, tile = Tile(15, 15, 0))
         set.total = 10
+        val entities = setOf(npc)
+        // When
+        set.track(entities, 0, 0)
+        // Then
+        assert(!set.add.contains(npc))
+    }
+
+    @Test
+    fun `Track within exceeding maximum tick entities`() {
+        // Given
+        val npc = NPC(index = 5, tile = Tile(15, 15, 0))
+        set.total = 4
         val entities = setOf(npc)
         // When
         set.track(entities, 0, 0)

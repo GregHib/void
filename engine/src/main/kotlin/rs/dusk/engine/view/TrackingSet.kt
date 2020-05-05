@@ -34,12 +34,12 @@ interface TrackingSet<T : Entity> {
     /**
      * Tracks changes of all entities in a [set]
      */
-    fun track(set: Set<T>): Boolean
+    fun track(set: Set<T?>): Boolean
 
     /**
      * Tracks changes of entities in the [set] within view of [x], [y]
      */
-    fun track(set: Set<T>, x: Int, y: Int): Boolean
+    fun track(set: Set<T?>, x: Int, y: Int): Boolean
 
     /**
      * Clear everything in set
