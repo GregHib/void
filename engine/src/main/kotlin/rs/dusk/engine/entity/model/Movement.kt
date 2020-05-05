@@ -10,6 +10,5 @@ data class Movement(
     var lastTile: Tile = Tile(0),
     var delta: Tile = Tile(0),
     var direction: Int = -1,
-    var run: Boolean = false,
-    val type: Int = 0
+    var run: Boolean = false
 )

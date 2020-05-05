@@ -24,9 +24,11 @@ import rs.dusk.utility.inject
  */
 @Suppress("ArrayInDataClass")
 data class Viewport(
-    val players: TrackingSet<Player> = EntityTrackingSet(LOCAL_PLAYER_CAP),
-    val npcs: TrackingSet<NPC> = EntityTrackingSet(LOCAL_NPC_CAP),
-    val idlePlayers: IntArray = IntArray(MAX_PLAYERS)
+    val players: TrackingSet<Player> = EntityTrackingSet(40, LOCAL_PLAYER_CAP),
+    val npcs: TrackingSet<NPC> = EntityTrackingSet(40, LOCAL_NPC_CAP),
+    val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
+    var size: Int = VIEWPORT_SIZES[0],
+    val regions: MutableSet<Int> = linkedSetOf()
 ) {
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
@@ -41,6 +43,10 @@ data class Viewport(
         for (index in idlePlayers.indices) {
             idlePlayers[index] = idlePlayers[index] shr 1
         }
+    }
+
+    companion object {
+        val VIEWPORT_SIZES = intArrayOf(104, 120, 136, 168)
     }
 }
 
