@@ -13,6 +13,8 @@ data class Tile(val x: Int, val y: Int, val plane: Int = 0) {
     val region by lazy { Region(x / 64, y / 64) }
     val regionPlane by lazy { RegionPlane(x / 64, y / 64, plane) }
 
+    fun equals(x: Int, y: Int, plane: Int = 0) = this.x == x && this.y == y && this.plane == plane
+
     companion object {
 
         fun createSafe(x: Int, y: Int, plane: Int = 0) = Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)

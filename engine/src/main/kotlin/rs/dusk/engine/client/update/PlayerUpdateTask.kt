@@ -132,7 +132,6 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         active: Boolean
     ) {
         var skip = -1
-        var added = 0
         var player: Player?
         sync.startBitAccess()
         for (index in 1 until MAX_PLAYERS) {
@@ -154,12 +153,13 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
             }
 
             val add = set.add.contains(player)
+            viewport.setIdle(index)
 
             if (!add) {
                 skip++
-                viewport.setIdle(index)
                 continue
             }
+
 
             if (skip > -1) {
                 writeSkip(sync, skip)
@@ -174,13 +174,9 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 sync.writeBits(6, player.tile.x and 0x3f)
                 sync.writeBits(6, player.tile.y and 0x3f)
                 sync.writeBits(1, true)
-                viewport.setIdle(index)
                 val update = player.visuals.addition
                 if (update != null) {
                     updates.writeBytes(update)
-                }
-                if (++added >= NEW_PLAYERS_CAP) {
-                    break
                 }
             }
         }
@@ -221,9 +217,5 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
                 GLOBAL_REGION -> sync.writeBits(18, value)
             }
         }
-    }
-
-    companion object {
-        private const val NEW_PLAYERS_CAP = 40
     }
 }

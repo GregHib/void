@@ -71,60 +71,60 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
         super.run()
     }
 
+    /**
+     * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
+     */
+    fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int) = GlobalScope.async {
+        set.prep()
+        val entityCount = nearbyEntityCount(list, tile)
+        if (entityCount >= cap) {
+            gatherByTile(tile, list, set)
+        } else {
+            gatherByChunk(tile, list, set)
+        }
+    }
+
+    /**
+     * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
+     */
+    fun <T : Entity> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
+        Spiral.spiral(tile, VIEW_RADIUS) { t ->
+            val p = list[t]
+            if (p != null && !set.track(p)) {
+                return
+            }
+        }
+    }
+
+    /**
+     * Updates [set] quickly by gathering all entities in local chunks stopping at [TrackingSet.maximum]
+     */
+    fun <T : Entity> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
+        val x = tile.x
+        val y = tile.y
+        Spiral.spiral(tile.chunk, 2) { chunk ->
+            val entities = list[chunk]
+            if (entities != null && !set.track(entities, x, y)) {
+                return
+            }
+        }
+    }
+
+    /**
+     * Total entities within radius of two chunks
+     */
+    fun nearbyEntityCount(list: PooledMapList<*>, tile: Tile): Int {
+        var total = 0
+        Spiral.spiral(tile.chunk, 2) { chunk ->
+            val entities = list[chunk]
+            if (entities != null) {
+                total += entities.size
+            }
+        }
+        return total
+    }
+
     companion object {
-        /**
-         * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
-         */
-        fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int) = GlobalScope.async {
-            set.prep()
-            val entityCount = nearbyEntityCount(list, tile)
-            if (entityCount >= cap) {
-                gatherByTile(tile, list, set)
-            } else {
-                gatherByChunk(tile, list, set)
-            }
-        }
-
-        /**
-         * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
-         */
-        fun <T : Entity> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
-            Spiral.spiral(tile, VIEW_RADIUS) { t ->
-                val p = list[t]
-                if (p != null && !set.track(p)) {
-                    return
-                }
-            }
-        }
-
-        /**
-         * Updates [set] quickly by gathering all entities in local chunks stopping at [TrackingSet.maximum]
-         */
-        fun <T : Entity> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
-            val x = tile.x
-            val y = tile.y
-            Spiral.spiral(tile.chunk, 2) { chunk ->
-                val entities = list[chunk]
-                if (entities != null && !set.track(entities, x, y)) {
-                    return
-                }
-            }
-        }
-
-        /**
-         * Total entities within radius of two chunks
-         */
-        fun nearbyEntityCount(list: PooledMapList<*>, tile: Tile): Int {
-            var total = 0
-            Spiral.spiral(tile.chunk, 2) { chunk ->
-                val entities = list[chunk]
-                if (entities != null) {
-                    total += entities.size
-                }
-            }
-            return total
-        }
-
         const val LOCAL_PLAYER_CAP = 255
         const val LOCAL_NPC_CAP = 255
 

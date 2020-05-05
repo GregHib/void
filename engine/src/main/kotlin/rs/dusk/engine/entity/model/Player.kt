@@ -12,7 +12,7 @@ import rs.dusk.engine.view.Viewport
  */
 data class Player(
     override var id: Int = -1,
-    override var tile: Tile,
+    override var tile: Tile = Tile(0),
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val changes: Changes = Changes(),

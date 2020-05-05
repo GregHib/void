@@ -5,11 +5,15 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Hit
 import rs.dusk.engine.entity.model.visual.visuals.*
 import rs.dusk.engine.entity.model.visual.visuals.player.*
+import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.Direction
 import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Move
 import rs.dusk.engine.model.entity.player.command.Command
+import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -22,7 +26,7 @@ val botCounter = AtomicInteger(0)
 Command where { prefix == "bot" } then {
     runBlocking {
         (0 until 1000).map {
-            login.add("Bot ${botCounter.getAndIncrement()}")
+            factory.spawn("Bot ${botCounter.getAndIncrement()}")
         }.forEach {
             it.await()
         }
@@ -89,4 +93,23 @@ Command where { prefix == "hide" } then {
 
 Command where { prefix == "speed" } then {
     player.movementSpeed = !player.movementSpeed
+}
+
+Command where { prefix == "tele" || prefix == "tp" } then {
+    if (content.contains(",")) {
+        val params = content.split(",")
+        val plane = params[0].toInt()
+        val x = params[1].toInt() shl 6 or params[3].toInt()
+        val y = params[2].toInt() shl 6 or params[4].toInt()
+        player.movement.delta = Tile(x - player.tile.x, y - player.tile.y, plane - player.tile.plane)
+        player.movementType = TELEPORT
+        player.movement.lastTile = player.tile
+        players.remove(player.tile, player)
+        players.remove(player.tile.chunk, player)
+        player.tile = Tile(x, y, plane)
+        players[player.tile] = player
+        players[player.tile.chunk] = player
+        val bus: EventBus = get()
+        bus.emit(Move(player, player.tile, player.movement.lastTile))
+    }
 }

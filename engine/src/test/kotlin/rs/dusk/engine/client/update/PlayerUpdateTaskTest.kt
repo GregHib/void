@@ -265,26 +265,6 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     }
 
     @Test
-    fun `Skip last local player`() {
-        // Given
-        val player = mockk<Player>(relaxed = true)
-        val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
-        val sync: Writer = mockk(relaxed = true)
-        val updates: Writer = mockk(relaxed = true)
-
-        every { player.changes.localUpdate } returns -1
-        every { entities.current } returns setOf(player)
-        // When
-        updateTask.processLocals(sync, updates, entities, viewport, true)
-        // Then
-        verifyOrder {
-            viewport.setIdle(any())
-            updateTask.writeSkip(sync, 0)
-        }
-    }
-
-    @Test
     fun `Local player skip`() {
         // Given
         val player = mockk<Player>(relaxed = true)
@@ -305,6 +285,26 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             viewport.setIdle(index)
             updateTask.writeSkip(sync, 0)
             sync.writeBits(1, true)
+        }
+    }
+
+    @Test
+    fun `Skip last local player`() {
+        // Given
+        val player = mockk<Player>(relaxed = true)
+        val viewport = mockk<Viewport>(relaxed = true)
+        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val sync: Writer = mockk(relaxed = true)
+        val updates: Writer = mockk(relaxed = true)
+
+        every { player.changes.localUpdate } returns -1
+        every { entities.current } returns setOf(player)
+        // When
+        updateTask.processLocals(sync, updates, entities, viewport, true)
+        // Then
+        verifyOrder {
+            viewport.setIdle(any())
+            updateTask.writeSkip(sync, 0)
         }
     }
 
@@ -371,40 +371,6 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             updates.writeBytes(any<ByteArray>())
             updateTask.writeSkip(sync, 2045)
             sync.finishBitAccess()
-        }
-    }
-
-    @Test
-    fun `Global player add over cap`() {
-        // Given
-        val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
-        val sync: Writer = mockk(relaxed = true)
-        val updates: Writer = mockk(relaxed = true)
-        val players = declareMock<Players> {
-            every {
-                hint(Player::class)
-                getAtIndex(any())
-            } returns null
-        }
-        val cap = 40
-        var last: Player? = null
-        for (index in 1..cap + 1) {
-            val player = mockk<Player>(relaxed = true)
-            every { player.index } returns index
-            every {
-                hint(Player::class)
-                players.getAtIndex(index)
-            } returns player
-            last = player
-        }
-
-        every { entities.add.contains(any()) } returns true
-        // When
-        updateTask.processGlobals(sync, updates, entities, viewport, true)
-        // Then
-        verify(exactly = 0) {
-            last!!.visuals.addition
         }
     }
 

@@ -38,7 +38,7 @@ fun Int.nearby(size: Int): IntRange {
     return (this - size) / 8..(this + size) / 8
 }
 
-// FIXME prevent or buffer movement until region load is complete?
+// FIXME prevent or buffer movement until region load is complete or calculate irrespective of movement?
 fun calculateRegions(player: Player, initial: Boolean) {
     val regions = player.viewport.regions
     val size = player.viewport.size shr 4

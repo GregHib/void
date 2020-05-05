@@ -18,12 +18,18 @@ class Engine {
         private val logger = InlineLogger()
 
         override fun run() {
-            tasks.forEach {
-                try {
-                    it.run()
-                } catch (t: Throwable) {
-                    logger.error(t) { "Exception occurred during engine tick! $it" }
+            try {
+                tasks.forEach {
+                    try {
+                        it.run()
+                    } catch (t: Throwable) {
+                        logger.error(t) { "Exception occurred during engine tick! $it" }
+                        t.printStackTrace()
+                    }
                 }
+            } catch (t: Throwable) {
+                logger.error(t) { "Exception occurred during engine tick!" }
+                t.printStackTrace()
             }
         }
     }

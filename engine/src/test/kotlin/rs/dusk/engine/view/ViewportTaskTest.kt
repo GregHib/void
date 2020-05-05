@@ -1,19 +1,23 @@
 package rs.dusk.engine.view
 
-import io.mockk.every
-import io.mockk.mockk
+import io.mockk.*
+import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.EngineTasks
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+import org.koin.test.mock.declareMock
+import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.Chunk
 import rs.dusk.engine.model.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.utility.get
-import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -21,215 +25,169 @@ import java.util.concurrent.atomic.AtomicInteger
  */
 internal class ViewportTaskTest : KoinMock() {
 
-    override val modules = listOf(engineModule, entityListModule, viewportModule)
+    override val modules = listOf(engineModule, entityListModule, viewportModule, clientSessionModule)
 
-    @Test
-    fun `Viewport task adds itself to engine tasks`() {
-        // Given
-        val tasks: EngineTasks = get()
-        val viewportTask: ViewportTask = get()
-        // Then
-        assert(tasks.contains(viewportTask))
+    lateinit var task: ViewportTask
+
+    @BeforeEach
+    fun setup() {
+        task = spyk(ViewportTask(mockk(relaxed = true)))
     }
 
-    @Test
-    fun `Add to empty viewport`() {
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Process players with session`(session: Boolean) {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(1, 5, 0)
-        addToList(entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.add.contains(entity))
-    }
-
-    @Test
-    fun `Add to busy viewport`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        addToView(viewport, addToList(addEntity(1, 1, 0)))
-        addToView(viewport, addToList(addEntity(2, 1, 0)))
-        addToView(viewport, addToList(addEntity(1, 2, 0)))
-        val entity = addEntity(0, 0, 0)
-        addToList(entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.add.contains(entity))
-    }
-
-    @Test
-    fun `Add inside view of full viewport`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        repeat(256) {
-            addToView(viewport, addToList(addEntity(1, 1, 0)))
+        val player: Player = mockk(relaxed = true)
+        declareMock<Players> {
+            every { forEach(any()) } answers {
+                arg<(Player) -> Unit>(0).invoke(player)
+            }
+            every { get(any<Chunk>()) } returns null
         }
-        val entity = addEntity(0, 0, 0)
-        addToList(entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.add.contains(entity))
-    }
-
-    @Test
-    fun `Add outside view of full viewport`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        repeat(256) {
-            addToView(viewport, addToList(addEntity(1, 1, 0)))
+        declareMock<Sessions> {
+            every { contains(player) } returns session
         }
-        val entity = addEntity(2, 2, 0)
-        addToList(entity)
         // When
         task.run()
         // Then
-        assert(!viewport.npcs.add.contains(entity))
+        verify(exactly = if (session) -1 else 0) {
+            task.update(any(), any<Players>(), any(), any(), any())
+            task.update(any(), any<NPCs>(), any(), any(), any())
+        }
     }
 
     @Test
-    fun `Add to same tile as another entity`() {
+    fun `Update gathers by tile when exceeds cap`() = runBlocking {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        addToView(viewport, addToList(addEntity(5, 5, 0)))
-        val entity = addEntity(5, 5, 0)
-        addToList(entity)
+        val tile = Tile(0)
+        val players: Players = mockk(relaxed = true)
+        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val cap = 10
+        val client: Player = mockk(relaxed = true)
+        every { task.nearbyEntityCount(players, tile) } returns 10
         // When
-        task.run()
+        task.update(tile, players, set, cap, client).await()
         // Then
-        assert(viewport.npcs.add.contains(entity))
+        verifyOrder {
+            set.prep(client)
+            task.nearbyEntityCount(players, tile)
+            task.gatherByTile(tile, players, set)
+        }
     }
 
     @Test
-    fun `Add to inner edge of max view distance`() {
+    fun `Update gathers by chunk when under cap`() = runBlocking {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(15, 15, 0)
-        addToList(entity)
+        val tile = Tile(0)
+        val players: Players = mockk(relaxed = true)
+        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val cap = 10
+        val client: Player = mockk(relaxed = true)
+        every { task.nearbyEntityCount(players, tile) } returns 5
         // When
-        task.run()
+        task.update(tile, players, set, cap, client).await()
         // Then
-        assert(viewport.npcs.add.contains(entity))
+        verifyOrder {
+            set.prep(client)
+            task.nearbyEntityCount(players, tile)
+            task.gatherByChunk(tile, players, set)
+        }
     }
 
     @Test
-    fun `Add to outer edge of max view distance`() {
+    fun `Gather by tile tracks by tile spiral`() {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(16, 16, 0)
-        addToList(entity)
+        val players: Players = mockk(relaxed = true)
+        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val same: Player = mockk(relaxed = true)
+        val west: Player = mockk(relaxed = true)
+        val northWest: Player = mockk(relaxed = true)
+        val north: Player = mockk(relaxed = true)
+        every { set.track(any()) } answers {
+            val players: Set<Player> = arg(0)
+            players.first() != north
+        }
+        every { players[any<Tile>()] } answers {
+            val tile: Tile = arg(0)
+            when {
+                tile.equals(0, 0) -> setOf(same)
+                tile.equals(-1, 0) -> setOf(west)
+                tile.equals(-1, 1) -> setOf(northWest)
+                tile.equals(0, 1) -> setOf(north)
+                else -> null
+            }
+        }
         // When
-        task.run()
+        task.gatherByTile(Tile(0), players, set)
         // Then
-        assert(!viewport.npcs.add.contains(entity))
+        verifyOrder {
+            players[Tile(0, 0, 0)]
+            set.track(setOf(same))
+            players[Tile(-1, 0, 0)]
+            set.track(setOf(west))
+            players[Tile(-1, 1, 0)]
+            set.track(setOf(northWest))
+            players[Tile(0, 1, 0)]
+            set.track(setOf(north))
+        }
     }
 
     @Test
-    fun `Remove from viewport`() {
+    fun `Gather by chunk tracks by chunk spiral`() {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(1, 1, 0)
-        addToView(viewport, entity)
+        val players: Players = mockk(relaxed = true)
+        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val same: Player = mockk(relaxed = true)
+        val west: Player = mockk(relaxed = true)
+        val northWest: Player = mockk(relaxed = true)
+        val north: Player = mockk(relaxed = true)
+        every { set.track(any(), any(), any()) } answers {
+            val players: Set<Player> = arg(0)
+            players.firstOrNull() != north
+        }
+        every { players[any<Chunk>()] } answers {
+            val chunk: Chunk = arg(0)
+            when {
+                chunk.equals(0, 0) -> setOf(same)
+                chunk.equals(-1, 0) -> setOf(west)
+                chunk.equals(-1, 1) -> setOf(northWest)
+                chunk.equals(0, 1) -> setOf(north)
+                else -> null
+            }
+        }
         // When
-        task.run()
+        task.gatherByChunk(Tile(0), players, set)
         // Then
-        assert(viewport.npcs.remove.contains(entity))
+        verifyOrder {
+            players[Chunk(0, 0)]
+            set.track(setOf(same), 0, 0)
+            players[Chunk(-1, 0)]
+            set.track(setOf(west), 0, 0)
+            players[Chunk(-1, 1)]
+            set.track(setOf(northWest), 0, 0)
+            players[Chunk(0, 1)]
+            set.track(setOf(north), 0, 0)
+        }
     }
 
     @Test
-    fun `Remove from busy viewport`() {
+    fun `Nearby entity count`() {
         // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        addToView(viewport, addToList(addEntity(1, 1, 0)))
-        addToView(viewport, addToList(addEntity(2, 1, 0)))
-        addToView(viewport, addToList(addEntity(1, 2, 0)))
-        val entity = addEntity(1, 1, 0)
-        addToView(viewport, entity)
+        val players: Players = mockk(relaxed = true)
+        every { players[any<Chunk>()] } answers {
+            val chunk: Chunk = arg(0)
+            when {
+                chunk.equals(0, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
+                chunk.equals(-1, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(-1, 1) -> setOf(mockk(relaxed = true))
+                chunk.equals(0, 1) -> setOf(mockk(relaxed = true))
+                else -> null
+            }
+        }
         // When
-        task.run()
+        val total = task.nearbyEntityCount(players, Tile(0))
         // Then
-        assert(viewport.npcs.remove.contains(entity))
-    }
-
-    @Test
-    fun `Remove from same tile as another entity`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        addToView(viewport, addToList(addEntity(1, 1, 0)))
-        val entity = addEntity(1, 1, 0)
-        addToView(viewport, entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.remove.contains(entity))
-    }
-
-    @Test
-    fun `Remove from inner edge of max view distance`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(15, 15, 0)
-        addToView(viewport, entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.remove.contains(entity))
-    }
-
-    @Test
-    fun `Remove from outer edge of max view distance`() {
-        // Given
-        val task: ViewportTask = get()
-        val viewport = setupViewport()
-        val entity = addEntity(16, 16, 0)
-        addToView(viewport, entity)
-        // When
-        task.run()
-        // Then
-        assert(viewport.npcs.remove.contains(entity))
-    }
-
-    fun setupViewport(): Viewport {
-        val viewer = mockk<Player>(relaxed = true)
-        val viewport = Viewport()
-        every { viewer.viewport } returns viewport
-        val players: Players = get()
-        players[0x40000000] = viewer//0, 0, 4
-        return viewport
-    }
-
-    val counter = AtomicInteger(0)
-
-    fun addEntity(x: Int, y: Int, plane: Int): NPC {
-        val npc: NPC = mockk(relaxed = true)
-        val tile = Tile(x, y, plane)
-        every { npc.index } returns counter.getAndIncrement()
-        every { npc.tile } returns tile
-        return npc
-    }
-
-    fun addToView(viewport: Viewport, npc: NPC): NPC {
-        viewport.npcs.add(npc)
-        return npc
-    }
-
-    fun addToList(npc: NPC): NPC {
-        val npcs: NPCs = get()
-        npcs[npc.tile] = npc
-        npcs[npc.tile.chunk] = npc
-        return npc
+        assertEquals(5, total)
     }
 }
