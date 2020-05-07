@@ -16,6 +16,7 @@ import rs.dusk.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
 import rs.dusk.network.rs.session.UpdateSession
+import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 
 /**
@@ -24,8 +25,9 @@ import rs.dusk.utility.inject
  */
 class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessage>() {
 
-	private val clientMajorBuild = KoinJavaComponent.getKoin().getProperty<Int>("clientBuild")
-	val repository: CodecRepository by inject()
+	private val clientMajorBuild = getProperty<Int>("clientBuild")
+	
+	private val repository: CodecRepository by inject()
 
 	override fun handle(ctx: ChannelHandlerContext, msg: UpdateHandshakeMessage) {
 		val major = msg.major

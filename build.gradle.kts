@@ -35,20 +35,16 @@ allprojects {
 
     dependencies {
         //Main
-        implementation(group = "rs.dusk.core", name = "network", version = "0.1.0")
-        implementation(group = "rs.dusk.core", name = "utility", version = "0.1.0")
-
+	    implementation(group="rs.dusk.core", name="network", version="0.1.0")
+	    implementation(group="rs.dusk.core", name="utility", version="0.1.0")
+	    
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
         implementation(group = "com.displee", name = "rs-cache-library", version = "6.3")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.8")
         implementation(group = "io.github.classgraph", name = "classgraph", version = "4.6.3")
-        implementation(
-            group = "com.michael-bull.kotlin-inline-logger",
-            name = "kotlin-inline-logger-jvm",
-            version = "1.0.2"
-        )
+        implementation(group = "com.michael-bull.kotlin-inline-logger", name = "kotlin-inline-logger-jvm", version = "1.0.2")
         implementation(group = "org.koin", name = "koin-core", version = koinVersion)
         implementation(group = "org.koin", name = "koin-logger-slf4j", version = koinVersion)
         implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.3.5")
@@ -66,6 +62,7 @@ allprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.3")
         implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.10.3")
         implementation("org.postgresql:postgresql:42.2.11")
+        implementation("it.unimi.dsi:fastutil:8.3.1")
 
         //Testing
         testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.1")
