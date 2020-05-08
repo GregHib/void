@@ -22,10 +22,13 @@ class EntityTrackingSet<T : Entity>(
     override val local: MutableSet<T> = mutableSetOf()// Duplicate of current for O(1) lookup
 ) : TrackingSet<T> {
 
-    override fun prep() {
+    override fun prep(self: T?) {
         remove.addAll(current)
         total = 0
         added = 0
+        if (self != null) {
+            track(self)
+        }
     }
 
     override fun update() {

@@ -26,6 +26,10 @@ interface PooledMapList<T : Entity> : EntityList<T> {
         indexed[index] = entity
     }
 
+    fun removeAtIndex(index: Int) {
+        indexed[index] = null
+    }
+
     override operator fun get(hash: Int): Set<T>? = data.get(hash)
 
     override fun add(hash: Int, entity: T): Boolean {

@@ -142,24 +142,21 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
 
             player = players.getAtIndex(index)
 
-            if (player == null) {
-                skip++
-                viewport.setIdle(index)
-                continue
-            }
-
             if (set.local.contains(player)) {
                 continue
             }
 
-            val add = set.add.contains(player)
             viewport.setIdle(index)
 
-            if (!add) {
+            if (player == null) {
                 skip++
                 continue
             }
 
+            if (!set.add.contains(player)) {
+                skip++
+                continue
+            }
 
             if (skip > -1) {
                 writeSkip(sync, skip)
@@ -168,17 +165,11 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
 
             sync.writeBits(1, true)
             sync.writeBits(2, 0)
-
-            if (add) {
-                encodeRegion(sync, player.changes)
-                sync.writeBits(6, player.tile.x and 0x3f)
-                sync.writeBits(6, player.tile.y and 0x3f)
-                sync.writeBits(1, true)
-                val update = player.visuals.addition
-                if (update != null) {
-                    updates.writeBytes(update)
-                }
-            }
+            encodeRegion(sync, player.changes)
+            sync.writeBits(6, player.tile.x and 0x3f)
+            sync.writeBits(6, player.tile.y and 0x3f)
+            sync.writeBits(1, true)
+            updates.writeBytes(player.visuals.addition ?: continue)
         }
         if (skip > -1) {
             writeSkip(sync, skip)

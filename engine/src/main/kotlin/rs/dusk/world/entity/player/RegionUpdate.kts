@@ -1,4 +1,5 @@
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.entity.event.Deregistered
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_PLAYERS
@@ -10,6 +11,7 @@ import rs.dusk.engine.map.location.Xteas
 import rs.dusk.engine.model.Region
 import rs.dusk.engine.model.entity.Move
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
+import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
 
 val xteas: Xteas by inject()
@@ -26,8 +28,8 @@ Deregistered where { entity is Player } then {
     regions[player.index - 1] = 0
 }
 
-Registered where { entity is Player } then {
-    calculateRegions(entity as Player, true)
+GameLoginMessage verify { player ->
+    calculateRegions(player, true)
 }
 
 Move where { entity is Player && from.chunk != to.chunk } then {

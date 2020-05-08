@@ -19,7 +19,7 @@ interface TrackingSet<T : Entity> {
     /**
      * Moves all entities to the removal list
      */
-    fun prep()
+    fun prep(self: T?)
 
     /**
      * Updates [current] by adding all [add] and removing all [remove]

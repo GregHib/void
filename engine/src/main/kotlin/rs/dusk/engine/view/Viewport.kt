@@ -65,8 +65,8 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
             if (!sessions.contains(player)) {
                 return@forEach
             }
-            defers.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP))
-            defers.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP))
+            defers.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player))
+            defers.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null))
         }
         super.run()
     }
@@ -74,15 +74,16 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int) = GlobalScope.async {
-        set.prep()
-        val entityCount = nearbyEntityCount(list, tile)
-        if (entityCount >= cap) {
-            gatherByTile(tile, list, set)
-        } else {
-            gatherByChunk(tile, list, set)
+    fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
+        GlobalScope.async {
+            set.prep(self)
+            val entityCount = nearbyEntityCount(list, tile)
+            if (entityCount >= cap) {
+                gatherByTile(tile, list, set)
+            } else {
+                gatherByChunk(tile, list, set)
+            }
         }
-    }
 
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]

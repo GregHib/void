@@ -11,7 +11,7 @@ import rs.dusk.engine.model.Tile
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
  * @since April 24, 2020
  */
-internal class TrackingSetTest {
+internal class EntityTrackingSetTest {
     lateinit var set: EntityTrackingSet<NPC>
 
     @BeforeEach
@@ -20,16 +20,29 @@ internal class TrackingSetTest {
     }
 
     @Test
-    fun `Prep removal set`() {
+    fun `Preparation fills removal set`() {
         // Given
         val npc = NPC(index = 1)
         set.current.add(npc)
         set.total = 1
         // When
-        set.prep()
+        set.prep(null)
         // Then
         assert(set.remove.contains(npc))
         assertEquals(0, set.total)
+    }
+
+    @Test
+    fun `Preparation tracks self`() {
+        // Given
+        val client = NPC(index = 1)
+        set.remove.add(client)
+        // When
+        set.prep(client)
+        // Then
+        assertFalse(set.remove.contains(client))
+        assertEquals(1, set.total)
+        assertEquals(0, set.added)
     }
 
     @Test
@@ -139,7 +152,7 @@ internal class TrackingSetTest {
     fun `Track within exceeding maximum tick entities`() {
         // Given
         val npc = NPC(index = 5, tile = Tile(15, 15, 0))
-        set.total = 4
+        set.added = 4
         val entities = setOf(npc)
         // When
         set.track(entities, 0, 0)

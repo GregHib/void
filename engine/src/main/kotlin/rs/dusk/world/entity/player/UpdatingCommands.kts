@@ -1,3 +1,6 @@
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.entity.factory.PlayerFactory
@@ -30,6 +33,16 @@ Command where { prefix == "bot" } then {
         }.forEach {
             it.await()
         }
+    }
+}
+
+Command where { prefix == "kill" } then {
+    val bot = players.indexed.firstOrNull { it != null && it.name.startsWith("Bot") }!!
+    players.remove(bot.tile, bot)
+    players.remove(bot.tile.chunk, bot)
+    GlobalScope.launch {
+        delay(600)
+        players.removeAtIndex(bot.index)
     }
 }
 
