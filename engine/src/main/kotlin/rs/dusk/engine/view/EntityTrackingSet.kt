@@ -1,6 +1,7 @@
 package rs.dusk.engine.view
 
-import rs.dusk.engine.entity.model.Entity
+import rs.dusk.engine.entity.model.Indexed
+import rs.dusk.engine.model.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
 import java.util.*
 import kotlin.collections.LinkedHashSet
@@ -10,12 +11,11 @@ import kotlin.math.abs
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 21, 2020
  */
-class EntityTrackingSet<T : Entity>(
+class EntityTrackingSet<T : Indexed>(
     val tickMax: Int,
     override val maximum: Int,
     override val radius: Int = VIEW_RADIUS,
     override var total: Int = 0,
-    var added: Int = 0,
     override val add: LinkedHashSet<T> = LinkedHashSet(),
     override val remove: MutableSet<T> = mutableSetOf(),
     override val current: MutableSet<T> = TreeSet(),// Ordered locals
@@ -25,9 +25,8 @@ class EntityTrackingSet<T : Entity>(
     override fun prep(self: T?) {
         remove.addAll(current)
         total = 0
-        added = 0
         if (self != null) {
-            track(self)
+            track(self, null)
         }
     }
 
@@ -46,7 +45,7 @@ class EntityTrackingSet<T : Entity>(
         local.add(self)
     }
 
-    override fun track(set: Set<T?>): Boolean {
+    override fun track(set: Set<T?>, self: T?): Boolean {
         for (entity in set) {
             if (entity == null) {
                 continue
@@ -54,12 +53,12 @@ class EntityTrackingSet<T : Entity>(
             if (total >= maximum) {
                 return false
             }
-            track(entity)
+            track(entity, self)
         }
         return true
     }
 
-    override fun track(set: Set<T?>, x: Int, y: Int): Boolean {
+    override fun track(set: Set<T?>, self: T?, x: Int, y: Int): Boolean {
         for (entity in set) {
             if (entity == null) {
                 continue
@@ -68,7 +67,7 @@ class EntityTrackingSet<T : Entity>(
                 return false
             }
             if (withinView(entity.tile.x, entity.tile.y, x, y, radius)) {
-                track(entity)
+                track(entity, self)
             }
         }
         return true
@@ -87,19 +86,18 @@ class EntityTrackingSet<T : Entity>(
      * and deleting visible ones, leaving entities
      * which have just been removed in the removal set.
      *
-     * Note:
-     *  [prep] must be called before use
-     *  Due to the prep `remove` is full with current visible entities
-     *  Before the prep `remove` will always be empty from the last tick
+     * Note: [prep] must be called before use so [remove] is full with [current] visible entities
      */
-    private fun track(entity: T) {
-        if (!remove.remove(entity)) {
-            if (added < tickMax) {
+    private fun track(entity: T, self: T?) {
+        val visible = remove.remove(entity)
+        if (visible) {
+            total++
+        } else if (self == null || entity != self) {
+            if (add.size < tickMax) {
                 add.add(entity)
-                added++
+                total++
             }
         }
-        total++
     }
 
     companion object {

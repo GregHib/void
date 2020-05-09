@@ -10,12 +10,14 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Entity
+import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.model.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP
+import rs.dusk.engine.view.ViewportTask.Companion.NPC_TICK_CAP
+import rs.dusk.engine.view.ViewportTask.Companion.PLAYER_TICK_CAP
 import rs.dusk.utility.inject
 
 /**
@@ -24,8 +26,8 @@ import rs.dusk.utility.inject
  */
 @Suppress("ArrayInDataClass")
 data class Viewport(
-    val players: TrackingSet<Player> = EntityTrackingSet(40, LOCAL_PLAYER_CAP),
-    val npcs: TrackingSet<NPC> = EntityTrackingSet(40, LOCAL_NPC_CAP),
+    val players: TrackingSet<Player> = EntityTrackingSet(PLAYER_TICK_CAP, LOCAL_PLAYER_CAP),
+    val npcs: TrackingSet<NPC> = EntityTrackingSet(NPC_TICK_CAP, LOCAL_NPC_CAP),
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
     val regions: MutableSet<Int> = linkedSetOf()
@@ -74,24 +76,24 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Entity> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
+    fun <T : Indexed> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
         GlobalScope.async {
             set.prep(self)
             val entityCount = nearbyEntityCount(list, tile)
             if (entityCount >= cap) {
-                gatherByTile(tile, list, set)
+                gatherByTile(tile, list, set, self)
             } else {
-                gatherByChunk(tile, list, set)
+                gatherByChunk(tile, list, set, self)
             }
         }
 
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
      */
-    fun <T : Entity> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
+    fun <T : Indexed> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
         Spiral.spiral(tile, VIEW_RADIUS) { t ->
             val p = list[t]
-            if (p != null && !set.track(p)) {
+            if (p != null && !set.track(p, self)) {
                 return
             }
         }
@@ -100,12 +102,12 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
     /**
      * Updates [set] quickly by gathering all entities in local chunks stopping at [TrackingSet.maximum]
      */
-    fun <T : Entity> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>) {
+    fun <T : Indexed> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
         Spiral.spiral(tile.chunk, 2) { chunk ->
             val entities = list[chunk]
-            if (entities != null && !set.track(entities, x, y)) {
+            if (entities != null && !set.track(entities, self, x, y)) {
                 return
             }
         }
@@ -126,6 +128,8 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
     }
 
     companion object {
+        const val PLAYER_TICK_CAP = 40
+        const val NPC_TICK_CAP = 40
         const val LOCAL_PLAYER_CAP = 255
         const val LOCAL_NPC_CAP = 255
 

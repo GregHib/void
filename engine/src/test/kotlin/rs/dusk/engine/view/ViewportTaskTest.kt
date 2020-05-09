@@ -72,7 +72,7 @@ internal class ViewportTaskTest : KoinMock() {
         verifyOrder {
             set.prep(client)
             task.nearbyEntityCount(players, tile)
-            task.gatherByTile(tile, players, set)
+            task.gatherByTile(tile, players, set, client)
         }
     }
 
@@ -91,7 +91,7 @@ internal class ViewportTaskTest : KoinMock() {
         verifyOrder {
             set.prep(client)
             task.nearbyEntityCount(players, tile)
-            task.gatherByChunk(tile, players, set)
+            task.gatherByChunk(tile, players, set, client)
         }
     }
 
@@ -104,7 +104,7 @@ internal class ViewportTaskTest : KoinMock() {
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
         val north: Player = mockk(relaxed = true)
-        every { set.track(any()) } answers {
+        every { set.track(any(), any()) } answers {
             val players: Set<Player> = arg(0)
             players.first() != north
         }
@@ -119,17 +119,17 @@ internal class ViewportTaskTest : KoinMock() {
             }
         }
         // When
-        task.gatherByTile(Tile(0), players, set)
+        task.gatherByTile(Tile(0), players, set, null)
         // Then
         verifyOrder {
             players[Tile(0, 0, 0)]
-            set.track(setOf(same))
+            set.track(setOf(same), null)
             players[Tile(-1, 0, 0)]
-            set.track(setOf(west))
+            set.track(setOf(west), null)
             players[Tile(-1, 1, 0)]
-            set.track(setOf(northWest))
+            set.track(setOf(northWest), null)
             players[Tile(0, 1, 0)]
-            set.track(setOf(north))
+            set.track(setOf(north), null)
         }
     }
 
@@ -142,7 +142,7 @@ internal class ViewportTaskTest : KoinMock() {
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
         val north: Player = mockk(relaxed = true)
-        every { set.track(any(), any(), any()) } answers {
+        every { set.track(any(), any(), any(), any()) } answers {
             val players: Set<Player> = arg(0)
             players.firstOrNull() != north
         }
@@ -157,17 +157,17 @@ internal class ViewportTaskTest : KoinMock() {
             }
         }
         // When
-        task.gatherByChunk(Tile(0), players, set)
+        task.gatherByChunk(Tile(0), players, set, null)
         // Then
         verifyOrder {
             players[Chunk(0, 0)]
-            set.track(setOf(same), 0, 0)
+            set.track(setOf(same), null, 0, 0)
             players[Chunk(-1, 0)]
-            set.track(setOf(west), 0, 0)
+            set.track(setOf(west), null, 0, 0)
             players[Chunk(-1, 1)]
-            set.track(setOf(northWest), 0, 0)
+            set.track(setOf(northWest), null, 0, 0)
             players[Chunk(0, 1)]
-            set.track(setOf(north), 0, 0)
+            set.track(setOf(north), null, 0, 0)
         }
     }
 

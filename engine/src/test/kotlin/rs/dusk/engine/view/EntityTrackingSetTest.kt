@@ -1,5 +1,6 @@
 package rs.dusk.engine.view
 
+import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
@@ -42,7 +43,32 @@ internal class EntityTrackingSetTest {
         // Then
         assertFalse(set.remove.contains(client))
         assertEquals(1, set.total)
-        assertEquals(0, set.added)
+        assertEquals(0, set.add.size)
+    }
+
+    @Test
+    fun `Tracking tracks self`() {
+        // Given
+        val client = NPC(index = 1)
+        set.remove.add(client)
+        // When
+        set.track(setOf(client), client)
+        // Then
+        assertFalse(set.remove.contains(client))
+        assertEquals(1, set.total)
+        assertEquals(0, set.add.size)
+    }
+
+    @Test
+    fun `Tracking ignores self addition`() {
+        // Given
+        val client = NPC(index = 1)
+        // When
+        set.track(setOf(client), client)
+        // Then
+        assertFalse(set.add.contains(client))
+        assertEquals(0, set.total)
+        assertEquals(0, set.add.size)
     }
 
     @Test
@@ -72,7 +98,7 @@ internal class EntityTrackingSetTest {
         val npc = NPC(index = 1)
         val entities = setOf(npc)
         // When
-        set.track(entities)
+        set.track(entities, null)
         // Then
         assert(set.add.contains(npc))
     }
@@ -84,7 +110,7 @@ internal class EntityTrackingSetTest {
         set.remove.add(npc)
         val entities = setOf(npc)
         // When
-        set.track(entities)
+        set.track(entities, null)
         // Then
         assert(!set.remove.contains(npc))
         assert(!set.add.contains(npc))
@@ -97,7 +123,7 @@ internal class EntityTrackingSetTest {
         set.total = 10
         val entities = setOf(npc)
         // When
-        set.track(entities)
+        set.track(entities, null)
         // Then
         assert(!set.add.contains(npc))
     }
@@ -106,10 +132,10 @@ internal class EntityTrackingSetTest {
     fun `Track exceeding maximum tick entities`() {
         // Given
         val npc = NPC(index = 5, tile = Tile(0))
-        set.added = 4
+        set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
         val entities = setOf(npc)
         // When
-        set.track(entities)
+        set.track(entities, null)
         // Then
         assert(!set.add.contains(npc))
     }
@@ -120,7 +146,7 @@ internal class EntityTrackingSetTest {
         val npc = NPC(index = 1, tile = Tile(15, 15, 0))
         val entities = setOf(npc)
         // When
-        set.track(entities, 0, 0)
+        set.track(entities, null, 0, 0)
         // Then
         assert(set.add.contains(npc))
     }
@@ -131,7 +157,7 @@ internal class EntityTrackingSetTest {
         val npc = NPC(index = 1, tile = Tile(16, 16, 0))
         val entities = setOf(npc)
         // When
-        set.track(entities, 0, 0)
+        set.track(entities, null, 0, 0)
         // Then
         assert(!set.add.contains(npc))
     }
@@ -143,7 +169,7 @@ internal class EntityTrackingSetTest {
         set.total = 10
         val entities = setOf(npc)
         // When
-        set.track(entities, 0, 0)
+        set.track(entities, null, 0, 0)
         // Then
         assert(!set.add.contains(npc))
     }
@@ -152,10 +178,10 @@ internal class EntityTrackingSetTest {
     fun `Track within exceeding maximum tick entities`() {
         // Given
         val npc = NPC(index = 5, tile = Tile(15, 15, 0))
-        set.added = 4
+        set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
         val entities = setOf(npc)
         // When
-        set.track(entities, 0, 0)
+        set.track(entities, null, 0, 0)
         // Then
         assert(!set.add.contains(npc))
     }
