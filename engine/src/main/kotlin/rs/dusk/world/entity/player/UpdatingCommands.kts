@@ -30,7 +30,7 @@ val botCounter = AtomicInteger(0)
 Command where { prefix == "bot" } then {
     println("Bot command")
     runBlocking {
-        val radius = 20
+        val radius = 22
         (-radius..radius).flatMap { x ->
             (-radius..radius).map { y ->
                 factory.spawn("Bot ${botCounter.getAndIncrement()}", Tile(player.tile.x + x, player.tile.y + y))
@@ -54,6 +54,11 @@ Command where { prefix == "kill" } then {
         return@then
     }
 }
+Command where { prefix == "under" } then {
+    players[player.tile]?.filterNotNull()?.forEach {
+        println("$it - ${player.viewport.players.current.contains(it)}")
+    }
+}
 
 Command where { prefix == "anim" } then {
     player.setAnimation(content.toInt())// 863
@@ -66,13 +71,6 @@ Command where { prefix == "gfx" } then {
 Command where { prefix == "tfm" || prefix == "transform" } then {
     player.transform = content.toInt()
 }
-
-//runBlocking {
-//    repeat(3) {
-//        val bot = factory.spawn("Bot ${botCounter.getAndIncrement()}").await()
-//        bot?.tile = bot!!.tile.add(it)
-//    }
-//}
 
 Command where { prefix == "overlay" } then {
     player.setColourOverlay(-2108002746, 10, 100)

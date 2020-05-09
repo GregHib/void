@@ -16,6 +16,7 @@ interface TrackingSet<T : Indexed> {
     val remove: Set<T>
     val current: Set<T>
     val local: Set<T>
+    val lastSeen: MutableMap<T, Tile>
 
     /**
      * Moves all entities to the removal list

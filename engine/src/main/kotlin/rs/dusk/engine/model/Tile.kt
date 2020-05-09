@@ -24,5 +24,6 @@ data class Tile(val x: Int, val y: Int, val plane: Int = 0) {
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int = 0) = Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)
+        val EMPTY = Tile(0)
     }
 }

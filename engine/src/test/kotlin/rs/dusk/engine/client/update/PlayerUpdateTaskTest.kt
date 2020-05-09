@@ -2,6 +2,7 @@ package rs.dusk.engine.client.update
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
@@ -16,7 +17,6 @@ import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Changes
 import rs.dusk.engine.entity.model.Changes.Companion.ADJACENT_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.entity.model.Changes.Companion.HEIGHT
@@ -25,6 +25,8 @@ import rs.dusk.engine.entity.model.Changes.Companion.RUN
 import rs.dusk.engine.entity.model.Changes.Companion.TELE
 import rs.dusk.engine.entity.model.Changes.Companion.WALK
 import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.RegionPlane
+import rs.dusk.engine.model.Tile
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.engine.view.TrackingSet
 import rs.dusk.engine.view.Viewport
@@ -37,12 +39,12 @@ import rs.dusk.utility.func.toInt
  */
 internal class PlayerUpdateTaskTest : KoinMock() {
 
-    lateinit var updateTask: PlayerUpdateTask
+    lateinit var task: PlayerUpdateTask
     override val modules = listOf(entityListModule, clientSessionModule)
 
     @BeforeEach
     fun setup() {
-        updateTask = spyk(PlayerUpdateTask(EngineTasks()))
+        task = spyk(PlayerUpdateTask(EngineTasks()))
     }
 
     @Test
@@ -61,10 +63,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             every { send(player, any(), any<PlayerUpdateMessage>()) } just Runs
         }
         // When
-        updateTask.run()
+        task.run()
         // Then
         coVerify {
-            updateTask.update(player)
+            task.update(player)
         }
     }
 
@@ -86,10 +88,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             every { contains(player) } returns false
         }
         // When
-        updateTask.run()
+        task.run()
         // Then
         coVerify(exactly = 0) {
-            updateTask.update(player)
+            task.update(player)
         }
     }
 
@@ -103,14 +105,14 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { viewport.players } returns entities
         // When
         runBlocking {
-            updateTask.update(player).await()
+            task.update(player).await()
         }
         // Then
         verifyOrder {
-            updateTask.processLocals(any(), any(), entities, viewport, true)
-            updateTask.processLocals(any(), any(), entities, viewport, false)
-            updateTask.processGlobals(any(), any(), entities, viewport, true)
-            updateTask.processGlobals(any(), any(), entities, viewport, false)
+            task.processLocals(any(), any(), entities, viewport, true)
+            task.processLocals(any(), any(), entities, viewport, false)
+            task.processGlobals(any(), any(), entities, viewport, true)
+            task.processGlobals(any(), any(), entities, viewport, false)
         }
     }
 
@@ -133,7 +135,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { idlePlayer.changes.localUpdate } returns -1
         every { activePlayer.changes.localUpdate } returns -1
         // When
-        updateTask.processLocals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, active)
+        task.processLocals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, active)
         // Then
         verify(exactly = (!active).toInt()) { viewport.setIdle(idleIndex) }
         verify(exactly = active.toInt()) { viewport.setIdle(activeIndex) }
@@ -149,8 +151,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
         every { entities.remove.contains(player) } returns true
         every { entities.current } returns setOf(player)
+        every { entities.lastSeen[player] } returns null
         // When
-        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -158,7 +161,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(1, true)
             sync.writeBits(1, false)// Even when update isn't null (relaxed)
             sync.writeBits(2, 0)
-            updateTask.encodeRegion(sync, player.changes)
+            task.encodeRegion(sync, entities, player)
             sync.finishBitAccess()
         }
     }
@@ -177,7 +180,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changes.localUpdate } returns type
         every { entities.current } returns setOf(player)
         // When
-        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -201,7 +204,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changes.localUpdate } returns TELE
         every { entities.current } returns setOf(player)
         // When
-        updateTask.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
+        task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -226,7 +229,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changes.localUpdate } returns NONE
         every { entities.current } returns setOf(player)
         // When
-        updateTask.processLocals(sync, updates, entities, viewport, true)
+        task.processLocals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) { viewport.setIdle(any()) }
         verifyOrder {
@@ -251,7 +254,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.visuals.update } returns null
         every { entities.current } returns setOf(player)
         // When
-        updateTask.processLocals(sync, updates, entities, viewport, true)
+        task.processLocals(sync, updates, entities, viewport, true)
         // Then
         verify(exactly = 0) {
             viewport.setIdle(any())
@@ -279,11 +282,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { skipPlayer.changes.localUpdate } returns -1
         every { entities.current } returns linkedSetOf(skipPlayer, player)
         // When
-        updateTask.processLocals(sync, updates, entities, viewport, true)
+        task.processLocals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             viewport.setIdle(index)
-            updateTask.writeSkip(sync, 0)
+            task.writeSkip(sync, 0)
             sync.writeBits(1, true)
         }
     }
@@ -300,11 +303,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.changes.localUpdate } returns -1
         every { entities.current } returns setOf(player)
         // When
-        updateTask.processLocals(sync, updates, entities, viewport, true)
+        task.processLocals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             viewport.setIdle(any())
-            updateTask.writeSkip(sync, 0)
+            task.writeSkip(sync, 0)
         }
     }
 
@@ -327,7 +330,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.index } returns index
         every { entities.local.contains(player) } returns true
         // When
-        updateTask.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
+        task.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
         verify(exactly = 0) {
             entities.add.contains(player)
@@ -357,8 +360,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { player.tile.y } returns 14
         every { player.index } returns index
         every { entities.add.contains(player) } returns true
+        every { entities.lastSeen[any()] } returns null
         // When
-        updateTask.processGlobals(sync, updates, entities, viewport, true)
+        task.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
             sync.startBitAccess()
@@ -369,7 +373,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             sync.writeBits(6, 14)
             sync.writeBits(1, true)
             updates.writeBytes(any<ByteArray>())
-            updateTask.writeSkip(sync, 2045)
+            task.writeSkip(sync, 2045)
             sync.finishBitAccess()
         }
     }
@@ -391,12 +395,13 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             }
         }
         every { entities.add.contains(player) } returns true
+        every { entities.lastSeen[any()] } returns null
         // When
-        updateTask.processGlobals(sync, updates, entities, viewport, true)
+        task.processGlobals(sync, updates, entities, viewport, true)
         // Then
         verifyOrder {
-            updateTask.writeSkip(sync, 2044)
-            updateTask.writeSkip(sync, 0)
+            task.writeSkip(sync, 2044)
+            task.writeSkip(sync, 0)
         }
     }
 
@@ -406,7 +411,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             // Given
             val writer: Writer = mockk(relaxed = true)
             // When
-            updateTask.writeSkip(writer, skip)
+            task.writeSkip(writer, skip)
             // Then
             verifyOrder {
                 writer.writeBits(1, 0)
@@ -428,14 +433,16 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     fun `Encode region`() = intArrayOf(NONE, HEIGHT, ADJACENT_REGION, GLOBAL_REGION).mapIndexed { index, updateType ->
         dynamicTest("Encode region change $updateType") {
             // Given
-            val changes: Changes = mockk(relaxed = true)
             val writer: Writer = mockk(relaxed = true)
             val value = 10
-
-            every { changes.regionUpdate } returns updateType
-            every { changes.regionValue } returns value
+            val set: TrackingSet<Player> = mockk(relaxed = true)
+            val player: Player = mockk(relaxed = true)
+            every { player.tile } returns Tile(0)
+            every { set.lastSeen[player] } returns null
+            every { task.calculateRegionUpdate(any()) } returns updateType
+            every { task.calculateRegionValue(any(), any()) } returns value
             // When
-            updateTask.encodeRegion(writer, changes)
+            task.encodeRegion(writer, set, player)
             // Then
             verifyOrder {
                 writer.writeBits(1, updateType != NONE)
@@ -453,4 +460,53 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         }
     }
 
+    @TestFactory
+    fun `Region update types`() = arrayOf(
+        NONE to RegionPlane(0, 0, 0),
+        HEIGHT to RegionPlane(0, 0, 1),
+        ADJACENT_REGION to RegionPlane(1, 1, 0),
+        ADJACENT_REGION to RegionPlane(0, 1, 0),
+        ADJACENT_REGION to RegionPlane(1, 0, 0),
+        ADJACENT_REGION to RegionPlane(-1, -1, 2),
+        ADJACENT_REGION to RegionPlane(0, -1, 0),
+        ADJACENT_REGION to RegionPlane(-1, 0, 0),
+        GLOBAL_REGION to RegionPlane(2, 2, 3),
+        GLOBAL_REGION to RegionPlane(0, 2, 0),
+        GLOBAL_REGION to RegionPlane(2, 0, 0),
+        GLOBAL_REGION to RegionPlane(-2, -2, 0),
+        GLOBAL_REGION to RegionPlane(0, -2, 0),
+        GLOBAL_REGION to RegionPlane(-2, 0, 0)
+    ).map { (expected, delta) ->
+        dynamicTest("Region update for movement $delta") {
+            // When
+            val result = task.calculateRegionUpdate(delta)
+            // Then
+            assertEquals(expected, result)
+        }
+    }
+
+    @TestFactory
+    fun `Region update values`() = arrayOf(
+        Triple(NONE, RegionPlane(0, 0, 0), -1),
+        Triple(HEIGHT, RegionPlane(0, 0, 1), 1),
+        Triple(HEIGHT, RegionPlane(0, 0, -3), -3),
+        Triple(ADJACENT_REGION, RegionPlane(-1, 1, 0), 0),
+        Triple(ADJACENT_REGION, RegionPlane(0, 1, 1), 9),
+        Triple(ADJACENT_REGION, RegionPlane(1, 1, 2), 18),
+        Triple(ADJACENT_REGION, RegionPlane(1, 0, 3), 28),
+        Triple(ADJACENT_REGION, RegionPlane(1, -1, 0), 7),
+        Triple(ADJACENT_REGION, RegionPlane(0, -1, 1), 14),
+        Triple(ADJACENT_REGION, RegionPlane(-1, -1, 2), 21),
+        Triple(ADJACENT_REGION, RegionPlane(-1, 0, 3), 27),
+        Triple(GLOBAL_REGION, RegionPlane(2, 2, 0), 514),
+        Triple(GLOBAL_REGION, RegionPlane(-2, -2, 1), 130814),
+        Triple(GLOBAL_REGION, RegionPlane(12, -16, 2), 134384)
+    ).map { (updateType, delta, expected) ->
+        dynamicTest("Region value for movement $delta") {
+            // When
+            val result = task.calculateRegionValue(updateType, delta)
+            // Then
+            assertEquals(expected, result)
+        }
+    }
 }

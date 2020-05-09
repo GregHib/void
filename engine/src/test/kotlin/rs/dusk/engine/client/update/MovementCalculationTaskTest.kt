@@ -2,17 +2,11 @@ package rs.dusk.engine.client.update
 
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.verify
 import io.mockk.verifyOrder
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.entity.list.entityListModule
-import rs.dusk.engine.entity.model.Changes.Companion.ADJACENT_REGION
-import rs.dusk.engine.entity.model.Changes.Companion.GLOBAL_REGION
-import rs.dusk.engine.entity.model.Changes.Companion.HEIGHT
 import rs.dusk.engine.entity.model.Changes.Companion.NONE
 import rs.dusk.engine.entity.model.Changes.Companion.RUN
 import rs.dusk.engine.entity.model.Changes.Companion.TELE
@@ -36,69 +30,6 @@ internal class MovementCalculationTaskTest : KoinMock() {
     @BeforeEach
     fun setup() {
         task = MovementCalculationTask(mockk(relaxed = true))
-    }
-
-    @TestFactory
-    fun `Region update types`() = arrayOf(
-        NONE to Tile(0, 0),
-        HEIGHT to Tile(0, 0, 1),
-        ADJACENT_REGION to Tile(64, 64),
-        ADJACENT_REGION to Tile(0, 64),
-        ADJACENT_REGION to Tile(64, 0),
-        ADJACENT_REGION to Tile(-64, -64, 2),
-        ADJACENT_REGION to Tile(0, -64),
-        ADJACENT_REGION to Tile(-64, 0),
-        GLOBAL_REGION to Tile(128, 128, 3),
-        GLOBAL_REGION to Tile(0, 128),
-        GLOBAL_REGION to Tile(128, 0),
-        GLOBAL_REGION to Tile(-128, -128),
-        GLOBAL_REGION to Tile(0, -128),
-        GLOBAL_REGION to Tile(-128, 0)
-    ).map { (expected, delta) ->
-        dynamicTest("Region update for movement $delta") {
-            // Given
-            val player: Player = mockk(relaxed = true)
-            every { player.movement.delta } returns delta
-            every { player.movementType } returns 0
-            // When
-            runBlocking {
-                task.updatePlayer(player).await()
-            }
-            // Then
-            verify { player.changes.regionUpdate = expected }
-        }
-    }
-
-    @TestFactory
-    fun `Region update values`() = arrayOf(
-        Triple(NONE, Tile(0, 0), -1),
-        Triple(HEIGHT, Tile(0, 0, 1), 1),
-        Triple(HEIGHT, Tile(0, 0, -3), -3),
-        Triple(ADJACENT_REGION, Tile(-64, 64, 0), 0),
-        Triple(ADJACENT_REGION, Tile(0, 64, 1), 9),
-        Triple(ADJACENT_REGION, Tile(64, 64, 2), 18),
-        Triple(ADJACENT_REGION, Tile(64, 0, 3), 28),
-        Triple(ADJACENT_REGION, Tile(64, -64, 0), 7),
-        Triple(ADJACENT_REGION, Tile(0, -64, 1), 14),
-        Triple(ADJACENT_REGION, Tile(-64, -64, 2), 21),
-        Triple(ADJACENT_REGION, Tile(-64, 0, 3), 27),
-        Triple(GLOBAL_REGION, Tile(128, 128, 0), 514),
-        Triple(GLOBAL_REGION, Tile(-128, -128, 1), 130814),
-        Triple(GLOBAL_REGION, Tile(768, -1024, 2), 134384)
-    ).map { (updateType, delta, expected) ->
-        dynamicTest("Region value for movement $delta") {
-            // Given
-            val player: Player = mockk(relaxed = true)
-            every { player.movement.delta } returns delta
-            every { player.changes.regionUpdate } returns updateType
-            every { player.movementType } returns 0
-            // When
-            runBlocking {
-                task.updatePlayer(player).await()
-            }
-            // Then
-            verify { player.changes.regionValue = expected }
-        }
     }
 
     @Test

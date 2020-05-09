@@ -16,7 +16,7 @@ data class Player(
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val changes: Changes = Changes(),
-    @Transient override val movement: Movement = Movement()
+    @Transient override val movement: Movement = Movement(delta = tile)
 ) : Indexed, Movable {
     @Transient
     override var index: Int = -1
@@ -33,6 +33,6 @@ data class Player(
     }
 
     override fun toString(): String {
-        return "Player(${getAppearance().displayName}, tile=$tile)"
+        return "Player(${getAppearance().displayName}, index=$index, tile=$tile)"
     }
 }

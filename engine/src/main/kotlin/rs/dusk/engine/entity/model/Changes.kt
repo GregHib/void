@@ -6,9 +6,7 @@ package rs.dusk.engine.entity.model
  */
 data class Changes(
     var localUpdate: Int = 0,
-    var localValue: Int = 0,
-    var regionUpdate: Int = NONE,
-    var regionValue: Int = -1
+    var localValue: Int = 0
 ) {
 
     companion object {

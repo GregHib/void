@@ -92,8 +92,8 @@ class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
      */
     fun <T : Indexed> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
         Spiral.spiral(tile, VIEW_RADIUS) { t ->
-            val p = list[t]
-            if (p != null && !set.track(p, self)) {
+            val entities = list[t]
+            if (entities != null && !set.track(entities, self)) {
                 return
             }
         }

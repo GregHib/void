@@ -19,7 +19,8 @@ class EntityTrackingSet<T : Indexed>(
     override val add: LinkedHashSet<T> = LinkedHashSet(),
     override val remove: MutableSet<T> = mutableSetOf(),
     override val current: MutableSet<T> = TreeSet(),// Ordered locals
-    override val local: MutableSet<T> = mutableSetOf()// Duplicate of current for O(1) lookup
+    override val local: MutableSet<T> = mutableSetOf(),// Duplicate of current for O(1) lookup
+    override val lastSeen: MutableMap<T, Tile> = mutableMapOf()
 ) : TrackingSet<T> {
 
     override fun prep(self: T?) {
@@ -31,10 +32,15 @@ class EntityTrackingSet<T : Indexed>(
     }
 
     override fun update() {
-        current.removeAll(remove)
-        current.addAll(add)
-        local.removeAll(remove)
-        local.addAll(add)
+        remove.forEach {
+            current.remove(it)
+            local.remove(it)
+            lastSeen[it] = it.movement.lastTile
+        }
+        add.forEach {
+            local.add(it)
+            current.add(it)
+        }
         remove.clear()
         add.clear()
         total = current.size
@@ -82,11 +88,10 @@ class EntityTrackingSet<T : Indexed>(
     }
 
     /**
-     * Tracking is done by adding all current entities for removal
-     * and deleting visible ones, leaving entities
-     * which have just been removed in the removal set.
+     * Tracking is done by adding all entities to removal and deleting visible ones,
+     * leaving entities which have just been removed in the removal set.
      *
-     * Note: [prep] must be called before use so [remove] is full with [current] visible entities
+     * Note: [prep] must be called beforehand so [remove] is full with [current] visible entities
      */
     private fun track(entity: T, self: T?) {
         val visible = remove.remove(entity)

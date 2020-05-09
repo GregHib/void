@@ -3,6 +3,7 @@ import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.entity.event.Deregistered
 import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_PLAYERS
+import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -15,6 +16,7 @@ import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
 
 val xteas: Xteas by inject()
+val players: Players by inject()
 
 val regions = IntArray(MAX_PLAYERS - 1)
 
@@ -69,6 +71,13 @@ fun update(player: Player, initial: Boolean) {
     player.viewport.regions.forEach { regionId ->
         val xtea = xteas[regionId] ?: IntArray(4)
         list.add(xtea)
+    }
+
+    if (initial) {
+        regions.forEachIndexed { index, _ ->
+            val p = players.getAtIndex(index) ?: return@forEachIndexed
+            player.viewport.players.lastSeen[p] = p.tile
+        }
     }
 
     player.send(

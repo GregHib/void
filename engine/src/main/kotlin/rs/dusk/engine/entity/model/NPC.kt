@@ -13,7 +13,7 @@ data class NPC(
     override var tile: Tile,
     override val visuals: Visuals = Visuals(),
     override val changes: Changes = Changes(),
-    override val movement: Movement = Movement()
+    override val movement: Movement = Movement(delta = tile)
 ) : Indexed {
 
     constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {

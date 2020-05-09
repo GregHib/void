@@ -35,14 +35,20 @@ class PostUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks, -1) {
             super.run()
         }
         if (took > 0) {
-            logger.info { "Update calculation took ${took}ms" }
+            logger.info { "Post update took ${took}ms" }
         }
     }
 
     fun updatePlayer(player: Player) = GlobalScope.async<Unit> {
         player.viewport.shift()
         player.viewport.players.update()
-        player.movement.delta = Tile(0)
+        val lastSeen = player.viewport.players.lastSeen[player] ?: Tile.EMPTY
+        val region = player.movement.lastTile.delta(lastSeen).regionPlane
+        val regionChanged = region.x != 0 || region.y != 0 || region.plane != 0
+        if (regionChanged) {
+            player.viewport.players.lastSeen[player] = player.tile
+        }
+        player.movement.delta = Tile(0)// Post movement not updating?
         player.getAnimation().apply {
             first = -1
             second = -1
