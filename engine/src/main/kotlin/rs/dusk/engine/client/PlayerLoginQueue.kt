@@ -34,7 +34,7 @@ class PlayerLoginQueue(tasks: EngineTasks, private val loginPerTickCap: Int) : L
         }
 
         try {
-            val player = factory.spawn(username, session).await()
+            val player = factory.spawn(username, session = session).await()
             if (player == null) {
                 LoginResponse.Full
             } else {

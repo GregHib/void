@@ -16,6 +16,7 @@ import rs.dusk.engine.model.Direction
 import rs.dusk.engine.model.Tile
 import rs.dusk.engine.model.entity.Move
 import rs.dusk.engine.model.entity.player.command.Command
+import rs.dusk.engine.view.Spiral
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
@@ -27,22 +28,30 @@ val login: LoginQueue by inject()
 val botCounter = AtomicInteger(0)
 
 Command where { prefix == "bot" } then {
+    println("Bot command")
     runBlocking {
-        (0 until 1000).map {
-            factory.spawn("Bot ${botCounter.getAndIncrement()}")
+        val radius = 20
+        (-radius..radius).flatMap { x ->
+            (-radius..radius).map { y ->
+                factory.spawn("Bot ${botCounter.getAndIncrement()}", Tile(player.tile.x + x, player.tile.y + y))
+            }
         }.forEach {
-            it.await()
+            val bot = it.await()
+            println("Bot $bot")
         }
     }
 }
 
 Command where { prefix == "kill" } then {
-    val bot = players.indexed.firstOrNull { it != null && it.name.startsWith("Bot") }!!
-    players.remove(bot.tile, bot)
-    players.remove(bot.tile.chunk, bot)
-    GlobalScope.launch {
-        delay(600)
-        players.removeAtIndex(bot.index)
+    Spiral.spiral(player.tile, 10) { tile ->
+        val bot = players[tile]?.firstOrNull { it != null && it.name.startsWith("Bot") } ?: return@spiral
+        players.remove(bot.tile, bot)
+        players.remove(bot.tile.chunk, bot)
+        GlobalScope.launch {
+            delay(600)
+            players.removeAtIndex(bot.index)
+        }
+        return@then
     }
 }
 
@@ -58,11 +67,12 @@ Command where { prefix == "tfm" || prefix == "transform" } then {
     player.transform = content.toInt()
 }
 
-runBlocking {
-    repeat(2) {
-        factory.spawn("Bot ${botCounter.getAndIncrement()}").await()
-    }
-}
+//runBlocking {
+//    repeat(3) {
+//        val bot = factory.spawn("Bot ${botCounter.getAndIncrement()}").await()
+//        bot?.tile = bot!!.tile.add(it)
+//    }
+//}
 
 Command where { prefix == "overlay" } then {
     player.setColourOverlay(-2108002746, 10, 100)

@@ -32,7 +32,7 @@ internal class PlayerFactoryTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         every { player.name = any() } just Runs
         val loader: PlayerLoader = declareMock {
-            every { load("Test") } returns player
+            every { loadPlayer("Test") } returns player
         }
         val bus: EventBus = declareMock {
             every { emit(any<Registered>()) } just Runs
@@ -42,7 +42,7 @@ internal class PlayerFactoryTest : KoinMock() {
         // Then
         assertNotNull(result)
         verifyOrder {
-            loader.load("Test")
+            loader.loadPlayer("Test")
             player.index = 1
             player.name = "Test"
             bus.emit<Registered>(any())

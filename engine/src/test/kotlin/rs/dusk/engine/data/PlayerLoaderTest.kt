@@ -22,7 +22,7 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns mockk()
         val loader = PlayerLoader(strategy)
         // When
-        loader.load("test")
+        loader.loadPlayer("test")
         // Then
         verify { strategy.load("test") }
     }
@@ -34,7 +34,7 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns null
         val loader = PlayerLoader(strategy)
         // When
-        val result = loader.load("test")
+        val result = loader.loadPlayer("test")
         // Then
         assertEquals(-1, result.id)
         assertEquals(-1, result.index)
@@ -56,7 +56,7 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns null
         val loader = PlayerLoader(strategy)
         // When
-        val result = loader.load("test")
+        val result = loader.loadPlayer("test")
         // Then
         assertEquals(-1, result.id)
         assertEquals(-1, result.index)

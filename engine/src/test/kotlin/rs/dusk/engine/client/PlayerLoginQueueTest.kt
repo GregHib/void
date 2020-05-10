@@ -36,7 +36,7 @@ internal class PlayerLoginQueueTest : KoinMock() {
         val session: Session = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         declareMock<PlayerFactory> {
-            every { spawn(any(), any()) } returns async { player }
+            every { spawn(any(), any(), any()) } returns async { player }
         }
         // When
         val result = loginQueue.add("Test", session)
@@ -51,7 +51,7 @@ internal class PlayerLoginQueueTest : KoinMock() {
         // Given
         val session: Session = mockk(relaxed = true)
         declareMock<PlayerFactory> {
-            every { spawn(any(), any()) } returns async { null }
+            every { spawn(any(), any(), any()) } returns async { null }
         }
         // When
         val result = loginQueue.add("Test", session)
@@ -67,10 +67,7 @@ internal class PlayerLoginQueueTest : KoinMock() {
         val session: Session = mockk(relaxed = true)
         declareMock<PlayerFactory> {
             every {
-                spawn(
-                    any(),
-                    any()
-                )
+                spawn(any(), any(), any())
             } returns GlobalScope.async { throw IllegalStateException("Loading went wrong") }
         }
         // When
@@ -85,7 +82,7 @@ internal class PlayerLoginQueueTest : KoinMock() {
     fun `Add suspends`() = runBlocking {
         // Given
         declareMock<PlayerFactory> {
-            every { spawn(any(), any()) } returns GlobalScope.async { null }
+            every { spawn(any(), any(), any()) } returns GlobalScope.async { null }
         }
         // When
         val result = loginQueue.add("Test")
@@ -100,7 +97,7 @@ internal class PlayerLoginQueueTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val factory = declareMock<PlayerFactory> {
-            every { spawn(any(), any()) } answers {
+            every { spawn(any(), any(), any()) } answers {
                 val name: String = arg(0)
                 GlobalScope.async { if (name == "Test1") player else null }
             }
@@ -114,8 +111,8 @@ internal class PlayerLoginQueueTest : KoinMock() {
         // Then
         delay(50)
         coVerifyOrder {
-            factory.spawn("Test2", null)
-            factory.spawn("Test1", null)
+            factory.spawn("Test2", null, null)
+            factory.spawn("Test1", null, null)
         }
         assertEquals(LoginResponse.Success(player), test1.await())
         assertEquals(LoginResponse.Full, test2.await())

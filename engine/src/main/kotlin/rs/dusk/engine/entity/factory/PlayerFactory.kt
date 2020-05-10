@@ -13,6 +13,7 @@ import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.model.Tile
 import rs.dusk.utility.inject
 
 /**
@@ -28,8 +29,8 @@ class PlayerFactory {
     private val sessions: Sessions by inject()
     private val mutex = Mutex()
 
-    fun spawn(name: String, session: Session? = null) = GlobalScope.async {
-        val player = loader.load(name)
+    fun spawn(name: String, tile: Tile? = null, session: Session? = null) = GlobalScope.async {
+        val player = if (tile != null) loader.loadPlayer(name, tile) else loader.loadPlayer(name = name)
         mutex.withLock {
             val index = indexer.obtain()
             if (index != null) {
