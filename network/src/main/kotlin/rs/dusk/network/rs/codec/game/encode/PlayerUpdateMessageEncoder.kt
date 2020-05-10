@@ -16,8 +16,9 @@ class PlayerUpdateMessageEncoder : GameMessageEncoder<PlayerUpdateMessage>() {
         val (changes, updates) = msg
         builder.apply {
             writeOpcode(PLAYER_UPDATING, PacketType.SHORT)
-            writeBytes(changes)
-            writeBytes(updates)
+            writeBytes(changes.buffer)
+            writeBytes(updates.buffer)
         }
+        msg.release()
     }
 }

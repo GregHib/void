@@ -58,15 +58,15 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         val viewport = player.viewport
         val entities = viewport.players
 
-        val writer = BufferWriter()
-        val updates = BufferWriter()
+        val message = viewport.message
+        val (writer, updates) = message
 
         processLocals(writer, updates, entities, viewport, true)
         processLocals(writer, updates, entities, viewport, false)
         processGlobals(writer, updates, entities, viewport, true)
         processGlobals(writer, updates, entities, viewport, false)
 
-        player.send(PlayerUpdateMessage(writer.buffer, updates.buffer))
+        player.send(message)
     }
 
     fun processLocals(
