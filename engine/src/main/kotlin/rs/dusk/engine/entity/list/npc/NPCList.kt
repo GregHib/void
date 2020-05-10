@@ -12,7 +12,7 @@ import java.util.*
  */
 @Suppress("ArrayInDataClass")
 data class NPCList(
-    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC>> = Int2ObjectOpenHashMap(MAX_NPCS),
-    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC>> = LinkedList(),
+    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC?>> = Int2ObjectOpenHashMap(MAX_NPCS),
+    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC?>> = LinkedList(),
     override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
 ) : NPCs

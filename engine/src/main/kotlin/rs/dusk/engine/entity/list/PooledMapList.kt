@@ -14,8 +14,8 @@ import java.util.*
 interface PooledMapList<T : Entity> : EntityList<T> {
 
     val indexed: Array<T?>
-    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T>>
-    val pool: LinkedList<ObjectLinkedOpenHashSet<T>>
+    val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T?>>
+    val pool: LinkedList<ObjectLinkedOpenHashSet<T?>>
 
     val count: Int
         get() = indexed.count { it != null }
@@ -30,7 +30,7 @@ interface PooledMapList<T : Entity> : EntityList<T> {
         indexed[index] = null
     }
 
-    override operator fun get(hash: Int): Set<T>? = data.get(hash)
+    override operator fun get(hash: Int): Set<T?>? = data.get(hash)
 
     override fun add(hash: Int, entity: T): Boolean {
         val tile = data.getOrPut(hash) {
@@ -57,11 +57,11 @@ interface PooledMapList<T : Entity> : EntityList<T> {
         return true
     }
 
-    operator fun get(chunk: Chunk) = get(chunk.id + PLANE_OFFSET)
+    operator fun get(chunk: Chunk) = get(chunk.id or PLANE_OFFSET)
 
-    fun add(chunk: Chunk, entity: T) = add(chunk.id + PLANE_OFFSET, entity)
+    fun add(chunk: Chunk, entity: T) = add(chunk.id or PLANE_OFFSET, entity)
 
-    fun remove(chunk: Chunk, entity: T) = remove(chunk.id + PLANE_OFFSET, entity)
+    fun remove(chunk: Chunk, entity: T) = remove(chunk.id or PLANE_OFFSET, entity)
 
     operator fun set(chunk: Chunk, entity: T) = add(chunk, entity)
 

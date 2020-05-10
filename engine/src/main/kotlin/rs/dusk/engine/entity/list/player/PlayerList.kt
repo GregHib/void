@@ -12,7 +12,7 @@ import java.util.*
  */
 @Suppress("ArrayInDataClass")
 data class PlayerList(
-    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Player>> = Int2ObjectOpenHashMap(MAX_PLAYERS),
-    override val pool: LinkedList<ObjectLinkedOpenHashSet<Player>> = LinkedList(),
+    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Player?>> = Int2ObjectOpenHashMap(MAX_PLAYERS),
+    override val pool: LinkedList<ObjectLinkedOpenHashSet<Player?>> = LinkedList(),
     override val indexed: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
 ) : Players

@@ -24,8 +24,8 @@ internal class PooledMapListTest {
     @BeforeEach
     fun setup() {
         list = object : PooledMapList<Entity> {
-            override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity>> = Int2ObjectOpenHashMap()
-            override val pool: LinkedList<ObjectLinkedOpenHashSet<Entity>> = LinkedList()
+            override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity?>> = Int2ObjectOpenHashMap()
+            override val pool: LinkedList<ObjectLinkedOpenHashSet<Entity?>> = LinkedList()
             override val indexed: Array<Entity?> = arrayOfNulls(10)
         }
         entity = mockk()
@@ -37,7 +37,7 @@ internal class PooledMapListTest {
     @Test
     fun `Add uses pooled tile if none exist`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity>()
+        val set = ObjectLinkedOpenHashSet<Entity?>()
         list.pool.push(set)
         // When
         list.add(hash, entity)
@@ -69,7 +69,7 @@ internal class PooledMapListTest {
     @Test
     fun get() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity>()
+        val set = ObjectLinkedOpenHashSet<Entity?>()
         set.add(entity)
         list.data[hash] = set
         // When
@@ -91,7 +91,7 @@ internal class PooledMapListTest {
     @Test
     fun `Remove puts tile back into pool if last entity`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity>()
+        val set = ObjectLinkedOpenHashSet<Entity?>()
         set.add(entity)
         list.data[hash] = set
         // When
@@ -105,7 +105,7 @@ internal class PooledMapListTest {
     @Test
     fun `Remove doesn't move tile if not last entity`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity>()
+        val set = ObjectLinkedOpenHashSet<Entity?>()
         set.add(entity)
         set.add(mockk())
         list.data[hash] = set
