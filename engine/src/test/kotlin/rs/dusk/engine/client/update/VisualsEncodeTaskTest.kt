@@ -3,7 +3,6 @@ package rs.dusk.engine.client.update
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
@@ -27,7 +26,12 @@ import rs.dusk.utility.get
 internal class VisualsEncodeTaskTest : KoinMock() {
 
     private val encoder: VisualEncoder<Visual> = mockk(relaxed = true)
-    private val addMasks = intArrayOf(0x8)
+
+    init {
+        every { encoder.mask } returns 0x8
+    }
+
+    private val addMasks = intArrayOf(encoder.mask)
     private val entities: PooledMapList<Player> = mockk(relaxed = true)
     private val encoderModule = module {
         single { spyk(VisualsEncodeTask(entities, arrayOf(encoder), addMasks, 0x800, get())) }
@@ -55,7 +59,7 @@ internal class VisualsEncodeTaskTest : KoinMock() {
     @Test
     fun `Update skips if un-flagged`() {
         // Given
-        val updateTask: VisualsEncodeTask<Player> = get()
+        val task: VisualsEncodeTask<Player> = get()
         val players: Players = get()
         val visuals: Visuals = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
@@ -64,11 +68,14 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         // When
         every { visuals.flag } returns 0
         runBlocking {
-            updateTask.update(visuals).await()
+            task.update(visuals).await()
         }
         // Then
         verify { visuals.update = null }
-        verify(exactly = 0) { visuals.encoded = any() }
+        verify(exactly = 0) {
+            task.encodeUpdate(any())
+            task.encodeAddition(any())
+        }
     }
 
     @Test
@@ -78,7 +85,6 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         val visuals: Visuals = mockk(relaxed = true)
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns true
-        every { updateTask.updateVisuals(visuals) } just Runs
         every { updateTask.encodeUpdate(visuals) } just Runs
         every { updateTask.encodeAddition(visuals) } just Runs
         // When
@@ -87,7 +93,6 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         }
         // Then
         verifyOrder {
-            updateTask.updateVisuals(visuals)
             updateTask.encodeUpdate(visuals)
             updateTask.encodeAddition(visuals)
             visuals.flag = 0
@@ -108,70 +113,8 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         // Then
         verify(exactly = 0) { updateTask.encodeAddition(visuals) }
         verifyOrder {
-            updateTask.updateVisuals(visuals)
             updateTask.encodeUpdate(visuals)
             visuals.flag = 0
-        }
-    }
-
-    @Test
-    fun `Update visuals that are flagged`() {
-        // Given
-        val updateTask: VisualsEncodeTask<Player> = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        val visual: Visual = mockk(relaxed = true)
-        val mask = 0x10
-        every { encoder.mask } returns mask
-        every { visuals.flagged(mask) } returns true
-        every { visuals.aspects[mask] } returns visual
-        every { visuals.encoded.containsKey(mask) } returns false
-        // When
-        updateTask.updateVisuals(visuals)
-        // Then
-        verifyOrder {
-            encoder.encode(any(), visual)
-            visuals.encoded[mask] = any()
-        }
-    }
-
-    @Test
-    fun `Update visuals that are additions and blank`() {
-        // Given
-        val updateTask: VisualsEncodeTask<Player> = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        val visual: Visual = mockk(relaxed = true)
-        val mask = 0x8
-        every { encoder.mask } returns mask
-        every { visuals.flagged(mask) } returns true
-        every { visuals.aspects[mask] } returns visual
-        every { visuals.encoded.containsKey(mask) } returns false
-        // When
-        updateTask.updateVisuals(visuals)
-        // Then
-        verifyOrder {
-            encoder.encode(any(), visual)
-            visuals.encoded[mask] = any()
-        }
-    }
-
-    @Test
-    fun `Don't update visuals that aren't flagged or blank`() {
-        // Given
-        val updateTask: VisualsEncodeTask<Player> = get()
-        val visuals: Visuals = mockk(relaxed = true)
-        val visual: Visual = mockk(relaxed = true)
-        val encoded = visuals.encoded
-        val mask = 0x8
-        every { encoder.mask } returns mask
-        every { visuals.flagged(mask) } returns false
-        every { visuals.aspects[mask] } returns visual
-        every { visuals.encoded.containsKey(mask) } returns true
-        // When
-        updateTask.updateVisuals(visuals)
-        // Then
-        verify(exactly = 0) {
-            encoder.encode(any(), visual)
-            encoded[mask] = any()
         }
     }
 
@@ -180,25 +123,18 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         // Given
         val updateTask: VisualsEncodeTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
-        val array = byteArrayOf(1, 2, 3, 4)
-        var data: ByteArray? = null
         val mask = 0x8
-        every { encoder.mask } returns mask
         every { visuals.flag } returns mask
-        every { visuals.encoded[mask] } returns array
         every { visuals.flagged(mask) } returns true
-        every { visuals.update = any() } answers {
-            data = arg(0)
-        }
+        every { visuals.aspects[any()] } returns mockk(relaxed = true)
         // When
         updateTask.encodeUpdate(visuals)
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0x8, 0x800)
+            encoder.encode(any(), any())
             visuals.update = any()
         }
-        assertNotNull(data)
-        assert(data!!.contentEquals(byteArrayOf(8, 1, 2, 3, 4)))
     }
 
     @Test
@@ -206,25 +142,20 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         // Given
         val updateTask: VisualsEncodeTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
-        val array = byteArrayOf(1, 2, 3, 4)
-        var data: ByteArray? = null
         val mask = 0x8
-        every { encoder.mask } returns mask
         every { visuals.flag } returns mask
-        every { visuals.encoded[mask] } returns array
         every { visuals.flagged(mask) } returns false
-        every { visuals.update = any() } answers {
-            data = arg(0)
-        }
+
         // When
         updateTask.encodeUpdate(visuals)
         // Then
-        verifyOrder {
+        verify {
             updateTask.writeFlag(any(), 0x8, 0x800)
             visuals.update = any()
         }
-        assertNotNull(data)
-        assert(data!!.contentEquals(byteArrayOf(8)))
+        verify(exactly = 0) {
+            encoder.encode(any(), any())
+        }
     }
 
     @Test
@@ -232,22 +163,15 @@ internal class VisualsEncodeTaskTest : KoinMock() {
         // Given
         val updateTask: VisualsEncodeTask<Player> = get()
         val visuals: Visuals = mockk(relaxed = true)
-        val mask = addMasks.first()
-        val array = byteArrayOf(1, 2, 3, 4)
-        var data: ByteArray? = null
-        every { visuals.encoded[mask] } returns array
-        every { visuals.addition = any() } answers {
-            data = arg(0)
-        }
+        every { visuals.aspects[any()] } returns mockk(relaxed = true)
         // When
         updateTask.encodeAddition(visuals)
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), addMasks.sum(), 0x800)
+            encoder.encode(any(), any())
             visuals.addition = any()
         }
-        assertNotNull(data)
-        assert(data!!.contentEquals(byteArrayOf(8, 1, 2, 3, 4)))
     }
 
     @Test

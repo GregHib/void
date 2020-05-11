@@ -96,7 +96,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             }
             val end = position()
             position(start)
-            writeByte(end - 1, Modifier.SUBTRACT)
+            writeByte(end - start - 1, Modifier.SUBTRACT)
             position(end)
         }
     }

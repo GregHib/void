@@ -12,6 +12,7 @@ import rs.dusk.engine.entity.model.Indexed
 import rs.dusk.engine.entity.model.visual.Visual
 import rs.dusk.engine.entity.model.visual.VisualEncoder
 import rs.dusk.engine.entity.model.visual.Visuals
+import rs.dusk.engine.entity.model.visual.visuals.player.Appearance
 import kotlin.system.measureTimeMillis
 
 /**
@@ -21,7 +22,7 @@ import kotlin.system.measureTimeMillis
 class VisualsEncodeTask<T : Indexed>(
     val entities: PooledMapList<T>,
     val encoders: Array<VisualEncoder<Visual>>,
-    val addMasks: IntArray, // Order of these is important
+    addMasks: IntArray, // Order of these is important
     val entityMask: Int,
     tasks: EngineTasks
 ) : ParallelEngineTask(tasks, 2) {
@@ -30,6 +31,7 @@ class VisualsEncodeTask<T : Indexed>(
 
     val addFlag = addMasks.sum()
     val name = entities::class.java.simpleName
+    val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 
     override fun run() {
         entities.forEach { entity ->
@@ -51,31 +53,11 @@ class VisualsEncodeTask<T : Indexed>(
             visuals.update = null
             return@async
         }
-        updateVisuals(visuals)
         encodeUpdate(visuals)
-        if (addMasks.any { mask -> visuals.flagged(mask) }) {
+        if (addEncoders.any { encoder -> visuals.flagged(encoder.mask) }) {
             encodeAddition(visuals)
         }
         visuals.flag = 0
-    }
-
-    /**
-     * Updates [Visuals.encoded] cache
-     */
-    fun updateVisuals(visuals: Visuals) {
-        encoders.forEach { encoder ->
-            val mask = encoder.mask
-            val needsUpdate = visuals.flagged(mask)
-            val isBlank = addMasks.contains(mask) && !visuals.encoded.containsKey(mask)
-
-            if (needsUpdate || isBlank) {
-                val visual = visuals.aspects[mask] ?: return@forEach
-
-                val writer = BufferWriter()
-                encoder.encode(writer, visual)
-                visuals.encoded[mask] = writer.toArray()
-            }
-        }
     }
 
     /**
@@ -88,23 +70,48 @@ class VisualsEncodeTask<T : Indexed>(
             if (!visuals.flagged(encoder.mask)) {
                 return@forEach
             }
-            val data = visuals.encoded[encoder.mask] ?: return@forEach
-            writer.writeBytes(data)
+            val visual = visuals.aspects[encoder.mask] ?: return@forEach
+            if (visual !is Appearance) {
+                encoder.encode(writer, visual)
+            } else {
+                visuals.appearance = encodeAppearance(writer, encoder, visual)
+            }
         }
         visuals.update = writer.toArray()
     }
 
     /**
-     * Encodes [addMasks] visuals into one reusable [Visuals.addition]
+     * Encodes [addEncoders] visuals into one reusable [Visuals.addition]
      */
     fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
         writeFlag(writer, addFlag, entityMask)
-        addMasks.forEach { mask ->
-            val encoded = visuals.encoded[mask] ?: return@forEach
-            writer.writeBytes(encoded)
+        addEncoders.forEach { encoder ->
+            val visual = visuals.aspects[encoder.mask] ?: return@forEach
+            if (visual !is Appearance) {
+                encoder.encode(writer, visual)
+            } else {
+                val data = visuals.appearance
+                if (data != null) {
+                    writer.writeBytes(data)
+                } else {
+                    visuals.appearance = encodeAppearance(writer, encoder, visual)
+                }
+            }
         }
         visuals.addition = writer.toArray()
+    }
+
+    /**
+     * Returns byte array of encoded [appearance] and writes it to [writer]
+     */
+    fun encodeAppearance(writer: BufferWriter, encoder: VisualEncoder<Visual>, appearance: Appearance): ByteArray {
+        val start = writer.buffer.writerIndex()
+        encoder.encode(writer, appearance)
+        val size = writer.buffer.writerIndex() - start
+        val data = ByteArray(size)
+        System.arraycopy(writer.buffer.array(), start, data, 0, size)
+        return data
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int, mask: Int) {

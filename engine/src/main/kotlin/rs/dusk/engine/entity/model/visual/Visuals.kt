@@ -8,7 +8,7 @@ package rs.dusk.engine.entity.model.visual
 data class Visuals(
     var flag: Int = 0,
     var aspects: MutableMap<Int, Visual> = mutableMapOf(),
-    var encoded: MutableMap<Int, ByteArray> = mutableMapOf(),
+    var appearance: ByteArray? = null,
     var update: ByteArray? = null,
     var addition: ByteArray? = null
 ) {
@@ -28,7 +28,7 @@ data class Visuals(
     fun clear() {
         flag = 0
         aspects.clear()
-        encoded.clear()
+        appearance = null
         update = null
         addition = null
     }
