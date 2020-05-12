@@ -19,6 +19,7 @@ val clientUpdateModule = module {
     single(createdAtStart = true) { PostUpdateTask(get()) }
     single(createdAtStart = true) { MovementCalculationTask(get()) }
     single(createdAtStart = true) { PlayerUpdateTask(get()) }
+    single(createdAtStart = true) { NPCUpdateTask(get()) }
 
     single(qualifier = named("playerVisualEncoder"), createdAtStart = true) {
         VisualsEncodeTask(

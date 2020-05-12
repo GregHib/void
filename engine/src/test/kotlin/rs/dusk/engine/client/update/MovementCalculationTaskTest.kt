@@ -7,9 +7,9 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
-import rs.dusk.engine.model.entity.index.Changes.Companion.NONE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
+import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
 import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
@@ -98,7 +98,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update visual`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.changes.localUpdate } returns NONE
+        every { player.changes.localUpdate } returns UPDATE
         every { player.movementType } returns -1
         // When
         runBlocking {
@@ -107,7 +107,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         // Then
         verifyOrder {
             val changes = player.changes
-            changes.localUpdate = NONE
+            changes.localUpdate = UPDATE
             changes.localValue = -1
         }
     }

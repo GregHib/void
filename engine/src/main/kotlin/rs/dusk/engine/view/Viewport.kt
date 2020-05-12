@@ -18,6 +18,7 @@ import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.NPC_TICK_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.PLAYER_TICK_CAP
+import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.inject
 
@@ -38,6 +39,8 @@ data class Viewport(
 ) {
 
     val message = PlayerUpdateMessage()
+    val npcMessage = NPCUpdateMessage()
+
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 
     fun isIdle(index: Int) = idlePlayers[index] and 0x1 != 0

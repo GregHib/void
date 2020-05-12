@@ -12,10 +12,10 @@ data class Changes(
     companion object {
         // Local
         const val UPDATE = 0
-        const val NONE = 0
         const val WALK = 1
         const val RUN = 2
         const val TELE = 3
+        const val REMOVE = 3
 
         // Region
         const val HEIGHT = 1

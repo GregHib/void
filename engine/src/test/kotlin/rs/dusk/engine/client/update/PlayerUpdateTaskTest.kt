@@ -20,9 +20,9 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.Changes.Companion.ADJACENT_REGION
 import rs.dusk.engine.model.entity.index.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.model.entity.index.Changes.Companion.HEIGHT
-import rs.dusk.engine.model.entity.index.Changes.Companion.NONE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
+import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
 import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
@@ -226,7 +226,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
 
         every { player.changes.localValue } returns -1
-        every { player.changes.localUpdate } returns NONE
+        every { player.changes.localUpdate } returns UPDATE
         every { entities.current } returns setOf(player)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
@@ -235,7 +235,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         verifyOrder {
             sync.writeBits(1, true)
             sync.writeBits(1, true)
-            sync.writeBits(2, NONE)
+            sync.writeBits(2, UPDATE)
             updates.writeBytes(player.visuals.update!!)
         }
     }
@@ -250,7 +250,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
 
         every { player.changes.localValue } returns -1
-        every { player.changes.localUpdate } returns NONE
+        every { player.changes.localUpdate } returns UPDATE
         every { player.visuals.update } returns null
         every { entities.current } returns setOf(player)
         // When
@@ -263,7 +263,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         verifyOrder {
             sync.writeBits(1, true)
             sync.writeBits(1, false)
-            sync.writeBits(2, NONE)
+            sync.writeBits(2, UPDATE)
         }
     }
 
@@ -430,7 +430,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     }
 
     @TestFactory
-    fun `Encode region`() = intArrayOf(NONE, HEIGHT, ADJACENT_REGION, GLOBAL_REGION).mapIndexed { index, updateType ->
+    fun `Encode region`() = intArrayOf(UPDATE, HEIGHT, ADJACENT_REGION, GLOBAL_REGION).mapIndexed { index, updateType ->
         dynamicTest("Encode region change $updateType") {
             // Given
             val writer: Writer = mockk(relaxed = true)
@@ -445,8 +445,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             task.encodeRegion(writer, set, player)
             // Then
             verifyOrder {
-                writer.writeBits(1, updateType != NONE)
-                if (updateType != NONE) {
+                writer.writeBits(1, updateType != UPDATE)
+                if (updateType != UPDATE) {
                     writer.writeBits(2, updateType)
                     val count = when (index) {
                         1 -> 2
@@ -462,7 +462,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @TestFactory
     fun `Region update types`() = arrayOf(
-        NONE to RegionPlane(0, 0, 0),
+        UPDATE to RegionPlane(0, 0, 0),
         HEIGHT to RegionPlane(0, 0, 1),
         ADJACENT_REGION to RegionPlane(1, 1, 0),
         ADJACENT_REGION to RegionPlane(0, 1, 0),
@@ -487,7 +487,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @TestFactory
     fun `Region update values`() = arrayOf(
-        Triple(NONE, RegionPlane(0, 0, 0), -1),
+        Triple(UPDATE, RegionPlane(0, 0, 0), -1),
         Triple(HEIGHT, RegionPlane(0, 0, 1), 1),
         Triple(HEIGHT, RegionPlane(0, 0, -3), -3),
         Triple(ADJACENT_REGION, RegionPlane(-1, 1, 0), 0),

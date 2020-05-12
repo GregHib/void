@@ -14,9 +14,9 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Changes.Companion.ADJACENT_REGION
 import rs.dusk.engine.model.entity.index.Changes.Companion.GLOBAL_REGION
 import rs.dusk.engine.model.entity.index.Changes.Companion.HEIGHT
-import rs.dusk.engine.model.entity.index.Changes.Companion.NONE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
+import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
 import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
@@ -200,8 +200,8 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
         val delta = player.tile.delta(set.lastSeen[player] ?: Tile.EMPTY)
         val change = calculateRegionUpdate(delta.regionPlane)
         val value = calculateRegionValue(change, delta.regionPlane)
-        sync.writeBits(1, change != NONE)
-        if (change != NONE) {
+        sync.writeBits(1, change != UPDATE)
+        if (change != UPDATE) {
             sync.writeBits(2, change)
             when (change) {
                 HEIGHT -> sync.writeBits(2, value)
@@ -212,7 +212,7 @@ class PlayerUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
     }
 
     fun calculateRegionUpdate(delta: RegionPlane) = when {
-        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> NONE
+        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> UPDATE
         delta.x == 0 && delta.y == 0 && delta.plane != 0 -> HEIGHT
         delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> ADJACENT_REGION
         else -> GLOBAL_REGION
