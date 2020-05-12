@@ -9,6 +9,5 @@ import rs.dusk.engine.model.Tile
 data class Movement(
     var lastTile: Tile = Tile(0),
     var delta: Tile = Tile(0),
-    var direction: Int = -1,
-    var run: Boolean = false
+    var direction: Int = -1
 )

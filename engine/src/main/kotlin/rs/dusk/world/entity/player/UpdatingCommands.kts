@@ -71,6 +71,10 @@ Command where { prefix == "anim" } then {
 Command where { prefix == "gfx" } then {
     player.setGraphic(content.toInt())// 93
 }
+Command where { prefix == "gfx" } then {
+    val id = content.toInt()
+    player.setGraphic(id)// 93
+}
 
 Command where { prefix == "tfm" || prefix == "transform" } then {
     player.transform = content.toInt()
@@ -109,7 +113,8 @@ Command where { prefix == "mate" } then {
 }
 
 Command where { prefix == "face" } then {
-    player.face(0, -1)
+    val parts = content.split(" ")
+    player.face(parts[0].toInt(), parts[1].toInt())
 }
 
 Command where { prefix == "hide" } then {
@@ -119,7 +124,7 @@ Command where { prefix == "hide" } then {
 Command where { prefix == "walk" } then {
     GlobalScope.launch {
         player.movementType = WALK
-        player.temporaryMoveType = false
+        player.temporaryMoveType = WALK
         val direction = Direction.NORTH
         player.movement.direction = direction.inverse().value
         player.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
@@ -144,7 +149,7 @@ fun getPlayerRunningDirection(dx: Int, dy: Int): Int {
 Command where { prefix == "run" } then {
     GlobalScope.launch {
         player.movementType = RUN
-//        player.temporaryMoveType = true
+//        player.temporaryMoveType = RUN
         val walk = Direction.NORTH
         val run = Direction.NORTH_EAST
         val deltaX = walk.deltaX + run.deltaX

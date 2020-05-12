@@ -45,8 +45,7 @@ class MovementCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1)
         movement.lastTile = player.tile
 
         changes.localUpdate = when {
-            delta.id != 0 && movement.direction != -1 && movement.run -> RUN
-            delta.id != 0 && movement.direction != -1 && !movement.run -> WALK
+            delta.id != 0 && movement.direction != -1 -> player.movementType
             delta.id != 0 && player.movementType == TELEPORT -> TELE
             player.visuals.update != null -> NONE
             else -> -1

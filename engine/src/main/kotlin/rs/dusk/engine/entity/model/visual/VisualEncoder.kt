@@ -32,7 +32,7 @@ val visualUpdatingModule = module {
             AppearanceEncoder(),
             ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
             MinimapHighlightEncoder(),
-            MovementSpeedEncoder(),
+            TemporaryMoveTypeEncoder(),
             WatchEncoder(false, PLAYER_WATCH_MASK),
             ForceMovementEncoder(false, PLAYER_FORCE_MOVEMENT_MASK),
             FaceEncoder(),

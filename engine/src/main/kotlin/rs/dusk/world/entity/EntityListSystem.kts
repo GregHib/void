@@ -5,6 +5,7 @@ import rs.dusk.engine.entity.list.obj.Objects
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.list.proj.Projectiles
 import rs.dusk.engine.entity.model.*
+import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.WALK
 import rs.dusk.engine.entity.model.visual.visuals.player.face
 import rs.dusk.engine.entity.model.visual.visuals.player.movementType
 import rs.dusk.engine.entity.model.visual.visuals.player.temporaryMoveType
@@ -25,7 +26,7 @@ Registered priority 9 then {
             players[entity.tile.chunk] = entity
             players.addAtIndex(entity.index, entity)
             entity.viewport.players.add(entity)
-            entity.temporaryMoveType = false
+            entity.temporaryMoveType = WALK
             entity.movementType = 0
             entity.face()
         }

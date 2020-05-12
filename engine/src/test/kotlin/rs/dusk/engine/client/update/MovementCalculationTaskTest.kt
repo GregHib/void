@@ -38,9 +38,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         val value = 1337
         every { player.movement.direction } returns value
-        every { player.movement.run } returns false
         every { player.movement.delta } returns Tile(1, 0)
-        every { player.movementType } returns -1
+        every { player.movementType } returns WALK
         every { player.changes.localUpdate } returns WALK
         // When
         runBlocking {
@@ -60,9 +59,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         val value = 420
         every { player.movement.direction } returns value
-        every { player.movement.run } returns true
         every { player.movement.delta } returns Tile(0, 2)
-        every { player.movementType } returns -1
+        every { player.movementType } returns RUN
         every { player.changes.localUpdate } returns RUN
         // When
         runBlocking {
@@ -119,7 +117,6 @@ internal class MovementCalculationTaskTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         every { player.movement.direction } returns 0
-        every { player.movement.run } returns true
         every { player.movementType } returns TELEPORT
         every { player.visuals.update } returns null
         every { player.movement.delta } returns Tile(0)
