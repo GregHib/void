@@ -9,5 +9,5 @@ import rs.dusk.engine.event.EventCompanion
  * @since May 01, 2020
  */
 data class Command(override val player: Player, val prefix: String, val content: String) : PlayerEvent() {
-    companion object : EventCompanion<Command>()
+    companion object : EventCompanion<Command>
 }

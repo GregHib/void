@@ -10,5 +10,5 @@ import rs.dusk.engine.model.Tile
  * @since May 05, 2020
  */
 data class Move(val entity: Entity, val from: Tile, val to: Tile) : Event() {
-    companion object : EventCompanion<Move>()
+    companion object : EventCompanion<Move>
 }

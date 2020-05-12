@@ -19,7 +19,7 @@ import rs.dusk.engine.script.koin.KoinTestExtension
 class CoroutineBusTest : KoinTest {
 
     private class TestEvent : Event() {
-        companion object : EventCompanion<TestEvent>()
+        companion object : EventCompanion<TestEvent>
     }
 
     val bus by inject<EventBus>()

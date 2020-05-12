@@ -18,7 +18,7 @@ import kotlin.reflect.KClass
 internal class EventBusTest : KoinMock() {
 
     private class TestEvent : Event() {
-        companion object : EventCompanion<TestEvent>()
+        companion object : EventCompanion<TestEvent>
     }
 
     override val modules = listOf(eventBusModule)

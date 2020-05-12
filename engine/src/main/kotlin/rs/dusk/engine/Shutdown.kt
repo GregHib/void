@@ -8,5 +8,5 @@ import rs.dusk.engine.event.EventCompanion
  * @since March 28, 2020
  */
 class Shutdown : Event() {
-    companion object : EventCompanion<Shutdown>()
+    companion object : EventCompanion<Shutdown>
 }

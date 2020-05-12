@@ -9,5 +9,5 @@ import rs.dusk.engine.event.EventCompanion
  * @since March 28, 2020
  */
 data class Registered(val entity: Entity) : Event() {
-    companion object : EventCompanion<Registered>()
+    companion object : EventCompanion<Registered>
 }

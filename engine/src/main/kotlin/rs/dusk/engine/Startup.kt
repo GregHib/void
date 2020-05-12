@@ -8,5 +8,5 @@ import rs.dusk.engine.event.EventCompanion
  * @since March 28, 2020
  */
 class Startup : Event() {
-    companion object : EventCompanion<Startup>()
+    companion object : EventCompanion<Startup>
 }
