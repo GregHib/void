@@ -14,6 +14,7 @@ import rs.dusk.engine.model.entity.Move
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
+import kotlin.math.abs
 
 val xteas: Xteas by inject()
 val players: Players by inject()
@@ -34,7 +35,7 @@ GameLoginMessage verify { player ->
     calculateRegions(player, true)
 }
 
-Move where { entity is Player && from.chunk != to.chunk } then {
+Move where { entity is Player && needsRegionChange(entity) } then {
     calculateRegions(entity as Player, false)
 }
 
@@ -42,24 +43,24 @@ fun Int.nearby(size: Int): IntRange {
     return (this - size) / 8..(this + size) / 8
 }
 
-// FIXME prevent or buffer movement until region load is complete or calculate irrespective of movement?
+fun needsRegionChange(player: Player): Boolean {
+    val size: Int = (player.viewport.size shr 3) / 2 - 1
+    val delta = player.viewport.lastLoadPoint.delta(player.tile)
+    return abs(delta.chunk.x) >= size || abs(delta.chunk.y) >= size
+}
+
 fun calculateRegions(player: Player, initial: Boolean) {
     val regions = player.viewport.regions
     val size = player.viewport.size shr 4
     val chunk = player.tile.chunk
-    val before = regions.hashCode()
-
     regions.clear()
     for (regionX in chunk.x.nearby(size)) {
         for (regionY in chunk.y.nearby(size)) {
             regions.add(Region.getId(regionX, regionY))
         }
     }
-
-    val after = regions.hashCode()
-    if (before != after) {
-        update(player, initial)
-    }
+    update(player, initial)
+    player.viewport.lastLoadPoint = player.tile
 }
 
 fun update(player: Player, initial: Boolean) {

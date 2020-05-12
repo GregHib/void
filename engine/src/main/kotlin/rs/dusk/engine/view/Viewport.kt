@@ -31,7 +31,8 @@ data class Viewport(
     val npcs: TrackingSet<NPC> = EntityTrackingSet(NPC_TICK_CAP, LOCAL_NPC_CAP),
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
-    val regions: MutableSet<Int> = linkedSetOf()
+    val regions: MutableSet<Int> = linkedSetOf(),
+    var lastLoadPoint: Tile = Tile(0)
 ) {
 
     val message = PlayerUpdateMessage()
