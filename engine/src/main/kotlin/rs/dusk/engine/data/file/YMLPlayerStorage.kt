@@ -2,7 +2,7 @@ package rs.dusk.engine.data.file
 
 import org.koin.dsl.module
 import rs.dusk.engine.data.StorageStrategy
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

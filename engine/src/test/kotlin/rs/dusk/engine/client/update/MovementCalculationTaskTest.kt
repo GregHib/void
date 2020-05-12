@@ -7,14 +7,14 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
-import rs.dusk.engine.entity.model.Changes.Companion.NONE
-import rs.dusk.engine.entity.model.Changes.Companion.RUN
-import rs.dusk.engine.entity.model.Changes.Companion.TELE
-import rs.dusk.engine.entity.model.Changes.Companion.WALK
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.TELEPORT
-import rs.dusk.engine.entity.model.visual.visuals.player.movementType
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.Changes.Companion.NONE
+import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
+import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
+import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.model.entity.index.update.visual.player.movementType
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 
 /**

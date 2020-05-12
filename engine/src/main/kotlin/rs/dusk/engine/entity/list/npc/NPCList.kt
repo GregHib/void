@@ -3,7 +3,7 @@ package rs.dusk.engine.entity.list.npc
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import rs.dusk.engine.entity.list.MAX_NPCS
-import rs.dusk.engine.entity.model.NPC
+import rs.dusk.engine.model.entity.index.npc.NPC
 import java.util.*
 
 /**

@@ -3,9 +3,9 @@ package rs.dusk.engine.client.update.encode.npc
 import rs.dusk.core.io.Endian
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.visuals.npc.MODEL_CHANGE_MASK
-import rs.dusk.engine.entity.model.visual.visuals.npc.ModelChange
+import rs.dusk.engine.model.entity.index.update.VisualEncoder
+import rs.dusk.engine.model.entity.index.update.visual.npc.MODEL_CHANGE_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.ModelChange
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -11,7 +11,7 @@ import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.verify.ClientVerification
 import rs.dusk.engine.client.verify.clientVerificationModule
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
 /**

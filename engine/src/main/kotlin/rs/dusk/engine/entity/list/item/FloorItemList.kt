@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.list.item
 
-import rs.dusk.engine.entity.model.FloorItem
+import rs.dusk.engine.model.entity.item.FloorItem
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

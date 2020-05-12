@@ -2,8 +2,8 @@ package rs.dusk.engine.entity.list
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import rs.dusk.engine.entity.model.Entity
-import rs.dusk.engine.model.Chunk
+import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.world.Chunk
 import java.util.*
 
 /**

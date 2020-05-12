@@ -9,7 +9,7 @@ import rs.dusk.cache.Cache
 import rs.dusk.engine.map.collision.CollisionLoader
 import rs.dusk.engine.map.location.LocationLoader
 import rs.dusk.engine.map.location.Xteas
-import rs.dusk.engine.model.Region
+import rs.dusk.engine.model.world.Region
 import rs.dusk.utility.inject
 
 /**

@@ -3,7 +3,7 @@ package rs.dusk.engine.map.location
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap
 import org.koin.dsl.module
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

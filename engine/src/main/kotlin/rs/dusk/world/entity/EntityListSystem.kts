@@ -1,16 +1,20 @@
-import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.item.FloorItems
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.obj.Objects
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.list.proj.Projectiles
-import rs.dusk.engine.entity.model.*
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.WALK
-import rs.dusk.engine.entity.model.visual.visuals.player.face
-import rs.dusk.engine.entity.model.visual.visuals.player.movementType
-import rs.dusk.engine.entity.model.visual.visuals.player.temporaryMoveType
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
+import rs.dusk.engine.model.entity.index.update.visual.player.face
+import rs.dusk.engine.model.entity.index.update.visual.player.movementType
+import rs.dusk.engine.model.entity.index.update.visual.player.temporaryMoveType
+import rs.dusk.engine.model.entity.item.FloorItem
+import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.proj.Projectile
 import rs.dusk.utility.inject
 
 val players: Players by inject()

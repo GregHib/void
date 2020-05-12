@@ -16,7 +16,7 @@ import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.client.LoginResponse
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.entity.model.visual.visuals.player.name
+import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec

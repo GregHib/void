@@ -1,7 +1,7 @@
 package rs.dusk.engine.map.collision
 
 import org.koin.dsl.module
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -1,6 +1,6 @@
 import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.player.command.Command
+import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.network.rs.codec.game.decode.message.ConsoleCommandMessage
 import rs.dusk.utility.inject
 

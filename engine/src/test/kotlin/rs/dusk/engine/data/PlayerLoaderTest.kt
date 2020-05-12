@@ -6,7 +6,7 @@ import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
 /**

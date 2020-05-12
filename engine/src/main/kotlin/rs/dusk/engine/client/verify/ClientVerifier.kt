@@ -2,7 +2,7 @@ package rs.dusk.engine.client.verify
 
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import kotlin.collections.set
 import kotlin.reflect.KClass
 

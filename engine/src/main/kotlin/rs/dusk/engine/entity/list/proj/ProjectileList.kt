@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.list.proj
 
-import rs.dusk.engine.entity.model.Projectile
+import rs.dusk.engine.model.entity.proj.Projectile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

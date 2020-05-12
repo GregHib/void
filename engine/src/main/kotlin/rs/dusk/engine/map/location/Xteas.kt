@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
-import rs.dusk.engine.model.Region
+import rs.dusk.engine.model.world.Region
 import rs.dusk.utility.func.plural
 import java.io.File
 import java.io.RandomAccessFile

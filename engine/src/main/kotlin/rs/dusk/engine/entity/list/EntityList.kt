@@ -11,8 +11,8 @@ import rs.dusk.engine.entity.list.player.PlayerList
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.list.proj.ProjectileList
 import rs.dusk.engine.entity.list.proj.Projectiles
-import rs.dusk.engine.entity.model.Entity
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -24,19 +24,37 @@ interface EntityList<T : Entity> {
 
     operator fun get(tile: Tile) = get(tile.id)
 
-    operator fun get(x: Int, y: Int, plane: Int = 0) = get(Tile(x, y, plane))
+    operator fun get(x: Int, y: Int, plane: Int = 0) = get(
+        Tile(
+            x,
+            y,
+            plane
+        )
+    )
 
     fun add(hash: Int, entity: T): Boolean
 
     fun add(tile: Tile, entity: T) = add(tile.id, entity)
 
-    fun add(x: Int, y: Int, plane: Int = 0, entity: T) = add(Tile(x, y, plane), entity)
+    fun add(x: Int, y: Int, plane: Int = 0, entity: T) = add(
+        Tile(
+            x,
+            y,
+            plane
+        ), entity
+    )
 
     fun remove(hash: Int, entity: T): Boolean
 
     fun remove(tile: Tile, entity: T) = remove(tile.id, entity)
 
-    fun remove(x: Int, y: Int, plane: Int = 0, entity: T) = remove(Tile(x, y, plane), entity)
+    fun remove(x: Int, y: Int, plane: Int = 0, entity: T) = remove(
+        Tile(
+            x,
+            y,
+            plane
+        ), entity
+    )
 
     fun forEach(action: (T) -> Unit)
 

@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test
 import org.koin.test.get
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.Cache
-import rs.dusk.engine.Shutdown
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.engine.Shutdown
 import rs.dusk.engine.script.ScriptMock
 
 /**

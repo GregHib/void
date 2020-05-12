@@ -1,7 +1,7 @@
 package rs.dusk.engine.view
 
-import rs.dusk.engine.model.Chunk
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

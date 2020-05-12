@@ -5,21 +5,20 @@ import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Hit
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.visuals.*
-import rs.dusk.engine.entity.model.visual.visuals.player.*
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.NONE
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.RUN
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.TELEPORT
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.WALK
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.Direction
-import rs.dusk.engine.model.Tile
-import rs.dusk.engine.model.entity.Move
-import rs.dusk.engine.model.entity.player.command.Command
+import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.index.Move
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.command.Command
+import rs.dusk.engine.model.entity.index.update.visual.*
+import rs.dusk.engine.model.entity.index.update.visual.player.*
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.NONE
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.RUN
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.Spiral
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
@@ -37,7 +36,10 @@ Command where { prefix == "bot" } then {
         val radius = 22
         (-radius..radius).flatMap { x ->
             (-radius..radius).map { y ->
-                factory.spawn("Bot ${botCounter.getAndIncrement()}", Tile(player.tile.x + x, player.tile.y + y))
+                factory.spawn(
+                    "Bot ${botCounter.getAndIncrement()}",
+                    Tile(player.tile.x + x, player.tile.y + y)
+                )
             }
         }.forEach {
             val bot = it.await()
@@ -93,7 +95,13 @@ Command where { prefix == "move" } then {
 }
 
 Command where { prefix == "hit" } then {
-    player.addHit(Hit(10, Hit.Mark.Healed, 255))
+    player.addHit(
+        Hit(
+            10,
+            Hit.Mark.Healed,
+            255
+        )
+    )
 }
 
 Command where { prefix == "time" } then {
@@ -127,7 +135,8 @@ Command where { prefix == "walk" } then {
         player.temporaryMoveType = WALK
         val direction = Direction.NORTH
         player.movement.direction = direction.inverse().value
-        player.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
+        player.movement.delta =
+            Tile(direction.deltaX, direction.deltaY, 0)
         move(player, player.tile.add(x = direction.deltaX, y = direction.deltaY))
         delay(600)
         player.movementType = NONE
@@ -174,10 +183,20 @@ Command where { prefix == "tele" || prefix == "tp" } then {
         val plane = params[0].toInt()
         val x = params[1].toInt() shl 6 or params[3].toInt()
         val y = params[2].toInt() shl 6 or params[4].toInt()
-        player.movement.delta = Tile(x - player.tile.x, y - player.tile.y, plane - player.tile.plane)
+        player.movement.delta = Tile(
+            x - player.tile.x,
+            y - player.tile.y,
+            plane - player.tile.plane
+        )
         player.movementType = TELEPORT
         move(player, Tile(x, y, plane))
         val bus: EventBus = get()
-        bus.emit(Move(player, player.tile, player.movement.lastTile))
+        bus.emit(
+            Move(
+                player,
+                player.tile,
+                player.movement.lastTile
+            )
+        )
     }
 }

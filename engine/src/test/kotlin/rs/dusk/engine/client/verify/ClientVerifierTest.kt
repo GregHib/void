@@ -10,7 +10,7 @@ import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.test.KoinTest
 import org.koin.test.inject
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.koin.KoinTestExtension
 import rs.dusk.network.rs.codec.game.MessageCompanion
 

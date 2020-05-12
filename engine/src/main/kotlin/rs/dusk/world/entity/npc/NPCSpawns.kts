@@ -1,10 +1,10 @@
 package rs.dusk.world.entity.npc
 
-import rs.dusk.engine.Startup
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.factory.NPCFactory
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.Direction
+import rs.dusk.engine.model.engine.Startup
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 

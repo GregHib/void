@@ -1,7 +1,6 @@
 package rs.dusk.engine.player
 
 import org.koin.dsl.module
-import rs.dusk.engine.entity.event.player.PlayerRequest
 import rs.dusk.engine.event.EventBus
 import rs.dusk.utility.inject
 

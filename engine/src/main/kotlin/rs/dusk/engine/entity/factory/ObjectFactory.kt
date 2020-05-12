@@ -1,9 +1,9 @@
 package rs.dusk.engine.entity.factory
 
-import rs.dusk.engine.entity.event.Registered
-import rs.dusk.engine.entity.model.IObject
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 
 /**

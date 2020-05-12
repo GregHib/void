@@ -4,12 +4,12 @@ import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.visual.visuals.npc.COMBAT_LEVEL_MASK
-import rs.dusk.engine.entity.model.visual.visuals.npc.NAME_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.APPEARANCE_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.FACE_DIRECTION_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.MOVEMENT_TYPE_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.TEMPORARY_MOVE_TYPE_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.COMBAT_LEVEL_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.NAME_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.FACE_DIRECTION_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.MOVEMENT_TYPE_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

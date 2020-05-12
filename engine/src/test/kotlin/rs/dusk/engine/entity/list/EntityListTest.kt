@@ -3,8 +3,8 @@ package rs.dusk.engine.entity.list
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.entity.model.Entity
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -4,8 +4,8 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.entity.model.NPC
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg></greg>@greghibberd.com>

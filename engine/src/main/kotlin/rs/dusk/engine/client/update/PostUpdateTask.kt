@@ -7,10 +7,10 @@ import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.visuals.getAnimation
-import rs.dusk.engine.entity.model.visual.visuals.getGraphic
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.getAnimation
+import rs.dusk.engine.model.entity.index.update.visual.getGraphic
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
 

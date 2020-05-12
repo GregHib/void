@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.list
 
-import rs.dusk.engine.entity.model.Entity
+import rs.dusk.engine.model.entity.Entity
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

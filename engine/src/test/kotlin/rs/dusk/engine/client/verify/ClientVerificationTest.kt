@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.MessageCompanion
 

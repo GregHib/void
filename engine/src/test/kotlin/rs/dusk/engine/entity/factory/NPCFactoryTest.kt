@@ -10,11 +10,11 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.Direction
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 

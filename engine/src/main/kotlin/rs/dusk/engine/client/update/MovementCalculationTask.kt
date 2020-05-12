@@ -6,13 +6,13 @@ import kotlinx.coroutines.async
 import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Changes.Companion.NONE
-import rs.dusk.engine.entity.model.Changes.Companion.RUN
-import rs.dusk.engine.entity.model.Changes.Companion.TELE
-import rs.dusk.engine.entity.model.Changes.Companion.WALK
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.TELEPORT
-import rs.dusk.engine.entity.model.visual.visuals.player.movementType
+import rs.dusk.engine.model.entity.index.Changes.Companion.NONE
+import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
+import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
+import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
 

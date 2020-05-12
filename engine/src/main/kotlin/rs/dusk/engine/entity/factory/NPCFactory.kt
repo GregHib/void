@@ -1,12 +1,12 @@
 package rs.dusk.engine.entity.factory
 
-import rs.dusk.engine.client.IndexAllocator
-import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_NPCS
-import rs.dusk.engine.entity.model.NPC
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.Direction
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.IndexAllocator
+import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 
 /**

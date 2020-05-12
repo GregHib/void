@@ -1,6 +1,8 @@
 package rs.dusk.engine.player
 
-import rs.dusk.engine.entity.event.player.PlayerRequest
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
+
+typealias PlayerRequest = PlayerEvent
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

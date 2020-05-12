@@ -1,7 +1,7 @@
 package rs.dusk.engine.view
 
-import rs.dusk.engine.entity.model.Indexed
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
 import java.util.*
 import kotlin.collections.LinkedHashSet

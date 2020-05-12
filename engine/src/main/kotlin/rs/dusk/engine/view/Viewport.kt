@@ -10,10 +10,10 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Indexed
-import rs.dusk.engine.entity.model.NPC
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.NPC_TICK_CAP
@@ -32,7 +32,9 @@ data class Viewport(
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
     val regions: MutableSet<Int> = linkedSetOf(),
-    var lastLoadPoint: Tile = Tile(0)
+    var lastLoadPoint: Tile = Tile(
+        0
+    )
 ) {
 
     val message = PlayerUpdateMessage()

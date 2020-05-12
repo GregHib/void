@@ -7,11 +7,11 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.data.PlayerLoader
-import rs.dusk.engine.entity.event.Registered
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 

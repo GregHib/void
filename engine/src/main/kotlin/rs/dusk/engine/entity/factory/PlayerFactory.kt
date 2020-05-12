@@ -6,14 +6,14 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.client.IndexAllocator
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.data.PlayerLoader
-import rs.dusk.engine.entity.event.Registered
 import rs.dusk.engine.entity.list.MAX_PLAYERS
-import rs.dusk.engine.entity.model.visual.visuals.player.name
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.IndexAllocator
+import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 
 /**

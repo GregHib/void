@@ -1,0 +1,14 @@
+package rs.dusk.engine.model.entity.index
+
+import rs.dusk.engine.event.Event
+import rs.dusk.engine.event.EventCompanion
+import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.world.Tile
+
+/**
+ * @author Greg Hibberd <greg@greghibberd.com>
+ * @since May 05, 2020
+ */
+data class Move(val entity: Entity, val from: Tile, val to: Tile) : Event() {
+    companion object : EventCompanion<Move>
+}

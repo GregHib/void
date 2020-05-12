@@ -8,7 +8,7 @@ import rs.dusk.engine.map.collision.collisionModule
 import rs.dusk.engine.map.location.Xteas
 import rs.dusk.engine.map.location.locationModule
 import rs.dusk.engine.map.location.xteaModule
-import rs.dusk.engine.model.Region
+import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.script.KoinMock
 
 /**

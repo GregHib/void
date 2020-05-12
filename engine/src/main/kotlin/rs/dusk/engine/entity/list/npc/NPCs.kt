@@ -1,7 +1,7 @@
 package rs.dusk.engine.entity.list.npc
 
 import rs.dusk.engine.entity.list.PooledMapList
-import rs.dusk.engine.entity.model.NPC
+import rs.dusk.engine.model.entity.index.npc.NPC
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

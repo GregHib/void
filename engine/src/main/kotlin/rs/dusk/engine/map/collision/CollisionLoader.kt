@@ -5,7 +5,7 @@ import rs.dusk.engine.map.BRIDGE_TILE
 import rs.dusk.engine.map.TileSettings
 import rs.dusk.engine.map.collision.CollisionFlag.FLOOR
 import rs.dusk.engine.map.isTile
-import rs.dusk.engine.model.Region
+import rs.dusk.engine.model.world.Region
 import rs.dusk.utility.inject
 
 /**

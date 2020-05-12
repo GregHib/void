@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.verify
 
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.network.rs.codec.game.MessageCompanion
 import rs.dusk.utility.get
 import kotlin.reflect.KClass

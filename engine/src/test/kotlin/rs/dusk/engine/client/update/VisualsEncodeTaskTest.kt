@@ -11,11 +11,11 @@ import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Indexed
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.entity.model.visual.Visual
-import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.Visuals
+import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.Visual
+import rs.dusk.engine.model.entity.index.update.VisualEncoder
+import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 

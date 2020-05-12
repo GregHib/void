@@ -15,7 +15,7 @@ import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.factory.entityFactoryModule
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
 /**

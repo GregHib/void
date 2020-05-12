@@ -4,7 +4,7 @@ import rs.dusk.core.io.read.BufferReader
 import rs.dusk.engine.map.BRIDGE_TILE
 import rs.dusk.engine.map.TileSettings
 import rs.dusk.engine.map.isTile
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 
 /**

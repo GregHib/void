@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.list.obj
 
-import rs.dusk.engine.entity.model.IObject
+import rs.dusk.engine.model.entity.obj.IObject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

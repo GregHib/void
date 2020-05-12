@@ -2,9 +2,9 @@ package rs.dusk.engine.client.update.encode.player
 
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.visuals.player.MINIMAP_HIGHLIGHT_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.MinimapHighlight
+import rs.dusk.engine.model.entity.index.update.VisualEncoder
+import rs.dusk.engine.model.entity.index.update.visual.player.MINIMAP_HIGHLIGHT_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.MinimapHighlight
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

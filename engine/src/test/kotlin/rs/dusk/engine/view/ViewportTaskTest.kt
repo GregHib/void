@@ -14,9 +14,9 @@ import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.model.Player
-import rs.dusk.engine.model.Chunk
-import rs.dusk.engine.model.Tile
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 
 /**

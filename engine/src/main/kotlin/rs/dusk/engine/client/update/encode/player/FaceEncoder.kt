@@ -1,9 +1,9 @@
 package rs.dusk.engine.client.update.encode.player
 
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.entity.model.visual.VisualEncoder
-import rs.dusk.engine.entity.model.visual.visuals.player.FACE_DIRECTION_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.Face
+import rs.dusk.engine.model.entity.index.update.VisualEncoder
+import rs.dusk.engine.model.entity.index.update.visual.player.FACE_DIRECTION_MASK
+import rs.dusk.engine.model.entity.index.update.visual.player.Face
 import kotlin.math.atan2
 
 /**

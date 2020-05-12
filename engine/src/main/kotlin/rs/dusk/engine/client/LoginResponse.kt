@@ -1,6 +1,6 @@
 package rs.dusk.engine.client
 
-import rs.dusk.engine.entity.model.Player
+import rs.dusk.engine.model.entity.index.player.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
