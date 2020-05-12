@@ -8,8 +8,8 @@ import rs.dusk.engine.entity.model.visual.visuals.npc.COMBAT_LEVEL_MASK
 import rs.dusk.engine.entity.model.visual.visuals.npc.NAME_MASK
 import rs.dusk.engine.entity.model.visual.visuals.player.APPEARANCE_MASK
 import rs.dusk.engine.entity.model.visual.visuals.player.FACE_DIRECTION_MASK
-import rs.dusk.engine.entity.model.visual.visuals.player.MOVEMENT_SPEED_MASK
 import rs.dusk.engine.entity.model.visual.visuals.player.MOVEMENT_TYPE_MASK
+import rs.dusk.engine.entity.model.visual.visuals.player.TEMPORARY_MOVE_TYPE_MASK
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -27,7 +27,7 @@ val clientUpdateModule = module {
             intArrayOf(
                 MOVEMENT_TYPE_MASK,
                 APPEARANCE_MASK,
-                MOVEMENT_SPEED_MASK,
+                TEMPORARY_MOVE_TYPE_MASK,
                 FACE_DIRECTION_MASK
             ),
             0x800,

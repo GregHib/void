@@ -6,9 +6,13 @@ import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.entity.factory.PlayerFactory
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.entity.model.Hit
+import rs.dusk.engine.entity.model.Player
 import rs.dusk.engine.entity.model.visual.visuals.*
 import rs.dusk.engine.entity.model.visual.visuals.player.*
+import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.NONE
+import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.RUN
 import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.entity.model.visual.visuals.player.MovementType.Companion.WALK
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -112,8 +116,51 @@ Command where { prefix == "hide" } then {
     player.minimapHighlight = !player.minimapHighlight
 }
 
-Command where { prefix == "speed" } then {
-    player.movementSpeed = !player.movementSpeed
+Command where { prefix == "walk" } then {
+    GlobalScope.launch {
+        player.movementType = WALK
+        player.temporaryMoveType = false
+        val direction = Direction.NORTH
+        player.movement.direction = direction.inverse().value
+        player.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
+        move(player, player.tile.add(x = direction.deltaX, y = direction.deltaY))
+        delay(600)
+        player.movementType = NONE
+    }
+}
+
+val RUN_X = intArrayOf(-2, -1, 0, 1, 2, -2, 2, -2, 2, -2, 2, -2, -1, 0, 1, 2)
+val RUN_Y = intArrayOf(-2, -2, -2, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 2, 2, 2)
+
+fun getPlayerRunningDirection(dx: Int, dy: Int): Int {
+    RUN_X.forEachIndexed { i, x ->
+        if (dx == x && dy == RUN_Y[i]) {
+            return i
+        }
+    }
+    return -1
+}
+
+Command where { prefix == "run" } then {
+    GlobalScope.launch {
+        player.movementType = RUN
+//        player.temporaryMoveType = true
+        val walk = Direction.NORTH
+        val run = Direction.NORTH_EAST
+        val deltaX = walk.deltaX + run.deltaX
+        val deltaY = walk.deltaY + run.deltaY
+        player.movement.direction = getPlayerRunningDirection(deltaX, deltaY)
+        player.movement.delta = Tile(deltaX, deltaY, 0)
+    }
+}
+
+fun move(player: Player, tile: Tile) {
+    player.movement.lastTile = player.tile
+    players.remove(player.tile, player)
+    players.remove(player.tile.chunk, player)
+    player.tile = tile
+    players[player.tile] = player
+    players[player.tile.chunk] = player
 }
 
 Command where { prefix == "tele" || prefix == "tp" } then {
@@ -124,12 +171,7 @@ Command where { prefix == "tele" || prefix == "tp" } then {
         val y = params[2].toInt() shl 6 or params[4].toInt()
         player.movement.delta = Tile(x - player.tile.x, y - player.tile.y, plane - player.tile.plane)
         player.movementType = TELEPORT
-        player.movement.lastTile = player.tile
-        players.remove(player.tile, player)
-        players.remove(player.tile.chunk, player)
-        player.tile = Tile(x, y, plane)
-        players[player.tile] = player
-        players[player.tile.chunk] = player
+        move(player, Tile(x, y, plane))
         val bus: EventBus = get()
         bus.emit(Move(player, player.tile, player.movement.lastTile))
     }
