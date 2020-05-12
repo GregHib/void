@@ -1,7 +1,9 @@
 package rs.dusk.engine
 
 import com.github.michaelbull.logging.InlineLogger
+import rs.dusk.engine.event.EventBus
 import rs.dusk.utility.get
+import rs.dusk.utility.inject
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
@@ -13,12 +15,14 @@ class Engine {
 
     private val executor = Executors.newSingleThreadScheduledExecutor()
 
-    class Tick(private val tasks: EngineTasks) : Runnable {
+    class TickTask(private val tasks: EngineTasks) : Runnable {
 
         private val logger = InlineLogger()
+        private val bus: EventBus by inject()
 
         override fun run() {
             try {
+                bus.emit(Tick)
                 tasks.forEach {
                     try {
                         it.run()
@@ -36,7 +40,7 @@ class Engine {
 
     fun start() {
         val tasks: EngineTasks = get()
-        val tick = Tick(tasks)
+        val tick = TickTask(tasks)
         executor.scheduleAtFixedRate(tick, ENGINE_DELAY, ENGINE_DELAY, TimeUnit.MILLISECONDS)
     }
 
