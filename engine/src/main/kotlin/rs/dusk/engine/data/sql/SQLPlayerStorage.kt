@@ -37,7 +37,7 @@ class SQLPlayerStorage(url: String, user: String, password: String) : StorageStr
                 val y = player[PlayersTable.y]
                 val plane = player[PlayersTable.plane]
                 val tile = Tile(x, y, plane)
-                Player(playerId, tile)
+                Player(id = playerId, tile = tile)
             }
         }
     }

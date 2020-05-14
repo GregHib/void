@@ -17,7 +17,7 @@ class PlayerLoader(strategy: StorageStrategy<Player>) : DataLoader<Player>(strat
     private val tile = Tile(x, y, plane)
 
     fun loadPlayer(name: String, tile: Tile = this.tile): Player {
-        return super.load(name) ?: Player(-1, tile)
+        return super.load(name) ?: Player(id = -1, tile = tile)
     }
 }
 

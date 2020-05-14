@@ -37,7 +37,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         var index = 1
         val tile = Tile(15, 15, 0)
         val client: Player = mockk(relaxed = true)
-        val set = EntityTrackingSet<Player>(40, ViewportTask.LOCAL_PLAYER_CAP)
+        val set = PlayerTrackingSet(40, ViewportTask.LOCAL_PLAYER_CAP)
         val players: Players = get()
         for (x in 0..30) {
             for (y in 0..30) {
@@ -74,7 +74,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         val radius = 4
         val tile = Tile(radius, radius, 0)
         val client: Player = mockk(relaxed = true)
-        val set = EntityTrackingSet<Player>(40, ViewportTask.LOCAL_PLAYER_CAP)
+        val set = PlayerTrackingSet(40, ViewportTask.LOCAL_PLAYER_CAP)
         val players: Players = get()
         for (x in 0 until radius * 2) {
             for (y in 0 until radius * 2) {

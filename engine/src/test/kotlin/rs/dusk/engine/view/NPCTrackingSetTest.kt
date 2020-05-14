@@ -1,5 +1,6 @@
 package rs.dusk.engine.view
 
+import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -11,12 +12,12 @@ import rs.dusk.engine.model.world.Tile
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
  * @since April 24, 2020
  */
-internal class EntityTrackingSetTest {
-    lateinit var set: EntityTrackingSet<NPC>
+internal class NPCTrackingSetTest {
+    lateinit var set: NPCTrackingSet
 
     @BeforeEach
     fun setup() {
-        set = EntityTrackingSet(tickMax = 4, maximum = 10, radius = 15)
+        set = NPCTrackingSet(tickMax = 4, maximum = 10, radius = 15)
     }
 
     @Test
@@ -33,19 +34,6 @@ internal class EntityTrackingSetTest {
     }
 
     @Test
-    fun `Preparation tracks self`() {
-        // Given
-        val client = NPC(index = 1)
-        set.remove.add(client)
-        // When
-        set.prep(client)
-        // Then
-        assertFalse(set.remove.contains(client))
-        assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
-    }
-
-    @Test
     fun `Tracking tracks self in total`() {
         // Given
         val client = NPC(index = 1)
@@ -55,18 +43,6 @@ internal class EntityTrackingSetTest {
         // Then
         assertFalse(set.remove.contains(client))
         assertEquals(1, set.total)
-        assertEquals(0, set.add.size)
-    }
-
-    @Test
-    fun `Tracking ignores self addition`() {
-        // Given
-        val client = NPC(index = 1)
-        // When
-        set.track(setOf(client), client)
-        // Then
-        assertFalse(set.add.contains(client))
-        assertEquals(0, set.total)
         assertEquals(0, set.add.size)
     }
 
@@ -89,20 +65,6 @@ internal class EntityTrackingSetTest {
         assert(set.current.contains(toAdd))
         assertFalse(set.current.contains(toRemove))
         assertEquals(3, set.total)
-    }
-
-    @Test
-    fun `Update removals sets last seen`() {
-        // Given
-        val npc1 = NPC(index = 1)
-        val npc2 = NPC(index = 2)
-        set.add.add(npc1)
-        set.remove.add(npc2)
-        // When
-        set.update()
-        // Then
-        assertFalse(set.lastSeen.containsKey(npc1))
-        assertTrue(set.lastSeen.containsKey(npc2))
     }
 
     @Test
@@ -185,6 +147,22 @@ internal class EntityTrackingSetTest {
         set.track(entities, null, 0, 0)
         // Then
         assertFalse(set.add.contains(npc))
+    }
+
+    @Test
+    fun `Visible but teleported entity is removed`() {
+        // Given
+        val npc = mockk<NPC>(relaxed = true)
+        every { npc.index } returns 1
+        every { npc.tile } returns Tile(15, 15, 0)
+        every { npc.movement.delta } returns Tile(1)
+        every { npc.movement.direction } returns -1
+        set.remove.add(npc)
+        // When
+        set.track(npc, null)
+        // Then
+        assertTrue(set.remove.contains(npc))
+        assertFalse(set.current.contains(npc))
     }
 
     @Test

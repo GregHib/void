@@ -27,7 +27,7 @@ import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.engine.view.TrackingSet
+import rs.dusk.engine.view.PlayerTrackingSet
 import rs.dusk.engine.view.Viewport
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.func.toInt
@@ -99,7 +99,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         every { player.viewport } returns viewport
         every { viewport.players } returns entities
         // When
@@ -121,12 +121,12 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val activePlayer = mockk<Player>(relaxed = true)
         val idlePlayer = mockk<Player>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
         val idleIndex = 1
         val activeIndex = 2
 
-        every { entities.current } returns setOf(idlePlayer, activePlayer)
+        every { entities.current } returns mutableSetOf(idlePlayer, activePlayer)
         every { viewport.isIdle(idleIndex) } returns true
         every { viewport.isIdle(activeIndex) } returns false
         every { activePlayer.index } returns activeIndex
@@ -145,11 +145,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
 
         every { entities.remove.contains(player) } returns true
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         every { entities.lastSeen[player] } returns null
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
@@ -171,13 +171,13 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val value = 1
 
         every { player.changes.localValue } returns value
         every { player.changes.localUpdate } returns type
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -195,13 +195,13 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val value = 1
 
         every { player.changes.localValue } returns value
         every { player.changes.localUpdate } returns TELE
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -220,13 +220,13 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
 
         every { player.changes.localValue } returns -1
         every { player.changes.localUpdate } returns UPDATE
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -244,14 +244,14 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
 
         every { player.changes.localValue } returns -1
         every { player.changes.localUpdate } returns UPDATE
         every { player.visuals.update } returns null
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -272,7 +272,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val player = mockk<Player>(relaxed = true)
         val skipPlayer = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val index = 1
@@ -295,12 +295,12 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
 
         every { player.changes.localUpdate } returns -1
-        every { entities.current } returns setOf(player)
+        every { entities.current } returns mutableSetOf(player)
         // When
         task.processLocals(sync, updates, entities, viewport, true)
         // Then
@@ -315,7 +315,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val index = 1
 
         declareMock<Players> {
@@ -342,7 +342,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val index = 1
@@ -382,7 +382,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<TrackingSet<Player>>(relaxed = true)
+        val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         declareMock<Players> {
@@ -434,7 +434,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             // Given
             val writer: Writer = mockk(relaxed = true)
             val value = 10
-            val set: TrackingSet<Player> = mockk(relaxed = true)
+            val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
             every { player.tile } returns Tile(0)
             every { set.lastSeen[player] } returns null

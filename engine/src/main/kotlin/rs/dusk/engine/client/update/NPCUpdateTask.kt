@@ -47,13 +47,13 @@ class NPCUpdateTask : ParallelEngineTask() {
 
     fun update(player: Player) = GlobalScope.async {
         val viewport = player.viewport
-        val entities = viewport.npcs
+        val npcs = viewport.npcs
 
         val message = viewport.npcMessage
         val (writer, updates) = message
 
-        processLocals(writer, updates, entities)
-        processAdditions(writer, updates, player, entities)
+        processLocals(writer, updates, npcs)
+        processAdditions(writer, updates, player, npcs)
 
         player.send(message)
     }

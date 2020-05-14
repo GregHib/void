@@ -103,7 +103,7 @@ internal class ViewportTaskTest : KoinMock() {
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
         val north: Player = mockk(relaxed = true)
-        every { set.track(any(), any()) } answers {
+        every { set.track(any<Set<Player>>(), any()) } answers {
             val players: Set<Player> = arg(0)
             players.first() != north
         }

@@ -20,7 +20,7 @@ import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.view.TrackingSet
+import rs.dusk.engine.view.PlayerTrackingSet
 import rs.dusk.engine.view.Viewport
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
@@ -69,7 +69,7 @@ class PlayerUpdateTask : ParallelEngineTask() {
     fun processLocals(
         sync: Writer,
         updates: Writer,
-        set: TrackingSet<Player>,
+        set: PlayerTrackingSet,
         viewport: Viewport,
         active: Boolean
     ) {
@@ -126,7 +126,7 @@ class PlayerUpdateTask : ParallelEngineTask() {
     fun processGlobals(
         sync: Writer,
         updates: Writer,
-        set: TrackingSet<Player>,
+        set: PlayerTrackingSet,
         viewport: Viewport,
         active: Boolean
     ) {
@@ -195,7 +195,7 @@ class PlayerUpdateTask : ParallelEngineTask() {
         }
     }
 
-    fun encodeRegion(sync: Writer, set: TrackingSet<Player>, player: Player) {
+    fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
         val delta = player.tile.delta(set.lastSeen[player] ?: Tile.EMPTY)
         val change = calculateRegionUpdate(delta.regionPlane)
         val value = calculateRegionValue(change, delta.regionPlane)
