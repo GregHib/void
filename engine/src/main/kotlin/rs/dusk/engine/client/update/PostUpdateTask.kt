@@ -6,6 +6,7 @@ import kotlinx.coroutines.async
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.getAnimation
 import rs.dusk.engine.model.entity.index.update.visual.getGraphic
@@ -27,9 +28,9 @@ class PostUpdateTask : ParallelEngineTask() {
         players.forEach { player ->
             defers.add(updatePlayer(player))
         }
-//        npcs.forEach { npc ->
-//            defers.add(update(npc.changes, npc.movement.delta))
-//        }
+        npcs.forEach { npc ->
+            defers.add(updateNPC(npc))
+        }
         val took = measureTimeMillis {
             super.run()
         }
@@ -38,9 +39,30 @@ class PostUpdateTask : ParallelEngineTask() {
         }
     }
 
+    fun updateNPC(npc: NPC) = GlobalScope.async<Unit> {
+        npc.movement.delta = Tile(0)
+        npc.getAnimation().apply {
+            first = -1
+            second = -1
+            third = -1
+            fourth = -1
+            speed = 0
+        }
+        repeat(4) {
+            npc.getGraphic(it).apply {
+                id = -1
+                delay = 0
+                height = 0
+                rotation = 0
+                forceRefresh = false
+            }
+        }
+    }
+
     fun updatePlayer(player: Player) = GlobalScope.async<Unit> {
         player.viewport.shift()
         player.viewport.players.update()
+        player.viewport.npcs.update()
         val lastSeen = player.viewport.players.lastSeen[player] ?: Tile.EMPTY
         val region = player.movement.lastTile.delta(lastSeen).regionPlane
         val regionChanged = region.x != 0 || region.y != 0 || region.plane != 0

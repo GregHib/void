@@ -4,8 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.index.Changes.Companion.REMOVE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
 import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
@@ -25,10 +27,14 @@ class MovementCalculationTask : ParallelEngineTask() {
 
     private val logger = InlineLogger()
     val players: Players by inject()
+    val npcs: NPCs by inject()
 
     override fun run() {
         players.forEach { player ->
             defers.add(updatePlayer(player))
+        }
+        npcs.forEach { npc ->
+            defers.add(updateNPC(npc))
         }
         val took = measureTimeMillis {
             super.run()
@@ -65,7 +71,8 @@ class MovementCalculationTask : ParallelEngineTask() {
         val delta = movement.delta
 
         changes.localUpdate = when {
-            delta.id != 0 && movement.direction != -1 -> WALK// TODO walk/run
+            delta.id != 0 && movement.direction != -1 -> if (npc.movement.run) RUN else WALK
+            delta.id != 0 -> REMOVE// Tele
             npc.visuals.update != null -> UPDATE
             else -> -1
         }
@@ -80,13 +87,7 @@ class MovementCalculationTask : ParallelEngineTask() {
     private val MOVE_X = intArrayOf(0, 1, 1, 1, 0, -1, -1, -1)
     private val MOVE_Y = intArrayOf(1, 1, 0, -1, -1, -1, 0, 1)
 
-    fun getNpcMoveDirection(direction: Direction): Int {
-        return if (direction == Direction.NONE) {
-            -1
-        } else {
-            getNpcMoveDirection(direction.deltaX, direction.deltaY)
-        }
-    }
+    fun getNpcMoveDirection(direction: Direction) = getNpcMoveDirection(direction.deltaX, direction.deltaY)
 
     private fun getNpcMoveDirection(dx: Int, dy: Int): Int {
         MOVE_X.forEachIndexed { i, x ->

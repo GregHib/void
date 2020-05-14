@@ -34,7 +34,11 @@ Registered priority 9 then {
             entity.movementType = 0
             entity.face()
         }
-        is NPC -> npcs[entity.tile] = entity
+        is NPC -> {
+            npcs[entity.tile] = entity
+            npcs[entity.tile.chunk] = entity
+            npcs.addAtIndex(entity.index, entity)
+        }
         is IObject -> objects[entity.tile] = entity
         is FloorItem -> items[entity.tile] = entity
         is Projectile -> projectiles[entity.tile] = entity

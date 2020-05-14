@@ -65,7 +65,7 @@ fun Player.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 
 }
 
 fun NPC.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    val index = visuals.getIndex(::getPlayerMask)
+    val index = visuals.getIndex(::getNPCMask)
     setGraphic(getGraphic(index), id, delay, height, rotation, forceRefresh)
     flagGraphic(index)
 }

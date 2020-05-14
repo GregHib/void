@@ -60,6 +60,7 @@ Command where { prefix == "kill" } then {
         return@then
     }
 }
+
 Command where { prefix == "under" } then {
     players[player.tile]?.filterNotNull()?.forEach {
         println("$it - ${player.viewport.players.current.contains(it)}")
@@ -70,9 +71,6 @@ Command where { prefix == "anim" } then {
     player.setAnimation(content.toInt())// 863
 }
 
-Command where { prefix == "gfx" } then {
-    player.setGraphic(content.toInt())// 93
-}
 Command where { prefix == "gfx" } then {
     val id = content.toInt()
     player.setGraphic(id)// 93

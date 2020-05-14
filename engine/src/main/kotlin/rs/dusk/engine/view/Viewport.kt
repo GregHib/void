@@ -2,8 +2,6 @@ package rs.dusk.engine.view
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import org.koin.dsl.module
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.list.MAX_PLAYERS
@@ -29,7 +27,7 @@ import rs.dusk.utility.inject
 @Suppress("ArrayInDataClass")
 data class Viewport(
     val players: TrackingSet<Player> = EntityTrackingSet(PLAYER_TICK_CAP, LOCAL_PLAYER_CAP),
-    val npcs: TrackingSet<NPC> = EntityTrackingSet(NPC_TICK_CAP, LOCAL_NPC_CAP),
+    val npcs: TrackingSet<NPC> = NPCTrackingSet(NPC_TICK_CAP, LOCAL_NPC_CAP),
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
     val regions: MutableSet<Int> = linkedSetOf(),
@@ -60,11 +58,7 @@ data class Viewport(
     }
 }
 
-val viewportModule = module {
-    single(createdAtStart = true) { ViewportTask(get()) }
-}
-
-class ViewportTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 3) {
+class ViewportTask : ParallelEngineTask() {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

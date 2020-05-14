@@ -9,6 +9,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.update.encode.player.FaceEncoder.Companion.getFaceDirection
 import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.model.entity.index.Changes.Companion.REMOVE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -66,7 +67,7 @@ class NPCUpdateTask : ParallelEngineTask() {
         sync.writeBits(8, set.current.size)
         for (npc in set.current) {
             val remove = set.remove.contains(npc)
-            val updateType = if (remove) 0 else npc.changes.localUpdate
+            val updateType = if (remove) REMOVE else npc.changes.localUpdate
 
             if (updateType == -1) {
                 sync.writeBits(1, false)
@@ -79,12 +80,11 @@ class NPCUpdateTask : ParallelEngineTask() {
             when (updateType) {
                 WALK, RUN -> {
                     val value = npc.changes.localValue
-                    var run = true
-                    if (run) {
+                    if (npc.movement.run) {
                         sync.writeBits(1, 1)
                     }
                     sync.writeBits(3, value)//Walk direction
-                    if (run) {
+                    if (npc.movement.run) {
                         sync.writeBits(3, value)//Run direction
                     }
                     sync.writeBits(1, npc.visuals.update != null)

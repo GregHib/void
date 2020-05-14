@@ -18,7 +18,7 @@ fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
 
 fun NPC.getTransform() = visuals.getOrPut(TRANSFORM_MASK) { Transform() }
 
-var NPC.displayName: Int
+var NPC.transform: Int
     get() = getTransform().id
     set(value) {
         getTransform().id = value
