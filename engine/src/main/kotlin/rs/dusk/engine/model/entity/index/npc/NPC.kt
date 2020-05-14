@@ -16,9 +16,7 @@ data class NPC(
     override var tile: Tile,
     override val visuals: Visuals = Visuals(),
     override val changes: Changes = Changes(),
-    override val movement: Movement = Movement(
-        delta = tile
-    )
+    override val movement: Movement = Movement()
 ) : Indexed {
 
     constructor(

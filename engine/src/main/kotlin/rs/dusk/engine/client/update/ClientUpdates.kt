@@ -22,7 +22,7 @@ val engineTasksModule = module {
             linkedSetOf(
                 LoginQueueTask(get(), getProperty("loginPerTickCap")),
                 ViewportTask(),
-                VisualsEncodeTask(
+                PlayerVisualsTask(
                     get<Players>(),
                     get(named("playerVisualEncoders")),
                     intArrayOf(
@@ -30,14 +30,11 @@ val engineTasksModule = module {
                         APPEARANCE_MASK,
                         TEMPORARY_MOVE_TYPE_MASK,
                         FACE_DIRECTION_MASK
-                    ),
-                    0x800
+                    )
                 ),
-                VisualsEncodeTask(
+                NPCVisualsTask(
                     get<NPCs>(),
-                    get(named("npcVisualEncoders")),
-                    intArrayOf(),
-                    0x8000
+                    get(named("npcVisualEncoders"))
                 ),
                 MovementCalculationTask(),
                 PlayerUpdateTask(),

@@ -7,7 +7,7 @@ import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.PooledMapList
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
@@ -18,28 +18,25 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class VisualsEncodeTask<T : Indexed>(
-    val entities: PooledMapList<T>,
-    val encoders: Array<VisualEncoder<Visual>>,
-    addMasks: IntArray, // Order of these is important
-    val entityMask: Int
+class PlayerVisualsTask(
+    private val players: PooledMapList<Player>,
+    private val encoders: Array<VisualEncoder<Visual>>,
+    addMasks: IntArray // Order of these is important
 ) : ParallelEngineTask() {
 
     private val logger = InlineLogger()
-
-    val addFlag = addMasks.sum()
-    val name = entities::class.java.simpleName
-    val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
+    private val addFlag = addMasks.sum()
+    private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 
     override fun run() {
-        entities.forEach { entity ->
+        players.forEach { entity ->
             defers.add(update(entity.visuals))
         }
         val took = measureTimeMillis {
             super.run()
         }
         if (took > 0) {
-            logger.info { "$name visual encoding took ${took}ms" }
+            logger.info { "Player visual encoding took ${took}ms" }
         }
     }
 
@@ -63,7 +60,7 @@ class VisualsEncodeTask<T : Indexed>(
      */
     fun encodeUpdate(visuals: Visuals) {
         val writer = BufferWriter()
-        writeFlag(writer, visuals.flag, entityMask)
+        writeFlag(writer, visuals.flag)
         encoders.forEach { encoder ->
             if (!visuals.flagged(encoder.mask)) {
                 return@forEach
@@ -83,7 +80,7 @@ class VisualsEncodeTask<T : Indexed>(
      */
     fun encodeAddition(visuals: Visuals) {
         val writer = BufferWriter()
-        writeFlag(writer, addFlag, entityMask)
+        writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
             if (visual !is Appearance) {
@@ -112,14 +109,14 @@ class VisualsEncodeTask<T : Indexed>(
         return data
     }
 
-    fun writeFlag(writer: Writer, dataFlag: Int, mask: Int) {
+    fun writeFlag(writer: Writer, dataFlag: Int) {
         var flag = dataFlag
 
         if (flag >= 0x100) {
             flag = flag or 0x80
         }
         if (flag >= 0x10000) {
-            flag = flag or mask
+            flag = flag or 0x800
         }
 
         writer.writeByte(flag)
