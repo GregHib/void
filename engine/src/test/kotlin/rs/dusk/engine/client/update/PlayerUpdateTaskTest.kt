@@ -27,6 +27,7 @@ import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.task.PlayerUpdateTask
 import rs.dusk.engine.view.PlayerTrackingSet
 import rs.dusk.engine.view.Viewport
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage

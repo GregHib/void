@@ -16,6 +16,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Compa
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.task.MovementCalculationTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

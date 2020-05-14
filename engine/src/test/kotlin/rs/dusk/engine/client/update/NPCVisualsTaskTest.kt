@@ -16,6 +16,7 @@ import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.task.NPCVisualsTask
 import rs.dusk.utility.get
 
 /**

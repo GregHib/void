@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.update
+package rs.dusk.engine.task
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope

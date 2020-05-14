@@ -6,11 +6,11 @@ import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.loginQueueModule
-import rs.dusk.engine.client.update.engineTasksModule
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
+import rs.dusk.engine.engineTasksModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.EventBus
