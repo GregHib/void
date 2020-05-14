@@ -1,7 +1,7 @@
 package rs.dusk.engine.model.entity.index.player
 
-import rs.dusk.engine.model.entity.index.Changes
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.index.update.visual.player.getAppearance
@@ -19,9 +19,14 @@ data class Player(
     override var tile: Tile = Tile(0),
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val changes: Changes = Changes(),
     @Transient override val movement: Movement = Movement(delta = tile)
 ) : Indexed {
+
+    @Transient
+    override var change: LocalChange? = null
+
+    @Transient
+    var changeValue: Int = -1
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

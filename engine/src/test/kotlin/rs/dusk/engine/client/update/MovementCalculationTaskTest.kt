@@ -8,12 +8,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
-import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
-import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
-import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.RUN
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
@@ -42,16 +41,15 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(1, 0)
         every { player.movementType } returns WALK
-        every { player.changes.localUpdate } returns WALK
+        every { player.change } returns LocalChange.Walk
         // When
         runBlocking {
             task.updatePlayer(player).await()
         }
         // Then
         verifyOrder {
-            val changes = player.changes
-            changes.localUpdate = WALK
-            changes.localValue = 3
+            player.change = LocalChange.Walk
+            player.changeValue = 3
         }
     }
 
@@ -63,16 +61,15 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.runStep } returns Direction.NORTH
         every { player.movement.delta } returns Tile(0, 2)
         every { player.movementType } returns RUN
-        every { player.changes.localUpdate } returns RUN
+        every { player.change } returns LocalChange.Run
         // When
         runBlocking {
             task.updatePlayer(player).await()
         }
         // Then
         verifyOrder {
-            val changes = player.changes
-            changes.localUpdate = RUN
-            changes.localValue = 13
+            player.change = LocalChange.Run
+            player.changeValue = 13
         }
     }
 
@@ -84,16 +81,15 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(247, -365, 1)
         every { player.movementType } returns TELEPORT
-        every { player.changes.localUpdate } returns TELE
+        every { player.change } returns LocalChange.Tele
         // When
         runBlocking {
             task.updatePlayer(player).await()
         }
         // Then
         verifyOrder {
-            val changes = player.changes
-            changes.localUpdate = TELE
-            changes.localValue = 1779
+            player.change = LocalChange.Tele
+            player.changeValue = 1779
         }
     }
 
@@ -101,7 +97,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update visual`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.changes.localUpdate } returns UPDATE
+        every { player.change } returns LocalChange.Update
         every { player.movementType } returns -1
         // When
         runBlocking {
@@ -109,9 +105,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
         }
         // Then
         verifyOrder {
-            val changes = player.changes
-            changes.localUpdate = UPDATE
-            changes.localValue = -1
+            player.change = LocalChange.Update
+            player.changeValue = -1
         }
     }
 
@@ -124,16 +119,15 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movementType } returns TELEPORT
         every { player.visuals.update } returns null
         every { player.movement.delta } returns Tile(0)
-        every { player.changes.localUpdate } returns -1
+        every { player.change } returns null
         // When
         runBlocking {
             task.updatePlayer(player).await()
         }
         // Then
         verifyOrder {
-            val changes = player.changes
-            changes.localUpdate = -1
-            changes.localValue = -1
+            player.change = null
+            player.changeValue = -1
         }
     }
 

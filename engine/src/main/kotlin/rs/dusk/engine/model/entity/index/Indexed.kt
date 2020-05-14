@@ -10,8 +10,8 @@ import rs.dusk.engine.model.entity.index.update.Visuals
 interface Indexed : Entity, Comparable<Indexed> {
     val index: Int
     val visuals: Visuals
+    var change: LocalChange?
     val movement: Movement
-    val changes: Changes
 
     override fun compareTo(other: Indexed): Int {
         return index.compareTo(other.index)

@@ -8,9 +8,7 @@ import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.model.entity.index.Changes.Companion.REMOVE
-import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
-import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.teleport
@@ -67,27 +65,28 @@ class NPCUpdateTask : ParallelEngineTask() {
         sync.writeBits(8, set.current.size)
         for (npc in set.current) {
             val remove = set.remove.contains(npc)
-            val updateType = if (remove) REMOVE else npc.changes.localUpdate
+            val change = if (remove) LocalChange.Tele else npc.change
 
-            if (updateType == -1) {
+            if (change == null) {
                 sync.writeBits(1, false)
                 continue
             }
 
             sync.writeBits(1, true)
-            sync.writeBits(2, updateType)
+            sync.writeBits(2, change.id)
 
-            when (updateType) {
-                WALK, RUN -> {
-                    val value = npc.changes.localValue
-                    if (npc.movement.run) {
-                        sync.writeBits(1, 1)
-                    }
-                    sync.writeBits(3, value)//Walk direction
-                    if (npc.movement.run) {
-                        sync.writeBits(3, value)//Run direction
-                    }
+            when (change) {
+                LocalChange.Walk -> {
+                    sync.writeBits(3, npc.walkDirection)
                     sync.writeBits(1, npc.visuals.update != null)
+                }
+                LocalChange.Run -> {
+                    sync.writeBits(1, 1)// Teleport or slow movement?
+                    sync.writeBits(3, npc.walkDirection)
+                    sync.writeBits(3, npc.runDirection)
+                    sync.writeBits(1, npc.visuals.update != null)
+                }
+                else -> {
                 }
             }
             if (!remove) {

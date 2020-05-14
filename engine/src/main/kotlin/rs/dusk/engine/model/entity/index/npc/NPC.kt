@@ -1,7 +1,7 @@
 package rs.dusk.engine.model.entity.index.npc
 
-import rs.dusk.engine.model.entity.index.Changes
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.world.Tile
@@ -15,15 +15,14 @@ data class NPC(
     override val id: Int,
     override var tile: Tile,
     override val visuals: Visuals = Visuals(),
-    override val changes: Changes = Changes(),
     override val movement: Movement = Movement()
 ) : Indexed {
 
-    constructor(
-        id: Int = 0, tile: Tile = Tile(
-            0
-        ), index: Int
-    ) : this(id, tile) {
+    override var change: LocalChange? = null
+    var walkDirection: Int = -1
+    var runDirection: Int = -1
+
+    constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {
         this.index = index
     }
 

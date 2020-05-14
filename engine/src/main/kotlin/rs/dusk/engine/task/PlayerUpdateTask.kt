@@ -10,13 +10,8 @@ import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.Changes.Companion.ADJACENT_REGION
-import rs.dusk.engine.model.entity.index.Changes.Companion.GLOBAL_REGION
-import rs.dusk.engine.model.entity.index.Changes.Companion.HEIGHT
-import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
-import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
-import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
-import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.LocalChange
+import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
@@ -84,9 +79,9 @@ class PlayerUpdateTask : ParallelEngineTask() {
             }
 
             val remove = set.remove.contains(player)
-            val updateType = if (remove) 0 else player.changes.localUpdate
+            val updateType = if (remove) LocalChange.Update else player.change
 
-            if (updateType == -1) {
+            if (updateType == null) {
                 skip++
                 viewport.setIdle(index)
                 continue
@@ -99,21 +94,25 @@ class PlayerUpdateTask : ParallelEngineTask() {
 
             sync.writeBits(1, true)
             sync.writeBits(1, player.visuals.update != null && !remove)
-            sync.writeBits(2, updateType)
+            sync.writeBits(2, updateType.id)
 
             if (remove) {
                 encodeRegion(sync, set, player)
-            } else {
-                val value = player.changes.localValue
-                when (updateType) {
-                    WALK, RUN -> sync.writeBits(updateType + 2, value)
-                    TELE -> {
-                        sync.writeBits(1, false)// Exit teleport support not needed
-                        sync.writeBits(12, value)
-                    }
-                }
-                updates.writeBytes(player.visuals.update ?: continue)
+                continue
             }
+
+            when (updateType) {
+                LocalChange.Walk, LocalChange.Run ->
+                    sync.writeBits(updateType.id + 2, player.changeValue)
+                LocalChange.Tele -> {
+                    sync.writeBits(1, false)// Exit teleport support not needed
+                    sync.writeBits(12, player.changeValue)
+                }
+                else -> {
+                }
+            }
+            updates.writeBytes(player.visuals.update ?: continue)
+
         }
 
         if (skip > -1) {
@@ -198,29 +197,31 @@ class PlayerUpdateTask : ParallelEngineTask() {
     fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
         val delta = player.tile.delta(set.lastSeen[player] ?: Tile.EMPTY)
         val change = calculateRegionUpdate(delta.regionPlane)
-        val value = calculateRegionValue(change, delta.regionPlane)
-        sync.writeBits(1, change != UPDATE)
-        if (change != UPDATE) {
-            sync.writeBits(2, change)
+        sync.writeBits(1, change != RegionChange.Update)
+        if (change != RegionChange.Update) {
+            val value = calculateRegionValue(change, delta.regionPlane)
+            sync.writeBits(2, change.id)
             when (change) {
-                HEIGHT -> sync.writeBits(2, value)
-                ADJACENT_REGION -> sync.writeBits(5, value)
-                GLOBAL_REGION -> sync.writeBits(18, value)
+                RegionChange.Height -> sync.writeBits(2, value)
+                RegionChange.Local -> sync.writeBits(5, value)
+                RegionChange.Global -> sync.writeBits(18, value)
+                else -> {
+                }
             }
         }
     }
 
     fun calculateRegionUpdate(delta: RegionPlane) = when {
-        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> UPDATE
-        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> HEIGHT
-        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> ADJACENT_REGION
-        else -> GLOBAL_REGION
+        delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.Update
+        delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height
+        delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
+        else -> RegionChange.Global
     }
 
-    fun calculateRegionValue(update: Int, delta: RegionPlane) = when (update) {
-        HEIGHT -> delta.plane
-        ADJACENT_REGION -> (getDirection(delta.x, delta.y) and 0x7) or (delta.plane shl 3)
-        GLOBAL_REGION -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
+    fun calculateRegionValue(change: RegionChange, delta: RegionPlane) = when (change) {
+        RegionChange.Height -> delta.plane
+        RegionChange.Local -> (getDirection(delta.x, delta.y) and 0x7) or (delta.plane shl 3)
+        RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
     }
 

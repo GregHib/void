@@ -7,11 +7,7 @@ import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.Changes.Companion.REMOVE
-import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
-import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
-import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
-import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
+import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
@@ -45,48 +41,48 @@ class MovementCalculationTask : ParallelEngineTask() {
     }
 
     fun updatePlayer(player: Player) = GlobalScope.async {
-        val changes = player.changes
         val movement = player.movement
         val delta = movement.delta
 
         movement.lastTile = player.tile
 
-        changes.localUpdate = when {
-            delta.id != 0 && movement.runStep != Direction.NONE -> RUN
-            delta.id != 0 && movement.walkStep != Direction.NONE -> WALK
-            delta.id != 0 && player.movementType == TELEPORT -> TELE
-            player.visuals.update != null -> UPDATE
-            else -> -1
+        player.change = when {
+            delta.id != 0 && movement.runStep != Direction.NONE -> LocalChange.Run
+            delta.id != 0 && movement.walkStep != Direction.NONE -> LocalChange.Walk
+            delta.id != 0 && player.movementType == TELEPORT -> LocalChange.Tele
+            player.visuals.update != null -> LocalChange.Update
+            else -> null
         }
 
-        changes.localValue = when (changes.localUpdate) {
-            WALK -> movement.walkStep.inverse().value
-            RUN -> getPlayerRunningDirection(
+        player.changeValue = when (player.change) {
+            LocalChange.Walk -> movement.walkStep.inverse().value
+            LocalChange.Run -> getPlayerRunningDirection(
                 movement.walkStep.deltaX + movement.runStep.deltaX,
                 movement.walkStep.deltaY + movement.runStep.deltaY
             )
-            TELE -> (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
+            LocalChange.Tele -> (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
             else -> -1
         }
     }
 
     fun updateNPC(npc: NPC) = GlobalScope.async {
-        val changes = npc.changes
         val movement = npc.movement
         val delta = movement.delta
 
-        changes.localUpdate = when {
-            delta.id != 0 && movement.runStep != Direction.NONE -> RUN
-            delta.id != 0 && movement.walkStep != Direction.NONE -> WALK
-            delta.id != 0 -> REMOVE// Tele
-            npc.visuals.update != null -> UPDATE
-            else -> -1
+        npc.change = when {
+            delta.id != 0 && movement.runStep != Direction.NONE -> LocalChange.Run
+            delta.id != 0 && movement.walkStep != Direction.NONE -> LocalChange.Walk
+            delta.id != 0 -> LocalChange.Tele// Tele
+            npc.visuals.update != null -> LocalChange.Update
+            else -> null
         }
 
-        changes.localValue = when (changes.localUpdate) {
-            WALK -> getNpcMoveDirection(Direction.NORTH)// Walk direction
-            RUN -> getNpcMoveDirection(Direction.NORTH)// Run direction
-            else -> -1
+        if (npc.change == LocalChange.Run || npc.change == LocalChange.Walk) {
+            npc.walkDirection = getNpcMoveDirection(movement.walkStep)
+            npc.runDirection = getNpcMoveDirection(movement.runStep)
+        } else {
+            npc.walkDirection = -1
+            npc.runDirection = -1
         }
     }
 
