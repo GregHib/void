@@ -92,44 +92,32 @@ Command where { prefix == "npcwatch" } then {
 
 
 Command where { prefix == "npcwalk" } then {
-//    GlobalScope.launch {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-//        npc.movementType = MovementType.WALK
-//        npc.temporaryMoveType = MovementType.WALK
     val direction = Direction.NORTH
-    npc.movement.direction = direction.inverse().value
+    npc.movement.walkStep = direction//direction.inverse().value
     npc.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
     move(npc, player.tile.add(x = direction.deltaX, y = direction.deltaY))
-//        delay(600)
-//        npc.movementType = MovementType.NONE
-//    }
 }
 
 Command where { prefix == "npcrun" } then {
-//    GlobalScope.launch {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     npc.movement.run = true
-//        npc.movementType = MovementType.RUN
-//        npc.temporaryMoveType = RUN
     val walk = Direction.NORTH
     val run = Direction.NORTH_EAST
     val deltaX = walk.deltaX + run.deltaX
     val deltaY = walk.deltaY + run.deltaY
-    npc.movement.direction = 0//getPlayerRunningDirection(deltaX, deltaY)
+    npc.movement.walkStep = walk
+    npc.movement.runStep = run
     npc.movement.delta = Tile(deltaX, deltaY, 0)
     move(npc, npc.tile.add(npc.movement.delta))
-//    }
 }
 
 Command where { prefix == "npctele" } then {
-//    GlobalScope.launch {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-
     val deltaX = 0
     val deltaY = 3
     npc.movement.delta = Tile(deltaX, deltaY, 0)
     move(npc, npc.tile.add(deltaX, deltaY, 0))
-//    }
 }
 
 fun move(npc: NPC, tile: Tile) {

@@ -52,14 +52,19 @@ class MovementCalculationTask : ParallelEngineTask() {
         movement.lastTile = player.tile
 
         changes.localUpdate = when {
-            delta.id != 0 && movement.direction != -1 -> player.movementType
+            delta.id != 0 && movement.runStep != Direction.NONE -> RUN
+            delta.id != 0 && movement.walkStep != Direction.NONE -> WALK
             delta.id != 0 && player.movementType == TELEPORT -> TELE
             player.visuals.update != null -> UPDATE
             else -> -1
         }
 
         changes.localValue = when (changes.localUpdate) {
-            WALK, RUN -> movement.direction
+            WALK -> movement.walkStep.inverse().value
+            RUN -> getPlayerRunningDirection(
+                movement.walkStep.deltaX + movement.runStep.deltaX,
+                movement.walkStep.deltaY + movement.runStep.deltaY
+            )
             TELE -> (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
             else -> -1
         }
@@ -71,7 +76,8 @@ class MovementCalculationTask : ParallelEngineTask() {
         val delta = movement.delta
 
         changes.localUpdate = when {
-            delta.id != 0 && movement.direction != -1 -> if (npc.movement.run) RUN else WALK
+            delta.id != 0 && movement.runStep != Direction.NONE -> RUN
+            delta.id != 0 && movement.walkStep != Direction.NONE -> WALK
             delta.id != 0 -> REMOVE// Tele
             npc.visuals.update != null -> UPDATE
             else -> -1
@@ -82,6 +88,18 @@ class MovementCalculationTask : ParallelEngineTask() {
             RUN -> getNpcMoveDirection(Direction.NORTH)// Run direction
             else -> -1
         }
+    }
+
+    val RUN_X = intArrayOf(-2, -1, 0, 1, 2, -2, 2, -2, 2, -2, 2, -2, -1, 0, 1, 2)
+    val RUN_Y = intArrayOf(-2, -2, -2, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 2, 2, 2)
+
+    fun getPlayerRunningDirection(dx: Int, dy: Int): Int {
+        RUN_X.forEachIndexed { i, x ->
+            if (dx == x && dy == RUN_Y[i]) {
+                return i
+            }
+        }
+        return -1
     }
 
     private val MOVE_X = intArrayOf(0, 1, 1, 1, 0, -1, -1, -1)

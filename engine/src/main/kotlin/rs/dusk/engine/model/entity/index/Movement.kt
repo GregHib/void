@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index
 
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.world.Tile
 
@@ -10,9 +11,10 @@ import rs.dusk.engine.model.world.Tile
 data class Movement(
     var lastTile: Tile = Tile(0),
     var delta: Tile = Tile(0),
-    var direction: Int = -1,
+    var walkStep: Direction = Direction.NONE,
+    var runStep: Direction = Direction.NONE,
     var run: Boolean = false
 )
 
 val NPC.teleport: Boolean
-    get() = movement.delta.id != 0 && movement.direction == -1
+    get() = movement.delta.id != 0 && movement.walkStep == Direction.NONE && movement.runStep == Direction.NONE

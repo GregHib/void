@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.TELE
 import rs.dusk.engine.model.entity.index.Changes.Companion.UPDATE
@@ -37,8 +38,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update walk`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        val value = 1337
-        every { player.movement.direction } returns value
+        every { player.movement.walkStep } returns Direction.EAST
+        every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(1, 0)
         every { player.movementType } returns WALK
         every { player.changes.localUpdate } returns WALK
@@ -50,7 +51,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         verifyOrder {
             val changes = player.changes
             changes.localUpdate = WALK
-            changes.localValue = value
+            changes.localValue = 3
         }
     }
 
@@ -58,8 +59,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update run`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        val value = 420
-        every { player.movement.direction } returns value
+        every { player.movement.walkStep } returns Direction.NORTH
+        every { player.movement.runStep } returns Direction.NORTH
         every { player.movement.delta } returns Tile(0, 2)
         every { player.movementType } returns RUN
         every { player.changes.localUpdate } returns RUN
@@ -71,7 +72,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         verifyOrder {
             val changes = player.changes
             changes.localUpdate = RUN
-            changes.localValue = value
+            changes.localValue = 13
         }
     }
 
@@ -79,7 +80,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update tele`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.direction } returns -1
+        every { player.movement.walkStep } returns Direction.NONE
+        every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(247, -365, 1)
         every { player.movementType } returns TELEPORT
         every { player.changes.localUpdate } returns TELE
@@ -117,7 +119,8 @@ internal class MovementCalculationTaskTest : KoinMock() {
     fun `Local update no movement`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.direction } returns 0
+        every { player.movement.walkStep } returns Direction.NONE
+        every { player.movement.runStep } returns Direction.NONE
         every { player.movementType } returns TELEPORT
         every { player.visuals.update } returns null
         every { player.movement.delta } returns Tile(0)

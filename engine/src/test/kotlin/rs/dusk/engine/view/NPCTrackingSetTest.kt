@@ -5,6 +5,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.world.Tile
 
@@ -156,7 +157,8 @@ internal class NPCTrackingSetTest {
         every { npc.index } returns 1
         every { npc.tile } returns Tile(15, 15, 0)
         every { npc.movement.delta } returns Tile(1)
-        every { npc.movement.direction } returns -1
+        every { npc.movement.walkStep } returns Direction.NONE
+        every { npc.movement.runStep } returns Direction.NONE
         set.remove.add(npc)
         // When
         set.track(npc, null)

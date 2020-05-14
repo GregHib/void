@@ -14,7 +14,6 @@ import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.NONE
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.RUN
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
 import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
@@ -128,42 +127,24 @@ Command where { prefix == "hide" } then {
 }
 
 Command where { prefix == "walk" } then {
-    GlobalScope.launch {
-        player.movementType = WALK
-        player.temporaryMoveType = WALK
-        val direction = Direction.NORTH
-        player.movement.direction = direction.inverse().value
-        player.movement.delta =
-            Tile(direction.deltaX, direction.deltaY, 0)
-        move(player, player.tile.add(x = direction.deltaX, y = direction.deltaY))
-        delay(600)
-        player.movementType = NONE
-    }
-}
-
-val RUN_X = intArrayOf(-2, -1, 0, 1, 2, -2, 2, -2, 2, -2, 2, -2, -1, 0, 1, 2)
-val RUN_Y = intArrayOf(-2, -2, -2, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 2, 2, 2)
-
-fun getPlayerRunningDirection(dx: Int, dy: Int): Int {
-    RUN_X.forEachIndexed { i, x ->
-        if (dx == x && dy == RUN_Y[i]) {
-            return i
-        }
-    }
-    return -1
+    player.movementType = WALK
+    player.temporaryMoveType = WALK
+    val direction = Direction.NORTH
+    player.movement.walkStep = direction
+    player.movement.delta =
+        Tile(direction.deltaX, direction.deltaY, 0)
+    move(player, player.tile.add(player.movement.delta))
 }
 
 Command where { prefix == "run" } then {
-    GlobalScope.launch {
-        player.movementType = RUN
+    player.movementType = RUN
 //        player.temporaryMoveType = RUN
-        val walk = Direction.NORTH
-        val run = Direction.NORTH_EAST
-        val deltaX = walk.deltaX + run.deltaX
-        val deltaY = walk.deltaY + run.deltaY
-        player.movement.direction = getPlayerRunningDirection(deltaX, deltaY)
-        player.movement.delta = Tile(deltaX, deltaY, 0)
-    }
+    player.movement.walkStep = Direction.NORTH
+    player.movement.runStep = Direction.NORTH_EAST
+    val deltaX = player.movement.walkStep.deltaX + player.movement.runStep.deltaX
+    val deltaY = player.movement.walkStep.deltaY + player.movement.runStep.deltaY
+    player.movement.delta = Tile(deltaX, deltaY, 0)
+    move(player, player.tile.add(player.movement.delta))
 }
 
 fun move(player: Player, tile: Tile) {
