@@ -2,6 +2,7 @@ package rs.dusk.engine.model.entity.index.update.visual.npc
 
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.update.Visual
+import kotlin.math.atan2
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -11,7 +12,8 @@ data class Turn(
     var x: Int = 0,
     var y: Int = 0,
     var directionX: Int = 0,
-    var directionY: Int = 0
+    var directionY: Int = 0,
+    var direction: Int = 0
 ) : Visual
 
 const val TURN_MASK = 0x8
@@ -26,5 +28,10 @@ fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1) {
     turn.y = tile.y
     turn.directionX = deltaX
     turn.directionY = deltaY
+    turn.direction = getFaceDirection(deltaX, deltaY)
     flagTurn()
+}
+
+fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
+    return (atan2(xOffset * -1.0, yOffset * -1.0) * 2607.5945876176133).toInt() and 0x3fff
 }

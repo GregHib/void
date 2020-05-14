@@ -7,13 +7,13 @@ import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
-import rs.dusk.engine.client.update.encode.player.FaceEncoder.Companion.getFaceDirection
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.Changes.Companion.REMOVE
 import rs.dusk.engine.model.entity.index.Changes.Companion.RUN
 import rs.dusk.engine.model.entity.index.Changes.Companion.WALK
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.teleport
 import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
 import rs.dusk.engine.view.TrackingSet
 import rs.dusk.utility.inject
@@ -106,9 +106,9 @@ class NPCUpdateTask : ParallelEngineTask() {
     ) {
         for (npc in set.add) {
             val delta = npc.tile.delta(client.tile)
-            val regionChange = false// When tele
-            val turn = npc.getTurn()
-            val direction = getFaceDirection(turn.x, turn.y)//TODO move into [Turn]
+            val regionChange =
+                npc.teleport// TODO test, teleport probably removed by now as add happens in the next tick
+            val direction = npc.getTurn().direction
 
             sync.writeBits(15, npc.index)
             sync.writeBits(3, (direction shr 11) - 4)
