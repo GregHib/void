@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.player.Players
@@ -34,9 +33,9 @@ internal class VisualsEncodeTaskTest : KoinMock() {
     private val addMasks = intArrayOf(encoder.mask)
     private val entities: PooledMapList<Player> = mockk(relaxed = true)
     private val encoderModule = module {
-        single { spyk(VisualsEncodeTask(entities, arrayOf(encoder), addMasks, 0x800, get())) }
+        single { spyk(VisualsEncodeTask(entities, arrayOf(encoder), addMasks, 0x800)) }
     }
-    override val modules = listOf(engineModule, entityListModule, encoderModule)
+    override val modules = listOf(entityListModule, encoderModule)
 
     @Test
     fun `Run runs all in parallel`() {

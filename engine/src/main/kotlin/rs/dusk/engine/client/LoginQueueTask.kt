@@ -7,7 +7,7 @@ import kotlin.coroutines.resume
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
-class PlayerLoginQueue(private val queue: LoginQueue, private val loginPerTickCap: Int) : EngineTask {
+class LoginQueueTask(private val queue: LoginQueue, private val loginPerTickCap: Int) : EngineTask {
 
     override fun run() {
         var count = 0

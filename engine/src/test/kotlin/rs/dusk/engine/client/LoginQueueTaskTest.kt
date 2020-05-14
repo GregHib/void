@@ -3,18 +3,18 @@ package rs.dusk.engine.client
 import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.spyk
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import org.koin.test.inject
-import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.factory.PlayerFactory
-import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
@@ -22,26 +22,33 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg></greg>@greghibberd.com>
  * @since April 09, 2020
  */
-internal class PlayerLoginQueueTest : KoinMock() {
+internal class LoginQueueTaskTest : KoinMock() {
 
     val loginQueue: LoginQueue by inject()
+    lateinit var factory: PlayerFactory
+    lateinit var task: LoginQueueTask
 
-    override val modules = listOf(clientLoginQueueModule, engineModule, entityFactoryModule)
+    override val modules = listOf(
+        loginQueueModule,
+        module { single { factory } }
+    )
 
-    override val properties = listOf("loginPerTickCap" to 10)
+    @BeforeEach
+    fun setup() {
+        factory = mockk(relaxed = true)
+        task = spyk(LoginQueueTask(loginQueue, 10))
+    }
 
     @Test
     fun `Successful login`() = runBlocking {
         // Given
         val session: Session = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
-        declareMock<PlayerFactory> {
-            every { spawn(any(), any(), any()) } returns async { player }
-        }
+        every { factory.spawn(any(), any(), any()) } returns async { player }
         // When
         val result = loginQueue.add("Test", session)
         delay(10)
-        loginQueue.run()
+        task.run()
         // Then
         assertEquals(LoginResponse.Success(player), result.await())
     }
@@ -50,13 +57,11 @@ internal class PlayerLoginQueueTest : KoinMock() {
     fun `Login world full`() = runBlocking {
         // Given
         val session: Session = mockk(relaxed = true)
-        declareMock<PlayerFactory> {
-            every { spawn(any(), any(), any()) } returns async { null }
-        }
+        every { factory.spawn(any(), any(), any()) } returns async { null }
         // When
         val result = loginQueue.add("Test", session)
         delay(10)
-        loginQueue.run()
+        task.run()
         // Then
         assertEquals(LoginResponse.Full, result.await())
     }
@@ -65,15 +70,13 @@ internal class PlayerLoginQueueTest : KoinMock() {
     fun `Login loading issue`() = runBlocking {
         // Given
         val session: Session = mockk(relaxed = true)
-        declareMock<PlayerFactory> {
-            every {
-                spawn(any(), any(), any())
-            } returns GlobalScope.async { throw IllegalStateException("Loading went wrong") }
-        }
+        every {
+            factory.spawn(any(), any(), any())
+        } returns GlobalScope.async { throw IllegalStateException("Loading went wrong") }
         // When
         val result = loginQueue.add("Test", session)
         delay(10)
-        loginQueue.run()
+        task.run()
         // Then
         assertEquals(LoginResponse.Failure, result.await())
     }
@@ -81,13 +84,11 @@ internal class PlayerLoginQueueTest : KoinMock() {
     @Test
     fun `Add suspends`() = runBlocking {
         // Given
-        declareMock<PlayerFactory> {
-            every { spawn(any(), any(), any()) } returns GlobalScope.async { null }
-        }
+        every { factory.spawn(any(), any(), any()) } returns GlobalScope.async { null }
         // When
         val result = loginQueue.add("Test")
         delay(10)
-        loginQueue.run()
+        task.run()
         // Then
         assertEquals(LoginResponse.Full, result.await())
     }
@@ -96,18 +97,16 @@ internal class PlayerLoginQueueTest : KoinMock() {
     fun `Players are logged in request order`() = runBlocking {
         // Given
         val player: Player = mockk(relaxed = true)
-        val factory = declareMock<PlayerFactory> {
-            every { spawn(any(), any(), any()) } answers {
-                val name: String = arg(0)
-                GlobalScope.async { if (name == "Test1") player else null }
-            }
+        every { factory.spawn(any(), any(), any()) } answers {
+            val name: String = arg(0)
+            GlobalScope.async { if (name == "Test1") player else null }
         }
         val test2 = loginQueue.add("Test2")
         delay(25)
         val test1 = loginQueue.add("Test1")
         // When
         delay(100)
-        loginQueue.run()
+        task.run()
         // Then
         delay(50)
         coVerifyOrder {

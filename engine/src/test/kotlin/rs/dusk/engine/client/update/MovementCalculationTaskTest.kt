@@ -29,7 +29,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = MovementCalculationTask(mockk(relaxed = true))
+        task = MovementCalculationTask()
     }
 
     @Test

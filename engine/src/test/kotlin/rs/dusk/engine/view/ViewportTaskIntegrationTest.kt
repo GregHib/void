@@ -10,7 +10,6 @@ import org.koin.core.get
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.Indexed
@@ -24,13 +23,13 @@ import rs.dusk.engine.script.KoinMock
  */
 internal class ViewportTaskIntegrationTest : KoinMock() {
 
-    override val modules = listOf(engineModule, entityListModule, viewportModule, clientSessionModule)
+    override val modules = listOf(entityListModule, clientSessionModule)
 
     lateinit var task: ViewportTask
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportTask(mockk(relaxed = true)))
+        task = spyk(ViewportTask())
     }
 
     @Test

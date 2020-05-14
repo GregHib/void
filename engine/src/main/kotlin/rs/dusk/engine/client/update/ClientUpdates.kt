@@ -3,7 +3,7 @@ package rs.dusk.engine.client.update
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import rs.dusk.engine.EngineTasks
-import rs.dusk.engine.client.PlayerLoginQueue
+import rs.dusk.engine.client.LoginQueueTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
@@ -20,7 +20,7 @@ val engineTasksModule = module {
     single(createdAtStart = true) {
         EngineTasks(
             linkedSetOf(
-                PlayerLoginQueue(get(), getProperty("loginPerTickCap")),
+                LoginQueueTask(get(), getProperty("loginPerTickCap")),
                 ViewportTask(),
                 VisualsEncodeTask(
                     get<Players>(),
@@ -42,7 +42,6 @@ val engineTasksModule = module {
                 MovementCalculationTask(),
                 PlayerUpdateTask(),
                 NPCUpdateTask(),
-                PlayerUpdateTask(),
                 PostUpdateTask()
             )
         )

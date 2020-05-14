@@ -11,7 +11,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.entity.list.MAX_PLAYERS
@@ -44,7 +43,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = spyk(PlayerUpdateTask(EngineTasks()))
+        task = spyk(PlayerUpdateTask())
     }
 
     @Test
