@@ -4,14 +4,13 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
-import rs.dusk.engine.client.clientLoginQueueModule
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.client.update.clientUpdateModule
+import rs.dusk.engine.client.loginQueueModule
+import rs.dusk.engine.client.update.engineTasksModule
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
-import rs.dusk.engine.engineModule
 import rs.dusk.engine.entity.factory.entityFactoryModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.EventBus
@@ -20,7 +19,6 @@ import rs.dusk.engine.map.location.xteaModule
 import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.script.scriptModule
-import rs.dusk.engine.view.viewportModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
@@ -59,11 +57,9 @@ object Dusk : Runnable {
                 clientVerificationModule,
                 playerLoaderModule,
                 xteaModule,
-                engineModule,
                 visualUpdatingModule,
-                clientUpdateModule,
-                viewportModule,
-                clientLoginQueueModule
+                engineTasksModule,
+                loginQueueModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

@@ -12,13 +12,13 @@ import kotlin.system.measureTimeMillis
  */
 internal class ParallelEngineTaskTest {
 
-    private class TestTask(tasks: EngineTasks) : ParallelEngineTask(tasks)
+    private class TestTask : ParallelEngineTask()
 
     @Test
     fun `Tasks run in parallel`() {
         // Given
         val tasks = EngineTasks()
-        val first = TestTask(tasks)
+        val first = TestTask()
         first.defers.add(GlobalScope.async {
             delay(100)
         })

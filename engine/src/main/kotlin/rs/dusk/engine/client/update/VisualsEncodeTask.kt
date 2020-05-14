@@ -5,7 +5,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.Indexed
@@ -23,9 +22,8 @@ class VisualsEncodeTask<T : Indexed>(
     val entities: PooledMapList<T>,
     val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray, // Order of these is important
-    val entityMask: Int,
-    tasks: EngineTasks
-) : ParallelEngineTask(tasks, 2) {
+    val entityMask: Int
+) : ParallelEngineTask() {
 
     private val logger = InlineLogger()
 

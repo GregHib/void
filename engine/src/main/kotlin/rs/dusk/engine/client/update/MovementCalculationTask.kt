@@ -3,7 +3,6 @@ package rs.dusk.engine.client.update
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
@@ -22,7 +21,7 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class MovementCalculationTask(tasks: EngineTasks) : ParallelEngineTask(tasks, 1) {
+class MovementCalculationTask : ParallelEngineTask() {
 
     private val logger = InlineLogger()
     val players: Players by inject()

@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.EngineTasks
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
@@ -23,7 +22,7 @@ import kotlin.system.measureTimeMillis
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 12, 2020
  */
-class NPCUpdateTask(tasks: EngineTasks) : ParallelEngineTask(tasks) {
+class NPCUpdateTask : ParallelEngineTask() {
 
     private val logger = InlineLogger()
     val players: Players by inject()
