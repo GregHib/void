@@ -14,21 +14,21 @@ import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.engine.task.MovementCalculationTask
+import rs.dusk.engine.task.PlayerMovementTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 03, 2020
  */
-internal class MovementCalculationTaskTest : KoinMock() {
+internal class PlayerMovementTaskTest : KoinMock() {
 
     override val modules = listOf(entityListModule)
 
-    lateinit var task: MovementCalculationTask
+    lateinit var task: PlayerMovementTask
 
     @BeforeEach
     fun setup() {
-        task = MovementCalculationTask()
+        task = PlayerMovementTask()
     }
 
     @Test

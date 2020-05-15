@@ -38,7 +38,8 @@ val engineTasksModule = module {
                     get<NPCs>(),
                     get(named("npcVisualEncoders"))
                 ),
-                MovementCalculationTask(),
+                PlayerMovementTask(),
+                NPCMovementTask(),
                 PlayerUpdateTask(),
                 NPCUpdateTask(),
                 PostUpdateTask()

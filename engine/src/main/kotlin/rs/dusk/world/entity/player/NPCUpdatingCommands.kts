@@ -95,8 +95,8 @@ Command where { prefix == "npcwalk" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     val direction = Direction.NORTH
     npc.movement.walkStep = direction
-    npc.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
-    move(npc, player.tile.add(x = direction.deltaX, y = direction.deltaY))
+    npc.movement.delta = direction.delta
+    move(npc, player.tile.add(direction.delta))
 }
 
 Command where { prefix == "npccrawl" } then {
@@ -104,19 +104,17 @@ Command where { prefix == "npccrawl" } then {
     val direction = Direction.NORTH
     npc.movementType = NPCMoveType.Crawl
     npc.movement.walkStep = direction
-    npc.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
-    move(npc, player.tile.add(x = direction.deltaX, y = direction.deltaY))
+    npc.movement.delta = direction.delta
+    move(npc, player.tile.add(direction.delta))
 }
 
 Command where { prefix == "npcrun" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     val walk = Direction.NORTH
     val run = Direction.NORTH
-    val deltaX = walk.deltaX + run.deltaX
-    val deltaY = walk.deltaY + run.deltaY
     npc.movement.walkStep = walk
     npc.movement.runStep = run
-    npc.movement.delta = Tile(deltaX, deltaY, 0)
+    npc.movement.delta = walk.delta.add(run.delta)
     move(npc, npc.tile.add(npc.movement.delta))
 }
 

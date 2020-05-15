@@ -9,7 +9,6 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player
@@ -220,12 +219,28 @@ class PlayerUpdateTask : ParallelEngineTask() {
 
     fun calculateRegionValue(change: RegionChange, delta: RegionPlane) = when (change) {
         RegionChange.Height -> delta.plane
-        RegionChange.Local -> (getDirection(delta.x, delta.y) and 0x7) or (delta.plane shl 3)
+        RegionChange.Local -> (getMovementIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
     }
 
-    fun getDirection(deltaX: Int, deltaY: Int): Int {
-        return Direction.fromDelta(deltaX, deltaY)?.value ?: -1
+    companion object {
+        private val REGION_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
+        private val REGION_Y = intArrayOf(1, 1, 1, 0, 0, -1, -1, -1)
+
+        /**
+         * Index of movement direction
+         * |07|06|05|
+         * |04|PP|03|
+         * |02|01|00|
+         */
+        fun getMovementIndex(delta: RegionPlane): Int {
+            for (i in REGION_X.indices) {
+                if (REGION_X[i] == delta.x && REGION_Y[i] == delta.y) {
+                    return i
+                }
+            }
+            return -1
+        }
     }
 }

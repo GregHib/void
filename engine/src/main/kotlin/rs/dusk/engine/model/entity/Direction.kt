@@ -1,31 +1,34 @@
 package rs.dusk.engine.model.entity
 
+import rs.dusk.engine.model.world.Tile
+
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-enum class Direction(val deltaX: Int, val deltaY: Int, val value: Int) {
-    NORTH_WEST(-1, 1, 0),
-    NORTH(0, 1, 1),
-    NORTH_EAST(1, 1, 2),
-    EAST(1, 0, 4),
-    SOUTH_EAST(1, -1, 7),
-    SOUTH(0, -1, 6),
-    SOUTH_WEST(-1, -1, 5),
-    WEST(-1, 0, 3),
-    NONE(0, 0, -1);
+enum class Direction(deltaX: Int, deltaY: Int) {
+    NORTH_WEST(-1, 1),
+    NORTH(0, 1),
+    NORTH_EAST(1, 1),
+    EAST(1, 0),
+    SOUTH_EAST(1, -1),
+    SOUTH(0, -1),
+    SOUTH_WEST(-1, -1),
+    WEST(-1, 0),
+    NONE(0, 0);
 
+    val delta = Tile(deltaX, deltaY)
 
     fun isDiagonal(): Boolean {
-        return deltaX != 0 && deltaY != 0
+        return delta.x != 0 && delta.y != 0
     }
 
     fun isCardinal(): Boolean {
-        return deltaX == 0 || deltaY == 0
+        return delta.x == 0 || delta.y == 0
     }
 
     fun vertical(): Direction {
-        return when (deltaY) {
+        return when (delta.y) {
             1 -> NORTH
             -1 -> SOUTH
             else -> NONE
@@ -33,7 +36,7 @@ enum class Direction(val deltaX: Int, val deltaY: Int, val value: Int) {
     }
 
     fun horizontal(): Direction {
-        return when (deltaX) {
+        return when (delta.x) {
             1 -> EAST
             -1 -> WEST
             else -> NONE
@@ -56,12 +59,9 @@ enum class Direction(val deltaX: Int, val deltaY: Int, val value: Int) {
 
     companion object {
         val size = values().size
-        val cardinal = values().filter { it.isCardinal() && it.deltaX != it.deltaY }
+        val cardinal = values().filter { it.isCardinal() && it.delta.x != it.delta.y }
         val ordinal = values().filter { it.isDiagonal() }
         val all = values().copyOfRange(0, size - 1)
-
-        fun fromDelta(deltaX: Int, deltaY: Int): Direction? {
-            return all.firstOrNull { it.deltaX == deltaX && it.deltaY == deltaY }
-        }
+        val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
     }
 }

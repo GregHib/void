@@ -129,9 +129,8 @@ Command where { prefix == "walk" } then {
 //    player.temporaryMoveType = PlayerMoveType.Walk
     val direction = Direction.NORTH
     player.movement.walkStep = direction
-    player.movement.delta =
-        Tile(direction.deltaX, direction.deltaY, 0)
-    move(player, player.tile.add(player.movement.delta))
+    player.movement.delta = direction.delta
+    move(player, player.tile.add(direction.delta))
 }
 
 Command where { prefix == "run" } then {
@@ -139,9 +138,7 @@ Command where { prefix == "run" } then {
 //    player.temporaryMoveType = PlayerMoveType.Run
     player.movement.walkStep = Direction.NORTH
     player.movement.runStep = Direction.NORTH_EAST
-    val deltaX = player.movement.walkStep.deltaX + player.movement.runStep.deltaX
-    val deltaY = player.movement.walkStep.deltaY + player.movement.runStep.deltaY
-    player.movement.delta = Tile(deltaX, deltaY, 0)
+    player.movement.delta = player.movement.walkStep.delta.add(player.movement.runStep.delta)
     move(player, player.tile.add(player.movement.delta))
 }
 

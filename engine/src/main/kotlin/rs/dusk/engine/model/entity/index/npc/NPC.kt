@@ -22,7 +22,7 @@ data class NPC(
     var walkDirection: Int = -1
     var runDirection: Int = -1
 
-    var movementType: NPCMoveType = NPCMoveType.Walk
+    var movementType: NPCMoveType = NPCMoveType.None
 
     constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {
         this.index = index
