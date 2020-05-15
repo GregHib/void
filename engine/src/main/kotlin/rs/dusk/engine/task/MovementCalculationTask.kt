@@ -9,8 +9,9 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCMoveType
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
+import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
@@ -49,7 +50,7 @@ class MovementCalculationTask : ParallelEngineTask() {
         player.change = when {
             delta.id != 0 && movement.runStep != Direction.NONE -> LocalChange.Run
             delta.id != 0 && movement.walkStep != Direction.NONE -> LocalChange.Walk
-            delta.id != 0 && player.movementType == TELEPORT -> LocalChange.Tele
+            delta.id != 0 && player.movementType == PlayerMoveType.Teleport -> LocalChange.Tele
             player.visuals.update != null -> LocalChange.Update
             else -> null
         }
@@ -70,6 +71,7 @@ class MovementCalculationTask : ParallelEngineTask() {
         val delta = movement.delta
 
         npc.change = when {
+            delta.id != 0 && movement.walkStep != Direction.NONE && npc.movementType == NPCMoveType.Crawl -> LocalChange.Crawl
             delta.id != 0 && movement.runStep != Direction.NONE -> LocalChange.Run
             delta.id != 0 && movement.walkStep != Direction.NONE -> LocalChange.Walk
             delta.id != 0 -> LocalChange.Tele// Tele
@@ -77,12 +79,11 @@ class MovementCalculationTask : ParallelEngineTask() {
             else -> null
         }
 
-        if (npc.change == LocalChange.Run || npc.change == LocalChange.Walk) {
+        if (npc.change == LocalChange.Run || npc.change == LocalChange.Walk || npc.change == LocalChange.Crawl) {
             npc.walkDirection = getNpcMoveDirection(movement.walkStep)
+        }
+        if (npc.change == LocalChange.Run) {
             npc.runDirection = getNpcMoveDirection(movement.runStep)
-        } else {
-            npc.walkDirection = -1
-            npc.runDirection = -1
         }
     }
 

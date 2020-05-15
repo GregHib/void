@@ -11,12 +11,10 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.RUN
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.Spiral
 import rs.dusk.utility.get
@@ -127,8 +125,8 @@ Command where { prefix == "hide" } then {
 }
 
 Command where { prefix == "walk" } then {
-    player.movementType = WALK
-    player.temporaryMoveType = WALK
+    player.movementType = PlayerMoveType.Walk
+//    player.temporaryMoveType = PlayerMoveType.Walk
     val direction = Direction.NORTH
     player.movement.walkStep = direction
     player.movement.delta =
@@ -137,8 +135,8 @@ Command where { prefix == "walk" } then {
 }
 
 Command where { prefix == "run" } then {
-    player.movementType = RUN
-//        player.temporaryMoveType = RUN
+    player.movementType = PlayerMoveType.Run
+//    player.temporaryMoveType = PlayerMoveType.Run
     player.movement.walkStep = Direction.NORTH
     player.movement.runStep = Direction.NORTH_EAST
     val deltaX = player.movement.walkStep.deltaX + player.movement.runStep.deltaX
@@ -167,7 +165,7 @@ Command where { prefix == "tele" || prefix == "tp" } then {
             y - player.tile.y,
             plane - player.tile.plane
         )
-        player.movementType = TELEPORT
+        player.movementType = PlayerMoveType.Teleport
         move(player, Tile(x, y, plane))
         val bus: EventBus = get()
         bus.emit(

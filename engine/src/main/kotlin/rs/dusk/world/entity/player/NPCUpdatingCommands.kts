@@ -5,6 +5,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCMoveType
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.npc.*
@@ -90,20 +91,27 @@ Command where { prefix == "npcwatch" } then {
     npc.watch(player)
 }
 
-
 Command where { prefix == "npcwalk" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     val direction = Direction.NORTH
-    npc.movement.walkStep = direction//direction.inverse().value
+    npc.movement.walkStep = direction
+    npc.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
+    move(npc, player.tile.add(x = direction.deltaX, y = direction.deltaY))
+}
+
+Command where { prefix == "npccrawl" } then {
+    val npc = npcs[player.tile.add(y = 1)]!!.first()!!
+    val direction = Direction.NORTH
+    npc.movementType = NPCMoveType.Crawl
+    npc.movement.walkStep = direction
     npc.movement.delta = Tile(direction.deltaX, direction.deltaY, 0)
     move(npc, player.tile.add(x = direction.deltaX, y = direction.deltaY))
 }
 
 Command where { prefix == "npcrun" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    npc.movement.run = true
     val walk = Direction.NORTH
-    val run = Direction.NORTH_EAST
+    val run = Direction.NORTH
     val deltaX = walk.deltaX + run.deltaX
     val deltaY = walk.deltaY + run.deltaY
     npc.movement.walkStep = walk

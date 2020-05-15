@@ -12,8 +12,7 @@ data class Movement(
     var lastTile: Tile = Tile(0),
     var delta: Tile = Tile(0),
     var walkStep: Direction = Direction.NONE,
-    var runStep: Direction = Direction.NONE,
-    var run: Boolean = false
+    var runStep: Direction = Direction.NONE
 )
 
 val NPC.teleport: Boolean

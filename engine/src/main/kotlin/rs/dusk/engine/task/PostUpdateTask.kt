@@ -6,6 +6,7 @@ import kotlinx.coroutines.async
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.getAnimation
@@ -41,6 +42,8 @@ class PostUpdateTask : ParallelEngineTask() {
 
     fun updateNPC(npc: NPC) = GlobalScope.async<Unit> {
         npc.movement.delta = Tile(0)
+        npc.movement.walkStep = Direction.NONE
+        npc.movement.runStep = Direction.NONE
         npc.getAnimation().apply {
             first = -1
             second = -1
@@ -70,6 +73,8 @@ class PostUpdateTask : ParallelEngineTask() {
             player.viewport.players.lastSeen[player] = player.tile
         }
         player.movement.delta = Tile(0)// Post movement not updating?
+        player.movement.walkStep = Direction.NONE
+        player.movement.runStep = Direction.NONE
         player.getAnimation().apply {
             first = -1
             second = -1

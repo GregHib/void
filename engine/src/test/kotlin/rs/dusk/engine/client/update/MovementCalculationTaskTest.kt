@@ -10,9 +10,7 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.RUN
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.TELEPORT
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
+import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
@@ -40,7 +38,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.walkStep } returns Direction.EAST
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(1, 0)
-        every { player.movementType } returns WALK
+        every { player.movementType } returns PlayerMoveType.Walk
         every { player.change } returns LocalChange.Walk
         // When
         runBlocking {
@@ -60,7 +58,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.walkStep } returns Direction.NORTH
         every { player.movement.runStep } returns Direction.NORTH
         every { player.movement.delta } returns Tile(0, 2)
-        every { player.movementType } returns RUN
+        every { player.movementType } returns PlayerMoveType.Run
         every { player.change } returns LocalChange.Run
         // When
         runBlocking {
@@ -80,7 +78,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(247, -365, 1)
-        every { player.movementType } returns TELEPORT
+        every { player.movementType } returns PlayerMoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
         runBlocking {
@@ -98,7 +96,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         every { player.change } returns LocalChange.Update
-        every { player.movementType } returns -1
+        every { player.movementType } returns PlayerMoveType.None
         // When
         runBlocking {
             task.updatePlayer(player).await()
@@ -116,7 +114,7 @@ internal class MovementCalculationTaskTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
-        every { player.movementType } returns TELEPORT
+        every { player.movementType } returns PlayerMoveType.Teleport
         every { player.visuals.update } returns null
         every { player.movement.delta } returns Tile(0)
         every { player.change } returns null

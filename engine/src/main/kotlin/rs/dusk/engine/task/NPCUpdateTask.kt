@@ -80,8 +80,13 @@ class NPCUpdateTask : ParallelEngineTask() {
                     sync.writeBits(3, npc.walkDirection)
                     sync.writeBits(1, npc.visuals.update != null)
                 }
+                LocalChange.Crawl -> {
+                    sync.writeBits(1, false)
+                    sync.writeBits(3, npc.walkDirection)
+                    sync.writeBits(1, npc.visuals.update != null)
+                }
                 LocalChange.Run -> {
-                    sync.writeBits(1, 1)// Teleport or slow movement?
+                    sync.writeBits(1, true)
                     sync.writeBits(3, npc.walkDirection)
                     sync.writeBits(3, npc.runDirection)
                     sync.writeBits(1, npc.visuals.update != null)

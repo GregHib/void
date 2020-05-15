@@ -13,7 +13,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType
 class TemporaryMoveTypeEncoder : VisualEncoder<TemporaryMoveType>(TEMPORARY_MOVE_TYPE_MASK) {
 
     override fun encode(writer: Writer, visual: TemporaryMoveType) {
-        writer.writeByte(visual.type, Modifier.SUBTRACT)
+        writer.writeByte(visual.type.id, Modifier.SUBTRACT)
     }
 
 }

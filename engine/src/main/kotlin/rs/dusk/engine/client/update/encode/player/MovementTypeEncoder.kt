@@ -13,7 +13,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.MovementType
 class MovementTypeEncoder : VisualEncoder<MovementType>(MOVEMENT_TYPE_MASK) {
 
     override fun encode(writer: Writer, visual: MovementType) {
-        writer.writeByte(visual.type, Modifier.INVERSE)
+        writer.writeByte(visual.type.id, Modifier.INVERSE)
     }
 
 }

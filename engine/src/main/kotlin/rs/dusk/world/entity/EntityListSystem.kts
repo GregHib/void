@@ -8,8 +8,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.NONE
-import rs.dusk.engine.model.entity.index.update.visual.player.MovementType.Companion.WALK
+import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.face
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.entity.index.update.visual.player.temporaryMoveType
@@ -31,8 +30,8 @@ Registered priority 9 then {
             players[entity.tile.chunk] = entity
             players.addAtIndex(entity.index, entity)
             entity.viewport.players.add(entity)
-            entity.temporaryMoveType = WALK
-            entity.movementType = NONE
+            entity.temporaryMoveType = PlayerMoveType.Walk
+            entity.movementType = PlayerMoveType.None
             entity.face()
         }
         is NPC -> {

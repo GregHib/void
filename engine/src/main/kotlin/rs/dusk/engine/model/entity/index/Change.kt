@@ -7,6 +7,7 @@ package rs.dusk.engine.model.entity.index
 sealed class LocalChange(val id: Int) {
     object Update : LocalChange(0)
     object Walk : LocalChange(1)
+    object Crawl : LocalChange(2)
     object Run : LocalChange(2)
     object Tele : LocalChange(3)
 }
