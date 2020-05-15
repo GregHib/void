@@ -25,6 +25,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
         if (!sessions.contains(player)) {
             return@async
         }
+
         val viewport = player.viewport
         val npcs = viewport.npcs
 

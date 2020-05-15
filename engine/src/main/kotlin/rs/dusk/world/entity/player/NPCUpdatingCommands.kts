@@ -18,7 +18,22 @@ val npcs: NPCs by inject()
 Command where { prefix == "npc" } then {
     println("Npc command")
     runBlocking {
-        factory.spawn(1, player.tile.x, player.tile.y + 1, player.tile.plane, Direction.NORTH)
+        val radius = 22
+        (-radius..radius).forEach { x ->
+            (-radius..radius).forEach { y ->
+                factory.spawn(1, player.tile.x + x, player.tile.y + y, player.tile.plane, Direction.NORTH)
+            }
+        }
+    }
+}
+
+Command where { prefix == "npckill" } then {
+    npcs.indexed.forEachIndexed { index, npc ->
+        npcs.indexed[index] = null
+        if (npc != null) {
+            npcs.remove(npc.tile, npc)
+            npcs.remove(npc.tile.chunk, npc)
+        }
     }
 }
 
@@ -46,13 +61,6 @@ Command where { prefix == "npcmodel" } then {
 Command where { prefix == "npclvl" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     npc.combatLevel = 100
-}
-
-Command where { prefix == "npckill" } then {
-    val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    npcs.remove(npc.tile, npc)
-    npcs.remove(npc.tile.chunk, npc)
-    npcs.removeAtIndex(npc.index)
 }
 
 Command where { prefix == "npcanim" } then {

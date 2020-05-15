@@ -3,8 +3,6 @@ package rs.dusk.engine.view
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.teleport
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
-import java.util.*
-import kotlin.collections.LinkedHashSet
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -16,7 +14,7 @@ class NPCTrackingSet(
     override val radius: Int = VIEW_RADIUS,
     override val add: LinkedHashSet<NPC> = LinkedHashSet(),
     override val remove: MutableSet<NPC> = mutableSetOf(),
-    override val current: MutableSet<NPC> = TreeSet()// Ordered locals
+    override val current: LinkedHashSet<NPC> = LinkedHashSet()
 ) : TrackingSet<NPC> {
 
     override var total: Int = 0
