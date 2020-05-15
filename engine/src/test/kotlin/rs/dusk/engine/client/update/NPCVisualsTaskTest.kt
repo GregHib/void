@@ -50,8 +50,8 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // When
         updateTask.run()
         // Then
-        verify {
-            updateTask.update(visuals)
+        coVerify {
+            updateTask.runAsync(npc)
         }
     }
 
@@ -67,7 +67,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // When
         every { visuals.flag } returns 0
         runBlocking {
-            task.update(visuals).await()
+            task.runAsync(npc).await()
         }
         // Then
         verify { visuals.update = null }

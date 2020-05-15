@@ -1,40 +1,23 @@
 package rs.dusk.engine.task
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
-import rs.dusk.utility.inject
-import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class PlayerMovementTask : ParallelEngineTask() {
+class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() {
 
-    private val logger = InlineLogger()
-    val players: Players by inject()
-
-    override fun run() {
-        players.forEach { player ->
-            defers.add(updatePlayer(player))
-        }
-        val took = measureTimeMillis {
-            super.run()
-        }
-        if (took > 0) {
-            logger.info { "Update calculation took ${took}ms" }
-        }
-    }
-
-    fun updatePlayer(player: Player) = GlobalScope.async {
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun runAsync(player: Player) = GlobalScope.async {
         val movement = player.movement
         val delta = movement.delta
 

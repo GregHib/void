@@ -51,8 +51,8 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // When
         updateTask.run()
         // Then
-        verify {
-            updateTask.update(visuals)
+        coVerify {
+            updateTask.runAsync(player)
         }
     }
 
@@ -68,7 +68,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // When
         every { visuals.flag } returns 0
         runBlocking {
-            task.update(visuals).await()
+            task.runAsync(player).await()
         }
         // Then
         verify { visuals.update = null }
@@ -83,13 +83,15 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: PlayerVisualsTask = get()
         val visuals: Visuals = mockk(relaxed = true)
+        val player: Player = mockk(relaxed = true)
+        every { player.visuals } returns visuals
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns true
         every { updateTask.encodeUpdate(visuals) } just Runs
         every { updateTask.encodeAddition(visuals) } just Runs
         // When
         runBlocking {
-            updateTask.update(visuals).await()
+            updateTask.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -104,11 +106,13 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: PlayerVisualsTask = get()
         val visuals: Visuals = mockk(relaxed = true)
+        val player: Player = mockk(relaxed = true)
+        every { player.visuals } returns visuals
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns false
         // When
         runBlocking {
-            updateTask.update(visuals).await()
+            updateTask.runAsync(player).await()
         }
         // Then
         verify(exactly = 0) { updateTask.encodeAddition(visuals) }

@@ -1,45 +1,31 @@
 package rs.dusk.engine.task
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
-import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
 class NPCVisualsTask(
-    private val npcs: PooledMapList<NPC>,
+    override val entities: PooledMapList<NPC>,
     private val encoders: Array<VisualEncoder<Visual>>
-) : ParallelEngineTask() {
-
-    private val logger = InlineLogger()
-
-    override fun run() {
-        npcs.forEach { entity ->
-            defers.add(update(entity.visuals))
-        }
-        val took = measureTimeMillis {
-            super.run()
-        }
-        if (took > 0) {
-            logger.info { "NPC visual encoding took ${took}ms" }
-        }
-    }
+) : EntityTask<NPC>() {
 
     /**
      * Encodes [Visual] changes into an insertion and delta update
      */
-    fun update(visuals: Visuals) = GlobalScope.async {
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun runAsync(npc: NPC) = GlobalScope.async {
+        val visuals = npc.visuals
         if (visuals.flag == 0) {
             visuals.update = null
             return@async

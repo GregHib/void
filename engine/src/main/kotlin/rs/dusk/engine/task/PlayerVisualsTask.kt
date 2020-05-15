@@ -1,49 +1,36 @@
 package rs.dusk.engine.task
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.index.update.visual.player.Appearance
-import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
 class PlayerVisualsTask(
-    private val players: PooledMapList<Player>,
+    override val entities: PooledMapList<Player>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : ParallelEngineTask() {
+) : EntityTask<Player>() {
 
-    private val logger = InlineLogger()
     private val addFlag = addMasks.sum()
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
-
-    override fun run() {
-        players.forEach { entity ->
-            defers.add(update(entity.visuals))
-        }
-        val took = measureTimeMillis {
-            super.run()
-        }
-        if (took > 0) {
-            logger.info { "Player visual encoding took ${took}ms" }
-        }
-    }
 
     /**
      * Encodes [Visual] changes into an insertion and delta update
      */
-    fun update(visuals: Visuals) = GlobalScope.async {
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun runAsync(player: Player) = GlobalScope.async {
+        val visuals = player.visuals
         if (visuals.flag == 0) {
             visuals.update = null
             return@async

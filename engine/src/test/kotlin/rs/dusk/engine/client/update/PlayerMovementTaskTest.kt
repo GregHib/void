@@ -28,7 +28,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = PlayerMovementTask()
+        task = PlayerMovementTask(mockk(relaxed = true))
     }
 
     @Test
@@ -42,7 +42,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.change } returns LocalChange.Walk
         // When
         runBlocking {
-            task.updatePlayer(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -62,7 +62,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.change } returns LocalChange.Run
         // When
         runBlocking {
-            task.updatePlayer(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -82,7 +82,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.change } returns LocalChange.Tele
         // When
         runBlocking {
-            task.updatePlayer(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -99,7 +99,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movementType } returns PlayerMoveType.None
         // When
         runBlocking {
-            task.updatePlayer(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -120,7 +120,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.change } returns null
         // When
         runBlocking {
-            task.updatePlayer(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {

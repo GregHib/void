@@ -1,39 +1,22 @@
 package rs.dusk.engine.task
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCMoveType
-import rs.dusk.utility.inject
-import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 15, 2020
  */
-class NPCMovementTask : ParallelEngineTask() {
+class NPCMovementTask(override val entities: NPCs) : EntityTask<NPC>() {
 
-    private val logger = InlineLogger()
-    val npcs: NPCs by inject()
-
-    override fun run() {
-        npcs.forEach { npc ->
-            defers.add(updateNPC(npc))
-        }
-        val took = measureTimeMillis {
-            super.run()
-        }
-        if (took > 0) {
-            logger.info { "Update calculation took ${took}ms" }
-        }
-    }
-
-    fun updateNPC(npc: NPC) = GlobalScope.async {
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun runAsync(npc: NPC) = GlobalScope.async {
         val movement = npc.movement
         val delta = movement.delta
 

@@ -1,10 +1,9 @@
 package rs.dusk.engine.task
 
-import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.ParallelEngineTask
+import rs.dusk.engine.EntityTask
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.list.MAX_PLAYERS
@@ -16,36 +15,18 @@ import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.PlayerTrackingSet
 import rs.dusk.engine.view.Viewport
-import rs.dusk.utility.inject
-import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 26, 2020
  */
-class PlayerUpdateTask : ParallelEngineTask() {
+class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>() {
 
-    private val logger = InlineLogger()
-    val players: Players by inject()
-    val sessions: Sessions by inject()
-
-    override fun run() {
-        players.forEach {
-            if (sessions.contains(it)) {
-                defers.add(update(it))
-            }
+    @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
+    override fun runAsync(player: Player) = GlobalScope.async {
+        if (!sessions.contains(player)) {
+            return@async
         }
-
-        val took = measureTimeMillis {
-            super.run()
-        }
-
-        if (took > 0) {
-            logger.info { "Player update took ${took}ms" }
-        }
-    }
-
-    fun update(player: Player) = GlobalScope.async {
         val viewport = player.viewport
         val entities = viewport.players
 
@@ -137,7 +118,7 @@ class PlayerUpdateTask : ParallelEngineTask() {
                 continue
             }
 
-            player = players.getAtIndex(index)
+            player = entities.getAtIndex(index)
 
             if (set.local.contains(player)) {
                 continue

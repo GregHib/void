@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.test.mock.declareMock
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
@@ -35,33 +34,33 @@ import rs.dusk.utility.func.toInt
 internal class PlayerUpdateTaskTest : KoinMock() {
 
     lateinit var task: PlayerUpdateTask
+    lateinit var players: Players
+    lateinit var sessions: Sessions
     override val modules = listOf(entityListModule, clientSessionModule)
 
     @BeforeEach
     fun setup() {
-        task = spyk(PlayerUpdateTask())
+        players = mockk()
+        sessions = mockk()
+        task = spyk(PlayerUpdateTask(players, sessions))
     }
 
     @Test
     fun `Called for each player with sessions`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        declareMock<Players> {
-            every { forEach(any()) } answers {
-                val block = arg<(Player) -> Unit>(0)
-                block.invoke(player)
-            }
-            every { getAtIndex(any()).hint(Player::class) } returns null
+        every { players.forEach(any()) } answers {
+            val block = arg<(Player) -> Unit>(0)
+            block.invoke(player)
         }
-        declareMock<Sessions> {
-            every { contains(player) } returns true
-            every { send(player, any(), any<PlayerUpdateMessage>()) } just Runs
-        }
+        every { players.getAtIndex(any()).hint(Player::class) } returns null
+        every { sessions.contains(player) } returns true
+        every { sessions.send(player, any(), any<PlayerUpdateMessage>()) } just Runs
         // When
         task.run()
         // Then
         coVerify {
-            task.update(player)
+            task.runAsync(player)
         }
     }
 
@@ -69,24 +68,20 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     fun `Player without session not called`() {
         // Given
         val player = mockk<Player>(relaxed = true)
-        declareMock<Players> {
-            every { forEach(any()) } answers {
-                val block = arg<(Player) -> Unit>(0)
-                block.invoke(player)
-            }
-            every {
-                hint(Player::class)
-                getAtIndex(any())
-            } returns null
+        every { players.forEach(any()) } answers {
+            val block = arg<(Player) -> Unit>(0)
+            block.invoke(player)
         }
-        declareMock<Sessions> {
-            every { contains(player) } returns false
-        }
+        every {
+            hint(Player::class)
+            players.getAtIndex(any())
+        } returns null
+        every { sessions.contains(player) } returns false
         // When
         task.run()
         // Then
-        coVerify(exactly = 0) {
-            task.update(player)
+        verify(exactly = 0) {
+            task.processLocals(any(), any(), any(), any(), any())
         }
     }
 
@@ -98,9 +93,12 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         every { player.viewport } returns viewport
         every { viewport.players } returns entities
+        every { sessions.contains(player) } returns true
+        every { task.processLocals(any(), any(), any(), any(), any()) } just Runs
+        every { task.processGlobals(any(), any(), any(), any(), any()) } just Runs
         // When
         runBlocking {
-            task.update(player).await()
+            task.runAsync(player).await()
         }
         // Then
         verifyOrder {
@@ -315,13 +313,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val index = 1
 
-        declareMock<Players> {
-            every {
-                hint(Player::class)
-                getAtIndex(any())
-            } answers {
-                if (arg<Int>(0) == index) player else null
-            }
+        every {
+            hint(Player::class)
+            players.getAtIndex(any())
+        } answers {
+            if (arg<Int>(0) == index) player else null
         }
         every { player.index } returns index
         every { entities.local.contains(player) } returns true
@@ -344,13 +340,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val updates: Writer = mockk(relaxed = true)
         val index = 1
 
-        declareMock<Players> {
-            every {
-                hint(Player::class)
-                getAtIndex(any())
-            } answers {
-                if (arg<Int>(0) == index) player else null
-            }
+        every {
+            hint(Player::class)
+            players.getAtIndex(any())
+        } answers {
+            if (arg<Int>(0) == index) player else null
         }
         every { player.tile.x } returns 81
         every { player.tile.y } returns 14
@@ -382,13 +376,11 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
-        declareMock<Players> {
-            every {
-                hint(Player::class)
-                getAtIndex(any())
-            } answers {
-                if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
-            }
+        every {
+            hint(Player::class)
+            players.getAtIndex(any())
+        } answers {
+            if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
         }
         every { entities.add.contains(player) } returns true
         every { entities.lastSeen[any()] } returns null

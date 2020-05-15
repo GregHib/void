@@ -27,7 +27,7 @@ internal class NPCMovementTaskTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        task = NPCMovementTask()
+        task = NPCMovementTask(mockk(relaxed = true))
     }
 
     @Test
@@ -41,7 +41,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Walk
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
@@ -61,7 +61,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Crawl
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
@@ -81,7 +81,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Run
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
@@ -102,7 +102,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Tele
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
@@ -118,7 +118,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movementType } returns NPCMoveType.None
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
@@ -138,7 +138,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns null
         // When
         runBlocking {
-            task.updateNPC(npc).await()
+            task.runAsync(npc).await()
         }
         // Then
         verifyOrder {
