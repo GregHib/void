@@ -27,7 +27,7 @@ class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(
         if (regionChanged) {
             player.viewport.players.lastSeen[player] = player.tile
         }
-        player.movement.delta = Tile(0)// Post movement not updating?
+        player.movement.delta = Tile.EMPTY// Post movement not updating?
         player.movement.walkStep = Direction.NONE
         player.movement.runStep = Direction.NONE
         player.getAnimation().apply {

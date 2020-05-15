@@ -18,7 +18,7 @@ class NPCPostUpdateTask(override val entities: NPCs) : EntityTask<NPC>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(npc: NPC) = GlobalScope.async<Unit> {
-        npc.movement.delta = Tile(0)
+        npc.movement.delta = Tile.EMPTY
         npc.movement.walkStep = Direction.NONE
         npc.movement.runStep = Direction.NONE
         npc.getAnimation().apply {

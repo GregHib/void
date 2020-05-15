@@ -9,8 +9,8 @@ import rs.dusk.engine.model.world.Tile
  * @since April 26, 2020
  */
 data class Movement(
-    var lastTile: Tile = Tile(0),
-    var delta: Tile = Tile(0),
+    var lastTile: Tile = Tile.EMPTY,
+    var delta: Tile = Tile.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE
 )

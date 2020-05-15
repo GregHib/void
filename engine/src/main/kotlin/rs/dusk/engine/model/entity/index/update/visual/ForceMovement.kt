@@ -11,9 +11,9 @@ import rs.dusk.engine.model.world.Tile
  * @since April 25, 2020
  */
 data class ForceMovement(
-    var start: Tile = Tile(0),
+    var start: Tile = Tile.EMPTY,
     var startDelay: Int = 0,
-    var end: Tile = Tile(0),
+    var end: Tile = Tile.EMPTY,
     var endDelay: Int = 0,
     var direction: Direction = Direction.NONE
 ) : Visual
@@ -38,7 +38,7 @@ fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMo
  * @param direction The cardinal direction to face during movement
  */
 fun Player.setForceMovement(
-    endDelta: Tile = Tile(0),
+    endDelta: Tile = Tile.EMPTY,
     endDelay: Int = 0,
     startDelta: Tile = Tile(
         0
@@ -51,7 +51,7 @@ fun Player.setForceMovement(
 }
 
 fun NPC.setForceMovement(
-    endDelta: Tile = Tile(0),
+    endDelta: Tile = Tile.EMPTY,
     endDelay: Int = 0,
     startDelta: Tile = Tile(
         0

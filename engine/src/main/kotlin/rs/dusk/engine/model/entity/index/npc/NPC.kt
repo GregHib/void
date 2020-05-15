@@ -24,7 +24,7 @@ data class NPC(
 
     var movementType: NPCMoveType = NPCMoveType.None
 
-    constructor(id: Int = 0, tile: Tile = Tile(0), index: Int) : this(id, tile) {
+    constructor(id: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index
     }
 

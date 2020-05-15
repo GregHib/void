@@ -16,7 +16,7 @@ import rs.dusk.engine.view.Viewport
 data class Player(
     @Transient override var index: Int = -1,
     override var id: Int = -1,
-    override var tile: Tile = Tile(0),
+    override var tile: Tile = Tile.EMPTY,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val movement: Movement = Movement(delta = tile)
