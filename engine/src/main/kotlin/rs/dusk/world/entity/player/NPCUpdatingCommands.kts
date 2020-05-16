@@ -59,7 +59,7 @@ Command where { prefix == "npcturn" } then {
 
 Command where { prefix == "npcmodel" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    npc.setModelChange(intArrayOf(100), intArrayOf(1))
+    npc.setModelChange(intArrayOf(217, 246, 292, 326, 170, 177, 274, 185))
 }
 
 Command where { prefix == "npclvl" } then {
