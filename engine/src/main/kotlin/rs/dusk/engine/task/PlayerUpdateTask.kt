@@ -28,15 +28,15 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             return@async
         }
         val viewport = player.viewport
-        val entities = viewport.players
+        val players = viewport.players
 
         val message = viewport.message
         val (writer, updates) = message
 
-        processLocals(writer, updates, entities, viewport, true)
-        processLocals(writer, updates, entities, viewport, false)
-        processGlobals(writer, updates, entities, viewport, true)
-        processGlobals(writer, updates, entities, viewport, false)
+        processLocals(writer, updates, players, viewport, true)
+        processLocals(writer, updates, players, viewport, false)
+        processGlobals(writer, updates, players, viewport, true)
+        processGlobals(writer, updates, players, viewport, false)
 
         player.send(message)
     }
@@ -77,6 +77,7 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             sync.writeBits(2, updateType.id)
 
             if (remove) {
+                set.lastSeen[player] = player.tile
                 encodeRegion(sync, set, player)
                 continue
             }
