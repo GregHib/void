@@ -5,7 +5,7 @@ import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.core.io.write.BufferWriter
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 13, 2020
  */
 internal class ObjectEncoderTest {

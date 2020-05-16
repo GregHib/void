@@ -15,7 +15,7 @@ import rs.dusk.engine.script.koin.KoinTestExtension
 import rs.dusk.network.rs.codec.game.MessageCompanion
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
 internal class ClientVerifierTest : KoinTest {

@@ -19,7 +19,7 @@ import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
 internal class LoginQueueTaskTest : KoinMock() {

@@ -28,7 +28,7 @@ import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.func.toInt
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 02, 2020
  */
 internal class PlayerUpdateTaskTest : KoinMock() {

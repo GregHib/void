@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import rs.dusk.engine.model.entity.index.IndexAllocator
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
 internal class IndexAllocatorTest {

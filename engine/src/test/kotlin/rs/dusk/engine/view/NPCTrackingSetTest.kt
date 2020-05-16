@@ -10,7 +10,7 @@ import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.world.Tile
 
 /**
- * @author Greg Hibberd <greg></greg>@greghibberd.com>
+ * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 24, 2020
  */
 internal class NPCTrackingSetTest {
