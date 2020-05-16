@@ -47,7 +47,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
         sync.writeBits(8, set.current.size)
         for (npc in set.current) {
             val remove = set.remove.contains(npc)
-            val change = if (remove) LocalChange.Tele else npc.change
+            val change = if (remove) LocalChange.Remove else npc.change
 
             if (change == null) {
                 sync.writeBits(1, false)
@@ -106,7 +106,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
             sync.writeBits(1, regionChange)
             updates.writeBytes(npc.visuals.addition ?: continue)
         }
-        sync.writeBits(15, 32767)
+        sync.writeBits(15, -1)
         sync.finishBitAccess()
     }
 
