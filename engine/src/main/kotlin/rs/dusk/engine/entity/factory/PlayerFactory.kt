@@ -1,8 +1,9 @@
 package rs.dusk.engine.entity.factory
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import rs.dusk.core.network.model.session.Session
@@ -28,8 +29,9 @@ class PlayerFactory {
     private val indexer = IndexAllocator(MAX_PLAYERS)
     private val sessions: Sessions by inject()
     private val mutex = Mutex()
+    private val scope = CoroutineScope(newSingleThreadContext("PlayerFactory"))
 
-    fun spawn(name: String, tile: Tile? = null, session: Session? = null) = GlobalScope.async {
+    fun spawn(name: String, tile: Tile? = null, session: Session? = null) = scope.async {
         val player = if (tile != null) loader.loadPlayer(name, tile) else loader.loadPlayer(name = name)
         mutex.withLock {
             val index = indexer.obtain()
