@@ -37,6 +37,10 @@ Command where { prefix == "npckill" } then {
     }
 }
 
+Command where { prefix == "npcs" } then {
+    println("NPCs: ${npcs.indexed.filterNotNull().size}")
+}
+
 Command where { prefix == "npcname" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     npc.name = "Bob"

@@ -16,7 +16,6 @@ import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.view.Spiral
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
@@ -30,32 +29,43 @@ val botCounter = AtomicInteger(0)
 Command where { prefix == "bot" } then {
     println("Bot command")
     runBlocking {
-        val radius = 22
-        (-radius..radius).flatMap { x ->
-            (-radius..radius).map { y ->
-                factory.spawn(
-                    "Bot ${botCounter.getAndIncrement()}",
-                    Tile(player.tile.x + x, player.tile.y + y)
-                )
+        try {
+            val radius = 22
+            (-radius..radius).flatMap { x ->
+                (-radius..radius).map { y ->
+                    factory.spawn(
+                        "Bot ${botCounter.getAndIncrement()}",
+                        player.tile.add(x, y)
+                    )
+                }
+            }.forEach {
+                val bot = it.await()
             }
-        }.forEach {
-            val bot = it.await()
-            println("Bot $bot")
+        } catch (e: Throwable) {
+            e.printStackTrace()
         }
     }
 }
 
 Command where { prefix == "kill" } then {
-    Spiral.spiral(player.tile, 10) { tile ->
-        val bot = players[tile]?.firstOrNull { it != null && it.name.startsWith("Bot") } ?: return@spiral
-        players.remove(bot.tile, bot)
-        players.remove(bot.tile.chunk, bot)
-        GlobalScope.launch {
-            delay(600)
-            players.removeAtIndex(bot.index)
+    players.indexed.forEachIndexed { index, bot ->
+        if (bot != null && bot.name.startsWith("Bot")) {
+            players.remove(bot.tile, bot)
+            players.remove(bot.tile.chunk, bot)
         }
-        return@then
     }
+    GlobalScope.launch {
+        delay(600)
+        players.indexed.forEachIndexed { index, bot ->
+            if (bot != null && bot.name.startsWith("Bot")) {
+                players.indexed[index] = null
+            }
+        }
+    }
+}
+
+Command where { prefix == "players" } then {
+    println("Players: ${players.indexed.filterNotNull().size}")
 }
 
 Command where { prefix == "under" } then {
