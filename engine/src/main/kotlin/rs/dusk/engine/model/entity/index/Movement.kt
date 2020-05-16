@@ -1,7 +1,6 @@
 package rs.dusk.engine.model.entity.index
 
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -14,6 +13,3 @@ data class Movement(
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE
 )
-
-val NPC.teleport: Boolean
-    get() = movement.delta.id != 0 && movement.walkStep == Direction.NONE && movement.runStep == Direction.NONE

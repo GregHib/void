@@ -10,9 +10,9 @@ import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.teleport
 import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
 import rs.dusk.engine.view.TrackingSet
+import rs.dusk.engine.view.teleporting
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -92,18 +92,14 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
     ) {
         for (npc in set.add) {
             val delta = npc.tile.delta(client.tile)
-            val regionChange =
-                npc.teleport// TODO test, teleport probably removed by now as add happens in the next tick
-            val direction = npc.getTurn().direction
-
             sync.writeBits(15, npc.index)
-            sync.writeBits(3, (direction shr 11) - 4)
+            sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
             sync.writeBits(1, npc.visuals.update != null)
             sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
             sync.writeBits(2, npc.tile.plane)
             sync.writeBits(15, npc.id)
             sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
-            sync.writeBits(1, regionChange)
+            sync.writeBits(1, npc.teleporting)
             updates.writeBytes(npc.visuals.addition ?: continue)
         }
         sync.writeBits(15, -1)

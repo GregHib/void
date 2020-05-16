@@ -1,7 +1,7 @@
 package rs.dusk.engine.view
 
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.teleport
 import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
 
 /**
@@ -48,7 +48,7 @@ class NPCTrackingSet(
     }
 
     override fun track(entity: NPC, self: NPC?) {
-        val visible = !entity.teleport && remove.remove(entity)
+        val visible = !entity.teleporting && remove.remove(entity)
         if (visible) {
             total++
         } else if (add.size < tickMax) {
@@ -57,3 +57,6 @@ class NPCTrackingSet(
         }
     }
 }
+
+val NPC.teleporting: Boolean
+    get() = movement.delta.id != 0 && movement.walkStep == Direction.NONE && movement.runStep == Direction.NONE
