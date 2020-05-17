@@ -26,19 +26,13 @@ val projectiles: Projectiles by inject()
 Registered priority 9 then {
     when (entity) {
         is Player -> {
-            players[entity.tile] = entity
-            players[entity.tile.chunk] = entity
-            players.addAtIndex(entity.index, entity)
+            players.add(entity)
             entity.viewport.players.add(entity)
             entity.temporaryMoveType = PlayerMoveType.Walk
             entity.movementType = PlayerMoveType.None
             entity.face()
         }
-        is NPC -> {
-            npcs[entity.tile] = entity
-            npcs[entity.tile.chunk] = entity
-            npcs.addAtIndex(entity.index, entity)
-        }
+        is NPC -> npcs.add(entity)
         is IObject -> objects[entity.tile] = entity
         is FloorItem -> items[entity.tile] = entity
         is Projectile -> projectiles[entity.tile] = entity

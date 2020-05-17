@@ -47,9 +47,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
                     player.index.compareTo(arg<Indexed>(0).index)
                 }
                 every { player.tile } returns Tile(x, y, 0)
-                players.addAtIndex(player.index, player)
-                players[player.tile] = player
-                players[player.tile.chunk] = player
+                players.add(player)
             }
         }
         declareMock<Sessions> {
@@ -84,9 +82,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
                     player.index.compareTo(arg<Indexed>(0).index)
                 }
                 every { player.tile } returns Tile(x, y, 0)
-                players.addAtIndex(player.index, player)
-                players[player.tile] = player
-                players[player.tile.chunk] = player
+                players.add(player)
             }
         }
         declareMock<Sessions> {

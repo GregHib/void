@@ -7,7 +7,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.world.Tile
 import java.util.*
 
@@ -17,16 +17,16 @@ import java.util.*
  */
 internal class PooledMapListTest {
 
-    lateinit var list: PooledMapList<Entity>
-    lateinit var entity: Entity
+    lateinit var list: PooledMapList<Indexed>
+    lateinit var entity: Indexed
     var hash: Int = -1
 
     @BeforeEach
     fun setup() {
-        list = object : PooledMapList<Entity> {
-            override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Entity?>> = Int2ObjectOpenHashMap()
-            override val pool: LinkedList<ObjectLinkedOpenHashSet<Entity?>> = LinkedList()
-            override val indexed: Array<Entity?> = arrayOfNulls(10)
+        list = object : PooledMapList<Indexed> {
+            override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Indexed?>> = Int2ObjectOpenHashMap()
+            override val pool: LinkedList<ObjectLinkedOpenHashSet<Indexed?>> = LinkedList()
+            override val indexed: Array<Indexed?> = arrayOfNulls(10)
         }
         entity = mockk()
         val tile = Tile(10, 20, 1)
@@ -37,7 +37,7 @@ internal class PooledMapListTest {
     @Test
     fun `Add uses pooled tile if none exist`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity?>()
+        val set = ObjectLinkedOpenHashSet<Indexed?>()
         list.pool.push(set)
         // When
         list.add(hash, entity)
@@ -69,7 +69,7 @@ internal class PooledMapListTest {
     @Test
     fun get() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity?>()
+        val set = ObjectLinkedOpenHashSet<Indexed?>()
         set.add(entity)
         list.data[hash] = set
         // When
@@ -91,7 +91,7 @@ internal class PooledMapListTest {
     @Test
     fun `Remove puts tile back into pool if last entity`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity?>()
+        val set = ObjectLinkedOpenHashSet<Indexed?>()
         set.add(entity)
         list.data[hash] = set
         // When
@@ -105,7 +105,7 @@ internal class PooledMapListTest {
     @Test
     fun `Remove doesn't move tile if not last entity`() {
         // Given
-        val set = ObjectLinkedOpenHashSet<Entity?>()
+        val set = ObjectLinkedOpenHashSet<Indexed?>()
         set.add(entity)
         set.add(mockk())
         list.data[hash] = set

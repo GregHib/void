@@ -2,7 +2,7 @@ package rs.dusk.engine.entity.list
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.world.Chunk
 import java.util.*
 
@@ -11,7 +11,7 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-interface PooledMapList<T : Entity> : EntityList<T> {
+interface PooledMapList<T : Indexed> : EntityList<T> {
 
     val indexed: Array<T?>
     val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T?>>
@@ -19,6 +19,18 @@ interface PooledMapList<T : Entity> : EntityList<T> {
 
     val count: Int
         get() = indexed.count { it != null }
+
+    fun add(entity: T) {
+        add(entity.tile, entity)
+        add(entity.tile.chunk, entity)
+        addAtIndex(entity.index, entity)
+    }
+
+    fun remove(entity: T) {
+        remove(entity.tile, entity)
+        remove(entity.tile.chunk, entity)
+        removeAtIndex(entity.index)
+    }
 
     fun getAtIndex(index: Int): T? = indexed[index]
 
