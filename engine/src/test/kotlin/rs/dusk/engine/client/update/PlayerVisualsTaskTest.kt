@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.engine.entity.list.PooledMapList
-import rs.dusk.engine.entity.list.entityListModule
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
+import rs.dusk.engine.model.entity.list.PooledMapList
+import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.engine.task.PlayerVisualsTask
 import rs.dusk.utility.get

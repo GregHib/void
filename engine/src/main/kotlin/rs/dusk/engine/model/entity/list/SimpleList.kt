@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.list
+package rs.dusk.engine.model.entity.list
 
 import rs.dusk.engine.model.entity.Entity
 

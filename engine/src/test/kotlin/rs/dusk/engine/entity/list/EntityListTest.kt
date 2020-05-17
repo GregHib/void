@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.list.EntityList
 import rs.dusk.engine.model.world.Tile
 
 /**

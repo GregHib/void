@@ -4,7 +4,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.client.LoginQueue
 import rs.dusk.engine.entity.factory.PlayerFactory
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -13,6 +12,7 @@ import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*

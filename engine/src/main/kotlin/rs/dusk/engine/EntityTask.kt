@@ -2,8 +2,8 @@ package rs.dusk.engine
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
-import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.list.PooledMapList
 import java.util.*
 import kotlin.system.measureTimeMillis
 

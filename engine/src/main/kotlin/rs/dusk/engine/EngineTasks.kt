@@ -3,8 +3,8 @@ package rs.dusk.engine
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 import rs.dusk.engine.client.LoginQueueTask
-import rs.dusk.engine.entity.list.npc.NPCs
-import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.FACE_DIRECTION_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.MOVEMENT_TYPE_MASK

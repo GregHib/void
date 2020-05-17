@@ -1,11 +1,11 @@
 package rs.dusk.engine.task
 
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCMoveType
+import rs.dusk.engine.model.entity.index.npc.NPCs
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

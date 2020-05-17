@@ -1,7 +1,6 @@
-package rs.dusk.engine.entity.list.proj
+package rs.dusk.engine.model.entity.proj
 
-import rs.dusk.engine.entity.list.SimpleList
-import rs.dusk.engine.model.entity.proj.Projectile
+import rs.dusk.engine.model.entity.list.SimpleList
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

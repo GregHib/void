@@ -1,8 +1,8 @@
 package rs.dusk.engine.task
 
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.Players
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

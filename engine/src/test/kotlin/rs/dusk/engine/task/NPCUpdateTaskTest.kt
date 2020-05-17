@@ -8,12 +8,12 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.entity.list.entityListModule
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
+import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.engine.view.NPCTrackingSet

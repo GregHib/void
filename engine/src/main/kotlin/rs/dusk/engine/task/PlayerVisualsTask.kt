@@ -3,12 +3,12 @@ package rs.dusk.engine.task
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.index.update.visual.player.Appearance
+import rs.dusk.engine.model.entity.list.PooledMapList
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

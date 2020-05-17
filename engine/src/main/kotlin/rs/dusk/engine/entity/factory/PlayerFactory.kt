@@ -9,9 +9,9 @@ import kotlinx.coroutines.sync.withLock
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.data.PlayerLoader
-import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject
 

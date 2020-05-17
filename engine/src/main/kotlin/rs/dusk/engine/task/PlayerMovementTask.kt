@@ -1,11 +1,11 @@
 package rs.dusk.engine.task
 
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 
 /**

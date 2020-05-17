@@ -1,10 +1,9 @@
-package rs.dusk.engine.entity.list.npc
+package rs.dusk.engine.model.entity.index.npc
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import rs.dusk.engine.entity.list.MAX_NPCS
-import rs.dusk.engine.entity.list.PooledMapList
-import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.list.MAX_NPCS
+import rs.dusk.engine.model.entity.list.PooledMapList
 import java.util.*
 
 /**

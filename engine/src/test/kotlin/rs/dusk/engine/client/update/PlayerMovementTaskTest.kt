@@ -5,12 +5,12 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
+import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.engine.task.PlayerMovementTask

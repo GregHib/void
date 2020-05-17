@@ -1,7 +1,5 @@
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.verify.verify
-import rs.dusk.engine.entity.list.MAX_PLAYERS
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -11,6 +9,8 @@ import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage

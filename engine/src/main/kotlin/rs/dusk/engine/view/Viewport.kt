@@ -4,11 +4,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.entity.list.MAX_PLAYERS
-import rs.dusk.engine.entity.list.PooledMapList
-import rs.dusk.engine.entity.list.npc.NPCs
-import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.list.MAX_PLAYERS
+import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP

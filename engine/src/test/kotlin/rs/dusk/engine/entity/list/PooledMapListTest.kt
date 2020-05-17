@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.world.Tile
 import java.util.*
 
