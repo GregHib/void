@@ -17,7 +17,11 @@ import rs.dusk.engine.model.engine.task.engineTasksModule
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
+import rs.dusk.engine.model.world.map.collision.collisionModule
+import rs.dusk.engine.model.world.map.location.locationModule
 import rs.dusk.engine.model.world.map.location.xteaModule
+import rs.dusk.engine.model.world.map.mapModule
+import rs.dusk.engine.model.world.map.tileModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
@@ -59,7 +63,11 @@ object Dusk : Runnable {
                 xteaModule,
                 visualUpdatingModule,
                 engineTasksModule,
-                loginQueueModule
+                loginQueueModule,
+                mapModule,
+                tileModule,
+                collisionModule,
+                locationModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

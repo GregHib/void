@@ -26,8 +26,11 @@ operator fun Collisions.set(x: Int, y: Int, plane: Int, flag: Int) {
     this[Tile(x, y, plane)] = flag
 }
 
-fun Collisions.remove(x: Int, y: Int, plane: Int, flag: Int) =
-    add(x, y, plane, flag.inv())
+fun Collisions.remove(x: Int, y: Int, plane: Int, flag: Int) {
+    val tile = Tile(x, y, plane)
+    val value = get(tile) ?: 0
+    this[tile] = value and flag.inv()
+}
 
 operator fun Collisions.get(x: Int, y: Int, plane: Int) =
     this[Tile(x, y, plane)] ?: 0

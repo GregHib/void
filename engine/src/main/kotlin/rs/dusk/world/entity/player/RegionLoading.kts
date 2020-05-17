@@ -5,11 +5,13 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.map.MapReader
 import rs.dusk.engine.model.world.map.location.Xtea
 import rs.dusk.engine.model.world.map.location.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
@@ -20,6 +22,7 @@ import kotlin.math.abs
 val xteas: Xteas by inject()
 val players: Players by inject()
 val bus: EventBus by inject()
+val maps: MapReader by inject()
 
 val regions = IntArray(MAX_PLAYERS - 1)
 
@@ -40,6 +43,14 @@ GameLoginMessage verify { player ->
 
 Move where { entity is Player && needsRegionChange(entity) } then {
     calculateRegions(entity as Player, false)
+}
+
+Registered where { entity is Indexed } then {
+    maps.load(entity.tile.region)
+}
+
+Move then {
+    maps.load(entity.tile.region)
 }
 
 fun Int.nearby(size: Int): IntRange {
