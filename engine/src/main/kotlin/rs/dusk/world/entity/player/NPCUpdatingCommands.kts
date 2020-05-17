@@ -1,8 +1,8 @@
 import kotlinx.coroutines.runBlocking
-import rs.dusk.engine.entity.factory.NPCFactory
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.factory.NPCFactory
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCMoveType
 import rs.dusk.engine.model.entity.index.npc.NPCs

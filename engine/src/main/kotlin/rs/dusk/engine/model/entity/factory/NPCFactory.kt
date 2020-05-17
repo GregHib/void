@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.factory
+package rs.dusk.engine.model.entity.factory
 
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Direction

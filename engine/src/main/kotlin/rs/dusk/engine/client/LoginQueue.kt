@@ -6,7 +6,7 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.newSingleThreadContext
 import org.koin.dsl.module
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.entity.factory.PlayerFactory
+import rs.dusk.engine.model.entity.factory.PlayerFactory
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedDeque
 import kotlin.coroutines.Continuation

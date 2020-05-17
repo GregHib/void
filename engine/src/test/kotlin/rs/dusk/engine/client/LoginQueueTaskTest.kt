@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.inject
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.entity.factory.PlayerFactory
+import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
