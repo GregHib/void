@@ -3,6 +3,7 @@ package rs.dusk.engine
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.engine.task.EngineTasks
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import java.util.concurrent.Executors

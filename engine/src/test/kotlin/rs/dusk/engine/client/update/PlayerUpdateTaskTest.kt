@@ -9,20 +9,20 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.update.task.PlayerUpdateTask
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.index.player.Viewport
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.engine.task.PlayerUpdateTask
-import rs.dusk.engine.view.PlayerTrackingSet
-import rs.dusk.engine.view.Viewport
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.func.toInt
 
@@ -35,7 +35,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     lateinit var task: PlayerUpdateTask
     lateinit var players: Players
     lateinit var sessions: Sessions
-    override val modules = listOf(entityListModule, clientSessionModule)
+    override val modules = listOf(
+        entityListModule,
+        clientSessionModule
+    )
 
     @BeforeEach
     fun setup() {

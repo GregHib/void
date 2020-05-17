@@ -1,16 +1,17 @@
-package rs.dusk.engine
+package rs.dusk.engine.model.engine.task
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import rs.dusk.engine.client.LoginQueueTask
+import rs.dusk.engine.EngineTask
+import rs.dusk.engine.client.login.LoginQueueTask
+import rs.dusk.engine.client.update.task.*
+import rs.dusk.engine.client.viewport.ViewportTask
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.FACE_DIRECTION_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.MOVEMENT_TYPE_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
-import rs.dusk.engine.task.*
-import rs.dusk.engine.view.ViewportTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -22,7 +23,10 @@ val engineTasksModule = module {
     single(createdAtStart = true) {
         EngineTasks(
             linkedSetOf(
-                LoginQueueTask(get(), getProperty("loginPerTickCap")),
+                LoginQueueTask(
+                    get(),
+                    getProperty("loginPerTickCap")
+                ),
                 ViewportTask(),
                 PlayerVisualsTask(
                     get<Players>(),

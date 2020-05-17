@@ -8,8 +8,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.viewport.ViewportTask
+import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
@@ -24,7 +26,10 @@ import rs.dusk.engine.script.KoinMock
  */
 internal class ViewportTaskTest : KoinMock() {
 
-    override val modules = listOf(entityListModule, clientSessionModule)
+    override val modules = listOf(
+        entityListModule,
+        clientSessionModule
+    )
 
     lateinit var task: ViewportTask
 

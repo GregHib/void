@@ -6,7 +6,6 @@ import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.index.update.visual.player.getAppearance
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.view.Viewport
 
 /**
  * A player controlled by client or bot

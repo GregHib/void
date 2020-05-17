@@ -1,4 +1,4 @@
-package rs.dusk.engine.client
+package rs.dusk.engine.client.login
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope

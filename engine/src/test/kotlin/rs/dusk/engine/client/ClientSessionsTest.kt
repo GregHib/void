@@ -9,6 +9,7 @@ import org.koin.test.inject
 import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.client.session.ClientSessions
 import rs.dusk.engine.client.verify.ClientVerification
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.model.entity.index.player.Player

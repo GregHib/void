@@ -1,4 +1,4 @@
-package rs.dusk.engine.task
+package rs.dusk.engine.client.update.task
 
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
@@ -6,17 +6,17 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.clientSessionModule
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.engine.view.NPCTrackingSet
 import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
 
 /**
@@ -28,7 +28,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var task: NPCUpdateTask
     lateinit var players: Players
     lateinit var sessions: Sessions
-    override val modules = listOf(entityListModule, clientSessionModule)
+    override val modules = listOf(
+        entityListModule,
+        clientSessionModule
+    )
 
     @BeforeEach
     fun setup() {

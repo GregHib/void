@@ -1,4 +1,4 @@
-package rs.dusk.engine.task
+package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer

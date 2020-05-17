@@ -1,16 +1,16 @@
-package rs.dusk.engine.task
+package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.send
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.send
 import rs.dusk.engine.model.entity.index.LocalChange
+import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.teleporting
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
-import rs.dusk.engine.view.TrackingSet
-import rs.dusk.engine.view.teleporting
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

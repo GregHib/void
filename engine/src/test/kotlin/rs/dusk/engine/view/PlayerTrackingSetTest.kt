@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -16,7 +17,11 @@ internal class PlayerTrackingSetTest {
 
     @BeforeEach
     fun setup() {
-        set = PlayerTrackingSet(tickMax = 4, maximum = 10, radius = 15)
+        set = PlayerTrackingSet(
+            tickMax = 4,
+            maximum = 10,
+            radius = 15
+        )
     }
 
     @Test

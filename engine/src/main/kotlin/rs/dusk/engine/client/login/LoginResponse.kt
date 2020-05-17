@@ -1,4 +1,4 @@
-package rs.dusk.engine.client
+package rs.dusk.engine.client.login
 
 import rs.dusk.engine.model.entity.index.player.Player
 

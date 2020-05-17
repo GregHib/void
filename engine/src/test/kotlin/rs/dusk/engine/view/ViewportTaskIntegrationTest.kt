@@ -8,10 +8,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.get
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.viewport.ViewportTask
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
@@ -23,7 +25,10 @@ import rs.dusk.engine.script.KoinMock
  */
 internal class ViewportTaskIntegrationTest : KoinMock() {
 
-    override val modules = listOf(entityListModule, clientSessionModule)
+    override val modules = listOf(
+        entityListModule,
+        clientSessionModule
+    )
 
     lateinit var task: ViewportTask
 
@@ -37,7 +42,10 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         var index = 1
         val tile = Tile(15, 15, 0)
         val client: Player = mockk(relaxed = true)
-        val set = PlayerTrackingSet(40, ViewportTask.LOCAL_PLAYER_CAP)
+        val set = PlayerTrackingSet(
+            40,
+            ViewportTask.LOCAL_PLAYER_CAP
+        )
         val players: Players = get()
         for (x in 0..30) {
             for (y in 0..30) {
@@ -72,7 +80,10 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         val radius = 4
         val tile = Tile(radius, radius, 0)
         val client: Player = mockk(relaxed = true)
-        val set = PlayerTrackingSet(40, ViewportTask.LOCAL_PLAYER_CAP)
+        val set = PlayerTrackingSet(
+            40,
+            ViewportTask.LOCAL_PLAYER_CAP
+        )
         val players: Players = get()
         for (x in 0 until radius * 2) {
             for (y in 0 until radius * 2) {

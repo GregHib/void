@@ -13,9 +13,9 @@ import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.connection.event.ConnectionEventListener
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
-import rs.dusk.engine.client.LoginQueue
-import rs.dusk.engine.client.LoginResponse
-import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.login.LoginQueue
+import rs.dusk.engine.client.login.LoginResponse
+import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.game.GameCodec

@@ -1,4 +1,4 @@
-package rs.dusk.engine.client
+package rs.dusk.engine.client.session
 
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.collect.HashBiMap

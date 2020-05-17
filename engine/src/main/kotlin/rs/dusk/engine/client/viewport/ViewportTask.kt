@@ -1,59 +1,21 @@
-package rs.dusk.engine.view
+package rs.dusk.engine.client.viewport
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.engine.ParallelEngineTask
-import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
-import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_NPC_CAP
-import rs.dusk.engine.view.ViewportTask.Companion.LOCAL_PLAYER_CAP
-import rs.dusk.engine.view.ViewportTask.Companion.NPC_TICK_CAP
-import rs.dusk.engine.view.ViewportTask.Companion.PLAYER_TICK_CAP
-import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
-import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @since April 21, 2020
+ * @since May 17, 2020
  */
-@Suppress("ArrayInDataClass")
-data class Viewport(
-    val players: PlayerTrackingSet = PlayerTrackingSet(PLAYER_TICK_CAP, LOCAL_PLAYER_CAP),
-    val npcs: NPCTrackingSet = NPCTrackingSet(NPC_TICK_CAP, LOCAL_NPC_CAP),
-    val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
-    var size: Int = VIEWPORT_SIZES[0],
-    val regions: MutableSet<Int> = linkedSetOf(),
-    var lastLoadPoint: Tile = Tile.EMPTY
-) {
-
-    val message = PlayerUpdateMessage()
-    val npcMessage = NPCUpdateMessage()
-
-    fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
-
-    fun isIdle(index: Int) = idlePlayers[index] and 0x1 != 0
-
-    fun setIdle(index: Int) {
-        idlePlayers[index] = idlePlayers[index] or 2
-    }
-
-    fun shift() {
-        for (index in idlePlayers.indices) {
-            idlePlayers[index] = idlePlayers[index] shr 1
-        }
-    }
-
-    companion object {
-        val VIEWPORT_SIZES = intArrayOf(104, 120, 136, 168)
-    }
-}
-
 class ViewportTask : ParallelEngineTask() {
 
     val players: Players by inject()
@@ -65,8 +27,18 @@ class ViewportTask : ParallelEngineTask() {
             if (!sessions.contains(player)) {
                 return@forEach
             }
-            defers.add(update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player))
-            defers.add(update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null))
+            defers.add(
+                update(
+                    player.tile, players, player.viewport.players,
+                    LOCAL_PLAYER_CAP, player
+                )
+            )
+            defers.add(
+                update(
+                    player.tile, npcs, player.viewport.npcs,
+                    LOCAL_NPC_CAP, null
+                )
+            )
         }
         super.run()
     }
@@ -89,7 +61,10 @@ class ViewportTask : ParallelEngineTask() {
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
      */
     fun <T : Indexed> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
-        Spiral.spiral(tile, VIEW_RADIUS) { t ->
+        Spiral.spiral(
+            tile,
+            VIEW_RADIUS
+        ) { t ->
             val entities = list[t]
             if (entities != null && !set.track(entities, self)) {
                 return

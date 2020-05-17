@@ -1,4 +1,4 @@
-package rs.dusk.engine.task
+package rs.dusk.engine.client.update.task
 
 import rs.dusk.engine.EntityTask
 import rs.dusk.engine.model.entity.index.npc.NPC

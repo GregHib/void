@@ -1,4 +1,4 @@
-package rs.dusk.engine.view
+package rs.dusk.engine.client.viewport
 
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile

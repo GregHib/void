@@ -7,7 +7,7 @@ import kotlinx.coroutines.newSingleThreadContext
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.update.visual.player.name

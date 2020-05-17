@@ -1,18 +1,18 @@
-package rs.dusk.engine.task
+package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EntityTask
-import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.send
+import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.session.send
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.index.player.Viewport
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.RegionPlane
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.view.PlayerTrackingSet
-import rs.dusk.engine.view.Viewport
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -1,4 +1,4 @@
-package rs.dusk.engine.client
+package rs.dusk.engine.client.session
 
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session

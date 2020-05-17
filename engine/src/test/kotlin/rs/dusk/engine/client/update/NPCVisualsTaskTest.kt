@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
+import rs.dusk.engine.client.update.task.NPCVisualsTask
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -15,7 +16,6 @@ import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.engine.task.NPCVisualsTask
 import rs.dusk.utility.get
 
 /**

@@ -1,6 +1,5 @@
-package rs.dusk.engine.view
+package rs.dusk.engine.model.entity.index
 
-import rs.dusk.engine.model.entity.index.Indexed
 import kotlin.math.abs
 
 /**
@@ -59,7 +58,14 @@ interface TrackingSet<T : Indexed> {
             if (total >= maximum) {
                 return false
             }
-            if (withinView(entity.tile.x, entity.tile.y, x, y, radius)) {
+            if (withinView(
+                    entity.tile.x,
+                    entity.tile.y,
+                    x,
+                    y,
+                    radius
+                )
+            ) {
                 track(entity, self)
             }
         }

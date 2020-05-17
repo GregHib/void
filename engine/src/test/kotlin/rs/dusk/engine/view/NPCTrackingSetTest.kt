@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -18,7 +19,11 @@ internal class NPCTrackingSetTest {
 
     @BeforeEach
     fun setup() {
-        set = NPCTrackingSet(tickMax = 4, maximum = 10, radius = 15)
+        set = NPCTrackingSet(
+            tickMax = 4,
+            maximum = 10,
+            radius = 15
+        )
     }
 
     @Test

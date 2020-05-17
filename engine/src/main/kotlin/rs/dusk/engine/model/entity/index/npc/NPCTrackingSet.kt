@@ -1,8 +1,8 @@
-package rs.dusk.engine.view
+package rs.dusk.engine.model.entity.index.npc
 
+import rs.dusk.engine.client.viewport.ViewportTask.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.view.ViewportTask.Companion.VIEW_RADIUS
+import rs.dusk.engine.model.entity.index.TrackingSet
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

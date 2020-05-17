@@ -4,6 +4,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.model.engine.task.EngineTasks
 import kotlin.system.measureTimeMillis
 
 /**
