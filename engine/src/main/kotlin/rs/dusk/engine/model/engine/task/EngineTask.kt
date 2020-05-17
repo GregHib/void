@@ -1,4 +1,4 @@
-package rs.dusk.engine
+package rs.dusk.engine.model.engine.task
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

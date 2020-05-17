@@ -2,7 +2,6 @@ package rs.dusk.engine.model.engine.task
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import rs.dusk.engine.EngineTask
 import rs.dusk.engine.client.login.LoginQueueTask
 import rs.dusk.engine.client.update.task.*
 import rs.dusk.engine.client.viewport.ViewportTask

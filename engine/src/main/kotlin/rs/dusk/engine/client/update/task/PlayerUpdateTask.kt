@@ -1,9 +1,9 @@
 package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.EntityTask
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.send
+import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player

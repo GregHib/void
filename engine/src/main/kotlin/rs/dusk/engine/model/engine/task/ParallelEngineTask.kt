@@ -1,4 +1,4 @@
-package rs.dusk.engine
+package rs.dusk.engine.model.engine.task
 
 import kotlinx.coroutines.Deferred
 import kotlinx.coroutines.runBlocking

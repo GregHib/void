@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.update.task
 
-import rs.dusk.engine.EntityTask
+import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 

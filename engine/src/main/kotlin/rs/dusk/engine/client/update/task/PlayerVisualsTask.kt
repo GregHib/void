@@ -2,7 +2,7 @@ package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.EntityTask
+import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.VisualEncoder

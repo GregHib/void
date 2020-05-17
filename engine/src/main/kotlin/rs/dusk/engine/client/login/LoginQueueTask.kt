@@ -1,13 +1,14 @@
 package rs.dusk.engine.client.login
 
-import rs.dusk.engine.EngineTask
+import rs.dusk.engine.model.engine.task.EngineTask
 import kotlin.coroutines.resume
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
-class LoginQueueTask(private val queue: LoginQueue, private val loginPerTickCap: Int) : EngineTask {
+class LoginQueueTask(private val queue: LoginQueue, private val loginPerTickCap: Int) :
+    EngineTask {
 
     override fun run() {
         var count = 0

@@ -2,8 +2,8 @@ package rs.dusk.engine.client.viewport
 
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
-import rs.dusk.engine.ParallelEngineTask
 import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.model.engine.task.ParallelEngineTask
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
