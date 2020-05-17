@@ -7,4 +7,4 @@ import rs.dusk.engine.model.entity.obj.IObject
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
-interface Objects : SimpleList<IObject>
+data class Objects(override val delegate: HashMap<Int, MutableSet<IObject>> = hashMapOf()) : SimpleList<IObject>

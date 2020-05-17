@@ -1,15 +1,10 @@
 package rs.dusk.engine.entity.list
 
 import org.koin.dsl.module
-import rs.dusk.engine.entity.list.item.FloorItemList
 import rs.dusk.engine.entity.list.item.FloorItems
-import rs.dusk.engine.entity.list.npc.NPCList
 import rs.dusk.engine.entity.list.npc.NPCs
-import rs.dusk.engine.entity.list.obj.ObjectList
 import rs.dusk.engine.entity.list.obj.Objects
-import rs.dusk.engine.entity.list.player.PlayerList
 import rs.dusk.engine.entity.list.player.Players
-import rs.dusk.engine.entity.list.proj.ProjectileList
 import rs.dusk.engine.entity.list.proj.Projectiles
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.world.Tile
@@ -68,11 +63,10 @@ interface EntityList<T : Entity> {
 const val MAX_PLAYERS = 0x800//2048
 const val MAX_NPCS = 0x8000// 32768
 
-@Suppress("USELESS_CAST")
 val entityListModule = module {
-    single { NPCList() as NPCs }
-    single { PlayerList() as Players }
-    single { ObjectList() as Objects }
-    single { FloorItemList() as FloorItems }
-    single { ProjectileList() as Projectiles }
+    single { NPCs() }
+    single { Players() }
+    single { Objects() }
+    single { FloorItems() }
+    single { Projectiles() }
 }

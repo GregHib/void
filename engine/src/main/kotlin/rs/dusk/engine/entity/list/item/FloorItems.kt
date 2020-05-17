@@ -7,4 +7,4 @@ import rs.dusk.engine.model.entity.item.FloorItem
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
-interface FloorItems : SimpleList<FloorItem>
+data class FloorItems(override val delegate: HashMap<Int, MutableSet<FloorItem>> = hashMapOf()) : SimpleList<FloorItem>

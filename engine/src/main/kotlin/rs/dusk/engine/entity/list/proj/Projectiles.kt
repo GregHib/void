@@ -7,4 +7,5 @@ import rs.dusk.engine.model.entity.proj.Projectile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
-interface Projectiles : SimpleList<Projectile>
+data class Projectiles(override val delegate: HashMap<Int, MutableSet<Projectile>> = hashMapOf()) :
+    SimpleList<Projectile>
