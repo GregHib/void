@@ -1,7 +1,6 @@
 package rs.dusk.engine.client.update
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
@@ -67,9 +66,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         players.add(0, player)
         // When
         every { visuals.flag } returns 0
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verify { visuals.update = null }
         verify(exactly = 0) {
@@ -90,9 +87,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         every { updateTask.encodeUpdate(visuals) } just Runs
         every { updateTask.encodeAddition(visuals) } just Runs
         // When
-        runBlocking {
-            updateTask.runAsync(player).await()
-        }
+        updateTask.runAsync(player)
         // Then
         verifyOrder {
             updateTask.encodeUpdate(visuals)
@@ -111,9 +106,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         every { visuals.flag } returns 1
         every { visuals.flagged(any()) } returns false
         // When
-        runBlocking {
-            updateTask.runAsync(player).await()
-        }
+        updateTask.runAsync(player)
         // Then
         verify(exactly = 0) { updateTask.encodeAddition(visuals) }
         verifyOrder {

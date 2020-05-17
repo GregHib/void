@@ -1,8 +1,7 @@
 package rs.dusk.engine
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.Deferred
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.model.entity.index.Indexed
 import java.util.*
@@ -18,11 +17,11 @@ abstract class EntityTask<T : Indexed> : EngineTask {
 
     abstract val entities: PooledMapList<T>
 
-    abstract fun runAsync(entity: T): Deferred<Unit>
+    abstract fun runAsync(entity: T)
 
     override fun run() = runBlocking {
         entities.forEach {
-            defers.add(runAsync(it))
+            defers.add(scope.async { runAsync(it) })
         }
         val took = measureTimeMillis {
             while (defers.isNotEmpty()) {
@@ -32,5 +31,9 @@ abstract class EntityTask<T : Indexed> : EngineTask {
         if (took > 0) {
             logger.info { "${this@EntityTask::class.simpleName} took ${took}ms" }
         }
+    }
+
+    companion object {
+        private val scope = CoroutineScope(newSingleThreadContext("UpdateTasks"))
     }
 }

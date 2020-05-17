@@ -1,7 +1,5 @@
 package rs.dusk.engine.task
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EntityTask
@@ -24,11 +22,11 @@ class NPCVisualsTask(
      * Encodes [Visual] changes into an insertion and delta update
      */
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(npc: NPC) = GlobalScope.async {
+    override fun runAsync(npc: NPC) {
         val visuals = npc.visuals
         if (visuals.flag == 0) {
             visuals.update = null
-            return@async
+            return
         }
         encodeUpdate(visuals)
         visuals.flag = 0

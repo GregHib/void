@@ -3,7 +3,6 @@ package rs.dusk.engine.client.update
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verifyOrder
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
@@ -41,9 +40,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movementType } returns PlayerMoveType.Walk
         every { player.change } returns LocalChange.Walk
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Walk
@@ -61,9 +58,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movementType } returns PlayerMoveType.Run
         every { player.change } returns LocalChange.Run
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Run
@@ -81,9 +76,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movementType } returns PlayerMoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Tele
@@ -98,9 +91,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.change } returns LocalChange.Update
         every { player.movementType } returns PlayerMoveType.None
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             player.change = LocalChange.Update
@@ -119,9 +110,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement.delta } returns Tile(0)
         every { player.change } returns null
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             player.change = null

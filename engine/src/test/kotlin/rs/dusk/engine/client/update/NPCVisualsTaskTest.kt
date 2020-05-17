@@ -1,7 +1,6 @@
 package rs.dusk.engine.client.update
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
@@ -50,7 +49,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // When
         updateTask.run()
         // Then
-        coVerify {
+        verify {
             updateTask.runAsync(npc)
         }
     }
@@ -66,9 +65,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         npcs.add(0, npc)
         // When
         every { visuals.flag } returns 0
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verify { visuals.update = null }
         verify(exactly = 0) {

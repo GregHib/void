@@ -1,7 +1,5 @@
 package rs.dusk.engine.task
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.EntityTask
 import rs.dusk.engine.client.Sessions
@@ -23,9 +21,9 @@ import rs.dusk.engine.view.Viewport
 class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) = GlobalScope.async {
+    override fun runAsync(player: Player) {
         if (!sessions.contains(player)) {
-            return@async
+            return
         }
         val viewport = player.viewport
         val players = viewport.players

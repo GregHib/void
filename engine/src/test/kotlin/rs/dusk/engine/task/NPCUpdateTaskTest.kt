@@ -51,7 +51,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         // When
         task.run()
         // Then
-        coVerify {
+        verify {
             task.runAsync(player)
         }
     }

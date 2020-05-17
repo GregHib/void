@@ -11,7 +11,7 @@ import rs.dusk.engine.model.entity.index.player.Player
 class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) = GlobalScope.async<Unit> {
+    override fun runAsync(player: Player) {
         player.viewport.shift()
         player.viewport.players.update()
         player.viewport.npcs.update()

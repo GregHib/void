@@ -1,7 +1,5 @@
 package rs.dusk.engine.task
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.npc.NPCs
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -13,7 +11,7 @@ import rs.dusk.engine.model.entity.index.npc.NPC
 class NPCPostUpdateTask(override val entities: NPCs) : EntityTask<NPC>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(npc: NPC) = GlobalScope.async<Unit> {
+    override fun runAsync(npc: NPC) {
         npc.movement.reset()
         npc.visuals.aspects.forEach { (_, visual) ->
             visual.reset()

@@ -1,7 +1,5 @@
 package rs.dusk.engine.task
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import rs.dusk.engine.EntityTask
 import rs.dusk.engine.entity.list.player.Players
 import rs.dusk.engine.model.entity.Direction
@@ -17,7 +15,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
-    override fun runAsync(player: Player) = GlobalScope.async {
+    override fun runAsync(player: Player) {
         val movement = player.movement
         val delta = movement.delta
 

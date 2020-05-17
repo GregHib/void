@@ -3,7 +3,6 @@ package rs.dusk.engine.client.update
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verifyOrder
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.list.entityListModule
@@ -40,9 +39,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movementType } returns NPCMoveType.Walk
         every { npc.change } returns LocalChange.Walk
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Walk
@@ -60,9 +57,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movementType } returns NPCMoveType.Crawl
         every { npc.change } returns LocalChange.Crawl
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Crawl
@@ -80,9 +75,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movementType } returns NPCMoveType.Run
         every { npc.change } returns LocalChange.Run
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Run
@@ -101,9 +94,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movementType } returns NPCMoveType.Teleport
         every { npc.change } returns LocalChange.Tele
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Tele
@@ -117,9 +108,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.change } returns LocalChange.Update
         every { npc.movementType } returns NPCMoveType.None
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = LocalChange.Update
@@ -137,9 +126,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement.delta } returns Tile(0)
         every { npc.change } returns null
         // When
-        runBlocking {
-            task.runAsync(npc).await()
-        }
+        task.runAsync(npc)
         // Then
         verifyOrder {
             npc.change = null

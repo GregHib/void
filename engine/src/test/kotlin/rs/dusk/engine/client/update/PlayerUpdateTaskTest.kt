@@ -1,7 +1,6 @@
 package rs.dusk.engine.client.update
 
 import io.mockk.*
-import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
@@ -97,9 +96,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         every { task.processLocals(any(), any(), any(), any(), any()) } just Runs
         every { task.processGlobals(any(), any(), any(), any(), any()) } just Runs
         // When
-        runBlocking {
-            task.runAsync(player).await()
-        }
+        task.runAsync(player)
         // Then
         verifyOrder {
             task.processLocals(any(), any(), entities, viewport, true)
