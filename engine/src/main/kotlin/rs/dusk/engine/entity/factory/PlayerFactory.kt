@@ -10,8 +10,6 @@ import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.list.MAX_PLAYERS
-import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.model.world.Tile
@@ -25,7 +23,6 @@ class PlayerFactory {
 
     private val logger = InlineLogger()
     private val loader: PlayerLoader by inject()
-    private val bus: EventBus by inject()
     private val indexer = IndexAllocator(MAX_PLAYERS)
     private val sessions: Sessions by inject()
     private val mutex = Mutex()
@@ -46,7 +43,6 @@ class PlayerFactory {
         }
         player.name = name
         logger.info { "Player save loaded $name index ${player.index}." }
-        bus.emit(Registered(player))
         player
     }
 }

@@ -2,6 +2,7 @@ import rs.dusk.engine.client.send
 import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.entity.list.player.Players
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.location.Xtea
@@ -18,6 +19,7 @@ import kotlin.math.abs
 
 val xteas: Xteas by inject()
 val players: Players by inject()
+val bus: EventBus by inject()
 
 val regions = IntArray(MAX_PLAYERS - 1)
 
@@ -33,6 +35,7 @@ Deregistered where { entity is Player } then {
 
 GameLoginMessage verify { player ->
     calculateRegions(player, true)
+    bus.emit(Registered(player))
 }
 
 Move where { entity is Player && needsRegionChange(entity) } then {

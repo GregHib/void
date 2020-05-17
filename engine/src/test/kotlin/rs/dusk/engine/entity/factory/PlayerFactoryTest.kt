@@ -7,9 +7,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.data.PlayerLoader
-import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.script.KoinMock
@@ -26,16 +24,13 @@ internal class PlayerFactoryTest : KoinMock() {
     }, eventBusModule)
 
     @Test
-    fun `Spawn registers`() = runBlocking {
+    fun `Spawn sets index and name`() = runBlocking {
         // Given
         val factory: PlayerFactory = get()
         val player: Player = mockk(relaxed = true)
         every { player.name = any() } just Runs
         val loader: PlayerLoader = declareMock {
             every { loadPlayer("Test") } returns player
-        }
-        val bus: EventBus = declareMock {
-            every { emit(any<Registered>()) } just Runs
         }
         // When
         val result = factory.spawn("Test").await()
@@ -45,7 +40,6 @@ internal class PlayerFactoryTest : KoinMock() {
             loader.loadPlayer("Test")
             player.index = 1
             player.name = "Test"
-            bus.emit<Registered>(any())
         }
     }
 

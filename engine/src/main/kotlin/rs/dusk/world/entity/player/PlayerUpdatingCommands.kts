@@ -9,6 +9,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
@@ -23,6 +24,7 @@ import java.util.concurrent.atomic.AtomicInteger
 val factory: PlayerFactory by inject()
 val players: Players by inject()
 val login: LoginQueue by inject()
+val bus: EventBus by inject()
 
 val botCounter = AtomicInteger(0)
 
@@ -40,6 +42,9 @@ Command where { prefix == "bot" } then {
                 }
             }.forEach {
                 val bot = it.await()
+                if (bot != null) {
+                    bus.emit(Registered(bot))
+                }
             }
         } catch (e: Throwable) {
             e.printStackTrace()
