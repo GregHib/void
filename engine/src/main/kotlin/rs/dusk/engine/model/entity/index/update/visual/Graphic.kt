@@ -15,7 +15,15 @@ data class Graphic(
     var height: Int = 0,
     var rotation: Int = 0,
     var forceRefresh: Boolean = false
-) : Visual
+) : Visual {
+    override fun reset() {
+        id = -1
+        delay = 0
+        height = 0
+        rotation = 0
+        forceRefresh = false
+    }
+}
 
 const val PLAYER_GRAPHIC_0_MASK = 0x2
 const val PLAYER_GRAPHIC_1_MASK = 0x100

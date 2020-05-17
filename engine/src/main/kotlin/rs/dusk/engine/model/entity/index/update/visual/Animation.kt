@@ -14,7 +14,15 @@ data class Animation(
     var third: Int = -1,
     var fourth: Int = -1,
     var speed: Int = 0
-) : Visual
+) : Visual {
+    override fun reset() {
+        first = -1
+        second = -1
+        third = -1
+        fourth = -1
+        speed = 0
+    }
+}
 
 const val PLAYER_ANIMATION_MASK = 0x40
 

@@ -12,4 +12,10 @@ data class Movement(
     var delta: Tile = Tile.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE
-)
+) {
+    fun reset() {
+        delta = Tile.EMPTY
+        walkStep = Direction.NONE
+        runStep = Direction.NONE
+    }
+}

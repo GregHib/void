@@ -13,7 +13,14 @@ data class TimeBar(
     var exponentialDelay: Int = 0,
     var delay: Int = 0,
     var increment: Int = 0
-) : Visual
+) : Visual {
+    override fun reset() {
+        full = false
+        exponentialDelay = 0
+        delay = 0
+        increment = 0
+    }
+}
 
 const val PLAYER_TIME_BAR_MASK = 0x2000
 

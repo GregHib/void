@@ -8,7 +8,11 @@ import rs.dusk.engine.model.entity.index.update.Visual
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class ForceChat(var text: String = "") : Visual
+data class ForceChat(var text: String = "") : Visual {
+    override fun reset() {
+        text = ""
+    }
+}
 
 const val PLAYER_FORCE_CHAT_MASK = 0x4000
 
