@@ -9,7 +9,7 @@ import org.koin.dsl.module
 typealias TileSettings = Array<Array<ByteArray>>
 
 val tileModule = module {
-    single { TileLoader() }
+    single { TileReader() }
 }
 
 fun TileSettings.isTile(plane: Int, localX: Int, localY: Int, flag: Int) =

@@ -5,38 +5,35 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.isTile
-import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class LocationLoader {
+class LocationReader(val locations: Locations) {
 
-    val locations: Locations by inject()
-
-    fun load(data: ByteArray, settings: TileSettings) {
-        val stream = BufferReader(data)
+    fun read(data: ByteArray, settings: TileSettings) {
+        val reader = BufferReader(data)
         var objectId = -1
         while (true) {
-            val skip = stream.readLargeSmart()
+            val skip = reader.readLargeSmart()
             if (skip == 0) {
                 break
             }
             objectId += skip
-            var location = 0
+            var tile = 0
             while (true) {
-                val loc = stream.readSmart()
+                val loc = reader.readSmart()
                 if (loc == 0) {
                     break
                 }
-                location += loc - 1
+                tile += loc - 1
 
                 // Data
-                val localX = location shr 6 and 0x3f
-                val localY = location and 0x3f
-                var plane = location shr 12
-                val obj = stream.readUnsignedByte()
+                val localX = tile shr 6 and 0x3f
+                val localY = tile and 0x3f
+                var plane = tile shr 12
+                val obj = reader.readUnsignedByte()
                 val type = obj shr 2
                 val rotation = obj and 0x3
 
@@ -55,8 +52,9 @@ class LocationLoader {
                     continue
                 }
 
-                // Valid object
-                locations.put(Tile(localX, localY, plane), Location(objectId, type, rotation))
+                // Valid location
+                val location = Location(objectId, Tile(localX, localY, plane), type, rotation)
+                locations.put(location.tile, location)
             }
         }
     }

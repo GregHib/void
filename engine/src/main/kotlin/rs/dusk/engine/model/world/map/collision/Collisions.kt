@@ -13,7 +13,7 @@ data class Collisions(val delegate: MutableMap<Tile, Int> = mutableMapOf()) :
 @Suppress("USELESS_CAST")
 val collisionModule = module {
     single { Collisions() }
-    single { CollisionLoader() }
+    single { CollisionReader(get()) }
 }
 
 fun Collisions.add(x: Int, y: Int, plane: Int, flag: Int) {

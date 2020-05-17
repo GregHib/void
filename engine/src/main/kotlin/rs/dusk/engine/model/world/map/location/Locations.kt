@@ -14,6 +14,5 @@ data class Locations(val delegate: Multimap<Tile, Location> = HashMultimap.creat
 
 val locationModule = module {
     single { Locations() }
-    single { LocationLoader() }
+    single { LocationReader(get()) }
 }
-

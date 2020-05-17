@@ -6,23 +6,20 @@ import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.FLOOR
 import rs.dusk.engine.model.world.map.isTile
-import rs.dusk.utility.inject
 
 /**
  * Adds collision for all blocked tiles except bridges
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class CollisionLoader {
+class CollisionReader(val collisions: Collisions) {
 
-    val collisions: Collisions by inject()
-
-    fun load(region: Region, settings: TileSettings) {
+    fun read(region: Region, settings: TileSettings) {
         val x = region.tile.x
         val y = region.tile.y
-        for (plane in 0 until 3) {
-            for (localX in 0 until 64) {
-                for (localY in 0 until 64) {
+        for (plane in settings.indices) {
+            for (localX in settings[plane].indices) {
+                for (localY in settings[plane][localX].indices) {
                     val blocked = settings.isTile(plane, localX, localY, BLOCKED_TILE)
                     val bridge = settings.isTile(1, localX, localY, BRIDGE_TILE)
                     if (blocked && !bridge) {

@@ -25,18 +25,24 @@ data class Xteas(val delegate: Map<Int, Xtea>) : Map<Int, Xtea> by delegate {
 }
 
 val xteaModule = module {
-    single(createdAtStart = true) { loadXteas(getProperty("xteaPath")) }
+    single(createdAtStart = true) {
+        loadXteas(
+            getProperty("xteaPath"),
+            getProperty("xteaJsonKey", "mapsquare"),
+            getProperty("xteaJsonValue", "key")
+        )
+    }
 }
 
 private val logger = InlineLogger()
 
-fun loadXteas(directory: String): Xteas {
+fun loadXteas(directory: String, idKey: String, valueKey: String): Xteas {
     val file = File(directory)
     val xteas = mutableMapOf<Int, IntArray>()
     val time = measureTimeMillis {
         when {
             file.isDirectory || file.extension == "txt" -> fromFiles(xteas, file)
-            file.extension == "json" -> fromJson(xteas, file)
+            file.extension == "json" -> fromJson(xteas, file, idKey, valueKey)
             else -> fromData(xteas, file)
         }
     }
@@ -53,13 +59,13 @@ private fun fromFiles(xteas: MutableMap<Int, IntArray>, file: File) {
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun fromJson(xteas: MutableMap<Int, IntArray>, file: File) {
+private fun fromJson(xteas: MutableMap<Int, IntArray>, file: File, idKey: String, valueKey: String) {
     val mapper = ObjectMapper(JsonFactory())
     val map = mapper.readValue(file, Array<Any>::class.java)
     map.forEach {
         val entry = it as? LinkedHashMap<String, Any> ?: return@forEach
-        val id = entry["mapsquare"]?.toString()?.toInt() ?: return@forEach
-        val keys = entry["key"] as? ArrayList<Int> ?: return@forEach
+        val id = entry[idKey]?.toString()?.toInt() ?: return@forEach
+        val keys = entry[valueKey] as? ArrayList<Int> ?: return@forEach
         xteas[id] = keys.toTypedArray().toIntArray()
     }
 }

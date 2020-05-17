@@ -6,12 +6,11 @@ import rs.dusk.core.io.read.BufferReader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class TileLoader {
+class TileReader {
 
-    fun load(data: ByteArray): TileSettings {
+    fun read(data: ByteArray): TileSettings {
         val buffer = BufferReader(data)
         val tileSettings = Array(4) { Array(64) { ByteArray(64) } }
-        //For every region tile
         for (plane in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
