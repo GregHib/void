@@ -1,8 +1,9 @@
 package rs.dusk.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.async
+import kotlinx.coroutines.newSingleThreadContext
 import org.koin.dsl.module
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.entity.factory.PlayerFactory
@@ -21,12 +22,12 @@ val loginQueueModule = module {
 
 class LoginQueue(
     private val factory: PlayerFactory,
-    val queue: ConcurrentLinkedDeque<Continuation<Unit>> = ConcurrentLinkedDeque<Continuation<Unit>>()
+    val queue: ConcurrentLinkedDeque<Continuation<Unit>> = ConcurrentLinkedDeque()
 ) : Deque<Continuation<Unit>> by queue {
 
     private val logger = InlineLogger()
 
-    fun add(username: String, session: Session? = null) = GlobalScope.async {
+    fun add(username: String, session: Session? = null) = scope.async {
         suspendCoroutine<Unit> {
             queue.add(it)
         }
@@ -44,4 +45,7 @@ class LoginQueue(
         }
     }
 
+    companion object {
+        private val scope = CoroutineScope(newSingleThreadContext("LoginQueue"))
+    }
 }
