@@ -1,10 +1,10 @@
-package rs.dusk.engine.map.location
+package rs.dusk.engine.model.world.map.location
 
 import rs.dusk.core.io.read.BufferReader
-import rs.dusk.engine.map.BRIDGE_TILE
-import rs.dusk.engine.map.TileSettings
-import rs.dusk.engine.map.isTile
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.TileSettings
+import rs.dusk.engine.model.world.map.isTile
 import rs.dusk.utility.inject
 
 /**

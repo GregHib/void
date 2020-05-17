@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.location
+package rs.dusk.engine.model.world.map.location
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -9,6 +9,8 @@ import rs.dusk.utility.func.plural
 import java.io.File
 import java.io.RandomAccessFile
 import kotlin.system.measureTimeMillis
+
+typealias Xtea = IntArray
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

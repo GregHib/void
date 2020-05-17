@@ -1,11 +1,11 @@
-package rs.dusk.engine.map.collision
+package rs.dusk.engine.model.world.map.collision
 
-import rs.dusk.engine.map.BLOCKED_TILE
-import rs.dusk.engine.map.BRIDGE_TILE
-import rs.dusk.engine.map.TileSettings
-import rs.dusk.engine.map.collision.CollisionFlag.FLOOR
-import rs.dusk.engine.map.isTile
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.map.BLOCKED_TILE
+import rs.dusk.engine.model.world.map.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.TileSettings
+import rs.dusk.engine.model.world.map.collision.CollisionFlag.FLOOR
+import rs.dusk.engine.model.world.map.isTile
 import rs.dusk.utility.inject
 
 /**

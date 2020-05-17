@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.location
+package rs.dusk.engine.model.world.map.location
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

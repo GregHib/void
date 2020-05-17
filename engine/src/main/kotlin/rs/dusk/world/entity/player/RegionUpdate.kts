@@ -3,8 +3,6 @@ import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.map.location.Xtea
-import rs.dusk.engine.map.location.Xteas
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Move
@@ -12,6 +10,8 @@ import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.map.location.Xtea
+import rs.dusk.engine.model.world.map.location.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject

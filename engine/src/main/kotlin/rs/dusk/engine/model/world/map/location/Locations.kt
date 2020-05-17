@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.location
+package rs.dusk.engine.model.world.map.location
 
 import com.google.common.collect.HashMultimap
 import com.google.common.collect.Multimap

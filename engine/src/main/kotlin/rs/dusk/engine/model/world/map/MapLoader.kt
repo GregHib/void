@@ -1,4 +1,4 @@
-package rs.dusk.engine.map
+package rs.dusk.engine.model.world.map
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.Deferred
@@ -6,10 +6,10 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.runBlocking
 import rs.dusk.cache.Cache
-import rs.dusk.engine.map.collision.CollisionLoader
-import rs.dusk.engine.map.location.LocationLoader
-import rs.dusk.engine.map.location.Xteas
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.map.collision.CollisionLoader
+import rs.dusk.engine.model.world.map.location.LocationLoader
+import rs.dusk.engine.model.world.map.location.Xteas
 import rs.dusk.utility.inject
 
 /**

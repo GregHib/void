@@ -1,14 +1,14 @@
-package rs.dusk.engine.map
+package rs.dusk.engine.model.world.map
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import rs.dusk.cache.cacheModule
-import rs.dusk.engine.map.collision.collisionModule
-import rs.dusk.engine.map.location.Xteas
-import rs.dusk.engine.map.location.locationModule
-import rs.dusk.engine.map.location.xteaModule
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.map.collision.collisionModule
+import rs.dusk.engine.model.world.map.location.Xteas
+import rs.dusk.engine.model.world.map.location.locationModule
+import rs.dusk.engine.model.world.map.location.xteaModule
 import rs.dusk.engine.script.KoinMock
 
 /**

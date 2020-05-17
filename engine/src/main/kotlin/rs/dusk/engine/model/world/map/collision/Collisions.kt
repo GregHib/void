@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.collision
+package rs.dusk.engine.model.world.map.collision
 
 import org.koin.dsl.module
 import rs.dusk.engine.model.world.Tile

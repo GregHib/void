@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.collision
+package rs.dusk.engine.model.world.map.collision
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

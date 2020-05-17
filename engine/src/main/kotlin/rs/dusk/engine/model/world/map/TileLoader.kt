@@ -1,4 +1,4 @@
-package rs.dusk.engine.map
+package rs.dusk.engine.model.world.map
 
 import rs.dusk.core.io.read.BufferReader
 
