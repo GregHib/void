@@ -4,34 +4,86 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.channels.actor
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.koin.dsl.module
 import rs.dusk.utility.get
 import kotlin.reflect.KClass
+
+@Suppress("USELESS_CAST")
+val eventBusModule = module {
+    single { EventBus() }
+}
 
 /**
  *
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 26, 2020
  */
-abstract class EventBus {
+@Suppress("UNCHECKED_CAST")
+class EventBus {
+
+    private val handlers = mutableMapOf<KClass<*>, EventHandler<*>>()
+
     /**
      * Attaches [handler] to the handler chain
      */
-    abstract fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>)
+    fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>) {
+        checkNotNull(clazz) { "Event must have a companion object." }
+        var last = get(clazz)
+        var next: EventHandler<T>?
+
+        while (last != null) {
+            next = last.next
+
+            if (next == null) {
+                // Append
+                last.next = handler
+                break
+            }
+
+            if (next.priority <= handler.priority) {
+                // Insert
+                last.next = handler
+                handler.next = next
+                break
+            }
+
+            last = next
+        }
+
+        if (last == null) {
+            handlers[clazz] = handler
+        }
+    }
 
     /**
      * Clears all handlers
      */
-    abstract fun clear()
+    fun clear() {
+        handlers.clear()
+    }
 
     /**
      * Returns [EventHandler] with matching [clazz]
      */
-    abstract fun <T : Event> get(clazz: KClass<T>): EventHandler<T>?
+    fun <T : Event> get(clazz: KClass<T>): EventHandler<T>? {
+        return handlers[clazz] as? EventHandler<T>
+    }
 
     /**
      * Emit's [event] to all applicable handlers so long as [event] is not [Event.cancelled]
      */
-    abstract fun <T : Event> emit(event: T, clazz: KClass<T>)
+    fun <T : Event> emit(event: T, clazz: KClass<T>) = runBlocking {
+        var handler = get(clazz)
+        while (handler != null) {
+            if (event.cancelled) {
+                break
+            }
+
+            handler.actor.send(event)
+
+            handler = handler.next
+        }
+    }
 
     /**
      * Helper function for emitting events
