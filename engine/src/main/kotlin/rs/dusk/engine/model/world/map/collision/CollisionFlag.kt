@@ -1,5 +1,7 @@
 package rs.dusk.engine.model.world.map.collision
 
+import rs.dusk.engine.model.entity.Direction
+
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
@@ -122,4 +124,30 @@ object CollisionFlag {
     const val SEA_CLEAR_SOUTH = NOT_SOUTH shl 22 or BLOCKED
     const val SEA_CLEAR_SOUTH_WEST = NORTH_AND_EAST shl 22 or BLOCKED
     const val SEA_CLEAR_WEST = NOT_WEST shl 22 or BLOCKED
+}
+
+fun Direction.block() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
+
+fun Direction.clear() = when (this) {
+    Direction.NORTH_WEST -> CollisionFlag.LAND_CLEAR_NORTH_WEST
+    Direction.NORTH -> CollisionFlag.LAND_CLEAR_NORTH
+    Direction.NORTH_EAST -> CollisionFlag.LAND_CLEAR_NORTH_EAST
+    Direction.EAST -> CollisionFlag.LAND_CLEAR_EAST
+    Direction.SOUTH_EAST -> CollisionFlag.LAND_CLEAR_SOUTH_EAST
+    Direction.SOUTH -> CollisionFlag.LAND_CLEAR_SOUTH
+    Direction.SOUTH_WEST -> CollisionFlag.LAND_CLEAR_SOUTH_WEST
+    Direction.WEST -> CollisionFlag.LAND_CLEAR_WEST
+    Direction.NONE -> 0
+}
+
+fun Direction.flag() = when (this) {
+    Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
+    Direction.NORTH -> CollisionFlag.NORTH
+    Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
+    Direction.EAST -> CollisionFlag.EAST
+    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
+    Direction.SOUTH -> CollisionFlag.SOUTH
+    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
+    Direction.WEST -> CollisionFlag.WEST
+    Direction.NONE -> 0
 }
