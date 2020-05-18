@@ -13,7 +13,7 @@ import rs.dusk.engine.model.world.Tile
  */
 internal class CollisionsTest {
 
-    lateinit var data: MutableMap<Tile, Int>
+    lateinit var data: MutableMap<Int, Int>
     lateinit var collisions: Collisions
 
     @BeforeEach
@@ -26,12 +26,12 @@ internal class CollisionsTest {
     fun `Append flag`() {
         // Given
         val flag = 0x8
-        data[Tile(1, 2, 3)] = 0x4
+        data[Tile.getId(1, 2, 3)] = 0x4
         // When
         collisions.add(1, 2, 3, flag)
         // Then
         verify {
-            data[Tile(1, 2, 3)] = 0xC
+            data[Tile.getId(1, 2, 3)] = 0xC
         }
     }
 
@@ -43,44 +43,44 @@ internal class CollisionsTest {
         collisions.add(1, 2, 3, flag)
         // Then
         verify {
-            data[Tile(1, 2, 3)] = flag
+            data[Tile.getId(1, 2, 3)] = flag
         }
     }
 
     @Test
     fun `Set flag`() {
         // Given
-        data[Tile(1, 2, 3)] = 0x4
+        data[Tile.getId(1, 2, 3)] = 0x4
         val flag = 0x8
         // When
         collisions[1, 2, 3] = flag
         // Then
         verify {
-            data[Tile(1, 2, 3)] = flag
+            data[Tile.getId(1, 2, 3)] = flag
         }
     }
 
     @Test
     fun `Remove flag`() {
         // Given
-        data[Tile(1, 2, 3)] = 0x4
+        data[Tile.getId(1, 2, 3)] = 0x4
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
         verify {
-            data[Tile(1, 2, 3)] = 0
+            data[Tile.getId(1, 2, 3)] = 0
         }
     }
 
     @Test
     fun `Reduce flag`() {
         // Given
-        data[Tile(1, 2, 3)] = 0xC
+        data[Tile.getId(1, 2, 3)] = 0xC
         // When
         collisions.remove(1, 2, 3, 0x4)
         // Then
         verify {
-            data[Tile(1, 2, 3)] = 0x8
+            data[Tile.getId(1, 2, 3)] = 0x8
         }
     }
 
@@ -95,7 +95,7 @@ internal class CollisionsTest {
     @Test
     fun `Flag collides`() {
         // Given
-        data[Tile(1, 2, 3)] = 0x4
+        data[Tile.getId(1, 2, 3)] = 0x4
         // When
         val result = collisions.collides(1, 2, 3, 0x4)
         // Then
@@ -105,7 +105,7 @@ internal class CollisionsTest {
     @Test
     fun `Flag doesn't collide`() {
         // Given
-        data[Tile(1, 2, 3)] = 0x4
+        data[Tile.getId(1, 2, 3)] = 0x4
         // When
         val result = collisions.collides(1, 2, 3, 0x8)
         // Then
