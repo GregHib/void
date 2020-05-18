@@ -35,5 +35,5 @@ fun Collisions.remove(x: Int, y: Int, plane: Int, flag: Int) {
 operator fun Collisions.get(x: Int, y: Int, plane: Int) =
     this[Tile.getId(x, y, plane)] ?: 0
 
-fun Collisions.collides(x: Int, y: Int, plane: Int, flag: Int) =
+fun Collisions.check(x: Int, y: Int, plane: Int, flag: Int) =
     this[x, y, plane] and flag != 0

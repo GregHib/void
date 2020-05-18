@@ -97,7 +97,7 @@ internal class CollisionsTest {
         // Given
         data[Tile.getId(1, 2, 3)] = 0x4
         // When
-        val result = collisions.collides(1, 2, 3, 0x4)
+        val result = collisions.check(1, 2, 3, 0x4)
         // Then
         assertTrue(result)
     }
@@ -107,7 +107,7 @@ internal class CollisionsTest {
         // Given
         data[Tile.getId(1, 2, 3)] = 0x4
         // When
-        val result = collisions.collides(1, 2, 3, 0x8)
+        val result = collisions.check(1, 2, 3, 0x8)
         // Then
         assertFalse(result)
     }
