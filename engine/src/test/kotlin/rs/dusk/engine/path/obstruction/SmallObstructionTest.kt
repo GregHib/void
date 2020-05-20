@@ -38,7 +38,7 @@ internal class SmallObstructionTest {
         val tile = start.add(direction.delta)
         every { collision.check(tile.x, tile.y, tile.plane, direction.inverse().block()) } returns true
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
@@ -50,7 +50,7 @@ internal class SmallObstructionTest {
         val direction = Direction.NORTH
         every { collision.check(1, 2, 0, any()) } returns false
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
     }
@@ -62,7 +62,7 @@ internal class SmallObstructionTest {
         val direction = Direction.NORTH_EAST
         every { collision.check(2, 2, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
@@ -74,7 +74,7 @@ internal class SmallObstructionTest {
         val direction = Direction.NORTH_EAST
         every { collision.check(2, 1, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
@@ -86,7 +86,7 @@ internal class SmallObstructionTest {
         val direction = Direction.SOUTH_WEST
         every { collision.check(1, 0, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
@@ -98,7 +98,7 @@ internal class SmallObstructionTest {
         val direction = Direction.SOUTH_WEST
         every { collision.check(any(), any(), any(), any()) } returns false
         // When
-        val result = obstruction.obstructed(start, direction)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
     }

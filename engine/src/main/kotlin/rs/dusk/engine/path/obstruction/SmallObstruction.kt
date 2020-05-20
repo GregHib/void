@@ -1,7 +1,6 @@
 package rs.dusk.engine.path.obstruction
 
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
@@ -16,11 +15,11 @@ import rs.dusk.engine.path.ObstructionStrategy
  */
 class SmallObstruction(private val collisions: Collisions) : ObstructionStrategy {
 
-    override fun obstructed(tile: Tile, direction: Direction): Boolean {
+    override fun obstructed(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         if (collisions.check(
-                tile.x + direction.delta.x,
-                tile.y + direction.delta.y,
-                tile.plane,
+                x + direction.delta.x,
+                y + direction.delta.y,
+                plane,
                 direction.inverse().block()
             )
         ) {
@@ -30,11 +29,11 @@ class SmallObstruction(private val collisions: Collisions) : ObstructionStrategy
             return false
         }
         // Horizontal
-        if (collisions.check(tile.x + direction.delta.x, tile.y, tile.plane, direction.horizontal().block())) {
+        if (collisions.check(x + direction.delta.x, y, plane, direction.horizontal().block())) {
             return true
         }
         // Vertical
-        if (collisions.check(tile.x, tile.y + direction.delta.y, tile.plane, direction.vertical().block())) {
+        if (collisions.check(x, y + direction.delta.y, plane, direction.vertical().block())) {
             return true
         }
         return false

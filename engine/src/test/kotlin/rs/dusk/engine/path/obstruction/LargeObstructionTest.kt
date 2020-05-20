@@ -60,7 +60,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x, start.y + 1, start.plane, LAND_WALL_SOUTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -78,7 +78,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -96,7 +96,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 2, start.y + 1, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -115,7 +115,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 3, start.y + 3, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -135,7 +135,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + offset, start.y + 3, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -155,7 +155,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 3, start.y + offset, start.plane, LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -173,7 +173,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 1, start.y, start.plane, LAND_WALL_NORTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -191,7 +191,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -209,7 +209,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x + 1, start.y + 2, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -229,7 +229,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x - 1, start.y - 1, start.plane, LAND_WALL_NORTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_WEST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }
@@ -249,7 +249,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x, start.y - 1, start.plane, LAND_CLEAR_NORTH) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_WEST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }
@@ -270,7 +270,7 @@ internal class LargeObstructionTest : KoinMock() {
         obstruction = spyk(LargeObstruction(size))
         every { collision.check(start.x - 1, start.y + offset, start.plane, LAND_CLEAR_EAST) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_WEST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }

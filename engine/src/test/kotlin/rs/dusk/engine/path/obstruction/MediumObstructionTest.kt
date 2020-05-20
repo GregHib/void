@@ -41,7 +41,7 @@ internal class MediumObstructionTest {
         val start = Tile(1, 1)
         every { collision.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_WALL_SOUTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -64,7 +64,7 @@ internal class MediumObstructionTest {
             )
         } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.NORTH)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -90,7 +90,7 @@ internal class MediumObstructionTest {
             )
         } returns true
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -109,7 +109,7 @@ internal class MediumObstructionTest {
         }
         every { collision.check(start.x + 1, start.y - 1, start.plane, CollisionFlag.LAND_CLEAR_NORTH) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -128,7 +128,7 @@ internal class MediumObstructionTest {
         }
         every { collision.check(start.x + 2, start.y, start.plane, CollisionFlag.LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start, Direction.SOUTH_EAST)
+        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }

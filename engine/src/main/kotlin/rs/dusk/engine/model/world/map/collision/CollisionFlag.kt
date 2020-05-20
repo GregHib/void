@@ -128,6 +128,8 @@ object CollisionFlag {
 
 fun Direction.block() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
 
+fun Direction.wall() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
+
 fun Direction.clear() = when (this) {
     Direction.NORTH_WEST -> CollisionFlag.LAND_CLEAR_NORTH_WEST
     Direction.NORTH -> CollisionFlag.LAND_CLEAR_NORTH
