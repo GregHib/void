@@ -2,7 +2,7 @@ package rs.dusk.engine.path.target
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.flag
@@ -16,7 +16,7 @@ import rs.dusk.engine.path.TargetStrategy
 class DecorationTargetStrategy(private val collision: Collisions) : TargetStrategy {
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size, target: Target): Boolean {
-        if (target !is IObject) {
+        if (target !is Location) {
             return false
         }
         val targetX = target.tile.x

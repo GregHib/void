@@ -10,7 +10,7 @@ import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.factory.ObjectFactory
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.collisionModule
@@ -52,7 +52,7 @@ internal class MapReaderTest : KoinMock() {
 
         loader.load(region)
         val objects: Objects = get()
-        val map = mutableMapOf<Int, MutableList<IObject>>()
+        val map = mutableMapOf<Int, MutableList<Location>>()
         objects.delegate.keys.forEach { tile ->
             val values = objects[tile]
             values?.forEach { loc ->

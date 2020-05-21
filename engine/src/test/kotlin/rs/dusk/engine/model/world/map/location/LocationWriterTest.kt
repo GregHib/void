@@ -2,7 +2,7 @@ package rs.dusk.engine.model.world.map.location
 
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -18,8 +18,8 @@ internal class LocationWriterTest {
         // Given
         val map = sortedMapOf(
             12345 to listOf(
-                IObject(12345, Tile(0, 0), Size(0, 0), 12, 2),
-                IObject(12345, Tile(63, 63, 3), Size(0, 0), 4, 1)
+                Location(12345, Tile(0, 0), Size(0, 0), 12, 2),
+                Location(12345, Tile(63, 63, 3), Size(0, 0), 4, 1)
             )
         )
         // When
@@ -33,8 +33,8 @@ internal class LocationWriterTest {
         // Given
         val tile = Tile(54, 45)
         val map = sortedMapOf(
-            12345 to listOf(IObject(12345, tile, Size(0, 0), 12, 2)),
-            42000 to listOf(IObject(42000, tile, Size(0, 0), 0, 0))
+            12345 to listOf(Location(12345, tile, Size(0, 0), 12, 2)),
+            42000 to listOf(Location(42000, tile, Size(0, 0), 0, 0))
         )
         // When
         val result = writer.write(map)

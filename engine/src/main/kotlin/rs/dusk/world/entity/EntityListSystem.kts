@@ -11,7 +11,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.entity.index.update.visual.player.temporaryMoveType
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.item.FloorItems
-import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.entity.proj.Projectile
 import rs.dusk.engine.model.entity.proj.Projectiles
@@ -33,7 +33,7 @@ Registered priority 9 then {
             entity.face()
         }
         is NPC -> npcs.add(entity)
-        is IObject -> objects[entity.tile] = entity
+        is Location -> objects[entity.tile] = entity
         is FloorItem -> items[entity.tile] = entity
         is Projectile -> projectiles[entity.tile] = entity
     }

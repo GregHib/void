@@ -13,7 +13,7 @@ import rs.dusk.utility.get
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class IObject(
+data class Location(
     override val id: Int,
     override var tile: Tile,
     override val size: Size,

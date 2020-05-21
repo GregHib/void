@@ -2,7 +2,7 @@ package rs.dusk.engine.path.target
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.flag
@@ -20,7 +20,7 @@ class RectangleTargetStrategy(private val collision: Collisions) : TargetStrateg
         val srcEndY = currentY + size.height
         val destEndX = target.tile.x + target.size.width
         val destEndY = target.tile.y + target.size.height
-        val accessBlockFlag = (target as? IObject)?.def?.blockFlag ?: 0
+        val accessBlockFlag = (target as? Location)?.def?.blockFlag ?: 0
         if (currentX == destEndX && accessBlockFlag and EAST == 0) {
             val minY = if (target.tile.y < currentY) currentY else target.tile.y
             val maxY = if (destEndY <= srcEndY) destEndY else srcEndY

@@ -1,11 +1,16 @@
 package rs.dusk.engine.model.world.map.location
 
+import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.engine.model.entity.factory.ObjectFactory
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.isTile
+
+val locationModule = module {
+    single { LocationReader(get()) }
+}
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
