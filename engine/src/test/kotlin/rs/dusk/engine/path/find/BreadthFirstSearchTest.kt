@@ -25,17 +25,17 @@ internal class BreadthFirstSearchTest {
 
         val movement = Movement()
 
-        val collision: Collisions = mockk(relaxed = true)
+        val collisions: Collisions = mockk(relaxed = true)
 
-        val strategy = RectangleTargetStrategy(collision, Tile(4, 8), Size(1, 1))
-        val obstruction = SmallObstruction(collision)
+        val strategy = RectangleTargetStrategy(collisions, Tile(4, 8), Size(1, 1))
+        val obstruction = SmallObstruction(collisions)
 
         // When
         val result = finder.find(start, size, movement, strategy, obstruction)
         // Then
         println("Result: $result")
-        for (i in result - 1 downTo 0) {
-            println("Step ${finder.lastPathBufferX[i]} ${finder.lastPathBufferY[i]}")
-        }
+//        for (i in result - 1 downTo 0) {
+//            println("Step ${finder.lastPathBufferX[i]} ${finder.lastPathBufferY[i]}")
+//        }
     }
 }

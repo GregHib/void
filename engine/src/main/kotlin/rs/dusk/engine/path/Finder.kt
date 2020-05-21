@@ -15,5 +15,5 @@ interface Finder {
         movement: Movement,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
-    ): Int
+    ): PathResult
 }

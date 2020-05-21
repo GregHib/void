@@ -13,7 +13,7 @@ import rs.dusk.engine.path.TargetStrategy
  * @since May 18, 2020
  */
 data class RectangleTargetStrategy(
-    private val collision: Collisions,
+    private val collisions: Collisions,
     override val tile: Tile,
     override val size: Size = Size.TILE,
     val blockFlag: Int = 0
@@ -28,7 +28,7 @@ data class RectangleTargetStrategy(
             val minY = if (tile.y < currentY) currentY else tile.y
             val maxY = if (destEndY <= srcEndY) destEndY else srcEndY
             for (y in minY until maxY) {
-                if (!collision.check(destEndX - 1, y, plane, Direction.EAST.flag())) {
+                if (!collisions.check(destEndX - 1, y, plane, Direction.EAST.flag())) {
                     return true
                 }
             }
@@ -36,7 +36,7 @@ data class RectangleTargetStrategy(
             val minY = if (currentY <= tile.y) tile.y else currentY
             val maxY = if (destEndY <= srcEndY) destEndY else srcEndY
             for (y in minY until maxY) {
-                if (!collision.check(tile.x, y, plane, Direction.WEST.flag())) {
+                if (!collisions.check(tile.x, y, plane, Direction.WEST.flag())) {
                     return true
                 }
             }
@@ -44,7 +44,7 @@ data class RectangleTargetStrategy(
             val minX = if (currentX <= tile.x) tile.x else currentX
             val maxX = if (destEndX <= srcEndX) destEndX else srcEndX
             for (x in minX until maxX) {
-                if (!collision.check(x, destEndY - 1, plane, Direction.NORTH.flag())) {
+                if (!collisions.check(x, destEndY - 1, plane, Direction.NORTH.flag())) {
                     return true
                 }
             }
@@ -52,7 +52,7 @@ data class RectangleTargetStrategy(
             val minX = if (currentX > tile.x) currentX else tile.x
             val maxX = if (srcEndX >= destEndX) destEndX else srcEndX
             for (x in minX until maxX) {
-                if (!collision.check(x, tile.y, plane, Direction.SOUTH.flag())) {
+                if (!collisions.check(x, tile.y, plane, Direction.SOUTH.flag())) {
                     return true
                 }
             }

@@ -20,14 +20,14 @@ import rs.dusk.engine.model.world.map.collision.clear
  */
 internal class MediumObstructionTest {
 
-    lateinit var collision: Collisions
+    lateinit var collisions: Collisions
     lateinit var obstruction: MediumObstruction
 
     @BeforeEach
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
-        collision = mockk(relaxed = true)
-        obstruction = spyk(MediumObstruction(collision))
+        collisions = mockk(relaxed = true)
+        obstruction = spyk(MediumObstruction(collisions))
     }
 
     /**
@@ -39,7 +39,7 @@ internal class MediumObstructionTest {
     fun `North obstructed at the start`() {
         // Given
         val start = Tile(1, 1)
-        every { collision.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_WALL_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_WALL_SOUTH_EAST) } returns true
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
         // Then
@@ -56,7 +56,7 @@ internal class MediumObstructionTest {
         // Given
         val start = Tile(1, 1)
         every {
-            collision.check(
+            collisions.check(
                 start.x + 1,
                 start.y + 2,
                 start.plane,
@@ -79,10 +79,10 @@ internal class MediumObstructionTest {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
-            every { collision.check(any(), any(), any(), it.clear()) } returns true
+            every { collisions.check(any(), any(), any(), it.clear()) } returns true
         }
         every {
-            collision.check(
+            collisions.check(
                 start.x + 2,
                 start.y - 1,
                 start.plane,
@@ -105,9 +105,9 @@ internal class MediumObstructionTest {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
-            every { collision.check(any(), any(), any(), it.clear()) } returns true
+            every { collisions.check(any(), any(), any(), it.clear()) } returns true
         }
-        every { collision.check(start.x + 1, start.y - 1, start.plane, CollisionFlag.LAND_CLEAR_NORTH) } returns false
+        every { collisions.check(start.x + 1, start.y - 1, start.plane, CollisionFlag.LAND_CLEAR_NORTH) } returns false
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
@@ -124,9 +124,9 @@ internal class MediumObstructionTest {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
-            every { collision.check(any(), any(), any(), it.clear()) } returns true
+            every { collisions.check(any(), any(), any(), it.clear()) } returns true
         }
-        every { collision.check(start.x + 2, start.y, start.plane, CollisionFlag.LAND_CLEAR_WEST) } returns false
+        every { collisions.check(start.x + 2, start.y, start.plane, CollisionFlag.LAND_CLEAR_WEST) } returns false
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then

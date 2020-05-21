@@ -20,14 +20,14 @@ import rs.dusk.engine.model.world.map.collision.check
  */
 internal class SmallObstructionTest {
 
-    lateinit var collision: Collisions
+    lateinit var collisions: Collisions
     lateinit var obstruction: SmallObstruction
 
     @BeforeEach
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
-        collision = mockk(relaxed = true)
-        obstruction = spyk(SmallObstruction(collision))
+        collisions = mockk(relaxed = true)
+        obstruction = spyk(SmallObstruction(collisions))
     }
 
     @Test
@@ -36,7 +36,7 @@ internal class SmallObstructionTest {
         val start = Tile(1, 1)
         val direction = Direction.NORTH
         val tile = start.add(direction.delta)
-        every { collision.check(tile.x, tile.y, tile.plane, direction.inverse().block()) } returns true
+        every { collisions.check(tile.x, tile.y, tile.plane, direction.inverse().block()) } returns true
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
@@ -48,7 +48,7 @@ internal class SmallObstructionTest {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH
-        every { collision.check(1, 2, 0, any()) } returns false
+        every { collisions.check(1, 2, 0, any()) } returns false
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
@@ -60,7 +60,7 @@ internal class SmallObstructionTest {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH_EAST
-        every { collision.check(2, 2, 0, any()) } returns true
+        every { collisions.check(2, 2, 0, any()) } returns true
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
@@ -72,7 +72,7 @@ internal class SmallObstructionTest {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH_EAST
-        every { collision.check(2, 1, 0, any()) } returns true
+        every { collisions.check(2, 1, 0, any()) } returns true
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
@@ -84,7 +84,7 @@ internal class SmallObstructionTest {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.SOUTH_WEST
-        every { collision.check(1, 0, 0, any()) } returns true
+        every { collisions.check(1, 0, 0, any()) } returns true
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then
@@ -96,7 +96,7 @@ internal class SmallObstructionTest {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.SOUTH_WEST
-        every { collision.check(any(), any(), any(), any()) } returns false
+        every { collisions.check(any(), any(), any(), any()) } returns false
         // When
         val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
         // Then

@@ -6,6 +6,7 @@ import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.Finder
 import rs.dusk.engine.path.ObstructionStrategy
+import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.func.nearby
 
@@ -24,6 +25,8 @@ class BreadthFirstSearch : Finder {
 
     val lastPathBufferX = IntArray(QUEUE_SIZE)
     val lastPathBufferY = IntArray(QUEUE_SIZE)
+    val directions = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
+    val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
 
     override fun find(
         tile: Tile,
@@ -31,7 +34,7 @@ class BreadthFirstSearch : Finder {
         movement: Movement,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
-    ): Int {
+    ): PathResult {
         isPartial = false
         for (x in 0 until GRAPH_SIZE) {
             for (y in 0 until GRAPH_SIZE) {
@@ -43,14 +46,18 @@ class BreadthFirstSearch : Finder {
         graphBaseX = tile.x - GRAPH_SIZE / 2
         graphBaseY = tile.y - GRAPH_SIZE / 2
 
-        val found = calculate(tile, size, strategy, obstruction)
+        var result = calculate(tile, size, strategy, obstruction)
 
-        if (!found && !calculatePartialPath(strategy)) {
-            return -1// No path found
+        if (result == PathResult.Failure) {
+            result = calculatePartialPath(strategy)
+        }
+
+        if (result == PathResult.Failure) {
+            return result// No path found
         }
 
         if (exitX == tile.x && exitY == tile.y) {
-            return 0// No movement
+            return PathResult.Success// No movement
         }
 
         return backtrace(tile)
@@ -61,7 +68,7 @@ class BreadthFirstSearch : Finder {
         size: Size,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
-    ): Boolean {
+    ): PathResult {
         // Cache fields for jit compiler performance boost
         val directions = directions
         val distances = distances
@@ -99,7 +106,7 @@ class BreadthFirstSearch : Finder {
             if (strategy.reached(currentX, currentY, position.plane, size)) {
                 exitX = currentX
                 exitY = currentY
-                return true
+                return PathResult.Success
             }
 
             // Check for collisions
@@ -140,13 +147,13 @@ class BreadthFirstSearch : Finder {
 
         exitX = currentX
         exitY = currentY
-        return false
+        return PathResult.Failure
     }
 
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(target: TargetStrategy): Boolean {
+    fun calculatePartialPath(target: TargetStrategy): PathResult {
         isPartial = true
         var lowestCost = Integer.MAX_VALUE
         var lowestDistance = Integer.MAX_VALUE
@@ -191,18 +198,18 @@ class BreadthFirstSearch : Finder {
         }
 
         if (lowestCost == Integer.MAX_VALUE || lowestDistance == Integer.MAX_VALUE) {
-            return false// No partial path found
+            return PathResult.Failure// No partial path found
         }
 
         exitX = endX
         exitY = endY
-        return true
+        return PathResult.Partial
     }
 
     /**
-     *  Traces the path back to find how many steps were taken to reach the target
+     *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(position: Tile): Int {
+    fun backtrace(position: Tile): PathResult {
         var steps = 0
         var traceX = exitX
         var traceY = exitY
@@ -211,6 +218,7 @@ class BreadthFirstSearch : Finder {
         val bufferX = lastPathBufferX
         val bufferY = lastPathBufferY
         // Queue destination position and start tracing from it
+        // TODO replace pathBufferX/Y with adding to the source's queue
         bufferX[steps] = traceX
         bufferY[steps++] = traceY
         while (traceX != position.x || traceY != position.y) {
@@ -235,7 +243,10 @@ class BreadthFirstSearch : Finder {
 
             direction = directions[traceX - graphBaseX][traceY - graphBaseY]
         }
-        return steps
+//        for (i in steps - 1 downTo 0) {
+//            println("Step ${lastPathBufferX[i]} ${lastPathBufferY[i]}")
+//        }
+        return PathResult.Success
     }
 
     private fun getDirectionFlag(dir: Direction): Int {
@@ -255,8 +266,6 @@ class BreadthFirstSearch : Finder {
         private const val QUEUE_SIZE = GRAPH_SIZE * GRAPH_SIZE / 4
         private const val PARTIAL_MAX_DISTANCE = QUEUE_SIZE
         private const val PARTIAL_PATH_RANGE = 10
-        val directions = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
-        val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
 
         private const val DIR_SOUTH = 0x1
         private const val DIR_WEST = 0x2

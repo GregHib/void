@@ -14,7 +14,7 @@ import rs.dusk.engine.path.TargetStrategy
  * @since May 18, 2020
  */
 data class WallTargetStrategy(
-    private val collision: Collisions,
+    private val collisions: Collisions,
     override val tile: Tile,
     override val size: Size = Size.TILE,
     val rotation: Int,
@@ -37,7 +37,7 @@ data class WallTargetStrategy(
                     return true
                 }
                 direction = Direction.cardinal[rotation and 0x3]
-                if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collision.check(
+                if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collisions.check(
                         currentX,
                         currentY,
                         plane,
@@ -47,7 +47,7 @@ data class WallTargetStrategy(
                     return true
                 }
                 val inverse = direction.inverse()
-                if (currentX == tile.x - inverse.delta.x && currentY == tile.y - inverse.delta.y && !collision.check(
+                if (currentX == tile.x - inverse.delta.x && currentY == tile.y - inverse.delta.y && !collisions.check(
                         currentX,
                         currentY,
                         plane,
@@ -67,7 +67,7 @@ data class WallTargetStrategy(
                 if (currentX == tile.x && currentY == tile.y + vertical.delta.y) {
                     return true
                 }
-                if (currentX == tile.x - horizontal.delta.x && currentY == tile.y && !collision.check(
+                if (currentX == tile.x - horizontal.delta.x && currentY == tile.y && !collisions.check(
                         currentX,
                         currentY,
                         plane,
@@ -76,7 +76,7 @@ data class WallTargetStrategy(
                 ) {
                     return true
                 }
-                if (currentX == tile.x && currentY == tile.y - vertical.delta.y && !collision.check(
+                if (currentX == tile.x && currentY == tile.y - vertical.delta.y && !collisions.check(
                         currentX,
                         currentY,
                         plane,
@@ -88,7 +88,7 @@ data class WallTargetStrategy(
             }
             if (type == 9) {
                 Direction.ordinal.forEach { direction ->
-                    if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collision.check(
+                    if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collisions.check(
                             currentX,
                             currentY,
                             plane,
@@ -108,7 +108,7 @@ data class WallTargetStrategy(
                     if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY) {
                         return true
                     }
-                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             currentY,
                             plane,
@@ -117,7 +117,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             sizeY,
                             plane,
@@ -130,7 +130,7 @@ data class WallTargetStrategy(
                     if (currentY == tile.y + 1 && tile.x >= currentX && tile.x <= sizeX) {
                         return true
                     }
-                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collisions.check(
                             sizeX,
                             tile.y,
                             plane,
@@ -139,7 +139,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentX == tile.x + 1 && tile.y >= currentY && tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && tile.y >= currentY && tile.y <= sizeY && !collisions.check(
                             currentX,
                             tile.y,
                             plane,
@@ -152,7 +152,7 @@ data class WallTargetStrategy(
                     if (currentX == tile.x + 1 && tile.y >= currentY && tile.y <= sizeY) {
                         return true
                     }
-                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             currentY,
                             plane,
@@ -161,7 +161,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             sizeY,
                             plane,
@@ -174,7 +174,7 @@ data class WallTargetStrategy(
                     if (currentY == tile.y - sizeXY && currentX <= tile.x && sizeX >= tile.x) {
                         return true
                     }
-                    if (currentX == tile.x - sizeXY && tile.y >= currentY && sizeY >= tile.y && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && sizeY >= tile.y && !collisions.check(
                             sizeX,
                             tile.y,
                             plane,
@@ -183,7 +183,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collisions.check(
                             currentX,
                             tile.y,
                             plane,
@@ -202,7 +202,7 @@ data class WallTargetStrategy(
                     if (currentY == tile.y + 1 && tile.x in currentX..sizeX) {
                         return true
                     }
-                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collisions.check(
                             currentX,
                             tile.y,
                             plane,
@@ -211,7 +211,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (tile.y - sizeXY == currentY && tile.x in currentX..sizeX && !collision.check(
+                    if (tile.y - sizeXY == currentY && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             sizeY,
                             plane,
@@ -221,7 +221,7 @@ data class WallTargetStrategy(
                         return true
                     }
                 } else if (rotation == 1) {
-                    if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collision.check(
+                    if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collisions.check(
                             sizeX,
                             tile.y,
                             plane,
@@ -236,7 +236,7 @@ data class WallTargetStrategy(
                     if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             sizeY,
                             plane,
@@ -246,7 +246,7 @@ data class WallTargetStrategy(
                         return true
                     }
                 } else if (rotation == 2) {
-                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collisions.check(
                             sizeX,
                             tile.y,
                             plane,
@@ -255,7 +255,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             currentY,
                             plane,
@@ -274,7 +274,7 @@ data class WallTargetStrategy(
                     if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collisions.check(
                             tile.x,
                             currentY,
                             plane,
@@ -283,7 +283,7 @@ data class WallTargetStrategy(
                     ) {
                         return true
                     }
-                    if (currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collisions.check(
                             currentX,
                             tile.y,
                             plane,
@@ -298,7 +298,7 @@ data class WallTargetStrategy(
                 }
             }
             if (type == 9) {
-                if (tile.x in currentX..sizeX && currentY == tile.y + 1 && !collision.check(
+                if (tile.x in currentX..sizeX && currentY == tile.y + 1 && !collisions.check(
                         tile.x,
                         currentY,
                         plane,
@@ -307,7 +307,7 @@ data class WallTargetStrategy(
                 ) {
                     return true
                 }
-                if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collision.check(
+                if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collisions.check(
                         tile.x,
                         sizeY,
                         plane,
@@ -316,7 +316,7 @@ data class WallTargetStrategy(
                 ) {
                     return true
                 }
-                return if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collision.check(
+                return if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collisions.check(
                         sizeX,
                         tile.y,
                         plane,
@@ -324,7 +324,7 @@ data class WallTargetStrategy(
                     )
                 ) {
                     true
-                } else currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
+                } else currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collisions.check(
                     currentX,
                     tile.y,
                     plane,
