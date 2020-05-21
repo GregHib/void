@@ -2,41 +2,41 @@ package rs.dusk.engine.path.target
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.flag
-import rs.dusk.engine.path.Target
 import rs.dusk.engine.path.TargetStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class DecorationTargetStrategy(private val collision: Collisions) : TargetStrategy {
+data class DecorationTargetStrategy(
+    private val collision: Collisions,
+    override val tile: Tile,
+    override val size: Size,
+    val rotation: Int,
+    val type: Int
+) : TargetStrategy {
 
-    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size, target: Target): Boolean {
-        if (target !is Location) {
-            return false
-        }
-        val targetX = target.tile.x
-        val targetY = target.tile.y
+    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val sizeXY = size.width
-        var rotation = target.rotation
+        var rotation = rotation
         if (sizeXY == 1) {
-            if (targetX == currentX && currentY == targetY) {
+            if (tile.x == currentX && currentY == tile.y) {
                 return true
             }
-        } else if (currentX <= targetX && sizeXY + currentX - 1 >= targetX && targetY <= sizeXY + targetY - 1) {
+        } else if (currentX <= tile.x && sizeXY + currentX - 1 >= tile.x && tile.y <= sizeXY + tile.y - 1) {
             return true
         }
         if (sizeXY == 1) {
-            if (target.type == 6 || target.type == 7) {
-                if (target.type == 7) {
+            if (type == 6 || type == 7) {
+                if (type == 7) {
                     rotation = rotation + 2 and 0x3
                 }
                 if (rotation == 0) {
-                    if (currentX == targetX + 1 && currentY == targetY && !collision.check(
+                    if (currentX == tile.x + 1 && currentY == tile.y && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -45,7 +45,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     ) {
                         return true
                     }
-                    if (targetX == currentX && currentY == targetY - 1 && !collision.check(
+                    if (tile.x == currentX && currentY == tile.y - 1 && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -55,7 +55,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 1) {
-                    if (currentX == targetX - 1 && currentY == targetY && !collision.check(
+                    if (currentX == tile.x - 1 && currentY == tile.y && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -64,7 +64,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     ) {
                         return true
                     }
-                    if (targetX == currentX && currentY == targetY - 1 && !collision.check(
+                    if (tile.x == currentX && currentY == tile.y - 1 && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -74,7 +74,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 2) {
-                    if (currentX == targetX - 1 && targetY == currentY && !collision.check(
+                    if (currentX == tile.x - 1 && tile.y == currentY && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -83,7 +83,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     ) {
                         return true
                     }
-                    if (targetX == currentX && currentY == targetY + 1 && !collision.check(
+                    if (tile.x == currentX && currentY == tile.y + 1 && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -93,7 +93,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 3) {
-                    if (targetX + 1 == currentX && currentY == targetY && !collision.check(
+                    if (tile.x + 1 == currentX && currentY == tile.y && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -102,7 +102,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     ) {
                         return true
                     }
-                    if (targetX == currentX && currentY == targetY + 1 && !collision.check(
+                    if (tile.x == currentX && currentY == tile.y + 1 && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -113,8 +113,8 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     }
                 }
             }
-            if (target.type == 8) {
-                if (targetX == currentX && currentY == targetY + 1 && !collision.check(
+            if (type == 8) {
+                if (tile.x == currentX && currentY == tile.y + 1 && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -123,7 +123,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                 ) {
                     return true
                 }
-                if (currentX == targetX && targetY - 1 == currentY && !collision.check(
+                if (currentX == tile.x && tile.y - 1 == currentY && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -132,7 +132,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                 ) {
                     return true
                 }
-                return if (currentX == targetX - 1 && targetY == currentY && !collision.check(
+                return if (currentX == tile.x - 1 && tile.y == currentY && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -140,7 +140,7 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     )
                 ) {
                     true
-                } else targetX + 1 == currentX && targetY == currentY && !collision.check(
+                } else tile.x + 1 == currentX && tile.y == currentY && !collision.check(
                     currentX,
                     currentY,
                     plane,
@@ -150,22 +150,22 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
         } else {
             val sizeX = sizeXY + currentX - 1
             val sizeY = currentY + sizeXY - 1
-            if (target.type == 6 || target.type == 7) {
-                if (target.type == 7) {
+            if (type == 6 || type == 7) {
+                if (type == 7) {
                     rotation = rotation + 2 and 0x3
                 }
                 if (rotation == 0) {
-                    if (currentX == targetX + 1 && currentY <= targetY && targetY <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collision.check(
                             currentX,
-                            targetY,
+                            tile.y,
                             plane,
                             Direction.WEST.flag()
                         )
                     ) {
                         return true
                     }
-                    if (targetX in currentX..sizeX && currentY == targetY - sizeXY && !collision.check(
-                            targetX,
+                    if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.flag()
@@ -174,17 +174,17 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 1) {
-                    if (currentX == targetX - sizeXY && targetY >= currentY && targetY <= sizeY && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collision.check(
                             sizeX,
-                            targetY,
+                            tile.y,
                             plane,
                             Direction.EAST.flag()
                         )
                     ) {
                         return true
                     }
-                    if (targetX in currentX..sizeX && currentY == targetY - sizeXY && !collision.check(
-                            targetX,
+                    if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.flag()
@@ -193,17 +193,17 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 2) {
-                    if (targetX - sizeXY == currentX && targetY >= currentY && targetY <= sizeY && !collision.check(
+                    if (tile.x - sizeXY == currentX && tile.y >= currentY && tile.y <= sizeY && !collision.check(
                             sizeX,
-                            targetY,
+                            tile.y,
                             plane,
                             Direction.EAST.flag()
                         )
                     ) {
                         return true
                     }
-                    if (targetX in currentX..sizeX && targetY + 1 == currentY && !collision.check(
-                            targetX,
+                    if (tile.x in currentX..sizeX && tile.y + 1 == currentY && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.flag()
@@ -212,17 +212,17 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                         return true
                     }
                 } else if (rotation == 3) {
-                    if (currentX == targetX + 1 && currentY <= targetY && targetY <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collision.check(
                             currentX,
-                            targetY,
+                            tile.y,
                             plane,
                             Direction.WEST.flag()
                         )
                     ) {
                         return true
                     }
-                    if (targetX in currentX..sizeX && currentY == targetY + 1 && !collision.check(
-                            targetX,
+                    if (tile.x in currentX..sizeX && currentY == tile.y + 1 && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.flag()
@@ -232,9 +232,9 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                     }
                 }
             }
-            if (target.type == 8) {
-                if (targetX in currentX..sizeX && currentY == targetY + 1 && !collision.check(
-                        targetX,
+            if (type == 8) {
+                if (tile.x in currentX..sizeX && currentY == tile.y + 1 && !collision.check(
+                        tile.x,
                         currentY,
                         plane,
                         Direction.SOUTH.flag()
@@ -242,8 +242,8 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                 ) {
                     return true
                 }
-                if (targetX in currentX..sizeX && currentY == targetY - sizeXY && !collision.check(
-                        targetX,
+                if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collision.check(
+                        tile.x,
                         sizeY,
                         plane,
                         Direction.NORTH.flag()
@@ -251,17 +251,17 @@ class DecorationTargetStrategy(private val collision: Collisions) : TargetStrate
                 ) {
                     return true
                 }
-                return if (currentX == targetX - sizeXY && currentY <= targetY && targetY <= sizeY && !collision.check(
+                return if (currentX == tile.x - sizeXY && currentY <= tile.y && tile.y <= sizeY && !collision.check(
                         sizeX,
-                        targetY,
+                        tile.y,
                         plane,
                         Direction.EAST.flag()
                     )
                 ) {
                     true
-                } else currentX == targetX + 1 && currentY <= targetY && targetY <= sizeY && !collision.check(
+                } else currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collision.check(
                     currentX,
-                    targetY,
+                    tile.y,
                     plane,
                     Direction.WEST.flag()
                 )

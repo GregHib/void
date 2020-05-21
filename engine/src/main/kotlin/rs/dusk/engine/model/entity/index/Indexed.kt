@@ -1,6 +1,7 @@
 package rs.dusk.engine.model.entity.index
 
 import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.update.Visuals
 
 /**
@@ -9,6 +10,7 @@ import rs.dusk.engine.model.entity.index.update.Visuals
  */
 interface Indexed : Entity, Comparable<Indexed> {
     val index: Int
+    val size: Size
     val visuals: Visuals
     var change: LocalChange?
     val movement: Movement

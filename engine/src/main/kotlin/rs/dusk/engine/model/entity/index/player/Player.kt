@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.player
 
+import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
@@ -16,6 +17,7 @@ data class Player(
     @Transient override var index: Int = -1,
     override var id: Int = -1,
     override var tile: Tile = Tile.EMPTY,
+    override val size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val movement: Movement = Movement(delta = tile)

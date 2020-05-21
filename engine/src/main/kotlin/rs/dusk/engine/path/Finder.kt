@@ -1,6 +1,7 @@
 package rs.dusk.engine.path
 
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -11,8 +12,7 @@ interface Finder {
     fun find(
         tile: Tile,
         size: Size,
-        steps: Steps,
-        target: Target,
+        movement: Movement,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
     ): Int

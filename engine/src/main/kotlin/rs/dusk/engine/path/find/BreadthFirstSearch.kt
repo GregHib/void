@@ -2,9 +2,11 @@ package rs.dusk.engine.path.find
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.path.*
-import rs.dusk.engine.path.Target
+import rs.dusk.engine.path.Finder
+import rs.dusk.engine.path.ObstructionStrategy
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.func.nearby
 
 /**
@@ -26,8 +28,7 @@ class BreadthFirstSearch : Finder {
     override fun find(
         tile: Tile,
         size: Size,
-        steps: Steps,
-        target: Target,
+        movement: Movement,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
     ): Int {
@@ -42,9 +43,9 @@ class BreadthFirstSearch : Finder {
         graphBaseX = tile.x - GRAPH_SIZE / 2
         graphBaseY = tile.y - GRAPH_SIZE / 2
 
-        val found = calculate(tile, size, target, strategy, obstruction)
+        val found = calculate(tile, size, strategy, obstruction)
 
-        if (!found && !calculatePartialPath(target)) {
+        if (!found && !calculatePartialPath(strategy)) {
             return -1// No path found
         }
 
@@ -58,7 +59,6 @@ class BreadthFirstSearch : Finder {
     fun calculate(
         position: Tile,
         size: Size,
-        target: Target,
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
     ): Boolean {
@@ -96,7 +96,7 @@ class BreadthFirstSearch : Finder {
             currentGraphY = currentY - graphBaseY
 
             // Check if path is complete
-            if (strategy.reached(currentX, currentY, position.plane, size, target)) {
+            if (strategy.reached(currentX, currentY, position.plane, size)) {
                 exitX = currentX
                 exitY = currentY
                 return true
@@ -146,7 +146,7 @@ class BreadthFirstSearch : Finder {
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(target: Target): Boolean {
+    fun calculatePartialPath(target: TargetStrategy): Boolean {
         isPartial = true
         var lowestCost = Integer.MAX_VALUE
         var lowestDistance = Integer.MAX_VALUE
@@ -155,6 +155,8 @@ class BreadthFirstSearch : Finder {
         val destY = target.tile.y
         var endX = exitX
         var endY = exitY
+        val width = target.size.width
+        val height = target.size.height
 
         for (checkX in destX.nearby(PARTIAL_PATH_RANGE)) {
             for (checkY in destY.nearby(PARTIAL_PATH_RANGE)) {
@@ -166,13 +168,13 @@ class BreadthFirstSearch : Finder {
 
                 // Calculate deltas using strategy
                 val deltaX = if (destX <= checkX) {
-                    1 - destX - (target.size.width - checkX)
+                    1 - destX - (width - checkX)
                 } else {
                     destX - checkX
                 }
 
                 val deltaY = if (destY <= checkY) {
-                    1 - destY - (target.size.height - checkY)
+                    1 - destY - (height - checkY)
                 } else {
                     destY - checkY
                 }

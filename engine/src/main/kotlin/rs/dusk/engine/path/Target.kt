@@ -1,6 +1,5 @@
 package rs.dusk.engine.path
 
-import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -9,5 +8,4 @@ import rs.dusk.engine.model.world.Tile
  */
 interface Target {
     val tile: Tile
-    val size: Size
 }

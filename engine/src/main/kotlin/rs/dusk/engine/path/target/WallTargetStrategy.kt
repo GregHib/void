@@ -2,40 +2,42 @@ package rs.dusk.engine.path.target
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.flag
 import rs.dusk.engine.model.world.map.collision.wall
-import rs.dusk.engine.path.Target
 import rs.dusk.engine.path.TargetStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
+data class WallTargetStrategy(
+    private val collision: Collisions,
+    override val tile: Tile,
+    override val size: Size = Size.TILE,
+    val rotation: Int,
+    val type: Int
+) : TargetStrategy {
 
-    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size, target: Target): Boolean {
-        if (target !is Location) {
-            return false
-        }
+    override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val sizeXY = size.width
         // Check if under
-        if (sizeXY == 1 && target.tile.x == currentX && currentY == target.tile.y) {
+        if (sizeXY == 1 && tile.x == currentX && currentY == tile.y) {
             return true
-        } else if (target.tile.x >= currentX && target.tile.x <= currentX + sizeXY - 1 && target.tile.y <= target.tile.y + sizeXY - 1) {
+        } else if (tile.x >= currentX && tile.x <= currentX + sizeXY - 1 && tile.y <= tile.y + sizeXY - 1) {
             return true
         }
 
         if (sizeXY == 1) {
-            if (target.type == 0) {
-                var direction = Direction.cardinal[target.rotation + 3 and 0x3]
-                if (currentX == target.tile.x + direction.delta.x && currentY == target.tile.y + direction.delta.y) {
+            if (type == 0) {
+                var direction = Direction.cardinal[rotation + 3 and 0x3]
+                if (currentX == tile.x + direction.delta.x && currentY == tile.y + direction.delta.y) {
                     return true
                 }
-                direction = Direction.cardinal[target.rotation and 0x3]
-                if (currentX == target.tile.x - direction.delta.x && currentY == target.tile.y - direction.delta.y && !collision.check(
+                direction = Direction.cardinal[rotation and 0x3]
+                if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -45,7 +47,7 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     return true
                 }
                 val inverse = direction.inverse()
-                if (currentX == target.tile.x - inverse.delta.x && currentY == target.tile.y - inverse.delta.y && !collision.check(
+                if (currentX == tile.x - inverse.delta.x && currentY == tile.y - inverse.delta.y && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -55,17 +57,17 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     return true
                 }
             }
-            if (target.type == 2) {
-                val direction = Direction.ordinal[target.rotation and 0x3]
+            if (type == 2) {
+                val direction = Direction.ordinal[rotation and 0x3]
                 val horizontal = direction.horizontal()
-                if (currentX == target.tile.x + horizontal.delta.x && currentY == target.tile.y) {
+                if (currentX == tile.x + horizontal.delta.x && currentY == tile.y) {
                     return true
                 }
                 val vertical = direction.vertical()
-                if (currentX == target.tile.x && currentY == target.tile.y + vertical.delta.y) {
+                if (currentX == tile.x && currentY == tile.y + vertical.delta.y) {
                     return true
                 }
-                if (currentX == target.tile.x - horizontal.delta.x && currentY == target.tile.y && !collision.check(
+                if (currentX == tile.x - horizontal.delta.x && currentY == tile.y && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -74,7 +76,7 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                 ) {
                     return true
                 }
-                if (currentX == target.tile.x && currentY == target.tile.y - vertical.delta.y && !collision.check(
+                if (currentX == tile.x && currentY == tile.y - vertical.delta.y && !collision.check(
                         currentX,
                         currentY,
                         plane,
@@ -84,9 +86,9 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     return true
                 }
             }
-            if (target.type == 9) {
+            if (type == 9) {
                 Direction.ordinal.forEach { direction ->
-                    if (currentX == target.tile.x - direction.delta.x && currentY == target.tile.y - direction.delta.y && !collision.check(
+                    if (currentX == tile.x - direction.delta.x && currentY == tile.y - direction.delta.y && !collision.check(
                             currentX,
                             currentY,
                             plane,
@@ -101,13 +103,13 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
         } else {
             val sizeX = sizeXY + currentX - 1
             val sizeY = sizeXY + currentY - 1
-            if (target.type == 0) {
-                if (target.rotation == 0) {
-                    if (currentX == target.tile.x - sizeXY && target.tile.y >= currentY && target.tile.y <= sizeY) {
+            if (type == 0) {
+                if (rotation == 0) {
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.wall()
@@ -115,8 +117,8 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                    if (currentY == target.tile.y - sizeXY && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.wall()
@@ -124,34 +126,34 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                } else if (target.rotation == 1) {
-                    if (currentY == target.tile.y + 1 && target.tile.x >= currentX && target.tile.x <= sizeX) {
+                } else if (rotation == 1) {
+                    if (currentY == tile.y + 1 && tile.x >= currentX && tile.x <= sizeX) {
                         return true
                     }
-                    if (currentX == target.tile.x - sizeXY && target.tile.y >= currentY && target.tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collision.check(
                             sizeX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.EAST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && target.tile.y >= currentY && target.tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && tile.y >= currentY && tile.y <= sizeY && !collision.check(
                             currentX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.WEST.wall()
                         )
                     ) {
                         return true
                     }
-                } else if (target.rotation == 2) {
-                    if (currentX == target.tile.x + 1 && target.tile.y >= currentY && target.tile.y <= sizeY) {
+                } else if (rotation == 2) {
+                    if (currentX == tile.x + 1 && tile.y >= currentY && tile.y <= sizeY) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.wall()
@@ -159,8 +161,8 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                    if (currentY == target.tile.y - sizeXY && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.wall()
@@ -168,22 +170,22 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                } else if (target.rotation == 3) {
-                    if (currentY == target.tile.y - sizeXY && currentX <= target.tile.x && sizeX >= target.tile.x) {
+                } else if (rotation == 3) {
+                    if (currentY == tile.y - sizeXY && currentX <= tile.x && sizeX >= tile.x) {
                         return true
                     }
-                    if (currentX == target.tile.x - sizeXY && target.tile.y >= currentY && sizeY >= target.tile.y && !collision.check(
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && sizeY >= tile.y && !collision.check(
                             sizeX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.EAST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && currentY <= target.tile.y && sizeY >= target.tile.y && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
                             currentX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.WEST.wall()
                         )
@@ -192,25 +194,25 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     }
                 }
             }
-            if (target.type == 2) {
-                if (target.rotation == 0) {
-                    if (currentX == target.tile.x - sizeXY && target.tile.y >= currentY && sizeY >= target.tile.y) {
+            if (type == 2) {
+                if (rotation == 0) {
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX) {
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && currentY <= target.tile.y && sizeY >= target.tile.y && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
                             currentX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.WEST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (target.tile.y - sizeXY == currentY && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (tile.y - sizeXY == currentY && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.wall()
@@ -218,24 +220,24 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                } else if (target.rotation == 1) {
-                    if (currentX == target.tile.x - sizeXY && currentY <= target.tile.y && sizeY >= target.tile.y && !collision.check(
+                } else if (rotation == 1) {
+                    if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collision.check(
                             sizeX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.EAST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX) {
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && currentY <= target.tile.y && sizeY >= target.tile.y) {
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == target.tile.y - sizeXY && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             sizeY,
                             plane,
                             Direction.NORTH.wall()
@@ -243,18 +245,18 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                } else if (target.rotation == 2) {
-                    if (currentX == target.tile.x - sizeXY && target.tile.y >= currentY && target.tile.y <= sizeY && !collision.check(
+                } else if (rotation == 2) {
+                    if (currentX == tile.x - sizeXY && tile.y >= currentY && tile.y <= sizeY && !collision.check(
                             sizeX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.EAST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.wall()
@@ -262,18 +264,18 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && currentY <= target.tile.y && sizeY >= target.tile.y) {
+                    if (currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == target.tile.y - sizeXY && target.tile.x in currentX..sizeX) {
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX) {
                         return true
                     }
-                } else if (target.rotation == 3) {
-                    if (currentX == target.tile.x - sizeXY && currentY <= target.tile.y && sizeY >= target.tile.y) {
+                } else if (rotation == 3) {
+                    if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y) {
                         return true
                     }
-                    if (currentY == target.tile.y + 1 && target.tile.x in currentX..sizeX && !collision.check(
-                            target.tile.x,
+                    if (currentY == tile.y + 1 && tile.x in currentX..sizeX && !collision.check(
+                            tile.x,
                             currentY,
                             plane,
                             Direction.SOUTH.wall()
@@ -281,23 +283,23 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                     ) {
                         return true
                     }
-                    if (currentX == target.tile.x + 1 && currentY <= target.tile.y && target.tile.y <= sizeY && !collision.check(
+                    if (currentX == tile.x + 1 && currentY <= tile.y && tile.y <= sizeY && !collision.check(
                             currentX,
-                            target.tile.y,
+                            tile.y,
                             plane,
                             Direction.WEST.wall()
                         )
                     ) {
                         return true
                     }
-                    if (currentY == target.tile.y - sizeXY && target.tile.x in currentX..sizeX) {
+                    if (currentY == tile.y - sizeXY && tile.x in currentX..sizeX) {
                         return true
                     }
                 }
             }
-            if (target.type == 9) {
-                if (target.tile.x in currentX..sizeX && currentY == target.tile.y + 1 && !collision.check(
-                        target.tile.x,
+            if (type == 9) {
+                if (tile.x in currentX..sizeX && currentY == tile.y + 1 && !collision.check(
+                        tile.x,
                         currentY,
                         plane,
                         Direction.SOUTH.wall()
@@ -305,8 +307,8 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                 ) {
                     return true
                 }
-                if (target.tile.x in currentX..sizeX && currentY == target.tile.y - sizeXY && !collision.check(
-                        target.tile.x,
+                if (tile.x in currentX..sizeX && currentY == tile.y - sizeXY && !collision.check(
+                        tile.x,
                         sizeY,
                         plane,
                         Direction.NORTH.wall()
@@ -314,17 +316,17 @@ class WallTargetStrategy(private val collision: Collisions) : TargetStrategy {
                 ) {
                     return true
                 }
-                return if (currentX == target.tile.x - sizeXY && currentY <= target.tile.y && sizeY >= target.tile.y && !collision.check(
+                return if (currentX == tile.x - sizeXY && currentY <= tile.y && sizeY >= tile.y && !collision.check(
                         sizeX,
-                        target.tile.y,
+                        tile.y,
                         plane,
                         Direction.EAST.wall()
                     )
                 ) {
                     true
-                } else currentX == target.tile.x + 1 && currentY <= target.tile.y && sizeY >= target.tile.y && !collision.check(
+                } else currentX == tile.x + 1 && currentY <= tile.y && sizeY >= tile.y && !collision.check(
                     currentX,
-                    target.tile.y,
+                    tile.y,
                     plane,
                     Direction.WEST.wall()
                 )
