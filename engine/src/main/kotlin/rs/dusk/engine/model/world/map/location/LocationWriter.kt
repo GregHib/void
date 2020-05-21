@@ -2,6 +2,7 @@ package rs.dusk.engine.model.world.map.location
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
+import rs.dusk.engine.model.entity.obj.IObject
 import rs.dusk.engine.model.world.Tile
 import java.util.*
 
@@ -13,9 +14,9 @@ class LocationWriter {
 
     /**
      * Writes locations to ByteArray
-     * Note: All [locations] lists must be sorted by [Location.tile] using [localId]
+     * Note: All [locations] lists must be sorted by [IObject.tile] using [localId]
      */
-    fun write(locations: SortedMap<Int, List<Location>>): ByteArray {
+    fun write(locations: SortedMap<Int, List<IObject>>): ByteArray {
         val writer = BufferWriter()
         var id = -1
         locations.forEach { (objectId, locations) ->

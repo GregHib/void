@@ -4,7 +4,14 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.get
 import org.koin.test.mock.declare
+import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
+import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.entity.factory.ObjectFactory
+import rs.dusk.engine.model.entity.factory.entityFactoryModule
+import rs.dusk.engine.model.entity.list.entityListModule
+import rs.dusk.engine.model.entity.obj.IObject
+import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.location.*
@@ -23,7 +30,17 @@ internal class MapReaderTest : KoinMock() {
         setProperty("fsRsaModulus", "1")
         setProperty("fsRsaPrivate", "1")
         setProperty("cachePath", "../cache/data/cache/")
-        loadModules(xteaModule, cacheModule, tileModule, collisionModule, locationModule)
+        loadModules(
+            xteaModule,
+            cacheModule,
+            cacheDefinitionModule,
+            tileModule,
+            collisionModule,
+            eventBusModule,
+            entityListModule,
+            entityFactoryModule,
+            locationModule
+        )
     }
 
 
@@ -34,11 +51,11 @@ internal class MapReaderTest : KoinMock() {
         val loader = MapReader()
 
         loader.load(region)
-        val locations: Locations = get()
-        val map = mutableMapOf<Int, MutableList<Location>>()
-        locations.keySet().forEach { tile ->
-            val values = locations[tile]
-            values.forEach { loc ->
+        val objects: Objects = get()
+        val map = mutableMapOf<Int, MutableList<IObject>>()
+        objects.delegate.keys.forEach { tile ->
+            val values = objects[tile]
+            values?.forEach { loc ->
                 val list = map.getOrPut(loc.id) { mutableListOf() }
                 list.add(loc)
             }
@@ -50,10 +67,10 @@ internal class MapReaderTest : KoinMock() {
 
         println(result.toList())
 
-        val newLocations = Locations()
+        val newLocations = ObjectFactory()
 
         val tileSettings = Array(4) { Array(64) { ByteArray(64) } }
-        LocationReader(newLocations).read(result, tileSettings)
+        LocationReader(newLocations).read(region.tile, result, tileSettings)
     }
 
 }

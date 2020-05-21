@@ -4,11 +4,33 @@ import com.displee.cache.CacheLibrary
 import com.displee.cache.index.Index255
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
+import rs.dusk.cache.definition.decoder.*
 import java.math.BigInteger
 
 @Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
 val cacheModule = module {
-    single(createdAtStart = true) { CacheDelegate(getProperty("cachePath"), getProperty<String>("fsRsaPrivate"), getProperty<String>("fsRsaModulus")) as Cache }
+    single(createdAtStart = true) {
+        CacheDelegate(
+            getProperty("cachePath"),
+            getProperty<String>("fsRsaPrivate"),
+            getProperty<String>("fsRsaModulus")
+        ) as Cache
+    }
+}
+val cacheDefinitionModule = module {
+    single { AnimationDecoder() }
+    single { BodyDecoder() }
+    single { EnumDecoder() }
+    single { GraphicDecoder() }
+    single { InterfaceDecoder() }
+    single { ItemDecoder() }
+    single { NPCDecoder(member = true) }
+    single { ObjectDecoder(member = true, lowDetail = false) }
+    single { QuickChatOptionDecoder() }
+    single { SpriteDecoder() }
+    single { TextureDecoder() }
+    single { VarBitDecoder() }
+    single { WorldMapDecoder() }
 }
 
 /**

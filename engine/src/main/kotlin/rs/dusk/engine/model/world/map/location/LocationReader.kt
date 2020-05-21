@@ -1,6 +1,7 @@
 package rs.dusk.engine.model.world.map.location
 
 import rs.dusk.core.io.read.BufferReader
+import rs.dusk.engine.model.entity.factory.ObjectFactory
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
@@ -10,9 +11,9 @@ import rs.dusk.engine.model.world.map.isTile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class LocationReader(val locations: Locations) {
+class LocationReader(val factory: ObjectFactory) {
 
-    fun read(data: ByteArray, settings: TileSettings) {
+    fun read(region: Tile, data: ByteArray, settings: TileSettings) {
         val reader = BufferReader(data)
         var objectId = -1
         while (true) {
@@ -53,8 +54,7 @@ class LocationReader(val locations: Locations) {
                 }
 
                 // Valid location
-                val location = Location(objectId, Tile(localX, localY, plane), type, rotation)
-                locations.put(location.tile, location)
+                factory.spawn(objectId, region.x + localX, region.y + localY, plane, type, rotation)
             }
         }
     }

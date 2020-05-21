@@ -3,6 +3,7 @@ package rs.dusk.engine.model.world.map.location
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.model.entity.factory.ObjectFactory
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
@@ -14,12 +15,13 @@ import rs.dusk.engine.model.world.map.TileSettings
 internal class LocationReaderTest {
 
     lateinit var reader: LocationReader
-    lateinit var locations: Locations
+    lateinit var factory: ObjectFactory
+    val region = Tile(0, 0)
 
     @BeforeEach
     fun setup() {
-        locations = mockk(relaxed = true)
-        reader = spyk(LocationReader(locations))
+        factory = mockk(relaxed = true)
+        reader = spyk(LocationReader(factory))
     }
 
     @Test
@@ -29,11 +31,10 @@ internal class LocationReaderTest {
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val data = byteArrayOf(-80, 58, -64, 66, 17, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            val t1 = Tile(1, 1, 4)
-            locations.put(t1, Location(12345, t1, 4, 1))
+            factory.spawn(12345, 1, 1, 4, 4, 1)
         }
     }
 
@@ -46,12 +47,11 @@ internal class LocationReaderTest {
         settings[1][tile.x][tile.y] = BRIDGE_TILE.toByte()
         val data = byteArrayOf(-80, 58, -125, -48, 0, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            val t2 = Tile(15, 15, -1)
-            locations.put(t2, Location(12345, t2, 0, 0))
-            locations.put(tile, Location(12345, tile, 0, 0))
+            factory.spawn(12345, 15, 15, -1, 0, 0)
+            factory.spawn(12345, 15, 15, 0, 0, 0)
         }
     }
 
@@ -64,11 +64,10 @@ internal class LocationReaderTest {
         settings[1][tile.x][tile.y] = BRIDGE_TILE.toByte()
         val data = byteArrayOf(-80, 58, -109, -48, 0, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verify {
-            val t1 = Tile(15, 15, 0)
-            locations.put(t1, Location(12345, t1, 0, 0))
+            factory.spawn(id = 12345, x = 15, y = 15, plane = 0, type = 0, rotation = 0)
         }
     }
 
@@ -80,10 +79,10 @@ internal class LocationReaderTest {
         val tile = Tile(65, 0, 0)
         val data = byteArrayOf(-80, 58, -112, 65, 0, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            locations.put(tile, Location(12345, tile, 0, 0))
+            factory.spawn(id = 12345, x = 65, y = 0, plane = 0, type = 0, rotation = 0)
         }
     }
 
@@ -95,11 +94,11 @@ internal class LocationReaderTest {
         val tile = Tile(54, 45)
         val data = byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verifyOrder {
-            locations.put(tile, Location(12345, tile, 12, 2))
-            locations.put(tile, Location(42000, tile, 0, 0))
+            factory.spawn(id = 12345, x = 54, y = 45, plane = 0, type = 12, rotation = 2)
+            factory.spawn(id = 42000, x = 54, y = 45, plane = 0, type = 0, rotation = 0)
         }
     }
 
@@ -110,12 +109,11 @@ internal class LocationReaderTest {
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val data = byteArrayOf(-80, 58, 1, 50, -64, 0, 17, 0, 0)
         // When
-        reader.read(data, settings)
+        reader.read(region, data, settings)
         // Then
         verifyOrder {
-            locations.put(Tile.EMPTY, Location(12345, Tile.EMPTY, 12, 2))
-            val t1 = Tile(63, 63, 3)
-            locations.put(t1, Location(12345, t1, 4, 1))
+            factory.spawn(id = 12345, x = 0, y = 0, plane = 0, type = 12, rotation = 2)
+            factory.spawn(id = 12345, x = 63, y = 63, plane = 3, type = 4, rotation = 1)
         }
     }
 }

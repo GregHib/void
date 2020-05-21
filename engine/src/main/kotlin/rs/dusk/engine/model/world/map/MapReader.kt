@@ -50,7 +50,7 @@ class MapReader {
             }
             val settings = tiles.read(mapData)
             val col = async { collisions.read(region, settings) }
-            val loc = async { locations.read(locationData, settings) }
+            val loc = async { locations.read(region.tile, locationData, settings) }
             col.await()
             loc.await()
         }
