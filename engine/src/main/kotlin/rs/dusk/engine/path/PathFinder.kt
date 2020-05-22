@@ -1,17 +1,26 @@
 package rs.dusk.engine.path
 
+import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
-import rs.dusk.engine.path.obstruction.LargeObstruction
-import rs.dusk.engine.path.obstruction.MediumObstruction
-import rs.dusk.engine.path.obstruction.SmallObstruction
 import rs.dusk.engine.path.target.*
+import rs.dusk.engine.path.traverse.LargeTraversal
+import rs.dusk.engine.path.traverse.MediumTraversal
+import rs.dusk.engine.path.traverse.SmallTraversal
+
+val pathFindModule = module {
+    single { AxisAlignment(get()) }
+    single { BreadthFirstSearch() }
+    single { PathFinder(get(), get(), get(), get(), get()) }
+}
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -19,47 +28,50 @@ import rs.dusk.engine.path.target.*
  */
 class PathFinder(
     private val collisions: Collisions,
+    private val aa: AxisAlignment,
     private val bfs: BreadthFirstSearch,
-    private val small: SmallObstruction,
-    private val medium: MediumObstruction,
-    private val large: LargeObstruction
+    private val small: SmallTraversal,
+    private val medium: MediumTraversal
 ) {
 
     fun find(source: Indexed, tile: Tile): PathResult {
-        val obs = getObstructions(source.size)
+        val traverse = getTraversal(source.size)
         val strategy = TileTargetStrategy(tile = tile)
         val finder = getFinder(source)
-        return finder.find(source.tile, source.size, source.movement, strategy, obs)
+        return finder.find(source.tile, source.size, source.movement, strategy, traverse)
     }
 
     fun find(source: Indexed, target: Entity): PathResult {
-        val obs = getObstructions(source.size)
+        val traverse = getTraversal(source.size)
         val strategy = getStrategy(target)
         val finder = getFinder(source)
-        return finder.find(source.tile, source.size, source.movement, strategy, obs)
+        return finder.find(source.tile, source.size, source.movement, strategy, traverse)
     }
 
     fun getFinder(source: Indexed): Finder {
-        // TODO
-        return bfs
+        return if (source is Player) {
+            bfs
+        } else {
+            aa
+        }
     }
 
-    fun getObstructions(size: Size) = when {
+    fun getTraversal(size: Size) = when {
         size.width == 1 && size.height == 1 -> small
         size.width == 2 && size.height == 2 -> medium
-        else -> large
+        else -> LargeTraversal(size, collisions)
     }
 
     fun getStrategy(target: Entity) = when (target) {
         is Location -> when (target.type) {
-            0, 1, 2, 9 -> WallTargetStrategy(
+            in 0..2, 9 -> WallTargetStrategy(
                 collisions,
                 tile = target.tile,
                 size = target.size,
                 rotation = target.rotation,
                 type = target.type
             )
-            3, 4, 5, 6, 7, 8 -> DecorationTargetStrategy(
+            in 3..8 -> DecorationTargetStrategy(
                 collisions,
                 tile = target.tile,
                 size = target.size,

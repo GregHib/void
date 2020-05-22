@@ -14,6 +14,6 @@ interface Finder {
         size: Size,
         movement: Movement,
         strategy: TargetStrategy,
-        obstruction: ObstructionStrategy
+        traversal: TraversalStrategy
     ): PathResult
 }

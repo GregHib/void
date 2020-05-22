@@ -8,11 +8,9 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.path.ObstructionStrategy
-import rs.dusk.engine.path.PathResult
-import rs.dusk.engine.path.Steps
-import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.engine.path.*
 import rs.dusk.engine.path.find.BreadthFirstSearch.Companion.GRAPH_SIZE
+import rs.dusk.engine.path.TraversalStrategy
 import java.util.*
 
 /**
@@ -35,7 +33,7 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val movement: Movement = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        val obstruction: ObstructionStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
         val directions = Array(GRAPH_SIZE) { Array<Direction?>(GRAPH_SIZE) { Direction.NONE } }
         val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
         every { movement.directions } returns directions
@@ -43,9 +41,9 @@ internal class BreadthFirstSearchTest {
         every { bfs.calculate(any(), any(), any(), any(), any(), any(), any()) } returns PathResult.Success.Complete(
             tile
         )
-        every { bfs.backtrace(any(), any()) } returns PathResult.Success.Complete(tile)
+        every { bfs.backtrace(any(), any(), 0, 0) } returns PathResult.Success.Complete(tile)
         // When
-        bfs.find(tile, size, movement, strategy, obstruction)
+        bfs.find(tile, size, movement, strategy, traversal)
         // Then
         assertEquals(null, directions[1][2])
         assertEquals(99999999, distances[3][4])
@@ -58,7 +56,7 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val movement: Movement = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        val obstruction: ObstructionStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
         val response = PathResult.Success.Complete(Tile(0, 0))
         every { movement.directions } returns Array(GRAPH_SIZE) { arrayOfNulls<Direction?>(GRAPH_SIZE) }
         every { movement.distances } returns Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
@@ -70,12 +68,12 @@ internal class BreadthFirstSearchTest {
                 size,
                 movement,
                 strategy,
-                obstruction
+                traversal
             )
         } returns PathResult.Failure
         every { bfs.calculatePartialPath(movement, strategy, any(), any()) } returns response
         // When
-        val result = bfs.find(tile, size, movement, strategy, obstruction)
+        val result = bfs.find(tile, size, movement, strategy, traversal)
         // Then
         verify { bfs.calculatePartialPath(movement, strategy, any(), any()) }
         assertEquals(response, result)
@@ -87,7 +85,7 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val movement: Movement = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        val obstruction: ObstructionStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
         val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
         val directions = Array(GRAPH_SIZE) { arrayOfNulls<Direction?>(GRAPH_SIZE) }
         val queue = spyk(LinkedList<Tile>())
@@ -96,7 +94,7 @@ internal class BreadthFirstSearchTest {
         every { movement.distances } returns distances
         every { strategy.reached(72, 74, 1, size) } returns true
         // When
-        val result = bfs.calculate(10, 10, 1, size, movement, strategy, obstruction)
+        val result = bfs.calculate(10, 10, 1, size, movement, strategy, traversal)
         // Then
         verifyOrder {
             queue.add(Tile(64, 64))
@@ -120,7 +118,7 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val movement: Movement = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        val obstruction: ObstructionStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
         val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
         val directions = Array(GRAPH_SIZE) { arrayOfNulls<Direction?>(GRAPH_SIZE) }
         val queue = spyk(LinkedList<Tile>())
@@ -128,9 +126,9 @@ internal class BreadthFirstSearchTest {
         every { movement.directions } returns directions
         every { movement.distances } returns distances
         every { strategy.reached(73, 74, 1, size) } returns true
-        every { obstruction.obstructed(73, 74, 1, Direction.WEST) } returns true
+        every { traversal.blocked(73, 74, 1, Direction.WEST) } returns true
         // When
-        val result = bfs.calculate(10, 10, 1, size, movement, strategy, obstruction)
+        val result = bfs.calculate(10, 10, 1, size, movement, strategy, traversal)
         // Then
         verify(exactly = 0) {
             queue.add(Tile(73, 74, 1))
@@ -211,7 +209,7 @@ internal class BreadthFirstSearchTest {
         every { steps.count() } returns 1
         every { movement.directions } returns directions
         // When
-        bfs.backtrace(movement, result)
+        bfs.backtrace(movement, result, 0, 0)
         // Then
         verifyOrder {
             steps.add(1, Direction.NORTH)

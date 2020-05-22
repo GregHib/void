@@ -20,10 +20,10 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
-import rs.dusk.engine.path.obstruction.LargeObstruction
-import rs.dusk.engine.path.obstruction.MediumObstruction
-import rs.dusk.engine.path.obstruction.SmallObstruction
 import rs.dusk.engine.path.target.*
+import rs.dusk.engine.path.traverse.LargeTraversal
+import rs.dusk.engine.path.traverse.MediumTraversal
+import rs.dusk.engine.path.traverse.SmallTraversal
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -34,9 +34,8 @@ internal class PathFinderTest {
     lateinit var collisions: Collisions
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
-    lateinit var small: SmallObstruction
-    lateinit var medium: MediumObstruction
-    lateinit var large: LargeObstruction
+    lateinit var small: SmallTraversal
+    lateinit var medium: MediumTraversal
 
     @BeforeEach
     fun setup() {
@@ -45,8 +44,7 @@ internal class PathFinderTest {
         bfs = mockk(relaxed = true)
         small = mockk(relaxed = true)
         medium = mockk(relaxed = true)
-        large = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, bfs, small, medium, large))
+        pf = spyk(PathFinder(collisions, aa, bfs, small, medium))
     }
 
     @Test
@@ -54,8 +52,8 @@ internal class PathFinderTest {
         // Given
         val source: Indexed = mockk(relaxed = true)
         val target = Tile(1, 1)
-        val obs: ObstructionStrategy = mockk(relaxed = true)
-        every { pf.getObstructions(any()) } returns obs
+        val obs: TraversalStrategy = mockk(relaxed = true)
+        every { pf.getTraversal(any()) } returns obs
         every { pf.getFinder(any()) } returns bfs
         // When
         pf.find(source, target)
@@ -68,9 +66,9 @@ internal class PathFinderTest {
         // Given
         val source: Indexed = mockk(relaxed = true)
         val target: Entity = mockk(relaxed = true)
-        val obs: ObstructionStrategy = mockk(relaxed = true)
+        val obs: TraversalStrategy = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { pf.getObstructions(any()) } returns obs
+        every { pf.getTraversal(any()) } returns obs
         every { pf.getStrategy(any()) } returns strategy
         every { pf.getFinder(any()) } returns bfs
         // When
@@ -110,33 +108,33 @@ internal class PathFinderTest {
     }
 
     @Test
-    fun `Small obstruction`() {
+    fun `Small traversal`() {
         // Given
         val size = Size(1, 1)
         // When
-        val obstruction = pf.getObstructions(size)
+        val obstruction = pf.getTraversal(size)
         // Then
         assertEquals(small, obstruction)
     }
 
     @Test
-    fun `Medium obstruction`() {
+    fun `Medium traversal`() {
         // Given
         val size = Size(2, 2)
         // When
-        val obstruction = pf.getObstructions(size)
+        val obstruction = pf.getTraversal(size)
         // Then
         assertEquals(medium, obstruction)
     }
 
     @Test
-    fun `Large obstruction`() {
+    fun `Large traversal`() {
         // Given
         val size = Size(1, 2)
         // When
-        val obstruction = pf.getObstructions(size)
+        val obstruction = pf.getTraversal(size)
         // Then
-        assertEquals(large, obstruction)
+        assertEquals(size, (obstruction as LargeTraversal).size)
     }
 
     @Test

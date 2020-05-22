@@ -5,9 +5,9 @@ import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.Finder
-import rs.dusk.engine.path.ObstructionStrategy
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.engine.path.TraversalStrategy
 import kotlin.math.max
 import kotlin.math.min
 
@@ -22,7 +22,7 @@ class BreadthFirstSearch : Finder {
         size: Size,
         movement: Movement,
         strategy: TargetStrategy,
-        obstruction: ObstructionStrategy
+        traversal: TraversalStrategy
     ): PathResult {
         for (x in 0 until GRAPH_SIZE) {
             for (y in 0 until GRAPH_SIZE) {
@@ -34,7 +34,7 @@ class BreadthFirstSearch : Finder {
         val graphBaseX = tile.x - graph
         val graphBaseY = tile.y - graph
 
-        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, movement, strategy, obstruction)
+        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, movement, strategy, traversal)
 
         if (result is PathResult.Failure) {
             result = calculatePartialPath(movement, strategy, graphBaseX, graphBaseY)
@@ -53,7 +53,7 @@ class BreadthFirstSearch : Finder {
         size: Size,
         movement: Movement,
         target: TargetStrategy,
-        obstruction: ObstructionStrategy
+        traversal: TraversalStrategy
     ): PathResult {
         // Cache fields for jit compiler performance boost
         val directions = movement.directions
@@ -93,7 +93,7 @@ class BreadthFirstSearch : Finder {
                 }
 
                 // Skip blocked tiles
-                if (obstruction.obstructed(parent.x + graphBaseX, parent.y + graphBaseY, plane, dir)) {
+                if (traversal.blocked(parent.x + graphBaseX, parent.y + graphBaseY, plane, dir)) {
                     continue
                 }
 

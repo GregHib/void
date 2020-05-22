@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.obstruction
+package rs.dusk.engine.path.traverse
 
 import io.mockk.every
 import io.mockk.mockk
@@ -18,16 +18,16 @@ import rs.dusk.engine.model.world.map.collision.clear
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-internal class MediumObstructionTest {
+internal class MediumTraversalTest {
 
     lateinit var collisions: Collisions
-    lateinit var obstruction: MediumObstruction
+    lateinit var traversal: MediumTraversal
 
     @BeforeEach
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        obstruction = spyk(MediumObstruction(collisions))
+        traversal = spyk(MediumTraversal(collisions))
     }
 
     /**
@@ -36,12 +36,12 @@ internal class MediumObstructionTest {
      * |E|E| |
      */
     @Test
-    fun `North obstructed at the start`() {
+    fun `North blocked at the start`() {
         // Given
         val start = Tile(1, 1)
         every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_WALL_SOUTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -52,7 +52,7 @@ internal class MediumObstructionTest {
      * |E|E| |
      */
     @Test
-    fun `North obstructed at the end`() {
+    fun `North blocked at the end`() {
         // Given
         val start = Tile(1, 1)
         every {
@@ -64,7 +64,7 @@ internal class MediumObstructionTest {
             )
         } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -75,7 +75,7 @@ internal class MediumObstructionTest {
      * | | |X|
      */
     @Test
-    fun `South-east obstructed diagonally`() {
+    fun `South-east blocked diagonally`() {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
@@ -90,7 +90,7 @@ internal class MediumObstructionTest {
             )
         } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -101,7 +101,7 @@ internal class MediumObstructionTest {
      * | |X| |
      */
     @Test
-    fun `South-east obstructed vertically`() {
+    fun `South-east blocked vertically`() {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
@@ -109,7 +109,7 @@ internal class MediumObstructionTest {
         }
         every { collisions.check(start.x + 1, start.y - 1, start.plane, CollisionFlag.LAND_CLEAR_NORTH) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -120,7 +120,7 @@ internal class MediumObstructionTest {
      * | | | |
      */
     @Test
-    fun `South-east obstructed horizontally`() {
+    fun `South-east blocked horizontally`() {
         // Given
         val start = Tile(1, 1)
         Direction.all.forEach {
@@ -128,7 +128,7 @@ internal class MediumObstructionTest {
         }
         every { collisions.check(start.x + 2, start.y, start.plane, CollisionFlag.LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_EAST)
         // Then
         assertTrue(result)
     }

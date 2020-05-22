@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.obstruction
+package rs.dusk.engine.path.traverse
 
 import io.mockk.every
 import io.mockk.mockk
@@ -18,87 +18,87 @@ import rs.dusk.engine.model.world.map.collision.check
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-internal class SmallObstructionTest {
+internal class SmallTraversalTest {
 
     lateinit var collisions: Collisions
-    lateinit var obstruction: SmallObstruction
+    lateinit var traversal: SmallTraversal
 
     @BeforeEach
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        obstruction = spyk(SmallObstruction(collisions))
+        traversal = spyk(SmallTraversal(collisions))
     }
 
     @Test
-    fun `Obstructed cardinal`() {
+    fun `Blocked cardinal`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH
         val tile = start.add(direction.delta)
         every { collisions.check(tile.x, tile.y, tile.plane, direction.inverse().block()) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
 
     @Test
-    fun `Unobstructed cardinal`() {
+    fun `Clear cardinal`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH
         every { collisions.check(1, 2, 0, any()) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
     }
 
     @Test
-    fun `Diagonal obstructed diagonally`() {
+    fun `Diagonal blocked diagonally`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH_EAST
         every { collisions.check(2, 2, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
 
     @Test
-    fun `Diagonal obstructed horizontally`() {
+    fun `Diagonal blocked horizontally`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.NORTH_EAST
         every { collisions.check(2, 1, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
 
     @Test
-    fun `Diagonal obstructed vertically`() {
+    fun `Diagonal blocked vertically`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.SOUTH_WEST
         every { collisions.check(1, 0, 0, any()) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertTrue(result)
     }
 
     @Test
-    fun `Diagonal unobstructed`() {
+    fun `Diagonal clear`() {
         // Given
         val start = Tile(1, 1)
         val direction = Direction.SOUTH_WEST
         every { collisions.check(any(), any(), any(), any()) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, direction)
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
     }

@@ -65,9 +65,9 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
 
         /**
          * Index of movement direction
-         * |00|01|02|
-         * |03|PP|04|
          * |05|06|07|
+         * |03|PP|04|
+         * |00|01|02|
          */
         fun getMovementIndex(direction: Direction): Int {
             for (i in WALK_X.indices) {

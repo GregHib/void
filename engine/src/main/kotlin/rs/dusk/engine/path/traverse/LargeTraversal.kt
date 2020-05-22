@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.obstruction
+package rs.dusk.engine.path.traverse
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
@@ -6,21 +6,18 @@ import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.clear
-import rs.dusk.engine.path.ObstructionStrategy
-import rs.dusk.engine.path.obstruction.MediumObstruction.Companion.getNorthCorner
-import rs.dusk.engine.path.obstruction.MediumObstruction.Companion.getSouthCorner
-import rs.dusk.utility.inject
+import rs.dusk.engine.path.TraversalStrategy
+import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getNorthCorner
+import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getSouthCorner
 
 /**
  * Checks for collision in the direction of movement for entities with any size
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class LargeObstruction(val size: Size) : ObstructionStrategy {
+class LargeTraversal(val size: Size, private val collisions: Collisions) : TraversalStrategy {
 
-    private val collisions: Collisions by inject()
-
-    override fun obstructed(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+    override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val delta = direction.delta
         val inverse = direction.inverse()
         var offsetX = if (delta.x == 1) size.width else delta.x

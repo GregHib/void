@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.obstruction
+package rs.dusk.engine.path.traverse
 
 import io.mockk.every
 import io.mockk.mockk
@@ -31,10 +31,10 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-internal class LargeObstructionTest : KoinMock() {
+internal class LargeTraversalTest : KoinMock() {
 
     lateinit var collisions: Collisions
-    lateinit var obstruction: LargeObstruction
+    lateinit var traversal: LargeTraversal
 
     override val modules = listOf(module { single { mockk<Collisions>(relaxed = true) } })
 
@@ -53,14 +53,14 @@ internal class LargeObstructionTest : KoinMock() {
      * | | | |
      */
     @Test
-    fun `North obstructed at the start`() {
+    fun `North blocked at the start`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x, start.y + 1, start.plane, LAND_WALL_SOUTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -71,14 +71,14 @@ internal class LargeObstructionTest : KoinMock() {
      * | | | |
      */
     @Test
-    fun `North obstructed in the middle`() {
+    fun `North blocked in the middle`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -89,14 +89,14 @@ internal class LargeObstructionTest : KoinMock() {
      * | | | |
      */
     @Test
-    fun `North obstructed at the end`() {
+    fun `North blocked at the end`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 2, start.y + 1, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }
@@ -108,14 +108,14 @@ internal class LargeObstructionTest : KoinMock() {
      * |E|E|E| |
      */
     @Test
-    fun `North-east obstructed diagonally`() {
+    fun `North-east blocked diagonally`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 3, start.y + 3, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -128,14 +128,14 @@ internal class LargeObstructionTest : KoinMock() {
      */
     @ParameterizedTest
     @ValueSource(ints = [1, 2])
-    fun `North-east obstructed vertically`(offset: Int) {
+    fun `North-east blocked vertically`(offset: Int) {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + offset, start.y + 3, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -148,14 +148,14 @@ internal class LargeObstructionTest : KoinMock() {
      */
     @ParameterizedTest
     @ValueSource(ints = [1, 2])
-    fun `North-east obstructed horizontally`(offset: Int) {
+    fun `North-east blocked horizontally`(offset: Int) {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 3, start.y + offset, start.plane, LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.NORTH_EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
         // Then
         assertTrue(result)
     }
@@ -166,14 +166,14 @@ internal class LargeObstructionTest : KoinMock() {
      * |E|X| |
      */
     @Test
-    fun `East obstructed at the start`() {
+    fun `East blocked at the start`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 1, start.y, start.plane, LAND_WALL_NORTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -184,14 +184,14 @@ internal class LargeObstructionTest : KoinMock() {
      * |E| | |
      */
     @Test
-    fun `East obstructed in the middle`() {
+    fun `East blocked in the middle`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_WEST) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -202,14 +202,14 @@ internal class LargeObstructionTest : KoinMock() {
      * |E| | |
      */
     @Test
-    fun `East obstructed at the end`() {
+    fun `East blocked at the end`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x + 1, start.y + 2, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.EAST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
         // Then
         assertTrue(result)
     }
@@ -222,14 +222,14 @@ internal class LargeObstructionTest : KoinMock() {
      * |X| | |
      */
     @Test
-    fun `South-west obstructed diagonally`() {
+    fun `South-west blocked diagonally`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x - 1, start.y - 1, start.plane, LAND_WALL_NORTH_EAST) } returns true
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }
@@ -242,14 +242,14 @@ internal class LargeObstructionTest : KoinMock() {
      * | |X| |
      */
     @Test
-    fun `South-west obstructed vertically`() {
+    fun `South-west blocked vertically`() {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x, start.y - 1, start.plane, LAND_CLEAR_NORTH) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }
@@ -263,14 +263,14 @@ internal class LargeObstructionTest : KoinMock() {
      */
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2])
-    fun `South-west obstructed horizontally`(offset: Int) {
+    fun `South-west blocked horizontally`(offset: Int) {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        obstruction = spyk(LargeObstruction(size))
+        traversal = spyk(LargeTraversal(size, collisions))
         every { collisions.check(start.x - 1, start.y + offset, start.plane, LAND_CLEAR_EAST) } returns false
         // When
-        val result = obstruction.obstructed(start.x, start.y, start.plane, Direction.SOUTH_WEST)
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
         // Then
         assertTrue(result)
     }

@@ -14,6 +14,7 @@ import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
+import java.util.*
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -34,6 +35,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Local update walk`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.EAST
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(1, 0)
@@ -44,7 +46,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         // Then
         verifyOrder {
             player.change = LocalChange.Walk
-            player.changeValue = 3
+            player.changeValue = 4
         }
     }
 
@@ -52,6 +54,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Local update run`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NORTH
         every { player.movement.runStep } returns Direction.NORTH
         every { player.movement.delta } returns Tile(0, 2)
@@ -70,6 +73,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Local update tele`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Tile(247, -365, 1)
@@ -88,6 +92,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Local update visual`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
         every { player.change } returns LocalChange.Update
         every { player.movementType } returns PlayerMoveType.None
         // When
@@ -103,6 +108,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Local update no movement`() {
         // Given
         val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movementType } returns PlayerMoveType.Teleport

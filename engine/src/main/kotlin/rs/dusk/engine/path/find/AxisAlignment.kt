@@ -20,7 +20,7 @@ class AxisAlignment(private val collisions: Collisions) : Finder {
         size: Size,
         movement: Movement,
         strategy: TargetStrategy,
-        obstruction: ObstructionStrategy
+        traversal: TraversalStrategy
     ): PathResult {
         val delta = strategy.tile.delta(tile)
         val direction = toDirection(delta)
