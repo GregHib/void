@@ -7,4 +7,4 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class Steps(val steps: Deque<Direction> = LinkedList()) : Deque<Direction> by steps
+class Steps(val steps: MutableList<Direction> = LinkedList()) : MutableList<Direction> by steps

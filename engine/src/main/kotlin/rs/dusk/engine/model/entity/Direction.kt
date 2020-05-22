@@ -19,13 +19,15 @@ enum class Direction(deltaX: Int, deltaY: Int) {
 
     val delta = Tile(deltaX, deltaY)
 
-    fun isDiagonal(): Boolean {
-        return delta.x != 0 && delta.y != 0
-    }
+    fun isDiagonal() = isHorizontal() && isVertical()
 
     fun isCardinal(): Boolean {
         return delta.x == 0 || delta.y == 0
     }
+
+    fun isHorizontal() = delta.x != 0
+
+    fun isVertical() = delta.y != 0
 
     fun vertical(): Direction {
         return when (delta.y) {

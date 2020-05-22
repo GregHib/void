@@ -8,25 +8,14 @@ import rs.dusk.engine.path.Finder
 import rs.dusk.engine.path.ObstructionStrategy
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
-import rs.dusk.utility.func.nearby
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 20, 2020
  */
 class BreadthFirstSearch : Finder {
-
-    private var exitX: Int = -1
-    private var exitY: Int = -1
-    private var graphBaseX = -1
-    private var graphBaseY = -1
-    var isPartial: Boolean = false
-        private set
-
-    val lastPathBufferX = IntArray(QUEUE_SIZE)
-    val lastPathBufferY = IntArray(QUEUE_SIZE)
-    val directions = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
-    val distances = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) }
 
     override fun find(
         tile: Tile,
@@ -35,164 +24,129 @@ class BreadthFirstSearch : Finder {
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
     ): PathResult {
-        isPartial = false
         for (x in 0 until GRAPH_SIZE) {
             for (y in 0 until GRAPH_SIZE) {
-                directions[x][y] = 0
-                distances[x][y] = 99999999
+                movement.directions[x][y] = null
+                movement.distances[x][y] = 99999999
             }
         }
+        val graph = GRAPH_SIZE / 2
+        val graphBaseX = tile.x - graph
+        val graphBaseY = tile.y - graph
 
-        graphBaseX = tile.x - GRAPH_SIZE / 2
-        graphBaseY = tile.y - GRAPH_SIZE / 2
+        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, movement, strategy, obstruction)
 
-        var result = calculate(tile, size, strategy, obstruction)
-
-        if (result == PathResult.Failure) {
-            result = calculatePartialPath(strategy)
+        if (result is PathResult.Failure) {
+            result = calculatePartialPath(movement, strategy, graphBaseX, graphBaseY)
         }
 
-        if (result == PathResult.Failure) {
-            return result// No path found
+        return when (result) {
+            is PathResult.Failure -> result
+            is PathResult.Success -> backtrace(movement, result)
         }
-
-        if (exitX == tile.x && exitY == tile.y) {
-            return PathResult.Success// No movement
-        }
-
-        return backtrace(tile)
     }
 
     fun calculate(
-        position: Tile,
+        graphBaseX: Int,
+        graphBaseY: Int,
+        plane: Int,
         size: Size,
-        strategy: TargetStrategy,
+        movement: Movement,
+        target: TargetStrategy,
         obstruction: ObstructionStrategy
     ): PathResult {
         // Cache fields for jit compiler performance boost
-        val directions = directions
-        val distances = distances
-        val bufferX = lastPathBufferX
-        val bufferY = lastPathBufferY
+        val directions = movement.directions
+        val distances = movement.distances
         val all = all
-        val queueBounds = QUEUE_SIZE - 1
-        val graphBounds = GRAPH_SIZE - 1
 
-        // Start in centre
-        var currentX = position.x
-        var currentY = position.y
-        var currentGraphX = GRAPH_SIZE / 2
-        var currentGraphY = GRAPH_SIZE / 2
+        val queue = movement.calc
+        queue.clear()
 
         // Set starting tile as visited
-        distances[currentGraphX][currentGraphY] = 0
-        directions[currentGraphX][currentGraphY] = 99
+        queue.add(start)
+        distances[start.x][start.y] = 0
+        directions[start.x][start.y] = Direction.NONE
 
-        var read = 0
-        var write = 0
-        // Queue current position
-        bufferX[write] = currentX
-        bufferY[write++] = currentY
+        var parent: Tile
+        while (queue.isNotEmpty()) {
+            parent = queue.poll()
 
-        while (read != write) {
-            currentX = bufferX[read]
-            currentY = bufferY[read]
-            read = read + 1 and queueBounds
-
-            currentGraphX = currentX - graphBaseX
-            currentGraphY = currentY - graphBaseY
-
-            // Check if path is complete
-            if (strategy.reached(currentX, currentY, position.plane, size)) {
-                exitX = currentX
-                exitY = currentY
-                return PathResult.Success
+            if (target.reached(parent.x + graphBaseX, parent.y + graphBaseY, plane, size)) {
+                return PathResult.Success.Complete(parent)
             }
 
-            // Check for collisions
             for (dir in all) {
-                // Check all directions
+                val moved = parent.add(dir.delta)
 
-                // Skip if horizontal out of bounds
-                if (dir.delta.x == -1 && currentGraphX <= 0 || dir.delta.x == 1 && currentGraphX >= graphBounds) {
+                if (moved.x !in 0 until GRAPH_SIZE) {
                     continue
                 }
 
-                // Skip if vertical out of bounds
-                if (dir.delta.y == -1 && currentGraphY <= 0 || dir.delta.y == 1 && currentGraphY >= graphBounds) {
+                if (moved.y !in 0 until GRAPH_SIZE) {
                     continue
                 }
 
-                if (directions[currentGraphX + dir.delta.x][currentGraphY + dir.delta.y] == 0 && !obstruction.obstructed(
-                        currentX,
-                        currentY,
-                        position.plane,
-                        dir
-                    )
-                ) {
-                    // Set the next step
-                    bufferX[write] = currentX + dir.delta.x
-                    bufferY[write] = currentY + dir.delta.y
-                    // Increase the queue
-                    write = write + 1 and queueBounds
-
-                    // Set the direction
-                    directions[currentGraphX + dir.delta.x][currentGraphY + dir.delta.y] = getDirectionFlag(dir)
-                    // Set the distance
-                    distances[currentGraphX + dir.delta.x][currentGraphY + dir.delta.y] =
-                        distances[currentGraphX][currentGraphY] + 1
+                // Skip already calculated steps
+                if (directions[moved.x][moved.y] != null) {
+                    continue
                 }
+
+                // Skip blocked tiles
+                if (obstruction.obstructed(parent.x + graphBaseX, parent.y + graphBaseY, plane, dir)) {
+                    continue
+                }
+
+                queue.add(moved)
+                directions[moved.x][moved.y] = dir
+                distances[moved.x][moved.y] = distances[parent.x][parent.y] + 1
             }
         }
-
-        exitX = currentX
-        exitY = currentY
         return PathResult.Failure
     }
 
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(target: TargetStrategy): PathResult {
-        isPartial = true
+    fun calculatePartialPath(movement: Movement, target: TargetStrategy, graphBaseX: Int, graphBaseY: Int): PathResult {
         var lowestCost = Integer.MAX_VALUE
         var lowestDistance = Integer.MAX_VALUE
+        val distances = movement.distances
 
-        val destX = target.tile.x
-        val destY = target.tile.y
-        var endX = exitX
-        var endY = exitY
+        val destX = target.tile.x - graphBaseX
+        val destY = target.tile.y - graphBaseY
+        var endX = 0
+        var endY = 0
         val width = target.size.width
         val height = target.size.height
 
-        for (checkX in destX.nearby(PARTIAL_PATH_RANGE)) {
-            for (checkY in destY.nearby(PARTIAL_PATH_RANGE)) {
-                val graphX = checkX - graphBaseX
-                val graphY = checkY - graphBaseY
-                if (graphX < 0 || graphY < 0 || graphX >= GRAPH_SIZE || graphY >= GRAPH_SIZE || distances[graphX][graphY] >= PARTIAL_MAX_DISTANCE) {
+        val minX = max(0, destX - PARTIAL_PATH_RANGE)
+        val maxX = min(GRAPH_SIZE, destX + PARTIAL_PATH_RANGE)
+        val minY = max(0, destY - PARTIAL_PATH_RANGE)
+        val maxY = min(GRAPH_SIZE, destY + PARTIAL_PATH_RANGE)
+        for (graphX in minX..maxX) {
+            for (graphY in minY..maxY) {
+                if (distances[graphX][graphY] >= PARTIAL_MAX_DISTANCE) {
                     continue
                 }
 
-                // Calculate deltas using strategy
-                val deltaX = if (destX <= checkX) {
-                    1 - destX - (width - checkX)
-                } else {
-                    destX - checkX
+                val deltaX = when {
+                    destX > graphX -> destX - graphX// West
+                    destX + width <= graphX -> -(destX + width) + graphX + 1// East
+                    else -> 0
                 }
-
-                val deltaY = if (destY <= checkY) {
-                    1 - destY - (height - checkY)
-                } else {
-                    destY - checkY
+                val deltaY = when {
+                    destY > graphY -> destY - graphY// North
+                    destY + height <= graphY -> -(destY + height) + graphY + 1// South
+                    else -> 0
                 }
-
                 val cost = deltaX * deltaX + deltaY * deltaY
+                // Accept lower costs or shorter paths
                 if (cost < lowestCost || cost <= lowestCost && distances[graphX][graphY] < lowestDistance) {
-                    // Accept lower costs or shorter paths
                     lowestCost = cost
                     lowestDistance = distances[graphX][graphY]
-                    endX = checkX
-                    endY = checkY
+                    endX = graphX
+                    endY = graphY
                 }
             }
         }
@@ -201,76 +155,30 @@ class BreadthFirstSearch : Finder {
             return PathResult.Failure// No partial path found
         }
 
-        exitX = endX
-        exitY = endY
-        return PathResult.Partial
+        return PathResult.Success.Partial(Tile(endX, endY))
     }
 
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(position: Tile): PathResult {
-        var steps = 0
-        var traceX = exitX
-        var traceY = exitY
-        var direction = directions[traceX - graphBaseX][traceY - graphBaseY]
-        var lastWritten = direction
-        val bufferX = lastPathBufferX
-        val bufferY = lastPathBufferY
-        // Queue destination position and start tracing from it
-        // TODO replace pathBufferX/Y with adding to the source's queue
-        bufferX[steps] = traceX
-        bufferY[steps++] = traceY
-        while (traceX != position.x || traceY != position.y) {
-            // Direction changed
-            if (lastWritten != direction) {
-                bufferX[steps] = traceX
-                bufferY[steps++] = traceY
-                lastWritten = direction
-            }
-
-            if (direction and DIR_WEST != 0) {
-                traceX++
-            } else if (direction and DIR_EAST != 0) {
-                traceX--
-            }
-
-            if (direction and DIR_SOUTH != 0) {
-                traceY++
-            } else if (direction and DIR_NORTH != 0) {
-                traceY--
-            }
-
-            direction = directions[traceX - graphBaseX][traceY - graphBaseY]
+    fun backtrace(movement: Movement, result: PathResult.Success): PathResult {
+        var trace = result.last
+        var direction = movement.directions[trace.x][trace.y]
+        val current = movement.steps.count()
+        while (direction != null && direction != Direction.NONE && !trace.equals(start.x, start.y)) {
+            movement.steps.add(current, direction)
+            trace = trace.add(direction.inverse().delta)
+            direction = movement.directions[trace.x][trace.y]
         }
-//        for (i in steps - 1 downTo 0) {
-//            println("Step ${lastPathBufferX[i]} ${lastPathBufferY[i]}")
-//        }
-        return PathResult.Success
-    }
-
-    private fun getDirectionFlag(dir: Direction): Int {
-        return when (dir.delta.x) {
-            1 -> DIR_EAST
-            -1 -> DIR_WEST
-            else -> 0
-        } or when (dir.delta.y) {
-            1 -> DIR_NORTH
-            -1 -> DIR_SOUTH
-            else -> 0
-        }
+        return result
     }
 
     companion object {
-        private const val GRAPH_SIZE = 128
-        private const val QUEUE_SIZE = GRAPH_SIZE * GRAPH_SIZE / 4
+        const val GRAPH_SIZE = 128
+        private const val QUEUE_SIZE = 0xfff
         private const val PARTIAL_MAX_DISTANCE = QUEUE_SIZE
         private const val PARTIAL_PATH_RANGE = 10
-
-        private const val DIR_SOUTH = 0x1
-        private const val DIR_WEST = 0x2
-        private const val DIR_NORTH = 0x4
-        private const val DIR_EAST = 0x8
+        private val start = Tile(GRAPH_SIZE / 2, GRAPH_SIZE / 2)
 
         private val all = arrayOf(
             Direction.WEST,

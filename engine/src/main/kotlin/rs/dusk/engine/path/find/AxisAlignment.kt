@@ -7,11 +7,7 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.path.Finder
-import rs.dusk.engine.path.ObstructionStrategy
-import rs.dusk.engine.path.PathResult
-import rs.dusk.engine.path.TargetStrategy
-import java.util.*
+import rs.dusk.engine.path.*
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -26,63 +22,76 @@ class AxisAlignment(private val collisions: Collisions) : Finder {
         strategy: TargetStrategy,
         obstruction: ObstructionStrategy
     ): PathResult {
-        val queue = LinkedList<Direction>()// TODO switch out queue with entities movement
         val delta = strategy.tile.delta(tile)
         val direction = toDirection(delta)
-        horizontal(queue, tile, size, direction.horizontal(), direction.vertical(), strategy)
-        return PathResult.Success
+        return horizontal(movement.steps, tile, size, direction.horizontal(), direction.vertical(), strategy)
     }
 
-
     fun horizontal(
-        queue: Deque<Direction>,
+        steps: Steps,
         tile: Tile,
         size: Size,
         horizontal: Direction,
         vertical: Direction,
         strategy: TargetStrategy
-    ) {
+    ): PathResult {
         var offset = 0
+        var reached = strategy.reached(tile.x, tile.y, tile.plane, size)
         if (horizontal != Direction.NONE) {
-            while (!strategy.reached(tile.x + offset, tile.y, tile.plane, size)) {
+            while (!reached) {
                 if (collisions.check(tile.x + offset, tile.y, tile.plane, horizontal.block())) {
                     break
                 }
                 offset += horizontal.delta.x
-                queue.add(horizontal)
+                steps.add(horizontal)
+                reached = strategy.reached(tile.x + offset, tile.y, tile.plane, size)
             }
         }
-        if (vertical != Direction.NONE &&
-            !strategy.reached(tile.x + offset, tile.y, tile.plane, size) &&
-            !collisions.check(tile.x + offset, tile.y + vertical.delta.y, tile.plane, vertical.block())
-        ) {
-            vertical(queue, tile.add(x = offset), size, horizontal, vertical, strategy)
+        val last = tile.add(x = offset)
+        return if (reached) {
+            PathResult.Success.Complete(last)
+        } else {
+            if (vertical != Direction.NONE &&
+                !collisions.check(last.x, last.y + vertical.delta.y, last.plane, vertical.block())
+            ) {
+                vertical(steps, last, size, horizontal, vertical, strategy)
+            } else {
+                PathResult.Success.Partial(last)
+            }
         }
     }
 
     fun vertical(
-        queue: Deque<Direction>,
+        steps: Steps,
         tile: Tile,
         size: Size,
         horizontal: Direction,
         vertical: Direction,
         strategy: TargetStrategy
-    ) {
+    ): PathResult {
         var offset = 0
+        var reached = strategy.reached(tile.x, tile.y, tile.plane, size)
         if (vertical != Direction.NONE) {
-            while (!strategy.reached(tile.x, tile.y + offset, tile.plane, size)) {
+            while (!reached) {
                 if (collisions.check(tile.x, tile.y + offset, tile.plane, vertical.block())) {
                     break
                 }
-                offset += vertical.delta.x
-                queue.add(vertical)
+                offset += vertical.delta.y
+                steps.add(vertical)
+                reached = strategy.reached(tile.x, tile.y + offset, tile.plane, size)
             }
         }
-        if (horizontal != Direction.NONE &&
-            !strategy.reached(tile.x, tile.y + offset, tile.plane, size) &&
-            !collisions.check(tile.x + vertical.delta.x, tile.y + offset, tile.plane, vertical.block())
-        ) {
-            horizontal(queue, tile.add(y = offset), size, horizontal, vertical, strategy)
+        val last = tile.add(y = offset)
+        return if (reached) {
+            PathResult.Success.Complete(last)
+        } else {
+            if (horizontal != Direction.NONE &&
+                !collisions.check(last.x + horizontal.delta.x, last.y, last.plane, horizontal.block())
+            ) {
+                horizontal(steps, last, size, horizontal, vertical, strategy)
+            } else {
+                PathResult.Success.Partial(last)
+            }
         }
     }
 

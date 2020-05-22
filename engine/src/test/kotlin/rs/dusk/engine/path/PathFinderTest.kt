@@ -18,6 +18,7 @@ import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.path.obstruction.LargeObstruction
 import rs.dusk.engine.path.obstruction.MediumObstruction
@@ -31,6 +32,7 @@ import rs.dusk.engine.path.target.*
 internal class PathFinderTest {
     lateinit var pf: PathFinder
     lateinit var collisions: Collisions
+    lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
     lateinit var small: SmallObstruction
     lateinit var medium: MediumObstruction
@@ -39,11 +41,12 @@ internal class PathFinderTest {
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
+        aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
         small = mockk(relaxed = true)
         medium = mockk(relaxed = true)
         large = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, bfs, small, medium, large))
+        pf = spyk(PathFinder(collisions, aa, bfs, small, medium, large))
     }
 
     @Test
@@ -93,7 +96,7 @@ internal class PathFinderTest {
         // When
         val finder = pf.getFinder(source)
         // Then
-//        assertEquals(bfs, finder) TODO
+        assertEquals(aa, finder)
     }
 
     @Test
