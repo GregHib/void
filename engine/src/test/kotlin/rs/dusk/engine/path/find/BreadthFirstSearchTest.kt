@@ -7,10 +7,12 @@ import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Movement
+import rs.dusk.engine.model.entity.index.Steps
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.path.*
-import rs.dusk.engine.path.find.BreadthFirstSearch.Companion.GRAPH_SIZE
+import rs.dusk.engine.path.PathResult
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
+import rs.dusk.engine.path.find.BreadthFirstSearch.Companion.GRAPH_SIZE
 import java.util.*
 
 /**

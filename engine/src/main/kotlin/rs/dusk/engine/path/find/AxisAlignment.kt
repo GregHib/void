@@ -3,11 +3,15 @@ package rs.dusk.engine.path.find
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Movement
+import rs.dusk.engine.model.entity.index.Steps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.path.*
+import rs.dusk.engine.path.Finder
+import rs.dusk.engine.path.PathResult
+import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.engine.path.TraversalStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

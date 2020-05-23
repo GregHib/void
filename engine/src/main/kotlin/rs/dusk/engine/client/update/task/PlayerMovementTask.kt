@@ -17,8 +17,16 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
         val movement = player.movement
-        val delta = movement.delta
 
+        val steps = movement.steps
+        if (steps.peek() != null) {
+            val step = steps.poll()
+            // TODO if running poll twice
+            movement.walkStep = step
+            movement.delta = step.delta
+        }
+
+        val delta = movement.delta
         movement.lastTile = player.tile
 
         player.change = when {
@@ -60,8 +68,16 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
             return -1
         }
 
-        private val WALK_X = intArrayOf(1, 0, -1, 1, -1, 1, 0, -1)
-        private val WALK_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
+        private val WALK = arrayOf(
+            Direction.SOUTH_WEST,
+            Direction.SOUTH,
+            Direction.SOUTH_EAST,
+            Direction.WEST,
+            Direction.EAST,
+            Direction.NORTH_WEST,
+            Direction.NORTH,
+            Direction.NORTH_EAST
+        )
 
         /**
          * Index of movement direction
@@ -70,12 +86,7 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
          * |00|01|02|
          */
         fun getMovementIndex(direction: Direction): Int {
-            for (i in WALK_X.indices) {
-                if (WALK_X[i] == direction.delta.x && WALK_Y[i] == direction.delta.y) {
-                    return i
-                }
-            }
-            return -1
+            return WALK.indexOf(direction)
         }
     }
 

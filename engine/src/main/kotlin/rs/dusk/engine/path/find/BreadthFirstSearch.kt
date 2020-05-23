@@ -42,7 +42,7 @@ class BreadthFirstSearch : Finder {
 
         return when (result) {
             is PathResult.Failure -> result
-            is PathResult.Success -> backtrace(movement, result)
+            is PathResult.Success -> backtrace(movement, result, graphBaseX, graphBaseY)
         }
     }
 
@@ -161,13 +161,13 @@ class BreadthFirstSearch : Finder {
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(movement: Movement, result: PathResult.Success): PathResult {
+    fun backtrace(movement: Movement, result: PathResult.Success, graphBaseX: Int, graphBaseY: Int): PathResult {
         var trace = result.last
         var direction = movement.directions[trace.x][trace.y]
         val current = movement.steps.count()
-        while (direction != null && direction != Direction.NONE && !trace.equals(start.x, start.y)) {
+        while (direction != null && direction != Direction.NONE && !trace.equals(graphBaseX, graphBaseY)) {
             movement.steps.add(current, direction)
-            trace = trace.add(direction.inverse().delta)
+            trace = trace.minus(direction.delta)
             direction = movement.directions[trace.x][trace.y]
         }
         return result

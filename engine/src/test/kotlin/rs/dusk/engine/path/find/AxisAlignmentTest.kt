@@ -6,12 +6,12 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.Steps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.path.PathResult
-import rs.dusk.engine.path.Steps
 import rs.dusk.engine.path.TargetStrategy
 
 /**

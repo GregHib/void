@@ -2,6 +2,7 @@ package rs.dusk
 
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
+import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.client.login.loginQueueModule
@@ -22,6 +23,8 @@ import rs.dusk.engine.model.world.map.location.locationModule
 import rs.dusk.engine.model.world.map.location.xteaModule
 import rs.dusk.engine.model.world.map.mapModule
 import rs.dusk.engine.model.world.map.tileModule
+import rs.dusk.engine.path.obstructionModule
+import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
@@ -71,7 +74,10 @@ object Dusk : Runnable {
                 mapModule,
                 tileModule,
                 collisionModule,
-                locationModule
+                cacheDefinitionModule,
+                locationModule,
+                obstructionModule,
+                pathFindModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
