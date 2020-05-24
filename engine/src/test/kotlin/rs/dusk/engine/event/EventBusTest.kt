@@ -67,27 +67,27 @@ internal class EventBusTest : KoinMock() {
     }
 
     @Test
-    fun `Set actor`() = runBlocking {
+    fun `Set action`() = runBlocking {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         // When
-        setActor(handler, action, null)
+        setAction(handler, action, null)
         delay(100)
         // Then
-        verify { handler.actor = any() }
+        verify { handler.action = any() }
     }
 
     @Test
-    fun `Set actor filter`() = runBlocking {
+    fun `Set action filter`() = runBlocking {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         val filter: TestEvent.() -> Boolean = mockk(relaxed = true)
         // When
-        setActor(handler, action, filter)
+        setAction(handler, action, filter)
         delay(100)
         // Then
-        verify { handler.actor = any() }
+        verify { handler.action = any() }
     }
 }

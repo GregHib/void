@@ -91,7 +91,7 @@ class CoroutineBusTest : KoinTest {
         // When
         bus.emit(event)
         // Then
-        coVerify { handler.actor.send(event) }
+        coVerify { handler.action.invoke(event) }
     }
 
     @Test
@@ -106,6 +106,6 @@ class CoroutineBusTest : KoinTest {
         // When
         bus.emit(event)
         // Then
-        coVerify(exactly = 0) { handler.actor.send(event) }
+        coVerify(exactly = 0) { handler.action.invoke(event) }
     }
 }

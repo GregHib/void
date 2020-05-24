@@ -1,8 +1,5 @@
 package rs.dusk.engine.event
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.channels.actor
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
 import rs.dusk.utility.get
@@ -79,7 +76,7 @@ class EventBus {
                 break
             }
 
-            handler.actor.send(event)
+            handler.action.invoke(event)
 
             handler = handler.next
         }
@@ -96,7 +93,7 @@ class EventBus {
  */
 inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
-    setActor(handler, action, null)
+    setAction(handler, action, null)
     register(T::class, handler)
 }
 
@@ -105,7 +102,7 @@ inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline acti
  */
 inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
-    setActor(handler, action, filter)
+    setAction(handler, action, filter)
     handler.priority = priority
     register(T::class, handler)
 }
@@ -121,14 +118,10 @@ fun <T : Event> register(clazz: KClass<T>, handler: EventHandler<T>) {
 /**
  * Sets [handler]'s [action] with optional [filter]
  */
-fun <T : Event> setActor(handler: EventHandler<T>, action: T.(T) -> Unit, filter: (T.() -> Boolean)?) {
-    GlobalScope.launch {
-        handler.actor = actor {
-            for (event in channel) {
-                if (!event.cancelled && filter?.invoke(event) != false) {
-                    action.invoke(event, event)
-                }
-            }
+fun <T : Event> setAction(handler: EventHandler<T>, action: T.(T) -> Unit, filter: (T.() -> Boolean)?) {
+    handler.action = { event ->
+        if (!event.cancelled && filter?.invoke(event) != false) {
+            action.invoke(event, event)
         }
     }
 }
