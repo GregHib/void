@@ -126,7 +126,7 @@ object CollisionFlag {
     const val SEA_CLEAR_WEST = NOT_WEST shl 22 or BLOCKED
 }
 
-fun Direction.block() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
+fun Direction.block() = flag() or CollisionFlag.BLOCKED
 
 fun Direction.wall() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
 

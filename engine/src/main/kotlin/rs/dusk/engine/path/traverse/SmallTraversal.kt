@@ -16,11 +16,12 @@ import rs.dusk.engine.path.TraversalStrategy
 class SmallTraversal(private val collisions: Collisions) : TraversalStrategy {
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        val inverse = direction.inverse()
         if (collisions.check(
                 x + direction.delta.x,
                 y + direction.delta.y,
                 plane,
-                direction.inverse().block()
+                inverse.block()
             )
         ) {
             return true
@@ -29,11 +30,11 @@ class SmallTraversal(private val collisions: Collisions) : TraversalStrategy {
             return false
         }
         // Horizontal
-        if (collisions.check(x + direction.delta.x, y, plane, direction.horizontal().block())) {
+        if (collisions.check(x + direction.delta.x, y, plane, inverse.horizontal().block())) {
             return true
         }
         // Vertical
-        if (collisions.check(x, y + direction.delta.y, plane, direction.vertical().block())) {
+        if (collisions.check(x, y + direction.delta.y, plane, inverse.vertical().block())) {
             return true
         }
         return false
