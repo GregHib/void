@@ -1,9 +1,9 @@
 package rs.dusk.engine.client.update.task
 
 import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -16,11 +16,13 @@ class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(
         player.viewport.shift()
         player.viewport.players.update()
         player.viewport.npcs.update()
-
-        if (player.movement.walkStep != Direction.NONE) {
-            entities.remove(player)
+        if (player.movement.delta != Tile.EMPTY) {
+            player.movement.lastTile = player.tile
+            entities.remove(player.tile, player)
+            entities.remove(player.tile.chunk, player)
             player.tile = player.tile.add(player.movement.delta)
-            entities.add(player)
+            entities.add(player.tile, player)
+            entities.add(player.tile.chunk, player)
         }
         player.movement.reset()
         player.visuals.aspects.forEach { (_, visual) ->

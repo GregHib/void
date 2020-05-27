@@ -19,6 +19,8 @@ fun Player.getTemporaryMoveType() = visuals.getOrPut(TEMPORARY_MOVE_TYPE_MASK) {
 var Player.temporaryMoveType: PlayerMoveType
     get() = getTemporaryMoveType().type
     set(value) {
-        getTemporaryMoveType().type = value
-        flagTemporaryMoveType()
+        if (getTemporaryMoveType().type != value) {
+            getTemporaryMoveType().type = value
+            flagTemporaryMoveType()
+        }
     }

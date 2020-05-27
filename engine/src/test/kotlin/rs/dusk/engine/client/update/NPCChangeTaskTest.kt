@@ -5,7 +5,7 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.client.update.task.NPCMovementTask
+import rs.dusk.engine.client.update.task.NPCChangeTask
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -18,15 +18,15 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 15, 2020
  */
-internal class NPCMovementTaskTest : KoinMock() {
+internal class NPCChangeTaskTest : KoinMock() {
 
     override val modules = listOf(entityListModule)
 
-    lateinit var task: NPCMovementTask
+    lateinit var task: NPCChangeTask
 
     @BeforeEach
     fun setup() {
-        task = NPCMovementTask(mockk(relaxed = true))
+        task = NPCChangeTask(mockk(relaxed = true))
     }
 
     @Test

@@ -11,7 +11,7 @@ import rs.dusk.engine.model.entity.index.npc.NPCs
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 15, 2020
  */
-class NPCMovementTask(override val entities: NPCs) : EntityTask<NPC>() {
+class NPCChangeTask(override val entities: NPCs) : EntityTask<NPC>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(npc: NPC) {

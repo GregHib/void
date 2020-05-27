@@ -5,7 +5,7 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.client.update.task.PlayerMovementTask
+import rs.dusk.engine.client.update.task.PlayerChangeTask
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
@@ -20,15 +20,15 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 03, 2020
  */
-internal class PlayerMovementTaskTest : KoinMock() {
+internal class PlayerChangeTaskTest : KoinMock() {
 
     override val modules = listOf(entityListModule)
 
-    lateinit var task: PlayerMovementTask
+    lateinit var task: PlayerChangeTask
 
     @BeforeEach
     fun setup() {
-        task = PlayerMovementTask(mockk(relaxed = true))
+        task = PlayerChangeTask(mockk(relaxed = true))
     }
 
     @Test

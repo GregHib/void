@@ -27,6 +27,7 @@ val engineTasksModule = module {
                     getProperty("loginPerTickCap")
                 ),
                 ViewportTask(),
+                PlayerMovementTask(get()),
                 PlayerVisualsTask(
                     get<Players>(),
                     get(named("playerVisualEncoders")),
@@ -41,8 +42,8 @@ val engineTasksModule = module {
                     get<NPCs>(),
                     get(named("npcVisualEncoders"))
                 ),
-                PlayerMovementTask(get()),
-                NPCMovementTask(get()),
+                PlayerChangeTask(get()),
+                NPCChangeTask(get()),
                 PlayerUpdateTask(get(), get()),
                 NPCUpdateTask(get(), get()),
                 PlayerPostUpdateTask(get()),

@@ -20,7 +20,7 @@ data class Player(
     override val size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val movement: Movement = Movement(delta = tile)
+    @Transient override val movement: Movement = Movement()
 ) : Indexed {
 
     @Transient
