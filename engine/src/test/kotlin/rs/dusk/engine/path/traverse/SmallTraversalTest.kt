@@ -13,7 +13,6 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.set
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -102,20 +101,5 @@ internal class SmallTraversalTest {
         val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
-    }
-
-    @Test
-    fun `Diagonal corner integration test`() {
-        // Given
-        val start = Tile(0, 0)
-        val direction = Direction.NORTH_EAST
-        val collisions = Collisions()
-        collisions[0, 1, 0] = 671170720
-        collisions[0, 0, 0] = 8389634
-        val traversal = SmallTraversal(collisions)
-        // When
-        val result = traversal.blocked(start.x, start.y, start.plane, direction)
-        // Then
-        assertTrue(result)
     }
 }

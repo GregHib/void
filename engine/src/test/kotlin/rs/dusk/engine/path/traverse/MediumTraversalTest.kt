@@ -39,7 +39,7 @@ internal class MediumTraversalTest {
     fun `North blocked at the start`() {
         // Given
         val start = Tile(1, 1)
-        every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_WALL_SOUTH_EAST) } returns true
+        every { collisions.check(start.x, start.y + 2, start.plane, CollisionFlag.LAND_BLOCK_SOUTH_EAST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
@@ -60,7 +60,7 @@ internal class MediumTraversalTest {
                 start.x + 1,
                 start.y + 2,
                 start.plane,
-                CollisionFlag.LAND_WALL_SOUTH_WEST
+                CollisionFlag.LAND_BLOCK_SOUTH_WEST
             )
         } returns true
         // When

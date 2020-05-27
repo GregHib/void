@@ -43,10 +43,10 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             14 -> sizeX = buffer.readUnsignedByte()
             15 -> sizeY = buffer.readUnsignedByte()
             17 -> {
-                projectileClipped = false
+                blocksSky = false
                 solid = 0
             }
-            18 -> projectileClipped = false
+            18 -> blocksSky = false
             19 -> interactive = buffer.readUnsignedByte()
             21 -> contouredGround = 1
             22 -> delayShading = true
@@ -74,8 +74,8 @@ class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDec
             70 -> offsetX = buffer.readUnsignedShort() shl 2
             71 -> offsetY = buffer.readUnsignedShort() shl 2
             72 -> offsetZ = buffer.readUnsignedShort() shl 2
-            73 -> blocksSky = true
-            74 -> swimmable = true
+            73 -> blocksLand = true
+            74 -> ignoreOnRoute = true
             75 -> supportItems = buffer.readUnsignedByte()
             77, 92 -> {
                 varbitIndex = buffer.readShort()

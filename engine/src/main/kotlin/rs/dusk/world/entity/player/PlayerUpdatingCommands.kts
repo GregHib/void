@@ -17,6 +17,8 @@ import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.model.world.map.collision.get
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
@@ -155,6 +157,13 @@ Command where { prefix == "run" } then {
     player.movement.runStep = Direction.NORTH_EAST
     player.movement.delta = player.movement.walkStep.delta.add(player.movement.runStep.delta)
     move(player, player.tile.add(player.movement.delta))
+}
+
+Command where { prefix == "test" } then {
+    val collisions = get<Collisions>()
+    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
+    println(collisions[player.tile.x - 1, player.tile.y, player.tile.plane])
+    //58727438  8389634
 }
 
 fun move(player: Player, tile: Tile) {

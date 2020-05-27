@@ -13,7 +13,7 @@ object CollisionFlag {
 
     const val LAND = 0x100
     const val SKY = LAND shl 9
-    const val SEA = LAND shl 22
+    const val IGNORED = LAND shl 22
 
     const val BLOCKED = LAND or FLOOR or FLOOR_DECO
 
@@ -98,37 +98,78 @@ object CollisionFlag {
     const val SKY_CLEAR_WEST = NOT_WEST shl 9 or BLOCKED
 
 
-    const val SEA_BLOCK_NORTH_WEST = NORTH_AND_WEST shl 22 or BLOCKED
-    const val SEA_BLOCK_NORTH = NORTH shl 22 or BLOCKED
-    const val SEA_BLOCK_NORTH_EAST = NORTH_AND_EAST shl 22 or BLOCKED
-    const val SEA_BLOCK_EAST = EAST shl 22 or BLOCKED
-    const val SEA_BLOCK_SOUTH_EAST = SOUTH_AND_EAST shl 22 or BLOCKED
-    const val SEA_BLOCK_SOUTH = SOUTH shl 22 or BLOCKED
-    const val SEA_BLOCK_SOUTH_WEST = SOUTH_AND_WEST shl 22 or BLOCKED
-    const val SEA_BLOCK_WEST = WEST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_NORTH_WEST = NORTH_AND_WEST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_NORTH = NORTH shl 22 or BLOCKED
+    const val IGNORED_BLOCK_NORTH_EAST = NORTH_AND_EAST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_EAST = EAST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_SOUTH_EAST = SOUTH_AND_EAST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_SOUTH = SOUTH shl 22 or BLOCKED
+    const val IGNORED_BLOCK_SOUTH_WEST = SOUTH_AND_WEST shl 22 or BLOCKED
+    const val IGNORED_BLOCK_WEST = WEST shl 22 or BLOCKED
 
-    const val SEA_WALL_NORTH_WEST = NORTH_AND_WEST or WALL shl 22 or BLOCKED
-    const val SEA_WALL_NORTH = NORTH or WALL shl 22 or BLOCKED
-    const val SEA_WALL_NORTH_EAST = NORTH_AND_EAST or WALL shl 22 or BLOCKED
-    const val SEA_WALL_EAST = EAST or WALL shl 22 or BLOCKED
-    const val SEA_WALL_SOUTH_EAST = SOUTH_AND_EAST or WALL shl 22 or BLOCKED
-    const val SEA_WALL_SOUTH = SOUTH or WALL shl 22 or BLOCKED
-    const val SEA_WALL_SOUTH_WEST = SOUTH_AND_WEST or WALL shl 22 or BLOCKED
-    const val SEA_WALL_WEST = WEST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_NORTH_WEST = NORTH_AND_WEST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_NORTH = NORTH or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_NORTH_EAST = NORTH_AND_EAST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_EAST = EAST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_SOUTH_EAST = SOUTH_AND_EAST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_SOUTH = SOUTH or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_SOUTH_WEST = SOUTH_AND_WEST or WALL shl 22 or BLOCKED
+    const val IGNORED_WALL_WEST = WEST or WALL shl 22 or BLOCKED
 
-    const val SEA_CLEAR_NORTH_WEST = SOUTH_AND_EAST shl 22 or BLOCKED
-    const val SEA_CLEAR_NORTH = NOT_NORTH shl 22 or BLOCKED
-    const val SEA_CLEAR_NORTH_EAST = SOUTH_AND_WEST shl 22 or BLOCKED
-    const val SEA_CLEAR_EAST = NOT_EAST shl 22 or BLOCKED
-    const val SEA_CLEAR_SOUTH_EAST = NORTH_AND_WEST shl 22 or BLOCKED
-    const val SEA_CLEAR_SOUTH = NOT_SOUTH shl 22 or BLOCKED
-    const val SEA_CLEAR_SOUTH_WEST = NORTH_AND_EAST shl 22 or BLOCKED
-    const val SEA_CLEAR_WEST = NOT_WEST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_NORTH_WEST = SOUTH_AND_EAST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_NORTH = NOT_NORTH shl 22 or BLOCKED
+    const val IGNORED_CLEAR_NORTH_EAST = SOUTH_AND_WEST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_EAST = NOT_EAST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_SOUTH_EAST = NORTH_AND_WEST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_SOUTH = NOT_SOUTH shl 22 or BLOCKED
+    const val IGNORED_CLEAR_SOUTH_WEST = NORTH_AND_EAST shl 22 or BLOCKED
+    const val IGNORED_CLEAR_WEST = NOT_WEST shl 22 or BLOCKED
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+        println(NORTH_WEST shl 22)
+        println(NORTH_EAST shl 22)
+        println(SOUTH_EAST shl 22)
+        println(SOUTH_WEST shl 22)
+        val result = StringBuilder()
+        val newLine = System.getProperty("line.separator")
+
+        result.append(this.javaClass.name)
+        result.append(" Object {")
+        result.append(newLine)
+
+        //determine fields declared in this class only (no fields of superclass)
+        val fields = this.javaClass.declaredFields
+
+        //print field names paired with their values
+        for (field in fields) {
+            result.append("  ")
+            try {
+                result.append(field.name)
+                result.append(": ")
+                //requires access to private field:
+                val value = field.get(this)
+                if (value is Int) {
+                    result.append("$value 0x${"%X".format(value)}")
+                } else {
+                    result.append(field.get(this))
+                }
+            } catch (ex: IllegalAccessException) {
+                ex.printStackTrace()
+            }
+
+            result.append(newLine)
+        }
+        result.append("}")
+
+        println(result.toString())
+    }
 }
 
-fun Direction.block() = flag() or CollisionFlag.BLOCKED
+fun Direction.block() = flagAnd() or CollisionFlag.BLOCKED
 
-fun Direction.wall() = flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
+fun Direction.wall() =
+    flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
 
 fun Direction.clear() = when (this) {
     Direction.NORTH_WEST -> CollisionFlag.LAND_CLEAR_NORTH_WEST
@@ -143,13 +184,21 @@ fun Direction.clear() = when (this) {
 }
 
 fun Direction.flag() = when (this) {
-    Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
+    Direction.NORTH_WEST -> CollisionFlag.NORTH_WEST
     Direction.NORTH -> CollisionFlag.NORTH
-    Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
+    Direction.NORTH_EAST -> CollisionFlag.NORTH_EAST
     Direction.EAST -> CollisionFlag.EAST
-    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
+    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_EAST
     Direction.SOUTH -> CollisionFlag.SOUTH
-    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
+    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_WEST
     Direction.WEST -> CollisionFlag.WEST
     Direction.NONE -> 0
+}
+
+fun Direction.flagAnd() = when (this) {
+    Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
+    Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
+    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
+    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
+    else -> flag()
 }

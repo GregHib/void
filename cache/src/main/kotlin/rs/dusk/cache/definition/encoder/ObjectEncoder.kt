@@ -47,7 +47,7 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeByte(definition.sizeY)
         }
 
-        if (!definition.projectileClipped) {
+        if (!definition.blocksSky) {
             if (definition.solid == 0) {
                 writeByte(17)
             } else {
@@ -184,11 +184,11 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeShort(definition.offsetZ shr 2)
         }
 
-        if (definition.blocksSky) {
+        if (definition.blocksLand) {
             writeByte(73)
         }
 
-        if (definition.swimmable) {
+        if (definition.ignoreOnRoute) {
             writeByte(74)
         }
 
