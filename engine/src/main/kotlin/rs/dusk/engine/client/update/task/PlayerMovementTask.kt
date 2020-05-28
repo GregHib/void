@@ -20,25 +20,26 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
         val steps = movement.steps
         if (steps.peek() != null) {
             var step = steps.poll()
-            /*
-                TODO move `getTraversal` out of PathFinder and into `Entity`
-                    Then use here to check if a step is still traversable.
-             */
-            movement.walkStep = step
-            movement.delta = step.delta
-            player.movementType = PlayerMoveType.Walk
-            player.temporaryMoveType = PlayerMoveType.Walk
-
-            var running = true// TODO
-            if (running) {
-                player.temporaryMoveType = PlayerMoveType.Run
-                if (steps.peek() != null) {
-                    step = steps.poll()
-                    movement.runStep = step
-                    movement.delta = movement.delta.add(step.delta)
-                    player.movementType = PlayerMoveType.Run
-                } else {
-                    player.movementType = PlayerMoveType.Walk
+            if (!movement.traversal.blocked(player.tile.x, player.tile.y, player.tile.plane, step)) {
+                movement.walkStep = step
+                movement.delta = step.delta
+                player.movementType = PlayerMoveType.Walk
+                player.temporaryMoveType = PlayerMoveType.Walk
+                var running = true// TODO
+                if (running) {
+                    if (steps.peek() != null) {
+                        val tile = player.tile.add(step.delta)
+                        step = steps.poll()
+                        if (!movement.traversal.blocked(tile.x, tile.y, tile.plane, step)) {
+                            movement.runStep = step
+                            movement.delta = movement.delta.add(step.delta)
+                            player.temporaryMoveType = PlayerMoveType.Run
+                            player.movementType = PlayerMoveType.Run
+                        }
+                    } else {
+                        player.temporaryMoveType = PlayerMoveType.Run
+                        player.movementType = PlayerMoveType.Walk
+                    }
                 }
             }
         } else if (player.temporaryMoveType != PlayerMoveType.None) {

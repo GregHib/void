@@ -4,12 +4,13 @@ import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertNotNull
 import org.junit.jupiter.api.Test
-import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.world.map.collision.collisionModule
+import rs.dusk.engine.path.traversalModule
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 
@@ -19,9 +20,7 @@ import rs.dusk.utility.get
  */
 internal class PlayerFactoryTest : KoinMock() {
 
-    override val modules = listOf(module {
-        single { PlayerFactory() }
-    }, eventBusModule)
+    override val modules = listOf(entityFactoryModule, eventBusModule, traversalModule, collisionModule)
 
     @Test
     fun `Spawn sets index and name`() = runBlocking {
@@ -38,6 +37,7 @@ internal class PlayerFactoryTest : KoinMock() {
         assertNotNull(result)
         verifyOrder {
             loader.loadPlayer("Test")
+            player.movement.traversal = any()
             player.index = 1
             player.name = "Test"
         }

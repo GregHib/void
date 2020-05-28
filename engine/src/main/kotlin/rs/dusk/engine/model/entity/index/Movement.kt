@@ -2,6 +2,7 @@ package rs.dusk.engine.model.entity.index
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import java.util.*
 
@@ -26,6 +27,7 @@ data class Movement(
     val distances: Array<IntArray> = Array(BreadthFirstSearch.GRAPH_SIZE) { IntArray(BreadthFirstSearch.GRAPH_SIZE) },
     val calc: Queue<Tile> = LinkedList()
 ) {
+    lateinit var traversal: TraversalStrategy
     fun reset() {
         delta = Tile.EMPTY
         walkStep = Direction.NONE

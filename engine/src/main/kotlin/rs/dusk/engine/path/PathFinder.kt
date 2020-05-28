@@ -2,7 +2,6 @@ package rs.dusk.engine.path
 
 import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
@@ -12,14 +11,11 @@ import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.path.target.*
-import rs.dusk.engine.path.traverse.LargeTraversal
-import rs.dusk.engine.path.traverse.MediumTraversal
-import rs.dusk.engine.path.traverse.SmallTraversal
 
 val pathFindModule = module {
     single { AxisAlignment(get()) }
     single { BreadthFirstSearch() }
-    single { PathFinder(get(), get(), get(), get(), get()) }
+    single { PathFinder(get(), get(), get()) }
 }
 
 /**
@@ -29,23 +25,19 @@ val pathFindModule = module {
 class PathFinder(
     private val collisions: Collisions,
     private val aa: AxisAlignment,
-    private val bfs: BreadthFirstSearch,
-    private val small: SmallTraversal,
-    private val medium: MediumTraversal
+    private val bfs: BreadthFirstSearch
 ) {
 
     fun find(source: Indexed, tile: Tile): PathResult {
-        val traverse = getTraversal(source.size)
         val strategy = TileTargetStrategy(tile = tile)
         val finder = getFinder(source)
-        return finder.find(source.tile, source.size, source.movement, strategy, traverse)
+        return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
     fun find(source: Indexed, target: Entity): PathResult {
-        val traverse = getTraversal(source.size)
         val strategy = getStrategy(target)
         val finder = getFinder(source)
-        return finder.find(source.tile, source.size, source.movement, strategy, traverse)
+        return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
     fun getFinder(source: Indexed): Finder {
@@ -54,12 +46,6 @@ class PathFinder(
         } else {
             aa
         }
-    }
-
-    fun getTraversal(size: Size) = when {
-        size.width == 1 && size.height == 1 -> small
-        size.width == 2 && size.height == 2 -> medium
-        else -> LargeTraversal(size, collisions)
     }
 
     fun getStrategy(target: Entity) = when (target) {

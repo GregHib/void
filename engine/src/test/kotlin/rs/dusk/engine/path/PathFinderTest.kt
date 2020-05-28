@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
@@ -21,9 +20,6 @@ import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.path.target.*
-import rs.dusk.engine.path.traverse.LargeTraversal
-import rs.dusk.engine.path.traverse.MediumTraversal
-import rs.dusk.engine.path.traverse.SmallTraversal
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -34,17 +30,13 @@ internal class PathFinderTest {
     lateinit var collisions: Collisions
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
-    lateinit var small: SmallTraversal
-    lateinit var medium: MediumTraversal
 
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
-        small = mockk(relaxed = true)
-        medium = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, bfs, small, medium))
+        pf = spyk(PathFinder(collisions, aa, bfs))
     }
 
     @Test
@@ -52,13 +44,13 @@ internal class PathFinderTest {
         // Given
         val source: Indexed = mockk(relaxed = true)
         val target = Tile(1, 1)
-        val obs: TraversalStrategy = mockk(relaxed = true)
-        every { pf.getTraversal(any()) } returns obs
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { source.movement.traversal } returns traversal
         every { pf.getFinder(any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
-        verify { bfs.find(source.tile, source.size, source.movement, any<TileTargetStrategy>(), obs) }
+        verify { bfs.find(source.tile, source.size, source.movement, any<TileTargetStrategy>(), traversal) }
     }
 
     @Test
@@ -66,15 +58,15 @@ internal class PathFinderTest {
         // Given
         val source: Indexed = mockk(relaxed = true)
         val target: Entity = mockk(relaxed = true)
-        val obs: TraversalStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { pf.getTraversal(any()) } returns obs
+        every { source.movement.traversal } returns traversal
         every { pf.getStrategy(any()) } returns strategy
         every { pf.getFinder(any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
-        verify { bfs.find(source.tile, source.size, source.movement, strategy, obs) }
+        verify { bfs.find(source.tile, source.size, source.movement, strategy, traversal) }
     }
 
     @Test
@@ -105,36 +97,6 @@ internal class PathFinderTest {
         val strategy = pf.getStrategy(target)
         // Then
         assertEquals(PointTargetStrategy(target.tile, target.size), strategy)
-    }
-
-    @Test
-    fun `Small traversal`() {
-        // Given
-        val size = Size(1, 1)
-        // When
-        val obstruction = pf.getTraversal(size)
-        // Then
-        assertEquals(small, obstruction)
-    }
-
-    @Test
-    fun `Medium traversal`() {
-        // Given
-        val size = Size(2, 2)
-        // When
-        val obstruction = pf.getTraversal(size)
-        // Then
-        assertEquals(medium, obstruction)
-    }
-
-    @Test
-    fun `Large traversal`() {
-        // Given
-        val size = Size(1, 2)
-        // When
-        val obstruction = pf.getTraversal(size)
-        // Then
-        assertEquals(size, (obstruction as LargeTraversal).size)
     }
 
     @Test

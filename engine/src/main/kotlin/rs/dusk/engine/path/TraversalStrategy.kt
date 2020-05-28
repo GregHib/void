@@ -13,7 +13,7 @@ interface TraversalStrategy {
     fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean
 }
 
-val obstructionModule = module {
+val traversalModule = module {
     single { SmallTraversal(get()) }
     single { MediumTraversal(get()) }
 }

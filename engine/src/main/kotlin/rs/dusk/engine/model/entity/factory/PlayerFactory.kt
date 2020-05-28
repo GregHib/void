@@ -13,6 +13,7 @@ import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.inject
 
 /**
@@ -27,9 +28,11 @@ class PlayerFactory {
     private val sessions: Sessions by inject()
     private val mutex = Mutex()
     private val scope = CoroutineScope(newSingleThreadContext("PlayerFactory"))
+    private val small: SmallTraversal by inject()
 
     fun spawn(name: String, tile: Tile? = null, session: Session? = null) = scope.async {
         val player = if (tile != null) loader.loadPlayer(name, tile) else loader.loadPlayer(name = name)
+        player.movement.traversal = small
         mutex.withLock {
             val index = indexer.obtain()
             if (index != null) {
