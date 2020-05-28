@@ -46,7 +46,7 @@ val engineTasksModule = module {
                 NPCChangeTask(get()),
                 PlayerUpdateTask(get(), get()),
                 NPCUpdateTask(get(), get()),
-                PlayerPostUpdateTask(get()),
+                PlayerPostUpdateTask(get(), get()),
                 NPCPostUpdateTask(get())
             )
         )
