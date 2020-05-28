@@ -6,14 +6,12 @@ import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
 import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
-import rs.dusk.core.network.connection.event.ConnectionEventListener
+import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.utility.replace
-import rs.dusk.network.rs.ServerConnectionEventChain
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.service.ServiceMessageHandler
 import rs.dusk.network.rs.codec.service.decode.message.GameConnectionHandshakeMessage
-import rs.dusk.network.rs.session.LoginSession
 import rs.dusk.utility.inject
 
 /**
@@ -21,25 +19,23 @@ import rs.dusk.utility.inject
  * @since February 18, 2020
  */
 class GameConnectionHandshakeMessageHandler : ServiceMessageHandler<GameConnectionHandshakeMessage>() {
-
-	val repository: CodecRepository by inject()
-
-	override fun handle(ctx: ChannelHandlerContext, msg: GameConnectionHandshakeMessage) {
+	
+	private val repository : CodecRepository by inject()
+	
+	override fun handle(ctx : ChannelHandlerContext, msg : GameConnectionHandshakeMessage) {
 		val pipeline = ctx.pipeline()
-		val codec = repository.get(LoginCodec::class)
+		val loginCodec = repository.get(LoginCodec::class)
+		val channel = ctx.channel()
+		
+		channel.setCodec(loginCodec)
+		
 		pipeline.apply {
-			val session = LoginSession(channel())
-			replace("packet.decoder", SimplePacketDecoder(codec))
-			replace("message.decoder", OpcodeMessageDecoder(codec))
-			replace(
-				"message.reader", MessageReader(
-					repository.get(LoginCodec::class)
-				)
-			)
-			replace("message.encoder", GenericMessageEncoder(codec))
-			replace("connection.listener", ConnectionEventListener(ServerConnectionEventChain(session)))
+			replace("packet.decoder", SimplePacketDecoder())
+			replace("message.decoder", OpcodeMessageDecoder())
+			replace("message.reader", MessageReader())
+			replace("message.encoder", GenericMessageEncoder())
 		}
 		ctx.pipeline().writeAndFlush(LobbyLoginConnectionResponseMessage(0))
 	}
-
+	
 }

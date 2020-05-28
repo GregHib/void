@@ -26,6 +26,7 @@ import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
+import rs.dusk.network.server.gameServerFactory
 import rs.dusk.utility.get
 
 /**
@@ -36,6 +37,8 @@ object Dusk : Runnable {
 
     @JvmStatic
     fun main(args: Array<String>) {
+	    preload()
+	    
         val world = World(1)
         val server = GameServer(world)
         val engine = Engine()
@@ -58,6 +61,7 @@ object Dusk : Runnable {
                 entityListModule,
                 scriptModule,
                 clientSessionModule,
+	            gameServerFactory,
                 clientVerificationModule,
                 playerLoaderModule,
                 xteaModule,
@@ -75,7 +79,6 @@ object Dusk : Runnable {
     }
 
     override fun run() {
-        preload()
         val bus: EventBus = get()
         bus.emit(Startup())
     }

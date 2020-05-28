@@ -35,8 +35,8 @@ allprojects {
 
     dependencies {
         //Main
-	    implementation(group="rs.dusk.core", name="network", version="0.1.0")
-	    implementation(group="rs.dusk.core", name="utility", version="0.1.0")
+	    implementation(group="rs.dusk.core", name="network", version="0.1.1")
+	    implementation(group="rs.dusk.core", name="utility", version="0.1.1")
 	    
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
