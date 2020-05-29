@@ -16,9 +16,9 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
         val movement = player.movement
-
         val steps = movement.steps
-        if (steps.peek() != null) {
+        val locked = movement.frozen || !player.viewport.loaded
+        if (!locked && steps.peek() != null) {
             var step = steps.poll()
             if (!movement.traversal.blocked(player.tile.x, player.tile.y, player.tile.plane, step)) {
                 movement.walkStep = step
@@ -42,9 +42,6 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
                     }
                 }
             }
-        } else if (player.temporaryMoveType != PlayerMoveType.None) {
-            player.temporaryMoveType = PlayerMoveType.None
-            player.movementType = PlayerMoveType.None
         }
     }
 }

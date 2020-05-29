@@ -42,11 +42,10 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
                 player.changeValue = value
             } else {
                 player.change = if (withinView(delta)) LocalChange.Tele else LocalChange.TeleGlobal
-                if (player.change == LocalChange.Tele) {
-                    player.changeValue = (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
+                player.changeValue = if (player.change == LocalChange.Tele) {
+                    (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
                 } else {
-                    player.changeValue =
-                        (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28)
+                    (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28)
                 }
             }
         } else if (player.visuals.update != null) {

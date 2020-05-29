@@ -25,8 +25,10 @@ data class Movement(
         ) { null }
     },
     val distances: Array<IntArray> = Array(BreadthFirstSearch.GRAPH_SIZE) { IntArray(BreadthFirstSearch.GRAPH_SIZE) },
-    val calc: Queue<Tile> = LinkedList()
+    val calc: Queue<Tile> = LinkedList(),
+    var frozen: Boolean = false
 ) {
+
     lateinit var traversal: TraversalStrategy
     fun reset() {
         delta = Tile.EMPTY

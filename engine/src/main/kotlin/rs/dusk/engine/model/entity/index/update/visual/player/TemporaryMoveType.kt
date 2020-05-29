@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual.player
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -8,7 +9,12 @@ import rs.dusk.engine.model.entity.index.update.Visual
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class TemporaryMoveType(var type: PlayerMoveType = PlayerMoveType.None) : Visual
+data class TemporaryMoveType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
+    override fun reset(indexed: Indexed) {
+        val player = indexed as Player
+        player.temporaryMoveType = PlayerMoveType.None
+    }
+}
 
 const val TEMPORARY_MOVE_TYPE_MASK = 0x1
 

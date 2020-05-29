@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -9,7 +10,7 @@ import rs.dusk.engine.model.entity.index.update.Visual
  * @since April 25, 2020
  */
 data class ForceChat(var text: String = "") : Visual {
-    override fun reset() {
+    override fun reset(indexed: Indexed) {
         text = ""
     }
 }

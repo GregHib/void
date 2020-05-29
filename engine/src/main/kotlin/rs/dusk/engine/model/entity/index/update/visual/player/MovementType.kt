@@ -1,14 +1,21 @@
 package rs.dusk.engine.model.entity.index.update.visual.player
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.update.Visual
+import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual
+data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
+    override fun reset(indexed: Indexed) {
+        val player = indexed as Player
+        player.movementType = PlayerMoveType.None
+    }
+}
 
 const val MOVEMENT_TYPE_MASK = 0x200
 
@@ -24,3 +31,10 @@ var Player.movementType: PlayerMoveType
             flagMovementType()
         }
     }
+
+fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
+    movement.delta = Tile(x - tile.x, y - tile.y, plane - tile.plane)
+    if (movement.delta != Tile.EMPTY) {
+        movementType = PlayerMoveType.Teleport
+    }
+}

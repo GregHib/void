@@ -14,6 +14,7 @@ import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
 import rs.dusk.engine.model.world.map.location.Xtea
 import rs.dusk.engine.model.world.map.location.Xteas
+import rs.dusk.network.rs.codec.game.decode.message.RegionLoadedMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
@@ -39,6 +40,10 @@ Deregistered where { entity is Player } then {
 GameLoginMessage verify { player ->
     calculateRegions(player, true)
     bus.emit(Registered(player))
+}
+
+RegionLoadedMessage verify { player ->
+    player.viewport.loaded = true
 }
 
 Move where { entity is Player && needsRegionChange(entity) } then {
@@ -95,6 +100,7 @@ fun update(player: Player, initial: Boolean) {
         }
     }
 
+    player.viewport.loaded = false
     player.send(
         MapRegionMessage(
             chunkX = chunkX,

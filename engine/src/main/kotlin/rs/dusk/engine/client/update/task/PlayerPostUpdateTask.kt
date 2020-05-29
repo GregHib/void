@@ -29,7 +29,7 @@ class PlayerPostUpdateTask(override val entities: Players, private val bus: Even
         }
         player.movement.reset()
         player.visuals.aspects.forEach { (_, visual) ->
-            visual.reset()
+            visual.reset(player)
         }
     }
 

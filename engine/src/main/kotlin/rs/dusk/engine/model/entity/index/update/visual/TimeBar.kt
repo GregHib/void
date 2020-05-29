@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -14,7 +15,7 @@ data class TimeBar(
     var delay: Int = 0,
     var increment: Int = 0
 ) : Visual {
-    override fun reset() {
+    override fun reset(indexed: Indexed) {
         full = false
         exponentialDelay = 0
         delay = 0

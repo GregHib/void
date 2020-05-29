@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -13,7 +14,7 @@ data class Hits(
     var source: Int = -1,// TODO source & target setting
     var target: Int = -1
 ) : Visual {
-    override fun reset() {
+    override fun reset(indexed: Indexed) {
         hits.clear()
         source = -1
         target = -1

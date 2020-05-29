@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual
 
+import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -15,7 +16,7 @@ data class Animation(
     var fourth: Int = -1,
     var speed: Int = 0
 ) : Visual {
-    override fun reset() {
+    override fun reset(indexed: Indexed) {
         first = -1
         second = -1
         third = -1

@@ -14,7 +14,7 @@ class NPCPostUpdateTask(override val entities: NPCs) : EntityTask<NPC>() {
     override fun runAsync(npc: NPC) {
         npc.movement.reset()
         npc.visuals.aspects.forEach { (_, visual) ->
-            visual.reset()
+            visual.reset(npc)
         }
     }
 
