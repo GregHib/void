@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.update
+package rs.dusk.engine.client.update.task
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -11,7 +11,6 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
-import rs.dusk.engine.client.update.task.PlayerUpdateTask
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
 import rs.dusk.engine.model.entity.index.player.Player

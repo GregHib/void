@@ -25,20 +25,19 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
                 movement.delta = step.delta
                 player.movementType = PlayerMoveType.Walk
                 player.temporaryMoveType = PlayerMoveType.Walk
-                var running = true// TODO
-                if (running) {
+                if (movement.running) {
                     if (steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = steps.poll()
                         if (!movement.traversal.blocked(tile.x, tile.y, tile.plane, step)) {
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
-                            player.temporaryMoveType = PlayerMoveType.Run
                             player.movementType = PlayerMoveType.Run
+                            player.temporaryMoveType = PlayerMoveType.Run
                         }
                     } else {
-                        player.temporaryMoveType = PlayerMoveType.Run
                         player.movementType = PlayerMoveType.Walk
+                        player.temporaryMoveType = PlayerMoveType.Run
                     }
                 }
             }

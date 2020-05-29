@@ -1,11 +1,10 @@
-package rs.dusk.engine.client.update
+package rs.dusk.engine.client.update.task
 
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.client.update.task.PlayerChangeTask
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
