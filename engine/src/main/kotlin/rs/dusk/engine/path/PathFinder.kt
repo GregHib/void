@@ -13,7 +13,7 @@ import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.path.target.*
 
 val pathFindModule = module {
-    single { AxisAlignment(get()) }
+    single { AxisAlignment() }
     single { BreadthFirstSearch() }
     single { PathFinder(get(), get(), get()) }
 }

@@ -1,18 +1,21 @@
 package rs.dusk.engine.path.find
 
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Steps
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.block
-import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.engine.path.TraversalStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -20,141 +23,231 @@ import rs.dusk.engine.path.TargetStrategy
  */
 internal class AxisAlignmentTest {
 
-    lateinit var collisions: Collisions
     lateinit var aa: AxisAlignment
 
     @BeforeEach
     fun setup() {
-        collisions = mockk(relaxed = true)
-        aa = spyk(AxisAlignment(collisions))
+        aa = spyk(AxisAlignment())
+    }
+
+    val size = Size.TILE
+
+    @TestFactory
+    fun `Horizontal moves towards target`() = arrayOf(
+        Tile(11, 10) to Direction.WEST,
+        Tile(9, 10) to Direction.EAST
+    ).map { (tile, dir) ->
+        dynamicTest("Horizontal moves $dir if $tile of target") {
+            // Given
+            val steps: Steps = mockk(relaxed = true)
+            val target = Tile(10, 10)
+            val strategy: TargetStrategy = mockk(relaxed = true)
+            val traversal: TraversalStrategy = mockk(relaxed = true)
+            every { strategy.tile } returns target
+            every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+            // When
+            val result = aa.addHorizontal(steps, tile, size, strategy, traversal)
+            // Then
+            result as PathResult.Success.Complete
+            assertEquals(target, result.last)
+            verify {
+                steps.add(dir)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `Horizontal doesn't move if blocked`() = arrayOf(
+        Tile(11, 10) to Direction.WEST,
+        Tile(9, 10) to Direction.EAST
+    ).map { (tile, dir) ->
+        dynamicTest("Horizontal blocked $dir") {
+            // Given
+            val steps: Steps = mockk(relaxed = true)
+            val target = Tile(10, 10)
+            val strategy: TargetStrategy = mockk(relaxed = true)
+            val traversal: TraversalStrategy = mockk(relaxed = true)
+            every { strategy.tile } returns target
+            every { traversal.blocked(tile.x, tile.y, tile.plane, dir) } returns true
+            // When
+            val result = aa.addHorizontal(steps, tile, size, strategy, traversal)
+            // Then
+            result as PathResult.Success.Partial
+            verify(exactly = 0) {
+                steps.add(dir)
+            }
+        }
     }
 
     @Test
-    fun `Horizontal steps break when reached`() {
+    fun `Horizontal moves none if aligned with target`() {
         // Given
         val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 2)
+        val tile = Tile(10, 10)
+        val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { strategy.reached(12, 15, 0, size) } returns true
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { strategy.reached(target.x, target.y, target.plane, size) } returns true
         // When
-        val result = aa.horizontal(steps, tile, size, Direction.EAST, Direction.NONE, strategy)
+        val result = aa.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
-        verify(exactly = 2) {
+        result as PathResult.Success.Complete
+        assertEquals(target, result.last)
+        verify(exactly = 0) {
+            steps.add(Direction.WEST)
             steps.add(Direction.EAST)
         }
-        assert(result is PathResult.Success.Complete)
-        result as PathResult.Success.Complete
-        assertEquals(Tile(12, 15), result.last)
     }
 
     @Test
-    fun `Horizontal break when collided`() {
+    fun `Horizontal returns partial if vertical blocked`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 2)
+        val tile = Tile(10, 10)
+        val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { collisions.check(12, 15, 0, Direction.EAST.block()) } returns true
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { traversal.blocked(tile.x, tile.y, tile.plane, any()) } returns true
         // When
-        val result = aa.horizontal(steps, tile, size, Direction.EAST, Direction.NONE, strategy)
+        val result = aa.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
-        assert(result is PathResult.Success.Partial)
         result as PathResult.Success.Partial
-        assertEquals(Tile(12, 15), result.last)
-        verify {
+        assertEquals(tile, result.last)
+        verify(exactly = 0) {
+            steps.add(Direction.WEST)
             steps.add(Direction.EAST)
         }
     }
 
     @Test
-    fun `Horizontal attempts vertical if not reached target`() {
-        // Given
-        mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
-        val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 1)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        every { aa.vertical(steps, any(), size, any(), any(), strategy) } returns PathResult.Success.Partial(tile)
-        every { collisions.check(12, 16, 0, Direction.EAST.block()) } returns false
-        // When
-        val result = aa.horizontal(steps, tile, size, Direction.NONE, Direction.NORTH, strategy)
-        // Then
-        assert(result is PathResult.Success.Partial)
-        result as PathResult.Success.Partial
-        assertEquals(tile, result.last)
-        verify {
-            aa.vertical(steps, tile, size, any(), any(), strategy)
-        }
-    }
-
-    @Test
-    fun `Vertical steps break when reached`() {
+    fun `Horizontal moves vertical if not blocked`() {
         // Given
         val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 2)
+        val tile = Tile(10, 10)
+        val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { strategy.reached(10, 13, 0, size) } returns true
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { aa.addVertical(steps, any(), size, strategy, traversal) } returns PathResult.Success.Complete(tile)
         // When
-        val result = aa.horizontal(steps, tile, size, Direction.NONE, Direction.SOUTH, strategy)
+        val result = aa.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
-        verify(exactly = 2) {
-            steps.add(Direction.SOUTH)
-        }
-        assert(result is PathResult.Success.Complete)
         result as PathResult.Success.Complete
-        assertEquals(Tile(10, 13), result.last)
-    }
-
-    @Test
-    fun `Vertical break when collided`() {
-        // Given
-        mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
-        val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 2)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        every { collisions.check(10, 13, 0, Direction.SOUTH.block()) } returns true
-        // When
-        val result = aa.horizontal(steps, tile, size, Direction.NONE, Direction.SOUTH, strategy)
-        // Then
-        assert(result is PathResult.Success.Partial)
-        result as PathResult.Success.Partial
-        assertEquals(Tile(10, 13), result.last)
-        verify {
-            steps.add(Direction.SOUTH)
-        }
-    }
-
-    @Test
-    fun `Vertical attempts horizontal if not reached target`() {
-        // Given
-        mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
-        val steps: Steps = mockk(relaxed = true)
-        val tile = Tile(10, 15)
-        val size = Size(1, 1)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        every { aa.horizontal(steps, any(), size, any(), any(), strategy) } returns PathResult.Success.Partial(tile)
-        every { collisions.check(9, 15, 0, Direction.WEST.block()) } returns false
-        // When
-        val result = aa.horizontal(steps, tile, size, Direction.WEST, Direction.NONE, strategy)
-        // Then
-        assert(result is PathResult.Success.Partial)
-        result as PathResult.Success.Partial
         assertEquals(tile, result.last)
         verify {
-            aa.horizontal(steps, tile, size, any(), any(), strategy)
+            aa.addVertical(steps, any(), size, strategy, traversal)
+        }
+    }
+
+    @TestFactory
+    fun `Vertical moves towards target`() = arrayOf(
+        Tile(10, 11) to Direction.SOUTH,
+        Tile(10, 9) to Direction.NORTH
+    ).map { (tile, dir) ->
+        dynamicTest("Horizontal moves $dir if $tile of target") {
+            // Given
+            val steps: Steps = mockk(relaxed = true)
+            val target = Tile(10, 10)
+            val strategy: TargetStrategy = mockk(relaxed = true)
+            val traversal: TraversalStrategy = mockk(relaxed = true)
+            every { strategy.tile } returns target
+            every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+            // When
+            val result = aa.addVertical(steps, tile, size, strategy, traversal)
+            // Then
+            result as PathResult.Success.Complete
+            assertEquals(target, result.last)
+            verify {
+                steps.add(dir)
+            }
+        }
+    }
+
+    @TestFactory
+    fun `Vertical doesn't move if blocked`() = arrayOf(
+        Tile(10, 11) to Direction.SOUTH,
+        Tile(10, 9) to Direction.NORTH
+    ).map { (tile, dir) ->
+        dynamicTest("Horizontal blocked $dir") {
+            // Given
+            val steps: Steps = mockk(relaxed = true)
+            val target = Tile(10, 10)
+            val strategy: TargetStrategy = mockk(relaxed = true)
+            val traversal: TraversalStrategy = mockk(relaxed = true)
+            every { strategy.tile } returns target
+            every { traversal.blocked(tile.x, tile.y, tile.plane, dir) } returns true
+            // When
+            val result = aa.addVertical(steps, tile, size, strategy, traversal)
+            // Then
+            result as PathResult.Success.Partial
+            verify(exactly = 0) {
+                steps.add(dir)
+            }
+        }
+    }
+
+
+    @Test
+    fun `Vertical moves none if aligned with target`() {
+        // Given
+        val steps: Steps = mockk(relaxed = true)
+        val tile = Tile(10, 10)
+        val target = Tile(11, 10)
+        val strategy: TargetStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+        // When
+        val result = aa.addVertical(steps, tile, size, strategy, traversal)
+        // Then
+        result as PathResult.Success.Complete
+        assertEquals(target, result.last)
+        verify(exactly = 0) {
+            steps.add(Direction.SOUTH)
+            steps.add(Direction.NORTH)
         }
     }
 
     @Test
-    fun `Direction from delta`() {
-        Direction.values().forEach {
-            val delta = Tile(it.delta.x * 10, it.delta.y * 10)
-            val direction = aa.toDirection(delta)
-            assertEquals(it, direction)
+    fun `Vertical returns partial if horizontal blocked`() {
+        // Given
+        val steps: Steps = mockk(relaxed = true)
+        val tile = Tile(10, 10)
+        val target = Tile(11, 10)
+        val strategy: TargetStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { traversal.blocked(tile.x, tile.y, tile.plane, any()) } returns true
+        // When
+        val result = aa.addVertical(steps, tile, size, strategy, traversal)
+        // Then
+        result as PathResult.Success.Partial
+        assertEquals(tile, result.last)
+        verify(exactly = 0) {
+            steps.add(Direction.SOUTH)
+            steps.add(Direction.NORTH)
+        }
+    }
+
+    @Test
+    fun `Vertical moves horizontal if not blocked`() {
+        // Given
+        val steps: Steps = mockk(relaxed = true)
+        val tile = Tile(10, 10)
+        val target = Tile(11, 10)
+        val strategy: TargetStrategy = mockk(relaxed = true)
+        val traversal: TraversalStrategy = mockk(relaxed = true)
+        every { strategy.tile } returns target
+        every { aa.addHorizontal(steps, any(), size, strategy, traversal) } returns PathResult.Success.Complete(tile)
+        // When
+        val result = aa.addVertical(steps, tile, size, strategy, traversal)
+        // Then
+        result as PathResult.Success.Complete
+        assertEquals(tile, result.last)
+        verify {
+            aa.addHorizontal(steps, any(), size, strategy, traversal)
         }
     }
 }

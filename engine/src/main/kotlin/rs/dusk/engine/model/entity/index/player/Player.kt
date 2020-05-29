@@ -17,7 +17,7 @@ data class Player(
     @Transient override var index: Int = -1,
     override var id: Int = -1,
     override var tile: Tile = Tile.EMPTY,
-    override val size: Size = Size.TILE,
+    override var size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val movement: Movement = Movement()

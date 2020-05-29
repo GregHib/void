@@ -140,6 +140,10 @@ Command where { prefix == "hide" } then {
 
 Command where { prefix == "test" } then {
     val collisions = get<Collisions>()
+//    player.transform = 50
+//    val decoder: NPCDecoder = get()
+//    val definition = decoder.get(50)!!
+//    player.size = Size(definition.size, definition.size)
 //    3058, 3501 - 12086
     println(collisions[player.tile.x, player.tile.y, player.tile.plane])//671088800
 }
