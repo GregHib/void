@@ -9,9 +9,6 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.factory.PlayerFactory
-import rs.dusk.engine.model.entity.index.Move
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerMoveType
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
@@ -141,38 +138,10 @@ Command where { prefix == "hide" } then {
     player.minimapHighlight = !player.minimapHighlight
 }
 
-Command where { prefix == "walk" } then {
-    player.movementType = PlayerMoveType.Walk
-//    player.temporaryMoveType = PlayerMoveType.Walk
-    val direction = Direction.NORTH
-    player.movement.walkStep = direction
-    player.movement.delta = direction.delta
-    move(player, player.tile.add(direction.delta))
-}
-
-Command where { prefix == "run" } then {
-    player.movementType = PlayerMoveType.Run
-//    player.temporaryMoveType = PlayerMoveType.Run
-    player.movement.walkStep = Direction.NORTH
-    player.movement.runStep = Direction.NORTH_EAST
-    player.movement.delta = player.movement.walkStep.delta.add(player.movement.runStep.delta)
-    move(player, player.tile.add(player.movement.delta))
-}
-
 Command where { prefix == "test" } then {
     val collisions = get<Collisions>()
-    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
-    println(collisions[player.tile.x - 1, player.tile.y, player.tile.plane])
-    //58727438  8389634
-}
-
-fun move(player: Player, tile: Tile) {
-    player.movement.lastTile = player.tile
-    players.remove(player.tile, player)
-    players.remove(player.tile.chunk, player)
-    player.tile = tile
-    players[player.tile] = player
-    players[player.tile.chunk] = player
+//    3058, 3501 - 12086
+    println(collisions[player.tile.x, player.tile.y, player.tile.plane])//671088800
 }
 
 Command where { prefix == "tele" || prefix == "tp" } then {
@@ -181,20 +150,9 @@ Command where { prefix == "tele" || prefix == "tp" } then {
         val plane = params[0].toInt()
         val x = params[1].toInt() shl 6 or params[3].toInt()
         val y = params[2].toInt() shl 6 or params[4].toInt()
-        player.movement.delta = Tile(
-            x - player.tile.x,
-            y - player.tile.y,
-            plane - player.tile.plane
-        )
-        player.movementType = PlayerMoveType.Teleport
-        move(player, Tile(x, y, plane))
-        val bus: EventBus = get()
-        bus.emit(
-            Move(
-                player,
-                player.tile,
-                player.movement.lastTile
-            )
-        )
+        player.tele(x, y, plane)
+    } else {
+        val parts = content.split(" ")
+        player.tele(parts[0].toInt(), parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
     }
 }

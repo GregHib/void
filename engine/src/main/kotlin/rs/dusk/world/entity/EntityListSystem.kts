@@ -71,11 +71,7 @@ fun modifyCollision(location: Location, changeType: Int) {
 
     when (location.type) {
         in 0..3 -> modifyWall(location, changeType)
-        in 9..21 -> {
-            if (location.def.blocksSky) {
-                modifyObject(location, changeType)
-            }
-        }
+        in 9..21 -> modifyObject(location, changeType)
         22 -> {
             if (location.def.solid == 1) {
                 modifyMask(location.tile.x, location.tile.y, location.tile.plane, CollisionFlag.FLOOR_DECO, changeType)
@@ -87,11 +83,11 @@ fun modifyCollision(location: Location, changeType: Int) {
 fun modifyObject(location: Location, changeType: Int) {
     var mask = LAND
 
-    if (location.def.blocksSky) {
+    if (location.def.blocksSky) {//solid
         mask = mask or SKY
     }
 
-    if (!location.def.ignoreOnRoute) {
+    if (!location.def.ignoreOnRoute) {//not alt
         mask = mask or IGNORED
     }
 
@@ -144,7 +140,7 @@ fun modifyWall(location: Location, motion: Int, changeType: Int) {
             else -> 0
         }
         modifyMask(location.tile.x, location.tile.y, location.tile.plane, applyMotion(or, motion), changeType)
-        tile = tile.add(cardinal[rotation and 0x3].delta)
+        tile = tile.add(cardinal[(rotation + 3) and 0x3].delta)
     }
 
     // Mask one wall side
@@ -156,8 +152,10 @@ fun modifyWall(location: Location, motion: Int, changeType: Int) {
     modifyMask(tile.x, tile.y, tile.plane, direction.flag(motion), changeType)
 
     // Mask other wall side
-    if (type != 2) {
-        tile = location.tile.add(direction.delta)
+    tile = if (type == 2) {
+        location.tile.add(cardinal[rotation and 0x3].delta)
+    } else {
+        location.tile.add(direction.delta)
     }
     direction = when (type) {
         2 -> cardinal[(rotation + 2) and 0x3]

@@ -30,6 +30,12 @@ data class Movement(
 ) {
 
     lateinit var traversal: TraversalStrategy
+
+    fun clear() {
+        steps.clear()
+        reset()
+    }
+
     fun reset() {
         delta = Tile.EMPTY
         walkStep = Direction.NONE
