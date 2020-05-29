@@ -10,6 +10,7 @@ sealed class LocalChange(val id: Int) {
     object Crawl : LocalChange(2)
     object Run : LocalChange(2)
     object Tele : LocalChange(3)
+    object TeleGlobal : LocalChange(3)
     object Remove : LocalChange(3)
 }
 

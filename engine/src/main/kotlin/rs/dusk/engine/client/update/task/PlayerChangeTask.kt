@@ -1,11 +1,13 @@
 package rs.dusk.engine.client.update.task
 
+import rs.dusk.engine.client.viewport.ViewportTask.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.world.Tile
+import kotlin.math.abs
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -39,8 +41,13 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
 
                 player.changeValue = value
             } else {
-                player.change = LocalChange.Tele
-                player.changeValue = (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
+                player.change = if (withinView(delta)) LocalChange.Tele else LocalChange.TeleGlobal
+                if (player.change == LocalChange.Tele) {
+                    player.changeValue = (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
+                } else {
+                    player.changeValue =
+                        (delta.y and 0x3fff) + (delta.x and 0x3fff shl 14) + (delta.plane and 0x3 shl 28)
+                }
             }
         } else if (player.visuals.update != null) {
             player.change = LocalChange.Update
@@ -52,6 +59,10 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
     }
 
     companion object {
+
+        private fun withinView(delta: Tile): Boolean {
+            return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
+        }
 
         private val RUN_X = intArrayOf(-2, -1, 0, 1, 2, -2, 2, -2, 2, -2, 2, -2, -1, 0, 1, 2)
         private val RUN_Y = intArrayOf(-2, -2, -2, -2, -2, -1, -1, 0, 0, 1, 1, 2, 2, 2, 2, 2)

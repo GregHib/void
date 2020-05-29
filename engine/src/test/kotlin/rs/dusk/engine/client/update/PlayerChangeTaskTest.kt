@@ -76,7 +76,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
-        every { player.movement.delta } returns Tile(247, -365, 1)
+        every { player.movement.delta } returns Tile(12, -11, 1)
         every { player.movementType } returns PlayerMoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
@@ -84,6 +84,25 @@ internal class PlayerChangeTaskTest : KoinMock() {
         // Then
         verifyOrder {
             player.change = LocalChange.Tele
+            player.changeValue = 1429
+        }
+    }
+
+    @Test
+    fun `Local update tele far`() {
+        // Given
+        val player: Player = mockk(relaxed = true)
+        every { player.movement.steps } returns LinkedList()
+        every { player.movement.walkStep } returns Direction.NONE
+        every { player.movement.runStep } returns Direction.NONE
+        every { player.movement.delta } returns Tile(247, -365, 1)
+        every { player.movementType } returns PlayerMoveType.Teleport
+        every { player.change } returns LocalChange.Tele
+        // When
+        task.runAsync(player)
+        // Then
+        verifyOrder {
+            player.change = LocalChange.TeleGlobal
             player.changeValue = 1779
         }
     }

@@ -83,9 +83,11 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             when (updateType) {
                 LocalChange.Walk, LocalChange.Run ->
                     sync.writeBits(updateType.id + 2, player.changeValue)
-                LocalChange.Tele -> {
-                    sync.writeBits(1, false)// Exit teleport support not needed
-                    sync.writeBits(12, player.changeValue)
+                LocalChange.Tele, LocalChange.TeleGlobal -> {
+                    val global = updateType == LocalChange.TeleGlobal
+                    sync.writeBits(1, global)
+                    val size = if (global) 30 else 12
+                    sync.writeBits(size, player.changeValue)
                 }
                 else -> {
                 }
