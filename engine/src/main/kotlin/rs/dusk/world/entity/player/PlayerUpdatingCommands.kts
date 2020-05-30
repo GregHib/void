@@ -1,13 +1,11 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.client.login.LoginQueue
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
@@ -18,38 +16,11 @@ import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.get
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
-import java.util.concurrent.atomic.AtomicInteger
 
 val factory: PlayerFactory by inject()
 val players: Players by inject()
 val login: LoginQueue by inject()
 val bus: EventBus by inject()
-
-val botCounter = AtomicInteger(0)
-
-Command where { prefix == "bot" } then {
-    println("Bot command")
-    runBlocking {
-        try {
-            val radius = 22
-            (-radius..radius).flatMap { x ->
-                (-radius..radius).map { y ->
-                    factory.spawn(
-                        "Bot ${botCounter.getAndIncrement()}",
-                        player.tile.add(x, y)
-                    )
-                }
-            }.forEach {
-                val bot = it.await()
-                if (bot != null) {
-                    bus.emit(Registered(bot))
-                }
-            }
-        } catch (e: Throwable) {
-            e.printStackTrace()
-        }
-    }
-}
 
 Command where { prefix == "kill" } then {
     players.indexed.forEachIndexed { index, bot ->
@@ -140,23 +111,5 @@ Command where { prefix == "hide" } then {
 
 Command where { prefix == "test" } then {
     val collisions = get<Collisions>()
-//    player.transform = 50
-//    val decoder: NPCDecoder = get()
-//    val definition = decoder.get(50)!!
-//    player.size = Size(definition.size, definition.size)
-//    3058, 3501 - 12086
-    println(collisions[player.tile.x, player.tile.y, player.tile.plane])//671088800
-}
-
-Command where { prefix == "tele" || prefix == "tp" } then {
-    if (content.contains(",")) {
-        val params = content.split(",")
-        val plane = params[0].toInt()
-        val x = params[1].toInt() shl 6 or params[3].toInt()
-        val y = params[2].toInt() shl 6 or params[4].toInt()
-        player.tele(x, y, plane)
-    } else {
-        val parts = content.split(" ")
-        player.tele(parts[0].toInt(), parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
-    }
+    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
 }

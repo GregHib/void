@@ -222,7 +222,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.id } returns id
         every { npc.getTurn().direction } returns direction
         every { entities.add } returns linkedSetOf(npc)
-        every { npc.visuals.update } returns if (update) byteArrayOf() else null
+        every { npc.visuals.addition } returns if (update) byteArrayOf() else null
         // When
         task.processAdditions(sync, updates, client, entities)
         // Then

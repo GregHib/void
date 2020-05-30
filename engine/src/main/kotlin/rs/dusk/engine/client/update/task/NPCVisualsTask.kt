@@ -15,8 +15,11 @@ import rs.dusk.engine.model.entity.list.PooledMapList
  */
 class NPCVisualsTask(
     override val entities: PooledMapList<NPC>,
-    private val encoders: Array<VisualEncoder<Visual>>
+    private val encoders: Array<VisualEncoder<Visual>>,
+    addMasks: IntArray // Order of these is important
 ) : EntityTask<NPC>() {
+
+    private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 
     /**
      * Encodes [Visual] changes into an insertion and delta update
@@ -29,6 +32,9 @@ class NPCVisualsTask(
             return
         }
         encodeUpdate(visuals)
+        if (addEncoders.any { encoder -> visuals.flagged(encoder.mask) }) {
+            encodeAddition(visuals)
+        }
         visuals.flag = 0
     }
 
@@ -46,6 +52,20 @@ class NPCVisualsTask(
             encoder.encode(writer, visual)
         }
         visuals.update = writer.toArray()
+    }
+
+    /**
+     * Encodes [addEncoders] visuals into one reusable [Visuals.addition]
+     */
+    fun encodeAddition(visuals: Visuals) {
+        val writer = BufferWriter()
+        val addFlag = addEncoders.filter { visuals.flagged(it.mask) }.sumBy { it.mask }
+        writeFlag(writer, addFlag)
+        addEncoders.forEach { encoder ->
+            val visual = visuals.aspects[encoder.mask] ?: return@forEach
+            encoder.encode(writer, visual)
+        }
+        visuals.addition = writer.toArray()
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {

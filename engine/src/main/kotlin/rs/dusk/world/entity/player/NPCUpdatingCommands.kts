@@ -1,4 +1,3 @@
-import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
@@ -14,18 +13,6 @@ import rs.dusk.utility.inject
 
 val factory: NPCFactory by inject()
 val npcs: NPCs by inject()
-
-Command where { prefix == "npc" } then {
-    println("Npc command")
-    runBlocking {
-        val radius = 22
-        (-radius..radius).forEach { x ->
-            (-radius..radius).forEach { y ->
-                factory.spawn(1, player.tile.x + x, player.tile.y + y, player.tile.plane, Direction.NORTH)
-            }
-        }
-    }
-}
 
 Command where { prefix == "npckill" } then {
     npcs.indexed.forEachIndexed { index, npc ->

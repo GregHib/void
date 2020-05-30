@@ -92,7 +92,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
             val delta = npc.tile.delta(client.tile)
             sync.writeBits(15, npc.index)
             sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
-            sync.writeBits(1, npc.visuals.update != null)
+            sync.writeBits(1, npc.visuals.addition != null)
             sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
             sync.writeBits(2, npc.tile.plane)
             sync.writeBits(15, npc.id)

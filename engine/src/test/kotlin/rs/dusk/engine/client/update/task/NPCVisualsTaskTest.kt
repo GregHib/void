@@ -29,9 +29,10 @@ internal class NPCVisualsTaskTest : KoinMock() {
         every { encoder.mask } returns 0x8
     }
 
+    private val addMasks = intArrayOf(encoder.mask)
     private val npcs: PooledMapList<NPC> = mockk(relaxed = true)
     private val encoderModule = module {
-        single { spyk(NPCVisualsTask(npcs, arrayOf(encoder))) }
+        single { spyk(NPCVisualsTask(npcs, arrayOf(encoder), addMasks)) }
     }
     override val modules = listOf(entityListModule, encoderModule)
 
@@ -73,6 +74,46 @@ internal class NPCVisualsTaskTest : KoinMock() {
     }
 
     @Test
+    fun `Update writes addition if any addMasks changed`() {
+        // Given
+        val task: NPCVisualsTask = get()
+        val visuals: Visuals = mockk(relaxed = true)
+        val npc: NPC = mockk(relaxed = true)
+        every { npc.visuals } returns visuals
+        every { visuals.flag } returns 1
+        every { visuals.flagged(any()) } returns true
+        every { task.encodeUpdate(visuals) } just Runs
+        every { task.encodeAddition(visuals) } just Runs
+        // When
+        task.runAsync(npc)
+        // Then
+        verifyOrder {
+            task.encodeUpdate(visuals)
+            task.encodeAddition(visuals)
+            visuals.flag = 0
+        }
+    }
+
+    @Test
+    fun `Update doesn't rewrite addition`() {
+        // Given
+        val task: NPCVisualsTask = get()
+        val visuals: Visuals = mockk(relaxed = true)
+        val npc: NPC = mockk(relaxed = true)
+        every { npc.visuals } returns visuals
+        every { visuals.flag } returns 1
+        every { visuals.flagged(any()) } returns false
+        // When
+        task.runAsync(npc)
+        // Then
+        verify(exactly = 0) { task.encodeAddition(visuals) }
+        verifyOrder {
+            task.encodeUpdate(visuals)
+            visuals.flag = 0
+        }
+    }
+
+    @Test
     fun `Encode flagged update`() {
         // Given
         val updateTask: NPCVisualsTask = get()
@@ -109,6 +150,39 @@ internal class NPCVisualsTaskTest : KoinMock() {
         }
         verify(exactly = 0) {
             encoder.encode(any(), any())
+        }
+    }
+
+    @Test
+    fun `Encode addition`() {
+        // Given
+        val updateTask: NPCVisualsTask = get()
+        val visuals: Visuals = mockk(relaxed = true)
+        every { visuals.aspects[any()] } returns mockk(relaxed = true)
+        // When
+        updateTask.encodeAddition(visuals)
+        // Then
+        verifyOrder {
+            updateTask.writeFlag(any(), 0)
+            encoder.encode(any(), any())
+            visuals.addition = any()
+        }
+    }
+
+    @Test
+    fun `Encode addition update`() {
+        // Given
+        val updateTask: NPCVisualsTask = get()
+        val visuals: Visuals = mockk(relaxed = true)
+        every { visuals.aspects[any()] } returns mockk(relaxed = true)
+        every { visuals.flagged(any()) } returns true
+        // When
+        updateTask.encodeAddition(visuals)
+        // Then
+        verifyOrder {
+            updateTask.writeFlag(any(), addMasks.sum())
+            encoder.encode(any(), any())
+            visuals.addition = any()
         }
     }
 

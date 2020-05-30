@@ -7,6 +7,10 @@ import rs.dusk.engine.client.update.task.*
 import rs.dusk.engine.client.viewport.ViewportTask
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.index.update.visual.npc.COMBAT_LEVEL_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.NAME_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.TRANSFORM_MASK
+import rs.dusk.engine.model.entity.index.update.visual.npc.TURN_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.FACE_DIRECTION_MASK
 import rs.dusk.engine.model.entity.index.update.visual.player.MOVEMENT_TYPE_MASK
@@ -40,7 +44,13 @@ val engineTasksModule = module {
                 ),
                 NPCVisualsTask(
                     get<NPCs>(),
-                    get(named("npcVisualEncoders"))
+                    get(named("npcVisualEncoders")),
+                    intArrayOf(
+                        NAME_MASK,
+                        COMBAT_LEVEL_MASK,
+                        TRANSFORM_MASK,
+                        TURN_MASK
+                    )
                 ),
                 PlayerChangeTask(get()),
                 NPCChangeTask(get()),
