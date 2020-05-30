@@ -9,6 +9,6 @@ import rs.dusk.network.rs.codec.game.MessageCompanion
  * @param npcIndex The npc client index
  * @param option The option id - 2 = Attack, 6 = Examine
  */
-data class NpcOptionMessage(val run: Boolean, val npcIndex: Int, val option: Int) : Message {
-    companion object : MessageCompanion<NpcOptionMessage>()
+data class NPCOptionMessage(val run: Boolean, val npcIndex: Int, val option: Int) : Message {
+    companion object : MessageCompanion<NPCOptionMessage>()
 }

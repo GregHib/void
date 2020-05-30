@@ -10,15 +10,15 @@ import rs.dusk.network.rs.codec.game.GameOpcodes.NPC_OPTION_3
 import rs.dusk.network.rs.codec.game.GameOpcodes.NPC_OPTION_4
 import rs.dusk.network.rs.codec.game.GameOpcodes.NPC_OPTION_5
 import rs.dusk.network.rs.codec.game.GameOpcodes.NPC_OPTION_6
-import rs.dusk.network.rs.codec.game.decode.message.NpcOptionMessage
+import rs.dusk.network.rs.codec.game.decode.message.NPCOptionMessage
 
 @PacketMetaData(
     opcodes = [NPC_OPTION_1, NPC_OPTION_2, NPC_OPTION_3, NPC_OPTION_4, NPC_OPTION_5, NPC_OPTION_6],
     length = 3
 )
-class NpcOptionMessageDecoder : GameMessageDecoder<NpcOptionMessage>() {
+class NPCOptionMessageDecoder : GameMessageDecoder<NPCOptionMessage>() {
 
-    override fun decode(packet: PacketReader) = NpcOptionMessage(
+    override fun decode(packet: PacketReader) = NPCOptionMessage(
         packet.readBoolean(Modifier.ADD),
         packet.readShort(Modifier.ADD),
         opcodes!!.indexOf(packet.opcode) + 1

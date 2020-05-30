@@ -1,11 +1,14 @@
 package rs.dusk.engine.model.entity.index.npc
 
+import rs.dusk.cache.definition.data.NPCDefinition
+import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.utility.get
 
 /**
  * A non-player character
@@ -25,6 +28,9 @@ data class NPC(
     var runDirection: Int = -1
 
     var movementType: NPCMoveType = NPCMoveType.None
+
+    val def: NPCDefinition
+        get() = get<NPCDecoder>().get(id)!!
 
     constructor(id: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index
