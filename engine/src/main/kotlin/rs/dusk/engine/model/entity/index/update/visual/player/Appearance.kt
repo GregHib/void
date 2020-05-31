@@ -40,7 +40,12 @@ data class Appearance(
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
-    var summoningCombatLevel: Int = 0
+    var summoningCombatLevel: Int = 0,
+    var idleSound: Int = -1,
+    var crawlSound: Int = -1,
+    var walkSound: Int = -1,
+    var runSound: Int = -1,
+    var soundDistance: Int = 0
 ) : Visual {
 
     override fun equals(other: Any?): Boolean {
@@ -173,6 +178,20 @@ var Player.transform: Int
     set(value) = flag {
         transform = value
     }
+
+fun Player.setTransformSounds(
+    idleSound: Int = -1,
+    crawlSound: Int = -1,
+    walkSound: Int = -1,
+    runSound: Int = -1,
+    soundDistance: Int = 0
+) = flag {
+    this.idleSound = idleSound
+    this.crawlSound = crawlSound
+    this.walkSound = walkSound
+    this.runSound = runSound
+    this.soundDistance = soundDistance
+}
 
 fun Player.setLook(index: Int, look: Int) = flag {
     this.look[index] = look

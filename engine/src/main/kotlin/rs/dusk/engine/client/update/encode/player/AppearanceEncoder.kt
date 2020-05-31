@@ -29,7 +29,12 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             emote,
             displayName,
             combatLevel,
-            summoningCombatLevel) = visual
+            summoningCombatLevel,
+            idleSound,
+            crawlSound,
+            walkSound,
+            runSound,
+            soundDistance) = visual
         writer.apply {
             val start = position()
             writeByte(0)// Save space for size later
@@ -88,11 +93,11 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
 
             writeByte(transform != -1)
             if (transform != -1) {
-                writeShort(-1)
-                writeShort(-1)
-                writeShort(-1)
-                writeShort(0)
-                writeByte(0)
+                writeShort(idleSound)
+                writeShort(crawlSound)
+                writeShort(walkSound)
+                writeShort(runSound)
+                writeByte(soundDistance)
             }
             val end = position()
             position(start)

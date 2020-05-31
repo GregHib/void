@@ -13,7 +13,7 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
 
     override fun create() = NPCDefinition()
 
-    override fun getFile(id: Int) = id and 0x7ff
+    override fun getFile(id: Int) = id and 0x7f
 
     override fun getArchive(id: Int) = id ushr 7
 
@@ -113,23 +113,23 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
             127 -> renderEmote = buffer.readShort()
             128 -> buffer.readUnsignedByte()
             134 -> {
-                anInt2812 = buffer.readShort()
-                if (anInt2812 == 65535) {
-                    anInt2812 = -1
+                idleSound = buffer.readShort()
+                if (idleSound == 65535) {
+                    idleSound = -1
                 }
-                anInt2833 = buffer.readShort()
-                if (anInt2833 == 65535) {
-                    anInt2833 = -1
+                crawlSound = buffer.readShort()
+                if (crawlSound == 65535) {
+                    crawlSound = -1
                 }
-                anInt2809 = buffer.readShort()
-                if (anInt2809 == 65535) {
-                    anInt2809 = -1
+                walkSound = buffer.readShort()
+                if (walkSound == 65535) {
+                    walkSound = -1
                 }
-                anInt2810 = buffer.readShort()
-                if (anInt2810 == 65535) {
-                    anInt2810 = -1
+                runSound = buffer.readShort()
+                if (runSound == 65535) {
+                    runSound = -1
                 }
-                anInt2864 = buffer.readUnsignedByte()
+                soundDistance = buffer.readUnsignedByte()
             }
             135 -> {
                 anInt2815 = buffer.readUnsignedByte()

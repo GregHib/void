@@ -1,19 +1,22 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.client.login.LoginQueue
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.get
+import rs.dusk.engine.path.traverse.LargeTraversal
+import rs.dusk.engine.path.traverse.MediumTraversal
+import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 
@@ -59,7 +62,31 @@ Command where { prefix == "gfx" } then {
 }
 
 Command where { prefix == "tfm" || prefix == "transform" } then {
-    player.transform = content.toInt()
+    val id = content.toInt()
+    player.transform = id
+    if (id != -1) {
+        val decoder = get<NPCDecoder>()
+        var definition = decoder.get(id)!!
+        player.emote = definition.renderEmote
+        player.size = Size(definition.size, definition.size)
+        player.movement.traversal = when (definition.size) {
+            1 -> get<SmallTraversal>()
+            2 -> get<MediumTraversal>()
+            else -> LargeTraversal(player.size, get())
+        }
+        player.setTransformSounds(
+            definition.idleSound,
+            definition.crawlSound,
+            definition.walkSound,
+            definition.runSound,
+            definition.soundDistance
+        )
+    } else {
+        player.emote = 1426
+        player.size = Size.TILE
+        player.movement.traversal = get<SmallTraversal>()
+        player.setTransformSounds()
+    }
 }
 
 Command where { prefix == "overlay" } then {
