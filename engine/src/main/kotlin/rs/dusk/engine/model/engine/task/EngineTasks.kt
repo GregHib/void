@@ -32,6 +32,7 @@ val engineTasksModule = module {
                 ),
                 ViewportTask(),
                 PlayerMovementTask(get()),
+                NPCMovementTask(get()),
                 PlayerVisualsTask(
                     get<Players>(),
                     get(named("playerVisualEncoders")),
@@ -57,7 +58,7 @@ val engineTasksModule = module {
                 PlayerUpdateTask(get(), get()),
                 NPCUpdateTask(get(), get()),
                 PlayerPostUpdateTask(get(), get()),
-                NPCPostUpdateTask(get())
+                NPCPostUpdateTask(get(), get())
             )
         )
     }
