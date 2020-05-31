@@ -81,7 +81,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), any(), any(), Direction.NORTH) } returns true
+        every { traversal.blocked(any(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { movement.running } returns false
         // When
@@ -104,7 +104,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), any(), any(), Direction.NORTH) } returns true
+        every { traversal.blocked(any(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { movement.running } returns true
         every { movement.delta } returns Direction.NORTH.delta

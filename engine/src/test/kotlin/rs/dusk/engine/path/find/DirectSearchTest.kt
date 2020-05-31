@@ -44,7 +44,7 @@ internal class DirectSearchTest {
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
             every { strategy.tile } returns target
-            every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+            every { strategy.reached(target, size) } returns true
             // When
             val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
             // Then
@@ -88,7 +88,7 @@ internal class DirectSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { strategy.tile } returns target
-        every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+        every { strategy.reached(target, size) } returns true
         // When
         val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
@@ -109,7 +109,7 @@ internal class DirectSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { strategy.tile } returns target
-        every { traversal.blocked(tile.x, tile.y, tile.plane, any()) } returns true
+        every { traversal.blocked(tile, any()) } returns true
         // When
         val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
@@ -153,7 +153,7 @@ internal class DirectSearchTest {
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
             every { strategy.tile } returns target
-            every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+            every { strategy.reached(target, size) } returns true
             // When
             val result = ds.addVertical(steps, tile, size, strategy, traversal)
             // Then
@@ -198,7 +198,7 @@ internal class DirectSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { strategy.tile } returns target
-        every { strategy.reached(target.x, target.y, target.plane, size) } returns true
+        every { strategy.reached(target, size) } returns true
         // When
         val result = ds.addVertical(steps, tile, size, strategy, traversal)
         // Then
@@ -219,7 +219,7 @@ internal class DirectSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { strategy.tile } returns target
-        every { traversal.blocked(tile.x, tile.y, tile.plane, any()) } returns true
+        every { traversal.blocked(tile, any()) } returns true
         // When
         val result = ds.addVertical(steps, tile, size, strategy, traversal)
         // Then

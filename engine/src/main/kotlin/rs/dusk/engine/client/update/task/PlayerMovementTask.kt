@@ -20,7 +20,7 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
         val locked = movement.frozen || !player.viewport.loaded
         if (!locked && steps.peek() != null) {
             var step = steps.poll()
-            if (!movement.traversal.blocked(player.tile.x, player.tile.y, player.tile.plane, step)) {
+            if (!movement.traversal.blocked(player.tile, step)) {
                 movement.walkStep = step
                 movement.delta = step.delta
                 player.movementType = PlayerMoveType.Walk
@@ -29,7 +29,7 @@ class PlayerMovementTask(override val entities: Players) : EntityTask<Player>() 
                     if (steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = steps.poll()
-                        if (!movement.traversal.blocked(tile.x, tile.y, tile.plane, step)) {
+                        if (!movement.traversal.blocked(tile, step)) {
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
                             player.movementType = PlayerMoveType.Run

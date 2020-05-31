@@ -18,7 +18,7 @@ class NPCMovementTask(override val entities: NPCs) : EntityTask<NPC>() {
         val locked = movement.frozen
         if (!locked && steps.peek() != null) {
             var step = steps.poll()
-            if (!movement.traversal.blocked(npc.tile.x, npc.tile.y, npc.tile.plane, step)) {
+            if (!movement.traversal.blocked(npc.tile, step)) {
                 movement.walkStep = step
                 movement.delta = step.delta
                 npc.movementType = NPCMoveType.Walk
@@ -26,7 +26,7 @@ class NPCMovementTask(override val entities: NPCs) : EntityTask<NPC>() {
                     if (steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
                         step = steps.poll()
-                        if (!movement.traversal.blocked(tile.x, tile.y, tile.plane, step)) {
+                        if (!movement.traversal.blocked(tile, step)) {
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
                             npc.movementType = NPCMoveType.Run
