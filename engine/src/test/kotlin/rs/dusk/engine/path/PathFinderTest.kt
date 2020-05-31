@@ -19,6 +19,7 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.find.DirectSearch
 import rs.dusk.engine.path.target.*
 
 /**
@@ -28,15 +29,17 @@ import rs.dusk.engine.path.target.*
 internal class PathFinderTest {
     lateinit var pf: PathFinder
     lateinit var collisions: Collisions
+    lateinit var ds: DirectSearch
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
 
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
+        ds = mockk(relaxed = true)
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, bfs))
+        pf = spyk(PathFinder(collisions, aa, ds, bfs))
     }
 
     @Test

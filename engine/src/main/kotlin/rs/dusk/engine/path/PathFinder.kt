@@ -10,12 +10,14 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.find.DirectSearch
 import rs.dusk.engine.path.target.*
 
 val pathFindModule = module {
+    single { DirectSearch() }
     single { AxisAlignment() }
     single { BreadthFirstSearch() }
-    single { PathFinder(get(), get(), get()) }
+    single { PathFinder(get(), get(), get(), get()) }
 }
 
 /**
@@ -25,6 +27,7 @@ val pathFindModule = module {
 class PathFinder(
     private val collisions: Collisions,
     private val aa: AxisAlignment,
+    private val ds: DirectSearch,
     private val bfs: BreadthFirstSearch
 ) {
 

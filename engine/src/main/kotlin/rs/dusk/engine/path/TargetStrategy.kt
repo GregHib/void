@@ -12,4 +12,6 @@ interface TargetStrategy {
     val size: Size
 
     fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean
+
+    fun reached(tile: Tile, size: Size) = reached(tile.x, tile.y, tile.plane, size)
 }
