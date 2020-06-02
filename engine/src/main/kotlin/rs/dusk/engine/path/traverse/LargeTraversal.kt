@@ -2,11 +2,9 @@ package rs.dusk.engine.path.traverse
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.block
-import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.clear
+import rs.dusk.engine.model.world.map.collision.*
 import rs.dusk.engine.path.TraversalStrategy
+import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getNorthCorner
 import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getSouthCorner
 
@@ -15,7 +13,9 @@ import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getSouthCorner
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class LargeTraversal(val size: Size, private val collisions: Collisions) : TraversalStrategy {
+class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TraversalStrategy {
+
+    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val delta = direction.delta

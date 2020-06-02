@@ -10,6 +10,7 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.set
+import rs.dusk.engine.path.TraversalType
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -24,7 +25,7 @@ internal class TraversalIntegrationTest {
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         collisions = spyk(Collisions())
-        traversal = spyk(SmallTraversal(collisions))
+        traversal = spyk(SmallTraversal(TraversalType.Land, true, collisions))
     }
 
     @Test
@@ -48,7 +49,7 @@ internal class TraversalIntegrationTest {
         val collisions = Collisions()
         collisions[3091, 3487, 0] = 8389634
         collisions[3090, 3487, 0] = 16779268
-        val traversal = SmallTraversal(collisions)
+        val traversal = SmallTraversal(TraversalType.Land, true, collisions)
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then

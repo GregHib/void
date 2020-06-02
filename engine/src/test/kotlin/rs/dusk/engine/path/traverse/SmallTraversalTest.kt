@@ -10,9 +10,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.CollisionFlag
 import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
+import rs.dusk.engine.path.TraversalType
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -27,7 +28,7 @@ internal class SmallTraversalTest {
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
-        traversal = spyk(SmallTraversal(collisions))
+        traversal = spyk(SmallTraversal(TraversalType.Land, true, collisions))
     }
 
     @Test
@@ -36,7 +37,7 @@ internal class SmallTraversalTest {
         val start = Tile(1, 1)
         val direction = Direction.NORTH
         val tile = start.add(direction.delta)
-        every { collisions.check(tile.x, tile.y, tile.plane, direction.inverse().block()) } returns true
+        every { collisions.check(tile.x, tile.y, tile.plane, any()) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
@@ -101,5 +102,57 @@ internal class SmallTraversalTest {
         val result = traversal.blocked(start.x, start.y, start.plane, direction)
         // Then
         assertFalse(result)
+    }
+
+    @Test
+    fun `Blocked by entities`() {
+        // Given
+        val start = Tile(1, 1)
+        val direction = Direction.SOUTH_WEST
+        traversal = spyk(SmallTraversal(TraversalType.Land, true, collisions))
+        every { collisions.check(any(), any(), any(), CollisionFlag.LAND_BLOCK_NORTH_EAST or CollisionFlag.ENTITY) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
+        // Then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Not blocked by entities`() {
+        // Given
+        val start = Tile(1, 1)
+        val direction = Direction.SOUTH_WEST
+        traversal = spyk(SmallTraversal(TraversalType.Land, false, collisions))
+        every { collisions.check(any(), any(), any(), CollisionFlag.LAND_BLOCK_NORTH_EAST or CollisionFlag.ENTITY) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
+        // Then
+        assertFalse(result)
+    }
+
+    @Test
+    fun `Blocked sky`() {
+        // Given
+        val start = Tile(1, 1)
+        val direction = Direction.SOUTH_WEST
+        traversal = spyk(SmallTraversal(TraversalType.Sky, false, collisions))
+        every { collisions.check(any(), any(), any(), CollisionFlag.SKY_BLOCK_NORTH_EAST) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
+        // Then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Blocked ignored`() {
+        // Given
+        val start = Tile(1, 1)
+        val direction = Direction.SOUTH_WEST
+        traversal = spyk(SmallTraversal(TraversalType.Ignored, false, collisions))
+        every { collisions.check(any(), any(), any(), CollisionFlag.IGNORED_BLOCK_NORTH_EAST) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, direction)
+        // Then
+        assertTrue(result)
     }
 }

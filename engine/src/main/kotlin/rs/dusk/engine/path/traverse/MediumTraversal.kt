@@ -2,18 +2,18 @@ package rs.dusk.engine.path.traverse
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.block
-import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.clear
+import rs.dusk.engine.model.world.map.collision.*
 import rs.dusk.engine.path.TraversalStrategy
+import rs.dusk.engine.path.TraversalType
 
 /**
  * Checks for collision in the direction of movement for entities of size 2x2
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class MediumTraversal(private val collisions: Collisions) : TraversalStrategy {
+class MediumTraversal(override val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TraversalStrategy {
+
+    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val delta = direction.delta

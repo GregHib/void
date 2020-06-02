@@ -5,6 +5,8 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Direction.Companion.cardinal
 import rs.dusk.engine.model.entity.Direction.Companion.ordinal
 import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Move
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
@@ -18,6 +20,7 @@ import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.entity.proj.Projectile
 import rs.dusk.engine.model.entity.proj.Projectiles
 import rs.dusk.engine.model.world.map.collision.*
+import rs.dusk.engine.model.world.map.collision.CollisionFlag.ENTITY
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.IGNORED
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.NORTH_OR_EAST
@@ -44,8 +47,12 @@ Registered priority 9 then {
             entity.flagMovementType()
             entity.flagTemporaryMoveType()
             entity.face()
+            collisions.add(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
         }
-        is NPC -> npcs.add(entity)
+        is NPC -> {
+            npcs.add(entity)
+            collisions.add(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
+        }
         is Location -> {
             objects[entity.tile] = entity
             modifyCollision(entity, ADD_MASK)
@@ -61,7 +68,15 @@ Deregistered priority 9 then {
             objects.remove(entity.tile, entity)
             modifyCollision(entity, REMOVE_MASK)
         }
+        is Indexed -> {
+            collisions.remove(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
+        }
     }
+}
+
+Move priority 9 then {
+    collisions.remove(from.x, from.y, from.plane, ENTITY)
+    collisions.add(to.x, to.y, to.plane, ENTITY)
 }
 
 fun modifyCollision(location: Location, changeType: Int) {

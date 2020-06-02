@@ -14,6 +14,8 @@ import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.CollisionFlag.ENTITY
+import rs.dusk.engine.model.world.map.collision.CollisionFlag.IGNORED_WALL_SOUTH_EAST
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_CLEAR_EAST
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_CLEAR_NORTH
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_CLEAR_SOUTH
@@ -22,9 +24,10 @@ import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_WALL_NORTH_EA
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_WALL_SOUTH_EAST
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND_WALL_SOUTH_WEST
+import rs.dusk.engine.model.world.map.collision.CollisionFlag.SKY_WALL_SOUTH_EAST
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.clear
+import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.script.KoinMock
 
 /**
@@ -42,9 +45,7 @@ internal class LargeTraversalTest : KoinMock() {
     fun setup() {
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         collisions = get()
-        Direction.all.forEach {
-            every { collisions.check(any(), any(), any(), it.clear()) } returns true
-        }
+        every { collisions.check(any(), any(), any(), any()) } returns true
     }
 
     /**
@@ -57,7 +58,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x, start.y + 1, start.plane, LAND_WALL_SOUTH_EAST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
@@ -75,7 +76,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
@@ -93,7 +94,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 1)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 2, start.y + 1, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
@@ -112,7 +113,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 3, start.y + 3, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
@@ -132,7 +133,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + offset, start.y + 3, start.plane, LAND_CLEAR_SOUTH) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
@@ -152,7 +153,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(3, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 3, start.y + offset, start.plane, LAND_CLEAR_WEST) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH_EAST)
@@ -170,7 +171,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 1, start.y, start.plane, LAND_WALL_NORTH_WEST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
@@ -188,7 +189,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 1, start.y + 1, start.plane, LAND_CLEAR_WEST) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
@@ -206,7 +207,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(1, 3)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x + 1, start.y + 2, start.plane, LAND_WALL_SOUTH_WEST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.EAST)
@@ -226,7 +227,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x - 1, start.y - 1, start.plane, LAND_WALL_NORTH_EAST) } returns true
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
@@ -246,7 +247,7 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x, start.y - 1, start.plane, LAND_CLEAR_NORTH) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
@@ -267,10 +268,49 @@ internal class LargeTraversalTest : KoinMock() {
         // Given
         val start = Tile(1, 1)
         val size = Size(2, 4)
-        traversal = spyk(LargeTraversal(size, collisions))
+        traversal = spyk(LargeTraversal(TraversalType.Land, false, size, collisions))
         every { collisions.check(start.x - 1, start.y + offset, start.plane, LAND_CLEAR_EAST) } returns false
         // When
         val result = traversal.blocked(start.x, start.y, start.plane, Direction.SOUTH_WEST)
+        // Then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Blocked by entity`() {
+        // Given
+        val start = Tile(1, 1)
+        val size = Size(3, 1)
+        traversal = spyk(LargeTraversal(TraversalType.Land, true, size, collisions))
+        every { collisions.check(start.x, start.y + 1, start.plane, LAND_WALL_SOUTH_EAST or ENTITY) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
+        // Then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Blocked by sky`() {
+        // Given
+        val start = Tile(1, 1)
+        val size = Size(3, 1)
+        traversal = spyk(LargeTraversal(TraversalType.Sky, false, size, collisions))
+        every { collisions.check(start.x, start.y + 1, start.plane, SKY_WALL_SOUTH_EAST) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
+        // Then
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Blocked by ignored`() {
+        // Given
+        val start = Tile(1, 1)
+        val size = Size(3, 1)
+        traversal = spyk(LargeTraversal(TraversalType.Ignored, false, size, collisions))
+        every { collisions.check(start.x, start.y + 1, start.plane, IGNORED_WALL_SOUTH_EAST) } returns true
+        // When
+        val result = traversal.blocked(start.x, start.y, start.plane, Direction.NORTH)
         // Then
         assertTrue(result)
     }

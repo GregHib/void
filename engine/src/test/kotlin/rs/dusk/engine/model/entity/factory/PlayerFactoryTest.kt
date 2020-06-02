@@ -10,7 +10,6 @@ import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.model.world.map.collision.collisionModule
-import rs.dusk.engine.path.traversalModule
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 
@@ -20,7 +19,7 @@ import rs.dusk.utility.get
  */
 internal class PlayerFactoryTest : KoinMock() {
 
-    override val modules = listOf(entityFactoryModule, eventBusModule, traversalModule, collisionModule)
+    override val modules = listOf(entityFactoryModule, eventBusModule, collisionModule)
 
     @Test
     fun `Spawn sets index and name`() = runBlocking {

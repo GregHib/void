@@ -3,10 +3,7 @@ package rs.dusk.engine.path.target
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.flag
-import rs.dusk.engine.model.world.map.collision.wall
+import rs.dusk.engine.model.world.map.collision.*
 import rs.dusk.engine.path.TargetStrategy
 
 /**
@@ -333,5 +330,10 @@ data class WallTargetStrategy(
             }
         }
         return false
+    }
+
+    companion object {
+        fun Direction.wall() =
+            flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
     }
 }

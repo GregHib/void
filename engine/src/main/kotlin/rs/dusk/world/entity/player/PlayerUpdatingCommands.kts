@@ -15,7 +15,9 @@ import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.PathFinder
+import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
@@ -71,10 +73,11 @@ Command where { prefix == "tfm" || prefix == "transform" } then {
         var definition = decoder.get(id)!!
         player.emote = definition.renderEmote
         player.size = Size(definition.size, definition.size)
+        val collisions: Collisions = get()
         player.movement.traversal = when (definition.size) {
-            1 -> get<SmallTraversal>()
-            2 -> get<MediumTraversal>()
-            else -> LargeTraversal(player.size, get())
+            1 -> SmallTraversal(TraversalType.Land, false, collisions)
+            2 -> MediumTraversal(TraversalType.Land, false, collisions)
+            else -> LargeTraversal(TraversalType.Land, false, player.size, collisions)
         }
         player.setTransformSounds(
             definition.idleSound,
@@ -143,21 +146,4 @@ Command where { prefix == "test" } then {
     val result = get<PathFinder>().find(npc, player)
     println(npc.movement.steps)
     println(result)
-//    val decoder = get<NPCDecoder>()
-//    var count = 0
-//    for (i in 0 until decoder.size) {
-//        val def = decoder.get(i) ?: continue
-//        if (def.crawlSound != def.walkSound) {
-//            println("$i $def")
-//        }
-//    }
-//    repeat(decoder.size) {
-//        val def = decoder.get(it) ?: return@repeat
-//        if(def.anInt2812 != -1/* || def.anInt2833 != -1 || def.anInt2809 != -1 || def.anInt2810 != 0 || def.anInt2864 != 0*/) {
-//                println("$it $def")
-//        }
-//        println("${decoder.size} $count")
-//    }
-//    val collisions = get<Collisions>()
-//    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
 }

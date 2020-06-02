@@ -1,10 +1,11 @@
 package rs.dusk.engine.path.traverse
 
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.world.map.collision.CollisionFlag
 import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.block
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.path.TraversalStrategy
+import rs.dusk.engine.path.TraversalType
 
 /**
  * Checks for collision in the direction of movement for entities of size 1x1
@@ -13,10 +14,14 @@ import rs.dusk.engine.path.TraversalStrategy
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */
-class SmallTraversal(private val collisions: Collisions) : TraversalStrategy {
+class SmallTraversal(override val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TraversalStrategy {
 
+    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+
+    // Motion (land, sky, ignored), entities y/n
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val inverse = direction.inverse()
+        println("Check $inverse ${inverse.block()}")
         if (collisions.check(
                 x + direction.delta.x,
                 y + direction.delta.y,

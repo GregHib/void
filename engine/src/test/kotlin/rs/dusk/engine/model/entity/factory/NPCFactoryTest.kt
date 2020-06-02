@@ -18,8 +18,8 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.CollisionFlag
 import rs.dusk.engine.model.world.map.collision.collisionModule
-import rs.dusk.engine.path.traversalModule
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
@@ -34,7 +34,7 @@ import rs.dusk.utility.get
 internal class NPCFactoryTest : KoinMock() {
 
     override val modules =
-        listOf(cacheDefinitionModule, entityFactoryModule, eventBusModule, collisionModule, traversalModule)
+        listOf(cacheDefinitionModule, entityFactoryModule, eventBusModule, collisionModule)
 
     @Test
     fun `Spawn registers`() {
@@ -67,7 +67,10 @@ internal class NPCFactoryTest : KoinMock() {
         // When
         val npc = factory.spawn(1, 10, 20, 1, Direction.NONE)!!
         // Then
-        assertEquals(get<SmallTraversal>(), npc.movement.traversal)
+        val traversal = npc.movement.traversal
+        assert(traversal is SmallTraversal)
+        traversal as SmallTraversal
+        assertEquals(CollisionFlag.ENTITY, traversal.extra)
     }
 
     @Test
@@ -80,7 +83,10 @@ internal class NPCFactoryTest : KoinMock() {
         // When
         val npc = factory.spawn(1, 10, 20, 1, Direction.NONE)!!
         // Then
-        assertEquals(get<MediumTraversal>(), npc.movement.traversal)
+        val traversal = npc.movement.traversal
+        assert(traversal is MediumTraversal)
+        traversal as MediumTraversal
+        assertEquals(CollisionFlag.ENTITY, traversal.extra)
     }
 
     @Test

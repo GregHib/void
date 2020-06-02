@@ -7,9 +7,11 @@ import rs.dusk.engine.model.entity.Direction
  * @since April 16, 2020
  */
 object CollisionFlag {
+
     const val FLOOR = 0x200000
     const val FLOOR_DECO = 0x40000
     const val WALL = 0x80000
+    const val ENTITY = 0x100000
 
     const val LAND = 0x100
     const val SKY = LAND shl 9
@@ -127,10 +129,6 @@ object CollisionFlag {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        println(NORTH_WEST shl 22)
-        println(NORTH_EAST shl 22)
-        println(SOUTH_EAST shl 22)
-        println(SOUTH_WEST shl 22)
         val result = StringBuilder()
         val newLine = System.getProperty("line.separator")
 
@@ -150,7 +148,7 @@ object CollisionFlag {
                 //requires access to private field:
                 val value = field.get(this)
                 if (value is Int) {
-                    result.append("$value 0x${"%X".format(value)}")
+                    result.append("$value 0x${"%X".format(value)} ${Integer.toBinaryString(value)}")
                 } else {
                     result.append(field.get(this))
                 }
@@ -166,23 +164,6 @@ object CollisionFlag {
     }
 }
 
-fun Direction.block() = flagAnd() or CollisionFlag.BLOCKED
-
-fun Direction.wall() =
-    flag() or CollisionFlag.WALL or CollisionFlag.BLOCKED
-
-fun Direction.clear() = when (this) {
-    Direction.NORTH_WEST -> CollisionFlag.LAND_CLEAR_NORTH_WEST
-    Direction.NORTH -> CollisionFlag.LAND_CLEAR_NORTH
-    Direction.NORTH_EAST -> CollisionFlag.LAND_CLEAR_NORTH_EAST
-    Direction.EAST -> CollisionFlag.LAND_CLEAR_EAST
-    Direction.SOUTH_EAST -> CollisionFlag.LAND_CLEAR_SOUTH_EAST
-    Direction.SOUTH -> CollisionFlag.LAND_CLEAR_SOUTH
-    Direction.SOUTH_WEST -> CollisionFlag.LAND_CLEAR_SOUTH_WEST
-    Direction.WEST -> CollisionFlag.LAND_CLEAR_WEST
-    Direction.NONE -> 0
-}
-
 fun Direction.flag() = when (this) {
     Direction.NORTH_WEST -> CollisionFlag.NORTH_WEST
     Direction.NORTH -> CollisionFlag.NORTH
@@ -193,12 +174,4 @@ fun Direction.flag() = when (this) {
     Direction.SOUTH_WEST -> CollisionFlag.SOUTH_WEST
     Direction.WEST -> CollisionFlag.WEST
     Direction.NONE -> 0
-}
-
-fun Direction.flagAnd() = when (this) {
-    Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
-    Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
-    Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
-    Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
-    else -> flag()
 }

@@ -24,7 +24,6 @@ import rs.dusk.engine.model.world.map.location.xteaModule
 import rs.dusk.engine.model.world.map.mapModule
 import rs.dusk.engine.model.world.map.tileModule
 import rs.dusk.engine.path.pathFindModule
-import rs.dusk.engine.path.traversalModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
@@ -76,7 +75,6 @@ object Dusk : Runnable {
                 collisionModule,
                 cacheDefinitionModule,
                 locationModule,
-                traversalModule,
                 pathFindModule
             )
             fileProperties("/game.properties")

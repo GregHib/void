@@ -10,6 +10,8 @@ import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.update.visual.npc.turn
 import rs.dusk.engine.model.entity.list.MAX_NPCS
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
@@ -25,8 +27,6 @@ class NPCFactory {
     private val bus: EventBus by inject()
     private val indexer = IndexAllocator(MAX_NPCS)
     private val decoder: NPCDecoder by inject()
-    private val small: SmallTraversal by inject()
-    private val medium: MediumTraversal by inject()
 
     fun spawn(id: Int, x: Int, y: Int, plane: Int, direction: Direction): NPC? {
         val definition = decoder.get(id)!!
@@ -36,10 +36,13 @@ class NPCFactory {
             Tile(x, y, plane),
             size
         )
+        val collisions: Collisions = get()
+        // TODO get traversal type from definitions
+        // TODO get collides with entities from somewhere?
         npc.movement.traversal = when (definition.size) {
-            1 -> small
-            2 -> medium
-            else -> LargeTraversal(size, get())
+            1 -> SmallTraversal(TraversalType.Land, true, collisions)
+            2 -> MediumTraversal(TraversalType.Land, true, collisions)
+            else -> LargeTraversal(TraversalType.Land, true, size, collisions)
         }
         val index = indexer.obtain()
         if (index != null) {
