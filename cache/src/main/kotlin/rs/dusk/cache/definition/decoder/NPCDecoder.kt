@@ -87,12 +87,12 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
             109 -> slowWalk = false
             111 -> animateIdle = false
             113 -> {
-                aShort2863 = buffer.readShort().toShort()
-                aShort2871 = buffer.readShort().toShort()
+                primaryShadowColour = buffer.readShort().toShort()
+                secondaryShadowColour = buffer.readShort().toShort()
             }
             114 -> {
-                aByte2877 = buffer.readByte().toByte()
-                aByte2868 = buffer.readByte().toByte()
+                primaryShadowModifier = buffer.readByte().toByte()
+                secondaryShadowModifier = buffer.readByte().toByte()
             }
             119 -> walkMask = buffer.readByte().toByte()
             121 -> {
@@ -107,7 +107,7 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
                     )
                 }
             }
-            122 -> anInt2878 = buffer.readShort()
+            122 -> hitbarSprite = buffer.readShort()
             123 -> height = buffer.readShort()
             125 -> respawnDirection = buffer.readByte().toByte()
             127 -> renderEmote = buffer.readShort()
@@ -132,20 +132,20 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
                 soundDistance = buffer.readUnsignedByte()
             }
             135 -> {
-                anInt2815 = buffer.readUnsignedByte()
-                anInt2859 = buffer.readShort()
+                primaryCursorOp = buffer.readUnsignedByte()
+                primaryCursor = buffer.readShort()
             }
             136 -> {
-                anInt2856 = buffer.readUnsignedByte()
-                anInt2886 = buffer.readShort()
+                secondaryCursorOp = buffer.readUnsignedByte()
+                secondaryCursor = buffer.readShort()
             }
             137 -> attackCursor = buffer.readShort()
             138 -> armyIcon = buffer.readShort()
             139 -> spriteId = buffer.readShort()
-            140 -> anInt2828 = buffer.readUnsignedByte()
-            141 -> aBoolean2843 = true
+            140 -> ambientSoundVolume = buffer.readUnsignedByte()
+            141 -> visiblePriority = true
             142 -> mapFunction = buffer.readShort()
-            143 -> aBoolean2825 = true
+            143 -> invisiblePriority = true
             in 150..154 -> {
                 options[opcode - 150] = buffer.readString()
                 if (!member) {
@@ -153,10 +153,10 @@ class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
                 }
             }
             155 -> {
-                aByte2836 = buffer.readByte().toByte()
-                aByte2853 = buffer.readByte().toByte()
-                aByte2857 = buffer.readByte().toByte()
-                aByte2839 = buffer.readByte().toByte()
+                hue = buffer.readByte().toByte()
+                saturation = buffer.readByte().toByte()
+                lightness = buffer.readByte().toByte()
+                opacity = buffer.readByte().toByte()
             }
             158 -> mainOptionIndex = 1.toByte()
             159 -> mainOptionIndex = 0.toByte()
