@@ -25,15 +25,15 @@ interface TraversalStrategy {
         else -> flag()
     } shl type.shift or CollisionFlag.BLOCKED or extra
 
-    fun Direction.clear() = when (this) {
+    fun Direction.not() = when (this) {
         Direction.NORTH_WEST -> CollisionFlag.SOUTH_AND_EAST
         Direction.NORTH -> CollisionFlag.NOT_NORTH
-        Direction.NORTH_EAST -> CollisionFlag.LAND_CLEAR_NORTH_EAST
-        Direction.EAST -> CollisionFlag.SOUTH_AND_WEST
-        Direction.SOUTH_EAST -> CollisionFlag.NOT_EAST
-        Direction.SOUTH -> CollisionFlag.NORTH_AND_WEST
-        Direction.SOUTH_WEST -> CollisionFlag.NOT_SOUTH
-        Direction.WEST -> CollisionFlag.NORTH_AND_EAST
+        Direction.NORTH_EAST -> CollisionFlag.SOUTH_AND_WEST
+        Direction.EAST -> CollisionFlag.NOT_EAST
+        Direction.SOUTH_EAST -> CollisionFlag.NORTH_AND_WEST
+        Direction.SOUTH -> CollisionFlag.NOT_SOUTH
+        Direction.SOUTH_WEST -> CollisionFlag.NORTH_AND_EAST
+        Direction.WEST -> CollisionFlag.NOT_WEST
         Direction.NONE -> 0
     } shl type.shift or CollisionFlag.BLOCKED
 
