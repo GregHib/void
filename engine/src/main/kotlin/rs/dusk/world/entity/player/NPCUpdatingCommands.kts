@@ -9,10 +9,13 @@ import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.npc.*
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.path.PathFinder
 import rs.dusk.utility.inject
 
 val factory: NPCFactory by inject()
 val npcs: NPCs by inject()
+val pf: PathFinder by inject()
 
 Command where { prefix == "npckill" } then {
     npcs.indexed.forEachIndexed { index, npc ->
@@ -91,11 +94,19 @@ Command where { prefix == "npcwatch" } then {
 }
 
 Command where { prefix == "npcwalk" } then {
-    val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    val direction = Direction.NORTH
-    npc.movement.walkStep = direction
-    npc.movement.delta = direction.delta
-    move(npc, player.tile.add(direction.delta))
+    val d = when (content) {
+        "n" -> Direction.NORTH
+        "s" -> Direction.SOUTH
+        "e" -> Direction.EAST
+        "w" -> Direction.WEST
+        "ne" -> Direction.NORTH_EAST
+        "nw" -> Direction.NORTH_WEST
+        "se" -> Direction.SOUTH_EAST
+        "sw" -> Direction.SOUTH_WEST
+        else -> Direction.NONE
+    }
+    val npc = npcs[player.tile.add(y = 2)]!!.first()!!
+    println(pf.find(npc, npc.tile.add(x = d.delta.x, y = d.delta.y)))
 }
 
 Command where { prefix == "npccrawl" } then {

@@ -6,7 +6,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Indexed
-import rs.dusk.engine.model.entity.index.Move
+import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
@@ -46,7 +46,7 @@ RegionLoadedMessage verify { player ->
     player.viewport.loaded = true
 }
 
-Move where { entity is Player && needsRegionChange(entity) } then {
+Moved where { entity is Player && needsRegionChange(entity) } then {
     calculateRegions(entity as Player, false)
 }
 
@@ -54,7 +54,7 @@ Registered where { entity is Indexed } then {
     maps.load(entity.tile.region)
 }
 
-Move then {
+Moved then {
     maps.load(entity.tile.region)
 }
 

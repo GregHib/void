@@ -1,12 +1,13 @@
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
+import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Direction.Companion.cardinal
 import rs.dusk.engine.model.entity.Direction.Companion.ordinal
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Indexed
-import rs.dusk.engine.model.entity.index.Move
+import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
@@ -51,7 +52,11 @@ Registered priority 9 then {
         }
         is NPC -> {
             npcs.add(entity)
-            collisions.add(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
+            for(x in 0 until entity.size.width) {
+                for(y in 0 until entity.size.height) {
+                    collisions.add(entity.tile.x + x, entity.tile.y + y, entity.tile.plane, ENTITY)
+                }
+            }
         }
         is Location -> {
             objects[entity.tile] = entity
@@ -74,9 +79,35 @@ Deregistered priority 9 then {
     }
 }
 
-Move priority 9 then {
-    collisions.remove(from.x, from.y, from.plane, ENTITY)
-    collisions.add(to.x, to.y, to.plane, ENTITY)
+Moved priority 9 where { entity is Indexed } then {
+    entity as Indexed
+    // No simple way of looking up if an npc is over a tile (incl size)
+    // This means players can remove npcs collisions.
+    for(x in 0 until entity.size.width) {
+        for(y in 0 until entity.size.height) {
+            collisions.remove(from.x + x, from.y + y, from.plane, ENTITY)
+        }
+    }
+    for(x in 0 until entity.size.width) {
+        for(y in 0 until entity.size.height) {
+            collisions.add(to.x + x, to.y + y, to.plane, ENTITY)
+        }
+    }
+    when(entity) {
+        is Player -> {
+            players.remove(from, entity)
+            players.remove(from.chunk, entity)
+            players.add(to, entity)
+            players.add(to.chunk, entity)
+        }
+        is NPC -> {
+            npcs.remove(from, entity)
+            npcs.remove(from.chunk, entity)
+            npcs.add(to, entity)
+            npcs.add(to.chunk, entity)
+        }
+    }
+
 }
 
 fun modifyCollision(location: Location, changeType: Int) {

@@ -16,6 +16,8 @@ import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.model.world.map.collision.check
+import rs.dusk.engine.model.world.map.collision.get
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
@@ -141,9 +143,10 @@ Command where { prefix == "hide" } then {
     player.minimapHighlight = !player.minimapHighlight
 }
 
+Command where { prefix == "run" } then {
+    player.movement.running = !player.movement.running
+}
+
 Command where { prefix == "test" } then {
-    val npc = get<NPCs>().getAtIndex(1)!!
-    val result = get<PathFinder>().find(npc, player)
-    println(npc.movement.steps)
-    println(result)
+    println("Move? ${player.movement.traversal.blocked(player.tile, Direction.NORTH)}")
 }

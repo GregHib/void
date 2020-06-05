@@ -8,6 +8,7 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
+import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.Viewport
 import rs.dusk.engine.model.entity.index.update.visual.player.movementType
 import rs.dusk.engine.model.entity.index.update.visual.player.temporaryMoveType
@@ -27,19 +28,27 @@ internal class PlayerMovementTaskTest : KoinMock() {
 
     lateinit var task: PlayerMovementTask
     lateinit var movement: Movement
+    lateinit var players: Players
+    lateinit var player: Player
+    lateinit var viewport: Viewport
 
     @BeforeEach
     fun setup() {
         movement = mockk(relaxed = true)
-        task = PlayerMovementTask(mockk(relaxed = true))
+        players = mockk(relaxed = true)
+        player = mockk(relaxed = true)
+        viewport = mockk(relaxed = true)
+        task = PlayerMovementTask(players, mockk(relaxed = true))
+        every { players.forEach(any()) } answers {
+            val action: (Player) -> Unit = arg(0)
+            action.invoke(player)
+        }
+        every { player.viewport } returns viewport
     }
 
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
-        every { player.viewport } returns viewport
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
@@ -47,7 +56,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.frozen } returns true
         every { viewport.loaded } returns true
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         assertEquals(1, steps.size)
     }
@@ -55,16 +64,13 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if viewport not loaded`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
-        every { player.viewport } returns viewport
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { viewport.loaded } returns false
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         assertEquals(1, steps.size)
     }
@@ -72,8 +78,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk step`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
@@ -81,7 +85,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
-        every { player.viewport } returns viewport
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -89,7 +92,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         verifyOrder {
             movement.walkStep = Direction.NORTH
@@ -103,13 +106,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Walk ignored if blocked`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
-        every { player.viewport } returns viewport
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -118,7 +118,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns false
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         verify(exactly = 0) {
             movement.walkStep = Direction.NORTH
@@ -129,8 +129,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run ignored if blocked`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
@@ -138,7 +136,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
-        every { player.viewport } returns viewport
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -148,7 +145,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
@@ -161,8 +158,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run step`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
@@ -171,7 +166,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
-        every { player.viewport } returns viewport
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -182,7 +176,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.delta } returns Direction.NORTH.delta
         every { movement.delta = any() } just Runs
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         verifyOrder {
             movement.walkStep = Direction.NORTH
@@ -200,15 +194,12 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Run odd step walks`() {
         // Given
-        val player: Player = mockk(relaxed = true)
-        val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
         mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
-        every { player.viewport } returns viewport
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
@@ -219,7 +210,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.delta } returns Direction.NORTH.delta
         every { movement.delta = any() } just Runs
         // When
-        task.runAsync(player)
+        task.run()
         // Then
         verifyOrder {
             movement.walkStep = Direction.NORTH

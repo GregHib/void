@@ -35,6 +35,6 @@ interface TraversalStrategy {
         Direction.SOUTH_WEST -> CollisionFlag.NORTH_AND_EAST
         Direction.WEST -> CollisionFlag.NOT_WEST
         Direction.NONE -> 0
-    } shl type.shift or CollisionFlag.BLOCKED
+    } shl type.shift or CollisionFlag.BLOCKED or extra
 
 }
