@@ -18,6 +18,5 @@ WalkMiniMapMessage verify { player ->
 }
 
 fun walk(player: Player, x: Int, y: Int) {
-    player.movement.clear()
     pf.find(player, player.tile.copy(x = x, y = y))
 }

@@ -34,12 +34,14 @@ class PathFinder(
     fun find(source: Indexed, tile: Tile): PathResult {
         val strategy = TileTargetStrategy(tile = tile)
         val finder = getFinder(source)
+        source.movement.clear()
         return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
     fun find(source: Indexed, target: Entity): PathResult {
         val strategy = getStrategy(target)
         val finder = getFinder(source)
+        source.movement.clear()
         return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 

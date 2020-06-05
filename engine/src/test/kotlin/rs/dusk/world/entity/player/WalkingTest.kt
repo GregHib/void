@@ -44,7 +44,6 @@ internal class WalkingTest : ScriptMock() {
         verifier.verify(player, message)
         // Then
         verify {
-            player.movement.clear()
             pf.find(player, any<Tile>())
         }
     }
@@ -60,7 +59,6 @@ internal class WalkingTest : ScriptMock() {
         verifier.verify(player, message)
         // Then
         verify {
-            player.movement.clear()
             pf.find(player, any<Tile>())
         }
     }
