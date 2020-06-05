@@ -21,7 +21,6 @@ class SmallTraversal(override val type: TraversalType, collidesWithEntities: Boo
     // Motion (land, sky, ignored), entities y/n
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val inverse = direction.inverse()
-        println("Check $inverse ${inverse.block()}")
         if (collisions.check(
                 x + direction.delta.x,
                 y + direction.delta.y,
