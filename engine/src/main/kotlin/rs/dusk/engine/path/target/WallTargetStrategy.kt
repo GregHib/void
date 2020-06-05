@@ -3,10 +3,15 @@ package rs.dusk.engine.path.target
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.*
+import rs.dusk.engine.model.world.map.collision.CollisionFlag
+import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.model.world.map.collision.check
+import rs.dusk.engine.model.world.map.collision.flag
 import rs.dusk.engine.path.TargetStrategy
 
 /**
+ * Checks if within interact range of a wall
+ * e.g On the correct side to view a painting on a wall
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */

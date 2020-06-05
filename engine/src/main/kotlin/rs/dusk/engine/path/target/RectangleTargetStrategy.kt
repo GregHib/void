@@ -9,6 +9,8 @@ import rs.dusk.engine.model.world.map.collision.flag
 import rs.dusk.engine.path.TargetStrategy
 
 /**
+ * Checks if within interact range of a rectangle
+ * Used for NPCs of differing sizes
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */

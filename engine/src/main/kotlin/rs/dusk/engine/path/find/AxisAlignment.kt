@@ -11,6 +11,7 @@ import rs.dusk.engine.path.TraversalStrategy
 
 /**
  * Moves diagonally until aligned with target or blocked by obstacle then moves cardinally
+ * Used by NPCs
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 31, 2020
  */

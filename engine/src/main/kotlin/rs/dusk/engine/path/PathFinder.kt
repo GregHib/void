@@ -21,6 +21,7 @@ val pathFindModule = module {
 }
 
 /**
+ * Determines the correct strategy to use to reach a target [Entity] or [Tile]
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 21, 2020
  */

@@ -5,6 +5,9 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.TargetStrategy
 
 /**
+ * Checks if within reachable range of a tile
+ * e.g floor item on a tile or table
+ * Note: Doesn't check if blocked
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */

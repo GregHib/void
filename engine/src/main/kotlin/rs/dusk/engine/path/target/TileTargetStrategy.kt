@@ -5,6 +5,7 @@ import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.TargetStrategy
 
 /**
+ * Checks if on an exact tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 18, 2020
  */

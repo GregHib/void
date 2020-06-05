@@ -17,6 +17,9 @@ interface TraversalStrategy {
     val type: TraversalType
     val extra: Int// Collides with entities
 
+    /**
+     * Blocked in a given direction, including any diagonals cardinals
+     */
     fun Direction.block() = when (this) {
         Direction.NORTH_WEST -> CollisionFlag.NORTH_AND_WEST
         Direction.NORTH_EAST -> CollisionFlag.NORTH_AND_EAST
@@ -25,6 +28,9 @@ interface TraversalStrategy {
         else -> flag()
     } shl type.shift or CollisionFlag.BLOCKED or extra
 
+    /**
+     * Blocked in any direction other than [this] and it's diagonals
+     */
     fun Direction.not() = when (this) {
         Direction.NORTH_WEST -> CollisionFlag.SOUTH_AND_EAST
         Direction.NORTH -> CollisionFlag.NOT_NORTH
