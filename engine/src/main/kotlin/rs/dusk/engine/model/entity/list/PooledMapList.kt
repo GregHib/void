@@ -4,6 +4,7 @@ import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.world.Tile
 import java.util.*
 
 /**
@@ -74,6 +75,13 @@ interface PooledMapList<T : Indexed> : EntityList<T> {
     fun add(chunk: Chunk, entity: T) = add(chunk.id or PLANE_OFFSET, entity)
 
     fun remove(chunk: Chunk, entity: T) = remove(chunk.id or PLANE_OFFSET, entity)
+
+    fun update(from: Tile, to: Tile, entity: T) {
+        remove(from, entity)
+        remove(from.chunk, entity)
+        add(to, entity)
+        add(to.chunk, entity)
+    }
 
     operator fun set(chunk: Chunk, entity: T) = add(chunk, entity)
 

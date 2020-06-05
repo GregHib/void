@@ -60,7 +60,7 @@ interface EntityList<T : Entity> {
     operator fun set(x: Int, y: Int, plane: Int = 0, entity: T) = add(x, y, plane, entity)
 }
 
-const val MAX_PLAYERS = 0x800//2048
+const val MAX_PLAYERS = 0x800// 2048
 const val MAX_NPCS = 0x8000// 32768
 
 val entityListModule = module {
