@@ -38,12 +38,12 @@ class MediumTraversal(override val type: TraversalType, collidesWithEntities: Bo
             }
             // Vertical
             val dx = if (delta.x == -1) 0 else delta.x
-            if (collisions.check(x + dx, y + offsetY, plane, inverse.vertical().not())) {
+            if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not())) {
                 return true
             }
             // Horizontal
             val dy = if (delta.y == -1) 0 else delta.y
-            if (collisions.check(x + offsetX, y + dy, plane, inverse.horizontal().not())) {
+            if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not())) {
                 return true
             }
         }
