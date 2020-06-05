@@ -38,7 +38,7 @@ class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boo
             for (offset in 1 until s - 1) {
                 offsetX = if (delta.x == 1) size.width else if (delta.x == -1) -1 else offset
                 offsetY = if (delta.y == 1) size.height else if (delta.y == -1) -1 else offset
-                if (collisions.check(x + offsetX, y + offsetY, plane, inverse.not())) {
+                if (collisions.check(x + offsetX, y + offsetY, plane, direction.not())) {
                     return true
                 }
             }
@@ -50,14 +50,14 @@ class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boo
             // Vertical
             for (offset in 1 until size.width) {
                 val dx = offset - if (delta.x == 1) 0 else 1
-                if (collisions.check(x + dx, y + offsetY, plane, inverse.vertical().not())) {
+                if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not())) {
                     return true
                 }
             }
             // Horizontal
             for (offset in 1 until size.height) {
                 val dy = offset - if (delta.y == 1) 0 else 1
-                if (collisions.check(x + offsetX, y + dy, plane, inverse.horizontal().not())) {
+                if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not())) {
                     return true
                 }
             }
