@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index
 
+import rs.dusk.engine.action.Action
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.update.Visuals
@@ -14,6 +15,7 @@ interface Character : Entity, Comparable<Character> {
     val visuals: Visuals
     var change: LocalChange?
     val movement: Movement
+    val action: Action
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

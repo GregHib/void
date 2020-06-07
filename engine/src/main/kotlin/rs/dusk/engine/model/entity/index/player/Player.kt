@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.player
 
+import rs.dusk.engine.action.Action
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.LocalChange
@@ -22,6 +23,7 @@ data class Player(
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
     @Transient override val movement: Movement = Movement(),
+    @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf()
 ) : Character {
 
