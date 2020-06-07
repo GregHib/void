@@ -41,4 +41,17 @@ internal class LocationWriterTest {
         // Then
         assert(result.contentEquals(byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0)))
     }
+
+    @Test
+    fun `Write id over 65k`() {
+        // Given
+        val tile = Tile(54, 45)
+        val map = sortedMapOf(
+            75000 to listOf(Location(75000, tile, Size(0, 0), 12, 2))
+        )
+        // When
+        val result = writer.write(map)
+        // Then
+        assert(result.contentEquals(byteArrayOf(-1, -1, -1, -1, -92, -5, -115, -82, 50, 0, 0)))
+    }
 }

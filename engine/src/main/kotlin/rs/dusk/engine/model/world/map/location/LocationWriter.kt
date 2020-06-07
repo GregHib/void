@@ -39,8 +39,10 @@ class LocationWriter {
 
     private fun Writer.writeLargeSmart(value: Int) {
         if (value >= 32767) {
-            writeSmart(32767)
-            writeSmart(value - 32767)
+            repeat(value / 32767) {
+                writeSmart(32767)
+            }
+            writeSmart(value.rem(32767))
         } else {
             writeSmart(value)
         }
