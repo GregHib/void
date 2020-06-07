@@ -221,4 +221,20 @@ internal class BreadthFirstSearchTest {
             steps.add(1, Direction.WEST)
         }
     }
+
+    @Test
+    fun `Backtrace returns failure if no movement`() {
+        // Given
+        val movement: Movement = mockk(relaxed = true)
+        val tile = Tile(10, 10)
+        val directions = Array(GRAPH_SIZE) { arrayOfNulls<Direction?>(GRAPH_SIZE) }
+        val steps: Steps = mockk(relaxed = true)
+        every { movement.steps } returns steps
+        every { steps.count() } returns 1
+        every { movement.directions } returns directions
+        // When
+        val result = bfs.backtrace(movement, PathResult.Success.Complete(tile), 0, 0)
+        // Then
+        assert(result is PathResult.Failure)
+    }
 }

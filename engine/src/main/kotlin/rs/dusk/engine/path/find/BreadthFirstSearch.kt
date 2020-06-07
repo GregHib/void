@@ -173,7 +173,11 @@ class BreadthFirstSearch : Finder {
             trace = trace.minus(direction.delta)
             direction = movement.directions[trace.x][trace.y]
         }
-        return result
+        return if(movement.steps.count() == current) {
+            PathResult.Failure
+        } else {
+            result
+        }
     }
 
     companion object {
