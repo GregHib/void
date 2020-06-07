@@ -75,10 +75,9 @@ internal class BreadthFirstSearchTest {
         } returns PathResult.Failure
         every { bfs.calculatePartialPath(movement, strategy, any(), any()) } returns response
         // When
-        val result = bfs.find(tile, size, movement, strategy, traversal)
+        bfs.find(tile, size, movement, strategy, traversal)
         // Then
         verify { bfs.calculatePartialPath(movement, strategy, any(), any()) }
-        assertEquals(response, result)
     }
 
     @Test

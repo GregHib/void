@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual.player
 
+import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
@@ -33,9 +34,10 @@ var Player.movementType: PlayerMoveType
     }
 
 fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
-    movement.clear()
-    movement.delta = Tile(x - tile.x, y - tile.y, plane - tile.plane)
-    if (movement.delta != Tile.EMPTY) {
-        movementType = PlayerMoveType.Teleport
+    action.run(ActionType.Teleport) {
+        movement.delta = Tile(x - tile.x, y - tile.y, plane - tile.plane)
+        if (movement.delta != Tile.EMPTY) {
+            movementType = PlayerMoveType.Teleport
+        }
     }
 }
