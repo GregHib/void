@@ -72,3 +72,23 @@
   x: 3240
   y: 3272
   plane: 0
+- id: 553
+  x: 3096
+  y: 3493
+  plane: 0
+  direction: WEST
+- id: 553
+  x: 3096
+  y: 3491
+  plane: 0
+  direction: WEST
+- id: 553
+  x: 3096
+  y: 3489
+  plane: 0
+  direction: WEST
+- id: 553
+  x: 3097
+  y: 3494
+  plane: 0
+  direction: NORTH
