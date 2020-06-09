@@ -4,6 +4,7 @@ import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Indexed
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
+import rs.dusk.engine.model.entity.index.contain.Container
 import rs.dusk.engine.model.entity.index.update.Visuals
 import rs.dusk.engine.model.entity.index.update.visual.player.getAppearance
 import rs.dusk.engine.model.world.Tile
@@ -20,7 +21,8 @@ data class Player(
     override var size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val movement: Movement = Movement()
+    @Transient override val movement: Movement = Movement(),
+    val containers: MutableMap<Int, Container> = mutableMapOf()
 ) : Indexed {
 
     @Transient
