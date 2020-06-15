@@ -14,13 +14,11 @@ import rs.dusk.engine.model.entity.character.update.visual.*
 import rs.dusk.engine.model.entity.character.update.visual.player.*
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
-import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.login.LoginQueue
@@ -145,7 +143,12 @@ Command where { prefix == "run" } then {
     player.movement.running = !player.movement.running
 }
 
-Command where { prefix == "test1" } then {
-    get<ChunkBatcher>().sendChunk(player, player.tile.chunk)
-    player.send(ObjectAddMessage(player.tile.add(y = 1).offset(), 6, 10, 0))
+Command where { prefix == "test" } then {
+    val maps: DynamicMaps = get()
+    maps.set(player.tile.chunk, player.tile.plane, player.tile.chunk, rotation = 1)
+}
+
+Command where { prefix == "test2" } then {
+    val maps: DynamicMaps = get()
+    maps.remove(player.tile.chunk, player.tile.plane)
 }

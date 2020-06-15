@@ -50,6 +50,12 @@ class NPCTrackingSet(
         total = 0
     }
 
+    override fun refresh(self: NPC?) {
+        add.addAll(current)
+        current.clear()
+        total = 0
+    }
+
     override fun track(entity: NPC, self: NPC?) {
         val visible = !entity.teleporting && remove.remove(entity)
         if (visible) {

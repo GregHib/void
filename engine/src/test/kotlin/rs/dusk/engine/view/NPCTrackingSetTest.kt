@@ -190,4 +190,20 @@ internal class NPCTrackingSetTest : KoinMock() {
         assert(set.current.isEmpty())
         assertEquals(0, set.total)
     }
+
+    @Test
+    fun `Refresh all entities`() {
+        // Given
+        set.add.add(NPC(index = 1, tile = Tile(0)))
+        set.current.add(NPC(index = 2, tile = Tile(0)))
+        set.remove.add(NPC(index = 3, tile = Tile(0)))
+        set.total = 2
+        // When
+        set.refresh()
+        // Then
+        assert(set.current.isEmpty())
+        assertEquals(1, set.remove.size)
+        assertEquals(2, set.add.size)
+        assertEquals(0, set.total)
+    }
 }

@@ -18,6 +18,7 @@ import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.engine.variable.variablesModule
 import rs.dusk.engine.model.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
+import rs.dusk.engine.model.world.instanceModule
 import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.mapModule
@@ -49,7 +50,7 @@ object Dusk {
 
         val world = World(1)
         val server = GameServer(world)
-        
+
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
@@ -90,7 +91,8 @@ object Dusk {
                 batchedChunkModule,
                 executorModule,
                 interfaceModule,
-                variablesModule
+                variablesModule,
+                instanceModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

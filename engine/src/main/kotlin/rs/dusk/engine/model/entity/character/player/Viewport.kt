@@ -27,7 +27,8 @@ data class Viewport(
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
     var lastLoadChunk: Chunk = Chunk.EMPTY,
-    var loaded: Boolean = false
+    var loaded: Boolean = false,
+    val regions: MutableList<Int> = mutableListOf()
 ) {
 
     val message = PlayerUpdateMessage()

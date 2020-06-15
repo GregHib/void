@@ -66,6 +66,17 @@ class PlayerTrackingSet(
         total = 0
     }
 
+    override fun refresh(self: Player?) {
+        add.addAll(current)
+        current.clear()
+        total = 0
+        if (self != null) {
+            add.remove(self)
+            current.add(self)
+            total = 1
+        }
+    }
+
     override fun track(entity: Player, self: Player?) {
         val visible = remove.remove(entity)
         if (visible) {

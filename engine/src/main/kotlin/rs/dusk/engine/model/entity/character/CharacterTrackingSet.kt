@@ -80,6 +80,11 @@ interface CharacterTrackingSet<T : Character> {
      */
     fun clear()
 
+    /**
+     * Force refreshes all entities
+     */
+    fun refresh(self: T? = null)
+
     companion object {
         private fun withinView(x: Int, y: Int, x2: Int, y2: Int, radius: Int): Boolean {
             return abs(x - x2) <= radius && abs(y - y2) <= radius

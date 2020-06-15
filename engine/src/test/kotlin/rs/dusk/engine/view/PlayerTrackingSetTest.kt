@@ -221,4 +221,21 @@ internal class PlayerTrackingSetTest : KoinMock() {
         assert(set.current.isEmpty())
         assertEquals(0, set.total)
     }
+
+    @Test
+    fun `Refresh all entities`() {
+        // Given
+        set.current.add(Player(index = 1, tile = Tile(0)))
+        set.add.add(Player(index = 2, tile = Tile(0)))
+        set.remove.add(Player(index = 3, tile = Tile(0)))
+        set.total = 2
+        val self = Player(index = 4, tile = Tile(0))
+        // When
+        set.refresh(self)
+        // Then
+        assertEquals(2, set.add.size)
+        assertEquals(1, set.remove.size)
+        assert(set.current.contains(self))
+        assertEquals(1, set.total)
+    }
 }
