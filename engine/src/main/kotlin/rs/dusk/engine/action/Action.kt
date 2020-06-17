@@ -1,8 +1,13 @@
 package rs.dusk.engine.action
 
 import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.event.then
+import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -13,8 +18,20 @@ import kotlin.coroutines.resumeWithException
  */
 @Suppress("UNCHECKED_CAST")
 class Action {
+
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
+
+    val isActive: Boolean
+        get() = continuation?.isActive ?: true
+
+    init {
+        Tick then {
+            if (suspension == Suspension.Tick) {
+                resume()
+            }
+        }
+    }
 
     /**
      * Whether there is currently an action which is paused
@@ -29,9 +46,9 @@ class Action {
      * Resumes the current paused coroutine (if exists)
      * @param value A result to pass back to the coroutine (if applicable else [Unit])
      */
-    fun <T: Any> resume(value: T) {
+    fun <T : Any> resume(value: T) = runBlocking {
         val cont = continuation as? CancellableContinuation<T>
-        if(cont != null) {
+        if (cont != null) {
             continuation = null
             suspension = null
             cont.resume(value)
@@ -44,6 +61,8 @@ class Action {
      */
     fun cancel(throwable: Throwable) {
         continuation?.resumeWithException(throwable)
+        continuation = null
+        suspension = null
     }
 
     /**
@@ -51,9 +70,9 @@ class Action {
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType, action: suspend Action.() -> Unit) {
-        cancel(type)
-        val coroutine = action.createCoroutine(this, QueueContinuation)
+    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = runBlocking {
+        this@Action.cancel(type)
+        val coroutine = action.createCoroutine(this@Action, ActionContinuation)
         coroutine.resume(Unit)
     }
 
@@ -72,26 +91,31 @@ class Action {
      * Wait until a main interface is closed
      * @return always true
      */
-    suspend fun awaitInterfaces() : Boolean {
+    suspend fun awaitInterfaces(): Boolean {
         var playerHasInterfaceOpen = false
-        if(playerHasInterfaceOpen) {
+        if (playerHasInterfaceOpen) {
             await<Unit>(Suspension.Interfaces)
         }
         return true
     }
 
     /**
-     * Delays the coroutine by [tick] ticks.
+     * Delays the coroutine by [ticks] ticks.
      * @return always true
      */
-    suspend fun delay(tick: Int = 1): Boolean {
-        repeat(tick) {
+    suspend fun delay(ticks: Int = 1): Boolean {
+        repeat(ticks) {
             await<Unit>(Suspension.Tick)
         }
         return true
     }
+
 }
 
-fun Player.action(type: ActionType, action: suspend Action.() -> Unit) {
+fun NPCEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = npc.action(type, action)
+
+fun PlayerEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = player.action(type, action)
+
+fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
     this.action.run(type, action)
 }

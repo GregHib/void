@@ -6,8 +6,8 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.factory.NPCFactory
 import rs.dusk.engine.model.entity.factory.PlayerFactory
+import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.engine.model.entity.index.player.command.Command
-import rs.dusk.engine.model.entity.index.update.visual.player.getFace
 import rs.dusk.engine.model.entity.index.update.visual.player.tele
 import rs.dusk.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
@@ -46,6 +46,7 @@ val botCounter = AtomicInteger(0)
 Command where { prefix == "bot" } then {
     runBlocking {
         val bot = playerFactory.spawn("Bot ${botCounter.getAndIncrement()}", player.tile).await()!!
+        bus.emit(PlayerRegistered(bot))
         bus.emit(Registered(bot))
     }
 }

@@ -8,6 +8,7 @@ import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
@@ -27,8 +28,7 @@ val maps: MapReader by inject()
 
 val regions = IntArray(MAX_PLAYERS - 1)
 
-Registered where { entity is Player } then {
-    val player = entity as Player
+PlayerRegistered then {
     regions[player.index - 1] = player.tile.regionPlane.id
 }
 
@@ -39,6 +39,7 @@ Deregistered where { entity is Player } then {
 
 GameLoginMessage verify { player ->
     calculateRegions(player, true)
+    bus.emit(PlayerRegistered(player))
     bus.emit(Registered(player))
 }
 

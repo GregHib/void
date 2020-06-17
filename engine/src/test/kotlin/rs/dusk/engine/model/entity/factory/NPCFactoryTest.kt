@@ -17,6 +17,7 @@ import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.npc.NPCRegistered
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.CollisionFlag
 import rs.dusk.engine.model.world.map.collision.collisionModule
@@ -42,6 +43,7 @@ internal class NPCFactoryTest : KoinMock() {
         val factory: NPCFactory = get()
         val bus: EventBus = declareMock {
             every { emit(any<Registered>()) } just Runs
+            every { emit(any<NPCRegistered>()) } just Runs
         }
         declareMock<NPCDecoder> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)

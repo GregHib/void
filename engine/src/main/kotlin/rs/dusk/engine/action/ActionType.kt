@@ -6,4 +6,5 @@ sealed class ActionType : CancellationException() {
     object Movement : ActionType()
     object Teleport : ActionType()
     object Combat : ActionType()
+    object Misc : ActionType()
 }

@@ -2,11 +2,10 @@ import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
-import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.npc.NPCRegistered
+import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.ENTITY
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.add
@@ -15,15 +14,14 @@ import rs.dusk.utility.inject
 
 val collisions: Collisions by inject()
 
-Registered priority 9 then {
-    when (entity) {
-        is Player -> collisions.add(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
-        is NPC -> {
-            for (x in 0 until entity.size.width) {
-                for (y in 0 until entity.size.height) {
-                    collisions.add(entity.tile.x + x, entity.tile.y + y, entity.tile.plane, ENTITY)
-                }
-            }
+PlayerRegistered priority 9 then {
+    collisions.add(player.tile.x, player.tile.y, player.tile.plane, ENTITY)
+}
+
+NPCRegistered priority 9 then {
+    for (x in 0 until npc.size.width) {
+        for (y in 0 until npc.size.height) {
+            collisions.add(npc.tile.x + x, npc.tile.y + y, npc.tile.plane, ENTITY)
         }
     }
 }

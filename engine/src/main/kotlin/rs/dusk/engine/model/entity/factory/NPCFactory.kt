@@ -7,6 +7,7 @@ import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCRegistered
 import rs.dusk.engine.model.entity.index.update.visual.npc.turn
 import rs.dusk.engine.model.entity.list.MAX_NPCS
 import rs.dusk.engine.model.world.Tile
@@ -51,6 +52,7 @@ class NPCFactory {
             return null
         }
         npc.turn(direction.delta.x, direction.delta.y)
+        bus.emit(NPCRegistered(npc))
         bus.emit(Registered(npc))
         return npc
     }
