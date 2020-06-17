@@ -20,3 +20,5 @@ inline infix fun <T : Event, reified C : EventCompanion<T>> C.where(noinline fil
  * Append [EventHandler] with a filter
  */
 infix fun <T : Event> EventHandlerBuilder<T>.where(filter: T.() -> Boolean) = this.apply { this.filter = filter }
+
+fun <T : Event> on(priority: Int = 0) = EventHandlerBuilder<T>(priority = priority)
