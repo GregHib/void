@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -42,7 +42,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         val updateTask: PlayerVisualsTask = get()
         val player: Player = mockk(relaxed = true)
         every { players.forEach(any()) } answers {
-            arg<(Indexed) -> Unit>(0).invoke(player)
+            arg<(Character) -> Unit>(0).invoke(player)
         }
         val visuals: Visuals = mockk(relaxed = true)
         every { player.visuals } returns visuals

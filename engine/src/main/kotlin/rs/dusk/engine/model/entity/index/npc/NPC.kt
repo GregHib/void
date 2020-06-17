@@ -3,7 +3,7 @@ package rs.dusk.engine.model.entity.index.npc
 import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
@@ -21,7 +21,7 @@ data class NPC(
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
     override val movement: Movement = Movement()
-) : Indexed {
+) : Character {
 
     override var change: LocalChange? = null
     var walkDirection: Int = -1

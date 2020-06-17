@@ -1,6 +1,6 @@
 package rs.dusk.engine.model.entity.index.update
 
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -10,6 +10,6 @@ interface Visual {
     /**
      * Optional reset to be performed at the end of an update
      */
-    fun reset(indexed: Indexed) {
+    fun reset(character: Character) {
     }
 }

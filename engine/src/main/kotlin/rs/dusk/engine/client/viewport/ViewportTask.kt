@@ -4,7 +4,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.model.engine.task.ParallelEngineTask
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
@@ -46,7 +46,7 @@ class ViewportTask : ParallelEngineTask() {
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Indexed> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
+    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
         GlobalScope.async {
             set.prep(self)
             val entityCount = nearbyEntityCount(list, tile)
@@ -60,7 +60,7 @@ class ViewportTask : ParallelEngineTask() {
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
      */
-    fun <T : Indexed> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
         Spiral.spiral(
             tile,
             VIEW_RADIUS
@@ -75,7 +75,7 @@ class ViewportTask : ParallelEngineTask() {
     /**
      * Updates [set] quickly by gathering all entities in local chunks stopping at [TrackingSet.maximum]
      */
-    fun <T : Indexed> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
         Spiral.spiral(tile.chunk, 2) { chunk ->

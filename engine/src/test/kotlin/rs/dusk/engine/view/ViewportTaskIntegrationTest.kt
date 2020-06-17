@@ -11,7 +11,7 @@ import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
 import rs.dusk.engine.client.viewport.ViewportTask
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.entity.index.player.Players
@@ -52,7 +52,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
                 val player: Player = mockk(relaxed = true)
                 every { player.index } returns index++
                 every { player.compareTo(any()) } answers {
-                    player.index.compareTo(arg<Indexed>(0).index)
+                    player.index.compareTo(arg<Character>(0).index)
                 }
                 every { player.tile } returns Tile(x, y, 0)
                 players.add(player)
@@ -90,7 +90,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
                 val player: Player = mockk(relaxed = true)
                 every { player.index } returns index++
                 every { player.compareTo(any()) } answers {
-                    player.index.compareTo(arg<Indexed>(0).index)
+                    player.index.compareTo(arg<Character>(0).index)
                 }
                 every { player.tile } returns Tile(x, y, 0)
                 players.add(player)

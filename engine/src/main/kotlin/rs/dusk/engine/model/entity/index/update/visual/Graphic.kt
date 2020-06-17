@@ -1,6 +1,6 @@
 package rs.dusk.engine.model.entity.index.update.visual
 
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -17,7 +17,7 @@ data class Graphic(
     var rotation: Int = 0,
     var forceRefresh: Boolean = false
 ) : Visual {
-    override fun reset(indexed: Indexed) {
+    override fun reset(character: Character) {
         id = -1
         delay = 0
         height = 0

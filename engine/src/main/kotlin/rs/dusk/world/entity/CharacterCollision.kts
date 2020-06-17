@@ -3,7 +3,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
@@ -28,13 +28,13 @@ Registered priority 9 then {
     }
 }
 
-Deregistered priority 9 where { entity is Indexed } then {
-    entity as Indexed
+Deregistered priority 9 where { entity is Character } then {
+    entity as Character
     collisions.remove(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
 }
 
-Moved priority 9 where { entity is Indexed } then {
-    entity as Indexed
+Moved priority 9 where { entity is Character } then {
+    entity as Character
     // No simple way of looking up if an npc is over a tile (incl size)
     // This means players can remove npcs collisions.
     for (x in 0 until entity.size.width) {

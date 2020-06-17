@@ -5,7 +5,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
@@ -50,7 +50,7 @@ Moved where { entity is Player && needsRegionChange(entity) } then {
     calculateRegions(entity as Player, false)
 }
 
-Registered where { entity is Indexed } then {
+Registered where { entity is Character } then {
     maps.load(entity.tile.region)
 }
 

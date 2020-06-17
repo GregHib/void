@@ -2,7 +2,7 @@ package rs.dusk.engine.model.entity.list
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
 import java.util.*
@@ -12,7 +12,7 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-interface PooledMapList<T : Indexed> : EntityList<T> {
+interface PooledMapList<T : Character> : EntityList<T> {
 
     val indexed: Array<T?>
     val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<T?>>

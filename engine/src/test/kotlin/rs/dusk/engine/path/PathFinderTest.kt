@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
@@ -45,7 +45,7 @@ internal class PathFinderTest {
     @Test
     fun `Find tile`() {
         // Given
-        val source: Indexed = mockk(relaxed = true)
+        val source: Character = mockk(relaxed = true)
         val target = Tile(1, 1)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
@@ -62,7 +62,7 @@ internal class PathFinderTest {
     @Test
     fun `Find entity`() {
         // Given
-        val source: Indexed = mockk(relaxed = true)
+        val source: Character = mockk(relaxed = true)
         val target: Entity = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)

@@ -2,7 +2,7 @@ package rs.dusk.engine.path
 
 import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.obj.Location
@@ -32,21 +32,21 @@ class PathFinder(
     private val bfs: BreadthFirstSearch
 ) {
 
-    fun find(source: Indexed, tile: Tile): PathResult {
+    fun find(source: Character, tile: Tile): PathResult {
         val strategy = TileTargetStrategy(tile = tile)
         val finder = getFinder(source)
         source.movement.clear()
         return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
-    fun find(source: Indexed, target: Entity): PathResult {
+    fun find(source: Character, target: Entity): PathResult {
         val strategy = getStrategy(target)
         val finder = getFinder(source)
         source.movement.clear()
         return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
-    fun getFinder(source: Indexed): Finder {
+    fun getFinder(source: Character): Finder {
         return if (source is Player) {
             bfs
         } else {
@@ -82,7 +82,7 @@ class PathFinder(
             tile = target.tile,
             size = target.size
         )
-        is Indexed -> RectangleTargetStrategy(
+        is Character -> RectangleTargetStrategy(
             collisions,
             tile = target.tile,
             size = target.size

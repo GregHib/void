@@ -3,7 +3,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.Indexed
+import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -55,7 +55,7 @@ Deregistered priority 9 then {
     }
 }
 
-Moved priority 9 where { entity is Indexed } then {
+Moved priority 9 where { entity is Character } then {
     when(entity) {
         is Player -> players.update(from, to, entity)
         is NPC -> npcs.update(from, to, entity)
