@@ -2,6 +2,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import rs.dusk.cache.definition.decoder.NPCDecoder
+import rs.dusk.engine.client.session.send
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -18,6 +19,8 @@ import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
+import rs.dusk.network.rs.codec.game.encode.message.ChunkMessage
+import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.login.LoginList
@@ -143,6 +146,22 @@ Command where { prefix == "run" } then {
     player.movement.running = !player.movement.running
 }
 
+fun offset(tile: Tile): Int {
+    val localX = tile.x.rem(8)
+    val localY = tile.y.rem(8)
+    return (localX shl 4) or localY
+}
+
 Command where { prefix == "test" } then {
-    println("Move? ${player.movement.traversal.blocked(player.tile, Direction.NORTH)}")
+
+    val viewChunkSize = player.viewport.size shr 4
+    val tile = player.tile
+    val tileOffset = offset(tile)
+    val message = FloorItemAddMessage(tileOffset, 995, 100)
+    players.forEach {
+        val base = it.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
+        val chunkOffset = tile.chunk.minus(base)
+        it.send(ChunkMessage(chunkOffset.x, chunkOffset.y, tile.plane))
+        it.send(message)
+    }
 }

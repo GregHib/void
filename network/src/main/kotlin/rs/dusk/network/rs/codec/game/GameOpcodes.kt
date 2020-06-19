@@ -130,14 +130,14 @@ object GameOpcodes {
     const val REGION = 43
     const val INTERFACE_CUSTOM_HEAD = 44//TODO("Test")
     const val UPDATE_CHUNK = 46
-    const val FLOOR_ITEM_PRIVATE = 48
+    const val FLOOR_ITEM_ADD = 48
     const val SCRIPT = 50
     const val LOGOUT = 51
     const val CLIENT_VARC_STR = 54
     const val IGNORE_LIST = 57
     const val INTERFACE_MODEL = 58//TODO("Test")
     const val LOGOUT_LOBBY = 59
-    const val FLOOR_ITEM_PUBLIC = 60
+    const val FLOOR_ITEM_REVEAL = 60
     const val INTERFACE_WINDOW = 67
     const val PLAYER_UPDATING = 69
     const val INTERFACE_CLOSE = 73
