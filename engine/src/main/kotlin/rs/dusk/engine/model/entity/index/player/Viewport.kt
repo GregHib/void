@@ -6,7 +6,7 @@ import rs.dusk.engine.client.update.ViewportUpdating.Companion.NPC_TICK_CAP
 import rs.dusk.engine.client.update.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.Chunk
 import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 
@@ -27,7 +27,7 @@ data class Viewport(
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
     var size: Int = VIEWPORT_SIZES[0],
     val regions: MutableSet<Int> = linkedSetOf(),
-    var lastLoadPoint: Tile = Tile.EMPTY,
+    var lastLoadChunk: Chunk = Chunk.EMPTY,
     var loaded: Boolean = false
 ) {
 

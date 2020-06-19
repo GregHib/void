@@ -65,8 +65,8 @@ fun Int.nearby(size: Int): IntRange {
 
 fun needsRegionChange(player: Player): Boolean {
     val size: Int = (player.viewport.size shr 3) / 2 - 1
-    val delta = player.viewport.lastLoadPoint.delta(player.tile)
-    return abs(delta.chunk.x) >= size || abs(delta.chunk.y) >= size
+    val delta = player.viewport.lastLoadChunk.delta(player.tile.chunk)
+    return abs(delta.x) >= size || abs(delta.y) >= size
 }
 
 fun calculateRegions(player: Player, initial: Boolean) {
@@ -80,7 +80,7 @@ fun calculateRegions(player: Player, initial: Boolean) {
         }
     }
     update(player, initial)
-    player.viewport.lastLoadPoint = player.tile
+    player.viewport.lastLoadChunk = player.tile.chunk
 }
 
 fun update(player: Player, initial: Boolean) {

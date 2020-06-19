@@ -23,5 +23,6 @@ data class Chunk(val x: Int, val y: Int) {
 
     companion object {
         fun createSafe(x: Int, y: Int) = Chunk(x and 0xfff, y and 0xfff)
+        val EMPTY = Chunk(0, 0)
     }
 }
