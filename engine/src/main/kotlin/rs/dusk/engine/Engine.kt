@@ -41,7 +41,7 @@ class Engine(private val bus: EventBus) {
                         }
                     }
                 }
-                if (millis > 1) {
+                if (millis >= 5) {
                     logger.info { "Tick $count took ${millis}ms" }
                 }
             }

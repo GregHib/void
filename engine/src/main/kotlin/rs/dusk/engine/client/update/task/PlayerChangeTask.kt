@@ -1,6 +1,7 @@
 package rs.dusk.engine.client.update.task
 
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.VIEW_RADIUS
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
+import rs.dusk.engine.event.Priority.PLAYER_CHANGE
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
@@ -13,7 +14,7 @@ import kotlin.math.abs
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
+class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(PLAYER_CHANGE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

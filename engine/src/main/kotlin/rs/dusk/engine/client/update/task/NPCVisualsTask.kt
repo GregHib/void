@@ -2,6 +2,7 @@ package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
+import rs.dusk.engine.event.Priority.NPC_VISUALS
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -17,7 +18,7 @@ class NPCVisualsTask(
     override val entities: PooledMapList<NPC>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : EntityTask<NPC>() {
+) : EntityTask<NPC>(NPC_VISUALS) {
 
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 

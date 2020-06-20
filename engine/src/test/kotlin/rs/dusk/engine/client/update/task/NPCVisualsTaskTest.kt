@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -34,7 +35,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     private val encoderModule = module {
         single { spyk(NPCVisualsTask(npcs, arrayOf(encoder), addMasks)) }
     }
-    override val modules = listOf(entityListModule, encoderModule)
+    override val modules = listOf(eventBusModule, entityListModule, encoderModule)
 
     @Test
     fun `Run runs all in parallel`() {

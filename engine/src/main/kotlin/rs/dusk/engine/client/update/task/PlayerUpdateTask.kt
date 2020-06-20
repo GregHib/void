@@ -3,6 +3,7 @@ package rs.dusk.engine.client.update.task
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.send
+import rs.dusk.engine.event.Priority.PLAYER_UPDATE
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange
@@ -18,7 +19,7 @@ import rs.dusk.engine.model.world.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 26, 2020
  */
-class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>() {
+class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>(PLAYER_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

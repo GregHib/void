@@ -10,7 +10,8 @@ import org.koin.core.get
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
-import rs.dusk.engine.client.viewport.ViewportTask
+import rs.dusk.engine.client.update.ViewportUpdating
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
@@ -23,18 +24,19 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-internal class ViewportTaskIntegrationTest : KoinMock() {
+internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     override val modules = listOf(
+        eventBusModule,
         entityListModule,
         clientSessionModule
     )
 
-    lateinit var task: ViewportTask
+    lateinit var task: ViewportUpdating
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportTask())
+        task = spyk(ViewportUpdating())
     }
 
     @Test
@@ -44,7 +46,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         val client: Player = mockk(relaxed = true)
         val set = PlayerTrackingSet(
             40,
-            ViewportTask.LOCAL_PLAYER_CAP
+            ViewportUpdating.LOCAL_PLAYER_CAP
         )
         val players: Players = get()
         for (x in 0..30) {
@@ -82,7 +84,7 @@ internal class ViewportTaskIntegrationTest : KoinMock() {
         val client: Player = mockk(relaxed = true)
         val set = PlayerTrackingSet(
             40,
-            ViewportTask.LOCAL_PLAYER_CAP
+            ViewportUpdating.LOCAL_PLAYER_CAP
         )
         val players: Players = get()
         for (x in 0 until radius * 2) {

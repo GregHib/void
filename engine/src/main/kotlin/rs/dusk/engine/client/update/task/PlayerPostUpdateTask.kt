@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.update.task
 
-import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.Priority.PLAYER_UPDATE_FINISHED
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
@@ -10,7 +10,7 @@ import rs.dusk.engine.model.entity.index.player.Players
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>() {
+class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(PLAYER_UPDATE_FINISHED) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

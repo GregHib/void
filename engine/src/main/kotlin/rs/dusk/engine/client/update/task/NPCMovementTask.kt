@@ -2,6 +2,7 @@ package rs.dusk.engine.client.update.task
 
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.Priority.NPC_MOVEMENT
 import rs.dusk.engine.model.engine.task.EngineTask
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -14,7 +15,7 @@ import rs.dusk.engine.model.world.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : EngineTask {
+class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : EngineTask(NPC_MOVEMENT) {
 
     override fun run() = runBlocking {
         npcs.forEach { npc ->

@@ -3,6 +3,7 @@ package rs.dusk.engine.client.update.task
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.send
+import rs.dusk.engine.event.Priority.NPC_UPDATE
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.TrackingSet
@@ -16,7 +17,7 @@ import rs.dusk.engine.model.entity.index.update.visual.npc.getTurn
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 12, 2020
  */
-class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>() {
+class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>(NPC_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

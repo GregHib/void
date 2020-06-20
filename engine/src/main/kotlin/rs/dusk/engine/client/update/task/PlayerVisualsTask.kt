@@ -2,6 +2,7 @@ package rs.dusk.engine.client.update.task
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
+import rs.dusk.engine.event.Priority.PLAYER_VISUALS
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
@@ -18,7 +19,7 @@ class PlayerVisualsTask(
     override val entities: PooledMapList<Player>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : EntityTask<Player>() {
+) : EntityTask<Player>(PLAYER_VISUALS) {
 
     private val addFlag = addMasks.sum()
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }

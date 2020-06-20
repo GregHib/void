@@ -1,6 +1,6 @@
 package rs.dusk.engine.model.entity.index.player
 
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.VIEW_RADIUS
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.world.Tile
 import java.util.*

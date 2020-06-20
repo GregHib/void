@@ -7,6 +7,4 @@ import rs.dusk.engine.event.EventCompanion
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-class Shutdown : Event() {
-    companion object : EventCompanion<Shutdown>
-}
+object Shutdown : Event(), EventCompanion<Shutdown>

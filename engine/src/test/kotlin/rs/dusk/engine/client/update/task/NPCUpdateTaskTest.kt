@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
@@ -29,6 +30,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var players: Players
     lateinit var sessions: Sessions
     override val modules = listOf(
+        eventBusModule,
         entityListModule,
         clientSessionModule
     )

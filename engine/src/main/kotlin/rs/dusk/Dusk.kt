@@ -7,12 +7,12 @@ import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.action.globalActionModule
 import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.engine.task.engineTasksModule
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
@@ -66,7 +66,7 @@ object Dusk {
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,
-                engineTasksModule,
+                updatingTasksModule,
                 loginQueueModule,
                 mapModule,
                 tileModule,

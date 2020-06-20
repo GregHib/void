@@ -1,9 +1,9 @@
 package rs.dusk.engine.model.entity.index.player
 
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.LOCAL_NPC_CAP
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.LOCAL_PLAYER_CAP
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.NPC_TICK_CAP
-import rs.dusk.engine.client.viewport.ViewportTask.Companion.PLAYER_TICK_CAP
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.LOCAL_NPC_CAP
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.NPC_TICK_CAP
+import rs.dusk.engine.client.update.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Tile

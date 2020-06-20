@@ -8,6 +8,5 @@ object Contexts {
     val File = newFixedThreadPoolContext((threads / 4) - 1, "File IO")
     val Updating = newFixedThreadPoolContext(threads / 4, "Client Updating")
     val Pathing = newFixedThreadPoolContext(threads / 4, "Pathfinding")
-    val Network = newFixedThreadPoolContext(threads / 4, "Network")
     val Engine = newSingleThreadContext("Engine")
 }

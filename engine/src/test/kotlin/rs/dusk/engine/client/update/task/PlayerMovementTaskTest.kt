@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.player.Player
@@ -24,7 +25,7 @@ import java.util.*
  */
 internal class PlayerMovementTaskTest : KoinMock() {
 
-    override val modules = listOf(entityListModule)
+    override val modules = listOf(eventBusModule, entityListModule)
 
     lateinit var task: PlayerMovementTask
     lateinit var movement: Movement

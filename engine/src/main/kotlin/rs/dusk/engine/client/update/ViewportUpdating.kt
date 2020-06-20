@@ -1,9 +1,12 @@
-package rs.dusk.engine.client.viewport
+package rs.dusk.engine.client.update
 
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.viewport.Spiral
+import rs.dusk.engine.event.Priority.VIEWPORT
 import rs.dusk.engine.model.engine.task.EngineTask
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.TrackingSet
@@ -17,7 +20,7 @@ import rs.dusk.utility.inject
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 17, 2020
  */
-class ViewportTask : EngineTask {
+class ViewportUpdating : EngineTask(VIEWPORT) {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
@@ -29,11 +32,13 @@ class ViewportTask : EngineTask {
                 if (!sessions.contains(player)) {
                     return@forEach
                 }
-                launch {
-                    update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player)
+                launch(Contexts.Updating) {
+                    update(player.tile, players, player.viewport.players,
+                        LOCAL_PLAYER_CAP, player)
                 }
-                launch {
-                    update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null)
+                launch(Contexts.Updating) {
+                    update(player.tile, npcs, player.viewport.npcs,
+                        LOCAL_NPC_CAP, null)
                 }
             }
         }

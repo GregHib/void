@@ -29,7 +29,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     @Test
     fun `Script test`() {
         val bus: EventBus = get()
-        bus.emit(Shutdown())
+        bus.emit(Shutdown)
     }
 
 }

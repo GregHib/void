@@ -1,4 +1,4 @@
-package rs.dusk.engine.view
+package rs.dusk.engine.client.update
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
-import rs.dusk.engine.client.viewport.ViewportTask
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
@@ -24,18 +24,19 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-internal class ViewportTaskTest : KoinMock() {
+internal class ViewportUpdatingTest : KoinMock() {
 
     override val modules = listOf(
+        eventBusModule,
         entityListModule,
         clientSessionModule
     )
 
-    lateinit var task: ViewportTask
+    lateinit var task: ViewportUpdating
 
     @BeforeEach
     fun setup() {
-        task = spyk(ViewportTask())
+        task = spyk(ViewportUpdating())
     }
 
     @ParameterizedTest

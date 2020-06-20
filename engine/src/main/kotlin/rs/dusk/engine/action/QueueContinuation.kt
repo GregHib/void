@@ -1,11 +1,10 @@
 package rs.dusk.engine.action
 
-import kotlinx.coroutines.newSingleThreadContext
 import kotlin.coroutines.Continuation
 
 object QueueContinuation : Continuation<Any> {
 
-    override val context = newSingleThreadContext("ActionQueues")
+    override val context = Contexts.Engine
 
     override fun resumeWith(result: Result<Any>) {
 

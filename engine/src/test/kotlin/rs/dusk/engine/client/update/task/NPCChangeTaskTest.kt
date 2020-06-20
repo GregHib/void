@@ -5,6 +5,7 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -19,7 +20,7 @@ import rs.dusk.engine.script.KoinMock
  */
 internal class NPCChangeTaskTest : KoinMock() {
 
-    override val modules = listOf(entityListModule)
+    override val modules = listOf(eventBusModule, entityListModule)
 
     lateinit var task: NPCChangeTask
 
