@@ -2,7 +2,7 @@ package rs.dusk.engine.action
 
 import kotlin.coroutines.Continuation
 
-object QueueContinuation : Continuation<Any> {
+object ActionContinuation : Continuation<Any> {
 
     override val context = Contexts.Engine
 

@@ -124,13 +124,13 @@ internal class ActionTest : KoinMock() {
         mockkStatic("kotlin.coroutines.ContinuationKt")
         action.continuation = continuation
         every { action.cancel(any()) } just Runs
-        every { block.createCoroutine(action, QueueContinuation) } returns coroutine
+        every { block.createCoroutine(action, ActionContinuation) } returns coroutine
         // When
         action.run(type, block)
         // Then
         verifyOrder {
             action.cancel(type)
-            block.createCoroutine(action, QueueContinuation)
+            block.createCoroutine(action, ActionContinuation)
             coroutine.resume(Unit)
         }
     }
