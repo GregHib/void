@@ -93,7 +93,7 @@ NPCOptionMessage verify { player ->
 }
 
 FloorItemOptionMessage verify { player ->
-    val items = items[x, y, player.tile.plane] ?: return@verify
+    val items = items[player.tile] ?: return@verify
     val item = items.firstOrNull { it != null && it.id == id } ?: return@verify
     val options = item.def.floorOptions
     val index = option - 1

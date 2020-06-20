@@ -8,4 +8,5 @@ sealed class ActionType : CancellationException() {
     object Combat : ActionType()
     object Misc : ActionType()
     object Global : ActionType()
+    object FloorItem : ActionType()
 }

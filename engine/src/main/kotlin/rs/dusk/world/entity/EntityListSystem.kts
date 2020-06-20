@@ -40,7 +40,7 @@ Registered priority 9 then {
         is Location -> {
             objects[entity.tile] = entity
         }
-        is FloorItem -> items[entity.tile] = entity
+        is FloorItem -> items.add(entity)
         is Projectile -> projectiles[entity.tile] = entity
     }
 }
@@ -50,7 +50,7 @@ Deregistered priority 9 then {
         is Player -> players.remove(entity)
         is NPC -> npcs.remove(entity)
         is Location -> objects.remove(entity.tile, entity)
-        is FloorItem -> items.remove(entity.tile, entity)
+        is FloorItem -> items.remove(entity)
         is Projectile -> projectiles.remove(entity.tile, entity)
     }
 }
