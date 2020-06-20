@@ -1,53 +1,51 @@
 package rs.dusk.engine
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.supervisorScope
+import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.engine.task.EngineTasks
-import rs.dusk.utility.get
-import rs.dusk.utility.inject
-import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
+import kotlin.concurrent.fixedRateTimer
+import kotlin.system.measureTimeMillis
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 22, 2020
  */
-class Engine {
+class Engine(private val bus: EventBus) {
 
-    private val executor = Executors.newSingleThreadScheduledExecutor()
+    private val logger = InlineLogger()
 
-    class TickTask(private val tasks: EngineTasks) : Runnable {
+    private val handler = CoroutineExceptionHandler { _, exception ->
+        logger.error(exception) { "Exception occurred during engine tick!" }
+    }
 
-        private val logger = InlineLogger()
-        private val bus: EventBus by inject()
-
-        override fun run() {
-            try {
-                bus.emit(Tick)
-                tasks.forEach {
-                    try {
-                        it.run()
-                    } catch (t: Throwable) {
-                        logger.error(t) { "Exception occurred during engine tick! $it" }
-                        t.printStackTrace()
-                    }
-                }
-            } catch (t: Throwable) {
-                logger.error(t) { "Exception occurred during engine tick!" }
-                t.printStackTrace()
+    fun start() = runBlocking {
+        supervisorScope {
+            launch(Contexts.Engine + handler) {
+                bus.emit(Startup)
             }
         }
-    }
-
-    fun start() {
-        val tasks: EngineTasks = get()
-        val tick = TickTask(tasks)
-        executor.scheduleAtFixedRate(tick, ENGINE_DELAY, ENGINE_DELAY, TimeUnit.MILLISECONDS)
-    }
-
-    fun stop() {
-        executor.shutdownNow()
+        var count = 0L
+        fixedRateTimer("Engine timer", period = ENGINE_DELAY) {
+            count++
+            runBlocking {
+                val millis = measureTimeMillis {
+                    supervisorScope {
+                        launch(Contexts.Engine + handler) {
+                            bus.emit(Tick)
+                        }
+                    }
+                }
+                if (millis > 1) {
+                    logger.info { "Tick $count took ${millis}ms" }
+                }
+            }
+        }
     }
 
     companion object {

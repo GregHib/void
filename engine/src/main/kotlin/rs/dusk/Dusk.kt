@@ -12,9 +12,7 @@ import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
-import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.engine.task.engineTasksModule
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
@@ -36,17 +34,16 @@ import rs.dusk.utility.get
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-object Dusk : Runnable {
+object Dusk {
 
     @JvmStatic
     fun main(args: Array<String>) {
 	    preload()
-	    
+
         val world = World(1)
         val server = GameServer(world)
-        val engine = Engine()
+        val engine = Engine(get())
 
-        run()
         server.run()
         engine.start()
     }
@@ -82,10 +79,5 @@ object Dusk : Runnable {
             fileProperties("/game.properties")
             fileProperties("/private.properties")
         }
-    }
-
-    override fun run() {
-        val bus: EventBus = get()
-        bus.emit(Startup())
     }
 }
