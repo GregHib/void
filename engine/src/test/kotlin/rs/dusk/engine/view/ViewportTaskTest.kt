@@ -71,7 +71,7 @@ internal class ViewportTaskTest : KoinMock() {
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 10
         // When
-        task.update(tile, players, set, cap, client).await()
+        task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.prep(client)
@@ -90,7 +90,7 @@ internal class ViewportTaskTest : KoinMock() {
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 5
         // When
-        task.update(tile, players, set, cap, client).await()
+        task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
             set.prep(client)

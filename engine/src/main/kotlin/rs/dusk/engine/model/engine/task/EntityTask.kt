@@ -20,12 +20,13 @@ abstract class EntityTask<T : Character> : EngineTask {
     abstract fun runAsync(entity: T)
 
     override fun run() = runBlocking {
-        entities.forEach {
-            defers.add(scope.async { runAsync(it) })
-        }
         val took = measureTimeMillis {
-            while (defers.isNotEmpty()) {
-                defers.poll().await()
+            coroutineScope {
+                entities.forEach {
+                    launch(context) {
+                        runAsync(it)
+                    }
+                }
             }
         }
         if (took > 0) {
@@ -34,6 +35,6 @@ abstract class EntityTask<T : Character> : EngineTask {
     }
 
     companion object {
-        private val scope = CoroutineScope(newSingleThreadContext("UpdateTasks"))
+        private val context = newSingleThreadContext("UpdateTasks")
     }
 }

@@ -1,9 +1,10 @@
 package rs.dusk.engine.client.viewport
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.model.engine.task.ParallelEngineTask
+import rs.dusk.engine.model.engine.task.EngineTask
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -16,46 +17,40 @@ import rs.dusk.utility.inject
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 17, 2020
  */
-class ViewportTask : ParallelEngineTask() {
+class ViewportTask : EngineTask {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
     val sessions: Sessions by inject()
 
-    override fun run() {
-        players.forEach { player ->
-            if (!sessions.contains(player)) {
-                return@forEach
+    override fun run() = runBlocking {
+        coroutineScope {
+            players.forEach { player ->
+                if (!sessions.contains(player)) {
+                    return@forEach
+                }
+                launch {
+                    update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player)
+                }
+                launch {
+                    update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null)
+                }
             }
-            defers.add(
-                update(
-                    player.tile, players, player.viewport.players,
-                    LOCAL_PLAYER_CAP, player
-                )
-            )
-            defers.add(
-                update(
-                    player.tile, npcs, player.viewport.npcs,
-                    LOCAL_NPC_CAP, null
-                )
-            )
         }
-        super.run()
     }
 
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) =
-        GlobalScope.async {
-            set.prep(self)
-            val entityCount = nearbyEntityCount(list, tile)
-            if (entityCount >= cap) {
-                gatherByTile(tile, list, set, self)
-            } else {
-                gatherByChunk(tile, list, set, self)
-            }
+    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) {
+        set.prep(self)
+        val entityCount = nearbyEntityCount(list, tile)
+        if (entityCount >= cap) {
+            gatherByTile(tile, list, set, self)
+        } else {
+            gatherByChunk(tile, list, set, self)
         }
+    }
 
     /**
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
