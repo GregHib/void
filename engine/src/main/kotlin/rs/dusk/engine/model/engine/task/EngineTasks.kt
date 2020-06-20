@@ -2,7 +2,6 @@ package rs.dusk.engine.model.engine.task
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import rs.dusk.engine.client.login.LoginQueueTask
 import rs.dusk.engine.client.update.task.*
 import rs.dusk.engine.client.viewport.ViewportTask
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -26,10 +25,6 @@ val engineTasksModule = module {
     single(createdAtStart = true) {
         EngineTasks(
             linkedSetOf(
-                LoginQueueTask(
-                    get(),
-                    getProperty("loginPerTickCap")
-                ),
                 ViewportTask(),
                 PlayerMovementTask(get(), get()),
                 NPCMovementTask(get(), get()),

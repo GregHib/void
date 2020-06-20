@@ -2,33 +2,29 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import rs.dusk.cache.definition.decoder.NPCDecoder
-import rs.dusk.engine.client.login.LoginQueue
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.factory.PlayerFactory
-import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.check
-import rs.dusk.engine.model.world.map.collision.get
-import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
+import rs.dusk.world.entity.player.login.LoginList
 
 val factory: PlayerFactory by inject()
 val players: Players by inject()
-val login: LoginQueue by inject()
+val login: LoginList by inject()
 val bus: EventBus by inject()
 
 Command where { prefix == "kill" } then {

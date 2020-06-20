@@ -14,8 +14,6 @@ import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
-import rs.dusk.engine.client.login.LoginQueue
-import rs.dusk.engine.client.login.LoginResponse
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.network.rs.codec.game.GameCodec
@@ -24,6 +22,8 @@ import rs.dusk.network.rs.codec.login.LoginMessageHandler
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 import rs.dusk.utility.inject
+import rs.dusk.world.entity.player.login.LoginList
+import rs.dusk.world.entity.player.login.LoginResponse
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -33,7 +33,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
-    val login: LoginQueue by inject()
+    val login: LoginList by inject()
     val repository: CodecRepository by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: GameLoginMessage) {

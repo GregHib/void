@@ -6,7 +6,6 @@ import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
 import rs.dusk.engine.action.globalActionModule
-import rs.dusk.engine.client.login.loginQueueModule
 import rs.dusk.engine.client.session.clientSessionModule
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
@@ -29,6 +28,7 @@ import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.utility.get
+import rs.dusk.world.entity.player.login.loginQueueModule
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

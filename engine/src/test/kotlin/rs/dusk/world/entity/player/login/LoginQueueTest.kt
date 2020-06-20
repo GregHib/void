@@ -1,9 +1,8 @@
-package rs.dusk.engine.client
+package rs.dusk.world.entity.player.login
 
 import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk
-import io.mockk.spyk
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
@@ -12,35 +11,37 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
+import org.koin.test.get
 import org.koin.test.inject
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.client.login.LoginQueue
-import rs.dusk.engine.client.login.LoginQueueTask
-import rs.dusk.engine.client.login.LoginResponse
-import rs.dusk.engine.client.login.loginQueueModule
+import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.script.ScriptMock
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
-internal class LoginQueueTaskTest : KoinMock() {
+internal class LoginQueueTest : ScriptMock() {
 
-    val loginQueue: LoginQueue by inject()
+    val loginList: LoginList by inject()
     lateinit var factory: PlayerFactory
-    lateinit var task: LoginQueueTask
+    lateinit var bus: EventBus
 
     override val modules = listOf(
+        eventBusModule,
         loginQueueModule,
         module { single { factory } }
     )
 
     @BeforeEach
-    fun setup() {
+    override fun setup() {
         factory = mockk(relaxed = true)
-        task = spyk(LoginQueueTask(loginQueue, 10))
+        super.setup()
+        bus = get()
     }
 
     @Test
@@ -50,9 +51,9 @@ internal class LoginQueueTaskTest : KoinMock() {
         val player: Player = mockk(relaxed = true)
         every { factory.spawn(any(), any(), any()) } returns async { player }
         // When
-        val result = loginQueue.add("Test", session)
+        val result = loginList.add("Test", session)
         delay(10)
-        task.run()
+        bus.emit(Tick)
         // Then
         assertEquals(LoginResponse.Success(player), result.await())
     }
@@ -63,9 +64,9 @@ internal class LoginQueueTaskTest : KoinMock() {
         val session: Session = mockk(relaxed = true)
         every { factory.spawn(any(), any(), any()) } returns async { null }
         // When
-        val result = loginQueue.add("Test", session)
+        val result = loginList.add("Test", session)
         delay(10)
-        task.run()
+        bus.emit(Tick)
         // Then
         assertEquals(LoginResponse.Full, result.await())
     }
@@ -78,9 +79,9 @@ internal class LoginQueueTaskTest : KoinMock() {
             factory.spawn(any(), any(), any())
         } returns GlobalScope.async { throw IllegalStateException("Loading went wrong") }
         // When
-        val result = loginQueue.add("Test", session)
+        val result = loginList.add("Test", session)
         delay(10)
-        task.run()
+        bus.emit(Tick)
         // Then
         assertEquals(LoginResponse.Failure, result.await())
     }
@@ -90,9 +91,9 @@ internal class LoginQueueTaskTest : KoinMock() {
         // Given
         every { factory.spawn(any(), any(), any()) } returns GlobalScope.async { null }
         // When
-        val result = loginQueue.add("Test")
+        val result = loginList.add("Test")
         delay(10)
-        task.run()
+        bus.emit(Tick)
         // Then
         assertEquals(LoginResponse.Full, result.await())
     }
@@ -105,12 +106,12 @@ internal class LoginQueueTaskTest : KoinMock() {
             val name: String = arg(0)
             GlobalScope.async { if (name == "Test1") player else null }
         }
-        val test2 = loginQueue.add("Test2")
+        val test2 = loginList.add("Test2")
         delay(25)
-        val test1 = loginQueue.add("Test1")
+        val test1 = loginList.add("Test1")
         // When
         delay(100)
-        task.run()
+        bus.emit(Tick)
         // Then
         delay(50)
         coVerifyOrder {

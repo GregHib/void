@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.login
+package rs.dusk.world.entity.player.login
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
@@ -17,10 +17,10 @@ import kotlin.coroutines.suspendCoroutine
  * @since March 31, 2020
  */
 val loginQueueModule = module {
-    single { LoginQueue(get()) }
+    single { LoginList(get()) }
 }
 
-class LoginQueue(
+class LoginList(
     private val factory: PlayerFactory,
     val queue: ConcurrentLinkedDeque<Continuation<Unit>> = ConcurrentLinkedDeque()
 ) : Deque<Continuation<Unit>> by queue {

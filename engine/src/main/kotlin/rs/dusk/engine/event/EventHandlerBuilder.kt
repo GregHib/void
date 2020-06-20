@@ -8,6 +8,7 @@ data class EventHandlerBuilder<T : Event>(var filter: (T.() -> Boolean)? = null,
 
 /**
  * Create an [EventHandler] with priority
+ * Note: Highest priority first
  */
 inline infix fun <T : Event, reified C : EventCompanion<T>> C.priority(priority: Int) = EventHandlerBuilder<T>(priority = priority)
 
