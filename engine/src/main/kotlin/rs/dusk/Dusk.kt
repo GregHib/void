@@ -5,6 +5,7 @@ import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
+import rs.dusk.engine.action.globalActionModule
 import rs.dusk.engine.client.login.loginQueueModule
 import rs.dusk.engine.client.session.clientSessionModule
 import rs.dusk.engine.client.verify.clientVerificationModule
@@ -75,7 +76,8 @@ object Dusk : Runnable {
                 collisionModule,
                 cacheDefinitionModule,
                 locationModule,
-                pathFindModule
+                pathFindModule,
+                globalActionModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

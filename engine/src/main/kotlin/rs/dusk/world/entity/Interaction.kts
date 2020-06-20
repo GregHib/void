@@ -1,12 +1,9 @@
 package rs.dusk.world.entity
 
 import rs.dusk.engine.action.ActionType
-import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.action.action
 import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.index.npc.NPCOption
 import rs.dusk.engine.model.entity.index.npc.NPCs
@@ -30,21 +27,6 @@ val players: Players by inject()
 val npcs: NPCs by inject()
 val items: FloorItems by inject()
 val bus: EventBus by inject()
-
-Tick then {
-    players.forEach {
-        val action = it.action
-        if (action.suspension == Suspension.Tick) {
-            action.resume()
-        }
-    }
-    npcs.forEach {
-        val action = it.action
-        if (action.suspension == Suspension.Tick) {
-            action.resume()
-        }
-    }
-}
 
 fun Player.moveTo(target: Entity, action: (PathResult) -> Unit) = action(ActionType.Movement) {
     try {
