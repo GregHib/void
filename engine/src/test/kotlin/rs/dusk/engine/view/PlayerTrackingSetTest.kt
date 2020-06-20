@@ -4,16 +4,20 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.script.KoinMock
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 24, 2020
  */
-internal class PlayerTrackingSetTest {
+internal class PlayerTrackingSetTest : KoinMock() {
     lateinit var set: PlayerTrackingSet
+
+    override val modules = listOf(eventBusModule)
 
     @BeforeEach
     fun setup() {

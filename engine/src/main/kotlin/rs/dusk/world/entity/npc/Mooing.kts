@@ -18,7 +18,7 @@ NPCRegistered priority Int.MAX_VALUE where { npc.def.name == "Cow" } then {
 }
 on<NPCRegistered>(priority = Int.MAX_VALUE) where { npc.def.name == "Cow" } then {
     action(ActionType.Misc) {
-        while(active) {
+        while(isActive) {
             delay(ticks = Random.nextInt(50, 200))
             npc.movement.clear()
             npc.forceChat = "Moo"

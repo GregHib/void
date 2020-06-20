@@ -13,7 +13,9 @@ import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.EventHandler
 import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
@@ -26,6 +28,7 @@ import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
+import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -37,11 +40,13 @@ internal class NPCFactoryTest : KoinMock() {
     override val modules =
         listOf(cacheDefinitionModule, entityFactoryModule, eventBusModule, collisionModule)
 
+    @Suppress("RemoveExplicitTypeArguments")
     @Test
     fun `Spawn registers`() {
         // Given
         val factory: NPCFactory = get()
         val bus: EventBus = declareMock {
+            every { add(any<KClass<Tick>>(), any<EventHandler<Tick>>()) } just Runs
             every { emit(any<Registered>()) } just Runs
             every { emit(any<NPCRegistered>()) } just Runs
         }

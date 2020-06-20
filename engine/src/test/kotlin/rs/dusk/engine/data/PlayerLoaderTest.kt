@@ -6,6 +6,7 @@ import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
 
@@ -14,6 +15,8 @@ import rs.dusk.engine.script.KoinMock
  * @since April 03, 2020
  */
 internal class PlayerLoaderTest : KoinMock() {
+
+    override val modules = listOf(eventBusModule)
 
     @Test
     fun `load strategy`() {
