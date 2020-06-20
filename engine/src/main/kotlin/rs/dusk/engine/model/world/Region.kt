@@ -24,5 +24,6 @@ data class Region(val x: Int, val y: Int) {
     companion object {
         fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)
         fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
+        val EMPTY = Region(0, 0)
     }
 }

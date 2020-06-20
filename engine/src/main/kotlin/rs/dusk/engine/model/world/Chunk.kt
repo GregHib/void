@@ -8,7 +8,7 @@ data class Chunk(val x: Int, val y: Int) {
 
     constructor(id: Int) : this(id shr 12, id and 0xfff)
 
-    val id by lazy { (y and 0xfff) + ((x and 0xfff) shl 12) }
+    val id by lazy { getId(x, y) }
     val region by lazy { Region(x / 8, y / 8) }
     val tile by lazy { Tile(x * 8, y * 8, 0) }
 
@@ -23,6 +23,7 @@ data class Chunk(val x: Int, val y: Int) {
 
     companion object {
         fun createSafe(x: Int, y: Int) = Chunk(x and 0xfff, y and 0xfff)
+        fun getId(x: Int, y: Int) = (y and 0xfff) + ((x and 0xfff) shl 12)
         val EMPTY = Chunk(0, 0)
     }
 }
