@@ -2,10 +2,10 @@ package rs.dusk.engine.event
 
 import io.mockk.*
 import io.mockk.junit5.MockKExtension
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.koin.test.inject
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.script.KoinMock
 import kotlin.reflect.KClass
@@ -66,28 +66,108 @@ internal class EventBusTest : KoinMock() {
         verify { bus.add(any(), handler) }
     }
 
+
+    val bus by inject<EventBus>()
+
     @Test
-    fun `Set action`() = runBlocking {
+    fun `Add first`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
+        every { handler.priority } returns 0
+        val clazz = TestEvent::class
         // When
-        setAction(handler, action, null)
-        delay(100)
+        bus.add(clazz, handler = handler)
         // Then
-        verify { handler.action = any() }
+        Assertions.assertEquals(handler, bus.get(clazz))
     }
 
     @Test
-    fun `Set action filter`() = runBlocking {
+    fun `Add middle`() {
+        // Given
+        val second = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { second.next } returns null
+        every { second.priority } returns 0
+        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { first.next } returns second
+        every { first.priority } returns 2
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { handler.priority } returns 1
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = first)
+        // When
+        bus.add(clazz, handler = handler)
+        // Then
+        Assertions.assertEquals(first, bus.get(clazz))
+        verify { first.next = handler }
+    }
+
+    @Test
+    fun `Add last`() {
+        // Given
+        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { first.next } returns null
+        every { first.priority } returns 10
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { handler.priority } returns 0
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = first)
+        // When
+        bus.add(clazz, handler = handler)
+        // Then
+        Assertions.assertEquals(first, bus.get(clazz))
+        verify { first.next = handler }
+    }
+
+    @Test
+    fun `Emit filtered`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
-        val filter: TestEvent.() -> Boolean = mockk(relaxed = true)
+        every { handler.next } returns null
+        every { handler.executable(any()) } returns false
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = handler)
+        val event = TestEvent()
         // When
-        setAction(handler, action, filter)
-        delay(100)
+        bus.emit(event)
         // Then
-        verify { handler.action = any() }
+        coVerify(exactly = 0) {
+            handler.invoke(event)
+        }
+    }
+
+    @Test
+    fun emit() {
+        // Given
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { handler.next } returns null
+        every { handler.executable(any()) } returns true
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = handler)
+        val event = TestEvent()
+        // When
+        bus.emit(event)
+        // Then
+        coVerify {
+            handler.executable(event)
+            handler.invoke(event)
+        }
+    }
+
+    @Test
+    fun `Emit cancelled`() {
+        // Given
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { handler.next } returns null
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = handler)
+        val event = TestEvent()
+        event.cancel()
+        // When
+        bus.emit(event)
+        // Then
+        coVerify(exactly = 0) {
+            handler.executable(event)
+            handler.invoke(event)
+        }
     }
 }

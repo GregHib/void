@@ -76,7 +76,9 @@ class EventBus {
                 break
             }
 
-            handler.action.invoke(event)
+            if(handler.executable(event)) {
+                handler.invoke(event)
+            }
 
             handler = handler.next
         }
@@ -93,7 +95,7 @@ class EventBus {
  */
 inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
-    setAction(handler, action, null)
+    handler.action = action
     register(T::class, handler)
 }
 
@@ -102,7 +104,8 @@ inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline acti
  */
 inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action: T.(T) -> Unit) = runBlocking {
     val handler = EventHandler<T>()
-    setAction(handler, action, filter)
+    handler.action = action
+    handler.filter = filter
     handler.priority = priority
     register(T::class, handler)
 }
@@ -113,15 +116,4 @@ inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action
 fun <T : Event> register(clazz: KClass<T>, handler: EventHandler<T>) {
     val bus: EventBus = get()
     bus.add(clazz, handler)
-}
-
-/**
- * Sets [handler]'s [action] with optional [filter]
- */
-fun <T : Event> setAction(handler: EventHandler<T>, action: T.(T) -> Unit, filter: (T.() -> Boolean)?) {
-    handler.action = { event ->
-        if (!event.cancelled && filter?.invoke(event) != false) {
-            action.invoke(event, event)
-        }
-    }
 }
