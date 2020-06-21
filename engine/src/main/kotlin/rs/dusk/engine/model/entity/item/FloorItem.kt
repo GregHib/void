@@ -14,8 +14,8 @@ import rs.dusk.utility.get
  * @since March 28, 2020
  */
 data class FloorItem(
-    override val id: Int,
     override var tile: Tile,
+    override val id: Int,
     var amount: Int = 1,
     val size: Size = Size.TILE
 ) : Entity {

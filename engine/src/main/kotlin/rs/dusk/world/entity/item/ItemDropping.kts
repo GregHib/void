@@ -30,7 +30,7 @@ Drop then {
             return@then
         }
     }
-    val item = FloorItem(id, tile, amount)
+    val item = FloorItem(tile, id, amount)
     items.add(item)
     items.update(tile, FloorItemAddMessage(item.tile.offset(), item.id, item.amount))
     reveal(item, revealTicks, owner)

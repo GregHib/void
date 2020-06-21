@@ -144,23 +144,6 @@ Command where { prefix == "run" } then {
     player.movement.running = !player.movement.running
 }
 
-fun offset(tile: Tile): Int {
-    val localX = tile.x.rem(8)
-    val localY = tile.y.rem(8)
-    return (localX shl 4) or localY
-}
-
 Command where { prefix == "test" } then {
-
     bus.emit(Drop(995, 1, player.tile, 100, 200, player.index))
-//    val viewChunkSize = player.viewport.size shr 4
-//    val tile = player.tile
-//    val tileOffset = offset(tile)
-//    val message = FloorItemAddMessage(tileOffset, 995, 100)
-//    players.forEach {
-//        val base = it.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
-//        val chunkOffset = tile.chunk.minus(base)
-//        it.send(ChunkMessage(chunkOffset.x, chunkOffset.y, tile.plane))
-//        it.send(message)
-//    }
 }

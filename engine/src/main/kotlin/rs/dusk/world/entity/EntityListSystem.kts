@@ -40,7 +40,6 @@ Registered priority 9 then {
         is Location -> {
             objects[entity.tile] = entity
         }
-        is FloorItem -> items.add(entity)
         is Projectile -> projectiles[entity.tile] = entity
     }
 }

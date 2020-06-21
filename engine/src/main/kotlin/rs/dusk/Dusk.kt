@@ -16,6 +16,7 @@ import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
+import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.location.locationModule
 import rs.dusk.engine.model.world.map.location.xteaModule
@@ -74,7 +75,8 @@ object Dusk {
                 cacheDefinitionModule,
                 locationModule,
                 pathFindModule,
-                schedulerModule
+                schedulerModule,
+                batchedChunkModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
