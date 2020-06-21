@@ -1,12 +1,12 @@
 package rs.dusk.engine.model.entity.item
 
+import kotlinx.coroutines.Job
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.get
-import kotlin.coroutines.Continuation
 
 /**
  * An [Item] with physical location
@@ -25,5 +25,5 @@ data class FloorItem(
 
     var state: FloorItemState = FloorItemState.Private
 
-    var disappear: Continuation<Unit>? = null
+    var disappear: Job? = null
 }

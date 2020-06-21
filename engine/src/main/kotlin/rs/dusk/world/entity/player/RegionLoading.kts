@@ -3,6 +3,7 @@ import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.index.Character
@@ -10,12 +11,17 @@ import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.item.FloorItems
+import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
+import rs.dusk.engine.model.world.ChunkPlane
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
 import rs.dusk.engine.model.world.map.location.Xtea
 import rs.dusk.engine.model.world.map.location.Xteas
 import rs.dusk.network.rs.codec.game.decode.message.RegionLoadedMessage
+import rs.dusk.network.rs.codec.game.encode.message.ChunkMessage
+import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
@@ -25,6 +31,7 @@ val xteas: Xteas by inject()
 val players: Players by inject()
 val bus: EventBus by inject()
 val maps: MapReader by inject()
+val items: FloorItems by inject()
 
 val regions = IntArray(MAX_PLAYERS - 1)
 
@@ -114,4 +121,38 @@ fun update(player: Player, initial: Boolean) {
             clientTile = if (initial) player.tile.id else null
         )
     )
+
+    player.viewport.regions.forEach { regionId ->
+        val chunk = Region(regionId).chunk
+        // TODO cap min and max?
+        for (x in chunk.x until chunk.x + 8) {
+            for (y in chunk.y until chunk.y + 8) {
+                val chunkPlane = ChunkPlane(x, y, player.tile.plane)
+                val viewChunkSize = player.viewport.size shr 4
+                val updates = items.chunks[chunkPlane.id] ?: return
+                val base = player.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
+                val chunkOffset = player.tile.chunk.minus(base)
+                player.send(ChunkMessage(chunkOffset.x, chunkOffset.y, player.tile.plane))
+                updates.forEach { item ->
+                    player.send(FloorItemAddMessage(item.tile.offset(), item.id, item.amount))
+                }
+            }
+        }
+    }
+}
+
+Tick then {
+    items.updates.forEach { (chunkPlane, updates) ->
+        val region = chunkPlane.region.id
+        players.indexed.filter { it != null && it.viewport.regions.contains(region) }.filterNotNull().forEach { player ->
+            val viewChunkSize = player.viewport.size shr 4
+            val base = player.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
+            val chunkOffset = player.tile.chunk.minus(base)
+            player.send(ChunkMessage(chunkOffset.x, chunkOffset.y, player.tile.plane))
+            updates.forEach { message ->
+                player.send(message)
+            }
+        }
+    }
+    items.updates.clear()
 }

@@ -8,21 +8,22 @@ import rs.dusk.engine.model.world.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
-data class FloorItems(val delegate: HashMap<Int, MutableList<FloorItem>> = hashMapOf()) {
+class FloorItems {
+    val chunks: HashMap<Int, MutableList<FloorItem>> = hashMapOf()
 
     val updates: HashMap<ChunkPlane, MutableList<Message>> = hashMapOf()
 
-    fun add(item: FloorItem) = delegate.getOrPut(item.tile.chunkPlane.id) { mutableListOf() }.add(item)
+    fun add(item: FloorItem) = chunks.getOrPut(item.tile.chunkPlane.id) { mutableListOf() }.add(item)
 
     fun remove(item: FloorItem): Boolean {
-        val tile = delegate[item.tile.chunkPlane.id] ?: return false
+        val tile = chunks[item.tile.chunkPlane.id] ?: return false
         return tile.remove(item)
     }
 
-    operator fun get(tile: Tile): List<FloorItem>? = delegate[tile.chunkPlane.id]
+    operator fun get(tile: Tile): List<FloorItem>? = chunks[tile.chunkPlane.id]
 
-    fun update(item: FloorItem, message: Message): Boolean {
-        val list = updates.getOrPut(item.tile.chunkPlane) { mutableListOf() }
+    fun update(tile: Tile, message: Message): Boolean {
+        val list = updates.getOrPut(tile.chunkPlane) { mutableListOf() }
         return list.add(message)
     }
 
