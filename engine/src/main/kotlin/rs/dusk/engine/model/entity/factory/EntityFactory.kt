@@ -7,7 +7,6 @@ import org.koin.dsl.module
  * @since March 30, 2020
  */
 val entityFactoryModule = module {
-    single { FloorItemFactory() }
     single { NPCFactory() }
     single { ObjectFactory() }
     single { PlayerFactory() }
