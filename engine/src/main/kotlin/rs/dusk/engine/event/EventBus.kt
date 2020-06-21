@@ -69,22 +69,14 @@ class EventBus {
 
     /**
      * Event's are only emitted to handlers which are applicable according to [EventHandler.applies]
-     * An event which fails [EventHandler.checked] for any applicable handler is not emitted.
      * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
      */
     fun <T : Event> emit(event: T, clazz: KClass<T>) = runBlocking {
-        var handler = get(clazz)
-
-        // Pre-check
-        while (handler != null) {
-            if(handler.applies(event) && !handler.checked(event)) {
-                return@runBlocking
-            }
-            handler = handler.next
+        if(!checkPassed(event, clazz)) {
+            return@runBlocking
         }
 
-        // Emit
-        handler = get(clazz)
+        var handler = get(clazz)
         while (handler != null) {
             if (event.cancelled) {
                 break
@@ -96,6 +88,21 @@ class EventBus {
 
             handler = handler.next
         }
+    }
+
+    /**
+     * An event must have at least one successful [EventHandler.checked] for any applicable handler to be emitted.
+     */
+    private fun <T : Event> checkPassed(event: T, clazz: KClass<T>): Boolean {
+        var handler = get(clazz)
+
+        while (handler != null) {
+            if(handler.applies(event) && handler.checked(event)) {
+                return true
+            }
+            handler = handler.next
+        }
+        return false
     }
 
     /**

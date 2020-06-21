@@ -119,15 +119,12 @@ internal class EventBusTest : KoinMock() {
     }
 
     @Test
-    fun `Emit any handler failing pre-check`() {
+    fun `Emit failing pre-check`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        val nextHandler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { handler.next } returns nextHandler
+        every { handler.next } returns null
         every { handler.applies(any()) } returns true
-        every { handler.checked(any()) } returns true
-        every { nextHandler.applies(any()) } returns true
-        every { nextHandler.checked(any()) } returns false
+        every { handler.checked(any()) } returns false
         val clazz = TestEvent::class
         bus.add(clazz, handler = handler)
         val event = TestEvent()
@@ -136,7 +133,6 @@ internal class EventBusTest : KoinMock() {
         // Then
         coVerify(exactly = 0) {
             handler.invoke(event)
-            nextHandler.invoke(event)
         }
     }
 
