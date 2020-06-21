@@ -11,7 +11,8 @@ val eventBusModule = module {
 }
 
 /**
- *
+ * Handles the publication of [Event]s; [emit] to subscribers; [EventHandler].
+ * Note: [EventHandler]'s are stored in a highest-first prioritised chain
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 26, 2020
  */
@@ -67,16 +68,29 @@ class EventBus {
     }
 
     /**
-     * Emit's [event] to all applicable handlers so long as [event] is not [Event.cancelled]
+     * Event's are only emitted to handlers which are applicable according to [EventHandler.applies]
+     * An event which fails [EventHandler.checked] for any applicable handler is not emitted.
+     * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
      */
     fun <T : Event> emit(event: T, clazz: KClass<T>) = runBlocking {
         var handler = get(clazz)
+
+        // Pre-check
+        while (handler != null) {
+            if(handler.applies(event) && !handler.checked(event)) {
+                return@runBlocking
+            }
+            handler = handler.next
+        }
+
+        // Emit
+        handler = get(clazz)
         while (handler != null) {
             if (event.cancelled) {
                 break
             }
 
-            if(handler.executable(event)) {
+            if(handler.applies(event)) {
                 handler.invoke(event)
             }
 
@@ -103,11 +117,7 @@ inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline acti
  * Registers an event handler using a [EventHandlerBuilder]
  */
 inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action: T.(T) -> Unit) = runBlocking {
-    val handler = EventHandler<T>()
-    handler.action = action
-    handler.filter = filter
-    handler.priority = priority
-    register(T::class, handler)
+    register(T::class, build(action))
 }
 
 /**

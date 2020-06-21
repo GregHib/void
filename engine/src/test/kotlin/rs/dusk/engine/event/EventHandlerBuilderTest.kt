@@ -1,7 +1,6 @@
 package rs.dusk.engine.event
 
 import io.mockk.mockk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
@@ -32,17 +31,24 @@ internal class EventHandlerBuilderTest {
         // When
         val result = TestEvent where filter
         // Then
-        assertEquals(filter, result.filter)
+        val built = result.build(mockk(relaxed = true))
+        assertEquals(filter, built.filter)
     }
 
     @Test
-    fun `Builder where sets builder filter`() {
+    fun `Builder returns event handler with all values set`() {
         // Given
-        val builder = mockk<EventHandlerBuilder<TestEvent>>(relaxed = true)
         val filter = mockk<TestEvent.() -> Boolean>(relaxed = true)
+        val check = mockk<TestEvent.() -> Boolean>(relaxed = true)
+        val priority = 4
+        val action = mockk<TestEvent.(TestEvent) -> Unit>(relaxed = true)
+        val builder = EventHandlerBuilder(filter, check, priority)
         // When
-        builder where filter
+        val handler = builder.build(action)
         // Then
-        verify { builder.filter = filter }
+        assertEquals(action, handler.action)
+        assertEquals(filter, handler.filter)
+        assertEquals(check, handler.check)
+        assertEquals(priority, handler.priority)
     }
 }

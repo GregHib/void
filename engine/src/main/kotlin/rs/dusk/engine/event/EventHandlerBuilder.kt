@@ -4,7 +4,27 @@ package rs.dusk.engine.event
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 31, 2020
  */
-data class EventHandlerBuilder<T : Event>(var filter: (T.() -> Boolean)? = null, var priority: Int = 0)
+data class EventHandlerBuilder<T : Event>(private var filter: (T.() -> Boolean)? = null, private var check: (T.() -> Boolean)? = null, var priority: Int = 0) {
+
+    /**
+     * Append [EventHandler] with a filter
+     */
+    infix fun where(filter: T.() -> Boolean) = apply { this.filter = filter }
+
+    /**
+     * Append [EventHandler] with a pre-check
+     */
+    infix fun check(check: T.() -> Boolean) = apply { this.check = check }
+
+    fun build(action: T.(T) -> Unit): EventHandler<T> {
+        val handler = EventHandler<T>()
+        handler.action = action
+        handler.filter = filter
+        handler.check = check
+        handler.priority = priority
+        return handler
+    }
+}
 
 /**
  * Create an [EventHandler] with priority
@@ -18,8 +38,11 @@ inline infix fun <T : Event, reified C : EventCompanion<T>> C.priority(priority:
 inline infix fun <T : Event, reified C : EventCompanion<T>> C.where(noinline filter: T.() -> Boolean) = EventHandlerBuilder(filter = filter)
 
 /**
- * Append [EventHandler] with a filter
+ * Create an [EventHandler] with a pre-check
  */
-infix fun <T : Event> EventHandlerBuilder<T>.where(filter: T.() -> Boolean) = this.apply { this.filter = filter }
+inline infix fun <T : Event, reified C : EventCompanion<T>> C.check(noinline check: T.() -> Boolean) = EventHandlerBuilder(check = check)
 
-fun <T : Event> on(priority: Int = 0) = EventHandlerBuilder<T>(priority = priority)
+/**
+ * Create an [EventHandler] with nested syntax
+ */
+fun <T : Event> on(block: EventHandlerBuilder<T>.() -> Unit) = block.invoke(EventHandlerBuilder())

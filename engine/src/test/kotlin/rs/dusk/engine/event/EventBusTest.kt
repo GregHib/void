@@ -24,7 +24,7 @@ internal class EventBusTest : KoinMock() {
     override val modules = listOf(eventBusModule)
 
     @Test
-    fun then() {
+    fun `Then action`() {
         // Given
         val bus = declareMock<EventBus> {
             every { add<TestEvent>(any(), any()) } just Runs
@@ -119,11 +119,34 @@ internal class EventBusTest : KoinMock() {
     }
 
     @Test
-    fun `Emit filtered`() {
+    fun `Emit any handler failing pre-check`() {
+        // Given
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        val nextHandler = mockk<EventHandler<TestEvent>>(relaxed = true)
+        every { handler.next } returns nextHandler
+        every { handler.applies(any()) } returns true
+        every { handler.checked(any()) } returns true
+        every { nextHandler.applies(any()) } returns true
+        every { nextHandler.checked(any()) } returns false
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = handler)
+        val event = TestEvent()
+        // When
+        bus.emit(event)
+        // Then
+        coVerify(exactly = 0) {
+            handler.invoke(event)
+            nextHandler.invoke(event)
+        }
+    }
+
+    @Test
+    fun `Emit filtered by applies`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.next } returns null
-        every { handler.executable(any()) } returns false
+        every { handler.applies(any()) } returns false
+        every { handler.checked(any()) } returns true
         val clazz = TestEvent::class
         bus.add(clazz, handler = handler)
         val event = TestEvent()
@@ -140,7 +163,8 @@ internal class EventBusTest : KoinMock() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.next } returns null
-        every { handler.executable(any()) } returns true
+        every { handler.applies(any()) } returns true
+        every { handler.checked(any()) } returns true
         val clazz = TestEvent::class
         bus.add(clazz, handler = handler)
         val event = TestEvent()
@@ -148,16 +172,19 @@ internal class EventBusTest : KoinMock() {
         bus.emit(event)
         // Then
         coVerify {
-            handler.executable(event)
+            handler.applies(event)
+            handler.checked(event)
+            handler.applies(event)
             handler.invoke(event)
         }
     }
 
     @Test
-    fun `Emit cancelled`() {
+    fun `Emit event cancelled`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.next } returns null
+        every { handler.checked(any()) } returns true
         val clazz = TestEvent::class
         bus.add(clazz, handler = handler)
         val event = TestEvent()
@@ -166,7 +193,6 @@ internal class EventBusTest : KoinMock() {
         bus.emit(event)
         // Then
         coVerify(exactly = 0) {
-            handler.executable(event)
             handler.invoke(event)
         }
     }
