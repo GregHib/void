@@ -3,9 +3,12 @@ package rs.dusk.engine.model.world.map.chunk
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.session.send
+import rs.dusk.engine.event.then
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.ChunkPlane
+import rs.dusk.network.rs.codec.game.encode.message.ChunkClearMessage
 import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage
 
 /**
@@ -19,13 +22,19 @@ import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage
  *  Add addition messages from floor item system
  *  Remove addition message from floor item system
  */
-class BatchedChunks {
+class ChunkBatcher {
     val subscribers = mutableMapOf<ChunkPlane, MutableSet<(ChunkPlane, MutableList<Message>) -> Unit>>()
-    val subscriptions = mutableMapOf<Player, (ChunkPlane, MutableList<Message>) -> Unit>()
+    val subscriptions = mutableMapOf<Player, (ChunkPlane, List<Message>) -> Unit>()
     val creation = mutableMapOf<ChunkPlane, MutableList<Message>>()
     val batches = mutableMapOf<ChunkPlane, MutableList<Message>>()
 
-    fun createSubscription(player: Player): (ChunkPlane, MutableList<Message>) -> Unit = { chunk, messages ->
+    init {
+        Tick.then {
+            tick()
+        }
+    }
+
+    fun createSubscription(player: Player): (ChunkPlane, List<Message>) -> Unit = { chunk, messages ->
         sendChunk(player, chunk)
         messages.forEach { message ->
             player.send(message)
@@ -45,24 +54,26 @@ class BatchedChunks {
 
     fun sendChunkClear(player: Player, chunkPlane: ChunkPlane) {
         val chunkOffset = getChunkOffset(player, chunkPlane)
-        player.send(ChunkUpdateMessage(chunkOffset.x, chunkOffset.y, chunkPlane.plane))
+        player.send(ChunkClearMessage(chunkOffset.x, chunkOffset.y, chunkPlane.plane))
     }
 
     fun subscribe(player: Player, chunk: ChunkPlane) {
         val subscription = getSubscription(player)
         val subscribers = getSubscribers(chunk)
-        if (subscribers.add(subscription)) {
-            val messages = creation[chunk] ?: return
-            subscription.invoke(chunk, messages)
-        }
+        subscribers.add(subscription)
     }
 
     fun unsubscribe(player: Player, chunk: ChunkPlane) {
         val subscription = getSubscription(player)
         val subscribers = getSubscribers(chunk)
-        if (subscribers.remove(subscription)) {
-            sendChunkClear(player, chunk) // FIXME floor item zones aren't cleared.
-        }
+        subscribers.remove(subscription)
+    }
+
+    fun sendCreation(player: Player, chunk: ChunkPlane) {
+        val subscription = getSubscription(player)
+        val messages = creation[chunk] ?: return
+        sendChunkClear(player, chunk)
+        subscription.invoke(chunk, messages)
     }
 
     fun getSubscription(player: Player) = subscriptions.getOrPut(player) { createSubscription(player) }
@@ -84,7 +95,7 @@ class BatchedChunks {
         }
     }
 
-    fun publish(chunk: ChunkPlane, message: Message) {
+    fun update(chunk: ChunkPlane, message: Message) {
         val batch = getBatch(chunk)
         batch.add(message)
     }
@@ -101,5 +112,5 @@ class BatchedChunks {
 }
 
 val batchedChunkModule = module {
-    single { BatchedChunks() }
+    single { ChunkBatcher() }
 }

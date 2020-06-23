@@ -4,7 +4,7 @@ package rs.dusk.engine.model.world
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Tile(val x: Int, val y: Int, val plane: Int = 0) {
+data class Tile(override val x: Int, override val y: Int, val plane: Int = 0) : Coordinates {
 
     constructor(id: Int) : this(id shr 14 and 0x3fff, id and 0x3fff, id shr 28)
 
@@ -22,6 +22,8 @@ data class Tile(val x: Int, val y: Int, val plane: Int = 0) {
     fun add(point: Tile) = add(point.x, point.y, point.plane)
     fun minus(point: Tile) = minus(point.x, point.y, point.plane)
     fun delta(point: Tile) = delta(point.x, point.y, point.plane)
+
+    override fun add(x: Int, y: Int) = add(x, y, 0)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int = 0) =

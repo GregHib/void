@@ -6,6 +6,7 @@ import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.utility.get
 
 /**
@@ -19,6 +20,8 @@ data class FloorItem(
     var amount: Int = 1,
     val size: Size = Size.TILE
 ) : Entity {
+
+    val message = FloorItemAddMessage(tile.offset(), id, amount)
 
     val def: ItemDefinition
         get() = get<ItemDecoder>().get(id)!!

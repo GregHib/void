@@ -1,8 +1,7 @@
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -44,7 +43,7 @@ Registered priority 9 then {
     }
 }
 
-Deregistered priority 9 then {
+Unregistered priority 9 then {
     when (entity) {
         is Player -> players.remove(entity)
         is NPC -> npcs.remove(entity)

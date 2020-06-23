@@ -1,7 +1,6 @@
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.Deregistered
+import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.npc.NPCRegistered
@@ -26,7 +25,7 @@ NPCRegistered priority 9 then {
     }
 }
 
-Deregistered priority 9 where { entity is Character } then {
+Unregistered priority 9 where { entity is Character } then {
     entity as Character
     collisions.remove(entity.tile.x, entity.tile.y, entity.tile.plane, ENTITY)
 }

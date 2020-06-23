@@ -10,7 +10,7 @@ import rs.dusk.engine.model.entity.item.FloorItemState
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
+import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemUpdateMessage
@@ -21,6 +21,7 @@ val decoder: ItemDecoder by inject()
 val items: FloorItems by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
+val batcher: ChunkBatcher by inject()
 
 Drop then {
     val definition = decoder.getSafe(id)
@@ -32,12 +33,12 @@ Drop then {
     }
     val item = FloorItem(tile, id, amount)
     items.add(item)
-    items.update(tile, FloorItemAddMessage(item.tile.offset(), item.id, item.amount))
+    batcher.addCreation(tile.chunkPlane, item.message)
+    batcher.update(tile.chunkPlane, item.message)
     reveal(item, revealTicks, owner)
     disappear(item, disappearTicks)
     bus.emit(Registered(item))
 }
-
 
 fun FloorItems.getExistingStack(tile: Tile, id: Int): FloorItem? {
     return get(tile)?.firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
@@ -55,7 +56,8 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
         return false
     }
     existing.amount = combined
-    items.update(existing.tile, FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined))
+    existing.message.amount = combined
+    batcher.update(existing.tile.chunkPlane, FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined))
     existing.disappear?.cancel("Floor item disappear time extended.")
     disappear(existing, disappearTicks)
     return true
@@ -69,7 +71,8 @@ fun disappear(item: FloorItem, ticks: Int) {
         item.disappear = scheduler.add {
             delay(ticks)
             item.state = FloorItemState.Removed
-            items.update(item.tile, FloorItemRemoveMessage(item.tile.offset(), item.id))
+            batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
+            batcher.removeCreation(item.tile.chunkPlane, item.message)
             items.remove(item)
         }
     }
@@ -83,7 +86,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
         scheduler.add {
             delay(ticks)
             item.state = FloorItemState.Public
-            items.update(item.tile, FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner))
+            batcher.update(item.tile.chunkPlane, FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner))
         }
     }
 }

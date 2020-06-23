@@ -4,7 +4,7 @@ package rs.dusk.engine.model.world
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-data class Chunk(val x: Int, val y: Int) {
+data class Chunk(override val x: Int, override val y: Int) : Coordinates {
 
     constructor(id: Int) : this(id shr 12, id and 0xfff)
 
@@ -12,7 +12,7 @@ data class Chunk(val x: Int, val y: Int) {
     val region by lazy { Region(x / 8, y / 8) }
     val tile by lazy { Tile(x * 8, y * 8, 0) }
 
-    fun add(x: Int = 0, y: Int = 0) = copy(x = this.x + x, y = this.y + y)
+    override fun add(x: Int, y: Int) = copy(x = this.x + x, y = this.y + y)
     fun minus(x: Int = 0, y: Int = 0) = add(-x, -y)
     fun delta(x: Int = 0, y: Int = 0) = minus(x, y)
     fun equals(x: Int, y: Int) = this.x == x && this.y == y

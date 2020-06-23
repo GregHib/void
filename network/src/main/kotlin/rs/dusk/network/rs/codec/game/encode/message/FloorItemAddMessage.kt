@@ -12,5 +12,5 @@ import rs.dusk.core.network.model.message.Message
 data class FloorItemAddMessage(
     val offset: Int,
     val id: Int,
-    val amount: Int
+    var amount: Int
 ) : Message

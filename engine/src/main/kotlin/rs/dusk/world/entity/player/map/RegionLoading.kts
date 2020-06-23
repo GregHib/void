@@ -7,19 +7,19 @@ import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerRegistered
-import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
+import rs.dusk.engine.model.world.view
 import rs.dusk.network.rs.codec.game.decode.message.RegionLoadedMessage
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.player.map.RegionChanged
 import rs.dusk.world.entity.player.map.RegionLoaded
+import rs.dusk.world.entity.player.map.RegionMapUpdate
 import kotlin.math.abs
 
 /**
  * Keeps track of when players enter and move between regions
  * Loads maps when they are accessed
- * Emits [RegionChanged] events when a players region has changed
+ * Emits [RegionMapUpdate] events when a players region has changed
  */
 
 val bus: EventBus by inject()
@@ -33,8 +33,9 @@ GameLoginMessage verify { player ->
 
 RegionLoadedMessage verify { player ->
     player.viewport.loaded = true
+    println("Region loaded ${player.viewport.loading}")
     bus.emit(RegionLoaded(player))
-    player.viewport.regionsLoading.clear()
+    player.viewport.loading.clear()
 }
 
 Moved where { entity is Player && needsRegionChange(entity) } then {
@@ -49,35 +50,28 @@ Moved then {
     maps.load(entity.tile.region)
 }
 
-fun Int.nearby(size: Int): IntRange {
-    return (this - size) / 8..(this + size) / 8
-}
-
 fun needsRegionChange(player: Player): Boolean {
     val size: Int = (player.viewport.size shr 3) / 2 - 1
     val delta = player.viewport.lastLoadChunk.delta(player.tile.chunk)
     return abs(delta.x) >= size || abs(delta.y) >= size
 }
 
-val regions = mutableSetOf<Int>()
+private val current = mutableSetOf<Int>()
 
 fun calculateRegions(player: Player, initial: Boolean) {
     val regions = player.viewport.regions
-    val loading = player.viewport.regionsLoading
+    val loading = player.viewport.loading
     val size = player.viewport.size shr 4
-    val chunk = player.tile.chunk
-    this.regions.clear()
-    this.regions.addAll(regions)
+    current.clear()
+    current.addAll(regions)
     regions.clear()
-    for (regionX in chunk.x.nearby(size)) {
-        for (regionY in chunk.y.nearby(size)) {
-            val regionId = Region.getId(regionX, regionY)
-            regions.add(regionId)
-            if(!this.regions.contains(regionId)) {
-                loading.add(regionId)
-            }
+    val view = player.tile.chunk.view(size)
+    for(chunk in view) {
+        if(!current.contains(chunk.region.id)) {
+            loading.add(chunk.region.id)
         }
+        regions.add(chunk.region.id)
     }
-    bus.emit(RegionChanged(player, initial))
+    bus.emit(RegionMapUpdate(player, initial))
     player.viewport.lastLoadChunk = player.tile.chunk
 }

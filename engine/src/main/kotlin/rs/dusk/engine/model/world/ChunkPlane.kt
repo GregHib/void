@@ -4,7 +4,8 @@ package rs.dusk.engine.model.world
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 20, 2020
  */
-data class ChunkPlane(val x: Int, val y: Int, val plane: Int = 0) {
+data class ChunkPlane(override val x: Int, override val y: Int, val plane: Int = 0) :
+    Coordinates {
 
     constructor(id: Int) : this(id shr 12, id and 0xfff, id shr 24)
 
@@ -22,6 +23,8 @@ data class ChunkPlane(val x: Int, val y: Int, val plane: Int = 0) {
     fun add(point: ChunkPlane) = add(point.x, point.y, point.plane)
     fun minus(point: ChunkPlane) = minus(point.x, point.y, point.plane)
     fun delta(point: ChunkPlane) = delta(point.x, point.y, point.plane)
+
+    override fun add(x: Int, y: Int) = ChunkPlane(x, y, plane)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = ChunkPlane(x and 0xfff, y and 0xfff, plane and 0x3)

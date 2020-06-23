@@ -81,7 +81,7 @@ class GameServer(
 			it.addLast("message.reader", MessageReader())
 			it.addLast("message.encoder", GenericMessageEncoder())
 			it.addLast("channel.listener", ChannelEventListener(chain))
-			
+
 			channel.setCodec(repository.get(ServiceCodec::class))
 			channel.setSession(ServiceSession(channel))
 		}

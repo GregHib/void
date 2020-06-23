@@ -1,11 +1,10 @@
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.Deregistered
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Direction.Companion.cardinal
 import rs.dusk.engine.model.entity.Direction.Companion.ordinal
 import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.map.collision.*
@@ -25,7 +24,7 @@ Registered priority 9 where { entity is Location } then {
     modifyCollision(entity as Location, ADD_MASK)
 }
 
-Deregistered priority 9 where { entity is Location } then {
+Unregistered priority 9 where { entity is Location } then {
     modifyCollision(entity as Location, REMOVE_MASK)
 }
 

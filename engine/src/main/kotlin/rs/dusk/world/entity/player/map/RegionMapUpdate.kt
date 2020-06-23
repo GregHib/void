@@ -8,6 +8,6 @@ import rs.dusk.engine.model.entity.index.player.PlayerEvent
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 21, 2020
  */
-data class RegionChanged(override val player: Player, val initial: Boolean) : PlayerEvent() {
-    companion object : EventCompanion<RegionChanged>
+data class RegionMapUpdate(override val player: Player, val initial: Boolean) : PlayerEvent() {
+    companion object : EventCompanion<RegionMapUpdate>
 }
