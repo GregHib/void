@@ -71,9 +71,9 @@ class EventBus {
      * Event's are only emitted to handlers which are applicable according to [EventHandler.applies]
      * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
      */
-    fun <T : Event> emit(event: T, clazz: KClass<T>) = runBlocking {
+    fun <T : Event> emit(event: T, clazz: KClass<T>) {
         if(!checkPassed(event, clazz)) {
-            return@runBlocking
+            return
         }
 
         var handler = get(clazz)
