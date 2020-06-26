@@ -4,6 +4,7 @@ import com.displee.cache.CacheLibrary
 import com.displee.cache.index.Index255
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
+import rs.dusk.cache.config.decoder.*
 import rs.dusk.cache.definition.decoder.*
 import java.math.BigInteger
 
@@ -31,6 +32,21 @@ val cacheDefinitionModule = module {
     single { TextureDecoder() }
     single { VarBitDecoder() }
     single { WorldMapDecoder() }
+}
+
+val cacheConfigModule = module {
+    single { ClientVariableParameterDecoder() }
+    single { HitSplatDecoder() }
+    single { IdentityKitDecoder() }
+    single { ItemContainerDecoder() }
+    single { MapSceneDecoder() }
+    single { OverlayDecoder() }
+    single { PlayerVariableParameterDecoder() }
+    single { QuestDecoder }
+    single { RenderAnimationDecoder() }
+    single { StrutDecoder() }
+    single { UnderlayDecoder() }
+    single { WorldMapInfoDecoder() }
 }
 
 /**

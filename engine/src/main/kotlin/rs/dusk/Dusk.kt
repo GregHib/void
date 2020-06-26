@@ -2,6 +2,7 @@ package rs.dusk
 
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
+import rs.dusk.cache.cacheConfigModule
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.Engine
@@ -73,6 +74,7 @@ object Dusk {
                 tileModule,
                 collisionModule,
                 cacheDefinitionModule,
+                cacheConfigModule,
                 locationModule,
                 pathFindModule,
                 schedulerModule,
