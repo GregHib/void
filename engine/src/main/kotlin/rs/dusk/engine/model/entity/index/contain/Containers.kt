@@ -18,13 +18,23 @@ sealed class Containers(val id: Int) {
 }
 
 fun Player.container(container: Containers): Container {
-    val id = container.id
-    if (containers.containsKey(id)) {
-        containers[id] = Container(
+    return containers.getOrPut(container.id) {
+        Container(
             decoder = get(),
-            capacity = get<ItemContainerDecoder>().getSafe(id).length,
-            stackMode = if(container == Containers.Bank) StackMode.Always else StackMode.Normal// TODO stack mode
+            capacity = get<ItemContainerDecoder>().getSafe(container.id).length,
+            stackMode = if (container == Containers.Bank) StackMode.Always else StackMode.Normal// TODO stack mode
         )
     }
-    return containers[id]!!
 }
+
+val Player.inventory: Container
+    get() = container(Containers.Inventory)
+
+val Player.bank: Container
+    get() = container(Containers.Bank)
+
+val Player.equipment: Container
+    get() = container(Containers.Equipment)
+
+val Player.beastOfBurden: Container
+    get() = container(Containers.BeastOfBurden)
