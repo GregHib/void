@@ -5,8 +5,9 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.utility.get
 
 /**
@@ -18,10 +19,13 @@ data class FloorItem(
     override var tile: Tile,
     override val id: Int,
     var amount: Int = 1,
-    val size: Size = Size.TILE
+    val size: Size = Size.TILE,
+    val owner: String? = null
 ) : Entity {
 
-    val message = FloorItemAddMessage(tile.offset(), id, amount)
+    fun visible(player: Player): Boolean {
+        return owner == null || player.name == owner
+    }
 
     val def: ItemDefinition
         get() = get<ItemDecoder>().get(id)!!

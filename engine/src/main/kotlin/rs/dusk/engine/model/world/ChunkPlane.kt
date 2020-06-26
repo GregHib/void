@@ -24,7 +24,7 @@ data class ChunkPlane(override val x: Int, override val y: Int, val plane: Int =
     fun minus(point: ChunkPlane) = minus(point.x, point.y, point.plane)
     fun delta(point: ChunkPlane) = delta(point.x, point.y, point.plane)
 
-    override fun add(x: Int, y: Int) = ChunkPlane(x, y, plane)
+    override fun add(x: Int, y: Int) = add(x, y, 0)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = ChunkPlane(x and 0xfff, y and 0xfff, plane and 0x3)

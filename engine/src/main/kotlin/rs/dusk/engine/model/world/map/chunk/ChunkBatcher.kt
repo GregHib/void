@@ -12,20 +12,13 @@ import rs.dusk.network.rs.codec.game.encode.message.ChunkClearMessage
 import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage
 
 /**
- * Groups outbound batch messages by [ChunkPlane] sending batched to all subscribed players.
- * TODO
- *  Subscribe to all chunks in region when login
- *  Subscribe sending additions crash client because sent before region load message received?
- *  Subscribe to new chunks when moving (can cover login with this too?)
- *  Unsubscribe from old chunks when moving
- *  Publish messages from floor item system
- *  Add addition messages from floor item system
- *  Remove addition message from floor item system
+ * Groups messages by [ChunkPlane] sends to all subscribers
+ * Also manages initial batch generation (when a player is in view of a new chunk)
  */
 class ChunkBatcher {
     val subscribers = mutableMapOf<ChunkPlane, MutableSet<(ChunkPlane, MutableList<Message>) -> Unit>>()
     val subscriptions = mutableMapOf<Player, (ChunkPlane, List<Message>) -> Unit>()
-    val creation = mutableMapOf<ChunkPlane, MutableList<Message>>()
+    val initials = mutableSetOf<(Player, ChunkPlane, MutableList<Message>) -> Unit>()
     val batches = mutableMapOf<ChunkPlane, MutableList<Message>>()
 
     init {
@@ -34,56 +27,80 @@ class ChunkBatcher {
         }
     }
 
-    fun createSubscription(player: Player): (ChunkPlane, List<Message>) -> Unit = { chunk, messages ->
-        sendChunk(player, chunk)
-        messages.forEach { message ->
-            player.send(message)
-        }
-    }
-
+    /**
+     * Returns the chunk offset for [chunkPlane] relative to [player]'s viewport
+     */
     fun getChunkOffset(player: Player, chunkPlane: ChunkPlane): Chunk {
         val viewChunkSize = player.viewport.size shr 4
         val base = player.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
         return chunkPlane.chunk.minus(base)
     }
 
+    /**
+     * Sends [chunkPlane] coordinates to start update to [player]
+     */
     fun sendChunk(player: Player, chunkPlane: ChunkPlane) {
         val chunkOffset = getChunkOffset(player, chunkPlane)
         player.send(ChunkUpdateMessage(chunkOffset.x, chunkOffset.y, chunkPlane.plane))
     }
 
+    /**
+     * Sends clear message for [chunkPlane] to [player]
+     */
     fun sendChunkClear(player: Player, chunkPlane: ChunkPlane) {
         val chunkOffset = getChunkOffset(player, chunkPlane)
         player.send(ChunkClearMessage(chunkOffset.x, chunkOffset.y, chunkPlane.plane))
     }
 
-    fun subscribe(player: Player, chunk: ChunkPlane) {
+    /**
+     * Subscribes a player to [chunk] for batched updates
+     */
+    fun subscribe(player: Player, chunk: ChunkPlane): Boolean {
         val subscription = getSubscription(player)
         val subscribers = getSubscribers(chunk)
-        subscribers.add(subscription)
+        return subscribers.add(subscription)
     }
 
-    fun unsubscribe(player: Player, chunk: ChunkPlane) {
+    /**
+     * Unsubscribes a player from [chunk]
+     */
+    fun unsubscribe(player: Player, chunk: ChunkPlane): Boolean {
         val subscription = getSubscription(player)
         val subscribers = getSubscribers(chunk)
-        subscribers.remove(subscription)
+        return subscribers.remove(subscription)
     }
 
-    fun sendCreation(player: Player, chunk: ChunkPlane) {
+    /**
+     * Sends the initial batched messages for [chunk] to [player]
+     */
+    fun sendInitial(player: Player, chunk: ChunkPlane) {
         val subscription = getSubscription(player)
-        val messages = creation[chunk] ?: return
         sendChunkClear(player, chunk)
+        val messages = mutableListOf<Message>()
+        initials.forEach { init ->
+            init(player, chunk, messages)
+        }
         subscription.invoke(chunk, messages)
     }
 
-    fun getSubscription(player: Player) = subscriptions.getOrPut(player) { createSubscription(player) }
+    /**
+     * Adds [message] to the batch update for [chunk]
+     */
+    fun update(chunk: ChunkPlane, message: Message) {
+        val batch = getBatch(chunk)
+        batch.add(message)
+    }
 
-    fun getSubscribers(chunk: ChunkPlane) = subscribers.getOrPut(chunk) { mutableSetOf() }
+    /**
+     * Adds initial messages for a player in a chunk
+     */
+    fun addInitial(block: (Player, ChunkPlane, MutableList<Message>) -> Unit) {
+        initials.add(block)
+    }
 
-    fun getBatch(chunk: ChunkPlane) = batches.getOrPut(chunk) { mutableListOf() }
-
-    fun getCreation(chunk: ChunkPlane) = creation.getOrPut(chunk) { mutableListOf() }
-
+    /**
+     * Sends all chunk batches to subscribers
+     */
     fun tick() {
         batches.forEach { (chunk, messages) ->
             if (messages.isNotEmpty()) {
@@ -95,20 +112,22 @@ class ChunkBatcher {
         }
     }
 
-    fun update(chunk: ChunkPlane, message: Message) {
-        val batch = getBatch(chunk)
-        batch.add(message)
+    /**
+     * Creates a reusable subscription which sends a batch of messages to a [player]
+     */
+    fun createSubscription(player: Player): (ChunkPlane, List<Message>) -> Unit = { chunk, messages ->
+        sendChunk(player, chunk)
+        messages.forEach { message ->
+            player.send(message)
+        }
     }
 
-    fun addCreation(chunk: ChunkPlane, message: Message) {
-        val batch = getCreation(chunk)
-        batch.add(message)
-    }
+    fun getSubscription(player: Player) = subscriptions.getOrPut(player) { createSubscription(player) }
 
-    fun removeCreation(chunk: ChunkPlane, message: Message) {
-        val batch = getCreation(chunk)
-        batch.remove(message)
-    }
+    fun getSubscribers(chunk: ChunkPlane) = subscribers.getOrPut(chunk) { mutableSetOf() }
+
+    fun getBatch(chunk: ChunkPlane) = batches.getOrPut(chunk) { mutableListOf() }
+
 }
 
 val batchedChunkModule = module {

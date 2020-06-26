@@ -1,5 +1,6 @@
 package rs.dusk.engine.model.entity.item
 
+import rs.dusk.engine.model.world.ChunkPlane
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -16,7 +17,9 @@ class FloorItems {
         return tile.remove(item)
     }
 
-    operator fun get(tile: Tile): List<FloorItem>? = chunks[tile.chunkPlane.id]
+    operator fun get(tile: Tile): List<FloorItem>? = get(tile.chunkPlane)
+
+    operator fun get(chunkPlane: ChunkPlane): List<FloorItem>? = chunks[chunkPlane.id]
 
 }
 

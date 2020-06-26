@@ -9,6 +9,7 @@ import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.session.Sessions
 import rs.dusk.engine.client.session.clientSessionModule
 import rs.dusk.engine.client.session.send
+import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.ChunkPlane
@@ -20,7 +21,7 @@ internal class ChunkBatcherTest : KoinMock() {
 
     private lateinit var batcher: ChunkBatcher
 
-    override val modules = listOf(clientSessionModule)
+    override val modules = listOf(clientSessionModule, eventBusModule)
 
     @BeforeEach
     fun setup() {
@@ -97,26 +98,6 @@ internal class ChunkBatcherTest : KoinMock() {
     }
 
     @Test
-    fun `Subscribe sends additions`() {
-        // Given
-        val subscription: (ChunkPlane, List<Message>) -> Unit = mockk(relaxed = true)
-        val subscribers = mutableSetOf<(ChunkPlane, MutableList<Message>) -> Unit>()
-        val messages = mutableListOf<Message>()
-        val player: Player = mockk(relaxed = true)
-        val chunkPlane = ChunkPlane(11, 11, 1)
-        batcher.creation[chunkPlane] = messages
-        every { batcher.getSubscription(player) } returns subscription
-        every { batcher.getSubscribers(chunkPlane) } returns subscribers
-        // When
-        batcher.subscribe(player, chunkPlane)
-        // Then
-        verify {
-            subscription.invoke(chunkPlane, messages)
-        }
-        assertTrue(subscribers.contains(subscription))
-    }
-
-    @Test
     fun `Unsubscribe removes subscription`() {
         // Given
         val subscription: (ChunkPlane, List<Message>) -> Unit = mockk(relaxed = true)
@@ -166,16 +147,6 @@ internal class ChunkBatcherTest : KoinMock() {
     }
 
     @Test
-    fun `Chunk created for creation`() {
-        // Given
-        val chunkPlane = ChunkPlane(11, 11, 1)
-        // When
-        val result = batcher.getCreation(chunkPlane)
-        // Then
-        assertNotNull(result)
-    }
-
-    @Test
     fun `Tick notifies all subscribers and clears all batches`() {
         // Given
         val subscription: (ChunkPlane, List<Message>) -> Unit = mockk(relaxed = true)
@@ -207,29 +178,31 @@ internal class ChunkBatcherTest : KoinMock() {
     }
 
     @Test
-    fun `Add to creation batch`() {
+    fun `Add initial`() {
         // Given
-        val chunkPlane = ChunkPlane(11, 11, 1)
-        val message: Message = mockk(relaxed = true)
-        val list = mutableListOf<Message>()
-        every { batcher.getCreation(chunkPlane) } returns list
+        val block: (Player, ChunkPlane, MutableList<Message>) -> Unit = mockk(relaxed = true)
         // When
-        batcher.addCreation(chunkPlane, message)
+        batcher.addInitial(block)
         // Then
-        assertTrue(list.contains(message))
+        assertTrue(batcher.initials.contains(block))
     }
 
     @Test
-    fun `Remove form creation batch`() {
+    fun `Send initial`() {
         // Given
-        val chunkPlane = ChunkPlane(11, 11, 1)
-        val message: Message = mockk(relaxed = true)
-        val list = mutableListOf<Message>()
-        list.add(message)
-        every { batcher.getCreation(chunkPlane) } returns list
+        val block: (Player, ChunkPlane, MutableList<Message>) -> Unit = mockk(relaxed = true)
+        val subscription: (ChunkPlane, List<Message>) -> Unit = mockk(relaxed = true)
+        val player: Player = mockk(relaxed = true)
+        batcher.initials.add(block)
+        every { batcher.sendChunkClear(any(), any()) } just Runs
+        every { batcher.getSubscription(player) } returns subscription
+        val chunk = ChunkPlane(10, 10, 1)
         // When
-        batcher.removeCreation(chunkPlane, message)
+        batcher.sendInitial(player, chunk)
         // Then
-        assertFalse(list.contains(message))
+        verify {
+            block.invoke(player, chunk, any())
+            subscription.invoke(chunk, any())
+        }
     }
 }

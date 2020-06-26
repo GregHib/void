@@ -11,6 +11,7 @@ import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemUpdateMessage
@@ -25,16 +26,15 @@ val batcher: ChunkBatcher by inject()
 
 Drop then {
     val definition = decoder.getSafe(id)
-    if(definition.stackable == 1) {
+    if (definition.stackable == 1) {
         val existing = items.getExistingStack(tile, id)
-        if(existing != null && combinedStacks(existing, amount, disappearTicks)) {
+        if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
             return@then
         }
     }
     val item = FloorItem(tile, id, amount)
     items.add(item)
-    batcher.addCreation(tile.chunkPlane, item.message)
-    batcher.update(tile.chunkPlane, item.message)
+    batcher.update(tile.chunkPlane, FloorItemAddMessage(tile.offset(), id, amount))
     reveal(item, revealTicks, owner)
     disappear(item, disappearTicks)
     bus.emit(Registered(item))
@@ -55,9 +55,12 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
     if (stack xor combined and (amount xor combined) < 0) {
         return false
     }
+    // Floor item is mutable because we need to keep the reveal timer from before
     existing.amount = combined
-    existing.message.amount = combined
-    batcher.update(existing.tile.chunkPlane, FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined))
+    batcher.update(
+        existing.tile.chunkPlane,
+        FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined)
+    )
     existing.disappear?.cancel("Floor item disappear time extended.")
     disappear(existing, disappearTicks)
     return true
@@ -67,13 +70,14 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
  * Schedules disappearance after [ticks]
  */
 fun disappear(item: FloorItem, ticks: Int) {
-    if(ticks >= 0) {
+    if (ticks >= 0) {
         item.disappear = scheduler.add {
             delay(ticks)
-            item.state = FloorItemState.Removed
-            batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
-            batcher.removeCreation(item.tile.chunkPlane, item.message)
-            items.remove(item)
+            if (item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Removed
+                batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
+                items.remove(item)
+            }
         }
     }
 }
@@ -82,11 +86,24 @@ fun disappear(item: FloorItem, ticks: Int) {
  * Schedules public reveal of [owner]'s item after [ticks]
  */
 fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-    if(ticks >= 0) {
+    if (ticks >= 0) {
         scheduler.add {
             delay(ticks)
-            item.state = FloorItemState.Public
-            batcher.update(item.tile.chunkPlane, FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner))
+            if (item.state != FloorItemState.Removed) {
+                item.state = FloorItemState.Public
+                batcher.update(
+                    item.tile.chunkPlane,
+                    FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner)
+                )
+            }
+        }
+    }
+}
+
+batcher.addInitial { player, chunkPlane, messages ->
+    items[chunkPlane]?.forEach {
+        if(it.visible(player)) {
+            messages += FloorItemAddMessage(it.tile.offset(), it.id, it.amount)
         }
     }
 }
