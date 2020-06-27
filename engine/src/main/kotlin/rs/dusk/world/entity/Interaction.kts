@@ -54,7 +54,7 @@ fun Player.moveTo(target: Entity, action: (PathResult) -> Unit) = action(ActionT
 
 ObjectOptionMessage verify { player ->
     val objects = objects[x, y, player.tile.plane] ?: return@verify
-    val loc = objects.firstOrNull { it != null && it.id == objectId } ?: return@verify
+    val loc = objects.firstOrNull { it.id == objectId && it.tile.equals(x, y) } ?: return@verify
     val definition = loc.def
     val options = definition.options
     val index = option - 1

@@ -121,6 +121,7 @@ object GameOpcodes {
     const val INTERFACE_ANIMATION = 23
     const val FRIEND_LIST_APPEND = 24
     const val CLIENT_PING = 25
+    const val OBJECT_ADD = 28
     const val INTERFACE_TILE_TEXT = 32//TODO("Test")
     const val INTERFACE_TEXT = 33
     const val INTERFACE_ITEMS = 37
@@ -129,6 +130,7 @@ object GameOpcodes {
     const val PRIVATE_QUICK_CHAT_FROM = 42
     const val REGION = 43
     const val INTERFACE_CUSTOM_HEAD = 44//TODO("Test")
+    const val OBJECT_REMOVE = 45
     const val UPDATE_CHUNK = 46
     const val FLOOR_ITEM_ADD = 48
     const val SCRIPT = 50
@@ -149,6 +151,7 @@ object GameOpcodes {
     const val WORLD_LIST = 88
     const val PUBLIC_CHAT = 91
     const val SKILL_LEVEL = 93
+    const val OBJECT_ANIMATION = 96
     const val PRIVATE_QUICK_CHAT_TO = 97
     const val INTERFACE_NPC_HEAD = 98
     const val CLIENT_VARP = 101

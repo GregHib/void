@@ -65,19 +65,5 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         val ordinal = values().filter { it.isDiagonal() }
         val all = values().copyOfRange(0, size - 1)
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println(cardinal)
-            println(ordinal)
-            (0..3).forEach { rotation ->
-
-                val first = cardinal[(rotation + 3) and 0x3]
-                val second = cardinal[(rotation + 1) and 0x3]
-                if (first.inverse() != second) {
-                    println("$first $second")
-                }
-            }
-        }
     }
 }

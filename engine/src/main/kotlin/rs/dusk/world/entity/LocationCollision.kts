@@ -6,7 +6,6 @@ import rs.dusk.engine.model.entity.Direction.Companion.ordinal
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.obj.Location
-import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.map.collision.*
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.IGNORED
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND
@@ -17,7 +16,6 @@ import rs.dusk.engine.model.world.map.collision.CollisionFlag.SOUTH_OR_EAST
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.SOUTH_OR_WEST
 import rs.dusk.utility.inject
 
-val objects: Objects by inject()
 val collisions: Collisions by inject()
 
 Registered priority 9 where { entity is Location } then {

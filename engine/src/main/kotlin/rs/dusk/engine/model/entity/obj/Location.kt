@@ -4,6 +4,8 @@ import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.update.visual.player.name
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.get
 
@@ -17,8 +19,11 @@ data class Location(
     override var tile: Tile,
     val size: Size,
     val type: Int,
-    val rotation: Int
+    val rotation: Int,
+    val owner: String? = null
 ) : Entity {
     val def: ObjectDefinition
-        get() = get<ObjectDecoder>().get(id)!!
+        get() = get<ObjectDecoder>().getSafe(id)
+
+    fun visible(player: Player) = owner == null || owner == player.name
 }
