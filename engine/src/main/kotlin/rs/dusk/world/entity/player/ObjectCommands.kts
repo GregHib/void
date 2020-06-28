@@ -28,7 +28,7 @@ Command where { prefix == "despawn" } then {
 }
 
 Command where { prefix == "get" } then {
-    val obj = objects[player.tile]
+    val obj = objects[player.tile.chunkPlane]
     obj?.filter { it.tile == player.tile }?.forEach {
         println(it)
     }
