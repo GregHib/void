@@ -140,6 +140,7 @@ object GameOpcodes {
     const val INTERFACE_MODEL = 58//TODO("Test")
     const val LOGOUT_LOBBY = 59
     const val FLOOR_ITEM_REVEAL = 60
+    const val PROJECTILE = 62
     const val INTERFACE_WINDOW = 67
     const val PLAYER_UPDATING = 69
     const val INTERFACE_CLOSE = 73

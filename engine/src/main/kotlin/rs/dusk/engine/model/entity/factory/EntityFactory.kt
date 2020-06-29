@@ -9,5 +9,4 @@ import org.koin.dsl.module
 val entityFactoryModule = module {
     single { NPCFactory() }
     single { PlayerFactory() }
-    single { ProjectileFactory() }
 }

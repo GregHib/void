@@ -20,8 +20,8 @@ import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.item.Drop
 import rs.dusk.world.entity.player.login.LoginList
+import rs.dusk.world.entity.proj.shoot
 
 val factory: PlayerFactory by inject()
 val players: Players by inject()
@@ -145,5 +145,5 @@ Command where { prefix == "run" } then {
 }
 
 Command where { prefix == "test" } then {
-    bus.emit(Drop(995, 1, player.tile, 100, 200, player.index))
+    player.shoot(10, player.tile.add(y = 20), flightTime = 300)
 }

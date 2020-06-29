@@ -23,4 +23,4 @@ class FloorItems {
 
 }
 
-fun Tile.offset() = (x.rem(8) shl 4) or y.rem(8)
+fun Tile.offset(bit: Int = 4) = (x.rem(8) shl bit) or y.rem(8)
