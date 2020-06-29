@@ -21,6 +21,8 @@ data class Region(override val x: Int, override val y: Int) : Coordinates {
     fun minus(point: Region) = minus(point.x, point.y)
     fun delta(point: Region) = delta(point.x, point.y)
 
+    fun toPlane(plane: Int) = RegionPlane(x, y, plane)
+
     companion object {
         fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)
         fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)

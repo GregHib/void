@@ -21,6 +21,8 @@ data class Chunk(override val x: Int, override val y: Int) : Coordinates {
     fun minus(point: Chunk) = minus(point.x, point.y)
     fun delta(point: Chunk) = delta(point.x, point.y)
 
+    fun toPlane(plane: Int) = ChunkPlane(x, y, plane)
+
     companion object {
         fun createSafe(x: Int, y: Int) = Chunk(x and 0xfff, y and 0xfff)
         fun getId(x: Int, y: Int) = (y and 0xfff) + ((x and 0xfff) shl 12)

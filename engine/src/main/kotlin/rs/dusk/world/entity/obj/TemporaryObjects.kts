@@ -1,10 +1,8 @@
-import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.obj.Location
@@ -16,8 +14,6 @@ import rs.dusk.utility.inject
 import rs.dusk.world.entity.obj.ReplaceObject
 import rs.dusk.world.entity.obj.ReplaceObjectPair
 
-
-val decoder: ObjectDecoder by inject()
 val objects: Objects by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
@@ -27,10 +23,8 @@ val batcher: ChunkBatcher by inject()
  *  [ReplaceObjectPair] is really lazy but saves the headache of issues removing objects which overlap
  */
 ReplaceObjectPair then {
-    var def = decoder.getSafe(firstReplacement)
-    val firstReplacement = Location(firstReplacement, firstTile, Size(def.sizeX, def.sizeY), firstOriginal.type, firstRotation)
-    def = decoder.getSafe(secondReplacement)
-    val secondReplacement = Location(secondReplacement, secondTile, Size(def.sizeX, def.sizeY), secondOriginal.type, secondRotation)
+    val firstReplacement = Location(firstReplacement, firstTile, firstOriginal.type, firstRotation)
+    val secondReplacement = Location(secondReplacement, secondTile, secondOriginal.type, secondRotation)
     switch(firstOriginal, firstReplacement, secondOriginal, secondReplacement)
     // Revert
     if (ticks >= 0) {
@@ -47,8 +41,7 @@ ReplaceObjectPair then {
 }
 
 ReplaceObject then {
-    val def = decoder.getSafe(id)
-    val replacement = Location(id, tile, Size(def.sizeX, def.sizeY), type, rotation)
+    val replacement = Location(id, tile, type, rotation)
 
     switch(original, replacement)
     // Revert

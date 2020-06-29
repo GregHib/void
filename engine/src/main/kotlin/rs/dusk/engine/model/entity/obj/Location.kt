@@ -17,13 +17,14 @@ import rs.dusk.utility.get
 data class Location(
     override val id: Int,
     override var tile: Tile,
-    val size: Size,
     val type: Int,
     val rotation: Int,
     val owner: String? = null
 ) : Entity {
     val def: ObjectDefinition
         get() = get<ObjectDecoder>().getSafe(id)
+
+    val size: Size by lazy { Size(def.sizeX, def.sizeY) }
 
     fun visible(player: Player) = owner == null || owner == player.name
 }

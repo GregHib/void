@@ -7,7 +7,6 @@ import org.koin.test.mock.declare
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.entity.factory.ObjectFactory
 import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.entity.obj.Location
@@ -16,6 +15,7 @@ import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.location.*
 import rs.dusk.engine.model.world.map.location.LocationWriter.Companion.localId
+import rs.dusk.engine.model.world.view
 import rs.dusk.engine.script.KoinMock
 
 /**
@@ -53,11 +53,12 @@ internal class MapReaderTest : KoinMock() {
         loader.load(region)
         val objects: Objects = get()
         val map = mutableMapOf<Int, MutableList<Location>>()
-        objects.delegate.keys.forEach { tile ->
-            val values = objects[tile]
-            values?.forEach { loc ->
-                val list = map.getOrPut(loc.id) { mutableListOf() }
-                list.add(loc)
+        for(plane in 0 until 3) {
+            for (chunk in region.chunk.toPlane(plane).view(8, 8)) {
+                objects[chunk].forEach { loc ->
+                    val list = map.getOrPut(loc.id) { mutableListOf() }
+                    list.add(loc)
+                }
             }
         }
         map.forEach { (_, list) ->
@@ -67,10 +68,8 @@ internal class MapReaderTest : KoinMock() {
 
         println(result.toList())
 
-        val newLocations = ObjectFactory()
-
         val tileSettings = Array(4) { Array(64) { ByteArray(64) } }
-        LocationReader(newLocations).read(region.tile, result, tileSettings)
+        LocationReader(objects, get()).read(region.tile, result, tileSettings)
     }
 
 }

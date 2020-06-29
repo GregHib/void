@@ -1,27 +1,43 @@
 package rs.dusk.engine.model.world.map.location
 
 import io.mockk.*
+import io.mockk.junit5.MockKExtension
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.factory.ObjectFactory
+import org.junit.jupiter.api.extension.ExtendWith
+import org.koin.test.get
+import org.koin.test.mock.declareMock
+import rs.dusk.cache.cacheDefinitionModule
+import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
+import rs.dusk.engine.script.KoinMock
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 17, 2020
  */
-internal class LocationReaderTest {
+@ExtendWith(MockKExtension::class)
+internal class LocationReaderTest : KoinMock() {
 
     lateinit var reader: LocationReader
-    lateinit var factory: ObjectFactory
+    lateinit var objects: Objects
     val region = Tile(0, 0)
+
+    override val modules = listOf(eventBusModule, cacheDefinitionModule)
 
     @BeforeEach
     fun setup() {
-        factory = mockk(relaxed = true)
-        reader = spyk(LocationReader(factory))
+        objects = mockk(relaxed = true)
+        reader = spyk(LocationReader(objects, get()))
+
+        declareMock<ObjectDecoder> {
+            every { getSafe(any()) } returns mockk(relaxed = true)
+        }
     }
 
     @Test
@@ -34,7 +50,7 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            factory.spawn(12345, 1, 1, 4, 4, 1)
+            objects.add(Location(112345, Tile(1, 1, 4), 4, 1))
         }
     }
 
@@ -50,8 +66,8 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            factory.spawn(12345, 15, 15, -1, 0, 0)
-            factory.spawn(12345, 15, 15, 0, 0, 0)
+            objects.add(Location(12345, Tile(15, 15, -1), 0, 0))
+            objects.add(Location(12345, Tile(15, 15, 0), 0, 0))
         }
     }
 
@@ -67,7 +83,7 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verify {
-            factory.spawn(id = 12345, x = 15, y = 15, plane = 0, type = 0, rotation = 0)
+            objects.add(Location(12345, Tile(15, 15, 0), 0, 0))
         }
     }
 
@@ -82,7 +98,7 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verify(exactly = 0) {
-            factory.spawn(id = 12345, x = 65, y = 0, plane = 0, type = 0, rotation = 0)
+            objects.add(Location(12345, Tile(65, 0, 0), 0, 0))
         }
     }
 
@@ -97,8 +113,8 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verifyOrder {
-            factory.spawn(id = 12345, x = 54, y = 45, plane = 0, type = 12, rotation = 2)
-            factory.spawn(id = 42000, x = 54, y = 45, plane = 0, type = 0, rotation = 0)
+            objects.add(Location(12345, Tile(54, 45, 0), 12, 2))
+            objects.add(Location(42000, Tile(54, 45, 0), 0, 0))
         }
     }
 
@@ -112,8 +128,8 @@ internal class LocationReaderTest {
         reader.read(region, data, settings)
         // Then
         verifyOrder {
-            factory.spawn(id = 12345, x = 0, y = 0, plane = 0, type = 12, rotation = 2)
-            factory.spawn(id = 12345, x = 63, y = 63, plane = 3, type = 4, rotation = 1)
+            objects.add(Location(12345, Tile(0, 0, 0), 12, 2))
+            objects.add(Location(12345, Tile(63, 63, 3), 4, 1))
         }
     }
 }
