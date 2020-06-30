@@ -122,7 +122,7 @@ object GameOpcodes {
     const val FRIEND_LIST_APPEND = 24
     const val CLIENT_PING = 25
     const val OBJECT_ADD = 28
-    const val INTERFACE_TILE_TEXT = 32//TODO("Test")
+    const val TILE_TEXT = 32
     const val INTERFACE_TEXT = 33
     const val INTERFACE_ITEMS = 37
     const val CLIENT_VARP_LARGE = 39
@@ -155,6 +155,7 @@ object GameOpcodes {
     const val OBJECT_ANIMATION = 96
     const val PRIVATE_QUICK_CHAT_TO = 97
     const val INTERFACE_NPC_HEAD = 98
+    const val OBJECT_CUSTOMISE = 99
     const val CLIENT_VARP = 101
     const val CHAT = 102
     const val INTERFACE_COMPONENT_POSITION = 104//TODO("Test")

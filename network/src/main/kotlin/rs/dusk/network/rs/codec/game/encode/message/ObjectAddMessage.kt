@@ -13,6 +13,6 @@ import rs.dusk.core.network.model.message.Message
 data class ObjectAddMessage(
     val offset: Int,
     val id: Int,
-    var type: Int,
-    var rotation: Int
+    val type: Int,
+    val rotation: Int
 ) : Message
