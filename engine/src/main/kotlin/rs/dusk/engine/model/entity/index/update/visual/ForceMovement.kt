@@ -32,9 +32,9 @@ fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMo
 
 /**
  * @param endDelta The delta position to move towards
- * @param endDelay Number of client cycles to take moving
+ * @param endDelay Number of client ticks to take moving
  * @param startDelta The delta position to start at
- * @param startDelay Client cycles until starting the movement
+ * @param startDelay Client ticks until starting the movement
  * @param direction The cardinal direction to face during movement
  */
 fun Player.setForceMovement(

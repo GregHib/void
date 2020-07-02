@@ -17,11 +17,12 @@ import rs.dusk.core.network.model.message.Message
  * @param curve value between -63..63
  * @param startOffset offset from start coordinate, 64 = 1 tile
  */
-data class ProjectileAddMessage(
+data class ProjectileHalfSquareMessage(
     val offset: Int,
     val id: Int,
     var deltaX: Int,
     var deltaY: Int,
+    var index: Int,
     var targetIndex: Int,
     var startHeight: Int,
     var endHeight: Int,

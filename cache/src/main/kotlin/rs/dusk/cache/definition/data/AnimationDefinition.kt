@@ -33,7 +33,7 @@ data class AnimationDefinition(
     val time: Int
         get() = (durations?.sum() ?: 0) * 10
 
-    val clientCycles: Int
+    val clientTicks: Int
         get() {
             if (durations == null) {
                 return 0

@@ -2,7 +2,7 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.PROJECTILE
+import rs.dusk.network.rs.codec.game.GameOpcodes.PROJECTILE_ADD
 import rs.dusk.network.rs.codec.game.encode.message.ProjectileAddMessage
 
 /**
@@ -14,7 +14,7 @@ class ProjectileAddMessageEncoder : GameMessageEncoder<ProjectileAddMessage>() {
     override fun encode(builder: PacketWriter, msg: ProjectileAddMessage) {
         val (offset, id, distanceX, distanceY, targetIndex, startHeight, endHeight, delay, duration, curve, size) = msg
         builder.apply {
-            writeOpcode(PROJECTILE)
+            writeOpcode(PROJECTILE_ADD)
             writeByte(offset)
             writeByte(distanceX)
             writeByte(distanceY)

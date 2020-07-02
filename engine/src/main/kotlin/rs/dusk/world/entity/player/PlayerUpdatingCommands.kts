@@ -2,7 +2,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import rs.dusk.cache.definition.decoder.NPCDecoder
-import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.session.send
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -15,14 +14,14 @@ import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
 import rs.dusk.engine.model.entity.index.update.visual.player.*
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
-import rs.dusk.network.rs.codec.game.encode.message.ObjectCustomiseMessage
+import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.login.LoginList
@@ -148,12 +147,7 @@ Command where { prefix == "run" } then {
     player.movement.running = !player.movement.running
 }
 
-Command where { prefix == "test" } then {
-    val decoder = get<ObjectDecoder>()
-    val objs = get<Objects>()
-    val obj = objs.get(player.tile.add(y = 1)).first()
-    val def = decoder.getSafe(obj.id)
-    val ids = def.modelIds!![0]
-    ids[0]++
-    player.send(ObjectCustomiseMessage(obj.tile.offset(), obj.id, obj.type, modelIds = ids, clear = false))
+Command where { prefix == "test1" } then {
+    get<ChunkBatcher>().sendChunk(player, player.tile.chunkPlane)
+    player.send(ObjectAddMessage(player.tile.add(y = 1).offset(), 6, 10, 0))
 }

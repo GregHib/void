@@ -111,6 +111,7 @@ object GameOpcodes {
     const val NPC_UPDATING = 6
     const val INTERFACE_SCROLL_VERTICAL = 8//TODO("Test")
     const val INTERFACE_ITEM = 9
+    const val OBJECT_PRE_FETCH = 11
     const val FRIENDS_CHAT_UPDATE = 12
     const val RUN_ENERGY = 13
     const val CLIENT_VARBIT = 14
@@ -127,11 +128,13 @@ object GameOpcodes {
     const val INTERFACE_ITEMS = 37
     const val CLIENT_VARP_LARGE = 39
     const val FRIENDS_CHAT_MESSAGE = 40
+    const val GRAPHIC_AREA = 41
     const val PRIVATE_QUICK_CHAT_FROM = 42
     const val REGION = 43
     const val INTERFACE_CUSTOM_HEAD = 44//TODO("Test")
     const val OBJECT_REMOVE = 45
     const val UPDATE_CHUNK = 46
+    const val OBJECT_ANIMATION_SPECIFIC = 47
     const val FLOOR_ITEM_ADD = 48
     const val SCRIPT = 50
     const val LOGOUT = 51
@@ -140,7 +143,8 @@ object GameOpcodes {
     const val INTERFACE_MODEL = 58//TODO("Test")
     const val LOGOUT_LOBBY = 59
     const val FLOOR_ITEM_REVEAL = 60
-    const val PROJECTILE = 62
+    const val PROJECTILE_ADD = 62
+    const val MINI_SOUND = 65
     const val INTERFACE_WINDOW = 67
     const val PLAYER_UPDATING = 69
     const val INTERFACE_CLOSE = 73
@@ -150,6 +154,7 @@ object GameOpcodes {
     const val CLIENT_VARBIT_LARGE = 84
     const val FRIEND_LIST = 85
     const val WORLD_LIST = 88
+    const val PROJECTILE_DISPLACE = 90
     const val PUBLIC_CHAT = 91
     const val SKILL_LEVEL = 93
     const val OBJECT_ANIMATION = 96
@@ -165,6 +170,7 @@ object GameOpcodes {
     const val CLIENT_VARC_LARGE = 112
     const val INTERFACE_PLAYER_HEAD = 114
     const val INTERFACE_COMPONENT_VISIBILITY = 117
+    const val SOUND_AREA = 119
     const val PRIVATE_CHAT_FROM = 120
     const val INTERFACE_COMPONENT_ORIENTATION = 122//TODO("Test")
     const val DYNAMIC_REGION = 128

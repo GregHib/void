@@ -8,6 +8,7 @@ import rs.dusk.network.rs.codec.game.GameOpcodes.OBJECT_ANIMATION
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationMessage
 
 /**
+ * Show animation of an object for a single client
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
@@ -17,9 +18,9 @@ class ObjectAnimationMessageEncoder : GameMessageEncoder<ObjectAnimationMessage>
         val (tile, animation, type, rotation) = msg
         builder.apply {
             writeOpcode(OBJECT_ANIMATION)
-            writeInt(tile, order= Endian.MIDDLE, type = Modifier.INVERSE)
+            writeInt(tile, order = Endian.MIDDLE, type = Modifier.INVERSE)
             writeShort(animation, type = Modifier.ADD)
-            writeByte((type shl 2) or rotation)
+            writeByte((type shl 2) or rotation, type = Modifier.SUBTRACT)
         }
     }
 }
