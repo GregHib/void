@@ -92,16 +92,16 @@ ObjectOption where { obj.isDoor() && option == "Open" } then {
 fun getTile(location: Location, anticlockwise: Int) = getTile(location.tile, location.rotation, anticlockwise)
 
 fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
-    val orientation = Direction.cardinal[rotation - anticlockwise and 0x3]
+    val orientation = Direction.cardinal[getRotation(rotation, -anticlockwise)]
     return tile.add(orientation.delta)
 }
 
-fun getRotation(location: Location, clockwise: Int): Int {
-    return (location.rotation + clockwise) and 0x3
-}
+fun getRotation(location: Location, clockwise: Int) = getRotation(location.rotation, clockwise)
+
+fun getRotation(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
 fun getDoubleDoor(location: Location, clockwise: Int): Location? {
-    var orientation = Direction.cardinal[location.rotation + clockwise and 0x3]
+    var orientation = Direction.cardinal[getRotation(location, clockwise)]
     var door = objects.getType(location.tile.add(orientation.delta), location.type)
     if (door != null && door.isDoor()) {
         return door
