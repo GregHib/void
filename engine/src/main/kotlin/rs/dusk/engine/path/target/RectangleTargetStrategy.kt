@@ -7,6 +7,8 @@ import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.model.world.map.collision.check
 import rs.dusk.engine.model.world.map.collision.flag
 import rs.dusk.engine.path.TargetStrategy
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * Checks if within interact range of a rectangle
@@ -24,36 +26,28 @@ data class RectangleTargetStrategy(
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val srcEndX = currentX + size.width
         val srcEndY = currentY + size.height
-        val destEndX = tile.x + size.width
-        val destEndY = tile.y + size.height
+        val destEndX = tile.x + this.size.width
+        val destEndY = tile.y + this.size.height
         if (currentX == destEndX && blockFlag and EAST == 0) {
-            val minY = if (tile.y < currentY) currentY else tile.y
-            val maxY = if (destEndY <= srcEndY) destEndY else srcEndY
-            for (y in minY until maxY) {
+            for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
                 if (!collisions.check(destEndX - 1, y, plane, Direction.EAST.flag())) {
                     return true
                 }
             }
         } else if (tile.x == srcEndX && blockFlag and WEST == 0) {
-            val minY = if (currentY <= tile.y) tile.y else currentY
-            val maxY = if (destEndY <= srcEndY) destEndY else srcEndY
-            for (y in minY until maxY) {
+            for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
                 if (!collisions.check(tile.x, y, plane, Direction.WEST.flag())) {
                     return true
                 }
             }
         } else if (currentY == destEndY && blockFlag and NORTH == 0) {
-            val minX = if (currentX <= tile.x) tile.x else currentX
-            val maxX = if (destEndX <= srcEndX) destEndX else srcEndX
-            for (x in minX until maxX) {
+            for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
                 if (!collisions.check(x, destEndY - 1, plane, Direction.NORTH.flag())) {
                     return true
                 }
             }
         } else if (tile.y == srcEndY && blockFlag and SOUTH == 0) {
-            val minX = if (currentX > tile.x) currentX else tile.x
-            val maxX = if (srcEndX >= destEndX) destEndX else srcEndX
-            for (x in minX until maxX) {
+            for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
                 if (!collisions.check(x, tile.y, plane, Direction.SOUTH.flag())) {
                     return true
                 }
