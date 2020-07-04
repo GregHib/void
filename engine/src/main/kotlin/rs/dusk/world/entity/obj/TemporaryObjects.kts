@@ -13,6 +13,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.obj.ReplaceObject
 import rs.dusk.world.entity.obj.ReplaceObjectPair
+import rs.dusk.world.entity.obj.SpawnObject
 
 val objects: Objects by inject()
 val scheduler: Scheduler by inject()
@@ -39,6 +40,35 @@ ReplaceObjectPair then {
         }
         objects.setTimer(firstReplacement, job)
         objects.setTimer(secondReplacement, job)
+    }
+}
+
+/**
+ * Spawns an object, optionally removing after a set time
+ */
+SpawnObject then {
+    val obj = Location(id, tile, type, rotation, owner)
+
+    batcher.update(
+        obj.tile.chunkPlane,
+        ObjectAddMessage(obj.tile.offset(), obj.id, obj.type, obj.rotation)
+    )
+    objects.addTemp(obj)
+    bus.emit(Registered(obj))
+    // Revert
+    if (ticks >= 0) {
+        objects.setTimer(obj, scheduler.add {
+            try {
+                delay(ticks)
+            } finally {
+                batcher.update(
+                    obj.tile.chunkPlane,
+                    ObjectRemoveMessage(obj.tile.offset(), obj.type, obj.rotation)
+                )
+                objects.removeTemp(obj)
+                bus.emit(Unregistered(obj))
+            }
+        })
     }
 }
 
