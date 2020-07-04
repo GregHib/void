@@ -2,7 +2,9 @@ package rs.dusk.engine.model.entity.index.update.visual
 
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 
 /**
@@ -36,6 +38,10 @@ fun NPC.flagAnimation() = visuals.flag(NPC_ANIMATION_MASK)
 fun Player.getAnimation() = visuals.getOrPut(PLAYER_ANIMATION_MASK) { Animation() }
 
 fun NPC.getAnimation() = visuals.getOrPut(NPC_ANIMATION_MASK) { Animation() }
+
+fun PlayerEvent.animate(id: Int, speed: Int = 0) = player.setAnimation(id, speed)
+
+fun NPCEvent.animate(id: Int, speed: Int = 0) = npc.setAnimation(id, speed)
 
 fun Player.setAnimation(id: Int, speed: Int = 0) {
     setAnimation(getAnimation(), id, speed)

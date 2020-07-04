@@ -1,6 +1,7 @@
 package rs.dusk.engine.model.entity.index.update.visual.npc
 
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 
 /**
@@ -17,6 +18,10 @@ const val TRANSFORM_MASK = 0x20
 fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
 
 fun NPC.getTransform() = visuals.getOrPut(TRANSFORM_MASK) { Transform() }
+
+fun NPCEvent.transform(id: Int) {
+    npc.transform = id
+}
 
 var NPC.transform: Int
     get() = getTransform().id

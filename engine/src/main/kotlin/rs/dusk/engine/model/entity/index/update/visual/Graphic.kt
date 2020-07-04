@@ -2,7 +2,9 @@ package rs.dusk.engine.model.entity.index.update.visual
 
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 import rs.dusk.engine.model.entity.index.update.Visuals
 
@@ -66,6 +68,10 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     }
     return -1
 }
+
+fun PlayerEvent.graphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) = player.setGraphic(id, delay, height, rotation, forceRefresh)
+
+fun NPCEvent.graphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) = npc.setGraphic(id, delay, height, rotation, forceRefresh)
 
 fun Player.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
     val index = visuals.getIndex(::getPlayerMask)

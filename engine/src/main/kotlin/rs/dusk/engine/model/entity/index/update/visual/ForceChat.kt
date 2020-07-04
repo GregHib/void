@@ -2,7 +2,9 @@ package rs.dusk.engine.model.entity.index.update.visual
 
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 
 /**
@@ -26,6 +28,14 @@ fun NPC.flagForceChat() = visuals.flag(NPC_FORCE_CHAT_MASK)
 fun Player.getForceChat() = visuals.getOrPut(PLAYER_FORCE_CHAT_MASK) { ForceChat() }
 
 fun NPC.getForceChat() = visuals.getOrPut(NPC_FORCE_CHAT_MASK) { ForceChat() }
+
+fun PlayerEvent.force(chatText: String) {
+    player.forceChat = chatText
+}
+
+fun NPCEvent.force(chatText: String) {
+    npc.forceChat = chatText
+}
 
 var Player.forceChat: String
     get() = getForceChat().text

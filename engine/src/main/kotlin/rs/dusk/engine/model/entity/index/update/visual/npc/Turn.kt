@@ -1,6 +1,8 @@
 package rs.dusk.engine.model.entity.index.update.visual.npc
 
+import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 import kotlin.math.atan2
 
@@ -21,6 +23,12 @@ const val TURN_MASK = 0x8
 fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
 
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
+
+fun NPCEvent.turn(direction: Direction) = turn(direction.delta.x, direction.delta.y)
+
+fun NPCEvent.turn(deltaX: Int = 0, deltaY: Int = -1) = npc.turn(deltaX, deltaY)
+
+fun NPC.turn(direction: Direction) = turn(direction.delta.x, direction.delta.y)
 
 fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1) {
     val turn = getTurn()

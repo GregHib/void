@@ -2,7 +2,9 @@ package rs.dusk.engine.model.entity.index.update.visual
 
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import rs.dusk.engine.model.entity.index.update.Visual
 
 /**
@@ -32,6 +34,10 @@ fun NPC.flagHits() = visuals.flag(NPC_HITS_MASK)
 fun Player.getHits() = visuals.getOrPut(PLAYER_HITS_MASK) { Hits() }
 
 fun NPC.getHits() = visuals.getOrPut(NPC_HITS_MASK) { Hits() }
+
+fun PlayerEvent.hit(hit: Hit) = player.addHit(hit)
+
+fun NPCEvent.hit(hit: Hit) = npc.addHit(hit)
 
 fun Player.addHit(hit: Hit) {
     val hits = getHits()

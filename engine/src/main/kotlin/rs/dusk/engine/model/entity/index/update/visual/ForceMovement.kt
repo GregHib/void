@@ -40,9 +40,7 @@ fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMo
 fun Player.setForceMovement(
     endDelta: Tile = Tile.EMPTY,
     endDelay: Int = 0,
-    startDelta: Tile = Tile(
-        0
-    ),
+    startDelta: Tile = Tile(0),
     startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
@@ -53,9 +51,7 @@ fun Player.setForceMovement(
 fun NPC.setForceMovement(
     endDelta: Tile = Tile.EMPTY,
     endDelay: Int = 0,
-    startDelta: Tile = Tile(
-        0
-    ),
+    startDelta: Tile = Tile(0),
     startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
