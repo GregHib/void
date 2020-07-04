@@ -3,6 +3,7 @@ package rs.dusk.engine.model.entity.index.player
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.index.CharacterValues
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.contain.Container
@@ -25,7 +26,8 @@ data class Player(
     @Transient override val movement: Movement = Movement(),
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
-    val variables: MutableMap<Int, Any> = mutableMapOf()
+    val variables: MutableMap<Int, Any> = mutableMapOf(),
+    @Transient override val values: CharacterValues = CharacterValues()
 ) : Character {
 
     @Transient

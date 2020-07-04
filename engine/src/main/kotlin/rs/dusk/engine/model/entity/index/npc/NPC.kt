@@ -5,6 +5,7 @@ import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.index.CharacterValues
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.update.Visuals
@@ -22,7 +23,8 @@ data class NPC(
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
     override val movement: Movement = Movement(),
-    override val action: Action = Action()
+    override val action: Action = Action(),
+    override val values: CharacterValues = CharacterValues()
 ) : Character {
 
     override var change: LocalChange? = null

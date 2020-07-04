@@ -16,6 +16,7 @@ interface Character : Entity, Comparable<Character> {
     var change: LocalChange?
     val movement: Movement
     val action: Action
+    val values: CharacterValues
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)
