@@ -2,6 +2,7 @@ package rs.dusk.engine.model.entity.obj
 
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
+import rs.dusk.engine.model.entity.list.BatchList
 import rs.dusk.engine.model.world.ChunkPlane
 import rs.dusk.engine.model.world.Tile
 
@@ -10,11 +11,11 @@ import rs.dusk.engine.model.world.Tile
  * @since June 27, 2020
  */
 class Objects(
-    private val chunks: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
+    override val chunks: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
     private val added: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
     private val removed: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
     private val timers: MutableMap<Location, Job> = mutableMapOf()
-) {
+) : BatchList<Location> {
 
     fun addTemp(location: Location) : Boolean {
         val id = location.tile.chunkPlane
@@ -39,17 +40,9 @@ class Objects(
         return true
     }
 
-    fun add(location: Location) = chunks.getOrPut(location.tile.chunkPlane) { mutableSetOf() }.add(location)
-
-    fun remove(location: Location): Boolean {
-        val tile = chunks[location.tile.chunkPlane] ?: return false
-        return tile.remove(location)
-    }
-
-    operator fun get(tile: Tile): Set<Location> {
+    override operator fun get(tile: Tile): Set<Location> {
         return get(tile.chunkPlane).filter { it.tile == tile }.toSet()
     }
-
 
     fun getType(tile: Tile, type: Int): Location? {
         return get(tile.chunkPlane).firstOrNull { it.type == type && it.tile == tile }
@@ -59,7 +52,7 @@ class Objects(
         return get(tile.chunkPlane).firstOrNull { it.id == id && it.tile == tile }
     }
 
-    operator fun get(chunkPlane: ChunkPlane): Set<Location> {
+    override operator fun get(chunkPlane: ChunkPlane): Set<Location> {
         val set = mutableSetOf<Location>()
         val base = chunks[chunkPlane]
         if(base != null) {

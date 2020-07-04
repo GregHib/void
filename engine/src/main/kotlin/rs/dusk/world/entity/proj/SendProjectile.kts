@@ -25,7 +25,7 @@ ShootProjectile then {
     }
     val projectile = Projectile(id, tile, direction, index, delay, flightTime, startHeight, endHeight, curve, offset)
     projectiles.add(projectile)
-    batcher.update(tile.chunkPlane, projectile.getMessage())
+    batcher.update(tile.chunkPlane, projectile.toMessage())
     decay(projectile)
     bus.emit(Registered(projectile))
 }
@@ -52,7 +52,7 @@ fun decay(projectile: Projectile) {
     }
 }
 
-fun Projectile.getMessage() = ProjectileAddMessage(
+fun Projectile.toMessage() = ProjectileAddMessage(
     tile.offset(3),
     id,
     direction.x,
@@ -67,9 +67,9 @@ fun Projectile.getMessage() = ProjectileAddMessage(
 )
 
 batcher.addInitial { player, chunkPlane, messages ->
-    projectiles[chunkPlane]?.forEach {
+    projectiles[chunkPlane].forEach {
         if (it.visible(player)) {
-            messages += it.getMessage()
+            messages += it.toMessage()
         }
     }
 }

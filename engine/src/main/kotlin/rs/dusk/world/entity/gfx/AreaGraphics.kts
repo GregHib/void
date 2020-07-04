@@ -48,7 +48,7 @@ fun decay(ag: AreaGraphic) {
 fun AreaGraphic.toMessage() = GraphicAreaMessage(tile.offset(), graphic.id, graphic.height, graphic.delay, graphic.rotation)
 
 batcher.addInitial { player, chunkPlane, messages ->
-    graphics[chunkPlane]?.forEach {
+    graphics[chunkPlane].forEach {
         if (it.visible(player)) {
             messages += it.toMessage()
         }
