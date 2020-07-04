@@ -2,6 +2,7 @@ package rs.dusk.engine.model.entity.list
 
 import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.gfx.Graphics
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.item.FloorItems
@@ -69,4 +70,5 @@ val entityListModule = module {
     single { Objects() }
     single { FloorItems() }
     single { Projectiles() }
+    single { Graphics() }
 }
