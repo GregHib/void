@@ -6,7 +6,10 @@ import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationSpecificMessage
 import rs.dusk.utility.get
 
 /**
@@ -27,4 +30,8 @@ data class Location(
     val size: Size by lazy { Size(def.sizeX, def.sizeY) }
 
     fun visible(player: Player) = owner == null || owner == player.name
+}
+
+fun Location.animate(id: Int) {
+    get<ChunkBatcher>().update(tile.chunkPlane, ObjectAnimationSpecificMessage(tile.offset(), id, type, rotation))
 }
