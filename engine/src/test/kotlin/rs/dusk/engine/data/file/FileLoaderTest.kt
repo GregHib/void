@@ -37,7 +37,7 @@ internal class FileLoaderTest {
         file.writeText(text)
         val loader = FileLoader()
         // When
-        val result = loader.load<TestData>(path)
+        val result = loader.loadOrNull<TestData>(path)
         // Then
         assertNotNull(result)
         assertEquals("Test message", result!!.message)
@@ -52,7 +52,7 @@ internal class FileLoaderTest {
         val path = "invalid.yml"
         val loader = FileLoader()
         // When
-        val result = loader.load<TestData>(path)
+        val result = loader.loadOrNull<TestData>(path)
         // Then
         assertNull(result)
     }

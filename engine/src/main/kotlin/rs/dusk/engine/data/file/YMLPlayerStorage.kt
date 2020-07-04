@@ -13,7 +13,7 @@ class YMLPlayerStorage(private val path: String, private val loader: FileLoader)
     private fun path(name: String) = "$path\\$name.yml"
 
     override fun load(name: String): Player? {
-        return loader.load(path(name))
+        return loader.loadOrNull(path(name))
     }
 
     override fun save(name: String, data: Player) {

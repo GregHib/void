@@ -20,7 +20,9 @@ class FileLoader {
         logger.info { "YAML file mapper loaded." }
     }
 
-    inline fun <reified T : Any> load(path: String): T? {
+    inline fun <reified T : Any> load(path: String) = mapper.readValue(File(path), T::class.java)
+
+    inline fun <reified T : Any> loadOrNull(path: String): T? {
         val file = File(path)
         return if (file.exists()) {
             mapper.readValue(file, T::class.java)
