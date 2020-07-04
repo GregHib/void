@@ -16,7 +16,7 @@ import java.math.BigInteger
 object LoginHeaderDecoder {
 
     private val logger = InlineLogger()
-    private val clientMajorBuild = getProperty<Int>("clientBuild")
+    private val clientMajorBuild: Int = getProperty("clientBuild")
     private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
     private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)
 

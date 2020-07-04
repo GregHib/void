@@ -14,7 +14,7 @@ val files: FileLoader by inject()
 data class Spawn(val id: Int, val x: Int, val y: Int, val plane: Int = 0, val direction: Direction = Direction.NONE)
 
 Startup then {
-    val path = getProperty<String>("npcSpawnsPath")!!
+    val path: String = getProperty("npcSpawnsPath")
     val spawns = files.load<Array<Spawn>>(path)
     spawns?.forEach {
         npcs.spawn(it.id, it.x, it.y, it.plane, it.direction)

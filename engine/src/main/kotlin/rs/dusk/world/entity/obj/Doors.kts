@@ -18,8 +18,8 @@ val logger = InlineLogger()
 
 val doorCloseDelay = 500
 
-val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath")!!)!!.mapKeys { it.key.toInt() }
-val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath")!!)!!.mapKeys { it.key.toInt() }
+val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath"))!!.mapKeys { it.key.toInt() }
+val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath"))!!.mapKeys { it.key.toInt() }
 
 fun Location.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
 

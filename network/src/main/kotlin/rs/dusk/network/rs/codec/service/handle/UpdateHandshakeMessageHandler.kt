@@ -22,7 +22,7 @@ import rs.dusk.utility.inject
  */
 class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessage>() {
 	
-	private val clientMajorBuild = getProperty<Int>("clientBuild")
+	private val clientMajorBuild: Int = getProperty("clientBuild")
 	
 	private val repository : CodecRepository by inject()
 	

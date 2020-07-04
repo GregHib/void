@@ -14,7 +14,9 @@ inline fun <reified T> get(
     noinline parameters: ParametersDefinition? = null
 ): T = getKoin().get(qualifier, parameters)
 
-fun <T> getProperty(key: String): T? = getKoin().getProperty(key)
+fun <T> getPropertyOrNull(key: String): T? = getKoin().getProperty(key)
+
+fun <T> getProperty(key: String): T = getPropertyOrNull(key)!!
 
 fun <T> getProperty(key: String, defaultValue: T): T = getKoin().getProperty(key, defaultValue)
 

@@ -40,7 +40,7 @@ class GameServer(
 	/**
 	 * The port to listen on
 	 */
-	private val port = getProperty<Int>("port")!!
+	private val port: Int = getProperty("port")
 	
 	/**
 	 * The connection settings to use
@@ -93,9 +93,9 @@ class GameServer(
 		bind()
 		
 		logger.info {
-			val name = getProperty<String>("name")
-			val major = getProperty<Int>("buildMajor")
-			val minor = getProperty<Float>("buildMinor")
+			val name: String = getProperty("name")
+			val major: Int = getProperty("buildMajor")
+			val minor: Float = getProperty("buildMinor")
 			
 			"$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms"
 		}
