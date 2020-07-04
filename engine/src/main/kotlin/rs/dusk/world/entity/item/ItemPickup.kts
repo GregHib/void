@@ -1,6 +1,8 @@
 import kotlinx.coroutines.cancel
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.index.contain.ContainerResult
 import rs.dusk.engine.model.entity.index.contain.inventory
 import rs.dusk.engine.model.entity.item.FloorItemOption
@@ -13,6 +15,7 @@ import rs.dusk.utility.inject
 
 val items: FloorItems by inject()
 val batcher: ChunkBatcher by inject()
+val bus: EventBus by inject()
 
 FloorItemOption where { option == "Take" } then {
     val item = floorItem
@@ -22,6 +25,7 @@ FloorItemOption where { option == "Take" } then {
         item.state = FloorItemState.Removed
         batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
         items.remove(item)
+        bus.emit(Unregistered(item))
     } else if(result is ContainerResult.Addition.Failure) {
         println("Failure $result")
         // TODO

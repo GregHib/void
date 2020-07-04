@@ -15,8 +15,8 @@ data class Spawn(val id: Int, val x: Int, val y: Int, val plane: Int = 0, val di
 
 Startup then {
     val path: String = getProperty("npcSpawnsPath")
-    val spawns = files.load<Array<Spawn>>(path)
-    spawns?.forEach {
+    val spawns: Array<Spawn> = files.load(path)
+    spawns.forEach {
         npcs.spawn(it.id, it.x, it.y, it.plane, it.direction)
     }
 }

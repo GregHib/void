@@ -12,6 +12,7 @@ import rs.dusk.engine.model.entity.item.FloorItemOption
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.obj.ObjectOption
 import rs.dusk.engine.model.entity.obj.Objects
+import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.decode.message.FloorItemOptionMessage
@@ -78,8 +79,9 @@ NPCOptionMessage verify { player ->
 }
 
 FloorItemOptionMessage verify { player ->
-    val items = items[player.tile] ?: return@verify
-    val item = items.firstOrNull { it.id == id } ?: return@verify
+    val tile = Tile(x, y, player.tile.plane)
+    val items = items[tile]
+    val item = items.firstOrNull { it.id == id && it.tile == tile } ?: return@verify
     val options = item.def.floorOptions
     val index = option - 1
     if (index !in options.indices) {
