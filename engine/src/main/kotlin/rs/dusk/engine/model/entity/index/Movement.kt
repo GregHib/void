@@ -1,9 +1,15 @@
 package rs.dusk.engine.model.entity.index
 
+import rs.dusk.engine.action.ActionType
+import rs.dusk.engine.action.action
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.path.PathFinder
+import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.utility.get
 import java.util.*
 
 /**
@@ -41,5 +47,29 @@ data class Movement(
         delta = Tile.EMPTY
         walkStep = Direction.NONE
         runStep = Direction.NONE
+    }
+}
+
+private fun calcPath(source: Character, target: Any) = when (target) {
+    is Tile -> get<PathFinder>().find(source, target)
+    is Entity -> get<PathFinder>().find(source, target)
+    else -> PathResult.Failure
+}
+
+fun Character.walkTo(target: Any, action: (PathResult) -> Unit) = action(ActionType.Movement) {
+    try {
+        val result = calcPath(this@walkTo, target)
+        if (result is PathResult.Failure) {
+            action(result)
+        } else {
+            while (delay() && awaitInterfaces()) {
+                if (movement.steps.isEmpty()) {
+                    break
+                }
+            }
+            action(result)
+        }
+    } finally {
+        movement.clear()
     }
 }

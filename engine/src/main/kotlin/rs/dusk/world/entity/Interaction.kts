@@ -1,7 +1,5 @@
 package rs.dusk.world.entity
 
-import rs.dusk.engine.action.ActionType
-import rs.dusk.engine.action.action
 import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Entity
@@ -9,6 +7,7 @@ import rs.dusk.engine.model.entity.index.npc.NPCOption
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.index.walkTo
 import rs.dusk.engine.model.entity.item.FloorItemOption
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.obj.ObjectOption
@@ -28,28 +27,14 @@ val npcs: NPCs by inject()
 val items: FloorItems by inject()
 val bus: EventBus by inject()
 
-fun Player.moveTo(target: Entity, action: (PathResult) -> Unit) = action(ActionType.Movement) {
-    try {
-        val result = pf.find(this@moveTo, target)
-        if (result is PathResult.Failure) {
-            println("You can't reach that.")
-        } else {
-            while (delay() && awaitInterfaces()) {
-                if (movement.steps.isEmpty()) {
-                    break
-                }
-            }
-            // TODO improve, what about bankers?
-            val strategy = pf.getStrategy(target)
-            if(strategy.reached(tile, size)) {
-                action(result)
-            } else {
-                println("You can't reach that.")
-            }
-        }
-    } finally {
-        movement.clear()
+fun Player.approach(target: Entity, action: (PathResult) -> Unit) = walkTo(target) { result ->
+    // TODO improve, what about bankers?
+    if(result is PathResult.Failure || !pf.getStrategy(target).reached(tile, size)) {
+        println("You can't reach that.")
+        return@walkTo
     }
+
+    action(result)
 }
 
 ObjectOptionMessage verify { player ->
@@ -63,7 +48,7 @@ ObjectOptionMessage verify { player ->
         return@verify
     }
     val option = options[index]
-    player.moveTo(loc) { result ->
+    player.approach(loc) { result ->
         val partial = result is PathResult.Success.Partial
         bus.emit(ObjectOption(player, loc, option, partial))
     }
@@ -72,7 +57,7 @@ ObjectOptionMessage verify { player ->
 PlayerOptionMessage verify { player ->
     val target = players.getAtIndex(index) ?: return@verify
     // TODO check target has option
-    player.moveTo(target) { result ->
+    player.approach(target) { result ->
         println("Result $result")
     }
 }
@@ -86,7 +71,7 @@ NPCOptionMessage verify { player ->
         return@verify
     }
     val option = options[index]//TODO is null a valid action? What to do about "*"'s?
-    player.moveTo(npc) { result ->
+    player.approach(npc) { result ->
         val partial = result is PathResult.Success.Partial
         bus.emit(NPCOption(player, npc, option, partial))
     }
@@ -102,7 +87,7 @@ FloorItemOptionMessage verify { player ->
         return@verify
     }
     val option = options[index]//TODO is null a valid action? What to do about "*"'s?
-    player.moveTo(item) { result ->
+    player.approach(item) { result ->
         val partial = result is PathResult.Success.Partial
         bus.emit(FloorItemOption(player, item, option, partial))
     }

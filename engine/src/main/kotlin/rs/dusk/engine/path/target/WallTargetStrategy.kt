@@ -26,9 +26,9 @@ data class WallTargetStrategy(
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val sizeXY = size.width
         // Check if under
-        if (sizeXY == 1 && tile.x == currentX && currentY == tile.y) {
+        if (sizeXY == 1 && currentX == tile.x && currentY == tile.y) {
             return true
-        } else if (tile.x >= currentX && tile.x <= currentX + sizeXY - 1 && tile.y <= tile.y + sizeXY - 1) {
+        } else if (sizeXY != 1 && tile.x >= currentX && tile.x <= currentX + sizeXY - 1 && tile.y <= tile.y + sizeXY - 1) {
             return true
         }
 
