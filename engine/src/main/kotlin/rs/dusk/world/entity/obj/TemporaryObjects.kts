@@ -20,19 +20,21 @@ val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 
 /**
- *  [ReplaceObjectPair] is really lazy but saves the headache of issues removing objects which overlap
+ * Replaces two objects, linking them to the same job so both revert after timeout
  */
 ReplaceObjectPair then {
     val firstReplacement = Location(firstReplacement, firstTile, firstOriginal.type, firstRotation)
     val secondReplacement = Location(secondReplacement, secondTile, secondOriginal.type, secondRotation)
-    switch(firstOriginal, firstReplacement, secondOriginal, secondReplacement)
+    switch(firstOriginal, firstReplacement)
+    switch(secondOriginal, secondReplacement)
     // Revert
     if (ticks >= 0) {
         val job = scheduler.add {
             try {
                 delay(ticks)
             } finally {
-                switch(firstReplacement, firstOriginal, secondReplacement, secondOriginal)
+                switch(firstReplacement, firstOriginal)
+                switch(secondReplacement, secondOriginal)
             }
         }
         objects.setTimer(firstReplacement, job)
@@ -40,6 +42,9 @@ ReplaceObjectPair then {
     }
 }
 
+/**
+ * Replaces one object with another, optionally reverting after a set time
+ */
 ReplaceObject then {
     val replacement = Location(id, tile, type, rotation)
 
@@ -54,33 +59,6 @@ ReplaceObject then {
             }
         })
     }
-}
-
-fun switch(firstOriginal: Location, firstReplacement: Location, secondOriginal: Location, secondReplacement: Location) {
-    batcher.update(
-        firstOriginal.tile.chunkPlane,
-        ObjectRemoveMessage(firstOriginal.tile.offset(), firstOriginal.type, firstOriginal.rotation)
-    )
-    batcher.update(
-        secondOriginal.tile.chunkPlane,
-        ObjectRemoveMessage(secondOriginal.tile.offset(), secondOriginal.type, secondOriginal.rotation)
-    )
-    batcher.update(
-        firstReplacement.tile.chunkPlane,
-        ObjectAddMessage(firstReplacement.tile.offset(), firstReplacement.id, firstReplacement.type, firstReplacement.rotation)
-    )
-    batcher.update(
-        secondReplacement.tile.chunkPlane,
-        ObjectAddMessage(secondReplacement.tile.offset(), secondReplacement.id, secondReplacement.type, secondReplacement.rotation)
-    )
-    objects.removeTemp(firstOriginal)
-    objects.removeTemp(secondOriginal)
-    objects.addTemp(firstReplacement)
-    objects.addTemp(secondReplacement)
-    bus.emit(Unregistered(firstOriginal))
-    bus.emit(Unregistered(secondOriginal))
-    bus.emit(Registered(firstReplacement))
-    bus.emit(Registered(secondReplacement))
 }
 
 fun switch(original: Location, replacement: Location) {

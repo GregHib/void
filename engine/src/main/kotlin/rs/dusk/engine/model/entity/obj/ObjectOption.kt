@@ -4,6 +4,6 @@ import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerEvent
 
-data class ObjectOption(override val player: Player, val location: Location, val option: String?, val partial: Boolean) : PlayerEvent() {
+data class ObjectOption(override val player: Player, val gameObject: Location, val option: String?, val partial: Boolean) : PlayerEvent() {
     companion object : EventCompanion<ObjectOption>
 }

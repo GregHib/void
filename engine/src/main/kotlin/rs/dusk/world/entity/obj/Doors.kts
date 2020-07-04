@@ -24,39 +24,39 @@ val fences: Map<Int, Int> = loader.load<Map<String, Int>>("./cache/data/fences.y
 
 fun Location.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
 
-ObjectOption where { location.isDoor() && option == "Close" } then {
-    val double = getDoubleDoor(location, 1)
+ObjectOption where { gameObject.isDoor() && option == "Close" } then {
+    val double = getDoubleDoor(gameObject, 1)
     if (double == null) {
-        if (!objects.cancelTimer(location)) {
-            logger.warn { "Unknown door ${option?.toLowerCase()} $location" }
+        if (!objects.cancelTimer(gameObject)) {
+            logger.warn { "Unknown door ${option?.toLowerCase()} $gameObject" }
         }
     } else {
-        if (!objects.cancelTimer(location) || !objects.cancelTimer(double)) {
-            logger.warn { "Unknown fence/double door ${option?.toLowerCase()} $location" }
+        if (!objects.cancelTimer(gameObject) || !objects.cancelTimer(double)) {
+            logger.warn { "Unknown fence/double door ${option?.toLowerCase()} $gameObject" }
         }
     }
 
 }
 
-ObjectOption where { location.isDoor() && option == "Open" } then {
-    val double = getDoubleDoor(location, 0)
+ObjectOption where { gameObject.isDoor() && option == "Open" } then {
+    val double = getDoubleDoor(gameObject, 0)
 
-    val replacement1 = doors[location.id]
-    val replacement3 = fences[location.id]
+    val replacement1 = doors[gameObject.id]
+    val replacement3 = fences[gameObject.id]
     if (double != null) {
         val replacement2 = doors[double.id]
         val replacement4 = fences[double.id]
 
-        val delta = location.tile.delta(double.tile)
-        val dir = Direction.cardinal[location.rotation]
+        val delta = gameObject.tile.delta(double.tile)
+        val dir = Direction.cardinal[gameObject.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (replacement1 != null && replacement2 != null) {
+        if (replacement1 != null && replacement2 != null) {// Double doors
             bus.emit(
                 ReplaceObjectPair(
-                    location,
+                    gameObject,
                     replacement1,
-                    getTile(location, 1),
-                    getRotation(location, if (flip) 1 else 3),
+                    getTile(gameObject, 1),
+                    getRotation(gameObject, if (flip) 1 else 3),
                     double,
                     replacement2,
                     getTile(double, 1),
@@ -64,33 +64,41 @@ ObjectOption where { location.isDoor() && option == "Open" } then {
                     doorCloseDelay
                 )
             )
-        } else if (replacement3 != null && replacement4 != null) {
+        } else if (replacement3 != null && replacement4 != null) {// Fences
+            val first = if(flip) double else gameObject
+            val second = if(flip) gameObject else double
+            val tile = getTile(first, 1)
             bus.emit(
                 ReplaceObjectPair(
-                    location,
-                    replacement3,
-                    getTile(location, if (flip) 3 else 0),
-                    getRotation(location, 1),
-                    double,
-                    replacement4,
-                    getTile(double, if (flip) 0 else 3),
-                    getRotation(double, 1),
+                    first,
+                    fences.getValue(first.id),
+                    tile,
+                    getRotation(first, 3),
+                    second,
+                    fences.getValue(second.id),
+                    getTile(tile, second.rotation, 1),
+                    getRotation(double, 3),
                     doorCloseDelay
                 )
             )
         }
-    } else if (replacement1 != null) {
+    } else if (replacement1 != null) {// Single Doors
         bus.emit(
             ReplaceObject(
-                location,
+                gameObject,
                 replacement1,
-                getTile(location, 1),
-                location.type,
-                getRotation(location, 1),
+                getTile(gameObject, 1),
+                gameObject.type,
+                getRotation(gameObject, 1),
                 doorCloseDelay
             )
         )
     }
+}
+
+fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
+    val orientation = Direction.cardinal[rotation - anticlockwise and 0x3]
+    return tile.add(orientation.delta)
 }
 
 fun getTile(location: Location, anticlockwise: Int): Tile {
