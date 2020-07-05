@@ -1,0 +1,18 @@
+- id: -1
+  tile:
+    x: 3078
+    y: 3486
+  type: 10
+  rotation: 2
+- id: -1
+  tile:
+    x: 3078
+    y: 3488
+  type: 10
+  rotation: 1
+- id: 59463
+  tile:
+    x: 3077
+    y: 3484
+  type: 10
+  rotation: 1

@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import org.koin.dsl.module
 import rs.dusk.cache.Cache
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.CollisionReader
 import rs.dusk.engine.model.world.map.location.LocationReader
@@ -22,6 +23,7 @@ val mapModule = module {
  */
 class MapReader {
 
+    val bus: EventBus by inject()
     val collisions: CollisionReader by inject()
     val locations: LocationReader by inject()
     val tiles: TileReader by inject()
@@ -53,6 +55,7 @@ class MapReader {
             val loc = async { locations.read(region.tile, locationData, settings) }
             col.await()
             loc.await()
+            bus.emit(MapLoaded(region))
         }
         logger.info { "Region ${region.id} loaded in ${time}ms" }
         true

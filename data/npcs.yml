@@ -1,0 +1,116 @@
+# Cows
+- id: 81
+  tile:
+    x: 3256
+    y: 3264
+    plane: 0
+- id: 397
+  tile:
+    x: 3255
+    y: 3258
+    plane: 0
+- id: 81
+  tile:
+    x: 3254
+    y: 3256
+    plane: 0
+- id: 81
+  tile:
+    x: 3260
+    y: 3260
+    plane: 0
+- id: 81
+  tile:
+    x: 3263
+    y: 3258
+    plane: 0
+- id: 397
+  tile:
+    x: 3254
+    y: 3263
+    plane: 0
+- id: 1767
+  tile:
+    x: 3259
+    y: 3268
+    plane: 0
+- id: 2310
+  tile:
+    x: 3261
+    y: 3267
+    plane: 0
+# Golbins
+- id: 4262
+  tile:
+    x: 3259
+    y: 3249
+    plane: 0
+- id: 4263
+  tile:
+    x: 3252
+    y: 3246
+    plane: 0
+- id: 4264
+  tile:
+    x: 3253
+    y: 3241
+    plane: 0
+- id: 4265
+  tile:
+    x: 3246
+    y: 3239
+    plane: 0
+- id: 4266
+  tile:
+    x: 3247
+    y: 3236
+    plane: 0
+- id: 4267
+  tile:
+    x: 3254
+    y: 3238
+    plane: 0
+- id: 4268
+  tile:
+    x: 3262
+    y: 3238
+    plane: 0
+- id: 4269
+  tile:
+    x: 3262
+    y: 3245
+    plane: 0
+- id: 4270
+  tile:
+    x: 3248
+    y: 3255
+    plane: 0
+- id: 4271
+  tile:
+    x: 3240
+    y: 3272
+    plane: 0
+- id: 553
+  tile:
+    x: 3096
+    y: 3493
+    plane: 0
+  direction: WEST
+- id: 553
+  tile:
+    x: 3096
+    y: 3491
+    plane: 0
+  direction: WEST
+- id: 553
+  tile:
+    x: 3096
+    y: 3489
+    plane: 0
+  direction: WEST
+- id: 553
+  tile:
+    x: 3097
+    y: 3494
+    plane: 0
+  direction: NORTH

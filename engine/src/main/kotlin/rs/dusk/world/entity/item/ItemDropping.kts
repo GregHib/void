@@ -32,7 +32,7 @@ Drop then {
             return@then
         }
     }
-    val item = FloorItem(tile, id, amount)
+    val item = FloorItem(tile, id, amount)// TODO link up owner when applicable
     items.add(item)
     batcher.update(tile.chunkPlane, FloorItemAddMessage(tile.offset(), id, amount))
     reveal(item, revealTicks, owner)
@@ -41,7 +41,7 @@ Drop then {
 }
 
 fun FloorItems.getExistingStack(tile: Tile, id: Int): FloorItem? {
-    return get(tile)?.firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
+    return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
 }
 
 /**
@@ -86,7 +86,7 @@ fun disappear(item: FloorItem, ticks: Int) {
  * Schedules public reveal of [owner]'s item after [ticks]
  */
 fun reveal(item: FloorItem, ticks: Int, owner: Int) {
-    if (ticks >= 0) {
+    if (ticks >= 0 && owner != -1) {
         scheduler.add {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
@@ -101,7 +101,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
 }
 
 batcher.addInitial { player, chunkPlane, messages ->
-    items[chunkPlane]?.forEach {
+    items[chunkPlane].forEach {
         if(it.visible(player)) {
             messages += FloorItemAddMessage(it.tile.offset(), it.id, it.amount)
         }
