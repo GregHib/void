@@ -39,6 +39,7 @@ Drop then {
     reveal(item, revealTicks, owner?.index ?: -1)
     disappear(item, disappearTicks)
     bus.emit(Registered(item))
+    result = item
 }
 
 fun FloorItems.getExistingStack(tile: Tile, id: Int): FloorItem? {

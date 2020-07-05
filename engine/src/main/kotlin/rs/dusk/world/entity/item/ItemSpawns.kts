@@ -1,4 +1,3 @@
-import ItemSpawns.ItemSpawn
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.data.file.FileLoader
@@ -6,7 +5,6 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.engine.Startup
-import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.world.Region
@@ -25,8 +23,6 @@ data class ItemSpawn(val id: Int, val amount: Int = 1, val delay: Int = 100, val
 val spawns: MutableMap<Region, MutableList<ItemSpawn>> = mutableMapOf()
 val links = mutableMapOf<FloorItem, ItemSpawn>()
 
-fun ItemSpawn.drop() = bus.emit(Drop(id, amount, tile, 0))
-
 Startup then {
     val items: Array<ItemSpawn> = files.load(getProperty("floorItemsPath"))
     items.forEach { spawn ->
@@ -35,24 +31,23 @@ Startup then {
     }
 }
 
-// We can do it this way as events and scheduler are guaranteed to be sequential.
-var spawnPoint: ItemSpawn? = null
+/**
+ * Spawns a immediately visible floor item and link it to it's spawn point
+ */
+fun ItemSpawn.drop() {
+    val floorItem = bus.emit(Drop(id, amount, tile, 0)) ?: return
+    links[floorItem] = this
+}
+
 
 /**
- * When a region is loaded spawn [FloorItem]'s and link to their [ItemSpawn]'s
+ * When a region is loaded spawn [FloorItem]'s
  */
 MapLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { spawn ->
-        spawnPoint = spawn
         spawn.drop()
     }
-    spawnPoint = null
-}
-
-Registered where { entity is FloorItem && spawnPoint != null } then {
-    val item = entity as FloorItem
-    links[item] = spawnPoint!!
 }
 
 /**
@@ -63,8 +58,6 @@ Unregistered where { entity is FloorItem && links.containsKey(entity) } then {
     val spawn = links.remove(item)!!
     scheduler.add {
         delay(ticks = spawn.delay)
-        spawnPoint = spawn
         spawn.drop()
-        spawnPoint = null
     }
 }
