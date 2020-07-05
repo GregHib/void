@@ -34,7 +34,7 @@ data class NPC(
     var movementType: NPCMoveType = NPCMoveType.None
 
     val def: NPCDefinition
-        get() = get<NPCDecoder>().get(id)!!
+        get() = get<NPCDecoder>().getSafe(id)
 
     constructor(id: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

@@ -28,7 +28,7 @@ data class FloorItem(
     }
 
     val def: ItemDefinition
-        get() = get<ItemDecoder>().get(id)!!
+        get() = get<ItemDecoder>().getSafe(id)
 
     var state: FloorItemState = FloorItemState.Private
 
