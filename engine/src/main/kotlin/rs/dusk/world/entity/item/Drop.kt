@@ -2,6 +2,7 @@ package rs.dusk.world.entity.item
 
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
+import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -20,6 +21,6 @@ data class Drop(
     val tile: Tile,
     val revealTicks: Int = -1,
     val disappearTicks: Int = -1,
-    val owner: Int = -1) : Event() {
+    val owner: Player? = null) : Event() {
     companion object : EventCompanion<Drop>
 }

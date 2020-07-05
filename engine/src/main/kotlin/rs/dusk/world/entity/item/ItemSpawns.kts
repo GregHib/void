@@ -38,6 +38,7 @@ MapLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { spawn ->
         spawn.drop()
+        // TODO better way of doing this.
         on<Unregistered> {
             where { entity is FloorItem && entity.id == spawn.id && entity.amount == spawn.amount && entity.tile == spawn.tile }
             then {
