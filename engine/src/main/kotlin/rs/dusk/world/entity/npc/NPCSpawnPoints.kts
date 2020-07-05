@@ -19,7 +19,7 @@ data class NPCSpawnPoint(val id: Int, val tile: Tile, val direction: Direction =
 val spawns: MutableMap<Region, MutableList<NPCSpawnPoint>> = mutableMapOf()
 
 Startup then {
-    val path: String = getProperty("npcSpawnsPath")
+    val path: String = getProperty("npcsPath")
     val points: Array<NPCSpawnPoint> = files.load(path)
     points.forEach { spawn ->
         val list = spawns.getOrPut(spawn.tile.region) { mutableListOf() }
