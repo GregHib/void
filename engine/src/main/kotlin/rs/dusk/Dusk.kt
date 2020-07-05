@@ -19,6 +19,7 @@ import rs.dusk.engine.model.engine.variable.variablesModule
 import rs.dusk.engine.model.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.instanceModule
+import rs.dusk.engine.model.world.instancePoolModule
 import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.mapModule
@@ -92,7 +93,8 @@ object Dusk {
                 executorModule,
                 interfaceModule,
                 variablesModule,
-                instanceModule
+                instanceModule,
+                instancePoolModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
