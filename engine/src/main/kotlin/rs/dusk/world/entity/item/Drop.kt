@@ -21,6 +21,6 @@ data class Drop(
     val tile: Tile,
     val revealTicks: Int = -1,
     val disappearTicks: Int = -1,
-    val owner: Player? = null) : Event() {
+    val owner: Player? = null) : Event<Unit>() {
     companion object : EventCompanion<Drop>
 }

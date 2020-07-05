@@ -23,7 +23,7 @@ data class ReplaceObjectPair(
     val secondRotation: Int,
     val ticks: Int,
     val owner: String? = null
-) : Event() {
+) : Event<Unit>() {
     companion object : EventCompanion<ReplaceObjectPair>
 }
 

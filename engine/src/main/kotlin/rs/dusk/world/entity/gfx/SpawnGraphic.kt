@@ -14,7 +14,7 @@ data class SpawnGraphic(
     val rotation: Int = 0,
     val forceRefresh: Boolean = false,
     val owner: String? = null
-) : Event() {
+) : Event<Unit>() {
     companion object : EventCompanion<SpawnGraphic>
 }
 

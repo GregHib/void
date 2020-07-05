@@ -20,7 +20,7 @@ data class ReplaceObject(
     val rotation: Int,
     val ticks: Int,
     val owner: String? = null
-) : Event() {
+) : Event<Unit>() {
     companion object : EventCompanion<ReplaceObject>
 }
 

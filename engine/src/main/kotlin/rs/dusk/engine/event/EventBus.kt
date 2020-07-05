@@ -19,15 +19,15 @@ val eventBusModule = module {
 @Suppress("UNCHECKED_CAST")
 class EventBus {
 
-    private val handlers = mutableMapOf<KClass<*>, EventHandler<*>>()
+    private val handlers = mutableMapOf<KClass<*>, EventHandler<*, *>>()
 
     /**
      * Attaches [handler] to the handler chain
      */
-    fun <T : Event> add(clazz: KClass<T>?, handler: EventHandler<T>) {
+    fun <T : Any, E : Event<T>> add(clazz: KClass<E>?, handler: EventHandler<T, E>) {
         checkNotNull(clazz) { "Event must have a companion object." }
         var last = get(clazz)
-        var next: EventHandler<T>?
+        var next: EventHandler<T, E>?
 
         while (last != null) {
             next = last.next
@@ -63,17 +63,18 @@ class EventBus {
     /**
      * Returns [EventHandler] with matching [clazz]
      */
-    fun <T : Event> get(clazz: KClass<T>): EventHandler<T>? {
-        return handlers[clazz] as? EventHandler<T>
+    fun <T : Any, E : Event<T>> get(clazz: KClass<E>): EventHandler<T, E>? {
+        return handlers[clazz] as? EventHandler<T, E>
     }
 
     /**
      * Event's are only emitted to handlers which are applicable according to [EventHandler.applies]
      * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
+     * [Event.result] can be set at any point and will be returned to the emitter.
      */
-    fun <T : Event> emit(event: T, clazz: KClass<T>) {
+    fun <T: Any, E : Event<T>> emit(event: E, clazz: KClass<E>) : T? {
         if(!checkPassed(event, clazz)) {
-            return
+            return null
         }
 
         var handler = get(clazz)
@@ -88,12 +89,14 @@ class EventBus {
 
             handler = handler.next
         }
+
+        return event.result
     }
 
     /**
      * An event must have at least one successful [EventHandler.checked] for any applicable handler to be emitted.
      */
-    private fun <T : Event> checkPassed(event: T, clazz: KClass<T>): Boolean {
+    private fun <T : Any, E : Event<T>> checkPassed(event: E, clazz: KClass<E>): Boolean {
         var handler = get(clazz)
 
         while (handler != null) {
@@ -108,29 +111,29 @@ class EventBus {
     /**
      * Helper function for emitting events
      */
-    inline fun <reified T : Event> emit(event: T) = emit(event, T::class)
+    inline fun <reified T : Any, reified E : Event<T>> emit(event: E) = emit(event, E::class)
 }
 
 /**
  * Registers a simple event handler without filter or priority
  */
-inline infix fun <reified T : Event, C : EventCompanion<T>> C.then(noinline action: T.(T) -> Unit) = runBlocking {
-    val handler = EventHandler<T>()
+inline infix fun <reified T : Any, reified E : Event<T>, C : EventCompanion<E>> C.then(noinline action: E.(E) -> Unit) = runBlocking {
+    val handler = EventHandler<T, E>()
     handler.action = action
-    register(T::class, handler)
+    register(E::class, handler)
 }
 
 /**
  * Registers an event handler using a [EventHandlerBuilder]
  */
-inline infix fun <reified T : Event> EventHandlerBuilder<T>.then(noinline action: T.(T) -> Unit) = runBlocking {
-    register(T::class, build(action))
+inline infix fun <reified T : Any, reified E : Event<T>> EventHandlerBuilder<T, E>.then(noinline action: E.(E) -> Unit) = runBlocking {
+    register(E::class, build(action))
 }
 
 /**
  * Registers [handler] with the current [EventBus]
  */
-fun <T : Event> register(clazz: KClass<T>, handler: EventHandler<T>) {
+fun <T : Any, E : Event<T>> register(clazz: KClass<E>, handler: EventHandler<T, E>) {
     val bus: EventBus = get()
     bus.add(clazz, handler)
 }

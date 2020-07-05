@@ -7,6 +7,6 @@ import rs.dusk.engine.event.EventCompanion
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Unregistered(val entity: Entity) : Event() {
+data class Unregistered(val entity: Entity) : Event<Unit>() {
     companion object : EventCompanion<Unregistered>
 }

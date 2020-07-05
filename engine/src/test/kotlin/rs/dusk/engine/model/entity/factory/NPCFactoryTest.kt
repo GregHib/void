@@ -46,9 +46,9 @@ internal class NPCFactoryTest : KoinMock() {
         // Given
         val factory: NPCFactory = get()
         val bus: EventBus = declareMock {
-            every { add(any<KClass<Tick>>(), any<EventHandler<Tick>>()) } just Runs
-            every { emit(any<Registered>()) } just Runs
-            every { emit(any<NPCRegistered>()) } just Runs
+            every { add(any<KClass<Tick>>(), any<EventHandler<Unit, Tick>>()) } just Runs
+            every { emit(any<Registered>()) } returns null
+            every { emit(any<NPCRegistered>()) } returns null
         }
         declareMock<NPCDecoder> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
@@ -58,7 +58,7 @@ internal class NPCFactoryTest : KoinMock() {
         // Then
         assertEquals(1, npc.id)
         verify {
-            bus.emit<Registered>(any())
+            bus.emit<Unit, Registered>(any())
         }
         assertEquals(npc.size, Size(2, 2))
         assertEquals(npc.tile, Tile(10, 20, 1))
