@@ -4,17 +4,16 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.factory.NPCFactory
 import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.player.tele
 import rs.dusk.utility.inject
+import rs.dusk.world.entity.npc.NPCSpawn
 import java.util.concurrent.atomic.AtomicInteger
 
 val playerFactory: PlayerFactory by inject()
 val bus: EventBus by inject()
-val npcFactory: NPCFactory by inject()
 
 Command where { prefix == "tele" || prefix == "tp" } then {
     if (content.contains(",")) {
@@ -37,7 +36,7 @@ Command where { prefix == "npc" } then {
           y: ${player.tile.y}
           plane: ${player.tile.plane}
     """.trimIndent())
-    val npc = npcFactory.spawn(id, player.tile.x, player.tile.y, player.tile.plane, Direction.NORTH)
+    val npc = bus.emit(NPCSpawn(id, player.tile, Direction.NORTH))
 //    npc?.movement?.frozen = true
 }
 

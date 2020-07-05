@@ -26,14 +26,12 @@ Registered priority 9 then {
             entity.flagTemporaryMoveType()
             entity.face()
         }
-        is NPC -> npcs.add(entity)
     }
 }
 
 Unregistered priority 9 then {
     when (entity) {
         is Player -> players.remove(entity)
-        is NPC -> npcs.remove(entity)
     }
 }
 

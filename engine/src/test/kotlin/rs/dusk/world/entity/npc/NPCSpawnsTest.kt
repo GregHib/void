@@ -1,14 +1,31 @@
 package rs.dusk.world.entity.npc
 
+import io.mockk.every
+import io.mockk.spyk
+import io.mockk.verifyOrder
+import org.junit.Assert.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.get
+import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import rs.dusk.cache.Cache
+import rs.dusk.cache.cacheDefinitionModule
+import rs.dusk.cache.definition.data.NPCDefinition
+import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.engine.Shutdown
+import rs.dusk.engine.event.EventHandler
+import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.Size
+import rs.dusk.engine.model.entity.index.npc.NPC
+import rs.dusk.engine.model.entity.index.npc.NPCRegistered
+import rs.dusk.engine.model.entity.list.entityListModule
+import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.map.collision.CollisionFlag
+import rs.dusk.engine.model.world.map.collision.collisionModule
+import rs.dusk.engine.path.traverse.LargeTraversal
+import rs.dusk.engine.path.traverse.MediumTraversal
+import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.engine.script.ScriptMock
 
 /**
@@ -17,19 +34,88 @@ import rs.dusk.engine.script.ScriptMock
  */
 internal class NPCSpawnsTest : ScriptMock() {
 
-    lateinit var cache: Cache
+    lateinit var bus: EventBus
+    lateinit var spawnHandler: EventHandler<NPC, NPCSpawn>
 
     @BeforeEach
     override fun setup() {
-        loadModules(eventBusModule, fileLoaderModule)
-        cache = declareMock()
+        bus = spyk(EventBus())
+        loadModules(cacheDefinitionModule, entityListModule, module { single { bus }}, collisionModule, fileLoaderModule)
         super.setup()
+        spawnHandler = bus.get(NPCSpawn::class)!!
+    }
+
+    @Suppress("RemoveExplicitTypeArguments")
+    @Test
+    fun `Spawn registers`() {
+        // Given
+        declareMock<NPCDecoder> {
+            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
+        }
+        val event = spyk(NPCSpawn(1, Tile(10, 20, 1), Direction.NONE))
+        // When
+        spawnHandler.invoke(event)
+        val npc = event.result!!
+        // Then
+        assertEquals(1, npc.id)
+        verifyOrder {
+            bus.emit(any<NPCRegistered>())
+            bus.emit(any<Registered>())
+        }
+        assertEquals(npc.size, Size(2, 2))
+        assertEquals(npc.tile, Tile(10, 20, 1))
     }
 
     @Test
-    fun `Script test`() {
-        val bus: EventBus = get()
-        bus.emit(Shutdown)
+    fun `Traversal size small`() {
+        // Given
+        declareMock<NPCDecoder> {
+            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 1)
+        }
+        val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
+        // When
+        spawnHandler.invoke(event)
+        val npc = event.result!!
+        // Then
+        val traversal = npc.movement.traversal
+        assert(traversal is SmallTraversal)
+        traversal as SmallTraversal
+        assertEquals(CollisionFlag.ENTITY, traversal.extra)
     }
+
+    @Test
+    fun `Traversal size medium`() {
+        // Given
+        declareMock<NPCDecoder> {
+            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
+        }
+        val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
+        // When
+        spawnHandler.invoke(event)
+        val npc = event.result!!
+        // Then
+        val traversal = npc.movement.traversal
+        assert(traversal is MediumTraversal)
+        traversal as MediumTraversal
+        assertEquals(CollisionFlag.ENTITY, traversal.extra)
+    }
+
+    @Test
+    fun `Traversal size large`() {
+        // Given
+        declareMock<NPCDecoder> {
+            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 3)
+        }
+        val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
+        // When
+        spawnHandler.invoke(event)
+        val npc = event.result!!
+        // Then
+        val traversal = npc.movement.traversal
+        assert(traversal is LargeTraversal)
+        traversal as LargeTraversal
+        assertEquals(Size(3, 3), traversal.size)
+    }
+
 
 }
