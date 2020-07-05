@@ -31,11 +31,17 @@ class CharacterValues {
         map[key] = value
     }
 
-    fun remove(key: String) = map.remove(key)
+    fun clear(key: String) = map.remove(key)
 }
 
 operator fun Character.set(key: String, value: Any) {
     values[key] = value
+}
+
+fun Character.inc(key: String): Int {
+    val value = get(key, 0) + 1
+    values[key] = value
+    return value
 }
 
 operator fun <T : Any> Character.get(key: String) = values.get<T>(key)
@@ -44,4 +50,4 @@ operator fun <T : Any> Character.get(key: String, defaultValue: T) = values.get(
 
 fun <T : Any> Character.getOrNull(key: String): T? = values.getOrNull(key)
 
-fun Character.removeValue(key: String) = values.remove(key)
+fun Character.clear(key: String) = values.clear(key)

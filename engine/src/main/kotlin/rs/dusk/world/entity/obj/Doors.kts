@@ -3,6 +3,11 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
+import rs.dusk.engine.model.entity.character.clear
+import rs.dusk.engine.model.entity.character.inc
+import rs.dusk.engine.model.entity.character.player.delay.Delay
+import rs.dusk.engine.model.entity.character.player.delay.isDelayed
+import rs.dusk.engine.model.entity.character.player.delay.start
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.ObjectOption
 import rs.dusk.engine.model.entity.obj.Objects
@@ -11,12 +16,16 @@ import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.obj.replaceObject
 import rs.dusk.world.entity.obj.replaceObjectPair
+import rs.dusk.world.entity.player.ui.chat.message
 
 val objects: Objects by inject()
 val loader: FileLoader by inject()
 val logger = InlineLogger()
 
+// Delay in ticks before a door closes itself
 val doorCloseDelay = 500
+// Times a door can be closed consecutively before getting stuck
+val doorStuckCount = 5
 
 val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath")).mapKeys { it.key.toInt() }
 val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath")).mapKeys { it.key.toInt() }
@@ -24,6 +33,18 @@ val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPat
 fun GameObject.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
 
 ObjectOption where { obj.isDoor() && option == "Close" } then {
+    // Prevent players from trapping one another
+    if(player.isDelayed(Delay.DoorSlam)) {
+        if(player.inc("doorSlamCount") > doorStuckCount) {
+            player.message("The door seems to be stuck.")
+            return@then
+        }
+    } else {
+        player.clear("doorSlamCount")
+    }
+    player.start(Delay.DoorSlam)
+
+    // Close door
     val double = getDoubleDoor(obj, 1)
     if (double == null) {
         if (!objects.cancelTimer(obj)) {
@@ -34,7 +55,6 @@ ObjectOption where { obj.isDoor() && option == "Close" } then {
             logger.warn { "Unknown fence/double door ${option?.toLowerCase()} $obj" }
         }
     }
-
 }
 
 ObjectOption where { obj.isDoor() && option == "Open" } then {
