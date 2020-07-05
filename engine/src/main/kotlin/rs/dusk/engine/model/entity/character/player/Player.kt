@@ -9,6 +9,7 @@ import rs.dusk.engine.model.entity.character.CharacterValues
 import rs.dusk.engine.model.entity.character.LocalChange
 import rs.dusk.engine.model.entity.character.Movement
 import rs.dusk.engine.model.entity.character.contain.Container
+import rs.dusk.engine.model.entity.character.player.delay.Delays
 import rs.dusk.engine.model.entity.character.update.Visuals
 import rs.dusk.engine.model.entity.character.update.visual.player.getAppearance
 import rs.dusk.engine.model.world.Tile
@@ -29,7 +30,8 @@ class Player(
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
     val variables: MutableMap<Int, Any> = mutableMapOf(),
-    @Transient override val values: CharacterValues = CharacterValues()
+    @Transient override val values: CharacterValues = CharacterValues(),
+    @Transient val delays: Delays = Delays()
 ) : Character {
 
     @Transient

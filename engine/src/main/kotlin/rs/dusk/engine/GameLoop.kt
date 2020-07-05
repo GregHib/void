@@ -50,6 +50,7 @@ class GameLoop(
 
     private fun loopSafe(tick: Long) {
         try {
+            GameLoop.tick = tick
             timedLoop(tick)
         } catch (t: Throwable) {
             logger.error(t) { "Error in game loop!" }
@@ -86,6 +87,7 @@ class GameLoop(
     }
 
     companion object {
+        var tick: Long = 0L
         private const val ENGINE_DELAY = 600L
         private const val MILLI_THRESHOLD = 5
     }
