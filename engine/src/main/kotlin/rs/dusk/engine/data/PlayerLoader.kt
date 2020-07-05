@@ -16,7 +16,7 @@ class PlayerLoader(strategy: StorageStrategy<Player>) : DataLoader<Player>(strat
     private val plane = getProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
 
-    fun loadPlayer(name: String, tile: Tile = this.tile): Player {
+    fun loadPlayer(name: String): Player {
         return super.load(name) ?: Player(id = -1, tile = tile)
     }
 }

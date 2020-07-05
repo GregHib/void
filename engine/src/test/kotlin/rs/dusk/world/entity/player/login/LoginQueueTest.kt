@@ -1,47 +1,48 @@
 package rs.dusk.world.entity.player.login
 
-import io.mockk.coVerifyOrder
 import io.mockk.every
 import io.mockk.mockk
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
-import kotlinx.coroutines.delay
+import io.mockk.spyk
+import io.mockk.verifyOrder
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.dsl.module
-import org.koin.test.get
-import org.koin.test.inject
 import rs.dusk.core.network.model.session.Session
+import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.entity.factory.PlayerFactory
+import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.script.ScriptMock
+import rs.dusk.engine.script.KoinMock
+import java.util.*
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
-internal class LoginQueueTest : ScriptMock() {
+internal class LoginQueueTest : KoinMock() {
 
-    val loginList: LoginList by inject()
-    lateinit var factory: PlayerFactory
+    lateinit var loginQueue: LoginQueue
     lateinit var bus: EventBus
+    lateinit var loader: PlayerLoader
+    lateinit var indexer: IndexAllocator
+    lateinit var queue: Queue<Pair<Player, Login>>
+    lateinit var attempts: MutableSet<String>
 
     override val modules = listOf(
         eventBusModule,
-        loginQueueModule,
-        module { single { factory } }
+        loginQueueModule
     )
 
     @BeforeEach
-    override fun setup() {
-        factory = mockk(relaxed = true)
-        super.setup()
-        bus = get()
+    fun setup() {
+        loader = mockk(relaxed = true)
+        bus = mockk(relaxed = true)
+        attempts = mutableSetOf()
+        queue = LinkedList()
+        indexer = mockk(relaxed = true)
+        loginQueue = spyk(LoginQueue(loader, bus, 25, attempts, queue, indexer))
     }
 
     @Test
@@ -49,77 +50,96 @@ internal class LoginQueueTest : ScriptMock() {
         // Given
         val session: Session = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
-        every { factory.spawn(any(), any(), any()) } returns async { player }
+        every { indexer.obtain() } returns 1
+        every { loader.loadPlayer(any()) } returns player
+        var result: LoginResponse? = null
+        val callback = { response: LoginResponse ->
+            result = response
+        }
+        val login = Login("Test", session, callback)
         // When
-        val result = loginList.add("Test", session)
-        delay(10)
-        bus.emit(Tick)
+        loginQueue.add(login)?.await()
+        loginQueue.tick()
         // Then
-        assertEquals(LoginResponse.Success(player), result.await())
+        assertEquals(LoginResponse.Success(player), result)
     }
 
     @Test
     fun `Login world full`() = runBlocking {
         // Given
-        val session: Session = mockk(relaxed = true)
-        every { factory.spawn(any(), any(), any()) } returns async { null }
+        every { indexer.obtain() } returns null
+        var result: LoginResponse? = null
+        val callback = { response: LoginResponse ->
+            result = response
+        }
+        val login = Login("Test", callback = callback)
         // When
-        val result = loginList.add("Test", session)
-        delay(10)
-        bus.emit(Tick)
+        loginQueue.add(login)?.await()
+        loginQueue.tick()
         // Then
-        assertEquals(LoginResponse.Full, result.await())
+        assertEquals(LoginResponse.WorldFull, result)
     }
 
     @Test
     fun `Login loading issue`() = runBlocking {
         // Given
-        val session: Session = mockk(relaxed = true)
+        every { indexer.obtain() } returns 1
         every {
-            factory.spawn(any(), any(), any())
-        } returns GlobalScope.async { throw IllegalStateException("Loading went wrong") }
+            loader.loadPlayer(any())
+        } throws(IllegalStateException("Loading went wrong"))
+        var result: LoginResponse? = null
+        val callback = { response: LoginResponse ->
+            result = response
+        }
+        val login = Login("Test", callback = callback)
         // When
-        val result = loginList.add("Test", session)
-        delay(10)
-        bus.emit(Tick)
+        loginQueue.add(login)?.await()
+        loginQueue.tick()
         // Then
-        assertEquals(LoginResponse.Failure, result.await())
-    }
-
-    @Test
-    fun `Add suspends`() = runBlocking {
-        // Given
-        every { factory.spawn(any(), any(), any()) } returns GlobalScope.async { null }
-        // When
-        val result = loginList.add("Test")
-        delay(10)
-        bus.emit(Tick)
-        // Then
-        assertEquals(LoginResponse.Full, result.await())
+        assertEquals(LoginResponse.CouldNotCompleteLogin, result)
     }
 
     @Test
     fun `Players are logged in request order`() = runBlocking {
         // Given
-        val player: Player = mockk(relaxed = true)
-        every { factory.spawn(any(), any(), any()) } answers {
+        val player1: Player = mockk(relaxed = true)
+        val player2: Player = mockk(relaxed = true)
+        every { loader.loadPlayer(any()) } answers {
             val name: String = arg(0)
-            GlobalScope.async { if (name == "Test1") player else null }
+            if(name == "Test1") player1 else player2
         }
-        val test2 = loginList.add("Test2")
-        delay(25)
-        val test1 = loginList.add("Test1")
+        var first = true
+        every { indexer.obtain() } answers {
+            if(first) {
+                first = false
+                1
+            } else {
+                -1
+            }
+        }
+        var result1: LoginResponse? = null
+        val callback1 = { response: LoginResponse ->
+            result1 = response
+        }
+        val login1 = Login("Test1", callback = callback1)
+        var result2: LoginResponse? = null
+        val callback2 = { response: LoginResponse ->
+            result2 = response
+        }
+        val login2 = Login("Test2", callback = callback2)
         // When
-        delay(100)
-        bus.emit(Tick)
+        val d1 = loginQueue.add(login2)
+        val d2 = loginQueue.add(login1)
+        d1?.await()
+        d2?.await()
+        loginQueue.tick()
         // Then
-        delay(50)
-        coVerifyOrder {
-            factory.spawn("Test2", null, null)
-            factory.spawn("Test1", null, null)
+        verifyOrder {
+            loader.loadPlayer("Test2")
+            loader.loadPlayer("Test1")
         }
-        assertEquals(LoginResponse.Success(player), test1.await())
-        assertEquals(LoginResponse.Full, test2.await())
+        assertEquals(LoginResponse.Success(player1), result1)
+        assertEquals(LoginResponse.Success(player2), result2)
     }
 
 }

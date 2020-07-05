@@ -8,7 +8,6 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.factory.PlayerFactory
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.engine.model.entity.index.update.visual.*
@@ -24,11 +23,10 @@ import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.player.login.LoginList
+import rs.dusk.world.entity.player.login.LoginQueue
 
-val factory: PlayerFactory by inject()
 val players: Players by inject()
-val login: LoginList by inject()
+val login: LoginQueue by inject()
 val bus: EventBus by inject()
 
 Command where { prefix == "kill" } then {

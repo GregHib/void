@@ -2,8 +2,6 @@ package rs.dusk.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import rs.dusk.core.io.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.CodecRepository
 import rs.dusk.core.network.codec.message.MessageReader
@@ -15,14 +13,15 @@ import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.event.EventBus
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
+import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.player.login.LoginList
+import rs.dusk.world.entity.player.login.Login
 import rs.dusk.world.entity.player.login.LoginResponse
 
 /**
@@ -33,38 +32,39 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
-    val login: LoginList by inject()
+    val bus: EventBus by inject()
     val repository: CodecRepository by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: GameLoginMessage) {
-	    val channel = ctx.channel()
-	    val pipeline = ctx.pipeline()
-	    val keyPair = IsaacKeyPair(msg.isaacKeys)
-	    
-	    channel.setCodec(repository.get(LoginCodec::class))
-	    pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
+        val channel = ctx.channel()
+        val pipeline = ctx.pipeline()
+        val keyPair = IsaacKeyPair(msg.isaacKeys)
 
-        GlobalScope.launch {
-            val session = ctx.channel().getSession()
-            when (val response = login.add(msg.username, session).await()) {
-                LoginResponse.Full -> TODO()
-                LoginResponse.Failure -> logger.warn { "Unable to load player '${msg.username}'." }
-                is LoginResponse.Success -> {
-                    pipeline.writeAndFlush(GameLoginDetails(2, response.player.index, response.player.name))
-	
-                    with(pipeline) {
-                        replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher))
-                        replace("message.decoder", OpcodeMessageDecoder())
-                        replace("message.reader", MessageReader())
-                        replace("message.encoder", GenericMessageEncoder(PacketBuilder(keyPair.outCipher)))
-                    }
-	                
-	                channel.setCodec(repository.get(GameCodec::class))
+        channel.setCodec(repository.get(LoginCodec::class))
+        pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
 
-                    sessions.send(session, msg)
+        val session = ctx.channel().getSession()
+
+        val callback: (LoginResponse) -> Unit = { response ->
+            if (response is LoginResponse.Success) {
+                val player = response.player
+                pipeline.writeAndFlush(GameLoginDetails(2, player.index, msg.username))
+
+                with(pipeline) {
+                    replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher))
+                    replace("message.decoder", OpcodeMessageDecoder())
+                    replace("message.reader", MessageReader())
+                    replace("message.encoder", GenericMessageEncoder(PacketBuilder(keyPair.outCipher)))
                 }
+
+                channel.setCodec(repository.get(GameCodec::class))
+
+                sessions.send(session, msg)
+            } else {
+                pipeline.writeAndFlush(GameLoginConnectionResponseMessage(response.code))
             }
         }
-    }
 
+        bus.emit(Login(msg.username, session, callback))
+    }
 }

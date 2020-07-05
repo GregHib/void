@@ -7,7 +7,6 @@ import org.koin.test.mock.declare
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.event.eventBusModule
-import rs.dusk.engine.model.entity.factory.entityFactoryModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
@@ -38,7 +37,6 @@ internal class MapReaderTest : KoinMock() {
             collisionModule,
             eventBusModule,
             entityListModule,
-            entityFactoryModule,
             locationModule
         )
     }
