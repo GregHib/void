@@ -29,6 +29,12 @@ class Objects(
         return removed.getOrPut(id) { mutableSetOf() }.add(gameObject)
     }
 
+    override fun clear(chunk: Chunk) {
+        super.clear(chunk)
+        added.remove(chunk)
+        removed.remove(chunk)
+    }
+
     fun setTimer(gameObject: GameObject, job: Job) {
         timers[gameObject] = job
     }
@@ -69,9 +75,10 @@ class Objects(
         return set
     }
 
+    fun getBase(chunk: Chunk): Set<GameObject>? = chunks[chunk]
+
     fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk]
 
     fun getRemoved(chunk: Chunk): Set<GameObject>? = removed[chunk]
-
 
 }

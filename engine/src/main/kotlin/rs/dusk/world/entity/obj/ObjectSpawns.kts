@@ -39,7 +39,8 @@ Startup then {
 MapLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { gameObject ->
-        spawn(gameObject)
+        objects.add(gameObject)
+        bus.emit(Registered(gameObject))
     }
 }
 
@@ -48,7 +49,7 @@ MapLoaded then {
  */
 SpawnObject then {
     val gameObject = GameObject(id, tile, type, rotation, owner)
-    spawn(gameObject)
+    spawnCustom(gameObject)
     // Revert
     if (ticks >= 0) {
         objects.setTimer(gameObject, scheduler.add {
@@ -70,7 +71,7 @@ fun despawn(gameObject: GameObject) {
     bus.emit(Unregistered(gameObject))
 }
 
-fun spawn(gameObject: GameObject) {
+fun spawnCustom(gameObject: GameObject) {
     if (gameObject.id == -1) {
         val removal =
             objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }

@@ -19,6 +19,10 @@ interface BatchList<T : Entity> {
         return tile.remove(entity)
     }
 
+    fun clear(chunk: Chunk) {
+        chunks.remove(chunk)
+    }
+
     operator fun get(tile: Tile): Set<T> = get(tile.chunk)
 
     operator fun get(chunk: Chunk): Set<T> = chunks[chunk] ?: emptySet()

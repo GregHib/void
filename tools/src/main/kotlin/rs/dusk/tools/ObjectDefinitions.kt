@@ -18,7 +18,8 @@ object ObjectDefinitions {
 //        println(decoder.get(3))
 //        println(decoder.get(1531))
 //        decoder.findMatchingModels(23917)
-        decoder.findMatchingName("Long hall door")
+//        decoder.findMatchingName("Long hall door")
+        decoder.findMatchingSize(3, 2)
     }
 
     fun ObjectDecoder.findMatchingName(name: String) {
@@ -29,6 +30,16 @@ object ObjectDefinitions {
             }
         }
     }
+
+    fun ObjectDecoder.findMatchingSize(width: Int, height: Int) {
+        for (i in 0 until size) {
+            val def = get(i) ?: continue
+            if(def.modelIds != null && def.sizeX == width && def.sizeY == height) {
+                println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
+            }
+        }
+    }
+
     fun ObjectDecoder.findMatchingModels(id: Int) {
         val original = get(id)!!
         for (i in 0 until size) {

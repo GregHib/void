@@ -2,7 +2,6 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import rs.dusk.cache.definition.decoder.NPCDecoder
-import rs.dusk.engine.client.send
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -12,7 +11,7 @@ import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.character.player.command.Command
 import rs.dusk.engine.model.entity.character.update.visual.*
 import rs.dusk.engine.model.entity.character.update.visual.player.*
-import rs.dusk.engine.model.entity.item.offset
+import rs.dusk.engine.model.world.DynamicMaps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
@@ -145,10 +144,10 @@ Command where { prefix == "run" } then {
 
 Command where { prefix == "test" } then {
     val maps: DynamicMaps = get()
-    maps.set(player.tile.chunk, player.tile.plane, player.tile.chunk, rotation = 1)
+    maps.set(player.tile.chunk, player.tile.chunk, rotation = 2)
 }
 
 Command where { prefix == "test2" } then {
     val maps: DynamicMaps = get()
-    maps.remove(player.tile.chunk, player.tile.plane)
+    maps.remove(player.tile.chunk)
 }
