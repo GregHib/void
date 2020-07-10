@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.EventBuffer
 import rs.dusk.engine.model.entity.index.npc.NPCOption
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.path.PathResult
@@ -22,7 +22,7 @@ class NPCOptionMessageHandler : GameMessageHandler<NPCOptionMessage>() {
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val npcs: NPCs by inject()
-    val bus: EventBus by inject()
+    val buffer: EventBuffer by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: NPCOptionMessage) {
         val session = ctx.channel().getSession()
@@ -38,7 +38,7 @@ class NPCOptionMessageHandler : GameMessageHandler<NPCOptionMessage>() {
         val selectedOption = options[index]//TODO is null a valid action? What to do about "*"'s?
         player.approach(npc) { result ->
             val partial = result is PathResult.Success.Partial
-            bus.emit(NPCOption(player, npc, selectedOption, partial))
+            buffer.emitLater(NPCOption(player, npc, selectedOption, partial))
         }
     }
 

@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.event.EventBuffer
 import rs.dusk.engine.model.entity.obj.ObjectOption
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.path.PathResult
@@ -22,7 +22,7 @@ class ObjectOptionMessageHandler : GameMessageHandler<ObjectOptionMessage>() {
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val objects: Objects by inject()
-    val bus: EventBus by inject()
+    val buffer: EventBuffer by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: ObjectOptionMessage) {
         val session = ctx.channel().getSession()
@@ -40,7 +40,7 @@ class ObjectOptionMessageHandler : GameMessageHandler<ObjectOptionMessage>() {
         val selectedOption = options[index]
         player.approach(loc) { result ->
             val partial = result is PathResult.Success.Partial
-            bus.emit(ObjectOption(player, loc, selectedOption, partial))
+            buffer.emitLater(ObjectOption(player, loc, selectedOption, partial))
         }
     }
 

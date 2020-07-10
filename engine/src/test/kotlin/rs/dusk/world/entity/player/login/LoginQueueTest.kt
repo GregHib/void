@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.IndexAllocator
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.script.KoinMock
@@ -31,7 +31,7 @@ internal class LoginQueueTest : KoinMock() {
     lateinit var attempts: MutableSet<String>
 
     override val modules = listOf(
-        eventBusModule,
+        eventModule,
         loginQueueModule
     )
 

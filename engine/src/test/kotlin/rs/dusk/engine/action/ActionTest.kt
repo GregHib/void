@@ -8,7 +8,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.script.KoinMock
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
@@ -18,7 +18,7 @@ import kotlin.coroutines.resumeWithException
 internal class ActionTest : KoinMock() {
     lateinit var action: Action
 
-    override val modules = listOf(eventBusModule)
+    override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {

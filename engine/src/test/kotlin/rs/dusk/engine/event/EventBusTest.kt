@@ -23,7 +23,7 @@ internal class EventBusTest : KoinMock() {
         companion object : EventCompanion<TestEvent>
     }
 
-    override val modules = listOf(eventBusModule)
+    override val modules = listOf(eventModule)
 
     @Test
     fun `Then action`() {

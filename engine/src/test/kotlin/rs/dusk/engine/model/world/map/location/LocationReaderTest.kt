@@ -9,7 +9,7 @@ import org.koin.test.get
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.definition.decoder.ObjectDecoder
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
@@ -28,7 +28,7 @@ internal class LocationReaderTest : KoinMock() {
     lateinit var objects: Objects
     val region = Tile(0, 0)
 
-    override val modules = listOf(eventBusModule, cacheDefinitionModule)
+    override val modules = listOf(eventModule, cacheDefinitionModule)
 
     @BeforeEach
     fun setup() {

@@ -12,7 +12,7 @@ import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
@@ -53,7 +53,7 @@ object Dusk {
             slf4jLogger()
             modules(
                 codecRepositoryModule,
-                eventBusModule,
+                eventModule,
                 cacheModule,
                 fileLoaderModule,
                 ymlPlayerModule/*, sqlPlayerModule*/,

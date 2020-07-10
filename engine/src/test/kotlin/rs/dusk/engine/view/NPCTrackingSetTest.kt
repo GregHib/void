@@ -5,7 +5,7 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
@@ -19,7 +19,7 @@ import rs.dusk.engine.script.KoinMock
 internal class NPCTrackingSetTest : KoinMock() {
     lateinit var set: NPCTrackingSet
 
-    override val modules = listOf(eventBusModule)
+    override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {

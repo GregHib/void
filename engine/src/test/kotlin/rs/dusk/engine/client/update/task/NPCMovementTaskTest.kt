@@ -4,7 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.index.Movement
 import rs.dusk.engine.model.entity.index.npc.NPC
@@ -23,7 +23,7 @@ import java.util.*
  */
 internal class NPCMovementTaskTest : KoinMock() {
 
-    override val modules = listOf(eventBusModule, entityListModule)
+    override val modules = listOf(eventModule, entityListModule)
 
     lateinit var task: NPCMovementTask
     lateinit var movement: Movement

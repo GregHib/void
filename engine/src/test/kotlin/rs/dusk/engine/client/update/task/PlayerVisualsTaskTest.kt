@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.Players
@@ -35,7 +35,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
     private val encoderModule = module {
         single { spyk(PlayerVisualsTask(players, arrayOf(encoder), addMasks)) }
     }
-    override val modules = listOf(eventBusModule, entityListModule, encoderModule)
+    override val modules = listOf(eventModule, entityListModule, encoderModule)
 
     @Test
     fun `Run runs all in parallel`() {

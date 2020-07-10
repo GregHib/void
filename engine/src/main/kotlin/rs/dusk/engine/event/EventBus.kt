@@ -2,12 +2,15 @@ package rs.dusk.engine.event
 
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
+import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.index.player.PlayerEvent
+import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.utility.get
 import kotlin.reflect.KClass
 
-@Suppress("USELESS_CAST")
-val eventBusModule = module {
+val eventModule = module {
     single { EventBus() }
+    single { EventBuffer(getProperty("eventBufferLimit"), get()) }
 }
 
 /**

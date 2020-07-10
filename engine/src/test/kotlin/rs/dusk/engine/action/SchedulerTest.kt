@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
@@ -19,7 +19,7 @@ import kotlin.coroutines.resume
 internal class SchedulerTest : KoinMock() {
     lateinit var actions: Scheduler
 
-    override val modules = listOf(eventBusModule)
+    override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {

@@ -9,7 +9,7 @@ import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.send
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.script.KoinMock
@@ -20,7 +20,7 @@ internal class ChunkBatcherTest : KoinMock() {
 
     private lateinit var batcher: ChunkBatcher
 
-    override val modules = listOf(clientSessionModule, eventBusModule)
+    override val modules = listOf(clientSessionModule, eventModule)
 
     @BeforeEach
     fun setup() {

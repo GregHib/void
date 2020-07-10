@@ -6,7 +6,7 @@ import org.koin.core.get
 import org.koin.test.mock.declare
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.entity.obj.Location
 import rs.dusk.engine.model.entity.obj.Objects
@@ -35,7 +35,7 @@ internal class MapReaderTest : KoinMock() {
             cacheDefinitionModule,
             tileModule,
             collisionModule,
-            eventBusModule,
+            eventModule,
             entityListModule,
             locationModule
         )

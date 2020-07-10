@@ -3,6 +3,8 @@ package rs.dusk.engine.event
 object Priority {
     private var counter = 100
     val LOGIN_QUEUE = counter--
+    val EVENT_PROCESS = counter--
+    val ACTION_PROCESS = counter--
     val VIEWPORT = counter--
     val PLAYER_MOVEMENT = counter--
     val NPC_MOVEMENT = counter--

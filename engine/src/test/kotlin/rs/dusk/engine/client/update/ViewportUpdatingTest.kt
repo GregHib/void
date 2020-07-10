@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.event.eventBusModule
+import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Player
@@ -27,7 +27,7 @@ import rs.dusk.engine.script.KoinMock
 internal class ViewportUpdatingTest : KoinMock() {
 
     override val modules = listOf(
-        eventBusModule,
+        eventModule,
         entityListModule,
         clientSessionModule
     )
