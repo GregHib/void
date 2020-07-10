@@ -12,7 +12,7 @@ import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
-import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec

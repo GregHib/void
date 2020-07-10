@@ -1,7 +1,7 @@
 package rs.dusk.world.entity.player
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.update.visual.player.name

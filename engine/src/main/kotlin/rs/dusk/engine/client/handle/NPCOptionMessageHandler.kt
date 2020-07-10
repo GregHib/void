@@ -3,7 +3,7 @@ package rs.dusk.engine.client.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
-import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.Sessions
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.NPCOptionMessage
 import rs.dusk.utility.inject

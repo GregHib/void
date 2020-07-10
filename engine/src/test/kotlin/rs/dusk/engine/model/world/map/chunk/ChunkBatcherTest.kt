@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.client.session.clientSessionModule
-import rs.dusk.engine.client.session.send
+import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.send
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.world.Chunk
@@ -63,7 +63,7 @@ internal class ChunkBatcherTest : KoinMock() {
     @Test
     fun `Send chunk update message`() {
         // Given
-        mockkStatic("rs.dusk.engine.client.session.ClientSessionsKt")
+        mockkStatic("rs.dusk.engine.client.SessionsKt")
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
         every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)
@@ -81,7 +81,7 @@ internal class ChunkBatcherTest : KoinMock() {
     @Test
     fun `Send chunk clear message`() {
         // Given
-        mockkStatic("rs.dusk.engine.client.session.ClientSessionsKt")
+        mockkStatic("rs.dusk.engine.client.SessionsKt")
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
         every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)

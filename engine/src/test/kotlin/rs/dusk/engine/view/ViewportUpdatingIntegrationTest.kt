@@ -8,8 +8,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.core.get
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.ViewportUpdating
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.Character

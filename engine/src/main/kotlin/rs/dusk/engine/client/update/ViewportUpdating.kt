@@ -4,7 +4,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.viewport.Spiral
 import rs.dusk.engine.event.Priority.VIEWPORT
 import rs.dusk.engine.model.engine.task.EngineTask

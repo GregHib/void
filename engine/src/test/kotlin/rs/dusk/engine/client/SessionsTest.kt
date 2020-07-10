@@ -9,7 +9,6 @@ import org.koin.test.inject
 import org.koin.test.mock.declareMock
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.client.session.ClientSessions
 import rs.dusk.engine.client.verify.ClientVerification
 import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.model.entity.index.player.Player
@@ -19,14 +18,14 @@ import rs.dusk.engine.script.KoinMock
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
-internal class ClientSessionsTest : KoinMock() {
+internal class SessionsTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        loadModules(module { single { ClientSessions() } }, clientVerificationModule)
+        loadModules(module { single { Sessions() } }, clientVerificationModule)
     }
 
-    val sessions: ClientSessions by inject()
+    val sessions: Sessions by inject()
 
     @Test
     fun `Register player`() {

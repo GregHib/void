@@ -9,8 +9,8 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.LocalChange
 import rs.dusk.engine.model.entity.index.RegionChange

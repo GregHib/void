@@ -8,8 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.session.Sessions
-import rs.dusk.engine.client.session.clientSessionModule
+import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.event.eventBusModule
 import rs.dusk.engine.model.entity.index.TrackingSet
 import rs.dusk.engine.model.entity.index.npc.NPCs

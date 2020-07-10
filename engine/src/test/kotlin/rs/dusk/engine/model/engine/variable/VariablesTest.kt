@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.client.session.clientSessionModule
-import rs.dusk.engine.client.session.send
+import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.send
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerVariables
 import rs.dusk.engine.script.KoinMock

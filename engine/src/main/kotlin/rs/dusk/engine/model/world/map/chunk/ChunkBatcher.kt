@@ -2,7 +2,7 @@ package rs.dusk.engine.model.world.map.chunk
 
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.session.send
+import rs.dusk.engine.client.send
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.index.player.Player

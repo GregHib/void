@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.handle
 
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.engine.client.session.Sessions
+import rs.dusk.engine.client.Sessions
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.ScreenChangeMessage
 import rs.dusk.network.rs.codec.game.encode.message.WindowUpdateMessage

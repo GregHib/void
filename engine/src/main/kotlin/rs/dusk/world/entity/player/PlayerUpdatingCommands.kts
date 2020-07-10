@@ -2,7 +2,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import rs.dusk.cache.definition.decoder.NPCDecoder
-import rs.dusk.engine.client.session.send
+import rs.dusk.engine.client.send
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
