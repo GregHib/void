@@ -10,8 +10,7 @@ data class RegionPlane(val x: Int, val y: Int, val plane: Int) {
 
     val id by lazy { getId(x, y, plane) }
     val region by lazy { Region(x, y) }
-    val chunk by lazy { Chunk(x * 8, y * 8) }
-    val chunkPlane by lazy { ChunkPlane(x * 8, y * 8, plane) }
+    val chunk by lazy { Chunk(x * 8, y * 8, plane) }
     val tile by lazy { Tile(x * 64, y * 64, plane) }
 
     fun add(x: Int = 0, y: Int = 0, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)

@@ -35,7 +35,7 @@ Drop then {
     }
     val item = FloorItem(tile, id, amount, owner = owner?.name)
     items.add(item)
-    batcher.update(tile.chunkPlane, FloorItemAddMessage(tile.offset(), id, amount))
+    batcher.update(tile.chunk, FloorItemAddMessage(tile.offset(), id, amount))
     reveal(item, revealTicks, owner?.index ?: -1)
     disappear(item, disappearTicks)
     bus.emit(Registered(item))
@@ -60,7 +60,7 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
     // Floor item is mutable because we need to keep the reveal timer from before
     existing.amount = combined
     batcher.update(
-        existing.tile.chunkPlane,
+        existing.tile.chunk,
         FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined)
     )
     existing.disappear?.cancel("Floor item disappear time extended.")
@@ -77,7 +77,7 @@ fun disappear(item: FloorItem, ticks: Int) {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Removed
-                batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
+                batcher.update(item.tile.chunk, FloorItemRemoveMessage(item.tile.offset(), item.id))
                 items.remove(item)
             }
         }
@@ -94,7 +94,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
                 batcher.update(
-                    item.tile.chunkPlane,
+                    item.tile.chunk,
                     FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner)
                 )
             }
@@ -102,8 +102,8 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
     }
 }
 
-batcher.addInitial { player, chunkPlane, messages ->
-    items[chunkPlane].forEach {
+batcher.addInitial { player, chunk, messages ->
+    items[chunk].forEach {
         if(it.visible(player)) {
             messages += FloorItemAddMessage(it.tile.offset(), it.id, it.amount)
         }

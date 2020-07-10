@@ -1,7 +1,7 @@
 package rs.dusk.engine.model.entity.list
 
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.world.ChunkPlane
+import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -10,16 +10,16 @@ import rs.dusk.engine.model.world.Tile
  */
 interface BatchList<T : Entity> {
 
-    val chunks: MutableMap<ChunkPlane, MutableSet<T>>
+    val chunks: MutableMap<Chunk, MutableSet<T>>
 
-    fun add(entity: T) = chunks.getOrPut(entity.tile.chunkPlane) { mutableSetOf() }.add(entity)
+    fun add(entity: T) = chunks.getOrPut(entity.tile.chunk) { mutableSetOf() }.add(entity)
 
     fun remove(entity: T): Boolean {
-        val tile = chunks[entity.tile.chunkPlane] ?: return false
+        val tile = chunks[entity.tile.chunk] ?: return false
         return tile.remove(entity)
     }
 
-    operator fun get(tile: Tile): Set<T> = get(tile.chunkPlane)
+    operator fun get(tile: Tile): Set<T> = get(tile.chunk)
 
-    operator fun get(chunkPlane: ChunkPlane): Set<T> = chunks[chunkPlane] ?: emptySet()
+    operator fun get(chunk: Chunk): Set<T> = chunks[chunk] ?: emptySet()
 }

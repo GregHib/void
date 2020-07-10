@@ -9,7 +9,6 @@ data class Region(override val x: Int, override val y: Int) : Coordinates {
     constructor(id: Int) : this(id shr 8, id and 0xff)
 
     val id by lazy { getId(x, y) }
-    val chunk by lazy { Chunk(x * 8, y * 8) }
     val tile by lazy { Tile(x * 64, y * 64, 0) }
 
     override fun add(x: Int, y: Int) = copy(x = this.x + x, y = this.y + y)

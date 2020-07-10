@@ -33,5 +33,5 @@ data class Location(
 }
 
 fun Location.animate(id: Int) {
-    get<ChunkBatcher>().update(tile.chunkPlane, ObjectAnimationSpecificMessage(tile.offset(), id, type, rotation))
+    get<ChunkBatcher>().update(tile.chunk, ObjectAnimationSpecificMessage(tile.offset(), id, type, rotation))
 }

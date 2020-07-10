@@ -13,7 +13,7 @@ val objects: Objects by inject()
 val batcher: ChunkBatcher by inject()
 
 Command where { prefix == "spawn" } then {
-    batcher.sendChunk(player, player.tile.chunkPlane)
+    batcher.sendChunk(player, player.tile.chunk)
     val parts = content.split(" ")
     // 45506 22 1
     // 37121 0 2
@@ -22,13 +22,13 @@ Command where { prefix == "spawn" } then {
 }
 
 Command where { prefix == "despawn" } then {
-    batcher.sendChunk(player, player.tile.chunkPlane)
+    batcher.sendChunk(player, player.tile.chunk)
     val parts = content.split(" ")
     player.send(ObjectRemoveMessage(player.tile.offset(), parts.getOrNull(1)?.toInt() ?: 0, parts.getOrNull(2)?.toInt() ?: 0))
 }
 
 Command where { prefix == "get" } then {
-    val obj = objects[player.tile.chunkPlane]
+    val obj = objects[player.tile.chunk]
     obj?.filter { it.tile == player.tile }?.forEach {
         println(it)
     }

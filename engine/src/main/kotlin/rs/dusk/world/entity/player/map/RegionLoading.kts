@@ -85,10 +85,10 @@ fun needsRegionChange(player: Player): Boolean {
 fun updateRegion(player: Player, initial: Boolean) {
     val list = mutableListOf<Xtea>()
 
-    val chunkX = player.tile.chunk.x
-    val chunkY = player.tile.chunk.y
-
     val chunk = player.tile.chunk
+    val chunkX = chunk.x
+    val chunkY = chunk.y
+
     val size = player.viewport.size shr 4
     for(regionX in (chunk.x - size) / 8..(chunk.x + size) / 8) {
         for(regionY in (chunk.y - size) / 8..(chunk.y + size) / 8) {

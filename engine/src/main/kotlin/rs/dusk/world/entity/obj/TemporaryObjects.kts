@@ -63,11 +63,11 @@ ReplaceObject then {
 
 fun switch(original: Location, replacement: Location) {
     batcher.update(
-        original.tile.chunkPlane,
+        original.tile.chunk,
         ObjectRemoveMessage(original.tile.offset(), original.type, original.rotation)
     )
     batcher.update(
-        replacement.tile.chunkPlane,
+        replacement.tile.chunk,
         ObjectAddMessage(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
     )
     objects.removeTemp(original)
@@ -76,13 +76,13 @@ fun switch(original: Location, replacement: Location) {
     bus.emit(Registered(replacement))
 }
 
-batcher.addInitial { player, chunkPlane, messages ->
-    objects.getAdded(chunkPlane)?.forEach {
+batcher.addInitial { player, chunk, messages ->
+    objects.getAdded(chunk)?.forEach {
         if (it.visible(player)) {
             messages += ObjectAddMessage(it.tile.offset(), it.id, it.type, it.rotation)
         }
     }
-    objects.getRemoved(chunkPlane)?.forEach {
+    objects.getRemoved(chunk)?.forEach {
         if (it.visible(player)) {
             messages += ObjectRemoveMessage(it.tile.offset(), it.type, it.rotation)
         }

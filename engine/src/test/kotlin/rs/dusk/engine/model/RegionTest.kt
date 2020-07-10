@@ -92,15 +92,4 @@ internal class RegionTest {
         assertEquals(3072, tile.x)
         assertEquals(3456, tile.y)
     }
-
-    @Test
-    fun `Chunk test`() {
-        // Given
-        val region = Region(48, 54)
-        // When
-        val chunk = region.chunk
-        // Then
-        assertEquals(384, chunk.x)
-        assertEquals(432, chunk.y)
-    }
 }

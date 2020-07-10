@@ -63,7 +63,7 @@ SpawnObject then {
 
 fun despawn(location: Location) {
     batcher.update(
-        location.tile.chunkPlane,
+        location.tile.chunk,
         ObjectRemoveMessage(location.tile.offset(), location.type, location.rotation)
     )
     objects.removeTemp(location)
@@ -81,7 +81,7 @@ fun spawn(location: Location) {
         }
     } else {
         batcher.update(
-            location.tile.chunkPlane,
+            location.tile.chunk,
             ObjectAddMessage(location.tile.offset(), location.id, location.type, location.rotation)
         )
         objects.addTemp(location)

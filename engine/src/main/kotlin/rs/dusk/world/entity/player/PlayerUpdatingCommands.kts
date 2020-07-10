@@ -146,6 +146,6 @@ Command where { prefix == "run" } then {
 }
 
 Command where { prefix == "test1" } then {
-    get<ChunkBatcher>().sendChunk(player, player.tile.chunkPlane)
+    get<ChunkBatcher>().sendChunk(player, player.tile.chunk)
     player.send(ObjectAddMessage(player.tile.add(y = 1).offset(), 6, 10, 0))
 }

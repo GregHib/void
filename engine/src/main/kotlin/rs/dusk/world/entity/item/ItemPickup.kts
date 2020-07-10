@@ -23,7 +23,7 @@ FloorItemOption where { option == "Take" } then {
     val result = player.inventory.add(item.id, item.amount)
     if(result is ContainerResult.Addition.Added) {
         item.state = FloorItemState.Removed
-        batcher.update(item.tile.chunkPlane, FloorItemRemoveMessage(item.tile.offset(), item.id))
+        batcher.update(item.tile.chunk, FloorItemRemoveMessage(item.tile.offset(), item.id))
         items.remove(item)
         bus.emit(Unregistered(item))
     } else if(result is ContainerResult.Addition.Failure) {

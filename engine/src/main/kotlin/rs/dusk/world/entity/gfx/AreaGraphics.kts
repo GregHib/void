@@ -21,7 +21,7 @@ val batcher: ChunkBatcher by inject()
 SpawnGraphic then {
     val ag = AreaGraphic(tile, Graphic(id, delay, height, rotation, forceRefresh), owner)
     graphics.add(ag)
-    batcher.update(tile.chunkPlane, ag.toMessage())
+    batcher.update(tile.chunk, ag.toMessage())
     decay(ag)
     bus.emit(Registered(ag))
 }
@@ -47,8 +47,8 @@ fun decay(ag: AreaGraphic) {
 
 fun AreaGraphic.toMessage() = GraphicAreaMessage(tile.offset(), graphic.id, graphic.height, graphic.delay, graphic.rotation)
 
-batcher.addInitial { player, chunkPlane, messages ->
-    graphics[chunkPlane].forEach {
+batcher.addInitial { player, chunk, messages ->
+    graphics[chunk].forEach {
         if (it.visible(player)) {
             messages += it.toMessage()
         }

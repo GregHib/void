@@ -1,11 +1,11 @@
 package rs.dusk.engine.model.entity.proj
 
 import rs.dusk.engine.model.entity.list.BatchList
-import rs.dusk.engine.model.world.ChunkPlane
+import rs.dusk.engine.model.world.Chunk
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 30, 2020
  */
-class Projectiles(override val chunks: MutableMap<ChunkPlane, MutableSet<Projectile>> = mutableMapOf()) :
+class Projectiles(override val chunks: MutableMap<Chunk, MutableSet<Projectile>> = mutableMapOf()) :
     BatchList<Projectile>

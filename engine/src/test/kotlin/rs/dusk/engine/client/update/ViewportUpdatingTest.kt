@@ -154,10 +154,10 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[any<Chunk>()] } answers {
             val chunk: Chunk = arg(0)
             when {
-                chunk.equals(0, 0) -> setOf(same)
-                chunk.equals(-1, 0) -> setOf(west)
-                chunk.equals(-1, 1) -> setOf(northWest)
-                chunk.equals(0, 1) -> setOf(north)
+                chunk.equals(0, 0, 0) -> setOf(same)
+                chunk.equals(-1, 0, 0) -> setOf(west)
+                chunk.equals(-1, 1, 0) -> setOf(northWest)
+                chunk.equals(0, 1, 0) -> setOf(north)
                 else -> null
             }
         }
@@ -183,10 +183,11 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[any<Chunk>()] } answers {
             val chunk: Chunk = arg(0)
             when {
-                chunk.equals(0, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
-                chunk.equals(-1, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(-1, 1) -> setOf(mockk(relaxed = true))
-                chunk.equals(0, 1) -> setOf(mockk(relaxed = true))
+                chunk.equals(0, 0, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
+                chunk.equals(-1, 0, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(-1, 1, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(0, 1, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(0, 0, 1) -> setOf(mockk(relaxed = true))
                 else -> null
             }
         }

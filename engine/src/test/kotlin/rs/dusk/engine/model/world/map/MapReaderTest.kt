@@ -52,7 +52,7 @@ internal class MapReaderTest : KoinMock() {
         val objects: Objects = get()
         val map = mutableMapOf<Int, MutableList<Location>>()
         for(plane in 0 until 3) {
-            for (chunk in region.chunk.toPlane(plane).view(8, 8)) {
+            for (chunk in region.toPlane(plane).chunk.view(8, 8)) {
                 objects[chunk].forEach { loc ->
                     val list = map.getOrPut(loc.id) { mutableListOf() }
                     list.add(loc)

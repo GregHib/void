@@ -3,7 +3,7 @@ package rs.dusk.engine.model.entity.obj
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.cancel
 import rs.dusk.engine.model.entity.list.BatchList
-import rs.dusk.engine.model.world.ChunkPlane
+import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
 
 /**
@@ -11,20 +11,20 @@ import rs.dusk.engine.model.world.Tile
  * @since June 27, 2020
  */
 class Objects(
-    override val chunks: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
-    private val added: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
-    private val removed: HashMap<ChunkPlane, MutableSet<Location>> = hashMapOf(),
+    override val chunks: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
+    private val added: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
+    private val removed: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
     private val timers: MutableMap<Location, Job> = mutableMapOf()
 ) : BatchList<Location> {
 
     fun addTemp(location: Location) : Boolean {
-        val id = location.tile.chunkPlane
+        val id = location.tile.chunk
         removed[id]?.remove(location)
         return added.getOrPut(id) { mutableSetOf() }.add(location)
     }
 
     fun removeTemp(location: Location): Boolean {
-        val id = location.tile.chunkPlane
+        val id = location.tile.chunk
         added[id]?.remove(location)
         return removed.getOrPut(id) { mutableSetOf() }.add(location)
     }
@@ -41,37 +41,37 @@ class Objects(
     }
 
     override operator fun get(tile: Tile): Set<Location> {
-        return get(tile.chunkPlane).filter { it.tile == tile }.toSet()
+        return get(tile.chunk).filter { it.tile == tile }.toSet()
     }
 
     fun getType(tile: Tile, type: Int): Location? {
-        return get(tile.chunkPlane).firstOrNull { it.type == type && it.tile == tile }
+        return get(tile.chunk).firstOrNull { it.type == type && it.tile == tile }
     }
 
     operator fun get(tile: Tile, id: Int): Location? {
-        return get(tile.chunkPlane).firstOrNull { it.id == id && it.tile == tile }
+        return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
     }
 
-    override operator fun get(chunkPlane: ChunkPlane): Set<Location> {
+    override operator fun get(chunk: Chunk): Set<Location> {
         val set = mutableSetOf<Location>()
-        val base = chunks[chunkPlane]
+        val base = chunks[chunk]
         if(base != null) {
             set.addAll(base)
         }
-        val removed = getRemoved(chunkPlane)
+        val removed = getRemoved(chunk)
         if(removed != null) {
             set.removeAll(removed)
         }
-        val added = getAdded(chunkPlane)
+        val added = getAdded(chunk)
         if(added != null) {
             set.addAll(added)
         }
         return set
     }
 
-    fun getAdded(chunkPlane: ChunkPlane): Set<Location>? = added[chunkPlane]
+    fun getAdded(chunk: Chunk): Set<Location>? = added[chunk]
 
-    fun getRemoved(chunkPlane: ChunkPlane): Set<Location>? = removed[chunkPlane]
+    fun getRemoved(chunk: Chunk): Set<Location>? = removed[chunk]
 
 
 }

@@ -31,10 +31,11 @@ object Spiral {
     inline fun spiral(chunk: Chunk, radius: Int, action: (Chunk) -> Unit) {
         val x = chunk.x
         val y = chunk.y
+        val plane = chunk.plane
         for ((sx, sy) in STEPS[radius]) {
             val cx = x + sx
             val cy = y + sy
-            action.invoke(Chunk(cx, cy))
+            action.invoke(Chunk(cx, cy, plane))
         }
     }
 
