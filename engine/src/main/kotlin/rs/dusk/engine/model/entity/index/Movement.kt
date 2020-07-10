@@ -24,7 +24,7 @@ data class Movement(
     var delta: Tile = Tile.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
-    val steps: LinkedList<Direction> = LinkedList<Direction>(),
+    val steps: LinkedList<Direction> = LinkedList(),
     val directions: Array<Array<Direction?>> = Array(BreadthFirstSearch.GRAPH_SIZE) {
         Array<Direction?>(
             BreadthFirstSearch.GRAPH_SIZE

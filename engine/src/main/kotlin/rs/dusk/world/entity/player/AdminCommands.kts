@@ -53,6 +53,7 @@ Command where { prefix == "bot" } then {
                 val bot = response.player
                 bus.emit(PlayerRegistered(bot))
                 bus.emit(Registered(bot))
+                bot.viewport.loaded = true
                 bot.tele(tile.x, tile.y, tile.plane)
                 println("Calls $calls $success")
             }
