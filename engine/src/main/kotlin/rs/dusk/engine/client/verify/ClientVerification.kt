@@ -1,30 +1,51 @@
 package rs.dusk.engine.client.verify
 
+import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.network.rs.codec.game.MessageCompanion
 import rs.dusk.utility.get
+import kotlin.collections.set
 import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 09, 2020
  */
-abstract class ClientVerification {
+@Suppress("USELESS_CAST")
+val clientVerificationModule = module {
+    single { ClientVerification() }
+}
+
+class ClientVerification {
+    val verifications = mutableMapOf<KClass<*>, Verification<*>>()
+
     /**
      * Adds a [Verification] for messages of type [clazz]
      */
-    abstract fun <T : Message> add(clazz: KClass<T>, verification: Verification<T>)
+    fun <T : Message> add(clazz: KClass<T>, verification: Verification<T>) {
+        if (verifications.containsKey(clazz)) {
+            throw IllegalArgumentException("Duplicate client verifier $clazz.")
+        }
+        verifications[clazz] = verification
+    }
 
     /**
      * Returns [Verification] with matching [clazz]
      */
-    abstract fun <T : Message> get(clazz: KClass<T>): Verification<T>?
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Message> get(clazz: KClass<T>): Verification<T>? {
+        return verifications[clazz] as? Verification<T>
+    }
 
     /**
      * Runs [Verification] verification on [message]
      */
-    abstract fun <T : Message> verify(player: Player, clazz: KClass<T>, message: T)
+    fun <T : Message> verify(player: Player, clazz: KClass<T>, message: T) {
+        val verifier =
+            get(clazz) ?: throw IllegalArgumentException("No verification found for player $player - $message")
+        verifier.block(message, player)
+    }
 
     /**
      * Helper function for verifying messages
