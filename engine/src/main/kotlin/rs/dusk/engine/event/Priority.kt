@@ -5,8 +5,8 @@ object Priority {
     val LOGIN_QUEUE = counter--
     val EVENT_PROCESS = counter--
     val ACTION_PROCESS = counter--
-    val VIEWPORT = counter--
     val PLAYER_MOVEMENT = counter--
+    val VIEWPORT = counter--
     val NPC_MOVEMENT = counter--
     val PLAYER_VISUALS = counter--
     val NPC_VISUALS = counter--

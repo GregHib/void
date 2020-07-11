@@ -58,14 +58,7 @@ interface TrackingSet<T : Character> {
             if (total >= maximum) {
                 return false
             }
-            if (withinView(
-                    entity.tile.x,
-                    entity.tile.y,
-                    x,
-                    y,
-                    radius
-                )
-            ) {
+            if (withinView(entity.tile.x, entity.tile.y, x, y, radius)) {
                 track(entity, self)
             }
         }
