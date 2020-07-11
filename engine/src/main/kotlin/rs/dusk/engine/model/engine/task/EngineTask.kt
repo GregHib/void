@@ -3,7 +3,7 @@ package rs.dusk.engine.model.engine.task
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.engine.TickUpdate
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -12,7 +12,7 @@ import rs.dusk.engine.model.engine.Tick
 @Deprecated("Use scripts instead")
 abstract class EngineTask(priority: Int) : Runnable {
     init {
-        Tick priority priority then {
+        TickUpdate priority priority then {
             runBlocking {
                 run()
             }

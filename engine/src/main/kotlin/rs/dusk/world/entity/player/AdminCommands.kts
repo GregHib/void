@@ -1,3 +1,5 @@
+import rs.dusk.engine.action.Scheduler
+import rs.dusk.engine.action.delay
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -14,6 +16,7 @@ import rs.dusk.world.entity.player.login.LoginResponse
 import java.util.concurrent.atomic.AtomicInteger
 
 val bus: EventBus by inject()
+val scheduler: Scheduler by inject()
 
 Command where { prefix == "tele" || prefix == "tp" } then {
     if (content.contains(",")) {
@@ -43,19 +46,17 @@ Command where { prefix == "npc" } then {
 val botCounter = AtomicInteger(0)
 
 Command where { prefix == "bot" } then {
-    var calls = 0
-    var success = 0
     player.tile.view(4).forEach { tile ->
-        calls++
         val callback = { response: LoginResponse ->
             if (response is LoginResponse.Success) {
-                success++
                 val bot = response.player
                 bus.emit(PlayerRegistered(bot))
                 bus.emit(Registered(bot))
                 bot.viewport.loaded = true
-                bot.tele(tile.x, tile.y, tile.plane)
-                println("Calls $calls $success")
+                scheduler.add {
+                    delay(1)
+                    bot.tele(tile.x, tile.y, tile.plane)
+                }
             }
         }
         bus.emit(Login("Bot ${botCounter.getAndIncrement()}", callback = callback))

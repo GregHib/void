@@ -3,8 +3,6 @@ package rs.dusk.engine.action
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
-import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.PlayerEvent
@@ -24,14 +22,6 @@ class Action {
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
-
-    init {
-        Tick then {
-            if (suspension == Suspension.Tick) {
-                resume()
-            }
-        }
-    }
 
     /**
      * Whether there is currently an action which is paused
@@ -72,7 +62,11 @@ class Action {
      */
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = runBlocking {
         this@Action.cancel(type)
-        val coroutine = action.createCoroutine(this@Action, ActionContinuation)
+        val a2: suspend Action.() -> Unit = {
+            await<Unit>(Suspension.Tick)
+            action.invoke(this@Action)
+        }
+        val coroutine = a2.createCoroutine(this@Action, ActionContinuation)
         coroutine.resume(Unit)
     }
 
@@ -114,7 +108,8 @@ class Action {
 
 fun NPCEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = npc.action(type, action)
 
-fun PlayerEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = player.action(type, action)
+fun PlayerEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) =
+    player.action(type, action)
 
 fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
     this.action.run(type, action)
