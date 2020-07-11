@@ -64,8 +64,14 @@ Unregistered where { entity is Player } then {
     Region updating
  */
 
+Moved where { entity is Player && from.regionPlane != to.regionPlane } then {
+    val player = entity as Player
+    playerRegions[player.index - 1] = to.regionPlane.id
+}
+
 Moved where { entity is Player && needsRegionChange(entity) } then {
-    updateRegion(entity as Player, false)
+    val player = entity as Player
+    updateRegion(player, false)
 }
 
 fun needsRegionChange(player: Player): Boolean {

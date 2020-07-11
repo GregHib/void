@@ -61,10 +61,7 @@ class ViewportUpdating : EngineTask(VIEWPORT) {
      * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
      */
     fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
-        Spiral.spiral(
-            tile,
-            VIEW_RADIUS
-        ) { t ->
+        Spiral.spiral(tile, VIEW_RADIUS) { t ->
             val entities = list[t]
             if (entities != null && !set.track(entities, self)) {
                 return

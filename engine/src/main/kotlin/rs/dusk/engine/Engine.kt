@@ -4,10 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.engine.Startup
-import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.engine.TickInput
-import rs.dusk.engine.model.engine.TickUpdate
+import rs.dusk.engine.model.engine.*
 import kotlin.concurrent.fixedRateTimer
 import kotlin.system.measureTimeMillis
 
@@ -37,6 +34,9 @@ class Engine(private val bus: EventBus) {
                     supervisorScope {
                         withContext(Contexts.Engine + handler) {
                             bus.emit(TickInput)
+                        }
+                        withContext(Contexts.Engine + handler) {
+                            bus.emit(TickAction)
                         }
                         withContext(Contexts.Engine + handler) {
                             bus.emit(Tick)

@@ -149,7 +149,7 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, true)
-            updates.writeBytes(player.visuals.addition ?: continue)
+            updates.writeBytes(player.visuals.addition ?: continue)// TODO only needs appearance update first time
         }
         if (skip > -1) {
             writeSkip(sync, skip)

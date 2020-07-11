@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.engine.TickAction
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 import kotlin.coroutines.Continuation
@@ -50,7 +50,7 @@ internal class SchedulerTest : KoinMock() {
         actions.active.add(continuation)
         every { continuation.isActive } returns true
         // When
-        bus.emit(Tick)
+        bus.emit(TickAction)
         // Then
         verify {
             continuation.resume(Unit)
@@ -67,7 +67,7 @@ internal class SchedulerTest : KoinMock() {
         actions.active.add(continuation)
         every { continuation.isActive } returns false
         // When
-        bus.emit(Tick)
+        bus.emit(TickAction)
         // Then
         verify {
             continuation.resume(Unit)
@@ -84,7 +84,7 @@ internal class SchedulerTest : KoinMock() {
         actions.active.add(continuation)
         every { continuation.isCancelled } returns false
         // When
-        bus.emit(Tick)
+        bus.emit(TickAction)
         // Then
         verify {
             continuation.resume(Unit)
@@ -101,7 +101,7 @@ internal class SchedulerTest : KoinMock() {
         actions.active.add(continuation)
         every { continuation.isCompleted } returns false
         // When
-        bus.emit(Tick)
+        bus.emit(TickAction)
         // Then
         verify {
             continuation.resume(Unit)

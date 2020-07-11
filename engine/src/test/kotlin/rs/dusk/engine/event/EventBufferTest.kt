@@ -16,7 +16,7 @@ internal class EventBufferTest {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        buffer = EventBuffer(10)
+        buffer = EventBuffer(10, EventBus())
     }
 
     @Test
@@ -38,7 +38,7 @@ internal class EventBufferTest {
         buffer.emitLater(event)
         // Then
         assertTrue(buffer.buffered.contains(player))
-        assertTrue(buffer.buffered[player]!!.contains(event))
+        assertEquals(1, buffer.buffered[player]!!.size)
     }
 
     @Test
@@ -46,11 +46,11 @@ internal class EventBufferTest {
         // Given
         val event: PlayerEvent = mockk()
         every { event.player } returns player
-        buffer.buffered[player] = (0 until 10).map { mockk<PlayerEvent>() }.toMutableList()
+        buffer.buffered[player] = (0 until 10).map { mockk<() -> Unit>() }.toMutableList()
         // When
         buffer.emitLater(event)
         // Then
-        assertFalse(buffer.buffered[player]!!.contains(event))
+        assertEquals(10, buffer.buffered[player]!!.size)
     }
 
 }

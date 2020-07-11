@@ -63,7 +63,7 @@ class Action {
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = runBlocking {
         this@Action.cancel(type)
         val a2: suspend Action.() -> Unit = {
-            await<Unit>(Suspension.Tick)
+            delay()
             action.invoke(this@Action)
         }
         val coroutine = a2.createCoroutine(this@Action, ActionContinuation)

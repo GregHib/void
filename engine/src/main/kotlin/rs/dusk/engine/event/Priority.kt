@@ -4,8 +4,12 @@ object Priority {
     private var counter = 100
     val LOGIN_QUEUE = counter--
     val EVENT_PROCESS = counter--
+
     val ACTION_PROCESS = counter--
+    val SCHEDULE_PROCESS = counter--
+
     val PLAYER_MOVEMENT = counter--
+
     val VIEWPORT = counter--
     val NPC_MOVEMENT = counter--
     val PLAYER_VISUALS = counter--

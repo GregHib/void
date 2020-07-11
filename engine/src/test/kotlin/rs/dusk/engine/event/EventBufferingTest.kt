@@ -1,12 +1,15 @@
 package rs.dusk.engine.event
 
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import org.koin.test.mock.declareMock
-import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.engine.TickInput
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerEvent
 import rs.dusk.engine.model.entity.index.player.PlayerUnregistered
@@ -23,7 +26,7 @@ internal class EventBufferingTest : ScriptMock() {
     lateinit var buffer: EventBuffer
     lateinit var player: Player
 
-    lateinit var tickHandler: Tick.(Tick) -> Unit
+    lateinit var tickHandler: TickInput.(TickInput) -> Unit
     lateinit var unregisteredHandler: PlayerUnregistered.(PlayerUnregistered) -> Unit
 
     @BeforeEach
@@ -32,14 +35,14 @@ internal class EventBufferingTest : ScriptMock() {
             every { add<Unit, PlayerEvent>(any(), any()) } answers {
                 val clazz: KClass<Event<Unit>> = arg(0)
                 val handler: EventHandler<Unit, Event<Unit>> = arg(1)
-                if(Tick::class == clazz) {
+                if(TickInput::class == clazz) {
                     tickHandler = handler.action
                 } else {
                     unregisteredHandler = handler.action
                 }
             }
-            every { emit(Tick) } answers {
-                tickHandler.invoke(Tick, Tick)
+            every { emit(TickInput) } answers {
+                tickHandler.invoke(TickInput, TickInput)
             }
             every { emit(any<PlayerUnregistered>()) } answers {
                 val event: PlayerUnregistered = arg(0)
@@ -47,7 +50,7 @@ internal class EventBufferingTest : ScriptMock() {
             }
             every { emit(any<PlayerEvent>()) } returns Unit
         }
-        buffer = declare { spyk(EventBuffer(10)) }
+        buffer = declare { spyk(EventBuffer(10, EventBus())) }
         player = mockk()
         super.setup()
     }
@@ -55,15 +58,14 @@ internal class EventBufferingTest : ScriptMock() {
     @Test
     fun `Process events on tick`() {
         // Given
-        val event: PlayerEvent = mockk()
-        every { event.player } returns player
+        val event: () -> Unit = mockk(relaxed = true)
         buffer.buffered[player] = mutableListOf(event)
         // When
-        bus.emit(Tick)
+        bus.emit(TickInput)
         // Then
         verify {
-            bus.emit(Tick)
-            bus.emit(event)
+            bus.emit(TickInput)
+            event()
         }
         assertFalse(buffer.buffered[player]!!.contains(event))
     }
