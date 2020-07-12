@@ -5,10 +5,8 @@ import com.google.common.collect.HashBiMap
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.client.verify.ClientVerification
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.utility.get
-import rs.dusk.utility.inject
 import kotlin.reflect.KClass
 
 /**
@@ -25,7 +23,6 @@ class Sessions {
 
     private val logger = InlineLogger()
     val players = HashBiMap.create<Session, Player>()
-    val verification: ClientVerification by inject()
 
     /**
      * Links a client session with a player
@@ -76,16 +73,6 @@ class Sessions {
         val session = get(player) ?: return// logger.warn { "Unable to find session for player $player." }
         session.send(message)
     }
-
-    /**
-     * Sends [message] to the player linked with [session] via [ClientVerification]
-     */
-    fun <T : Message> send(session: Session, clazz: KClass<T>, message: T) {
-        val player = get(session) ?: return logger.warn { "Unable to find player for session $session." }
-        verification.verify(player, clazz, message)
-    }
-
-    inline fun <reified T : Message> send(session: Session, event: T) = send(session, T::class, event)
 }
 
 inline fun <reified T : Message> Player.send(update: T) = get<Sessions>().send(this, T::class, update)

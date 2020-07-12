@@ -1,5 +1,4 @@
 import rs.dusk.engine.client.send
-import rs.dusk.engine.client.verify.verify
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -14,10 +13,9 @@ import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
 import rs.dusk.engine.model.world.map.location.Xtea
 import rs.dusk.engine.model.world.map.location.Xteas
-import rs.dusk.network.rs.codec.game.decode.message.RegionLoadedMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
-import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.utility.inject
+import rs.dusk.world.entity.player.map.RegionInitialLoad
 import kotlin.math.abs
 
 /**
@@ -35,14 +33,8 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-GameLoginMessage verify { player ->
+RegionInitialLoad then {
     updateRegion(player, true)
-    bus.emit(PlayerRegistered(player))
-    bus.emit(Registered(player))
-}
-
-RegionLoadedMessage verify { player ->
-    player.viewport.loaded = true
 }
 
 /*

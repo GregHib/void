@@ -19,7 +19,8 @@ class RegionLoadedMessageHandler : GameMessageHandler<RegionLoadedMessage>() {
 
     override fun handle(ctx: ChannelHandlerContext, msg: RegionLoadedMessage) {
         val session = ctx.channel().getSession()
-        sessions.send(session, msg)
+        val player = sessions.get(session) ?: return
+        player.viewport.loaded = true
     }
 
 }

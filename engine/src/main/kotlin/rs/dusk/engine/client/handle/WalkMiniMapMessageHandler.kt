@@ -3,6 +3,8 @@ package rs.dusk.engine.client.handle
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.model.entity.index.walkTo
+import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.WalkMiniMapMessage
 import rs.dusk.utility.inject
@@ -17,7 +19,14 @@ class WalkMiniMapMessageHandler : GameMessageHandler<WalkMiniMapMessage>() {
 
     override fun handle(ctx: ChannelHandlerContext, msg: WalkMiniMapMessage) {
         val session = ctx.channel().getSession()
-        sessions.send(session, msg)
+        val player = sessions.get(session) ?: return
+        val (x, y) = msg
+        player.walkTo(player.tile.copy(x = x, y = y)) { result ->
+            if (result is PathResult.Failure) {
+                println("You can't reach that.")
+                return@walkTo
+            }
+        }
     }
 
 }

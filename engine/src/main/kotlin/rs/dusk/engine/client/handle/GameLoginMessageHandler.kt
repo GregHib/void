@@ -14,6 +14,8 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.model.entity.Registered
+import rs.dusk.engine.model.entity.index.player.PlayerRegistered
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler
@@ -23,6 +25,7 @@ import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.login.Login
 import rs.dusk.world.entity.player.login.LoginResponse
+import rs.dusk.world.entity.player.map.RegionInitialLoad
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -59,7 +62,9 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
                 channel.setCodec(repository.get(GameCodec::class))
 
-                sessions.send(session, msg)
+                bus.emit(RegionInitialLoad(player))
+                bus.emit(PlayerRegistered(player))
+                bus.emit(Registered(player))
             } else {
                 pipeline.writeAndFlush(GameLoginConnectionResponseMessage(response.code))
             }

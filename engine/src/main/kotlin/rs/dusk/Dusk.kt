@@ -9,7 +9,6 @@ import rs.dusk.engine.Engine
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.updatingTasksModule
-import rs.dusk.engine.client.verify.clientVerificationModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
@@ -62,7 +61,6 @@ object Dusk {
                 scriptModule,
                 clientSessionModule,
 	            gameServerFactory,
-                clientVerificationModule,
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,
