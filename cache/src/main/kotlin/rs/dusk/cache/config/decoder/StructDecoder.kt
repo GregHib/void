@@ -9,7 +9,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class StrutDecoder : ConfigDecoder<StructDefinition>(STRUTS) {
+class StructDecoder : ConfigDecoder<StructDefinition>(STRUTS) {
 
     override fun create() = StructDefinition()
 

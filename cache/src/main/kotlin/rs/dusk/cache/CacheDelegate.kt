@@ -44,7 +44,7 @@ val cacheConfigModule = module {
     single { PlayerVariableParameterDecoder() }
     single { QuestDecoder }
     single { RenderAnimationDecoder() }
-    single { StrutDecoder() }
+    single { StructDecoder() }
     single { UnderlayDecoder() }
     single { WorldMapInfoDecoder() }
 }
