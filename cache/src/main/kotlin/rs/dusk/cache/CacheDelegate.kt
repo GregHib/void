@@ -113,7 +113,6 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
         return delegate.index(indexId).archive(archiveId)?.fileIds()?.size ?: 0
     }
 
-    // TODO is this a duplicate of archiveCount?
     override fun lastFileId(indexId: Int, archive: Int): Int {
         return delegate.index(indexId).archive(archive)?.last()?.id ?: -1
     }

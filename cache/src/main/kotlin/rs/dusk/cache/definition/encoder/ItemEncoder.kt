@@ -44,7 +44,7 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeByte(7)
             var translateX = definition.spriteTranslateX
             if (translateX < -32767) {
-                translateX += 65536// TODO check
+                translateX += 65536
             }
             writeShort(translateX)
         }
@@ -53,7 +53,7 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeByte(8)
             var translateY = definition.spriteTranslateY
             if (translateY < -32767) {
-                translateY += 65536// TODO check
+                translateY += 65536
             }
             writeShort(translateY)
         }
