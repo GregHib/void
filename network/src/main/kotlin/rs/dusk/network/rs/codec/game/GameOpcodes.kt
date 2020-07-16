@@ -102,23 +102,23 @@ object GameOpcodes {
     /* Encode */
 
     const val PLAYER_OPTION = 1
-    const val INTERFACE_SPRITE = 2//TODO("Test")
+    const val INTERFACE_SPRITE = 2
     const val LOGIN_DETAILS = 2
     const val LOBBY_DETAILS = 2
     const val INTERFACE_COMPONENT_SETTINGS = 3
-    const val INTERFACE_REFRESH = 4//TODO("Test") or WINDOW_REFRESH?
+    const val INTERFACE_REFRESH = 4
     const val INTERFACE_OPEN = 5
     const val NPC_UPDATING = 6
-    const val INTERFACE_SCROLL_VERTICAL = 8//TODO("Test")
+    const val INTERFACE_SCROLL_VERTICAL = 8
     const val INTERFACE_ITEM = 9
     const val OBJECT_PRE_FETCH = 11
     const val FRIENDS_CHAT_UPDATE = 12
     const val RUN_ENERGY = 13
     const val CLIENT_VARBIT = 14
     const val FLOOR_ITEM_REMOVE = 16
-    const val INTERFACE_PLAYER_BODY = 18//TODO("Test")
+    const val INTERFACE_PLAYER_BODY = 18
     const val FRIENDS_QUICK_CHAT_MESSAGE = 20
-    const val FLOOR_ITEM_CLEAR = 26
+    const val CHUNK_CLEAR = 26
     const val INTERFACE_ANIMATION = 23
     const val FRIEND_LIST_APPEND = 24
     const val CLIENT_PING = 25
@@ -131,7 +131,7 @@ object GameOpcodes {
     const val GRAPHIC_AREA = 41
     const val PRIVATE_QUICK_CHAT_FROM = 42
     const val REGION = 43
-    const val INTERFACE_CUSTOM_HEAD = 44//TODO("Test")
+    const val INTERFACE_CUSTOM_HEAD = 44
     const val OBJECT_REMOVE = 45
     const val UPDATE_CHUNK = 46
     const val OBJECT_ANIMATION_SPECIFIC = 47
@@ -140,7 +140,7 @@ object GameOpcodes {
     const val LOGOUT = 51
     const val CLIENT_VARC_STR = 54
     const val IGNORE_LIST = 57
-    const val INTERFACE_MODEL = 58//TODO("Test")
+    const val INTERFACE_MODEL = 58
     const val LOGOUT_LOBBY = 59
     const val FLOOR_ITEM_REVEAL = 60
     const val PROJECTILE_ADD = 62
@@ -163,16 +163,16 @@ object GameOpcodes {
     const val OBJECT_CUSTOMISE = 99
     const val CLIENT_VARP = 101
     const val CHAT = 102
-    const val INTERFACE_COMPONENT_POSITION = 104//TODO("Test")
+    const val INTERFACE_COMPONENT_POSITION = 104
     const val IGNORE_LIST_UPDATE = 105
-    const val INTERFACE_PLAYER_OTHER_BODY = 109//TODO("Test")
+    const val INTERFACE_PLAYER_OTHER_BODY = 109
     const val CLIENT_VARC = 111
     const val CLIENT_VARC_LARGE = 112
     const val INTERFACE_PLAYER_HEAD = 114
     const val INTERFACE_COMPONENT_VISIBILITY = 117
     const val SOUND_AREA = 119
     const val PRIVATE_CHAT_FROM = 120
-    const val INTERFACE_COMPONENT_ORIENTATION = 122//TODO("Test")
+    const val INTERFACE_COMPONENT_ORIENTATION = 122
     const val DYNAMIC_REGION = 128
     const val PRIVATE_STATUS = 134
     const val FRIEND_LIST_DISCONNECT = 135

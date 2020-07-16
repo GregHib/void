@@ -12,7 +12,6 @@ class ToolkitPreferencesMessageDecoder : GameMessageDecoder<ToolkitPreferencesMe
 
     override fun decode(packet: PacketReader): ToolkitPreferencesMessage {
         packet.readByte()//0
-        //TODO
         return ToolkitPreferencesMessage()
     }
 

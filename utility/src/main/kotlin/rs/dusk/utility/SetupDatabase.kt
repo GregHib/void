@@ -13,7 +13,6 @@ import org.jetbrains.exposed.sql.transactions.transaction
 object SetupDatabase {
     @JvmStatic
     fun main(args: Array<String>) {
-        // TODO get database settings from somewhere else
         Database.connect("jdbc:postgresql://localhost:5432/testdb", driver = "org.postgresql.Driver", user = "postgres", password = "abc123")
 
         transaction {

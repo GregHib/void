@@ -97,7 +97,6 @@ class LoginQueue(
         if(index == null) {
             return LoginResponse.WorldFull
         }
-        // TODO check credentials
         try {
             val player = loader.loadPlayer(attempt.name)
             player.index = index

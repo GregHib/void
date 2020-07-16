@@ -22,7 +22,7 @@ fun Player.container(container: Containers): Container {
         Container(
             decoder = get(),
             capacity = get<ItemContainerDecoder>().getSafe(container.id).length,
-            stackMode = if (container == Containers.Bank) StackMode.Always else StackMode.Normal// TODO stack mode
+            stackMode = if (container == Containers.Bank) StackMode.Always else StackMode.Normal
         )
     }
 }

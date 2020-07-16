@@ -10,7 +10,6 @@ import rs.dusk.network.rs.codec.game.decode.message.MovedMouseMessage
 @PacketMetaData(opcodes = [MOVE_MOUSE], length = VARIABLE_LENGTH_BYTE)
 class MovedMouseMessageDecoder : GameMessageDecoder<MovedMouseMessage>() {
 
-    //TODO("https://www.rune-server.ee/runescape-development/rs2-server/informative-threads/167581-flagged-accounts-mouse-detection.html")
     override fun decode(packet: PacketReader) = MovedMouseMessage()
 
 }

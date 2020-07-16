@@ -28,8 +28,6 @@ NPCSpawn then {
     val size = Size(definition.size, definition.size)
     val npc = NPC(id, tile, size)
     val collisions: Collisions = rs.dusk.utility.get()
-    // TODO get traversal type from definitions
-    // TODO get collides with entities from somewhere?
     npc.movement.traversal = when (definition.size) {
         1 -> SmallTraversal(TraversalType.Land, true, collisions)
         2 -> MediumTraversal(TraversalType.Land, true, collisions)

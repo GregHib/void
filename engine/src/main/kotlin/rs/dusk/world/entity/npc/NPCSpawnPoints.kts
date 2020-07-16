@@ -31,6 +31,5 @@ MapLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { spawn ->
         val npc = bus.emit(NPCSpawn(spawn.id, spawn.tile, spawn.direction))
-        // TODO respawn on death
     }
 }

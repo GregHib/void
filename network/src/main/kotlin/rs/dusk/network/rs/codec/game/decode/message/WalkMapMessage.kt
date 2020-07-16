@@ -10,6 +10,5 @@ import rs.dusk.network.rs.codec.game.MessageCompanion
  * @param running Whether the client is displaying the player as running
  */
 data class WalkMapMessage(val x: Int, val y: Int, val running: Boolean) : Message {
-    //TODO test running
     companion object : MessageCompanion<WalkMapMessage>()
 }

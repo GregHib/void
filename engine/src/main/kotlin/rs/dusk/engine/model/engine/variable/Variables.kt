@@ -21,7 +21,6 @@ class Variables {
     val variables = mutableMapOf<Int, Variable<*>>()
 
     fun removed(player: Player) {
-        // TODO saving, ideally only persistent values are serialized in Player.kt
         player.variables.forEach { (hash, value) ->
             val variable = variables[hash]!!
             if (variable.persistent) {

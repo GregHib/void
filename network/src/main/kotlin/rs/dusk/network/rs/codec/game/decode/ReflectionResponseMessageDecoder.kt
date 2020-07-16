@@ -12,6 +12,6 @@ class ReflectionResponseMessageDecoder : GameMessageDecoder<ReflectionResponseMe
 
     override fun decode(packet: PacketReader): ReflectionResponseMessage {
         packet.readByte()//0
-        TODO("not implemented")
+        return ReflectionResponseMessage()
     }
 }

@@ -25,7 +25,6 @@ class PlayerOptionMessageHandler : GameMessageHandler<PlayerOptionMessage>() {
         val player = sessions.get(session) ?: return
         val (index, option) = msg
         val target = players.getAtIndex(index) ?: return
-        // TODO check target has option
         player.approach(target) { result ->
             println("Result $result")
         }
