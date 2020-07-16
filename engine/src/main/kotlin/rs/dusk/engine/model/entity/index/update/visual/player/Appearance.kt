@@ -1,5 +1,8 @@
 package rs.dusk.engine.model.entity.index.update.visual.player
 
+import rs.dusk.engine.model.entity.index.contain.Container
+import rs.dusk.engine.model.entity.index.contain.Containers
+import rs.dusk.engine.model.entity.index.contain.container
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.update.Visual
 
@@ -20,23 +23,7 @@ data class Appearance(
     var transform: Int = -1,
     val look: IntArray = intArrayOf(0, 10, 18, 26, 33, 36, 42),
     val colours: IntArray = IntArray(10),
-    var equipment: IntArray = intArrayOf(
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1,
-        -1
-    ),// TODO replace with container
+    var equipment: Container,
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
@@ -99,7 +86,8 @@ const val APPEARANCE_MASK = 0x8
 
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
-fun Player.getAppearance() = visuals.getOrPut(APPEARANCE_MASK) { Appearance() }
+fun Player.getAppearance() =
+    visuals.getOrPut(APPEARANCE_MASK) { Appearance(equipment = container(Containers.Equipment)) }
 
 private fun Player.flag(action: Appearance.() -> Unit) {
     val appearance = getAppearance()
@@ -206,10 +194,6 @@ fun Player.setColour(index: Int, colour: Int) = flag {
 
 val Player.colours: IntArray
     get() = getAppearance().colours
-
-fun Player.setEquipment(equipment: IntArray) = flag {
-    this.equipment = equipment
-}
 
 var Player.emote: Int
     get() = getAppearance().emote
