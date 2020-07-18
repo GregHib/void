@@ -1,5 +1,4 @@
 import rs.dusk.engine.client.send
-import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Registered
@@ -24,7 +23,6 @@ import kotlin.math.abs
  * Emits [RegionMapUpdate] events when a players region has changed
  */
 
-val bus: EventBus by inject()
 val maps: MapReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
@@ -34,6 +32,9 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 private val blankXtea = IntArray(4)
 
 RegionInitialLoad then {
+    players.forEach { other ->
+        player.viewport.players.lastSeen[other] = other.tile
+    }
     updateRegion(player, true)
 }
 
@@ -93,13 +94,6 @@ fun updateRegion(player: Player, initial: Boolean) {
             val regionId = Region.getId(regionX, regionY)
             val xtea = xteas[regionId] ?: blankXtea
             list.add(xtea)
-        }
-    }
-
-    if (initial) {
-        for (index in playerRegions.indices) {
-            val p = players.getAtIndex(index) ?: continue
-            player.viewport.players.lastSeen[p] = p.tile
         }
     }
 
