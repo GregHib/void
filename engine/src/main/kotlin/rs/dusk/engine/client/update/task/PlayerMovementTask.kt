@@ -76,6 +76,7 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
      */
     fun move(player: Player) {
         val movement = player.movement
+        movement.lastTile = player.tile
         if (movement.delta != Tile.EMPTY) {
             val from = player.tile
             player.tile = player.tile.add(movement.delta)

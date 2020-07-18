@@ -19,7 +19,9 @@ interface TrackingSet<T : Character> {
      * Moves all entities to the removal list
      * Note: `remove` will always be empty due to [update] from last tick
      */
-    fun prep(self: T?)
+    fun start(self: T?)
+
+    fun finish()
 
     /**
      * Updates [current] by adding all [add] and removing all [remove]
@@ -69,7 +71,7 @@ interface TrackingSet<T : Character> {
      * Tracking is done by adding all entities to removal and deleting visible ones,
      * leaving entities which have just been removed in the removal set.
      *
-     * Note: [prep] must be called beforehand so [remove] is full with [current] visible entities
+     * Note: [start] must be called beforehand so [remove] is full with [current] visible entities
      */
     fun track(entity: T, self: T?)
 

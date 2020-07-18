@@ -9,9 +9,9 @@ object Priority {
     val SCHEDULE_PROCESS = counter--
 
     val PLAYER_MOVEMENT = counter--
+    val NPC_MOVEMENT = counter--
 
     val VIEWPORT = counter--
-    val NPC_MOVEMENT = counter--
     val PLAYER_VISUALS = counter--
     val NPC_VISUALS = counter--
     val PLAYER_CHANGE = counter--

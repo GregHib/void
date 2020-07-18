@@ -75,9 +75,10 @@ internal class ViewportUpdatingTest : KoinMock() {
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
-            set.prep(client)
+            set.start(client)
             task.nearbyEntityCount(players, tile)
             task.gatherByTile(tile, players, set, client)
+            set.finish()
         }
     }
 
@@ -94,9 +95,10 @@ internal class ViewportUpdatingTest : KoinMock() {
         task.update(tile, players, set, cap, client)
         // Then
         verifyOrder {
-            set.prep(client)
+            set.start(client)
             task.nearbyEntityCount(players, tile)
             task.gatherByChunk(tile, players, set, client)
+            set.finish()
         }
     }
 

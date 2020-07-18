@@ -104,10 +104,10 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
             }
         }
         // When
-        set.prep(null)
+        set.start(null)
         task.gatherByChunk(tile, players, set, null)
         set.update()
-        set.prep(null)
+        set.start(null)
         task.gatherByChunk(tile, players, set, null)
         // Then
         val total = radius * 2 * radius * 2

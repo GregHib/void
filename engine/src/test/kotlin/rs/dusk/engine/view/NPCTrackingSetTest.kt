@@ -37,7 +37,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         set.current.add(npc)
         set.total = 1
         // When
-        set.prep(null)
+        set.start(null)
         // Then
         assert(set.remove.contains(npc))
         assertEquals(0, set.total)

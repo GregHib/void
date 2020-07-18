@@ -48,13 +48,14 @@ class ViewportUpdating : EngineTask(VIEWPORT) {
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
     fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) {
-        set.prep(self)
+        set.start(self)
         val entityCount = nearbyEntityCount(list, tile)
         if (entityCount >= cap) {
             gatherByTile(tile, list, set, self)
         } else {
             gatherByChunk(tile, list, set, self)
         }
+        set.finish()
     }
 
     /**

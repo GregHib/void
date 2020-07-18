@@ -29,29 +29,40 @@ internal class PlayerTrackingSetTest : KoinMock() {
     }
 
     @Test
-    fun `Preparation fills removal set`() {
+    fun `Start fills removal set`() {
         // Given
         val player = Player(index = 1)
         set.current.add(player)
         set.total = 1
         // When
-        set.prep(null)
+        set.start(null)
         // Then
         assert(set.remove.contains(player))
         assertEquals(0, set.total)
     }
 
     @Test
-    fun `Preparation tracks self`() {
+    fun `Start tracks self`() {
         // Given
         val client = Player(index = 1)
         set.remove.add(client)
         // When
-        set.prep(client)
+        set.start(client)
         // Then
         assertFalse(set.remove.contains(client))
         assertEquals(1, set.total)
         assertEquals(0, set.add.size)
+    }
+
+    @Test
+    fun `Finish adds last seen`() {
+        // Given
+        val client = Player(index = 1)
+        set.remove.add(client)
+        // When
+        set.finish()
+        // Then
+        assertTrue(set.lastSeen.contains(client))
     }
 
     @Test
@@ -101,7 +112,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     }
 
     @Test
-    fun `Update removals sets last seen`() {
+    fun `Update sets last seen`() {
         // Given
         val p1 = Player(index = 1)
         val p2 = Player(index = 2)
@@ -110,7 +121,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
         // When
         set.update()
         // Then
-        assertFalse(set.lastSeen.containsKey(p1))
+        assertTrue(set.lastSeen.containsKey(p1))
         assertTrue(set.lastSeen.containsKey(p2))
     }
 

@@ -23,11 +23,17 @@ class PlayerTrackingSet(
 
     override var total: Int = 0
 
-    override fun prep(self: Player?) {
+    override fun start(self: Player?) {
         remove.addAll(current)
         total = 0
         if (self != null) {
             track(self, null)
+        }
+    }
+
+    override fun finish() {
+        remove.forEach {
+            lastSeen[it] = it.movement.lastTile
         }
     }
 

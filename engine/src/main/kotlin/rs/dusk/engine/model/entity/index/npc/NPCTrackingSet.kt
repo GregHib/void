@@ -19,9 +19,12 @@ class NPCTrackingSet(
 
     override var total: Int = 0
 
-    override fun prep(self: NPC?) {
+    override fun start(self: NPC?) {
         remove.addAll(current)
         total = 0
+    }
+
+    override fun finish() {
     }
 
     override fun update() {

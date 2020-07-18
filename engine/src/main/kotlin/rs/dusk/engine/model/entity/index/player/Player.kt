@@ -23,7 +23,7 @@ data class Player(
     override var size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val movement: Movement = Movement(),
+    @Transient override val movement: Movement = Movement(tile),
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
     val variables: MutableMap<Int, Any> = mutableMapOf(),
