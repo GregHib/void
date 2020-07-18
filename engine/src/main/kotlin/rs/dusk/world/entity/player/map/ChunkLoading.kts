@@ -28,7 +28,7 @@ PlayerUnregistered then {
 
 Moved where { entity is Player && from.chunk != to.chunk } then {
     val player = entity as Player
-    forEachChunk(player, player.movement.lastTile) { chunk ->
+    forEachChunk(player, from) { chunk ->
         batcher.unsubscribe(player, chunk)
     }
     load(player)

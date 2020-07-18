@@ -20,7 +20,6 @@ import java.util.*
 typealias Steps = LinkedList<Direction>
 
 data class Movement(
-    var lastTile: Tile = Tile.EMPTY,
     var delta: Tile = Tile.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,

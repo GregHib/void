@@ -134,10 +134,11 @@ Command where { prefix == "npctele" } then {
 }
 
 fun move(npc: NPC, tile: Tile) {
-    npc.movement.lastTile = npc.tile
+    val from = npc.tile
     npcs.remove(npc.tile, npc)
     npcs.remove(npc.tile.chunk, npc)
     npc.tile = tile
     npcs[npc.tile] = npc
     npcs[npc.tile.chunk] = npc
+//    bus.emit(Moved(npc, from, npc.tile))
 }

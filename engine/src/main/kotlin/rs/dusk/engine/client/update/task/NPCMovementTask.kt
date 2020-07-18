@@ -62,9 +62,9 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Engin
     fun move(npc: NPC) {
         val movement = npc.movement
         if (movement.delta != Tile.EMPTY) {
-            movement.lastTile = npc.tile
+            val from = npc.tile
             npc.tile = npc.tile.add(movement.delta)
-            bus.emit(Moved(npc, movement.lastTile, npc.tile))
+            bus.emit(Moved(npc, from, npc.tile))
         }
     }
 }
