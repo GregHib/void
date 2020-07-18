@@ -2,9 +2,6 @@ package rs.dusk.engine.event
 
 import kotlinx.coroutines.runBlocking
 import org.koin.dsl.module
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerEvent
-import rs.dusk.engine.model.entity.index.player.command.Command
 import rs.dusk.utility.get
 import kotlin.reflect.KClass
 
@@ -75,8 +72,8 @@ class EventBus {
      * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
      * [Event.result] can be set at any point and will be returned to the emitter.
      */
-    fun <T: Any, E : Event<T>> emit(event: E, clazz: KClass<E>) : T? {
-        if(!checkPassed(event, clazz)) {
+    fun <T : Any, E : Event<T>> emit(event: E, clazz: KClass<E>): T? {
+        if (!checkPassed(event, clazz)) {
             return null
         }
 
@@ -86,8 +83,12 @@ class EventBus {
                 break
             }
 
-            if(handler.applies(event)) {
-                handler.invoke(event)
+            if (handler.applies(event)) {
+                try {
+                    handler.invoke(event)
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                }
             }
 
             handler = handler.next
@@ -103,7 +104,7 @@ class EventBus {
         var handler = get(clazz)
 
         while (handler != null) {
-            if(handler.applies(event) && handler.checked(event)) {
+            if (handler.applies(event) && handler.checked(event)) {
                 return true
             }
             handler = handler.next
@@ -120,18 +121,20 @@ class EventBus {
 /**
  * Registers a simple event handler without filter or priority
  */
-inline infix fun <reified T : Any, reified E : Event<T>, C : EventCompanion<E>> C.then(noinline action: E.(E) -> Unit) = runBlocking {
-    val handler = EventHandler<T, E>()
-    handler.action = action
-    register(E::class, handler)
-}
+inline infix fun <reified T : Any, reified E : Event<T>, C : EventCompanion<E>> C.then(noinline action: E.(E) -> Unit) =
+    runBlocking {
+        val handler = EventHandler<T, E>()
+        handler.action = action
+        register(E::class, handler)
+    }
 
 /**
  * Registers an event handler using a [EventHandlerBuilder]
  */
-inline infix fun <reified T : Any, reified E : Event<T>> EventHandlerBuilder<T, E>.then(noinline action: E.(E) -> Unit) = runBlocking {
-    register(E::class, build(action))
-}
+inline infix fun <reified T : Any, reified E : Event<T>> EventHandlerBuilder<T, E>.then(noinline action: E.(E) -> Unit) =
+    runBlocking {
+        register(E::class, build(action))
+    }
 
 /**
  * Registers [handler] with the current [EventBus]

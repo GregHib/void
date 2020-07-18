@@ -13,7 +13,6 @@ import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.index.player.Viewport
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.RegionPlane
-import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -76,7 +75,6 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             sync.writeBits(2, updateType.id)
 
             if (remove) {
-                set.lastSeen[player] = player.tile
                 encodeRegion(sync, set, player)
                 continue
             }
@@ -149,7 +147,7 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
             sync.writeBits(6, player.tile.x and 0x3f)
             sync.writeBits(6, player.tile.y and 0x3f)
             sync.writeBits(1, true)
-            updates.writeBytes(player.visuals.addition ?: continue)// TODO only needs appearance update first time
+            updates.writeBytes(player.visuals.addition ?: continue)
         }
         if (skip > -1) {
             writeSkip(sync, skip)
@@ -177,11 +175,11 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
     }
 
     fun encodeRegion(sync: Writer, set: PlayerTrackingSet, player: Player) {
-        val delta = player.tile.delta(set.lastSeen[player] ?: Tile.EMPTY)
-        val change = calculateRegionUpdate(delta.regionPlane)
+        val delta = player.tile.regionPlane.delta(set.lastSeen[player]?.regionPlane ?: RegionPlane.EMPTY)
+        val change = calculateRegionUpdate(delta)
         sync.writeBits(1, change != RegionChange.Update)
         if (change != RegionChange.Update) {
-            val value = calculateRegionValue(change, delta.regionPlane)
+            val value = calculateRegionValue(change, delta)
             sync.writeBits(2, change.id)
             when (change) {
                 RegionChange.Height -> sync.writeBits(2, value)
@@ -208,14 +206,14 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
     }
 
     companion object {
-        private val REGION_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
-        private val REGION_Y = intArrayOf(1, 1, 1, 0, 0, -1, -1, -1)
+        private val REGION_X = intArrayOf(-1,  0,  1, -1,  1, -1, 0, 1)
+        private val REGION_Y = intArrayOf(-1, -1, -1,  0,  0,  1, 1, 1)
 
         /**
          * Index of movement direction
-         * |07|06|05|
-         * |04|PP|03|
-         * |02|01|00|
+         * |05|06|07|
+         * |03|PP|04|
+         * |00|01|02|
          */
         fun getMovementIndex(delta: RegionPlane): Int {
             for (i in REGION_X.indices) {

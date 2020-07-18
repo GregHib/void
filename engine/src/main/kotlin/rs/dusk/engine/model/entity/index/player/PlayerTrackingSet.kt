@@ -35,11 +35,12 @@ class PlayerTrackingSet(
         remove.forEach {
             current.remove(it)
             local.remove(it)
-            lastSeen[it] = it.movement.lastTile
+            lastSeen[it] = it.tile
         }
         add.forEach {
             local.add(it)
             current.add(it)
+            lastSeen[it] = it.tile
         }
         remove.clear()
         add.clear()
