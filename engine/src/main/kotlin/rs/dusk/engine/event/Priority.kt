@@ -15,7 +15,6 @@ object Priority {
 
     private var counter = LOWEST - 1
     val ACTION_PROCESS = counter--
-    val SCHEDULE_PROCESS = counter--
 
     // TickUpdate
     val PLAYER_MOVEMENT = counter--

@@ -8,7 +8,7 @@ object ActionContinuation : Continuation<Any> {
 
     val logger = InlineLogger()
 
-    override val context = Contexts.Engine
+    override val context = Contexts.Game
 
     override fun resumeWith(result: Result<Any>) {
         result.onFailure {

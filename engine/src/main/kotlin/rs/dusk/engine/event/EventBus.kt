@@ -7,7 +7,6 @@ import kotlin.reflect.KClass
 
 val eventModule = module {
     single { EventBus() }
-    single { EventBuffer(getProperty("eventBufferLimit"), get()) }
 }
 
 /**

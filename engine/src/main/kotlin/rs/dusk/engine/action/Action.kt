@@ -1,11 +1,12 @@
 package rs.dusk.engine.action
 
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.*
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPCEvent
 import rs.dusk.engine.model.entity.index.player.PlayerEvent
+import rs.dusk.engine.task.TaskExecutor
+import rs.dusk.engine.task.delay
+import rs.dusk.utility.get
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -60,14 +61,13 @@ class Action {
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = runBlocking {
+    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
         this@Action.cancel(type)
-        val a2: suspend Action.() -> Unit = {
-            delay()
-            action.invoke(this@Action)
+        val coroutine = action.createCoroutine(this@Action, ActionContinuation)
+        scope.launch {
+            this@Action.delay(0)
+            coroutine.resume(Unit)
         }
-        val coroutine = a2.createCoroutine(this@Action, ActionContinuation)
-        coroutine.resume(Unit)
     }
 
     /**
@@ -98,12 +98,22 @@ class Action {
      * @return always true
      */
     suspend fun delay(ticks: Int = 1): Boolean {
-        repeat(ticks) {
-            await<Unit>(Suspension.Tick)
+        val executor: TaskExecutor = get()
+        suspendCancellableCoroutine<Unit> { continuation ->
+            suspension = Suspension.Tick
+            this.continuation = continuation
+            executor.delay(ticks) {
+                if(suspension == Suspension.Tick) {
+                    resume()
+                }
+            }
         }
         return true
     }
 
+    companion object {
+        private val scope = CoroutineScope(Contexts.Game)
+    }
 }
 
 fun NPCEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = npc.action(type, action)

@@ -8,8 +8,13 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.test.mock.declareMock
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.task.DelayTask
+import rs.dusk.engine.task.Task
+import rs.dusk.engine.task.TaskExecutor
+import rs.dusk.engine.task.executorModule
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
@@ -17,12 +22,21 @@ import kotlin.coroutines.resumeWithException
 
 internal class ActionTest : KoinMock() {
     lateinit var action: Action
+    lateinit var executor: TaskExecutor
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(eventModule, executorModule)
 
     @BeforeEach
     fun setup() {
         action = spyk(Action())
+        executor = declareMock {
+            every { execute(any()) } answers {
+                val task: Task = arg(0)
+                task.run(0)
+                task.cancel()
+            }
+            every { tick } returns 0
+        }
     }
 
     @Test
@@ -124,15 +138,15 @@ internal class ActionTest : KoinMock() {
         mockkStatic("kotlin.coroutines.ContinuationKt")
         action.continuation = continuation
         every { action.cancel(any()) } just Runs
-        coEvery { action.delay() } returns true
+        coEvery { action.delay(0) } returns true
         every { block.createCoroutine(action, ActionContinuation) } returns coroutine
         // When
         action.run(type, block)
         // Then
         coVerifyOrder {
             action.cancel(type)
-            action.delay(1)
-            block.invoke(action)
+            block.createCoroutine(action, ActionContinuation)
+            action.delay(0)
         }
     }
 
@@ -154,19 +168,19 @@ internal class ActionTest : KoinMock() {
     }
 
     @Test
-    fun `Delay awaits by number of ticks`() {
+    fun `Delay awaits by number of ticks`() = runBlocking {
         // Given
-        val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
-        val value = 4
-        action.continuation = continuation
-        coEvery { action.await<Unit>(any()) } returns mockk(relaxed = true)
-        // When
-        runBlocking{
-            action.delay(value)
+        val value = 4L
+        every { executor.execute(any()) } answers {
+            val task: DelayTask = arg(0)
+            assertEquals(value, task.executionTick)
+            task.run(value)
         }
+        // When
+        action.delay(value.toInt())
         // Then
-        coVerify(exactly = 4) {
-            action.await<Unit>(Suspension.Tick)
+        verify {
+            executor.execute(any<DelayTask>())
         }
     }
 }

@@ -5,8 +5,6 @@ import rs.dusk.engine.event.EventCompanion
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @since March 28, 2020
+ * @since July 11, 2020
  */
-data class Tick(val tick: Long) : Event<Unit>() {
-    companion object : EventCompanion<Tick>
-}
+object TickAction : Event<Unit>(), EventCompanion<TickAction>

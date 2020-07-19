@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.event.EventBuffer
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.item.FloorItemOption
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.world.Tile
@@ -23,7 +23,7 @@ class FloorItemOptionMessageHandler : GameMessageHandler<FloorItemOptionMessage>
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val items: FloorItems by inject()
-    val buffer: EventBuffer by inject()
+    val bus: EventBus by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: FloorItemOptionMessage) {
         val session = ctx.channel().getSession()
@@ -41,7 +41,7 @@ class FloorItemOptionMessageHandler : GameMessageHandler<FloorItemOptionMessage>
         val selectedOption = options[index]//TODO is null a valid action? What to do about "*"'s?
         player.approach(item) { result ->
             val partial = result is PathResult.Success.Partial
-            buffer.emitLater(FloorItemOption(player, item, selectedOption, partial))
+            bus.emit(FloorItemOption(player, item, selectedOption, partial))
         }
     }
 

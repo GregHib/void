@@ -5,13 +5,14 @@ import org.koin.logger.slf4jLogger
 import rs.dusk.cache.cacheConfigModule
 import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
-import rs.dusk.engine.Engine
+import rs.dusk.engine.GameLoop
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
@@ -23,12 +24,16 @@ import rs.dusk.engine.model.world.map.mapModule
 import rs.dusk.engine.model.world.map.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.script.scriptModule
+import rs.dusk.engine.task.StartTask
+import rs.dusk.engine.task.TaskExecutor
+import rs.dusk.engine.task.executorModule
 import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.utility.get
 import rs.dusk.world.entity.player.login.loginQueueModule
+import java.util.concurrent.Executors
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -42,9 +47,15 @@ object Dusk {
 
         val world = World(1)
         val server = GameServer(world)
-        val engine = Engine(get())
+        
+        val bus: EventBus = get()
+        val executor: TaskExecutor = get()
+        val service = Executors.newSingleThreadScheduledExecutor()
+        val start: StartTask = get()
+        val engine = GameLoop(bus, executor, service)
 
         server.run()
+        engine.setup(start)
         engine.start()
     }
 
@@ -74,7 +85,8 @@ object Dusk {
                 locationModule,
                 pathFindModule,
                 schedulerModule,
-                batchedChunkModule
+                batchedChunkModule,
+                executorModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

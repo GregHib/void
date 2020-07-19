@@ -1,6 +1,5 @@
 package rs.dusk.engine.client.update.task
 
-import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.Priority.PLAYER_MOVEMENT
 import rs.dusk.engine.model.engine.task.EngineTask
@@ -19,7 +18,7 @@ import rs.dusk.engine.model.world.Tile
  */
 class PlayerMovementTask(private val players: Players, private val bus: EventBus) : EngineTask(PLAYER_MOVEMENT) {
 
-    override fun run() = runBlocking {
+    override fun run() {
         players.forEach { player ->
             val locked = player.movement.frozen || !player.viewport.loaded
             if(!locked) {

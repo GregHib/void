@@ -9,6 +9,8 @@ import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.task.TaskExecutor
+import rs.dusk.engine.task.start
 import rs.dusk.utility.get
 import java.util.*
 
@@ -56,20 +58,22 @@ private fun calcPath(source: Character, target: Any) = when (target) {
     else -> PathResult.Failure
 }
 
-fun Character.walkTo(target: Any, action: (PathResult) -> Unit) = action(ActionType.Movement) {
-    try {
-        val result = calcPath(this@walkTo, target)
-        if (result is PathResult.Failure) {
-            action(result)
-        } else {
-            while (delay() && awaitInterfaces()) {
-                if (movement.steps.isEmpty()) {
-                    break
+fun Character.walkTo(target: Any, action: (PathResult) -> Unit) = get<TaskExecutor>().start {
+    action(ActionType.Movement) {
+        try {
+            val result = calcPath(this@walkTo, target)
+            if (result is PathResult.Failure) {
+                action(result)
+            } else {
+                while (delay(0) && awaitInterfaces()) {
+                    if (movement.steps.isEmpty()) {
+                        break
+                    }
                 }
+                action(result)
             }
-            action(result)
+        } finally {
+            movement.clear()
         }
-    } finally {
-        movement.clear()
     }
 }
