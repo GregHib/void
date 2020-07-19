@@ -2,7 +2,7 @@ import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.event.Priority
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.TickAction
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPCs
 import rs.dusk.engine.model.entity.index.player.Players
@@ -11,7 +11,7 @@ import rs.dusk.utility.inject
 val players: Players by inject()
 val npcs: NPCs by inject()
 
-TickAction priority Priority.ACTION_PROCESS then {
+Tick priority Priority.ACTION_PROCESS then {
     players.forEach(::action)
     npcs.forEach(::action)
 }

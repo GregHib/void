@@ -8,7 +8,7 @@ import org.koin.dsl.module
 import rs.dusk.engine.event.Priority.SCHEDULE_PROCESS
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.TickAction
+import rs.dusk.engine.model.engine.Tick
 import rs.dusk.utility.get
 import kotlin.coroutines.resume
 
@@ -24,7 +24,7 @@ class Scheduler : CoroutineScope {
     fun add(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Engine, block = block)
 
     init {
-        TickAction priority SCHEDULE_PROCESS then {
+        Tick priority SCHEDULE_PROCESS then {
             val iterator = active.iterator()
             while (iterator.hasNext()) {
                 val next = iterator.next()

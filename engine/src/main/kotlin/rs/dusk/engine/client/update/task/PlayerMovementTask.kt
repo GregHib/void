@@ -3,9 +3,7 @@ package rs.dusk.engine.client.update.task
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.Priority.PLAYER_MOVEMENT
-import rs.dusk.engine.event.priority
-import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
+import rs.dusk.engine.model.engine.task.EngineTask
 import rs.dusk.engine.model.entity.index.Moved
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.index.player.PlayerMoveType
@@ -19,15 +17,7 @@ import rs.dusk.engine.model.world.Tile
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-class PlayerMovementTask(private val players: Players, private val bus: EventBus) : Runnable {
-
-    init {
-        Tick priority PLAYER_MOVEMENT then {
-            runBlocking {
-                run()
-            }
-        }
-    }
+class PlayerMovementTask(private val players: Players, private val bus: EventBus) : EngineTask(PLAYER_MOVEMENT) {
 
     override fun run() = runBlocking {
         players.forEach { player ->
