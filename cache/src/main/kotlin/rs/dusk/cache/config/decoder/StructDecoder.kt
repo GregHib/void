@@ -1,6 +1,6 @@
 package rs.dusk.cache.config.decoder
 
-import rs.dusk.cache.Configs.STRUTS
+import rs.dusk.cache.Configs.STRUCTS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.StructDefinition
 import rs.dusk.core.io.read.Reader
@@ -9,7 +9,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class StructDecoder : ConfigDecoder<StructDefinition>(STRUTS) {
+class StructDecoder : ConfigDecoder<StructDefinition>(STRUCTS) {
 
     override fun create() = StructDefinition()
 

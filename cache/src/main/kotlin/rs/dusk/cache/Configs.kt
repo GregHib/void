@@ -9,7 +9,7 @@ object Configs {
     const val VARC_STRINGS = 15
     const val VARP = 16
     const val VARC = 19
-    const val STRUTS = 26
+    const val STRUCTS = 26
     const val SKY_BOXES = 29
     const val LIGHT_INTENSITY = 30
     const val RENDER_ANIMATIONS = 32
