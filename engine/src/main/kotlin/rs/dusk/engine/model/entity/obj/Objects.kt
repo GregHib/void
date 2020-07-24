@@ -11,49 +11,49 @@ import rs.dusk.engine.model.world.Tile
  * @since June 27, 2020
  */
 class Objects(
-    override val chunks: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
-    private val added: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
-    private val removed: HashMap<Chunk, MutableSet<Location>> = hashMapOf(),
-    private val timers: MutableMap<Location, Job> = mutableMapOf()
-) : BatchList<Location> {
+    override val chunks: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
+    private val added: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
+    private val removed: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
+    private val timers: MutableMap<GameObject, Job> = mutableMapOf()
+) : BatchList<GameObject> {
 
-    fun addTemp(location: Location) : Boolean {
-        val id = location.tile.chunk
-        removed[id]?.remove(location)
-        return added.getOrPut(id) { mutableSetOf() }.add(location)
+    fun addTemp(gameObject: GameObject) : Boolean {
+        val id = gameObject.tile.chunk
+        removed[id]?.remove(gameObject)
+        return added.getOrPut(id) { mutableSetOf() }.add(gameObject)
     }
 
-    fun removeTemp(location: Location): Boolean {
-        val id = location.tile.chunk
-        added[id]?.remove(location)
-        return removed.getOrPut(id) { mutableSetOf() }.add(location)
+    fun removeTemp(gameObject: GameObject): Boolean {
+        val id = gameObject.tile.chunk
+        added[id]?.remove(gameObject)
+        return removed.getOrPut(id) { mutableSetOf() }.add(gameObject)
     }
 
-    fun setTimer(location: Location, job: Job) {
-        timers[location] = job
+    fun setTimer(gameObject: GameObject, job: Job) {
+        timers[gameObject] = job
     }
 
-    fun cancelTimer(location: Location): Boolean {
-        val timer = timers[location] ?: return false
+    fun cancelTimer(gameObject: GameObject): Boolean {
+        val timer = timers[gameObject] ?: return false
         timer.cancel("Cancelled by clear.")
-        timers.remove(location)
+        timers.remove(gameObject)
         return true
     }
 
-    override operator fun get(tile: Tile): Set<Location> {
+    override operator fun get(tile: Tile): Set<GameObject> {
         return get(tile.chunk).filter { it.tile == tile }.toSet()
     }
 
-    fun getType(tile: Tile, type: Int): Location? {
+    fun getType(tile: Tile, type: Int): GameObject? {
         return get(tile.chunk).firstOrNull { it.type == type && it.tile == tile }
     }
 
-    operator fun get(tile: Tile, id: Int): Location? {
+    operator fun get(tile: Tile, id: Int): GameObject? {
         return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
     }
 
-    override operator fun get(chunk: Chunk): Set<Location> {
-        val set = mutableSetOf<Location>()
+    override operator fun get(chunk: Chunk): Set<GameObject> {
+        val set = mutableSetOf<GameObject>()
         val base = chunks[chunk]
         if(base != null) {
             set.addAll(base)
@@ -69,9 +69,9 @@ class Objects(
         return set
     }
 
-    fun getAdded(chunk: Chunk): Set<Location>? = added[chunk]
+    fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk]
 
-    fun getRemoved(chunk: Chunk): Set<Location>? = removed[chunk]
+    fun getRemoved(chunk: Chunk): Set<GameObject>? = removed[chunk]
 
 
 }

@@ -14,7 +14,7 @@ import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.npc.NPC
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
@@ -128,9 +128,9 @@ internal class PathFinderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 9])
-    fun `Wall location strategy`(type: Int) {
+    fun `Wall object strategy`(type: Int) {
         // Given
-        val target: Location = mockk(relaxed = true)
+        val target: GameObject = mockk(relaxed = true)
         every { target.type } returns type
         // When
         val strategy = pf.getStrategy(target)
@@ -140,9 +140,9 @@ internal class PathFinderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [3, 4, 5, 6, 7, 8])
-    fun `Wall decoration location strategy`(type: Int) {
+    fun `Wall decoration object strategy`(type: Int) {
         // Given
-        val target: Location = mockk(relaxed = true)
+        val target: GameObject = mockk(relaxed = true)
         every { target.type } returns type
         // When
         val strategy = pf.getStrategy(target)
@@ -155,9 +155,9 @@ internal class PathFinderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [10, 11, 22])
-    fun `Floor decoration location strategy`(type: Int) {
+    fun `Floor decoration object strategy`(type: Int) {
         // Given
-        val target: Location = mockk(relaxed = true)
+        val target: GameObject = mockk(relaxed = true)
         every { target.type } returns type
         // When
         val strategy = pf.getStrategy(target)
@@ -167,9 +167,9 @@ internal class PathFinderTest {
 
     @ParameterizedTest
     @ValueSource(ints = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24])
-    fun `Other location strategy`(type: Int) {
+    fun `Other object strategy`(type: Int) {
         // Given
-        val target: Location = mockk(relaxed = true)
+        val target: GameObject = mockk(relaxed = true)
         every { target.type } returns type
         // When
         val strategy = pf.getStrategy(target)

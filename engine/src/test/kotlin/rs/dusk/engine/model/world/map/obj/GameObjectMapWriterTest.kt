@@ -1,24 +1,24 @@
-package rs.dusk.engine.model.world.map.location
+package rs.dusk.engine.model.world.map.obj
 
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 17, 2020
  */
-internal class LocationWriterTest {
+internal class GameObjectMapWriterTest {
 
-    val writer = LocationWriter()
+    val writer = GameObjectMapWriter()
 
     @Test
-    fun `Write two locations with same id`() {
+    fun `Write two objects with same id`() {
         // Given
         val map = sortedMapOf(
             12345 to listOf(
-                Location(12345, Tile(0, 0), 12, 2),
-                Location(12345, Tile(63, 63, 3), 4, 1)
+                GameObject(12345, Tile(0, 0), 12, 2),
+                GameObject(12345, Tile(63, 63, 3), 4, 1)
             )
         )
         // When
@@ -28,12 +28,12 @@ internal class LocationWriterTest {
     }
 
     @Test
-    fun `Write two locations with same tile`() {
+    fun `Write two objects with same tile`() {
         // Given
         val tile = Tile(54, 45)
         val map = sortedMapOf(
-            12345 to listOf(Location(12345, tile, 12, 2)),
-            42000 to listOf(Location(42000, tile, 0, 0))
+            12345 to listOf(GameObject(12345, tile, 12, 2)),
+            42000 to listOf(GameObject(42000, tile, 0, 0))
         )
         // When
         val result = writer.write(map)
@@ -46,7 +46,7 @@ internal class LocationWriterTest {
         // Given
         val tile = Tile(54, 45)
         val map = sortedMapOf(
-            75000 to listOf(Location(75000, tile, 12, 2))
+            75000 to listOf(GameObject(75000, tile, 12, 2))
         )
         // When
         val result = writer.write(map)

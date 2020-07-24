@@ -8,12 +8,12 @@ import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.cacheModule
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.collisionModule
-import rs.dusk.engine.model.world.map.location.*
-import rs.dusk.engine.model.world.map.location.LocationWriter.Companion.localId
+import rs.dusk.engine.model.world.map.obj.*
+import rs.dusk.engine.model.world.map.obj.GameObjectMapWriter.Companion.localId
 import rs.dusk.engine.model.world.view
 import rs.dusk.engine.script.KoinMock
 
@@ -37,7 +37,7 @@ internal class MapReaderTest : KoinMock() {
             collisionModule,
             eventModule,
             entityListModule,
-            locationModule
+            objectMapModule
         )
     }
 
@@ -50,7 +50,7 @@ internal class MapReaderTest : KoinMock() {
 
         loader.load(region)
         val objects: Objects = get()
-        val map = mutableMapOf<Int, MutableList<Location>>()
+        val map = mutableMapOf<Int, MutableList<GameObject>>()
         for(plane in 0 until 3) {
             for (chunk in region.toPlane(plane).chunk.view(8, 8)) {
                 objects[chunk].forEach { loc ->
@@ -62,12 +62,12 @@ internal class MapReaderTest : KoinMock() {
         map.forEach { (_, list) ->
             list.sortBy { localId(it.tile) }
         }
-        val result = LocationWriter().write(map.toSortedMap())
+        val result = GameObjectMapWriter().write(map.toSortedMap())
 
         println(result.toList())
 
         val tileSettings = Array(4) { Array(64) { ByteArray(64) } }
-        LocationReader(objects, get()).read(region.tile, result, tileSettings)
+        GameObjectMapReader(objects, get()).read(region.tile, result, tileSettings)
     }
 
 }

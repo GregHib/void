@@ -1,4 +1,4 @@
-package rs.dusk.engine.model.world.map.location
+package rs.dusk.engine.model.world.map.obj
 
 import io.mockk.mockkStatic
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -16,7 +16,7 @@ internal class XteasTest {
     @Test
     fun `Load from text file`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.location.XteasKt")
+        mockkStatic("rs.dusk.engine.model.world.map.obj.XteasKt")
         val regionId = 12342
         val keys = intArrayOf(733680141, -1440926564, 447905675, 1806603117)
         val file = File("./$regionId.txt")
@@ -37,7 +37,7 @@ internal class XteasTest {
     @Test
     fun `Load from json`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.location.XteasKt")
+        mockkStatic("rs.dusk.engine.model.world.map.obj.XteasKt")
         val file = File("./xteas.json")
         val regionId = 12342
         val keys = intArrayOf(733680141, -1440926564, 447905675, 1806603117)
@@ -71,7 +71,7 @@ internal class XteasTest {
     @Test
     fun `Load from byte data`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.location.XteasKt")
+        mockkStatic("rs.dusk.engine.model.world.map.obj.XteasKt")
         val file = File("./xteas.dat")
         val regionId = 12342
         val keys = intArrayOf(733680141, -1440926564, 447905675, 1806603117)

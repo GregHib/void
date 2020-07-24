@@ -10,8 +10,8 @@ import rs.dusk.engine.model.entity.index.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
-import rs.dusk.engine.model.world.map.location.Xtea
-import rs.dusk.engine.model.world.map.location.Xteas
+import rs.dusk.engine.model.world.map.obj.Xtea
+import rs.dusk.engine.model.world.map.obj.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.map.RegionInitialLoad

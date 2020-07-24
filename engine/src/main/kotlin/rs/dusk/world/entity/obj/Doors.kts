@@ -3,7 +3,7 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.ObjectOption
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
@@ -21,7 +21,7 @@ val doorCloseDelay = 500
 val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath")).mapKeys { it.key.toInt() }
 val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath")).mapKeys { it.key.toInt() }
 
-fun Location.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
+fun GameObject.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
 
 ObjectOption where { obj.isDoor() && option == "Close" } then {
     val double = getDoubleDoor(obj, 1)
@@ -89,25 +89,25 @@ ObjectOption where { obj.isDoor() && option == "Open" } then {
     }
 }
 
-fun getTile(location: Location, anticlockwise: Int) = getTile(location.tile, location.rotation, anticlockwise)
+fun getTile(gameObject: GameObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
 
 fun getTile(tile: Tile, rotation: Int, anticlockwise: Int): Tile {
     val orientation = Direction.cardinal[getRotation(rotation, -anticlockwise)]
     return tile.add(orientation.delta)
 }
 
-fun getRotation(location: Location, clockwise: Int) = getRotation(location.rotation, clockwise)
+fun getRotation(gameObject: GameObject, clockwise: Int) = getRotation(gameObject.rotation, clockwise)
 
 fun getRotation(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 
-fun getDoubleDoor(location: Location, clockwise: Int): Location? {
-    var orientation = Direction.cardinal[getRotation(location, clockwise)]
-    var door = objects.getType(location.tile.add(orientation.delta), location.type)
+fun getDoubleDoor(gameObject: GameObject, clockwise: Int): GameObject? {
+    var orientation = Direction.cardinal[getRotation(gameObject, clockwise)]
+    var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
     if (door != null && door.isDoor()) {
         return door
     }
     orientation = orientation.inverse()
-    door = objects.getType(location.tile.add(orientation.delta), location.type)
+    door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
     if (door != null && door.isDoor()) {
         return door
     }

@@ -7,11 +7,10 @@ import rs.dusk.cache.Cache
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.CollisionReader
-import rs.dusk.engine.model.world.map.location.LocationReader
-import rs.dusk.engine.model.world.map.location.Xteas
+import rs.dusk.engine.model.world.map.obj.GameObjectMapReader
+import rs.dusk.engine.model.world.map.obj.Xteas
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
-
 
 val mapModule = module {
     single { MapReader() }
@@ -25,7 +24,7 @@ class MapReader {
 
     val bus: EventBus by inject()
     val collisions: CollisionReader by inject()
-    val locations: LocationReader by inject()
+    val objects: GameObjectMapReader by inject()
     val tiles: TileReader by inject()
     val xteas: Xteas by inject()
     val cache: Cache by inject()
@@ -52,7 +51,7 @@ class MapReader {
             }
             val settings = tiles.read(mapData)
             val col = async { collisions.read(region, settings) }
-            val loc = async { locations.read(region.tile, locationData, settings) }
+            val loc = async { objects.read(region.tile, locationData, settings) }
             col.await()
             loc.await()
             bus.emit(MapLoaded(region))

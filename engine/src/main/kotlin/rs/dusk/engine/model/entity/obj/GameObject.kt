@@ -17,7 +17,7 @@ import rs.dusk.utility.get
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Location(
+data class GameObject(
     override val id: Int,
     override var tile: Tile,
     val type: Int,
@@ -32,6 +32,6 @@ data class Location(
     fun visible(player: Player) = owner == null || owner == player.name
 }
 
-fun Location.animate(id: Int) {
+fun GameObject.animate(id: Int) {
     get<ChunkBatcher>().update(tile.chunk, ObjectAnimationSpecificMessage(tile.offset(), id, type, rotation))
 }

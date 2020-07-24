@@ -1,4 +1,4 @@
-package rs.dusk.engine.model.world.map.location
+package rs.dusk.engine.model.world.map.obj
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper

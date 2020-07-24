@@ -5,7 +5,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
@@ -23,8 +23,8 @@ val batcher: ChunkBatcher by inject()
  * Replaces two objects, linking them to the same job so both revert after timeout
  */
 ReplaceObjectPair then {
-    val firstReplacement = Location(firstReplacement, firstTile, firstOriginal.type, firstRotation)
-    val secondReplacement = Location(secondReplacement, secondTile, secondOriginal.type, secondRotation)
+    val firstReplacement = GameObject(firstReplacement, firstTile, firstOriginal.type, firstRotation)
+    val secondReplacement = GameObject(secondReplacement, secondTile, secondOriginal.type, secondRotation)
     switch(firstOriginal, firstReplacement)
     switch(secondOriginal, secondReplacement)
     // Revert
@@ -46,7 +46,7 @@ ReplaceObjectPair then {
  * Replaces one object with another, optionally reverting after a set time
  */
 ReplaceObject then {
-    val replacement = Location(id, tile, type, rotation)
+    val replacement = GameObject(id, tile, type, rotation)
 
     switch(original, replacement)
     // Revert
@@ -61,7 +61,7 @@ ReplaceObject then {
     }
 }
 
-fun switch(original: Location, replacement: Location) {
+fun switch(original: GameObject, replacement: GameObject) {
     batcher.update(
         original.tile.chunk,
         ObjectRemoveMessage(original.tile.offset(), original.type, original.rotation)

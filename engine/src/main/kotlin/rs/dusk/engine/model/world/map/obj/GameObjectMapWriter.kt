@@ -1,8 +1,8 @@
-package rs.dusk.engine.model.world.map.location
+package rs.dusk.engine.model.world.map.obj
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile
 import java.util.*
 
@@ -10,21 +10,21 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class LocationWriter {
+class GameObjectMapWriter {
 
     /**
-     * Writes locations to ByteArray
-     * Note: All [locations] lists must be sorted by [Location.tile] using [localId]
+     * Writes object locations to ByteArray
+     * Note: All [objects] lists must be sorted by [GameObject.tile] using [localId]
      */
-    fun write(locations: SortedMap<Int, List<Location>>): ByteArray {
+    fun write(objects: SortedMap<Int, List<GameObject>>): ByteArray {
         val writer = BufferWriter()
         var id = -1
-        locations.forEach { (objectId, locations) ->
+        objects.forEach { (objectId, objects) ->
             val difference = objectId - id
             id += difference
             writer.writeLargeSmart(difference)
             var location = 0
-            locations.forEach { loc ->
+            objects.forEach { loc ->
                 val local = localId(loc.tile)
                 val dif = local - location
                 location += dif

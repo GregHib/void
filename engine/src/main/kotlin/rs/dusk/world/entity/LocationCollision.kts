@@ -5,7 +5,7 @@ import rs.dusk.engine.model.entity.Direction.Companion.cardinal
 import rs.dusk.engine.model.entity.Direction.Companion.ordinal
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.map.collision.*
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.IGNORED
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.LAND
@@ -18,64 +18,64 @@ import rs.dusk.utility.inject
 
 val collisions: Collisions by inject()
 
-Registered priority 9 where { entity is Location } then {
-    modifyCollision(entity as Location, ADD_MASK)
+Registered priority 9 where { entity is GameObject } then {
+    modifyCollision(entity as GameObject, ADD_MASK)
 }
 
-Unregistered priority 9 where { entity is Location } then {
-    modifyCollision(entity as Location, REMOVE_MASK)
+Unregistered priority 9 where { entity is GameObject } then {
+    modifyCollision(entity as GameObject, REMOVE_MASK)
 }
 
-fun modifyCollision(location: Location, changeType: Int) {
-    if (location.def.solid == 0) {
+fun modifyCollision(gameObject: GameObject, changeType: Int) {
+    if (gameObject.def.solid == 0) {
         return
     }
 
-    when (location.type) {
-        in 0..3 -> modifyWall(location, changeType)
-        in 9..21 -> modifyObject(location, changeType)
+    when (gameObject.type) {
+        in 0..3 -> modifyWall(gameObject, changeType)
+        in 9..21 -> modifyObject(gameObject, changeType)
         22 -> {
-            if (location.def.solid == 1) {
-                modifyMask(location.tile.x, location.tile.y, location.tile.plane, CollisionFlag.FLOOR_DECO, changeType)
+            if (gameObject.def.solid == 1) {
+                modifyMask(gameObject.tile.x, gameObject.tile.y, gameObject.tile.plane, CollisionFlag.FLOOR_DECO, changeType)
             }
         }
     }
 }
 
-fun modifyObject(location: Location, changeType: Int) {
+fun modifyObject(gameObject: GameObject, changeType: Int) {
     var mask = LAND
 
-    if (location.def.blocksSky) {//solid
+    if (gameObject.def.blocksSky) {//solid
         mask = mask or SKY
     }
 
-    if (!location.def.ignoreOnRoute) {//not alt
+    if (!gameObject.def.ignoreOnRoute) {//not alt
         mask = mask or IGNORED
     }
 
-    var width = location.size.width
-    var height = location.size.height
+    var width = gameObject.size.width
+    var height = gameObject.size.height
 
-    if (location.rotation and 0x1 == 1) {
-        width = location.size.height
-        height = location.size.width
+    if (gameObject.rotation and 0x1 == 1) {
+        width = gameObject.size.height
+        height = gameObject.size.width
     }
 
     for (offsetX in 0 until width) {
         for (offsetY in 0 until height) {
-            modifyMask(location.tile.x + offsetX, location.tile.y + offsetY, location.tile.plane, mask, changeType)
+            modifyMask(gameObject.tile.x + offsetX, gameObject.tile.y + offsetY, gameObject.tile.plane, mask, changeType)
         }
     }
 }
 
 
-fun modifyWall(location: Location, changeType: Int) {
-    modifyWall(location, 0, changeType)
-    if (location.def.blocksSky) {
-        modifyWall(location, 1, changeType)
+fun modifyWall(gameObject: GameObject, changeType: Int) {
+    modifyWall(gameObject, 0, changeType)
+    if (gameObject.def.blocksSky) {
+        modifyWall(gameObject, 1, changeType)
     }
-    if (!location.def.ignoreOnRoute) {
-        modifyWall(location, 2, changeType)
+    if (!gameObject.def.ignoreOnRoute) {
+        modifyWall(gameObject, 2, changeType)
     }
 }
 
@@ -86,10 +86,10 @@ fun modifyWall(location: Location, changeType: Int) {
  * 2 - ╝ Internal corner
  * 3 - ╔ External corner (regular)
  */
-fun modifyWall(location: Location, motion: Int, changeType: Int) {
-    val rotation = location.rotation
-    val type = location.type
-    var tile = location.tile
+fun modifyWall(gameObject: GameObject, motion: Int, changeType: Int) {
+    val rotation = gameObject.rotation
+    val type = gameObject.type
+    var tile = gameObject.tile
 
     // Internal corners
     if (type == 2) {
@@ -101,7 +101,7 @@ fun modifyWall(location: Location, motion: Int, changeType: Int) {
             Direction.SOUTH_WEST -> SOUTH_OR_WEST
             else -> 0
         }
-        modifyMask(location.tile.x, location.tile.y, location.tile.plane, applyMotion(or, motion), changeType)
+        modifyMask(gameObject.tile.x, gameObject.tile.y, gameObject.tile.plane, applyMotion(or, motion), changeType)
         tile = tile.add(cardinal[(rotation + 3) and 0x3].delta)
     }
 
@@ -115,9 +115,9 @@ fun modifyWall(location: Location, motion: Int, changeType: Int) {
 
     // Mask other wall side
     tile = if (type == 2) {
-        location.tile.add(cardinal[rotation and 0x3].delta)
+        gameObject.tile.add(cardinal[rotation and 0x3].delta)
     } else {
-        location.tile.add(direction.delta)
+        gameObject.tile.add(direction.delta)
     }
     direction = when (type) {
         2 -> cardinal[(rotation + 2) and 0x3]

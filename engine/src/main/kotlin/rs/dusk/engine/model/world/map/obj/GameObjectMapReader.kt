@@ -1,25 +1,25 @@
-package rs.dusk.engine.model.world.map.location
+package rs.dusk.engine.model.world.map.obj
 
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.BRIDGE_TILE
 import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.isTile
 
-val locationModule = module {
-    single { LocationReader(get(), get()) }
+val objectMapModule = module {
+    single { GameObjectMapReader(get(), get()) }
 }
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class LocationReader(val objects: Objects, val bus: EventBus) {
+class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
 
     fun read(region: Tile, data: ByteArray, settings: TileSettings) {
         val reader = BufferReader(data)
@@ -62,9 +62,9 @@ class LocationReader(val objects: Objects, val bus: EventBus) {
                 }
 
                 // Valid location
-                val location = Location(objectId, Tile(region.x + localX, region.y + localY, plane), type, rotation)
-                objects.add(location)
-                bus.emit(Registered(location))
+                val gameObject = GameObject(objectId, Tile(region.x + localX, region.y + localY, plane), type, rotation)
+                objects.add(gameObject)
+                bus.emit(Registered(gameObject))
             }
         }
     }

@@ -5,7 +5,7 @@ import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.index.Character
 import rs.dusk.engine.model.entity.index.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
@@ -59,7 +59,7 @@ class PathFinder(
     }
 
     fun getStrategy(target: Entity) = when (target) {
-        is Location -> when (target.type) {
+        is GameObject -> when (target.type) {
             in 0..2, 9 -> WallTargetStrategy(
                 collisions,
                 tile = target.tile,

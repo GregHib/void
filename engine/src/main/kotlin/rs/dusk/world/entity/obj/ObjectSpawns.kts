@@ -8,7 +8,7 @@ import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.entity.obj.Location
+import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapLoaded
@@ -26,20 +26,20 @@ val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val logger = InlineLogger()
 
-val spawns: MutableMap<Region, MutableList<Location>> = mutableMapOf()
+val spawns: MutableMap<Region, MutableList<GameObject>> = mutableMapOf()
 
 Startup then {
-    val locations: Array<Location> = files.load(getProperty("objectsPath"))
-    locations.forEach { location ->
-        val list = spawns.getOrPut(location.tile.region) { mutableListOf() }
-        list.add(location)
+    val gameObjects: Array<GameObject> = files.load(getProperty("objectsPath"))
+    gameObjects.forEach { gameObject ->
+        val list = spawns.getOrPut(gameObject.tile.region) { mutableListOf() }
+        list.add(gameObject)
     }
 }
 
 MapLoaded then {
     val spawns = spawns[region] ?: return@then
-    spawns.forEach { location ->
-        spawn(location)
+    spawns.forEach { gameObject ->
+        spawn(gameObject)
     }
 }
 
@@ -47,44 +47,44 @@ MapLoaded then {
  * Spawns an object, optionally removing after a set time
  */
 SpawnObject then {
-    val location = Location(id, tile, type, rotation, owner)
-    spawn(location)
+    val gameObject = GameObject(id, tile, type, rotation, owner)
+    spawn(gameObject)
     // Revert
     if (ticks >= 0) {
-        objects.setTimer(location, scheduler.add {
+        objects.setTimer(gameObject, scheduler.add {
             try {
                 delay(ticks)
             } finally {
-                despawn(location)
+                despawn(gameObject)
             }
         })
     }
 }
 
-fun despawn(location: Location) {
+fun despawn(gameObject: GameObject) {
     batcher.update(
-        location.tile.chunk,
-        ObjectRemoveMessage(location.tile.offset(), location.type, location.rotation)
+        gameObject.tile.chunk,
+        ObjectRemoveMessage(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
     )
-    objects.removeTemp(location)
-    bus.emit(Unregistered(location))
+    objects.removeTemp(gameObject)
+    bus.emit(Unregistered(gameObject))
 }
 
-fun spawn(location: Location) {
-    if (location.id == -1) {
+fun spawn(gameObject: GameObject) {
+    if (gameObject.id == -1) {
         val removal =
-            objects[location.tile].firstOrNull { it.tile == location.tile && it.type == location.type && it.rotation == location.rotation }
+            objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }
         if(removal == null) {
-            logger.debug { "Cannot find object to despawn $location" }
+            logger.debug { "Cannot find object to despawn $gameObject" }
         } else {
             despawn(removal)
         }
     } else {
         batcher.update(
-            location.tile.chunk,
-            ObjectAddMessage(location.tile.offset(), location.id, location.type, location.rotation)
+            gameObject.tile.chunk,
+            ObjectAddMessage(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
         )
-        objects.addTemp(location)
-        bus.emit(Registered(location))
+        objects.addTemp(gameObject)
+        bus.emit(Registered(gameObject))
     }
 }

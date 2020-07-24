@@ -18,9 +18,9 @@ import rs.dusk.engine.model.entity.index.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
 import rs.dusk.engine.model.world.map.collision.collisionModule
-import rs.dusk.engine.model.world.map.location.locationModule
-import rs.dusk.engine.model.world.map.location.xteaModule
 import rs.dusk.engine.model.world.map.mapModule
+import rs.dusk.engine.model.world.map.obj.objectMapModule
+import rs.dusk.engine.model.world.map.obj.xteaModule
 import rs.dusk.engine.model.world.map.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.script.scriptModule
@@ -82,7 +82,7 @@ object Dusk {
                 collisionModule,
                 cacheDefinitionModule,
                 cacheConfigModule,
-                locationModule,
+                objectMapModule,
                 pathFindModule,
                 schedulerModule,
                 batchedChunkModule,
