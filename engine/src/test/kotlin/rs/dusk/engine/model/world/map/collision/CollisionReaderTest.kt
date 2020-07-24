@@ -29,7 +29,7 @@ internal class CollisionReaderTest {
         // Given
         val region = Region(100, 100)
         val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         // When
         reader.read(region, settings)
         // Then
@@ -51,7 +51,7 @@ internal class CollisionReaderTest {
         val region = Region(1, 1)
         val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
         settings[0][1][1] = BLOCKED_TILE.toByte()
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         // When
         reader.read(region, settings)
         // Then
@@ -69,7 +69,7 @@ internal class CollisionReaderTest {
         val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
         settings[0][1][1] = BLOCKED_TILE.toByte()
         settings[1][1][1] = BRIDGE_TILE.toByte()
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         mockkStatic("rs.dusk.engine.model.world.map.collision.CollisionsKt")
         // When
         reader.read(region, settings)

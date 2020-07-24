@@ -83,8 +83,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -134,8 +134,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -164,8 +164,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -198,8 +198,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.index.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal

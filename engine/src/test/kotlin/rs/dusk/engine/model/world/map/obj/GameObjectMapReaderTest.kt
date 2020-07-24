@@ -43,7 +43,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load ignores invalid planes`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val data = byteArrayOf(-80, 58, -64, 66, 17, 0, 0)
         // When
@@ -57,7 +57,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load ignores invalid bridge planes`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val tile = Tile(15, 15, 0)
         settings[1][tile.x][tile.y] = BRIDGE_TILE.toByte()
@@ -74,7 +74,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load decrease bridge planes`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val tile = Tile(15, 15, 1)
         settings[1][tile.x][tile.y] = BRIDGE_TILE.toByte()
@@ -90,7 +90,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load ignores objects out of region`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val tile = Tile(65, 0, 0)
         val data = byteArrayOf(-80, 58, -112, 65, 0, 0, 0)
@@ -105,7 +105,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load two objects with same tile`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val tile = Tile(54, 45)
         val data = byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0)
@@ -121,7 +121,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @Test
     fun `Load two objects with same id`() {
         // Given
-        mockkStatic("rs.dusk.engine.model.world.map.TileSettingsKt")
+        mockkStatic("rs.dusk.engine.model.world.map.tile.TileSettingsKt")
         val settings: TileSettings = Array(4) { Array(64) { ByteArray(64) } }
         val data = byteArrayOf(-80, 58, 1, 50, -64, 0, 17, 0, 0)
         // When
