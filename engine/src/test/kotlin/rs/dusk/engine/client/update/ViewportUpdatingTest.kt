@@ -11,7 +11,7 @@ import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.character.TrackingSet
+import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.player.Players
@@ -67,7 +67,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 10
@@ -87,7 +87,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         // Given
         val tile = Tile(0)
         val players: Players = mockk(relaxed = true)
-        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
         val cap = 10
         val client: Player = mockk(relaxed = true)
         every { task.nearbyEntityCount(players, tile) } returns 5
@@ -106,7 +106,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by tile tracks by tile spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)
@@ -144,7 +144,7 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Gather by chunk tracks by chunk spiral`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        val set = mockk<TrackingSet<Player>>(relaxed = true)
+        val set = mockk<CharacterTrackingSet<Player>>(relaxed = true)
         val same: Player = mockk(relaxed = true)
         val west: Player = mockk(relaxed = true)
         val northWest: Player = mockk(relaxed = true)

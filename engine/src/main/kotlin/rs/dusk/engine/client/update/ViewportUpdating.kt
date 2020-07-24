@@ -9,7 +9,7 @@ import rs.dusk.engine.client.viewport.Spiral
 import rs.dusk.engine.event.Priority.VIEWPORT
 import rs.dusk.engine.model.engine.task.EngineTask
 import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.TrackingSet
+import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.list.PooledMapList
@@ -47,7 +47,7 @@ class ViewportUpdating : EngineTask(VIEWPORT) {
     /**
      * Updates a tracking set quickly, or precisely when local entities exceeds [cap]
      */
-    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, cap: Int, self: T?) {
+    fun <T : Character> update(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, cap: Int, self: T?) {
         set.start(self)
         val entityCount = nearbyEntityCount(list, tile)
         if (entityCount >= cap) {
@@ -59,9 +59,9 @@ class ViewportUpdating : EngineTask(VIEWPORT) {
     }
 
     /**
-     * Updates [set] precisely for when local entities exceeds maximum stopping at [TrackingSet.maximum]
+     * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
      */
-    fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, self: T?) {
         Spiral.spiral(tile, VIEW_RADIUS) { t ->
             val entities = list[t]
             if (entities != null && !set.track(entities, self)) {
@@ -71,9 +71,9 @@ class ViewportUpdating : EngineTask(VIEWPORT) {
     }
 
     /**
-     * Updates [set] quickly by gathering all entities in local chunks stopping at [TrackingSet.maximum]
+     * Updates [set] quickly by gathering all entities in local chunks stopping at [CharacterTrackingSet.maximum]
      */
-    fun <T : Character> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: TrackingSet<T>, self: T?) {
+    fun <T : Character> gatherByChunk(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, self: T?) {
         val x = tile.x
         val y = tile.y
         Spiral.spiral(tile.chunk, 2) { chunk ->

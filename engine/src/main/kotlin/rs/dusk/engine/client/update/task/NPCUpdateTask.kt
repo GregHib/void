@@ -5,8 +5,8 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.event.Priority.NPC_UPDATE
 import rs.dusk.engine.model.engine.task.EntityTask
+import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 import rs.dusk.engine.model.entity.character.LocalChange
-import rs.dusk.engine.model.entity.character.TrackingSet
 import rs.dusk.engine.model.entity.character.npc.NPC
 import rs.dusk.engine.model.entity.character.npc.teleporting
 import rs.dusk.engine.model.entity.character.player.Player
@@ -40,7 +40,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
     fun processLocals(
         sync: Writer,
         updates: Writer,
-        set: TrackingSet<NPC>
+        set: CharacterTrackingSet<NPC>
     ) {
         sync.startBitAccess()
         sync.writeBits(8, set.current.size)
@@ -87,7 +87,7 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
         sync: Writer,
         updates: Writer,
         client: Player,
-        set: TrackingSet<NPC>
+        set: CharacterTrackingSet<NPC>
     ) {
         for (npc in set.add) {
             val delta = npc.tile.delta(client.tile)

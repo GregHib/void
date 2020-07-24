@@ -6,7 +6,7 @@ import kotlin.math.abs
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 21, 2020
  */
-interface TrackingSet<T : Character> {
+interface CharacterTrackingSet<T : Character> {
 
     val maximum: Int
     val radius: Int

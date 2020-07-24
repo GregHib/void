@@ -2,7 +2,7 @@ package rs.dusk.engine.model.entity.character.npc
 
 import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.character.TrackingSet
+import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -15,7 +15,7 @@ class NPCTrackingSet(
     override val add: LinkedHashSet<NPC> = LinkedHashSet(),
     override val remove: MutableSet<NPC> = mutableSetOf(),
     override val current: LinkedHashSet<NPC> = LinkedHashSet()
-) : TrackingSet<NPC> {
+) : CharacterTrackingSet<NPC> {
 
     override var total: Int = 0
 

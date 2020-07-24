@@ -1,7 +1,7 @@
 package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
-import rs.dusk.engine.model.entity.character.TrackingSet
+import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 import rs.dusk.engine.model.world.Tile
 import java.util.*
 import kotlin.collections.LinkedHashSet
@@ -19,7 +19,7 @@ class PlayerTrackingSet(
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals
     val local: MutableSet<Player> = mutableSetOf(),// Duplicate of current for O(1) lookup
     val lastSeen: MutableMap<Player, Tile> = mutableMapOf()
-) : TrackingSet<Player> {
+) : CharacterTrackingSet<Player> {
 
     override var total: Int = 0
 
