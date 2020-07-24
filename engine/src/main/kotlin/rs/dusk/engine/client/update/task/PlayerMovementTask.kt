@@ -3,12 +3,12 @@ package rs.dusk.engine.client.update.task
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.Priority.PLAYER_MOVEMENT
 import rs.dusk.engine.model.engine.task.EngineTask
-import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerMoveType
-import rs.dusk.engine.model.entity.index.player.Players
-import rs.dusk.engine.model.entity.index.update.visual.player.movementType
-import rs.dusk.engine.model.entity.index.update.visual.player.temporaryMoveType
+import rs.dusk.engine.model.entity.character.Moved
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerMoveType
+import rs.dusk.engine.model.entity.character.player.Players
+import rs.dusk.engine.model.entity.character.update.visual.player.movementType
+import rs.dusk.engine.model.entity.character.update.visual.player.temporaryMoveType
 import rs.dusk.engine.model.world.Tile
 
 /**

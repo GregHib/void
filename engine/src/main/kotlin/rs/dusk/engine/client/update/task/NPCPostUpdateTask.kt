@@ -2,8 +2,8 @@ package rs.dusk.engine.client.update.task
 
 import rs.dusk.engine.event.Priority.NPC_UPDATE_FINISHED
 import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCs
 
 /**
  * Resets non-persistent changes

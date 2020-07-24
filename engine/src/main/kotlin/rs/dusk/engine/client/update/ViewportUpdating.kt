@@ -8,10 +8,10 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.viewport.Spiral
 import rs.dusk.engine.event.Priority.VIEWPORT
 import rs.dusk.engine.model.engine.task.EngineTask
-import rs.dusk.engine.model.entity.index.Character
-import rs.dusk.engine.model.entity.index.TrackingSet
-import rs.dusk.engine.model.entity.index.npc.NPCs
-import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.character.Character
+import rs.dusk.engine.model.entity.character.TrackingSet
+import rs.dusk.engine.model.entity.character.npc.NPCs
+import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.inject

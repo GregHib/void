@@ -6,11 +6,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.Movement
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCMoveType
-import rs.dusk.engine.model.entity.index.npc.NPCs
-import rs.dusk.engine.model.entity.index.player.Viewport
+import rs.dusk.engine.model.entity.character.Movement
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCMoveType
+import rs.dusk.engine.model.entity.character.npc.NPCs
+import rs.dusk.engine.model.entity.character.player.Viewport
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.TraversalStrategy

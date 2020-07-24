@@ -1,7 +1,7 @@
 import rs.dusk.engine.client.send
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.index.player.command.Command
+import rs.dusk.engine.model.entity.character.player.command.Command
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher

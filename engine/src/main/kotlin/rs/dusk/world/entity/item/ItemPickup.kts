@@ -3,8 +3,8 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.index.contain.ContainerResult
-import rs.dusk.engine.model.entity.index.contain.inventory
+import rs.dusk.engine.model.entity.character.contain.ContainerResult
+import rs.dusk.engine.model.entity.character.contain.inventory
 import rs.dusk.engine.model.entity.item.FloorItemOption
 import rs.dusk.engine.model.entity.item.FloorItemState
 import rs.dusk.engine.model.entity.item.FloorItems

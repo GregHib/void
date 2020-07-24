@@ -10,9 +10,9 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.index.Character
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.Character
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile

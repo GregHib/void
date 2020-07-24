@@ -3,8 +3,8 @@ package rs.dusk.world.entity.player
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.entity.index.player.Players
-import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.entity.character.player.Players
+import rs.dusk.engine.model.entity.character.update.visual.player.name
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get

@@ -4,9 +4,9 @@ import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.index.npc.NPCRegistered
-import rs.dusk.engine.model.entity.index.update.visual.forceChat
-import rs.dusk.engine.model.entity.index.update.visual.setAnimation
+import rs.dusk.engine.model.entity.character.npc.NPCRegistered
+import rs.dusk.engine.model.entity.character.update.visual.forceChat
+import rs.dusk.engine.model.entity.character.update.visual.setAnimation
 import kotlin.random.Random
 
 val eatGrassAnimation = 5854

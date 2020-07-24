@@ -2,9 +2,9 @@ package rs.dusk.engine.client.update.encode.player
 
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.model.entity.index.update.VisualEncoder
-import rs.dusk.engine.model.entity.index.update.visual.player.APPEARANCE_MASK
-import rs.dusk.engine.model.entity.index.update.visual.player.Appearance
+import rs.dusk.engine.model.entity.character.update.VisualEncoder
+import rs.dusk.engine.model.entity.character.update.visual.player.APPEARANCE_MASK
+import rs.dusk.engine.model.entity.character.update.visual.player.Appearance
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

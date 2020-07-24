@@ -15,7 +15,7 @@ import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler

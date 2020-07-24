@@ -7,8 +7,8 @@ import kotlinx.coroutines.sync.withLock
 import org.koin.dsl.module
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.index.IndexAllocator
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.IndexAllocator
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.world.entity.player.PlayerSpawn
 import java.util.*

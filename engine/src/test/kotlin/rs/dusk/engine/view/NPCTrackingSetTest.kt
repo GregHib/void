@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCTrackingSet
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCTrackingSet
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
 

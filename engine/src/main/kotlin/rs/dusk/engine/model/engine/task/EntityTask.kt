@@ -5,7 +5,7 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.list.PooledMapList
 import kotlin.system.measureTimeMillis
 

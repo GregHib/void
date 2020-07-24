@@ -5,9 +5,9 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.player.PlayerRegistered
-import rs.dusk.engine.model.entity.index.player.command.Command
-import rs.dusk.engine.model.entity.index.update.visual.player.tele
+import rs.dusk.engine.model.entity.character.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.player.command.Command
+import rs.dusk.engine.model.entity.character.update.visual.player.tele
 import rs.dusk.engine.model.world.view
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.npc.NPCSpawn

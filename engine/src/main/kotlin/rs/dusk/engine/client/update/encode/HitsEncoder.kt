@@ -2,9 +2,9 @@ package rs.dusk.engine.client.update.encode
 
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.model.entity.index.update.VisualEncoder
-import rs.dusk.engine.model.entity.index.update.visual.Hit
-import rs.dusk.engine.model.entity.index.update.visual.Hits
+import rs.dusk.engine.model.entity.character.update.VisualEncoder
+import rs.dusk.engine.model.entity.character.update.visual.Hit
+import rs.dusk.engine.model.entity.character.update.visual.Hits
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

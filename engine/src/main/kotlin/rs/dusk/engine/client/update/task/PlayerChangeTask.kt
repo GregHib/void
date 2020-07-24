@@ -4,9 +4,9 @@ import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
 import rs.dusk.engine.event.Priority.PLAYER_CHANGE
 import rs.dusk.engine.model.engine.task.EntityTask
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.LocalChange
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.character.LocalChange
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.world.Tile
 import kotlin.math.abs
 

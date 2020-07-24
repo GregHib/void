@@ -9,8 +9,8 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.model.entity.Direction.*
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Movement
-import rs.dusk.engine.model.entity.index.Steps
+import rs.dusk.engine.model.entity.character.Movement
+import rs.dusk.engine.model.entity.character.Steps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy

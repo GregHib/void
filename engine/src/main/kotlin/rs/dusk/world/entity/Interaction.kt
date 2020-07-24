@@ -1,8 +1,8 @@
 package rs.dusk.world.entity
 
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.walkTo
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.walkTo
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
 import rs.dusk.utility.get

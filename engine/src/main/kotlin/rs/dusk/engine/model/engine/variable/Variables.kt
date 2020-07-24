@@ -3,8 +3,8 @@ package rs.dusk.engine.model.engine.variable
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import rs.dusk.engine.client.send
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerVariables
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerVariables
 import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarcMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarcStrMessage

@@ -4,8 +4,8 @@ import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.update.visual.player.name
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher

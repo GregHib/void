@@ -1,9 +1,9 @@
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerRegistered
-import rs.dusk.engine.model.entity.index.player.PlayerUnregistered
+import rs.dusk.engine.model.entity.character.Moved
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.player.PlayerUnregistered
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher

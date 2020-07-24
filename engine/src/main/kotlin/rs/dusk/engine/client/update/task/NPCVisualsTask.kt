@@ -4,10 +4,10 @@ import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.event.Priority.NPC_VISUALS
 import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.update.Visual
-import rs.dusk.engine.model.entity.index.update.VisualEncoder
-import rs.dusk.engine.model.entity.index.update.Visuals
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.update.Visual
+import rs.dusk.engine.model.entity.character.update.VisualEncoder
+import rs.dusk.engine.model.entity.character.update.Visuals
 import rs.dusk.engine.model.entity.list.PooledMapList
 
 /**

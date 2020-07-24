@@ -5,7 +5,7 @@ import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.network.rs.codec.game.encode.message.ChunkClearMessage
 import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage

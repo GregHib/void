@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Movement
-import rs.dusk.engine.model.entity.index.Steps
+import rs.dusk.engine.model.entity.character.Movement
+import rs.dusk.engine.model.entity.character.Steps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy

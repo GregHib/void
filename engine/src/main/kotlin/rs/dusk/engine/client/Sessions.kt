@@ -5,7 +5,7 @@ import com.google.common.collect.HashBiMap
 import org.koin.dsl.module
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.utility.get
 import kotlin.reflect.KClass
 

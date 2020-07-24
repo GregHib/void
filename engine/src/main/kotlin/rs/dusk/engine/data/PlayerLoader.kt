@@ -1,7 +1,7 @@
 package rs.dusk.engine.data
 
 import org.koin.dsl.module
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.utility.getProperty
 

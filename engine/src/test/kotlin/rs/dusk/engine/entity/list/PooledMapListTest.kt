@@ -7,7 +7,7 @@ import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.list.PooledMapList
 import rs.dusk.engine.model.world.Tile
 import java.util.*

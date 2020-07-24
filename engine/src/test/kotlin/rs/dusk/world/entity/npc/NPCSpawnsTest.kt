@@ -17,8 +17,8 @@ import rs.dusk.engine.event.EventHandler
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCRegistered
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCRegistered
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.model.world.map.collision.CollisionFlag

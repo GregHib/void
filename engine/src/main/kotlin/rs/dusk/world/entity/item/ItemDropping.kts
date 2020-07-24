@@ -5,7 +5,7 @@ import rs.dusk.engine.action.delay
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.index.update.visual.player.name
+import rs.dusk.engine.model.entity.character.update.visual.player.name
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.item.FloorItemState
 import rs.dusk.engine.model.entity.item.FloorItems

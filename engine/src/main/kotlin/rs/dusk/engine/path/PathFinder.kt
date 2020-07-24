@@ -2,8 +2,8 @@ package rs.dusk.engine.path
 
 import org.koin.dsl.module
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.index.Character
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.Character
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.world.Tile

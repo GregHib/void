@@ -5,11 +5,11 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.IndexAllocator
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCRegistered
-import rs.dusk.engine.model.entity.index.npc.NPCs
-import rs.dusk.engine.model.entity.index.update.visual.npc.turn
+import rs.dusk.engine.model.entity.character.IndexAllocator
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCRegistered
+import rs.dusk.engine.model.entity.character.npc.NPCs
+import rs.dusk.engine.model.entity.character.update.visual.npc.turn
 import rs.dusk.engine.model.entity.list.MAX_NPCS
 import rs.dusk.engine.model.world.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType

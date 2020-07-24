@@ -4,9 +4,9 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
+import rs.dusk.engine.model.entity.character.update.visual.Graphic
 import rs.dusk.engine.model.entity.gfx.AreaGraphic
 import rs.dusk.engine.model.entity.gfx.Graphics
-import rs.dusk.engine.model.entity.index.update.visual.Graphic
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage

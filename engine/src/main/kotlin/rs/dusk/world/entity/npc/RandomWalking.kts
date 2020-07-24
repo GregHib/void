@@ -2,7 +2,7 @@ package rs.dusk.world.entity.npc
 
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.utility.inject
 import kotlin.math.roundToInt

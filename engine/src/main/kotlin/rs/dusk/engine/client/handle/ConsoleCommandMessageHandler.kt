@@ -4,7 +4,7 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.index.player.command.Command
+import rs.dusk.engine.model.entity.character.player.command.Command
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler

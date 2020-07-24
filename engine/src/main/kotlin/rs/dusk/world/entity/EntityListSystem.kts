@@ -2,14 +2,14 @@ import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.index.Character
-import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCs
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerMoveType
-import rs.dusk.engine.model.entity.index.player.Players
-import rs.dusk.engine.model.entity.index.update.visual.player.*
+import rs.dusk.engine.model.entity.character.Character
+import rs.dusk.engine.model.entity.character.Moved
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCs
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerMoveType
+import rs.dusk.engine.model.entity.character.player.Players
+import rs.dusk.engine.model.entity.character.update.visual.player.*
 import rs.dusk.utility.inject
 
 val players: Players by inject()

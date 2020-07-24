@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Steps
+import rs.dusk.engine.model.entity.character.Steps
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy

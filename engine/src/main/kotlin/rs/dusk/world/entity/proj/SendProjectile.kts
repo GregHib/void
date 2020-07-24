@@ -4,7 +4,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.proj.Projectile
 import rs.dusk.engine.model.entity.proj.Projectiles

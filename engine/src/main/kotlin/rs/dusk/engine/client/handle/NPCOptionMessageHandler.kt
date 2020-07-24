@@ -5,8 +5,8 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.index.npc.NPCOption
-import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.character.npc.NPCOption
+import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.NPCOptionMessage

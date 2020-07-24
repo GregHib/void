@@ -2,7 +2,7 @@ package rs.dusk.engine.path.find
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Movement
+import rs.dusk.engine.model.entity.character.Movement
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.Finder
 import rs.dusk.engine.path.PathResult

@@ -12,10 +12,10 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.ViewportUpdating
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.index.Character
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerTrackingSet
-import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.character.Character
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerTrackingSet
+import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock

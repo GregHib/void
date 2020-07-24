@@ -4,10 +4,10 @@ import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.Priority.NPC_MOVEMENT
 import rs.dusk.engine.model.engine.task.EngineTask
-import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.npc.NPC
-import rs.dusk.engine.model.entity.index.npc.NPCMoveType
-import rs.dusk.engine.model.entity.index.npc.NPCs
+import rs.dusk.engine.model.entity.character.Moved
+import rs.dusk.engine.model.entity.character.npc.NPC
+import rs.dusk.engine.model.entity.character.npc.NPCMoveType
+import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.world.Tile
 
 /**

@@ -1,7 +1,7 @@
 package rs.dusk.engine.path
 
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.index.Movement
+import rs.dusk.engine.model.entity.character.Movement
 import rs.dusk.engine.model.world.Tile
 
 /**

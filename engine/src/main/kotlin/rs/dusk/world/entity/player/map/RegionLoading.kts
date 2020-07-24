@@ -3,10 +3,10 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.index.Moved
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerRegistered
-import rs.dusk.engine.model.entity.index.player.Players
+import rs.dusk.engine.model.entity.character.Moved
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader

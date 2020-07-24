@@ -12,8 +12,8 @@ import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.index.IndexAllocator
-import rs.dusk.engine.model.entity.index.player.Player
+import rs.dusk.engine.model.entity.character.IndexAllocator
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.script.KoinMock
 import java.util.*
 

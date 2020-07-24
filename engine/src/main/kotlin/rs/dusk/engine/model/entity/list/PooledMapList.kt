@@ -2,7 +2,7 @@ package rs.dusk.engine.model.entity.list
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
-import rs.dusk.engine.model.entity.index.Character
+import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
 import java.util.*

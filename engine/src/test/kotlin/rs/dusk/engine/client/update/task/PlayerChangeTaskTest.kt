@@ -7,10 +7,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.index.LocalChange
-import rs.dusk.engine.model.entity.index.player.Player
-import rs.dusk.engine.model.entity.index.player.PlayerMoveType
-import rs.dusk.engine.model.entity.index.update.visual.player.movementType
+import rs.dusk.engine.model.entity.character.LocalChange
+import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.model.entity.character.player.PlayerMoveType
+import rs.dusk.engine.model.entity.character.update.visual.player.movementType
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.script.KoinMock
