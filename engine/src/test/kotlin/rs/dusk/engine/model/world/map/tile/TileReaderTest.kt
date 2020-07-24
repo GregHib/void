@@ -1,4 +1,4 @@
-package rs.dusk.engine.model.world.map
+package rs.dusk.engine.model.world.map.tile
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

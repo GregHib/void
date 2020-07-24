@@ -9,6 +9,7 @@ import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.CollisionReader
 import rs.dusk.engine.model.world.map.obj.GameObjectMapReader
 import rs.dusk.engine.model.world.map.obj.Xteas
+import rs.dusk.engine.model.world.map.tile.TileReader
 import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
 

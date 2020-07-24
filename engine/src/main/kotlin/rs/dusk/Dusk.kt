@@ -21,7 +21,7 @@ import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.mapModule
 import rs.dusk.engine.model.world.map.obj.objectMapModule
 import rs.dusk.engine.model.world.map.obj.xteaModule
-import rs.dusk.engine.model.world.map.tileModule
+import rs.dusk.engine.model.world.map.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.script.scriptModule
 import rs.dusk.engine.task.StartTask

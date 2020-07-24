@@ -14,6 +14,7 @@ import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.obj.*
 import rs.dusk.engine.model.world.map.obj.GameObjectMapWriter.Companion.localId
+import rs.dusk.engine.model.world.map.tile.tileModule
 import rs.dusk.engine.model.world.view
 import rs.dusk.engine.script.KoinMock
 

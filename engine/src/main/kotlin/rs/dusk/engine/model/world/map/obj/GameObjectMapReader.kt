@@ -7,9 +7,9 @@ import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.BRIDGE_TILE
-import rs.dusk.engine.model.world.map.TileSettings
-import rs.dusk.engine.model.world.map.isTile
+import rs.dusk.engine.model.world.map.tile.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.tile.TileSettings
+import rs.dusk.engine.model.world.map.tile.isTile
 
 val objectMapModule = module {
     single { GameObjectMapReader(get(), get()) }
@@ -52,7 +52,9 @@ class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
                 }
 
                 // Decrease bridges
-                if (settings.isTile(1, localX, localY, BRIDGE_TILE)) {
+                if (settings.isTile(1, localX, localY,
+                        BRIDGE_TILE
+                    )) {
                     plane--
                 }
 

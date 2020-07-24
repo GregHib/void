@@ -4,11 +4,11 @@ import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.map.BLOCKED_TILE
-import rs.dusk.engine.model.world.map.BRIDGE_TILE
-import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.FLOOR
-import rs.dusk.engine.model.world.map.isTile
+import rs.dusk.engine.model.world.map.tile.BLOCKED_TILE
+import rs.dusk.engine.model.world.map.tile.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.tile.TileSettings
+import rs.dusk.engine.model.world.map.tile.isTile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

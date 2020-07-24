@@ -1,11 +1,11 @@
 package rs.dusk.engine.model.world.map.collision
 
 import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.map.BLOCKED_TILE
-import rs.dusk.engine.model.world.map.BRIDGE_TILE
-import rs.dusk.engine.model.world.map.TileSettings
 import rs.dusk.engine.model.world.map.collision.CollisionFlag.FLOOR
-import rs.dusk.engine.model.world.map.isTile
+import rs.dusk.engine.model.world.map.tile.BLOCKED_TILE
+import rs.dusk.engine.model.world.map.tile.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.tile.TileSettings
+import rs.dusk.engine.model.world.map.tile.isTile
 
 /**
  * Adds collision for all blocked tiles except bridges
@@ -20,8 +20,12 @@ class CollisionReader(val collisions: Collisions) {
         for (plane in settings.indices) {
             for (localX in settings[plane].indices) {
                 for (localY in settings[plane][localX].indices) {
-                    val blocked = settings.isTile(plane, localX, localY, BLOCKED_TILE)
-                    val bridge = settings.isTile(1, localX, localY, BRIDGE_TILE)
+                    val blocked = settings.isTile(plane, localX, localY,
+                        BLOCKED_TILE
+                    )
+                    val bridge = settings.isTile(1, localX, localY,
+                        BRIDGE_TILE
+                    )
                     if (blocked && !bridge) {
                         collisions.add(x + localX, y + localY, plane, FLOOR)
                     }

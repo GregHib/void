@@ -1,4 +1,4 @@
-package rs.dusk.engine.model.world.map
+package rs.dusk.engine.model.world.map.tile
 
 import org.koin.dsl.module
 

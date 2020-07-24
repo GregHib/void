@@ -13,8 +13,8 @@ import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.BRIDGE_TILE
-import rs.dusk.engine.model.world.map.TileSettings
+import rs.dusk.engine.model.world.map.tile.BRIDGE_TILE
+import rs.dusk.engine.model.world.map.tile.TileSettings
 import rs.dusk.engine.script.KoinMock
 
 /**
