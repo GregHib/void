@@ -1,6 +1,9 @@
 package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.action.Action
+import rs.dusk.engine.client.ui.GameFrame
+import rs.dusk.engine.client.ui.Interfaces
+import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.character.CharacterValues
@@ -10,6 +13,7 @@ import rs.dusk.engine.model.entity.character.contain.Container
 import rs.dusk.engine.model.entity.character.update.Visuals
 import rs.dusk.engine.model.entity.character.update.visual.player.getAppearance
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.utility.get
 
 /**
  * A player controlled by client or bot
@@ -29,6 +33,12 @@ data class Player(
     val variables: MutableMap<Int, Any> = mutableMapOf(),
     @Transient override val values: CharacterValues = CharacterValues()
 ) : Character {
+
+    @Transient
+    val gameframe: GameFrame = GameFrame()
+
+    @Transient
+    val interfaces: Interfaces = Interfaces(PlayerInterfaceIO(this), get(), gameframe)
 
     @Transient
     override var change: LocalChange? = null

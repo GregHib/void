@@ -6,15 +6,15 @@ import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_WINDOW
-import rs.dusk.network.rs.codec.game.encode.message.WindowUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class WindowUpdateMessageEncoder : GameMessageEncoder<WindowUpdateMessage>() {
+class InterfaceUpdateMessageEncoder : GameMessageEncoder<InterfaceUpdateMessage>() {
 
-    override fun encode(builder: PacketWriter, msg: WindowUpdateMessage) {
+    override fun encode(builder: PacketWriter, msg: InterfaceUpdateMessage) {
         val (id, type) = msg
         builder.apply {
             writeOpcode(INTERFACE_WINDOW, PacketType.FIXED)

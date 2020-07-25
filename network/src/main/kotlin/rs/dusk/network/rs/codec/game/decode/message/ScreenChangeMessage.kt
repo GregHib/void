@@ -10,7 +10,11 @@ import rs.dusk.network.rs.codec.game.MessageCompanion
  * @param height The client window height
  * @param antialiasLevel The client antialias level
  */
-data class ScreenChangeMessage(val displayMode: Int, val width: Int, val height: Int, val antialiasLevel: Int) :
-    Message {
+data class ScreenChangeMessage(
+    val displayMode: Int,
+    val width: Int,
+    val height: Int,
+    val antialiasLevel: Int
+) : Message {
     companion object : MessageCompanion<ScreenChangeMessage>()
 }

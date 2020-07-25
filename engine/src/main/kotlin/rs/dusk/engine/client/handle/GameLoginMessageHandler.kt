@@ -70,6 +70,6 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
             }
         }
 
-        bus.emit(Login(msg.username, session, callback))
+        bus.emit(Login(msg.username, session, callback, msg))
     }
 }

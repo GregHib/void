@@ -60,7 +60,7 @@ class LoginQueue(
      * Accepts client and spawns player in world.
      */
     fun login(player: Player, attempt: Login) {
-        bus.emit(PlayerSpawn(player, attempt.name, attempt.session))
+        bus.emit(PlayerSpawn(player, attempt.name, attempt.session, attempt.data))
         attempt.respond(LoginResponse.Success(player))
     }
 

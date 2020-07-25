@@ -1,0 +1,122 @@
+# Chat box
+chat_background:
+  parent: chat_box
+  index: 9
+
+chat_box:
+  fixedIndex: 192
+  resizeIndex: 73
+
+chat_settings:
+  fixedIndex: 68
+  resizeIndex: 19
+
+private_chat:
+  fixedIndex: 17
+  resizeIndex: 72
+
+# Mini-map
+energy_orb:
+  fixedIndex: 186
+  resizeIndex: 179
+
+health_orb:
+  fixedIndex: 183
+  resizeIndex: 177
+
+prayer_orb:
+  fixedIndex: 185
+  resizeIndex: 178
+
+summoning_orb:
+  fixedIndex: 188
+  resizeIndex: 180
+
+# Tabs
+clan_chat_tab:
+  fixedIndex: 215
+  resizeIndex: 101
+
+combat_styles_tab:
+  fixedIndex: 204
+  resizeIndex: 90
+
+emotes_tab:
+  fixedIndex: 217
+  resizeIndex: 103
+
+friends_chat_tab:
+  fixedIndex: 214
+  resizeIndex: 100
+
+friends_list_tab:
+  fixedIndex: 213
+  resizeIndex: 99
+
+inventory_tab:
+  fixedIndex: 208
+  resizeIndex: 94
+
+logout_tab:
+  fixedIndex: 222
+  resizeIndex: 108
+
+spellbook_tab:
+  fixedIndex: 211
+  resizeIndex: 97
+
+music_player_tab:
+  fixedIndex: 218
+  resizeIndex: 104
+
+notes_tab:
+  fixedIndex: 219
+  resizeIndex: 105
+
+options_tab:
+  fixedIndex: 216
+  resizeIndex: 102
+
+prayer_list_tab:
+  fixedIndex: 210
+  resizeIndex: 96
+
+quest_journals_tab:
+  fixedIndex: 207
+  resizeIndex: 93
+
+stats_tab:
+  fixedIndex: 206
+  resizeIndex: 92
+
+task_system_tab:
+  fixedIndex: 205
+  resizeIndex: 91
+
+worn_equipment_tab:
+  fixedIndex: 209
+  resizeIndex: 95
+
+# Main screen
+dialogue_box:
+  parent: chat_box
+  index: 13
+
+area_status:
+  index: 15
+
+overlay:
+  fixedIndex: 9
+  resizeIndex: 12
+
+main_screen:
+  fixedIndex: 9
+  resizeIndex: 12
+
+full_screen:
+  parent: root
+  index: 0
+
+skill_creation:
+  parent: skill_creation
+  index: 4

@@ -62,3 +62,12 @@ Command where { prefix == "bot" } then {
         bus.emit(Login("Bot ${botCounter.getAndIncrement()}", callback = callback))
     }
 }
+
+Command where { prefix == "inter" } then {
+    val id = content.toInt()
+    if(id == -1) {
+
+    } else {
+        player.interfaces.open(id)
+    }
+}

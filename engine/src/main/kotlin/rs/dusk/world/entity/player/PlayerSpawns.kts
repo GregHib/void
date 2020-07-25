@@ -22,6 +22,11 @@ PlayerSpawn then {
         sessions.register(session, player)
     }
     player.name = name
+    data?.let { data ->
+        player.gameframe.width = data.width
+        player.gameframe.height = data.height
+        player.gameframe.displayMode = data.mode
+    }
     logger.info { "Player spawned $name index ${player.index}." }
     result = player
 }

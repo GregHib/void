@@ -1,565 +1,582 @@
-- id: 137
-  name: ChatBackground
-  parent: ChatBox
-  index: 9
-
-- id: 752
-  name: ChatBox
-  fixedIndex: 192
-  resizeIndex: 73
-
-- id: 751
-  name: FilterButtons
-  fixedIndex: 68
-  resizeIndex: 19
-
-- id: 754
-  name: PrivateChat
-  fixedIndex: 17
-  resizeIndex: 72
-
-- id: 750
-  name: EnergyOrb
-  fixedIndex: 186
-  resizeIndex: 179
-
-- id: 748
-  name: HealthOrb
-  fixedIndex: 183
-  resizeIndex: 177
-
-- id: 749
-  name: PrayerOrb
-  fixedIndex: 185
-  resizeIndex: 178
-
-- id: 747
-  name: SummoningOrb
-  fixedIndex: 188
-  resizeIndex: 180
-
-- id: 1110
-  name: ClanChat
-  fixedIndex: 215
-  resizeIndex: 101
-
-- id: 884
-  name: CombatStyles
-  fixedIndex: 204
-  resizeIndex: 90
-
-- id: 590
-  name: Emotes
-  fixedIndex: 217
-  resizeIndex: 103
-
-- id: 1109
-  name: FriendsChat
-  fixedIndex: 214
-  resizeIndex: 100
-
-- id: 550
-  name: FriendsList
-  fixedIndex: 213
-  resizeIndex: 99
-
-- id: 679
-  name: UnknownSide3
-  fixedIndex: 208
-  resizeIndex: 94
-
-- id: 336
-  name: TradeSide
-  fixedIndex: 208
-  resizeIndex: 94
-
-- id: 182
-  name: Logout
-  fixedIndex: 222
-  resizeIndex: 108
-
-- id: 192
-  name: ModernSpellbook
-  fixedIndex: 211
-  resizeIndex: 97
-
-- id: 430
-  name: LunarSpellbook
-  fixedIndex: 211
-  resizeIndex: 97
-
-- id: 193
-  name: AncientSpellbook
-  fixedIndex: 211
-  resizeIndex: 97
-
-- id: 950
-  name: DungeoneeringSpellbook
-  fixedIndex: 211
-  resizeIndex: 97
-
-- id: 187
-  name: MusicPlayer
-  fixedIndex: 218
-  resizeIndex: 104
-
-- id: 34
-  name: Notes
-  fixedIndex: 219
-  resizeIndex: 105
-
-- id: 261
-  name: Options
-  fixedIndex: 216
-  resizeIndex: 102
-
-- id: 271
-  name: PrayerList
-  fixedIndex: 210
-  resizeIndex: 96
-
-- id: 190
-  name: QuestJournals
-  fixedIndex: 207
-  resizeIndex: 93
-
-- id: 320
-  name: Stats
-  fixedIndex: 206
-  resizeIndex: 92
-
-- id: 1056
-  name: TaskSystem
-  fixedIndex: 205
-  resizeIndex: 91
-
-- id: 387
-  name: WornEquipment
-  fixedIndex: 209
-  resizeIndex: 95
-
-- id: 23
-  name: Multi4Offscreen
-  parent: ChatBox
-  index: 13
-
-- id: 26
-  name: TextBoxModelSprite
-  parent: ChatBox
-  index: 13
-
-- id: 55
-  name: CastleWarsScore
-  parent: ChatBox
-  index: 13
-
-- id: 57
-  name: CastleWarsStatusOverlay
-  parent: ChatBox
-  index: 13
-
-- id: 90
-  name: NpcChatNp4u
-  parent: ChatBox
-  index: 13
-
-- id: 91
-  name: NpcChatNp3u
-  parent: ChatBox
-  index: 13
-
-- id: 92
-  name: NpcChatNp1u
-  parent: ChatBox
-  index: 13
-
-- id: 93
-  name: NpcChatNp2u
-  parent: ChatBox
-  index: 13
-
-- id: 94
-  name: ConfirmDestroy
-  parent: ChatBox
-  index: 13
-
-- id: 133
-  name: GardenQuiz
-  parent: ChatBox
-  index: 13
-
-- id: 136
-  name: ChatBoth
-  parent: ChatBox
-  index: 13
-
-- id: 140
-  name: Select2Models
-  parent: ChatBox
-  index: 13
-
-- id: 148
-  name: TextBoxModel
-  parent: ChatBox
-  index: 13
-
-- id: 188
-  name: MacroMimeEmotes
-  parent: ChatBox
-  index: 13
-
-- id: 191
-  name: MacroQuizShow
-  parent: ChatBox
-  index: 13
-
-- id: 200
-  name: ContainerContinue
-  parent: ChatBox
-  index: 13
-
-- id: 208
-  name: PriceCheckBoxTitle
-  parent: ChatBox
-  index: 13
-
-- id: 372
-  name: TutorialText
-  parent: ChatBox
-  index: 13
-
-- id: 389
-  name: ObjDialog
-  parent: ChatBox
-  index: 13
-
-- id: 393
-  name: PohHangman
-  parent: ChatBox
-  index: 13
-
-- id: 421
-  name: TutorialText2
-  parent: ChatBox
-  index: 13
-
-- id: 445
-  name: OpenUrl
-  parent: ChatBox
-  index: 13
-
-- id: 458
-  name: Multi3OffCentre
-  parent: ChatBox
-  index: 13
-
-- id: 507
-  name: PohHangmanGerman
-  parent: ChatBox
-  index: 13
-
-- id: 557
-  name: Multi2Mes
-  parent: ChatBox
-  index: 13
-
-- id: 668
-  name: PickAPuppy
-  parent: ChatBox
-  index: 13
-
-- id: 718
-  name: MultiVar2Wide
-  parent: ChatBox
-  index: 13
-
-- id: 737
-  name: PickAKitten
-  parent: ChatBox
-  index: 13
-
-- id: 740
-  name: LevelUpDialog
-  parent: ChatBox
-  index: 13
-
-- id: 835
-  name: TextBoxContinue
-  parent: ChatBox
-  index: 13
-
-- id: 846
-  name: TextBoxContinueResizable
-  parent: ChatBox
-  index: 13
-
-- id: 856
-  name: MobilisingArmies1
-  parent: ChatBox
-  index: 13
-
-- id: 905
-  name: SkillCreation
-  parent: ChatBox
-  index: 13
-
-- id: 941
-  name: SmeltType
-  parent: ChatBox
-  index: 13
-
-- id: 944
-  name: MakeAmount
-  parent: ChatBox
-  index: 13
-
-- id: 1018
-  name: TextBoxChat
-  parent: ChatBox
-  index: 13
-
-- id: 1020
-  name: TextBoxContinue2
-  parent: ChatBox
-  index: 13
-
-- id: 1145
-  name: DoubleChat3
-  parent: ChatBox
-  index: 13
-
-- id: 1146
-  name: DoubleChat2
-  parent: ChatBox
-  index: 13
-
-- id: 1147
-  name: DoubleChat1
-  parent: ChatBox
-  index: 13
-
-- id: 1148
-  name: DoubleChat4
-  parent: ChatBox
-  index: 13
-
-- id: 131
-  name: DoubleObjBox
-  parent: ChatBox
-  index: 13
-
-- id: 519
-  name: ObjBox
-  parent: ChatBox
-  index: 13
-
-- id: 64
-  name: Chat1
-  parent: ChatBox
-  index: 13
-
-- id: 65
-  name: Chat2
-  parent: ChatBox
-  index: 13
-
-- id: 66
-  name: Chat3
-  parent: ChatBox
-  index: 13
-
-- id: 67
-  name: Chat4
-  parent: ChatBox
-  index: 13
-
-- id: 68
-  name: ChatNp1
-  parent: ChatBox
-  index: 13
-
-- id: 69
-  name: ChatNp2
-  parent: ChatBox
-  index: 13
-
-- id: 70
-  name: ChatNp3
-  parent: ChatBox
-  index: 13
-
-- id: 71
-  name: ChatNp4
-  parent: ChatBox
-  index: 13
-
-- id: 210
-  name: Message1
-  parent: ChatBox
-  index: 13
-
-- id: 211
-  name: Message2
-  parent: ChatBox
-  index: 13
-
-- id: 212
-  name: Message3
-  parent: ChatBox
-  index: 13
-
-- id: 213
-  name: Message4
-  parent: ChatBox
-  index: 13
-
-- id: 214
-  name: Message5
-  parent: ChatBox
-  index: 13
-
-- id: 215
-  name: MessageNp1
-  parent: ChatBox
-  index: 13
-
-- id: 216
-  name: MessageNp2
-  parent: ChatBox
-  index: 13
-
-- id: 217
-  name: MessageNp3
-  parent: ChatBox
-  index: 13
-
-- id: 218
-  name: MessageNp4
-  parent: ChatBox
-  index: 13
-
-- id: 219
-  name: MessageNp5
-  parent: ChatBox
-  index: 13
-
-- id: 228
-  name: Multi2
-  parent: ChatBox
-  index: 13
-
-- id: 229
-  name: Multi2Chat
-  parent: ChatBox
-  index: 13
-
-- id: 230
-  name: Multi3
-  parent: ChatBox
-  index: 13
-
-- id: 231
-  name: Multi3Chat
-  parent: ChatBox
-  index: 13
-
-- id: 232
-  name: Multi4
-  parent: ChatBox
-  index: 13
-
-- id: 233
-  name: Multi4Chat
-  parent: ChatBox
-  index: 13
-
-- id: 234
-  name: Multi5
-  parent: ChatBox
-  index: 13
-
-- id: 235
-  name: Multi5Chat
-  parent: ChatBox
-  index: 13
-
-- id: 236
-  name: MultiVar2
-  parent: ChatBox
-  index: 13
-
-- id: 451
-  name: MultiVar3
-  parent: ChatBox
-  index: 13
-
-- id: 237
-  name: MultiVar4
-  parent: ChatBox
-  index: 13
-
-- id: 238
-  name: MultiVar5
-  parent: ChatBox
-  index: 13
-
-- id: 241
-  name: NpcChat1
-  parent: ChatBox
-  index: 13
-
-- id: 242
-  name: NpcChat2
-  parent: ChatBox
-  index: 13
-
-- id: 243
-  name: NpcChat3
-  parent: ChatBox
-  index: 13
-
-- id: 244
-  name: NpcChat4
-  parent: ChatBox
-  index: 13
-
-- id: 245
-  name: NpcChatNp1
-  parent: ChatBox
-  index: 13
-
-- id: 246
-  name: NpcChatNp2
-  parent: ChatBox
-  index: 13
-
-- id: 247
-  name: NpcChatNp3
-  parent: ChatBox
-  index: 13
-
-- id: 248
-  name: NpcChatNp4
-  parent: ChatBox
-  index: 13
-
-- id: 745
-  name: AreaStatusIcon
-  index: 15
-
-- id: 746
-  name: ResizableGameframe
-  index: 0
-
-- id: 548
-  name: FixedGameframe
-  index: 0
-
-- id: 755
-  name: WorldMap
-  index: 0
-
-- id: 916
-  name: SkillCreationAmount
-  parent: SkillCreation
-  index: 4
+# https://www.rune-server.ee/runescape-development/rs-503-client-server/configuration/683354-interface-list-official-names.html
+root:
+  id: -1
+
+items_kept_on_death:
+  id: 17
+  type: main_screen
+
+multi4_offscreen:
+  id: 23
+  type: dialogue_box
+
+text_box_model_sprite:
+  id: 26
+  type: dialogue_box
+
+notes:
+  id: 34
+  type: notes_tab
+
+castlewars_score:
+  id: 55
+  type: dialogue_box
+
+castlewars_shopside:
+  id: 56
+
+castlewars_status_overlay:
+  id: 57
+  type: dialogue_box
+
+# Player
+chat1:
+  id: 64
+  type: dialogue_box
+
+chat2:
+  id: 65
+  type: dialogue_box
+
+chat3:
+  id: 66
+  type: dialogue_box
+
+chat4:
+  id: 67
+  type: dialogue_box
+
+chat_np1:
+  id: 68
+  type: dialogue_box
+
+chat_np2:
+  id: 69
+  type: dialogue_box
+
+chat_np3:
+  id: 70
+  type: dialogue_box
+
+chat_np4:
+  id: 71
+  type: dialogue_box
+
+# Un-contained
+npc_chat_np4u:
+  id: 90
+  type: dialogue_box
+
+npc_chat_np3u:
+  id: 91
+  type: dialogue_box
+
+npc_chat_np1u:
+  id: 92
+  type: dialogue_box
+
+npc_chat_np2u:
+  id: 93
+  type: dialogue_box
+
+confirm_destroy:
+  id: 94
+  type: dialogue_box
+
+stock_side:
+  id: 107
+
+# Item
+double_obj_box:
+  id: 131
+  type: dialogue_box
+
+garden_quiz:
+  id: 133
+  type: dialogue_box
+
+chat_both:
+  id: 136
+  type: dialogue_box
+
+chat_background:
+  id: 137
+  type: chat_background
+
+select2_models:
+  id: 140
+  type: dialogue_box
+
+text_box_model:
+  id: 148
+  type: dialogue_box
+
+logout:
+  id: 182
+  type: logout_tab
+
+music_player:
+  id: 187
+  type: music_player_tab
+
+macro_mime_emotes:
+  id: 188
+  type: dialogue_box
+
+quest_journals:
+  id: 190
+  type: quest_journals_tab
+
+macro_quiz_show:
+  id: 191
+  type: dialogue_box
+
+modern_spellbook:
+  id: 192
+  type: spellbook_tab
+
+ancient_spellbook:
+  id: 193
+  type: spellbook_tab
+
+container_continue:
+  id: 200
+  type: dialogue_box
+
+price_checker:
+  id: 206
+  type: main_screen
+
+price_checker_side:
+  id: 207
+
+price_check_box_title:
+  id: 208
+  type: dialogue_box
+
+# Statements
+message1:
+  id: 210
+  type: dialogue_box
+
+message2:
+  id: 211
+  type: dialogue_box
+
+message3:
+  id: 212
+  type: dialogue_box
+
+message4:
+  id: 213
+  type: dialogue_box
+
+message5:
+  id: 214
+  type: dialogue_box
+
+message_np1:
+  id: 215
+  type: dialogue_box
+
+message_np2:
+  id: 216
+  type: dialogue_box
+
+message_np3:
+  id: 217
+  type: dialogue_box
+
+message_np4:
+  id: 218
+  type: dialogue_box
+
+message_np5:
+  id: 219
+  type: dialogue_box
+
+# Choice
+multi2:
+  id: 228
+  type: dialogue_box
+
+multi2_chat:
+  id: 229
+  type: dialogue_box
+
+multi3:
+  id: 230
+  type: dialogue_box
+
+multi3_chat:
+  id: 231
+  type: dialogue_box
+
+multi4:
+  id: 232
+  type: dialogue_box
+
+multi4_chat:
+  id: 233
+  type: dialogue_box
+
+multi5:
+  id: 234
+  type: dialogue_box
+
+multi5_chat:
+  id: 235
+  type: dialogue_box
+
+multi_var2:
+  id: 236
+  type: dialogue_box
+
+multi_var4:
+  id: 237
+  type: dialogue_box
+
+multi_var5:
+  id: 238
+  type: dialogue_box
+
+# NPC
+npc_chat1:
+  id: 241
+  type: dialogue_box
+
+npc_chat2:
+  id: 242
+  type: dialogue_box
+
+npc_chat3:
+  id: 243
+  type: dialogue_box
+
+npc_chat4:
+  id: 244
+  type: dialogue_box
+
+npc_chat_np1:
+  id: 245
+  type: dialogue_box
+
+npc_chat_np2:
+  id: 246
+  type: dialogue_box
+
+npc_chat_np3:
+  id: 247
+  type: dialogue_box
+
+npc_chat_np4:
+  id: 248
+  type: dialogue_box
+
+options:
+  id: 261
+  type: options_tab
+
+prayer_list:
+  id: 271
+  type: prayer_list_tab
+
+assist_xp:
+  id: 301
+  type: main_screen
+
+stats:
+  id: 320
+  type: stats_tab
+
+trade_confirm:
+  id: 334
+  type: main_screen
+
+trade_main:
+  id: 335
+  type: main_screen
+
+trade_side:
+  id: 336
+  type: inventory_tab
+
+# 6 lines
+tutorial_text:
+  id: 372
+  type: dialogue_box
+
+worn_equipment:
+  id: 387
+  type: worn_equipment_tab
+
+obj_dialog:
+  id: 389
+  type: dialogue_box
+
+poh_hangman:
+  id: 393
+  type: dialogue_box
+
+# 12 lines
+tutorial_text2:
+  id: 421
+  type: dialogue_box
+
+lunar_spellbook:
+  id: 430
+  type: spellbook_tab
+
+open_url:
+  id: 445
+  type: dialogue_box
+
+multi_var3:
+  id: 451
+  type: dialogue_box
+
+multi3_off_centre:
+  id: 458
+  type: dialogue_box
+
+skill_guide:
+  id: 499
+  type: main_screen
+
+poh_hangman_german:
+  id: 507
+  type: dialogue_box
+
+inventory_ranging:
+  id: 512
+
+unknown_side0:
+  id: 517
+
+# Item
+obj_box:
+  id: 519
+  type: dialogue_box
+
+toplevel:
+  id: 548
+  type: full_screen
+
+friends_list:
+  id: 550
+  type: friends_list_tab
+
+multi2_mes:
+  id: 557
+  type: dialogue_box
+
+emotes:
+  id: 590
+  type: emotes_tab
+
+unknown_side1:
+  id: 602
+
+shop_template_side:
+  id: 621
+
+duel2_side:
+  id: 628
+
+exchange_sets_side:
+  id: 644
+
+unknown_side2:
+  id: 648
+
+bounty_overlay_waiting:
+  id: 656
+
+lore_bank_side:
+  id: 665
+
+equipment_bonuses:
+  id: 667
+  type: main_screen
+
+pick_a_puppy:
+  id: 668
+  type: dialogue_box
+
+inventory_wear2:
+  id: 670
+
+inventory:
+  id: 679
+  type: inventory_tab
+
+multi_var2_wide:
+  id: 718
+  type: dialogue_box
+
+pick_a_kitten:
+  id: 737
+  type: dialogue_box
+
+level_up_dialog:
+  id: 740
+  type: dialogue_box
+
+skill_level_details:
+  id: 741
+  type: main_screen
+
+graphics_options:
+  id: 742
+  type: main_screen
+
+sound_options:
+  id: 743
+  type: main_screen
+
+area_status_icon:
+  id: 745
+  type: area_status
+
+toplevel_full:
+  id: 746
+  type: full_screen
+
+summoning_orb:
+  id: 747
+  type: summoning_orb
+
+health_orb:
+  id: 748
+  type: health_orb
+
+prayer_orb:
+  id: 749
+  type: prayer_orb
+
+energy_orb:
+  id: 750
+  type: energy_orb
+
+filter_buttons:
+  id: 751
+  type: chat_settings
+
+chat_box:
+  id: 752
+  type: chat_box
+
+private_chat:
+  id: 754
+  type: private_chat
+
+world_map:
+  id: 755
+  type: full_screen
+
+bank_v2_side:
+  id: 763
+
+unknown_side4:
+  id: 771
+
+rc_guild_side:
+  id: 778
+
+crcs_side:
+  id: 784
+
+sc_item_transfer_side:
+  id: 807
+
+text_box_continue:
+  id: 835
+  type: dialogue_box
+
+soul_wars_side1:
+  id: 839
+
+soul_wars_side2:
+  id: 841
+
+text_box_continue_resizable:
+  id: 846
+  type: dialogue_box
+
+mobilising_armies1:
+  id: 856
+  type: dialogue_box
+
+unknown_side5:
+  id: 878
+
+unknown_side6:
+  id: 881
+
+combat_styles:
+  id: 884
+  type: combat_styles_tab
+
+skill_creation:
+  id: 905
+  type: dialogue_box
+
+skill_creation_amount:
+  id: 916
+  type: skill_creation
+
+task_list:
+  id: 917
+  type: main_screen
+
+smelt_type:
+  id: 941
+  type: dialogue_box
+
+make_amount:
+  id: 944
+  type: dialogue_box
+
+dungeoneering_spellbook:
+  id: 950
+  type: spellbook_tab
+
+text_box_chat:
+  id: 1018
+  type: dialogue_box
+
+text_box_continue2:
+  id: 1020
+  type: dialogue_box
+
+task_system:
+  id: 1056
+  type: task_system_tab
+
+friends_chat_setup:
+  id: 1108
+  type: main_screen
+
+friends_chat:
+  id: 1109
+  type: friends_chat_tab
+
+clan_chat:
+  id: 1110
+  type: clan_chat_tab
+
+double_chat3:
+  id: 1145
+  type: dialogue_box
+
+double_chat2:
+  id: 1146
+  type: dialogue_box
+
+double_chat1:
+  id: 1147
+  type: dialogue_box
+
+double_chat4:
+  id: 1148
+  type: dialogue_box

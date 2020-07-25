@@ -8,6 +8,7 @@ import rs.dusk.cache.cacheModule
 import rs.dusk.engine.GameLoop
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.ui.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
@@ -86,7 +87,8 @@ object Dusk {
                 pathFindModule,
                 schedulerModule,
                 batchedChunkModule,
-                executorModule
+                executorModule,
+                interfaceModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
