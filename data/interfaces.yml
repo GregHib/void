@@ -1,0 +1,565 @@
+- id: 137
+  name: ChatBackground
+  parent: ChatBox
+  index: 9
+
+- id: 752
+  name: ChatBox
+  fixedIndex: 192
+  resizeIndex: 73
+
+- id: 751
+  name: FilterButtons
+  fixedIndex: 68
+  resizeIndex: 19
+
+- id: 754
+  name: PrivateChat
+  fixedIndex: 17
+  resizeIndex: 72
+
+- id: 750
+  name: EnergyOrb
+  fixedIndex: 186
+  resizeIndex: 179
+
+- id: 748
+  name: HealthOrb
+  fixedIndex: 183
+  resizeIndex: 177
+
+- id: 749
+  name: PrayerOrb
+  fixedIndex: 185
+  resizeIndex: 178
+
+- id: 747
+  name: SummoningOrb
+  fixedIndex: 188
+  resizeIndex: 180
+
+- id: 1110
+  name: ClanChat
+  fixedIndex: 215
+  resizeIndex: 101
+
+- id: 884
+  name: CombatStyles
+  fixedIndex: 204
+  resizeIndex: 90
+
+- id: 590
+  name: Emotes
+  fixedIndex: 217
+  resizeIndex: 103
+
+- id: 1109
+  name: FriendsChat
+  fixedIndex: 214
+  resizeIndex: 100
+
+- id: 550
+  name: FriendsList
+  fixedIndex: 213
+  resizeIndex: 99
+
+- id: 679
+  name: UnknownSide3
+  fixedIndex: 208
+  resizeIndex: 94
+
+- id: 336
+  name: TradeSide
+  fixedIndex: 208
+  resizeIndex: 94
+
+- id: 182
+  name: Logout
+  fixedIndex: 222
+  resizeIndex: 108
+
+- id: 192
+  name: ModernSpellbook
+  fixedIndex: 211
+  resizeIndex: 97
+
+- id: 430
+  name: LunarSpellbook
+  fixedIndex: 211
+  resizeIndex: 97
+
+- id: 193
+  name: AncientSpellbook
+  fixedIndex: 211
+  resizeIndex: 97
+
+- id: 950
+  name: DungeoneeringSpellbook
+  fixedIndex: 211
+  resizeIndex: 97
+
+- id: 187
+  name: MusicPlayer
+  fixedIndex: 218
+  resizeIndex: 104
+
+- id: 34
+  name: Notes
+  fixedIndex: 219
+  resizeIndex: 105
+
+- id: 261
+  name: Options
+  fixedIndex: 216
+  resizeIndex: 102
+
+- id: 271
+  name: PrayerList
+  fixedIndex: 210
+  resizeIndex: 96
+
+- id: 190
+  name: QuestJournals
+  fixedIndex: 207
+  resizeIndex: 93
+
+- id: 320
+  name: Stats
+  fixedIndex: 206
+  resizeIndex: 92
+
+- id: 1056
+  name: TaskSystem
+  fixedIndex: 205
+  resizeIndex: 91
+
+- id: 387
+  name: WornEquipment
+  fixedIndex: 209
+  resizeIndex: 95
+
+- id: 23
+  name: Multi4Offscreen
+  parent: ChatBox
+  index: 13
+
+- id: 26
+  name: TextBoxModelSprite
+  parent: ChatBox
+  index: 13
+
+- id: 55
+  name: CastleWarsScore
+  parent: ChatBox
+  index: 13
+
+- id: 57
+  name: CastleWarsStatusOverlay
+  parent: ChatBox
+  index: 13
+
+- id: 90
+  name: NpcChatNp4u
+  parent: ChatBox
+  index: 13
+
+- id: 91
+  name: NpcChatNp3u
+  parent: ChatBox
+  index: 13
+
+- id: 92
+  name: NpcChatNp1u
+  parent: ChatBox
+  index: 13
+
+- id: 93
+  name: NpcChatNp2u
+  parent: ChatBox
+  index: 13
+
+- id: 94
+  name: ConfirmDestroy
+  parent: ChatBox
+  index: 13
+
+- id: 133
+  name: GardenQuiz
+  parent: ChatBox
+  index: 13
+
+- id: 136
+  name: ChatBoth
+  parent: ChatBox
+  index: 13
+
+- id: 140
+  name: Select2Models
+  parent: ChatBox
+  index: 13
+
+- id: 148
+  name: TextBoxModel
+  parent: ChatBox
+  index: 13
+
+- id: 188
+  name: MacroMimeEmotes
+  parent: ChatBox
+  index: 13
+
+- id: 191
+  name: MacroQuizShow
+  parent: ChatBox
+  index: 13
+
+- id: 200
+  name: ContainerContinue
+  parent: ChatBox
+  index: 13
+
+- id: 208
+  name: PriceCheckBoxTitle
+  parent: ChatBox
+  index: 13
+
+- id: 372
+  name: TutorialText
+  parent: ChatBox
+  index: 13
+
+- id: 389
+  name: ObjDialog
+  parent: ChatBox
+  index: 13
+
+- id: 393
+  name: PohHangman
+  parent: ChatBox
+  index: 13
+
+- id: 421
+  name: TutorialText2
+  parent: ChatBox
+  index: 13
+
+- id: 445
+  name: OpenUrl
+  parent: ChatBox
+  index: 13
+
+- id: 458
+  name: Multi3OffCentre
+  parent: ChatBox
+  index: 13
+
+- id: 507
+  name: PohHangmanGerman
+  parent: ChatBox
+  index: 13
+
+- id: 557
+  name: Multi2Mes
+  parent: ChatBox
+  index: 13
+
+- id: 668
+  name: PickAPuppy
+  parent: ChatBox
+  index: 13
+
+- id: 718
+  name: MultiVar2Wide
+  parent: ChatBox
+  index: 13
+
+- id: 737
+  name: PickAKitten
+  parent: ChatBox
+  index: 13
+
+- id: 740
+  name: LevelUpDialog
+  parent: ChatBox
+  index: 13
+
+- id: 835
+  name: TextBoxContinue
+  parent: ChatBox
+  index: 13
+
+- id: 846
+  name: TextBoxContinueResizable
+  parent: ChatBox
+  index: 13
+
+- id: 856
+  name: MobilisingArmies1
+  parent: ChatBox
+  index: 13
+
+- id: 905
+  name: SkillCreation
+  parent: ChatBox
+  index: 13
+
+- id: 941
+  name: SmeltType
+  parent: ChatBox
+  index: 13
+
+- id: 944
+  name: MakeAmount
+  parent: ChatBox
+  index: 13
+
+- id: 1018
+  name: TextBoxChat
+  parent: ChatBox
+  index: 13
+
+- id: 1020
+  name: TextBoxContinue2
+  parent: ChatBox
+  index: 13
+
+- id: 1145
+  name: DoubleChat3
+  parent: ChatBox
+  index: 13
+
+- id: 1146
+  name: DoubleChat2
+  parent: ChatBox
+  index: 13
+
+- id: 1147
+  name: DoubleChat1
+  parent: ChatBox
+  index: 13
+
+- id: 1148
+  name: DoubleChat4
+  parent: ChatBox
+  index: 13
+
+- id: 131
+  name: DoubleObjBox
+  parent: ChatBox
+  index: 13
+
+- id: 519
+  name: ObjBox
+  parent: ChatBox
+  index: 13
+
+- id: 64
+  name: Chat1
+  parent: ChatBox
+  index: 13
+
+- id: 65
+  name: Chat2
+  parent: ChatBox
+  index: 13
+
+- id: 66
+  name: Chat3
+  parent: ChatBox
+  index: 13
+
+- id: 67
+  name: Chat4
+  parent: ChatBox
+  index: 13
+
+- id: 68
+  name: ChatNp1
+  parent: ChatBox
+  index: 13
+
+- id: 69
+  name: ChatNp2
+  parent: ChatBox
+  index: 13
+
+- id: 70
+  name: ChatNp3
+  parent: ChatBox
+  index: 13
+
+- id: 71
+  name: ChatNp4
+  parent: ChatBox
+  index: 13
+
+- id: 210
+  name: Message1
+  parent: ChatBox
+  index: 13
+
+- id: 211
+  name: Message2
+  parent: ChatBox
+  index: 13
+
+- id: 212
+  name: Message3
+  parent: ChatBox
+  index: 13
+
+- id: 213
+  name: Message4
+  parent: ChatBox
+  index: 13
+
+- id: 214
+  name: Message5
+  parent: ChatBox
+  index: 13
+
+- id: 215
+  name: MessageNp1
+  parent: ChatBox
+  index: 13
+
+- id: 216
+  name: MessageNp2
+  parent: ChatBox
+  index: 13
+
+- id: 217
+  name: MessageNp3
+  parent: ChatBox
+  index: 13
+
+- id: 218
+  name: MessageNp4
+  parent: ChatBox
+  index: 13
+
+- id: 219
+  name: MessageNp5
+  parent: ChatBox
+  index: 13
+
+- id: 228
+  name: Multi2
+  parent: ChatBox
+  index: 13
+
+- id: 229
+  name: Multi2Chat
+  parent: ChatBox
+  index: 13
+
+- id: 230
+  name: Multi3
+  parent: ChatBox
+  index: 13
+
+- id: 231
+  name: Multi3Chat
+  parent: ChatBox
+  index: 13
+
+- id: 232
+  name: Multi4
+  parent: ChatBox
+  index: 13
+
+- id: 233
+  name: Multi4Chat
+  parent: ChatBox
+  index: 13
+
+- id: 234
+  name: Multi5
+  parent: ChatBox
+  index: 13
+
+- id: 235
+  name: Multi5Chat
+  parent: ChatBox
+  index: 13
+
+- id: 236
+  name: MultiVar2
+  parent: ChatBox
+  index: 13
+
+- id: 451
+  name: MultiVar3
+  parent: ChatBox
+  index: 13
+
+- id: 237
+  name: MultiVar4
+  parent: ChatBox
+  index: 13
+
+- id: 238
+  name: MultiVar5
+  parent: ChatBox
+  index: 13
+
+- id: 241
+  name: NpcChat1
+  parent: ChatBox
+  index: 13
+
+- id: 242
+  name: NpcChat2
+  parent: ChatBox
+  index: 13
+
+- id: 243
+  name: NpcChat3
+  parent: ChatBox
+  index: 13
+
+- id: 244
+  name: NpcChat4
+  parent: ChatBox
+  index: 13
+
+- id: 245
+  name: NpcChatNp1
+  parent: ChatBox
+  index: 13
+
+- id: 246
+  name: NpcChatNp2
+  parent: ChatBox
+  index: 13
+
+- id: 247
+  name: NpcChatNp3
+  parent: ChatBox
+  index: 13
+
+- id: 248
+  name: NpcChatNp4
+  parent: ChatBox
+  index: 13
+
+- id: 745
+  name: AreaStatusIcon
+  index: 15
+
+- id: 746
+  name: ResizableGameframe
+  index: 0
+
+- id: 548
+  name: FixedGameframe
+  index: 0
+
+- id: 755
+  name: WorldMap
+  index: 0
+
+- id: 916
+  name: SkillCreationAmount
+  parent: SkillCreation
+  index: 4
