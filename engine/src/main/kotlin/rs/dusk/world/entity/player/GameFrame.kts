@@ -1,7 +1,13 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.world.entity.player
 
+import rs.dusk.engine.client.ui.Tab
+import rs.dusk.engine.client.ui.event.InterfaceInteraction
+import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.event.then
+import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.removeValue
+import rs.dusk.engine.model.entity.character.set
 
 PlayerRegistered then {
     player.open(player.gameFrame.name)
@@ -34,5 +40,14 @@ PlayerRegistered then {
     )
     list.forEach {
         player.open(it)
+    }
+}
+
+InterfaceInteraction where { name == player.gameFrame.name && optionId in 39..54 } then {
+    val tab = Tab.forId(optionId)
+    if(tab == null) {
+        player.removeValue("tab")
+    } else {
+        player["tab"] = tab
     }
 }
