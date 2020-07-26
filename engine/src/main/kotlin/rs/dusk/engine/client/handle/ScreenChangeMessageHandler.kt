@@ -21,10 +21,10 @@ class ScreenChangeMessageHandler : GameMessageHandler<ScreenChangeMessage>() {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
         val (mode, width, height, antialias) = msg
-        player.gameframe.width = width
-        player.gameframe.height = height
+        player.gameFrame.width = width
+        player.gameFrame.height = height
 
-        if(player.gameframe.displayMode == mode || !player.isOpen("graphics_options")) {
+        if(player.gameFrame.displayMode == mode || !player.isOpen("graphics_options")) {
             return
         }
         player.setDisplayMode(mode)

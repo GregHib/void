@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 
 abstract class InterfaceTest {
 
-    internal lateinit var manager: Interfaces
+    internal lateinit var manager: InterfaceManager
     internal lateinit var io: InterfaceIO
     internal lateinit var interfaces: MutableMap<Int, Interface>
     internal lateinit var lookup: InterfacesLookup
@@ -27,6 +27,6 @@ abstract class InterfaceTest {
         names = mutableMapOf()
         lookup = InterfacesLookup(interfaces, names)
         gameframe = GameFrame()
-        manager = Interfaces(io, lookup, gameframe)
+        manager = InterfaceManager(io, lookup, gameframe)
     }
 }

@@ -2,6 +2,7 @@ package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.client.ui.GameFrame
+import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.model.entity.Size
@@ -35,10 +36,10 @@ data class Player(
 ) : Character {
 
     @Transient
-    val gameframe: GameFrame = GameFrame()
+    val gameFrame: GameFrame = GameFrame()
 
     @Transient
-    val interfaces: Interfaces = Interfaces(PlayerInterfaceIO(this), get(), gameframe)
+    val interfaces: Interfaces = InterfaceManager(PlayerInterfaceIO(this), get(), gameFrame)
 
     @Transient
     override var change: LocalChange? = null

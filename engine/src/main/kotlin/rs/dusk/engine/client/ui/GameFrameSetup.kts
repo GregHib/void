@@ -4,7 +4,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 
 PlayerRegistered then {
-    player.open(player.gameframe.name)
+    player.open(player.gameFrame.name)
 
     val list = listOf(
         "chat_box",

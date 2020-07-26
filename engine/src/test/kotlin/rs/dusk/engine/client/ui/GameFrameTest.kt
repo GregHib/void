@@ -17,7 +17,7 @@ internal class GameFrameTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         player = mockk(relaxed = true)
-        every { player.gameframe } returns gameframe
+        every { player.gameFrame } returns gameframe
         every { player.interfaces } returns manager
     }
 

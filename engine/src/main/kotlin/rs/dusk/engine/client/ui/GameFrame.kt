@@ -25,11 +25,11 @@ data class GameFrame(
 
 
 fun Player.setDisplayMode(displayMode: Int): Boolean {
-    val current = gameframe.name
+    val current = gameFrame.name
     if (interfaces.contains(current)) {
-        gameframe.displayMode = displayMode
+        gameFrame.displayMode = displayMode
         interfaces.remove(current)
-        interfaces.open(gameframe.name)
+        interfaces.open(gameFrame.name)
         interfaces.refresh()
         return true
     }

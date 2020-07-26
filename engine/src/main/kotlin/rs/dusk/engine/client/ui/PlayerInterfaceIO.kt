@@ -9,8 +9,8 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 class PlayerInterfaceIO(val player: Player) : InterfaceIO {
 
     override fun sendOpen(inter: Interface) {
-        val parent = inter.getParent(player.gameframe.resizable)
-        val index = inter.getIndex(player.gameframe.resizable)
+        val parent = inter.getParent(player.gameFrame.resizable)
+        val index = inter.getIndex(player.gameFrame.resizable)
         if(parent == -1) {
             player.send(InterfaceUpdateMessage(inter.id, 0))
         } else {
@@ -19,7 +19,7 @@ class PlayerInterfaceIO(val player: Player) : InterfaceIO {
     }
 
     override fun sendClose(inter: Interface) {
-        val index = inter.getIndex(player.gameframe.resizable)
+        val index = inter.getIndex(player.gameFrame.resizable)
         player.send(InterfaceCloseMessage(inter.id, index))
     }
 

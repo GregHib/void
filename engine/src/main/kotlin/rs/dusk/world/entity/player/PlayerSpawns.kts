@@ -23,9 +23,9 @@ PlayerSpawn then {
     }
     player.name = name
     data?.let { data ->
-        player.gameframe.width = data.width
-        player.gameframe.height = data.height
-        player.gameframe.displayMode = data.mode
+        player.gameFrame.width = data.width
+        player.gameFrame.height = data.height
+        player.gameFrame.displayMode = data.mode
     }
     logger.info { "Player spawned $name index ${player.index}." }
     result = player
