@@ -3,10 +3,9 @@ package rs.dusk.world.entity.player.ui
 import rs.dusk.engine.client.ui.Tab
 import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
-import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
-import rs.dusk.engine.model.entity.character.removeValue
 import rs.dusk.engine.model.entity.character.set
 
 PlayerRegistered then {
@@ -43,11 +42,32 @@ PlayerRegistered then {
     }
 }
 
-InterfaceInteraction where { name == player.gameFrame.name && optionId in 39..54 } then {
-    val tab = Tab.forId(optionId)
-    if(tab == null) {
-        player.removeValue("tab")
-    } else {
-        player["tab"] = tab
+fun String.toUnderscoreCase(): String {
+    val builder = StringBuilder()
+    for(i in 0 until length) {
+        val char = this[i]
+        if(char.isUpperCase()) {
+            if(i != 0) {
+                builder.append('_')
+            }
+            builder.append(char.toLowerCase())
+        }
     }
+    return builder.toString()
+}
+
+Tab.values().forEach { tab ->
+    val name = tab.name.toUnderscoreCase()
+    on(InterfaceInteraction) {
+        where {
+            name == player.gameFrame.name && component == name && option == name
+        }
+        then {
+            player["tab"] = tab
+        }
+    }
+}
+
+InterfaceInteraction then {
+    println(componentId)
 }

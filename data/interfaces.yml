@@ -6,6 +6,8 @@ root:
 items_kept_on_death:
   id: 17
   type: main_screen
+  components:
+    enter_wild: 28
 
 multi4_offscreen:
   id: 23
@@ -18,6 +20,8 @@ text_box_model_sprite:
 notes:
   id: 34
   type: notes_tab
+  components:
+    delete: 8
 
 castlewars_score:
   id: 55
@@ -115,6 +119,9 @@ text_box_model:
 logout:
   id: 182
   type: logout_tab
+  components:
+    lobby: 6
+    login: 13
 
 music_player:
   id: 187
@@ -135,6 +142,15 @@ macro_quiz_show:
 modern_spellbook:
   id: 192
   type: spellbook_tab
+  components:
+    defensive_cast: 2
+    combat_spell: 7
+    teleport_spell: 9
+    misc_spell: 11
+    skill_spell: 13
+    sort_level: 15
+    sort_combat: 16
+    sort_tele: 17
 
 ancient_spellbook:
   id: 193
@@ -278,19 +294,21 @@ options:
   id: 261
   type: options_tab
   components:
-    graphics_button: 14
-    audio_button: 16
-    mouse_button: 6
-    profanity_button: 3
-    effects_button: 4
-    chat_button: 5
-    aid_button: 7
-    house_button: 8
-    log_button: 18
+    graphics: 14
+    audio: 16
+    mouse: 6
+    profanity: 3
+    effects: 4
+    chat: 5
+    aid: 7
+    house: 8
+    log: 18
 
 prayer_list:
   id: 271
   type: prayer_list_tab
+  components:
+    stat_adjustments: 12
 
 assist_xp:
   id: 301
@@ -299,6 +317,32 @@ assist_xp:
 stats:
   id: 320
   type: stats_tab
+  components:
+    strength: 11
+    agility: 19
+    defence: 28
+    herblore: 36
+    fishing: 44
+    range: 52
+    thieving: 60
+    cooking: 68
+    prayer: 76
+    crafting: 84
+    magic: 93
+    fletching: 101
+    runecrafting: 110
+    slayer: 118
+    farming: 126
+    construction: 134
+    hunter: 142
+    summoning: 150
+    dungeoneering: 158
+    woodcutting: 165
+    firemaking: 172
+    smithing: 179
+    mining: 186
+    constitution: 193
+    attack: 200
 
 trade_confirm:
   id: 334
@@ -320,6 +364,10 @@ tutorial_text:
 worn_equipment:
   id: 387
   type: worn_equipment_tab
+  components:
+    bonuses: 39
+    price: 42
+    items: 45
 
 obj_dialog:
   id: 389
@@ -372,10 +420,34 @@ obj_box:
 toplevel:
   id: 548
   type: full_screen
+  components:
+    logout: 182
+    adviser: 184
+    compass: 178
+    world_map: 180
+    xp_orb: 0
+    combat_styles: 129
+    task_system: 130
+    stats: 131
+    quest_journals: 132
+    inventory: 133
+    worn_equipment: 134
+    prayer_list: 135
+    magic_spellbook: 136
+    friends_list: 100
+    friends_chat: 101
+    clan_chat: 102
+    options: 103
+    emotes: 104
+    music_player: 105
+    notes: 106
 
 friends_list:
   id: 550
   type: friends_list_tab
+  components:
+    friends_list: 47
+    ignores_list: 49
 
 multi2_mes:
   id: 557
@@ -441,9 +513,12 @@ graphics_options:
   id: 742
   type: main_screen
 
-sound_options:
+audio_options:
   id: 743
   type: main_screen
+  components:
+    mono: 49
+    stereo: 51
 
 area_status_icon:
   id: 745
@@ -452,6 +527,27 @@ area_status_icon:
 toplevel_full:
   id: 746
   type: full_screen
+  components:
+    logout: 176
+    adviser: 175
+    compass: 174
+    world_map: 182
+    xp_orb: 229
+    combat_styles: 39
+    task_system: 40
+    stats: 41
+    quest_journals: 42
+    inventory: 43
+    worn_equipment: 44
+    prayer_list: 45
+    magic_spellbook: 46
+    friends_list: 48
+    friends_chat: 49
+    clan_chat: 50
+    options: 51
+    emotes: 52
+    music_player: 53
+    notes: 54
 
 summoning_orb:
   id: 747
@@ -464,6 +560,8 @@ health_orb:
 prayer_orb:
   id: 749
   type: prayer_orb
+  components:
+    orb: 1
 
 energy_orb:
   id: 750
@@ -472,6 +570,12 @@ energy_orb:
 filter_buttons:
   id: 751
   type: chat_settings
+  components:
+    game: 31
+    private: 25
+    trade: 19
+    assist: 16
+    report: 13
 
 chat_box:
   id: 752
@@ -484,6 +588,8 @@ private_chat:
 world_map:
   id: 755
   type: full_screen
+  components:
+    close: 44
 
 bank_v2_side:
   id: 763
@@ -527,6 +633,9 @@ unknown_side6:
 combat_styles:
   id: 884
   type: combat_styles_tab
+  components:
+    retaliate: 15
+    special_attack_bar: 4
 
 skill_creation:
   id: 905
@@ -563,18 +672,54 @@ text_box_continue2:
 task_system:
   id: 1056
   type: task_system_tab
+  components:
+    back: 90
+    task_1: 99
+    task_2: 142
+    task_3: 147
+    task_4: 152
+    task_5: 157
+    task_6: 162
+    task_list: 102
+    dont_show: 172
+    close_hint: 174
+    hints: 36
 
 friends_chat_setup:
   id: 1108
   type: main_screen
+  components:
+    chat_name: 22
+    enter: 23
+    talk: 24
+    kick: 25
+    share: 26
+    coinshare: 33
 
 friends_chat:
   id: 1109
   type: friends_chat_tab
+  components:
+    toggle_chat: 27
+    settings: 33
+    toggle_loot: 19
+    kick: 21
 
 clan_chat:
   id: 1110
   type: clan_chat_tab
+  components:
+    join_own: 85
+    details: 76
+    settings: 80
+    invite: 80
+    leave: 115
+    join_other: 95
+    clan_chat: 56
+    guest_clan: 58
+    ignore_clan: 54
+    add_ban: 100
+    remove_ban: 105
 
 double_chat3:
   id: 1145
