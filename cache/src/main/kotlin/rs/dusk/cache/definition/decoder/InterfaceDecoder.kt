@@ -23,14 +23,14 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
             return null
         }
         val definition = create()
-        definition.components = Array(lastArchive + 1) { file ->
+        definition.components = (0..lastArchive).map { file ->
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archive, file)
             if (data != null) {
                 component.read(BufferReader(data))
             }
-            component
-        }
+            file to component
+        }.toMap()
         return definition
     }
 
@@ -180,14 +180,9 @@ class InterfaceDecoder : DefinitionDecoder<InterfaceDefinition>(INTERFACES) {
         }
         applyText = buffer.readString()
         val i_25_ = buffer.readUnsignedByte()
-        val i_26_ = 0xf and i_25_
-        if (i_26_ > 0) {
-            menuActions = arrayOfNulls(i_26_)
-            var i_27_ = 0
-            while (i_26_ > i_27_) {
-                menuActions!![i_27_] = buffer.readString()
-                i_27_++
-            }
+        val optionCount = i_25_ and 0xf
+        if (optionCount > 0) {
+            options = (0 until optionCount).map { buffer.readString() }.toTypedArray()
         }
         val i_28_ = i_25_ shr 4
         if (i_28_ > 0) {

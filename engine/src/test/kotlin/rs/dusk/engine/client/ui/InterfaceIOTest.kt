@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.ui.event.InterfaceClosed
+import rs.dusk.engine.client.ui.event.InterfaceOpened
+import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.character.player.Player

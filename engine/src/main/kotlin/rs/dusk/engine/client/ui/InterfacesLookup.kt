@@ -5,7 +5,7 @@ data class InterfacesLookup(
     private val names: Map<String, Int>
 ) {
 
-    fun get(id: Int) = interfaces[id] ?: Interface(id, null, null)
+    fun get(id: Int) = interfaces[id] ?: Interface(id)
 
     fun get(name: String) = get(getId(name))
 

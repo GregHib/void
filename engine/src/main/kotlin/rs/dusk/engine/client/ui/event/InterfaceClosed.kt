@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.event
 
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.model.entity.character.player.Player

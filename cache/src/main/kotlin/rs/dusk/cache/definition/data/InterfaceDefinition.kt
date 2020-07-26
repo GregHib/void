@@ -9,5 +9,5 @@ import rs.dusk.cache.Definition
 @Suppress("ArrayInDataClass")
 data class InterfaceDefinition(
     override var id: Int = -1,
-    var components: Array<InterfaceComponentDefinition>? = null
+    var components: Map<Int, InterfaceComponentDefinition>? = null
 ) : Definition

@@ -10,7 +10,7 @@ abstract class TimedLoader<T>(private val name: String) {
 
     fun run(vararg args: Any): T {
         val (result, time) = measureDurationForResult {
-            load(args)
+            load(*args)
         }
         logger.info { "Loaded $count ${name.plural(count)} in ${time.toInt()}ms" }
         return result

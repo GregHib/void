@@ -1,6 +1,9 @@
 package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.ui.event.InterfaceClosed
+import rs.dusk.engine.client.ui.event.InterfaceOpened
+import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage

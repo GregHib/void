@@ -68,7 +68,7 @@ data class InterfaceComponentDefinition(
     var keyModifiers: IntArray? = null,
     var aBoolean4802: Boolean = false,
     var applyText: String = "",
-    var menuActions: Array<String?>? = null,
+    var options: Array<String>? = null,
     var anIntArray4863: IntArray? = null,
     var aString4784: String? = null,
     var anInt4708: Int = 0,

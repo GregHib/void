@@ -6,4 +6,4 @@ import rs.dusk.network.rs.codec.game.MessageCompanion
 /**
  * Notification that the player clicked an X button on a screen interface
  */
-object ScreenCloseMessage : MessageCompanion<ScreenCloseMessage>(), Message
+object InterfaceClosedMessage : MessageCompanion<InterfaceClosedMessage>(), Message

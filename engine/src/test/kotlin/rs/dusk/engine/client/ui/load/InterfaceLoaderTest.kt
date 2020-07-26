@@ -31,7 +31,7 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(id = 1, data = data))
+        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data))
         assertEquals(expected, results)
     }
 
@@ -45,8 +45,9 @@ internal class InterfaceLoaderTest {
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
         val expected = mapOf(
-            1 to Interface(id = 1, data = data),
-            2 to Interface(id = 2, data = data))
+            1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data),
+            2 to Interface(id = 2, name = "interface_name_two", type = "interface_type", data = data)
+        )
         assertEquals(expected, results)
     }
 
@@ -74,7 +75,7 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("main_screen" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(id = 1, data = data))
+        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "main_screen", data = data))
         assertEquals(expected, results)
     }
 
@@ -94,25 +95,28 @@ internal class InterfaceLoaderTest {
         val detailData = mapOf(
             "interface_name" to mapOf("id" to 1, "type" to "interface_type"),
             "toplevel" to mapOf("id" to 2, "type" to "root"),
-            "toplevel_full" to mapOf("id" to 3, "type" to "root")
+            "toplevel_full" to mapOf("id" to 3, "type" to "root"),
+            "root" to mapOf("id" to -1, "type" to "root")
         )
         val typesData = mapOf(
             "interface_type" to mapOf("index" to 0),
-            "root" to mapOf("index" to -1)
+            "root" to mapOf("index" to 0, "parent" to "root")
         )
         every { fileLoader.load<Map<String, Map<String, Any>>>(detailsPath) } returns detailData
         every { fileLoader.load<Map<String, Map<String, Any>>>(typesPath) } returns typesData
         val result = loader.loadAll(detailsPath, typesPath)
         val expected = InterfacesLookup(
             mapOf(
-                1 to Interface(id = 1, data = InterfaceData(2, 3, 0, 0)),
-                2 to Interface(id = 2),
-                3 to Interface(id = 3)
+                1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = InterfaceData(2, 3, 0, 0)),
+                2 to Interface(id = 2, name = "toplevel", type = "root", data = InterfaceData(-1, -1, 0, 0)),
+                3 to Interface(id = 3, name = "toplevel_full", type = "root", data = InterfaceData(-1, -1, 0, 0)),
+                -1 to Interface(id = -1, name = "root", type = "root", data = InterfaceData(-1, -1, 0, 0))
             ),
             mapOf(
                 "interface_name" to 1,
                 "toplevel" to 2,
-                "toplevel_full" to 3
+                "toplevel_full" to 3,
+                "root" to -1
             )
         )
         assertEquals(expected, result)
@@ -121,7 +125,7 @@ internal class InterfaceLoaderTest {
     @Test
     fun `Load parameters`() {
         every { loader.loadAll(any(), any()) } returns mockk()
-        loader.load("one", "two")
+        loader.run("one", "two")
         verify { loader.loadAll("one", "two") }
     }
 }

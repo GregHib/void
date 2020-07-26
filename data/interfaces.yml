@@ -1,6 +1,7 @@
 # https://www.rune-server.ee/runescape-development/rs-503-client-server/configuration/683354-interface-list-official-names.html
 root:
   id: -1
+  type: full_screen
 
 items_kept_on_death:
   id: 17

@@ -24,6 +24,7 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
         val names = loadNames(detailData)
         val types = loadTypes(typeData, names)
         val details = loadDetails(detailData, types)
+        count = names.size
         return InterfacesLookup(details, names)
     }
 
@@ -46,12 +47,12 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
     fun loadDetails(
         data: Map<String, Map<String, Any>>,
         types: Map<String, InterfaceData>
-    ) = data.map { (_, values) ->
+    ) = data.map { (name, values) ->
         val id = values.getId()
         val typeName = values.readString("type") ?: DEFAULT_TYPE
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
-        id to Interface(id, typeName, type)
+        id to Interface(id, name, typeName, type)
     }.toMap()
 
     private fun Map<String, Any>.getId(): Int {
@@ -73,6 +74,6 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
 
 val interfaceModule = module {
     single(createdAtStart = true) {
-        InterfaceLoader(get()).load(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+        InterfaceLoader(get()).run(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
     }
 }
