@@ -44,16 +44,11 @@ class InterfaceLoader(private val loader: FileLoader) {
         types: Map<String, InterfaceData>
     ) = data.map { (_, values) ->
         val id = values.getId()
-        val type = values.getType(types)
-        id to Interface(id, type)
-    }.toMap()
-
-    private fun Map<String, Any>.getType(types: Map<String, InterfaceData>): InterfaceData {
-        val typeName = readString("type") ?: DEFAULT_TYPE
+        val typeName = values.readString("type") ?: DEFAULT_TYPE
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
-        return type
-    }
+        id to Interface(id, typeName, type)
+    }.toMap()
 
     private fun Map<String, Any>.getId(): Int {
         val id = readInt("id")

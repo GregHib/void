@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.ui
 
-data class Interface(val id: Int, private val data: InterfaceData?) {
+data class Interface(val id: Int, val type: String? = null, private val data: InterfaceData? = null) {
 
     class InvalidInterfaceException : InterfaceException()
 

@@ -35,8 +35,8 @@ internal class GameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set top level if full open`() {
-        interfaces[123] = Interface(123, InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = Interface(124, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[123] = Interface(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
+        interfaces[124] = Interface(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["toplevel_full"] = 123
         names["toplevel"] = 124
         gameframe.resizable = true
@@ -48,8 +48,8 @@ internal class GameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set full if top level open`() {
-        interfaces[123] = Interface(123, InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = Interface(124, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[123] = Interface(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
+        interfaces[124] = Interface(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["toplevel_full"] = 123
         names["toplevel"] = 124
         manager.open("toplevel")

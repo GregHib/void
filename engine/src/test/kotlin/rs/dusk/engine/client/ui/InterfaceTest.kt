@@ -25,8 +25,8 @@ abstract class InterfaceTest {
         })
         interfaces = mutableMapOf()
         names = mutableMapOf()
-        lookup = InterfacesLookup(interfaces, names)
-        gameframe = GameFrame()
-        manager = InterfaceManager(io, lookup, gameframe)
+        lookup = spyk(InterfacesLookup(interfaces, names))
+        gameframe = spyk(GameFrame())
+        manager = spyk(InterfaceManager(io, lookup, gameframe))
     }
 }

@@ -10,8 +10,8 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
 
     @Test
     fun `Close children`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["parent"] = 1
         names["child"] = 0
         manager.open("parent")
@@ -23,9 +23,9 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
 
     @Test
     fun `Close children's children`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
-        interfaces[2] = Interface(2, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
+        interfaces[2] = Interface(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["parent"] = 2
         names["child"] = 1
         names["subchild"] = 0

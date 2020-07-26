@@ -14,7 +14,7 @@ internal class InterfaceParentTest : InterfaceTest() {
     @Test
     fun `Resizable has different parent`() {
         gameframe.resizable = true
-        interfaces[4] = Interface(4, InterfaceData(resizableParent = 10, resizableIndex = ROOT_INDEX))
+        interfaces[4] = Interface(id = 4, data = InterfaceData(resizableParent = 10, resizableIndex = ROOT_INDEX))
         names["fourth"] = 4
         val result = lookup.get("fourth")
         assertEquals(10, result.getParent(gameframe.resizable))
@@ -23,7 +23,7 @@ internal class InterfaceParentTest : InterfaceTest() {
     @ParameterizedTest
     @ValueSource(booleans = [false, true])
     fun `Interface without parent throws error`(resizable: Boolean) {
-        interfaces[7] = Interface(7, InterfaceData(fixedIndex = ROOT_INDEX, resizableIndex = ROOT_INDEX))
+        interfaces[7] = Interface(id = 7, data = InterfaceData(fixedIndex = ROOT_INDEX, resizableIndex = ROOT_INDEX))
         names["seventh"] = 7
         gameframe.resizable = resizable
         assertThrows<Interface.InvalidInterfaceException> {
@@ -33,8 +33,8 @@ internal class InterfaceParentTest : InterfaceTest() {
 
     @Test
     fun `Can't open child if parent not open`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = 0, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = 0, fixedIndex = ROOT_INDEX))
         names["parent"] = 0
         names["child"] = 1
         val result = manager.open("child")

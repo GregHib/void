@@ -16,6 +16,8 @@ abstract class Interfaces(private val interfaces: InterfacesLookup) {
 
     protected abstract fun close(inter: Interface): Boolean
 
+    abstract fun get(type: String): Int?
+
     fun closeChildren(name: String): Boolean = closeChildren(interfaces.get(name))
 
     fun closeChildren(id: Int): Boolean = closeChildren(interfaces.get(id))
@@ -46,6 +48,13 @@ fun Player.open(interfaceName: String) = interfaces.open(interfaceName)
 
 fun Player.isOpen(interfaceName: String) = interfaces.contains(interfaceName)
 
+fun Player.hasOpen(interfaceType: String) = interfaces.get(interfaceType) != null
+
 fun Player.close(interfaceName: String) = interfaces.close(interfaceName)
+
+fun Player.closeType(interfaceType: String) : Boolean {
+    val id = interfaces.get(interfaceType) ?: return false
+    return interfaces.close(id)
+}
 
 fun Player.closeChildren(interfaceName: String) = interfaces.closeChildren(interfaceName)

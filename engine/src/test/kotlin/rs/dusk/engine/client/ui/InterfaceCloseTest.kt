@@ -13,7 +13,7 @@ internal class InterfaceCloseTest : InterfaceTest() {
     @Test
     fun `Interface close is successful`() {
         val id = 4
-        interfaces[id] = Interface(id, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[id] = Interface(id = id, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["fourth"] = 4
         manager.open("fourth")
         val result = manager.close(4)
@@ -31,11 +31,11 @@ internal class InterfaceCloseTest : InterfaceTest() {
     fun `Interface close sends update`() {
         val id = 4
         val data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX)
-        interfaces[id] = Interface(id, data)
+        interfaces[id] = Interface(id = id, data = data)
         names["fourth"] = 4
         manager.open("fourth")
         manager.close("fourth")
-        verify { io.sendClose(Interface(id, data)) }
+        verify { io.sendClose(Interface(id = id, data = data)) }
     }
 
     @Test
@@ -50,13 +50,13 @@ internal class InterfaceCloseTest : InterfaceTest() {
         val id = 4
         names["fourth"] = 4
         manager.close("fourth")
-        verify(exactly = 0) { io.sendClose(Interface(id, null)) }
+        verify(exactly = 0) { io.sendClose(Interface(id)) }
     }
 
     @Test
     fun `Close removes children`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["parent"] = 1
         names["child"] = 0
         manager.open("parent")
@@ -67,9 +67,9 @@ internal class InterfaceCloseTest : InterfaceTest() {
 
     @Test
     fun `Close removes children's children`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
-        interfaces[2] = Interface(2, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
+        interfaces[2] = Interface(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["parent"] = 2
         names["child"] = 1
         names["subchild"] = 0

@@ -22,6 +22,8 @@ class InterfaceManager(
         return false
     }
 
+    override fun get(type: String) = openInterfaces.firstOrNull { it.type == type }?.id
+
     override fun closeChildren(inter: Interface): Boolean {
         if (contains(inter)) {
             removeChildrenOf(inter)

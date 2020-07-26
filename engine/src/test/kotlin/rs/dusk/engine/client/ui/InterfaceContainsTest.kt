@@ -27,7 +27,7 @@ internal class InterfaceContainsTest : InterfaceTest() {
 
     @Test
     fun `Interfaces contains name`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["zero"] = 0
         manager.open("zero")
         assertTrue(manager.contains("zero"))
@@ -35,7 +35,7 @@ internal class InterfaceContainsTest : InterfaceTest() {
 
     @Test
     fun `Interfaces contains id`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["zero"] = 0
         manager.open("zero")
         assertTrue(manager.contains(0))
@@ -43,7 +43,7 @@ internal class InterfaceContainsTest : InterfaceTest() {
 
     @Test
     fun `Interfaces doesn't contain unopened id`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["zero"] = 0
         manager.open("zero")
         assertFalse(manager.contains("first"))
@@ -52,8 +52,8 @@ internal class InterfaceContainsTest : InterfaceTest() {
     @Test
     fun `Interfaces contains first opened id`() {
         val id = 0
-        interfaces[id] = Interface(id, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[id] = Interface(id = id, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["zero"] = 0
         names["first"] = 1
         manager.open("zero")
@@ -63,8 +63,8 @@ internal class InterfaceContainsTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains closed id`() {
-        interfaces[0] = Interface(0, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(1, InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["zero"] = 0
         names["first"] = 1
         manager.open("zero")

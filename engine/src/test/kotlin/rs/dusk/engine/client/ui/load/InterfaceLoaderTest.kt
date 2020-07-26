@@ -29,7 +29,7 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(1, data))
+        val expected = mapOf(1 to Interface(id = 1, data = data))
         assertEquals(expected, results)
     }
 
@@ -42,11 +42,9 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(
-            1,
-            data
-        ), 2 to Interface(2, data)
-        )
+        val expected = mapOf(
+            1 to Interface(id = 1, data = data),
+            2 to Interface(id = 2, data = data))
         assertEquals(expected, results)
     }
 
@@ -74,7 +72,7 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("main_screen" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(1, data))
+        val expected = mapOf(1 to Interface(id = 1, data = data))
         assertEquals(expected, results)
     }
 
@@ -105,12 +103,9 @@ internal class InterfaceLoaderTest {
         val result = loader.loadAll(detailsPath, typesPath)
         val expected = InterfacesLookup(
             mapOf(
-                1 to Interface(
-                    1,
-                    InterfaceData(2, 3, 0, 0)
-                ),
-                2 to Interface(2, null),
-                3 to Interface(3, null)
+                1 to Interface(id = 1, data = InterfaceData(2, 3, 0, 0)),
+                2 to Interface(id = 2),
+                3 to Interface(id = 3)
             ),
             mapOf(
                 "interface_name" to 1,
