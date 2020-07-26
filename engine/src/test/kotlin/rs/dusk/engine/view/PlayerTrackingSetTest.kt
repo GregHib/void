@@ -31,7 +31,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Start fills removal set`() {
         // Given
-        val player = Player(index = 1)
+        val player = Player(index = 1, interfaces = mockk())
         set.current.add(player)
         set.total = 1
         // When
@@ -44,7 +44,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Start tracks self`() {
         // Given
-        val client = Player(index = 1)
+        val client = Player(index = 1, interfaces = mockk())
         set.remove.add(client)
         // When
         set.start(client)
@@ -57,7 +57,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Finish adds last seen`() {
         // Given
-        val client = Player(index = 1)
+        val client = Player(index = 1, interfaces = mockk())
         set.remove.add(client)
         // When
         set.finish()
@@ -68,7 +68,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Tracking tracks self in total`() {
         // Given
-        val client = Player(index = 1)
+        val client = Player(index = 1, interfaces = mockk())
         set.remove.add(client)
         // When
         set.track(setOf(client), client)
@@ -81,7 +81,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Tracking ignores self addition`() {
         // Given
-        val client = Player(index = 1)
+        val client = Player(index = 1, interfaces = mockk())
         // When
         set.track(setOf(client), client)
         // Then
@@ -93,10 +93,10 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Update current sets`() {
         // Given
-        val toAdd = Player(index = 1)
-        val toRemove = Player(index = 2)
-        val p1 = Player(index = 3)
-        val p2 = Player(index = 4)
+        val toAdd = Player(index = 1, interfaces = mockk())
+        val toRemove = Player(index = 2, interfaces = mockk())
+        val p1 = Player(index = 3, interfaces = mockk())
+        val p2 = Player(index = 4, interfaces = mockk())
         set.current.addAll(listOf(p1, toRemove, p2))
         set.remove.add(toRemove)
         set.add.add(toAdd)
@@ -114,8 +114,8 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Update sets last seen`() {
         // Given
-        val p1 = Player(index = 1)
-        val p2 = Player(index = 2)
+        val p1 = Player(index = 1, interfaces = mockk())
+        val p2 = Player(index = 2, interfaces = mockk())
         set.add.add(p1)
         set.remove.add(p2)
         // When
@@ -128,7 +128,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Previously unseen entity is added`() {
         // Given
-        val player = Player(index = 1)
+        val player = Player(index = 1, interfaces = mockk())
         val entities = setOf(player)
         // When
         set.track(entities, null)
@@ -139,7 +139,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Tracked and seen entity is not removed`() {
         // Given
-        val player = Player(index = 1)
+        val player = Player(index = 1, interfaces = mockk())
         set.remove.add(player)
         val entities = setOf(player)
         // When
@@ -152,7 +152,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Track exceeding maximum entities`() {
         // Given
-        val player = Player(index = 11, tile = Tile(0))
+        val player = Player(index = 11, tile = Tile(0), interfaces = mockk())
         set.total = 10
         val entities = setOf(player)
         // When
@@ -164,7 +164,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Track within view`() {
         // Given
-        val player = Player(index = 1, tile = Tile(15, 15, 0))
+        val player = Player(index = 1, tile = Tile(15, 15, 0), interfaces = mockk())
         val entities = setOf(player)
         // When
         set.track(entities, null, 0, 0)
@@ -175,7 +175,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Track outside of view`() {
         // Given
-        val player = Player(index = 1, tile = Tile(16, 16, 0))
+        val player = Player(index = 1, tile = Tile(16, 16, 0), interfaces = mockk())
         val entities = setOf(player)
         // When
         set.track(entities, null, 0, 0)
@@ -186,7 +186,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Track within exceeding maximum entities`() {
         // Given
-        val player = Player(index = 11, tile = Tile(15, 15, 0))
+        val player = Player(index = 11, tile = Tile(15, 15, 0), interfaces = mockk())
         set.total = 10
         val entities = setOf(player)
         // When
@@ -198,7 +198,7 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Track within exceeding maximum tick entities`() {
         // Given
-        val player = Player(index = 5, tile = Tile(15, 15, 0))
+        val player = Player(index = 5, tile = Tile(15, 15, 0), interfaces = mockk())
         set.add.addAll(setOf(mockk(), mockk(), mockk(), mockk()))
         val entities = setOf(player)
         // When
@@ -210,8 +210,8 @@ internal class PlayerTrackingSetTest : KoinMock() {
     @Test
     fun `Clear all entities`() {
         // Given
-        set.add.add(Player(index = 0, tile = Tile(0)))
-        set.remove.add(Player(index = 0, tile = Tile(0)))
+        set.add.add(Player(index = 0, tile = Tile(0), interfaces = mockk()))
+        set.remove.add(Player(index = 0, tile = Tile(0), interfaces = mockk()))
         set.total = 2
         // When
         set.clear()

@@ -1,10 +1,7 @@
 package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.action.Action
-import rs.dusk.engine.client.ui.GameFrame
-import rs.dusk.engine.client.ui.InterfaceManager
-import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.PlayerInterfaceIO
+import rs.dusk.engine.client.ui.*
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.character.CharacterValues
@@ -14,14 +11,13 @@ import rs.dusk.engine.model.entity.character.contain.Container
 import rs.dusk.engine.model.entity.character.update.Visuals
 import rs.dusk.engine.model.entity.character.update.visual.player.getAppearance
 import rs.dusk.engine.model.world.Tile
-import rs.dusk.utility.get
 
 /**
  * A player controlled by client or bot
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Player(
+class Player(
     @Transient override var index: Int = -1,
     override var id: Int = -1,
     override var tile: Tile = Tile.EMPTY,
@@ -32,14 +28,15 @@ data class Player(
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
     val variables: MutableMap<Int, Any> = mutableMapOf(),
-    @Transient override val values: CharacterValues = CharacterValues()
+    @Transient override val values: CharacterValues = CharacterValues(),
+    interfaces: InterfacesLookup
 ) : Character {
 
     @Transient
     val gameFrame: GameFrame = GameFrame()
 
     @Transient
-    val interfaces: Interfaces = InterfaceManager(PlayerInterfaceIO(this), get(), gameFrame)
+    val interfaces: Interfaces = InterfaceManager(PlayerInterfaceIO(this), interfaces, gameFrame)
 
     @Transient
     override var change: LocalChange? = null
