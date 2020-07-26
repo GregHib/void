@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.ui
 
-class InterfacesLookup(
+data class InterfacesLookup(
     private val interfaces: Map<Int, Interface>,
     private val names: Map<String, Int>
 ) {
@@ -14,6 +14,8 @@ class InterfacesLookup(
     private fun getId(name: String) = getIdOrNull(name) ?: throw IllegalNameException(name)
 
     private fun getIdOrNull(name: String) = names[name]
+
+    val size: Int = interfaces.count()
 
     class IllegalNameException(name: String) : InterfaceException(name)
 

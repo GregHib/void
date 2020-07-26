@@ -1,33 +1,89 @@
 package rs.dusk.engine.client.ui
 
+import com.github.michaelbull.logging.InlineLogger
+import org.koin.core.time.measureDurationForResult
 import org.koin.dsl.module
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.utility.func.plural
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = "toplevel"
 private const val DEFAULT_RESIZE_PARENT = "toplevel_full"
 
-fun load(loader: FileLoader, interfacePath: String, typesPath: String): InterfacesLookup {
-    val types: LinkedHashMap<String, LinkedHashMap<String, Any>> = loader.load(typesPath)
-    val details: LinkedHashMap<String, LinkedHashMap<String, Any>> = loader.load(interfacePath)
-    val names = details.map { it.key to it.value["id"] as Int }.toMap()
-    val data = types.map { it.key to convert(names, it.value) }.toMap()
-    val interfaces = details.map { it.value["id"] as Int to Interface(it.value["id"] as Int, data[it.value["type"] as? String ?: DEFAULT_TYPE]) }.toMap()
-    return InterfacesLookup(interfaces, names)
+class InterfaceLoader(private val loader: FileLoader) {
+
+    fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
+
+    fun loadAll(detailPath: String, typesPath: String): InterfacesLookup {
+        val detailData = loadFile(detailPath)
+        val typeData = loadFile(typesPath)
+        val names = loadNames(detailData)
+        val types = loadTypes(typeData, names)
+        val details = loadDetails(detailData, types)
+        return InterfacesLookup(details, names)
+    }
+
+    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> name to values.getId() }.toMap()
+
+    fun loadTypes(data: Map<String, Map<String, Any>>, names: Map<String, Int>) = data.map { (name, values) ->
+        val index = values.readInt("index")
+        val fixedIndex = index ?: values.readInt("fixedIndex")
+        val resizeIndex = index ?: values.readInt("resizeIndex")
+
+        val parent = values.readString("parent")
+        val fixedParentName = parent ?: values.readString("fixedParent") ?: DEFAULT_FIXED_PARENT
+        val resizeParentName = parent ?: values.readString("resizeParent") ?: DEFAULT_RESIZE_PARENT
+        val fixedParent = names.getParentId(fixedParentName)
+        val resizeParent = names.getParentId(resizeParentName)
+
+        name to InterfaceData(fixedParent, resizeParent, fixedIndex, resizeIndex)
+    }.toMap()
+
+    fun loadDetails(
+        data: Map<String, Map<String, Any>>,
+        types: Map<String, InterfaceData>
+    ) = data.map { (_, values) ->
+        val id = values.getId()
+        val type = values.getType(types)
+        id to Interface(id, type)
+    }.toMap()
+
+    private fun Map<String, Any>.getType(types: Map<String, InterfaceData>): InterfaceData {
+        val typeName = readString("type") ?: DEFAULT_TYPE
+        val type = types[typeName]
+        checkNotNull(type) { "Missing interface type $typeName" }
+        return type
+    }
+
+    private fun Map<String, Any>.getId(): Int {
+        val id = readInt("id")
+        checkNotNull(id) { "Missing interface id $id" }
+        return id
+    }
+
+    private fun Map<String, Int>.getParentId(name: String): Int {
+        val id = this[name]
+        checkNotNull(id) { "Missing parent $name" }
+        return id
+    }
+
+    private fun Map<String, Any>.readInt(name: String) = this[name] as? Int
+    private fun Map<String, Any>.readString(name: String) = this[name] as? String
+
 }
 
-private fun convert(names: Map<String, Int>, map: LinkedHashMap<String, Any>): InterfaceData {
-    val parent = map["parent"] as? String
-    val fixedParent = parent ?: map["fixedParent"] as? String ?: DEFAULT_FIXED_PARENT
-    val resizeParent = parent ?: map["resizeParent"] as? String ?: DEFAULT_RESIZE_PARENT
-    val index = map["index"] as? Int
-    val fixedIndex = index ?: map["fixedIndex"] as? Int
-    val resizeIndex = index ?: map["resizeIndex"] as? Int
-    checkNotNull(names[fixedParent]) { "Couldn't find interface with name $fixedParent"}
-    checkNotNull(names[resizeParent]) { "Couldn't find interface with name $resizeParent"}
-    return InterfaceData(names[fixedParent], names[resizeParent], fixedIndex, resizeIndex)
+private val logger = InlineLogger()
+
+private fun timeLoading(fileLoader: FileLoader, path: String, typesPath: String): InterfacesLookup {
+    val (lookup, time) = measureDurationForResult {
+        InterfaceLoader(fileLoader).loadAll(path,typesPath)
+    }
+    logger.info { "Loaded ${lookup.size} ${"interface".plural(lookup.size)} in ${time.toInt()}ms" }
+    return lookup
 }
 
 val interfaceModule = module {
-    single(createdAtStart = true) { load(get(), getProperty("interfacesPath"), getProperty("interfaceTypesPath")) }
+    single(createdAtStart = true) {
+        timeLoading(get(), getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+    }
 }
