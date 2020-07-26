@@ -15,6 +15,7 @@ import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
+import rs.dusk.engine.model.engine.variable.variablesModule
 import rs.dusk.engine.model.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
@@ -88,7 +89,8 @@ object Dusk {
                 schedulerModule,
                 batchedChunkModule,
                 executorModule,
-                interfaceModule
+                interfaceModule,
+                variablesModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

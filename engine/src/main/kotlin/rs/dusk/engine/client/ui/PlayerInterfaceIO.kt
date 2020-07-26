@@ -29,15 +29,15 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
     }
 
     override fun notifyClosed(inter: Interface) {
-        bus.emit(InterfaceClosed(player, inter.id))
+        bus.emit(InterfaceClosed(player, inter.id, inter.name ?: ""))
     }
 
     override fun notifyOpened(inter: Interface) {
-        bus.emit(InterfaceOpened(player, inter.id))
+        bus.emit(InterfaceOpened(player, inter.id, inter.name ?: ""))
     }
 
     override fun notifyRefreshed(inter: Interface) {
-        bus.emit(InterfaceRefreshed(player, inter.id))
+        bus.emit(InterfaceRefreshed(player, inter.id, inter.name ?: ""))
     }
 
 }

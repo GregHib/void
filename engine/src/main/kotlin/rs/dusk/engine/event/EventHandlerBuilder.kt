@@ -45,4 +45,4 @@ inline infix fun <T : Any, E : Event<T>, reified C : EventCompanion<E>> C.check(
 /**
  * Create an [EventHandler] with nested syntax
  */
-fun <T : Any, E : Event<T>> on(block: EventHandlerBuilder<T, E>.() -> Unit) = block.invoke(EventHandlerBuilder())
+fun <E : Event<T>, T : Any> on(event: EventCompanion<E>, block: EventHandlerBuilder<T, E>.() -> Unit) = block.invoke(EventHandlerBuilder())

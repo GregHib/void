@@ -1,4 +1,4 @@
-package rs.dusk.world.entity.player
+package rs.dusk.world.entity.player.ui
 
 import rs.dusk.engine.client.ui.Tab
 import rs.dusk.engine.client.ui.event.InterfaceInteraction
