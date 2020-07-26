@@ -76,10 +76,11 @@ internal class XteasTest {
         val regionId = 12342
         val keys = intArrayOf(733680141, -1440926564, 447905675, 1806603117)
         try {
-            val raf = RandomAccessFile(file, "rw")
-            raf.writeShort(regionId)
-            keys.forEach {
-                raf.writeInt(it)
+            RandomAccessFile(file, "rw").use { raf ->
+                raf.writeShort(regionId)
+                keys.forEach {
+                    raf.writeInt(it)
+                }
             }
             // When
             val xteas = loadXteas("./xteas.dat", "", "")
@@ -92,4 +93,5 @@ internal class XteasTest {
             file.delete()
         }
     }
+
 }
