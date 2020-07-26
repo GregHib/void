@@ -14,16 +14,23 @@ internal class InterfaceCloseTest : InterfaceTest() {
     fun `Interface close is successful`() {
         val id = 4
         interfaces[id] = Interface(id = id, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        manager.open(id)
+        val result = manager.close(id)
+        assertTrue(result)
+    }
+
+    @Test
+    fun `Interface close name`() {
+        interfaces[4] = Interface(id = 4, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["fourth"] = 4
         manager.open("fourth")
-        val result = manager.close(4)
+        val result = manager.close("fourth")
         assertTrue(result)
     }
 
     @Test
     fun `Interface close unsuccessful if not open`() {
-        names["fourth"] = 4
-        val result = manager.close("fourth")
+        val result = manager.close(4)
         assertFalse(result)
     }
 
@@ -32,9 +39,8 @@ internal class InterfaceCloseTest : InterfaceTest() {
         val id = 4
         val data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX)
         interfaces[id] = Interface(id = id, data = data)
-        names["fourth"] = 4
-        manager.open("fourth")
-        manager.close("fourth")
+        manager.open(id)
+        manager.close(id)
         verify { io.sendClose(Interface(id = id, data = data)) }
     }
 
@@ -47,22 +53,18 @@ internal class InterfaceCloseTest : InterfaceTest() {
 
     @Test
     fun `Unopened interface close doesn't send update`() {
-        val id = 4
-        names["fourth"] = 4
-        manager.close("fourth")
-        verify(exactly = 0) { io.sendClose(Interface(id)) }
+        manager.close(4)
+        verify(exactly = 0) { io.sendClose(Interface(4)) }
     }
 
     @Test
     fun `Close removes children`() {
         interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
         interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["parent"] = 1
-        names["child"] = 0
-        manager.open("parent")
-        manager.open("child")
-        manager.close("parent")
-        assertFalse(manager.contains("child"))
+        manager.open(1)
+        manager.open(0)
+        manager.close(1)
+        assertFalse(manager.contains(0))
     }
 
     @Test
@@ -70,14 +72,11 @@ internal class InterfaceCloseTest : InterfaceTest() {
         interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
         interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
         interfaces[2] = Interface(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["parent"] = 2
-        names["child"] = 1
-        names["subchild"] = 0
-        manager.open("parent")
-        manager.open("child")
-        manager.open("subchild")
-        manager.close("parent")
-        assertFalse(manager.contains("child"))
-        assertFalse(manager.contains("subchild"))
+        manager.open(2)
+        manager.open(1)
+        manager.open(0)
+        manager.close(2)
+        assertFalse(manager.contains(1))
+        assertFalse(manager.contains(0))
     }
 }

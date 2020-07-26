@@ -13,7 +13,6 @@ internal class InterfaceRemoveTest : InterfaceTest() {
     fun `Interface can't remove unopened interface`() {
         val id = 4
         interfaces[id] = Interface(id = id, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["fourth"] = 4
         val result = manager.remove(4)
         assertFalse(result)
         verify(exactly = 0) { io.sendClose(Interface(id = id)) }
@@ -24,9 +23,8 @@ internal class InterfaceRemoveTest : InterfaceTest() {
         val id = 4
         val data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX)
         interfaces[id] = Interface(id = id, data = data)
-        names["fourth"] = 4
-        manager.open("fourth")
-        val result = manager.remove("fourth")
+        manager.open(4)
+        val result = manager.remove(4)
         assertTrue(result)
         verify { io.sendClose(Interface(id = id, data = data)) }
     }

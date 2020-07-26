@@ -14,15 +14,17 @@ data class GameFrame(
         }
 
     val name: String
-        get() = if(resizable) "toplevel_full" else "toplevel"
+        get() = if(resizable) GAME_FRAME_RESIZE_NAME else GAME_FRAME_NAME
 
     companion object {
         const val FIXED_SCREEN = 1
         const val RESIZABLE_SCREEN = 2
         const val FULL_SCREEN = 3
+
+        const val GAME_FRAME_NAME = "toplevel"
+        const val GAME_FRAME_RESIZE_NAME = "toplevel_full"
     }
 }
-
 
 fun Player.setDisplayMode(displayMode: Int): Boolean {
     val current = gameFrame.name

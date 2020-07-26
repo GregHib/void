@@ -12,8 +12,7 @@ internal class InterfaceIndexTest : InterfaceTest() {
     @Test
     fun `Fixed index`() {
         interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = 10))
-        names["first"] = 1
-        val result = lookup.get("first")
+        val result = lookup.get(1)
         assertEquals(10, result.getIndex(gameframe.resizable))
     }
 
@@ -21,8 +20,7 @@ internal class InterfaceIndexTest : InterfaceTest() {
     fun `Resizable has sends different index`() {
         interfaces[1] = Interface(id = 1, data = InterfaceData(resizableIndex = 12, resizableParent = ROOT_ID))
         gameframe.resizable = true
-        names["first"] = 1
-        val result = lookup.get("first")
+        val result = lookup.get(1)
         assertEquals(12, result.getIndex(gameframe.resizable))
     }
 
@@ -30,10 +28,9 @@ internal class InterfaceIndexTest : InterfaceTest() {
     @ValueSource(booleans = [false, true])
     fun `Interface without index throws error`(resizable: Boolean) {
         interfaces[7] = Interface(id = 7, data = InterfaceData(fixedParent = ROOT_ID))
-        names["seventh"] = 7
         gameframe.resizable = resizable
         assertThrows<Interface.InvalidInterfaceException> {
-            manager.open("seventh")
+            manager.open(7)
         }
     }
 }

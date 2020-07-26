@@ -24,6 +24,14 @@ internal class InterfaceGetTest : InterfaceTest() {
     }
 
     @Test
+    fun `Can't get interface with no type`() {
+        interfaces[4] = Interface(id = 4, type = null, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        manager.open(4)
+        val result = manager.get("interface_type")
+        assertNull(result)
+    }
+
+    @Test
     fun `Get missing type`() {
         val result = manager.get("unknown")
         assertNull(result)

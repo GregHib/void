@@ -3,12 +3,14 @@ package rs.dusk.engine.client.ui
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.time.measureDurationForResult
 import org.koin.dsl.module
+import rs.dusk.engine.client.ui.GameFrame.Companion.GAME_FRAME_NAME
+import rs.dusk.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.utility.func.plural
 
 private const val DEFAULT_TYPE = "main_screen"
-private const val DEFAULT_FIXED_PARENT = "toplevel"
-private const val DEFAULT_RESIZE_PARENT = "toplevel_full"
+private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
+private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
 class InterfaceLoader(private val loader: FileLoader) {
 

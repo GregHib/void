@@ -12,13 +12,11 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
     fun `Close children`() {
         interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
         interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["parent"] = 1
-        names["child"] = 0
-        manager.open("parent")
-        manager.open("child")
+        manager.open(1)
+        manager.open(0)
         manager.closeChildren(1)
-        assertTrue(manager.contains("parent"))
-        assertFalse(manager.contains("child"))
+        assertTrue(manager.contains(1))
+        assertFalse(manager.contains(0))
     }
 
     @Test
@@ -26,16 +24,13 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
         interfaces[0] = Interface(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
         interfaces[1] = Interface(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
         interfaces[2] = Interface(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["parent"] = 2
-        names["child"] = 1
-        names["subchild"] = 0
-        manager.open("parent")
-        manager.open("child")
-        manager.open("subchild")
-        manager.closeChildren("parent")
-        assertTrue(manager.contains("parent"))
-        assertFalse(manager.contains("child"))
-        assertFalse(manager.contains("subchild"))
+        manager.open(2)
+        manager.open(1)
+        manager.open(0)
+        manager.closeChildren(2)
+        assertTrue(manager.contains(2))
+        assertFalse(manager.contains(1))
+        assertFalse(manager.contains(0))
     }
 
 }
