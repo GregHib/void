@@ -1,20 +1,22 @@
 package rs.dusk.engine.client.ui
 
-import com.github.michaelbull.logging.InlineLogger
-import org.koin.core.time.measureDurationForResult
 import org.koin.dsl.module
+import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.client.ui.GameFrame.Companion.GAME_FRAME_NAME
 import rs.dusk.engine.client.ui.GameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.utility.func.plural
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
 private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
-class InterfaceLoader(private val loader: FileLoader) {
+class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLookup>("interfaces") {
 
     fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
+
+    override fun load(vararg args: Any): InterfacesLookup {
+        return loadAll(args[0] as String, args[1] as String)
+    }
 
     fun loadAll(detailPath: String, typesPath: String): InterfacesLookup {
         val detailData = loadFile(detailPath)
@@ -69,18 +71,8 @@ class InterfaceLoader(private val loader: FileLoader) {
 
 }
 
-private val logger = InlineLogger()
-
-private fun timeLoading(fileLoader: FileLoader, path: String, typesPath: String): InterfacesLookup {
-    val (lookup, time) = measureDurationForResult {
-        InterfaceLoader(fileLoader).loadAll(path,typesPath)
-    }
-    logger.info { "Loaded ${lookup.size} ${"interface".plural(lookup.size)} in ${time.toInt()}ms" }
-    return lookup
-}
-
 val interfaceModule = module {
     single(createdAtStart = true) {
-        timeLoading(get(), getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+        InterfaceLoader(get()).load(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
     }
 }

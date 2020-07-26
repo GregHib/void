@@ -2,6 +2,8 @@ package rs.dusk.engine.client.ui.load
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -20,7 +22,7 @@ internal class InterfaceLoaderTest {
     @BeforeEach
     fun setup() {
         fileLoader = mockk()
-        loader = InterfaceLoader(fileLoader)
+        loader = spyk(InterfaceLoader(fileLoader))
     }
 
     @Test
@@ -116,4 +118,10 @@ internal class InterfaceLoaderTest {
         assertEquals(expected, result)
     }
 
+    @Test
+    fun `Load parameters`() {
+        every { loader.loadAll(any(), any()) } returns mockk()
+        loader.load("one", "two")
+        verify { loader.loadAll("one", "two") }
+    }
 }
