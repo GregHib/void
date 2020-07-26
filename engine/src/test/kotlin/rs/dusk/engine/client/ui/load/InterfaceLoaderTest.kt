@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.load
 
 import io.mockk.every
 import io.mockk.mockk
@@ -6,6 +6,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import rs.dusk.engine.client.ui.Interface
+import rs.dusk.engine.client.ui.InterfaceData
+import rs.dusk.engine.client.ui.InterfaceLoader
+import rs.dusk.engine.client.ui.InterfacesLookup
 import rs.dusk.engine.data.file.FileLoader
 
 internal class InterfaceLoaderTest {
@@ -38,7 +42,11 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(1, data), 2 to Interface(2, data))
+        val expected = mapOf(1 to Interface(
+            1,
+            data
+        ), 2 to Interface(2, data)
+        )
         assertEquals(expected, results)
     }
 
@@ -97,7 +105,10 @@ internal class InterfaceLoaderTest {
         val result = loader.loadAll(detailsPath, typesPath)
         val expected = InterfacesLookup(
             mapOf(
-                1 to Interface(1, InterfaceData(2, 3, 0, 0)),
+                1 to Interface(
+                    1,
+                    InterfaceData(2, 3, 0, 0)
+                ),
                 2 to Interface(2, null),
                 3 to Interface(3, null)
             ),

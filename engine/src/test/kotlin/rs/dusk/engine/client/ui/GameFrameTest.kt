@@ -9,25 +9,14 @@ import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import rs.dusk.engine.model.entity.character.player.Player
 
-internal class GameFrameTest {
+internal class GameFrameTest : InterfaceTest() {
 
-    private lateinit var manager: Interfaces
-    private lateinit var io: InterfaceIO
-    private lateinit var interfaces: MutableMap<Int, Interface>
-    private lateinit var lookup: InterfacesLookup
     private lateinit var player: Player
-    private lateinit var gameframe: GameFrame
-    private lateinit var names: MutableMap<String, Int>
 
     @BeforeEach
-    fun setup() {
+    override fun setup() {
+        super.setup()
         player = mockk(relaxed = true)
-        io = mockk(relaxed = true)
-        interfaces = mutableMapOf()
-        names = mutableMapOf()
-        lookup = InterfacesLookup(interfaces, names)
-        gameframe = GameFrame()
-        manager = Interfaces(io, lookup, gameframe)
         every { player.gameframe } returns gameframe
         every { player.interfaces } returns manager
     }
@@ -67,5 +56,10 @@ internal class GameFrameTest {
         val result = player.setDisplayMode(GameFrame.RESIZABLE_SCREEN)
         assertTrue(result)
         assertEquals(true, gameframe.resizable)
+    }
+
+    @Test
+    fun `Fixed screen`() {
+        assertFalse(gameframe.resizable)
     }
 }

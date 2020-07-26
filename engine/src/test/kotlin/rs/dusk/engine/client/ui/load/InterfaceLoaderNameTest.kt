@@ -1,10 +1,11 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.load
 
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import rs.dusk.engine.client.ui.InterfaceLoader
 
 internal class InterfaceLoaderNameTest {
 
