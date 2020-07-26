@@ -27,26 +27,26 @@ internal class InterfaceLoaderTest {
 
     @Test
     fun `Load details`() {
-        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type"))
+        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type", "components" to mapOf("component_name" to 0)))
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data))
+        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf(0 to "component_name")))
         assertEquals(expected, results)
     }
 
     @Test
     fun `Load multiple details`() {
         val raw = mapOf(
-            "interface_name" to mapOf("id" to 1, "type" to "interface_type"),
-            "interface_name_two" to mapOf("id" to 2, "type" to "interface_type")
+            "interface_name" to mapOf("id" to 1, "type" to "interface_type", "components" to mapOf("component_name" to 1, "component_name_two" to 2)),
+            "interface_name_two" to mapOf("id" to 2, "type" to "interface_type", "components" to mapOf("component_name" to 3))
         )
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
         val expected = mapOf(
-            1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data),
-            2 to Interface(id = 2, name = "interface_name_two", type = "interface_type", data = data)
+            1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf(1 to "component_name", 2 to "component_name_two")),
+            2 to Interface(id = 2, name = "interface_name_two", type = "interface_type", data = data, components = mapOf(3 to "component_name"))
         )
         assertEquals(expected, results)
     }
@@ -80,6 +80,26 @@ internal class InterfaceLoaderTest {
     }
 
     @Test
+    fun `Missing components is empty map`() {
+        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type", "components" to mapOf<String, Int>()))
+        val data = InterfaceData()
+        val types = mapOf("interface_type" to data)
+        val results = loader.loadDetails(raw, types)
+        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf()))
+        assertEquals(expected, results)
+    }
+
+    @Test
+    fun `No components is empty map`() {
+        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type"))
+        val data = InterfaceData()
+        val types = mapOf("interface_type" to data)
+        val results = loader.loadDetails(raw, types)
+        val expected = mapOf(1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf()))
+        assertEquals(expected, results)
+    }
+
+    @Test
     fun `Load from file`() {
         val path = "dusk/example/interfaces.yml"
         val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type"))
@@ -93,7 +113,11 @@ internal class InterfaceLoaderTest {
         val detailsPath = "interfaces.yml"
         val typesPath = "interface-types.yml"
         val detailData = mapOf(
-            "interface_name" to mapOf("id" to 1, "type" to "interface_type"),
+            "interface_name" to mapOf(
+                "id" to 1,
+                "type" to "interface_type",
+                "components" to mapOf("component_name" to 1)
+            ),
             "toplevel" to mapOf("id" to 2, "type" to "root"),
             "toplevel_full" to mapOf("id" to 3, "type" to "root"),
             "root" to mapOf("id" to -1, "type" to "root")
@@ -107,7 +131,13 @@ internal class InterfaceLoaderTest {
         val result = loader.loadAll(detailsPath, typesPath)
         val expected = InterfacesLookup(
             mapOf(
-                1 to Interface(id = 1, name = "interface_name", type = "interface_type", data = InterfaceData(2, 3, 0, 0)),
+                1 to Interface(
+                    id = 1,
+                    name = "interface_name",
+                    type = "interface_type",
+                    data = InterfaceData(2, 3, 0, 0),
+                    components = mapOf(1 to "component_name")
+                ),
                 2 to Interface(id = 2, name = "toplevel", type = "root", data = InterfaceData(-1, -1, 0, 0)),
                 3 to Interface(id = 3, name = "toplevel_full", type = "root", data = InterfaceData(-1, -1, 0, 0)),
                 -1 to Interface(id = -1, name = "root", type = "root", data = InterfaceData(-1, -1, 0, 0))

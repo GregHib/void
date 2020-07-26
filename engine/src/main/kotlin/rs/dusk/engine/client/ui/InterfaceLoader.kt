@@ -52,8 +52,15 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
         val typeName = values.readString("type") ?: DEFAULT_TYPE
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
-        id to Interface(id, name, typeName, type)
+        val components = values.getComponents()
+        id to Interface(id, name, typeName, type, components)
     }.toMap()
+
+    private fun Map<String, Any>.getComponents(): Map<Int, String> {
+        val value = this["components"] as? Map<*, *>
+        val components = value?.map { it.value as Int to it.key as String }?.toMap()
+        return components ?: emptyMap()
+    }
 
     private fun Map<String, Any>.getId(): Int {
         val id = readInt("id")

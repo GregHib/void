@@ -277,6 +277,16 @@ npc_chat_np4:
 options:
   id: 261
   type: options_tab
+  components:
+    graphics_button: 14
+    audio_button: 16
+    mouse_button: 6
+    profanity_button: 3
+    effects_button: 4
+    chat_button: 5
+    aid_button: 7
+    house_button: 8
+    log_button: 18
 
 prayer_list:
   id: 271

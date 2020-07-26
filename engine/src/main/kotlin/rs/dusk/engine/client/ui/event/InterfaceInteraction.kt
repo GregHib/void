@@ -8,9 +8,10 @@ data class InterfaceInteraction(
     override val player: Player,
     val id: Int,
     val name: String,
-    val component: Int,
-    val option: String,
+    val componentId: Int,
+    val component: String,
     val optionId: Int,
+    val option: String,
     val paramOne: Int,
     val paramTwo: Int
 ) : PlayerEvent() {
