@@ -1,12 +1,13 @@
 package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.client.send
+import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 
-class PlayerInterfaceIO(val player: Player) : InterfaceIO {
+class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
 
     override fun sendOpen(inter: Interface) {
         val parent = inter.getParent(player.gameFrame.resizable)
@@ -22,6 +23,18 @@ class PlayerInterfaceIO(val player: Player) : InterfaceIO {
     override fun sendClose(inter: Interface) {
         val index = inter.getIndex(player.gameFrame.resizable)
         player.send(InterfaceCloseMessage(inter.id, index))
+    }
+
+    override fun notifyClosed(inter: Interface) {
+        bus.emit(InterfaceClosed(player, inter.id))
+    }
+
+    override fun notifyOpened(inter: Interface) {
+        bus.emit(InterfaceOpened(player, inter.id))
+    }
+
+    override fun notifyRefreshed(inter: Interface) {
+        bus.emit(InterfaceRefreshed(player, inter.id))
     }
 
 }

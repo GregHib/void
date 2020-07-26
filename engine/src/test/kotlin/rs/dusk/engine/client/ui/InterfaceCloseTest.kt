@@ -1,6 +1,7 @@
 package rs.dusk.engine.client.ui
 
 import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -41,7 +42,11 @@ internal class InterfaceCloseTest : InterfaceTest() {
         interfaces[id] = Interface(id = id, data = data)
         manager.open(id)
         manager.close(id)
-        verify { io.sendClose(Interface(id = id, data = data)) }
+        verifyOrder {
+            val inter = Interface(id = id, data = data)
+            io.sendClose(inter)
+            io.notifyClosed(inter)
+        }
     }
 
     @Test
@@ -54,7 +59,11 @@ internal class InterfaceCloseTest : InterfaceTest() {
     @Test
     fun `Unopened interface close doesn't send update`() {
         manager.close(4)
-        verify(exactly = 0) { io.sendClose(Interface(4)) }
+        verify(exactly = 0) {
+            val inter = Interface(4)
+            io.sendClose(inter)
+            io.notifyClosed(inter)
+        }
     }
 
     @Test

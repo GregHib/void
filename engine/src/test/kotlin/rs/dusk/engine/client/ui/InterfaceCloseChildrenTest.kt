@@ -1,5 +1,7 @@
 package rs.dusk.engine.client.ui
 
+import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -17,6 +19,14 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
         manager.closeChildren(1)
         assertTrue(manager.contains(1))
         assertFalse(manager.contains(0))
+        verifyOrder {
+            io.sendClose(interfaces[0]!!)
+            io.notifyClosed(interfaces[0]!!)
+        }
+        verify(exactly = 0) {
+            io.sendClose(interfaces[1]!!)
+            io.notifyClosed(interfaces[1]!!)
+        }
     }
 
     @Test
@@ -31,6 +41,12 @@ internal class InterfaceCloseChildrenTest : InterfaceTest() {
         assertTrue(manager.contains(2))
         assertFalse(manager.contains(1))
         assertFalse(manager.contains(0))
+        verifyOrder {
+            io.sendClose(interfaces[1]!!)
+            io.notifyClosed(interfaces[1]!!)
+            io.sendClose(interfaces[0]!!)
+            io.notifyClosed(interfaces[0]!!)
+        }
     }
 
 }

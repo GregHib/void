@@ -1,5 +1,7 @@
 package rs.dusk.engine.client.ui
 
+import io.mockk.every
+import io.mockk.mockk
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 
@@ -14,15 +16,12 @@ abstract class InterfaceTest {
 
     @BeforeEach
     open fun setup() {
-        io = spyk(object : InterfaceIO {
-            override fun sendOpen(inter: Interface) {
-                inter.getParent(gameframe.resizable)
-                inter.getIndex(gameframe.resizable)
-            }
-
-            override fun sendClose(inter: Interface) {
-            }
-        })
+        io = mockk(relaxed = true)
+        every { io.sendOpen(any())} answers {
+            val inter: Interface = arg(0)
+            inter.getParent(gameframe.resizable)
+            inter.getIndex(gameframe.resizable)
+        }
         interfaces = mutableMapOf()
         names = mutableMapOf()
         lookup = spyk(InterfacesLookup(interfaces, names))

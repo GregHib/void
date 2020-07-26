@@ -1,6 +1,7 @@
 package rs.dusk.engine.client.ui
 
 import io.mockk.verify
+import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
@@ -15,7 +16,11 @@ internal class InterfaceRemoveTest : InterfaceTest() {
         interfaces[id] = Interface(id = id, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         val result = manager.remove(4)
         assertFalse(result)
-        verify(exactly = 0) { io.sendClose(Interface(id = id)) }
+        verify(exactly = 0) {
+            val inter = Interface(id = id)
+            io.sendClose(inter)
+            io.notifyClosed(inter)
+        }
     }
 
     @Test
@@ -26,7 +31,11 @@ internal class InterfaceRemoveTest : InterfaceTest() {
         manager.open(4)
         val result = manager.remove(4)
         assertTrue(result)
-        verify { io.sendClose(Interface(id = id, data = data)) }
+        verifyOrder {
+            val inter = Interface(id = id, data = data)
+            io.sendClose(inter)
+            io.notifyClosed(inter)
+        }
     }
 
 }

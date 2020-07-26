@@ -6,7 +6,6 @@ import org.jetbrains.exposed.sql.select
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.jetbrains.exposed.sql.update
 import org.koin.dsl.module
-import rs.dusk.engine.client.ui.InterfacesLookup
 import rs.dusk.engine.data.StorageStrategy
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.world.Tile
@@ -17,7 +16,7 @@ import rs.dusk.utility.PlayersTable
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class SQLPlayerStorage(private val interfaces: InterfacesLookup, url: String, user: String, password: String) : StorageStrategy<Player> {
+class SQLPlayerStorage(url: String, user: String, password: String) : StorageStrategy<Player> {
 
     private val logger = InlineLogger()
 
@@ -38,7 +37,7 @@ class SQLPlayerStorage(private val interfaces: InterfacesLookup, url: String, us
                 val y = player[PlayersTable.y]
                 val plane = player[PlayersTable.plane]
                 val tile = Tile(x, y, plane)
-                Player(id = playerId, tile = tile, interfaces = interfaces)
+                Player(id = playerId, tile = tile)
             }
         }
     }
@@ -55,5 +54,5 @@ class SQLPlayerStorage(private val interfaces: InterfacesLookup, url: String, us
 
 @Suppress("USELESS_CAST")
 val sqlPlayerModule = module {
-    single { SQLPlayerStorage(get(), getProperty("databaseUrl"), getProperty("databaseUser"), getProperty("databasePassword")) as StorageStrategy<Player> }
+    single { SQLPlayerStorage(getProperty("databaseUrl"), getProperty("databaseUser"), getProperty("databasePassword")) as StorageStrategy<Player> }
 }

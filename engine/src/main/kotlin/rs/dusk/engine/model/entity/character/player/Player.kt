@@ -1,7 +1,8 @@
 package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.action.Action
-import rs.dusk.engine.client.ui.*
+import rs.dusk.engine.client.ui.GameFrame
+import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.character.CharacterValues
@@ -28,15 +29,14 @@ class Player(
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
     val variables: MutableMap<Int, Any> = mutableMapOf(),
-    @Transient override val values: CharacterValues = CharacterValues(),
-    interfaces: InterfacesLookup
+    @Transient override val values: CharacterValues = CharacterValues()
 ) : Character {
 
     @Transient
     val gameFrame: GameFrame = GameFrame()
 
     @Transient
-    val interfaces: Interfaces = InterfaceManager(PlayerInterfaceIO(this), interfaces, gameFrame)
+    lateinit var interfaces: Interfaces
 
     @Transient
     override var change: LocalChange? = null
