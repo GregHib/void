@@ -4,8 +4,10 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
+import org.koin.test.mock.declare
+import rs.dusk.engine.script.KoinMock
 
-abstract class InterfaceTest {
+abstract class InterfaceTest : KoinMock() {
 
     internal lateinit var manager: InterfaceManager
     internal lateinit var io: InterfaceIO
@@ -24,7 +26,7 @@ abstract class InterfaceTest {
         }
         interfaces = mutableMapOf()
         names = mutableMapOf()
-        lookup = spyk(InterfacesLookup(interfaces, names))
+        lookup = declare { spyk(InterfacesLookup(interfaces, names)) }
         gameframe = spyk(GameFrame())
         manager = spyk(InterfaceManager(io, lookup, gameframe))
     }

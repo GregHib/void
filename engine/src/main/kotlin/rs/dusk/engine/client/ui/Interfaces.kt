@@ -2,6 +2,7 @@ package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.utility.get
 
 abstract class Interfaces(private val interfaces: InterfacesLookup) {
 
@@ -45,7 +46,17 @@ abstract class Interfaces(private val interfaces: InterfacesLookup) {
     }
 }
 
-fun Player.open(interfaceName: String) = interfaces.open(interfaceName)
+fun Player.open(interfaceName: String): Boolean {
+    val lookup: InterfacesLookup = get()
+    val inter = lookup.get(interfaceName)
+    if (inter.type != null) {
+        val id = interfaces.get(inter.type)
+        if (id != null) {
+            interfaces.close(id)
+        }
+    }
+    return interfaces.open(interfaceName)
+}
 
 fun Player.isOpen(interfaceName: String) = interfaces.contains(interfaceName)
 

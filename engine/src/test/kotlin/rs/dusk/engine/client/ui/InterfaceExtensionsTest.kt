@@ -9,6 +9,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.action.Suspension
+import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
+import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import rs.dusk.engine.model.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
@@ -25,10 +27,26 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Open by name`() {
-        assertThrows<InterfacesLookup.IllegalNameException> {
+        every { lookup.get("interface_name") } returns Interface(id = 0, type = null)
+        assertThrows<Interface.InvalidInterfaceException> {
             player.open("interface_name")
         }
         verify { manager.open("interface_name") }
+        verify(exactly = 0) { manager.close(any<Int>()) }
+    }
+
+    @Test
+    fun `Interface already open with same type is closed first`() {
+        interfaces[0] = Interface(id = 0, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = Interface(id = 1, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        names["interface_name"] = 1
+        manager.open(0)
+        val result = player.open("interface_name")
+        verifyOrder {
+            manager.close(0)
+            manager.open("interface_name")
+        }
+        assertTrue(result)
     }
 
     @Test
