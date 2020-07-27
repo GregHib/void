@@ -27,7 +27,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Open by name`() {
-        every { lookup.get("interface_name") } returns Interface(id = 0, type = null)
+        every { lookup.get("interface_name") } returns Interface(id = 0, type = "")
         assertThrows<Interface.InvalidInterfaceException> {
             player.open("interface_name")
         }

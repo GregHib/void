@@ -49,7 +49,7 @@ abstract class Interfaces(private val interfaces: InterfacesLookup) {
 fun Player.open(interfaceName: String): Boolean {
     val lookup: InterfacesLookup = get()
     val inter = lookup.get(interfaceName)
-    if (inter.type != null) {
+    if (inter.type.isNotEmpty()) {
         val id = interfaces.get(inter.type)
         if (id != null) {
             interfaces.close(id)

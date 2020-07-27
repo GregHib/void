@@ -70,7 +70,7 @@ internal class InterfaceIOTest : KoinMock() {
         every { inter.id } returns 100
         every { inter.getParent(false) } returns 10
         every { inter.getIndex(false) } returns 1
-        every { inter.type } returns null
+        every { inter.type } returns ""
         io.sendOpen(inter)
         verify {
             player.send(InterfaceOpenMessage(true, 10, 1, 100))
