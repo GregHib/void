@@ -81,19 +81,6 @@ class Action {
     }
 
     /**
-     * TODO move to interface system
-     * Wait until a main interface is closed
-     * @return always true
-     */
-    suspend fun awaitInterfaces(): Boolean {
-        var playerHasInterfaceOpen = false
-        if (playerHasInterfaceOpen) {
-            await<Unit>(Suspension.Interfaces)
-        }
-        return true
-    }
-
-    /**
      * Delays the coroutine by [ticks] ticks.
      * @return always true
      */

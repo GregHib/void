@@ -2,8 +2,10 @@ package rs.dusk.engine.model.entity.character
 
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
+import rs.dusk.engine.client.ui.awaitInterfaces
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Entity
+import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.world.Tile
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
@@ -58,7 +60,7 @@ private fun calcPath(source: Character, target: Any) = when (target) {
     else -> PathResult.Failure
 }
 
-fun Character.walkTo(target: Any, action: (PathResult) -> Unit) = get<TaskExecutor>().start {
+fun Player.walkTo(target: Any, action: (PathResult) -> Unit) = get<TaskExecutor>().start {
     action(ActionType.Movement) {
         try {
             val result = calcPath(this@walkTo, target)

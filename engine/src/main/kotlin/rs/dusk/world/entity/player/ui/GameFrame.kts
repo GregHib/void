@@ -1,10 +1,13 @@
 package rs.dusk.world.entity.player.ui
 
+import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.Tab
+import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
+import rs.dusk.engine.event.where
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.set
 
@@ -66,4 +69,8 @@ Tab.values().forEach { tab ->
             player["tab"] = tab
         }
     }
+}
+
+InterfaceClosed where { (player.action.suspension as? Suspension.Interface)?.id == id } then {
+    player.action.resume()
 }

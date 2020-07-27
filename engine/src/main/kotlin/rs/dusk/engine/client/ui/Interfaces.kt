@@ -1,5 +1,6 @@
 package rs.dusk.engine.client.ui
 
+import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.model.entity.character.player.Player
 
 abstract class Interfaces(private val interfaces: InterfacesLookup) {
@@ -52,9 +53,17 @@ fun Player.hasOpen(interfaceType: String) = interfaces.get(interfaceType) != nul
 
 fun Player.close(interfaceName: String) = interfaces.close(interfaceName)
 
-fun Player.closeType(interfaceType: String) : Boolean {
+fun Player.closeType(interfaceType: String): Boolean {
     val id = interfaces.get(interfaceType) ?: return false
     return interfaces.close(id)
 }
 
 fun Player.closeChildren(interfaceName: String) = interfaces.closeChildren(interfaceName)
+
+suspend fun Player.awaitInterfaces(): Boolean {
+    val id = interfaces.get("main_screen")
+    if (id != null) {
+        action.await<Unit>(Suspension.Interface(id))
+    }
+    return true
+}

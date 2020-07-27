@@ -1,13 +1,14 @@
 package rs.dusk.engine.client.ui
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
-import io.mockk.verifyOrder
+import io.mockk.*
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import rs.dusk.engine.action.Action
+import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.model.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
@@ -69,5 +70,18 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
             player.closeChildren("interface_name")
         }
         verify { manager.closeChildren("interface_name") }
+    }
+
+    @Test
+    fun `Suspend interface`() = runBlocking {
+        val action: Action = mockk()
+        val interfaces: Interfaces = mockk()
+        every { player.interfaces } returns interfaces
+        every { player.action } returns action
+        every { interfaces.get("main_screen") } returns  4
+        val suspension = Suspension.Interface(4)
+        coEvery { action.await<Unit>(suspension) } returns Unit
+        assertTrue(player.awaitInterfaces())
+        coVerify { action.await<Unit>(suspension) }
     }
 }
