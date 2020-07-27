@@ -45,7 +45,7 @@ object GameOpcodes {
     const val REMOVE_IGNORE = 38
     const val AP_COORD_T = 39
     const val INTERFACE_ON_PLAYER = 40
-    const val CHANGE_FRIEND_CHAT = 41
+    const val RANK_FRIEND_CHAT = 41
     const val ITEM_ON_OBJECT = 42
     const val PLAYER_OPTION_9 = 43
     const val CLAN_SETTINGS_UPDATE = 44

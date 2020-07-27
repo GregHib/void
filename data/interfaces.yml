@@ -107,6 +107,9 @@ chat_both:
 chat_background:
   id: 137
   type: chat_background
+  quick_chat: 54
+  help_quick_chat: 5
+  close_quick_chat: 4
 
 select2_models:
   id: 140
@@ -571,8 +574,12 @@ filter_buttons:
   id: 751
   type: chat_settings
   components:
+    all: 34
     game: 31
+    public: 28
     private: 25
+    friends: 8
+    clan: 22
     trade: 19
     assist: 16
     report: 13

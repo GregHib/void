@@ -6,6 +6,7 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import rs.dusk.cache.config.decoder.*
 import rs.dusk.cache.definition.decoder.*
+import rs.dusk.cache.secure.Huffman
 import java.math.BigInteger
 
 @Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
@@ -17,7 +18,9 @@ val cacheModule = module {
             getProperty<String>("fsRsaModulus")
         ) as Cache
     }
+    single { Huffman(get()) }
 }
+
 val cacheDefinitionModule = module {
     single { AnimationDecoder() }
     single { BodyDecoder() }

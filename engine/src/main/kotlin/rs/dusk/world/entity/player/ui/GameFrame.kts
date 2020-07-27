@@ -67,7 +67,3 @@ Tab.values().forEach { tab ->
         }
     }
 }
-
-InterfaceInteraction then {
-    println(componentId)
-}
