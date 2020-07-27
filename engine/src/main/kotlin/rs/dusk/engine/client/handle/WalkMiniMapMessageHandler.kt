@@ -8,6 +8,7 @@ import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.WalkMiniMapMessage
 import rs.dusk.utility.inject
+import rs.dusk.world.entity.player.ui.chat.message
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -23,7 +24,7 @@ class WalkMiniMapMessageHandler : GameMessageHandler<WalkMiniMapMessage>() {
         val (x, y) = msg
         player.walkTo(player.tile.copy(x = x, y = y)) { result ->
             if (result is PathResult.Failure) {
-                println("You can't reach that.")
+                player.message("You can't reach that.")
                 return@walkTo
             }
         }
