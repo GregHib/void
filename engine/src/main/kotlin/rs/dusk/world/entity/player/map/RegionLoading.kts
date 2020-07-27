@@ -10,7 +10,6 @@ import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import rs.dusk.engine.model.world.Region
 import rs.dusk.engine.model.world.map.MapReader
-import rs.dusk.engine.model.world.map.obj.Xtea
 import rs.dusk.engine.model.world.map.obj.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.utility.inject
@@ -82,7 +81,7 @@ fun needsRegionChange(player: Player): Boolean {
 }
 
 fun updateRegion(player: Player, initial: Boolean) {
-    val list = mutableListOf<Xtea>()
+    val xteaList = mutableListOf<IntArray>()
 
     val chunk = player.tile.chunk
     val chunkX = chunk.x
@@ -93,7 +92,7 @@ fun updateRegion(player: Player, initial: Boolean) {
         for(regionY in (chunk.y - size) / 8..(chunk.y + size) / 8) {
             val regionId = Region.getId(regionX, regionY)
             val xtea = xteas[regionId] ?: blankXtea
-            list.add(xtea)
+            xteaList.add(xtea)
         }
     }
 
@@ -104,7 +103,7 @@ fun updateRegion(player: Player, initial: Boolean) {
             chunkY = chunkY,
             forceReload = false,
             mapSize = 0,
-            xteas = list.toTypedArray(),
+            xteas = xteaList.toTypedArray(),
             clientIndex = if (initial) player.index - 1 else null,
             playerRegions = if (initial) playerRegions else null,
             clientTile = if (initial) player.tile.id else null

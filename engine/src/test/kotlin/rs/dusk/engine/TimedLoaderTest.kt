@@ -9,7 +9,7 @@ internal class TimedLoaderTest {
     @Test
     fun `Load returns value`() {
         val loader = object : TimedLoader<Int>("Test") {
-            override fun load(vararg args: Any): Int {
+            override fun load(vararg args: Any?): Int {
                 count = 1
                 return 42
             }
@@ -22,7 +22,7 @@ internal class TimedLoaderTest {
     fun `Load passes arguments value`() {
         val arguments = arrayOf("One", 2, '3')
         val loader = object : TimedLoader<Int>("Test") {
-            override fun load(vararg args: Any): Int {
+            override fun load(vararg args: Any?): Int {
                 assertTrue(args.contentEquals(arguments))
                 return 42
             }

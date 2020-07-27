@@ -14,7 +14,7 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
 
     fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
 
-    override fun load(vararg args: Any): InterfacesLookup {
+    override fun load(args: Array<out Any?>): InterfacesLookup {
         return loadAll(args[0] as String, args[1] as String)
     }
 
