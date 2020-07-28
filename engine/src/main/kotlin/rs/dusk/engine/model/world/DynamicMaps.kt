@@ -5,8 +5,9 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.obj.Objects
+import rs.dusk.engine.model.world.map.MapReader
 
-class DynamicMaps(private val bus: EventBus, private val objects: Objects) {
+class DynamicMaps(private val bus: EventBus, private val objects: Objects, private val reader: MapReader) {
     val chunks: MutableMap<Int, Int> = mutableMapOf()
     val regions = mutableSetOf<Int>()
 
@@ -54,6 +55,7 @@ class DynamicMaps(private val bus: EventBus, private val objects: Objects) {
 
         if(cleared) {
             regions.remove(region.id)
+            reader.loading.remove(region)
         }
         clearObjects(chunk)
         bus.emit(ReloadRegion(region))
@@ -133,5 +135,5 @@ class DynamicMaps(private val bus: EventBus, private val objects: Objects) {
 }
 
 val instanceModule = module {
-    single { DynamicMaps(get(), get()) }
+    single { DynamicMaps(get(), get(), get()) }
 }
