@@ -15,7 +15,7 @@ data class Area<T : Coordinates>(val coords: T, val width: Int, val height: Int)
 
         override fun hasNext() = index < max
 
-        override fun next() = coords.add(x = index.rem(width), y = index++ / width) as T
+        override fun next() = coords.add(x = index / width, y = index++.rem(width)) as T
 
     }
 }

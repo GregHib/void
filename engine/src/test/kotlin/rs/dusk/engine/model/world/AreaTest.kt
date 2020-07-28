@@ -40,17 +40,17 @@ internal class AreaTest {
         // Then
         val expected = listOf(
             Tile(10, 10, 1),
-            Tile(11, 10, 1),
-            Tile(12, 10, 1),
             Tile(10, 11, 1),
-            Tile(11, 11, 1),
-            Tile(12, 11, 1),
             Tile(10, 12, 1),
+            Tile(11, 10, 1),
+            Tile(11, 11, 1),
             Tile(11, 12, 1),
+            Tile(12, 10, 1),
+            Tile(12, 11, 1),
             Tile(12, 12, 1),
-            Tile(10, 13, 1),
-            Tile(11, 13, 1),
-            Tile(12, 13, 1)
+            Tile(13, 10, 1),
+            Tile(13, 11, 1),
+            Tile(13, 12, 1)
         )
         assertEquals(expected, list)
     }
