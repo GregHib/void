@@ -30,7 +30,7 @@ class ChunkBatcher {
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
      */
     fun getChunkOffset(player: Player, chunk: Chunk): Chunk {
-        val viewChunkSize = player.viewport.size shr 4
+        val viewChunkSize = player.viewport.tileSize shr 4
         val base = player.viewport.lastLoadChunk.minus(viewChunkSize, viewChunkSize)
         return chunk.minus(base)
     }

@@ -4,7 +4,7 @@ package rs.dusk.engine.model.world
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-data class Region(override val x: Int, override val y: Int) : Coordinates {
+data class Region(override val x: Int, override val y: Int) : Coordinate2D {
 
     constructor(id: Int) : this(id shr 8, id and 0xff)
 

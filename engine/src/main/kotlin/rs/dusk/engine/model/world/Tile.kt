@@ -4,7 +4,7 @@ package rs.dusk.engine.model.world
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Tile(override val x: Int, override val y: Int, val plane: Int = 0) : Coordinates {
+data class Tile(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {
 
     constructor(id: Int) : this(id shr 14 and 0x3fff, id and 0x3fff, id shr 28)
 
@@ -13,7 +13,7 @@ data class Tile(override val x: Int, override val y: Int, val plane: Int = 0) : 
     val region by lazy { Region(x / 64, y / 64) }
     val regionPlane by lazy { RegionPlane(x / 64, y / 64, plane) }
 
-    fun add(x: Int = 0, y: Int = 0, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
+    override fun add(x: Int, y: Int, plane: Int) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
     fun equals(x: Int = 0, y: Int = 0, plane: Int = 0) = this.x == x && this.y == y && this.plane == plane
     fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, plane)
     fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = minus(x, y, plane)

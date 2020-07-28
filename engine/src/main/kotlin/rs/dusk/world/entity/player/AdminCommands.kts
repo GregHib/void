@@ -8,7 +8,7 @@ import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.player.command.Command
 import rs.dusk.engine.model.entity.character.update.visual.player.tele
-import rs.dusk.engine.model.world.view
+import rs.dusk.engine.model.world.area
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.npc.NPCSpawn
 import rs.dusk.world.entity.player.login.Login
@@ -46,7 +46,7 @@ Command where { prefix == "npc" } then {
 val botCounter = AtomicInteger(0)
 
 Command where { prefix == "bot" } then {
-    player.tile.view(4).forEach { tile ->
+    player.tile.area(4).forEach { tile ->
         val callback = { response: LoginResponse ->
             if (response is LoginResponse.Success) {
                 val bot = response.player

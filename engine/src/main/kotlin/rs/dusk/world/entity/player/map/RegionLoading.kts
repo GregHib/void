@@ -7,15 +7,13 @@ import rs.dusk.engine.model.entity.character.Moved
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.player.Players
+import rs.dusk.engine.model.entity.character.player.Viewport
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
-import rs.dusk.engine.model.world.DynamicMaps
-import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.ReloadRegion
+import rs.dusk.engine.model.world.*
 import rs.dusk.engine.model.world.map.MapReader
 import rs.dusk.engine.model.world.map.obj.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
-import rs.dusk.utility.func.nearby
 import rs.dusk.utility.inject
 import rs.dusk.world.entity.player.map.RegionInitialLoad
 import kotlin.math.abs
@@ -39,7 +37,7 @@ RegionInitialLoad then {
     players.forEach { other ->
         player.viewport.players.lastSeen[other] = other.tile
     }
-    calculateRegions(player, true)
+    updateRegion(player, true, crossedDynamicBoarder(player))
 }
 
 /*
@@ -76,48 +74,48 @@ Moved where { entity is Player && from.regionPlane != to.regionPlane } then {
 
 Moved where { entity is Player && needsRegionChange(entity) } then {
     val player = entity as Player
-    calculateRegions(player, false)
+    updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
-ReloadRegion then {
-    val regionId = region.id
-    players.forEach {
-        if(it.viewport.regions.contains(regionId)) {
-            updateRegion(it, initial = false, force = true)
+ReloadChunk then {
+    players.forEach { player ->
+        if (inViewOfChunk(player, chunk)) {
+            updateRegion(player, initial = false, force = true)
         }
     }
 }
 
-fun needsRegionChange(player: Player): Boolean {
-    val size: Int = (player.viewport.size shr 3) / 2 - 1
-    val delta = player.viewport.lastLoadChunk.delta(player.tile.chunk)
-    return abs(delta.x) >= size || abs(delta.y) >= size
+fun needsRegionChange(player: Player) = !inViewOfChunk(player, player.viewport.lastLoadChunk) || crossedDynamicBoarder(player)
+
+fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
+    val viewport = player.viewport
+    val radius: Int = calculateChunkUpdateRadius(viewport)
+    val delta = player.tile.chunk.delta(chunk)
+    return abs(delta.x) < radius && abs(delta.y) < radius
 }
 
-fun calculateRegions(player: Player, initial: Boolean) {
-    val regions = player.viewport.regions
-    val size = player.viewport.size shr 4
-    val chunk = player.tile.chunk
-    regions.clear()
-    for(regionX in (chunk.x - size) / 8..(chunk.x + size) / 8) {
-        for(regionY in (chunk.y - size) / 8..(chunk.y + size) / 8) {
-            regions.add(Region.getId(regionX, regionY))
-        }
-    }
-    updateRegion(player, initial, false)
-}
+fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)
+
+fun inDynamicView(player: Player) = player.tile.chunk.area(calculateVisibleRadius(player.viewport)).any { dynamicMaps.chunks.containsKey(it.id) }
+
+fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
+
+fun calculateChunkUpdateRadius(viewport: Viewport) = calculateChunkRadius(viewport) - 1
+
+fun calculateChunkRadius(viewport: Viewport) = viewport.tileSize shr 4
 
 fun updateRegion(player: Player, initial: Boolean, force: Boolean) {
-    val dynamic = player.viewport.regions.any { dynamicMaps.regions.contains(it) }
+    val dynamic = inDynamicView(player)
+    val wasDynamic = player.viewport.dynamic
     if (dynamic) {
         updateDynamic(player, initial, force)
     } else {
         update(player, initial, force)
     }
-    if(force) {
+    if ((dynamic || wasDynamic) && !initial) {
         player.viewport.npcs.refresh()
-        player.viewport.players.refresh(player)
     }
+    player.viewport.loaded = false
     player.viewport.lastLoadChunk = player.tile.chunk
 }
 
@@ -128,25 +126,28 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     val chunkX = chunk.x
     val chunkY = chunk.y
 
-    player.viewport.regions.forEach { regionId ->
-        val xtea = xteas[regionId] ?: blankXtea
-        xteaList.add(xtea)
+    val viewport = player.viewport
+    val radius = calculateChunkRadius(viewport)
+    for (regionX in (chunk.x - radius) / 8..(chunk.x + radius) / 8) {
+        for (regionY in (chunk.y - radius) / 8..(chunk.y + radius) / 8) {
+            val xtea = xteas[Region.getId(regionX, regionY)] ?: blankXtea
+            xteaList.add(xtea)
+        }
     }
 
-    player.viewport.loaded = false
+    player.viewport.dynamic = false
     player.send(
         MapRegionMessage(
             chunkX = chunkX,
             chunkY = chunkY,
             forceReload = force,
-            mapSize = 0,
+            mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
             xteas = xteaList.toTypedArray(),
             clientIndex = if (initial) player.index - 1 else null,
             playerRegions = if (initial) playerRegions else null,
             clientTile = if (initial) player.tile.id else null
         )
     )
-    player.viewport.lastLoadChunk = player.tile.chunk
 }
 
 fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
@@ -156,36 +157,28 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val chunkY = player.tile.chunk.y
 
     val chunks = mutableListOf<Int?>()
-    val mapTileSize = player.viewport.size shr 4
+    val mapTileSize = calculateChunkRadius(player.viewport)
 
-    for (z in 0 until 4) {
-        for (x in player.tile.chunk.x.nearby(mapTileSize)) {
-            for (y in player.tile.chunk.y.nearby(mapTileSize)) {
-                val mapChunk = dynamicMaps.chunks[DynamicMaps.toChunkPosition(x, y, z)]
-                if (mapChunk != null) {
-                    chunks.add(mapChunk)
-                    xteaList.add(xteas[Region.getId(x / 8, y / 8)] ?: blankXtea)
-                } else {
-                    chunks.add(null)
-                }
+    for(chunk in player.tile.chunk.copy(plane = 0).area(mapTileSize, 4)) {
+        val mapChunk = dynamicMaps.chunks[chunk.id]
+        if (mapChunk != null) {
+            chunks.add(mapChunk)
+            val xtea = xteas[chunk.region.id] ?: blankXtea
+            if (!xteaList.contains(xtea)) {
+                xteaList.add(xtea)
             }
+        } else {
+            chunks.add(null)
         }
     }
 
-    if (initial) {
-        for (index in playerRegions.indices) {
-            val p = players.getAtIndex(index) ?: continue
-            player.viewport.players.lastSeen[p] = p.tile
-        }
-    }
-
-    player.viewport.loaded = false
+    player.viewport.dynamic = true
     player.send(
         DynamicMapRegionMessage(
             chunkX = chunkX,
             chunkY = chunkY,
             forceReload = force,
-            mapSize = 0,
+            mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
             chunks = chunks,
             xteas = xteaList.toTypedArray(),
             clientIndex = if (initial) player.index - 1 else null,

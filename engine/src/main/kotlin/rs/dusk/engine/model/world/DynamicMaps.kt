@@ -9,15 +9,13 @@ import rs.dusk.engine.model.world.map.MapReader
 
 class DynamicMaps(private val bus: EventBus, private val objects: Objects, private val reader: MapReader) {
     val chunks: MutableMap<Int, Int> = mutableMapOf()
-    val regions = mutableSetOf<Int>()
 
     /**
      * @param source The chunk to be copied
      * @param target The chunk things will be copied to
      */
     fun set(source: Chunk, target: Chunk, rotation: Int = 0) {
-        chunks[source.dynamicId()] = target.rotatedId(rotation)
-        regions.add(source.region.id)
+        chunks[source.id] = target.rotatedId(rotation)
         val sourceObjs = objects.getBase(source)// Just in-case source is target
         // Clear target
         clearObjects(target)
@@ -33,32 +31,26 @@ class DynamicMaps(private val bus: EventBus, private val objects: Objects, priva
             objects.add(rotatedObject)
             bus.emit(Registered(rotatedObject))
         }
-        bus.emit(ReloadRegion(source.region))
+        bus.emit(ReloadChunk(source))
     }
 
     fun remove(chunk: Chunk) {
-        chunks.remove(chunk.dynamicId())
+        chunks.remove(chunk.id)
         val region = chunk.region
-        val regionPlane = chunk.regionPlane
-        val regionChunk = regionPlane.chunk
-        var cleared = true
-        plane@ for (z in 0 until 4) {
-            for (x in 0 until 8) {
-                for (y in 0 until 8) {
-                    if (chunks.containsKey(toChunkPosition(regionChunk.x + x, regionChunk.y + y, z))) {
-                        cleared = false
-                        break@plane
-                    }
-                }
-            }
-        }
-
-        if(cleared) {
-            regions.remove(region.id)
+        if(isRegionCleared(chunk.regionPlane)) {
             reader.loading.remove(region)
         }
         clearObjects(chunk)
-        bus.emit(ReloadRegion(region))
+        bus.emit(ReloadChunk(chunk))
+    }
+
+    private fun isRegionCleared(region: RegionPlane): Boolean {
+        for(regionChunk in region.chunk.area(width = 8, height = 8)) {
+            if (chunks.containsKey(regionChunk.id)) {
+                return false
+            }
+        }
+        return true
     }
 
     fun clearObjects(chunkPlane: Chunk) {

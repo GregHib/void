@@ -22,8 +22,8 @@ internal class InstancePoolTest {
         // Then
         assertEquals(93, first.x)
         assertEquals(0, first.y)
-        assertEquals(94, second.x)
-        assertEquals(0, second.y)
+        assertEquals(93, second.x)
+        assertEquals(1, second.y)
     }
 
     @Test

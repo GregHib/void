@@ -25,11 +25,14 @@ data class Viewport(
         LOCAL_NPC_CAP
     ),
     val idlePlayers: IntArray = IntArray(MAX_PLAYERS),
-    var size: Int = VIEWPORT_SIZES[0],
     var lastLoadChunk: Chunk = Chunk.EMPTY,
     var loaded: Boolean = false,
-    val regions: MutableList<Int> = mutableListOf()
+    var dynamic: Boolean = false
 ) {
+
+    var size: Int = 0
+    val tileSize: Int
+        get() = VIEWPORT_SIZES[size]
 
     val message = PlayerUpdateMessage()
     val npcMessage = NPCUpdateMessage()

@@ -11,11 +11,11 @@ import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.world.area
 import rs.dusk.engine.model.world.map.collision.collisionModule
 import rs.dusk.engine.model.world.map.obj.*
 import rs.dusk.engine.model.world.map.obj.GameObjectMapWriter.Companion.localId
 import rs.dusk.engine.model.world.map.tile.tileModule
-import rs.dusk.engine.model.world.view
 import rs.dusk.engine.script.KoinMock
 
 /**
@@ -53,7 +53,7 @@ internal class MapReaderTest : KoinMock() {
         val objects: Objects = get()
         val map = mutableMapOf<Int, MutableList<GameObject>>()
         for(plane in 0 until 3) {
-            for (chunk in region.toPlane(plane).chunk.view(8, 8)) {
+            for (chunk in region.toPlane(plane).chunk.area(8, 8)) {
                 objects[chunk].forEach { loc ->
                     val list = map.getOrPut(loc.id) { mutableListOf() }
                     list.add(loc)

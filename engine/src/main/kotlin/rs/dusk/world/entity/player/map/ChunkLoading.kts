@@ -6,8 +6,8 @@ import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.player.PlayerUnregistered
 import rs.dusk.engine.model.world.Chunk
 import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.world.area
 import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
-import rs.dusk.engine.model.world.view
 import rs.dusk.utility.inject
 
 
@@ -43,7 +43,7 @@ fun load(player: Player) {
 }
 
 fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-    val view = tile.chunk.view(player.viewport.size shr 5)
+    val view = tile.chunk.area(player.viewport.tileSize shr 5)
     for (chunk in view) {
         block(chunk)
     }

@@ -5,7 +5,7 @@ import java.util.*
 
 class InstancePool {
 
-    val view = Instance(FREE_REGION_X, 0).view(MAX_REGION - FREE_REGION_X, MAX_REGION)
+    val view = Instance(FREE_REGION_X, 0).area(MAX_REGION - FREE_REGION_X, MAX_REGION)
     var iterator = view.iterator()
     var pool: Deque<Instance> = LinkedList()
 

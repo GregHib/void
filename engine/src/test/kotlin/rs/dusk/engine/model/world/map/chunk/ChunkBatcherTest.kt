@@ -52,7 +52,7 @@ internal class ChunkBatcherTest : KoinMock() {
         val lastChunk = Chunk(10, 10)
         val player: Player = mockk(relaxed = true)
         every { player.viewport.lastLoadChunk } returns lastChunk
-        every { player.viewport.size } returns size
+        every { player.viewport.tileSize } returns size
         // When
         val offset = batcher.getChunkOffset(player, chunk)
         // Then
