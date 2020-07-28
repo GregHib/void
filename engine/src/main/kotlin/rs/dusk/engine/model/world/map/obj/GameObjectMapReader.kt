@@ -52,9 +52,7 @@ class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
                 }
 
                 // Decrease bridges
-                if (settings.isTile(1, localX, localY,
-                        BRIDGE_TILE
-                    )) {
+                if (settings.isTile(1, localX, localY, BRIDGE_TILE)) {
                     plane--
                 }
 
@@ -63,7 +61,7 @@ class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
                     continue
                 }
 
-                // Valid location
+                // Valid object
                 val gameObject = GameObject(objectId, Tile(region.x + localX, region.y + localY, plane), type, rotation)
                 objects.add(gameObject)
                 bus.emit(Registered(gameObject))
