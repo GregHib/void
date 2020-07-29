@@ -75,7 +75,7 @@ class Objects(
         return set
     }
 
-    fun getBase(chunk: Chunk): Set<GameObject>? = chunks[chunk]
+    fun getStatic(chunk: Chunk): Set<GameObject>? = chunks[chunk]
 
     fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk]
 

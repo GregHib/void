@@ -16,7 +16,7 @@ class DynamicMaps(private val bus: EventBus, private val objects: Objects, priva
      */
     fun set(source: Chunk, target: Chunk, rotation: Int = 0) {
         chunks[source.id] = target.rotatedId(rotation)
-        val sourceObjs = objects.getBase(source)// Just in-case source is target
+        val sourceObjs = objects.getStatic(source)// Just in-case source is target
         // Clear target
         clearObjects(target)
 
@@ -54,7 +54,7 @@ class DynamicMaps(private val bus: EventBus, private val objects: Objects, priva
     }
 
     fun clearObjects(chunkPlane: Chunk) {
-        objects.getBase(chunkPlane)?.forEach {
+        objects.getStatic(chunkPlane)?.forEach {
             bus.emit(Unregistered(it))
         }
         objects.clear(chunkPlane)
