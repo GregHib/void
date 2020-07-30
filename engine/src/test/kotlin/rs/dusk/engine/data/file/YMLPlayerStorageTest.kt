@@ -7,7 +7,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

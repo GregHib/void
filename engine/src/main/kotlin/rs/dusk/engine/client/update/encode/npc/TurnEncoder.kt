@@ -2,9 +2,9 @@ package rs.dusk.engine.client.update.encode.npc
 
 import rs.dusk.core.io.Endian
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.model.entity.character.update.VisualEncoder
-import rs.dusk.engine.model.entity.character.update.visual.npc.TURN_MASK
-import rs.dusk.engine.model.entity.character.update.visual.npc.Turn
+import rs.dusk.engine.entity.character.update.VisualEncoder
+import rs.dusk.engine.entity.character.update.visual.npc.TURN_MASK
+import rs.dusk.engine.entity.character.update.visual.npc.Turn
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

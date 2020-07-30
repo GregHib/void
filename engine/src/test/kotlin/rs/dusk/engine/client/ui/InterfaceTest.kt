@@ -5,7 +5,7 @@ import io.mockk.mockk
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declare
-import rs.dusk.engine.model.entity.character.player.PlayerGameFrame
+import rs.dusk.engine.entity.character.player.PlayerGameFrame
 import rs.dusk.engine.script.KoinMock
 
 abstract class InterfaceTest : KoinMock() {

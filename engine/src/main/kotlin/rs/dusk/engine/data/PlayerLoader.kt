@@ -4,9 +4,9 @@ import org.koin.dsl.module
 import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.InterfacesLookup
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
 import rs.dusk.utility.getProperty
 
 /**

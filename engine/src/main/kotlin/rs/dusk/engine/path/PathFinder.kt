@@ -1,13 +1,13 @@
 package rs.dusk.engine.path
 
 import org.koin.dsl.module
-import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.item.FloorItem
-import rs.dusk.engine.model.entity.obj.GameObject
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.collision.Collisions
+import rs.dusk.engine.entity.Entity
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.item.FloorItem
+import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.path.find.DirectSearch

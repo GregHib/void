@@ -5,17 +5,17 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.client.update.task.player.PlayerMovementTask
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.character.move.Movement
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerMoveType
+import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.character.player.Viewport
+import rs.dusk.engine.entity.character.update.visual.player.movementType
+import rs.dusk.engine.entity.character.update.visual.player.temporaryMoveType
+import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.character.Movement
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerMoveType
-import rs.dusk.engine.model.entity.character.player.Players
-import rs.dusk.engine.model.entity.character.player.Viewport
-import rs.dusk.engine.model.entity.character.update.visual.player.movementType
-import rs.dusk.engine.model.entity.character.update.visual.player.temporaryMoveType
-import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.script.KoinMock
 import java.util.*
@@ -87,8 +87,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -138,8 +138,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -168,8 +168,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
@@ -202,8 +202,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.MovementType")
-        mockkStatic("rs.dusk.engine.model.entity.character.update.visual.player.TemporaryMoveType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.MovementType")
+        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal

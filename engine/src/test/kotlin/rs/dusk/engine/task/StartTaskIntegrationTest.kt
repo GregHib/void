@@ -8,10 +8,10 @@ import org.koin.test.mock.declare
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.engine.TickInput
-import rs.dusk.engine.model.engine.TickUpdate
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.engine.tick.Tick
+import rs.dusk.engine.tick.TickInput
+import rs.dusk.engine.tick.TickUpdate
 
 internal class StartTaskIntegrationTest : KoinMock() {
 

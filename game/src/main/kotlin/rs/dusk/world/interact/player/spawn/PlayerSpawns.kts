@@ -2,10 +2,10 @@ package rs.dusk.world.interact.player.spawn
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.entity.character.player.PlayerSpawn
+import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.entity.character.player.PlayerSpawn
-import rs.dusk.engine.model.entity.character.player.Players
-import rs.dusk.engine.model.entity.character.update.visual.player.name
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get

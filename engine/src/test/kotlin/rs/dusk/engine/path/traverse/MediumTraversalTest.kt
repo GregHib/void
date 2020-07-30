@@ -7,18 +7,18 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.collision.CollisionFlag
-import rs.dusk.engine.model.map.collision.CollisionFlag.ENTITY
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_NORTH
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.SKY_BLOCK_SOUTH_EAST
-import rs.dusk.engine.model.map.collision.Collisions
-import rs.dusk.engine.model.map.collision.check
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.CollisionFlag
+import rs.dusk.engine.map.collision.CollisionFlag.ENTITY
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_BLOCK_SOUTH_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_NORTH
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.SKY_BLOCK_SOUTH_EAST
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.map.collision.check
 import rs.dusk.engine.path.TraversalType
 
 /**
@@ -32,7 +32,7 @@ internal class MediumTraversalTest {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("rs.dusk.engine.model.world.collision.CollisionsKt")
+        mockkStatic("rs.dusk.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
         traversal = spyk(MediumTraversal(TraversalType.Land, false, collisions))
     }

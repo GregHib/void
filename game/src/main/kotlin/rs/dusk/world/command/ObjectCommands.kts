@@ -1,9 +1,9 @@
 import rs.dusk.engine.client.send
+import rs.dusk.engine.entity.item.offset
+import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.entity.obj.Objects
-import rs.dusk.engine.model.map.chunk.ChunkBatcher
+import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
 import rs.dusk.utility.inject

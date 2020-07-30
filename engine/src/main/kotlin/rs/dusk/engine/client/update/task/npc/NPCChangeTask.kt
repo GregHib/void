@@ -1,12 +1,12 @@
 package rs.dusk.engine.client.update.task.npc
 
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.npc.NPCMoveType
+import rs.dusk.engine.entity.character.npc.NPCs
+import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.event.Priority.NPC_CHANGE
-import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.character.LocalChange
-import rs.dusk.engine.model.entity.character.npc.NPC
-import rs.dusk.engine.model.entity.character.npc.NPCMoveType
-import rs.dusk.engine.model.entity.character.npc.NPCs
+import rs.dusk.engine.tick.task.EntityTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

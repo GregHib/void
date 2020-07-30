@@ -1,9 +1,9 @@
 package rs.dusk.world.interact.npc
 
+import rs.dusk.engine.entity.character.npc.NPCs
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.path.PathFinder
+import rs.dusk.engine.tick.Tick
 import rs.dusk.utility.inject
 import kotlin.math.roundToInt
 

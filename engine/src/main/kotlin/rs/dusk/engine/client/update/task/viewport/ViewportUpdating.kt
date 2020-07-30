@@ -5,14 +5,14 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.CharacterTrackingSet
+import rs.dusk.engine.entity.character.npc.NPCs
+import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.event.Priority.VIEWPORT
-import rs.dusk.engine.model.engine.task.EngineTask
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.CharacterTrackingSet
-import rs.dusk.engine.model.entity.character.npc.NPCs
-import rs.dusk.engine.model.entity.character.player.Players
-import rs.dusk.engine.model.entity.list.PooledMapList
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.tick.task.EngineTask
 import rs.dusk.utility.inject
 
 /**

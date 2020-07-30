@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.action.Suspension
-import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
 
 abstract class Interfaces(private val interfaces: InterfacesLookup) {

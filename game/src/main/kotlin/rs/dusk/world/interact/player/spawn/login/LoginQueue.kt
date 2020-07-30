@@ -6,11 +6,11 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import org.koin.dsl.module
 import rs.dusk.engine.data.PlayerLoader
+import rs.dusk.engine.entity.character.IndexAllocator
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerSpawn
+import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.entity.character.IndexAllocator
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerSpawn
-import rs.dusk.engine.model.entity.list.MAX_PLAYERS
 import java.util.*
 
 /**

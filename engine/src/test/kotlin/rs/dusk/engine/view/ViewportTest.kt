@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
-import rs.dusk.engine.model.entity.character.player.Viewport
+import rs.dusk.engine.entity.character.player.Viewport
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

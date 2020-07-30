@@ -2,13 +2,13 @@ package rs.dusk.engine.client.update.task.npc
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
+import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.entity.character.update.VisualEncoder
+import rs.dusk.engine.entity.character.update.Visuals
+import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.event.Priority.NPC_VISUALS
-import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.character.npc.NPC
-import rs.dusk.engine.model.entity.character.update.Visual
-import rs.dusk.engine.model.entity.character.update.VisualEncoder
-import rs.dusk.engine.model.entity.character.update.Visuals
-import rs.dusk.engine.model.entity.list.PooledMapList
+import rs.dusk.engine.tick.task.EntityTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

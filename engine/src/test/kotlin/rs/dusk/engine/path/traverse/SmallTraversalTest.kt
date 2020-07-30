@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.collision.CollisionFlag
-import rs.dusk.engine.model.map.collision.Collisions
-import rs.dusk.engine.model.map.collision.check
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.CollisionFlag
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.map.collision.check
 import rs.dusk.engine.path.TraversalType
 
 /**
@@ -26,7 +26,7 @@ internal class SmallTraversalTest {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("rs.dusk.engine.model.world.collision.CollisionsKt")
+        mockkStatic("rs.dusk.engine.map.collision.CollisionsKt")
         collisions = mockk(relaxed = true)
         traversal = spyk(SmallTraversal(TraversalType.Land, true, collisions))
     }

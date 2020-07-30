@@ -7,15 +7,15 @@ import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.engine.client.update.task.player.PlayerVisualsTask
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.entity.character.update.VisualEncoder
+import rs.dusk.engine.entity.character.update.Visuals
+import rs.dusk.engine.entity.list.PooledMapList
+import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.Players
-import rs.dusk.engine.model.entity.character.update.Visual
-import rs.dusk.engine.model.entity.character.update.VisualEncoder
-import rs.dusk.engine.model.entity.character.update.Visuals
-import rs.dusk.engine.model.entity.list.PooledMapList
-import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.utility.get
 

@@ -1,10 +1,10 @@
 package rs.dusk.world.interact.proj
 
+import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.EventCompanion
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
 import rs.dusk.utility.get
 
 data class ShootProjectile(

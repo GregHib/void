@@ -1,7 +1,7 @@
 package rs.dusk.engine.path
 
-import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

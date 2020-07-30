@@ -1,9 +1,9 @@
 package rs.dusk.handle
 
-import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.chat.message
-import rs.dusk.engine.model.entity.character.walkTo
+import rs.dusk.engine.entity.Entity
+import rs.dusk.engine.entity.character.move.walkTo
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
 import rs.dusk.utility.get

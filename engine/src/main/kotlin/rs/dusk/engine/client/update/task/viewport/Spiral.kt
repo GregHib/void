@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.update.task.viewport
 
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.chunk.Chunk
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.chunk.Chunk
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

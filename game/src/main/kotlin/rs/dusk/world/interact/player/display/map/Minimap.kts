@@ -1,13 +1,13 @@
 package rs.dusk.world.interact.player.display.map
 
 import rs.dusk.engine.client.send
-import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.RunEnergyMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarpMessage
+import rs.dusk.world.interact.player.display.InterfaceInteraction
 
 IntVariable(7198, Variable.Type.VARBIT, true, 990).register("life_points")
 IntVariable(2382, Variable.Type.VARP, true, 990).register("prayer_points")

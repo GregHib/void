@@ -1,11 +1,11 @@
 package rs.dusk.engine.path.target
 
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.collision.Collisions
-import rs.dusk.engine.model.map.collision.check
-import rs.dusk.engine.model.map.collision.flag
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.map.collision.check
+import rs.dusk.engine.map.collision.flag
 import rs.dusk.engine.path.TargetStrategy
 import kotlin.math.max
 import kotlin.math.min

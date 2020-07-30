@@ -2,13 +2,12 @@ package rs.dusk.world.interact.player.display
 
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.event.InterfaceClosed
-import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.entity.character.player.PlayerRegistered
+import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.character.player.PlayerRegistered
-import rs.dusk.engine.model.entity.character.set
 
 PlayerRegistered then {
     player.open(player.gameFrame.name)

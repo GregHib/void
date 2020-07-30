@@ -2,14 +2,14 @@ package rs.dusk.engine.client.update.task.player
 
 import rs.dusk.core.io.write.BufferWriter
 import rs.dusk.core.io.write.Writer
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.entity.character.update.VisualEncoder
+import rs.dusk.engine.entity.character.update.Visuals
+import rs.dusk.engine.entity.character.update.visual.player.Appearance
+import rs.dusk.engine.entity.list.PooledMapList
 import rs.dusk.engine.event.Priority.PLAYER_VISUALS
-import rs.dusk.engine.model.engine.task.EntityTask
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.update.Visual
-import rs.dusk.engine.model.entity.character.update.VisualEncoder
-import rs.dusk.engine.model.entity.character.update.Visuals
-import rs.dusk.engine.model.entity.character.update.visual.player.Appearance
-import rs.dusk.engine.model.entity.list.PooledMapList
+import rs.dusk.engine.tick.task.EntityTask
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

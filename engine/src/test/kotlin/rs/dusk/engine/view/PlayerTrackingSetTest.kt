@@ -4,10 +4,10 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerTrackingSet
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerTrackingSet
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
 
 /**

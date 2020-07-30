@@ -1,6 +1,6 @@
 package rs.dusk.world.interact.player.spawn.login
 
-import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.Player
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

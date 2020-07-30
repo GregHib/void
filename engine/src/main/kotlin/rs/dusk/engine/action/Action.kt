@@ -1,9 +1,9 @@
 package rs.dusk.engine.action
 
 import kotlinx.coroutines.*
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.npc.NPCEvent
-import rs.dusk.engine.model.entity.character.player.PlayerEvent
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.npc.NPCEvent
+import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.get

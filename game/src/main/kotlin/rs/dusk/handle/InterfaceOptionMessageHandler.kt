@@ -6,13 +6,13 @@ import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.InterfacesLookup
-import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceOptionMessage
 import rs.dusk.utility.inject
+import rs.dusk.world.interact.player.display.InterfaceInteraction
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -58,7 +58,19 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val componentName = inter.components[componentId] ?: ""
         val selectedOption = options[index]
         executor.start {
-            bus.emit(InterfaceInteraction(player, id, name, componentId, componentName, index, selectedOption, one, two))
+            bus.emit(
+                InterfaceInteraction(
+                    player,
+                    id,
+                    name,
+                    componentId,
+                    componentName,
+                    index,
+                    selectedOption,
+                    one,
+                    two
+                )
+            )
         }
     }
 

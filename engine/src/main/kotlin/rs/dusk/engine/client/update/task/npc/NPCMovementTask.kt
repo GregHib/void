@@ -1,14 +1,14 @@
 package rs.dusk.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
+import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.npc.NPCMoveType
+import rs.dusk.engine.entity.character.npc.NPCs
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.Priority.NPC_MOVEMENT
-import rs.dusk.engine.model.engine.task.EngineTask
-import rs.dusk.engine.model.entity.character.Moved
-import rs.dusk.engine.model.entity.character.npc.NPC
-import rs.dusk.engine.model.entity.character.npc.NPCMoveType
-import rs.dusk.engine.model.entity.character.npc.NPCs
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.tick.task.EngineTask
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]

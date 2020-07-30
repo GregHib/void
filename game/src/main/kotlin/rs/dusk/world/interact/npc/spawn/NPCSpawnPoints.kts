@@ -1,13 +1,13 @@
 package rs.dusk.world.interact.npc.spawn
 
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.engine.Startup
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.region.Region
-import rs.dusk.engine.model.map.region.RegionLoaded
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.region.Region
+import rs.dusk.engine.map.region.RegionLoaded
+import rs.dusk.engine.tick.Startup
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 

@@ -1,9 +1,9 @@
 package rs.dusk.world.interact.player
 
-import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
+import rs.dusk.world.interact.player.display.InterfaceInteraction
 
 on(InterfaceInteraction) {
     where {

@@ -11,22 +11,22 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.core.get
 import org.koin.dsl.module
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.map.Tile
-import rs.dusk.engine.model.map.collision.CollisionFlag.ENTITY
-import rs.dusk.engine.model.map.collision.CollisionFlag.IGNORED_WALL_SOUTH_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_NORTH
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_SOUTH
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_CLEAR_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_WALL_NORTH_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_WALL_SOUTH_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND_WALL_SOUTH_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.SKY_WALL_SOUTH_EAST
-import rs.dusk.engine.model.map.collision.Collisions
-import rs.dusk.engine.model.map.collision.check
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.CollisionFlag.ENTITY
+import rs.dusk.engine.map.collision.CollisionFlag.IGNORED_WALL_SOUTH_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_NORTH
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_SOUTH
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_CLEAR_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_WALL_NORTH_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_WALL_NORTH_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_WALL_SOUTH_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.LAND_WALL_SOUTH_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.SKY_WALL_SOUTH_EAST
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.map.collision.check
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.script.KoinMock
 
@@ -43,7 +43,7 @@ internal class LargeTraversalTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        mockkStatic("rs.dusk.engine.model.world.collision.CollisionsKt")
+        mockkStatic("rs.dusk.engine.map.collision.CollisionsKt")
         collisions = get()
         every { collisions.check(any(), any(), any(), any()) } returns true
     }

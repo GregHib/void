@@ -11,13 +11,13 @@ import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.update.task.viewport.ViewportUpdating
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerTrackingSet
+import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.character.Character
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerTrackingSet
-import rs.dusk.engine.model.entity.character.player.Players
-import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
 
 /**

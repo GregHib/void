@@ -10,13 +10,13 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.model.engine.Tick
-import rs.dusk.engine.model.engine.TickInput
-import rs.dusk.engine.model.engine.TickUpdate
 import rs.dusk.engine.task.DelayTask
 import rs.dusk.engine.task.RepeatTask
 import rs.dusk.engine.task.StartTask
 import rs.dusk.engine.task.TaskExecutor
+import rs.dusk.engine.tick.Tick
+import rs.dusk.engine.tick.TickInput
+import rs.dusk.engine.tick.TickUpdate
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import rs.dusk.engine.model.entity.character.IndexAllocator
+import rs.dusk.engine.entity.character.IndexAllocator
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

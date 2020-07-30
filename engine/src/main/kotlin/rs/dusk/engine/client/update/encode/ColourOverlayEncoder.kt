@@ -3,8 +3,8 @@ package rs.dusk.engine.client.update.encode
 import rs.dusk.core.io.Endian
 import rs.dusk.core.io.Modifier
 import rs.dusk.core.io.write.Writer
-import rs.dusk.engine.model.entity.character.update.VisualEncoder
-import rs.dusk.engine.model.entity.character.update.visual.ColourOverlay
+import rs.dusk.engine.entity.character.update.VisualEncoder
+import rs.dusk.engine.entity.character.update.visual.ColourOverlay
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

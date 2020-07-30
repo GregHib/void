@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.send
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerVariables
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerVariables
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarcMessage

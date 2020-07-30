@@ -3,8 +3,8 @@ package rs.dusk.engine.client.ui
 import org.koin.dsl.module
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.model.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
-import rs.dusk.engine.model.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
+import rs.dusk.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
+import rs.dusk.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME

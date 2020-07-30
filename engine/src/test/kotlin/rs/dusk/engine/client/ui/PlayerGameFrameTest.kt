@@ -7,9 +7,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerGameFrame
-import rs.dusk.engine.model.entity.character.player.setDisplayMode
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerGameFrame
+import rs.dusk.engine.entity.character.player.setDisplayMode
 
 internal class PlayerGameFrameTest : InterfaceTest() {
 

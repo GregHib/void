@@ -1,19 +1,19 @@
+import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.Direction.Companion.cardinal
+import rs.dusk.engine.entity.Direction.Companion.ordinal
+import rs.dusk.engine.entity.Registered
+import rs.dusk.engine.entity.Unregistered
+import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.event.priority
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.entity.Direction.Companion.cardinal
-import rs.dusk.engine.model.entity.Direction.Companion.ordinal
-import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.obj.GameObject
-import rs.dusk.engine.model.map.collision.*
-import rs.dusk.engine.model.map.collision.CollisionFlag.IGNORED
-import rs.dusk.engine.model.map.collision.CollisionFlag.LAND
-import rs.dusk.engine.model.map.collision.CollisionFlag.NORTH_OR_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.NORTH_OR_WEST
-import rs.dusk.engine.model.map.collision.CollisionFlag.SKY
-import rs.dusk.engine.model.map.collision.CollisionFlag.SOUTH_OR_EAST
-import rs.dusk.engine.model.map.collision.CollisionFlag.SOUTH_OR_WEST
+import rs.dusk.engine.map.collision.*
+import rs.dusk.engine.map.collision.CollisionFlag.IGNORED
+import rs.dusk.engine.map.collision.CollisionFlag.LAND
+import rs.dusk.engine.map.collision.CollisionFlag.NORTH_OR_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.NORTH_OR_WEST
+import rs.dusk.engine.map.collision.CollisionFlag.SKY
+import rs.dusk.engine.map.collision.CollisionFlag.SOUTH_OR_EAST
+import rs.dusk.engine.map.collision.CollisionFlag.SOUTH_OR_WEST
 import rs.dusk.utility.inject
 
 val collisions: Collisions by inject()

@@ -11,10 +11,10 @@ import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.event.InterfaceRefreshed
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.entity.character.player.PlayerEvent
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage

@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.ui
 
-import rs.dusk.engine.model.entity.character.player.PlayerGameFrame
+import rs.dusk.engine.entity.character.player.PlayerGameFrame
 
 class InterfaceManager(
     private val io: InterfaceIO,

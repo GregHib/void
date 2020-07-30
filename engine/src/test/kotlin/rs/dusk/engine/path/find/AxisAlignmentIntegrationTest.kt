@@ -7,11 +7,11 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import rs.dusk.engine.model.entity.Direction.*
-import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.character.Movement
-import rs.dusk.engine.model.entity.character.Steps
-import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.entity.Direction.*
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.character.move.Movement
+import rs.dusk.engine.entity.character.move.Steps
+import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
 

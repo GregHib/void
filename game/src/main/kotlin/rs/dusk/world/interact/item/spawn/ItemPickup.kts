@@ -1,15 +1,15 @@
 import kotlinx.coroutines.cancel
+import rs.dusk.engine.entity.Unregistered
+import rs.dusk.engine.entity.character.contain.ContainerResult
+import rs.dusk.engine.entity.character.contain.inventory
+import rs.dusk.engine.entity.item.FloorItemOption
+import rs.dusk.engine.entity.item.FloorItemState
+import rs.dusk.engine.entity.item.FloorItems
+import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.entity.Unregistered
-import rs.dusk.engine.model.entity.character.contain.ContainerResult
-import rs.dusk.engine.model.entity.character.contain.inventory
-import rs.dusk.engine.model.entity.item.FloorItemOption
-import rs.dusk.engine.model.entity.item.FloorItemState
-import rs.dusk.engine.model.entity.item.FloorItems
-import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.map.chunk.ChunkBatcher
+import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 import rs.dusk.utility.inject
 

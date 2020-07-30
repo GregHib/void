@@ -3,8 +3,8 @@ package rs.dusk.handle
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.model.entity.character.player.chat.message
-import rs.dusk.engine.model.entity.character.walkTo
+import rs.dusk.engine.entity.character.move.walkTo
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.WalkMiniMapMessage

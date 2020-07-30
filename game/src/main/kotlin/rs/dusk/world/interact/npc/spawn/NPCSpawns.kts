@@ -1,17 +1,17 @@
 package rs.dusk.world.interact.npc.spawn
 
 import rs.dusk.cache.definition.decoder.NPCDecoder
+import rs.dusk.engine.entity.Registered
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.character.IndexAllocator
+import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.npc.NPCRegistered
+import rs.dusk.engine.entity.character.npc.NPCs
+import rs.dusk.engine.entity.character.update.visual.npc.turn
+import rs.dusk.engine.entity.list.MAX_NPCS
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
-import rs.dusk.engine.model.entity.Registered
-import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.entity.character.IndexAllocator
-import rs.dusk.engine.model.entity.character.npc.NPC
-import rs.dusk.engine.model.entity.character.npc.NPCRegistered
-import rs.dusk.engine.model.entity.character.npc.NPCs
-import rs.dusk.engine.model.entity.character.update.visual.npc.turn
-import rs.dusk.engine.model.entity.list.MAX_NPCS
-import rs.dusk.engine.model.map.collision.Collisions
+import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal

@@ -11,7 +11,7 @@ import rs.dusk.engine.action.Action
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
-import rs.dusk.engine.model.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 
