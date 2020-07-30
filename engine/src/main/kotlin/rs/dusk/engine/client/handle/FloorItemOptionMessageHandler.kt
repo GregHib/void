@@ -12,7 +12,6 @@ import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.FloorItemOptionMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.approach
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

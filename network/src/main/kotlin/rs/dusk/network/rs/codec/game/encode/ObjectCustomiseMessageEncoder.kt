@@ -32,7 +32,6 @@ class ObjectCustomiseMessageEncoder : GameMessageEncoder<ObjectCustomiseMessage>
             if(textureColours != null) {
                 flag = flag or 0x8
             }
-            println(msg)
             writeByte(flag)
             writeByte(tile, type = Modifier.SUBTRACT)
             writeShort(id, order = Endian.LITTLE)

@@ -16,6 +16,9 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
+import rs.dusk.engine.model.entity.character.player.login.Login
+import rs.dusk.engine.model.entity.character.player.login.LoginResponse
+import rs.dusk.engine.model.world.map.RegionInitialLoad
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler
@@ -23,9 +26,6 @@ import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.player.login.Login
-import rs.dusk.world.entity.player.login.LoginResponse
-import rs.dusk.world.entity.player.map.RegionInitialLoad
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

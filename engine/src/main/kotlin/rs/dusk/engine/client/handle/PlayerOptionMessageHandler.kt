@@ -8,7 +8,6 @@ import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.PlayerOptionMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.entity.approach
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

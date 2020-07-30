@@ -1,5 +1,6 @@
 rootProject.name = "dusk"
 
+include("game")
 include("cache")
 include("engine")
 include("network")
