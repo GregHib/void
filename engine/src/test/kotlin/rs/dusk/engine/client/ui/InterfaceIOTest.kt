@@ -83,9 +83,10 @@ internal class InterfaceIOTest : KoinMock() {
         every { player.gameFrame.resizable } returns true
         every { inter.id } returns 10
         every { inter.getIndex(true) } returns 1
+        every { inter.getParent(true) } returns 100
         io.sendClose(inter)
         verify {
-            player.send(InterfaceCloseMessage(10, 1))
+            player.send(InterfaceCloseMessage(100, 1))
         }
     }
 

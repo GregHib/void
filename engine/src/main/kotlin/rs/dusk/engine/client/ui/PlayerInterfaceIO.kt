@@ -25,19 +25,20 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
 
     override fun sendClose(inter: Interface) {
         val index = inter.getIndex(player.gameFrame.resizable)
-        player.send(InterfaceCloseMessage(inter.id, index))
+        val parent = inter.getParent(player.gameFrame.resizable)
+        player.send(InterfaceCloseMessage(parent, index))
     }
 
     override fun notifyClosed(inter: Interface) {
-        bus.emit(InterfaceClosed(player, inter.id, inter.name ?: ""))
+        bus.emit(InterfaceClosed(player, inter.id, inter.name))
     }
 
     override fun notifyOpened(inter: Interface) {
-        bus.emit(InterfaceOpened(player, inter.id, inter.name ?: ""))
+        bus.emit(InterfaceOpened(player, inter.id, inter.name))
     }
 
     override fun notifyRefreshed(inter: Interface) {
-        bus.emit(InterfaceRefreshed(player, inter.id, inter.name ?: ""))
+        bus.emit(InterfaceRefreshed(player, inter.id, inter.name))
     }
 
 }
