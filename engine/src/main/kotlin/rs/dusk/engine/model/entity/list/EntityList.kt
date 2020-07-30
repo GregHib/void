@@ -8,7 +8,7 @@ import rs.dusk.engine.model.entity.gfx.Graphics
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.obj.Objects
 import rs.dusk.engine.model.entity.proj.Projectiles
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

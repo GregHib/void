@@ -7,7 +7,7 @@ import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
 import rs.dusk.utility.inject

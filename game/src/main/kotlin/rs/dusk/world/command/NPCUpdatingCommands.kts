@@ -6,7 +6,7 @@ import rs.dusk.engine.model.entity.character.npc.NPCMoveType
 import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.entity.character.update.visual.*
 import rs.dusk.engine.model.entity.character.update.visual.npc.*
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command

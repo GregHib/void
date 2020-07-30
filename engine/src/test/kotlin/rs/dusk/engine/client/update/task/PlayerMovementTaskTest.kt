@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.client.update.task.player.PlayerMovementTask
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.character.Movement
@@ -14,7 +15,7 @@ import rs.dusk.engine.model.entity.character.player.Viewport
 import rs.dusk.engine.model.entity.character.update.visual.player.movementType
 import rs.dusk.engine.model.entity.character.update.visual.player.temporaryMoveType
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.script.KoinMock
 import java.util.*
@@ -39,7 +40,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         players = mockk(relaxed = true)
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
-        task = PlayerMovementTask(players, mockk(relaxed = true))
+        task = PlayerMovementTask(
+            players,
+            mockk(relaxed = true)
+        )
         every { players.forEach(any()) } answers {
             val action: (Player) -> Unit = arg(0)
             action.invoke(player)

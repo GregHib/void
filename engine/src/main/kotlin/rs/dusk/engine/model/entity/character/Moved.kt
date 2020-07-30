@@ -3,7 +3,7 @@ package rs.dusk.engine.model.entity.character
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -1,9 +1,9 @@
 package rs.dusk.engine.path
 
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.CollisionFlag
-import rs.dusk.engine.model.world.map.collision.flag
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.collision.CollisionFlag
+import rs.dusk.engine.model.map.collision.flag
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

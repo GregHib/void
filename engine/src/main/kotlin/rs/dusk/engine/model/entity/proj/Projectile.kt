@@ -4,7 +4,7 @@ import kotlinx.coroutines.Job
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.update.visual.player.name
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

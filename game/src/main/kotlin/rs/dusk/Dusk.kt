@@ -10,22 +10,22 @@ import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.ui.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule
+import rs.dusk.engine.client.variable.variablesModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.model.engine.variable.variablesModule
 import rs.dusk.engine.model.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.world.instanceModule
-import rs.dusk.engine.model.world.instancePoolModule
-import rs.dusk.engine.model.world.map.chunk.batchedChunkModule
-import rs.dusk.engine.model.world.map.collision.collisionModule
-import rs.dusk.engine.model.world.map.mapModule
-import rs.dusk.engine.model.world.map.obj.objectMapModule
-import rs.dusk.engine.model.world.map.obj.xteaModule
-import rs.dusk.engine.model.world.map.tile.tileModule
+import rs.dusk.engine.model.map.chunk.batchedChunkModule
+import rs.dusk.engine.model.map.chunk.instanceModule
+import rs.dusk.engine.model.map.collision.collisionModule
+import rs.dusk.engine.model.map.instance.instancePoolModule
+import rs.dusk.engine.model.map.region.obj.objectMapModule
+import rs.dusk.engine.model.map.region.obj.xteaModule
+import rs.dusk.engine.model.map.region.regionModule
+import rs.dusk.engine.model.map.region.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.task.StartTask
 import rs.dusk.engine.task.TaskExecutor
@@ -81,7 +81,7 @@ object Dusk {
                 visualUpdatingModule,
                 updatingTasksModule,
                 loginQueueModule,
-                mapModule,
+                regionModule,
                 tileModule,
                 collisionModule,
                 cacheDefinitionModule,

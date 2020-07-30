@@ -9,10 +9,14 @@ import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.character.player.Viewport
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
-import rs.dusk.engine.model.world.*
-import rs.dusk.engine.model.world.map.MapReader
-import rs.dusk.engine.model.world.map.RegionInitialLoad
-import rs.dusk.engine.model.world.map.obj.Xteas
+import rs.dusk.engine.model.map.area.area
+import rs.dusk.engine.model.map.chunk.Chunk
+import rs.dusk.engine.model.map.chunk.DynamicChunks
+import rs.dusk.engine.model.map.chunk.ReloadChunk
+import rs.dusk.engine.model.map.region.Region
+import rs.dusk.engine.model.map.region.RegionLogin
+import rs.dusk.engine.model.map.region.RegionReader
+import rs.dusk.engine.model.map.region.obj.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.utility.inject
@@ -24,16 +28,16 @@ import kotlin.math.abs
  * Emits [RegionMapUpdate] events when a players region has changed
  */
 
-val maps: MapReader by inject()
+val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
-val dynamicMaps: DynamicMaps by inject()
+val dynamicChunks: DynamicChunks by inject()
 
 val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-RegionInitialLoad then {
+RegionLogin then {
     players.forEach { other ->
         player.viewport.players.lastSeen[other] = other.tile
     }
@@ -96,7 +100,7 @@ fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
 
 fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)
 
-fun inDynamicView(player: Player) = player.tile.chunk.area(calculateVisibleRadius(player.viewport)).any { dynamicMaps.chunks.containsKey(it.id) }
+fun inDynamicView(player: Player) = player.tile.chunk.area(calculateVisibleRadius(player.viewport)).any { dynamicChunks.chunks.containsKey(it.id) }
 
 fun calculateVisibleRadius(viewport: Viewport) = calculateChunkUpdateRadius(viewport) / 2 + 1
 
@@ -160,7 +164,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val mapTileSize = calculateChunkRadius(player.viewport)
 
     for(chunk in player.tile.chunk.copy(plane = 0).area(mapTileSize, 4)) {
-        val mapChunk = dynamicMaps.chunks[chunk.id]
+        val mapChunk = dynamicChunks.chunks[chunk.id]
         if (mapChunk != null) {
             chunks.add(mapChunk)
             val xtea = xteas[chunk.region.id] ?: blankXtea

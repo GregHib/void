@@ -2,7 +2,7 @@ package rs.dusk.engine.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.map.chunk.Chunk
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

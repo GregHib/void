@@ -9,7 +9,7 @@ import rs.dusk.engine.model.entity.character.CharacterValues
 import rs.dusk.engine.model.entity.character.LocalChange
 import rs.dusk.engine.model.entity.character.Movement
 import rs.dusk.engine.model.entity.character.update.Visuals
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.utility.get
 
 /**

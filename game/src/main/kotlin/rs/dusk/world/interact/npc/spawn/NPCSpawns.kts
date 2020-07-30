@@ -11,7 +11,7 @@ import rs.dusk.engine.model.entity.character.npc.NPCRegistered
 import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.entity.character.update.visual.npc.turn
 import rs.dusk.engine.model.entity.list.MAX_NPCS
-import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.model.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal

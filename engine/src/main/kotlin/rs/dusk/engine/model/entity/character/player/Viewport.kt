@@ -1,12 +1,12 @@
 package rs.dusk.engine.model.entity.character.player
 
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.LOCAL_NPC_CAP
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.NPC_TICK_CAP
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.PLAYER_TICK_CAP
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_NPC_CAP
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.NPC_TICK_CAP
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import rs.dusk.engine.model.entity.character.npc.NPCTrackingSet
 import rs.dusk.engine.model.entity.list.MAX_PLAYERS
-import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.map.chunk.Chunk
 import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 

@@ -5,10 +5,10 @@ import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.character.Moved
 import rs.dusk.engine.model.entity.character.npc.NPCRegistered
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
-import rs.dusk.engine.model.world.map.collision.CollisionFlag.ENTITY
-import rs.dusk.engine.model.world.map.collision.Collisions
-import rs.dusk.engine.model.world.map.collision.add
-import rs.dusk.engine.model.world.map.collision.remove
+import rs.dusk.engine.model.map.collision.CollisionFlag.ENTITY
+import rs.dusk.engine.model.map.collision.Collisions
+import rs.dusk.engine.model.map.collision.add
+import rs.dusk.engine.model.map.collision.remove
 import rs.dusk.utility.inject
 
 val collisions: Collisions by inject()

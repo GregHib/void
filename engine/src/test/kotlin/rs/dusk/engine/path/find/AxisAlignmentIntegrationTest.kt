@@ -11,7 +11,7 @@ import rs.dusk.engine.model.entity.Direction.*
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.Movement
 import rs.dusk.engine.model.entity.character.Steps
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
 

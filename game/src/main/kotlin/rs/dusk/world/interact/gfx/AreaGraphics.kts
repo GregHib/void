@@ -8,7 +8,7 @@ import rs.dusk.engine.model.entity.character.update.visual.Graphic
 import rs.dusk.engine.model.entity.gfx.AreaGraphic
 import rs.dusk.engine.model.entity.gfx.Graphics
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.gfx.SpawnGraphic

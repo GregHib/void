@@ -16,7 +16,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
-import rs.dusk.engine.model.world.map.RegionInitialLoad
+import rs.dusk.engine.model.map.region.RegionLogin
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler
@@ -62,7 +62,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
                 channel.setCodec(repository.get(GameCodec::class))
 
-                bus.emit(RegionInitialLoad(player))
+                bus.emit(RegionLogin(player))
                 bus.emit(PlayerRegistered(player))
                 bus.emit(Registered(player))
             } else {

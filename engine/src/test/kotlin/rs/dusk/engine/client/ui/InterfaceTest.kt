@@ -5,6 +5,7 @@ import io.mockk.mockk
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
 import org.koin.test.mock.declare
+import rs.dusk.engine.model.entity.character.player.PlayerGameFrame
 import rs.dusk.engine.script.KoinMock
 
 abstract class InterfaceTest : KoinMock() {
@@ -13,7 +14,7 @@ abstract class InterfaceTest : KoinMock() {
     internal lateinit var io: InterfaceIO
     internal lateinit var interfaces: MutableMap<Int, Interface>
     internal lateinit var lookup: InterfacesLookup
-    internal lateinit var gameframe: GameFrame
+    internal lateinit var gameframe: PlayerGameFrame
     internal lateinit var names: MutableMap<String, Int>
 
     @BeforeEach
@@ -27,7 +28,7 @@ abstract class InterfaceTest : KoinMock() {
         interfaces = mutableMapOf()
         names = mutableMapOf()
         lookup = declare { spyk(InterfacesLookup(interfaces, names)) }
-        gameframe = spyk(GameFrame())
+        gameframe = spyk(PlayerGameFrame())
         manager = spyk(InterfaceManager(io, lookup, gameframe))
     }
 }

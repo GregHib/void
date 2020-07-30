@@ -10,8 +10,8 @@ import rs.dusk.engine.model.entity.item.FloorItem
 import rs.dusk.engine.model.entity.item.FloorItemState
 import rs.dusk.engine.model.entity.item.FloorItems
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage

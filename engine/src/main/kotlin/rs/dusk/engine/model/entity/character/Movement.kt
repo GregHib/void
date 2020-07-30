@@ -6,7 +6,7 @@ import rs.dusk.engine.client.ui.awaitInterfaces
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Entity
 import rs.dusk.engine.model.entity.character.player.Player
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TraversalStrategy

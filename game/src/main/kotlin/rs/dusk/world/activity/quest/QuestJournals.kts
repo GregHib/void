@@ -1,12 +1,12 @@
 package rs.dusk.world.activity.quest
 
 import rs.dusk.engine.client.ui.event.InterfaceOpened
+import rs.dusk.engine.client.variable.IntVariable
+import rs.dusk.engine.client.variable.StringMapVariable
+import rs.dusk.engine.client.variable.Variable
+import rs.dusk.engine.client.variable.sendVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.engine.variable.IntVariable
-import rs.dusk.engine.model.engine.variable.StringMapVariable
-import rs.dusk.engine.model.engine.variable.Variable
-import rs.dusk.engine.model.engine.variable.sendVar
 
 IntVariable(101, Variable.Type.VARP, true, 0).register("quest_points")
 

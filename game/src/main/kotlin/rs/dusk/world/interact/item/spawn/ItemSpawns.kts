@@ -7,9 +7,9 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.FloorItem
-import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.MapLoaded
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.region.Region
+import rs.dusk.engine.model.map.region.RegionLoaded
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.item.spawn.Drop
@@ -43,7 +43,7 @@ fun ItemSpawn.drop() {
 /**
  * When a region is loaded spawn [FloorItem]'s
  */
-MapLoaded then {
+RegionLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { spawn ->
         spawn.drop()

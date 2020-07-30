@@ -1,9 +1,11 @@
 package rs.dusk.engine.client.ui
 
+import rs.dusk.engine.model.entity.character.player.PlayerGameFrame
+
 class InterfaceManager(
     private val io: InterfaceIO,
     interfaces: InterfacesLookup,
-    private val gameFrame: GameFrame,
+    private val gameFrame: PlayerGameFrame,
     private val openInterfaces: MutableSet<Interface> = mutableSetOf()
 ) : Interfaces(interfaces) {
 

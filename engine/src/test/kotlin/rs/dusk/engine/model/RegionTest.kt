@@ -2,7 +2,7 @@ package rs.dusk.engine.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.model.world.Region
+import rs.dusk.engine.model.map.region.Region
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -4,7 +4,7 @@ import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.item.FloorItem
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * Spawns a floor item

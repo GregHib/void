@@ -1,7 +1,6 @@
 package rs.dusk.world.interact.player.display
 
 import rs.dusk.engine.action.Suspension
-import rs.dusk.engine.client.ui.Tab
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.open

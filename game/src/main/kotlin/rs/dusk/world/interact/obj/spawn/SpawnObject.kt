@@ -3,7 +3,7 @@ package rs.dusk.world.interact.obj.spawn
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.EventCompanion
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.utility.get
 
 /**

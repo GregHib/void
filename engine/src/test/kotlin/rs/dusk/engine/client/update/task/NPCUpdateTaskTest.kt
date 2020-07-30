@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.update.task.npc.NPCUpdateTask
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.character.LocalChange
 import rs.dusk.engine.model.entity.character.npc.NPC
@@ -16,7 +17,7 @@ import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.character.update.visual.npc.getTurn
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
 

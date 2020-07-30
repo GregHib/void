@@ -7,7 +7,7 @@ import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Registered
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.update.visual.player.tele
-import rs.dusk.engine.model.world.area
+import rs.dusk.engine.model.map.area.area
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.npc.spawn.NPCSpawn

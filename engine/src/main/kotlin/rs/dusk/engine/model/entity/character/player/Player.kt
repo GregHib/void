@@ -1,7 +1,6 @@
 package rs.dusk.engine.model.entity.character.player
 
 import rs.dusk.engine.action.Action
-import rs.dusk.engine.client.ui.GameFrame
 import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.Character
@@ -12,7 +11,7 @@ import rs.dusk.engine.model.entity.character.contain.Container
 import rs.dusk.engine.model.entity.character.player.delay.Delays
 import rs.dusk.engine.model.entity.character.update.Visuals
 import rs.dusk.engine.model.entity.character.update.visual.player.getAppearance
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * A player controlled by client or bot
@@ -35,7 +34,8 @@ class Player(
 ) : Character {
 
     @Transient
-    val gameFrame: GameFrame = GameFrame()
+    val gameFrame: PlayerGameFrame =
+        PlayerGameFrame()
 
     @Transient
     lateinit var interfaces: Interfaces

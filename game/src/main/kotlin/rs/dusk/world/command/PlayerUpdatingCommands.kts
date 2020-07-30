@@ -10,9 +10,9 @@ import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.character.update.visual.*
 import rs.dusk.engine.model.entity.character.update.visual.player.*
-import rs.dusk.engine.model.world.DynamicMaps
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.Collisions
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.chunk.DynamicChunks
+import rs.dusk.engine.model.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
@@ -143,11 +143,11 @@ Command where { prefix == "run" } then {
 }
 
 Command where { prefix == "test" } then {
-    val maps: DynamicMaps = get()
-    maps.set(player.tile.chunk, player.tile.chunk, rotation = 2)
+    val chunks: DynamicChunks = get()
+    chunks.set(player.tile.chunk, player.tile.chunk, rotation = 2)
 }
 
 Command where { prefix == "test2" } then {
-    val maps: DynamicMaps = get()
-    maps.remove(player.tile.chunk)
+    val chunks: DynamicChunks = get()
+    chunks.remove(player.tile.chunk)
 }

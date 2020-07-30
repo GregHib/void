@@ -1,6 +1,6 @@
 package rs.dusk.engine.model.entity.character.npc
 
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.character.CharacterTrackingSet
 

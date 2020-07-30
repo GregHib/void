@@ -1,7 +1,7 @@
 package rs.dusk.engine.model.entity.gfx
 
 import rs.dusk.engine.model.entity.list.BatchList
-import rs.dusk.engine.model.world.Chunk
+import rs.dusk.engine.model.map.chunk.Chunk
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

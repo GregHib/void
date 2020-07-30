@@ -12,7 +12,7 @@ import rs.dusk.engine.model.entity.character.player.delay.start
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.ObjectOption
 import rs.dusk.engine.model.entity.obj.Objects
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.obj.replaceObject

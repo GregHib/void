@@ -5,7 +5,7 @@ import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.player.PlayerMoveType
 import rs.dusk.engine.model.entity.character.update.Visual
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

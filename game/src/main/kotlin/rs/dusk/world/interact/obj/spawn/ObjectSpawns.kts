@@ -10,9 +10,9 @@ import rs.dusk.engine.model.entity.Unregistered
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.obj.GameObject
 import rs.dusk.engine.model.entity.obj.Objects
-import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.map.MapLoaded
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.region.Region
+import rs.dusk.engine.model.map.region.RegionLoaded
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
 import rs.dusk.utility.getProperty
@@ -36,7 +36,7 @@ Startup then {
     }
 }
 
-MapLoaded then {
+RegionLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { gameObject ->
         objects.add(gameObject)

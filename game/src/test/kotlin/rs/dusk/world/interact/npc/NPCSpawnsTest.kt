@@ -20,9 +20,9 @@ import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.npc.NPC
 import rs.dusk.engine.model.entity.character.npc.NPCRegistered
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.collision.CollisionFlag
-import rs.dusk.engine.model.world.map.collision.collisionModule
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.collision.CollisionFlag
+import rs.dusk.engine.model.map.collision.collisionModule
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal

@@ -1,8 +1,8 @@
 package rs.dusk.engine.model.entity.character.player
 
-import rs.dusk.engine.client.update.ViewportUpdating.Companion.VIEW_RADIUS
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import rs.dusk.engine.model.entity.character.CharacterTrackingSet
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import java.util.*
 import kotlin.collections.LinkedHashSet
 

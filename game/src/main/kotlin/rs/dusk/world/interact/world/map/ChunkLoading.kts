@@ -4,10 +4,10 @@ import rs.dusk.engine.model.entity.character.Moved
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.player.PlayerRegistered
 import rs.dusk.engine.model.entity.character.player.PlayerUnregistered
-import rs.dusk.engine.model.world.Chunk
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.area
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.area.area
+import rs.dusk.engine.model.map.chunk.Chunk
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.utility.inject
 
 

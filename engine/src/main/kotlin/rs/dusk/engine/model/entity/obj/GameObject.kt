@@ -7,8 +7,8 @@ import rs.dusk.engine.model.entity.Size
 import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.character.update.visual.player.name
 import rs.dusk.engine.model.entity.item.offset
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationSpecificMessage
 import rs.dusk.utility.get
 

@@ -3,7 +3,7 @@ package rs.dusk.engine.view
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
-import rs.dusk.engine.client.viewport.Spiral
+import rs.dusk.engine.client.update.task.viewport.Spiral
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

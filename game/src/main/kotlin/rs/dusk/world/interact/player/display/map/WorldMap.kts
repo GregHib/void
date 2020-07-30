@@ -1,11 +1,11 @@
 package rs.dusk.world.interact.player.display.map
 
 import rs.dusk.engine.client.ui.event.InterfaceOpened
+import rs.dusk.engine.client.variable.IntVariable
+import rs.dusk.engine.client.variable.Variable
+import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.engine.variable.IntVariable
-import rs.dusk.engine.model.engine.variable.Variable
-import rs.dusk.engine.model.engine.variable.setVar
 
 IntVariable(622, Variable.Type.VARC, false, 0).register("world_map_position")
 IntVariable(674, Variable.Type.VARC, false, 0).register("world_map_position_2")

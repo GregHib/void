@@ -8,7 +8,7 @@ import rs.dusk.engine.model.entity.character.player.Player
 import rs.dusk.engine.model.entity.item.offset
 import rs.dusk.engine.model.entity.proj.Projectile
 import rs.dusk.engine.model.entity.proj.Projectiles
-import rs.dusk.engine.model.world.map.chunk.ChunkBatcher
+import rs.dusk.engine.model.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.ProjectileAddMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.proj.ShootProjectile

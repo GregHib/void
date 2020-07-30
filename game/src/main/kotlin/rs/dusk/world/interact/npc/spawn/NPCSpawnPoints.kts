@@ -5,9 +5,9 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.model.engine.Startup
 import rs.dusk.engine.model.entity.Direction
-import rs.dusk.engine.model.world.Region
-import rs.dusk.engine.model.world.Tile
-import rs.dusk.engine.model.world.map.MapLoaded
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.region.Region
+import rs.dusk.engine.model.map.region.RegionLoaded
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 
@@ -27,7 +27,7 @@ Startup then {
     }
 }
 
-MapLoaded then {
+RegionLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { spawn ->
         val npc = bus.emit(

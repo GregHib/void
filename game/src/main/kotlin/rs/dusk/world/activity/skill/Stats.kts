@@ -4,9 +4,9 @@ import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.event.InterfaceInteraction
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.engine.model.engine.variable.*
 import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 import rs.dusk.world.activity.skill.Skill.*
 

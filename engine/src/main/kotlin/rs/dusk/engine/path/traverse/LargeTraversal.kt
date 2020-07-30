@@ -2,7 +2,9 @@ package rs.dusk.engine.path.traverse
 
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.world.map.collision.*
+import rs.dusk.engine.model.map.collision.CollisionFlag
+import rs.dusk.engine.model.map.collision.Collisions
+import rs.dusk.engine.model.map.collision.check
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.MediumTraversal.Companion.getNorthCorner

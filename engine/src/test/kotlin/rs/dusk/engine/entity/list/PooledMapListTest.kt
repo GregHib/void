@@ -9,7 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.model.entity.character.Character
 import rs.dusk.engine.model.entity.list.PooledMapList
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import java.util.*
 
 /**

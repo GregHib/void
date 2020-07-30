@@ -5,13 +5,14 @@ import io.mockk.mockk
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.engine.client.update.task.npc.NPCChangeTask
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.entity.Direction
 import rs.dusk.engine.model.entity.character.LocalChange
 import rs.dusk.engine.model.entity.character.npc.NPC
 import rs.dusk.engine.model.entity.character.npc.NPCMoveType
 import rs.dusk.engine.model.entity.list.entityListModule
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.script.KoinMock
 
 /**

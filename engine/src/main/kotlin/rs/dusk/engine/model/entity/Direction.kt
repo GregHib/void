@@ -1,6 +1,6 @@
 package rs.dusk.engine.model.entity
 
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

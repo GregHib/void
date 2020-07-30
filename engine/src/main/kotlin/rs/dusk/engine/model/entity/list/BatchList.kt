@@ -1,8 +1,8 @@
 package rs.dusk.engine.model.entity.list
 
 import rs.dusk.engine.model.entity.Entity
-import rs.dusk.engine.model.world.Chunk
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
+import rs.dusk.engine.model.map.chunk.Chunk
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

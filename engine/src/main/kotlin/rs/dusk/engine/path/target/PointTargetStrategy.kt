@@ -1,7 +1,7 @@
 package rs.dusk.engine.path.target
 
 import rs.dusk.engine.model.entity.Size
-import rs.dusk.engine.model.world.Tile
+import rs.dusk.engine.model.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 
 /**

@@ -2,7 +2,9 @@ package rs.dusk.engine.client.update
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import rs.dusk.engine.client.update.task.*
+import rs.dusk.engine.client.update.task.npc.*
+import rs.dusk.engine.client.update.task.player.*
+import rs.dusk.engine.client.update.task.viewport.ViewportUpdating
 import rs.dusk.engine.model.entity.character.npc.NPCs
 import rs.dusk.engine.model.entity.character.player.Players
 import rs.dusk.engine.model.entity.character.update.visual.npc.COMBAT_LEVEL_MASK
@@ -20,8 +22,18 @@ import rs.dusk.engine.model.entity.character.update.visual.player.TEMPORARY_MOVE
  */
 val updatingTasksModule = module {
     single(createdAtStart = true) { ViewportUpdating() }
-    single(createdAtStart = true) { PlayerMovementTask(get(), get()) }
-    single(createdAtStart = true) { NPCMovementTask(get(), get()) }
+    single(createdAtStart = true) {
+        PlayerMovementTask(
+            get(),
+            get()
+        )
+    }
+    single(createdAtStart = true) {
+        NPCMovementTask(
+            get(),
+            get()
+        )
+    }
     single(createdAtStart = true) {
         PlayerVisualsTask(
             get<Players>(),
@@ -48,8 +60,18 @@ val updatingTasksModule = module {
     }
     single(createdAtStart = true) { PlayerChangeTask(get()) }
     single(createdAtStart = true) { NPCChangeTask(get()) }
-    single(createdAtStart = true) { PlayerUpdateTask(get(), get()) }
-    single(createdAtStart = true) { NPCUpdateTask(get(), get()) }
+    single(createdAtStart = true) {
+        PlayerUpdateTask(
+            get(),
+            get()
+        )
+    }
+    single(createdAtStart = true) {
+        NPCUpdateTask(
+            get(),
+            get()
+        )
+    }
     single(createdAtStart = true) { PlayerPostUpdateTask(get()) }
     single(createdAtStart = true) { NPCPostUpdateTask(get()) }
 }
