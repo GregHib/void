@@ -16,7 +16,6 @@ import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.model.engine.variable.variablesModule
-import rs.dusk.engine.model.entity.character.player.login.loginQueueModule
 import rs.dusk.engine.model.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.model.entity.list.entityListModule
 import rs.dusk.engine.model.world.instanceModule
@@ -35,7 +34,9 @@ import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
+import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
+import rs.dusk.world.interact.player.spawn.login.loginQueueModule
 import java.util.concurrent.Executors
 
 /**
