@@ -6,7 +6,7 @@ import java.util.*
 
 data class Container(
     private val decoder: ItemDecoder,
-    private val listeners: MutableList<(Int, Int, Int) -> Unit> = mutableListOf(),
+    val listeners: MutableList<(index: Int, id: Int, amount: Int) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
     val items: IntArray,
     val amounts: IntArray,
@@ -43,7 +43,11 @@ data class Container(
 
     fun inBounds(index: Int) = index in items.indices
 
-    fun isValid(index: Int, id: Int, amount: Int) = inBounds(index) && items[index] == id && amounts[index] == amount
+    fun isValid(index: Int, id: Int, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
+
+    fun isValidId(index: Int, id: Int) = inBounds(index) && items[index] == id
+
+    fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
         return id >= 0 && amount > 0 && id < decoder.size

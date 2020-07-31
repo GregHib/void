@@ -2,6 +2,7 @@ import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
+import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.update.visual.player.tele
 import rs.dusk.engine.event.EventBus
@@ -76,4 +77,11 @@ Command where { prefix == "inter" } then {
     } else {
         player.interfaces.open(id)
     }
+}
+
+Command where { prefix == "item" } then {
+    val parts = content.split(" ")
+    val id = parts[0].toInt()
+    val amount = if(parts.size > 1) parts[1].toInt() else 1
+    player.inventory.add(id, amount)
 }

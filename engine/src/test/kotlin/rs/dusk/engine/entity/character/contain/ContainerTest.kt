@@ -145,6 +145,64 @@ internal class ContainerTest {
     }
 
     @Test
+    fun `Valid id equals exactly regardless of amount`() {
+        // Given
+        val index = 1
+        val id = 2
+        val amount = -100
+        container.items[index] = id
+        container.amounts[index] = amount
+        // When
+        val valid = container.isValidId(index, id)
+        // Then
+        assertTrue(valid)
+        verify { container.inBounds(index) }
+    }
+
+    @Test
+    fun `Invalid id`() {
+        // Given
+        val index = 1
+        val id = 2
+        val amount = -100
+        container.items[index] = id + 1
+        container.amounts[index] = amount
+        // When
+        val valid = container.isValidId(index, id)
+        // Then
+        assertFalse(valid)
+    }
+
+    @Test
+    fun `Valid amount equals exactly regardless of id`() {
+        // Given
+        val index = 1
+        val id = -100
+        val amount = 100
+        container.items[index] = id
+        container.amounts[index] = amount
+        // When
+        val valid = container.isValidAmount(index, amount)
+        // Then
+        assertTrue(valid)
+        verify { container.inBounds(index) }
+    }
+
+    @Test
+    fun `Invalid amount`() {
+        // Given
+        val index = 1
+        val id = -100
+        val amount = 100
+        container.items[index] = id
+        container.amounts[index] = amount + 1
+        // When
+        val valid = container.isValidAmount(index, amount)
+        // Then
+        assertFalse(valid)
+    }
+
+    @Test
     fun `Valid checks index id matches expected`() {
         // Given
         val index = 1

@@ -54,7 +54,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         }
 
         val inter = lookup.get(id)
-        val name = inter.name ?: ""
+        val name = inter.name
         val componentName = inter.components[componentId] ?: ""
         val selectedOption = options[index]
         executor.start {

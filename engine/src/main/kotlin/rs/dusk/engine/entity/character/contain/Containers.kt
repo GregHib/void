@@ -1,7 +1,9 @@
 package rs.dusk.engine.entity.character.contain
 
 import rs.dusk.cache.config.decoder.ItemContainerDecoder
+import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemsMessage
 import rs.dusk.utility.get
 
 sealed class Containers(val id: Int) {
@@ -19,11 +21,15 @@ sealed class Containers(val id: Int) {
 
 fun Player.container(container: Containers): Container {
     return containers.getOrPut(container.id) {
-        Container(
+        val instance = Container(
             decoder = get(),
             capacity = get<ItemContainerDecoder>().getSafe(container.id).length,
             stackMode = if (container == Containers.Bank) StackMode.Always else StackMode.Normal
         )
+        instance.listeners.add { _, _, _ ->
+            send(InterfaceItemsMessage(container.id, instance.items, instance.amounts))
+        }
+        instance
     }
 }
 

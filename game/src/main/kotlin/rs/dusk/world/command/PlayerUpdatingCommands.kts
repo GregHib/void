@@ -142,12 +142,12 @@ Command where { prefix == "run" } then {
     player.movement.running = !player.movement.running
 }
 
-Command where { prefix == "test" } then {
+Command where { prefix == "chunk" } then {
     val chunks: DynamicChunks = get()
     chunks.set(player.tile.chunk, player.tile.chunk, rotation = 2)
 }
 
-Command where { prefix == "test2" } then {
+Command where { prefix == "chunk2" } then {
     val chunks: DynamicChunks = get()
     chunks.remove(player.tile.chunk)
 }
