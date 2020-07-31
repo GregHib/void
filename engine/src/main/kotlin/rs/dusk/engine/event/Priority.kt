@@ -3,7 +3,8 @@ package rs.dusk.engine.event
 object Priority {
     // TickInput
     val LOGIN_QUEUE = 100
-    val EVENT_PROCESS = 99
+    val LOGOUT_QUEUE = 99
+    val EVENT_PROCESS = 98
 
 
     // Tick

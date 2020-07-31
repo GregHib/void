@@ -38,6 +38,8 @@ import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
+import rs.dusk.world.interact.entity.player.spawn.logout.DisconnectEvent
+import rs.dusk.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
 /**
@@ -51,7 +53,8 @@ object Dusk {
         preload()
 
         val world = World(1)
-        val server = GameServer(world)
+        val disconnect = DisconnectEvent()
+        val server = GameServer(world, disconnect)
 
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
@@ -96,7 +99,8 @@ object Dusk {
                 variablesModule,
                 instanceModule,
                 instancePoolModule,
-                detailsModule
+                detailsModule,
+                logoutModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

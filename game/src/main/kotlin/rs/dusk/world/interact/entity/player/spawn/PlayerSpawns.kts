@@ -35,4 +35,9 @@ PlayerSpawn then {
 
 PlayerDespawn then {
     players.remove(player)
+    val session = sessions.get(player)
+    if (session != null) {
+        session.disconnect()
+        sessions.deregister(session)
+    }
 }
