@@ -6,7 +6,7 @@ import java.util.*
 
 data class Container(
     private val decoder: ItemDecoder,
-    val listeners: MutableList<(index: Int, id: Int, amount: Int) -> Unit> = mutableListOf(),
+    val listeners: MutableList<(List<Triple<Int, Int, Int>>) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
     val items: IntArray,
     val amounts: IntArray,
@@ -17,7 +17,7 @@ data class Container(
         decoder: ItemDecoder,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
-        listeners: MutableList<(Int, Int, Int) -> Unit> = mutableListOf(),
+        listeners: MutableList<(List<Triple<Int, Int, Int>>) -> Unit> = mutableListOf(),
         minimumStack: Int = 0
     ) : this(
         decoder,
@@ -28,6 +28,7 @@ data class Container(
         minimumStack
     )
 
+    private var updates = mutableListOf<Triple<Int, Int, Int>>()
     private val logger = InlineLogger()
 
     fun stackable(id: Int) = when (stackMode) {
@@ -81,7 +82,7 @@ data class Container(
      * Clears item at the given index
      * @return successful
      */
-    fun clear(index: Int) = set(index, -1, minimumStack)
+    fun clear(index: Int, update: Boolean = true): Boolean = set(index, -1, minimumStack, update)
 
     /**
      * Clears all indices
@@ -91,18 +92,15 @@ data class Container(
         amounts.fill(minimumStack)
     }
 
-    /**
-     * Sets an item
-     * @return successful
-     */
-    fun set(index: Int, id: Int, amount: Int = 1): Boolean {
+    fun set(index: Int, id: Int, amount: Int = 1, update: Boolean = true): Boolean {
         if (!inBounds(index)) {
             return false
         }
         items[index] = id
         amounts[index] = amount
-        listeners.forEach {
-            it.invoke(index, id, amount)
+        track(index, id, amount)
+        if (update) {
+            update()
         }
         return true
     }
@@ -117,8 +115,9 @@ data class Container(
         }
         val tempId = items[firstIndex]
         val tempAmount = amounts[firstIndex]
-        set(firstIndex, items[secondIndex], amounts[secondIndex])
-        set(secondIndex, tempId, tempAmount)
+        set(firstIndex, items[secondIndex], amounts[secondIndex], false)
+        set(secondIndex, tempId, tempAmount, false)
+        update()
         return true
     }
 
@@ -223,8 +222,9 @@ data class Container(
 
             repeat(amount) {
                 val index = freeIndex()
-                set(index, id, 1)
+                set(index, id, amount = 1, update = false)
             }
+            update()
         }
         return ContainerResult.Addition.Added
     }
@@ -311,8 +311,9 @@ data class Container(
 
             repeat(amount) {
                 index = indexOf(id)
-                clear(index)
+                clear(index, update = false)
             }
+            update()
         }
         return ContainerResult.Removal.Removed
     }
@@ -320,10 +321,10 @@ data class Container(
     fun sort() {
         val items = LinkedList<Int>()
         val amounts = LinkedList<Int>()
-        for(i in this.items.indices.reversed()) {
+        for (i in this.items.indices.reversed()) {
             val id = this.items[i]
             val amount = this.amounts[i]
-            if(isFree(amount)) {
+            if (isFree(amount)) {
                 items.addLast(id)
                 amounts.addLast(amount)
             } else {
@@ -339,39 +340,56 @@ data class Container(
         }
     }
 
-    fun move(container: Container, id: Int, amount: Int = 1, index: Int? = null, targetIndex: Int? = null) : ContainerResult {
-        var result: ContainerResult = if(index == null) {
+    fun move(
+        container: Container,
+        id: Int,
+        amount: Int = 1,
+        index: Int? = null,
+        targetIndex: Int? = null
+    ): ContainerResult {
+        var result: ContainerResult = if (index == null) {
             remove(id, amount)
         } else {
             remove(index, id, amount)
         }
 
-        if(result !is ContainerResult.Removal.Removed) {
+        if (result !is ContainerResult.Removal.Removed) {
             return result
         }
 
-        result = if(targetIndex == null) {
+        result = if (targetIndex == null) {
             container.add(id, amount)
         } else {
             container.add(targetIndex, id, amount)
         }
 
-        if(result is ContainerResult.Addition.Added) {
+        if (result is ContainerResult.Addition.Added) {
             return result
         }
 
         // Undo removal when addition fails
-        val revertResult = if(index == null) {
+        val revertResult = if (index == null) {
             add(id, amount)
         } else {
             add(index, id, amount)
         }
 
-        if(revertResult !is ContainerResult.Addition.Added) {
+        if (revertResult !is ContainerResult.Addition.Added) {
             logger.warn { "Container movement restoration failed $container $id $amount" }
         }
 
         return result
+    }
+
+    private fun track(index: Int, id: Int, amount: Int) {
+        updates.add(Triple(index, id, amount))
+    }
+
+    private fun update() {
+        listeners.forEach {
+            it.invoke(updates)
+        }
+        updates = mutableListOf()
     }
 
     override fun equals(other: Any?): Boolean {

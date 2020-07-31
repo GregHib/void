@@ -17,7 +17,7 @@ class InterfaceItemsMessageEncoder : GameMessageEncoder<InterfaceItemsMessage>()
         val (key, items, amounts, negativeKey) = msg
         builder.apply {
             writeOpcode(INTERFACE_ITEMS, PacketType.SHORT)
-            writeShort(if (negativeKey) key else key)
+            writeShort(key)
             writeByte(negativeKey)
             writeShort(items.size)
             for((index, item) in items.withIndex()) {

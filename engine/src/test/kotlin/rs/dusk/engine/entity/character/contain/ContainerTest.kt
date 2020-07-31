@@ -11,8 +11,8 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 
 internal class ContainerTest {
-    lateinit var container: Container
-    lateinit var decoder: ItemDecoder
+    private lateinit var container: Container
+    private lateinit var decoder: ItemDecoder
 
     @BeforeEach
     fun setup() {
@@ -475,8 +475,8 @@ internal class ContainerTest {
         // Then
         assertEquals(ContainerResult.Addition.Added, result)
         verify {
-            container.set(1, id, 1)
-            container.set(2, id, 1)
+            container.set(1, id, 1, false)
+            container.set(2, id, 1, false)
         }
     }
 
@@ -703,8 +703,8 @@ internal class ContainerTest {
         // Then
         assertEquals(ContainerResult.Removal.Removed, result)
         verify {
-            container.clear(0)
-            container.clear(2)
+            container.set(0, -1, 0, false)
+            container.set(2, -1, 0, false)
         }
     }
 
@@ -721,8 +721,8 @@ internal class ContainerTest {
         // Then
         assertEquals(ContainerResult.Removal.Removed, result)
         verify {
-            container.clear(0)
-            container.clear(2)
+            container.clear(0, false)
+            container.clear(2, false)
         }
         verify(exactly = 0) {
             container.clear(4)
@@ -909,8 +909,8 @@ internal class ContainerTest {
         // Then
         assertTrue(result)
         verify {
-            container.set(firstIndex, 4, 5)
-            container.set(secondIndex, 2, 3)
+            container.set(firstIndex, 4, 5, false)
+            container.set(secondIndex, 2, 3, false)
         }
     }
 
@@ -945,6 +945,37 @@ internal class ContainerTest {
         val result = container.switch(0, container.items.size + 1)
         // Then
         assertFalse(result)
+    }
+
+    @Test
+    fun `Listeners notified of updates`() {
+        // Given
+        var captured: List<Triple<Int, Int, Int>>? = null
+        container.listeners.add {
+            captured = it.toList()
+        }
+        // When
+        container.set(2, 123, 2)
+        // Then
+        assertEquals(listOf(Triple(2, 123, 2)), captured)
+    }
+
+    @Test
+    fun `Listeners notified multiple changes`() {
+        // Given
+        var captured: List<Triple<Int, Int, Int>>? = null
+        container.listeners.add {
+            captured = it.toList()
+        }
+        // When
+        container.switch(2, 3)
+        // Then
+        assertEquals(
+            listOf(
+                Triple(2, -1, 0),
+                Triple(3, -1, 0)
+            ), captured
+        )
     }
 
     companion object {
