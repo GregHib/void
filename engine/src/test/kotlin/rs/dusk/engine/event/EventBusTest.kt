@@ -139,6 +139,24 @@ internal class EventBusTest : KoinMock() {
     }
 
     @Test
+    fun `Add greater than first`() {
+        // Given
+        val first = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        every { first.next } returns null
+        every { first.priority } returns 5
+        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        every { handler.priority } returns 10
+        val clazz = TestEvent::class
+        bus.add(clazz, handler = first)
+        // When
+        bus.add(clazz, handler = handler)
+        // Then
+        verify {
+            handler.next = first
+        }
+    }
+
+    @Test
     fun `Emit filtered by applies`() {
         // Given
         val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)

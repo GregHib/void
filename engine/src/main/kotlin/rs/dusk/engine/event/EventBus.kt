@@ -31,6 +31,12 @@ class EventBus {
         while (last != null) {
             next = last.next
 
+            if(handler.priority > last.priority) {
+                handler.next = last
+                handlers[clazz] = handler
+                break
+            }
+
             if (next == null) {
                 // Append
                 last.next = handler
