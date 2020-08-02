@@ -11,6 +11,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.send
 import rs.dusk.engine.client.update.task.player.PlayerUpdateTask
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerTrackingSet
@@ -59,7 +60,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         }
         every { players.getAtIndex(any()).hint(Player::class) } returns null
         every { sessions.contains(player) } returns true
-        every { sessions.send(player, any(), any<PlayerUpdateMessage>()) } just Runs
+        every { player.send(any<PlayerUpdateMessage>()) } just Runs
         // When
         task.run()
         // Then

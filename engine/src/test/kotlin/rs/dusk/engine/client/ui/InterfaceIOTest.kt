@@ -1,12 +1,9 @@
 package rs.dusk.engine.client.ui
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.mock.declareMock
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceOpened
@@ -14,26 +11,23 @@ import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 
-internal class InterfaceIOTest : KoinMock() {
+internal class InterfaceIOTest {
 
     private lateinit var io: InterfaceIO
     private lateinit var player: Player
     private lateinit var bus: EventBus
 
-    override val modules = listOf(clientSessionModule, eventModule)
-
     @BeforeEach
     fun setup() {
         player = mockk()
-        bus = declareMock {
-            every { emit(any<PlayerEvent>(), any()) } returns mockk()
-        }
+        mockkStatic("rs.dusk.engine.client.SessionsKt")
+        every { player.send(any<Message>()) } just Runs
+        bus = mockk()
+        every { bus.emit(any<PlayerEvent>(), any()) } returns mockk()
         io = PlayerInterfaceIO(player, bus)
     }
 

@@ -5,18 +5,16 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerVariables
-import rs.dusk.engine.script.KoinMock
 import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarcMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarcStrMessage
 import rs.dusk.network.rs.codec.game.encode.message.VarpMessage
 
-internal class VariablesTest : KoinMock() {
-    override val modules = listOf(variablesModule, clientSessionModule)
+internal class VariablesTest {
 
     private lateinit var system: Variables
     private lateinit var component: PlayerVariables
@@ -31,6 +29,8 @@ internal class VariablesTest : KoinMock() {
         system = spyk(Variables())
         component = mutableMapOf()
         player = mockk(relaxed = true)
+        mockkStatic("rs.dusk.engine.client.SessionsKt")
+        every { player.send(any<Message>()) } just Runs
         every { player.variables } returns component
         setVariable(key, variable)
     }

@@ -31,7 +31,7 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val result = batcher.createSubscription(player)
-        val chunk = Chunk(100)
+        val chunk = Chunk(0)
         val message: Message = mockk(relaxed = true)
         val messages = mutableListOf(message)
         // When
@@ -65,18 +65,15 @@ internal class ChunkBatcherTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.SessionsKt")
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns Chunk(
-            7,
-            7
-        )
+        every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)
         val sessions: Sessions = declareMock {
-            every { send(player, ChunkUpdateMessage::class, any()) } just Runs
+            every { send(player, any<ChunkClearMessage>()) } just Runs
         }
         // When
         batcher.sendChunk(player, chunk)
         // Then
         verify {
-            sessions.send(player, ChunkUpdateMessage::class, ChunkUpdateMessage(7, 7, 1))
+            sessions.send(player, ChunkUpdateMessage(7, 7, 1))
         }
     }
 
@@ -86,18 +83,15 @@ internal class ChunkBatcherTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.SessionsKt")
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns Chunk(
-            7,
-            7
-        )
+        every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)
         val sessions: Sessions = declareMock {
-            every { send(player, ChunkClearMessage::class, any()) } just Runs
+            every { send(player, any<ChunkClearMessage>()) } just Runs
         }
         // When
         batcher.sendChunkClear(player, chunk)
         // Then
         verify {
-            sessions.send(player, ChunkClearMessage::class, ChunkClearMessage(7, 7, 1))
+            sessions.send(player, ChunkClearMessage(7, 7, 1))
         }
     }
 

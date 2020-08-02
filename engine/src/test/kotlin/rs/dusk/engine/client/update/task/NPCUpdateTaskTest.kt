@@ -8,6 +8,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.core.io.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
+import rs.dusk.engine.client.send
 import rs.dusk.engine.client.update.task.npc.NPCUpdateTask
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCTrackingSet
@@ -53,7 +54,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         }
         every { players.getAtIndex(any()).hint(Player::class) } returns null
         every { sessions.contains(player) } returns true
-        every { sessions.send(player, any(), any<NPCUpdateMessage>()) } just Runs
+        every { player.send(any<NPCUpdateMessage>()) } just Runs
         // When
         task.run()
         // Then

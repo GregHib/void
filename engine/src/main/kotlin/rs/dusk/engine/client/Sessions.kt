@@ -7,7 +7,6 @@ import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
-import kotlin.reflect.KClass
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -69,10 +68,10 @@ class Sessions {
     /**
      * Sends [message] to the session linked with [player]
      */
-    fun <T : Message> send(player: Player, clazz: KClass<T>, message: T) {
+    fun <T : Message> send(player: Player, message: T) {
         val session = get(player) ?: return// logger.warn { "Unable to find session for player $player." }
         session.send(message)
     }
 }
 
-inline fun <reified T : Message> Player.send(update: T) = get<Sessions>().send(this, T::class, update)
+fun <T : Message> Player.send(update: T) = get<Sessions>().send(this, update)
