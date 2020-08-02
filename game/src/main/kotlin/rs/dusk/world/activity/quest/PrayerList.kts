@@ -1,13 +1,11 @@
 package rs.dusk.world.activity.quest
 
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.variable.StringMapVariable
 import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.sendVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
 
 StringMapVariable(1584, Variable.Type.VARP, true, mapOf(
     0 to "normal",
@@ -18,5 +16,5 @@ InterfaceOpened where { name == "prayer_list"} then {
     var quickPrayers = false
     player.sendVar("prayer_list")
     player.sendVar("prayer_points")
-    player.send(InterfaceSettingsMessage(id, if (quickPrayers) 42 else 8, 0, 29, 2))
+    player.interfaces.sendSettings(id, if (quickPrayers) "quick_prayers" else "regular_prayers", 0, 29, 2)
 }

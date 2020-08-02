@@ -52,6 +52,70 @@ class InterfaceManager(
         }
     }
 
+    override fun sendPlayerHead(inter: Interface, component: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendPlayerHead(inter, component)
+        return true
+    }
+
+    override fun sendAnimation(inter: Interface, component: Int, animation: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendAnimation(inter, component, animation)
+        return true
+    }
+
+    override fun sendNPCHead(inter: Interface, component: Int, npc: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendNPCHead(inter, component, npc)
+        return true
+    }
+
+    override fun sendText(inter: Interface, component: Int, text: String): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendText(inter, component, text)
+        return true
+    }
+
+    override fun sendVisibility(inter: Interface, component: Int, visible: Boolean): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendVisibility(inter, component, visible)
+        return true
+    }
+
+    override fun sendSprite(inter: Interface, component: Int, sprite: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendSprite(inter, component, sprite)
+        return true
+    }
+
+    override fun sendItem(inter: Interface, component: Int, item: Int, amount: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendItem(inter, component, item, amount)
+        return true
+    }
+
+    override fun sendSettings(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean {
+        if(!inter.components.containsKey(component)) {
+            return false
+        }
+        io.sendSettings(inter, component, from, to, setting)
+        return true
+    }
+
     private fun hasOpenOrRootParent(inter: Interface): Boolean = parentIsRoot(inter) || hasOpenParent(inter)
 
     private fun parentIsRoot(inter: Interface): Boolean = inter.getParent(gameFrame.resizable) == ROOT_ID

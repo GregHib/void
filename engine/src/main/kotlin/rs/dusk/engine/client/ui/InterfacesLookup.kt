@@ -11,6 +11,18 @@ data class InterfacesLookup(
 
     fun getSafe(name: String) = get(getIdOrNull(name) ?: INVALID_ID)
 
+    fun get(name: String, component: String, block: (Interface, Int) -> Boolean): Boolean {
+        val inter = getSafe(name)
+        val componentId = inter.getComponent(component) ?: return false
+        return block.invoke(inter, componentId)
+    }
+
+    fun get(id: Int, component: String, block: (Interface, Int) -> Boolean): Boolean {
+        val inter = get(id)
+        val componentId = inter.getComponent(component) ?: return false
+        return block.invoke(inter, componentId)
+    }
+
     private fun getId(name: String) = getIdOrNull(name) ?: throw IllegalNameException(name)
 
     private fun getIdOrNull(name: String) = names[name]

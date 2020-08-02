@@ -8,12 +8,11 @@ import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemsMessage
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
 import rs.dusk.world.interact.player.display.InterfaceSwitch
 
 InterfaceOpened where { name == "inventory" } then {
-    player.send(InterfaceSettingsMessage(id, 0, 0, 27, 4554126))// Item slots
-    player.send(InterfaceSettingsMessage(id, 0, 28, 55, 2097152))// Draggable slots
+    player.interfaces.sendSettings(id, "container", 0, 27, 4554126)// Item slots
+    player.interfaces.sendSettings(id, "container", 28, 55, 2097152)// Draggable slots
     player.send(InterfaceItemsMessage(Containers.Inventory.id, player.inventory.items, player.inventory.amounts))
 }
 

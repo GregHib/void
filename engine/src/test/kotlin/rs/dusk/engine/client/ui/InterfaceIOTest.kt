@@ -11,9 +11,7 @@ import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventBus
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.message.*
 
 internal class InterfaceIOTest {
 
@@ -109,5 +107,85 @@ internal class InterfaceIOTest {
         every { inter.name } returns "interface_name"
         io.notifyRefreshed(inter)
         verify { bus.emit(InterfaceRefreshed(player, 10, "interface_name")) }
+    }
+
+    @Test
+    fun `Send player head`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 10
+        io.sendPlayerHead(inter, 100)
+        verify {
+            player.send(InterfaceHeadPlayerMessage(10, 100))
+        }
+    }
+
+    @Test
+    fun `Send npc head`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendNPCHead(inter, 10, 123)
+        verify {
+            player.send(InterfaceHeadNPCMessage(100, 10, 123))
+        }
+    }
+
+    @Test
+    fun `Send animation`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendAnimation(inter, 10, 123)
+        verify {
+            player.send(InterfaceAnimationMessage(100, 10, 123))
+        }
+    }
+
+    @Test
+    fun `Send text`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendText(inter, 10, "words")
+        verify {
+            player.send(InterfaceTextMessage(100, 10, "words"))
+        }
+    }
+
+    @Test
+    fun `Send visibility`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendVisibility(inter, 10, false)
+        verify {
+            player.send(InterfaceVisibilityMessage(100, 10, false))
+        }
+    }
+
+    @Test
+    fun `Send sprite`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendSprite(inter, 10, 123)
+        verify {
+            player.send(InterfaceSpriteMessage(100, 10, 123))
+        }
+    }
+
+    @Test
+    fun `Send item`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendItem(inter, 10, 123, 4)
+        verify {
+            player.send(InterfaceItemMessage(100, 10, 123, 4))
+        }
+    }
+
+    @Test
+    fun `Send settings`() {
+        val inter: Interface = mockk()
+        every { inter.id } returns 100
+        io.sendSettings(inter, 10, 1, 2, 1234)
+        verify {
+            player.send(InterfaceSettingsMessage(100, 10, 1, 2, 1234))
+        }
     }
 }

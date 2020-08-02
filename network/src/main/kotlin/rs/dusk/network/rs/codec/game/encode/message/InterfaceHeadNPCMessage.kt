@@ -8,4 +8,4 @@ import rs.dusk.core.network.model.message.Message
  * @param component The index of the component
  * @param npc The id of the npc
  */
-data class InterfaceHeadNpcMessage(val id: Int, val component: Int, val npc: Int) : Message
+data class InterfaceHeadNPCMessage(val id: Int, val component: Int, val npc: Int) : Message

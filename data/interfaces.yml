@@ -312,6 +312,8 @@ prayer_list:
   type: prayer_list_tab
   components:
     stat_adjustments: 12
+    quick_prayers: 42
+    regular_prayers: 8
 
 assist_xp:
   id: 301
@@ -495,6 +497,8 @@ inventory_wear2:
 inventory:
   id: 679
   type: inventory_tab
+  components:
+    container: 0
 
 multi_var2_wide:
   id: 718
