@@ -2,6 +2,7 @@ package rs.dusk.engine.entity.character.player
 
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.client.ui.Interfaces
+import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.CharacterValues
@@ -41,6 +42,9 @@ class Player(
 
     @Transient
     lateinit var interfaces: Interfaces
+
+    @Transient
+    lateinit var dialogues: Dialogues
 
     @Transient
     override var change: LocalChange? = null

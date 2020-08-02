@@ -38,34 +38,86 @@ castlewars_status_overlay:
 chat1:
   id: 64
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
 
 chat2:
   id: 65
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
 
 chat3:
   id: 66
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
 
 chat4:
   id: 67
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
+    line4: 7
 
 chat_np1:
   id: 68
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
 
 chat_np2:
   id: 69
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
 
 chat_np3:
   id: 70
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
 
 chat_np4:
   id: 71
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
+    line4: 7
 
 # Un-contained
 npc_chat_np4u:
@@ -87,6 +139,10 @@ npc_chat_np2u:
 confirm_destroy:
   id: 94
   type: dialogue_box
+  components:
+    line1: 7
+    item_name: 8
+    item_slot: 9
 
 stock_side:
   id: 107
@@ -178,87 +234,199 @@ price_check_box_title:
 message1:
   id: 210
   type: dialogue_box
+  components:
+    line1: 1
 
 message2:
   id: 211
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
 
 message3:
   id: 212
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
 
 message4:
   id: 213
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
 
 message5:
   id: 214
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
+    line5: 5
 
 message_np1:
   id: 215
   type: dialogue_box
+  components:
+    line1: 1
 
 message_np2:
   id: 216
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
 
 message_np3:
   id: 217
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
 
 message_np4:
   id: 218
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
 
 message_np5:
   id: 219
   type: dialogue_box
+  components:
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
+    line5: 5
 
 # Choice
 multi2:
   id: 228
   type: dialogue_box
+  components:
+    wide_swords: 6
+    thin_swords: 9
+    line1: 2
+    line2: 3
 
 multi2_chat:
   id: 229
   type: dialogue_box
+  components:
+    wide_swords: 6
+    thin_swords: 9
+    line1: 2
+    line2: 3
 
 multi3:
   id: 230
   type: dialogue_box
+  components:
+    wide_swords: 7
+    thin_swords: 10
+    line1: 2
+    line2: 3
+    line3: 4
 
 multi3_chat:
   id: 231
   type: dialogue_box
+  components:
+    wide_swords: 7
+    thin_swords: 10
+    line1: 2
+    line2: 3
+    line3: 4
 
 multi4:
   id: 232
   type: dialogue_box
+  components:
+    wide_swords: 8
+    thin_swords: 9
+    line1: 2
+    line2: 3
+    line3: 4
+    line4: 5
 
 multi4_chat:
   id: 233
   type: dialogue_box
+  components:
+    wide_swords: 8
+    thin_swords: 9
+    line1: 2
+    line2: 3
+    line3: 4
+    line4: 5
 
 multi5:
   id: 234
   type: dialogue_box
+  components:
+    wide_swords: 9
+    thin_swords: 10
+    line1: 2
+    line2: 3
+    line3: 4
+    line4: 5
+    line5: 6
 
 multi5_chat:
   id: 235
   type: dialogue_box
+  components:
+    wide_swords: 9
+    thin_swords: 10
+    line1: 2
+    line2: 3
+    line3: 4
+    line4: 5
+    line5: 6
 
 multi_var2:
   id: 236
   type: dialogue_box
+  components:
+    wide_swords: 5
+    thin_swords: 6
+    line1: 1
+    line2: 2
 
 multi_var4:
   id: 237
   type: dialogue_box
+  components:
+    wide_swords: 7
+    thin_swords: 8
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
 
 multi_var5:
   id: 238
   type: dialogue_box
+  components:
+    wide_swords: 8
+    thin_swords: 9
+    line1: 1
+    line2: 2
+    line3: 3
+    line4: 4
+    line5: 5
 
 # NPC
 npc_chat1:
@@ -398,6 +566,12 @@ open_url:
 multi_var3:
   id: 451
   type: dialogue_box
+  components:
+    wide_swords: 6
+    thin_swords: 7
+    line1: 1
+    line2: 2
+    line3: 3
 
 multi3_off_centre:
   id: 458
@@ -421,6 +595,9 @@ unknown_side0:
 obj_box:
   id: 519
   type: dialogue_box
+  components:
+    sprite: 3
+    line1: 1
 
 toplevel:
   id: 548

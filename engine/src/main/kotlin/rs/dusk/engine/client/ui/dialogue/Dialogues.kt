@@ -7,7 +7,7 @@ import java.util.*
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-class Dialogue(private val io: DialogueIO) {
+class Dialogues(private val io: DialogueIO) {
 
     enum class Type {
         Chat,
@@ -15,7 +15,8 @@ class Dialogue(private val io: DialogueIO) {
         Choice,
         String,
         Int,
-        Destroy
+        Destroy,
+        Item
     }
 
     private val suspensions: Queue<Pair<Type, CancellableContinuation<*>>> = LinkedList()
@@ -36,7 +37,7 @@ class Dialogue(private val io: DialogueIO) {
         cont?.resume(value)
     }
 
-    fun start(function: suspend Dialogue.() -> Unit) {
+    fun start(function: suspend Dialogues.() -> Unit) {
         val coroutine = function.createCoroutine(this, DialogueContinuation)
         coroutine.resume(Unit)
     }
@@ -45,8 +46,8 @@ class Dialogue(private val io: DialogueIO) {
         suspensions.add(type to it)
     }
 
-    suspend fun stringEntry(text: String, clickToContinue: Boolean = true): String {
-        io.sendStringEntry(text, clickToContinue)
+    suspend fun stringEntry(text: String): String {
+        io.sendStringEntry(text)
         return await(Type.String)
     }
 
@@ -58,6 +59,11 @@ class Dialogue(private val io: DialogueIO) {
     suspend fun destroy(text: String, item: Int): String {
         io.sendItemDestroy(text, item)
         return await(Type.Destroy)
+    }
+
+    suspend fun itemBox(text: String, model: Int, zoom: Int, sprite: Int? = null): Unit {
+        io.sendItemBox(text, model, zoom, sprite)
+        return await(Type.Item)
     }
 
     private suspend fun <T : Any> send(builder: DialogueBuilder, text: String, type: Type): T {
@@ -83,11 +89,19 @@ class Dialogue(private val io: DialogueIO) {
 
     suspend infix fun Entity.dialogue(text: String) = DialogueBuilder(target = this).dialogue(text)
 
+    infix fun DialogueBuilder.animation(expression: Expression) = apply { this.expression = expression }
+
     infix fun Entity.animation(expression: Expression) = DialogueBuilder(target = this, expression = expression)
+
+    infix fun DialogueBuilder.title(text: String) = apply { title = text }
 
     infix fun Entity.title(text: String) = DialogueBuilder(target = this, title = text)
 
+    infix fun DialogueBuilder.large(boolean: Boolean) = apply { large = boolean }
+
     infix fun Entity.large(boolean: Boolean) = DialogueBuilder(target = this, large = boolean)
+
+    infix fun DialogueBuilder.clickToContinue(boolean: Boolean) = apply { clickToContinue = boolean }
 
     infix fun Entity.clickToContinue(boolean: Boolean) = DialogueBuilder(target = this, clickToContinue = boolean)
 }

@@ -1,5 +1,6 @@
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
+import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
@@ -84,4 +85,10 @@ Command where { prefix == "item" } then {
     val id = parts[0].toInt()
     val amount = if(parts.size > 1) parts[1].toInt() else 1
     player.inventory.add(id, amount)
+}
+
+Command where { prefix == "test" } then {
+    player.dialogues.start {
+        player animation Expression.Shock large true dialogue "What did you say?"
+    }
 }

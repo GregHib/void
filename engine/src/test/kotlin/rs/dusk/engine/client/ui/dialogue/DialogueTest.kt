@@ -12,13 +12,13 @@ import rs.dusk.engine.entity.character.npc.NPC
 
 internal class DialogueTest {
 
-    lateinit var manager: Dialogue
+    lateinit var manager: Dialogues
     lateinit var io: DialogueIO
 
     @BeforeEach
     fun setup() {
         io = mockk(relaxed = true)
-        manager = Dialogue(io)
+        manager = Dialogues(io)
     }
 
     @Test
@@ -35,7 +35,7 @@ internal class DialogueTest {
     @Test
     fun `Suspended dialogue isn't empty`() = runBlocking {
         manager.start {
-            await(Dialogue.Type.Chat)
+            await(Dialogues.Type.Chat)
         }
 
         withContext(Contexts.Game) {
@@ -46,7 +46,7 @@ internal class DialogueTest {
     @Test
     fun `Suspended dialogue resumed is empty`() = runBlocking {
         manager.start {
-            await(Dialogue.Type.Chat)
+            await(Dialogues.Type.Chat)
         }
 
         withContext(Contexts.Game) {
@@ -58,11 +58,11 @@ internal class DialogueTest {
     @Test
     fun `Get current suspension type`() = runBlocking {
         manager.start {
-            await(Dialogue.Type.Chat)
+            await(Dialogues.Type.Chat)
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Chat, manager.currentType())
+            assertEquals(Dialogues.Type.Chat, manager.currentType())
         }
     }
 
@@ -80,7 +80,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogue.Type.Chat, manager.currentType())
+            assertEquals(Dialogues.Type.Chat, manager.currentType())
             verify {
                 io.sendChat(builder)
             }
@@ -95,7 +95,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Chat, manager.currentType())
+            assertEquals(Dialogues.Type.Chat, manager.currentType())
             verify {
                 io.sendChat(any())
             }
@@ -111,7 +111,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogue.Type.Statement, manager.currentType())
+            assertEquals(Dialogues.Type.Statement, manager.currentType())
             verify {
                 io.sendStatement(builder)
             }
@@ -126,7 +126,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Statement, manager.currentType())
+            assertEquals(Dialogues.Type.Statement, manager.currentType())
             verify {
                 io.sendStatement(any())
             }
@@ -142,7 +142,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogue.Type.Choice, manager.currentType())
+            assertEquals(Dialogues.Type.Choice, manager.currentType())
             verify {
                 io.sendChoice(builder)
             }
@@ -157,7 +157,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Choice, manager.currentType())
+            assertEquals(Dialogues.Type.Choice, manager.currentType())
             verify {
                 io.sendChoice(any())
             }
@@ -176,7 +176,7 @@ internal class DialogueTest {
     }
 
     @Test
-    fun `Animation dialogue builder`() {
+    fun `Animation entity dialogue builder`() {
         val npc: NPC = mockk()
         manager.start {
             val builder: DialogueBuilder = npc animation Expression.Laugh
@@ -186,7 +186,17 @@ internal class DialogueTest {
     }
 
     @Test
-    fun `Title dialogue builder`() {
+    fun `Animation dialogue builder`() {
+        val npc: NPC = mockk()
+        manager.start {
+            val builder: DialogueBuilder = DialogueBuilder(npc) animation Expression.Laugh
+            assertEquals(npc, builder.target)
+            assertEquals(Expression.Laugh, builder.expression)
+        }
+    }
+
+    @Test
+    fun `Title entity dialogue builder`() {
         val npc: NPC = mockk()
         manager.start {
             val builder: DialogueBuilder = npc title "text"
@@ -196,7 +206,17 @@ internal class DialogueTest {
     }
 
     @Test
-    fun `Large dialogue builder`() {
+    fun `Title dialogue builder`() {
+        val npc: NPC = mockk()
+        manager.start {
+            val builder: DialogueBuilder = DialogueBuilder(npc) title "text"
+            assertEquals(npc, builder.target)
+            assertEquals("text", builder.title)
+        }
+    }
+
+    @Test
+    fun `Large entity dialogue builder`() {
         val npc: NPC = mockk()
         manager.start {
             val builder: DialogueBuilder = npc large true
@@ -206,7 +226,17 @@ internal class DialogueTest {
     }
 
     @Test
-    fun `Continue dialogue builder`() {
+    fun `Large dialogue builder`() {
+        val npc: NPC = mockk()
+        manager.start {
+            val builder: DialogueBuilder = DialogueBuilder(npc) large true
+            assertEquals(npc, builder.target)
+            assertTrue(builder.large)
+        }
+    }
+
+    @Test
+    fun `Continue entity dialogue builder`() {
         val npc: NPC = mockk()
         manager.start {
             val builder: DialogueBuilder = npc clickToContinue false
@@ -216,14 +246,24 @@ internal class DialogueTest {
     }
 
     @Test
+    fun `Continue dialogue builder`() {
+        val npc: NPC = mockk()
+        manager.start {
+            val builder: DialogueBuilder = DialogueBuilder(npc) clickToContinue false
+            assertEquals(npc, builder.target)
+            assertFalse(builder.clickToContinue)
+        }
+    }
+
+    @Test
     fun `Send string entry`() = runBlocking {
         manager.start {
-            stringEntry("text", false)
+            stringEntry("text")
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.String, manager.currentType())
+            assertEquals(Dialogues.Type.String, manager.currentType())
             verify {
-                io.sendStringEntry("text", false)
+                io.sendStringEntry("text")
             }
         }
     }
@@ -234,7 +274,7 @@ internal class DialogueTest {
             intEntry("text")
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Int, manager.currentType())
+            assertEquals(Dialogues.Type.Int, manager.currentType())
             verify {
                 io.sendIntEntry("text")
             }
@@ -247,9 +287,22 @@ internal class DialogueTest {
             destroy("text", 1234)
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogue.Type.Destroy, manager.currentType())
+            assertEquals(Dialogues.Type.Destroy, manager.currentType())
             verify {
                 io.sendItemDestroy("text", 1234)
+            }
+        }
+    }
+
+    @Test
+    fun `Send item box`() = runBlocking {
+        manager.start {
+            itemBox("text", 9009, 650, 10)
+        }
+        withContext(Contexts.Game) {
+            assertEquals(Dialogues.Type.Item, manager.currentType())
+            verify {
+                io.sendItemBox("text", 9009, 650, 10)
             }
         }
     }
