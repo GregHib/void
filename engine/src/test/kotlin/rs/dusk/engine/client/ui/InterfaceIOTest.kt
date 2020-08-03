@@ -153,9 +153,9 @@ internal class InterfaceIOTest {
     fun `Send visibility`() {
         val inter: Interface = mockk()
         every { inter.id } returns 100
-        io.sendVisibility(inter, 10, false)
+        io.sendVisibility(inter, 10, visible = false)
         verify {
-            player.send(InterfaceVisibilityMessage(100, 10, false))
+            player.send(InterfaceVisibilityMessage(100, 10, hide = true))
         }
     }
 

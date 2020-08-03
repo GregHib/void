@@ -108,7 +108,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendSettings(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean {
+    override fun sendSetting(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }

@@ -136,31 +136,31 @@ abstract class Interfaces(private val interfaces: InterfacesLookup) {
 
     protected abstract fun sendItem(inter: Interface, component: Int, item: Int, amount: Int): Boolean
 
-    fun sendSettings(name: String, component: String, from: Int, to: Int, setting: Int): Boolean
-            = interfaces.get(name, component) { inter, comp -> sendSettings(inter, comp, from, to, setting) }
+    fun sendSetting(name: String, component: String, from: Int, to: Int, setting: Int): Boolean
+            = interfaces.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, setting) }
 
-    fun sendSettings(id: Int, component: String, from: Int, to: Int, setting: Int): Boolean
-            = interfaces.get(id, component) { inter, comp -> sendSettings(inter, comp, from, to, setting) }
+    fun sendSetting(id: Int, component: String, from: Int, to: Int, setting: Int): Boolean
+            = interfaces.get(id, component) { inter, comp -> sendSetting(inter, comp, from, to, setting) }
 
-    fun sendSettings(name: String, component: Int, from: Int, to: Int, setting: Int): Boolean
-            = sendSettings(interfaces.getSafe(name), component, from, to, setting)
+    fun sendSetting(name: String, component: Int, from: Int, to: Int, setting: Int): Boolean
+            = sendSetting(interfaces.getSafe(name), component, from, to, setting)
 
-    fun sendSettings(id: Int, component: Int, from: Int, to: Int, setting: Int): Boolean
-            = sendSettings(interfaces.get(id), component, from, to, setting)
+    fun sendSetting(id: Int, component: Int, from: Int, to: Int, setting: Int): Boolean
+            = sendSetting(interfaces.get(id), component, from, to, setting)
 
     fun sendSettings(name: String, component: String, from: Int, to: Int, vararg settings: Int): Boolean
-            = interfaces.get(name, component) { inter, comp -> sendSettings(inter, comp, from, to, settings(*settings)) }
+            = interfaces.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, settings(*settings)) }
 
     fun sendSettings(id: Int, component: String, from: Int, to: Int, vararg settings: Int): Boolean
-            = interfaces.get(id, component) { inter, comp -> sendSettings(inter, comp, from, to, settings(*settings)) }
+            = interfaces.get(id, component) { inter, comp -> sendSetting(inter, comp, from, to, settings(*settings)) }
 
     fun sendSettings(name: String, component: Int, from: Int, to: Int, vararg settings: Int): Boolean
-            = sendSettings(interfaces.getSafe(name), component, from, to, settings(*settings))
+            = sendSetting(interfaces.getSafe(name), component, from, to, settings(*settings))
 
     fun sendSettings(id: Int, component: Int, from: Int, to: Int, vararg settings: Int): Boolean
-            = sendSettings(interfaces.get(id), component, from, to, settings(*settings))
+            = sendSetting(interfaces.get(id), component, from, to, settings(*settings))
 
-    protected abstract fun sendSettings(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean
+    protected abstract fun sendSetting(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean
 
     companion object {
         const val ROOT_ID = -1

@@ -16,7 +16,7 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
             player.send(InterfaceUpdateMessage(inter.id, 0))
         } else {
             val index = inter.getIndex(player.gameFrame.resizable)
-            val permanent = inter.type != "main_screen"
+            val permanent = inter.type != "main_screen" && inter.type != "dialogue_box"
             player.send(InterfaceOpenMessage(permanent, parent, index, inter.id))
         }
     }
@@ -56,7 +56,7 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
     }
 
     override fun sendVisibility(inter: Interface, component: Int, visible: Boolean) {
-        player.send(InterfaceVisibilityMessage(inter.id, component, visible))
+        player.send(InterfaceVisibilityMessage(inter.id, component, !visible))
     }
 
     override fun sendSprite(inter: Interface, component: Int, sprite: Int) {

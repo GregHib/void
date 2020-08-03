@@ -831,10 +831,30 @@ combat_styles:
 skill_creation:
   id: 905
   type: dialogue_box
+  components:
+    custom: 6
+    choice1: 14
+    choice2: 15
+    choice3: 16
+    choice4: 17
+    choice5: 18
+    choice6: 19
+    choice7: 20
+    choice8: 21
+    choice9: 22
+    choice10: 23
 
 skill_creation_amount:
   id: 916
   type: skill_creation
+  components:
+    line1: 1
+    all: 8
+    create1: 5
+    create5: 6
+    create10: 7
+    increment: 19
+    decrement: 20
 
 task_list:
   id: 917

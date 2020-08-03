@@ -32,7 +32,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
         val player = sessions.get(session) ?: return
         val (hash, componentId) = msg
         val id = hash shr 16
-        var option = hash and 0xff
+        var option = hash and 0xffff
 
         // Exception for two-options pressing '1' key
         if(option > 100) {
@@ -44,11 +44,13 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
             return
         }
 
-        val definition = decoder.getSafe(id)
-        val component = definition.components?.get(componentId)
-        if (component == null) {
-            logger.warn { "Dialogue $id component $componentId not found for player $player" }
-            return
+        if(componentId != -1) {
+            val definition = decoder.getSafe(id)
+            val component = definition.components?.get(componentId)
+            if (component == null) {
+                logger.warn { "Dialogue $id component $componentId not found for player $player" }
+                return
+            }
         }
 
         val type = player.dialogues.currentType()

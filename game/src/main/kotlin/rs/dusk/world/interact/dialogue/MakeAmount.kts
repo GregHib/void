@@ -1,9 +1,32 @@
-package rs.dusk.world.activity.skill
+package rs.dusk.world.interact.dialogue
 
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.world.interact.player.display.InterfaceInteraction
+
+IntVariable(8094, Variable.Type.VARBIT, false, 1).register("skill_creation_maximum")
+IntVariable(8095, Variable.Type.VARBIT, true, 1).register("skill_creation_amount")
+
+ListVariable(754, Variable.Type.VARC, values = listOf(
+    "Make",
+    "Make sets",//No "all"
+    "Cook",
+    "Roast",
+    "Offer",
+    "Sell",
+    "Bake",
+    "Cut",
+    "Deposit",
+    "Make2",//No "all"
+    "Teleport",
+    "Select",
+    "Make sets2",//No "all"
+    "Take",
+    "Return",
+    "Heat",
+    "Add"
+)).register("skill_creation_type")
 
 IntVariable(755, Variable.Type.VARC, defaultValue = -1).register("skill_creation_item_0")
 IntVariable(756, Variable.Type.VARC, defaultValue = -1).register("skill_creation_item_1")
@@ -39,9 +62,13 @@ InterfaceInteraction where { name == "skill_creation_amount" && component == "cr
     player.setVar("skill_creation_amount", 10, refresh = false)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "create_max" } then {
+InterfaceInteraction where { name == "skill_creation_amount" && component == "all" } then {
     val max = player.getVar("skill_creation_maximum", 1)
     player.setVar("skill_creation_amount", max, refresh = false)
+}
+
+InterfaceInteraction then {
+    println(this)
 }
 
 InterfaceInteraction where { name == "skill_creation_amount" && component == "increment" } then {

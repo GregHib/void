@@ -34,7 +34,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
 
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {
-            logger.warn { "Interface $id not found for player $player" }
+            logger.info { "Interface $id not found for player $player" }
             return
         }
 
@@ -42,21 +42,21 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val definition = decoder.getSafe(id)
         val component = definition.components?.get(componentId)
         if(component == null) {
-            logger.warn { "Interface $id component $componentId not found for player $player" }
+            logger.info { "Interface $id component $componentId not found for player $player" }
             return
         }
 
-        val options = component.options ?: return
+        val options = component.options
         val index = option - 1
-        if (index !in options.indices) {
-            logger.warn { "Interface $id component $componentId option $index not found for player $player" }
+        if (options != null && index !in options.indices) {
+            logger.info { "Interface $id component $componentId option $index not found for player $player" }
             return
         }
 
         val inter = lookup.get(id)
         val name = inter.name
         val componentName = inter.components[componentId] ?: ""
-        val selectedOption = options[index]
+        val selectedOption = options?.getOrNull(index) ?: ""
         executor.start {
             bus.emit(
                 InterfaceInteraction(
