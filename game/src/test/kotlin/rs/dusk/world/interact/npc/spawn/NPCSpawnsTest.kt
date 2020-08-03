@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.npc
+package rs.dusk.world.interact.npc.spawn
 
 import io.mockk.every
 import io.mockk.spyk
