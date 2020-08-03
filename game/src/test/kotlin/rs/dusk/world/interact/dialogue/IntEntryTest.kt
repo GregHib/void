@@ -42,7 +42,7 @@ internal class IntEntryTest {
             intEntry("text")
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Int, manager.currentType())
+            assertEquals("int", manager.currentType())
             verify {
                 player.send(ScriptMessage(109, "text"))
             }

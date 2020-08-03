@@ -40,7 +40,7 @@ internal class LevelUpTest {
             levelUp("Congrats\nLevel", 12)
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Level, manager.currentType())
+            assertEquals("level", manager.currentType())
             verify {
                 player.open("level_up_dialog")
                 interfaces.sendText("level_up_dialog", "line1", "Congrats")

@@ -8,5 +8,5 @@ private const val STRING_ENTRY_SCRIPT = 108
 
 suspend fun Dialogues.stringEntry(text: String): Int {
     player.send(ScriptMessage(STRING_ENTRY_SCRIPT, text))
-    return await(Dialogues.Type.String)
+    return await("string")
 }

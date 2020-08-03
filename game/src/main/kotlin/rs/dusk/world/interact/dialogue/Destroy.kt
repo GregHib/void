@@ -14,5 +14,5 @@ suspend fun Dialogues.destroy(text: String, item: Int): String {
         player.interfaces.sendText(DESTROY_INTERFACE_NAME, "item_name", itemDecoder.getSafe(item).name)
         player.interfaces.sendItem(DESTROY_INTERFACE_NAME, "item_slot", item, 1)
     }
-    return await(Dialogues.Type.Destroy)
+    return await("destroy")
 }

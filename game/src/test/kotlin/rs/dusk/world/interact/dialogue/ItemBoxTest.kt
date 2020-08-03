@@ -42,7 +42,7 @@ internal class ItemBoxTest {
             itemBox("question", 9009, 650, 10)
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Item, manager.currentType())
+            assertEquals("item", manager.currentType())
             verify {
                 player.open("obj_box")
                 player.send(ScriptMessage(3449, 9009, 650))

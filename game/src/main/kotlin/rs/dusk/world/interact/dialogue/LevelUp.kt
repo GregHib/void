@@ -12,5 +12,5 @@ suspend fun Dialogues.levelUp(text: String, skill: Int) {
         player.interfaces.sendLines(LEVEL_UP_INTERFACE_NAME, lines)
         player.setVar("level_up_icon", skill)
     }
-    return await(Dialogues.Type.Level)
+    return await("level")
 }

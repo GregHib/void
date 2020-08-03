@@ -16,5 +16,5 @@ suspend fun Dialogues.itemBox(text: String, model: Int, zoom: Int, sprite: Int? 
         }
         player.interfaces.sendText(ITEM_INTERFACE_NAME, "line1", text)
     }
-    return await(Dialogues.Type.Item)
+    return await("item")
 }

@@ -8,5 +8,5 @@ private const val INTEGER_ENTRY_SCRIPT = 109
 
 suspend fun Dialogues.intEntry(text: String): Int {
     player.send(ScriptMessage(INTEGER_ENTRY_SCRIPT, text))
-    return await(Dialogues.Type.Int)
+    return await("int")
 }

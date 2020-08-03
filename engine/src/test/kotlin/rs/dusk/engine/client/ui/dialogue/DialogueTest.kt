@@ -35,7 +35,7 @@ internal class DialogueTest {
     @Test
     fun `Suspended dialogue isn't empty`() = runBlocking {
         manager.start {
-            await(Dialogues.Type.Chat)
+            await("chat")
         }
 
         withContext(Contexts.Game) {
@@ -46,7 +46,7 @@ internal class DialogueTest {
     @Test
     fun `Suspended dialogue resumed is empty`() = runBlocking {
         manager.start {
-            await(Dialogues.Type.Chat)
+            await("chat")
         }
 
         withContext(Contexts.Game) {
@@ -58,17 +58,17 @@ internal class DialogueTest {
     @Test
     fun `Get current suspension type`() = runBlocking {
         manager.start {
-            await(Dialogues.Type.Chat)
+            await("chat")
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Chat, manager.currentType())
+            assertEquals("chat", manager.currentType())
         }
     }
 
     @Test
     fun `Current suspension null`() {
-        assertNull(manager.currentType())
+        assertTrue(manager.currentType().isBlank())
     }
 
     @Test
@@ -80,7 +80,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogues.Type.Chat, manager.currentType())
+            assertEquals("chat", manager.currentType())
             verify {
                 io.sendChat(builder)
             }
@@ -95,7 +95,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Chat, manager.currentType())
+            assertEquals("chat", manager.currentType())
             verify {
                 io.sendChat(any())
             }
@@ -111,7 +111,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogues.Type.Statement, manager.currentType())
+            assertEquals("statement", manager.currentType())
             verify {
                 io.sendStatement(builder)
             }
@@ -126,7 +126,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Statement, manager.currentType())
+            assertEquals("statement", manager.currentType())
             verify {
                 io.sendStatement(any())
             }
@@ -142,7 +142,7 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals(Dialogues.Type.Choice, manager.currentType())
+            assertEquals("choice", manager.currentType())
             verify {
                 io.sendChoice(builder)
             }
@@ -157,7 +157,7 @@ internal class DialogueTest {
         }
 
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Choice, manager.currentType())
+            assertEquals("choice", manager.currentType())
             verify {
                 io.sendChoice(any())
             }

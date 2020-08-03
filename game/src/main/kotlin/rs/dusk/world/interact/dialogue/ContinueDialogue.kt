@@ -1,6 +1,5 @@
 package rs.dusk.world.interact.dialogue
 
-import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventCompanion
@@ -11,7 +10,7 @@ data class ContinueDialogue(
     val name: String,
     val componentId: Int,
     val component: String,
-    val type: Dialogues.Type,
+    val type: String,
     val option: Int
 ) : PlayerEvent() {
     companion object : EventCompanion<ContinueDialogue>

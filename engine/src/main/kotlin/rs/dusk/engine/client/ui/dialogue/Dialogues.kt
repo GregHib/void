@@ -10,25 +10,14 @@ import kotlin.coroutines.resume
 
 class Dialogues(private val io: DialogueIO, val player: Player) {
 
-    enum class Type {
-        Chat,
-        Statement,
-        Choice,
-        String,
-        Int,
-        Destroy,
-        Item,
-        Level
-    }
-
-    private val suspensions: Queue<Pair<Type, CancellableContinuation<*>>> = LinkedList()
+    private val suspensions: Queue<Pair<String, CancellableContinuation<*>>> = LinkedList()
 
     val isEmpty: Boolean
         get() = suspensions.isEmpty()
 
 
-    fun currentType(): Type? {
-        return suspensions.peek()?.first
+    fun currentType(): String {
+        return suspensions.peek()?.first ?: ""
     }
 
     fun resume() = resume(Unit)
@@ -44,26 +33,26 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
         coroutine.resume(Unit)
     }
 
-    suspend fun <T> await(type: Type) = suspendCancellableCoroutine<T> {
+    suspend fun <T> await(type: String) = suspendCancellableCoroutine<T> {
         suspensions.add(type to it)
     }
 
-    private suspend fun <T : Any> send(builder: DialogueBuilder, text: String, type: Type): T {
+    private suspend fun <T : Any> send(builder: DialogueBuilder, text: String, type: String): T {
         builder.text = text
         when(type) {
-            Type.Chat -> io.sendChat(builder)
-            Type.Statement -> io.sendStatement(builder)
-            Type.Choice -> io.sendChoice(builder)
+            "chat" -> io.sendChat(builder)
+            "statement" -> io.sendStatement(builder)
+            "choice" -> io.sendChoice(builder)
             else -> throw UnsupportedOperationException("Unknown builder type $type")
         }
         return await(type)
     }
 
-    suspend infix fun DialogueBuilder.dialogue(text: String): Unit = send(this, text, Type.Chat)
+    suspend infix fun DialogueBuilder.dialogue(text: String): Unit = send(this, text, "chat")
 
-    suspend infix fun DialogueBuilder.statement(text: String): Unit = send(this, text, Type.Statement)
+    suspend infix fun DialogueBuilder.statement(text: String): Unit = send(this, text, "statement")
 
-    suspend infix fun DialogueBuilder.choice(text: String): Int = send(this, text, Type.Choice)
+    suspend infix fun DialogueBuilder.choice(text: String): Int = send(this, text, "choice")
 
     suspend infix fun Entity.choice(text: String) = DialogueBuilder(target = this).choice(text)
 

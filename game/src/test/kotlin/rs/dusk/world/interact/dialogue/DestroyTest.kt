@@ -50,7 +50,7 @@ internal class DestroyTest : KoinMock() {
             destroy("question", 1234)
         }
         withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Destroy, manager.currentType())
+            assertEquals("destroy", manager.currentType())
             verify {
                 player.open("confirm_destroy")
                 interfaces.sendText("confirm_destroy", "line1", "question")
