@@ -29,7 +29,7 @@ class PlayerLoader(private val bus: EventBus, private val interfaces: Interfaces
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
         val dialogueIO = PlayerDialogueIO(player, decoder)
-        player.dialogues = Dialogues(dialogueIO)
+        player.dialogues = Dialogues(dialogueIO, player)
         return player
     }
 }

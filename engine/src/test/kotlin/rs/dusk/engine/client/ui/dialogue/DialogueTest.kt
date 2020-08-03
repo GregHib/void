@@ -18,7 +18,7 @@ internal class DialogueTest {
     @BeforeEach
     fun setup() {
         io = mockk(relaxed = true)
-        manager = Dialogues(io)
+        manager = Dialogues(io, mockk())
     }
 
     @Test
@@ -255,55 +255,4 @@ internal class DialogueTest {
         }
     }
 
-    @Test
-    fun `Send string entry`() = runBlocking {
-        manager.start {
-            stringEntry("text")
-        }
-        withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.String, manager.currentType())
-            verify {
-                io.sendStringEntry("text")
-            }
-        }
-    }
-
-    @Test
-    fun `Send integer entry`() = runBlocking {
-        manager.start {
-            intEntry("text")
-        }
-        withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Int, manager.currentType())
-            verify {
-                io.sendIntEntry("text")
-            }
-        }
-    }
-
-    @Test
-    fun `Send item destroy`() = runBlocking {
-        manager.start {
-            destroy("text", 1234)
-        }
-        withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Destroy, manager.currentType())
-            verify {
-                io.sendItemDestroy("text", 1234)
-            }
-        }
-    }
-
-    @Test
-    fun `Send item box`() = runBlocking {
-        manager.start {
-            itemBox("text", 9009, 650, 10)
-        }
-        withContext(Contexts.Game) {
-            assertEquals(Dialogues.Type.Item, manager.currentType())
-            verify {
-                io.sendItemBox("text", 9009, 650, 10)
-            }
-        }
-    }
 }

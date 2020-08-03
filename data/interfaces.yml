@@ -688,6 +688,9 @@ pick_a_kitten:
 level_up_dialog:
   id: 740
   type: dialogue_box
+  components:
+    line1: 0
+    line2: 1
 
 skill_level_details:
   id: 741

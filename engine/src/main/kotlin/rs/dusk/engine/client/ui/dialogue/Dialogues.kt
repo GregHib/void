@@ -3,11 +3,12 @@ package rs.dusk.engine.client.ui.dialogue
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
 import rs.dusk.engine.entity.Entity
+import rs.dusk.engine.entity.character.player.Player
 import java.util.*
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-class Dialogues(private val io: DialogueIO) {
+class Dialogues(private val io: DialogueIO, val player: Player) {
 
     enum class Type {
         Chat,
@@ -16,7 +17,8 @@ class Dialogues(private val io: DialogueIO) {
         String,
         Int,
         Destroy,
-        Item
+        Item,
+        Level
     }
 
     private val suspensions: Queue<Pair<Type, CancellableContinuation<*>>> = LinkedList()
@@ -44,26 +46,6 @@ class Dialogues(private val io: DialogueIO) {
 
     suspend fun <T> await(type: Type) = suspendCancellableCoroutine<T> {
         suspensions.add(type to it)
-    }
-
-    suspend fun stringEntry(text: String): String {
-        io.sendStringEntry(text)
-        return await(Type.String)
-    }
-
-    suspend fun intEntry(text: String): String {
-        io.sendIntEntry(text)
-        return await(Type.Int)
-    }
-
-    suspend fun destroy(text: String, item: Int): String {
-        io.sendItemDestroy(text, item)
-        return await(Type.Destroy)
-    }
-
-    suspend fun itemBox(text: String, model: Int, zoom: Int, sprite: Int? = null): Unit {
-        io.sendItemBox(text, model, zoom, sprite)
-        return await(Type.Item)
     }
 
     private suspend fun <T : Any> send(builder: DialogueBuilder, text: String, type: Type): T {

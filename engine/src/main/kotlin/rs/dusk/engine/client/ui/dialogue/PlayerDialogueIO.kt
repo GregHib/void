@@ -2,13 +2,11 @@ package rs.dusk.engine.client.ui.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.cache.definition.decoder.ItemDecoder
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 
 class PlayerDialogueIO(private val player: Player, private val itemDecoder: ItemDecoder) : DialogueIO {
 
@@ -76,32 +74,6 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
         }
     }
 
-    override fun sendStringEntry(text: String) {
-        player.send(ScriptMessage(STRING_ENTRY_SCRIPT, text))
-    }
-
-    override fun sendIntEntry(text: String) {
-        player.send(ScriptMessage(INTEGER_ENTRY_SCRIPT, text))
-    }
-
-    override fun sendItemDestroy(text: String, item: Int) {
-        if (player.open(DESTROY_INTERFACE_NAME)) {
-            interfaces.sendText(DESTROY_INTERFACE_NAME, "line1", text)
-            interfaces.sendText(DESTROY_INTERFACE_NAME, "item_name", itemDecoder.getSafe(item).name)
-            interfaces.sendItem(DESTROY_INTERFACE_NAME, "item_slot", item, 1)
-        }
-    }
-
-    override fun sendItemBox(text: String, model: Int, zoom: Int, sprite: Int?) {
-        if (player.open(ITEM_INTERFACE_NAME)) {
-            player.send(ScriptMessage(ITEM_SCRIPT_ID, model, zoom))
-            if (sprite != null) {
-                interfaces.sendSprite(ITEM_INTERFACE_NAME, "sprite", sprite)
-            }
-            interfaces.sendText(ITEM_INTERFACE_NAME, "line1", "question")
-        }
-    }
-
     private fun getChatHeadComponentName(large: Boolean): String {
         return "head${if (large) "_large" else ""}"
     }
@@ -153,9 +125,5 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
         private val CHOICE_LINE_RANGE = 2..5
         private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
         private const val STRING_ENTRY_SCRIPT = 108
-        private const val INTEGER_ENTRY_SCRIPT = 109
-        private const val DESTROY_INTERFACE_NAME = "confirm_destroy"
-        private const val ITEM_INTERFACE_NAME = "obj_box"
-        private const val ITEM_SCRIPT_ID = 3449
     }
 }

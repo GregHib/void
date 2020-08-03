@@ -169,3 +169,8 @@ fun <T : Any> Player.hasVar(key: String, id: T): Boolean {
     val variables: Variables = get()
     return variables.has(this, key, id)
 }
+
+fun <T : Any> Player.getVar(key: String, default: T): T {
+    val variables: Variables = get()
+    return variables.get(this, key, default)
+}
