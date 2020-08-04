@@ -13,6 +13,7 @@ import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.update.visual.player.name
+import rs.dusk.world.interact.dialogue.type.tell
 
 internal class NPCChatTest : DialogueTest() {
 

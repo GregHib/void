@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.send
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
+import rs.dusk.world.interact.dialogue.type.intEntry
 
 internal class IntEntryTest : DialogueTest() {
 

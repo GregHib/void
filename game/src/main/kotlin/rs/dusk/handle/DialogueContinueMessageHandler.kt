@@ -12,7 +12,7 @@ import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.DialogueContinueMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.dialogue.ContinueDialogue
+import rs.dusk.world.interact.dialogue.event.ContinueDialogue
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -57,7 +57,17 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
         val componentName = inter.components[componentId] ?: ""
 
         executor.start {
-            bus.emit(ContinueDialogue(player, id, name, componentId, componentName, type, button))
+            bus.emit(
+                ContinueDialogue(
+                    player,
+                    id,
+                    name,
+                    componentId,
+                    componentName,
+                    type,
+                    button
+                )
+            )
         }
     }
 

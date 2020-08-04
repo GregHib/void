@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.setVar
+import rs.dusk.world.interact.dialogue.type.levelUp
 
 internal class LevelUpTest : DialogueTest() {
 

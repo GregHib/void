@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.open
+import rs.dusk.world.interact.dialogue.type.choice
 
 internal class ChoiceTest : DialogueTest() {
 

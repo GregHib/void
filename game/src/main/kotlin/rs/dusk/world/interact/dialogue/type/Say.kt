@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
@@ -17,7 +17,8 @@ suspend fun DialogueContext.say(text: String, expression: Expression = Expressio
         return
     }
 
-    val name = getInterfaceName("chat", lines.size, clickToContinue)
+    val name =
+        getInterfaceName("chat", lines.size, clickToContinue)
 
     if (player.open(name)) {
         val head = getChatHeadComponentName(largeHead)

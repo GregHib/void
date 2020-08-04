@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
@@ -16,7 +16,8 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
         return
     }
 
-    val name = getInterfaceName("message", lines.size, clickToContinue)
+    val name =
+        getInterfaceName("message", lines.size, clickToContinue)
     if (player.open(name)) {
         sendLines(player, name, lines)
         await<Unit>("statement")

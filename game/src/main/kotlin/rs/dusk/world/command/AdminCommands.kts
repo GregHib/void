@@ -12,7 +12,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
-import rs.dusk.world.interact.dialogue.destroy
+import rs.dusk.world.interact.dialogue.type.destroy
 import rs.dusk.world.interact.entity.npc.spawn.NPCSpawn
 import rs.dusk.world.interact.entity.player.spawn.login.Login
 import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse

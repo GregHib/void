@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.event
 
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent

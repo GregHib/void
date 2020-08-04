@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
@@ -19,7 +19,11 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
 
     val multilineTitle = title != null && isMultiline(title)
     val multilineOptions = lines.any { isMultiline(it) }
-    val name = getChoiceName(multilineTitle, multilineOptions, lines.size)
+    val name = getChoiceName(
+        multilineTitle,
+        multilineOptions,
+        lines.size
+    )
     if (player.open(name)) {
         if (title != null) {
             val wide = title.length > APPROXIMATE_WIDE_TITLE_LENGTH

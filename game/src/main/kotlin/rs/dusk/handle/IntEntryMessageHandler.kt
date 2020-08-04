@@ -9,7 +9,7 @@ import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.IntegerEntryMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.dialogue.IntEntered
+import rs.dusk.world.interact.dialogue.event.IntEntered
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.type
 
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open

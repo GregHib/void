@@ -1,4 +1,4 @@
-package rs.dusk.world.interact.dialogue
+package rs.dusk.world.interact.dialogue.type
 
 import rs.dusk.engine.client.variable.BitwiseVariable
 import rs.dusk.engine.client.variable.Variable
