@@ -24,7 +24,10 @@ suspend fun Dialogues.makeAmount(items: List<Int>, type: String, maximum: Int, t
 
         setItemOptions(player, items)
         setMax(player, maximum)
-        await("make")
+        val choice: Int = await("make")
+        val id = items.getOrNull(choice) ?: -1
+        val amount = player.getVar("skill_creation_amount", 0)
+        id to amount
     } else {
         -1 to 0
     }

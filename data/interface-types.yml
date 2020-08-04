@@ -102,6 +102,10 @@ dialogue_box:
   parent: chat_box
   index: 13
 
+dialogue_box_small:
+  parent: chat_box
+  index: 12
+
 area_status:
   index: 15
 

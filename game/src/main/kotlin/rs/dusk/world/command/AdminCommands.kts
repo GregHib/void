@@ -1,6 +1,5 @@
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
-import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
@@ -12,6 +11,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
+import rs.dusk.world.interact.dialogue.destroy
 import rs.dusk.world.interact.npc.spawn.NPCSpawn
 import rs.dusk.world.interact.player.spawn.login.Login
 import rs.dusk.world.interact.player.spawn.login.LoginResponse
@@ -89,6 +89,22 @@ Command where { prefix == "item" } then {
 
 Command where { prefix == "test" } then {
     player.dialogues.start {
-        player animation Expression.Shock large true dialogue "What did you say?"
+//        player dialogue "Hi"
+//        NPC(id = 1, tile = Tile.EMPTY) dialogue "Hello Adventurer"
+//        player statement "Words"
+//        println("Choice: ${player title "Should we change something?" choice """
+//            Yes change something
+//            No leave it how it is
+//        """}")
+        println("Destroy ${destroy("<br>Can't be undone.", 11694)}")
+//        println("Integer: ${intEntry("Enter a number")}")
+//        println("String: ${stringEntry("Enter some text")}")
+//        levelUp("Congratzzzz", 12)
+//        itemBox("""
+//            The two halves of the skull fit perfectly, they appear to
+//            have a fixing point, perhaps they are to be mounted on
+//            something?
+//        """, 9009, 650)
+//        println("Make: ${makeAmount(listOf(385, 329), "Make sets", 23)}")
     }
 }

@@ -130,6 +130,5 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
         private const val MAXIMUM_STATEMENT_SIZE = 5
         private val CHOICE_LINE_RANGE = 2..5
         private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
-        private const val STRING_ENTRY_SCRIPT = 108
     }
 }

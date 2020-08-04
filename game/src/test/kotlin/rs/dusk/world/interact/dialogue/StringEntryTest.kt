@@ -44,7 +44,7 @@ internal class StringEntryTest {
         withContext(Contexts.Game) {
             assertEquals("string", manager.currentType())
             verify {
-                player.send(ScriptMessage(108, "text"))
+                player.send(ScriptMessage(109, "text"))
             }
         }
     }

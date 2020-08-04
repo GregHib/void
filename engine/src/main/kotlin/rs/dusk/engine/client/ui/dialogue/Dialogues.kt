@@ -24,7 +24,7 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> resume(value: T) {
-        val cont = suspensions.poll() as? CancellableContinuation<T>
+        val cont = suspensions.poll().second as? CancellableContinuation<T>
         cont?.resume(value)
     }
 

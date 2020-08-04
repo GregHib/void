@@ -16,17 +16,16 @@ class ScriptMessageEncoder : GameMessageEncoder<ScriptMessage>() {
         val (id, params) = msg
         builder.apply {
             writeOpcode(SCRIPT, PacketType.SHORT)
-            var parameterTypes = ""
-            for (count in params.indices.reversed()) {
-                parameterTypes += if (params[count] is String) "s" else "i"
+            val types = StringBuilder()
+            for (param in params) {
+                types.append(if (param is String) "s" else "i")
             }
-            writeString(parameterTypes)
-            var index = 0
-            for (count in parameterTypes.length - 1 downTo 0) {
-                if (parameterTypes[count] == 's') {
-                    writeString(params[index++] as String)
-                } else {
-                    writeInt(params[index++] as Int)
+            writeString(types.reverse().toString())
+            for (param in params.reversed()) {
+                if (param is String) {
+                    writeString(param)
+                } else if (param is Int) {
+                    writeInt(param)
                 }
             }
             writeInt(id)

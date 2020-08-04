@@ -43,6 +43,7 @@ chat1:
     head: 2
     title: 3
     line1: 4
+    continue: 5
 
 chat2:
   id: 65
@@ -53,6 +54,7 @@ chat2:
     title: 3
     line1: 4
     line2: 5
+    continue: 6
 
 chat3:
   id: 66
@@ -64,6 +66,7 @@ chat3:
     line1: 4
     line2: 5
     line3: 6
+    continue: 7
 
 chat4:
   id: 67
@@ -76,6 +79,7 @@ chat4:
     line2: 5
     line3: 6
     line4: 7
+    continue: 8
 
 chat_np1:
   id: 68
@@ -85,6 +89,7 @@ chat_np1:
     head: 2
     title: 3
     line1: 4
+    continue: 5
 
 chat_np2:
   id: 69
@@ -95,6 +100,7 @@ chat_np2:
     title: 3
     line1: 4
     line2: 5
+    continue: 6
 
 chat_np3:
   id: 70
@@ -106,6 +112,7 @@ chat_np3:
     line1: 4
     line2: 5
     line3: 6
+    continue: 7
 
 chat_np4:
   id: 71
@@ -118,6 +125,7 @@ chat_np4:
     line2: 5
     line3: 6
     line4: 7
+    continue: 8
 
 # Un-contained
 npc_chat_np4u:
@@ -140,6 +148,8 @@ confirm_destroy:
   id: 94
   type: dialogue_box
   components:
+    confirm: 3
+    decline: 4
     line1: 7
     item_name: 8
     item_slot: 9
@@ -236,6 +246,7 @@ message1:
   type: dialogue_box
   components:
     line1: 1
+    continue: 2
 
 message2:
   id: 211
@@ -243,6 +254,7 @@ message2:
   components:
     line1: 1
     line2: 2
+    continue: 3
 
 message3:
   id: 212
@@ -251,6 +263,7 @@ message3:
     line1: 1
     line2: 2
     line3: 3
+    continue: 4
 
 message4:
   id: 213
@@ -260,6 +273,7 @@ message4:
     line2: 2
     line3: 3
     line4: 4
+    continue: 5
 
 message5:
   id: 214
@@ -270,6 +284,7 @@ message5:
     line3: 3
     line4: 4
     line5: 5
+    continue: 6
 
 message_np1:
   id: 215
@@ -432,34 +447,90 @@ multi_var5:
 npc_chat1:
   id: 241
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    continue: 5
 
 npc_chat2:
   id: 242
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    continue: 6
 
 npc_chat3:
   id: 243
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
+    continue: 7
 
 npc_chat4:
   id: 244
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
+    line4: 7
+    continue: 8
 
 npc_chat_np1:
   id: 245
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
 
 npc_chat_np2:
   id: 246
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
 
 npc_chat_np3:
   id: 247
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
 
 npc_chat_np4:
   id: 248
   type: dialogue_box
+  components:
+    head_large: 1
+    head: 2
+    title: 3
+    line1: 4
+    line2: 5
+    line3: 6
+    line4: 7
 
 options:
   id: 261
@@ -594,10 +665,12 @@ unknown_side0:
 # Item
 obj_box:
   id: 519
-  type: dialogue_box
+  type: dialogue_box_small
   components:
-    sprite: 3
+    model: 0
     line1: 1
+    continue: 2
+    sprite: 3
 
 toplevel:
   id: 548
@@ -691,6 +764,7 @@ level_up_dialog:
   components:
     line1: 0
     line2: 1
+    continue: 3
 
 skill_level_details:
   id: 741
@@ -849,10 +923,10 @@ skill_creation_amount:
   type: skill_creation
   components:
     line1: 1
-    all: 8
     create1: 5
     create5: 6
     create10: 7
+    all: 8
     increment: 19
     decrement: 20
 

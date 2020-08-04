@@ -67,10 +67,6 @@ InterfaceInteraction where { name == "skill_creation_amount" && component == "al
     player.setVar("skill_creation_amount", max, refresh = false)
 }
 
-InterfaceInteraction then {
-    println(this)
-}
-
 InterfaceInteraction where { name == "skill_creation_amount" && component == "increment" } then {
     var current = player.getVar("skill_creation_amount", 0)
     val maximum = player.getVar("skill_creation_maximum", 1)

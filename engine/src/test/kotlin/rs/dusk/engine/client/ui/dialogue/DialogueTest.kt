@@ -6,6 +6,7 @@ import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.entity.character.npc.NPC
 
@@ -306,6 +307,28 @@ internal class DialogueTest {
             val builder: DialogueBuilder = DialogueBuilder(npc) clickToContinue false
             assertEquals(npc, builder.target)
             assertFalse(builder.clickToContinue)
+        }
+    }
+
+    @Test
+    fun `Resume active dialogue`() = runBlocking {
+        var resumed = false
+        manager.start {
+            await<Unit>("test")
+            resumed = true
+        }
+        withContext(Contexts.Game) {
+            manager.resume()
+        }
+        withContext(Contexts.Game) {
+            assertTrue(resumed)
+        }
+    }
+
+    @Test
+    fun `Resume empty dialogues throws null pointer`() {
+        assertThrows<NullPointerException> {
+            manager.resume()
         }
     }
 
