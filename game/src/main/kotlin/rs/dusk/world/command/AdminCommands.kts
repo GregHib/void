@@ -13,9 +13,9 @@ import rs.dusk.engine.map.area.area
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.dialogue.destroy
-import rs.dusk.world.interact.npc.spawn.NPCSpawn
-import rs.dusk.world.interact.player.spawn.login.Login
-import rs.dusk.world.interact.player.spawn.login.LoginResponse
+import rs.dusk.world.interact.entity.npc.spawn.NPCSpawn
+import rs.dusk.world.interact.entity.player.spawn.login.Login
+import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
 import java.util.concurrent.atomic.AtomicInteger
 
 val bus: EventBus by inject()

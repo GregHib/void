@@ -3,7 +3,7 @@ package rs.dusk.world.activity.achievement
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
-import rs.dusk.world.interact.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 on(InterfaceInteraction) {
     where {

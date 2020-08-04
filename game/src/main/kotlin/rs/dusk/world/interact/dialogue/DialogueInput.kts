@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.interact.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 val logger = InlineLogger()
 

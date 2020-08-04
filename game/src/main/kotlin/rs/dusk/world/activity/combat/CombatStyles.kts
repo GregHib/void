@@ -6,7 +6,7 @@ import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.interact.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 IntVariable(43, Variable.Type.VARP, true, 0).register("combat_style")
 

@@ -8,7 +8,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 import rs.dusk.world.activity.skill.Skill.*
-import rs.dusk.world.interact.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 val menu = listOf(ATTACK, STRENGTH, RANGE, MAGIC, DEFENCE, CONSTITUTION, PRAYER, AGILITY, HERBLORE, THIEVING, CRAFTING, RUNECRAFTING,
     MINING, SMITHING, FISHING, COOKING, FIREMAKING, WOODCUTTING, FLETCHING, SLAYER, FARMING, CONSTRUCTION, HUNTER, SUMMONING, DUNGEONEERING)

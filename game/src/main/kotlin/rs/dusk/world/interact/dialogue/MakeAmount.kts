@@ -3,7 +3,7 @@ package rs.dusk.world.interact.dialogue
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.interact.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 IntVariable(8094, Variable.Type.VARBIT, false, 1).register("skill_creation_maximum")
 IntVariable(8095, Variable.Type.VARBIT, true, 1).register("skill_creation_amount")

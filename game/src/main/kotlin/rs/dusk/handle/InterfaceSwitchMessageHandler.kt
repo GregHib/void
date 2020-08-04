@@ -12,7 +12,7 @@ import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.player.display.InterfaceSwitch
+import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

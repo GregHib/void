@@ -24,8 +24,8 @@ import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.player.spawn.login.Login
-import rs.dusk.world.interact.player.spawn.login.LoginResponse
+import rs.dusk.world.interact.entity.player.spawn.login.Login
+import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

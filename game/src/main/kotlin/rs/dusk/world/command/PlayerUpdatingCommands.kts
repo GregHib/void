@@ -20,7 +20,7 @@ import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
-import rs.dusk.world.interact.player.spawn.login.LoginQueue
+import rs.dusk.world.interact.entity.player.spawn.login.LoginQueue
 
 val players: Players by inject()
 val login: LoginQueue by inject()

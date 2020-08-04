@@ -36,7 +36,7 @@ import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
-import rs.dusk.world.interact.player.spawn.login.loginQueueModule
+import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
 import java.util.concurrent.Executors
 
 /**
