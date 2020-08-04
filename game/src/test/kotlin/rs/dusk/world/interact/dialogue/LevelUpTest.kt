@@ -28,7 +28,7 @@ internal class LevelUpTest {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.interfaces } returns interfaces
@@ -53,12 +53,14 @@ internal class LevelUpTest {
     @Test
     fun `Level up not sent if interface not opened`() = runBlocking {
         every { player.open("level_up_dialog") } returns false
+        coEvery { manager.await<Unit>(any()) } just Runs
         manager.start {
             levelUp("One\nTwo", 1)
         }
 
         withContext(Contexts.Game) {
-            verify(exactly = 0) {
+            coVerify(exactly = 0) {
+                manager.await<Unit>(any())
                 interfaces.sendText("level_up_dialog", "line1", "One")
             }
         }

@@ -26,7 +26,7 @@ suspend fun Dialogues.makeAmount(items: List<Int>, type: String, maximum: Int, t
         setMax(player, maximum)
         await("make")
     } else {
-        -1 to -1
+        -1 to 0
     }
 }
 

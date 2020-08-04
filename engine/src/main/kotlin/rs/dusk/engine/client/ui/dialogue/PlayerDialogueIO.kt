@@ -12,13 +12,13 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
 
     private val interfaces = player.interfaces
 
-    override fun sendChat(builder: DialogueBuilder) {
+    override fun sendChat(builder: DialogueBuilder): Boolean {
         val lines = builder.lines()
         val target = builder.target
 
         if (lines.size > 4) {
             logger.warn { "Maximum ${if (target is NPC) "NPC" else "player"} dialogue exceeded $builder for $player" }
-            return
+            return false
         }
 
         val name = getChatInterfaceName(target, lines.size, builder.clickToContinue)
@@ -32,29 +32,33 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
             interfaces.sendText(name, "title", title)
 
             sendLines(name, lines)
+            return true
         }
+        return false
     }
 
-    override fun sendStatement(builder: DialogueBuilder) {
+    override fun sendStatement(builder: DialogueBuilder): Boolean {
         val lines = builder.lines()
 
         if (lines.size > MAXIMUM_STATEMENT_SIZE) {
             logger.warn { "Maximum statement lines exceeded $builder for $player" }
-            return
+            return false
         }
 
         val name = getInterfaceName("message", lines.size, builder.clickToContinue)
         if (player.open(name)) {
             sendLines(name, lines)
+            return true
         }
+        return false
     }
 
-    override fun sendChoice(builder: DialogueBuilder) {
+    override fun sendChoice(builder: DialogueBuilder): Boolean {
         val lines = builder.lines()
 
         if (lines.size !in CHOICE_LINE_RANGE) {
             logger.warn { "Invalid choice line count $builder for $player" }
-            return
+            return false
         }
 
         val title = builder.title
@@ -71,7 +75,9 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
             }
 
             sendLines(name, lines)
+            return true
         }
+        return false
     }
 
     private fun getChatHeadComponentName(large: Boolean): String {

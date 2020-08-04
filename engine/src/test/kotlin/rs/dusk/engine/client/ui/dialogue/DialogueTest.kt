@@ -1,7 +1,6 @@
 package rs.dusk.engine.client.ui.dialogue
 
-import io.mockk.mockk
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.*
@@ -18,7 +17,7 @@ internal class DialogueTest {
     @BeforeEach
     fun setup() {
         io = mockk(relaxed = true)
-        manager = Dialogues(io, mockk())
+        manager = spyk(Dialogues(io, mockk()))
     }
 
     @Test
@@ -73,6 +72,7 @@ internal class DialogueTest {
 
     @Test
     fun `Send builder dialogue`() = runBlocking {
+        every { io.sendChat(any()) } returns true
         val npc: NPC = mockk()
         val builder = DialogueBuilder(npc)
         manager.start {
@@ -88,7 +88,24 @@ internal class DialogueTest {
     }
 
     @Test
+    fun `Don't await dialogue if failed to send`() = runBlocking {
+        val npc: NPC = mockk()
+        val builder = DialogueBuilder(npc)
+        every { io.sendChat(builder) } returns false
+        coEvery { manager.await<Any>(any()) } returns mockk()
+        manager.start {
+            builder dialogue "text"
+        }
+        withContext(Contexts.Game) {
+            coVerify(exactly = 0) {
+                manager.await<Any>(any())
+            }
+        }
+    }
+
+    @Test
     fun `Dialogue on any entity`() = runBlocking {
+        every { io.sendChat(any()) } returns true
         val npc: NPC = mockk()
         manager.start {
             npc dialogue "Text"
@@ -104,6 +121,7 @@ internal class DialogueTest {
 
     @Test
     fun `Send builder statement`() = runBlocking {
+        every { io.sendStatement(any()) } returns true
         val npc: NPC = mockk()
         val builder = DialogueBuilder(npc)
         manager.start {
@@ -120,6 +138,7 @@ internal class DialogueTest {
 
     @Test
     fun `Statement on any entity`() = runBlocking {
+        every { io.sendStatement(any()) } returns true
         val npc: NPC = mockk()
         manager.start {
             npc statement "Text"
@@ -134,7 +153,24 @@ internal class DialogueTest {
     }
 
     @Test
+    fun `Don't await statement if failed to send`() = runBlocking {
+        val npc: NPC = mockk()
+        val builder = DialogueBuilder(npc)
+        every { io.sendStatement(builder) } returns false
+        coEvery { manager.await<Any>(any()) } returns mockk()
+        manager.start {
+            npc statement "text"
+        }
+        withContext(Contexts.Game) {
+            coVerify(exactly = 0) {
+                manager.await<Any>(any())
+            }
+        }
+    }
+
+    @Test
     fun `Send builder choice`() = runBlocking {
+        every { io.sendChoice(any()) } returns true
         val npc: NPC = mockk()
         val builder = DialogueBuilder(npc)
         manager.start {
@@ -142,7 +178,6 @@ internal class DialogueTest {
         }
         withContext(Contexts.Game) {
             assertEquals("text", builder.text)
-            assertEquals("choice", manager.currentType())
             verify {
                 io.sendChoice(builder)
             }
@@ -151,15 +186,34 @@ internal class DialogueTest {
 
     @Test
     fun `Choice on any entity`() = runBlocking {
+        every { io.sendChoice(any()) } returns true
+        coEvery { manager.await<Int>("choice") } returns 2
         val npc: NPC = mockk()
         manager.start {
-            npc choice "Text"
+            val choice = npc choice "Text"
+            assertEquals(2, choice)
         }
 
         withContext(Contexts.Game) {
-            assertEquals("choice", manager.currentType())
-            verify {
+            coVerify {
                 io.sendChoice(any())
+                manager.await<Int>("choice")
+            }
+        }
+    }
+
+    @Test
+    fun `Don't await choice if failed to send`() = runBlocking {
+        val npc: NPC = mockk()
+        val builder = DialogueBuilder(npc)
+        every { io.sendChoice(builder) } returns false
+        coEvery { manager.await<Any>(any()) } returns mockk()
+        manager.start {
+            npc choice "text"
+        }
+        withContext(Contexts.Game) {
+            coVerify(exactly = 0) {
+                manager.await<Any>(any())
             }
         }
     }

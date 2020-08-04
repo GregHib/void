@@ -30,7 +30,7 @@ internal class StringEntryTest {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.send(any<Message>()) } just Runs
         every { player.interfaces } returns interfaces
@@ -46,6 +46,14 @@ internal class StringEntryTest {
             verify {
                 player.send(ScriptMessage(108, "text"))
             }
+        }
+    }
+
+    @Test
+    fun `String entry returns string`() = runBlocking {
+        coEvery { manager.await<String>("string") } returns "a string"
+        manager.start {
+            assertEquals("a string", intEntry("text"))
         }
     }
 

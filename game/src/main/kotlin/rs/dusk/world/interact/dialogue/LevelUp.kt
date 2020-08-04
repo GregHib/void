@@ -11,6 +11,6 @@ suspend fun Dialogues.levelUp(text: String, skill: Int) {
     if (player.open(LEVEL_UP_INTERFACE_NAME)) {
         player.interfaces.sendLines(LEVEL_UP_INTERFACE_NAME, lines)
         player.setVar("level_up_icon", skill)
+        return await("level")
     }
-    return await("level")
 }

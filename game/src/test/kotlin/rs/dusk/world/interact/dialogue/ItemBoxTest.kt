@@ -30,7 +30,7 @@ internal class ItemBoxTest {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.send(any<Message>()) } just Runs
         every { player.interfaces } returns interfaces
@@ -54,13 +54,15 @@ internal class ItemBoxTest {
 
     @Test
     fun `Item box not sent if interface not opened`() = runBlocking {
+        coEvery { manager.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false
         manager.start {
             itemBox("question", 9009, 650, 10)
         }
 
         withContext(Contexts.Game) {
-            verify(exactly = 0) {
+            coVerify(exactly = 0) {
+                manager.await<Unit>("item")
                 player.send(ScriptMessage(3449, 9009, 650))
             }
         }

@@ -37,22 +37,27 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
         suspensions.add(type to it)
     }
 
-    private suspend fun <T : Any> send(builder: DialogueBuilder, text: String, type: String): T {
-        builder.text = text
-        when(type) {
-            "chat" -> io.sendChat(builder)
-            "statement" -> io.sendStatement(builder)
-            "choice" -> io.sendChoice(builder)
-            else -> throw UnsupportedOperationException("Unknown builder type $type")
+    suspend infix fun DialogueBuilder.dialogue(text: String) {
+        this.text = text
+        if(io.sendChat(this)) {
+            return await("chat")
         }
-        return await(type)
     }
 
-    suspend infix fun DialogueBuilder.dialogue(text: String): Unit = send(this, text, "chat")
+    suspend infix fun DialogueBuilder.statement(text: String) {
+        this.text = text
+        if(io.sendStatement(this)) {
+            return await("statement")
+        }
+    }
 
-    suspend infix fun DialogueBuilder.statement(text: String): Unit = send(this, text, "statement")
-
-    suspend infix fun DialogueBuilder.choice(text: String): Int = send(this, text, "choice")
+    suspend infix fun DialogueBuilder.choice(text: String): Int {
+        this.text = text
+        if(io.sendChoice(this)) {
+            return await("choice")
+        }
+        return -1
+    }
 
     suspend infix fun Entity.choice(text: String) = DialogueBuilder(target = this).choice(text)
 

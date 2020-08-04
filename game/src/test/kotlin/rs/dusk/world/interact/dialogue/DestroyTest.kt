@@ -1,12 +1,10 @@
 package rs.dusk.world.interact.dialogue
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
@@ -36,7 +34,7 @@ internal class DestroyTest : KoinMock() {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
         declareMock<ItemDecoder> {
@@ -62,15 +60,25 @@ internal class DestroyTest : KoinMock() {
 
     @Test
     fun `Destroy not sent if interface not opened`() = runBlocking {
+        coEvery { manager.await<Boolean>(any()) } returns false
         every { player.open("confirm_destroy") } returns false
         manager.start {
             destroy("question", 1234)
         }
 
         withContext(Contexts.Game) {
-            verify(exactly = 0) {
+            coVerify(exactly = 0) {
+                manager.await<Boolean>("destroy")
                 interfaces.sendText("confirm_destroy", "line1", "question")
             }
+        }
+    }
+
+    @Test
+    fun `Destroy returns boolean`() = runBlocking {
+        coEvery { manager.await<Boolean>(any()) } returns true
+        manager.start {
+            assertTrue(destroy("question", 1234))
         }
     }
 }

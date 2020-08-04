@@ -36,7 +36,7 @@ internal class MakeAmountTest : KoinMock() {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
@@ -102,12 +102,14 @@ internal class MakeAmountTest : KoinMock() {
 
     @Test
     fun `Make amount not sent if sub interface not opened`() = runBlocking {
+        coEvery { manager.await<Pair<Int, Int>>(any()) } returns (-1 to 0)
         every { player.open("skill_creation_amount") } returns false
         manager.start {
             makeAmount(listOf(1, 2, 3), "ants", 25)
         }
         withContext(Contexts.Game) {
-            verify(exactly = 0) {
+            coVerify(exactly = 0) {
+                manager.await<Pair<Int, Int>>(any())
                 player.setVar("skill_creation_type", "ants")
             }
         }

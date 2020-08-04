@@ -30,7 +30,7 @@ internal class IntEntryTest {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         io = mockk(relaxed = true)
-        manager = Dialogues(io, player)
+        manager = spyk(Dialogues(io, player))
         every { player.open(any()) } returns true
         every { player.send(any<Message>()) } just Runs
         every { player.interfaces } returns interfaces
@@ -46,6 +46,14 @@ internal class IntEntryTest {
             verify {
                 player.send(ScriptMessage(109, "text"))
             }
+        }
+    }
+
+    @Test
+    fun `Int entry returns int`() = runBlocking {
+        coEvery { manager.await<Int>("int") } returns 123
+        manager.start {
+            assertEquals(123, intEntry("text"))
         }
     }
 
