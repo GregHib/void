@@ -8,7 +8,7 @@ import java.util.*
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-class Dialogues(val player: Player) {
+class Dialogues {
 
     private val suspensions: Queue<DialogueContext> = LinkedList()
 

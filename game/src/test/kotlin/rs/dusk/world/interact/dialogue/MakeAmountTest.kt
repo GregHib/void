@@ -34,7 +34,7 @@ internal class MakeAmountTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.variable.VariablesKt")
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
+        manager = spyk(Dialogues())
         context = mockk(relaxed = true)
         every { context.player } returns player
         coEvery { context.await<Int>(any()) } returns 0

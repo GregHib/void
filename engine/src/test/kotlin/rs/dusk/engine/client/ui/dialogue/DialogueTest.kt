@@ -21,7 +21,7 @@ internal class DialogueTest {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        manager = spyk(Dialogues(mockk()))
+        manager = spyk(Dialogues())
     }
 
     @Test

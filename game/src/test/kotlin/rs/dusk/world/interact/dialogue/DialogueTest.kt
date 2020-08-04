@@ -23,7 +23,7 @@ abstract class DialogueTest {
         mockkStatic("rs.dusk.engine.client.SessionsKt")
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
+        manager = spyk(Dialogues())
         context = spyk(DialogueContext(manager, player))
         every { player.open(any()) } returns true
         every { player.send(any<Message>()) } just Runs

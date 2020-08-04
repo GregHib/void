@@ -32,7 +32,7 @@ internal class DestroyTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
+        manager = spyk(Dialogues())
         context = mockk(relaxed = true)
         every { context.player } returns player
         every { player.open(any()) } returns true

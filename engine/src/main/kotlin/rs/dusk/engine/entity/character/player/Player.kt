@@ -26,14 +26,13 @@ class Player(
     override var size: Size = Size.TILE,
     @Transient val viewport: Viewport = Viewport(),
     @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val movement: Movement = Movement(
-        tile
-    ),
+    @Transient override val movement: Movement = Movement(tile),
     @Transient override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
     val variables: MutableMap<Int, Any> = mutableMapOf(),
     @Transient override val values: CharacterValues = CharacterValues(),
-    @Transient val delays: Delays = Delays()
+    @Transient val delays: Delays = Delays(),
+    @Transient val dialogues: Dialogues = Dialogues()
 ) : Character {
 
     @Transient
@@ -42,9 +41,6 @@ class Player(
 
     @Transient
     lateinit var interfaces: Interfaces
-
-    @Transient
-    lateinit var dialogues: Dialogues
 
     @Transient
     override var change: LocalChange? = null
