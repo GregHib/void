@@ -13,7 +13,6 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.dialogue.DialogueIO
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
@@ -23,7 +22,6 @@ internal class DestroyTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
     lateinit var manager: Dialogues
-    lateinit var io: DialogueIO
     lateinit var player: Player
 
     override val modules = listOf(cacheDefinitionModule)
@@ -33,8 +31,7 @@ internal class DestroyTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
-        io = mockk(relaxed = true)
-        manager = spyk(Dialogues(io, player))
+        manager = spyk(Dialogues(player))
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
         declareMock<ItemDecoder> {

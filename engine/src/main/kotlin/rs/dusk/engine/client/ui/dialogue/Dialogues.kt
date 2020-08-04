@@ -2,13 +2,16 @@ package rs.dusk.engine.client.ui.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
-import rs.dusk.engine.entity.Entity
+import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 import java.util.*
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 
-class Dialogues(private val io: DialogueIO, val player: Player) {
+class Dialogues(val player: Player) {
+
+    var npc: NPC? = null
+        private set
 
     private val suspensions: Queue<Pair<String, CancellableContinuation<*>>> = LinkedList()
 
@@ -28,7 +31,8 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
         cont?.resume(value)
     }
 
-    fun start(function: suspend Dialogues.() -> Unit) {
+    fun start(npc: NPC? = null, function: suspend Dialogues.() -> Unit) {
+        this.npc = npc
         val coroutine = function.createCoroutine(this, DialogueContinuation)
         coroutine.resume(Unit)
     }
@@ -36,29 +40,4 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
     suspend fun <T> await(type: String) = suspendCancellableCoroutine<T> {
         suspensions.add(type to it)
     }
-
-    suspend infix fun DialogueBuilder.dialogue(text: String) {
-        this.text = text
-        if(io.sendChat(this)) {
-            return await("chat")
-        }
-    }
-
-    suspend infix fun Entity.dialogue(text: String) = DialogueBuilder(target = this).dialogue(text)
-
-    infix fun DialogueBuilder.animation(expression: Expression) = apply { this.expression = expression }
-
-    infix fun Entity.animation(expression: Expression) = DialogueBuilder(target = this, expression = expression)
-
-    infix fun DialogueBuilder.title(text: String) = apply { title = text }
-
-    infix fun Entity.title(text: String) = DialogueBuilder(target = this, title = text)
-
-    infix fun DialogueBuilder.large(boolean: Boolean) = apply { large = boolean }
-
-    infix fun Entity.large(boolean: Boolean) = DialogueBuilder(target = this, large = boolean)
-
-    infix fun DialogueBuilder.clickToContinue(boolean: Boolean) = apply { clickToContinue = boolean }
-
-    infix fun Entity.clickToContinue(boolean: Boolean) = DialogueBuilder(target = this, clickToContinue = boolean)
 }

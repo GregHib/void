@@ -5,7 +5,6 @@ import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.InterfacesLookup
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.client.ui.dialogue.Dialogues
-import rs.dusk.engine.client.ui.dialogue.PlayerDialogueIO
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
@@ -27,8 +26,7 @@ class PlayerLoader(private val bus: EventBus, private val interfaces: Interfaces
         val player = super.load(name) ?: Player(id = -1, tile = tile)
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
-        val dialogueIO = PlayerDialogueIO(player)
-        player.dialogues = Dialogues(dialogueIO, player)
+        player.dialogues = Dialogues(player)
         return player
     }
 }
