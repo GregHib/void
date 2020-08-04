@@ -44,25 +44,6 @@ class Dialogues(private val io: DialogueIO, val player: Player) {
         }
     }
 
-    suspend infix fun DialogueBuilder.statement(text: String) {
-        this.text = text
-        if(io.sendStatement(this)) {
-            return await("statement")
-        }
-    }
-
-    suspend infix fun DialogueBuilder.choice(text: String): Int {
-        this.text = text
-        if(io.sendChoice(this)) {
-            return await("choice")
-        }
-        return -1
-    }
-
-    suspend infix fun Entity.choice(text: String) = DialogueBuilder(target = this).choice(text)
-
-    suspend infix fun Entity.statement(text: String) = DialogueBuilder(target = this).statement(text)
-
     suspend infix fun Entity.dialogue(text: String) = DialogueBuilder(target = this).dialogue(text)
 
     infix fun DialogueBuilder.animation(expression: Expression) = apply { this.expression = expression }

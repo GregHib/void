@@ -1,0 +1,179 @@
+package rs.dusk.world.interact.dialogue
+
+import io.mockk.*
+import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DynamicTest.dynamicTest
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
+import rs.dusk.engine.action.Contexts
+import rs.dusk.engine.client.ui.Interfaces
+import rs.dusk.engine.client.ui.dialogue.DialogueIO
+import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.entity.character.player.Player
+
+internal class ChoiceTest {
+
+    lateinit var interfaces: Interfaces
+    lateinit var manager: Dialogues
+    lateinit var io: DialogueIO
+    lateinit var player: Player
+
+    @BeforeEach
+    fun setup() {
+        mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
+        player = mockk(relaxed = true)
+        interfaces = mockk(relaxed = true)
+        io = mockk(relaxed = true)
+        manager = spyk(Dialogues(io, player))
+        every { player.open(any()) } returns true
+        every { player.interfaces } returns interfaces
+    }
+
+
+    @TestFactory
+    fun `Send choice lines`() = arrayOf(
+        """
+            One
+            Two
+        """ to "multi2",
+        "One\nTwo\nThree" to "multi3",
+        "One\nTwo\nThree\nFour" to "multi4",
+        "One\nTwo\nThree\nFour\nFive" to "multi5"
+    ).map { (text, expected) ->
+        dynamicTest("Text '$text' expected $expected") {
+            manager.start {
+                choice(text = text)
+            }
+            runBlocking(Contexts.Game) {
+                verify {
+                    player.open(expected)
+                    for((index, line) in text.trimIndent().lines().withIndex()) {
+                        interfaces.sendText(expected, "line${index + 1}", line)
+                    }
+                }
+            }
+        }
+    }
+
+    @TestFactory
+    fun `Send multi line choice lines`() = arrayOf(
+        """
+            One
+            Two<br>Three
+        """ to "multi2_chat",
+        "One\nTwo\nThree<br>Four" to "multi3_chat",
+        "One\nTwo<br>Five\nThree\nFour" to "multi4_chat",
+        "One\nTwo\nThree\nFour<br>Six\nFive" to "multi5_chat"
+    ).map { (text, expected) ->
+        dynamicTest("Text '$text' expected $expected") {
+            manager.start {
+                choice(text = text)
+            }
+            runBlocking(Contexts.Game) {
+                verify {
+                    player.open(expected)
+                    for ((index, line) in text.trimIndent().lines().withIndex()) {
+                        interfaces.sendText(expected, "line${index + 1}", line)
+                    }
+                }
+            }
+        }
+    }
+
+    @TestFactory
+    fun `Send multi line title choice lines`() = arrayOf(
+        """
+            One
+            Two
+        """ to "multi_var2",
+        "One\nTwo\nThree" to "multi_var3",
+        "One\nTwo\nThree\nFour" to "multi_var4",
+        "One\nTwo\nThree\nFour\nFive" to "multi_var5"
+    ).map { (text, expected) ->
+        dynamicTest("Text '$text' expected $expected") {
+            manager.start {
+                choice(text = text, title = "First<br>Second")
+            }
+            runBlocking(Contexts.Game) {
+                verify {
+                    player.open(expected)
+                    for ((index, line) in text.trimIndent().lines().withIndex()) {
+                        interfaces.sendText(expected, "line${index + 1}", line)
+                    }
+                }
+            }
+        }
+    }
+
+    @Test
+    fun `Sending six or more lines is ignored`() {
+        manager.start {
+            choice(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
+        }
+        runBlocking(Contexts.Game) {
+            verify(exactly = 0) {
+                player.open(any())
+            }
+        }
+    }
+
+    @Test
+    fun `Sending less than two lines is ignored`() {
+        manager.start {
+            choice(text = "One line")
+        }
+        runBlocking(Contexts.Game) {
+            verify(exactly = 0) {
+                player.open(any())
+            }
+        }
+    }
+
+    @Test
+    fun `Send no title`() {
+        manager.start {
+            choice(text = "Yes\nNo", title = null)
+        }
+        runBlocking(Contexts.Game) {
+            verify {
+                player.open("multi2")
+            }
+            verify(exactly = 0) {
+                interfaces.sendText("multi2", "title", any())
+            }
+        }
+    }
+
+    @Test
+    fun `Choice not sent if interface not opened`() {
+        every { player.open("multi2") } returns false
+        coEvery { manager.await<Int>(any()) } returns 0
+        manager.start {
+            choice(text = "Yes\nNo")
+        }
+        runBlocking(Contexts.Game) {
+            coVerify(exactly = 0) {
+                manager.await<Any>(any())
+                interfaces.sendText("multi2", "line1", "Yes")
+                interfaces.sendText("multi2", "line2", "No")
+            }
+        }
+    }
+
+    @Test
+    fun `Send choice`() {
+        coEvery { manager.await<Int>(any()) } returns 0
+        manager.start {
+            choice(text = "Yes\nNo")
+        }
+        runBlocking(Contexts.Game) {
+            coVerify {
+                manager.await<Int>("choice")
+                interfaces.sendText("multi2", "line1", "Yes")
+                interfaces.sendText("multi2", "line2", "No")
+            }
+        }
+    }
+}

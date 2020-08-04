@@ -23,7 +23,7 @@ internal class PlayerLoaderTest : KoinMock() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns mockk(relaxed = true)
-        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), strategy)
         // When
         loader.loadPlayer("test")
         // Then
@@ -35,7 +35,7 @@ internal class PlayerLoaderTest : KoinMock() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns null
-        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), strategy)
         // When
         val result = loader.loadPlayer("test")
         // Then
@@ -57,7 +57,7 @@ internal class PlayerLoaderTest : KoinMock() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns null
-        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), strategy)
         // When
         val result = loader.loadPlayer("test")
         // Then

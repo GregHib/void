@@ -1,14 +1,13 @@
 package rs.dusk.engine.client.ui.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
 
-class PlayerDialogueIO(private val player: Player, private val itemDecoder: ItemDecoder) : DialogueIO {
+class PlayerDialogueIO(private val player: Player) : DialogueIO {
 
     private val interfaces = player.interfaces
 
@@ -30,49 +29,6 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
 
             val title = getOverrideOrEntityName(builder.title, target)
             interfaces.sendText(name, "title", title)
-
-            sendLines(name, lines)
-            return true
-        }
-        return false
-    }
-
-    override fun sendStatement(builder: DialogueBuilder): Boolean {
-        val lines = builder.lines()
-
-        if (lines.size > MAXIMUM_STATEMENT_SIZE) {
-            logger.warn { "Maximum statement lines exceeded $builder for $player" }
-            return false
-        }
-
-        val name = getInterfaceName("message", lines.size, builder.clickToContinue)
-        if (player.open(name)) {
-            sendLines(name, lines)
-            return true
-        }
-        return false
-    }
-
-    override fun sendChoice(builder: DialogueBuilder): Boolean {
-        val lines = builder.lines()
-
-        if (lines.size !in CHOICE_LINE_RANGE) {
-            logger.warn { "Invalid choice line count $builder for $player" }
-            return false
-        }
-
-        val title = builder.title
-        val multilineTitle = title != null && isMultiline(title)
-        val multilineOptions = lines.any { isMultiline(it) }
-        val name = getChoiceName(multilineTitle, multilineOptions, lines.size)
-        if (player.open(name)) {
-
-            if (title != null) {
-                val wide = title.length > APPROXIMATE_WIDE_TITLE_LENGTH
-                interfaces.sendVisibility(name, "wide_swords", wide)
-                interfaces.sendVisibility(name, "thin_swords", !wide)
-                interfaces.sendText(name, "title", title)
-            }
 
             sendLines(name, lines)
             return true
@@ -119,16 +75,7 @@ class PlayerDialogueIO(private val player: Player, private val itemDecoder: Item
         }
     }
 
-    private fun isMultiline(string: String): Boolean = string.contains("<br>")
-
-    private fun getChoiceName(multilineTitle: Boolean, multilineOptions: Boolean, lines: Int): String {
-        return "multi${if (multilineTitle) "_var" else ""}$lines${if (multilineOptions) "_chat" else ""}"
-    }
-
     companion object {
         private val logger = InlineLogger()
-        private const val MAXIMUM_STATEMENT_SIZE = 5
-        private val CHOICE_LINE_RANGE = 2..5
-        private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
     }
 }

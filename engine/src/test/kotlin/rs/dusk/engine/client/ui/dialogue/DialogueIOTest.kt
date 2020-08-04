@@ -32,7 +32,7 @@ abstract class DialogueIOTest {
         every { player.name } returns "name"
         every { player.interfaces } returns manager
         itemDecoder = mockk(relaxed = true)
-        io = PlayerDialogueIO(player, itemDecoder)
+        io = PlayerDialogueIO(player)
     }
 
 }
