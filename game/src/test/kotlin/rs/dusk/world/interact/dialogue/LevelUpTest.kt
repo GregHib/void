@@ -2,41 +2,28 @@ package rs.dusk.world.interact.dialogue
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.setVar
-import rs.dusk.engine.entity.character.player.Player
 
-internal class LevelUpTest {
-
-    lateinit var interfaces: Interfaces
-    lateinit var manager: Dialogues
-    lateinit var player: Player
+internal class LevelUpTest : DialogueTest() {
 
     @BeforeEach
-    fun setup() {
-        mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
+    override fun setup() {
+        super.setup()
         mockkStatic("rs.dusk.engine.client.variable.VariablesKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
-        every { player.open(any()) } returns true
         every { player.setVar(any(), any<Int>()) } just Runs
-        every { player.interfaces } returns interfaces
     }
 
     @Test
-    fun `Send level up`() = runBlocking {
-        manager.start {
+    fun `Send level up`() {
+        manager.start(context) {
             levelUp("Congrats\nLevel", 12)
         }
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             assertEquals("level", manager.currentType())
             verify {
                 player.open("level_up_dialog")
@@ -48,16 +35,16 @@ internal class LevelUpTest {
     }
 
     @Test
-    fun `Level up not sent if interface not opened`() = runBlocking {
+    fun `Level up not sent if interface not opened`() {
         every { player.open("level_up_dialog") } returns false
-        coEvery { manager.await<Unit>(any()) } just Runs
-        manager.start {
+        coEvery { context.await<Unit>(any()) } just Runs
+        manager.start(context) {
             levelUp("One\nTwo", 1)
         }
 
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Unit>(any())
+                context.await<Unit>(any())
                 interfaces.sendText("level_up_dialog", "line1", "One")
             }
         }

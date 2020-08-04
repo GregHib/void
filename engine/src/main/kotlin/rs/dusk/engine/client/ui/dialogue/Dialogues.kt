@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.CancellationException
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 import java.util.*
@@ -10,34 +10,54 @@ import kotlin.coroutines.resume
 
 class Dialogues(val player: Player) {
 
-    var npc: NPC? = null
-        private set
-
-    private val suspensions: Queue<Pair<String, CancellableContinuation<*>>> = LinkedList()
+    private val suspensions: Queue<DialogueContext> = LinkedList()
 
     val isEmpty: Boolean
         get() = suspensions.isEmpty()
 
 
     fun currentType(): String {
-        return suspensions.peek()?.first ?: ""
+        return suspensions.peek()?.suspensionType ?: ""
     }
 
     fun resume() = resume(Unit)
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> resume(value: T) {
-        val cont = suspensions.poll().second as? CancellableContinuation<T>
+        val cont = suspensions.poll().coroutine as? CancellableContinuation<T>
         cont?.resume(value)
     }
 
-    fun start(npc: NPC? = null, function: suspend Dialogues.() -> Unit) {
-        this.npc = npc
-        val coroutine = function.createCoroutine(this, DialogueContinuation)
+    fun start(player: Player, npc: NPC? = null, function: suspend DialogueContext.() -> Unit) {
+        start(DialogueContext(this, player, npc), function)
+    }
+
+    fun start(player: Player, npcId: Int, npcName: String, function: suspend DialogueContext.() -> Unit) {
+        start(DialogueContext(this, player, npcId, npcName), function)
+    }
+
+    fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
+        val coroutine = function.createCoroutine(context, DialogueContinuation)
         coroutine.resume(Unit)
     }
 
-    suspend fun <T> await(type: String) = suspendCancellableCoroutine<T> {
-        suspensions.add(type to it)
+    fun add(context: DialogueContext) {
+        suspensions.add(context)
     }
+
+    fun clear() {
+        val throwable = CancellationException("Dialogues cleared")
+        suspensions.forEach {
+            it.coroutine?.cancel(throwable)
+        }
+        suspensions.clear()
+    }
+}
+
+fun Player.dialogue(id: Int, name: String, function: suspend DialogueContext.() -> Unit) {
+    dialogues.start(this, id, name, function)
+}
+
+fun Player.dialogue(npc: NPC? = null, function: suspend DialogueContext.() -> Unit) {
+    dialogues.start(this, npc, function)
 }

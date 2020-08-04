@@ -1,33 +1,17 @@
 package rs.dusk.world.interact.dialogue
 
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.entity.character.player.Player
 
-internal class ChoiceTest {
-
-    lateinit var interfaces: Interfaces
-    lateinit var manager: Dialogues
-    lateinit var player: Player
-
-    @BeforeEach
-    fun setup() {
-        mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
-        every { player.open(any()) } returns true
-        every { player.interfaces } returns interfaces
-    }
-
+internal class ChoiceTest : DialogueTest() {
 
     @TestFactory
     fun `Send choice lines`() = arrayOf(
@@ -40,7 +24,7 @@ internal class ChoiceTest {
         "One\nTwo\nThree\nFour\nFive" to "multi5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start {
+            manager.start(context) {
                 choice(text = text)
             }
             runBlocking(Contexts.Game) {
@@ -65,7 +49,7 @@ internal class ChoiceTest {
         "One\nTwo\nThree\nFour<br>Six\nFive" to "multi5_chat"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start {
+            manager.start(context) {
                 choice(text = text)
             }
             runBlocking(Contexts.Game) {
@@ -90,7 +74,7 @@ internal class ChoiceTest {
         "One\nTwo\nThree\nFour\nFive" to "multi_var5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start {
+            manager.start(context) {
                 choice(text = text, title = "First<br>Second")
             }
             runBlocking(Contexts.Game) {
@@ -106,7 +90,7 @@ internal class ChoiceTest {
 
     @Test
     fun `Sending six or more lines is ignored`() {
-        manager.start {
+        manager.start(context) {
             choice(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
         }
         runBlocking(Contexts.Game) {
@@ -118,7 +102,7 @@ internal class ChoiceTest {
 
     @Test
     fun `Sending less than two lines is ignored`() {
-        manager.start {
+        manager.start(context) {
             choice(text = "One line")
         }
         runBlocking(Contexts.Game) {
@@ -130,7 +114,7 @@ internal class ChoiceTest {
 
     @Test
     fun `Send no title`() {
-        manager.start {
+        manager.start(context) {
             choice(text = "Yes\nNo", title = null)
         }
         runBlocking(Contexts.Game) {
@@ -146,13 +130,13 @@ internal class ChoiceTest {
     @Test
     fun `Choice not sent if interface not opened`() {
         every { player.open("multi2") } returns false
-        coEvery { manager.await<Int>(any()) } returns 0
-        manager.start {
+        coEvery { context.await<Int>(any()) } returns 0
+        manager.start(context) {
             choice(text = "Yes\nNo")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Any>(any())
+                context.await<Any>(any())
                 interfaces.sendText("multi2", "line1", "Yes")
                 interfaces.sendText("multi2", "line2", "No")
             }
@@ -161,13 +145,13 @@ internal class ChoiceTest {
 
     @Test
     fun `Send choice`() {
-        coEvery { manager.await<Int>(any()) } returns 0
-        manager.start {
+        coEvery { context.await<Int>(any()) } returns 0
+        manager.start(context) {
             choice(text = "Yes\nNo")
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                manager.await<Int>("choice")
+                context.await<Int>("choice")
                 interfaces.sendText("multi2", "line1", "Yes")
                 interfaces.sendText("multi2", "line2", "No")
             }

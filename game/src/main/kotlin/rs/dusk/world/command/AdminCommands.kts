@@ -1,5 +1,6 @@
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
+import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
@@ -88,7 +89,7 @@ Command where { prefix == "item" } then {
 }
 
 Command where { prefix == "test" } then {
-    player.dialogues.start {
+    player.dialogue {
 //        player dialogue "Hi"
 //        NPC(id = 1, tile = Tile.EMPTY) dialogue "Hello Adventurer"
 //        player statement "Words"

@@ -1,7 +1,7 @@
 package rs.dusk.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
 
@@ -9,7 +9,7 @@ private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
 private val logger = InlineLogger()
 
-suspend fun Dialogues.choice(text: String, title: String? = null): Int {
+suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
     val lines = text.trimIndent().lines()
 
     if (lines.size !in CHOICE_LINE_RANGE) {

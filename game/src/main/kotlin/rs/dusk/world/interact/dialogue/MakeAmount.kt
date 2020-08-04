@@ -1,7 +1,7 @@
 package rs.dusk.world.interact.dialogue
 
 import rs.dusk.cache.definition.decoder.ItemDecoder
-import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
@@ -13,7 +13,7 @@ private const val INTERFACE_NAME = "skill_creation"
 private const val INTERFACE_AMOUNT_NAME = "skill_creation_amount"
 private const val DEFAULT_TEXT = "Choose how many you wish to make, then<br>click on the chosen item to begin."
 
-suspend fun Dialogues.makeAmount(items: List<Int>, type: String, maximum: Int, text: String = DEFAULT_TEXT): Pair<Int, Int> {
+suspend fun DialogueContext.makeAmount(items: List<Int>, type: String, maximum: Int, text: String = DEFAULT_TEXT): Pair<Int, Int> {
     return if(player.open(INTERFACE_NAME) && player.open(INTERFACE_AMOUNT_NAME)) {
         if (type != "Make sets" && type != "Make2" && type != "Make sets2") {
             player.interfaces.sendSettings(INTERFACE_AMOUNT_NAME, "all", -1, 0, 0)

@@ -2,8 +2,6 @@ package rs.dusk.world.interact.dialogue
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -13,6 +11,7 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.Interfaces
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
@@ -23,6 +22,7 @@ internal class DestroyTest : KoinMock() {
     lateinit var interfaces: Interfaces
     lateinit var manager: Dialogues
     lateinit var player: Player
+    lateinit var context: DialogueContext
 
     override val modules = listOf(cacheDefinitionModule)
 
@@ -32,6 +32,8 @@ internal class DestroyTest : KoinMock() {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         manager = spyk(Dialogues(player))
+        context = mockk(relaxed = true)
+        every { context.player } returns player
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
         declareMock<ItemDecoder> {
@@ -40,12 +42,11 @@ internal class DestroyTest : KoinMock() {
     }
 
     @Test
-    fun `Send item destroy`() = runBlocking {
-        manager.start {
+    fun `Send item destroy`() {
+        manager.start(context) {
             destroy("question", 1234)
         }
-        withContext(Contexts.Game) {
-            assertEquals("destroy", manager.currentType())
+        runBlocking(Contexts.Game) {
             verify {
                 player.open("confirm_destroy")
                 interfaces.sendText("confirm_destroy", "line1", "question")
@@ -56,25 +57,25 @@ internal class DestroyTest : KoinMock() {
     }
 
     @Test
-    fun `Destroy not sent if interface not opened`() = runBlocking {
-        coEvery { manager.await<Boolean>(any()) } returns false
+    fun `Destroy not sent if interface not opened`() {
+        coEvery { context.await<Boolean>(any()) } returns false
         every { player.open("confirm_destroy") } returns false
-        manager.start {
+        manager.start(context) {
             destroy("question", 1234)
         }
 
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Boolean>("destroy")
+                context.await<Boolean>("destroy")
                 interfaces.sendText("confirm_destroy", "line1", "question")
             }
         }
     }
 
     @Test
-    fun `Destroy returns boolean`() = runBlocking {
-        coEvery { manager.await<Boolean>(any()) } returns true
-        manager.start {
+    fun `Destroy returns boolean`() {
+        coEvery { context.await<Boolean>(any()) } returns true
+        manager.start(context) {
             assertTrue(destroy("question", 1234))
         }
     }

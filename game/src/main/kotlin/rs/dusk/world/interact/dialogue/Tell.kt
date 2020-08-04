@@ -1,14 +1,14 @@
 package rs.dusk.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
 
 private val logger = InlineLogger()
 
-suspend fun Dialogues.tell(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.tell(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {
@@ -18,12 +18,11 @@ suspend fun Dialogues.tell(text: String, expression: Expression = Expression.Tal
 
     val name = getInterfaceName("npc_chat", lines.size, clickToContinue)
 
-    val npc = npc
-    if (npc != null && player.open(name)) {
+    if (player.open(name)) {
         val head = getChatHeadComponentName(largeHead)
-        player.interfaces.sendNPCHead(name, head, npc.id)
+        player.interfaces.sendNPCHead(name, head, npcId)
         player.interfaces.sendAnimation(name, head, expression.id)
-        player.interfaces.sendText(name, "title", title ?: npc.def.name)
+        player.interfaces.sendText(name, "title", title ?: npcName)
         sendLines(player, name, lines)
         await<Unit>("npc")
     }

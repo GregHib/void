@@ -1,7 +1,7 @@
 package rs.dusk.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
@@ -9,7 +9,7 @@ import rs.dusk.engine.entity.character.update.visual.player.name
 
 private val logger = InlineLogger()
 
-suspend fun Dialogues.say(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.say(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {

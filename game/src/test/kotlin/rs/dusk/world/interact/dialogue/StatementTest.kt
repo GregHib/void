@@ -2,32 +2,13 @@ package rs.dusk.world.interact.dialogue
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.entity.character.player.Player
 
-internal class StatementTest {
-
-    lateinit var interfaces: Interfaces
-    lateinit var manager: Dialogues
-    lateinit var player: Player
-
-    @BeforeEach
-    fun setup() {
-        mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
-        every { player.open(any()) } returns true
-        every { player.interfaces } returns interfaces
-    }
+internal class StatementTest : DialogueTest() {
 
 
     @TestFactory
@@ -42,7 +23,7 @@ internal class StatementTest {
         "One\nTwo\nThree\nFour\nFive" to "message5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start {
+            manager.start(context) {
                 statement(text = text, clickToContinue = true)
             }
             runBlocking(Contexts.Game) {
@@ -68,7 +49,7 @@ internal class StatementTest {
         "One\nTwo\nThree\nFour\nFive" to "message_np5"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start {
+            manager.start(context) {
                 statement(text = text, clickToContinue = false)
             }
             runBlocking(Contexts.Game) {
@@ -84,7 +65,7 @@ internal class StatementTest {
 
     @Test
     fun `Sending six or more lines is ignored`() {
-        manager.start {
+        manager.start(context) {
             statement(text = "\nOne\nTwo\nThree\nFour\nFive\nSix")
         }
         runBlocking(Contexts.Game) {
@@ -95,31 +76,31 @@ internal class StatementTest {
     }
 
     @Test
-    fun `Send statement`() = runBlocking {
-        coEvery { manager.await<Unit>(any()) } just Runs
-        manager.start {
+    fun `Send statement`() {
+        coEvery { context.await<Unit>(any()) } just Runs
+        manager.start(context) {
             statement("text")
         }
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             coVerify {
                 player.open("message1")
                 interfaces.sendText("message1", "line1", "text")
-                manager.await<Unit>("statement")
+                context.await<Unit>("statement")
             }
         }
     }
 
     @Test
-    fun `Statement not sent if interface not opened`() = runBlocking {
-        coEvery { manager.await<Unit>(any()) } just Runs
+    fun `Statement not sent if interface not opened`() {
+        coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("message1") } returns false
-        manager.start {
+        manager.start(context) {
             statement("text")
         }
 
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Unit>("statement")
+                context.await<Unit>("statement")
                 interfaces.sendText("message1", "line1", "text")
             }
         }

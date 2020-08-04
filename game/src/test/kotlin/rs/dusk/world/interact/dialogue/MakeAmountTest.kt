@@ -2,8 +2,6 @@ package rs.dusk.world.interact.dialogue
 
 import io.mockk.*
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.withContext
-import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
@@ -12,6 +10,7 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.Interfaces
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.getVar
@@ -24,6 +23,7 @@ internal class MakeAmountTest : KoinMock() {
     lateinit var interfaces: Interfaces
     lateinit var manager: Dialogues
     lateinit var player: Player
+    lateinit var context: DialogueContext
 
     override val modules = listOf(cacheDefinitionModule)
 
@@ -34,6 +34,9 @@ internal class MakeAmountTest : KoinMock() {
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
         manager = spyk(Dialogues(player))
+        context = mockk(relaxed = true)
+        every { context.player } returns player
+        coEvery { context.await<Int>(any()) } returns 0
         every { player.open(any()) } returns true
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
@@ -46,12 +49,11 @@ internal class MakeAmountTest : KoinMock() {
     }
 
     @Test
-    fun `Send make amount dialogue`() = runBlocking {
-        manager.start {
+    fun `Send make amount dialogue`() {
+        manager.start(context) {
             makeAmount(listOf(1, 2, 3), "ants", 25)
         }
-        withContext(Contexts.Game) {
-            assertEquals("make", manager.currentType())
+        runBlocking(Contexts.Game) {
             verify {
                 player.open("skill_creation")
                 player.open("skill_creation_amount")
@@ -70,13 +72,12 @@ internal class MakeAmountTest : KoinMock() {
     }
 
     @Test
-    fun `Persistent amount exceeding maximum will be capped`() = runBlocking {
+    fun `Persistent amount exceeding maximum will be capped`() {
         every { player.getVar("skill_creation_amount", any<Int>()) } returns 30
-        manager.start {
+        manager.start(context) {
             makeAmount(listOf(1, 2, 3), "ants", 25)
         }
-        withContext(Contexts.Game) {
-            assertEquals("make", manager.currentType())
+        runBlocking(Contexts.Game) {
             verify {
                 player.setVar("skill_creation_maximum", 25)
                 player.setVar("skill_creation_amount", 25)
@@ -85,12 +86,12 @@ internal class MakeAmountTest : KoinMock() {
     }
 
     @Test
-    fun `Make amount not sent if interface not opened`() = runBlocking {
+    fun `Make amount not sent if interface not opened`() {
         every { player.open("skill_creation") } returns false
-        manager.start {
+        manager.start(context) {
             makeAmount(listOf(1, 2, 3), "ants", 25)
         }
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             verify(exactly = 0) {
                 player.setVar("skill_creation_type", "ants")
             }
@@ -98,27 +99,26 @@ internal class MakeAmountTest : KoinMock() {
     }
 
     @Test
-    fun `Make amount not sent if sub interface not opened`() = runBlocking {
-        coEvery { manager.await<Pair<Int, Int>>(any()) } returns (-1 to 0)
+    fun `Make amount not sent if sub interface not opened`() {
+        coEvery { context.await<Pair<Int, Int>>(any()) } returns (-1 to 0)
         every { player.open("skill_creation_amount") } returns false
-        manager.start {
+        manager.start(context) {
             makeAmount(listOf(1, 2, 3), "ants", 25)
         }
-        withContext(Contexts.Game) {
+        runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Pair<Int, Int>>(any())
+                context.await<Pair<Int, Int>>(any())
                 player.setVar("skill_creation_type", "ants")
             }
         }
     }
 
     @Test
-    fun `Make amount send text`() = runBlocking {
-        manager.start {
+    fun `Make amount send text`() {
+        manager.start(context) {
             makeAmount(listOf(1, 2, 3), "ants", 25, text = "Just a test")
         }
-        withContext(Contexts.Game) {
-            assertEquals("make", manager.currentType())
+        runBlocking(Contexts.Game) {
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "Just a test")
             }

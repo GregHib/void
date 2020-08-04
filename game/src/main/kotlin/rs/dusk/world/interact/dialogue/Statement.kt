@@ -1,14 +1,14 @@
 package rs.dusk.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.client.ui.dialogue.Dialogues
+import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
 
 private const val MAXIMUM_STATEMENT_SIZE = 5
 private val logger = InlineLogger()
 
-suspend fun Dialogues.statement(text: String, clickToContinue: Boolean = true) {
+suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = true) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > MAXIMUM_STATEMENT_SIZE) {

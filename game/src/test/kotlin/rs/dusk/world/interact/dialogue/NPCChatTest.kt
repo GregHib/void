@@ -9,33 +9,23 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.engine.action.Contexts
-import rs.dusk.engine.client.ui.Interfaces
-import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.npc.NPC
-import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
 
-internal class NPCChatTest {
+internal class NPCChatTest : DialogueTest() {
 
-    lateinit var interfaces: Interfaces
-    lateinit var manager: Dialogues
-    lateinit var player: Player
     lateinit var npc: NPC
 
     @BeforeEach
-    fun setup() {
-        mockkStatic("rs.dusk.engine.client.ui.InterfacesKt")
-        mockkStatic("rs.dusk.engine.entity.character.update.visual.player.AppearanceKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
+    override fun setup() {
+        super.setup()
         npc = mockk(relaxed = true)
-        manager = spyk(Dialogues(player))
-        every { player.open(any()) } returns true
-        every { player.interfaces } returns interfaces
         every { player.name } returns ""
         every { npc.def.name } returns "John"
+        every { context.npcId } returns 123
+        every { context.npcName } returns "John"
     }
 
     @TestFactory
@@ -49,7 +39,7 @@ internal class NPCChatTest {
         "One\nTwo\nThree\nFour" to "npc_chat4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(npc) {
+            manager.start(context) {
                 tell(text = text, clickToContinue = true)
             }
             runBlocking(Contexts.Game) {
@@ -74,7 +64,7 @@ internal class NPCChatTest {
         "One\nTwo\nThree\nFour" to "npc_chat_np4"
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
-            manager.start(npc) {
+            manager.start(context) {
                 tell(text = text, clickToContinue = false)
             }
             runBlocking(Contexts.Game) {
@@ -90,7 +80,7 @@ internal class NPCChatTest {
 
     @Test
     fun `Sending five or more lines to chat is ignored`() {
-        manager.start(npc) {
+        manager.start(context) {
             tell(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
         runBlocking(Contexts.Game) {
@@ -104,7 +94,7 @@ internal class NPCChatTest {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         every { npc.id } returns 123
-        manager.start(npc) {
+        manager.start(context) {
             tell(text = "Text", largeHead = large, expression = Expression.Talking)
         }
         runBlocking(Contexts.Game) {
@@ -117,7 +107,7 @@ internal class NPCChatTest {
 
     @Test
     fun `Send custom player chat title`() {
-        manager.start(npc) {
+        manager.start(context) {
             tell(text = "text", title = "Bob")
         }
         runBlocking(Contexts.Game) {
@@ -129,14 +119,15 @@ internal class NPCChatTest {
 
     @Test
     fun `Send player chat`() {
-        every { npc.def.name } returns "Jim"
-        coEvery { manager.await<Unit>(any()) } just Runs
-        manager.start(npc) {
+        every { context.npcId } returns 123
+        every { context.npcName } returns "Jim"
+        coEvery { context.await<Unit>(any()) } just Runs
+        manager.start(context) {
             tell(text = "text", largeHead = true, expression = Expression.Laugh)
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                manager.await<Unit>("npc")
+                context.await<Unit>("npc")
                 interfaces.sendText("npc_chat1", "title", "Jim")
                 interfaces.sendAnimation("npc_chat1", "head_large", 9840)
             }
@@ -146,13 +137,13 @@ internal class NPCChatTest {
     @Test
     fun `NPC chat not sent if interface not opened`() {
         every { player.open("npc_chat1") } returns false
-        coEvery { manager.await<Unit>(any()) } just Runs
-        manager.start(npc) {
+        coEvery { context.await<Unit>(any()) } just Runs
+        manager.start(context) {
             tell(text = "text")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                manager.await<Unit>("npc")
+                context.await<Unit>("npc")
                 interfaces.sendText("npc_chat1", "line1", "text")
             }
         }
