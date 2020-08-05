@@ -17,12 +17,14 @@ suspend fun DialogueContext.makeAmount(
     items: List<Int>,
     type: String,
     maximum: Int,
-    text: String = DEFAULT_TEXT
+    text: String = DEFAULT_TEXT,
+    allowAll: Boolean = true
 ): Pair<Int, Int> {
     return if (player.open(INTERFACE_NAME) && player.open(INTERFACE_AMOUNT_NAME)) {
-        if (type != "Make sets" && type != "Make2" && type != "Make sets2") {
+        if (allowAll) {
             player.interfaces.sendSettings(INTERFACE_AMOUNT_NAME, "all", -1, 0, 0)
         }
+        player.interfaces.sendVisibility(INTERFACE_NAME, "all", allowAll)
         player.interfaces.sendVisibility(INTERFACE_NAME, "custom", false)
         player.interfaces.sendText(INTERFACE_AMOUNT_NAME, "line1", text)
         player.setVar("skill_creation_type", type)

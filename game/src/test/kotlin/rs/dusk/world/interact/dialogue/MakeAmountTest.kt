@@ -122,6 +122,25 @@ internal class MakeAmountTest : KoinMock() {
         runBlocking(Contexts.Game) {
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "Just a test")
+                interfaces.sendSettings("skill_creation_amount", "all", -1, 0, 0)
+                interfaces.sendVisibility("skill_creation", "all", true)
+                interfaces.sendVisibility("skill_creation", "custom", false)
+            }
+        }
+    }
+
+    @Test
+    fun `Hide 'all' button`() {
+        manager.start(context) {
+            makeAmount(listOf(1, 2, 3), "ants", 25, text = "test", allowAll = false)
+        }
+        runBlocking(Contexts.Game) {
+            verify(exactly = 0) {
+                interfaces.sendSettings("skill_creation_amount", "all", -1, 0, 0)
+            }
+            verify {
+                interfaces.sendText("skill_creation_amount", "line1", "test")
+                interfaces.sendVisibility("skill_creation", "all", false)
             }
         }
     }
