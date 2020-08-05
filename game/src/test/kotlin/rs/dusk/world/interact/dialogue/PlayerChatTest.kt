@@ -120,7 +120,7 @@ internal class PlayerChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                context.await<Unit>("player")
+                context.await<Unit>("chat")
                 interfaces.sendText("chat1", "title", "Jim")
                 interfaces.sendAnimation("chat1", "head_large", 9840)
             }
@@ -136,7 +136,7 @@ internal class PlayerChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                context.await<Unit>("player")
+                context.await<Unit>("chat")
                 interfaces.sendText("chat1", "line1", "text")
             }
         }

@@ -7,7 +7,6 @@ import rs.dusk.engine.event.where
 import rs.dusk.world.interact.dialogue.event.ContinueDialogue
 import rs.dusk.world.interact.dialogue.event.IntEntered
 import rs.dusk.world.interact.dialogue.event.StringEntered
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
 
 val logger = InlineLogger()
 
@@ -69,12 +68,4 @@ ContinueDialogue where { name == "confirm_destroy" } then {
 ContinueDialogue where { name == "skill_creation" && component.startsWith("choice") } then {
     val choice = component.substringAfter("choice").toIntOrNull() ?: 0
     player.dialogues.resume(choice - 1)
-}
-
-ContinueDialogue then {
-    println(this)
-}
-
-InterfaceInteraction then {
-    println(this)
 }

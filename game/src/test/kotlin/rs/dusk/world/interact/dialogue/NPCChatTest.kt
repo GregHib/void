@@ -128,7 +128,7 @@ internal class NPCChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                context.await<Unit>("npc")
+                context.await<Unit>("chat")
                 interfaces.sendText("npc_chat1", "title", "Jim")
                 interfaces.sendAnimation("npc_chat1", "head_large", 9840)
             }
@@ -144,7 +144,7 @@ internal class NPCChatTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                context.await<Unit>("npc")
+                context.await<Unit>("chat")
                 interfaces.sendText("npc_chat1", "line1", "text")
             }
         }

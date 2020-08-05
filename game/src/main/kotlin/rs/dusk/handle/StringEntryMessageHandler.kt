@@ -24,7 +24,6 @@ class StringEntryMessageHandler : GameMessageHandler<StringEntryMessage>() {
     override fun handle(ctx: ChannelHandlerContext, msg: StringEntryMessage) {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
-        println("String entered $msg")
         executor.start {
             bus.emit(StringEntered(player, msg.text))
         }

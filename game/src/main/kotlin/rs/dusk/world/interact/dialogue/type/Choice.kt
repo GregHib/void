@@ -9,7 +9,7 @@ private val CHOICE_LINE_RANGE = 2..5
 private const val APPROXIMATE_WIDE_TITLE_LENGTH = 30
 private val logger = InlineLogger()
 
-suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
+suspend fun DialogueContext.choice(text: String, title: String? = null, saySelection: Boolean = true): Int {
     val lines = text.trimIndent().lines()
 
     if (lines.size !in CHOICE_LINE_RANGE) {
@@ -33,7 +33,14 @@ suspend fun DialogueContext.choice(text: String, title: String? = null): Int {
         }
 
         sendLines(player, name, lines)
-        return await("choice")
+        val choice = await<Int>("choice")
+        if (saySelection) {
+            val line = lines.getOrNull(choice - 1)
+            if (line != null) {
+                say(text = line)
+            }
+        }
+        return choice
     }
     return -1
 }

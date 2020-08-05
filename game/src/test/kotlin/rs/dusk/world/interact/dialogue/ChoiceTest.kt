@@ -1,18 +1,24 @@
 package rs.dusk.world.interact.dialogue
 
-import io.mockk.coEvery
-import io.mockk.coVerify
-import io.mockk.every
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.runBlocking
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.open
 import rs.dusk.world.interact.dialogue.type.choice
+import rs.dusk.world.interact.dialogue.type.say
 
 internal class ChoiceTest : DialogueTest() {
+
+    @BeforeEach
+    override fun setup() {
+        super.setup()
+        mockkStatic("rs.dusk.world.interact.dialogue.type.SayKt")
+        coEvery { context.say(any()) } just Runs
+    }
 
     @TestFactory
     fun `Send choice lines`() = arrayOf(
@@ -155,6 +161,36 @@ internal class ChoiceTest : DialogueTest() {
                 context.await<Int>("choice")
                 interfaces.sendText("multi2", "line1", "Yes")
                 interfaces.sendText("multi2", "line2", "No")
+            }
+        }
+    }
+
+    @Test
+    fun `Send say selection`() {
+        manager.start(context) {
+            choice(text = "Yes\nNo", saySelection = true)
+        }
+        runBlocking(Contexts.Game) {
+            manager.resume(1)
+        }
+        runBlocking(Contexts.Game) {
+            coVerify {
+                context.say("Yes")
+            }
+        }
+    }
+
+    @Test
+    fun `Send don't say selection`() {
+        manager.start(context) {
+            choice(text = "Yes\nNo", saySelection = false)
+        }
+        runBlocking(Contexts.Game) {
+            manager.resume(1)
+        }
+        runBlocking(Contexts.Game) {
+            coVerify(exactly = 0) {
+                context.say("Yes")
             }
         }
     }

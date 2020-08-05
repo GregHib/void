@@ -26,7 +26,7 @@ suspend fun DialogueContext.say(text: String, expression: Expression = Expressio
         player.interfaces.sendAnimation(name, head, expression.id)
         player.interfaces.sendText(name, "title", title ?: player.name)
         sendLines(player, name, lines)
-        await<Unit>("player")
+        await<Unit>("chat")
     }
 }
 

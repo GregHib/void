@@ -24,7 +24,6 @@ class IntEntryMessageHandler : GameMessageHandler<IntegerEntryMessage>() {
     override fun handle(ctx: ChannelHandlerContext, msg: IntegerEntryMessage) {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
-        println("Int entered $msg")
         executor.start {
             bus.emit(IntEntered(player, msg.integer))
         }
