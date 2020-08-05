@@ -26,7 +26,7 @@ internal class ItemBoxTest : DialogueTest() {
                 player.open("obj_box")
                 player.send(ScriptMessage(3449, 9009, 650))
                 interfaces.sendSprite("obj_box", "sprite", 10)
-                interfaces.sendText("obj_box", "line1", "An item\ndescription")
+                interfaces.sendText("obj_box", "line1", "An item<br>description")
             }
         }
     }

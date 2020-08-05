@@ -45,12 +45,15 @@ internal class DestroyTest : KoinMock() {
     @Test
     fun `Send item destroy`() {
         manager.start(context) {
-            destroy("question", 1234)
+            destroy("""
+                question
+                lines
+            """, 1234)
         }
         runBlocking(Contexts.Game) {
             verify {
                 player.open("confirm_destroy")
-                interfaces.sendText("confirm_destroy", "line1", "question")
+                interfaces.sendText("confirm_destroy", "line1", "question<br>lines")
                 interfaces.sendText("confirm_destroy", "item_name", "magic")
                 interfaces.sendItem("confirm_destroy", "item_slot", 1234, 1)
             }

@@ -135,6 +135,40 @@ internal class ChoiceTest : DialogueTest() {
     }
 
     @Test
+    fun `Send multiline title`() {
+        manager.start(context) {
+            choice(text = "Yes\nNo", title = """
+                A long title that exceeds
+                maximum width but is split
+            """)
+        }
+        runBlocking(Contexts.Game) {
+            verify {
+                player.open("multi_var2")
+                interfaces.sendText("multi_var2", "title", "A long title that exceeds<br>maximum width but is split")
+                interfaces.sendVisibility("multi_var2", "wide_swords", false)
+            }
+        }
+    }
+
+    @Test
+    fun `Send wide multiline title`() {
+        manager.start(context) {
+            choice(text = "Yes\nNo", title = """
+                A long title that exceeds maximum
+                and is on two lines
+            """)
+        }
+        runBlocking(Contexts.Game) {
+            verify {
+                player.open("multi_var2")
+                interfaces.sendText("multi_var2", "title", "A long title that exceeds maximum<br>and is on two lines")
+                interfaces.sendVisibility("multi_var2", "wide_swords", true)
+            }
+        }
+    }
+
+    @Test
     fun `Choice not sent if interface not opened`() {
         every { player.open("multi2") } returns false
         coEvery { context.await<Int>(any()) } returns 0
@@ -166,7 +200,7 @@ internal class ChoiceTest : DialogueTest() {
     }
 
     @Test
-    fun `Send say selection`() {
+    fun `Send choice and repeat selection`() {
         manager.start(context) {
             choice(text = "Yes\nNo", saySelection = true)
         }
@@ -181,7 +215,7 @@ internal class ChoiceTest : DialogueTest() {
     }
 
     @Test
-    fun `Send don't say selection`() {
+    fun `Send choice but don't repeat selection`() {
         manager.start(context) {
             choice(text = "Yes\nNo", saySelection = false)
         }

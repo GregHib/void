@@ -17,7 +17,8 @@ suspend fun DialogueContext.choice(text: String, title: String? = null, saySelec
         return -1
     }
 
-    val multilineTitle = title != null && isMultiline(title)
+    val question = title?.trimIndent()?.replace("\n", "<br>")
+    val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
     val name = getChoiceName(
         multilineTitle,
@@ -25,11 +26,12 @@ suspend fun DialogueContext.choice(text: String, title: String? = null, saySelec
         lines.size
     )
     if (player.open(name)) {
-        if (title != null) {
-            val wide = title.length > APPROXIMATE_WIDE_TITLE_LENGTH
+        if (question != null) {
+            val longestLine = question.split("<br>").maxBy { it.length }?.length ?: 0
+            val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH
             player.interfaces.sendVisibility(name, "wide_swords", wide)
             player.interfaces.sendVisibility(name, "thin_swords", !wide)
-            player.interfaces.sendText(name, "title", title)
+            player.interfaces.sendText(name, "title", question)
         }
 
         sendLines(player, name, lines)

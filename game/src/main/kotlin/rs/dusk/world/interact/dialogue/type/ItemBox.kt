@@ -14,7 +14,7 @@ suspend fun DialogueContext.itemBox(text: String, model: Int, zoom: Int, sprite:
         if (sprite != null) {
             player.interfaces.sendSprite(ITEM_INTERFACE_NAME, "sprite", sprite)
         }
-        player.interfaces.sendText(ITEM_INTERFACE_NAME, "line1", text.trimIndent())
+        player.interfaces.sendText(ITEM_INTERFACE_NAME, "line1", text.trimIndent().replace("\n", "<br>"))
         return await("item")
     }
 }
