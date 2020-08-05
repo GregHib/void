@@ -15,7 +15,10 @@ internal class ItemBoxTest : DialogueTest() {
     @Test
     fun `Send item box`() {
         manager.start(context) {
-            itemBox("question", 9009, 650, 10)
+            itemBox("""
+                An item
+                description
+            """, 9009, 650, 10)
         }
         runBlocking(Contexts.Game) {
             assertEquals("item", manager.currentType())
@@ -23,7 +26,7 @@ internal class ItemBoxTest : DialogueTest() {
                 player.open("obj_box")
                 player.send(ScriptMessage(3449, 9009, 650))
                 interfaces.sendSprite("obj_box", "sprite", 10)
-                interfaces.sendText("obj_box", "line1", "question")
+                interfaces.sendText("obj_box", "line1", "An item\ndescription")
             }
         }
     }
@@ -33,7 +36,7 @@ internal class ItemBoxTest : DialogueTest() {
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false
         manager.start(context) {
-            itemBox("question", 9009, 650, 10)
+            itemBox("text", 9009, 650, 10)
         }
 
         runBlocking(Contexts.Game) {
