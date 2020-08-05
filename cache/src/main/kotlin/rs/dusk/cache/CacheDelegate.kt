@@ -89,12 +89,12 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
         }
         val index = if (indexId == 255) index255 else delegate.index(indexId)
         if (index == null) {
-            logger.warn { "Unable to find valid index for file request [indexId=$indexId, archiveId=$archiveId]}" }
+            logger.debug { "Unable to find valid index for file request [indexId=$indexId, archiveId=$archiveId]}" }
             return null
         }
         val archiveSector = index.readArchiveSector(archiveId)
         if (archiveSector == null) {
-            logger.warn { "Unable to read archive sector $archiveId in index $indexId" }
+            logger.debug { "Unable to read archive sector $archiveId in index $indexId" }
             return null
         }
         return archiveSector.data

@@ -16,7 +16,7 @@ suspend fun DialogueContext.npc(id: Int, npcName: String, text: String, expressi
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {
-        logger.warn { "Maximum npc chat lines exceeded ${lines.size} for $player" }
+        logger.debug { "Maximum npc chat lines exceeded ${lines.size} for $player" }
         return
     }
 

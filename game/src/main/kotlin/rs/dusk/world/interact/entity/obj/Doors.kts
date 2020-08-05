@@ -48,11 +48,11 @@ ObjectOption where { obj.isDoor() && option == "Close" } then {
     val double = getDoubleDoor(obj, 1)
     if (double == null) {
         if (!objects.cancelTimer(obj)) {
-            logger.warn { "Unknown door ${option?.toLowerCase()} $obj" }
+            logger.debug { "Unknown door ${option?.toLowerCase()} $obj" }
         }
     } else {
         if (!objects.cancelTimer(obj) || !objects.cancelTimer(double)) {
-            logger.warn { "Unknown fence/double door ${option?.toLowerCase()} $obj" }
+            logger.debug { "Unknown fence/double door ${option?.toLowerCase()} $obj" }
         }
     }
 }

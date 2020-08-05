@@ -31,7 +31,7 @@ class Variables {
 
     fun <T : Any> set(player: Player, key: String, value: T, refresh: Boolean) {
         val store = player.variables
-        val variable = variables[key] as? Variable<T> ?: return logger.warn { "Cannot find variable for key '$key'" }
+        val variable = variables[key] as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
         store.set(variable, value)
         if (refresh) {
             send(player, key)
@@ -40,7 +40,7 @@ class Variables {
 
     fun send(player: Player, key: String) {
         val store = player.variables
-        val variable = variables[key] ?: return logger.warn { "Cannot find variable for key '$key'" }
+        val variable = variables[key] ?: return logger.debug { "Cannot find variable for key '$key'" }
         variable.send(player, store)
     }
 
@@ -52,9 +52,9 @@ class Variables {
 
     fun <T : Any> add(player: Player, key: String, id: T, refresh: Boolean) {
         val store = player.variables
-        val variable = variables[key] as? BitwiseVariable<T> ?: return logger.warn { "Cannot find variable for key '$key'" }
+        val variable = variables[key] as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
-        val power = variable.getPower(id) ?: return logger.warn { "Invalid bitwise value '$id'" }
+        val power = variable.getPower(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = store.get(variable)
 
         if (!value.has(power)) {//If isn't already added
@@ -67,9 +67,9 @@ class Variables {
 
     fun <T : Any> remove(player: Player, key: String, id: T, refresh: Boolean) {
         val store = player.variables
-        val variable = variables[key] as? BitwiseVariable<T> ?: return logger.warn { "Cannot find variable for key '$key'" }
+        val variable = variables[key] as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
-        val power = variable.getPower(id) ?: return logger.warn { "Invalid bitwise value '$id'" }
+        val power = variable.getPower(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = store.get(variable)
 
         if (value.has(power)) {//If is added

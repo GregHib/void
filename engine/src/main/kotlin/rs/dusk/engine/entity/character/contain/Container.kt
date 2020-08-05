@@ -375,7 +375,7 @@ data class Container(
         }
 
         if (revertResult !is ContainerResult.Addition.Added) {
-            logger.warn { "Container movement restoration failed $container $id $amount" }
+            logger.debug { "Container movement restoration failed $container $id $amount" }
         }
 
         return result

@@ -34,7 +34,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val fromId = fromHash shr 16
         if (!player.interfaces.contains(fromId)) {
-            logger.warn { "Interface $fromId not found for player $player" }
+            logger.debug { "Interface $fromId not found for player $player" }
             return
         }
 
@@ -42,7 +42,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
         val fromDefinition = decoder.getSafe(fromId)
         val fromComponent = fromDefinition.components?.get(fromComponentId)
         if (fromComponent == null) {
-            logger.warn { "Interface $fromId component $fromComponentId not found for player $player" }
+            logger.debug { "Interface $fromId component $fromComponentId not found for player $player" }
             return
         }
 
@@ -52,7 +52,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val toId = toHash shr 16
         if (!player.interfaces.contains(toId)) {
-            logger.warn { "Interface $toId not found for player $player" }
+            logger.debug { "Interface $toId not found for player $player" }
             return
         }
 
@@ -60,7 +60,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
         val toDefinition = decoder.getSafe(toId)
         val toComponent = toDefinition.components?.get(toComponentId)
         if (toComponent == null) {
-            logger.warn { "Interface $toId component $toComponentId not found for player $player" }
+            logger.debug { "Interface $toId component $toComponentId not found for player $player" }
             return
         }
 

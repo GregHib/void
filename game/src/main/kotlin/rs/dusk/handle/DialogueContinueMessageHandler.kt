@@ -35,20 +35,20 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
         val componentId = hash and 0xffff
 
         if (!player.interfaces.contains(id)) {
-            logger.warn { "Dialogue $id not found for player $player" }
+            logger.debug { "Dialogue $id not found for player $player" }
             return
         }
 
         val definition = decoder.getSafe(id)
         val component = definition.components?.get(componentId)
         if (component == null) {
-            logger.warn { "Dialogue $id component $componentId not found for player $player" }
+            logger.debug { "Dialogue $id component $componentId not found for player $player" }
             return
         }
 
         val type = player.dialogues.currentType()
         if(type.isBlank()) {
-            logger.warn { "Missing dialogue $id component $componentId option $componentId for player $player" }
+            logger.debug { "Missing dialogue $id component $componentId option $componentId for player $player" }
             return
         }
 

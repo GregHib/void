@@ -19,7 +19,7 @@ class UpdateConnectionMessageHandler : UpdateMessageHandler<UpdateConnectionMess
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateConnectionMessage) {
         if (msg.value != 3) {
             ctx.writeAndFlush(UpdateRegistryResponse(LoginResponseCode.BadSessionId))
-            logger.warn { "Invalid connection id ${ctx.channel().getSession().getIp()} ${msg.value}" }
+            logger.debug { "Invalid connection id ${ctx.channel().getSession().getIp()} ${msg.value}" }
             return
         }
         logger.info { "Connection complete ${ctx.channel().getSession().getIp()}" }

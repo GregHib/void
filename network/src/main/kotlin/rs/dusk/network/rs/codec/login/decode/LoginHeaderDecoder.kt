@@ -38,7 +38,7 @@ object LoginHeaderDecoder {
 
         val rsaBlockSize = reader.readUnsignedShort()//RSA block size
         if (rsaBlockSize > reader.readableBytes()) {
-            logger.warn { "Received bad rsa block size [size=$rsaBlockSize, readable=${reader.readableBytes()}" }
+            logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${reader.readableBytes()}" }
             return Triple(LoginResponseCode.BadSessionId, null, null)
         }
         val data = ByteArray(rsaBlockSize)
@@ -47,7 +47,7 @@ object LoginHeaderDecoder {
         val rsaBuffer = BufferReader(rsa)
         val sessionId = rsaBuffer.readUnsignedByte()
         if (sessionId != 10) {//rsa block start check
-            logger.warn { "Bad session id received ($sessionId)" }
+            logger.debug { "Bad session id received ($sessionId)" }
             return Triple(LoginResponseCode.BadSessionId, null, null)
         }
 

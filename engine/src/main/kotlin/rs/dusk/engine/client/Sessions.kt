@@ -69,7 +69,7 @@ class Sessions {
      * Sends [message] to the session linked with [player]
      */
     fun <T : Message> send(player: Player, message: T) {
-        val session = get(player) ?: return// logger.warn { "Unable to find session for player $player." }
+        val session = get(player) ?: return// logger.debug { "Unable to find session for player $player." }
         session.send(message)
     }
 }

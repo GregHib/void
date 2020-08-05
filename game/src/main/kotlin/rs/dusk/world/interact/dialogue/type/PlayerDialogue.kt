@@ -13,7 +13,7 @@ suspend fun DialogueContext.player(text: String, expression: Expression = Expres
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {
-        logger.warn { "Maximum player chat lines exceeded ${lines.size} for $player" }
+        logger.debug { "Maximum player chat lines exceeded ${lines.size} for $player" }
         return
     }
 

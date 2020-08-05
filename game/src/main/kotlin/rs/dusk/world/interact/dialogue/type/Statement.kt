@@ -12,7 +12,7 @@ suspend fun DialogueContext.statement(text: String, clickToContinue: Boolean = t
     val lines = text.trimIndent().lines()
 
     if (lines.size > MAXIMUM_STATEMENT_SIZE) {
-        logger.warn { "Maximum statement lines exceeded ${lines.size} for $player" }
+        logger.debug { "Maximum statement lines exceeded ${lines.size} for $player" }
         return
     }
 

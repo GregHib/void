@@ -20,7 +20,7 @@ class UpdateLoginStatusHandler : UpdateMessageHandler<UpdateLoginStatusMessage>(
         val (login, value) = msg
         if (value != 0) {
             ctx.writeAndFlush(UpdateRegistryResponse(LoginResponseCode.BadSessionId))
-            logger.warn { "Invalid login id ${ctx.channel().getSession().getIp()} $value" }
+            logger.debug { "Invalid login id ${ctx.channel().getSession().getIp()} $value" }
             return
         }
 

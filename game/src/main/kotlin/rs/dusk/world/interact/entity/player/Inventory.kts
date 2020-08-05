@@ -24,7 +24,7 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
 
     if(fromItemId == -1) {
         if (!container.inBounds(fromSlot)) {
-            logger.warn { "Interface $toId component $toComponentId from slot $fromSlot not found for player $player" }
+            logger.debug { "Interface $toId component $toComponentId from slot $fromSlot not found for player $player" }
             return@then
         }
 
@@ -32,13 +32,13 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
     }
 
     if(!container.isValidId(fromSlot, fromItemId)) {
-        logger.warn { "Interface $id component $componentId from item $fromItemId slot $fromSlot not found for player $player" }
+        logger.debug { "Interface $id component $componentId from item $fromItemId slot $fromSlot not found for player $player" }
         return@then
     }
 
     val toSlot = toSlot - 28
     if(!container.isValidId(toSlot, toItemId)) {
-        logger.warn { "Interface $toId component $toComponentId to item $toItemId slot $toSlot not found for player $player" }
+        logger.debug { "Interface $toId component $toComponentId to item $toItemId slot $toSlot not found for player $player" }
         return@then
     }
     player.inventory.switch(fromSlot, toSlot)

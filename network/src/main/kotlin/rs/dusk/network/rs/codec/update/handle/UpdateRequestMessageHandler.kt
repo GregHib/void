@@ -20,7 +20,7 @@ class UpdateRequestMessageHandler : UpdateMessageHandler<UpdateRequestMessage>()
 
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateRequestMessage) {
         val (indexId, archiveId, priority) = msg
-        val data = cache.getArchive(indexId, archiveId) ?: return logger.warn { "Request $this was invalid - did not exist in cache" }
+        val data = cache.getArchive(indexId, archiveId) ?: return logger.debug { "Request $this was invalid - did not exist in cache" }
         val compression: Int = data[0].toInt() and 0xff
         val length = Ints.fromBytes(data[1], data[2], data[3], data[4])
         var attributes = compression

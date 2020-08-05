@@ -15,7 +15,7 @@ class UpdateDisconnectionMessageHandler : UpdateMessageHandler<UpdateDisconnecti
 
     override fun handle(ctx: ChannelHandlerContext, msg: UpdateDisconnectionMessage) {
         if (msg.value != 0) {
-            logger.warn { "Invalid disconnect id"  }
+            logger.debug { "Invalid disconnect id"  }
         }
         ctx.close()
     }
