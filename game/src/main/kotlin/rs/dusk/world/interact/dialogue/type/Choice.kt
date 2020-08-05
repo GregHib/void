@@ -39,7 +39,7 @@ suspend fun DialogueContext.choice(text: String, title: String? = null, saySelec
         if (saySelection) {
             val line = lines.getOrNull(choice - 1)
             if (line != null) {
-                say(text = line)
+                player(text = line)
             }
         }
         return choice

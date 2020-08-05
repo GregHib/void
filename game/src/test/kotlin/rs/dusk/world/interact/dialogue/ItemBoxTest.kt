@@ -8,14 +8,14 @@ import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.open
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
-import rs.dusk.world.interact.dialogue.type.itemBox
+import rs.dusk.world.interact.dialogue.type.item
 
 internal class ItemBoxTest : DialogueTest() {
 
     @Test
     fun `Send item box`() {
         manager.start(context) {
-            itemBox("""
+            item("""
                 An item
                 description
             """, 9009, 650, 10)
@@ -36,7 +36,7 @@ internal class ItemBoxTest : DialogueTest() {
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false
         manager.start(context) {
-            itemBox("text", 9009, 650, 10)
+            item("text", 9009, 650, 10)
         }
 
         runBlocking(Contexts.Game) {

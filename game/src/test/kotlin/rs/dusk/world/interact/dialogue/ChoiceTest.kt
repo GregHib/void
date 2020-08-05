@@ -9,15 +9,15 @@ import org.junit.jupiter.api.TestFactory
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.open
 import rs.dusk.world.interact.dialogue.type.choice
-import rs.dusk.world.interact.dialogue.type.say
+import rs.dusk.world.interact.dialogue.type.player
 
 internal class ChoiceTest : DialogueTest() {
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("rs.dusk.world.interact.dialogue.type.SayKt")
-        coEvery { context.say(any()) } just Runs
+        mockkStatic("rs.dusk.world.interact.dialogue.type.PlayerDialogueKt")
+        coEvery { context.player(any()) } just Runs
     }
 
     @TestFactory
@@ -209,7 +209,7 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify {
-                context.say("Yes")
+                context.player("Yes")
             }
         }
     }
@@ -224,7 +224,7 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                context.say("Yes")
+                context.player("Yes")
             }
         }
     }

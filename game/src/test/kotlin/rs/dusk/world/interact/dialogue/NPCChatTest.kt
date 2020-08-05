@@ -13,7 +13,7 @@ import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.world.interact.dialogue.type.tell
+import rs.dusk.world.interact.dialogue.type.npc
 
 internal class NPCChatTest : DialogueTest() {
 
@@ -41,7 +41,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                tell(text = text, clickToContinue = true)
+                npc(text = text, clickToContinue = true)
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -66,7 +66,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                tell(text = text, clickToContinue = false)
+                npc(text = text, clickToContinue = false)
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -82,7 +82,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Sending five or more lines to chat is ignored`() {
         manager.start(context) {
-            tell(text = "\nOne\nTwo\nThree\nFour\nFive")
+            npc(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
@@ -96,7 +96,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send player chat head size and animation`(large: Boolean) {
         every { npc.id } returns 123
         manager.start(context) {
-            tell(text = "Text", largeHead = large, expression = Expression.Talking)
+            npc(text = "Text", largeHead = large, expression = Expression.Talking)
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -109,7 +109,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         manager.start(context) {
-            tell(text = "text", title = "Bob")
+            npc(text = "text", title = "Bob")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -124,7 +124,7 @@ internal class NPCChatTest : DialogueTest() {
         every { context.npcName } returns "Jim"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            tell(text = "text", largeHead = true, expression = Expression.Laugh)
+            npc(text = "text", largeHead = true, expression = Expression.Laugh)
         }
         runBlocking(Contexts.Game) {
             coVerify {
@@ -140,7 +140,7 @@ internal class NPCChatTest : DialogueTest() {
         every { player.open("npc_chat1") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            tell(text = "text")
+            npc(text = "text")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
@@ -154,7 +154,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send different npc chat`() {
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            tell(id = 123, npcName = "Bill", text = "text")
+            npc(id = 123, npcName = "Bill", text = "text")
         }
         runBlocking(Contexts.Game) {
             coVerify {

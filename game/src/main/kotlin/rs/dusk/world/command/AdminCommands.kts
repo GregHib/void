@@ -90,8 +90,8 @@ Command where { prefix == "item" } then {
 
 Command where { prefix == "test" } then {
     player.dialogue(1, "Man") {
-        say("Hi")
-        tell("Hello Adventurer")
+        player("Hi")
+        npc("Hello Adventurer")
         statement("Words")
         val choice = choice(title = "Should we change something?", text = """
             Yes change something
@@ -102,11 +102,11 @@ Command where { prefix == "test" } then {
         println("Integer: ${intEntry("Enter a number")}")
         println("String: ${stringEntry("Enter some text")}")
         levelUp("Congratzzzz", 12)
-        itemBox("""
+        item("""
             The two halves of the skull fit perfectly, they appear to
             have a fixing point, perhaps they are to be mounted on
             something?
         """, 9009, 650)
-        println("Make: ${makeAmount(listOf(385, 329), "Make sets", 23)}")
+        println("Make: ${makeAmount(listOf(385, 329), "Make", 23)}")
     }
 }

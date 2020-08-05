@@ -12,7 +12,7 @@ import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.world.interact.dialogue.type.say
+import rs.dusk.world.interact.dialogue.type.player
 
 internal class PlayerChatTest : DialogueTest() {
 
@@ -35,7 +35,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                say(text = text, clickToContinue = true)
+                player(text = text, clickToContinue = true)
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -60,7 +60,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                say(text = text, clickToContinue = false)
+                player(text = text, clickToContinue = false)
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -76,7 +76,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Sending five or more lines to chat is ignored`() {
         manager.start(context) {
-            say(text = "\nOne\nTwo\nThree\nFour\nFive")
+            player(text = "\nOne\nTwo\nThree\nFour\nFive")
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
@@ -89,7 +89,7 @@ internal class PlayerChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         manager.start(context) {
-            say(text = "Text", largeHead = large, expression = Expression.Talking)
+            player(text = "Text", largeHead = large, expression = Expression.Talking)
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -102,7 +102,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         manager.start(context) {
-            say(text = "text", title = "Bob")
+            player(text = "text", title = "Bob")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -116,7 +116,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.name } returns "Jim"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            say(text = "text", largeHead = true, expression = Expression.Laugh)
+            player(text = "text", largeHead = true, expression = Expression.Laugh)
         }
         runBlocking(Contexts.Game) {
             coVerify {
@@ -132,7 +132,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.open("chat1") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            say(text = "text")
+            player(text = "text")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
