@@ -3,6 +3,7 @@ package rs.dusk.engine.client.ui.dialogue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
+import io.mockk.verify
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
@@ -10,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import rs.dusk.engine.action.Contexts
+import rs.dusk.engine.client.ui.closeType
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 
@@ -174,6 +176,22 @@ internal class DialogueTest {
         }
         runBlocking(Contexts.Game) {
             assertTrue(resumed)
+        }
+    }
+
+    @Test
+    fun `Resuming from suspension clears dialogue interfaces`() {
+        manager.start(player) {
+            await<Unit>("test")
+        }
+        runBlocking(Contexts.Game) {
+            manager.resume()
+        }
+        runBlocking(Contexts.Game) {
+            verify {
+                player.closeType("dialogue_box")
+                player.closeType("dialogue_box_small")
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package rs.dusk.engine.client.ui.dialogue
 
 import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.suspendCancellableCoroutine
+import rs.dusk.engine.client.ui.closeType
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
 
@@ -19,10 +20,19 @@ data class DialogueContext(
     var suspensionType: String? = null
         private set
 
-    suspend fun <T> await(type: String) = suspendCancellableCoroutine<T> {
-        suspensionType = type
-        coroutine = it
-        dialogues.add(this)
+    suspend fun <T> await(type: String): T {
+        val result = suspendCancellableCoroutine<T> {
+            suspensionType = type
+            coroutine = it
+            dialogues.add(this)
+        }
+        close()
+        return result
+    }
+
+    fun close() {
+        player.closeType("dialogue_box")
+        player.closeType("dialogue_box_small")
     }
 
 }

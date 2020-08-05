@@ -149,4 +149,20 @@ internal class NPCChatTest : DialogueTest() {
             }
         }
     }
+
+    @Test
+    fun `Send different npc chat`() {
+        coEvery { context.await<Unit>(any()) } just Runs
+        manager.start(context) {
+            tell(id = 123, npcName = "Bill", text = "text")
+        }
+        runBlocking(Contexts.Game) {
+            coVerify {
+                interfaces.sendText("npc_chat1", "title", "Bill")
+                interfaces.sendNPCHead("npc_chat1", "head", 123)
+                interfaces.sendText("npc_chat1", "line1", "text")
+                context.await<Unit>("chat")
+            }
+        }
+    }
 }

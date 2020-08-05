@@ -9,6 +9,10 @@ import rs.dusk.engine.entity.character.player.Player
 private val logger = InlineLogger()
 
 suspend fun DialogueContext.tell(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    tell(npcId, npcName, text, expression, largeHead, clickToContinue, title)
+}
+
+suspend fun DialogueContext.tell(id: Int, npcName: String, text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {
@@ -24,7 +28,7 @@ suspend fun DialogueContext.tell(text: String, expression: Expression = Expressi
 
     if (player.open(name)) {
         val head = getChatHeadComponentName(largeHead)
-        player.interfaces.sendNPCHead(name, head, npcId)
+        player.interfaces.sendNPCHead(name, head, id)
         player.interfaces.sendAnimation(name, head, expression.id)
         player.interfaces.sendText(name, "title", title ?: npcName)
         sendLines(player, name, lines)
