@@ -12,6 +12,8 @@ data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) :
 
 @Suppress("USELESS_CAST")
 val collisionModule = module {
+    single(createdAtStart = true) { GameObjectCollision(get()) }
+    single(createdAtStart = true) { CharacterCollision(get()) }
     single { Collisions() }
     single { CollisionReader(get()) }
 }
