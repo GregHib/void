@@ -1,18 +1,18 @@
 package rs.dusk.tools
 
 import org.koin.core.context.startKoin
-import rs.dusk.cache.cacheDefinitionModule
-import rs.dusk.cache.cacheModule
 import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.client.cacheModule
 
 object ObjectDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        startKoin {
+        val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
-        }
-        val decoder = ObjectDecoder(false, false)
+        }.koin
+        val decoder = ObjectDecoder(koin.get(), false, false)
 //        println(decoder.get(2262))
 //        println(decoder.get(2259))
 //        println(decoder.get(3))

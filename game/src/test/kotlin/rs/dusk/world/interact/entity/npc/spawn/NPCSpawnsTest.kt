@@ -8,9 +8,9 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
-import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
+import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered

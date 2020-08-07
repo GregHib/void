@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.VARC
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.ClientVariableParameterDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class ClientVariableParameterDecoder : ConfigDecoder<ClientVariableParameterDefinition>(VARC) {
+class ClientVariableParameterDecoder(cache: Cache) : ConfigDecoder<ClientVariableParameterDefinition>(cache, VARC) {
 
     override fun create() = ClientVariableParameterDefinition()
 

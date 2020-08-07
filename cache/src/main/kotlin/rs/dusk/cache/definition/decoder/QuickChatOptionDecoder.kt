@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.QUICK_CHAT_MENUS
 import rs.dusk.cache.Indices.QUICK_CHAT_MESSAGES
@@ -10,7 +11,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class QuickChatOptionDecoder : DefinitionDecoder<QuickChatOptionDefinition>(QUICK_CHAT_MESSAGES) {
+class QuickChatOptionDecoder(cache: Cache) : DefinitionDecoder<QuickChatOptionDefinition>(cache, QUICK_CHAT_MESSAGES) {
 
     override fun create() = QuickChatOptionDefinition()
 

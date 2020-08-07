@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.SPRITES
 import rs.dusk.cache.definition.data.IndexedSprite
@@ -10,7 +11,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class SpriteDecoder : DefinitionDecoder<SpriteDefinition>(SPRITES) {
+class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
     override fun create() = SpriteDefinition()
 
     override fun getFile(id: Int) = 0

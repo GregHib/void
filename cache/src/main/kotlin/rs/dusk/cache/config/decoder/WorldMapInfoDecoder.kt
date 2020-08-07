@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.WORLD_MAP_INFO
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.WorldMapInfoDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class WorldMapInfoDecoder : ConfigDecoder<WorldMapInfoDefinition>(WORLD_MAP_INFO) {
+class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(cache, WORLD_MAP_INFO) {
 
     override fun create() = WorldMapInfoDefinition()
 

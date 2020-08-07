@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.HIT_SPLATS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.HitSplatDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class HitSplatDecoder : ConfigDecoder<HitSplatDefinition>(HIT_SPLATS) {
+class HitSplatDecoder(cache: Cache) : ConfigDecoder<HitSplatDefinition>(cache, HIT_SPLATS) {
 
     override fun create() = HitSplatDefinition()
 

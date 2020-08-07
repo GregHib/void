@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.CONTAINERS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.ItemContainerDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class ItemContainerDecoder : ConfigDecoder<ItemContainerDefinition>(CONTAINERS) {
+class ItemContainerDecoder(cache: Cache) : ConfigDecoder<ItemContainerDefinition>(cache, CONTAINERS) {
 
     override fun create() = ItemContainerDefinition()
 

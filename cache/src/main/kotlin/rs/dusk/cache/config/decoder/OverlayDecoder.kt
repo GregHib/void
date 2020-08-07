@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.FLOOR_OVERLAY
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.OverlayDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class OverlayDecoder : ConfigDecoder<OverlayDefinition>(FLOOR_OVERLAY) {
+class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLOOR_OVERLAY) {
 
     override fun create() = OverlayDefinition()
 

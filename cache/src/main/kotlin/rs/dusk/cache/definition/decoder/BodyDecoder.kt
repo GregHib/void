@@ -1,6 +1,7 @@
 package rs.dusk.cache.definition.decoder
 
 import com.github.michaelbull.logging.InlineLogger
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.DEFAULTS
 import rs.dusk.cache.definition.data.BodyDefinition
@@ -10,7 +11,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class BodyDecoder : DefinitionDecoder<BodyDefinition>(DEFAULTS) {
+class BodyDecoder(cache: Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {
 
     val logger = InlineLogger()
 

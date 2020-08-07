@@ -1,20 +1,21 @@
 package rs.dusk.tools
 
 import org.koin.core.context.startKoin
-import rs.dusk.cache.cacheDefinitionModule
-import rs.dusk.cache.cacheModule
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.client.cacheModule
+import rs.dusk.utility.func.isDoor
 import kotlin.math.abs
 
 object DoorObjects {
     @JvmStatic
     fun main(args: Array<String>) {
-        startKoin {
+        val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
-        }
-        val decoder = ObjectDecoder(false, false)
+        }.koin
+        val decoder = ObjectDecoder(koin.get(), false, false)
 //        dumpFences(decoder)
         dumpDoors(decoder)
     }
@@ -43,7 +44,7 @@ object DoorObjects {
         var count = 0
         for (id in 0 until decoder.size) {
             val def = decoder.get(id) ?: continue
-            if (def.name.isDoor() && !fences.contains(id)) {
+            if (def.isDoor() && !fences.contains(id)) {
                 val options = def.options
                 if (options != null) {
                     val option = options[0]
@@ -121,6 +122,4 @@ object DoorObjects {
                 it.offsetY == definition.offsetY &&
                 it.offsetZ == definition.offsetZ
     }
-
-    fun String.isDoor() = contains("door", true) || contains("gate", true)
 }

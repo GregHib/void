@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.ENUMS
 import rs.dusk.cache.definition.data.EnumDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class EnumDecoder : DefinitionDecoder<EnumDefinition>(ENUMS) {
+class EnumDecoder(cache: Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
 
     override fun create() = EnumDefinition()
 

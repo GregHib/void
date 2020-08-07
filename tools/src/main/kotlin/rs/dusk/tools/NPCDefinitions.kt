@@ -1,18 +1,18 @@
 package rs.dusk.tools
 
 import org.koin.core.context.startKoin
-import rs.dusk.cache.cacheDefinitionModule
-import rs.dusk.cache.cacheModule
 import rs.dusk.cache.definition.decoder.NPCDecoder
+import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.client.cacheModule
 
 object NPCDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
-        startKoin {
+        val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
-        }
-        val decoder = NPCDecoder(false)
+        }.koin
+        val decoder = NPCDecoder(koin.get(), false)
         for (i in 0 until decoder.size) {
             val def = decoder.get(i) ?: continue
             if(def.name.equals("Alfonse", true)) {

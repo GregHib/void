@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.GRAPHICS
 import rs.dusk.cache.definition.data.GraphicDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class GraphicDecoder : DefinitionDecoder<GraphicDefinition>(GRAPHICS) {
+class GraphicDecoder(cache: Cache) : DefinitionDecoder<GraphicDefinition>(cache, GRAPHICS) {
 
     override fun create() = GraphicDefinition()
 

@@ -2,11 +2,11 @@ package rs.dusk
 
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
-import rs.dusk.cache.cacheConfigModule
-import rs.dusk.cache.cacheDefinitionModule
-import rs.dusk.cache.cacheModule
 import rs.dusk.engine.GameLoop
 import rs.dusk.engine.action.schedulerModule
+import rs.dusk.engine.client.cacheConfigModule
+import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.client.cacheModule
 import rs.dusk.engine.client.clientSessionModule
 import rs.dusk.engine.client.ui.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule

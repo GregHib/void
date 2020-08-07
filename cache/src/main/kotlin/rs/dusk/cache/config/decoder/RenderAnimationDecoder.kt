@@ -1,5 +1,6 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.RENDER_ANIMATIONS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.RenderAnimationDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class RenderAnimationDecoder : ConfigDecoder<RenderAnimationDefinition>(RENDER_ANIMATIONS) {
+class RenderAnimationDecoder(cache: Cache) : ConfigDecoder<RenderAnimationDefinition>(cache, RENDER_ANIMATIONS) {
 
     override fun create() = RenderAnimationDefinition()
 

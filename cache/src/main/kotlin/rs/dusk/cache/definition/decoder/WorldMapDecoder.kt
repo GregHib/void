@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.WORLD_MAP
 import rs.dusk.cache.definition.data.WorldMapDefinition
@@ -11,7 +12,7 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class WorldMapDecoder : DefinitionDecoder<WorldMapDefinition>(WORLD_MAP) {
+class WorldMapDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
 
     val archive = cache.getArchiveId(index, "details")
 

@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.TEXTURE_DEFINITIONS
 import rs.dusk.cache.definition.data.TextureDefinition
@@ -10,7 +11,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class TextureDecoder : DefinitionDecoder<TextureDefinition>(TEXTURE_DEFINITIONS) {
+class TextureDecoder(cache: Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
 
     override fun create() = TextureDefinition()
 

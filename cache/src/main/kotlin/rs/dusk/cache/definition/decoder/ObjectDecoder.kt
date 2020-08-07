@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.OBJECTS
 import rs.dusk.cache.definition.data.ObjectDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class ObjectDecoder(val member: Boolean, val lowDetail: Boolean) : DefinitionDecoder<ObjectDefinition>(OBJECTS) {
+class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()
 

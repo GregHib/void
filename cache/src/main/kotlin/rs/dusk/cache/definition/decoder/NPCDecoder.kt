@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.NPCS
 import rs.dusk.cache.definition.data.NPCDefinition
@@ -9,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class NPCDecoder(val member: Boolean) : DefinitionDecoder<NPCDefinition>(NPCS) {
+class NPCDecoder(cache: Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
 
     override fun create() = NPCDefinition()
 

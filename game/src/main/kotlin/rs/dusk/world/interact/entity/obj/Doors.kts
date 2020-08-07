@@ -13,6 +13,7 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
+import rs.dusk.utility.func.isDoor
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.replaceObject
@@ -30,9 +31,7 @@ val doorStuckCount = 5
 val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath")).mapKeys { it.key.toInt() }
 val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath")).mapKeys { it.key.toInt() }
 
-fun GameObject.isDoor() = def.name.contains("door", true) || def.name.contains("gate", true)
-
-ObjectOption where { obj.isDoor() && option == "Close" } then {
+ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     // Prevent players from trapping one another
     if(player.isDelayed(Delay.DoorSlam)) {
         if(player.inc("doorSlamCount") > doorStuckCount) {
@@ -57,7 +56,7 @@ ObjectOption where { obj.isDoor() && option == "Close" } then {
     }
 }
 
-ObjectOption where { obj.isDoor() && option == "Open" } then {
+ObjectOption where { obj.def.isDoor() && option == "Open" } then {
     val double = getDoubleDoor(obj, 0)
 
     val replacement1 = doors[obj.id]
@@ -123,12 +122,12 @@ fun getRotation(rotation: Int, clockwise: Int) = (rotation + clockwise) and 0x3
 fun getDoubleDoor(gameObject: GameObject, clockwise: Int): GameObject? {
     var orientation = Direction.cardinal[getRotation(gameObject, clockwise)]
     var door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
-    if (door != null && door.isDoor()) {
+    if (door != null && door.def.isDoor()) {
         return door
     }
     orientation = orientation.inverse()
     door = objects.getType(gameObject.tile.add(orientation.delta), gameObject.type)
-    if (door != null && door.isDoor()) {
+    if (door != null && door.def.isDoor()) {
         return door
     }
     return null

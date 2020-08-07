@@ -5,10 +5,10 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
-import rs.dusk.cache.cacheDefinitionModule
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
+import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Dialogues

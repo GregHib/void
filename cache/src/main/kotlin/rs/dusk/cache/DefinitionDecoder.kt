@@ -2,16 +2,13 @@ package rs.dusk.cache
 
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.io.read.Reader
-import rs.dusk.utility.inject
 import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 06, 2020
  */
-abstract class DefinitionDecoder<T : Definition>(internal val index: Int) {
-
-    protected val cache: Cache by inject()
+abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {
 
     protected val dataCache = ConcurrentHashMap<Int, T>()
 
