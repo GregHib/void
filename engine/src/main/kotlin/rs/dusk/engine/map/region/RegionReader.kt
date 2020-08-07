@@ -9,25 +9,25 @@ import rs.dusk.engine.map.collision.CollisionReader
 import rs.dusk.engine.map.region.obj.GameObjectMapReader
 import rs.dusk.engine.map.region.obj.Xteas
 import rs.dusk.engine.map.region.tile.TileReader
-import rs.dusk.utility.inject
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader() }
+    single { RegionReader(get(), get(), get(), get(), get(), get()) }
 }
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class RegionReader {
+class RegionReader(
+    val bus: EventBus,
+    val collisions: CollisionReader,
+    val objects: GameObjectMapReader,
+    val tiles: TileReader,
+    val xteas: Xteas,
+    val cache: Cache
+) {
 
-    val bus: EventBus by inject()
-    val collisions: CollisionReader by inject()
-    val objects: GameObjectMapReader by inject()
-    val tiles: TileReader by inject()
-    val xteas: Xteas by inject()
-    val cache: Cache by inject()
     private val logger = InlineLogger()
     private val scope = CoroutineScope(newSingleThreadContext("RegionReader"))
 
