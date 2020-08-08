@@ -23,6 +23,11 @@ class GameObjectCollision(val collisions: Collisions) {
             return
         }
 
+        // Boarder guards
+        if(gameObject.id == 3550) {
+            return
+        }
+
         when (gameObject.type) {
             in 0..3 -> modifyWall(gameObject, changeType)
             in 9..21 -> modifyObject(gameObject, changeType)
