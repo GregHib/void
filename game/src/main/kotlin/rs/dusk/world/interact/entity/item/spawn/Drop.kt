@@ -2,9 +2,11 @@ package rs.dusk.world.interact.entity.item.spawn
 
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.item.FloorItem
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.map.Tile
+import rs.dusk.utility.get
 
 /**
  * Spawns a floor item
@@ -22,6 +24,17 @@ data class Drop(
     val tile: Tile,
     val revealTicks: Int = -1,
     val disappearTicks: Int = -1,
-    val owner: Player? = null) : Event<FloorItem>() {
+    val owner: Player? = null
+) : Event<FloorItem>() {
+
+    constructor(
+        name: String,
+        amount: Int,
+        tile: Tile,
+        revealTicks: Int = -1,
+        disappearTicks: Int = -1,
+        owner: Player? = null
+    ) : this(get<ItemDetails>().getId(name), amount, tile, revealTicks, disappearTicks, owner)
+
     companion object : EventCompanion<Drop>
 }

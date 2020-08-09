@@ -1,6 +1,7 @@
 package rs.dusk.engine.data.file
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.exc.MismatchedInputException
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import com.github.michaelbull.logging.InlineLogger
@@ -25,7 +26,12 @@ class FileLoader {
     inline fun <reified T : Any> loadOrNull(path: String): T? {
         val file = File(path)
         return if (file.exists()) {
-            mapper.readValue(file, T::class.java)
+            try {
+                mapper.readValue(file, T::class.java)
+            } catch (e: MismatchedInputException) {
+                e.printStackTrace()
+                null
+            }
         } else {
             null
         }

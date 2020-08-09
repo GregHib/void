@@ -161,7 +161,7 @@ data class Container(
      * @param amount The stack amount or individual count
      * @return Whether an item was successfully added
      */
-    fun add(index: Int, id: Int, amount: Int): ContainerResult.Addition {
+    fun add(index: Int, id: Int, amount: Int = 1): ContainerResult.Addition {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return ContainerResult.Addition.Failure.Invalid
         }
@@ -192,7 +192,7 @@ data class Container(
      * @param amount The stack amount or individual count
      * @return Whether an item was successfully added
      */
-    fun add(id: Int, amount: Int): ContainerResult.Addition {
+    fun add(id: Int, amount: Int = 1): ContainerResult.Addition {
         if (!isValidInput(id, amount)) {
             return ContainerResult.Addition.Failure.Invalid
         }
@@ -276,7 +276,7 @@ data class Container(
      *  @param amount The stack or individual number of items to remove
      *  @return Whether an item was successfully removed
      */
-    fun remove(id: Int, amount: Int): ContainerResult.Removal {
+    fun remove(id: Int, amount: Int = 1): ContainerResult.Removal {
         if (!isValidInput(id, amount)) {
             return ContainerResult.Removal.Failure.Invalid
         }

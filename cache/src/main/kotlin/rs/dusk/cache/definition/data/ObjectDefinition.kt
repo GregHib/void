@@ -24,7 +24,7 @@ data class ObjectDefinition(
     var delayShading: Boolean = false,
     var offsetMultiplier: Int = 64,
     var brightness: Int = 0,
-    var options: Array<String?>? = arrayOf(null, null, null, null, null, "Examine"),
+    var options: Array<String?> = arrayOf(null, null, null, null, null, "Examine"),
     var contrast: Int = 0,
     override var originalColours: ShortArray? = null,
     override var modifiedColours: ShortArray? = null,

@@ -64,7 +64,7 @@ private fun calcPath(source: Character, target: Any) = when (target) {
 fun Player.walkTo(target: Any, action: (PathResult) -> Unit) = get<TaskExecutor>().start {
     action(ActionType.Movement) {
         try {
-            val result = calcPath(this@walkTo, target)
+            var result = calcPath(this@walkTo, target)
             if (result is PathResult.Failure) {
                 action(result)
             } else {
