@@ -16,5 +16,5 @@ InterfaceOpened where { name == "prayer_list"} then {
     var quickPrayers = false
     player.sendVar("prayer_list")
     player.sendVar("prayer_points")
-    player.interfaces.sendSetting(id, if (quickPrayers) "quick_prayers" else "regular_prayers", 0, 29, 2)
+    player.interfaces.sendSetting(name, if (quickPrayers) "quick_prayers" else "regular_prayers", 0, 29, 2)
 }
