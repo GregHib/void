@@ -2,7 +2,9 @@ package rs.dusk.engine.entity
 
 import com.google.common.collect.BiMap
 import org.koin.dsl.module
+import rs.dusk.engine.entity.anim.detail.AnimationDetailsLoader
 import rs.dusk.engine.entity.character.npc.detail.NPCDetailsLoader
+import rs.dusk.engine.entity.gfx.detail.GraphicDetailsLoader
 import rs.dusk.engine.entity.item.detail.ItemDetailsLoader
 import rs.dusk.engine.entity.obj.detail.ObjectDetailsLoader
 
@@ -39,4 +41,6 @@ val detailsModule = module {
     single(createdAtStart = true) { ObjectDetailsLoader(get()).run(getProperty("objectDetailsPath")) }
     single(createdAtStart = true) { NPCDetailsLoader(get()).run(getProperty("npcDetailsPath")) }
     single(createdAtStart = true) { ItemDetailsLoader(get()).run(getProperty("itemDetailsPath")) }
+    single(createdAtStart = true) { AnimationDetailsLoader(get()).run(getProperty("animationDetailsPath")) }
+    single(createdAtStart = true) { GraphicDetailsLoader(get()).run(getProperty("graphicDetailsPath")) }
 }

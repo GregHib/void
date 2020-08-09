@@ -1,0 +1,226 @@
+possessed_pickaxe:
+  id: 309
+woodcutting_stump:
+  id: 3
+rock:
+  id: 2429
+ogre_bellows:
+  id: 241
+parlour:
+  id: 626
+fire:
+  id: 2136
+evil_root:
+  id: 314
+butterfly:
+  id: 371
+flash_powder:
+  id: 408
+sea_slug:
+  id: 722
+swamp_bubbles:
+  id: 470
+spikes:
+  id: 519
+ghast:
+  id: 532
+mutated_zygomite:
+  id: 578
+cauldron:
+  id: 581
+portal:
+  id: 654
+cake:
+  id: 602
+bubbles:
+  id: 603
+spike_trap:
+  id: 615
+man_trap:
+  id: 616
+tangle_vine:
+  id: 619
+marble_trap:
+  id: 621
+karamthulhu:
+  id: 627
+rabbit:
+  id: 1039
+claw:
+  id: 667
+shot:
+  id: 690
+mist:
+  id: 707
+pickled_brain:
+  id: 723
+twiblick_night_special:
+  id: 727
+torch:
+  id: 789
+slug_goo:
+  id: 796
+dragon_platelegs:
+  id: 836
+my_arm:
+  id: 838
+light_jungle:
+  id: 839
+ug:
+  id: 848
+asgarnian_ale:
+  id: 853
+ugthanki_kebab:
+  id: 854
+treasure_pile:
+  id: 875
+gyr_falcon:
+  id: 927
+chocolate_kebbit:
+  id: 930
+imp:
+  id: 932
+sabre-toothed_kyatt:
+  id: 938
+spined_larupia:
+  id: 940
+horned_graahk:
+  id: 942
+rabbit_snare:
+  id: 946
+kebbit:
+  id: 951
+metal_bird:
+  id: 964
+mutant_tarn:
+  id: 1004
+molanisk:
+  id: 1033
+"10th_anniversary_cake":
+  id: 1065
+sergeant_grimspike:
+  id: 1205
+goblin:
+  id: 1259
+heimland_games_souvenir:
+  id: 1283
+bouquet:
+  id: 1343
+void_shifter:
+  id: 1501
+flag:
+  id: 1541
+king_vargas:
+  id: 1578
+nial_swiftfling:
+  id: 1579
+kitten:
+  id: 1615
+barrier:
+  id: 1752
+macaw:
+  id: 1778
+dark_energy_core:
+  id: 1828
+hazelmere's_hat:
+  id: 1928
+light_creature:
+  id: 1933
+jack_frost:
+  id: 1971
+ghost:
+  id: 1997
+muspah:
+  id: 2029
+penguin:
+  id: 2050
+right_hand:
+  id: 2130
+left_hand:
+  id: 2131
+tail:
+  id: 2132
+living_rock_striker:
+  id: 2139
+guardian_statue:
+  id: 2306
+animation_table:
+  id: 2359
+tome_of_strength:
+  id: 2422
+guardian_sphere:
+  id: 2437
+vile_fish:
+  id: 2522
+frozen_adventurer:
+  id: 2550
+tangle_gum_trap:
+  id: 2561
+seeping_elm_trap:
+  id: 2562
+blood_spindle_trap:
+  id: 2563
+utuku_trap:
+  id: 2564
+spinebeam_trap:
+  id: 2565
+bovistrangler_trap:
+  id: 2566
+thigat_trap:
+  id: 2567
+corpsethorn_trap:
+  id: 2568
+entgallow_trap:
+  id: 2569
+grave_creeper_trap:
+  id: 2570
+fairy_godfather:
+  id: 2658
+medical_table:
+  id: 2669
+commodore_matthias:
+  id: 2693
+commander_korasi:
+  id: 2694
+knight_diana:
+  id: 2695
+knight_bernard:
+  id: 2696
+knight_ami:
+  id: 2697
+wise_old_man:
+  id: 2743
+_flesh-spoiler_spawn:
+  id: 2765
+hobgoblin_geomancer:
+  id: 2777
+strange_bones:
+  id: 2838
+shadow_spider:
+  id: 2843
+camouflaged_jadinko:
+  id: 2920
+diseased_jadinko:
+  id: 2919
+shadow_jadinko:
+  id: 2918
+wilbur:
+  id: 2899
+amphibious_jadinko:
+  id: 2901
+aquatic_jadinko:
+  id: 2903
+cannibal_jadinko:
+  id: 2905
+carrion_jadinko:
+  id: 2907
+draconic_jadinko:
+  id: 2909
+igneous_jadinko:
+  id: 2911
+saradomin_jadinko:
+  id: 2913
+guthix_jadinko:
+  id: 2915
+zamorak_jadinko:
+  id: 2917

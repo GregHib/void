@@ -1,0 +1,4156 @@
+bees!_walk:
+  id: 0
+cap'n_arnav_idle:
+  id: 3
+boulder_walk:
+  id: 15028
+shark_walk:
+  id: 10
+shade_walk:
+  id: 1281
+shade_idle:
+  id: 1282
+baby_dragon_walk:
+  id: 21
+lava_monster_walk2:
+  id: 22
+baby_dragon_idle:
+  id: 27
+warrior_ancestor_step_right:
+  id: 52
+liquid_gold_nymph_walk2:
+  id: 55
+tzhaar_hero_walk2:
+  id: 62
+delrith_walk:
+  id: 63
+delrith_idle:
+  id: 66
+steel_dragon_walk:
+  id: 79
+king_black_dragon_idle:
+  id: 90
+tree_spirit_walk:
+  id: 93
+tree_spirit_idle:
+  id: 96
+lava-flow_miner_walk:
+  id: 15216
+colonel_grimsson_idle:
+  id: 2336
+tool_leprechaun_idle:
+  id: 11701
+gauss_walk:
+  id: 104
+azzanadra_walk:
+  id: 119
+azzanadra_idle:
+  id: 125
+black_knight_titan_walk:
+  id: 127
+black_knight_titan_idle:
+  id: 130
+spidine_walk:
+  id: 142
+spidine_idle:
+  id: 145
+cow_idle:
+  id: 147
+cow_walk:
+  id: 149
+rock_golem_walk:
+  id: 152
+rock_golem_idle:
+  id: 155
+hobgoblin_idle:
+  id: 12403
+hobgoblin_walk:
+  id: 12404
+snow_imp_walk:
+  id: 168
+snow_imp_idle:
+  id: 171
+iron_pickaxe_walk:
+  id: 181
+animated_pickaxe_idle:
+  id: 187
+yaktwee_swinmari_cianta_walk:
+  id: 189
+glophren_idle:
+  id: 195
+mounted_terrorbird_gnome_idle:
+  id: 6793
+gnome_baller_walk:
+  id: 208
+rug_merchant_step_right:
+  id: 219
+rug_merchant_idle:
+  id: 222
+king_vargas_idle:
+  id: 8977
+man_walk2:
+  id: 227
+man_step_right:
+  id: 228
+crypt_rat_walk:
+  id: 239
+crypt_rat_idle:
+  id: 242
+pig_step_left:
+  id: 246
+pig_idle:
+  id: 247
+piglet_step_left:
+  id: 248
+witch's_experiment_walk:
+  id: 254
+witch's_experiment_idle:
+  id: 257
+baby_basilisk_idle:
+  id: 262
+basilisk_walk:
+  id: 263
+cave_crawler_idle:
+  id: 268
+snake_walk:
+  id: 11808
+snake_idle:
+  id: 277
+piglet_idle:
+  id: 279
+cow_calf_walk:
+  id: 280
+cow_calf_idle:
+  id: 281
+ug_walk:
+  id: 283
+cave_crawler_walk:
+  id: 298
+waterfiend_idle:
+  id: 302
+the_shaikahan_idle:
+  id: 311
+the_shaikahan_walk:
+  id: 312
+nastroth_idle:
+  id: 316
+spirit_tree_idle:
+  id: 332
+leprechaun_walk:
+  id: 335
+soulless_walk:
+  id: 336
+soulless_idle:
+  id: 337
+lord_iban_idle:
+  id: 346
+strange_plant_walk:
+  id: 349
+leprechaun_idle:
+  id: 1717
+ruby_harvest_walk:
+  id: 362
+alrena_idle:
+  id: 3185
+sparky_walk:
+  id: 392
+sparky_idle:
+  id: 405
+abidor_crank_idle:
+  id: 436
+adventurer_idle:
+  id: 479
+yak_walk:
+  id: 543
+yak_idle:
+  id: 544
+estocada_walk:
+  id: 546
+mr_ex_walk:
+  id: 552
+fisherman_idle:
+  id: 4825
+auguste_step_right:
+  id: 772
+auguste_idle:
+  id: 773
+miss_schism_idle:
+  id: 774
+mounted_terrorbird_gnome_step_right:
+  id: 6796
+knight_idle:
+  id: 784
+genie_idle:
+  id: 792
+fairy_very_wise_idle:
+  id: 793
+half-soulless_walk:
+  id: 800
+hooded_man_idle:
+  id: 806
+sir_tiffy_cashien_idle:
+  id: 808
+hooded_man_walk:
+  id: 812
+rolayne_twickit_idle:
+  id: 813
+ranis_drakan_walk:
+  id: 819
+ranis_drakan_walk_back:
+  id: 820
+ranis_drakan_step_left:
+  id: 821
+ranis_drakan_step_right:
+  id: 822
+ranis_drakan_walk2:
+  id: 823
+ozan_run:
+  id: 1083
+ajjat_idle:
+  id: 825
+ajjat_walk:
+  id: 826
+slave_idle:
+  id: 1728
+ice_warrior_walk:
+  id: 841
+nature_spirit_idle:
+  id: 842
+nickolaus_walk:
+  id: 844
+nickolaus_idle:
+  id: 845
+death_idle:
+  id: 847
+rogue_pack_yak_walk:
+  id: 849
+rogue_pack_yak_idle:
+  id: 850
+dancer_idle:
+  id: 2108
+carpenter_kjallak_idle:
+  id: 875
+drunken_dwarf_idle:
+  id: 900
+white_knight_step_right:
+  id: 902
+white_knight_step_left:
+  id: 903
+white_knight_walk_back:
+  id: 904
+wandering_beige_spider_run:
+  id: 905
+guardian_run:
+  id: 906
+dr_jekyll_walk2:
+  id: 915
+sea_slug_idle:
+  id: 932
+sea_slug_walk:
+  id: 933
+spirit_terrorbird_walk:
+  id: 1007
+spirit_terrorbird_idle:
+  id: 1008
+honey_badger_run:
+  id: 1011
+plague_frog_idle:
+  id: 1018
+bloated_toad_walk:
+  id: 1020
+plague_frog_walk:
+  id: 1021
+argax_idle:
+  id: 2995
+fire_elemental_idle:
+  id: 1027
+fire_elemental_walk:
+  id: 1028
+sir_owen_walk2:
+  id: 1032
+kay_thanxby_walk:
+  id: 1033
+air_elemental_walk:
+  id: 1039
+water_elemental_idle:
+  id: 1045
+water_elemental_walk:
+  id: 1047
+sir_owen_walk_back:
+  id: 1058
+white_knight_walk:
+  id: 1059
+sir_tiffy_cashien_walk:
+  id: 1065
+will_o'_the_wisp_walk:
+  id: 7068
+sir_owen_run:
+  id: 1079
+ozan_walk2:
+  id: 1080
+ozan_step_right:
+  id: 1081
+ozan_walk_back:
+  id: 1082
+strange_watcher_idle:
+  id: 1137
+sir_tiffy_cashien_walk_back:
+  id: 1138
+ariane_walk2:
+  id: 1673
+soldier_step_right:
+  id: 1144
+"1337sp34kr_walk":
+  id: 1146
+vladimir_step_right:
+  id: 1147
+ariane_step_right:
+  id: 1162
+ariane_walk_back:
+  id: 1177
+flesh_crawler_idle:
+  id: 1183
+flesh_crawler_walk:
+  id: 1189
+ariane_run:
+  id: 1191
+sir_tiffy_cashien_step_left:
+  id: 1198
+sir_tiffy_cashien_step_right:
+  id: 1201
+rolayne_twickit_walk:
+  id: 14693
+rolayne_twickit_walk_back:
+  id: 1206
+rolayne_twickit_step_left:
+  id: 1207
+rolayne_twickit_step_right:
+  id: 1208
+farmer_walk2:
+  id: 1209
+farmer_run:
+  id: 1215
+farmer_idle:
+  id: 12907
+child_idle:
+  id: 1225
+glophren_walk:
+  id: 1226
+guard_bunny_idle:
+  id: 1242
+guard_bunny_walk:
+  id: 1243
+spirit_scorpion_run:
+  id: 1260
+wolpertinger_run:
+  id: 1266
+dreadfowl_run:
+  id: 1268
+leech_walk:
+  id: 1269
+leech_idle:
+  id: 1270
+ravenous_ghoul_idle:
+  id: 1275
+fiyr_shadow_walk:
+  id: 1289
+fiyr_shadow_idle:
+  id: 1290
+afflicted_walk:
+  id: 1306
+shade_spirit_walk:
+  id: 1308
+crab_idle:
+  id: 14276
+rocks_walk:
+  id: 1311
+rocks_idle:
+  id: 1315
+olaf_the_bard_idle:
+  id: 1318
+sir_ren_itchood_idle:
+  id: 1321
+khazard_guard_idle:
+  id: 11685
+ahab_walk:
+  id: 1323
+ahab_walk_back:
+  id: 1324
+ahab_step_left:
+  id: 1325
+ahab_step_right:
+  id: 1326
+pikkupstix_idle:
+  id: 1329
+ariane_idle:
+  id: 1736
+dagannoth_idle:
+  id: 1338
+dagannoth_mother_walk:
+  id: 1346
+tentacle_walk2:
+  id: 1369
+anemone_walk2:
+  id: 1370
+urchin_walk2:
+  id: 1371
+linza_walk2:
+  id: 1772
+sleeping_monkey_walk:
+  id: 1380
+kikazaru_run:
+  id: 1381
+large_zombie_monkey_walk:
+  id: 1382
+monkey_knife_fighter_walk:
+  id: 1385
+monkey_knife_fighter_idle:
+  id: 1386
+bonzara_idle:
+  id: 1387
+sleeping_monkey_idle:
+  id: 1388
+monkey_guard_step_right:
+  id: 1399
+monkey_guard_run:
+  id: 1400
+monkey_guard_idle:
+  id: 1401
+waterfiend_walk:
+  id: 1417
+rug_merchant_run:
+  id: 1419
+strange_creature_idle:
+  id: 1434
+corpse_idle:
+  id: 1442
+iron_pickaxe_idle:
+  id: 1445
+innocent-looking_key_idle:
+  id: 1450
+innocent-looking_key_walk:
+  id: 1451
+war_tortoise_run:
+  id: 1471
+spirit_dagannoth_run:
+  id: 1472
+smoke_devil_run:
+  id: 1473
+troll_child_idle:
+  id: 1476
+arctic_bear_run:
+  id: 1478
+apprentice_idle:
+  id: 1493
+apprentice_walk:
+  id: 1494
+talon_beast_run:
+  id: 1499
+spirit_cobra_run:
+  id: 1501
+desert_wyrm_run:
+  id: 1502
+baba_yaga_idle:
+  id: 1507
+baba_yaga_walk:
+  id: 1508
+silas_idle:
+  id: 1514
+princess_astrid_idle:
+  id: 1516
+prince_brand_idle:
+  id: 1517
+astrid's_pyre_ship_walk:
+  id: 1521
+brand's_pyre_ship_walk:
+  id: 1525
+trawler_walk:
+  id: 1564
+dagannoth_walk:
+  id: 1529
+dagannoth_mother_idle:
+  id: 1530
+abyssal_minion_walk:
+  id: 1534
+abyssal_minion_idle:
+  id: 1536
+trawler_walk2:
+  id: 1654
+jones_walk2:
+  id: 1551
+smokedevil_walk:
+  id: 1554
+smokedevil_idle:
+  id: 1556
+small_lizard_idle:
+  id: 1577
+small_lizard_walk:
+  id: 1578
+harpie_bug_swarm_walk:
+  id: 1582
+skeletal_wyvern_walk:
+  id: 1586
+skeletal_wyvern_idle:
+  id: 1588
+mutated_zygomite_walk:
+  id: 2310
+skullball_idle:
+  id: 1607
+skullball_walk:
+  id: 1608
+experiment_idle:
+  id: 1625
+experiment_walk:
+  id: 1624
+lord_rologarth_walk:
+  id: 1622
+lord_rologarth_idle:
+  id: 1623
+ghost_(?)_idle:
+  id: 1639
+ghost_(?)_walk:
+  id: 1640
+registrar_5_idle:
+  id: 1705
+'''the_guns''_walk2':
+  id: 1735
+sam_walk:
+  id: 1739
+sam_idle:
+  id: 1740
+flambeed_walk:
+  id: 1748
+flambeed_idle:
+  id: 1749
+slagilith_idle:
+  id: 1753
+rock_pile_walk:
+  id: 1754
+the_kendal_idle:
+  id: 1756
+the_kendal_walk:
+  id: 1757
+jelly_run:
+  id: 1762
+granite_lobster_run:
+  id: 1763
+abyssal_lurker_run:
+  id: 1764
+ibis_run:
+  id: 1769
+bloated_leech_run:
+  id: 1770
+void_torcher_run:
+  id: 1771
+karamjan_jungle_eagle_walk:
+  id: 1773
+cave_bug_larva_walk:
+  id: 1781
+cave_bug_larva_idle:
+  id: 1782
+cave_slime_walk:
+  id: 1788
+cave_slime_idle:
+  id: 1790
+frog_idle:
+  id: 1796
+frog_walk:
+  id: 1797
+hole_in_the_wall_idle:
+  id: 1798
+wall_beast_idle:
+  id: 1799
+crow_walk:
+  id: 1826
+crow_idle:
+  id: 1825
+easter_bunny_walk:
+  id: 3851
+easter_bunny_idle:
+  id: 15346
+arzinian_being_of_bordanzan_idle:
+  id: 1838
+arzinian_being_of_bordanzan_walk:
+  id: 1839
+vampyre_bat_run:
+  id: 1848
+karamthulhu_overlord_run:
+  id: 1849
+linza_idle:
+  id: 1873
+clay_golem_walk:
+  id: 1912
+clay_golem_idle:
+  id: 1913
+linza_walk:
+  id: 3218
+cliff_idle:
+  id: 1928
+cliff_step_right:
+  id: 1929
+ozan_idle:
+  id: 2649
+scarab_swarm_walk:
+  id: 1945
+scarab_swarm_idle:
+  id: 1947
+bandit_idle:
+  id: 1955
+captain_siad_idle:
+  id: 1953
+ozan_walk:
+  id: 2648
+poorly_cooked_karambwan_walk:
+  id: 1972
+dynamite_run:
+  id: 1991
+locust_walk:
+  id: 2011
+locust_idle:
+  id: 2012
+vulture_walk:
+  id: 7658
+vulture_idle:
+  id: 7659
+dynamite_step_right:
+  id: 2018
+wizard_step_right:
+  id: 2035
+faruq_idle:
+  id: 2037
+wizard_run:
+  id: 2038
+light_creature_walk:
+  id: 2051
+verac_the_defiled_walk:
+  id: 2060
+verac_the_defiled_idle:
+  id: 2061
+dharok_the_wretched_walk:
+  id: 2064
+dharok_the_wretched_idle:
+  id: 2065
+bloodworm_walk:
+  id: 2069
+bloodworm_idle:
+  id: 2071
+hydra_run:
+  id: 2092
+obsidian_golem_run:
+  id: 2093
+forge_regent_run:
+  id: 2095
+fishing_spot_walk:
+  id: 2126
+spirit_tz-kih_run:
+  id: 2147
+commander_veldaban_walk:
+  id: 12131
+purple_pewter_director_idle:
+  id: 2151
+white_chisel_director_idle:
+  id: 2152
+poorly_cooked_karambwan_idle:
+  id: 2155
+brown_engine_director_walk:
+  id: 2156
+banker_walk:
+  id: 11870
+brown_engine_secretary_idle:
+  id: 2158
+seth_groats_idle:
+  id: 2163
+seth_groats_walk:
+  id: 2164
+thing_under_the_bed_idle:
+  id: 2170
+ravenous_locust_run:
+  id: 2172
+unicorn_stallion_run:
+  id: 2175
+beaver_run:
+  id: 2176
+spirit_kalphite_run:
+  id: 2177
+abyssal_leech_walk:
+  id: 2179
+abyssal_leech_idle:
+  id: 2180
+abyssal_guardian_walk:
+  id: 2184
+abyssal_guardian_idle:
+  id: 2185
+abyssal_walker_walk:
+  id: 2190
+abyssal_walker_idle:
+  id: 2191
+spin_blades_walk:
+  id: 2212
+sir_tinley_idle:
+  id: 2253
+ms._hynn_terprett_idle:
+  id: 2255
+savant_idle:
+  id: 2256
+sheepdog_idle:
+  id: 2268
+evil_chicken_walk:
+  id: 2297
+evil_chicken_idle:
+  id: 2298
+void_shifter_run:
+  id: 2325
+mysterious_ghost_walk:
+  id: 2333
+mysterious_ghost_idle:
+  id: 2334
+colonel_grimsson_walk:
+  id: 2335
+ulifed_idle:
+  id: 2337
+door_idle:
+  id: 2358
+door-support_idle:
+  id: 2357
+dagannoth_spawn_walk:
+  id: 2361
+egg_walk:
+  id: 3853
+wallasalki_walk:
+  id: 2363
+wallasalki_idle:
+  id: 2364
+pheasant_walk:
+  id: 2369
+pheasant_idle:
+  id: 2370
+pyrefiend_run:
+  id: 2391
+bush_snake_walk:
+  id: 2392
+giant_mosquito_idle:
+  id: 2395
+giant_mosquito_walk:
+  id: 2396
+broodoo_victim_idle:
+  id: 2401
+skeletal_warrior_idle:
+  id: 2561
+skeletal_warrior_step_right:
+  id: 2562
+ellamaria_idle:
+  id: 2578
+giant_bat_idle:
+  id: 4914
+giant_bat_walk:
+  id: 4913
+mother_mallum_idle:
+  id: 4819
+lucy_idle:
+  id: 2636
+mayor_hobb_idle:
+  id: 2646
+odysseus_walk:
+  id: 2667
+odysseus_idle:
+  id: 2668
+dragonkin_idle:
+  id: 2688
+dragonkin_walk:
+  id: 2689
+bull_ant_run:
+  id: 2698
+guard_idle:
+  id: 13064
+mugger_idle:
+  id: 2701
+king_rat_walk:
+  id: 2703
+king_rat_idle:
+  id: 2704
+hops_idle:
+  id: 2712
+chancy_idle:
+  id: 2713
+mandrith_walk:
+  id: 2715
+lord_daquarius_step_right:
+  id: 2724
+mage_of_zamorak_step_right:
+  id: 2727
+ranger_idle:
+  id: 2728
+kolodion_walk:
+  id: 2729
+kolodion_idle:
+  id: 10813
+shadow_walk:
+  id: 2737
+shadow_idle:
+  id: 2740
+larry_the_lumberjack_idle:
+  id: 2765
+larry_the_lumberjack_step_right:
+  id: 2766
+drunken_sailor_walk:
+  id: 2769
+jimmy_idle:
+  id: 2770
+fishbowl_idle:
+  id: 2772
+larry_the_lumberjack_run:
+  id: 2773
+mutated_zygomite_idle:
+  id: 2774
+fungi_walk:
+  id: 2778
+spirit_mosquito_run:
+  id: 2801
+evil_spirit_walk:
+  id: 2802
+evil_spirit_idle:
+  id: 2803
+praying_mantis_run:
+  id: 2809
+barker_toad_run:
+  id: 2812
+zombie_head_walk:
+  id: 2818
+the_raptor_idle:
+  id: 2822
+the_raptor_walk:
+  id: 2832
+sir_owen_idle:
+  id: 3000
+gee_idle:
+  id: 2836
+dagannoth_rex_walk:
+  id: 2849
+dagannoth_rex_idle:
+  id: 2850
+rock_lobster_walk:
+  id: 2857
+rock_lobster_idle:
+  id: 2858
+spinolyp_walk:
+  id: 2863
+spinolyp_idle:
+  id: 2867
+sir_owen_walk:
+  id: 2944
+sand_storm_walk:
+  id: 2882
+droalak_idle:
+  id: 2893
+amulet_of_nature_idle:
+  id: 2906
+tirrie_walk:
+  id: 2907
+tirrie_idle:
+  id: 2908
+rokuh_idle:
+  id: 2911
+rokuh_walk:
+  id: 2912
+mystery_figure_idle:
+  id: 9299
+earth_warrior_champion_idle:
+  id: 2945
+earth_warrior_champion_walk:
+  id: 2947
+earth_warrior_champion_walk_back:
+  id: 2948
+earth_warrior_champion_step_left:
+  id: 2949
+earth_warrior_champion_step_right:
+  id: 2950
+ice_demon_idle:
+  id: 2978
+ice_demon_walk:
+  id: 2979
+monk_idle:
+  id: 5877
+monk_walk:
+  id: 5876
+ronan_idle:
+  id: 3008
+ronan_walk:
+  id: 3012
+mutated_jadinko_baby_walk2:
+  id: 3013
+mutated_jadinko_baby_walk_back:
+  id: 3015
+flying_book_walk:
+  id: 3023
+charmed_warrior_idle:
+  id: 3026
+charmed_warrior_walk:
+  id: 3027
+rewards_guardian_idle:
+  id: 3033
+rune_guardian_walk:
+  id: 3034
+rewards_guardian_walk:
+  id: 3035
+sandy_idle:
+  id: 3036
+dr_harlow_walk:
+  id: 3039
+dr_harlow_idle:
+  id: 3040
+sandwich_lady_walk:
+  id: 3042
+sandwich_lady_idle:
+  id: 3043
+balloon_animal_walk:
+  id: 3048
+balloon_animal_idle:
+  id: 3049
+man_idle:
+  id: 3054
+boneguard_idle:
+  id: 3073
+boneguard_walk:
+  id: 3078
+xenia_idle:
+  id: 12849
+mutated_jadinko_guard_walk2:
+  id: 3165
+storm_cloud_walk:
+  id: 3169
+storm_cloud_idle:
+  id: 3168
+bravek_idle:
+  id: 3186
+clay_familiar_(class_5)_run:
+  id: 3190
+geyser_titan_run:
+  id: 3193
+swamp_titan_run:
+  id: 3194
+engineering_assistant_walk:
+  id: 3207
+engineering_assistant_idle:
+  id: 3208
+big_ben_walk:
+  id: 3210
+squirrel_idle:
+  id: 3211
+big_ben_idle:
+  id: 3212
+mutated_jadinko_male_walk_back:
+  id: 3213
+swan_walk:
+  id: 3241
+swan_idle:
+  id: 3242
+sweeper_idle:
+  id: 3244
+sweeper_walk:
+  id: 3245
+farmer_walk:
+  id: 9724
+farmer_step_left:
+  id: 3271
+farmer_step_right:
+  id: 9738
+martina_scorsby_idle:
+  id: 3281
+jeremy_clerksin_idle:
+  id: 3282
+baby_mole_idle:
+  id: 3309
+baby_mole_walk:
+  id: 3313
+count_draynor_idle:
+  id: 3330
+count_draynor_walk:
+  id: 3333
+k'klik_idle:
+  id: 3346
+void_ravager_run:
+  id: 3356
+culinaromancer_step_right:
+  id: 3357
+steel_titan_run:
+  id: 3358
+moss_titan_run:
+  id: 3360
+lava_titan_run:
+  id: 3363
+culinaromancer_walk:
+  id: 3365
+fire_titan_run:
+  id: 3368
+giant_rat_run:
+  id: 3369
+allan_run:
+  id: 3372
+monarchist_walk:
+  id: 3379
+awowogei_walk:
+  id: 3390
+general_wartface_walk:
+  id: 3395
+goblin_cook_walk:
+  id: 3401
+giant_crab_idle:
+  id: 8098
+crab_walk:
+  id: 3426
+mudskipper_idle:
+  id: 3431
+mudskipper_walk:
+  id: 3432
+fish_walk:
+  id: 10427
+fish_idle:
+  id: 3444
+mining_tutor_idle:
+  id: 3461
+balloon_toad_walk:
+  id: 3472
+pauline_polaris_walk2:
+  id: 3480
+drained_pauline_polaris_walk2:
+  id: 3482
+agrith-na-na_idle:
+  id: 3498
+agrith-na-na_walk:
+  id: 3499
+dessourt_idle:
+  id: 3504
+dessourt_walk:
+  id: 3506
+kikazaru_idle:
+  id: 3523
+iwazaru_idle:
+  id: 3524
+mizaru_idle:
+  id: 3525
+sea_snake_hatchling_idle:
+  id: 3535
+sea_snake_hatchling_walk:
+  id: 3537
+vampyre_juvinate_idle:
+  id: 5836
+luminata_idle:
+  id: 3557
+gadderanks_idle:
+  id: 3563
+sheep_walk:
+  id: 5340
+sheep_idle:
+  id: 5339
+mutated_jadinko_guard_walk_back:
+  id: 3571
+elemental_balance_idle:
+  id: 3584
+man_run:
+  id: 3589
+will_idle:
+  id: 3605
+will_walk:
+  id: 3606
+head_guard_walk:
+  id: 3608
+sergeant-at-arms_walk:
+  id: 3609
+tentacle_walk:
+  id: 3729
+rocnar_idle:
+  id: 3707
+rocnar_walk:
+  id: 3708
+toy_soldier_idle:
+  id: 3712
+toy_soldier_walk:
+  id: 3713
+toy_doll_idle:
+  id: 3716
+toy_doll_walk:
+  id: 3717
+toy_mouse_walk:
+  id: 3718
+sir_renitee_idle:
+  id: 3719
+head_walk:
+  id: 3730
+fear_reaper_walk:
+  id: 3809
+fear_reaper_idle:
+  id: 3810
+confusion_beast_idle:
+  id: 3815
+confusion_beast_walk:
+  id: 3819
+hopeless_creature_idle:
+  id: 3822
+hopeless_creature_walk:
+  id: 3825
+tolna_walk:
+  id: 3828
+avalani_walk:
+  id: 3831
+avalani_idle:
+  id: 3839
+bones_idle:
+  id: 3840
+morris_idle:
+  id: 3845
+culinaromancer_idle:
+  id: 3846
+geoffrey_step_right:
+  id: 3865
+geoffrey_idle:
+  id: 3866
+rabbit_walk:
+  id: 6088
+rabbit_idle:
+  id: 8737
+torcher_idle:
+  id: 3878
+torcher_walk:
+  id: 3879
+splatter_idle:
+  id: 3886
+splatter_walk:
+  id: 3887
+brawler_walk:
+  id: 3892
+brawler_idle:
+  id: 3893
+shifter_walk:
+  id: 3898
+shifter_idle:
+  id: 3899
+spinner_idle:
+  id: 8171
+spinner_walk:
+  id: 8175
+ravager_idle:
+  id: 3913
+ravager_walk:
+  id: 3914
+defiler_idle:
+  id: 3918
+defiler_walk:
+  id: 3919
+ball_walk:
+  id: 3925
+void_knight_idle:
+  id: 3926
+portal_walk:
+  id: 6880
+postie_pete_walk:
+  id: 3947
+postie_pete_idle:
+  id: 3948
+milk_seller_idle:
+  id: 3950
+healthorg_and_tortoise_idle:
+  id: 3952
+healthorg_and_tortoise_walk:
+  id: 3953
+farquie_the_cleaner_idle:
+  id: 3959
+trainer_nacklepen_walk:
+  id: 3963
+farquie_the_cleaner_step_right:
+  id: 3964
+trainer_nacklepen_idle:
+  id: 3965
+guard_dog_walk2:
+  id: 3967
+wise_old_man_idle:
+  id: 3970
+battlemaster_walk:
+  id: 3983
+sea_troll_queen_idle:
+  id: 3989
+milk_seller_step_right:
+  id: 3997
+suspect_walk:
+  id: 3999
+ferd_idle:
+  id: 4021
+giant_sea_snake_walk:
+  id: 4037
+giles_walk:
+  id: 4087
+vanstrom_klause_idle:
+  id: 8562
+h.a.m._deacon_idle:
+  id: 4208
+nardok_idle:
+  id: 4210
+alain_walk:
+  id: 4226
+guard_walk_back:
+  id: 4227
+cave_horror_idle:
+  id: 4231
+cave_horror_walk:
+  id: 4236
+parrot_idle:
+  id: 4259
+minotaur_walk:
+  id: 4263
+minotaur_idle:
+  id: 4264
+catablepon_walk:
+  id: 4268
+catablepon_idle:
+  id: 4269
+gorak_walk:
+  id: 4298
+gorak_idle:
+  id: 4299
+cosmic_being_idle:
+  id: 4303
+cosmic_being_walk:
+  id: 4304
+bree_walk:
+  id: 4310
+bree_idle:
+  id: 4311
+starflower_idle:
+  id: 4315
+spiritual_mage_idle:
+  id: 4318
+spiritual_mage_walk:
+  id: 4319
+enchanted_broom_walk:
+  id: 4372
+enchanted_bucket_walk:
+  id: 4374
+suqah_walk:
+  id: 4383
+suqah_idle:
+  id: 4386
+house_walk:
+  id: 4390
+house_idle:
+  id: 4391
+troll_ranger_step_right:
+  id: 4415
+sirsal_banker_walk:
+  id: 4424
+pauline_polaris_walk:
+  id: 4426
+pauline_polaris_walk_back:
+  id: 4427
+pauline_polaris_step_left:
+  id: 4428
+pauline_polaris_step_right:
+  id: 4429
+automaton_idle:
+  id: 15321
+automaton_walk:
+  id: 15320
+gianne_jnr_idle:
+  id: 4536
+dalila_idle:
+  id: 4537
+perrdur_idle:
+  id: 4538
+nisha_idle:
+  id: 4593
+nick_idle:
+  id: 4594
+blue_warrior_idle:
+  id: 4607
+weakened_delrith_idle:
+  id: 4619
+jayene_kliyn_walk:
+  id: 4622
+snow_imp_run:
+  id: 4626
+blue_warrior_walk:
+  id: 4632
+king_black_dragon_walk:
+  id: 4635
+blue_ranger_idle:
+  id: 4642
+zachory_bragg_walk:
+  id: 4648
+hill_giant_walk:
+  id: 4649
+hill_giant_idle:
+  id: 4650
+moss_giant_walk:
+  id: 4655
+moss_giant_idle:
+  id: 4656
+fire_giant_walk:
+  id: 4661
+fire_giant_idle:
+  id: 4663
+ice_giant_walk:
+  id: 4669
+ice_giant_idle:
+  id: 4670
+blue_ranger_walk:
+  id: 4675
+blue_mage_walk:
+  id: 4680
+vyrewatch_walk:
+  id: 9114
+blue_mage_idle:
+  id: 4688
+vyrewatch_idle:
+  id: 9117
+vampyre_juvinate_walk:
+  id: 4699
+meiyerditch_citizen_idle:
+  id: 4712
+shanty_claws_idle:
+  id: 4738
+shanty_claws_walk:
+  id: 4740
+boat_idle:
+  id: 4755
+boat_walk:
+  id: 4756
+protester_walk:
+  id: 11173
+stray_dog_walk:
+  id: 4773
+stray_dog_idle:
+  id: 4777
+fisherman_walk:
+  id: 4779
+col._o'niall_idle:
+  id: 4780
+holgart_walk:
+  id: 4787
+holgart_idle:
+  id: 4788
+kennith_walk:
+  id: 8811
+mother_mallum_walk:
+  id: 4820
+slug_prince_walk:
+  id: 4821
+jeb_walk:
+  id: 4824
+slug_prince_idle:
+  id: 4828
+jallek_lenkin_idle:
+  id: 4857
+gee_walk:
+  id: 4858
+fritz_the_glassblower_walk2:
+  id: 4859
+elemental_rock_walk:
+  id: 4864
+earth_elemental_idle:
+  id: 4866
+earth_elemental_walk:
+  id: 4867
+ballista_walk2:
+  id: 4872
+arctic_bear_idle:
+  id: 4919
+bear_cub_idle:
+  id: 4920
+arctic_bear_walk:
+  id: 4923
+bear_cub_walk:
+  id: 4924
+rat_walk:
+  id: 4931
+rat_idle:
+  id: 4932
+troll_ranger_run:
+  id: 4990
+giant_roc_idle:
+  id: 5021
+giant_roc_walk:
+  id: 5022
+baby_roc_idle:
+  id: 5029
+baby_roc_walk:
+  id: 5030
+cart_camel_idle:
+  id: 5044
+gublinch_walk:
+  id: 5069
+gublinch_idle:
+  id: 5070
+queen_spawn_walk:
+  id: 5089
+queen_spawn_idle:
+  id: 5090
+penance_fighter_idle:
+  id: 5094
+penance_fighter_walk:
+  id: 5095
+penance_runner_idle:
+  id: 5099
+penance_runner_walk:
+  id: 5100
+penance_healer_idle:
+  id: 5104
+penance_healer_walk:
+  id: 5107
+bob_idle:
+  id: 5146
+curly_idle:
+  id: 5147
+moe_idle:
+  id: 5148
+larry_idle:
+  id: 11740
+bob_walk:
+  id: 5150
+curly_walk:
+  id: 5151
+moe_walk:
+  id: 5152
+larry_walk:
+  id: 11741
+matthias_idle:
+  id: 5160
+yambo_walk2:
+  id: 5161
+matthias_walk:
+  id: 5164
+yambo_walk_back:
+  id: 5165
+yambo_step_left:
+  id: 5166
+yambo_step_right:
+  id: 5167
+yambo_run:
+  id: 5168
+carnivorous_chinchompa_walk:
+  id: 5181
+carnivorous_chinchompa_idle:
+  id: 5182
+gyr_falcon_idle:
+  id: 5202
+dawg_idle:
+  id: 5225
+dawg_walk:
+  id: 5226
+chaos_elemental_idle:
+  id: 5248
+swamp_lizard_walk:
+  id: 5262
+swamp_lizard_idle:
+  id: 5263
+gyr_falcon_walk:
+  id: 5284
+swamp_snake_idle:
+  id: 5290
+swamp_snake_step_right:
+  id: 5291
+kebbit_walk:
+  id: 5301
+kebbit_idle:
+  id: 5302
+boulder_idle:
+  id: 5310
+huge_spider_walk:
+  id: 5317
+huge_spider_idle:
+  id: 5318
+spider_walk:
+  id: 5325
+jungle_spider_idle:
+  id: 5326
+jungle_spider_walk:
+  id: 5333
+golden_sheep_walk:
+  id: 5344
+golden_sheep_idle:
+  id: 5345
+alice's_husband_idle:
+  id: 5371
+alice's_husband_walk:
+  id: 5373
+ice_troll_king_walk:
+  id: 5379
+rooster_walk:
+  id: 5385
+dreadfowl_idle:
+  id: 5386
+penance_ranger_idle:
+  id: 5393
+penance_ranger_walk:
+  id: 5394
+penance_queen_walk:
+  id: 5409
+penance_queen_idle:
+  id: 5410
+egg_launcher_idle:
+  id: 5424
+flippa_walk:
+  id: 5440
+chaos_elemental_walk:
+  id: 5442
+giant_scarab_walk:
+  id: 7592
+giant_scarab_idle:
+  id: 7593
+bolrie_idle:
+  id: 5471
+corpse_walk:
+  id: 5479
+skeleton_walk:
+  id: 12862
+skeleton_idle:
+  id: 12883
+giant_skeleton_idle:
+  id: 5493
+mummy_champion_idle:
+  id: 5504
+nazastarool_idle:
+  id: 5572
+nazastarool_walk:
+  id: 5506
+skeleton_champion_idle:
+  id: 5510
+skeleton_champion_walk:
+  id: 5511
+ghost_idle:
+  id: 5538
+ghost_walk:
+  id: 5539
+mummy_idle:
+  id: 6856
+mummy_warrior_idle:
+  id: 5551
+mummy_walk:
+  id: 5553
+mummy_warrior_walk:
+  id: 5557
+annoyed_guardian_mummy_idle:
+  id: 5558
+dead_swamp_snake_step_right:
+  id: 5561
+mummy_ashes_walk:
+  id: 5563
+zombie_idle:
+  id: 6855
+zombie_walk:
+  id: 5577
+armoured_zombie_walk:
+  id: 5570
+zombie_champion_idle:
+  id: 5573
+zombie_champion_walk:
+  id: 5582
+zombie_protester_walk:
+  id: 5583
+zombie_protester_idle:
+  id: 5584
+"50%_luke_walk":
+  id: 5585
+"50%_luke_idle":
+  id: 5586
+possessed_pickaxe_idle:
+  id: 5589
+possessed_pickaxe_walk:
+  id: 5593
+animated_spade_idle:
+  id: 5594
+animated_spade_walk:
+  id: 5595
+banker_idle:
+  id: 5607
+mutant_tarn_walk:
+  id: 5615
+mutant_tarn_idle:
+  id: 5616
+terror_dog_walk:
+  id: 5622
+terror_dog_idle:
+  id: 5623
+general_malpractitioner_idle:
+  id: 5641
+general_malpractitioner_walk:
+  id: 5642
+zombie_pirate_walk:
+  id: 5887
+zombie_pirate_idle:
+  id: 5888
+captain_donnie_walk:
+  id: 5655
+captain_donnie_idle:
+  id: 5656
+penguin_walk:
+  id: 8317
+penguin_idle:
+  id: 11750
+ping_walk:
+  id: 5673
+pong_walk:
+  id: 5675
+army_commander_walk:
+  id: 5676
+army_commander_idle:
+  id: 5677
+chuck_walk:
+  id: 5719
+chuck_idle:
+  id: 11714
+icelord_walk:
+  id: 5721
+icelord_idle:
+  id: 5722
+delgon_idle:
+  id: 5751
+tolna_idle:
+  id: 5752
+tilt_walk:
+  id: 5769
+iceberg_walk:
+  id: 5770
+zombie_step_left:
+  id: 5792
+zombie_step_right:
+  id: 5791
+zombie_walk_back:
+  id: 5793
+sanchez_walk:
+  id: 5799
+summer_elemental_idle:
+  id: 5801
+winter_elemental_walk:
+  id: 5802
+winter_elemental_idle:
+  id: 5803
+shamus_idle:
+  id: 5806
+sin_seer_walk:
+  id: 5809
+sin_seer_idle:
+  id: 5810
+bonafido_idle:
+  id: 5814
+'''no_fingers''_idle':
+  id: 5815
+'''gummy''_idle':
+  id: 5816
+'''black-eye''_idle':
+  id: 5817
+mushroom_idle:
+  id: 5821
+sea_troll_general_idle:
+  id: 5826
+homunculus_idle:
+  id: 5831
+homunculus_walk:
+  id: 5832
+huge_troll_idle:
+  id: 5837
+sea_troll_general_walk:
+  id: 5838
+frogeel_idle:
+  id: 5839
+frogeel_walk:
+  id: 5840
+mi-gor_walk:
+  id: 5858
+mi-gor_idle:
+  id: 5859
+puffin_walk:
+  id: 5872
+puffin_idle:
+  id: 5873
+brother_tranquility_idle:
+  id: 5875
+barrelchest_mk_ii_walk:
+  id: 5892
+barrelchest_mk_ii_idle:
+  id: 5893
+undead_lumberjack_walk:
+  id: 5969
+vampyre_juvinate_walk_back:
+  id: 5968
+undead_lumberjack_idle:
+  id: 5973
+rachel_(well)_walk:
+  id: 5974
+rachel_(sick)_walk:
+  id: 5975
+rachel_(very_sick)_walk:
+  id: 5976
+rachel_(ghastly!)_walk:
+  id: 5977
+talon_beast_idle:
+  id: 5986
+talon_beast_walk:
+  id: 5987
+zanik_idle:
+  id: 11390
+zanik_walk:
+  id: 6215
+cave_goblin_miner_idle:
+  id: 6004
+cave_goblin_miner_walk:
+  id: 6005
+kazgar_idle:
+  id: 6006
+molanisk_idle:
+  id: 6010
+molanisk_walk:
+  id: 6011
+moths_walk:
+  id: 6036
+zanik_step_right:
+  id: 11391
+jobo_walk:
+  id: 6042
+crate_goblin_idle:
+  id: 6043
+crate_goblin_walk:
+  id: 6044
+goblin_scribe_idle:
+  id: 6045
+goblin_scribe_walk:
+  id: 6046
+kenti_idle:
+  id: 6052
+kenti_walk:
+  id: 6053
+nipper_walk:
+  id: 6057
+nipper_idle:
+  id: 6059
+spit_goblin_idle:
+  id: 6060
+goblin_fish_walk:
+  id: 6061
+goblin_fish_idle:
+  id: 6062
+cave_bug_walk:
+  id: 6077
+cave_bug_idle:
+  id: 6078
+bench_idle:
+  id: 6106
+ulfric_walk:
+  id: 6112
+ulfric_idle:
+  id: 6126
+brine_rat_walk:
+  id: 6114
+brine_rat_idle:
+  id: 6127
+goblin_walk:
+  id: 6201
+goblin_idle:
+  id: 6859
+sigmund_and_zanik_walk:
+  id: 6150
+sigmund_and_zanik_idle:
+  id: 6151
+sergeant_grimspike_walk:
+  id: 6152
+sergeant_grimspike_idle:
+  id: 6153
+grubfoot_step_right:
+  id: 6180
+grubfoot_walk2:
+  id: 6181
+junior_cadet_grimeface_walk:
+  id: 6187
+general_bentnoze_walk:
+  id: 9650
+general_bentnoze_idle:
+  id: 6203
+builder_idle:
+  id: 6208
+baden_idle:
+  id: 6207
+kalphite_larva_idle:
+  id: 6218
+kalphite_guardian_idle:
+  id: 6219
+spirit_kalphite_walk:
+  id: 6220
+kalphite_larva_walk:
+  id: 6221
+kalphite_guardian_walk:
+  id: 6222
+angry_juvinate_walk_back:
+  id: 6226
+angry_juvinate_idle:
+  id: 6231
+kalphite_queen_walk:
+  id: 6238
+kalphite_queen_idle:
+  id: 6239
+king_scorpion_idle:
+  id: 6252
+king_scorpion_walk:
+  id: 6253
+pit_scorpion_walk:
+  id: 6257
+pit_scorpion_idle:
+  id: 6258
+lobster_idle:
+  id: 6263
+lobster_walk:
+  id: 6264
+fallen_man_walk:
+  id: 6282
+cyrisus_walk:
+  id: 10973
+a_doubt_idle:
+  id: 6311
+a_doubt_walk:
+  id: 6312
+the_inadequacy_walk:
+  id: 6317
+nex_step_right:
+  id: 6319
+nex_idle:
+  id: 6320
+the_untouchable_walk:
+  id: 6328
+the_illusive_idle:
+  id: 6350
+the_illusive_walk:
+  id: 6339
+the_everlasting_idle:
+  id: 6343
+the_everlasting_walk:
+  id: 6344
+giant_champion_idle:
+  id: 6371
+giant_champion_walk:
+  id: 6372
+unicorn_stallion_walk:
+  id: 6373
+unicorn_stallion_idle:
+  id: 6374
+art_critic_jacques_walk:
+  id: 6388
+art_critic_jacques_idle:
+  id: 6389
+museum_guard_idle:
+  id: 6464
+natural_historian_idle:
+  id: 11586
+natural_historian_walk:
+  id: 11587
+teacher_and_pupil_walk:
+  id: 6412
+teacher_and_pupil_idle:
+  id: 6413
+workman_walk:
+  id: 6420
+workman_idle:
+  id: 6456
+digsite_workman_idle:
+  id: 6425
+leech_display_idle:
+  id: 6429
+snail_display_idle:
+  id: 6431
+sea_slugs_display_idle:
+  id: 6433
+monkey_display_idle:
+  id: 6435
+lizard_display_idle:
+  id: 6437
+penguin_display_idle:
+  id: 6439
+camel_display_idle:
+  id: 6441
+terrorbird_display_idle:
+  id: 6443
+wyvern_display_idle:
+  id: 6445
+battle_tortoise_display_idle:
+  id: 6449
+mole_display_idle:
+  id: 6451
+barge_workman_idle:
+  id: 6457
+barge_foreman_idle:
+  id: 6458
+local_mage_walk:
+  id: 6468
+local_mage_idle:
+  id: 6469
+elsie_idle:
+  id: 6478
+guard_walk:
+  id: 7731
+steel_dragon_idle:
+  id: 6496
+glod_idle:
+  id: 6504
+glod_walk:
+  id: 6505
+experiment_no.2_walk:
+  id: 6510
+experiment_no.2_idle:
+  id: 6511
+mouse_walk:
+  id: 11546
+mouse_idle:
+  id: 6518
+queen_of_snow_walk:
+  id: 6531
+miazrqa_walk_back:
+  id: 6532
+gnome_idle:
+  id: 15269
+winkin_idle:
+  id: 6534
+agility_boss_idle:
+  id: 6539
+moira_walk:
+  id: 6541
+shadowy_figure_walk:
+  id: 6544
+shadowy_figure_idle:
+  id: 6545
+agility_boss_walk:
+  id: 6548
+guard_dog_step_right:
+  id: 6556
+guard_dog_walk:
+  id: 6560
+pit_dog_idle:
+  id: 6561
+muncher_walk:
+  id: 6577
+bouncer_idle:
+  id: 6580
+bouncer_walk:
+  id: 6582
+dog_walk:
+  id: 6583
+impling_manager_idle:
+  id: 6613
+impling_manager_walk:
+  id: 6614
+vampyre_juvenile_idle:
+  id: 6721
+ferocious_barbarian_spirit_idle:
+  id: 6729
+ferocious_barbarian_spirit_walk:
+  id: 6730
+chompy_bird_idle:
+  id: 6764
+chompy_bird_walk:
+  id: 6768
+gull_idle:
+  id: 6771
+cormorant_idle:
+  id: 6772
+gull_walk:
+  id: 6773
+cormorant_walk:
+  id: 6774
+vampyre_juvenile_walk_back:
+  id: 6780
+terrorchick_idle:
+  id: 6798
+terrorchick_step_right:
+  id: 6799
+jubster_idle:
+  id: 6803
+jubster_walk:
+  id: 6804
+jubbly_bird_walk:
+  id: 6807
+entrana_firebird_walk:
+  id: 6808
+entrana_firebird_idle:
+  id: 6809
+drake_idle:
+  id: 6813
+seagull_idle:
+  id: 6815
+duckling_walk:
+  id: 6817
+duckling_idle:
+  id: 6818
+drake_walk:
+  id: 6819
+ducklings_idle:
+  id: 6821
+ducklings_walk:
+  id: 6822
+dunce_idle:
+  id: 6826
+sleeping_guard_idle:
+  id: 6828
+smellytoes_idle:
+  id: 6829
+greasycheeks_idle:
+  id: 6831
+creakyknees_idle:
+  id: 6833
+naghead_idle:
+  id: 6834
+wagchin_idle:
+  id: 6835
+clothears_idle:
+  id: 6836
+clerk_idle:
+  id: 6841
+giant_idle:
+  id: 6857
+town_crier_idle:
+  id: 6864
+town_crier_walk:
+  id: 6867
+anna_walk:
+  id: 6926
+renegade_knight_idle:
+  id: 6927
+renegade_knight_walk:
+  id: 6928
+armoured_zombie_idle:
+  id: 10415
+clive_idle:
+  id: 6935
+aviansie_idle:
+  id: 6949
+aviansie_walk:
+  id: 6950
+commander_zilyana_walk:
+  id: 6962
+commander_zilyana_idle:
+  id: 6963
+kree'arra_idle:
+  id: 6972
+kree'arra_walk:
+  id: 6973
+blood_reaver_walk:
+  id: 7001
+blood_reaver_idle:
+  id: 7008
+growler_idle:
+  id: 7014
+growler_walk:
+  id: 7015
+white_knight_idle:
+  id: 7047
+vanstrom_klause_walk_back:
+  id: 8592
+general_graardor_walk:
+  id: 7058
+general_graardor_idle:
+  id: 7059
+held_vampyre_juvenile_idle:
+  id: 7077
+warped_tortoise_walk:
+  id: 7089
+warped_tortoise_idle:
+  id: 7090
+guard_no._72_walk:
+  id: 7103
+no._202_idle:
+  id: 7099
+guard_no._72_idle:
+  id: 7111
+warped_terrorbird_idle:
+  id: 7105
+warped_terrorbird_walk:
+  id: 7106
+kennith_idle:
+  id: 8852
+summer_walk:
+  id: 7160
+philop_idle:
+  id: 7163
+kanel_idle:
+  id: 7164
+schoolgirl_walk:
+  id: 7165
+schoolgirl_idle:
+  id: 7167
+queen_of_snow_idle:
+  id: 15361
+cap'n_arnav_walk:
+  id: 7189
+cap'n_arnav_walk_back:
+  id: 7190
+akrisae_walk:
+  id: 7191
+akrisae_walk_back:
+  id: 7192
+akrisae_step_left:
+  id: 7193
+akrisae_step_right:
+  id: 7194
+cap'n_hand_idle:
+  id: 7199
+cap'n_hand_walk:
+  id: 7200
+cap'n_hand_walk_back:
+  id: 7201
+cap'n_hand_step_left:
+  id: 7202
+cap'n_hand_step_right:
+  id: 7203
+cave_lizard_idle:
+  id: 7209
+cave_lizard_walk:
+  id: 7210
+master_guard_walk:
+  id: 7216
+master_guard_idle:
+  id: 7217
+arresting_officer_idle:
+  id: 7222
+arresting_officer_walk:
+  id: 7224
+giant_ant_soldier_walk:
+  id: 7235
+giant_ant_soldier_idle:
+  id: 7236
+warped_fly_walk:
+  id: 7241
+wild_jade_vine_idle:
+  id: 7245
+guard_dog_idle:
+  id: 7254
+barker_toad_idle:
+  id: 7258
+barker_toad_walk:
+  id: 7259
+fisherman_frodi_idle:
+  id: 7261
+grim_reaper_idle:
+  id: 7295
+preacher_idle:
+  id: 7315
+strongbones_walk:
+  id: 7325
+grubfoot_run:
+  id: 7332
+vanstrom_klause_walk:
+  id: 7357
+relobo_blinyo_(logs)_walk:
+  id: 7364
+murky_matt_(runes)_walk:
+  id: 7365
+bob_barter_(herbs)_walk:
+  id: 7366
+farid_morrisane_(ores)_walk:
+  id: 7367
+grand_exchange_tutor_walk:
+  id: 7368
+brugsen_bursen_walk:
+  id: 7369
+hofuthand_(armour_and_weapons)_walk:
+  id: 7370
+collapsing_grave_marker_idle:
+  id: 7375
+revenant_werewolf_idle:
+  id: 7400
+revenant_werewolf_walk:
+  id: 7401
+revenant_imp_idle:
+  id: 7405
+revenant_imp_walk:
+  id: 7406
+revenant_ork_idle:
+  id: 7414
+revenant_ork_walk:
+  id: 7415
+revenant_hobgoblin_idle:
+  id: 7421
+revenant_hobgoblin_walk:
+  id: 7422
+revenant_vampyre_idle:
+  id: 7430
+revenant_vampyre_walk:
+  id: 7431
+revenant_knight_idle:
+  id: 7444
+revenant_knight_walk:
+  id: 7445
+revenant_goblin_idle:
+  id: 7451
+revenant_goblin_walk:
+  id: 7452
+revenant_cyclops_idle:
+  id: 7458
+revenant_cyclops_walk:
+  id: 7459
+revenant_hellhound_idle:
+  id: 7465
+revenant_hellhound_walk:
+  id: 7466
+revenant_dark_beast_idle:
+  id: 7472
+revenant_dark_beast_walk:
+  id: 7473
+revenant_demon_idle:
+  id: 7479
+revenant_demon_walk:
+  id: 7480
+revenant_pyrefiend_idle:
+  id: 7486
+revenant_pyrefiend_walk:
+  id: 7487
+altar_walk:
+  id: 7536
+snow_walk:
+  id: 7553
+snow_fremennik_walk:
+  id: 7556
+snow_fremennik_idle:
+  id: 7557
+dalmatian_idle:
+  id: 8339
+bulldog_walk:
+  id: 7576
+assistant_archaeologist_kerner_idle:
+  id: 7578
+lead_archaeologist_abigail_idle:
+  id: 7579
+locust_ranger_walk:
+  id: 7582
+locust_ranger_idle:
+  id: 7583
+crocodile_walk:
+  id: 7587
+crocodile_idle:
+  id: 7589
+pit_scabarite_idle:
+  id: 7605
+pit_scabarite_walk:
+  id: 7606
+high_priest_of_scabaras_idle:
+  id: 7610
+high_priest_of_scabaras_walk:
+  id: 7611
+scabaras_mage_idle:
+  id: 7618
+scabaras_mage_walk:
+  id: 7619
+maisa_idle:
+  id: 7629
+artisan_walk:
+  id: 7647
+quartermaster_walk:
+  id: 7648
+ophelia_walk:
+  id: 7649
+gypsy_aris_walk:
+  id: 7650
+bloated_leech_walk:
+  id: 7653
+bloated_leech_idle:
+  id: 7654
+abyssal_parasite_walk:
+  id: 7667
+abyssal_parasite_idle:
+  id: 7668
+abyssal_lurker_idle:
+  id: 7677
+abyssal_lurker_walk:
+  id: 7678
+abyssal_titan_walk:
+  id: 7687
+abyssal_titan_idle:
+  id: 7690
+beaver_walk:
+  id: 7719
+undead_broav_idle:
+  id: 7728
+vyrelord_idle:
+  id: 7733
+vyrelord_run:
+  id: 7734
+bunyip_walk:
+  id: 7735
+bunyip_idle:
+  id: 7738
+vyrelord_walk_back:
+  id: 7749
+rogue_giant_chinchompa_walk:
+  id: 7750
+rogue_giant_chinchompa_idle:
+  id: 7751
+minitrice_walk:
+  id: 7759
+minitrice_idle:
+  id: 7760
+rogue_compost_mound_walk:
+  id: 7768
+rogue_compost_mound_idle:
+  id: 7772
+spirit_dagannoth_idle:
+  id: 7781
+spirit_dagannoth_walk:
+  id: 7784
+desert_wyrm_walk:
+  id: 7792
+desert_wyrm_idle:
+  id: 7793
+dreadfowl_walk:
+  id: 7808
+smoke_devil_walk:
+  id: 7814
+smoke_devil_idle:
+  id: 7815
+fire_titan_walk:
+  id: 7828
+fire_titan_idle:
+  id: 7831
+moss_titan_walk:
+  id: 7838
+moss_titan_idle:
+  id: 7841
+enhanced_ice_titan_walk:
+  id: 7847
+rogue_giant_ent_walk:
+  id: 7848
+rogue_giant_ent_idle:
+  id: 7849
+forge_regent_idle:
+  id: 7867
+forge_regent_walk:
+  id: 7868
+geyser_titan_idle:
+  id: 7876
+geyser_titan_walk:
+  id: 7877
+bull_ant_idle:
+  id: 7893
+bull_ant_walk:
+  id: 7899
+honey_badger_walk:
+  id: 7923
+honey_badger_idle:
+  id: 7924
+hydra_idle:
+  id: 7938
+hydra_walk:
+  id: 7941
+iron_titan_idle:
+  id: 7949
+iron_titan_walk:
+  id: 7952
+karamthulhu_overlord_walk:
+  id: 7961
+karamthulhu_overlord_idle:
+  id: 7968
+lava_titan_walk:
+  id: 7977
+lava_titan_idle:
+  id: 7978
+ravenous_locust_walk:
+  id: 7991
+ravenous_locust_idle:
+  id: 8001
+macaw_idle:
+  id: 8006
+allan_walk:
+  id: 8007
+allan_idle:
+  id: 8008
+rogue_adamant_minotaur_idle:
+  id: 8021
+rogue_adamant_minotaur_walk:
+  id: 8022
+spirit_mosquito_idle:
+  id: 8035
+spirit_mosquito_walk:
+  id: 8038
+obsidian_golem_walk:
+  id: 8046
+obsidian_golem_idle:
+  id: 8047
+praying_mantis_idle:
+  id: 8067
+praying_mantis_walk:
+  id: 8072
+icefiend_walk:
+  id: 8076
+baby_icefiend_idle:
+  id: 9145
+void_ravager_idle:
+  id: 8089
+void_ravager_walk:
+  id: 8092
+'''rum''-pumped_crab_walk':
+  id: 8100
+giant_crab_walk:
+  id: 8101
+granite_lobster_walk:
+  id: 8115
+granite_lobster_idle:
+  id: 8116
+void_shifter_walk:
+  id: 8128
+void_shifter_idle:
+  id: 8129
+giant_snail_walk:
+  id: 8145
+giant_snail_idle:
+  id: 8146
+spirit_cobra_idle:
+  id: 8155
+spirit_cobra_walk:
+  id: 8158
+clan_vexillum_idle:
+  id: 8169
+steel_titan_idle:
+  id: 8186
+steel_titan_walk:
+  id: 8189
+ibis_idle:
+  id: 8197
+ibis_walk:
+  id: 8198
+rogue_stranger_plant_idle:
+  id: 8204
+rogue_stranger_plant_walk:
+  id: 8207
+swamp_titan_walk:
+  id: 8219
+swamp_titan_idle:
+  id: 8220
+void_torcher_idle:
+  id: 8233
+void_torcher_walk:
+  id: 8234
+rogue_evil_turnip_walk:
+  id: 8245
+rogue_evil_turnip_idle:
+  id: 8246
+spirit_tz-kih_idle:
+  id: 8255
+spirit_tz-kih_walk:
+  id: 8256
+vampyre_bat_idle:
+  id: 8271
+vampyre_bat_walk:
+  id: 8273
+war_tortoise_walk:
+  id: 8281
+war_tortoise_idle:
+  id: 8284
+spirit_wolf_walk:
+  id: 8291
+spirit_wolf_idle:
+  id: 8297
+wolpertinger_idle:
+  id: 8301
+wolpertinger_walk:
+  id: 8302
+vulture_chick_idle:
+  id: 8310
+vulture_chick_walk:
+  id: 8312
+baby_penguin_walk:
+  id: 8318
+baby_penguin_idle:
+  id: 8319
+baby_squirrel_idle:
+  id: 8324
+baby_squirrel_walk:
+  id: 8326
+bulldog_puppy_walk:
+  id: 8329
+dalmatian_puppy_walk:
+  id: 8330
+dalmatian_walk:
+  id: 8331
+greyhound_puppy_walk:
+  id: 8332
+greyhound_walk:
+  id: 8333
+sheepdog_puppy_walk:
+  id: 8334
+sheepdog_walk:
+  id: 8335
+terrier_puppy_walk:
+  id: 8336
+terrier_walk:
+  id: 8337
+dealga_walk:
+  id: 8343
+dealga_idle:
+  id: 8344
+baby_monkey_idle:
+  id: 8346
+baby_monkey_walk:
+  id: 8348
+gecko_walk:
+  id: 8357
+baby_gecko_walk:
+  id: 8358
+gecko_idle:
+  id: 8360
+chameleon_idle:
+  id: 8363
+chameleon_walk:
+  id: 8365
+tegid_idle:
+  id: 8501
+giant_wolpertinger_idle:
+  id: 8504
+giant_wolpertinger_walk:
+  id: 8505
+spirit_kalphite_idle:
+  id: 8518
+chaos_druid_walk:
+  id: 8527
+bettamax_idle:
+  id: 8528
+bettamax_walk:
+  id: 8529
+jelly_idle:
+  id: 8572
+ogress_walk:
+  id: 8643
+chargurr_idle:
+  id: 8574
+jelly_walk:
+  id: 8575
+vanescula_drakan_idle:
+  id: 8593
+grenwall_idle:
+  id: 8604
+grenwall_walk:
+  id: 8606
+pawya_walk:
+  id: 8608
+pawya_idle:
+  id: 8609
+thump_idle:
+  id: 8619
+frawd_idle:
+  id: 8620
+glum_walk:
+  id: 8626
+glum_idle:
+  id: 8627
+ogress_banker_idle:
+  id: 8628
+snurgh_idle:
+  id: 8630
+snurgh_walk:
+  id: 8631
+seegud_idle:
+  id: 8632
+seegud_walk:
+  id: 8633
+ogress_idle:
+  id: 8642
+ogress_warrior_idle:
+  id: 8635
+flying_bugs_walk:
+  id: 8667
+platypus_idle:
+  id: 8671
+platypus_walk:
+  id: 8672
+supreme_commander_idle:
+  id: 8706
+drunken_sailor_idle:
+  id: 8707
+bork_walk:
+  id: 8752
+bork_idle:
+  id: 8753
+ork_legion_idle:
+  id: 8763
+ork_legion_walk:
+  id: 8764
+gublinch_jailmate_idle:
+  id: 8777
+gublinchette_jailmate_idle:
+  id: 8773
+student_idle:
+  id: 8784
+warped_cockroach_walk:
+  id: 8794
+cockroach_soldier_walk:
+  id: 8795
+cockroach_worker_walk:
+  id: 8796
+cockroach_soldier_idle:
+  id: 8797
+warped_cockroach_idle:
+  id: 8798
+kimberly_idle:
+  id: 8816
+herald_of_varrock_idle:
+  id: 8817
+herald_of_falador_idle:
+  id: 8827
+herald_of_lumbridge_idle:
+  id: 8828
+vanescula_drakan_walk_back:
+  id: 8842
+villager_walk:
+  id: 8875
+villager_idle:
+  id: 8878
+gnoeals_idle:
+  id: 11488
+gnoeals_walk:
+  id: 8960
+yeti_walk:
+  id: 11037
+king_vargas_walk:
+  id: 8979
+fiara_idle:
+  id: 9009
+my_arm_walk2:
+  id: 9026
+spectral_vyrewatch_walk:
+  id: 9028
+ug_idle:
+  id: 9045
+safalaan_idle:
+  id: 9069
+safalaan_step_right:
+  id: 9070
+black_knight_doorkeeper_idle:
+  id: 9099
+held_vyrewatch_idle:
+  id: 9118
+magic_instructor_idle:
+  id: 9119
+zombie_hand_idle:
+  id: 9128
+zombie_hand_walk:
+  id: 9129
+mutated_bloodveld_idle:
+  id: 9133
+mutated_bloodveld_step_right:
+  id: 9134
+assistant_idle:
+  id: 9138
+baby_icefiend_walk:
+  id: 9153
+kitten_walk:
+  id: 9156
+red_axe_cat_walk:
+  id: 9157
+kitten_idle:
+  id: 9158
+red_axe_cat_idle:
+  id: 9169
+dromund's_cat_idle:
+  id: 9171
+love_cats_idle:
+  id: 9196
+love_cats_walk:
+  id: 9197
+jiggling_crate_idle:
+  id: 9198
+kittens_idle:
+  id: 9208
+kittens_walk:
+  id: 9210
+tzrek-jad_idle:
+  id: 9216
+tzrek-jad_walk:
+  id: 9219
+party_pete_walk:
+  id: 9226
+party_pete_idle:
+  id: 9227
+tz-kih_idle:
+  id: 9228
+tz-kih_walk:
+  id: 9229
+tz-kek_idle:
+  id: 9236
+tz-kek_walk:
+  id: 9238
+tok-xil_walk:
+  id: 9240
+tok-xil_idle:
+  id: 9241
+yt-mejkot_idle:
+  id: 9250
+yt-mejkot_walk:
+  id: 9251
+yt-hurkot_idle:
+  id: 9255
+yt-hurkot_walk:
+  id: 9256
+ket-zek_walk:
+  id: 9264
+ket-zek_idle:
+  id: 9267
+tztok-jad_walk:
+  id: 9273
+tztok-jad_idle:
+  id: 9274
+tzhaar-hur-klag_walk:
+  id: 9280
+tzhaar-hur-brekt_walk:
+  id: 9326
+tzhaar-ket-jok_idle:
+  id: 9282
+tzhaar-xil-mor_idle:
+  id: 9283
+tzhaar-mej-kol_idle:
+  id: 9314
+tzhaar-hur-klag_idle:
+  id: 9313
+tzhaar-mej-kah_idle:
+  id: 9294
+tzhaar-mej-kah_walk:
+  id: 9295
+tzhaar-ket-lurk_walk:
+  id: 9296
+tzhaar-xil_walk:
+  id: 9322
+tzhaar-xil_idle:
+  id: 9323
+library_assistant_idle:
+  id: 9311
+tzhaar-mej_walk:
+  id: 9320
+tzhaar-hur_walk:
+  id: 9321
+tzhaar-hur_idle:
+  id: 9324
+tzhaar-mej_idle:
+  id: 9325
+toktz-ket-dill_walk:
+  id: 9333
+toktz-ket-dill_idle:
+  id: 9334
+lava_monster_walk:
+  id: 9339
+fire_monster_walk:
+  id: 9343
+mightiest_turoth_walk:
+  id: 9409
+mightiest_turoth_idle:
+  id: 9410
+monstrous_cave_crawler_walk:
+  id: 9415
+monstrous_cave_crawler_idle:
+  id: 9416
+bloodveld_idle:
+  id: 9437
+bloodveld_walk:
+  id: 9438
+kurask_idle:
+  id: 9442
+kurask_walk:
+  id: 9443
+crawling_hand_idle:
+  id: 9447
+crawling_hand_walk:
+  id: 9448
+banshee_champion_idle:
+  id: 9452
+banshee_champion_walk:
+  id: 9453
+gargoyle_idle:
+  id: 9456
+gargoyle_walk:
+  id: 9457
+death_spawn_idle:
+  id: 9462
+death_spawn_walk:
+  id: 9463
+ghast_idle:
+  id: 9469
+ghast_walk:
+  id: 9470
+turoth_idle:
+  id: 9484
+turoth_walk:
+  id: 9485
+swarming_turoth_idle:
+  id: 9479
+swarming_turoth_walk:
+  id: 9480
+nechryael_idle:
+  id: 9490
+nechryael_walk:
+  id: 9492
+corruption_beast_walk:
+  id: 9500
+rockslug_idle:
+  id: 9509
+rockslug_walk:
+  id: 9511
+nomad_walk2:
+  id: 9515
+brass_hand_harry_idle:
+  id: 9535
+"50_ships_mufassah_idle":
+  id: 9536
+"50_ships_mufassah_walk":
+  id: 9537
+karamthulhu_walk:
+  id: 9540
+karamthulhu_idle:
+  id: 9541
+locker_officer_walk:
+  id: 9551
+locker_officer_walk_back:
+  id: 9552
+locker_officer_idle:
+  id: 9553
+locker_officer_step_left:
+  id: 9554
+locker_officer_step_right:
+  id: 9555
+jack_walk:
+  id: 9570
+jack_idle:
+  id: 9571
+large_crate_idle:
+  id: 9608
+dead_brewer_idle:
+  id: 9627
+zombie_head_idle:
+  id: 9629
+baron_von_hattenkrapper_walk:
+  id: 9635
+rocktail_shoal_walk:
+  id: 9645
+barricade_idle:
+  id: 9654
+ali_the_camel_walk:
+  id: 9670
+ali_the_camel_walk_back:
+  id: 9671
+ali_the_camel_step_left:
+  id: 9672
+ali_the_camel_step_right:
+  id: 9673
+magic_instructor_walk:
+  id: 9676
+ranged_instructor_idle:
+  id: 9677
+mining_tutor_walk:
+  id: 9678
+stiles_idle:
+  id: 9679
+doomsayer_walk:
+  id: 9680
+bloodveld_leecher_idle:
+  id: 9687
+bloodveld_leecher_walk2:
+  id: 9688
+nutrition_energy_idle:
+  id: 9702
+dis-orderly_walk:
+  id: 9726
+border_guard_walk2:
+  id: 9735
+border_guard_walk:
+  id: 9736
+elite_dark_ranger_run:
+  id: 9754
+mi-gor's_zomboat_walk:
+  id: 9755
+melee_tutor_idle:
+  id: 9868
+explorer_jack_step_right:
+  id: 9869
+lumbridge_sage_walk:
+  id: 12294
+sir_amik_varze_walk:
+  id: 12689
+evil_dave_walk:
+  id: 9874
+pirate_pete_walk:
+  id: 9875
+osman_walk:
+  id: 9876
+dragon_idle:
+  id: 12249
+dragon_walk:
+  id: 12255
+blood_tither_idle:
+  id: 9922
+ranis_drakan_idle:
+  id: 9923
+sir_vant_idle:
+  id: 9940
+troll_walk:
+  id: 9945
+roddeck_walk2:
+  id: 9946
+baby_raccoon_walk:
+  id: 9948
+roddeck_step_right:
+  id: 12280
+sir_vant_walk2:
+  id: 12234
+sir_vant_step_right:
+  id: 9957
+sir_vant_walk:
+  id: 9958
+pentyn_idle:
+  id: 10000
+mercenary_ranger_walk2:
+  id: 10020
+mercenary_ranger_step_right:
+  id: 10021
+mercenary_ranger_run:
+  id: 10022
+spirit_idle:
+  id: 10031
+corporeal_beast_walk:
+  id: 10055
+corporeal_beast_idle:
+  id: 10056
+spirit_beast_idle:
+  id: 10064
+zomboat_walk:
+  id: 10084
+roger_idle:
+  id: 10090
+laura_walk:
+  id: 10106
+laura_idle:
+  id: 10104
+sarah_idle:
+  id: 10107
+sarah_walk:
+  id: 10108
+green_orb_idle:
+  id: 10136
+green_orb_walk:
+  id: 10138
+portal_idle:
+  id: 10176
+wizard_acantha_idle:
+  id: 10188
+wizard_acantha_walk:
+  id: 10189
+wizard_korvak_walk:
+  id: 10204
+wizard_korvak_idle:
+  id: 10205
+wizard_elriss_walk:
+  id: 10206
+wizard_elriss_idle:
+  id: 10207
+wizard_vief_walk:
+  id: 10208
+wizard_vief_idle:
+  id: 10209
+wizard_walk:
+  id: 10210
+wizard_idle:
+  id: 10211
+acrobat_walk:
+  id: 10288
+acrobat_idle:
+  id: 10289
+ringmaster_walk:
+  id: 10317
+ringmaster_idle:
+  id: 10318
+ticket_vendor_walk:
+  id: 10321
+star_sprite_idle:
+  id: 10352
+barrel_idle:
+  id: 10356
+barrel_walk:
+  id: 10357
+bush_idle:
+  id: 11005
+bush_walk:
+  id: 11002
+cactus_idle:
+  id: 11006
+cactus_walk:
+  id: 11003
+crate_idle:
+  id: 10362
+crate_walk:
+  id: 10363
+rock_idle:
+  id: 10364
+rock_walk:
+  id: 11004
+toadstool_idle:
+  id: 10366
+toadstool_walk:
+  id: 10367
+dark_energy_core_idle:
+  id: 10392
+sharathteerk_idle:
+  id: 10428
+sharathteerk_walk:
+  id: 10429
+zemouregal_idle:
+  id: 12025
+zemouregal_walk:
+  id: 12026
+arrav_idle:
+  id: 11663
+arrav_step_right:
+  id: 10436
+ramarno_walk:
+  id: 10464
+ramarno_idle:
+  id: 10465
+maggie_walk:
+  id: 10564
+maggie_idle:
+  id: 10565
+gus_walk:
+  id: 10566
+gus_idle:
+  id: 10567
+wendy_walk:
+  id: 10568
+wendy_idle:
+  id: 10569
+lottie_idle:
+  id: 10570
+lottie_walk:
+  id: 10571
+farmer_fromund_idle:
+  id: 10574
+head_mystic_idle:
+  id: 10587
+head_mystic_walk:
+  id: 10588
+clay_familiar_(class_5)_idle:
+  id: 10594
+clay_familiar_(class_5)_walk:
+  id: 10596
+gruh_walk:
+  id: 10625
+pit_ogre_idle:
+  id: 10626
+undead_hero_idle:
+  id: 10656
+undead_hero_walk:
+  id: 10657
+balance_elemental_walk:
+  id: 10671
+balance_elemental_idle:
+  id: 10672
+dragon_head_walk:
+  id: 10767
+lady_table_idle:
+  id: 10769
+troll_child_walk:
+  id: 10812
+troll_ranger_idle:
+  id: 10814
+hazelmere's_hat_walk:
+  id: 10834
+elite_dark_ranger_idle:
+  id: 10842
+elite_dark_warrior_idle:
+  id: 10843
+void_leech_idle:
+  id: 10853
+void_leech_step_right:
+  id: 10857
+elite_dark_warrior_step_right:
+  id: 10858
+sado-machinist_walk:
+  id: 10862
+khazard_launderer_idle:
+  id: 10865
+khazard_launderer_walk:
+  id: 10866
+enduring_glacyte_idle:
+  id: 10867
+elite_dark_mage_idle:
+  id: 10869
+druid_idle:
+  id: 10873
+druid_walk:
+  id: 10871
+jessika_walk:
+  id: 10881
+enduring_glacyte_walk:
+  id: 10901
+scribe_walk:
+  id: 10903
+tormented_demon_walk:
+  id: 10920
+tormented_demon_idle:
+  id: 10921
+undead_mage_idle:
+  id: 10949
+undead_broav_walk:
+  id: 10954
+sloane_idle:
+  id: 10968
+sloane_walk:
+  id: 10969
+turael_idle:
+  id: 10970
+turael_walk:
+  id: 10971
+cyrisus_idle:
+  id: 10972
+mazchna_walk:
+  id: 10974
+lazy_khazard_guard_walk:
+  id: 11670
+turkey_idle:
+  id: 10997
+turkey_walk:
+  id: 10998
+azzandra_idle:
+  id: 11013
+yeti_idle:
+  id: 11036
+enakhra_idle:
+  id: 11124
+santa_claus_idle:
+  id: 11046
+santa_claus_walk:
+  id: 11047
+jack_frost_walk_back:
+  id: 11051
+jack_frost_step_right:
+  id: 11052
+jack_frost_idle:
+  id: 15355
+wounded_phoenix_idle:
+  id: 11072
+wounded_phoenix_walk:
+  id: 11073
+phoenix_idle:
+  id: 11074
+phoenix_walk:
+  id: 11075
+phoenix_eggling_walk:
+  id: 11139
+phoenix_eggling_idle:
+  id: 11138
+large_egg_idle:
+  id: 11085
+guardian_idle:
+  id: 11092
+guardian_walk:
+  id: 11094
+reborn_mage_idle:
+  id: 11114
+greater_reborn_mage_walk:
+  id: 11115
+reborn_warrior_idle:
+  id: 11118
+greater_reborn_warrior_walk:
+  id: 11119
+enakhra_walk:
+  id: 11125
+greater_reborn_mage_idle:
+  id: 11130
+greater_reborn_warrior_idle:
+  id: 11131
+avatar_of_destruction_idle:
+  id: 11195
+avatar_of_destruction_walk:
+  id: 11196
+decaying_avatar_idle:
+  id: 11200
+decaying_avatar_walk:
+  id: 11201
+baby_kurask_idle:
+  id: 11215
+baby_kurask_walk:
+  id: 11217
+baby_basilisk_walk:
+  id: 11218
+gerdi_idle:
+  id: 11225
+jobo_idle:
+  id: 11226
+bandos_avatar_idle:
+  id: 11242
+bandos_avatar_walk:
+  id: 11255
+zanik_run:
+  id: 11392
+captain_undak_idle:
+  id: 11289
+lucien_idle:
+  id: 11292
+sigmund_step_right:
+  id: 11309
+lucien_walk:
+  id: 11541
+ork_statue_idle:
+  id: 11357
+ogre_statue_idle:
+  id: 11358
+goblin_statue_walk:
+  id: 11394
+goblin_statue_idle:
+  id: 11395
+ork_statue_walk:
+  id: 11399
+ourg_statue_walk:
+  id: 11406
+ourg_statue_idle:
+  id: 11407
+ogre_statue_walk:
+  id: 11413
+skogre_walk:
+  id: 11422
+pilg_idle:
+  id: 11423
+grug_idle:
+  id: 11424
+gruh_idle:
+  id: 11426
+sakirth_idle:
+  id: 11517
+zogre_walk:
+  id: 11433
+zogre_idle:
+  id: 11436
+nung_idle:
+  id: 11441
+nung_walk:
+  id: 11442
+ernie_idle:
+  id: 11449
+skrach_uglogwee_walk:
+  id: 11450
+ogre_boat_idle:
+  id: 11452
+ogre_boat_walk:
+  id: 11453
+pirate_walk:
+  id: 11455
+odd_machinery_walk:
+  id: 11456
+slash_bash_idle:
+  id: 11460
+slash_bash_walk:
+  id: 11461
+ogre_chieftain_walk:
+  id: 11465
+ogre_shaman_walk:
+  id: 11466
+ogre_chieftain_idle:
+  id: 11468
+ogre_shaman_idle:
+  id: 11469
+pirate_idle:
+  id: 11484
+prince_vargas_idle:
+  id: 11486
+fire_raft_walk:
+  id: 11496
+muspah_idle:
+  id: 11499
+easter_bunny_walk2:
+  id: 11502
+easter_bunny_step_right:
+  id: 11503
+sakirth_walk:
+  id: 11516
+easter_bunny_jr_step_right:
+  id: 11510
+impling_worker_walk:
+  id: 11515
+hazeel_idle:
+  id: 11522
+wahisietel_idle:
+  id: 11523
+easter_bird_idle:
+  id: 11550
+easter_bird_walk:
+  id: 11551
+lady_table_walk:
+  id: 11554
+erjolf_walk:
+  id: 11612
+erjolf_idle:
+  id: 11613
+tumeken's_shadow_idle:
+  id: 11626
+tumeken's_shadow_walk:
+  id: 11630
+small_scarab_idle:
+  id: 11631
+small_scarab_walk:
+  id: 11635
+ice_elemental_walk:
+  id: 11638
+ice_elemental_idle:
+  id: 11641
+justin_servil_idle:
+  id: 11660
+citizen_idle:
+  id: 11690
+tool_leprechaun_walk:
+  id: 11700
+tool_leprechaun_run:
+  id: 11694
+shamus_walk:
+  id: 11696
+jim_idle:
+  id: 11711
+glosur_idle:
+  id: 11736
+obert_idle:
+  id: 11737
+obert_walk:
+  id: 11738
+kgp_interrogator_walk:
+  id: 11742
+kgp_interrogator_idle:
+  id: 11743
+office_penguin_walk:
+  id: 11746
+office_penguin_idle:
+  id: 11747
+pescaling_pax_idle:
+  id: 11751
+pescaling_pax_walk:
+  id: 11752
+kgp_agent_walk:
+  id: 11756
+drummer_walk:
+  id: 11795
+musician_walk:
+  id: 11816
+ghostly_piper_walk:
+  id: 11799
+goblin_musician_walk:
+  id: 11800
+drunken_musician_walk:
+  id: 11802
+bill_blakey_walk:
+  id: 11809
+elf_musician_walk:
+  id: 11817
+junior_cadet_grimeface_idle:
+  id: 11848
+goblin_recruiter_walk:
+  id: 11866
+elven_recruiter_walk:
+  id: 11868
+dwarven_recruiter_walk:
+  id: 11869
+junior_cadet_mal_idle:
+  id: 11893
+sphinx_idle:
+  id: 11895
+sphinx_walk:
+  id: 11896
+jhallan_idle:
+  id: 11910
+marker_plant_idle:
+  id: 11912
+marker_plant_(w)_idle:
+  id: 11914
+elemental_creature_idle:
+  id: 11935
+elemental_creature_walk:
+  id: 11936
+killerwatt_idle:
+  id: 11940
+killerwatt_walk:
+  id: 11941
+marion_idle:
+  id: 11963
+marion_walk_back:
+  id: 11964
+marion_walk:
+  id: 11965
+marion_step_left:
+  id: 11966
+marion_step_right:
+  id: 11967
+dean_vellio_idle:
+  id: 11973
+dean_vellio_step_right:
+  id: 11975
+dean_vellio_run:
+  id: 11976
+dean_vellio_walk2:
+  id: 11977
+ancient_warrior_idle:
+  id: 11982
+ancient_warrior_walk:
+  id: 11983
+ancient_warrior_run:
+  id: 11984
+ancient_warrior_step_right:
+  id: 11985
+ancient_warrior_step_left:
+  id: 11986
+ancient_warrior_walk_back:
+  id: 11987
+ancient_warrior_walk2:
+  id: 11988
+general_khazard_idle:
+  id: 12007
+general_khazard_walk:
+  id: 11997
+wizard_grayzag_idle:
+  id: 12010
+wizard_grayzag_walk:
+  id: 12012
+wizard_grayzag_walk_back:
+  id: 12013
+wizard_grayzag_step_left:
+  id: 12014
+wizard_grayzag_step_right:
+  id: 12015
+knight_diana_walk2:
+  id: 12021
+mercenary_warrior_walk2:
+  id: 12024
+aquanite_walk:
+  id: 12037
+aquanite_idle:
+  id: 12038
+odd_old_man_idle:
+  id: 12050
+odd_old_man_walk:
+  id: 12051
+skeletal_horror_idle:
+  id: 12077
+skeletal_horror_walk:
+  id: 12081
+left_hand_idle:
+  id: 12089
+left_hand_walk:
+  id: 12090
+right_hand_idle:
+  id: 12094
+right_hand_walk:
+  id: 12095
+tail_idle:
+  id: 12099
+tail_walk:
+  id: 12100
+commander_veldaban_idle:
+  id: 12133
+colonel_grimsson_run:
+  id: 12132
+black_guard_walk:
+  id: 12140
+brunolt_idle:
+  id: 12144
+brunolt_walk:
+  id: 12145
+chaos_dwogre_idle:
+  id: 12148
+chaos_dwogre_walk:
+  id: 12149
+living_rock_remains_walk:
+  id: 12207
+chaos_dwarf_hand_cannoneer_idle:
+  id: 12179
+chaos_dwarf_hand_cannoneer_walk:
+  id: 12180
+brown_engine_director_idle:
+  id: 12186
+pit_rock_protector_idle:
+  id: 12193
+pit_rock_protector_walk:
+  id: 12195
+living_rock_striker_idle:
+  id: 12202
+living_rock_striker_walk:
+  id: 12203
+living_rock_patriarch_walk:
+  id: 12209
+living_rock_patriarch_idle:
+  id: 12210
+rock_critter_idle:
+  id: 12220
+rock_critter_walk:
+  id: 12221
+squire_step_right:
+  id: 12227
+squire_walk2:
+  id: 12228
+sir_tiffy_walk2:
+  id: 12235
+brutal_green_dragon_step_right:
+  id: 12246
+brutal_green_dragon_idle:
+  id: 12248
+hank_idle:
+  id: 12290
+hank_walk2:
+  id: 12291
+doomsayer_idle:
+  id: 12292
+muncher_idle:
+  id: 12297
+akrisae_idle:
+  id: 12350
+shady_stranger_idle:
+  id: 12380
+suspicious_outsider_idle:
+  id: 12393
+shady_stranger_walk:
+  id: 12399
+suspicious_outsider_walk:
+  id: 12407
+iconis_walk:
+  id: 12415
+gwir_idle:
+  id: 12423
+crystal_core_step_right:
+  id: 12427
+dwarf_step_right:
+  id: 12435
+sanchez_idle:
+  id: 12454
+bat_walk:
+  id: 12459
+bat_idle:
+  id: 12460
+grim_reaper_walk:
+  id: 14872
+spider_herald_idle:
+  id: 12486
+spider_idle:
+  id: 12498
+spider_queen_idle:
+  id: 12499
+mummy_champion_walk:
+  id: 12514
+banner_carrier_idle:
+  id: 12523
+banner_carrier_walk:
+  id: 12524
+banner_carrier_run:
+  id: 12525
+strange_old_man_walk:
+  id: 12542
+strange_old_man_idle:
+  id: 12543
+dark_mage_walk:
+  id: 12547
+gypsy_aris_idle:
+  id: 12610
+denath_walk:
+  id: 12611
+partygoer_walk:
+  id: 12673
+ebenezer_scourge_idle:
+  id: 12681
+ebenezer_scourge_walk:
+  id: 12680
+tiny_thom_idle:
+  id: 12684
+tiny_thom_walk:
+  id: 12685
+nomad_walk:
+  id: 12695
+flame_vortex_idle:
+  id: 12721
+taevas_idle:
+  id: 12745
+mound_idle:
+  id: 12788
+mound_walk:
+  id: 12789
+jungle_strykewyrm_walk:
+  id: 12790
+pikkenmix_idle:
+  id: 12810
+giant_snail_run:
+  id: 12816
+rogue_compost_mound_run:
+  id: 12817
+enhanced_ice_titan_run:
+  id: 12818
+spinner_run:
+  id: 12819
+rogue_evil_turnip_run:
+  id: 12820
+rogue_spirit_coraxatrice_run:
+  id: 12821
+rogue_giant_chinchompa_run:
+  id: 12822
+rogue_spirit_larupia_run:
+  id: 12823
+rogue_stranger_plant_run:
+  id: 12824
+rogue_giant_ent_run:
+  id: 12825
+rogue_adamant_minotaur_run:
+  id: 12826
+rogue_pack_yak_run:
+  id: 12827
+zombie_impling_walk:
+  id: 12833
+zombie_impling_idle:
+  id: 12834
+xenia_walk:
+  id: 12850
+ilona_walk:
+  id: 12860
+risen_knight_idle:
+  id: 12861
+dragith_nurn_idle:
+  id: 12871
+dragith_nurn_walk:
+  id: 12872
+reese_walk:
+  id: 12877
+kayle_walk:
+  id: 14864
+kay_thanxby_idle:
+  id: 12881
+crawling_corpse_torso_idle:
+  id: 12889
+crawling_corpse_torso_walk:
+  id: 12892
+gerrant_walk:
+  id: 12920
+gerrant_idle:
+  id: 12921
+hobgoblin_geomancer_idle:
+  id: 12984
+hobgoblin_geomancer_step_right:
+  id: 12985
+bulwark_beast_step_right:
+  id: 12999
+shadow-forger_ihlakhizan_idle:
+  id: 13015
+brute_walk:
+  id: 13059
+statue_idle:
+  id: 13381
+monolith_idle:
+  id: 13072
+frost_dragon_idle:
+  id: 13156
+frost_dragon_step_right:
+  id: 13157
+iron_dragon_idle:
+  id: 13161
+iron_dragon_step_right:
+  id: 13162
+unholy_cursebearer_idle:
+  id: 13167
+unholy_cursebearer_step_right:
+  id: 13168
+fremennik_warrior_walk:
+  id: 13189
+forgotten_warrior_idle:
+  id: 13217
+forgotten_warrior_walk:
+  id: 13218
+forgotten_warrior_walk_back:
+  id: 13219
+forgotten_warrior_run:
+  id: 13220
+forgotten_warrior_step_left:
+  id: 13222
+forgotten_warrior_step_right:
+  id: 13223
+tyrannomastyx_corpse_walk:
+  id: 13256
+tyrannomastyx_idle:
+  id: 13257
+tyrannomastyx_step_right:
+  id: 13258
+sachem_hoardstalker_run:
+  id: 13289
+sneakerpeeper_spawn_step_right:
+  id: 13293
+sneakerpeeper_spawn_run:
+  id: 13294
+seeker_spawn_step_right:
+  id: 13295
+ferret_idle:
+  id: 13302
+ferret_walk:
+  id: 13303
+ferret_run:
+  id: 13304
+ferret_walk_back:
+  id: 13306
+ferret_step_left:
+  id: 13309
+ferret_step_right:
+  id: 14518
+luminescent_icefiend_idle:
+  id: 13333
+luminescent_icefiend_step_right:
+  id: 13334
+frozen_adventurer_idle:
+  id: 13348
+mysterious_shade_walk:
+  id: 13395
+thok,_master_of_dungeoneering_walk:
+  id: 13410
+ice_warrior_idle:
+  id: 13417
+night-gazer_khighorahk_idle:
+  id: 13418
+night-gazer_khighorahk_step_right:
+  id: 13419
+night-gazer_khighorahk_walk2:
+  id: 13421
+stomp_walk:
+  id: 13445
+scrambles_idle:
+  id: 13446
+lexicus_runewright_step_right:
+  id: 13467
+animated_book_idle:
+  id: 13476
+animated_book_walk:
+  id: 13477
+warped_sphere_idle:
+  id: 13487
+warped_sphere_walk:
+  id: 13488
+violet_block_walk:
+  id: 13516
+chicken_step_right:
+  id: 13589
+snotgut_walk2:
+  id: 13591
+scrambles_walk2:
+  id: 13592
+ramokee_deathslinger_idle:
+  id: 13613
+wiglaf_idle:
+  id: 13651
+ramokee_deathslinger_step_right:
+  id: 13666
+ramokee_deathslinger_run:
+  id: 13667
+ramokee_stormbringer_idle:
+  id: 13672
+ramokee_stormbringer_step_right:
+  id: 13673
+sachem_hoardstalker_idle:
+  id: 13679
+sachem_hoardstalker_step_right:
+  id: 13680
+ramokee_bloodrager_run:
+  id: 13681
+magic_construct_step_right:
+  id: 13699
+magic_construct_run:
+  id: 13704
+gluttonous_behemoth_step_right:
+  id: 13714
+edimmu_idle:
+  id: 13731
+edimmu_step_right:
+  id: 13739
+seeker_sentinel_idle:
+  id: 13767
+caustic_gazer_step_right:
+  id: 13768
+seeker_sentinel_step_right:
+  id: 13769
+mountain_troll_walk:
+  id: 13793
+ice_troll_king_idle:
+  id: 13794
+troll_general_idle:
+  id: 13795
+troll_general_walk:
+  id: 13796
+chief_thief_robin_idle:
+  id: 13800
+darren_lightfinger_idle:
+  id: 13801
+guildmaster_darren_lightfinger_idle:
+  id: 13804
+registrar_idle:
+  id: 13806
+registrar_step_right:
+  id: 13807
+locks_and_traps_trainer_idle:
+  id: 13808
+advanced_pickpocketing_trainer_step_right:
+  id: 13809
+pickpocketing_trainer_idle:
+  id: 13810
+pickpocketing_trainer_step_right:
+  id: 13811
+safe-cracking_trainer_idle:
+  id: 13812
+guardian_of_armadyl_idle:
+  id: 13818
+flagstaff_of_festivities_walk:
+  id: 13826
+fairy_very_wise_walk:
+  id: 13847
+fairy_idle:
+  id: 13850
+fairy_walk:
+  id: 13852
+slim_louie_idle:
+  id: 13853
+slim_louie_walk:
+  id: 13854
+fairy_queen_idle:
+  id: 13855
+fairy_queen_walk:
+  id: 13856
+fat_rocco_idle:
+  id: 13857
+fat_rocco_walk:
+  id: 13859
+fairy_godfather_walk:
+  id: 14060
+tanglefoot_idle:
+  id: 13866
+baby_tanglefoot_idle:
+  id: 13868
+tanglefoot_walk:
+  id: 13869
+baby_tanglefoot_walk:
+  id: 13871
+ork_idle:
+  id: 14027
+ork_walk:
+  id: 14028
+general_bre'egth_idle:
+  id: 13887
+general_bre'egth_walk:
+  id: 13925
+zanaris_choir_walk2:
+  id: 13889
+zanaris_choir_idle:
+  id: 13890
+gatekeeper_walk:
+  id: 13895
+gatekeeper_idle:
+  id: 13896
+milk_tooth_creature_idle:
+  id: 13900
+tooth_creature_(decayed)_walk:
+  id: 13901
+milk_tooth_creature_walk:
+  id: 13902
+extractor_fairies_idle:
+  id: 13906
+extractor_fairies_walk:
+  id: 13907
+k'chunk_idle:
+  id: 13908
+k'chunk_walk:
+  id: 13909
+ivory_gromblod_(cursed)_idle:
+  id: 13913
+general_gromblod_walk:
+  id: 13914
+ivory_bre'egth_(cursed)_idle:
+  id: 13924
+ivory_shredflesh_(cursed)_idle:
+  id: 13932
+general_shredflesh_walk:
+  id: 13933
+ivory_bre'egth_(cursed)_walk:
+  id: 13950
+ivory_gromblod_(cursed)_walk:
+  id: 13951
+ivory_shredflesh_(cursed)_walk:
+  id: 13952
+fairy_godfather_idle:
+  id: 14017
+ork_warrior_idle:
+  id: 14029
+ork_warrior_walk:
+  id: 14030
+centaur_idle:
+  id: 14089
+centaur_walk:
+  id: 14090
+irksol_idle:
+  id: 14092
+irksol_walk:
+  id: 14093
+commander_korasi_walk2:
+  id: 14181
+commander_korasi_walk:
+  id: 14183
+knight_diana_step_right:
+  id: 14196
+knight_ami_walk2:
+  id: 14197
+jessika_run:
+  id: 14207
+zenevivia_step_right:
+  id: 14232
+mabel_step_right:
+  id: 14240
+pit_iron_dragon_step_right:
+  id: 14250
+pit_iron_dragon_idle:
+  id: 14251
+dragon_display_idle:
+  id: 14253
+mr._mordaut_idle:
+  id: 14255
+elvarg_idle:
+  id: 14256
+elvarg_step_right:
+  id: 14257
+revenant_dragon_idle:
+  id: 14262
+revenant_dragon_walk:
+  id: 14263
+baby_red_dragon_idle:
+  id: 14267
+baby_red_dragon_walk:
+  id: 14268
+meerkats_walk:
+  id: 14312
+meerkats_run:
+  id: 14313
+laden_indentured_worker_idle:
+  id: 14350
+laden_indentured_worker_walk:
+  id: 14351
+to'kash_the_bloodchiller_step_right:
+  id: 14372
+har'lakk_the_riftsplitter_step_right:
+  id: 14377
+bal'lak_the_pummeller_step_right:
+  id: 14379
+har'lakk_the_riftsplitter_walk2:
+  id: 14381
+yk'lagor_the_thunderous_step_right:
+  id: 14397
+pondskater_idle:
+  id: 14406
+pondskater_walk:
+  id: 14407
+runebound_behemoth_idle:
+  id: 14420
+runebound_behemoth_walk2:
+  id: 14421
+hope_devourer_walk:
+  id: 14453
+hope_devourer_idle:
+  id: 14454
+_flesh-spoiler_haasghenahk_idle:
+  id: 14470
+_flesh-spoiler_haasghenahk_walk:
+  id: 14465
+_flesh-spoiler_spawn_idle:
+  id: 14479
+_flesh-spoiler_spawn_walk:
+  id: 14480
+gravecreeper_idle:
+  id: 14499
+gravecreeper_walk:
+  id: 14502
+captain_ethar_walk:
+  id: 14571
+champion_idle:
+  id: 14574
+champion_walk:
+  id: 14575
+halberdier_walk:
+  id: 14577
+halberdier_idle:
+  id: 14581
+enemy_mage_idle:
+  id: 14585
+enemy_mage_walk:
+  id: 14586
+knight_dorian_walk:
+  id: 14587
+scout_idle:
+  id: 14592
+scout_walk:
+  id: 14593
+foot_soldier_idle:
+  id: 14597
+foot_soldier_walk:
+  id: 14598
+enemy_knight_idle:
+  id: 14599
+enemy_knight_walk:
+  id: 14603
+ancient_ranger_idle:
+  id: 14604
+ancient_ranger_walk:
+  id: 14605
+smiddi_ryak_walk:
+  id: 14683
+kjell_idle:
+  id: 14727
+dororan_idle:
+  id: 14728
+spiritual_warrior_idle:
+  id: 14730
+spiritual_warrior_step_right:
+  id: 14732
+terror_dog_step_right:
+  id: 14742
+the_face_walk:
+  id: 14749
+the_face_idle:
+  id: 14750
+pest_drone_walk2:
+  id: 14752
+pest_drone_walk:
+  id: 14753
+captain_korasi_idle:
+  id: 14818
+pest_queen_step_right:
+  id: 14777
+pest_queen_idle:
+  id: 14778
+valluta_idle:
+  id: 14810
+captain_korasi_walk2:
+  id: 14819
+captain_korasi_walk_back:
+  id: 14820
+captain_korasi_step_left:
+  id: 14821
+captain_korasi_step_right:
+  id: 14822
+captain_korasi_run:
+  id: 14823
+jessika_idle:
+  id: 14831
+slithtils_idle:
+  id: 14846
+slithtils_walk:
+  id: 14847
+giant_rat_walk:
+  id: 14862
+kayle_idle:
+  id: 14863
+kayle_run:
+  id: 14865
+moira_idle:
+  id: 14875
+zabeth_corvid_walk:
+  id: 14880
+zabeth_corvid_idle:
+  id: 14881
+minstrel_web_idle:
+  id: 14882
+world-gorger_shukarhazh_idle:
+  id: 14887
+world-gorger_shukarhazh_walk:
+  id: 14888
+famished_ranger-eye_idle:
+  id: 14914
+engorged_eye_walk:
+  id: 14918
+blink_run:
+  id: 14947
+blink_idle:
+  id: 14948
+blink_walk:
+  id: 14950
+kal'ger_the_warmonger_walk:
+  id: 14966
+kal'ger_the_warmonger_idle:
+  id: 14967
+dreadnaut_walk:
+  id: 14981
+warped_gulega_walk:
+  id: 15002
+warped_gulega_idle:
+  id: 15015
+sneakerpeeper_walk:
+  id: 15017
+sneakerpeeper_run:
+  id: 15018
+sneakerpeeper_walk_back:
+  id: 15019
+sneakerpeeper_step_left:
+  id: 15020
+sneakerpeeper_step_right:
+  id: 15021
+eruni_walk2:
+  id: 15039
+leeuni_walk2:
+  id: 15062
+dead_monkey_step_right:
+  id: 15067
+dead_monkey_idle:
+  id: 15068
+mercenary_warrior_idle:
+  id: 15069
+mercenary_warrior_run:
+  id: 15070
+mercenary_warrior_walk:
+  id: 15073
+mercenary_warrior_walk_back:
+  id: 15075
+mercenary_warrior_step_left:
+  id: 15076
+mercenary_warrior_step_right:
+  id: 15077
+cyclossus_walk:
+  id: 15081
+cyclossus_idle:
+  id: 15082
+seal_idle:
+  id: 15109
+seal_walk:
+  id: 15110
+thorvar_crittersmash_idle:
+  id: 15115
+explorer_jack_idle:
+  id: 15120
+lava-flow_miner_sven_walk:
+  id: 15204
+lava-flow_miner_sven_idle:
+  id: 15205
+meike_idle:
+  id: 15208
+lava-flow_miner_idle:
+  id: 15211
+my_arm_walk:
+  id: 15229
+big_rock_idle:
+  id: 15230
+sparkly_crystal_walk:
+  id: 15231
+gileth_idle:
+  id: 15232
+gileth_step_right:
+  id: 15233
+hreidmar_walk:
+  id: 15234
+hreidmar_idle:
+  id: 15235
+dog_idle:
+  id: 15240
+hati_idle:
+  id: 15254
+hati_walk:
+  id: 15256
+yaktwee_swinmari_cianta_run:
+  id: 15263
+gnome_walk:
+  id: 15270
+healthorg_and_tortoise_turn:
+  id: 15272
+healthorg_and_tortoise_walk2:
+  id: 15273
+advisor_walk:
+  id: 15274
+cloud_spirit_idle:
+  id: 15335
+antipodean_squirrel_idle:
+  id: 15345
+queen_of_sunrise_idle:
+  id: 15362
+river_spirit_idle:
+  id: 15368
