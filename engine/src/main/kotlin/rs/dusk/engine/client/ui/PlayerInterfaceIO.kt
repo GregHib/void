@@ -1,6 +1,7 @@
 package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.event.InterfaceRefreshed
@@ -8,9 +9,12 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.network.rs.codec.game.encode.message.*
 
+/**
+ * Instructions to external systems
+ */
 class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
 
-    override fun sendOpen(inter: Interface) {
+    override fun sendOpen(inter: InterfaceDetail) {
         val parent = inter.getParent(player.gameFrame.resizable)
         if(parent == -1) {
             player.send(InterfaceUpdateMessage(inter.id, 0))
@@ -21,53 +25,53 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
         }
     }
 
-    override fun sendClose(inter: Interface) {
+    override fun sendClose(inter: InterfaceDetail) {
         val index = inter.getIndex(player.gameFrame.resizable)
         val parent = inter.getParent(player.gameFrame.resizable)
         player.send(InterfaceCloseMessage(parent, index))
     }
 
-    override fun notifyClosed(inter: Interface) {
+    override fun notifyClosed(inter: InterfaceDetail) {
         bus.emit(InterfaceClosed(player, inter.id, inter.name))
     }
 
-    override fun notifyOpened(inter: Interface) {
+    override fun notifyOpened(inter: InterfaceDetail) {
         bus.emit(InterfaceOpened(player, inter.id, inter.name))
     }
 
-    override fun notifyRefreshed(inter: Interface) {
+    override fun notifyRefreshed(inter: InterfaceDetail) {
         bus.emit(InterfaceRefreshed(player, inter.id, inter.name))
     }
 
-    override fun sendPlayerHead(inter: Interface, component: Int) {
+    override fun sendPlayerHead(inter: InterfaceDetail, component: Int) {
         player.send(InterfaceHeadPlayerMessage(inter.id, component))
     }
 
-    override fun sendAnimation(inter: Interface, component: Int, animation: Int) {
+    override fun sendAnimation(inter: InterfaceDetail, component: Int, animation: Int) {
         player.send(InterfaceAnimationMessage(inter.id, component, animation))
     }
 
-    override fun sendNPCHead(inter: Interface, component: Int, npc: Int) {
+    override fun sendNPCHead(inter: InterfaceDetail, component: Int, npc: Int) {
         player.send(InterfaceHeadNPCMessage(inter.id, component, npc))
     }
 
-    override fun sendText(inter: Interface, component: Int, text: String) {
+    override fun sendText(inter: InterfaceDetail, component: Int, text: String) {
         player.send(InterfaceTextMessage(inter.id, component, text))
     }
 
-    override fun sendVisibility(inter: Interface, component: Int, visible: Boolean) {
+    override fun sendVisibility(inter: InterfaceDetail, component: Int, visible: Boolean) {
         player.send(InterfaceVisibilityMessage(inter.id, component, !visible))
     }
 
-    override fun sendSprite(inter: Interface, component: Int, sprite: Int) {
+    override fun sendSprite(inter: InterfaceDetail, component: Int, sprite: Int) {
         player.send(InterfaceSpriteMessage(inter.id, component, sprite))
     }
 
-    override fun sendItem(inter: Interface, component: Int, item: Int, amount: Int) {
+    override fun sendItem(inter: InterfaceDetail, component: Int, item: Int, amount: Int) {
         player.send(InterfaceItemMessage(inter.id, component, item, amount))
     }
 
-    override fun sendSettings(inter: Interface, component: Int, from: Int, to: Int, setting: Int) {
+    override fun sendSettings(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int) {
         player.send(InterfaceSettingsMessage(inter.id, component, from, to, setting))
     }
 }

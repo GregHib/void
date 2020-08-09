@@ -2,8 +2,8 @@ package rs.dusk.engine.data
 
 import org.koin.dsl.module
 import rs.dusk.engine.client.ui.InterfaceManager
-import rs.dusk.engine.client.ui.InterfacesLookup
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
+import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
@@ -13,7 +13,7 @@ import rs.dusk.utility.getProperty
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class PlayerLoader(private val bus: EventBus, private val interfaces: InterfacesLookup, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
+class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
 
     private val x = getProperty("homeX", 0)
     private val y = getProperty("homeY", 0)

@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.event.InterfaceRefreshed
@@ -31,7 +32,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send full screen interface open`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns false
         every { inter.id } returns 1
         every { inter.getParent(false) } returns -1
@@ -43,7 +44,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send interface open`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns true
         every { inter.id } returns 100
         every { inter.getParent(true) } returns 10
@@ -57,7 +58,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send permanent interface open`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns false
         every { inter.id } returns 100
         every { inter.getParent(false) } returns 10
@@ -71,7 +72,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send interface close`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns true
         every { inter.id } returns 10
         every { inter.getIndex(true) } returns 1
@@ -84,7 +85,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Notify closed`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyClosed(inter)
@@ -93,7 +94,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Notify opened`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyOpened(inter)
@@ -102,7 +103,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Notify refreshed`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyRefreshed(inter)
@@ -111,7 +112,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send player head`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 10
         io.sendPlayerHead(inter, 100)
         verify {
@@ -121,7 +122,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send npc head`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendNPCHead(inter, 10, 123)
         verify {
@@ -131,7 +132,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send animation`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendAnimation(inter, 10, 123)
         verify {
@@ -141,7 +142,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send text`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendText(inter, 10, "words")
         verify {
@@ -151,7 +152,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send visibility`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendVisibility(inter, 10, visible = false)
         verify {
@@ -161,7 +162,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send sprite`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendSprite(inter, 10, 123)
         verify {
@@ -171,7 +172,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send item`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendItem(inter, 10, 123, 4)
         verify {
@@ -181,7 +182,7 @@ internal class InterfaceIOTest {
 
     @Test
     fun `Send settings`() {
-        val inter: Interface = mockk()
+        val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
         io.sendSettings(inter, 10, 1, 2, 1234)
         verify {

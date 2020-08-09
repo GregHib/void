@@ -11,6 +11,9 @@ import rs.dusk.engine.action.Action
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
+import rs.dusk.engine.client.ui.detail.InterfaceData
+import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
@@ -27,8 +30,8 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Open by name`() {
-        every { lookup.get("interface_name") } returns Interface(id = 0, type = "")
-        assertThrows<Interface.InvalidInterfaceException> {
+        every { lookup.get("interface_name") } returns InterfaceDetail(id = 0, type = "")
+        assertThrows<InterfaceDetail.InvalidInterfaceException> {
             player.open("interface_name")
         }
         verify { manager.open("interface_name") }
@@ -37,8 +40,8 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Interface already open with same type is closed first`() {
-        interfaces[0] = Interface(id = 0, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[1] = Interface(id = 1, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[0] = InterfaceDetail(id = 0, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = InterfaceDetail(id = 1, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["interface_name"] = 1
         manager.open(0)
         val result = player.open("interface_name")
@@ -65,7 +68,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface name`() {
-        assertThrows<InterfacesLookup.IllegalNameException> {
+        assertThrows<InterfaceDetails.IllegalNameException> {
             player.close("interface_name")
         }
         verify { manager.close("interface_name") }
@@ -84,7 +87,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close children`() {
-        assertThrows<InterfacesLookup.IllegalNameException> {
+        assertThrows<InterfaceDetails.IllegalNameException> {
             player.closeChildren("interface_name")
         }
         verify { manager.closeChildren("interface_name") }

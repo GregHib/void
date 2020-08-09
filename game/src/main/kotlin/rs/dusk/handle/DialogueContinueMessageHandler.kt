@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.ui.InterfacesLookup
+import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
@@ -22,7 +22,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
-    val lookup: InterfacesLookup by inject()
+    val lookup: InterfaceDetails by inject()
     val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val logger = InlineLogger()

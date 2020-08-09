@@ -1,22 +1,27 @@
 package rs.dusk.engine.client.ui
 
+import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.PlayerGameFrame
 
+/**
+ * API for the interacting and tracking of client interfaces
+ */
 class InterfaceManager(
     private val io: InterfaceIO,
-    interfaces: InterfacesLookup,
+    interfaces: InterfaceDetails,
     private val gameFrame: PlayerGameFrame,
-    private val openInterfaces: MutableSet<Interface> = mutableSetOf()
+    private val openInterfaces: MutableSet<InterfaceDetail> = mutableSetOf()
 ) : Interfaces(interfaces) {
 
-    override fun open(inter: Interface): Boolean {
+    override fun open(inter: InterfaceDetail): Boolean {
         if (!hasOpenOrRootParent(inter)) {
             return false
         }
         return sendIfOpened(inter)
     }
 
-    override fun close(inter: Interface): Boolean {
+    override fun close(inter: InterfaceDetail): Boolean {
         if (remove(inter)) {
             closeChildrenOf(inter)
             return true
@@ -24,7 +29,7 @@ class InterfaceManager(
         return false
     }
 
-    override fun closeChildren(inter: Interface): Boolean {
+    override fun closeChildren(inter: InterfaceDetail): Boolean {
         if (contains(inter)) {
             closeChildrenOf(inter)
             return true
@@ -32,7 +37,7 @@ class InterfaceManager(
         return false
     }
 
-    override fun remove(inter: Interface): Boolean {
+    override fun remove(inter: InterfaceDetail): Boolean {
         if (openInterfaces.remove(inter)) {
             io.sendClose(inter)
             io.notifyClosed(inter)
@@ -43,7 +48,7 @@ class InterfaceManager(
 
     override fun get(type: String) = openInterfaces.firstOrNull { it.type == type }?.id
 
-    override fun contains(inter: Interface): Boolean = openInterfaces.contains(inter)
+    override fun contains(inter: InterfaceDetail): Boolean = openInterfaces.contains(inter)
 
     override fun refresh() {
         openInterfaces.forEach { inter ->
@@ -52,7 +57,7 @@ class InterfaceManager(
         }
     }
 
-    override fun sendPlayerHead(inter: Interface, component: Int): Boolean {
+    override fun sendPlayerHead(inter: InterfaceDetail, component: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -60,7 +65,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendAnimation(inter: Interface, component: Int, animation: Int): Boolean {
+    override fun sendAnimation(inter: InterfaceDetail, component: Int, animation: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -68,7 +73,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendNPCHead(inter: Interface, component: Int, npc: Int): Boolean {
+    override fun sendNPCHead(inter: InterfaceDetail, component: Int, npc: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -76,7 +81,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendText(inter: Interface, component: Int, text: String): Boolean {
+    override fun sendText(inter: InterfaceDetail, component: Int, text: String): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -84,7 +89,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendVisibility(inter: Interface, component: Int, visible: Boolean): Boolean {
+    override fun sendVisibility(inter: InterfaceDetail, component: Int, visible: Boolean): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -92,7 +97,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendSprite(inter: Interface, component: Int, sprite: Int): Boolean {
+    override fun sendSprite(inter: InterfaceDetail, component: Int, sprite: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -100,7 +105,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendItem(inter: Interface, component: Int, item: Int, amount: Int): Boolean {
+    override fun sendItem(inter: InterfaceDetail, component: Int, item: Int, amount: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -108,7 +113,7 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendSetting(inter: Interface, component: Int, from: Int, to: Int, setting: Int): Boolean {
+    override fun sendSetting(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int): Boolean {
         if(!inter.components.containsKey(component)) {
             return false
         }
@@ -116,13 +121,13 @@ class InterfaceManager(
         return true
     }
 
-    private fun hasOpenOrRootParent(inter: Interface): Boolean = parentIsRoot(inter) || hasOpenParent(inter)
+    private fun hasOpenOrRootParent(inter: InterfaceDetail): Boolean = parentIsRoot(inter) || hasOpenParent(inter)
 
-    private fun parentIsRoot(inter: Interface): Boolean = inter.getParent(gameFrame.resizable) == ROOT_ID
+    private fun parentIsRoot(inter: InterfaceDetail): Boolean = inter.getParent(gameFrame.resizable) == ROOT_ID
 
-    private fun hasOpenParent(inter: Interface): Boolean = contains(inter.getParent(gameFrame.resizable))
+    private fun hasOpenParent(inter: InterfaceDetail): Boolean = contains(inter.getParent(gameFrame.resizable))
 
-    private fun sendIfOpened(inter: Interface): Boolean {
+    private fun sendIfOpened(inter: InterfaceDetail): Boolean {
         if (openInterfaces.add(inter)) {
             io.sendOpen(inter)
             io.notifyOpened(inter)
@@ -132,13 +137,13 @@ class InterfaceManager(
         return false
     }
 
-    private fun closeChildrenOf(parent: Interface) {
+    private fun closeChildrenOf(parent: InterfaceDetail) {
         val children = getChildren(parent.id)
         children.forEach { child ->
             close(child)
         }
     }
 
-    private fun getChildren(parent: Int): List<Interface> =
+    private fun getChildren(parent: Int): List<InterfaceDetail> =
         openInterfaces.filter { inter -> inter.getParent(gameFrame.resizable) == parent }
 }

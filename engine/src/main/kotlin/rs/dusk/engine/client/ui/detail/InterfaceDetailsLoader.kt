@@ -1,4 +1,4 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.detail
 
 import org.koin.dsl.module
 import rs.dusk.engine.TimedLoader
@@ -10,22 +10,22 @@ private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
 private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
-class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLookup>("interfaces") {
+class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<InterfaceDetails>("interfaces") {
 
     fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
 
-    override fun load(args: Array<out Any?>): InterfacesLookup {
+    override fun load(args: Array<out Any?>): InterfaceDetails {
         return loadAll(args[0] as String, args[1] as String)
     }
 
-    fun loadAll(detailPath: String, typesPath: String): InterfacesLookup {
+    fun loadAll(detailPath: String, typesPath: String): InterfaceDetails {
         val detailData = loadFile(detailPath)
         val typeData = loadFile(typesPath)
         val names = loadNames(detailData)
         val types = loadTypes(typeData, names)
         val details = loadDetails(detailData, types)
         count = names.size
-        return InterfacesLookup(details, names)
+        return InterfaceDetails(details, names)
     }
 
     fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> name to values.getId() }.toMap()
@@ -41,7 +41,12 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
         val fixedParent = names.getParentId(fixedParentName)
         val resizeParent = names.getParentId(resizeParentName)
 
-        name to InterfaceData(fixedParent, resizeParent, fixedIndex, resizeIndex)
+        name to InterfaceData(
+            fixedParent,
+            resizeParent,
+            fixedIndex,
+            resizeIndex
+        )
     }.toMap()
 
     fun loadDetails(
@@ -53,7 +58,7 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
-        id to Interface(id, name, typeName, type, components)
+        id to InterfaceDetail(id, name, typeName, type, components)
     }.toMap()
 
     private fun Map<String, Any>.getComponents(): Map<Int, String> {
@@ -81,6 +86,7 @@ class InterfaceLoader(private val loader: FileLoader) : TimedLoader<InterfacesLo
 
 val interfaceModule = module {
     single(createdAtStart = true) {
-        InterfaceLoader(get()).run(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+        InterfaceDetailsLoader(get())
+            .run(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
     }
 }

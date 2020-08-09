@@ -8,7 +8,7 @@ import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.client.ui.interfaceModule
+import rs.dusk.engine.client.ui.detail.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.client.variable.variablesModule
 import rs.dusk.engine.data.file.fileLoaderModule

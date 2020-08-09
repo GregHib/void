@@ -5,20 +5,20 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import rs.dusk.engine.client.ui.InterfaceData
-import rs.dusk.engine.client.ui.InterfaceLoader
+import rs.dusk.engine.client.ui.detail.InterfaceData
+import rs.dusk.engine.client.ui.detail.InterfaceDetailsLoader
 
 internal class InterfaceLoaderTypeTest {
 
     private lateinit var names: MutableMap<String, Int>
-    private lateinit var loader: InterfaceLoader
+    private lateinit var loader: InterfaceDetailsLoader
 
     val toplevel = 0
 
     @BeforeEach
     fun setup() {
         names = mutableMapOf("toplevel" to toplevel, "toplevel_full" to toplevel)
-        loader = InterfaceLoader(mockk())
+        loader = InterfaceDetailsLoader(mockk())
     }
 
     @Test

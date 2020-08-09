@@ -1,9 +1,10 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.detail
 
 import com.google.common.collect.BiMap
 import com.google.common.collect.HashBiMap
+import rs.dusk.engine.client.ui.InterfaceException
 
-data class Interface(
+data class InterfaceDetail(
     val id: Int,
     val name: String = "",
     val type: String = "",

@@ -7,6 +7,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_ID
 import rs.dusk.engine.client.ui.Interfaces.Companion.ROOT_INDEX
+import rs.dusk.engine.client.ui.detail.InterfaceData
+import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerGameFrame
 import rs.dusk.engine.entity.character.player.setDisplayMode
@@ -37,8 +39,8 @@ internal class PlayerGameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set top level if full open`() {
-        interfaces[123] = Interface(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = Interface(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[123] = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
+        interfaces[124] = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["toplevel_full"] = 123
         names["toplevel"] = 124
         gameframe.resizable = true
@@ -50,8 +52,8 @@ internal class PlayerGameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set full if top level open`() {
-        interfaces[123] = Interface(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = Interface(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[123] = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
+        interfaces[124] = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names["toplevel_full"] = 123
         names["toplevel"] = 124
         manager.open("toplevel")

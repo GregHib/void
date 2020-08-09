@@ -1,5 +1,8 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.detail
 
+/**
+ * Location of an interface in relation to it's parents and screen mode
+ */
 data class InterfaceData(
     val fixedParent: Int? = null,
     val resizableParent: Int? = null,

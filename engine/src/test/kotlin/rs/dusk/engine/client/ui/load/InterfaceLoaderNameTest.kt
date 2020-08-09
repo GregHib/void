@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import rs.dusk.engine.client.ui.InterfaceLoader
+import rs.dusk.engine.client.ui.detail.InterfaceDetailsLoader
 
 internal class InterfaceLoaderNameTest {
 
-    private lateinit var loader: InterfaceLoader
+    private lateinit var loader: InterfaceDetailsLoader
 
     @BeforeEach
     fun setup() {
-        loader = InterfaceLoader(mockk())
+        loader = InterfaceDetailsLoader(mockk())
     }
 
     @Test
