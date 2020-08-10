@@ -1,0 +1,502 @@
+bobs_brilliant_axes:
+  id: 1
+horviks_armour_shop:
+  id: 2
+al_kharid_general_store:
+  id: 3
+auburys_rune_shop:
+  id: 5
+varrock_sword_shop:
+  id: 6
+lowes_archery_emporium:
+  id: 7
+thessalias_fine_clothes:
+  id: 8
+zaffs_superior_spellcasting:
+  id: 9
+peksas_helmet_shop:
+  id: 10
+zekes_superior_scimitars:
+  id: 11
+louies_armoured_legs_bazaar:
+  id: 12
+karamja_general_store:
+  id: 13
+drogos_mining_emporium:
+  id: 14
+cassies_shield_shop:
+  id: 15
+ranaels_super_skirt_store:
+  id: 16
+nardah_general_store:
+  id: 17
+valaines_shop_of_champions:
+  id: 18
+flynns_mace_market:
+  id: 19
+brians_battleaxe_bazaar:
+  id: 21
+waynes_chains_-_chainmail_specialist:
+  id: 22
+dwarven_shopping_store:
+  id: 23
+lumbridge_general_store:
+  id: 24
+bettys_magic_emporium:
+  id: 25
+green_gemstone_gems:
+  id: 26
+rommiks_crafty_supplies:
+  id: 27
+grums_gold_exchange:
+  id: 28
+karamja_wines_skillcape:
+  id: 29
+gerrants_fishy_business:
+  id: 30
+rimmington_general_store:
+  id: 31
+jamilas_craft_stall:
+  id: 32
+scavvos_rune_store:
+  id: 33
+falador_general_store:
+  id: 34
+oziachs_armour:
+  id: 35
+jukats_dragon_sword_shop:
+  id: 36
+irksols_ruby_rings:
+  id: 37
+zanaris_general_store:
+  id: 38
+gaiuss_two-handed_shop:
+  id: 39
+jatixs_herblore_shop:
+  id: 40
+bandit_duty_free:
+  id: 41
+tonys_pizza_bases:
+  id: 42
+harrys_fishing_shop:
+  id: 43
+happy_heroes_hemporium:
+  id: 45
+davons_amulet_store:
+  id: 46
+arheins_store:
+  id: 47
+hicktons_archery_emporium:
+  id: 49
+gruds_herblore_stall:
+  id: 50
+herquins_gems:
+  id: 52
+zeneshas_platebody_shop:
+  id: 53
+bakery_stall_sample:
+  id: 54
+aemads_adventuring_supplies:
+  id: 57
+fremennik_fur_trader:
+  id: 59
+fishing_guild_shop:
+  id: 60
+khazard_general_store:
+  id: 61
+bolkoys_village_shop:
+  id: 62
+fancy_clothes_store:
+  id: 63
+magic_guild_store_-_runes_and_staves:
+  id: 64
+jiminuas_jungle_store:
+  id: 65
+king_lathass_armoury:
+  id: 66
+frenitas_cookery_shop:
+  id: 67
+pickaxe-is-mine:
+  id: 68
+ye_olde_tea_shoppe:
+  id: 69
+dals_general_ogre_supplies:
+  id: 70
+frincoss_fabulous_herb_store:
+  id: 71
+silver_cog_silver_stall:
+  id: 72
+gem_trader:
+  id: 73
+ardougne_spice_stall:
+  id: 74
+wydins_food_store:
+  id: 76
+bedabin_village_bartering:
+  id: 77
+shantay_pass_shop:
+  id: 78
+nulodions_multicannon_parts:
+  id: 79
+dargauds_bows_and_arrows:
+  id: 80
+aarons_archery_appendages:
+  id: 81
+authentic_throwing_weapons:
+  id: 82
+legends_guild_general_store:
+  id: 83
+legends_guild_shop_of_useful_items:
+  id: 84
+fernaheis_fishing_hut:
+  id: 85
+romettis_fine_fashions:
+  id: 86
+gulluck_and_sons:
+  id: 87
+funchs_fine_groceries:
+  id: 88
+grand_tree_groceries:
+  id: 89
+price_checker:
+  id: 90
+inventory:
+  id: 93
+worn_equipment:
+  id: 94
+bank:
+  id: 95
+blurberrys_bar:
+  id: 99
+giannes_restaurant:
+  id: 100
+lundails_arena-side_rune_shop:
+  id: 131
+mage_arena_staves:
+  id: 132
+oblis_general_store:
+  id: 138
+west_ardougne_general_store:
+  id: 139
+rufuss_meat_emporium:
+  id: 143
+barkers_haberdashery:
+  id: 144
+canifis_general_store:
+  id: 145
+burthorpe_supplies:
+  id: 148
+tiadeches_karambwan_stall:
+  id: 156
+the_shrimp_and_parrot:
+  id: 157
+tamayus_spear_stall:
+  id: 158
+quartermasters_stores:
+  id: 160
+arnolds_eclectic_supplies:
+  id: 174
+razmire_general_store:
+  id: 204
+razmire_builders_merchants:
+  id: 205
+yrsas_shoe_store:
+  id: 208
+skulgrimens_battle_gear:
+  id: 210
+sigmund_the_merchant:
+  id: 211
+fish_stall:
+  id: 212
+ardougne_fur_stall:
+  id: 213
+the_lighthouse_store:
+  id: 214
+island_fishmonger:
+  id: 217
+greengrocer_of_miscellania:
+  id: 218
+etceteria_fish:
+  id: 219
+island_greengrocer:
+  id: 220
+tutabs_magical_market:
+  id: 223
+solihibs_food_stall:
+  id: 225
+hamabs_crafting_emporium:
+  id: 226
+ifabas_general_store:
+  id: 227
+ranging_guild_ticket_exchange:
+  id: 228
+magic_guild_store_-_mystic_robes:
+  id: 232
+port_phasmatys_general_store:
+  id: 235
+williams_wilderness_cape_shop:
+  id: 236
+ians_wilderness_cape_shop:
+  id: 237
+larrys_wilderness_cape_shop:
+  id: 238
+darrens_wilderness_cape_shop:
+  id: 239
+edwards_wilderness_cape_shop:
+  id: 240
+richards_wilderness_cape_shop:
+  id: 241
+neils_wilderness_cape_shop:
+  id: 242
+edmonds_wilderness_cape_shop:
+  id: 243
+simons_wilderness_cape_shop:
+  id: 244
+sams_wilderness_cape_shop:
+  id: 245
+brians_archery_supplies:
+  id: 250
+dagas_scimitar_smithy:
+  id: 251
+alis_discount_wares:
+  id: 252
+the_asp_&_snake_bar:
+  id: 253
+pollnivneach_general_store:
+  id: 254
+bandit_bargains:
+  id: 255
+rasolo_the_wandering_merchant:
+  id: 256
+the_big_heist_lodge:
+  id: 257
+ak-haranus_exotic_shop:
+  id: 259
+uglugs_stuffsies:
+  id: 260
+vigrs_warhammers:
+  id: 261
+lumbridge_fishing_supplies:
+  id: 262
+quality_armour_shop:
+  id: 263
+gunsliks_assorted_items:
+  id: 264
+agmundi_quality_clothes:
+  id: 266
+keldagrims_best_bread:
+  id: 267
+carefree_crafting_stall:
+  id: 268
+vermundis_clothes_stall:
+  id: 271
+mrs_winkins_world_of_seeds:
+  id: 273
+battle_runes:
+  id: 276
+martin_thwaits_lost_and_found:
+  id: 279
+alices_farming_shop:
+  id: 280
+richards_farming_shop:
+  id: 281
+vanessas_farming_shop:
+  id: 283
+lletya_general_store:
+  id: 301
+lletya_seamstress:
+  id: 302
+lletya_archery_shop:
+  id: 303
+lletya_food_store:
+  id: 304
+gabootys_tai_bwo_wannai_cooperative:
+  id: 305
+gabootys_tai_bwo_wannai_drinky_store:
+  id: 306
+ore_seller:
+  id: 318
+armour_store:
+  id: 319
+tzhaar-hur-tels_equipment_store:
+  id: 325
+tzhaar-hur-leks_ore_and_gem_store:
+  id: 326
+void_knight_magic_store:
+  id: 327
+white_knight_master_armoury:
+  id: 333
+shop_of_distaste:
+  id: 334
+miscellanian_general_store:
+  id: 343
+seddus_adventurers_store:
+  id: 344
+roks_chocs_box:
+  id: 345
+mage_training_arena:
+  id: 347
+smithing_smiths_shop:
+  id: 348
+harpoon_joes_house_of_rum:
+  id: 349
+two_feet_charleys_fish_shop:
+  id: 350
+dodgy_mikes_second-hand_clothing:
+  id: 351
+pie_shop:
+  id: 352
+culinaromancers_chest:
+  id: 365
+aurels_supplies:
+  id: 383
+fortunatos_fine_wine:
+  id: 385
+void_knight_archery_store:
+  id: 387
+void_knight_general_store:
+  id: 389
+miscellanian_clothes_shop:
+  id: 392
+miscellanian_food_shop:
+  id: 394
+construction_supplies:
+  id: 395
+keldagrim_stonemason:
+  id: 396
+garden_centre:
+  id: 397
+warriors_guild_food_shop:
+  id: 410
+warriors_guild_armoury:
+  id: 411
+warrior_guild_potion_shop:
+  id: 412
+nardoks_bone_weapons:
+  id: 413
+honest_jimmys_house_of_stuff:
+  id: 414
+moon_clan_general_store:
+  id: 416
+moon_clan_fine_clothes:
+  id: 417
+baba_yagas_magic_shop:
+  id: 419
+crossbow_shop:
+  id: 428
+trader_svens_black_market_goods:
+  id: 442
+initiate_temple_knight_armoury:
+  id: 443
+proselyte_temple_knight_armoury:
+  id: 444
+castle_wars_ticket_exchange:
+  id: 447
+martin_thwaits_lost_and_found_skillcape:
+  id: 455
+martin_thwaits_lost_and_found_trimmed:
+  id: 456
+aarons_archery_appendages_skillcape:
+  id: 457
+aarons_archery_appendages_trimmed:
+  id: 458
+runecrafting_skillcape_skillcape:
+  id: 459
+runecrafting_skillcape_trimmed:
+  id: 460
+magic_guild_store_-_mystic_robes_skillcape:
+  id: 461
+magic_guild_store_-_mystic_robes_trimmed:
+  id: 462
+leprechaun_larrys_farming_supplies:
+  id: 465
+alecks_hunter_emporium:
+  id: 483
+avas_odds_and_ends:
+  id: 489
+nathifas_bake_stall:
+  id: 492
+blades_by_urbi:
+  id: 493
+the_spice_is_right:
+  id: 494
+raetul_and_cos_cloth_store:
+  id: 495
+neitiznot_supplies:
+  id: 502
+flosis_fishmongers:
+  id: 503
+keepa_kettilons_store:
+  id: 504
+armour_shop:
+  id: 505
+weapons_galore:
+  id: 506
+ore_store:
+  id: 507
+contraband_yak_produce:
+  id: 508
+miltogs_lamps:
+  id: 511
+reldaks_leather_armour:
+  id: 512
+dorgesh-kaan_general_supplies:
+  id: 513
+pet_shop:
+  id: 531
+summoning_supplies:
+  id: 532
+gift_shop:
+  id: 533
+fresh_meat:
+  id: 534
+beefy_bills_supplies:
+  id: 536
+slayer_equipment:
+  id: 538
+candle_shop:
+  id: 547
+party_petes_emporium:
+  id: 549
+faruqs_tools_for_games:
+  id: 551
+lumbridge_general_store_sample:
+  id: 553
+bobs_brilliant_axes_sample:
+  id: 554
+lowes_archery_emporium_sample:
+  id: 556
+auburys_rune_shop_sample:
+  id: 557
+ignatiuss_hot_deals:
+  id: 558
+ignatiuss_hot_deals_skillcape:
+  id: 559
+ignatiuss_hot_deals_trimmed:
+  id: 560
+lumbridge_fishing_supplies_sample:
+  id: 561
+elnocks_backup_supply:
+  id: 564
+urists_crafting_supplies:
+  id: 574
+dodgy_dereks_dirty_deals:
+  id: 575
+dealgas_scimitar_emporium:
+  id: 579
+the_milk_shop:
+  id: 580
+naffs_knockoff_staves:
+  id: 600
+yaktwees_invizzy_critters_stall:
+  id: 601
+papa_mambos_shop:
+  id: 603
+bettamaxs_shop:
+  id: 604
+monkey_colony_general_store:
+  id: 605
+banana_store:
+  id: 607
+diangos_toy_store:
+  id: 609

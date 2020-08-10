@@ -3,6 +3,7 @@ package rs.dusk.engine.entity
 import com.google.common.collect.BiMap
 import org.koin.dsl.module
 import rs.dusk.engine.entity.anim.detail.AnimationDetailsLoader
+import rs.dusk.engine.entity.character.contain.detail.ContainerDetailsLoader
 import rs.dusk.engine.entity.character.npc.detail.NPCDetailsLoader
 import rs.dusk.engine.entity.gfx.detail.GraphicDetailsLoader
 import rs.dusk.engine.entity.item.detail.ItemDetailsLoader
@@ -33,7 +34,7 @@ interface EntityDetails {
 
     companion object {
         private val regex = Regex("<.*>")
-        fun toIdentifier(name: String) = name.toLowerCase().replace(" ", "_").replace(regex, "").replace("\"", "")
+        fun toIdentifier(name: String) = name.toLowerCase().replace(" ", "_").replace(regex, "").replace("\"", "").replace("\'", "")
     }
 }
 
@@ -43,4 +44,5 @@ val detailsModule = module {
     single(createdAtStart = true) { ItemDetailsLoader(get()).run(getProperty("itemDetailsPath")) }
     single(createdAtStart = true) { AnimationDetailsLoader(get()).run(getProperty("animationDetailsPath")) }
     single(createdAtStart = true) { GraphicDetailsLoader(get()).run(getProperty("graphicDetailsPath")) }
+    single(createdAtStart = true) { ContainerDetailsLoader(get()).run(getProperty("containerDetailsPath")) }
 }
