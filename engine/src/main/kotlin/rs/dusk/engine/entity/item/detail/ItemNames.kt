@@ -10,6 +10,10 @@ fun Container.stackable(name: String): Boolean {
     return stackable(id)
 }
 
+fun Container.contains(name: String): Boolean {
+    return indexOf(name) != -1
+}
+
 fun Container.indexOf(name: String): Int {
     val details: ItemDetails = get()
     val id = details.getIdOrNull(name) ?: return -1

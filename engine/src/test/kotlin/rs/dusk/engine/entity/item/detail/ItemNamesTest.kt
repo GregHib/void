@@ -44,6 +44,16 @@ internal class ItemNamesTest : KoinMock() {
     }
 
     @Test
+    fun `Contains returns true`() {
+        assertTrue(container.contains("item_name"))
+    }
+
+    @Test
+    fun `Contains returns false`() {
+        assertFalse(container.contains("any"))
+    }
+
+    @Test
     fun `Index of returns value`() {
         assertEquals(0, container.indexOf("item_name"))
     }
