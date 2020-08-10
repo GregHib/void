@@ -71,7 +71,7 @@ data class ItemDefinition(
     var secondaryInterfaceCursor: Int = -1,
     var campaigns: IntArray? = null,
     var pickSizeShift: Int = 0,
-    var bindId: Int = -1,
-    var bindTemplateId: Int = -1,
+    var singleNoteId: Int = -1,
+    var singleNoteTemplateId: Int = -1,
     override var params: HashMap<Long, Any>? = null
 ) : Definition, Recolourable, ColourPalette, Parameterized

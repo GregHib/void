@@ -111,8 +111,8 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
                 }
             }
             134 -> pickSizeShift = buffer.readUnsignedByte()
-            139 -> bindId = buffer.readShort()
-            140 -> bindTemplateId = buffer.readShort()
+            139 -> singleNoteId = buffer.readShort()
+            140 -> singleNoteTemplateId = buffer.readShort()
             249 -> readParameters(buffer)
         }
     }
@@ -124,8 +124,8 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
         if (lendTemplateId != -1) {
             toLend(get(lendId), get(lendTemplateId))
         }
-        if (bindTemplateId != -1) {
-            toBind(get(bindTemplateId), get(bindId))
+        if (singleNoteTemplateId != -1) {
+            toSingleNote(get(singleNoteTemplateId), get(singleNoteId))
         }
     }
 
@@ -194,7 +194,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
         modifiedColours = template.modifiedColours
     }
 
-    fun ItemDefinition.toBind(template: ItemDefinition?, item: ItemDefinition?) {
+    fun ItemDefinition.toSingleNote(template: ItemDefinition?, item: ItemDefinition?) {
         if (item == null || template == null) {
             return
         }

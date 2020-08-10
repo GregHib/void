@@ -307,14 +307,14 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeByte(definition.pickSizeShift)
         }
 
-        if (definition.bindId != -1) {
+        if (definition.singleNoteId != -1) {
             writeByte(139)
-            writeShort(definition.bindId)
+            writeShort(definition.singleNoteId)
         }
 
-        if (definition.bindTemplateId != -1) {
+        if (definition.singleNoteTemplateId != -1) {
             writeByte(140)
-            writeShort(definition.bindTemplateId)
+            writeShort(definition.singleNoteTemplateId)
         }
 
         val params = definition.params

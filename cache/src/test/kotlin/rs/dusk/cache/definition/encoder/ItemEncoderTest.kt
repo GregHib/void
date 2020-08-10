@@ -73,8 +73,8 @@ internal class ItemEncoderTest {
             secondaryInterfaceCursor = 11,
             campaigns = intArrayOf(1, 5, 100),
             pickSizeShift = 2,
-            bindId = 159,
-            bindTemplateId = 179,
+            singleNoteId = 159,
+            singleNoteTemplateId = 179,
             params = hashMapOf(1L to "string", 2L to 100000)
         )
         val encoder = ItemEncoder()
