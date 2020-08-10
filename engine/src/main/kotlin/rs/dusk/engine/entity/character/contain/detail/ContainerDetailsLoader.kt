@@ -3,6 +3,7 @@ package rs.dusk.engine.entity.character.contain.detail
 import com.google.common.collect.HashBiMap
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.engine.entity.character.contain.StackMode
 
 class ContainerDetailsLoader(private val loader: FileLoader) : TimedLoader<ContainerDetails>("container detail") {
 
@@ -18,6 +19,8 @@ class ContainerDetailsLoader(private val loader: FileLoader) : TimedLoader<Conta
 
     fun convert(map: Map<String, Any>): ContainerDetail {
         val id: Int by map
-        return ContainerDetail(id)
+        val stack = map["stack"] as? String ?: "Normal"
+        val mode = StackMode.valueOf(stack)
+        return ContainerDetail(id, mode)
     }
 }

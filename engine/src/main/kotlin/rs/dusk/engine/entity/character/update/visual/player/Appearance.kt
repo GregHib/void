@@ -1,8 +1,7 @@
 package rs.dusk.engine.entity.character.update.visual.player
 
 import rs.dusk.engine.entity.character.contain.Container
-import rs.dusk.engine.entity.character.contain.Containers
-import rs.dusk.engine.entity.character.contain.container
+import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.Visual
 
@@ -87,7 +86,7 @@ const val APPEARANCE_MASK = 0x8
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
 fun Player.getAppearance() =
-    visuals.getOrPut(APPEARANCE_MASK) { Appearance(equipment = container(Containers.Equipment)) }
+    visuals.getOrPut(APPEARANCE_MASK) { Appearance(equipment = equipment) }
 
 private fun Player.flag(action: Appearance.() -> Unit) {
     val appearance = getAppearance()

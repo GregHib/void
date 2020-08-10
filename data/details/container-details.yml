@@ -166,6 +166,7 @@ worn_equipment:
   id: 94
 bank:
   id: 95
+  stack: Always
 blurberrys_bar:
   id: 99
 giannes_restaurant:

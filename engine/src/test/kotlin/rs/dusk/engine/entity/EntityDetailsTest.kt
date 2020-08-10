@@ -16,6 +16,10 @@ abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails> {
 
     abstract fun detail(id: Int): T
 
+    open fun populated(id: Int): T {
+        return detail(id)
+    }
+
     abstract fun details(id: Map<Int, T>, names: BiMap<Int, String>): S
 
     abstract fun loader(loader: FileLoader): TimedLoader<S>
@@ -26,7 +30,7 @@ abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails> {
         every { loader.load<Map<String, Map<String, Any>>>("path") } returns mutableMapOf("name" to map(1))
         val detailLoader = loader(loader)
         val result = detailLoader.run("path")
-        assertEquals(mapOf(1 to detail(1)), result.details)
+        assertEquals(mapOf(1 to populated(1)), result.details)
         assertEquals(HashBiMap.create(mapOf(1 to "name")), result.names)
     }
 

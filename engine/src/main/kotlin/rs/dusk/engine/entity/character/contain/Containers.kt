@@ -2,42 +2,46 @@ package rs.dusk.engine.entity.character.contain
 
 import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.engine.client.send
+import rs.dusk.engine.entity.character.contain.detail.ContainerDetail
+import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemsMessage
 import rs.dusk.utility.get
 
-sealed class Containers(val id: Int) {
-    object PriceChecker : Containers(90)
-    object Inventory : Containers(93)
-    object Equipment : Containers(94)
-    object Bank : Containers(95)
-    object DuelStake : Containers(134)
-    object BeastOfBurden : Containers(530)
-
-    sealed class Shop(id: Int, val title: String = "") : Containers(id) {
-        object LletyaArcheryShop : Shop(303, "Lletya Archery Shop")
-    }
+fun Player.sendContainer(name: String) {
+    val details: ContainerDetails = get()
+    val containerId = details.getId(name)
+    val container = container(details.get(containerId))
+    send(InterfaceItemsMessage(containerId, container.items, container.amounts))
 }
 
-fun Player.container(container: Containers): Container {
-    return containers.getOrPut(container.id) {
+fun Player.container(name: String): Container {
+    val details: ContainerDetails = get()
+    val id = details.getId(name)
+    val container = details.get(id)
+    return container(container)
+}
+
+fun Player.container(detail: ContainerDetail): Container {
+    return containers.getOrPut(detail.id) {
         Container(
             decoder = get(),
-            capacity = get<ItemContainerDecoder>().getSafe(container.id).length,
-            listeners = mutableListOf({ updates -> send(InterfaceItemUpdateMessage(container.id, updates)) }),
-            stackMode = if (container == Containers.Bank) StackMode.Always else StackMode.Normal
+            capacity = get<ItemContainerDecoder>().getSafe(detail.id).length,
+            listeners = mutableListOf({ updates -> send(InterfaceItemUpdateMessage(detail.id, updates)) }),
+            stackMode = detail.stack
         )
     }
 }
 
 val Player.inventory: Container
-    get() = container(Containers.Inventory)
+    get() = container("inventory")
 
 val Player.bank: Container
-    get() = container(Containers.Bank)
+    get() = container("bank")
 
 val Player.equipment: Container
-    get() = container(Containers.Equipment)
+    get() = container("worn_equipment")
 
 val Player.beastOfBurden: Container
-    get() = container(Containers.BeastOfBurden)
+    get() = container("beast_of_burden")
