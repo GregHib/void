@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 
-abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails> {
+abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails<T>> {
 
     abstract fun map(id: Int): Map<String, Any>
 
@@ -42,6 +42,13 @@ abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails> {
     }
 
     @Test
+    fun `Get details for name`() {
+        val details = details(mapOf(1 to detail(1)), HashBiMap.create(mapOf(1 to "name")))
+        val result = details.get("name")
+        assertEquals(detail(1), result)
+    }
+
+    @Test
     fun `Get details without entry`() {
         val details = details(mapOf(), HashBiMap.create(mapOf()))
         val result = details.get(2)
@@ -52,6 +59,13 @@ abstract class EntityDetailsTest<T : EntityDetail, S : EntityDetails> {
     fun `Get null details`() {
         val details = details(mapOf(), HashBiMap.create(mapOf()))
         val result = details.getOrNull(2)
+        assertNull(result)
+    }
+
+    @Test
+    fun `Get null details by name`() {
+        val details = details(mapOf(), HashBiMap.create(mapOf()))
+        val result = details.getOrNull("unknown")
         assertNull(result)
     }
 

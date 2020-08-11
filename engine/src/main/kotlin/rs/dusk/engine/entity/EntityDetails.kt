@@ -12,13 +12,19 @@ import rs.dusk.engine.entity.obj.detail.ObjectDetailsLoader
 /**
  * Stores additional static information about an entity as well as a unique string identifier
  */
-interface EntityDetails {
-    val details: Map<Int, EntityDetail>
+interface EntityDetails<T : EntityDetail> {
+    val details: Map<Int, T>
     val names: BiMap<Int, String>
 
-    fun getOrNull(id: Int): EntityDetail?
+    fun getOrNull(id: Int): T?
 
-    fun get(id: Int): EntityDetail
+    fun getOrNull(name: String): T? {
+        return getOrNull(getIdOrNull(name) ?: return null)
+    }
+
+    fun get(id: Int): T
+
+    fun get(name: String): T = get(getId(name))
 
     fun getNameOrNull(id: Int): String? {
         return names[id]
@@ -41,7 +47,7 @@ interface EntityDetails {
 val detailsModule = module {
     single(createdAtStart = true) { ObjectDetailsLoader(get()).run(getProperty("objectDetailsPath")) }
     single(createdAtStart = true) { NPCDetailsLoader(get()).run(getProperty("npcDetailsPath")) }
-    single(createdAtStart = true) { ItemDetailsLoader(get()).run(getProperty("itemDetailsPath")) }
+    single(createdAtStart = true) { ItemDetailsLoader(get(), get()).run(getProperty("itemDetailsPath")) }
     single(createdAtStart = true) { AnimationDetailsLoader(get()).run(getProperty("animationDetailsPath")) }
     single(createdAtStart = true) { GraphicDetailsLoader(get()).run(getProperty("graphicDetailsPath")) }
     single(createdAtStart = true) { ContainerDetailsLoader(get()).run(getProperty("containerDetailsPath")) }

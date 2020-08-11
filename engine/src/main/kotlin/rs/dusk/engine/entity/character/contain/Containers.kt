@@ -13,7 +13,7 @@ fun Player.sendContainer(name: String) {
     val details: ContainerDetails = get()
     val containerId = details.getId(name)
     val container = container(details.get(containerId))
-    send(InterfaceItemsMessage(containerId, container.items, container.amounts))
+    send(InterfaceItemsMessage(containerId, container.getItems(), container.getAmounts()))
 }
 
 fun Player.container(name: String): Container {

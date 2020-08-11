@@ -612,6 +612,18 @@ worn_equipment:
     bonuses: 39
     price: 42
     items: 45
+    hat: 8
+    cape: 11
+    amulet: 14
+    weapon: 17
+    chest: 20
+    shield: 23
+    legs: 26
+    hands: 29
+    feet: 32
+    ring: 35
+    arrows: 38
+    aura: 50
 
 obj_dialog:
   id: 389

@@ -1,6 +1,7 @@
 package rs.dusk.engine.entity.item.detail
 
 import com.google.common.collect.BiMap
+import io.mockk.mockk
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.EntityDetailsTest
@@ -20,7 +21,7 @@ internal class ItemDetailsTest : EntityDetailsTest<ItemDetail, ItemDetails>() {
     }
 
     override fun loader(loader: FileLoader): TimedLoader<ItemDetails> {
-        return ItemDetailsLoader(loader)
+        return ItemDetailsLoader(loader, mockk(relaxed = true))
     }
 
 }

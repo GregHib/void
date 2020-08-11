@@ -12,8 +12,9 @@ data class InterfaceInteraction(
     val component: String,
     val optionId: Int,
     val option: String,
-    val paramOne: Int,
-    val paramTwo: Int
+    val item: String,
+    val itemId: Int,
+    val itemIndex: Int
 ) : PlayerEvent() {
     companion object : EventCompanion<InterfaceInteraction>
 }

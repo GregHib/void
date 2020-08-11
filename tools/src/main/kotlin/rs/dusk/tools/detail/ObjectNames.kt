@@ -10,17 +10,29 @@ import rs.dusk.engine.data.file.fileLoaderModule
 /**
  * Dumps unique string identifiers for objects using formatted object definition name plus index for duplicates
  */
-private object ObjectNames : NameDumper() {
+private class ObjectNames(val decoder: ObjectDecoder) : NameDumper() {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        val koin = startKoin {
-            fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
-        }.koin
-        val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
-        val loader: FileLoader = koin.get()
-        dump(loader, "./object-details.yml", "object", decoder.size) { id -> decoder.get(id)?.name }
+
+    override fun createName(id: Int): String? {
+        return decoder.get(id)?.name
+    }
+
+    override fun createData(id: Int): Map<String, Any> {
+        return mutableMapOf("id" to id)
+    }
+
+    companion object {
+        @JvmStatic
+        fun main(args: Array<String>) {
+            val koin = startKoin {
+                fileProperties("/tool.properties")
+                modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
+            }.koin
+            val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
+            val loader: FileLoader = koin.get()
+            val names = ObjectNames(decoder)
+            names.dump(loader, "./object-details.yml", "object", decoder.size)
+        }
     }
 
 }

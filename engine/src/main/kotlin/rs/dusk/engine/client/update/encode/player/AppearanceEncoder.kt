@@ -23,9 +23,8 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             headIcon,
             hidden,
             transform,
-            look,
+            body,
             colours,
-            equipment,
             emote,
             displayName,
             combatLevel,
@@ -57,25 +56,14 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 writeShort(transform)
                 writeByte(0)
             } else {
-//                for (item in 0 until 15) {
-//                    writeEmpty()
-//                }
-                writeBytes(byteArrayOf(0, 0, 0, 0, 1, 18, 0, 1, 26, 1, 36, 1, 0, 1, 33, 1, 42, 1, 10, 0))
-                /*
-                    Hat    0
-                    Cape   1
-                    Amulet 2
-                    Weapon 3
-                    Chest  4  2
-                    Shield 5
-                    Arms   -  3
-                    Legs   7  5
-                    Hair      0
-                    Braclt 9  4
-                    Feet   10 6
-                    Beard  11 1
-                    Aura   12
-                 */
+                for(index in 0 until 13) {
+                    val part = body.get(index)
+                    if(part == 0) {
+                        writeByte(part)
+                    } else {
+                        writeShort(part)
+                    }
+                }
                 writeShort(0)
             }
             colours.forEach { colour ->
@@ -105,11 +93,4 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             position(end)
         }
     }
-
-    private fun Writer.writeEmpty() = writeByte(0)
-
-    private fun Writer.writeItem(item: Int) = writeShort(item or 0x8000)
-
-    private fun Writer.writeClothes(value: Int) = writeShort(value or 0x100)
-
 }

@@ -8,8 +8,8 @@ data class Container(
     private val decoder: ItemDecoder,
     val listeners: MutableList<(List<Triple<Int, Int, Int>>) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
-    val items: IntArray,
-    val amounts: IntArray,
+    private val items: IntArray,
+    private val amounts: IntArray,
     val minimumStack: Int = 0
 ) {
 
@@ -39,6 +39,14 @@ data class Container(
 
     val spaces: Int
         get() = amounts.count { isFree(it) }
+
+    fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
+
+    fun getItems(): IntArray = items.clone()
+
+    fun getAmount(index: Int): Int = amounts.getOrNull(index) ?: minimumStack
+
+    fun getAmounts(): IntArray = amounts.clone()
 
     fun indexOf(id: Int) = items.indexOf(id)
 
@@ -338,6 +346,15 @@ data class Container(
         amounts.forEachIndexed { index, id ->
             this.amounts[index] = id
         }
+    }
+
+    fun move(index: Int, container: Container, targetIndex: Int? = null): ContainerResult {
+        val id = getItem(index)
+        val amount = getAmount(index)
+        if(id == -1 || amount == minimumStack) {
+            return ContainerResult.Removal.Failure.Invalid
+        }
+        return move(container, id, amount, index, targetIndex)
     }
 
     fun move(

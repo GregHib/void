@@ -6,6 +6,9 @@ import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
+import rs.dusk.engine.entity.character.contain.container
+import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
@@ -24,13 +27,15 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
     val bus: EventBus by inject()
     val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
-    val lookup: InterfaceDetails by inject()
+    val interfaceDetails: InterfaceDetails by inject()
+    val containerDetails: ContainerDetails by inject()
+    val itemDetails: ItemDetails by inject()
     val logger = InlineLogger()
 
     override fun handle(ctx: ChannelHandlerContext, msg: InterfaceOptionMessage) {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (hash, one, two, option) = msg
+        val (hash, itemId, itemSlot, option) = msg
 
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {
@@ -53,10 +58,22 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
             return
         }
 
-        val inter = lookup.get(id)
+        val inter = interfaceDetails.get(id)
         val name = inter.name
-        val componentName = inter.components[componentId] ?: ""
+        var item = ""
+
+        if(itemId != -1 && itemSlot != -1) {
+            val containerId = containerDetails.getId(name)
+            val container = containerDetails.get(containerId)
+            if(!player.container(container).isValidId(itemSlot, itemId)) {
+                logger.info { "Interface $name item $itemId $itemSlot not found in $containerId for player $player" }
+                return
+            }
+            item = itemDetails.getName(itemId)
+        }
+
         val selectedOption = options?.getOrNull(index) ?: ""
+        val componentName = inter.components[componentId] ?: ""
         executor.start {
             bus.emit(
                 InterfaceInteraction(
@@ -65,10 +82,11 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
                     name,
                     componentId,
                     componentName,
-                    index,
+                    option,
                     selectedOption,
-                    one,
-                    two
+                    item,
+                    itemId,
+                    itemSlot
                 )
             )
         }

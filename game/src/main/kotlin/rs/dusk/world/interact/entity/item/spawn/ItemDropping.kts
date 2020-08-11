@@ -1,8 +1,10 @@
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.entity.Registered
+import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.entity.item.FloorItem
 import rs.dusk.engine.entity.item.FloorItemState
@@ -10,6 +12,7 @@ import rs.dusk.engine.entity.item.FloorItems
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
+import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
@@ -18,12 +21,24 @@ import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemUpdateMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.item.spawn.Drop
+import rs.dusk.world.interact.entity.player.equip.ContainerAction
 
 val decoder: ItemDecoder by inject()
 val items: FloorItems by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
+val logger = InlineLogger()
+
+ContainerAction where { container == "inventory" && option == "Drop" } then {
+    val id = player.inventory.getItem(slot)
+    val amount = player.inventory.getAmount(slot)
+    if (player.inventory.clear(slot) && id != -1 && amount > 0) {
+        bus.emit(Drop(id, amount, player.tile, 60, 60, player))
+    } else {
+        logger.info { "Error dropping item $id $amount for $player" }
+    }
+}
 
 Drop then {
     val definition = decoder.getSafe(id)
@@ -104,7 +119,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
 
 batcher.addInitial { player, chunk, messages ->
     items[chunk].forEach {
-        if(it.visible(player)) {
+        if (it.visible(player)) {
             messages += FloorItemAddMessage(it.tile.offset(), it.id, it.amount)
         }
     }
