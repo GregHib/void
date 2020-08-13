@@ -1,0 +1,80 @@
+package rs.dusk.engine.storage
+
+import com.github.michaelbull.logging.InlineLogger
+import com.zaxxer.hikari.HikariConfig
+import com.zaxxer.hikari.HikariDataSource
+import org.koin.dsl.module
+import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.utility.getProperty
+import rs.dusk.utility.inject
+
+/**
+ * @author Tyluur <contact@kiaira.tech>
+ * @since August 12, 2020
+ */
+class DatabaseFactory {
+	
+	private val logger = InlineLogger()
+	
+	/**
+	 * The file loader used to pull properties data
+	 */
+	val loader : FileLoader by inject()
+	
+	/**
+	 * The properties data
+	 */
+	val properties : Map<String, String> =
+		loader.load<Map<String, String>>(getProperty("databasePath")).mapKeys { it.key }
+	
+	/**
+	 * The configuration settings used for the connection
+	 */
+	private lateinit var config : HikariConfig
+	
+	/**
+	 * The data source for the database
+	 */
+	private lateinit var dataSource : HikariDataSource
+	
+	/**
+	 * The connection to use
+	 */
+	val connection = dataSource.connection
+	
+	/**
+	 * Loads the configuration from the file containing the data and constructs a new [instance][HikariConfig]
+	 */
+	private fun loadConfiguration() : HikariConfig {
+		config = HikariConfig()
+		config.jdbcUrl = properties["jdbcUrl"]
+		config.username = properties["username"]
+		config.password = properties["password"]
+		return config
+	}
+	
+	/**
+	 * Construct the hikari database pool
+	 */
+	private fun construct() : HikariDataSource {
+		return HikariDataSource(config)
+	}
+	
+	/**
+	 * Starts the database factory
+	 */
+	fun start() {
+		val config = loadConfiguration()
+		construct()
+	}
+	
+	init {
+		start()
+		logger.info { "Successfully created the database pool." }
+	}
+	
+}
+
+val databaseModule = module {
+	single(createdAtStart = true) { DatabaseFactory() }
+}

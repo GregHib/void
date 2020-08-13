@@ -1,0 +1,3 @@
+jdbcUrl:  "jdbc:mysql://localhost:3306/simpsons"
+username: "admin"
+password: "admin"
