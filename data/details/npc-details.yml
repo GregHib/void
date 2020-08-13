@@ -1,30 +1,30 @@
-hans_1:
+hans:
   id: 0
-man_1:
+man:
   id: 1
 man_2:
   id: 2
 man_3:
   id: 3
-woman_1:
+woman:
   id: 4
 woman_2:
   id: 5
 woman_3:
   id: 6
-farmer_1:
+farmer:
   id: 7
-thief_1:
+thief:
   id: 8
-guard_1:
+guard:
   id: 9
-schoolgirl_1:
+schoolgirl:
   id: 10
-tramp_1:
+tramp:
   id: 11
 hallvar:
   id: 12
-wizard_1:
+wizard:
   id: 13
 liquid_gold_nymph:
   id: 14
@@ -36,15 +36,15 @@ schoolgirl_2:
   id: 17
 al-kharid_warrior:
   id: 18
-white_knight_1:
+white_knight:
   id: 19
-paladin_1:
+paladin:
   id: 20
 hero:
   id: 21
-sneakerpeeper_1:
+sneakerpeeper:
   id: 22
-knight_of_ardougne_1:
+knight_of_ardougne:
   id: 23
 man_5:
   id: 24
@@ -52,97 +52,97 @@ woman_4:
   id: 25
 knight_of_ardougne_2:
   id: 26
-archer_1:
+archer:
   id: 27
-zookeeper_1:
+zookeeper:
   id: 28
-musician_1:
+musician:
   id: 29
 musician_2:
   id: 30
-priest_1:
+priest:
   id: 31
 guard_2:
   id: 32
-ethereal_mimic_1:
+ethereal_mimic:
   id: 33
 watchman:
   id: 34
-soldier_1:
+soldier:
   id: 35
 wyson_the_gardener:
   id: 36
 sigbert_the_adventurer:
   id: 37
-shipyard_worker_1:
+shipyard_worker:
   id: 38
 shipyard_worker_2:
   id: 39
-shark_1:
+shark:
   id: 40
-chicken_1:
+chicken:
   id: 41
-sheep_1:
+sheep:
   id: 42
 sheep_2:
   id: 43
-banker_1:
+banker:
   id: 44
 banker_2:
   id: 45
-duck_1:
+duck:
   id: 46
-rat_1:
+rat:
   id: 47
 oomlie_bird:
   id: 48
-hellhound_1:
+hellhound:
   id: 49
-king_black_dragon_1:
+king_black_dragon:
   id: 50
-frost_dragon_1:
+frost_dragon:
   id: 51
-baby_blue_dragon_1:
+baby_blue_dragon:
   id: 52
-red_dragon_1:
+red_dragon:
   id: 53
-black_dragon_1:
+black_dragon:
   id: 54
-blue_dragon_1:
+blue_dragon:
   id: 55
-dwarf_1:
+dwarf:
   id: 56
-fairy_1:
+fairy:
   id: 57
 shadow_spider:
   id: 58
-giant_spider_1:
+giant_spider:
   id: 59
 giant_spider_2:
   id: 60
-spider_1:
+spider:
   id: 61
-jungle_spider_1:
+jungle_spider:
   id: 62
 deadly_red_spider:
   id: 63
-ice_spider_1:
+ice_spider:
   id: 64
 dwarf_2:
   id: 65
-gnome_1:
+gnome:
   id: 66
 gnome_2:
   id: 67
 gnome_3:
   id: 68
-sten_1:
+sten:
   id: 69
 sten_2:
   id: 71
-troll_1:
+troll:
   id: 72
-zombie_1:
+zombie:
   id: 73
 zombie_2:
   id: 74
@@ -152,31 +152,31 @@ zombie_4:
   id: 76
 summoned_zombie:
   id: 77
-giant_bat_1:
+giant_bat:
   id: 78
 death_wing:
   id: 79
 camel:
   id: 80
-cow_1:
+cow:
   id: 81
-lesser_demon_1:
+lesser_demon:
   id: 82
-greater_demon_1:
+greater_demon:
   id: 83
-black_demon_1:
+black_demon:
   id: 84
-suak_1:
+suak:
   id: 85
-giant_rat_1:
+giant_rat:
   id: 86
 giant_rat_2:
   id: 87
-dungeon_rat_1:
+dungeon_rat:
   id: 88
-unicorn_1:
+unicorn:
   id: 89
-skeleton_1:
+skeleton:
   id: 90
 skeleton_2:
   id: 91
@@ -184,57 +184,57 @@ skeleton_3:
   id: 92
 skeleton_4:
   id: 93
-skeleton_mage_1:
+skeleton_mage:
   id: 94
-wolf_1:
+wolf:
   id: 95
-white_wolf_1:
+white_wolf:
   id: 96
 white_wolf_2:
   id: 97
 dog:
   id: 98
-guard_dog_1:
+guard_dog:
   id: 99
 freaky_forester:
   id: 100
-pheasant_1:
+pheasant:
   id: 101
 pheasant_2:
   id: 102
-ghost_1:
+ghost:
   id: 103
 ghost_2:
   id: 104
-grizzly_bear_1:
+grizzly_bear:
   id: 105
 black_bear:
   id: 106
-scorpion_1:
+scorpion:
   id: 107
 poison_scorpion:
   id: 108
 pit_scorpion:
   id: 109
-fire_giant_1:
+fire_giant:
   id: 110
-ice_giant_1:
+ice_giant:
   id: 111
-moss_giant_1:
+moss_giant:
   id: 112
-jogre_1:
+jogre:
   id: 113
 mogre:
   id: 114
-ogre_1:
+ogre:
   id: 115
-cyclops_1:
+cyclops:
   id: 116
-hill_giant_1:
+hill_giant:
   id: 117
 dwarf_3:
   id: 118
-chaos_dwarf_1:
+chaos_dwarf:
   id: 119
 dwarf_4:
   id: 120
@@ -244,27 +244,27 @@ pheasant_3:
   id: 122
 pheasant_4:
   id: 123
-earth_warrior_1:
+earth_warrior:
   id: 124
-ice_warrior_1:
+ice_warrior:
   id: 125
 otherworldly_being:
   id: 126
 magic_axe:
   id: 127
-snake_1:
+snake:
   id: 128
-egil_1:
+egil:
   id: 129
-abel_1:
+abel:
   id: 130
-penguin_1:
+penguin:
   id: 131
-monkey_1:
+monkey:
   id: 132
 black_unicorn:
   id: 133
-poison_spider_1:
+poison_spider:
   id: 134
 ethereal_mimic_2:
   id: 135
@@ -272,13 +272,13 @@ mounted_terrorchick:
   id: 136
 terrorchick:
   id: 137
-terrorbird_1:
+terrorbird:
   id: 138
 terrorbird_2:
   id: 139
 soulless:
   id: 140
-big_wolf_1:
+big_wolf:
   id: 141
 wolf_2:
   id: 142
@@ -288,11 +288,11 @@ king_scorpion:
   id: 144
 ice_warrior_2:
   id: 145
-gull_1:
+gull:
   id: 146
-cormorant_1:
+cormorant:
   id: 147
-pelican_1:
+pelican:
   id: 148
 gull_2:
   id: 149
@@ -300,7 +300,7 @@ gull_3:
   id: 150
 fly_trap:
   id: 151
-butterfly_1:
+butterfly:
   id: 153
 butterfly_2:
   id: 154
@@ -312,7 +312,7 @@ butterfly_5:
   id: 157
 shadow_warrior:
   id: 158
-gnome_child_1:
+gnome_child:
   id: 159
 gnome_child_2:
   id: 160
@@ -320,71 +320,71 @@ gnome_child_3:
   id: 161
 gnome_trainer:
   id: 162
-gnome_guard_1:
+gnome_guard:
   id: 163
 gnome_guard_2:
   id: 164
-lava_monster_1:
+lava_monster:
   id: 165
 gnome_banker:
   id: 166
 tzhaar_hero:
   id: 167
-gnome_woman_1:
+gnome_woman:
   id: 168
 gnome_woman_2:
   id: 169
 man_6:
   id: 170
-brimstail_1:
+brimstail:
   id: 171
-dark_wizard_1:
+dark_wizard:
   id: 172
 invrigar_the_necromancer:
   id: 173
 dark_wizard_2:
   id: 174
-mugger_1:
+mugger:
   id: 175
-witch_1:
+witch:
   id: 176
 witch_2:
   id: 177
-black_knight_1:
+black_knight:
   id: 178
 black_knight_2:
   id: 179
-highwayman_1:
+highwayman:
   id: 180
-chaos_druid_1:
+chaos_druid:
   id: 181
-pirate_1:
+pirate:
   id: 182
 pirate_2:
   id: 183
 pirate_3:
   id: 184
-lava-flow_miner_1:
+lava-flow_miner:
   id: 185
-thug_1:
+thug:
   id: 186
-rogue_1:
+rogue:
   id: 187
-monk_of_zamorak_1:
+monk_of_zamorak:
   id: 188
 monk_of_zamorak_2:
   id: 189
 monk_of_zamorak_3:
   id: 190
-tribesman_1:
+tribesman:
   id: 191
 dark_warrior:
   id: 192
 chaos_druid_warrior:
   id: 193
-necromancer_1:
+necromancer:
   id: 194
-bandit_1:
+bandit:
   id: 195
 guard_bandit:
   id: 196
@@ -394,7 +394,7 @@ guildmaster:
   id: 198
 gunthor_the_brave:
   id: 199
-lord_daquarius_1:
+lord_daquarius:
   id: 200
 jailer:
   id: 201
@@ -420,23 +420,23 @@ sir_percival:
   id: 211
 king_percival:
   id: 212
-peasant_1:
+peasant:
   id: 214
 peasant_2:
   id: 215
-high_priest_1:
+high_priest:
   id: 216
 crone:
   id: 217
 galahad:
   id: 218
-fisherman_1:
+fisherman:
   id: 219
 the_fisher_king:
   id: 220
 black_knight_titan:
   id: 221
-monk_1:
+monk:
   id: 222
 brother_kojo:
   id: 223
@@ -452,11 +452,11 @@ joshua:
   id: 229
 grandpa_jack:
   id: 230
-forester_1:
+forester:
   id: 231
 austri:
   id: 232
-fishing_spot_1:
+fishing_spot:
   id: 233
 fishing_spot_2:
   id: 234
@@ -464,29 +464,29 @@ fishing_spot_3:
   id: 235
 fishing_spot_4:
   id: 236
-renegade_knight_1:
+renegade_knight:
   id: 237
 thrantax_the_mighty:
   id: 238
-sir_lancelot_1:
+sir_lancelot:
   id: 239
-sir_gawain_1:
+sir_gawain:
   id: 240
-sir_kay_1:
+sir_kay:
   id: 241
-sir_bedivere_1:
+sir_bedivere:
   id: 242
-sir_tristram_1:
+sir_tristram:
   id: 243
-sir_pelleas_1:
+sir_pelleas:
   id: 244
-sir_lucan_1:
+sir_lucan:
   id: 245
 beefy_bill:
   id: 246
 sir_mordred:
   id: 247
-morgan_le_faye_1:
+morgan_le_faye:
   id: 248
 merlin:
   id: 249
@@ -496,7 +496,7 @@ king_arthur:
   id: 251
 beggar:
   id: 252
-khazard_guard_1:
+khazard_guard:
   id: 253
 khazard_guard_2:
   id: 254
@@ -510,7 +510,7 @@ angor:
   id: 259
 kelvin:
   id: 260
-joe_1:
+joe:
   id: 261
 slave_fighter:
   id: 262
@@ -518,17 +518,17 @@ hengrad:
   id: 263
 local:
   id: 268
-bouncer_1:
+bouncer:
   id: 269
 khazard_ogre:
   id: 270
 khazard_scorpion:
   id: 271
-lucien_1:
+lucien:
   id: 272
 lucien_2:
   id: 273
-guardian_of_armadyl_1:
+guardian_of_armadyl:
   id: 274
 guardian_of_armadyl_2:
   id: 275
@@ -536,7 +536,7 @@ winelda:
   id: 276
 fire_warrior_of_lesarkus:
   id: 277
-cook_1:
+cook:
   id: 278
 brother_omad:
   id: 279
@@ -554,11 +554,11 @@ veronica:
   id: 285
 professor_oddenstein:
   id: 286
-ernest_1:
+ernest:
   id: 287
 chicken_2:
   id: 288
-councillor_halgrive_1:
+councillor_halgrive:
   id: 289
 doctor_orbon:
   id: 290
@@ -572,7 +572,7 @@ guard_6:
   id: 298
 guard_7:
   id: 299
-sedridor_1:
+sedridor:
   id: 300
 lava-flow_miner_3:
   id: 301
@@ -584,7 +584,7 @@ almera:
   id: 304
 hudon:
   id: 305
-golrie_1:
+golrie:
   id: 306
 hetty:
   id: 307
@@ -642,19 +642,19 @@ fishing_spot_27:
   id: 333
 fishing_spot_28:
   id: 334
-da_vinci_1:
+da_vinci:
   id: 336
 da_vinci_2:
   id: 337
-chancy_1:
+chancy:
   id: 338
 chancy_2:
   id: 339
-hops_1:
+hops:
   id: 340
 hops_2:
   id: 341
-guidor's_wife:
+guidors_wife:
   id: 342
 guidor:
   id: 343
@@ -664,7 +664,7 @@ guard_9:
   id: 345
 guard_10:
   id: 346
-mourner_1:
+mourner:
   id: 347
 mourner_2:
   id: 348
@@ -680,7 +680,7 @@ woman_6:
   id: 353
 woman_7:
   id: 354
-child_1:
+child:
   id: 355
 child_2:
   id: 356
@@ -720,11 +720,11 @@ nurse_sarah:
   id: 373
 ogre_2:
   id: 374
-redbeard_frank_1:
+redbeard_frank:
   id: 375
 luthas:
   id: 379
-customs_officer_1:
+customs_officer:
   id: 380
 dwarf_6:
   id: 382
@@ -732,7 +732,7 @@ stankers:
   id: 383
 barbarian_guard:
   id: 384
-kharid_scorpion_1:
+kharid_scorpion:
   id: 385
 kharid_scorpion_2:
   id: 386
@@ -754,33 +754,33 @@ frog_herald:
   id: 394
 cow_2:
   id: 397
-legends_guard_1:
+legends_guard:
   id: 398
 legends_guard_2:
   id: 399
 radimus_erkle:
   id: 400
-jungle_forester_1:
+jungle_forester:
   id: 401
 jungle_forester_2:
   id: 402
-eluned_1:
+eluned:
   id: 404
-lokar_searunner_1:
+lokar_searunner:
   id: 406
-captain_bentley_1:
+captain_bentley:
   id: 407
 captain_bentley_2:
   id: 408
-genie_1:
+genie:
   id: 409
-mysterious_old_man_1:
+mysterious_old_man:
   id: 410
-swarm_1:
+swarm:
   id: 411
-bat_1:
+bat:
   id: 412
-leprechaun_1:
+leprechaun:
   id: 418
 leprechaun_2:
   id: 419
@@ -788,7 +788,7 @@ high_priest_2:
   id: 420
 high_priest_3:
   id: 421
-captain_undak_1:
+captain_undak:
   id: 422
 captain_undak_2:
   id: 426
@@ -800,27 +800,27 @@ captain_undak_5:
   id: 429
 captain_undak_6:
   id: 430
-cyrisus_1:
+cyrisus:
   id: 432
 cyrisus_2:
   id: 433
 cyrisus_3:
   id: 434
-fallen_man_1:
+fallen_man:
   id: 435
 fallen_man_2:
   id: 436
-cap'n_izzy_no-beard_1:
+capn_izzy_no-beard:
   id: 437
-torzek_1:
+torzek:
   id: 438
-andil_1:
+andil:
   id: 440
-delgon_1:
+delgon:
   id: 442
 giant_rat_3:
   id: 446
-jail_guard_1:
+jail_guard:
   id: 447
 jail_guard_2:
   id: 448
@@ -838,7 +838,7 @@ sanfew:
   id: 454
 kaqemeex:
   id: 455
-father_aereck_1:
+father_aereck:
   id: 456
 restless_ghost:
   id: 457
@@ -852,7 +852,7 @@ magic_store_owner:
   id: 461
 wizard_distentor:
   id: 462
-murphy_1:
+murphy:
   id: 463
 murphy_2:
   id: 464
@@ -872,15 +872,15 @@ bolkoy:
   id: 471
 remsai:
   id: 472
-khazard_trooper_1:
+khazard_trooper:
   id: 475
-famished_mage-eye_1:
+famished_mage-eye:
   id: 476
 khazard_warlord:
   id: 477
 khazard_commander:
   id: 478
-gnome_troop_1:
+gnome_troop:
   id: 479
 gnome_troop_2:
   id: 480
@@ -890,7 +890,7 @@ tracker_gnome_2:
   id: 482
 tracker_gnome_3:
   id: 483
-local_gnome_1:
+local_gnome:
   id: 484
 local_gnome_2:
   id: 485
@@ -898,11 +898,11 @@ kalron:
   id: 486
 giant:
   id: 487
-observatory_professor_1:
+observatory_professor:
   id: 488
-goblin_guard_1:
+goblin_guard:
   id: 489
-mummy_1:
+mummy:
   id: 490
 ghost_3:
   id: 491
@@ -926,7 +926,7 @@ mosol_rei:
   id: 500
 spirit_of_zadimus:
   id: 501
-undead_one_1:
+undead_one:
   id: 502
 undead_one_2:
   id: 503
@@ -936,7 +936,7 @@ undead_one_4:
   id: 505
 rashiliyia:
   id: 506
-nazastarool_1:
+nazastarool:
   id: 507
 nazastarool_2:
   id: 508
@@ -960,11 +960,11 @@ fernahei:
   id: 517
 captain_shanks:
   id: 518
-bob_1:
+bob:
   id: 519
-shopkeeper_1:
+shopkeeper:
   id: 520
-shop_assistant_1:
+shop_assistant:
   id: 521
 shopkeeper_2:
   id: 522
@@ -986,7 +986,7 @@ shopkeeper_6:
   id: 530
 shop_assistant_6:
   id: 531
-gravecreeper_1:
+gravecreeper:
   id: 532
 gravecreeper_2:
   id: 533
@@ -1014,7 +1014,7 @@ ranael:
   id: 544
 dommik:
   id: 545
-zaff_1:
+zaff:
   id: 546
 baraek:
   id: 547
@@ -1036,9 +1036,9 @@ shopkeeper_8:
   id: 555
 grum:
   id: 556
-wydin_1:
+wydin:
   id: 557
-brian_1:
+brian:
   id: 559
 jiminua:
   id: 560
@@ -1056,19 +1056,19 @@ irksol:
   id: 566
 fairy_2:
   id: 567
-zambo_1:
+zambo:
   id: 568
-silver_merchant_1:
+silver_merchant:
   id: 569
-gem_merchant_1:
+gem_merchant:
   id: 570
 baker:
   id: 571
-spice_seller_1:
+spice_seller:
   id: 572
-fur_trader_1:
+fur_trader:
   id: 573
-silk_merchant_1:
+silk_merchant:
   id: 574
 hickton:
   id: 575
@@ -1086,7 +1086,7 @@ wayne:
   id: 581
 dwarf_7:
   id: 582
-betty_1:
+betty:
   id: 583
 herquin:
   id: 584
@@ -1098,7 +1098,7 @@ jatix:
   id: 587
 davon:
   id: 588
-zenesha_1:
+zenesha:
   id: 589
 aemad:
   id: 590
@@ -1108,7 +1108,7 @@ roachey:
   id: 592
 frenita:
   id: 593
-nurmof_1:
+nurmof:
   id: 594
 tea_seller:
   id: 595
@@ -1118,7 +1118,7 @@ noterazzo:
   id: 597
 hairdresser:
   id: 598
-make-over_mage_1:
+make-over_mage:
   id: 599
 hudo:
   id: 600
@@ -1132,13 +1132,13 @@ thurgo:
   id: 604
 sir_vyvin:
   id: 605
-squire_1:
+squire:
   id: 606
 gunnjorn:
   id: 607
-sir_amik_varze_1:
+sir_amik_varze:
   id: 608
-fortress_guard_1:
+fortress_guard:
   id: 609
 black_knight_captain:
   id: 610
@@ -1146,23 +1146,23 @@ witch_3:
   id: 611
 greldo:
   id: 612
-digsite_workman_1:
+digsite_workman:
   id: 613
 doug_deeping:
   id: 614
-student_1:
+student:
   id: 615
 student_2:
   id: 616
 student_3:
   id: 617
-examiner_1:
+examiner:
   id: 618
 archaeological_expert:
   id: 619
 panning_guide:
   id: 620
-gnome_baller_1:
+gnome_baller:
   id: 621
 gnome_baller_2:
   id: 622
@@ -1186,7 +1186,7 @@ gnome_baller_11:
   id: 631
 gnome_baller_12:
   id: 632
-gnome_winger_1:
+gnome_winger:
   id: 633
 gnome_winger_2:
   id: 634
@@ -1212,35 +1212,35 @@ jonny_the_beard:
   id: 645
 curator_haig_halen:
   id: 646
-king_roald_1:
+king_roald:
   id: 648
 archer_2:
   id: 649
-warrior_1:
+warrior:
   id: 650
 monk_3:
   id: 651
 wizard_2:
   id: 652
-fairy_queen_1:
+fairy_queen:
   id: 653
 shamus:
   id: 654
-tree_spirit_1:
+tree_spirit:
   id: 655
 cave_monk:
   id: 656
-monk_of_entrana_1:
+monk_of_entrana:
   id: 657
 monk_of_entrana_2:
   id: 658
-party_pete_1:
+party_pete:
   id: 659
-knight_1:
+knight:
   id: 660
 megan:
   id: 661
-lucy_1:
+lucy:
   id: 662
 avan:
   id: 663
@@ -1252,17 +1252,17 @@ chronozon:
   id: 667
 johnathon:
   id: 668
-hazelmere_1:
+hazelmere:
   id: 669
 king_narnode_shareen:
   id: 670
-glough_1:
+glough:
   id: 671
 anita:
   id: 672
-charlie_1:
+charlie:
   id: 673
-foreman_1:
+foreman:
   id: 674
 shipyard_worker_3:
   id: 675
@@ -1276,13 +1276,13 @@ ranging_guild_doorman:
   id: 679
 leatherworker:
   id: 680
-will_o'_the_wisp_1:
+will_o_the_wisp:
   id: 681
 armour_salesman:
   id: 682
 bow_and_arrow_salesman:
   id: 683
-tower_advisor_1:
+tower_advisor:
   id: 684
 tower_advisor_2:
   id: 685
@@ -1290,7 +1290,7 @@ tower_advisor_3:
   id: 686
 tower_advisor_4:
   id: 687
-tower_archer_1:
+tower_archer:
   id: 688
 tower_archer_2:
   id: 689
@@ -1302,37 +1302,37 @@ tribal_weapon_salesman:
   id: 692
 ticket_merchant:
   id: 694
-bailey_1:
+bailey:
   id: 695
 caroline:
   id: 696
-holgart_1:
+holgart:
   id: 698
 holgart_2:
   id: 699
 holgart_3:
   id: 700
-kent_1:
+kent:
   id: 701
 melee_instructor:
   id: 705
-wizard_mizgog_1:
+wizard_mizgog:
   id: 706
-imp_1:
+imp:
   id: 708
 imp_2:
   id: 709
-alrena_1:
+alrena:
   id: 710
-bravek_1:
+bravek:
   id: 711
 carla:
   id: 712
-clerk_1:
+clerk:
   id: 713
-edmond_1:
+edmond:
   id: 714
-head_mourner_1:
+head_mourner:
   id: 716
 mourner_8:
   id: 717
@@ -1362,7 +1362,7 @@ man_9:
   id: 729
 registrar_3:
   id: 730
-bartender_1:
+bartender:
   id: 731
 bartender_2:
   id: 732
@@ -1380,9 +1380,9 @@ bartender_7:
   id: 739
 trufitus:
   id: 740
-duke_horacio_1:
+duke_horacio:
   id: 741
-elvarg_1:
+elvarg:
   id: 742
 lava-flow_miner_6:
   id: 743
@@ -1410,13 +1410,13 @@ morgan:
   id: 755
 dr_harlow:
   id: 756
-prince_brand_1:
+prince_brand:
   id: 757
 fred_the_farmer:
   id: 758
-kittens_1:
+kittens:
   id: 760
-kitten_1:
+kitten:
   id: 761
 kitten_2:
   id: 762
@@ -1428,9 +1428,9 @@ kitten_5:
   id: 765
 kitten_6:
   id: 766
-glophren_1:
+glophren:
   id: 767
-cat_1:
+cat:
   id: 768
 cat_2:
   id: 769
@@ -1442,7 +1442,7 @@ cat_5:
   id: 772
 cat_6:
   id: 773
-overgrown_cat_1:
+overgrown_cat:
   id: 774
 overgrown_cat_2:
   id: 775
@@ -1464,7 +1464,7 @@ wilough:
   id: 783
 kanel:
   id: 784
-civilian_1:
+civilian:
   id: 785
 civilian_2:
   id: 786
@@ -1502,9 +1502,9 @@ brother_jered:
   id: 802
 monk_4:
   id: 803
-tanner_1:
+tanner:
   id: 804
-master_crafter_1:
+master_crafter:
   id: 805
 donovan_the_family_handyman:
   id: 806
@@ -1522,13 +1522,13 @@ guard_13:
   id: 812
 gossip:
   id: 813
-anna_1:
+anna:
   id: 814
 bob_2:
   id: 815
 carol:
   id: 816
-david_1:
+david:
   id: 817
 elizabeth:
   id: 818
@@ -1538,11 +1538,11 @@ poison_salesman:
   id: 820
 sinclair_guard_dog:
   id: 821
-ana_1:
+ana:
   id: 822
 ana_2:
   id: 823
-male_slave_1:
+male_slave:
   id: 825
 escaping_slave:
   id: 826
@@ -1560,21 +1560,21 @@ bedabin_nomad:
   id: 833
 bedabin_nomad_guard:
   id: 834
-irena_1:
+irena:
   id: 835
 shantay:
   id: 836
-shantay_guard_1:
+shantay_guard:
   id: 837
 shantay_guard_2:
   id: 838
-desert_wolf_1:
+desert_wolf:
   id: 839
 ugthanki:
   id: 840
 mine_cart_driver:
   id: 841
-possessed_pickaxe_1:
+possessed_pickaxe:
   id: 842
 rpdt_employee:
   id: 843
@@ -1586,13 +1586,13 @@ head_chef:
   id: 847
 blurberry:
   id: 848
-barman_1:
+barman:
   id: 849
 aluft_gianne_snr.:
   id: 850
 gnome_waiter:
   id: 851
-ogre_chieftain_1:
+ogre_chieftain:
   id: 852
 og:
   id: 853
@@ -1602,7 +1602,7 @@ toban:
   id: 855
 gorad:
   id: 856
-ogre_guard_1:
+ogre_guard:
   id: 857
 ogre_guard_2:
   id: 858
@@ -1618,7 +1618,7 @@ scared_skavid:
   id: 863
 mad_skavid:
   id: 864
-skavid_1:
+skavid:
   id: 865
 skavid_2:
   id: 866
@@ -1632,7 +1632,7 @@ enclave_guard:
   id: 870
 watchtower_wizard:
   id: 872
-ogre_trader_1:
+ogre_trader:
   id: 873
 ogre_merchant:
   id: 874
@@ -1648,15 +1648,15 @@ delrith:
   id: 879
 weakened_delrith:
   id: 880
-traiborn_1:
+traiborn:
   id: 881
-gypsy_aris_1:
+gypsy_aris:
   id: 882
-sir_prysin_1:
+sir_prysin:
   id: 883
 captain_rovin:
   id: 884
-ceril_carnillean_1:
+ceril_carnillean:
   id: 885
 claus_the_chef:
   id: 886
@@ -1670,7 +1670,7 @@ butler_jones:
   id: 890
 alomone:
   id: 891
-hazeel_1:
+hazeel:
   id: 892
 clivet:
   id: 893
@@ -1680,15 +1680,15 @@ boy:
   id: 895
 nora_t._hagg:
   id: 896
-witch's_experiment:
+witchs_experiment:
   id: 897
-witch's_experiment_(second_form):
+witchs_experiment_(second_form):
   id: 898
-witch's_experiment_(third_form):
+witchs_experiment_(third_form):
   id: 899
-witch's_experiment_(fourth_form):
+witchs_experiment_(fourth_form):
   id: 900
-mouse_1:
+mouse:
   id: 901
 gundai:
   id: 902
@@ -1696,7 +1696,7 @@ lundail:
   id: 903
 chamber_guardian:
   id: 904
-kolodion_1:
+kolodion:
   id: 905
 kolodion_2:
   id: 906
@@ -1710,7 +1710,7 @@ lava-flow_miner_7:
   id: 910
 kolodion_5:
   id: 911
-battle_mage_1:
+battle_mage:
   id: 912
 battle_mage_2:
   id: 913
@@ -1720,21 +1720,21 @@ joe_2:
   id: 916
 jail_guard_4:
   id: 917
-ned_1:
+ned:
   id: 918
 lady_keli:
   id: 919
-prince_ali_1:
+prince_ali:
   id: 920
 prince_ali_2:
   id: 921
-aggie_1:
+aggie:
   id: 922
 hassan:
   id: 923
-osman_1:
+osman:
   id: 924
-border_guard_1:
+border_guard:
   id: 925
 border_guard_2:
   id: 926
@@ -1742,7 +1742,7 @@ fishing_spot_30:
   id: 927
 gujuo:
   id: 928
-ungadulu_1:
+ungadulu:
   id: 929
 ungadulu_2:
   id: 930
@@ -1762,11 +1762,11 @@ irvig_senay:
   id: 937
 ranalph_devere:
   id: 938
-boulder_1:
+boulder:
   id: 939
 echned_zekin:
   id: 940
-green_dragon_1:
+green_dragon:
   id: 941
 master_chef:
   id: 942
@@ -1776,7 +1776,7 @@ combat_instructor:
   id: 944
 runescape_guide:
   id: 945
-magic_instructor_1:
+magic_instructor:
   id: 946
 financial_advisor:
   id: 947
@@ -1796,13 +1796,13 @@ brother_brace:
   id: 954
 lava-flow_miner_8:
   id: 955
-drunken_dwarf_1:
+drunken_dwarf:
   id: 956
 mubariz:
   id: 957
 fadli:
   id: 958
-a'abla:
+aabla:
   id: 959
 sabreen:
   id: 960
@@ -1828,7 +1828,7 @@ diango:
   id: 970
 chadwell:
   id: 971
-koftik_1:
+koftik:
   id: 972
 koftik_2:
   id: 973
@@ -1840,9 +1840,9 @@ koftik_5:
   id: 976
 blessed_spider:
   id: 977
-blessed_giant_rat_1:
+blessed_giant_rat:
   id: 978
-slave_1:
+slave:
   id: 979
 slave_2:
   id: 980
@@ -1870,7 +1870,7 @@ half-soulless:
   id: 991
 kardia:
   id: 992
-witch's_cat:
+witchs_cat:
   id: 993
 niloof:
   id: 994
@@ -1886,7 +1886,7 @@ doomion:
   id: 999
 holthion:
   id: 1000
-dark_mage_1:
+dark_mage:
   id: 1001
 disciple_of_iban:
   id: 1002
@@ -1902,7 +1902,7 @@ hamid:
   id: 1008
 poison_spider_2:
   id: 1009
-rantz_1:
+rantz:
   id: 1010
 fycie:
   id: 1011
@@ -1914,43 +1914,43 @@ bloated_toad:
   id: 1014
 iron_pickaxe:
   id: 1015
-chompy_bird_1:
+chompy_bird:
   id: 1016
 chicken_4:
   id: 1017
-rooster_1:
+rooster:
   id: 1018
 fire_elemental:
   id: 1019
-earth_elemental_1:
+earth_elemental:
   id: 1020
 air_elemental:
   id: 1021
 water_elemental:
   id: 1022
-vampyre_1:
+vampyre:
   id: 1023
-baby_impling_1:
+baby_impling:
   id: 1028
-young_impling_1:
+young_impling:
   id: 1029
-gourmet_impling_1:
+gourmet_impling:
   id: 1030
-earth_impling_1:
+earth_impling:
   id: 1031
-essence_impling_1:
+essence_impling:
   id: 1032
-eclectic_impling_1:
+eclectic_impling:
   id: 1033
-nature_impling_1:
+nature_impling:
   id: 1034
-magpie_impling_1:
+magpie_impling:
   id: 1035
 banker_12:
   id: 1036
 prissy_scilla:
   id: 1037
-rufus_1:
+rufus:
   id: 1038
 barker:
   id: 1039
@@ -1960,7 +1960,7 @@ sbott:
   id: 1041
 roavar:
   id: 1042
-will_o'_the_wisp_2:
+will_o_the_wisp_2:
   id: 1043
 monk_of_zamorak_4:
   id: 1044
@@ -1968,13 +1968,13 @@ monk_of_zamorak_5:
   id: 1045
 monk_of_zamorak_6:
   id: 1046
-drezel_1:
+drezel:
   id: 1049
 filliman_tarlock:
   id: 1050
-nature_spirit_1:
+nature_spirit:
   id: 1051
-ghast_1:
+ghast:
   id: 1052
 ghast_2:
   id: 1053
@@ -1982,9 +1982,9 @@ ulizius:
   id: 1054
 pirate_jackie_the_fruit:
   id: 1055
-mime_1:
+mime:
   id: 1056
-strange_watcher_1:
+strange_watcher:
   id: 1057
 strange_watcher_2:
   id: 1058
@@ -1992,7 +1992,7 @@ strange_watcher_3:
   id: 1059
 denulth:
   id: 1060
-sergeant_1:
+sergeant:
   id: 1061
 sergeant_2:
   id: 1062
@@ -2024,13 +2024,13 @@ guard_15:
   id: 1076
 guard_16:
   id: 1077
-harold_1:
+harold:
   id: 1078
 tostig:
   id: 1079
-eohric_1:
+eohric:
   id: 1080
-servant_1:
+servant:
   id: 1081
 dunstan:
   id: 1082
@@ -2048,15 +2048,15 @@ hygd:
   id: 1088
 ceolburg:
   id: 1089
-hild_1:
+hild:
   id: 1090
 white_knight_2:
   id: 1092
 billy:
   id: 1093
-mountain_goat_1:
+mountain_goat:
   id: 1094
-rock_1:
+rock:
   id: 1095
 stick:
   id: 1096
@@ -2068,7 +2068,7 @@ dung:
   id: 1099
 ash:
   id: 1100
-thrower_troll_1:
+thrower_troll:
   id: 1101
 thrower_troll_2:
   id: 1102
@@ -2078,7 +2078,7 @@ thrower_troll_4:
   id: 1104
 thrower_troll_5:
   id: 1105
-mountain_troll_1:
+mountain_troll:
   id: 1106
 mountain_troll_2:
   id: 1107
@@ -2096,13 +2096,13 @@ eadgar:
   id: 1113
 godric:
   id: 1114
-troll_general_1:
+troll_general:
   id: 1115
 troll_general_2:
   id: 1116
 troll_general_3:
   id: 1117
-troll_spectator_1:
+troll_spectator:
   id: 1118
 troll_spectator_2:
   id: 1119
@@ -2118,9 +2118,9 @@ troll_spectator_7:
   id: 1124
 dad:
   id: 1125
-twig_1:
+twig:
   id: 1126
-berry_1:
+berry:
   id: 1127
 twig_2:
   id: 1128
@@ -2172,17 +2172,17 @@ burntmeat:
   id: 1151
 weird_old_man:
   id: 1152
-kalphite_worker_1:
+kalphite_worker:
   id: 1153
-kalphite_soldier_1:
+kalphite_soldier:
   id: 1154
-kalphite_guardian_1:
+kalphite_guardian:
   id: 1155
 kalphite_worker_2:
   id: 1156
 kalphite_guardian_2:
   id: 1157
-kalphite_queen_1:
+kalphite_queen:
   id: 1158
 kalphite_queen_2:
   id: 1159
@@ -2192,15 +2192,15 @@ kalphite_larva:
   id: 1161
 timfraku:
   id: 1162
-tiadeche_1:
+tiadeche:
   id: 1163
 tiadeche_2:
   id: 1164
-tinsay_1:
+tinsay:
   id: 1165
 tinsay_2:
   id: 1166
-tamayu_1:
+tamayu:
   id: 1167
 tamayu_2:
   id: 1169
@@ -2208,13 +2208,13 @@ tamayu_3:
   id: 1170
 lubufu:
   id: 1171
-the_shaikahan_1:
+the_shaikahan:
   id: 1172
 the_shaikahan_2:
   id: 1173
 fishing_spot_32:
   id: 1174
-dororan_1:
+dororan:
   id: 1175
 fishing_spot_33:
   id: 1176
@@ -2230,7 +2230,7 @@ pelican_2:
   id: 1181
 lord_iorwerth:
   id: 1182
-elf_warrior_1:
+elf_warrior:
   id: 1183
 elf_warrior_2:
   id: 1184
@@ -2248,7 +2248,7 @@ fishing_spot_37:
   id: 1190
 fishing_spot_38:
   id: 1191
-rabbit_1:
+rabbit:
   id: 1192
 rabbit_2:
   id: 1193
@@ -2256,7 +2256,7 @@ rabbit_3:
   id: 1194
 grizzly_bear_2:
   id: 1195
-grizzly_bear_cub_1:
+grizzly_bear_cub:
   id: 1196
 grizzly_bear_cub_2:
   id: 1197
@@ -2264,11 +2264,11 @@ dire_wolf:
   id: 1198
 elf_tracker:
   id: 1199
-tyras_guard_1:
+tyras_guard:
   id: 1200
 elf_warrior_3:
   id: 1201
-arianwyn_1:
+arianwyn:
   id: 1202
 tyras_guard_2:
   id: 1203
@@ -2276,15 +2276,15 @@ tyras_guard_3:
   id: 1204
 tyras_guard_4:
   id: 1206
-quartermaster_1:
+quartermaster:
   id: 1208
 koftik_6:
   id: 1209
-king's_messenger:
+kings_messenger:
   id: 1210
-will_o'_the_wisp_3:
+will_o_the_wisp_3:
   id: 1211
-will_o'_the_wisp_4:
+will_o_the_wisp_4:
   id: 1212
 tegid:
   id: 1213
@@ -2294,7 +2294,7 @@ parrots:
   id: 1215
 parroty_pete:
   id: 1216
-gardener_1:
+gardener:
   id: 1217
 ghoul:
   id: 1218
@@ -2312,15 +2312,15 @@ strange_creature:
   id: 1224
 lava-flow_miner_10:
   id: 1225
-tree_1:
+tree:
   id: 1226
-myre_blamish_snail_1:
+myre_blamish_snail:
   id: 1227
-blood_blamish_snail_1:
+blood_blamish_snail:
   id: 1228
-ochre_blamish_snail_1:
+ochre_blamish_snail:
   id: 1229
-bruise_blamish_snail_1:
+bruise_blamish_snail:
   id: 1230
 bark_blamish_snail:
   id: 1231
@@ -2350,11 +2350,11 @@ phrin_shadow:
   id: 1243
 phrin_shade:
   id: 1244
-riyl_shadow_1:
+riyl_shadow:
   id: 1245
 riyl_shade:
   id: 1246
-asyn_shadow_1:
+asyn_shadow:
   id: 1247
 asyn_shade:
   id: 1248
@@ -2364,23 +2364,23 @@ fiyr_shade:
   id: 1250
 afflicted(ulsquire):
   id: 1251
-ulsquire_shauncy_1:
+ulsquire_shauncy:
   id: 1252
 afflicted(razmire):
   id: 1253
-razmire_keelgan_1:
+razmire_keelgan:
   id: 1254
-mort'ton_local_1:
+mortton_local:
   id: 1255
-mort'ton_local_2:
+mortton_local_2:
   id: 1256
-afflicted_1:
+afflicted:
   id: 1257
 afflicted_2:
   id: 1258
-mort'ton_local_3:
+mortton_local_3:
   id: 1259
-mort'ton_local_4:
+mortton_local_4:
   id: 1260
 afflicted_3:
   id: 1261
@@ -2390,19 +2390,19 @@ wizard_3:
   id: 1263
 saradomin_wizard:
   id: 1264
-rock_crab_1:
+rock_crab:
   id: 1265
-rocks_1:
+rocks:
   id: 1266
 rock_crab_2:
   id: 1267
 rocks_2:
   id: 1268
-olaf_the_bard_1:
+olaf_the_bard:
   id: 1269
 lalli:
   id: 1270
-golden_sheep_1:
+golden_sheep:
   id: 1271
 golden_sheep_2:
   id: 1272
@@ -2426,21 +2426,21 @@ sigli_the_huntsman:
   id: 1281
 sigmund_the_merchant:
   id: 1282
-swensen_the_navigator_1:
+swensen_the_navigator:
   id: 1283
 bjorn:
   id: 1284
 eldgrim:
   id: 1285
-manni_the_reveller_1:
+manni_the_reveller:
   id: 1286
 council_workman:
   id: 1287
 peer_the_seer:
   id: 1288
-thorvald_the_warrior_1:
+thorvald_the_warrior:
   id: 1289
-koschei_the_deathless_1:
+koschei_the_deathless:
   id: 1290
 koschei_the_deathless_2:
   id: 1291
@@ -2448,15 +2448,15 @@ koschei_the_deathless_3:
   id: 1292
 koschei_the_deathless_4:
   id: 1293
-brundt_the_chieftain_1:
+brundt_the_chieftain:
   id: 1294
-askeladden_1:
+askeladden:
   id: 1295
 guard_26:
   id: 1296
 guard_27:
   id: 1297
-town_guard_1:
+town_guard:
   id: 1298
 town_guard_2:
   id: 1299
@@ -2468,9 +2468,9 @@ fisherman_2:
   id: 1302
 skulgrimen:
   id: 1303
-sailor_1:
+sailor:
   id: 1304
-agnar_1:
+agnar:
   id: 1305
 freidir:
   id: 1306
@@ -2478,15 +2478,15 @@ borrokar:
   id: 1307
 lanzig:
   id: 1308
-pontak_1:
+pontak:
   id: 1309
-freygerd_1:
+freygerd:
   id: 1310
-lensa_1:
+lensa:
   id: 1311
-jennella_1:
+jennella:
   id: 1312
-sassilik_1:
+sassilik:
   id: 1313
 inga:
   id: 1314
@@ -2494,13 +2494,13 @@ fish_monger:
   id: 1315
 fur_trader_2:
   id: 1316
-market_guard_1:
+market_guard:
   id: 1317
 warrior_2:
   id: 1318
 fox:
   id: 1319
-bunny_1:
+bunny:
   id: 1320
 bunny_2:
   id: 1321
@@ -2512,7 +2512,7 @@ gull_9:
   id: 1324
 gull_10:
   id: 1325
-bear_cub_1:
+bear_cub:
   id: 1326
 bear_cub_2:
   id: 1327
@@ -2528,15 +2528,15 @@ fishing_spot_43:
   id: 1332
 fishing_spot_44:
   id: 1333
-jossik_1:
+jossik:
   id: 1334
 jossik_2:
   id: 1335
-larrissa_1:
+larrissa:
   id: 1336
 larrissa_2:
   id: 1337
-dagannoth_1:
+dagannoth:
   id: 1338
 dagannoth_2:
   id: 1339
@@ -2556,7 +2556,7 @@ dagannoth_9:
   id: 1346
 dagannoth_10:
   id: 1347
-dagannoth_mother_1:
+dagannoth_mother:
   id: 1348
 dagannoth_mother_2:
   id: 1349
@@ -2574,7 +2574,7 @@ dagannoth_mother_8:
   id: 1355
 dagannoth_mother_9:
   id: 1356
-sam_1:
+sam:
   id: 1357
 rachael:
   id: 1358
@@ -2586,19 +2586,19 @@ haming:
   id: 1362
 moldof:
   id: 1363
-helga_1:
+helga:
   id: 1364
 matilda:
   id: 1365
 ashild:
   id: 1366
-skraeling_1:
+skraeling:
   id: 1367
 skraeling_2:
   id: 1368
-fishmonger_1:
+fishmonger:
   id: 1369
-greengrocer_1:
+greengrocer:
   id: 1370
 guard_28:
   id: 1374
@@ -2608,7 +2608,7 @@ farmer_2:
   id: 1377
 flower_girl:
   id: 1378
-ragnar_1:
+ragnar:
   id: 1379
 einar:
   id: 1380
@@ -2616,7 +2616,7 @@ alrik:
   id: 1381
 thorhild:
   id: 1382
-halla_1:
+halla:
   id: 1383
 lava-flow_miner_11:
   id: 1384
@@ -2624,7 +2624,7 @@ sailor_2:
   id: 1385
 rannveig:
   id: 1386
-thora_1:
+thora:
   id: 1387
 valgerd:
   id: 1388
@@ -2664,49 +2664,49 @@ fishing_spot_46:
   id: 1405
 fishing_spot_47:
   id: 1406
-waydar_1:
+waydar:
   id: 1409
 master_of_races:
   id: 1410
-garkor_1:
+garkor:
   id: 1411
 garkor_2:
   id: 1412
-lumo_1:
+lumo:
   id: 1413
 lumo_2:
   id: 1414
-bunkdo_1:
+bunkdo:
   id: 1415
 bunkdo_2:
   id: 1416
-carado_1:
+carado:
   id: 1417
 carado_2:
   id: 1418
-grand_exchange_clerk_1:
+grand_exchange_clerk:
   id: 1419
-karam_1:
+karam:
   id: 1420
 karam_2:
   id: 1421
 karam_3:
   id: 1422
-bunkwicket_1:
+bunkwicket:
   id: 1423
-waymottin_1:
+waymottin:
   id: 1424
-zooknock_1:
+zooknock:
   id: 1425
 zooknock_2:
   id: 1426
-g.l.o._caranock_1:
+g.l.o._caranock:
   id: 1427
 g.l.o._caranock_2:
   id: 1428
 dugopul:
   id: 1429
-cook's_brother_1:
+cooks_brother:
   id: 1430
 trefaji:
   id: 1431
@@ -2742,7 +2742,7 @@ uodai:
   id: 1446
 padulah:
   id: 1447
-awowogei_1:
+awowogei:
   id: 1448
 uwogo:
   id: 1449
@@ -2752,13 +2752,13 @@ sleeping_monkey:
   id: 1451
 monkey_child:
   id: 1452
-the_monkey's_uncle:
+the_monkeys_uncle:
   id: 1453
-the_monkey's_aunt:
+the_monkeys_aunt:
   id: 1454
-monkey_guard_1:
+monkey_guard:
   id: 1455
-monkey_archer_1:
+monkey_archer:
   id: 1456
 monkey_archer_2:
   id: 1457
@@ -2768,7 +2768,7 @@ monkey_guard_2:
   id: 1459
 monkey_guard_3:
   id: 1460
-elder_guard_1:
+elder_guard:
   id: 1461
 elder_guard_2:
   id: 1462
@@ -2776,7 +2776,7 @@ monkey_2:
   id: 1463
 monkey_3:
   id: 1464
-monkey_zombie_1:
+monkey_zombie:
   id: 1465
 monkey_zombie_2:
   id: 1466
@@ -2784,7 +2784,7 @@ monkey_zombie_3:
   id: 1467
 bonzara:
   id: 1468
-monkey_minder_1:
+monkey_minder:
   id: 1469
 foreman_2:
   id: 1470
@@ -2796,7 +2796,7 @@ spider_4:
   id: 1473
 spider_5:
   id: 1474
-bird_1:
+bird:
   id: 1475
 bird_2:
   id: 1476
@@ -2822,7 +2822,7 @@ large_zombie_monkey:
   id: 1486
 monkey_4:
   id: 1487
-dummy_1:
+dummy:
   id: 1488
 dummy_2:
   id: 1489
@@ -2866,29 +2866,29 @@ forester_2:
   id: 1508
 woman-at-arms:
   id: 1509
-apprentice_1:
+apprentice:
   id: 1510
-ranger_1:
+ranger:
   id: 1511
-adventurer_1:
+adventurer:
   id: 1512
-mage_1:
+mage:
   id: 1513
 hiylik_myna:
   id: 1514
-nail_beast_1:
+nail_beast:
   id: 1521
 nail_beast_2:
   id: 1522
 nail_beast_3:
   id: 1523
-undead_lumberjack_1:
+undead_lumberjack:
   id: 1524
 undead_lumberjack_2:
   id: 1525
 lanthus:
   id: 1526
-mine_cart_1:
+mine_cart:
   id: 1527
 zealot:
   id: 1528
@@ -2898,7 +2898,7 @@ rabbit_5:
   id: 1530
 imp_3:
   id: 1531
-barricade_1:
+barricade:
   id: 1532
 barricade_2:
   id: 1533
@@ -2944,17 +2944,17 @@ ug:
   id: 1553
 aga:
   id: 1554
-arrg_1:
+arrg:
   id: 1555
 arrg_2:
   id: 1556
-unoccupied_zomboat_1:
+unoccupied_zomboat:
   id: 1557
-ice_wolf_1:
+ice_wolf:
   id: 1558
 lava-flow_miner_12:
   id: 1559
-ice_troll_1:
+ice_troll:
   id: 1560
 ice_troll_2:
   id: 1561
@@ -2968,11 +2968,11 @@ ice_troll_6:
   id: 1565
 ice_troll_7:
   id: 1566
-cyreg_paddlehorn_1:
+cyreg_paddlehorn:
   id: 1567
 curpile_fyod:
   id: 1568
-veliaf_hurtz_1:
+veliaf_hurtz:
   id: 1569
 sani_piliu:
   id: 1570
@@ -2982,15 +2982,15 @@ radigad_ponfit:
   id: 1572
 polmafi_ferdygris:
   id: 1573
-ivan_strom_1:
+ivan_strom:
   id: 1574
 skeleton_hellhound:
   id: 1575
-stranger_1:
+stranger:
   id: 1576
-vanstrom_klause_1:
+vanstrom_klause:
   id: 1577
-mist_1:
+mist:
   id: 1578
 vanstrom_klause_2:
   id: 1579
@@ -3012,15 +3012,15 @@ moss_giant_2:
   id: 1587
 moss_giant_3:
   id: 1588
-baby_red_dragon_1:
+baby_red_dragon:
   id: 1589
 bronze_dragon:
   id: 1590
-iron_dragon_1:
+iron_dragon:
   id: 1591
-steel_dragon_1:
+steel_dragon:
   id: 1592
-wild_dog_1:
+wild_dog:
   id: 1593
 wild_dog_2:
   id: 1594
@@ -3030,7 +3030,7 @@ vannaka:
   id: 1597
 chaeldar:
   id: 1598
-cave_crawler_1:
+cave_crawler:
   id: 1600
 cave_crawler_2:
   id: 1601
@@ -3038,7 +3038,7 @@ cave_crawler_3:
   id: 1602
 cave_crawler_4:
   id: 1603
-aberrant_spectre_1:
+aberrant_spectre:
   id: 1604
 aberrant_spectre_2:
   id: 1605
@@ -3046,35 +3046,35 @@ aberrant_spectre_3:
   id: 1606
 aberrant_spectre_4:
   id: 1607
-kurask_1:
+kurask:
   id: 1608
 kurask_2:
   id: 1609
-gargoyle_1:
+gargoyle:
   id: 1610
 swarming_turoth:
   id: 1611
 banshee:
   id: 1612
-nechryael_1:
+nechryael:
   id: 1613
-death_spawn_1:
+death_spawn:
   id: 1614
-abyssal_demon_1:
+abyssal_demon:
   id: 1615
-basilisk_1:
+basilisk:
   id: 1616
 basilisk_2:
   id: 1617
-bloodveld_1:
+bloodveld:
   id: 1618
 bloodveld_2:
   id: 1619
-cockatrice_1:
+cockatrice:
   id: 1620
 famished_mage-eye_2:
   id: 1622
-turoth_1:
+turoth:
   id: 1623
 dust_devil:
   id: 1624
@@ -3090,11 +3090,11 @@ turoth_5:
   id: 1629
 turoth_6:
   id: 1630
-rockslug_1:
+rockslug:
   id: 1631
 rockslug_2:
   id: 1632
-pyrefiend_1:
+pyrefiend:
   id: 1633
 pyrefiend_2:
   id: 1634
@@ -3102,7 +3102,7 @@ pyrefiend_3:
   id: 1635
 pyrefiend_4:
   id: 1636
-jelly_1:
+jelly:
   id: 1637
 jelly_2:
   id: 1638
@@ -3114,7 +3114,7 @@ jelly_5:
   id: 1641
 jelly_6:
   id: 1642
-infernal_mage_1:
+infernal_mage:
   id: 1643
 infernal_mage_2:
   id: 1644
@@ -3124,7 +3124,7 @@ infernal_mage_4:
   id: 1646
 infernal_mage_5:
   id: 1647
-crawling_hand_1:
+crawling_hand:
   id: 1648
 crawling_hand_2:
   id: 1649
@@ -3154,21 +3154,21 @@ agility_boss:
   id: 1661
 skullball_trainer:
   id: 1662
-agility_trainer_1:
+agility_trainer:
   id: 1663
 agility_trainer_2:
   id: 1664
-werewolf_1:
+werewolf:
   id: 1665
-dr_fenkenstrain_1:
+dr_fenkenstrain:
   id: 1670
-fenkenstrain's_monster_1:
+fenkenstrains_monster:
   id: 1673
 lord_rologarth:
   id: 1674
 gardener_ghost:
   id: 1675
-experiment_1:
+experiment:
   id: 1676
 experiment_2:
   id: 1677
@@ -3190,11 +3190,11 @@ ghost_disciple:
   id: 1686
 ak-haranu:
   id: 1688
-undead_cow_1:
+undead_cow:
   id: 1691
 undead_chicken:
   id: 1692
-giant_lobster_1:
+giant_lobster:
   id: 1693
 robin:
   id: 1694
@@ -3208,7 +3208,7 @@ tortured_soul:
   id: 1698
 ghost_shopkeeper:
   id: 1699
-ghost_innkeeper_1:
+ghost_innkeeper:
   id: 1700
 ghost_farmer:
   id: 1701
@@ -3216,27 +3216,27 @@ ghost_banker:
   id: 1702
 ghost_sailor:
   id: 1703
-ghost_captain_1:
+ghost_captain:
   id: 1704
 ghost_captain_2:
   id: 1705
 ghost_guard:
   id: 1706
-ghost_(?)_1:
+ghost_(?):
   id: 1707
 ghost_(?)_2:
   id: 1708
-johanhus_ulsbrecht_1:
+johanhus_ulsbrecht:
   id: 1709
-h.a.m._guard_1:
+h.a.m._guard:
   id: 1710
 h.a.m._guard_2:
   id: 1711
 h.a.m._guard_3:
   id: 1712
-h.a.m._deacon_1:
+h.a.m._deacon:
   id: 1713
-h.a.m._member_1:
+h.a.m._member:
   id: 1714
 h.a.m._member_2:
   id: 1715
@@ -3246,9 +3246,9 @@ h.a.m._member_4:
   id: 1717
 jimmy_the_chisel:
   id: 1718
-gerdi_1:
+gerdi:
   id: 1719
-jobo_1:
+jobo:
   id: 1721
 andil_2:
   id: 1723
@@ -3260,9 +3260,9 @@ jobo_2:
   id: 1726
 torzek_2:
   id: 1727
-oldak_1:
+oldak:
   id: 1729
-sigmund_1:
+sigmund:
   id: 1730
 sigmund_2:
   id: 1731
@@ -3298,17 +3298,17 @@ h.a.m._agent_daniel:
   id: 1747
 h.a.m._agent_michael:
   id: 1748
-goblin_scribe_1:
+goblin_scribe:
   id: 1749
 merchant_walton:
   id: 1750
 terrorbird_3:
   id: 1751
-mounted_terrorbird_gnome_1:
+mounted_terrorbird_gnome:
   id: 1752
 male_slave_2:
   id: 1753
-crow_1:
+crow:
   id: 1754
 crow_2:
   id: 1755
@@ -3332,13 +3332,13 @@ sheep_6:
   id: 1764
 sheep_7:
   id: 1765
-female_slave_1:
+female_slave:
   id: 1766
 cow_3:
   id: 1767
 male_slave_3:
   id: 1768
-frog_1:
+frog:
   id: 1772
 frog_2:
   id: 1773
@@ -3348,19 +3348,19 @@ frog_prince:
   id: 1775
 frog_princess:
   id: 1776
-ilfeen_1:
+ilfeen:
   id: 1777
 william:
   id: 1778
 ian:
   id: 1779
-larry_1:
+larry:
   id: 1780
 darren:
   id: 1781
 edward:
   id: 1782
-richard_1:
+richard:
   id: 1783
 neil:
   id: 1784
@@ -3370,7 +3370,7 @@ simon:
   id: 1786
 sam_2:
   id: 1787
-lumdo_1:
+lumdo:
   id: 1788
 bunkwicket_2:
   id: 1789
@@ -3382,7 +3382,7 @@ tassie_slipcast:
   id: 1793
 hammerspike_stoutbeard:
   id: 1794
-dwarf_gang_member_1:
+dwarf_gang_member:
   id: 1795
 dwarf_gang_member_2:
   id: 1796
@@ -3396,7 +3396,7 @@ gnormadium_avlafrim:
   id: 1800
 petra_fiyed:
   id: 1801
-slagilith_1:
+slagilith:
   id: 1802
 rock_pile:
   id: 1803
@@ -3414,11 +3414,11 @@ svidi:
   id: 1809
 jokul:
   id: 1810
-the_kendal_1:
+the_kendal:
   id: 1812
 the_kendal_2:
   id: 1813
-camp_dweller_1:
+camp_dweller:
   id: 1814
 camp_dweller_2:
   id: 1815
@@ -3432,9 +3432,9 @@ mountain_goat_4:
   id: 1819
 mountain_goat_5:
   id: 1820
-daero_1:
+daero:
   id: 1821
-cave_goblin_1:
+cave_goblin:
   id: 1822
 cave_goblin_2:
   id: 1823
@@ -3452,17 +3452,17 @@ big_frog:
   id: 1829
 obsidian_dragon:
   id: 1830
-cave_slime_1:
+cave_slime:
   id: 1831
-cave_bug_1:
+cave_bug:
   id: 1832
 cave_bug_larva:
   id: 1833
 candle_seller:
   id: 1834
-easter_bunny_1:
+easter_bunny:
   id: 1835
-dondakan_the_dwarf_1:
+dondakan_the_dwarf:
   id: 1837
 dondakan_the_dwarf_2:
   id: 1838
@@ -3474,11 +3474,11 @@ rolad:
   id: 1841
 khorvak,_a_dwarven_engineer:
   id: 1842
-dwarven_ferryman_1:
+dwarven_ferryman:
   id: 1843
 dwarven_ferryman_2:
   id: 1844
-dwarven_boatman_1:
+dwarven_boatman:
   id: 1846
 miodvetnir:
   id: 1847
@@ -3486,19 +3486,19 @@ dernu:
   id: 1848
 derni:
   id: 1849
-arzinian_avatar_of_strength_1:
+arzinian_avatar_of_strength:
   id: 1850
 arzinian_avatar_of_strength_2:
   id: 1851
 arzinian_avatar_of_strength_3:
   id: 1852
-arzinian_avatar_of_ranging_1:
+arzinian_avatar_of_ranging:
   id: 1853
 arzinian_avatar_of_ranging_2:
   id: 1854
 arzinian_avatar_of_ranging_3:
   id: 1855
-arzinian_avatar_of_magic_1:
+arzinian_avatar_of_magic:
   id: 1856
 arzinian_avatar_of_magic_2:
   id: 1857
@@ -3510,7 +3510,7 @@ brian_2:
   id: 1860
 ranged_instructor:
   id: 1861
-ali_morrisane_1:
+ali_morrisane:
   id: 1862
 drunken_ali:
   id: 1863
@@ -3542,7 +3542,7 @@ bandit_2:
   id: 1880
 bandit_3:
   id: 1881
-sir_palomedes_1:
+sir_palomedes:
   id: 1882
 sir_palomedes_2:
   id: 1883
@@ -3552,7 +3552,7 @@ bandit_champion:
   id: 1885
 cowardly_bandit:
   id: 1886
-villager_1:
+villager:
   id: 1888
 villager_2:
   id: 1889
@@ -3574,7 +3574,7 @@ menaphite_leader:
   id: 1901
 ali_the_operator:
   id: 1902
-menaphite_thug_1:
+menaphite_thug:
   id: 1904
 menaphite_thug_2:
   id: 1905
@@ -3584,7 +3584,7 @@ broken_clay_golem:
   id: 1908
 damaged_clay_golem:
   id: 1909
-clay_golem_1:
+clay_golem:
   id: 1910
 desert_phoenix:
   id: 1911
@@ -3592,7 +3592,7 @@ elissa:
   id: 1912
 kamil:
   id: 1913
-dessous_1:
+dessous:
   id: 1914
 dessous_2:
   id: 1915
@@ -3608,7 +3608,7 @@ malak:
   id: 1920
 bartender_8:
   id: 1921
-eblis_1:
+eblis:
   id: 1923
 eblis_2:
   id: 1925
@@ -3624,7 +3624,7 @@ bandit_8:
   id: 1930
 bandit_9:
   id: 1931
-troll_child_1:
+troll_child:
   id: 1933
 troll_child_2:
   id: 1934
@@ -3644,11 +3644,11 @@ ice_troll_14:
   id: 1941
 ice_troll_15:
   id: 1942
-ice_block_1:
+ice_block:
   id: 1944
 ice_block_2:
   id: 1946
-troll_father_1:
+troll_father:
   id: 1948
 troll_mother:
   id: 1950
@@ -3688,13 +3688,13 @@ mummy_10:
   id: 1968
 scarabs:
   id: 1969
-azzanadra_1:
+azzanadra:
   id: 1971
 rasolo:
   id: 1972
-giant_skeleton_1:
+giant_skeleton:
   id: 1973
-damis_1:
+damis:
   id: 1974
 damis_2:
   id: 1975
@@ -3706,9 +3706,9 @@ slave_8:
   id: 1978
 slave_9:
   id: 1979
-embalmer_1:
+embalmer:
   id: 1980
-carpenter_1:
+carpenter:
   id: 1981
 raetul:
   id: 1982
@@ -3720,13 +3720,13 @@ priest_3:
   id: 1988
 priest_4:
   id: 1989
-sphinx_1:
+sphinx:
   id: 1990
 possessed_priest:
   id: 1991
-neite_1:
+neite:
   id: 1992
-crocodile_1:
+crocodile:
   id: 1993
 jackal:
   id: 1994
@@ -3736,21 +3736,21 @@ daero_2:
   id: 1996
 plague_frog:
   id: 1997
-plague_cow_1:
+plague_cow:
   id: 1998
 plague_cow_2:
   id: 1999
 plague_cow_3:
   id: 2000
-scarab_swarm_1:
+scarab_swarm:
   id: 2001
-wanderer_1:
+wanderer:
   id: 2005
 wanderer_2:
   id: 2006
 het:
   id: 2007
-apmeken_1:
+apmeken:
   id: 2008
 scabaras:
   id: 2009
@@ -3770,7 +3770,7 @@ mummy_14:
   id: 2018
 mummy_15:
   id: 2019
-light_creature_1:
+light_creature:
   id: 2021
 light_creature_2:
   id: 2022
@@ -3778,23 +3778,23 @@ juna:
   id: 2023
 strange_old_man:
   id: 2024
-ahrim_the_blighted_1:
+ahrim_the_blighted:
   id: 2025
-dharok_the_wretched_1:
+dharok_the_wretched:
   id: 2026
-guthan_the_infested_1:
+guthan_the_infested:
   id: 2027
-karil_the_tainted_1:
+karil_the_tainted:
   id: 2028
-torag_the_corrupted_1:
+torag_the_corrupted:
   id: 2029
-verac_the_defiled_1:
+verac_the_defiled:
   id: 2030
 bloodworm:
   id: 2031
 crypt_rat:
   id: 2032
-giant_crypt_rat_1:
+giant_crypt_rat:
   id: 2033
 crypt_spider:
   id: 2034
@@ -3816,7 +3816,7 @@ ogre_guard_6:
   id: 2042
 ogre_guard_7:
   id: 2043
-zogre_1:
+zogre:
   id: 2044
 zogre_2:
   id: 2045
@@ -3828,7 +3828,7 @@ zogre_5:
   id: 2048
 zogre_6:
   id: 2049
-skogre_1:
+skogre:
   id: 2050
 zogre_7:
   id: 2051
@@ -3850,7 +3850,7 @@ zavistic_rarve:
   id: 2059
 slash_bash:
   id: 2060
-sithik_ints_1:
+sithik_ints:
   id: 2061
 sithik_ints_2:
   id: 2062
@@ -3866,7 +3866,7 @@ fishing_spot_48:
   id: 2067
 fishing_spot_49:
   id: 2068
-cave_goblin_miner_1:
+cave_goblin_miner:
   id: 2069
 cave_goblin_miner_2:
   id: 2070
@@ -3874,7 +3874,7 @@ cave_goblin_miner_3:
   id: 2071
 cave_goblin_miner_4:
   id: 2072
-cave_goblin_guard_1:
+cave_goblin_guard:
   id: 2073
 cave_goblin_guard_2:
   id: 2074
@@ -3890,11 +3890,11 @@ sigmund_9:
   id: 2082
 sigmund_10:
   id: 2083
-mistag_1:
+mistag:
   id: 2084
 kazgar:
   id: 2086
-ur-tag_1:
+ur-tag:
   id: 2087
 duke_horacio_2:
   id: 2088
@@ -3920,25 +3920,25 @@ brown_engine_secretary:
   id: 2098
 red_axe_secretary:
   id: 2099
-purple_pewter_director_1:
+purple_pewter_director:
   id: 2100
-blue_opal_director_1:
+blue_opal_director:
   id: 2101
-yellow_fortune_director_1:
+yellow_fortune_director:
   id: 2102
-green_gemstone_director_1:
+green_gemstone_director:
   id: 2103
-white_chisel_director_1:
+white_chisel_director:
   id: 2104
-silver_cog_director_1:
+silver_cog_director:
   id: 2105
-brown_engine_director_1:
+brown_engine_director:
   id: 2106
-red_axe_director_1:
+red_axe_director:
   id: 2107
-red_axe_cat_1:
+red_axe_cat:
   id: 2108
-trader_1:
+trader:
   id: 2109
 trader_2:
   id: 2110
@@ -3974,7 +3974,7 @@ trade_referee:
   id: 2127
 waydar_2:
   id: 2128
-black_guard_1:
+black_guard:
   id: 2130
 black_guard_2:
   id: 2131
@@ -3982,37 +3982,37 @@ black_guard_3:
   id: 2132
 black_guard_4:
   id: 2133
-black_guard_berserker_1:
+black_guard_berserker:
   id: 2134
 black_guard_berserker_2:
   id: 2135
 black_guard_berserker_3:
   id: 2136
-gnome_emissary_1:
+gnome_emissary:
   id: 2137
-gnome_traveller_1:
+gnome_traveller:
   id: 2138
 gnome_traveller_2:
   id: 2139
-dromund's_cat:
+dromunds_cat:
   id: 2140
 blasidar_the_sculptor:
   id: 2141
-riki_the_sculptor's_model_1:
+riki_the_sculptors_model:
   id: 2143
-riki_the_sculptor's_model_2:
+riki_the_sculptors_model_2:
   id: 2144
-riki_the_sculptor's_model_3:
+riki_the_sculptors_model_3:
   id: 2145
-riki_the_sculptor's_model_4:
+riki_the_sculptors_model_4:
   id: 2146
-riki_the_sculptor's_model_5:
+riki_the_sculptors_model_5:
   id: 2147
-riki_the_sculptor's_model_6:
+riki_the_sculptors_model_6:
   id: 2148
-riki_the_sculptor's_model_7:
+riki_the_sculptors_model_7:
   id: 2149
-riki_the_sculptor's_model_8:
+riki_the_sculptors_model_8:
   id: 2150
 vigr:
   id: 2151
@@ -4020,7 +4020,7 @@ santiri:
   id: 2152
 saro:
   id: 2153
-gunslik_1:
+gunslik:
   id: 2154
 wemund:
   id: 2155
@@ -4028,7 +4028,7 @@ randivor:
   id: 2156
 hervi:
   id: 2157
-nolar_1:
+nolar:
   id: 2158
 gulldamar:
   id: 2159
@@ -4042,11 +4042,11 @@ banker_14:
   id: 2163
 banker_15:
   id: 2164
-librarian_1:
+librarian:
   id: 2165
-assistant_1:
+assistant:
   id: 2166
-customer_1:
+customer:
   id: 2167
 customer_2:
   id: 2168
@@ -4056,7 +4056,7 @@ rind_the_gardener:
   id: 2170
 factory_manager:
   id: 2171
-factory_worker_1:
+factory_worker:
   id: 2172
 factory_worker_2:
   id: 2173
@@ -4068,11 +4068,11 @@ waydar_3:
   id: 2176
 inn_keeper:
   id: 2177
-barmaid_1:
+barmaid:
   id: 2178
 barman_2:
   id: 2179
-cart_conductor_1:
+cart_conductor:
   id: 2180
 cart_conductor_2:
   id: 2181
@@ -4086,7 +4086,7 @@ cart_conductor_6:
   id: 2185
 cart_conductor_7:
   id: 2186
-rowdy_dwarf_1:
+rowdy_dwarf:
   id: 2187
 hegir:
   id: 2188
@@ -4098,13 +4098,13 @@ sune:
   id: 2191
 bentamir:
   id: 2192
-ulifed_1:
+ulifed:
   id: 2193
 reinald:
   id: 2194
 karl:
   id: 2195
-gauss_1:
+gauss:
   id: 2196
 myndill:
   id: 2197
@@ -4124,7 +4124,7 @@ dwarven_boatman_2:
   id: 2205
 dwarven_boatman_3:
   id: 2206
-dwarven_miner_1:
+dwarven_miner:
   id: 2207
 lumdo_2:
   id: 2208
@@ -4142,7 +4142,7 @@ dwarven_miner_6:
   id: 2214
 dwarven_miner_7:
   id: 2215
-commemorative_statue_1:
+commemorative_statue:
   id: 2216
 dwarven_miner_8:
   id: 2217
@@ -4166,7 +4166,7 @@ brown_engine_director_2:
   id: 2226
 red_axe_director_2:
   id: 2227
-commander_veldaban_1:
+commander_veldaban:
   id: 2228
 red_axe_cat_2:
   id: 2229
@@ -4174,17 +4174,17 @@ red_axe_cat_3:
   id: 2230
 black_guard_berserker_4:
   id: 2232
-olivia_1:
+olivia:
   id: 2233
-master_farmer_1:
+master_farmer:
   id: 2234
 master_farmer_2:
   id: 2235
 market_guard_2:
   id: 2236
-gee_1:
+gee:
   id: 2237
-donie_1:
+donie:
   id: 2238
 commemorative_statue_2:
   id: 2239
@@ -4192,11 +4192,11 @@ grand_exchange_clerk_2:
   id: 2240
 grand_exchange_clerk_3:
   id: 2241
-piglet_1:
+piglet:
   id: 2242
 piglet_2:
   id: 2243
-lumbridge_sage_1:
+lumbridge_sage:
   id: 2244
 khazard_trooper_2:
   id: 2245
@@ -4214,7 +4214,7 @@ gnome_6:
   id: 2251
 crow_4:
   id: 2252
-wise_old_man_1:
+wise_old_man:
   id: 2253
 bed:
   id: 2254
@@ -4222,7 +4222,7 @@ thing_under_the_bed:
   id: 2255
 paladin_3:
   id: 2256
-mage_of_zamorak_1:
+mage_of_zamorak:
   id: 2258
 mage_of_zamorak_2:
   id: 2259
@@ -4236,9 +4236,9 @@ abyssal_guardian:
   id: 2264
 abyssal_walker:
   id: 2265
-brian_o'richard:
+brian_orichard:
   id: 2266
-rogue_guard_1:
+rogue_guard:
   id: 2267
 rogue_guard_2:
   id: 2268
@@ -4248,13 +4248,13 @@ martin_thwait:
   id: 2270
 emerald_benedict:
   id: 2271
-spin_blades_1:
+spin_blades:
   id: 2272
 spin_blades_2:
   id: 2273
 prison_pete:
   id: 2274
-balloon_animal_1:
+balloon_animal:
   id: 2275
 balloon_animal_2:
   id: 2276
@@ -4264,7 +4264,7 @@ balloon_animal_4:
   id: 2278
 sir_spishyus:
   id: 2282
-lady_table_1:
+lady_table:
   id: 2283
 sir_kuam_ferentse:
   id: 2284
@@ -4278,9 +4278,9 @@ miss_cheevers:
   id: 2288
 ms._hynn_terprett:
   id: 2289
-sir_tiffy_cashien_1:
+sir_tiffy_cashien:
   id: 2290
-rug_merchant_1:
+rug_merchant:
   id: 2291
 rug_merchant_2:
   id: 2292
@@ -4296,19 +4296,19 @@ rug_station_attendant:
   id: 2300
 monkey_5:
   id: 2301
-sarah_1:
+sarah:
   id: 2304
 vanessa:
   id: 2305
 richard_2:
   id: 2306
-alice_1:
+alice:
   id: 2307
-cap'n_arnav:
+capn_arnav:
   id: 2308
-cow_calf_1:
+cow_calf:
   id: 2310
-sheepdog_1:
+sheepdog:
   id: 2311
 rooster_3:
   id: 2312
@@ -4318,7 +4318,7 @@ chicken_8:
   id: 2314
 chicken_9:
   id: 2315
-pig_1:
+pig:
   id: 2316
 pig_2:
   id: 2317
@@ -4342,9 +4342,9 @@ lyra:
   id: 2326
 francis:
   id: 2327
-wizard_cromperty_1:
+wizard_cromperty:
   id: 2328
-muncher_1:
+muncher:
   id: 2329
 garth:
   id: 2330
@@ -4376,13 +4376,13 @@ bolongo:
   id: 2343
 gileth:
   id: 2344
-sick-looking_sheep_(1)_1:
+sick-looking_sheep_(1):
   id: 2345
-sick-looking_sheep_(2)_1:
+sick-looking_sheep_(2):
   id: 2346
-sick-looking_sheep_(3)_1:
+sick-looking_sheep_(3):
   id: 2347
-sick-looking_sheep_(4)_1:
+sick-looking_sheep_(4):
   id: 2348
 mourner_11:
   id: 2349
@@ -4444,7 +4444,7 @@ sick-looking_sheep_(3)_2:
   id: 2379
 sick-looking_sheep_(4)_2:
   id: 2380
-mysterious_ghost_1:
+mysterious_ghost:
   id: 2397
 mysterious_ghost_2:
   id: 2398
@@ -4468,19 +4468,19 @@ red_axe_henchman:
   id: 2413
 ernie:
   id: 2414
-colonel_grimsson_1:
+colonel_grimsson:
   id: 2415
 colonel_grimsson_2:
   id: 2416
-mound_1:
+mound:
   id: 2417
-ogre_shaman_1:
+ogre_shaman:
   id: 2418
 grunsh:
   id: 2419
 gnome_emissary_2:
   id: 2420
-gnome_companion_1:
+gnome_companion:
   id: 2421
 gnome_companion_2:
   id: 2422
@@ -4508,7 +4508,7 @@ commemorative_statue_5:
   id: 2433
 commemorative_statue_6:
   id: 2434
-jarvald_1:
+jarvald:
   id: 2436
 jarvald_2:
   id: 2437
@@ -4516,9 +4516,9 @@ jarvald_3:
   id: 2438
 askeladden_2:
   id: 2439
-door-support_1:
+door-support:
   id: 2440
-door_1:
+door:
   id: 2441
 door_2:
   id: 2442
@@ -4534,13 +4534,13 @@ door_5:
   id: 2447
 door_6:
   id: 2448
-egg_1:
+egg:
   id: 2449
 egg_2:
   id: 2450
 egg_3:
   id: 2451
-giant_rock_crab_1:
+giant_rock_crab:
   id: 2452
 boulder_3:
   id: 2453
@@ -4550,13 +4550,13 @@ dagannoth_11:
   id: 2455
 dagannoth_12:
   id: 2456
-wallasalki_1:
+wallasalki:
   id: 2457
-thorvar_crittersmash_1:
+thorvar_crittersmash:
   id: 2460
 thorvar_crittersmash_2:
   id: 2461
-fremennik_man_1:
+fremennik_man:
   id: 2462
 merchant_vernon:
   id: 2463
@@ -4568,7 +4568,7 @@ merchant_yuri:
   id: 2466
 merchant_zakia:
   id: 2467
-h.a.m._agent_walton_1:
+h.a.m._agent_walton:
   id: 2468
 h.a.m._agent_walton_2:
   id: 2469
@@ -4578,11 +4578,11 @@ h.a.m._agent_walton_4:
   id: 2471
 h.a.m._agent_walton_5:
   id: 2473
-rick_turpentine_1:
+rick_turpentine:
   id: 2476
 quiz_master:
   id: 2477
-evil_bob_1:
+evil_bob:
   id: 2478
 evil_bob_2:
   id: 2479
@@ -4592,7 +4592,7 @@ servant_2:
   id: 2481
 giant_bat_3:
   id: 2482
-bush_snake_1:
+bush_snake:
   id: 2489
 bush_snake_2:
   id: 2490
@@ -4602,7 +4602,7 @@ jungle_spider_4:
   id: 2492
 large_mosquito:
   id: 2493
-mosquito_swarm_1:
+mosquito_swarm:
   id: 2494
 mosquito_swarm_2:
   id: 2495
@@ -4610,7 +4610,7 @@ tribesman_2:
   id: 2496
 tribesman_3:
   id: 2497
-broodoo_victim_1:
+broodoo_victim:
   id: 2498
 broodoo_victim_2:
   id: 2499
@@ -4622,43 +4622,43 @@ broodoo_victim_5:
   id: 2502
 broodoo_victim_6:
   id: 2503
-sharimika_1:
+sharimika:
   id: 2505
 sharimika_2:
   id: 2506
-mamma_bufetta_1:
+mamma_bufetta:
   id: 2508
 mamma_bufetta_2:
   id: 2509
-layleen_1:
+layleen:
   id: 2511
 layleen_2:
   id: 2512
-karaday_1:
+karaday:
   id: 2514
 karaday_2:
   id: 2515
-safta_doc_1:
+safta_doc:
   id: 2517
 safta_doc_2:
   id: 2518
-gabooty_1:
+gabooty:
   id: 2520
 gabooty_2:
   id: 2521
-fanellaman_1:
+fanellaman:
   id: 2523
 fanellaman_2:
   id: 2524
-jagbakoba_1:
+jagbakoba:
   id: 2526
 jagbakoba_2:
   id: 2527
-murcaily_1:
+murcaily:
   id: 2529
 murcaily_2:
   id: 2530
-rionasta_1:
+rionasta:
   id: 2532
 rionasta_2:
   id: 2533
@@ -4666,19 +4666,19 @@ h.a.m._agent_walton_7:
   id: 2534
 high_priest_5:
   id: 2535
-niles_1:
+niles:
   id: 2536
-miles_1:
+miles:
   id: 2537
-giles_1:
+giles:
   id: 2538
-cap'n_hand:
+capn_hand:
   id: 2539
-dr_jekyll_1:
+dr_jekyll:
   id: 2540
-bandos_avatar_1:
+bandos_avatar:
   id: 2541
-zanik_1:
+zanik:
   id: 2542
 zanik_2:
   id: 2543
@@ -4738,7 +4738,7 @@ market_guard_3:
   id: 2571
 olivia_2:
   id: 2572
-pillory_guard_1:
+pillory_guard:
   id: 2573
 bank_guard:
   id: 2574
@@ -4748,15 +4748,15 @@ qutiedoll:
   id: 2576
 "1337sp34kr":
   id: 2577
-elfinlocks_1:
+elfinlocks:
   id: 2578
 cool_mom227:
   id: 2579
 bernald:
   id: 2580
-ellamaria_1:
+ellamaria:
   id: 2581
-trolley_1:
+trolley:
   id: 2582
 trolley_2:
   id: 2583
@@ -4766,13 +4766,13 @@ billy,_a_guard_of_falador:
   id: 2586
 bob,_another_guard_of_falador:
   id: 2587
-brother_althric_1:
+brother_althric:
   id: 2588
 pkmaster0036:
   id: 2589
 king_roald_2:
   id: 2590
-tzhaar-mej_1:
+tzhaar-mej:
   id: 2591
 tzhaar-mej_2:
   id: 2592
@@ -4790,7 +4790,7 @@ commemorative_statue_7:
   id: 2598
 commemorative_statue_8:
   id: 2599
-tzhaar-hur_1:
+tzhaar-hur:
   id: 2600
 tzhaar-hur_2:
   id: 2601
@@ -4800,7 +4800,7 @@ tzhaar-hur_4:
   id: 2603
 commemorative_statue_9:
   id: 2604
-tzhaar-xil_1:
+tzhaar-xil:
   id: 2605
 tzhaar-xil_2:
   id: 2606
@@ -4810,7 +4810,7 @@ tzhaar-xil_4:
   id: 2608
 tzhaar-xil_5:
   id: 2609
-tzhaar-ket_1:
+tzhaar-ket:
   id: 2611
 commemorative_statue_10:
   id: 2613
@@ -4822,7 +4822,7 @@ tzhaar-ket_4:
   id: 2616
 tzhaar-mej-jal:
   id: 2617
-tzhaar-mej-kah_1:
+tzhaar-mej-kah:
   id: 2618
 tzhaar-ket-zuh:
   id: 2619
@@ -4840,15 +4840,15 @@ tzhaar-ket_6:
   id: 2625
 rocks_3:
   id: 2626
-tz-kih_1:
+tz-kih:
   id: 2627
 tz-kih_2:
   id: 2628
-tz-kek_1:
+tz-kek:
   id: 2629
 tz-kek_2:
   id: 2630
-tok-xil_1:
+tok-xil:
   id: 2631
 tok-xil_2:
   id: 2632
@@ -4868,13 +4868,13 @@ robert_the_strong:
   id: 2639
 odysseus:
   id: 2640
-dragonkin_1:
+dragonkin:
   id: 2641
 king_black_dragon_2:
   id: 2642
 r4ng3rno0b889:
   id: 2643
-love_cats_1:
+love_cats:
   id: 2644
 love_cats_2:
   id: 2645
@@ -4888,7 +4888,7 @@ dororan_3:
   id: 2651
 neite_3:
   id: 2653
-unferth_1:
+unferth:
   id: 2655
 unferth_2:
   id: 2656
@@ -4898,11 +4898,11 @@ unferth_4:
   id: 2658
 unferth_5:
   id: 2659
-reldo_1:
+reldo:
   id: 2660
 reldo_2:
   id: 2661
-lazy_cat_1:
+lazy_cat:
   id: 2662
 lazy_cat_2:
   id: 2663
@@ -4914,7 +4914,7 @@ lazy_cat_5:
   id: 2666
 lazy_cat_6:
   id: 2667
-wily_cat_1:
+wily_cat:
   id: 2668
 wily_cat_2:
   id: 2669
@@ -4940,7 +4940,7 @@ hengel:
   id: 2683
 anja:
   id: 2684
-hobgoblin_1:
+hobgoblin:
   id: 2685
 hobgoblin_2:
   id: 2686
@@ -4982,9 +4982,9 @@ guard_36:
   id: 2704
 guard_37:
   id: 2705
-crab_1:
+crab:
   id: 2706
-seagull_1:
+seagull:
   id: 2707
 seagull_2:
   id: 2708
@@ -5052,19 +5052,19 @@ tok-xil_3:
   id: 2739
 tok-xil_4:
   id: 2740
-yt-mejkot_1:
+yt-mejkot:
   id: 2741
 yt-mejkot_2:
   id: 2742
-ket-zek_1:
+ket-zek:
   id: 2743
 ket-zek_2:
   id: 2744
-tztok-jad_1:
+tztok-jad:
   id: 2745
 yt-hurkot:
   id: 2746
-solus_dellagar_1:
+solus_dellagar:
   id: 2747
 savant:
   id: 2748
@@ -5096,7 +5096,7 @@ solus_dellagar_3:
   id: 2780
 gnome_guard_3:
   id: 2781
-shadow_1:
+shadow:
   id: 2782
 dark_beast:
   id: 2783
@@ -5120,7 +5120,7 @@ tramp_3:
   id: 2793
 tramp_4:
   id: 2794
-skippy_1:
+skippy:
   id: 2796
 skippy_2:
   id: 2797
@@ -5134,15 +5134,15 @@ ogre_3:
   id: 2801
 gnome_coach:
   id: 2802
-lizard_1:
+lizard:
   id: 2803
-desert_lizard_1:
+desert_lizard:
   id: 2804
 desert_lizard_2:
   id: 2805
 desert_lizard_3:
   id: 2806
-small_lizard_1:
+small_lizard:
   id: 2807
 small_lizard_2:
   id: 2808
@@ -5168,19 +5168,19 @@ ali_the_guard:
   id: 2823
 ellis:
   id: 2824
-pirate_pete_1:
+pirate_pete:
   id: 2825
 pirate_pete_2:
   id: 2826
-captain_braindeath_1:
+captain_braindeath:
   id: 2827
-"50%_luke_1":
+"50%_luke":
   id: 2828
 davey:
   id: 2829
-captain_donnie_1:
+captain_donnie:
   id: 2830
-zombie_protester_1:
+zombie_protester:
   id: 2831
 zombie_protester_2:
   id: 2832
@@ -5192,7 +5192,7 @@ zombie_protester_5:
   id: 2835
 zombie_protester_6:
   id: 2836
-zombie_pirate_1:
+zombie_pirate:
   id: 2837
 zombie_pirate_2:
   id: 2838
@@ -5204,7 +5204,7 @@ zombie_pirate_5:
   id: 2841
 zombie_pirate_6:
   id: 2842
-zombie_swab_1:
+zombie_swab:
   id: 2843
 zombie_swab_2:
   id: 2844
@@ -5220,7 +5220,7 @@ evil_spirit:
   id: 2849
 fever_spider:
   id: 2850
-brewer_1:
+brewer:
   id: 2851
 brewer_2:
   id: 2852
@@ -5246,27 +5246,27 @@ death:
   id: 2862
 dororan_4:
   id: 2863
-gudrun_1:
+gudrun:
   id: 2865
 gudrun_2:
   id: 2867
-zombie_head_1:
+zombie_head:
   id: 2868
 gudrun_3:
   id: 2870
 gudrun_4:
   id: 2871
-kjell_1:
+kjell:
   id: 2873
 kjell_2:
   id: 2874
 kjell_3:
   id: 2875
-chieftain_gunthor_1:
+chieftain_gunthor:
   id: 2877
 chieftain_gunthor_2:
   id: 2878
-bardur_1:
+bardur:
   id: 2879
 dagannoth_fledgeling:
   id: 2880
@@ -5290,9 +5290,9 @@ rock_lobster:
   id: 2889
 rock_2:
   id: 2890
-suspicious_water_1:
+suspicious_water:
   id: 2891
-spinolyp_1:
+spinolyp:
   id: 2892
 suspicious_water_2:
   id: 2893
@@ -5302,39 +5302,39 @@ suspicious_water_3:
   id: 2895
 spinolyp_3:
   id: 2896
-father_reen_1:
+father_reen:
   id: 2899
 father_reen_2:
   id: 2900
-father_badden_1:
+father_badden:
   id: 2902
 father_badden_2:
   id: 2903
-denath_1:
+denath:
   id: 2904
 denath_2:
   id: 2905
-eric_1:
+eric:
   id: 2906
 eric_2:
   id: 2907
-evil_dave_1:
+evil_dave:
   id: 2909
 evil_dave_2:
   id: 2910
-matthew_1:
+matthew:
   id: 2911
 matthew_2:
   id: 2912
-jennifer_1:
+jennifer:
   id: 2913
 jennifer_2:
   id: 2914
-tanya_1:
+tanya:
   id: 2915
 tanya_2:
   id: 2916
-patrick_1:
+patrick:
   id: 2917
 patrick_2:
   id: 2918
@@ -5350,11 +5350,11 @@ ghost_7:
   id: 2931
 jorral:
   id: 2932
-melina_1:
+melina:
   id: 2934
 melina_2:
   id: 2935
-droalak_1:
+droalak:
   id: 2937
 droalak_2:
   id: 2938
@@ -5366,11 +5366,11 @@ the_beast:
   id: 2941
 bellemorde:
   id: 2942
-pox_1:
+pox:
   id: 2943
 pox_2:
   id: 2944
-bones_1:
+bones:
   id: 2945
 grimesquit:
   id: 2946
@@ -5384,7 +5384,7 @@ the_face:
   id: 2950
 felkrash:
   id: 2951
-smokin'_joe:
+smokin_joe:
   id: 2952
 ceril_carnillean_2:
   id: 2953
@@ -5462,9 +5462,9 @@ sagira:
   id: 2995
 anleif:
   id: 2996
-gertrude's_cat:
+gertrudes_cat:
   id: 2997
-gambler_1:
+gambler:
   id: 2998
 golrie_3:
   id: 2999
@@ -5510,7 +5510,7 @@ fishing_spot_53:
   id: 3019
 rug_merchant_7:
   id: 3020
-tool_leprechaun_1:
+tool_leprechaun:
   id: 3021
 genie_2:
   id: 3022
@@ -5550,7 +5550,7 @@ kazemde:
   id: 3039
 awusah_the_mayor:
   id: 3040
-tarik_1:
+tarik:
   id: 3041
 poltenip:
   id: 3042
@@ -5558,17 +5558,17 @@ radat:
   id: 3043
 shiratti_the_custodian:
   id: 3044
-rokuh_1:
+rokuh:
   id: 3045
 nardah_banker:
   id: 3046
-target_1:
+target:
   id: 3047
 target_2:
   id: 3048
 larxus:
   id: 3050
-mystery_figure_1:
+mystery_figure:
   id: 3051
 mystery_figure_2:
   id: 3052
@@ -5600,9 +5600,9 @@ skeleton_champion:
   id: 3065
 zombie_champion:
   id: 3066
-leon_d'cour:
+leon_dcour:
   id: 3067
-skeletal_wyvern_1:
+skeletal_wyvern:
   id: 3068
 skeletal_wyvern_2:
   id: 3069
@@ -5624,7 +5624,7 @@ monk_6:
   id: 3079
 monk_7:
   id: 3080
-assassin_1:
+assassin:
   id: 3081
 rosie:
   id: 3082
@@ -5642,13 +5642,13 @@ ronan:
   id: 3088
 chieftain_gunthor_3:
   id: 3089
-haakon_the_champion_1:
+haakon_the_champion:
   id: 3090
 haakon_the_champion_2:
   id: 3091
 commemorative_statue_16:
   id: 3092
-flying_book_1:
+flying_book:
   id: 3094
 flying_book_2:
   id: 3095
@@ -5668,7 +5668,7 @@ maze_guardian:
   id: 3102
 rewards_guardian:
   id: 3103
-charmed_warrior_1:
+charmed_warrior:
   id: 3104
 charmed_warrior_2:
   id: 3105
@@ -5680,7 +5680,7 @@ bert:
   id: 3108
 guard_captain:
   id: 3109
-sandy_1:
+sandy:
   id: 3112
 sandy_2:
   id: 3113
@@ -5692,7 +5692,7 @@ reeso:
   id: 3116
 zanik_6:
   id: 3117
-advisor_ghrim_1:
+advisor_ghrim:
   id: 3119
 advisor_ghrim_2:
   id: 3120
@@ -5706,7 +5706,7 @@ pentyn:
   id: 3126
 aristarchus:
   id: 3127
-boneguard_1:
+boneguard:
   id: 3129
 pile_of_bones:
   id: 3130
@@ -5716,13 +5716,13 @@ crust_of_ice:
   id: 3133
 furnace_grate:
   id: 3135
-enakhra_1:
+enakhra:
   id: 3137
 enakhra_2:
   id: 3138
 boneguard_2:
   id: 3140
-akthanakos_1:
+akthanakos:
   id: 3141
 akthanakos_2:
   id: 3142
@@ -5738,9 +5738,9 @@ skeleton_9:
   id: 3151
 harpie_bug_swarm:
   id: 3153
-princess_astrid_1:
+princess_astrid:
   id: 3154
-bill_teach_1:
+bill_teach:
   id: 3155
 bill_teach_2:
   id: 3156
@@ -5756,7 +5756,7 @@ smith:
   id: 3162
 joe_3:
   id: 3163
-mama_1:
+mama:
   id: 3164
 mama_2:
   id: 3165
@@ -5830,11 +5830,11 @@ banker_24:
   id: 3199
 chaos_elemental:
   id: 3200
-killerwatt_1:
+killerwatt:
   id: 3201
 killerwatt_2:
   id: 3202
-storm_cloud_1:
+storm_cloud:
   id: 3203
 storm_cloud_2:
   id: 3204
@@ -5846,7 +5846,7 @@ zanik_8:
   id: 3207
 zanik_9:
   id: 3208
-elena_1:
+elena:
   id: 3209
 alrena_2:
   id: 3210
@@ -5896,7 +5896,7 @@ gardener_2:
   id: 3234
 apprentice_workman:
   id: 3235
-workman_1:
+workman:
   id: 3236
 cuffs:
   id: 3237
@@ -5904,7 +5904,7 @@ narf:
   id: 3238
 rusty:
   id: 3239
-jeff_1:
+jeff:
   id: 3240
 guard_56:
   id: 3241
@@ -5916,7 +5916,7 @@ dark_wizard_5:
   id: 3244
 dark_wizard_6:
   id: 3245
-barbarian_1:
+barbarian:
   id: 3246
 barbarian_2:
   id: 3247
@@ -5952,7 +5952,7 @@ barbarian_16:
   id: 3262
 barbarian_17:
   id: 3263
-goblin_1:
+goblin:
   id: 3264
 goblin_2:
   id: 3265
@@ -5984,19 +5984,19 @@ black_guard_7:
   id: 3278
 black_guard_8:
   id: 3279
-engineering_assistant_1:
+engineering_assistant:
   id: 3280
 engineering_assistant_2:
   id: 3281
 engineer:
   id: 3282
-squirrel_1:
+squirrel:
   id: 3283
 squirrel_2:
   id: 3284
 squirrel_3:
   id: 3285
-raccoon_1:
+raccoon:
   id: 3286
 raccoon_2:
   id: 3287
@@ -6026,15 +6026,15 @@ storm_cloud_3:
   id: 3301
 co-ordinator:
   id: 3302
-fairy_nuff_1:
+fairy_nuff:
   id: 3303
-fairy_godfather_1:
+fairy_godfather:
   id: 3304
-fat_rocco_1:
+fat_rocco:
   id: 3305
-slim_louie_1:
+slim_louie:
   id: 3306
-gatekeeper_1:
+gatekeeper:
   id: 3307
 zandar_horfyre:
   id: 3308
@@ -6048,7 +6048,7 @@ zanaris_choir:
   id: 3312
 tanglefoot:
   id: 3313
-baby_tanglefoot_1:
+baby_tanglefoot:
   id: 3319
 baby_tanglefoot_2:
   id: 3320
@@ -6056,9 +6056,9 @@ gatekeeper_2:
   id: 3321
 fairy_chef:
   id: 3322
-jeffery_1:
+jeffery:
   id: 3323
-pest_drone_1:
+pest_drone:
   id: 3324
 black_knight_6:
   id: 3325
@@ -6074,17 +6074,17 @@ hari:
   id: 3330
 barfy_bill:
   id: 3331
-trees_1:
+trees:
   id: 3332
 trees_2:
   id: 3333
 wildywyrm:
   id: 3334
-bullrush_1:
+bullrush:
   id: 3335
 bullrush_2:
   id: 3336
-cave_scenery_1:
+cave_scenery:
   id: 3337
 cave_scenery_2:
   id: 3338
@@ -6092,17 +6092,17 @@ cave_scenery_3:
   id: 3339
 giant_mole:
   id: 3340
-baby_mole_1:
+baby_mole:
   id: 3341
 baby_mole_2:
   id: 3342
 baby_mole_3:
   id: 3343
-fungi_1:
+fungi:
   id: 3344
 fungi_2:
   id: 3345
-mutated_zygomite_1:
+mutated_zygomite:
   id: 3346
 mutated_zygomite_2:
   id: 3347
@@ -6154,15 +6154,15 @@ zanik_24:
   id: 3371
 golden_dragon:
   id: 3372
-max_1:
+max:
   id: 3373
 max_2:
   id: 3374
-evil_chicken_1:
+evil_chicken:
   id: 3375
 baby_black_dragon:
   id: 3376
-k'klik:
+kklik:
   id: 3377
 evil_dave_3:
   id: 3378
@@ -6174,11 +6174,11 @@ doris:
   id: 3381
 hell-rat:
   id: 3382
-gypsy_1:
+gypsy:
   id: 3385
 gypsy_2:
   id: 3386
-culinaromancer_1:
+culinaromancer:
   id: 3387
 osman_2:
   id: 3388
@@ -6186,9 +6186,9 @@ pirate_pete_3:
   id: 3389
 mountain_dwarf:
   id: 3390
-general_wartface_1:
+general_wartface:
   id: 3391
-general_bentnoze_1:
+general_bentnoze:
   id: 3392
 lumbridge_sage_2:
   id: 3393
@@ -6208,17 +6208,17 @@ culinaromancer_2:
   id: 3400
 an_old_dwarf:
   id: 3402
-rohak_1:
+rohak:
   id: 3403
 rohak_2:
   id: 3405
-icefiend_1:
+icefiend:
   id: 3406
 guard_57:
   id: 3407
 guard_58:
   id: 3408
-wild_jade_vine_1:
+wild_jade_vine:
   id: 3409
 wild_jade_vine_2:
   id: 3410
@@ -6226,7 +6226,7 @@ wild_jade_vine_3:
   id: 3411
 wild_jade_vine_4:
   id: 3412
-goblin_cook_1:
+goblin_cook:
   id: 3413
 goblin_cook_2:
   id: 3414
@@ -6244,13 +6244,13 @@ mogre_guard:
   id: 3420
 crab_2:
   id: 3421
-mudskipper_1:
+mudskipper:
   id: 3422
 mudskipper_2:
   id: 3423
 crab_3:
   id: 3424
-fish_1:
+fish:
   id: 3425
 fish_2:
   id: 3426
@@ -6304,7 +6304,7 @@ jogre_3:
   id: 3450
 ogre_5:
   id: 3451
-?_?_?_?_1:
+?_?_?_?:
   id: 3452
 ?_?_?_?_2:
   id: 3453
@@ -6336,17 +6336,17 @@ rantz_2:
   id: 3467
 commemorative_statue_23:
   id: 3468
-ogre_boat_1:
+ogre_boat:
   id: 3471
 ogre_boat_2:
   id: 3472
-balloon_toad_1:
+balloon_toad:
   id: 3473
 balloon_toad_2:
   id: 3474
 balloon_toad_3:
   id: 3475
-jubbly_bird_1:
+jubbly_bird:
   id: 3476
 jubbly_bird_2:
   id: 3477
@@ -6354,11 +6354,11 @@ cyclossus:
   id: 3478
 commemorative_statue_24:
   id: 3480
-mizaru_1:
+mizaru:
   id: 3481
-kikazaru_1:
+kikazaru:
   id: 3482
-iwazaru_1:
+iwazaru:
   id: 3483
 big_snake:
   id: 3484
@@ -6386,7 +6386,7 @@ karamel:
   id: 3495
 dessourt:
   id: 3496
-gelatinnoth_mother_1:
+gelatinnoth_mother:
   id: 3497
 gelatinnoth_mother_2:
   id: 3498
@@ -6398,27 +6398,27 @@ gelatinnoth_mother_5:
   id: 3501
 gelatinnoth_mother_6:
   id: 3502
-overgrown_hellcat_1:
+overgrown_hellcat:
   id: 3503
-hellcat_1:
+hellcat:
   id: 3504
 hell-kitten:
   id: 3505
-lazy_hellcat_1:
+lazy_hellcat:
   id: 3506
-wily_hellcat_1:
+wily_hellcat:
   id: 3507
 leo:
   id: 3508
-bard_roberts_1:
+bard_roberts:
   id: 3509
 wiskit:
   id: 3511
-vampyre_juvinate_1:
+vampyre_juvinate:
   id: 3514
 vampyre_juvinate_2:
   id: 3515
-gadderanks_1:
+gadderanks:
   id: 3517
 gadderanks_2:
   id: 3518
@@ -6438,7 +6438,7 @@ vampyre_juvinate_8:
   id: 3525
 vampyre_juvinate_9:
   id: 3526
-held_vampyre_juvinate_1:
+held_vampyre_juvinate:
   id: 3527
 vampyre_juvinate_10:
   id: 3528
@@ -6446,13 +6446,13 @@ vampyre_juvinate_11:
   id: 3529
 mist_2:
   id: 3530
-vampyre_juvenile_1:
+vampyre_juvenile:
   id: 3531
 vampyre_juvenile_2:
   id: 3532
 vampyre_juvenile_3:
   id: 3533
-held_vampyre_juvenile_1:
+held_vampyre_juvenile:
   id: 3534
 ivan_strom_2:
   id: 3535
@@ -6496,7 +6496,7 @@ helena:
   id: 3554
 teodor:
   id: 3555
-marius_1:
+marius:
   id: 3556
 gabriela:
   id: 3557
@@ -6516,7 +6516,7 @@ razvan:
   id: 3564
 luminata:
   id: 3565
-cornelius_1:
+cornelius:
   id: 3568
 cornelius_2:
   id: 3569
@@ -6540,7 +6540,7 @@ held_vampyre_juvinate_2:
   id: 3578
 sheep_10:
   id: 3579
-tentacle_1:
+tentacle:
   id: 3580
 skeleton_11:
   id: 3581
@@ -6574,7 +6574,7 @@ toy_doll:
   id: 3596
 toy_mouse:
   id: 3597
-clockwork_cat_1:
+clockwork_cat:
   id: 3598
 held_vampyre_juvinate_3:
   id: 3599
@@ -6582,13 +6582,13 @@ held_vampyre_juvenile_2:
   id: 3600
 held_vampyre_juvenile_3:
   id: 3601
-murphy's_zomboat:
+murphys_zomboat:
   id: 3602
 tzrek_jad:
   id: 3603
 tzrek-jad:
   id: 3604
-chinchompa_1:
+chinchompa:
   id: 3605
 chinchompa_2:
   id: 3606
@@ -6600,7 +6600,7 @@ boris_barrington:
   id: 3611
 nessie:
   id: 3613
-vanescula_drakan_1:
+vanescula_drakan:
   id: 3614
 vanescula_drakan_2:
   id: 3615
@@ -6610,7 +6610,7 @@ vanescula_drakan_4:
   id: 3617
 tentacle_2:
   id: 3618
-head_1:
+head:
   id: 3619
 head_2:
   id: 3620
@@ -6620,11 +6620,11 @@ zombie_7:
   id: 3622
 vanescula_drakan_5:
   id: 3626
-vyrewatch_1:
+vyrewatch:
   id: 3630
 vyrewatch_2:
   id: 3631
-blood_tither_1:
+blood_tither:
   id: 3632
 blood_tither_2:
   id: 3633
@@ -6632,33 +6632,33 @@ tithe_master:
   id: 3634
 vanescula_drakan_6:
   id: 3635
-spirit_tree_1:
+spirit_tree:
   id: 3636
 spirit_tree_2:
   id: 3637
-launa_1:
+launa:
   id: 3639
 launa_2:
   id: 3640
 brana:
   id: 3641
-mawnis_burowgar_1:
+mawnis_burowgar:
   id: 3642
-tolna_1:
+tolna:
   id: 3643
 tolna_2:
   id: 3644
-angry_bear_1:
+angry_bear:
   id: 3645
-angry_unicorn_1:
+angry_unicorn:
   id: 3646
-angry_giant_rat_1:
+angry_giant_rat:
   id: 3647
-angry_goblin_1:
+angry_goblin:
   id: 3648
-fear_reaper_1:
+fear_reaper:
   id: 3649
-confusion_beast_1:
+confusion_beast:
   id: 3650
 confusion_beast_2:
   id: 3651
@@ -6668,7 +6668,7 @@ confusion_beast_4:
   id: 3653
 confusion_beast_5:
   id: 3654
-hopeless_creature_1:
+hopeless_creature:
   id: 3655
 hopeless_creature_2:
   id: 3656
@@ -6702,17 +6702,17 @@ estocada:
   id: 3670
 fortunato:
   id: 3671
-ram_1:
+ram:
   id: 3672
 ram_2:
   id: 3673
 bones_2:
   id: 3674
-vulture_1:
+vulture:
   id: 3675
 vulture_2:
   id: 3676
-sinister_stranger_1:
+sinister_stranger:
   id: 3677
 sinister_stranger_2:
   id: 3678
@@ -6730,7 +6730,7 @@ egg_6:
   id: 3684
 egg_7:
   id: 3685
-chocolate_kebbit_1:
+chocolate_kebbit:
   id: 3686
 chocolate_kebbit_2:
   id: 3687
@@ -6752,7 +6752,7 @@ volf_olafson:
   id: 3695
 ingrid_hradson:
   id: 3696
-skeleton_fremennik_1:
+skeleton_fremennik:
   id: 3697
 skeleton_fremennik_2:
   id: 3698
@@ -6770,7 +6770,7 @@ skeleton_fremennik_8:
   id: 3704
 max_5:
   id: 3705
-ulfric_1:
+ulfric:
   id: 3706
 brine_rat:
   id: 3707
@@ -6808,11 +6808,11 @@ general_bentnoze_2:
   id: 3723
 general_wartface_2:
   id: 3724
-grubfoot_1:
+grubfoot:
   id: 3725
 goblin_5:
   id: 3726
-splatter_1:
+splatter:
   id: 3727
 splatter_2:
   id: 3728
@@ -6822,7 +6822,7 @@ splatter_4:
   id: 3730
 splatter_5:
   id: 3731
-shifter_1:
+shifter:
   id: 3732
 shifter_2:
   id: 3733
@@ -6842,7 +6842,7 @@ shifter_9:
   id: 3740
 shifter_10:
   id: 3741
-ravager_1:
+ravager:
   id: 3742
 ravager_2:
   id: 3743
@@ -6852,7 +6852,7 @@ ravager_4:
   id: 3745
 ravager_5:
   id: 3746
-spinner_1:
+spinner:
   id: 3747
 spinner_2:
   id: 3748
@@ -6862,7 +6862,7 @@ spinner_4:
   id: 3750
 spinner_5:
   id: 3751
-torcher_1:
+torcher:
   id: 3752
 torcher_2:
   id: 3753
@@ -6882,7 +6882,7 @@ torcher_9:
   id: 3760
 torcher_10:
   id: 3761
-defiler_1:
+defiler:
   id: 3762
 defiler_2:
   id: 3763
@@ -6902,7 +6902,7 @@ defiler_9:
   id: 3770
 defiler_10:
   id: 3771
-brawler_1:
+brawler:
   id: 3772
 brawler_2:
   id: 3773
@@ -6912,13 +6912,13 @@ brawler_4:
   id: 3775
 brawler_5:
   id: 3776
-doomsayer_1:
+doomsayer:
   id: 3777
 arthur:
   id: 3779
 squire_2:
   id: 3781
-void_knight_1:
+void_knight:
   id: 3782
 frog_6:
   id: 3783
@@ -6962,19 +6962,19 @@ squire_(novice):
   id: 3802
 fishing_spot_56:
   id: 3804
-postie_pete_1:
+postie_pete:
   id: 3805
 millie_miller:
   id: 3806
 gillie_groats:
   id: 3807
-tortoise_1:
+tortoise:
   id: 3808
 captain_dalbur:
   id: 3809
 captain_bleemadge:
   id: 3810
-captain_errdo_1:
+captain_errdo:
   id: 3811
 captain_klemfoodle:
   id: 3812
@@ -7004,7 +7004,7 @@ george_laxmeister:
   id: 3826
 ramara_du_croissant:
   id: 3827
-kathy_corkat_1:
+kathy_corkat:
   id: 3830
 kathy_corkat_2:
   id: 3831
@@ -7018,7 +7018,7 @@ wise_old_man_6:
   id: 3838
 wise_old_man_7:
   id: 3839
-sea_troll_1:
+sea_troll:
   id: 3840
 sea_troll_2:
   id: 3841
@@ -7042,7 +7042,7 @@ skeleton_mage_4:
   id: 3850
 skeleton_mage_5:
   id: 3851
-suspect_1:
+suspect:
   id: 3856
 suspect_2:
   id: 3857
@@ -7122,7 +7122,7 @@ suspect_39:
   id: 3894
 suspect_40:
   id: 3895
-molly_1:
+molly:
   id: 3896
 molly_2:
   id: 3897
@@ -7218,7 +7218,7 @@ guard_61:
   id: 3942
 giant_sea_snake:
   id: 3943
-hangman_game_1:
+hangman_game:
   id: 3944
 hangman_game_2:
   id: 3945
@@ -7242,7 +7242,7 @@ treasure_fairy:
   id: 3954
 jacky_jester:
   id: 3955
-combat_stone_1:
+combat_stone:
   id: 3956
 combat_stone_2:
   id: 3957
@@ -7372,7 +7372,7 @@ combat_stone_64:
   id: 4019
 combat_stone_65:
   id: 4020
-elemental_balance_1:
+elemental_balance:
   id: 4021
 elemental_balance_2:
   id: 4022
@@ -7800,27 +7800,27 @@ right_head:
   id: 4233
 kalphite_queen_6:
   id: 4234
-rick_1:
+rick:
   id: 4235
-maid_1:
+maid:
   id: 4237
 cook_5:
   id: 4239
-butler_1:
+butler:
   id: 4241
-demon_butler_1:
+demon_butler:
   id: 4243
 chief_servant:
   id: 4245
 taxidermist:
   id: 4246
-estate_agent_1:
+estate_agent:
   id: 4247
-stonemason_1:
+stonemason:
   id: 4248
 sir_renitee:
   id: 4249
-sawmill_operator_1:
+sawmill_operator:
   id: 4250
 garden_supplier:
   id: 4251
@@ -7872,7 +7872,7 @@ animated_bronze_armour:
   id: 4278
 animated_iron_armour:
   id: 4279
-animated_steel_armour_1:
+animated_steel_armour:
   id: 4280
 animated_black_armour:
   id: 4281
@@ -7882,9 +7882,9 @@ animated_adamant_armour:
   id: 4283
 animated_rune_armour:
   id: 4284
-ghommal_1:
+ghommal:
   id: 4285
-harrallak_menarous_1:
+harrallak_menarous:
   id: 4286
 gamfred:
   id: 4287
@@ -7906,11 +7906,11 @@ anton:
   id: 4295
 jade:
   id: 4296
-sloane_1:
+sloane:
   id: 4297
 jimmy:
   id: 4298
-ref_1:
+ref:
   id: 4299
 ref_2:
   id: 4300
@@ -7996,7 +7996,7 @@ crab_4:
   id: 4346
 giant_mosquito:
   id: 4347
-jungle_horror_1:
+jungle_horror:
   id: 4348
 jungle_horror_2:
   id: 4349
@@ -8006,7 +8006,7 @@ jungle_horror_4:
   id: 4351
 jungle_horror_5:
   id: 4352
-cave_horror_1:
+cave_horror:
   id: 4353
 cave_horror_2:
   id: 4354
@@ -8034,7 +8034,7 @@ blue_monkey:
   id: 4371
 red_monkey:
   id: 4372
-parrot_1:
+parrot:
   id: 4373
 parrot_2:
   id: 4374
@@ -8050,7 +8050,7 @@ oozing_barrier:
   id: 4379
 portal_of_death:
   id: 4380
-ankou_1:
+ankou:
   id: 4381
 ankou_2:
   id: 4382
@@ -8066,7 +8066,7 @@ ghost_8:
   id: 4387
 ghost_9:
   id: 4388
-flesh_crawler_1:
+flesh_crawler:
   id: 4389
 flesh_crawler_2:
   id: 4390
@@ -8082,7 +8082,7 @@ giant_rat_6:
   id: 4395
 rat_17:
   id: 4396
-catablepon_1:
+catablepon:
   id: 4397
 catablepon_2:
   id: 4398
@@ -8096,9 +8096,9 @@ scorpion_3:
   id: 4402
 scorpion_4:
   id: 4403
-minotaur_1:
+minotaur:
   id: 4404
-museum_guard_1:
+museum_guard:
   id: 4405
 minotaur_2:
   id: 4406
@@ -8120,11 +8120,11 @@ wolf_4:
   id: 4414
 rat_18:
   id: 4415
-prisoner_1:
+prisoner:
   id: 4416
 grubfoot_3:
   id: 4417
-gorak_1:
+gorak:
   id: 4418
 cosmic_being:
   id: 4419
@@ -8134,7 +8134,7 @@ fairy_nuff_2:
   id: 4434
 fairy_queen_2:
   id: 4437
-centaur_1:
+centaur:
   id: 4438
 centaur_2:
   id: 4439
@@ -8142,7 +8142,7 @@ stag:
   id: 4440
 wood_dryad:
   id: 4441
-fairy_very_wise_1:
+fairy_very_wise:
   id: 4442
 fairy_3:
   id: 4443
@@ -8160,7 +8160,7 @@ butterfly_7:
   id: 4449
 butterfly_8:
   id: 4450
-starflower_1:
+starflower:
   id: 4451
 starflower_2:
   id: 4452
@@ -8176,23 +8176,23 @@ banker_31:
   id: 4459
 fake_man:
   id: 4460
-ranis_drakan_1:
+ranis_drakan:
   id: 4461
 ranis_drakan_2:
   id: 4462
 ranis_drakan_3:
   id: 4463
-vertida_sefalatis_1:
+vertida_sefalatis:
   id: 4464
-kael_forshaw_1:
+kael_forshaw:
   id: 4465
-mekritus_a'hara_1:
+mekritus_ahara:
   id: 4466
-sentinel_noctantine_1:
+sentinel_noctantine:
   id: 4467
-sentinel_plaguemanst_1:
+sentinel_plaguemanst:
   id: 4468
-sentinel_bloodmortis_1:
+sentinel_bloodmortis:
   id: 4469
 tree_spirit_2:
   id: 4470
@@ -8264,17 +8264,17 @@ ethereal_guide:
   id: 4506
 ethereal_fluke:
   id: 4507
-me_1:
+me:
   id: 4509
 me_2:
   id: 4510
-oneiromancer_1:
+oneiromancer:
   id: 4511
 house:
   id: 4512
-baba_yaga_1:
+baba_yaga:
   id: 4513
-meteora_1:
+meteora:
   id: 4515
 melana_moonlander:
   id: 4516
@@ -8286,19 +8286,19 @@ sirsal_banker:
   id: 4519
 void_knight_7:
   id: 4520
-enchanted_broom_1:
+enchanted_broom:
   id: 4521
 enchanted_broom_2:
   id: 4522
 enchanted_broom_3:
   id: 4523
-enchanted_bucket_1:
+enchanted_bucket:
   id: 4524
 enchanted_bucket_2:
   id: 4525
 bouquet_mac_hyacinth:
   id: 4526
-suqah_1:
+suqah:
   id: 4527
 suqah_2:
   id: 4528
@@ -8312,7 +8312,7 @@ suqah_6:
   id: 4532
 suqah_7:
   id: 4533
-ned's_wife:
+neds_wife:
   id: 4534
 parrot_3:
   id: 4535
@@ -8324,15 +8324,15 @@ cabin_boy:
   id: 4539
 bandos_avatar_2:
   id: 4540
-'''beefy''_burns':
+beefy_burns:
   id: 4541
-'''eagle-eye''_shultz':
+eagle-eye_shultz:
   id: 4542
-first_mate_'davey-boy':
+first_mate_davey-boy:
   id: 4543
-'''bird''s-eye''_jack_1':
+birds-eye_jack:
   id: 4544
-'''picarron''_pete':
+picarron_pete:
   id: 4545
 jake:
   id: 4546
@@ -8342,21 +8342,21 @@ wilson:
   id: 4548
 tommy_2-times:
   id: 4549
-murky_pat_1:
+murky_pat:
   id: 4550
 jack_sails:
   id: 4551
 palmer:
   id: 4552
-'''betty''_b.boppin':
+betty_b.boppin:
   id: 4553
-'''beedy-eye''_jones':
+beedy-eye_jones:
   id: 4554
 jenny_blade:
   id: 4555
-'''lecherous''_lee':
+lecherous_lee:
   id: 4556
-'''sticky''_sanders':
+sticky_sanders:
   id: 4557
 hirko:
   id: 4558
@@ -8464,9 +8464,9 @@ brimstail_2:
   id: 4610
 pig_3:
   id: 4611
-cute_creature_1:
+cute_creature:
   id: 4614
-evil_creature_1:
+evil_creature:
   id: 4615
 cute_creature_2:
   id: 4617
@@ -8502,7 +8502,7 @@ goblin_46:
   id: 4636
 goblin_47:
   id: 4637
-gnome_soldier_1:
+gnome_soldier:
   id: 4638
 gnome_soldier_2:
   id: 4639
@@ -8528,7 +8528,7 @@ tyras_guard_5:
   id: 4649
 trader_stan:
   id: 4650
-trader_crewmember_1:
+trader_crewmember:
   id: 4651
 trader_crewmember_2:
   id: 4652
@@ -8646,13 +8646,13 @@ vertida_sefalatis_2:
   id: 4709
 aeonisig_raispher:
   id: 4710
-safalaan_1:
+safalaan:
   id: 4713
-sarius_guile_1:
+sarius_guile:
   id: 4715
 trader_sven:
   id: 4716
-meiyerditch_citizen_1:
+meiyerditch_citizen:
   id: 4717
 meiyerditch_citizen_2:
   id: 4718
@@ -8682,7 +8682,7 @@ meiyerditch_citizen_14:
   id: 4730
 hooded_man:
   id: 4731
-ramokee_stormbringer_1:
+ramokee_stormbringer:
   id: 4733
 meiyerditch_citizen_15:
   id: 4734
@@ -8708,7 +8708,7 @@ meiyerditch_citizen_25:
   id: 4744
 meiyerditch_citizen_26:
   id: 4745
-a_meiyerditch_child_1:
+a_meiyerditch_child:
   id: 4746
 a_meiyerditch_child_2:
   id: 4747
@@ -8728,7 +8728,7 @@ a_meiyerditch_child_9:
   id: 4754
 a_meiyerditch_child_10:
   id: 4755
-meiyerditch_miner_1:
+meiyerditch_miner:
   id: 4756
 meiyerditch_miner_2:
   id: 4757
@@ -8740,13 +8740,13 @@ meiyerditch_miner_5:
   id: 4760
 meiyerditch_miner_6:
   id: 4761
-shadowy_figure_1:
+shadowy_figure:
   id: 4762
 shadowy_figure_2:
   id: 4763
 shadowy_figure_3:
   id: 4764
-stray_dog_1:
+stray_dog:
   id: 4766
 stray_dog_2:
   id: 4767
@@ -8758,7 +8758,7 @@ boat:
   id: 4770
 white_knight_6:
   id: 4771
-juvinate_guard_1:
+juvinate_guard:
   id: 4772
 juvinate_guard_2:
   id: 4773
@@ -8780,7 +8780,7 @@ held_vampyre_juvinate_5:
   id: 4781
 vampyre_juvinate_18:
   id: 4782
-former_vampyre_1:
+former_vampyre:
   id: 4783
 former_vampyre_2:
   id: 4784
@@ -8792,7 +8792,7 @@ former_vampyre_5:
   id: 4787
 former_vampyre_6:
   id: 4788
-angry_vampyre_1:
+angry_vampyre:
   id: 4789
 angry_vampyre_2:
   id: 4790
@@ -8806,7 +8806,7 @@ vanstrom_klause_8:
   id: 4794
 vanstrom_klause_9:
   id: 4795
-ramokee_bloodrager_1:
+ramokee_bloodrager:
   id: 4796
 vanescula_drakan_7:
   id: 4797
@@ -8832,9 +8832,9 @@ vyrewatch_5:
   id: 4807
 vyrewatch_6:
   id: 4808
-misdrievus_vakan_1:
+misdrievus_vakan:
   id: 4809
-vyrelady_1:
+vyrelady:
   id: 4810
 vyrelady_2:
   id: 4811
@@ -8858,7 +8858,7 @@ vyrewatch_14:
   id: 4820
 vyrelady_4:
   id: 4821
-vyrelord_1:
+vyrelord:
   id: 4822
 vyrelord_2:
   id: 4823
@@ -8920,13 +8920,13 @@ vyrewatch_39:
   id: 4851
 vyrewatch_40:
   id: 4852
-ezekial_lovecraft_1:
+ezekial_lovecraft:
   id: 4856
 sarius_guile_2:
   id: 4861
 vanstrom_klause_10:
   id: 4862
-kennith_1:
+kennith:
   id: 4863
 kennith_2:
   id: 4864
@@ -8934,23 +8934,23 @@ holgart_4:
   id: 4866
 holgart_5:
   id: 4867
-ramokee_deathslinger_1:
+ramokee_deathslinger:
   id: 4868
-ramokee_skinweaver_1:
+ramokee_skinweaver:
   id: 4870
-col._o'niall_1:
+col._oniall:
   id: 4872
-col._o'niall_2:
+col._oniall_2:
   id: 4873
-mayor_hobb_1:
+mayor_hobb:
   id: 4874
 mayor_hobb_2:
   id: 4875
-brother_maledict_1:
+brother_maledict:
   id: 4878
 brother_maledict_2:
   id: 4879
-witchaven_villager_1:
+witchaven_villager:
   id: 4883
 witchaven_villager_2:
   id: 4884
@@ -8962,7 +8962,7 @@ witchaven_villager_5:
   id: 4887
 witchaven_villager_6:
   id: 4888
-mother_mallum_1:
+mother_mallum:
   id: 4889
 slug_prince:
   id: 4890
@@ -8970,13 +8970,13 @@ giant_lobster_2:
   id: 4892
 giant_lobster_3:
   id: 4893
-sea_slug_1:
+sea_slug:
   id: 4894
-jeb_1:
+jeb:
   id: 4895
 jeb_2:
   id: 4896
-thok_1:
+thok:
   id: 4897
 hobgoblin_6:
   id: 4898
@@ -9006,7 +9006,7 @@ earth_elemental_2:
   id: 4910
 elemental_rock:
   id: 4911
-jig_cart_1:
+jig_cart:
   id: 4913
 jig_cart_2:
   id: 4914
@@ -9018,7 +9018,7 @@ jig_cart_5:
   id: 4917
 jig_cart_6:
   id: 4918
-abidor_crank_1:
+abidor_crank:
   id: 4919
 giant_crypt_rat_2:
   id: 4920
@@ -9040,11 +9040,11 @@ dungeon_rat_3:
   id: 4928
 dungeon_rat_4:
   id: 4929
-goat_1:
+goat:
   id: 4930
 goat_2:
   id: 4931
-billy_goat_1:
+billy_goat:
   id: 4932
 goat_3:
   id: 4933
@@ -9074,7 +9074,7 @@ giant_rat_15:
   id: 4945
 ignatius_vulcan:
   id: 4946
-my_arm_1:
+my_arm:
   id: 4947
 my_arm_2:
   id: 4948
@@ -9088,7 +9088,7 @@ my_arm_6:
   id: 4959
 adventurer_2:
   id: 4960
-captain_barnaby_1:
+captain_barnaby:
   id: 4962
 murcaily_3:
   id: 4963
@@ -9098,9 +9098,9 @@ tool_leprechaun_3:
   id: 4965
 flies:
   id: 4967
-unnamed_troll_child_1:
+unnamed_troll_child:
   id: 4968
-drunken_dwarf's_leg:
+drunken_dwarfs_leg:
   id: 4969
 baby_roc:
   id: 4971
@@ -9130,7 +9130,7 @@ pretty_lass:
   id: 4983
 irena_2:
   id: 4988
-mercenary_1:
+mercenary:
   id: 4989
 mercenary_2:
   id: 4990
@@ -9158,13 +9158,13 @@ guard_86:
   id: 5001
 guard_87:
   id: 5002
-gublinch_1:
+gublinch:
   id: 5017
 gublinch_2:
   id: 5018
 gublinch_3:
   id: 5019
-jack_1:
+jack:
   id: 5023
 jill:
   id: 5024
@@ -9198,25 +9198,25 @@ major_heal:
   id: 5038
 sergeant_sambur:
   id: 5039
-penance_fighter_1:
+penance_fighter:
   id: 5040
-penance_ranger_1:
+penance_ranger:
   id: 5041
-penance_runner_1:
+penance_runner:
   id: 5042
-penance_healer_1:
+penance_healer:
   id: 5043
 penance_fighter_2:
   id: 5044
 penance_fighter_3:
   id: 5045
-marmaros_1:
+marmaros:
   id: 5046
 marmaros_2:
   id: 5047
 weaker_than_thok:
   id: 5048
-auguste_1:
+auguste:
   id: 5049
 auguste_2:
   id: 5050
@@ -9262,7 +9262,7 @@ chinchompa_3:
   id: 5079
 carnivorous_chinchompa:
   id: 5080
-ferret_1:
+ferret:
   id: 5081
 black_warlock:
   id: 5082
@@ -9280,11 +9280,11 @@ barb-tailed_kebbit:
   id: 5088
 wild_kebbit:
   id: 5089
-matthias_1:
+matthias:
   id: 5092
 matthias_2:
   id: 5093
-gyr_falcon_1:
+gyr_falcon:
   id: 5094
 gyr_falcon_2:
   id: 5095
@@ -9310,7 +9310,7 @@ aleck:
   id: 5110
 leon:
   id: 5111
-hunting_expert_1:
+hunting_expert:
   id: 5112
 hunting_expert_2:
   id: 5113
@@ -9322,7 +9322,7 @@ black_salamander:
   id: 5116
 swamp_lizard:
   id: 5117
-eagle_1:
+eagle:
   id: 5120
 eagle_2:
   id: 5121
@@ -9330,7 +9330,7 @@ eagle_3:
   id: 5122
 eagle_4:
   id: 5123
-nickolaus_1:
+nickolaus:
   id: 5126
 nickolaus_2:
   id: 5127
@@ -9352,17 +9352,17 @@ charlie_2:
   id: 5138
 boulder_6:
   id: 5140
-uri_1:
+uri:
   id: 5141
 uri_2:
   id: 5142
 uri_3:
   id: 5143
-double_agent_1:
+double_agent:
   id: 5144
 double_agent_2:
   id: 5145
-li'l_lamb:
+lil_lamb:
   id: 5146
 lamb:
   id: 5147
@@ -9426,7 +9426,7 @@ ogre_shaman_3:
   id: 5177
 blue_dragon_6:
   id: 5178
-elkoy_1:
+elkoy:
   id: 5179
 ogre_shaman_4:
   id: 5181
@@ -9434,15 +9434,15 @@ elkoy_2:
   id: 5182
 ogre_shaman_5:
   id: 5184
-king_vargas_1:
+king_vargas:
   id: 5185
 ogre_shaman_6:
   id: 5187
-nial_swiftfling_1:
+nial_swiftfling:
   id: 5188
 ogre_shaman_7:
   id: 5190
-blaze_sharpeye_1:
+blaze_sharpeye:
   id: 5191
 ogre_shaman_8:
   id: 5193
@@ -9458,13 +9458,13 @@ ava:
   id: 5198
 witch_4:
   id: 5200
-alice's_husband_1:
+alices_husband:
   id: 5202
-alice's_husband_2:
+alices_husband_2:
   id: 5203
 girly_warrior:
   id: 5204
-alice's_husband_3:
+alices_husband_3:
   id: 5205
 tree_2:
   id: 5207
@@ -9552,13 +9552,13 @@ queen_spawn:
   id: 5248
 captain_errdo_2:
   id: 5249
-scarab_mage_1:
+scarab_mage:
   id: 5250
-locust_rider_1:
+locust_rider:
   id: 5251
 locust_rider_2:
   id: 5252
-giant_scarab_1:
+giant_scarab:
   id: 5253
 scarab_mage_2:
   id: 5254
@@ -9578,7 +9578,7 @@ urbi:
   id: 5266
 jamila:
   id: 5268
-sophanem_guard_1:
+sophanem_guard:
   id: 5270
 sophanem_guard_2:
   id: 5272
@@ -9592,7 +9592,7 @@ coenus:
   id: 5278
 jex:
   id: 5279
-maisa_1:
+maisa:
   id: 5281
 osman_3:
   id: 5284
@@ -9746,13 +9746,13 @@ undead_one_10:
   id: 5358
 giant_skeleton_2:
   id: 5359
-mi-gor's_zomboat:
+mi-gors_zomboat:
   id: 5360
-waterfiend_1:
+waterfiend:
   id: 5361
 brutal_green_dragon:
   id: 5362
-mithril_dragon_1:
+mithril_dragon:
   id: 5363
 confused_barbarian:
   id: 5364
@@ -9856,15 +9856,15 @@ possessed_pickaxe_3:
   id: 5413
 animated_spade:
   id: 5414
-terror_dog_statue_1:
+terror_dog_statue:
   id: 5415
 terror_dog_statue_2:
   id: 5416
-terror_dog_1:
+terror_dog:
   id: 5417
 terror_dog_2:
   id: 5418
-tarn_1:
+tarn:
   id: 5419
 tarn_2:
   id: 5420
@@ -9888,11 +9888,11 @@ kgp_guard:
   id: 5431
 pescaling_pax:
   id: 5432
-ping_1:
+ping:
   id: 5433
 ping_2:
   id: 5434
-pong_1:
+pong:
   id: 5435
 pong_2:
   id: 5436
@@ -9902,7 +9902,7 @@ pong_3:
   id: 5438
 musician_4:
   id: 5439
-kgp_agent_1:
+kgp_agent:
   id: 5441
 musician_5:
   id: 5442
@@ -9910,7 +9910,7 @@ noodle:
   id: 5444
 penguin_5:
   id: 5445
-penguin_suit_1:
+penguin_suit:
   id: 5446
 agility_instructor:
   id: 5447
@@ -9922,7 +9922,7 @@ penguin_7:
   id: 5450
 penguin_8:
   id: 5451
-icelord_1:
+icelord:
   id: 5452
 icelord_2:
   id: 5453
@@ -9930,7 +9930,7 @@ icelord_3:
   id: 5454
 icelord_4:
   id: 5455
-crusher_1:
+crusher:
   id: 5456
 crusher_2:
   id: 5457
@@ -9944,19 +9944,19 @@ bandos_avatar_4:
   id: 5461
 tolna_6:
   id: 5462
-honour_guard_1:
+honour_guard:
   id: 5463
 honour_guard_2:
   id: 5464
-fridleif_shieldson_1:
+fridleif_shieldson:
   id: 5465
-thakkrad_sigmundson_1:
+thakkrad_sigmundson:
   id: 5466
-iceberg_1:
+iceberg:
   id: 5467
 iceberg_2:
   id: 5468
-aksel_1:
+aksel:
   id: 5469
 fishing_spot_59:
   id: 5470
@@ -9964,13 +9964,13 @@ fishing_spot_60:
   id: 5471
 ice_troll_king:
   id: 5472
-ice_troll_runt_1:
+ice_troll_runt:
   id: 5473
-ice_troll_male_1:
+ice_troll_male:
   id: 5474
-ice_troll_female_1:
+ice_troll_female:
   id: 5475
-ice_troll_grunt_1:
+ice_troll_grunt:
   id: 5476
 bork_sigmundson:
   id: 5477
@@ -9980,7 +9980,7 @@ hrh_hrafn:
   id: 5479
 thorkel_silkbeard:
   id: 5480
-mord_gunnars_1:
+mord_gunnars:
   id: 5481
 mord_gunnars_2:
   id: 5482
@@ -10012,7 +10012,7 @@ vanligga_gastfrihet:
   id: 5495
 sassilik_2:
   id: 5496
-miner_1:
+miner:
   id: 5497
 miner_2:
   id: 5498
@@ -10032,7 +10032,7 @@ fridleif_shieldson_2:
   id: 5505
 thakkrad_sigmundson_2:
   id: 5506
-maria_gunnars_1:
+maria_gunnars:
   id: 5507
 maria_gunnars_2:
   id: 5508
@@ -10082,7 +10082,7 @@ sorceress:
   id: 5531
 apprentice_2:
   id: 5532
-autumn_elemental_1:
+autumn_elemental:
   id: 5533
 autumn_elemental_2:
   id: 5534
@@ -10094,7 +10094,7 @@ autumn_elemental_5:
   id: 5537
 autumn_elemental_6:
   id: 5538
-spring_elemental_1:
+spring_elemental:
   id: 5539
 spring_elemental_2:
   id: 5540
@@ -10110,7 +10110,7 @@ spring_elemental_7:
   id: 5545
 spring_elemental_8:
   id: 5546
-summer_elemental_1:
+summer_elemental:
   id: 5547
 summer_elemental_2:
   id: 5548
@@ -10122,7 +10122,7 @@ summer_elemental_5:
   id: 5551
 summer_elemental_6:
   id: 5552
-winter_elemental_1:
+winter_elemental:
   id: 5553
 winter_elemental_2:
   id: 5554
@@ -10138,7 +10138,7 @@ ferret_of_doom:
   id: 5559
 thok-blocker:
   id: 5560
-warped_gulega_1:
+warped_gulega:
   id: 5561
 del-monty:
   id: 5563
@@ -10146,9 +10146,9 @@ bouncer_2:
   id: 5564
 bouncer_3:
   id: 5565
-general_khazard_1:
+general_khazard:
   id: 5566
-scout_1:
+scout:
   id: 5567
 scout_2:
   id: 5568
@@ -10160,13 +10160,13 @@ sin_seer:
   id: 5571
 ghost_24:
   id: 5572
-effigy_1:
+effigy:
   id: 5578
 effigy_2:
   id: 5579
 bonafido:
   id: 5580
-homunculus_1:
+homunculus:
   id: 5581
 homunculus_2:
   id: 5582
@@ -10174,21 +10174,21 @@ homunculus_3:
   id: 5583
 bulky_warrior:
   id: 5584
-'''transmute''_the_alchemist_1':
+transmute_the_alchemist:
   id: 5585
-'''transmute''_the_alchemist_2':
+transmute_the_alchemist_2:
   id: 5586
-'''currency''_the_alchemist_1':
+currency_the_alchemist:
   id: 5587
-'''currency''_the_alchemist_2':
+currency_the_alchemist_2:
   id: 5588
-'''black-eye''':
+black-eye:
   id: 5589
-'''no_fingers''':
+no_fingers:
   id: 5590
-'''gummy''':
+gummy:
   id: 5591
-'''the_guns''_1':
+the_guns:
   id: 5592
 frogeel:
   id: 5593
@@ -10218,13 +10218,13 @@ monk_12:
   id: 5611
 rufus_2:
   id: 5612
-mi-gor_1:
+mi-gor:
   id: 5613
 puffin:
   id: 5614
 large_crate:
   id: 5615
-brother_tranquility_1:
+brother_tranquility:
   id: 5616
 brother_tranquility_2:
   id: 5617
@@ -10238,7 +10238,7 @@ monk_15:
   id: 5621
 monk_16:
   id: 5622
-zombie_monk_1:
+zombie_monk:
   id: 5623
 zombie_monk_2:
   id: 5624
@@ -10246,7 +10246,7 @@ zombie_monk_3:
   id: 5625
 zombie_monk_4:
   id: 5626
-sorebones_1:
+sorebones:
   id: 5627
 sorebones_2:
   id: 5628
@@ -10324,7 +10324,7 @@ zombie_pirate_42:
   id: 5664
 zombie_pirate_43:
   id: 5665
-barrelchest_1:
+barrelchest:
   id: 5666
 undead_lumberjack_3:
   id: 5678
@@ -10500,7 +10500,7 @@ cave_goblin_16:
   id: 5767
 cave_goblin_17:
   id: 5768
-golrana_1:
+golrana:
   id: 5769
 ur-zek:
   id: 5770
@@ -10536,7 +10536,7 @@ cave_goblin_19:
   id: 5785
 goblin_scribe_2:
   id: 5786
-gourmet_1:
+gourmet:
   id: 5788
 gourmet_2:
   id: 5789
@@ -10564,43 +10564,43 @@ guard_92:
   id: 5800
 guard_93:
   id: 5801
-young_'un:
+young_un:
   id: 5803
-tyke_1:
+tyke:
   id: 5804
-nipper_1:
+nipper:
   id: 5805
 nipper_2:
   id: 5806
-bozin_1:
+bozin:
   id: 5807
 bozin_2:
   id: 5808
-fandon_1:
+fandon:
   id: 5809
 fandon_2:
   id: 5810
-horgon_1:
+horgon:
   id: 5811
 horgon_2:
   id: 5812
-lorzan_1:
+lorzan:
   id: 5813
 lorzan_2:
   id: 5814
-caldi_1:
+caldi:
   id: 5815
 caldi_2:
   id: 5816
-elzik_1:
+elzik:
   id: 5817
 elzik_2:
   id: 5818
-inglin_1:
+inglin:
   id: 5819
 inglin_2:
   id: 5820
-kenti_1:
+kenti:
   id: 5821
 kenti_2:
   id: 5822
@@ -10608,9 +10608,9 @@ spit_goblin:
   id: 5823
 goblin_fish:
   id: 5824
-movario_1:
+movario:
   id: 5825
-darve_1:
+darve:
   id: 5826
 moths:
   id: 5827
@@ -10620,7 +10620,7 @@ rabbit_8:
   id: 5829
 rat_burgiss:
   id: 5833
-surok_magis_1:
+surok_magis:
   id: 5834
 surok_magis_2:
   id: 5835
@@ -10630,13 +10630,13 @@ anna_jones:
   id: 5837
 king_roald_3:
   id: 5838
-mishkal'un_dorn:
+mishkalun_dorn:
   id: 5839
-dakh'thoulan_aegis:
+dakhthoulan_aegis:
   id: 5840
-sil'as_dahcsnu:
+silas_dahcsnu:
   id: 5841
-outlaw_1:
+outlaw:
   id: 5842
 outlaw_2:
   id: 5843
@@ -10678,7 +10678,7 @@ sigmund_and_zanik:
   id: 5862
 ambassador_alvijar:
   id: 5863
-builder_1:
+builder:
   id: 5864
 builder_2:
   id: 5865
@@ -10732,7 +10732,7 @@ cyrisus_7:
   id: 5896
 cyrisus_8:
   id: 5897
-'''bird''s-eye''_jack_2':
+birds-eye_jack_2:
   id: 5898
 the_inadequacy:
   id: 5902
@@ -10740,7 +10740,7 @@ the_everlasting:
   id: 5903
 the_untouchable:
   id: 5904
-the_illusive_1:
+the_illusive:
   id: 5905
 a_doubt:
   id: 5906
@@ -10758,7 +10758,7 @@ elsie:
   id: 5912
 aubury:
   id: 5913
-sergeant-at-arms_1:
+sergeant-at-arms:
   id: 5914
 scribe:
   id: 5915
@@ -10780,7 +10780,7 @@ man_16:
   id: 5923
 woman_15:
   id: 5924
-benny_1:
+benny:
   id: 5925
 thief_5:
   id: 5926
@@ -10818,9 +10818,9 @@ museum_guard_3:
   id: 5942
 museum_guard_4:
   id: 5943
-teacher_and_pupil_1:
+teacher_and_pupil:
   id: 5944
-schoolboy_1:
+schoolboy:
   id: 5945
 schoolboy_2:
   id: 5946
@@ -10848,7 +10848,7 @@ schoolgirl_4:
   id: 5957
 digsite_workman_4:
   id: 5958
-barge_workman_1:
+barge_workman:
   id: 5959
 barge_workman_2:
   id: 5960
@@ -10862,7 +10862,7 @@ ed_wood:
   id: 5964
 orlando_smith:
   id: 5965
-natural_historian_1:
+natural_historian:
   id: 5966
 natural_historian_2:
   id: 5967
@@ -10902,7 +10902,7 @@ schoolgirl_6:
   id: 5984
 schoolgirl_7:
   id: 5985
-armoured_cow_thing_1:
+armoured_cow_thing:
   id: 5986
 sylas:
   id: 5987
@@ -10910,7 +10910,7 @@ miazrqa:
   id: 5988
 grimgnash:
   id: 5989
-rupert_the_beard_1:
+rupert_the_beard:
   id: 5990
 drain_pipe:
   id: 5991
@@ -11030,9 +11030,9 @@ desert_wolf_3:
   id: 6051
 ice_wolf_8:
   id: 6052
-ninja_impling_1:
+ninja_impling:
   id: 6053
-dragon_impling_1:
+dragon_impling:
   id: 6054
 baby_impling_2:
   id: 6055
@@ -11074,13 +11074,13 @@ cyclops_7:
   id: 6081
 captain_ned:
   id: 6084
-cabin_boy_jenkins_1:
+cabin_boy_jenkins:
   id: 6085
 cabin_boy_jenkins_2:
   id: 6086
 elvarg_2:
   id: 6087
-zombie_rat_1:
+zombie_rat:
   id: 6088
 zombie_rat_2:
   id: 6089
@@ -11170,7 +11170,7 @@ goblin_53:
   id: 6133
 dunce:
   id: 6134
-town_crier_1:
+town_crier:
   id: 6135
 town_crier_2:
   id: 6136
@@ -11184,7 +11184,7 @@ squire_(intermediate):
   id: 6140
 squire_(veteran):
   id: 6141
-portal_1:
+portal:
   id: 6142
 portal_2:
   id: 6143
@@ -11262,15 +11262,15 @@ david_2:
   id: 6179
 anna_3:
   id: 6180
-court_judge_1:
+court_judge:
   id: 6181
-jury_1:
+jury:
   id: 6182
 guard_96:
   id: 6183
 guard_97:
   id: 6184
-prosecutor_1:
+prosecutor:
   id: 6185
 morgan_le_faye_2:
   id: 6187
@@ -11280,17 +11280,17 @@ black_knight_7:
   id: 6189
 guard_98:
   id: 6190
-stomp_1:
+stomp:
   id: 6198
 banker_37:
   id: 6200
 knight_3:
   id: 6201
-k'ril_tsutsaroth:
+kril_tsutsaroth:
   id: 6203
 tstanon_karlak:
   id: 6204
-zakl'n_gritch:
+zakln_gritch:
   id: 6206
 balfrug_kreeyath:
   id: 6208
@@ -11308,17 +11308,17 @@ bloodveld_3:
   id: 6215
 pyrefiend_5:
   id: 6216
-big_rock_1:
+big_rock:
   id: 6217
 gorak_2:
   id: 6218
-spiritual_warrior_1:
+spiritual_warrior:
   id: 6219
-spiritual_ranger_1:
+spiritual_ranger:
   id: 6220
-spiritual_mage_1:
+spiritual_mage:
   id: 6221
-kree'arra:
+kreearra:
   id: 6222
 wingman_skree:
   id: 6223
@@ -11332,7 +11332,7 @@ spiritual_ranger_2:
   id: 6230
 spiritual_mage_2:
   id: 6231
-aviansie_1:
+aviansie:
   id: 6232
 aviansie_2:
   id: 6233
@@ -11362,7 +11362,7 @@ aviansie_14:
   id: 6245
 aviansie_15:
   id: 6246
-commander_zilyana_1:
+commander_zilyana:
   id: 6247
 starlight:
   id: 6248
@@ -11378,7 +11378,7 @@ spiritual_ranger_3:
   id: 6256
 spiritual_mage_3:
   id: 6257
-knight_of_saradomin_1:
+knight_of_saradomin:
   id: 6258
 knight_of_saradomin_2:
   id: 6259
@@ -11398,7 +11398,7 @@ cyclops_8:
   id: 6269
 cyclops_9:
   id: 6270
-ork_1:
+ork:
   id: 6271
 ork_2:
   id: 6272
@@ -11424,7 +11424,7 @@ goblin_57:
   id: 6282
 goblin_58:
   id: 6283
-warped_terrorbird_1:
+warped_terrorbird:
   id: 6285
 warped_terrorbird_2:
   id: 6286
@@ -11446,7 +11446,7 @@ warped_terrorbird_10:
   id: 6294
 warped_terrorbird_11:
   id: 6295
-warped_tortoise_1:
+warped_tortoise:
   id: 6296
 warped_tortoise_2:
   id: 6297
@@ -11462,11 +11462,11 @@ evil_creature_7:
   id: 6302
 yewnock_the_engineer:
   id: 6303
-bolrie_1:
+bolrie:
   id: 6304
 hazelmere_3:
   id: 6305
-squishy_ghost_1:
+squishy_ghost:
   id: 6306
 advisor:
   id: 6307
@@ -11482,9 +11482,9 @@ evil_creature_8:
   id: 6312
 address_cube_(chaos):
   id: 6313
-guard_no._21_1:
+guard_no._21:
   id: 6314
-guard_no._72_1:
+guard_no._72:
   id: 6315
 guard_no._21_2:
   id: 6316
@@ -11566,25 +11566,25 @@ pirate_45:
   id: 6356
 void_knight_archer:
   id: 6357
-pest_queen_1:
+pest_queen:
   id: 6358
 pest_queen_2:
   id: 6359
 pest_queen_3:
   id: 6360
-captain_korasi_1:
+captain_korasi:
   id: 6361
 eniola:
   id: 6362
-zamorak_warrior_1:
+zamorak_warrior:
   id: 6363
 zamorak_warrior_2:
   id: 6364
-zamorak_ranger_1:
+zamorak_ranger:
   id: 6365
 zamorak_ranger_2:
   id: 6366
-zamorak_mage_1:
+zamorak_mage:
   id: 6367
 zamorak_mage_2:
   id: 6368
@@ -11592,7 +11592,7 @@ cave_lizard:
   id: 6369
 mage_of_zamorak_7:
   id: 6370
-zamorak_crafter_1:
+zamorak_crafter:
   id: 6371
 zamorak_crafter_2:
   id: 6372
@@ -11612,13 +11612,13 @@ giant_ant_worker:
   id: 6379
 giant_ant_soldier:
   id: 6380
-giant_wasp_1:
+giant_wasp:
   id: 6381
 pernicious_parrot:
   id: 6382
 giant_wasp_2:
   id: 6383
-karamjan_jungle_eagle_1:
+karamjan_jungle_eagle:
   id: 6384
 karamjan_jungle_eagle_2:
   id: 6385
@@ -11626,7 +11626,7 @@ bandit_11:
   id: 6388
 gargoyle_3:
   id: 6389
-grim_reaper_1:
+grim_reaper:
   id: 6390
 glough_2:
   id: 6391
@@ -11774,17 +11774,17 @@ goblin_123:
   id: 6466
 goblin_124:
   id: 6467
-skoblin_1:
+skoblin:
   id: 6468
-snothead_1:
+snothead:
   id: 6469
-snailfeet_1:
+snailfeet:
   id: 6470
-mosschin_1:
+mosschin:
   id: 6471
-redeyes_1:
+redeyes:
   id: 6472
-strongbones_1:
+strongbones:
   id: 6473
 snothead_2:
   id: 6474
@@ -11844,7 +11844,7 @@ guard_104:
   id: 6503
 ghost_30:
   id: 6504
-eek_the_spider_1:
+eek_the_spider:
   id: 6506
 knight_of_the_eight-fold_seal:
   id: 6507
@@ -11856,7 +11856,7 @@ jury_2:
   id: 6510
 jury_3:
   id: 6511
-spectator_1:
+spectator:
   id: 6512
 spectator_2:
   id: 6513
@@ -11888,7 +11888,7 @@ relobo_blinyo_(logs):
   id: 6526
 hofuthand_(armour_and_weapons):
   id: 6527
-linza_1:
+linza:
   id: 6530
 linza_2:
   id: 6531
@@ -11912,7 +11912,7 @@ golrana_3:
   id: 6540
 squishy_ghost_3:
   id: 6541
-summer_bonde_1:
+summer_bonde:
   id: 6542
 golrana_4:
   id: 6545
@@ -11942,11 +11942,11 @@ captain_belmondo:
   id: 6563
 gnome_10:
   id: 6564
-grave_marker_1:
+grave_marker:
   id: 6565
-broken_grave_marker_1:
+broken_grave_marker:
   id: 6566
-collapsing_grave_marker_1:
+collapsing_grave_marker:
   id: 6567
 grave_marker_2:
   id: 6568
@@ -11954,11 +11954,11 @@ broken_grave_marker_2:
   id: 6569
 collapsing_grave_marker_2:
   id: 6570
-gravestone_1:
+gravestone:
   id: 6571
-broken_gravestone_1:
+broken_gravestone:
   id: 6572
-collapsing_gravestone_1:
+collapsing_gravestone:
   id: 6573
 gravestone_2:
   id: 6574
@@ -12008,11 +12008,11 @@ broken_armadyl_symbol:
   id: 6596
 collapsing_armadyl_symbol:
   id: 6597
-memorial_stone_1:
+memorial_stone:
   id: 6598
-broken_memorial_stone_1:
+broken_memorial_stone:
   id: 6599
-collapsing_memorial_stone_1:
+collapsing_memorial_stone:
   id: 6600
 memorial_stone_2:
   id: 6601
@@ -12038,7 +12038,7 @@ gnome_pilot:
   id: 6611
 local_gnome_3:
   id: 6612
-mining_tortoise_1:
+mining_tortoise:
   id: 6613
 mining_tortoise_2:
   id: 6614
@@ -12066,7 +12066,7 @@ instruction_cube_(get):
   id: 6625
 odd_machinery:
   id: 6627
-automaton_1:
+automaton:
   id: 6628
 automaton_2:
   id: 6629
@@ -12108,11 +12108,11 @@ dwarf_28:
   id: 6655
 dwarf_29:
   id: 6656
-miner_ancestor_1:
+miner_ancestor:
   id: 6657
-smith_ancestor_1:
+smith_ancestor:
   id: 6658
-warrior_ancestor_1:
+warrior_ancestor:
   id: 6659
 miner_ancestor_2:
   id: 6660
@@ -12124,9 +12124,9 @@ aksel_2:
   id: 6663
 aksel_3:
   id: 6664
-stanky_morgan_1:
+stanky_morgan:
   id: 6667
-flippers_mcgraw_1:
+flippers_mcgraw:
   id: 6668
 bard_roberts_2:
   id: 6669
@@ -12184,15 +12184,15 @@ mi-gor_2:
   id: 6695
 barrelchest_2:
   id: 6696
-young_ralph_1:
+young_ralph:
   id: 6697
-brass_hand_harry_1:
+brass_hand_harry:
   id: 6698
-cap'n_izzy_no-beard_2:
+capn_izzy_no-beard_2:
   id: 6699
 "50%_luke_2":
   id: 6700
-captain_rabid_jack_1:
+captain_rabid_jack:
   id: 6701
 fish_25:
   id: 6702
@@ -12202,9 +12202,9 @@ fish_27:
   id: 6704
 fish_28:
   id: 6705
-fremennik_warrior_1:
+fremennik_warrior:
   id: 6706
-mercenary_leader_1:
+mercenary_leader:
   id: 6707
 mercenary_leader_2:
   id: 6708
@@ -12214,11 +12214,11 @@ mercenary_leader_4:
   id: 6710
 my_arm_7:
   id: 6711
-barrelchest_mk_ii_1:
+barrelchest_mk_ii:
   id: 6712
 zombie_head_2:
   id: 6713
-table_1:
+table:
   id: 6714
 estate_agent_2:
   id: 6715
@@ -12228,7 +12228,7 @@ bill_teach_8:
   id: 6717
 pirate_pete_5:
   id: 6718
-dead_brewer_1:
+dead_brewer:
   id: 6719
 dead_brewer_2:
   id: 6720
@@ -12252,19 +12252,19 @@ zombie_head_9:
   id: 6729
 zombie_head_10:
   id: 6730
-queen_of_snow_1:
+queen_of_snow:
   id: 6731
-meike_1:
+meike:
   id: 6735
-luitger_1:
+luitger:
   id: 6736
-klaas_1:
+klaas:
   id: 6737
-chair_1:
+chair:
   id: 6738
-snow_imp_1:
+snow_imp:
   id: 6739
-snow_1:
+snow:
   id: 6740
 snow_2:
   id: 6741
@@ -12276,13 +12276,13 @@ dwarf_snowman:
   id: 6744
 pirate_snowman:
   id: 6745
-snowman_1:
+snowman:
   id: 6746
-snow_ranger_1:
+snow_ranger:
   id: 6747
-snow_warrior_1:
+snow_warrior:
   id: 6748
-snow_mage_1:
+snow_mage:
   id: 6749
 squishy_ghost_5:
   id: 6750
@@ -12306,7 +12306,7 @@ mummy_22:
   id: 6759
 mummy_23:
   id: 6760
-dried_zombie_1:
+dried_zombie:
   id: 6761
 dried_zombie_2:
   id: 6762
@@ -12344,7 +12344,7 @@ locust_ranger:
   id: 6778
 crocodile_2:
   id: 6779
-scabaras_mage_1:
+scabaras_mage:
   id: 6780
 scabaras_mage_2:
   id: 6781
@@ -12360,7 +12360,7 @@ lead_archaeologist_abigail:
   id: 6786
 assistant_archaeologist_kerner:
   id: 6787
-high_priest_of_scabaras_1:
+high_priest_of_scabaras:
   id: 6788
 high_priest_of_scabaras_2:
   id: 6789
@@ -12370,221 +12370,221 @@ high_priest_of_scabaras_4:
   id: 6791
 squishy_ghost_10:
   id: 6792
-spirit_terrorbird_1:
+spirit_terrorbird:
   id: 6794
 spirit_terrorbird_2:
   id: 6795
-granite_crab_1:
+granite_crab:
   id: 6796
 granite_crab_2:
   id: 6797
-praying_mantis_1:
+praying_mantis:
   id: 6798
 praying_mantis_2:
   id: 6799
-giant_ent_1:
+giant_ent:
   id: 6800
 giant_ent_2:
   id: 6801
-spirit_cobra_1:
+spirit_cobra:
   id: 6802
 spirit_cobra_2:
   id: 6803
-spirit_dagannoth_1:
+spirit_dagannoth:
   id: 6804
 spirit_dagannoth_2:
   id: 6805
-thorny_snail_1:
+thorny_snail:
   id: 6806
 thorny_snail_2:
   id: 6807
-beaver_1:
+beaver:
   id: 6808
-karamthulhu_overlord_1:
+karamthulhu_overlord:
   id: 6809
 karamthulhu_overlord_2:
   id: 6810
-hydra_1:
+hydra:
   id: 6811
 hydra_2:
   id: 6812
-bunyip_1:
+bunyip:
   id: 6813
 bunyip_2:
   id: 6814
-war_tortoise_1:
+war_tortoise:
   id: 6815
 war_tortoise_2:
   id: 6816
 fruit_bat:
   id: 6817
-abyssal_parasite_1:
+abyssal_parasite:
   id: 6818
 abyssal_parasite_2:
   id: 6819
-abyssal_lurker_1:
+abyssal_lurker:
   id: 6820
 abyssal_lurker_2:
   id: 6821
-unicorn_stallion_1:
+unicorn_stallion:
   id: 6822
 unicorn_stallion_2:
   id: 6823
 magpie:
   id: 6824
-dreadfowl_1:
+dreadfowl:
   id: 6825
 dreadfowl_2:
   id: 6826
-stranger_plant_1:
+stranger_plant:
   id: 6827
 stranger_plant_2:
   id: 6828
-spirit_wolf_1:
+spirit_wolf:
   id: 6829
 spirit_wolf_2:
   id: 6830
-desert_wyrm_1:
+desert_wyrm:
   id: 6831
 desert_wyrm_2:
   id: 6832
-evil_turnip_1:
+evil_turnip:
   id: 6833
 evil_turnip_2:
   id: 6834
-vampyre_bat_1:
+vampyre_bat:
   id: 6835
 vampyre_bat_2:
   id: 6836
-spirit_scorpion_1:
+spirit_scorpion:
   id: 6837
 spirit_scorpion_2:
   id: 6838
-arctic_bear_1:
+arctic_bear:
   id: 6839
 arctic_bear_2:
   id: 6840
-spirit_spider_1:
+spirit_spider:
   id: 6841
 spirit_spider_2:
   id: 6842
-bloated_leech_1:
+bloated_leech:
   id: 6843
 bloated_leech_2:
   id: 6844
-honey_badger_1:
+honey_badger:
   id: 6845
 honey_badger_2:
   id: 6846
-albino_rat_1:
+albino_rat:
   id: 6847
 albino_rat_2:
   id: 6848
-granite_lobster_1:
+granite_lobster:
   id: 6849
 granite_lobster_2:
   id: 6850
-macaw_1:
+macaw:
   id: 6851
 macaw_2:
   id: 6852
-bronze_minotaur_1:
+bronze_minotaur:
   id: 6853
 bronze_minotaur_2:
   id: 6854
-iron_minotaur_1:
+iron_minotaur:
   id: 6855
 iron_minotaur_2:
   id: 6856
-steel_minotaur_1:
+steel_minotaur:
   id: 6857
 steel_minotaur_2:
   id: 6858
-mithril_minotaur_1:
+mithril_minotaur:
   id: 6859
 mithril_minotaur_2:
   id: 6860
-adamant_minotaur_1:
+adamant_minotaur:
   id: 6861
 adamant_minotaur_2:
   id: 6862
-rune_minotaur_1:
+rune_minotaur:
   id: 6863
 rune_minotaur_2:
   id: 6864
-smoke_devil_1:
+smoke_devil:
   id: 6865
 smoke_devil_2:
   id: 6866
-bull_ant_1:
+bull_ant:
   id: 6867
 bull_ant_2:
   id: 6868
-wolpertinger_1:
+wolpertinger:
   id: 6869
 wolpertinger_2:
   id: 6870
-compost_mound_1:
+compost_mound:
   id: 6871
 compost_mound_2:
   id: 6872
-pack_yak_1:
+pack_yak:
   id: 6873
 pack_yak_2:
   id: 6874
-spirit_cockatrice_1:
+spirit_cockatrice:
   id: 6875
 spirit_cockatrice_2:
   id: 6876
-spirit_guthatrice_1:
+spirit_guthatrice:
   id: 6877
 spirit_guthatrice_2:
   id: 6878
-spirit_saratrice_1:
+spirit_saratrice:
   id: 6879
 spirit_saratrice_2:
   id: 6880
-spirit_zamatrice_1:
+spirit_zamatrice:
   id: 6881
 spirit_zamatrice_2:
   id: 6882
-spirit_pengatrice_1:
+spirit_pengatrice:
   id: 6883
 spirit_pengatrice_2:
   id: 6884
-spirit_coraxatrice_1:
+spirit_coraxatrice:
   id: 6885
 spirit_coraxatrice_2:
   id: 6886
-spirit_vulatrice_1:
+spirit_vulatrice:
   id: 6887
 spirit_vulatrice_2:
   id: 6888
-barker_toad_1:
+barker_toad:
   id: 6889
 barker_toad_2:
   id: 6890
 penguin_keeper:
   id: 6891
-pet_shop_owner_1:
+pet_shop_owner:
   id: 6892
 pet_shop_owner_2:
   id: 6893
-terrier_1:
+terrier:
   id: 6894
-labrador_1:
+labrador:
   id: 6895
-dalmatian_1:
+dalmatian:
   id: 6896
-bulldog_1:
+bulldog:
   id: 6897
 squishy_ghost_11:
   id: 6898
 giant_rat_16:
   id: 6899
-hatchling_dragon_1:
+hatchling_dragon:
   id: 6900
-baby_dragon_1:
+baby_dragon:
   id: 6901
 hatchling_dragon_2:
   id: 6902
@@ -12598,37 +12598,37 @@ hatchling_dragon_4:
   id: 6906
 baby_dragon_4:
   id: 6907
-baby_penguin_1:
+baby_penguin:
   id: 6908
 penguin_9:
   id: 6909
 penguin_10:
   id: 6910
-raven_chick_1:
+raven_chick:
   id: 6911
-raven_1:
+raven:
   id: 6912
-baby_raccoon_1:
+baby_raccoon:
   id: 6913
 raccoon_4:
   id: 6914
-baby_gecko_1:
+baby_gecko:
   id: 6915
-gecko_1:
+gecko:
   id: 6916
 baby_gecko_2:
   id: 6917
 gecko_2:
   id: 6918
-baby_squirrel_1:
+baby_squirrel:
   id: 6919
 squirrel_4:
   id: 6920
 baby_squirrel_2:
   id: 6921
-baby_chameleon_1:
+baby_chameleon:
   id: 6922
-chameleon_1:
+chameleon:
   id: 6923
 baby_chameleon_2:
   id: 6924
@@ -12666,67 +12666,67 @@ baby_chameleon_10:
   id: 6940
 chameleon_10:
   id: 6941
-baby_monkey_1:
+baby_monkey:
   id: 6942
 monkey_8:
   id: 6943
 baby_monkey_2:
   id: 6944
-vulture_chick_1:
+vulture_chick:
   id: 6945
 vulture_3:
   id: 6946
-baby_giant_crab_1:
+baby_giant_crab:
   id: 6947
-giant_crab_1:
+giant_crab:
   id: 6948
 saradomin_chick:
   id: 6949
 saradomin_bird:
   id: 6950
-saradomin_owl_1:
+saradomin_owl:
   id: 6951
 zamorak_chick:
   id: 6952
 zamorak_bird:
   id: 6953
-zamorak_hawk_1:
+zamorak_hawk:
   id: 6954
 guthix_chick:
   id: 6955
 guthix_bird:
   id: 6956
-guthix_raptor_1:
+guthix_raptor:
   id: 6957
-terrier_puppy_1:
+terrier_puppy:
   id: 6958
 terrier_2:
   id: 6959
-greyhound_puppy_1:
+greyhound_puppy:
   id: 6960
-greyhound_1:
+greyhound:
   id: 6961
-labrador_puppy_1:
+labrador_puppy:
   id: 6962
 labrador_2:
   id: 6963
-dalmatian_puppy_1:
+dalmatian_puppy:
   id: 6964
 dalmatian_2:
   id: 6965
-sheepdog_puppy_1:
+sheepdog_puppy:
   id: 6966
 sheepdog_2:
   id: 6967
 bulldog_2:
   id: 6968
-bulldog_puppy_1:
+bulldog_puppy:
   id: 6969
-pikkupstix_1:
+pikkupstix:
   id: 6970
 pikkupstix_2:
   id: 6971
-druid_1:
+druid:
   id: 6972
 druid_2:
   id: 6973
@@ -12744,7 +12744,7 @@ druid_8:
   id: 6979
 druid_9:
   id: 6980
-druidess_1:
+druidess:
   id: 6981
 druidess_2:
   id: 6982
@@ -12760,13 +12760,13 @@ druidess_7:
   id: 6987
 giant_wolpertinger:
   id: 6990
-ibis_1:
+ibis:
   id: 6991
-spirit_jelly_1:
+spirit_jelly:
   id: 6992
 spirit_jelly_2:
   id: 6993
-spirit_kalphite_1:
+spirit_kalphite:
   id: 6994
 spirit_kalphite_2:
   id: 6995
@@ -12780,7 +12780,7 @@ zombie_head_12:
   id: 6999
 captain_korasi_2:
   id: 7000
-dark_squall_1:
+dark_squall:
   id: 7001
 surok_magis_3:
   id: 7002
@@ -12790,23 +12790,23 @@ fire_giant_8:
   id: 7004
 big_wolf_3:
   id: 7005
-grenwall_1:
+grenwall:
   id: 7010
 grenwall_2:
   id: 7011
-pawya_1:
+pawya:
   id: 7012
 earth_mound:
   id: 7013
 pawya_2:
   id: 7014
-platypus_1:
+platypus:
   id: 7015
 platypus_2:
   id: 7016
 platypus_3:
   id: 7017
-baby_platypus_1:
+baby_platypus:
   id: 7018
 baby_platypus_2:
   id: 7019
@@ -12828,7 +12828,7 @@ patrick_3:
   id: 7027
 penelope:
   id: 7028
-peter_1:
+peter:
   id: 7029
 peanut:
   id: 7030
@@ -12842,27 +12842,27 @@ fishing_spot_66:
   id: 7045
 fishing_spot_67:
   id: 7046
-balnea_1:
+balnea:
   id: 7047
 frawd:
   id: 7048
-ogress_banker_1:
+ogress_banker:
   id: 7049
 ogress_banker_2:
   id: 7050
-chief_tess_1:
+chief_tess:
   id: 7051
 seegud:
   id: 7052
-chargurr_1:
+chargurr:
   id: 7053
 chargurr_2:
   id: 7054
 snurgh:
   id: 7057
-kringk_1:
+kringk:
   id: 7058
-thump_1:
+thump:
   id: 7059
 massage_table:
   id: 7060
@@ -12882,11 +12882,11 @@ snarrl:
   id: 7069
 snarrk:
   id: 7070
-i'rk:
+irk:
   id: 7071
 thuddley:
   id: 7072
-grr'bah:
+grrbah:
   id: 7073
 chomp:
   id: 7074
@@ -12898,11 +12898,11 @@ glum:
   id: 7077
 ogress_champion:
   id: 7078
-ogress_warrior_1:
+ogress_warrior:
   id: 7079
 ogress_warrior_2:
   id: 7080
-ogress_1:
+ogress:
   id: 7081
 ogress_2:
   id: 7082
@@ -12946,7 +12946,7 @@ thug_10:
   id: 7114
 thaki_the_delivery_dwarf:
   id: 7115
-drunken_sailor_1:
+drunken_sailor:
   id: 7116
 drunken_sailor_2:
   id: 7117
@@ -12978,7 +12978,7 @@ farmer_blinkin:
   id: 7131
 mrs._winkin:
   id: 7132
-bork_1:
+bork:
   id: 7133
 bork_2:
   id: 7134
@@ -12986,23 +12986,23 @@ ork_legion:
   id: 7135
 surok_magis_4:
   id: 7136
-dagon'hai_elite:
+dagonhai_elite:
   id: 7137
-dagon'hai_monk_1:
+dagonhai_monk:
   id: 7138
-dagon'hai_monk_2:
+dagonhai_monk_2:
   id: 7139
-dagon'hai_monk_3:
+dagonhai_monk_3:
   id: 7140
-forgotten_ranger_1:
+forgotten_ranger:
   id: 7141
 guard_105:
   id: 7142
 professor_henry:
   id: 7143
-gublinch_jailmate_1:
+gublinch_jailmate:
   id: 7144
-gublinchette_jailmate_1:
+gublinchette_jailmate:
   id: 7145
 gublinchette_jailmate_2:
   id: 7146
@@ -13046,7 +13046,7 @@ villager_12:
   id: 7166
 villager_13:
   id: 7167
-kimberly_1:
+kimberly:
   id: 7168
 arctic_bear_3:
   id: 7169
@@ -13066,9 +13066,9 @@ villager_14:
   id: 7183
 ezekial_lovecraft_2:
   id: 7184
-clive_1:
+clive:
   id: 7185
-katherine_1:
+katherine:
   id: 7186
 katherine_2:
   id: 7187
@@ -13102,7 +13102,7 @@ spider_7:
   id: 7207
 rabbit_12:
   id: 7208
-snail_1:
+snail:
   id: 7209
 baby_monkey_3:
   id: 7210
@@ -13342,127 +13342,127 @@ vulture_chick_6:
   id: 7327
 vulture_8:
   id: 7328
-swamp_titan_1:
+swamp_titan:
   id: 7329
 swamp_titan_2:
   id: 7330
-spirit_mosquito_1:
+spirit_mosquito:
   id: 7331
 spirit_mosquito_2:
   id: 7332
-void_spinner_1:
+void_spinner:
   id: 7333
 void_spinner_2:
   id: 7334
-forge_regent_1:
+forge_regent:
   id: 7335
 forge_regent_2:
   id: 7336
-spirit_larupia_1:
+spirit_larupia:
   id: 7337
 spirit_larupia_2:
   id: 7338
-geyser_titan_1:
+geyser_titan:
   id: 7339
 geyser_titan_2:
   id: 7340
-lava_titan_1:
+lava_titan:
   id: 7341
 lava_titan_2:
   id: 7342
-steel_titan_1:
+steel_titan:
   id: 7343
 steel_titan_2:
   id: 7344
-obsidian_golem_1:
+obsidian_golem:
   id: 7345
 obsidian_golem_2:
   id: 7346
-talon_beast_1:
+talon_beast:
   id: 7347
 talon_beast_2:
   id: 7348
-abyssal_titan_1:
+abyssal_titan:
   id: 7349
 abyssal_titan_2:
   id: 7350
-void_torcher_1:
+void_torcher:
   id: 7351
 void_torcher_2:
   id: 7352
-giant_chinchompa_1:
+giant_chinchompa:
   id: 7353
 giant_chinchompa_2:
   id: 7354
-fire_titan_1:
+fire_titan:
   id: 7355
 fire_titan_2:
   id: 7356
-moss_titan_1:
+moss_titan:
   id: 7357
 moss_titan_2:
   id: 7358
-ice_titan_1:
+ice_titan:
   id: 7359
 ice_titan_2:
   id: 7360
-spirit_tz-kih_1:
+spirit_tz-kih:
   id: 7361
 spirit_tz-kih_2:
   id: 7362
-spirit_graahk_1:
+spirit_graahk:
   id: 7363
 spirit_graahk_2:
   id: 7364
-spirit_kyatt_1:
+spirit_kyatt:
   id: 7365
 spirit_kyatt_2:
   id: 7366
-void_shifter_1:
+void_shifter:
   id: 7367
 void_shifter_2:
   id: 7368
 zombie_head_13:
   id: 7369
-void_ravager_1:
+void_ravager:
   id: 7370
 void_ravager_2:
   id: 7371
-ravenous_locust_1:
+ravenous_locust:
   id: 7372
 ravenous_locust_2:
   id: 7373
 ravenous_locust_3:
   id: 7374
-iron_titan_1:
+iron_titan:
   id: 7375
 iron_titan_2:
   id: 7376
-pyrelord_1:
+pyrelord:
   id: 7377
 pyrelord_2:
   id: 7378
-yeti_1:
+yeti:
   id: 7379
 yeti_2:
   id: 7380
-gnoeals_1:
+gnoeals:
   id: 7381
 gnoeals_2:
   id: 7382
-mysterious_mage_1:
+mysterious_mage:
   id: 7383
 young_brundt:
   id: 7384
 young_mawnis:
   id: 7385
-prince_vargas_1:
+prince_vargas:
   id: 7386
 prince_vargas_2:
   id: 7387
 prince_vargas_3:
   id: 7388
-asleif_hamalsdotter_1:
+asleif_hamalsdotter:
   id: 7389
 nial_swiftfling_2:
   id: 7390
@@ -13480,7 +13480,7 @@ mawnis_burowgar_4:
   id: 7396
 mawnis_burowgar_5:
   id: 7397
-mysterious_shade_1:
+mysterious_shade:
   id: 7398
 bandit_12:
   id: 7399
@@ -13492,21 +13492,21 @@ king_vargas_3:
   id: 7402
 linza_7:
   id: 7407
-easter_bunny_jr_1:
+easter_bunny_jr:
   id: 7410
 easter_bunny_jr_2:
   id: 7411
 easter_bunny_jr_3:
   id: 7412
-fluffy_1:
+fluffy:
   id: 7413
 beny:
   id: 7414
 bubbles:
   id: 7415
-big_ben_1:
+big_ben:
   id: 7416
-easter_bird_1:
+easter_bird:
   id: 7417
 easter_bird_2:
   id: 7418
@@ -13514,13 +13514,13 @@ easter_bird_3:
   id: 7419
 easter_impling:
   id: 7420
-impling_worker_1:
+impling_worker:
   id: 7421
 impling_worker_2:
   id: 7422
 impling_worker_3:
   id: 7424
-impling_manager_1:
+impling_manager:
   id: 7425
 impling_worker_4:
   id: 7426
@@ -13530,15 +13530,15 @@ bandit_14:
   id: 7428
 highwayman_3:
   id: 7443
-sir_owen_1:
+sir_owen:
   id: 7444
 molly_18:
   id: 7445
 molly_19:
   id: 7446
-ali_the_wise_1:
+ali_the_wise:
   id: 7447
-jhallan_1:
+jhallan:
   id: 7448
 jhallan_2:
   id: 7449
@@ -13546,11 +13546,11 @@ jhallan_3:
   id: 7450
 jhallan_4:
   id: 7451
-fire_raft_1:
+fire_raft:
   id: 7452
 fire_raft_2:
   id: 7453
-muspah_1:
+muspah:
   id: 7455
 muspah_2:
   id: 7456
@@ -13562,7 +13562,7 @@ jelly_8:
   id: 7460
 rat_21:
   id: 7461
-erjolf_1:
+erjolf:
   id: 7462
 erjolf_2:
   id: 7463
@@ -13576,7 +13576,7 @@ erjolf_6:
   id: 7467
 ali_the_wise_2:
   id: 7469
-pharaoh_queen_1:
+pharaoh_queen:
   id: 7470
 pharaoh_queen_2:
   id: 7471
@@ -13586,17 +13586,17 @@ pharaoh_queen_4:
   id: 7473
 pharaoh_queen_5:
   id: 7474
-tumeken's_shadow_1:
+tumekens_shadow:
   id: 7475
-tumeken's_shadow_2:
+tumekens_shadow_2:
   id: 7476
-tumeken's_shadow_3:
+tumekens_shadow_3:
   id: 7477
-tumeken's_shadow_4:
+tumekens_shadow_4:
   id: 7479
-tumeken's_shadow_5:
+tumekens_shadow_5:
   id: 7480
-skeleton_looter_1:
+skeleton_looter:
   id: 7481
 skeleton_looter_2:
   id: 7482
@@ -13618,7 +13618,7 @@ skeleton_looter_10:
   id: 7490
 skeleton_looter_11:
   id: 7491
-bandit_looter_1:
+bandit_looter:
   id: 7492
 bandit_looter_2:
   id: 7493
@@ -13630,9 +13630,9 @@ bandit_looter_5:
   id: 7496
 golem_guard:
   id: 7497
-golem's_remains:
+golems_remains:
   id: 7498
-small_scarab_1:
+small_scarab:
   id: 7500
 small_scarab_2:
   id: 7501
@@ -13670,7 +13670,7 @@ khazard_guard_19:
   id: 7519
 khazard_guard_20:
   id: 7520
-lazy_khazard_guard_1:
+lazy_khazard_guard:
   id: 7524
 lazy_khazard_guard_2:
   id: 7525
@@ -13680,17 +13680,17 @@ lazy_khazard_guard_4:
   id: 7527
 khazard_guard_21:
   id: 7528
-lady_servil_1:
+lady_servil:
   id: 7529
 lady_servil_2:
   id: 7530
-jeremy_servil_1:
+jeremy_servil:
   id: 7531
 jeremy_servil_2:
   id: 7532
 jeremy_servil_3:
   id: 7534
-justin_servil_1:
+justin_servil:
   id: 7535
 justin_servil_2:
   id: 7536
@@ -13742,11 +13742,11 @@ chief_zookeeper:
   id: 7581
 kgp_interrogator:
   id: 7582
-captain_marlin_1:
+captain_marlin:
   id: 7583
 captain_marlin_2:
   id: 7584
-office_penguin_1:
+office_penguin:
   id: 7585
 office_penguin_2:
   id: 7586
@@ -13852,11 +13852,11 @@ skeletal_hand:
   id: 7640
 zombie_hand:
   id: 7641
-mutated_bloodveld_1:
+mutated_bloodveld:
   id: 7642
 mutated_bloodveld_2:
   id: 7643
-zaromark_sliver_1:
+zaromark_sliver:
   id: 7644
 zaromark_sliver_2:
   id: 7645
@@ -13876,7 +13876,7 @@ zaromark_sliver_9:
   id: 7652
 zaromark_sliver_10:
   id: 7653
-fistandantilus_1:
+fistandantilus:
   id: 7654
 fistandantilus_2:
   id: 7655
@@ -13896,11 +13896,11 @@ fistandantilus_9:
   id: 7662
 fistandantilus_10:
   id: 7663
-mercenary_adventurer_1:
+mercenary_adventurer:
   id: 7664
 ivan_strom_4:
   id: 7665
-mysterious_person_1:
+mysterious_person:
   id: 7666
 mysterious_person_2:
   id: 7667
@@ -13914,9 +13914,9 @@ mysterious_person_6:
   id: 7671
 flaygian_screwte:
   id: 7672
-mekritus_a'hara_2:
+mekritus_ahara_2:
   id: 7673
-andiess_juip_1:
+andiess_juip:
   id: 7674
 kael_forshaw_2:
   id: 7675
@@ -13982,19 +13982,19 @@ drezel_3:
   id: 7707
 temple_guardian:
   id: 7711
-baby_icefiend_1:
+baby_icefiend:
   id: 7713
 icefiend_2:
   id: 7714
 icefiend_3:
   id: 7715
-professor_arblenap_1:
+professor_arblenap:
   id: 7717
-brother_bordiss_1:
+brother_bordiss:
   id: 7718
 brother_althric_2:
   id: 7719
-drorkar_1:
+drorkar:
   id: 7720
 nurmof_2:
   id: 7721
@@ -14012,7 +14012,7 @@ monk_18:
   id: 7727
 baby_icefiend_2:
   id: 7736
-will_1:
+will:
   id: 7737
 will_2:
   id: 7738
@@ -14020,9 +14020,9 @@ phil:
   id: 7739
 jiggling_crate:
   id: 7740
-forgotten_warrior_1:
+forgotten_warrior:
   id: 7741
-fluffs_1:
+fluffs:
   id: 7742
 fluffs_2:
   id: 7743
@@ -14050,23 +14050,23 @@ tzhaar-xil_6:
   id: 7755
 library_assistant:
   id: 7756
-tzhaar-hur-brekt_1:
+tzhaar-hur-brekt:
   id: 7757
 tzhaar-hur-brekt_2:
   id: 7758
-tzhaar-ket-jok_1:
+tzhaar-ket-jok:
   id: 7759
 tzhaar-ket-jok_2:
   id: 7760
-tzhaar-xil-mor_1:
+tzhaar-xil-mor:
   id: 7761
 tzhaar-xil-mor_2:
   id: 7762
-tzhaar-mej-kol_1:
+tzhaar-mej-kol:
   id: 7763
 tzhaar-mej-kol_2:
   id: 7764
-tzhaar-hur-klag_1:
+tzhaar-hur-klag:
   id: 7765
 tzhaar-hur-klag_2:
   id: 7766
@@ -14076,7 +14076,7 @@ tzhaar-hur_7:
   id: 7768
 tzhaar-hur_8:
   id: 7769
-toktz-ket-dill_1:
+toktz-ket-dill:
   id: 7770
 toktz-ket-dill_2:
   id: 7771
@@ -14116,11 +14116,11 @@ zombie_81:
   id: 7791
 zombie_82:
   id: 7792
-banshee_mistress_1:
+banshee_mistress:
   id: 7793
 banshee_mistress_2:
   id: 7794
-insectoid_assassin_1:
+insectoid_assassin:
   id: 7795
 insectoid_assassin_2:
   id: 7796
@@ -14142,13 +14142,13 @@ aberrant_spectre_8:
   id: 7804
 kurask_minion:
   id: 7805
-mummy_warrior_1:
+mummy_warrior:
   id: 7806
 mummy_warrior_2:
   id: 7807
 mummy_warrior_3:
   id: 7808
-statue_1:
+statue:
   id: 7809
 statue_2:
   id: 7810
@@ -14170,9 +14170,9 @@ sir_owen_2:
   id: 7818
 sir_owen_3:
   id: 7819
-ozan_1:
+ozan:
   id: 7820
-ariane_1:
+ariane:
   id: 7821
 sir_owen_4:
   id: 7822
@@ -14182,7 +14182,7 @@ osman_6:
   id: 7824
 "50_ships_mufassah":
   id: 7825
-karamthulhu_1:
+karamthulhu:
   id: 7826
 karamthulhu_2:
   id: 7827
@@ -14190,7 +14190,7 @@ giant_lobster_4:
   id: 7828
 giant_crab_6:
   id: 7829
-customs_sergeant_1:
+customs_sergeant:
   id: 7830
 customs_sergeant_2:
   id: 7831
@@ -14214,13 +14214,13 @@ heavy-handed_harry:
   id: 7840
 penguin_15:
   id: 7841
-locker_officer_1:
+locker_officer:
   id: 7842
 locker_officer_2:
   id: 7843
-ex-ex-parrot_1:
+ex-ex-parrot:
   id: 7844
-pirate_impling_1:
+pirate_impling:
   id: 7845
 pirate_impling_2:
   id: 7846
@@ -14234,7 +14234,7 @@ pirate_52:
   id: 7850
 lizzie:
   id: 7851
-cap'n_izzy_no-beard_3:
+capn_izzy_no-beard_3:
   id: 7852
 ralph:
   id: 7853
@@ -14256,7 +14256,7 @@ fishing_spot_70:
   id: 7863
 sir_owen_5:
   id: 7864
-spirit_impling_1:
+spirit_impling:
   id: 7866
 pirate_impling_3:
   id: 7867
@@ -14322,9 +14322,9 @@ captain_korasi_3:
   id: 7900
 ariane_3:
   id: 7901
-zombie_impling_1:
+zombie_impling:
   id: 7902
-kingly_impling_1:
+kingly_impling:
   id: 7903
 spirit_impling_2:
   id: 7904
@@ -14332,15 +14332,15 @@ zombie_impling_2:
   id: 7905
 kingly_impling_2:
   id: 7906
-torsteg_1:
+torsteg:
   id: 7907
-hilda_1:
+hilda:
   id: 7908
 man_24:
   id: 7909
 man_25:
   id: 7910
-tenzing_1:
+tenzing:
   id: 7911
 tenzing_2:
   id: 7912
@@ -14350,7 +14350,7 @@ corpse_spider:
   id: 7914
 warped_fly:
   id: 7915
-crawling_corpse_torso_1:
+crawling_corpse_torso:
   id: 7916
 crawling_corpse_torso_2:
   id: 7917
@@ -14364,7 +14364,7 @@ skeleton_55:
   id: 7921
 warped_bat:
   id: 7922
-corpse_archer_1:
+corpse_archer:
   id: 7923
 corpse_archer_2:
   id: 7924
@@ -14394,17 +14394,17 @@ cook_8:
   id: 7936
 father_aereck_2:
   id: 7937
-sir_vant_1:
+sir_vant:
   id: 7938
 sir_vant_2:
   id: 7939
-carn_1:
+carn:
   id: 7940
 carn_2:
   id: 7941
 sir_vant_3:
   id: 7942
-dragon_1:
+dragon:
   id: 7943
 dragon_2:
   id: 7944
@@ -14416,7 +14416,7 @@ dragon_4:
   id: 7947
 dragon_5:
   id: 7948
-cub_skinweaver_1:
+cub_skinweaver:
   id: 7949
 melee_tutor:
   id: 7950
@@ -14428,15 +14428,15 @@ pikkupstix_4:
   id: 7953
 crafting_tutor:
   id: 7954
-chief_thief_robin_1:
+chief_thief_robin:
   id: 7955
-mining_tutor_1:
+mining_tutor:
   id: 7956
 andelus:
   id: 7957
 orin:
   id: 7958
-smithing_tutor_1:
+smithing_tutor:
   id: 7959
 salen:
   id: 7960
@@ -14444,7 +14444,7 @@ lotheria_seldorina_(deceased):
   id: 7961
 gee_3:
   id: 7962
-spirit_1:
+spirit:
   id: 7963
 ican_haz_(deceased):
   id: 7964
@@ -14454,7 +14454,7 @@ chaos_druid_4:
   id: 7966
 child_14:
   id: 7967
-explorer_jack_1:
+explorer_jack:
   id: 7969
 smithing_tutor_2:
   id: 7970
@@ -14484,19 +14484,19 @@ spirit_11:
   id: 7987
 spirit_12:
   id: 7988
-erik_bonde_1:
+erik_bonde:
   id: 7989
 spirit_13:
   id: 7990
-jallek_lenkin_1:
+jallek_lenkin:
   id: 7991
 spirit_14:
   id: 7992
-meranek_thanatos_1:
+meranek_thanatos:
   id: 7993
 ghostly_warrior:
   id: 7994
-spirit_beast_1:
+spirit_beast:
   id: 7995
 spirit_beast_2:
   id: 7996
@@ -14512,11 +14512,11 @@ jack_4:
   id: 8002
 sarah_2:
   id: 8003
-laura_1:
+laura:
   id: 8004
 laura_2:
   id: 8005
-roger_1:
+roger:
   id: 8006
 child_15:
   id: 8007
@@ -14546,13 +14546,13 @@ portal_17:
   id: 8019
 portal_18:
   id: 8020
-yellow_orb_1:
+yellow_orb:
   id: 8022
 yellow_orb_2:
   id: 8023
 yellow_orb_3:
   id: 8024
-green_orb_1:
+green_orb:
   id: 8026
 green_orb_2:
   id: 8027
@@ -14584,41 +14584,41 @@ wizard_14:
   id: 8040
 imiago:
   id: 8041
-squire_fyre_1:
+squire_fyre:
   id: 8042
 squire_fyre_2:
   id: 8043
-orry_1:
+orry:
   id: 8044
 orry_2:
   id: 8045
-ube_1:
+ube:
   id: 8046
 ube_2:
   id: 8047
-waldo_1:
+waldo:
   id: 8048
 waldo_2:
   id: 8049
-gjalp_1:
+gjalp:
   id: 8050
 gjalp_2:
   id: 8051
-brother_fintan_1:
+brother_fintan:
   id: 8052
 brother_fintan_2:
   id: 8053
-stubthumb_1:
+stubthumb:
   id: 8054
 stubthumb_2:
   id: 8055
 stubthumb_3:
   id: 8056
-doronbol_1:
+doronbol:
   id: 8057
 doronbol_2:
   id: 8058
-crate_1:
+crate:
   id: 8059
 crate_2:
   id: 8060
@@ -14626,7 +14626,7 @@ egg_14:
   id: 8061
 egg_15:
   id: 8062
-nanuq_1:
+nanuq:
   id: 8063
 nanuq_2:
   id: 8064
@@ -14634,21 +14634,21 @@ child_16:
   id: 8077
 maggie:
   id: 8078
-circus_barker_1:
+circus_barker:
   id: 8079
 circus_barker_2:
   id: 8080
 circus_barker_3:
   id: 8081
-agility_assistant_1:
+agility_assistant:
   id: 8082
-magic_assistant_1:
+magic_assistant:
   id: 8083
-ranged_assistant_1:
+ranged_assistant:
   id: 8084
 ringmaster:
   id: 8085
-audience_1:
+audience:
   id: 8086
 audience_2:
   id: 8087
@@ -14682,19 +14682,19 @@ penguin_29:
   id: 8102
 penguin_30:
   id: 8103
-barrel_1:
+barrel:
   id: 8104
-bush_1:
+bush:
   id: 8105
 bush_2:
   id: 8106
-cactus_1:
+cactus:
   id: 8107
 crate_3:
   id: 8108
 rock_4:
   id: 8109
-toadstool_1:
+toadstool:
   id: 8110
 calladin:
   id: 8111
@@ -14722,7 +14722,7 @@ rogue_2:
   id: 8122
 tormented_wraith:
   id: 8125
-dark_energy_core_1:
+dark_energy_core:
   id: 8126
 dark_energy_core_2:
   id: 8127
@@ -14748,7 +14748,7 @@ jallek_lenkin_4:
   id: 8137
 meranek_thanatos_4:
   id: 8138
-hartwin_1:
+hartwin:
   id: 8139
 hartwin_2:
   id: 8140
@@ -14760,11 +14760,11 @@ zombie_85:
   id: 8144
 zombie_86:
   id: 8145
-zemouregal_1:
+zemouregal:
   id: 8146
 zemouregal_2:
   id: 8148
-armoured_zombie_1:
+armoured_zombie:
   id: 8149
 armoured_zombie_2:
   id: 8150
@@ -14796,17 +14796,17 @@ armoured_zombie_15:
   id: 8163
 armoured_zombie_16:
   id: 8164
-sharathteerk_1:
+sharathteerk:
   id: 8165
 sharathteerk_2:
   id: 8167
-arrav_1:
+arrav:
   id: 8168
 arrav_2:
   id: 8169
 ramarno:
   id: 8170
-dimintheis_1:
+dimintheis:
   id: 8171
 dimintheis_2:
   id: 8172
@@ -14826,11 +14826,11 @@ ellamaria_3:
   id: 8179
 traiborn_2:
   id: 8180
-fenkenstrain's_monster_2:
+fenkenstrains_monster_2:
   id: 8181
 wise_old_man_9:
   id: 8182
-acrobat_1:
+acrobat:
   id: 8185
 acrobat_2:
   id: 8186
@@ -14900,11 +14900,11 @@ wily_cat_7:
   id: 8218
 guardian_of_armadyl_3:
   id: 8226
-head_mystic_1:
+head_mystic:
   id: 8227
 rewards_mystic:
   id: 8228
-mystic_1:
+mystic:
   id: 8229
 mystic_2:
   id: 8230
@@ -14926,27 +14926,27 @@ mystic_8:
   id: 8238
 head_mystic_2:
   id: 8239
-clay_familiar_(class_1)_1:
+clay_familiar_(class_1):
   id: 8240
 clay_familiar_(class_1)_2:
   id: 8241
-clay_familiar_(class_2)_1:
+clay_familiar_(class_2):
   id: 8242
 clay_familiar_(class_2)_2:
   id: 8243
-clay_familiar_(class_3)_1:
+clay_familiar_(class_3):
   id: 8244
 clay_familiar_(class_3)_2:
   id: 8245
-clay_familiar_(class_4)_1:
+clay_familiar_(class_4):
   id: 8246
 clay_familiar_(class_4)_2:
   id: 8247
-clay_familiar_(class_5)_1:
+clay_familiar_(class_5):
   id: 8248
 clay_familiar_(class_5)_2:
   id: 8249
-grindxplox_1:
+grindxplox:
   id: 8250
 grindxplox_2:
   id: 8251
@@ -14964,17 +14964,17 @@ harrallak_menarous_2:
   id: 8268
 yadech_strongarm:
   id: 8270
-turael_1:
+turael:
   id: 8273
-mazchna_1:
+mazchna:
   id: 8274
-duradel_1:
+duradel:
   id: 8275
 cyrisus_9:
   id: 8279
 sloane_2:
   id: 8280
-balance_elemental_1:
+balance_elemental:
   id: 8281
 balance_elemental_2:
   id: 8282
@@ -14984,7 +14984,7 @@ balance_elemental_4:
   id: 8284
 balance_elemental_5:
   id: 8285
-undead_hero_1:
+undead_hero:
   id: 8286
 undead_hero_2:
   id: 8287
@@ -15036,7 +15036,7 @@ duradel_2:
   id: 8310
 sloane_3:
   id: 8311
-elite_dark_warrior_1:
+elite_dark_warrior:
   id: 8312
 elite_dark_warrior_2:
   id: 8313
@@ -15044,7 +15044,7 @@ elite_dark_warrior_3:
   id: 8314
 elite_dark_warrior_4:
   id: 8315
-elite_dark_ranger_1:
+elite_dark_ranger:
   id: 8316
 elite_dark_ranger_2:
   id: 8317
@@ -15052,7 +15052,7 @@ elite_dark_ranger_3:
   id: 8318
 elite_dark_ranger_4:
   id: 8319
-elite_dark_mage_1:
+elite_dark_mage:
   id: 8320
 elite_dark_mage_2:
   id: 8321
@@ -15060,7 +15060,7 @@ elite_dark_mage_3:
   id: 8322
 elite_dark_mage_4:
   id: 8323
-elite_black_knight_1:
+elite_black_knight:
   id: 8324
 elite_black_knight_2:
   id: 8325
@@ -15074,7 +15074,7 @@ elite_black_knight_6:
   id: 8329
 elite_black_knight_7:
   id: 8330
-peleas_1:
+peleas:
   id: 8331
 guardian_of_armadyl_4:
   id: 8332
@@ -15082,15 +15082,15 @@ guardian_of_armadyl_5:
   id: 8333
 mercenary_axeman:
   id: 8334
-mercenary_mage_1:
+mercenary_mage:
   id: 8335
-idria_1:
+idria:
   id: 8336
 idria_2:
   id: 8337
-akrisae_1:
+akrisae:
   id: 8338
-shady_stranger_1:
+shady_stranger:
   id: 8339
 shady_stranger_2:
   id: 8340
@@ -15104,7 +15104,7 @@ local_thug:
   id: 8346
 local_mage:
   id: 8348
-tormented_demon_1:
+tormented_demon:
   id: 8349
 tormented_demon_2:
   id: 8350
@@ -15140,7 +15140,7 @@ tormented_demon_17:
   id: 8365
 tormented_demon_18:
   id: 8366
-undead_troll_1:
+undead_troll:
   id: 8377
 undead_troll_2:
   id: 8378
@@ -15172,29 +15172,29 @@ undead_troll_15:
   id: 8391
 undead_troll_16:
   id: 8392
-vasador_1:
+vasador:
   id: 8393
-valator_1:
+valator:
   id: 8394
-vaasdor_1:
+vaasdor:
   id: 8395
-varosad_1:
+varosad:
   id: 8396
-verisad_1:
+verisad:
   id: 8397
-vudisor_1:
+vudisor:
   id: 8398
-vlatoad_1:
+vlatoad:
   id: 8399
-vedolas_1:
+vedolas:
   id: 8400
-vundiar_1:
+vundiar:
   id: 8401
-versita_1:
+versita:
   id: 8402
-vislota_1:
+vislota:
   id: 8403
-vanjuta_1:
+vanjuta:
   id: 8404
 vasador_2:
   id: 8405
@@ -15222,7 +15222,7 @@ vanjuta_2:
   id: 8416
 ivy_sophista:
   id: 8417
-thaerisk_cemphier_1:
+thaerisk_cemphier:
   id: 8418
 thaerisk_cemphier_2:
   id: 8419
@@ -15232,7 +15232,7 @@ assassin_3:
   id: 8423
 mithril_dragon_2:
   id: 8424
-dragon_head_1:
+dragon_head:
   id: 8425
 dragon_head_2:
   id: 8426
@@ -15242,7 +15242,7 @@ khazard_launderer:
   id: 8428
 zombie_head_18:
   id: 8429
-silif_1:
+silif:
   id: 8430
 silif_2:
   id: 8431
@@ -15256,7 +15256,7 @@ shady_stranger_4:
   id: 8435
 suspicious_outsider:
   id: 8436
-elite_khazard_guard_1:
+elite_khazard_guard:
   id: 8437
 elite_khazard_guard_2:
   id: 8438
@@ -15294,7 +15294,7 @@ light_creature_4:
   id: 8454
 light_creature_5:
   id: 8455
-druid_spirit_1:
+druid_spirit:
   id: 8456
 druid_spirit_2:
   id: 8457
@@ -15328,15 +15328,15 @@ hazelmere_5:
   id: 8489
 hazelmere_6:
   id: 8490
-broav_1:
+broav:
   id: 8491
-sithaph_1:
+sithaph:
   id: 8493
-strisath_1:
+strisath:
   id: 8494
-sakirth_1:
+sakirth:
   id: 8495
-hazelmere's_hat:
+hazelmeres_hat:
   id: 8496
 lucien_4:
   id: 8497
@@ -15344,9 +15344,9 @@ lazy_khazard_guard_5:
   id: 8498
 thanksgiving_turkey:
   id: 8499
-cook's_brother_2:
+cooks_brother_2:
   id: 8500
-turkey_1:
+turkey:
   id: 8501
 cactus_2:
   id: 8502
@@ -15378,7 +15378,7 @@ yeti_3:
   id: 8515
 yeti_4:
   id: 8516
-jack_frost_1:
+jack_frost:
   id: 8517
 jack_frost_2:
   id: 8518
@@ -15386,17 +15386,17 @@ jack_frost_3:
   id: 8519
 jack_frost_4:
   id: 8520
-pyramid_block_1:
+pyramid_block:
   id: 8521
 pyramid_block_2:
   id: 8522
-competition_judge_1:
+competition_judge:
   id: 8523
 competition_judge_2:
   id: 8524
-zimberfizz_1:
+zimberfizz:
   id: 8526
-nomad_1:
+nomad:
   id: 8528
 nomad_2:
   id: 8529
@@ -15420,9 +15420,9 @@ snow_imp_4:
   id: 8538
 queen_of_snow_2:
   id: 8539
-santa_claus_1:
+santa_claus:
   id: 8540
-head_snow_imp_1:
+head_snow_imp:
   id: 8541
 head_snow_imp_2:
   id: 8542
@@ -15436,11 +15436,11 @@ balance_elemental_6:
   id: 8546
 wounded_phoenix:
   id: 8547
-phoenix_1:
+phoenix:
   id: 8548
 phoenix_2:
   id: 8549
-phoenix_eggling_1:
+phoenix_eggling:
   id: 8550
 phoenix_eggling_2:
   id: 8551
@@ -15450,27 +15450,27 @@ priest_of_guthix:
   id: 8555
 brian_twitcher:
   id: 8556
-lesser_reborn_warrior_1:
+lesser_reborn_warrior:
   id: 8557
 lesser_reborn_warrior_2:
   id: 8558
-greater_reborn_warrior_1:
+greater_reborn_warrior:
   id: 8559
 greater_reborn_warrior_2:
   id: 8560
-lesser_reborn_ranger_1:
+lesser_reborn_ranger:
   id: 8561
 lesser_reborn_ranger_2:
   id: 8562
-greater_reborn_ranger_1:
+greater_reborn_ranger:
   id: 8563
 greater_reborn_ranger_2:
   id: 8564
-lesser_reborn_mage_1:
+lesser_reborn_mage:
   id: 8565
 lesser_reborn_mage_2:
   id: 8566
-greater_reborn_mage_1:
+greater_reborn_mage:
   id: 8567
 greater_reborn_mage_2:
   id: 8568
@@ -15494,7 +15494,7 @@ phoenix_eggling_3:
   id: 8577
 phoenix_eggling_4:
   id: 8578
-karma_the_chameleon_1:
+karma_the_chameleon:
   id: 8580
 karma_the_chameleon_2:
   id: 8581
@@ -15520,9 +15520,9 @@ nomad_6:
   id: 8591
 zimberfizz_4:
   id: 8592
-avatar_of_destruction_1:
+avatar_of_destruction:
   id: 8596
-avatar_of_creation_1:
+avatar_of_creation:
   id: 8597
 pyrefiend_6:
   id: 8598
@@ -15550,17 +15550,17 @@ jelly_10:
   id: 8617
 barricade_7:
   id: 8618
-creeping_hand_1:
+creeping_hand:
   id: 8619
-minitrice_1:
+minitrice:
   id: 8620
-baby_basilisk_1:
+baby_basilisk:
   id: 8621
-baby_kurask_1:
+baby_kurask:
   id: 8622
 ghost_33:
   id: 8623
-abyssal_minion_1:
+abyssal_minion:
   id: 8624
 shark_7:
   id: 8625
@@ -15570,7 +15570,7 @@ shark_9:
   id: 8627
 shark_10:
   id: 8628
-sandwich_lady_1:
+sandwich_lady:
   id: 8629
 sandwich_lady_2:
   id: 8631
@@ -15598,9 +15598,9 @@ dr_jekyll_3:
   id: 8643
 evil_chicken_2:
   id: 8644
-shade_1:
+shade:
   id: 8645
-river_troll_1:
+river_troll:
   id: 8646
 fishing_spot_71:
   id: 8647
@@ -15614,9 +15614,9 @@ ogre_6:
   id: 8658
 ogre_chieftain_3:
   id: 8660
-argax_1:
+argax:
   id: 8661
-korel_1:
+korel:
   id: 8662
 penguin_31:
   id: 8663
@@ -15640,7 +15640,7 @@ polar_bear:
   id: 8675
 jim:
   id: 8676
-chuck_1:
+chuck:
   id: 8678
 chuck_2:
   id: 8679
@@ -15704,7 +15704,7 @@ musician_20:
   id: 8717
 musician_21:
   id: 8718
-drummer_1:
+drummer:
   id: 8719
 drummer_2:
   id: 8720
@@ -15724,29 +15724,29 @@ magic_assistant_2:
   id: 8727
 ranged_assistant_2:
   id: 8728
-dwarf_squad_(light)_(red)_1:
+dwarf_squad_(light)_(red):
   id: 8729
-elf_squad_(light)_(red)_1:
+elf_squad_(light)_(red):
   id: 8730
-goblin_squad_(light)_(red)_1:
+goblin_squad_(light)_(red):
   id: 8731
-dwarf_squad_(light)_(blue)_1:
+dwarf_squad_(light)_(blue):
   id: 8732
-elf_squad_(light)_(blue)_1:
+elf_squad_(light)_(blue):
   id: 8733
-goblin_squad_(light)_(blue)_1:
+goblin_squad_(light)_(blue):
   id: 8734
 clockwork_cat_4:
   id: 8736
-fishbowl_1:
+fishbowl:
   id: 8737
 fishbowl_2:
   id: 8738
 fishbowl_3:
   id: 8739
-pet_rock_1:
+pet_rock:
   id: 8741
-lieutenant_brae_1:
+lieutenant_brae:
   id: 8749
 lieutenant_brae_2:
   id: 8751
@@ -15766,7 +15766,7 @@ commander_veldaban_7:
   id: 8762
 forgotten_warrior_2:
   id: 8763
-veldaban_1:
+veldaban:
   id: 8766
 commander_veldaban_8:
   id: 8767
@@ -15774,7 +15774,7 @@ black_guard_10:
   id: 8768
 black_guard_11:
   id: 8769
-chaos_dwogre_1:
+chaos_dwogre:
   id: 8771
 black_guard_12:
   id: 8772
@@ -15782,7 +15782,7 @@ black_guard_13:
   id: 8773
 black_guard_14:
   id: 8774
-chaos_dwarf_hand_cannoneer_1:
+chaos_dwarf_hand_cannoneer:
   id: 8776
 chaos_dwarf_hand_cannoneer_2:
   id: 8777
@@ -15790,7 +15790,7 @@ chaos_dwarf_3:
   id: 8778
 chaos_dwarf_4:
   id: 8779
-black_guard_crossbowdwarf_1:
+black_guard_crossbowdwarf:
   id: 8781
 black_guard_crossbowdwarf_2:
   id: 8782
@@ -15814,7 +15814,7 @@ chaos_dwarf_8:
   id: 8793
 red_axe_director_5:
   id: 8794
-elf_squad_(heavy)_(red)_1:
+elf_squad_(heavy)_(red):
   id: 8795
 elf_squad_(heavy)_(red)_2:
   id: 8796
@@ -15834,7 +15834,7 @@ prisoner_3:
   id: 8803
 prisoner_4:
   id: 8804
-elf_squad_(heavy)_(green)_1:
+elf_squad_(heavy)_(green):
   id: 8805
 elf_squad_(heavy)_(green)_2:
   id: 8806
@@ -15852,27 +15852,27 @@ commander_veldaban_9:
   id: 8812
 trade_floor_guard:
   id: 8813
-colonel_grenda_1:
+colonel_grenda:
   id: 8814
-elf_squad_(heavy)_(blue)_1:
+elf_squad_(heavy)_(blue):
   id: 8815
 elf_squad_(heavy)_(blue)_2:
   id: 8816
 colonel_grenda_2:
   id: 8818
-supreme_commander_1:
+supreme_commander:
   id: 8819
 supreme_commander_2:
   id: 8820
 commander_veldaban_10:
   id: 8821
-orange_flame_director_1:
+orange_flame_director:
   id: 8822
 orange_flame_secretary:
   id: 8823
 trader_17:
   id: 8824
-elf_squad_(heavy)_(yellow)_1:
+elf_squad_(heavy)_(yellow):
   id: 8825
 elf_squad_(heavy)_(yellow)_2:
   id: 8826
@@ -15882,7 +15882,7 @@ giant_rat_17:
   id: 8828
 giant_rat_18:
   id: 8829
-taevas_1:
+taevas:
   id: 8830
 living_rock_protector:
   id: 8832
@@ -15894,7 +15894,7 @@ elf_squad_(light)_(red)_2:
   id: 8835
 elf_squad_(light)_(red)_3:
   id: 8836
-living_rock_remains_1:
+living_rock_remains:
   id: 8837
 living_rock_remains_2:
   id: 8838
@@ -15906,7 +15906,7 @@ cavefish_shoal:
   id: 8841
 rocktail_shoal:
   id: 8842
-elf_squad_(light)_(green)_1:
+elf_squad_(light)_(green):
   id: 8845
 elf_squad_(light)_(green)_2:
   id: 8846
@@ -15940,11 +15940,11 @@ dragon_9:
   id: 8861
 goblin_133:
   id: 8862
-roddeck_1:
+roddeck:
   id: 8863
 hank:
   id: 8864
-elf_squad_(light)_(yellow)_1:
+elf_squad_(light)_(yellow):
   id: 8865
 elf_squad_(light)_(yellow)_2:
   id: 8866
@@ -16006,7 +16006,7 @@ target_3:
   id: 8903
 overseer:
   id: 8904
-guardian_1:
+guardian:
   id: 8906
 argax_2:
   id: 8907
@@ -16014,7 +16014,7 @@ arianwyn_2:
   id: 8913
 arianwyn_3:
   id: 8914
-junior_cadet_mal_1:
+junior_cadet_mal:
   id: 8917
 junior_cadet_mal_2:
   id: 8918
@@ -16060,11 +16060,11 @@ mourner_18:
   id: 8953
 operator_lil:
   id: 8954
-crystal_tree_1:
+crystal_tree:
   id: 8956
 crystal_tree_2:
   id: 8957
-crystal_core_1:
+crystal_core:
   id: 8958
 operator_dor:
   id: 8959
@@ -16088,7 +16088,7 @@ registrar_5:
   id: 8968
 junior_cadet_mina:
   id: 8969
-dwarf_squad_(heavy)_(red)_1:
+dwarf_squad_(heavy)_(red):
   id: 8970
 dwarf_squad_(heavy)_(red)_2:
   id: 8971
@@ -16106,7 +16106,7 @@ grim_reaper_3:
   id: 8977
 spider_9:
   id: 8979
-dwarf_squad_(heavy)_(green)_1:
+dwarf_squad_(heavy)_(green):
   id: 8980
 dwarf_squad_(heavy)_(green)_2:
   id: 8981
@@ -16122,11 +16122,11 @@ banshee_champion:
   id: 8986
 aberrant_spectre_champion:
   id: 8987
-mummy_champion_1:
+mummy_champion:
   id: 8988
 mummy_champion_2:
   id: 8989
-dwarf_squad_(heavy)_(blue)_1:
+dwarf_squad_(heavy)_(blue):
   id: 8990
 dwarf_squad_(heavy)_(blue)_2:
   id: 8991
@@ -16136,7 +16136,7 @@ leprechaun_champion:
   id: 8993
 imp_5:
   id: 8994
-banner_carrier_1:
+banner_carrier:
   id: 8995
 banner_carrier_2:
   id: 8996
@@ -16146,7 +16146,7 @@ banner_carrier_4:
   id: 8998
 banner_carrier_5:
   id: 8999
-dwarf_squad_(heavy)_(yellow)_1:
+dwarf_squad_(heavy)_(yellow):
   id: 9000
 dwarf_squad_(heavy)_(yellow)_2:
   id: 9001
@@ -16186,7 +16186,7 @@ banner_carrier_20:
   id: 9018
 banner_carrier_21:
   id: 9019
-dwarf_squad_(light)_(green)_1:
+dwarf_squad_(light)_(green):
   id: 9020
 dwarf_squad_(light)_(green)_2:
   id: 9021
@@ -16214,11 +16214,11 @@ banner_carrier_30:
   id: 9032
 banner_carrier_31:
   id: 9033
-cook's_brother_3:
+cooks_brother_3:
   id: 9038
 turkey_2:
   id: 9039
-dwarf_squad_(light)_(yellow)_1:
+dwarf_squad_(light)_(yellow):
   id: 9040
 dwarf_squad_(light)_(yellow)_2:
   id: 9041
@@ -16236,7 +16236,7 @@ digsite_workman_5:
   id: 9049
 forgotten_warrior_3:
   id: 9051
-ice_demon_1:
+ice_demon:
   id: 9052
 altar:
   id: 9053
@@ -16250,7 +16250,7 @@ waterfiend_5:
   id: 9058
 waterfiend_6:
   id: 9059
-lotheria_seldorina_1:
+lotheria_seldorina:
   id: 9062
 lotheria_seldorina_2:
   id: 9063
@@ -16264,7 +16264,7 @@ icefiend_6:
   id: 9068
 icefiend_7:
   id: 9069
-goblin_squad_(heavy)_(red)_1:
+goblin_squad_(heavy)_(red):
   id: 9070
 goblin_squad_(heavy)_(red)_2:
   id: 9071
@@ -16272,7 +16272,7 @@ icefiend_8:
   id: 9072
 lotheria_seldorina_4:
   id: 9073
-ican_haz_1:
+ican_haz:
   id: 9074
 ican_haz_2:
   id: 9075
@@ -16284,7 +16284,7 @@ waterfiend_8:
   id: 9078
 zaros:
   id: 9079
-goblin_squad_(heavy)_(green)_1:
+goblin_squad_(heavy)_(green):
   id: 9080
 goblin_squad_(heavy)_(green)_2:
   id: 9081
@@ -16292,7 +16292,7 @@ monk_of_zamorak_8:
   id: 9082
 fly:
   id: 9083
-kuradal_1:
+kuradal:
   id: 9084
 kuradal_2:
   id: 9085
@@ -16300,11 +16300,11 @@ abyssal_demon_3:
   id: 9086
 gargoyle_4:
   id: 9087
-queen_sigrid_1:
+queen_sigrid:
   id: 9088
 dagannoth_sentinel:
   id: 9089
-goblin_squad_(heavy)_(blue)_1:
+goblin_squad_(heavy)_(blue):
   id: 9090
 goblin_squad_(heavy)_(blue)_2:
   id: 9091
@@ -16314,7 +16314,7 @@ baba_yaga_2:
   id: 9093
 baba_yaga_3:
   id: 9094
-silas_1:
+silas:
   id: 9095
 wallasalki_3:
   id: 9096
@@ -16324,7 +16324,7 @@ dagannoth_17:
   id: 9098
 king_vargas_4:
   id: 9099
-goblin_squad_(heavy)_(yellow)_1:
+goblin_squad_(heavy)_(yellow):
   id: 9100
 goblin_squad_(heavy)_(yellow)_2:
   id: 9101
@@ -16362,7 +16362,7 @@ brundt_the_chieftain_4:
   id: 9118
 koschei_the_deathless_5:
   id: 9119
-goblin_squad_(light)_(green)_1:
+goblin_squad_(light)_(green):
   id: 9120
 goblin_squad_(light)_(green)_2:
   id: 9121
@@ -16400,7 +16400,7 @@ queen_sigrid_2:
   id: 9138
 brundt_the_chieftain_6:
   id: 9139
-goblin_squad_(light)_(yellow)_1:
+goblin_squad_(light)_(yellow):
   id: 9140
 goblin_squad_(light)_(yellow)_2:
   id: 9141
@@ -16458,11 +16458,11 @@ sparky:
   id: 9170
 aquanite:
   id: 9172
-odd_old_man_1:
+odd_old_man:
   id: 9173
 odd_old_man_2:
   id: 9174
-skeletal_horror_1:
+skeletal_horror:
   id: 9176
 skeletal_horror_2:
   id: 9177
@@ -16730,15 +16730,15 @@ skeleton_57:
   id: 9308
 skeleton_58:
   id: 9309
-lola_wut_1:
+lola_wut:
   id: 9310
-astrid's_pyre_ship_1:
+astrids_pyre_ship:
   id: 9311
-brand's_pyre_ship_1:
+brands_pyre_ship:
   id: 9312
-astrid's_pyre_ship_2:
+astrids_pyre_ship_2:
   id: 9313
-brand's_pyre_ship_2:
+brands_pyre_ship_2:
   id: 9314
 brundt_the_chieftain_7:
   id: 9315
@@ -16746,7 +16746,7 @@ king_vargas_7:
   id: 9316
 queen_sigrid_4:
   id: 9317
-eir_1:
+eir:
   id: 9318
 asleif_hamalsdotter_3:
   id: 9319
@@ -16814,7 +16814,7 @@ armour:
   id: 9354
 lola_wut_5:
   id: 9355
-count_draynor_1:
+count_draynor:
   id: 9356
 count_draynor_2:
   id: 9357
@@ -16826,17 +16826,17 @@ gypsy_aris_2:
   id: 9361
 gypsy_aris_3:
   id: 9362
-ebenezer_scourge_1:
+ebenezer_scourge:
   id: 9363
 snow_imp_5:
   id: 9364
 jack_frost_5:
   id: 9365
-tiny_thom_1:
+tiny_thom:
   id: 9366
 cook_9:
   id: 9367
-louis_the_camel_1:
+louis_the_camel:
   id: 9368
 ebenezer_scourge_2:
   id: 9371
@@ -16848,13 +16848,13 @@ snow_imp_8:
   id: 9378
 snow_imp_9:
   id: 9379
-kay_thanxby_1:
+kay_thanxby:
   id: 9380
 kay_thanxby_2:
   id: 9381
-dungeon_spider_1:
+dungeon_spider:
   id: 9382
-partygoer_1:
+partygoer:
   id: 9384
 partygoer_2:
   id: 9385
@@ -16926,7 +16926,7 @@ wizard_dougal:
   id: 9433
 wizard_edvin:
   id: 9434
-rune_guardian_1:
+rune_guardian:
   id: 9436
 decaying_avatar:
   id: 9437
@@ -17028,13 +17028,13 @@ geyser_titan_3:
   id: 9490
 pack_yak_3:
   id: 9491
-pikkenmix_1:
+pikkenmix:
   id: 9492
 pikkenmix_2:
   id: 9493
 raw_shards:
   id: 9494
-rogue_thorny_snail_1:
+rogue_thorny_snail:
   id: 9559
 rogue_thorny_snail_2:
   id: 9560
@@ -17042,7 +17042,7 @@ rogue_thorny_snail_3:
   id: 9561
 rogue_thorny_snail_4:
   id: 9562
-rogue_compost_mound_1:
+rogue_compost_mound:
   id: 9563
 rogue_compost_mound_2:
   id: 9564
@@ -17050,7 +17050,7 @@ rogue_compost_mound_3:
   id: 9565
 rogue_compost_mound_4:
   id: 9566
-rogue_void_spinner_1:
+rogue_void_spinner:
   id: 9567
 rogue_void_spinner_2:
   id: 9568
@@ -17058,7 +17058,7 @@ rogue_void_spinner_3:
   id: 9569
 rogue_void_spinner_4:
   id: 9570
-rogue_evil_turnip_1:
+rogue_evil_turnip:
   id: 9571
 rogue_evil_turnip_2:
   id: 9572
@@ -17066,7 +17066,7 @@ rogue_evil_turnip_3:
   id: 9573
 rogue_evil_turnip_4:
   id: 9574
-rogue_spirit_coraxatrice_1:
+rogue_spirit_coraxatrice:
   id: 9575
 rogue_spirit_coraxatrice_2:
   id: 9576
@@ -17074,7 +17074,7 @@ rogue_spirit_coraxatrice_3:
   id: 9577
 rogue_spirit_coraxatrice_4:
   id: 9578
-rogue_giant_chinchompa_1:
+rogue_giant_chinchompa:
   id: 9579
 rogue_giant_chinchompa_2:
   id: 9580
@@ -17082,7 +17082,7 @@ rogue_giant_chinchompa_3:
   id: 9581
 rogue_giant_chinchompa_4:
   id: 9582
-rogue_spirit_larupia_1:
+rogue_spirit_larupia:
   id: 9583
 rogue_spirit_larupia_2:
   id: 9584
@@ -17090,7 +17090,7 @@ rogue_spirit_larupia_3:
   id: 9585
 rogue_spirit_larupia_4:
   id: 9586
-rogue_stranger_plant_1:
+rogue_stranger_plant:
   id: 9587
 rogue_stranger_plant_2:
   id: 9588
@@ -17098,7 +17098,7 @@ rogue_stranger_plant_3:
   id: 9589
 rogue_stranger_plant_4:
   id: 9590
-rogue_giant_ent_1:
+rogue_giant_ent:
   id: 9591
 rogue_giant_ent_2:
   id: 9592
@@ -17106,7 +17106,7 @@ rogue_giant_ent_3:
   id: 9593
 rogue_giant_ent_4:
   id: 9594
-rogue_ice_titan_1:
+rogue_ice_titan:
   id: 9595
 rogue_ice_titan_2:
   id: 9596
@@ -17114,7 +17114,7 @@ rogue_ice_titan_3:
   id: 9597
 rogue_ice_titan_4:
   id: 9598
-rogue_adamant_minotaur_1:
+rogue_adamant_minotaur:
   id: 9599
 rogue_adamant_minotaur_2:
   id: 9600
@@ -17122,7 +17122,7 @@ rogue_adamant_minotaur_3:
   id: 9601
 rogue_adamant_minotaur_4:
   id: 9602
-rogue_pack_yak_1:
+rogue_pack_yak:
   id: 9603
 rogue_pack_yak_2:
   id: 9604
@@ -17140,7 +17140,7 @@ hellhound_4:
   id: 9610
 skoblin_2:
   id: 9611
-corpse_mage_1:
+corpse_mage:
   id: 9612
 corpse_mage_2:
   id: 9613
@@ -17160,29 +17160,29 @@ corpse_mage_9:
   id: 9620
 corpse_mage_10:
   id: 9621
-dragith_nurn_1:
+dragith_nurn:
   id: 9622
-reese_1:
+reese:
   id: 9623
 reese_2:
   id: 9624
 reese_3:
   id: 9625
-caitlin_1:
+caitlin:
   id: 9626
 caitlin_2:
   id: 9627
-kayle_1:
+kayle:
   id: 9628
 kayle_2:
   id: 9629
-ilona_1:
+ilona:
   id: 9630
 ilona_2:
   id: 9631
-xenia_1:
+xenia:
   id: 9634
-trawler_1:
+trawler:
   id: 9635
 xenia_2:
   id: 9636
@@ -17262,11 +17262,11 @@ fisherman_4:
   id: 9677
 fisherman_5:
   id: 9678
-fisherman's_wife_1:
+fishermans_wife:
   id: 9679
-fisherman's_wife_2:
+fishermans_wife_2:
   id: 9680
-charlie_the_squirrel_1:
+charlie_the_squirrel:
   id: 9681
 fluffy_2:
   id: 9682
@@ -17288,7 +17288,7 @@ hooded_client:
   id: 9691
 trawler_2:
   id: 9692
-jones_1:
+jones:
   id: 9694
 big_ben_2:
   id: 9695
@@ -17308,7 +17308,7 @@ impling_manager_2:
   id: 9704
 impling_manager_3:
   id: 9705
-fremennik_shipmaster_1:
+fremennik_shipmaster:
   id: 9707
 fremennik_shipmaster_2:
   id: 9708
@@ -17316,11 +17316,11 @@ fremennik_warrior_3:
   id: 9709
 fremennik_banker:
   id: 9710
-rewards_trader_1:
+rewards_trader:
   id: 9711
 dungeoneering_tutor:
   id: 9712
-thok,_master_of_dungeoneering_1:
+thok,_master_of_dungeoneering:
   id: 9713
 estrith:
   id: 9714
@@ -17332,13 +17332,13 @@ gull_17:
   id: 9717
 cormorant_3:
   id: 9718
-rook_1:
+rook:
   id: 9719
 lobster:
   id: 9720
 guardian_2:
   id: 9724
-night-gazer_khighorahk_1:
+night-gazer_khighorahk:
   id: 9725
 night-gazer_khighorahk_2:
   id: 9726
@@ -17394,7 +17394,7 @@ night-gazer_khighorahk_27:
   id: 9751
 night-gazer_khighorahk_28:
   id: 9752
-sagittare_1:
+sagittare:
   id: 9753
 sagittare_2:
   id: 9754
@@ -17422,7 +17422,7 @@ sagittare_13:
   id: 9765
 sagittare_14:
   id: 9766
-rammernaut_1:
+rammernaut:
   id: 9767
 rammernaut_2:
   id: 9768
@@ -17570,7 +17570,7 @@ stomp_60:
   id: 9840
 stomp_61:
   id: 9841
-lexicus_runewright_1:
+lexicus_runewright:
   id: 9842
 lexicus_runewright_2:
   id: 9843
@@ -17598,11 +17598,11 @@ lexicus_runewright_13:
   id: 9854
 lexicus_runewright_14:
   id: 9855
-tome_of_strength_1:
+tome_of_strength:
   id: 9856
-tome_of_ranging_1:
+tome_of_ranging:
   id: 9857
-tome_of_magic_1:
+tome_of_magic:
   id: 9858
 tome_of_strength_2:
   id: 9859
@@ -17682,35 +17682,35 @@ tome_of_ranging_14:
   id: 9896
 tome_of_magic_14:
   id: 9897
-har'lakk_the_riftsplitter_1:
+harlakk_the_riftsplitter:
   id: 9898
-har'lakk_the_riftsplitter_2:
+harlakk_the_riftsplitter_2:
   id: 9899
-har'lakk_the_riftsplitter_3:
+harlakk_the_riftsplitter_3:
   id: 9900
-har'lakk_the_riftsplitter_4:
+harlakk_the_riftsplitter_4:
   id: 9901
-har'lakk_the_riftsplitter_5:
+harlakk_the_riftsplitter_5:
   id: 9902
-har'lakk_the_riftsplitter_6:
+harlakk_the_riftsplitter_6:
   id: 9903
-har'lakk_the_riftsplitter_7:
+harlakk_the_riftsplitter_7:
   id: 9904
-har'lakk_the_riftsplitter_8:
+harlakk_the_riftsplitter_8:
   id: 9905
-har'lakk_the_riftsplitter_9:
+harlakk_the_riftsplitter_9:
   id: 9906
-har'lakk_the_riftsplitter_10:
+harlakk_the_riftsplitter_10:
   id: 9907
-har'lakk_the_riftsplitter_11:
+harlakk_the_riftsplitter_11:
   id: 9908
-har'lakk_the_riftsplitter_12:
+harlakk_the_riftsplitter_12:
   id: 9909
-har'lakk_the_riftsplitter_13:
+harlakk_the_riftsplitter_13:
   id: 9910
-har'lakk_the_riftsplitter_14:
+harlakk_the_riftsplitter_14:
   id: 9911
-luminescent_icefiend_1:
+luminescent_icefiend:
   id: 9912
 luminescent_icefiend_2:
   id: 9913
@@ -17744,7 +17744,7 @@ luminescent_icefiend_16:
   id: 9927
 luminescent_icefiend_17:
   id: 9928
-plane-freezer_lakhrahnaz_1:
+plane-freezer_lakhrahnaz:
   id: 9929
 plane-freezer_lakhrahnaz_2:
   id: 9930
@@ -17782,7 +17782,7 @@ plane-freezer_lakhrahnaz_18:
   id: 9946
 plane-freezer_lakhrahnaz_19:
   id: 9947
-gluttonous_behemoth_1:
+gluttonous_behemoth:
   id: 9948
 gluttonous_behemoth_2:
   id: 9949
@@ -17816,7 +17816,7 @@ gluttonous_behemoth_16:
   id: 9963
 gluttonous_behemoth_17:
   id: 9964
-astea_frostweb_1:
+astea_frostweb:
   id: 9965
 astea_frostweb_2:
   id: 9966
@@ -17930,43 +17930,43 @@ astea_frostweb_56:
   id: 10020
 astea_frostweb_57:
   id: 10021
-frozen_adventurer_1:
+frozen_adventurer:
   id: 10022
 frozen_adventurer_2:
   id: 10023
-to'kash_the_bloodchiller_1:
+tokash_the_bloodchiller:
   id: 10024
-to'kash_the_bloodchiller_2:
+tokash_the_bloodchiller_2:
   id: 10025
-to'kash_the_bloodchiller_3:
+tokash_the_bloodchiller_3:
   id: 10026
-to'kash_the_bloodchiller_4:
+tokash_the_bloodchiller_4:
   id: 10027
-to'kash_the_bloodchiller_5:
+tokash_the_bloodchiller_5:
   id: 10028
-to'kash_the_bloodchiller_6:
+tokash_the_bloodchiller_6:
   id: 10029
-to'kash_the_bloodchiller_7:
+tokash_the_bloodchiller_7:
   id: 10030
-to'kash_the_bloodchiller_8:
+tokash_the_bloodchiller_8:
   id: 10031
-to'kash_the_bloodchiller_9:
+tokash_the_bloodchiller_9:
   id: 10032
-to'kash_the_bloodchiller_10:
+tokash_the_bloodchiller_10:
   id: 10033
-to'kash_the_bloodchiller_11:
+tokash_the_bloodchiller_11:
   id: 10034
-to'kash_the_bloodchiller_12:
+tokash_the_bloodchiller_12:
   id: 10035
-to'kash_the_bloodchiller_13:
+tokash_the_bloodchiller_13:
   id: 10036
-to'kash_the_bloodchiller_14:
+tokash_the_bloodchiller_14:
   id: 10037
-to'kash_the_bloodchiller_15:
+tokash_the_bloodchiller_15:
   id: 10038
-to'kash_the_bloodchiller_16:
+tokash_the_bloodchiller_16:
   id: 10039
-icy_bones_1:
+icy_bones:
   id: 10040
 icy_bones_2:
   id: 10041
@@ -18004,7 +18004,7 @@ icy_bones_18:
   id: 10057
 divine_skinweaver:
   id: 10058
-hobgoblin_geomancer_1:
+hobgoblin_geomancer:
   id: 10059
 hobgoblin_geomancer_2:
   id: 10060
@@ -18032,7 +18032,7 @@ hobgoblin_geomancer_13:
   id: 10071
 hobgoblin_geomancer_14:
   id: 10072
-bulwark_beast_1:
+bulwark_beast:
   id: 10073
 bulwark_beast_2:
   id: 10074
@@ -18108,7 +18108,7 @@ linza_9:
   id: 10109
 sir_owen_9:
   id: 10110
-unholy_cursebearer_1:
+unholy_cursebearer:
   id: 10111
 unholy_cursebearer_2:
   id: 10112
@@ -18142,37 +18142,37 @@ unholy_cursebearer_16:
   id: 10126
 unholy_cursebearer_17:
   id: 10127
-bal'lak_the_pummeller_1:
+ballak_the_pummeller:
   id: 10128
-bal'lak_the_pummeller_2:
+ballak_the_pummeller_2:
   id: 10129
-bal'lak_the_pummeller_3:
+ballak_the_pummeller_3:
   id: 10130
-bal'lak_the_pummeller_4:
+ballak_the_pummeller_4:
   id: 10131
-bal'lak_the_pummeller_5:
+ballak_the_pummeller_5:
   id: 10132
-bal'lak_the_pummeller_6:
+ballak_the_pummeller_6:
   id: 10133
-bal'lak_the_pummeller_7:
+ballak_the_pummeller_7:
   id: 10134
-bal'lak_the_pummeller_8:
+ballak_the_pummeller_8:
   id: 10135
-bal'lak_the_pummeller_9:
+ballak_the_pummeller_9:
   id: 10136
-bal'lak_the_pummeller_10:
+ballak_the_pummeller_10:
   id: 10137
-bal'lak_the_pummeller_11:
+ballak_the_pummeller_11:
   id: 10138
-bal'lak_the_pummeller_12:
+ballak_the_pummeller_12:
   id: 10139
-bal'lak_the_pummeller_13:
+ballak_the_pummeller_13:
   id: 10140
-bal'lak_the_pummeller_14:
+ballak_the_pummeller_14:
   id: 10141
-portal_controller_1:
+portal_controller:
   id: 10142
-shadow-forger_ihlakhizan_1:
+shadow-forger_ihlakhizan:
   id: 10143
 shadow-forger_ihlakhizan_2:
   id: 10144
@@ -18222,7 +18222,7 @@ ice_spider_11:
   id: 10166
 ice_spider_12:
   id: 10167
-animated_pickaxe_1:
+animated_pickaxe:
   id: 10168
 animated_pickaxe_2:
   id: 10169
@@ -18806,7 +18806,7 @@ forgotten_warrior_139:
   id: 10458
 forgotten_warrior_140:
   id: 10459
-ice_elemental_1:
+ice_elemental:
   id: 10460
 ice_elemental_2:
   id: 10461
@@ -18860,7 +18860,7 @@ giant_rat_24:
   id: 10485
 giant_rat_25:
   id: 10486
-npc_1:
+npc:
   id: 10487
 npc_2:
   id: 10488
@@ -18984,7 +18984,7 @@ forgotten_warrior_181:
   id: 10547
 forgotten_warrior_182:
   id: 10548
-forgotten_mage_1:
+forgotten_mage:
   id: 10549
 forgotten_mage_2:
   id: 10550
@@ -19296,7 +19296,7 @@ death_spawn_2:
   id: 10703
 edimmu:
   id: 10704
-soulgazer_1:
+soulgazer:
   id: 10705
 hill_giant_7:
   id: 10706
@@ -19374,7 +19374,7 @@ ankou_10:
   id: 10742
 ankou_11:
   id: 10743
-animated_book_1:
+animated_book:
   id: 10744
 animated_book_2:
   id: 10745
@@ -19480,7 +19480,7 @@ thrower_troll_15:
   id: 10795
 thrower_troll_16:
   id: 10796
-brute_1:
+brute:
   id: 10797
 brute_2:
   id: 10798
@@ -19752,7 +19752,7 @@ guard_124:
   id: 10931
 guard_125:
   id: 10932
-seeker_spawn_1:
+seeker_spawn:
   id: 10933
 seeker_spawn_2:
   id: 10934
@@ -19830,13 +19830,13 @@ statue_49:
   id: 10970
 statue_50:
   id: 10971
-broken_statue_1:
+broken_statue:
   id: 10972
 broken_statue_2:
   id: 10973
 broken_statue_3:
   id: 10974
-monolith_1:
+monolith:
   id: 10975
 monolith_2:
   id: 10976
@@ -19890,7 +19890,7 @@ ghost_63:
   id: 11000
 fremennik_scout:
   id: 11001
-damaged_construct_1:
+damaged_construct:
   id: 11002
 damaged_construct_2:
   id: 11003
@@ -20098,123 +20098,123 @@ megamastyx_corpse:
   id: 11104
 tyrannomastyx_corpse:
   id: 11105
-cub_bloodrager_1:
+cub_bloodrager:
   id: 11106
 cub_bloodrager_2:
   id: 11107
-little_bloodrager_1:
+little_bloodrager:
   id: 11108
 little_bloodrager_2:
   id: 11109
-na￯ve_bloodrager_1:
+na￯ve_bloodrager:
   id: 11110
 na￯ve_bloodrager_2:
   id: 11111
-keen_bloodrager_1:
+keen_bloodrager:
   id: 11112
 keen_bloodrager_2:
   id: 11113
-brave_bloodrager_1:
+brave_bloodrager:
   id: 11114
 brave_bloodrager_2:
   id: 11115
-brah_bloodrager_1:
+brah_bloodrager:
   id: 11116
 brah_bloodrager_2:
   id: 11117
-naabe_bloodrager_1:
+naabe_bloodrager:
   id: 11118
 naabe_bloodrager_2:
   id: 11119
-wise_bloodrager_1:
+wise_bloodrager:
   id: 11120
 wise_bloodrager_2:
   id: 11121
-adept_bloodrager_1:
+adept_bloodrager:
   id: 11122
 adept_bloodrager_2:
   id: 11123
-sachem_bloodrager_1:
+sachem_bloodrager:
   id: 11124
 sachem_bloodrager_2:
   id: 11125
-cub_stormbringer_1:
+cub_stormbringer:
   id: 11126
 cub_stormbringer_2:
   id: 11127
-little_stormbringer_1:
+little_stormbringer:
   id: 11128
 little_stormbringer_2:
   id: 11129
-na￯ve_stormbringer_1:
+na￯ve_stormbringer:
   id: 11130
 na￯ve_stormbringer_2:
   id: 11131
-keen_stormbringer_1:
+keen_stormbringer:
   id: 11132
 keen_stormbringer_2:
   id: 11133
-brave_stormbringer_1:
+brave_stormbringer:
   id: 11134
 brave_stormbringer_2:
   id: 11135
-brah_stormbringer_1:
+brah_stormbringer:
   id: 11136
 brah_stormbringer_2:
   id: 11137
-naabe_stormbringer_1:
+naabe_stormbringer:
   id: 11138
 naabe_stormbringer_2:
   id: 11139
-wise_stormbringer_1:
+wise_stormbringer:
   id: 11140
 wise_stormbringer_2:
   id: 11141
-adept_stormbringer_1:
+adept_stormbringer:
   id: 11142
 adept_stormbringer_2:
   id: 11143
-sachem_stormbringer_1:
+sachem_stormbringer:
   id: 11144
 sachem_stormbringer_2:
   id: 11145
-cub_hoardstalker_1:
+cub_hoardstalker:
   id: 11146
 cub_hoardstalker_2:
   id: 11147
-little_hoardstalker_1:
+little_hoardstalker:
   id: 11148
 little_hoardstalker_2:
   id: 11149
-na￯ve_hoardstalker_1:
+na￯ve_hoardstalker:
   id: 11150
 na￯ve_hoardstalker_2:
   id: 11151
-keen_hoardstalker_1:
+keen_hoardstalker:
   id: 11152
 keen_hoardstalker_2:
   id: 11153
-brave_hoardstalker_1:
+brave_hoardstalker:
   id: 11154
 brave_hoardstalker_2:
   id: 11155
-brah_hoardstalker_1:
+brah_hoardstalker:
   id: 11156
 brah_hoardstalker_2:
   id: 11157
-naabe_hoardstalker_1:
+naabe_hoardstalker:
   id: 11158
 naabe_hoardstalker_2:
   id: 11159
-wise_hoardstalker_1:
+wise_hoardstalker:
   id: 11160
 wise_hoardstalker_2:
   id: 11161
-adept_hoardstalker_1:
+adept_hoardstalker:
   id: 11162
 adept_hoardstalker_2:
   id: 11163
-sachem_hoardstalker_1:
+sachem_hoardstalker:
   id: 11164
 sachem_hoardstalker_2:
   id: 11165
@@ -20222,129 +20222,129 @@ cub_skinweaver_2:
   id: 11166
 cub_skinweaver_3:
   id: 11167
-little_skinweaver_1:
+little_skinweaver:
   id: 11168
 little_skinweaver_2:
   id: 11169
-na￯ve_skinweaver_1:
+na￯ve_skinweaver:
   id: 11170
 na￯ve_skinweaver_2:
   id: 11171
-keen_skinweaver_1:
+keen_skinweaver:
   id: 11172
 keen_skinweaver_2:
   id: 11173
-brave_skinweaver_1:
+brave_skinweaver:
   id: 11174
 brave_skinweaver_2:
   id: 11175
-brah_skinweaver_1:
+brah_skinweaver:
   id: 11176
 brah_skinweaver_2:
   id: 11177
-naabe_skinweaver_1:
+naabe_skinweaver:
   id: 11178
 naabe_skinweaver_2:
   id: 11179
-wise_skinweaver_1:
+wise_skinweaver:
   id: 11180
 wise_skinweaver_2:
   id: 11181
-adept_skinweaver_1:
+adept_skinweaver:
   id: 11182
 adept_skinweaver_2:
   id: 11183
-sachem_skinweaver_1:
+sachem_skinweaver:
   id: 11184
 sachem_skinweaver_2:
   id: 11185
-cub_worldbearer_1:
+cub_worldbearer:
   id: 11186
 cub_worldbearer_2:
   id: 11187
-little_worldbearer_1:
+little_worldbearer:
   id: 11188
 little_worldbearer_2:
   id: 11189
-na￯ve_worldbearer_1:
+na￯ve_worldbearer:
   id: 11190
 na￯ve_worldbearer_2:
   id: 11191
-keen_worldbearer_1:
+keen_worldbearer:
   id: 11192
 keen_worldbearer_2:
   id: 11193
-brave_worldbearer_1:
+brave_worldbearer:
   id: 11194
 brave_worldbearer_2:
   id: 11195
-brah_worldbearer_1:
+brah_worldbearer:
   id: 11196
 brah_worldbearer_2:
   id: 11197
-naabe_worldbearer_1:
+naabe_worldbearer:
   id: 11198
 naabe_worldbearer_2:
   id: 11199
-wise_worldbearer_1:
+wise_worldbearer:
   id: 11200
 wise_worldbearer_2:
   id: 11201
-adept_worldbearer_1:
+adept_worldbearer:
   id: 11202
 adept_worldbearer_2:
   id: 11203
-sachem_worldbearer_1:
+sachem_worldbearer:
   id: 11204
 sachem_worldbearer_2:
   id: 11205
-cub_deathslinger_1:
+cub_deathslinger:
   id: 11206
 cub_deathslinger_2:
   id: 11207
-little_deathslinger_1:
+little_deathslinger:
   id: 11208
 little_deathslinger_2:
   id: 11209
-na￯ve_deathslinger_1:
+na￯ve_deathslinger:
   id: 11210
 na￯ve_deathslinger_2:
   id: 11211
-keen_deathslinger_1:
+keen_deathslinger:
   id: 11212
 keen_deathslinger_2:
   id: 11213
-brave_deathslinger_1:
+brave_deathslinger:
   id: 11214
 brave_deathslinger_2:
   id: 11215
-brah_deathslinger_1:
+brah_deathslinger:
   id: 11216
 brah_deathslinger_2:
   id: 11217
-naabe_deathslinger_1:
+naabe_deathslinger:
   id: 11218
 naabe_deathslinger_2:
   id: 11219
-wise_deathslinger_1:
+wise_deathslinger:
   id: 11220
 wise_deathslinger_2:
   id: 11221
-adept_deathslinger_1:
+adept_deathslinger:
   id: 11222
 adept_deathslinger_2:
   id: 11223
-sachem_deathslinger_1:
+sachem_deathslinger:
   id: 11224
 sachem_deathslinger_2:
   id: 11225
 smuggler:
   id: 11226
-dungeoneering_skillcape_(melee)_1:
+dungeoneering_skillcape_(melee):
   id: 11227
-dungeoneering_skillcape_(mage)_1:
+dungeoneering_skillcape_(mage):
   id: 11228
-dungeoneering_skillcape_(ranger)_1:
+dungeoneering_skillcape_(ranger):
   id: 11229
 linza_11:
   id: 11230
@@ -20380,7 +20380,7 @@ poltergeist:
   id: 11245
 ghost_64:
   id: 11246
-'''the_guns''_2':
+the_guns_2:
   id: 11248
 crab_5:
   id: 11249
@@ -20390,7 +20390,7 @@ shark_11:
   id: 11251
 shark_12:
   id: 11252
-'''the_guns''_3':
+the_guns_3:
   id: 11254
 mountain_troll_9:
   id: 11255
@@ -20428,7 +20428,7 @@ registrar:
   id: 11272
 darren_lightfinger:
   id: 11274
-guildmaster_darren_lightfinger_1:
+guildmaster_darren_lightfinger:
   id: 11275
 guildmaster_darren_lightfinger_2:
   id: 11276
@@ -20440,13 +20440,13 @@ chief_thief_robin_2:
   id: 11280
 pickpocketing_trainer:
   id: 11281
-pickpocketing_volunteer_1:
+pickpocketing_volunteer:
   id: 11282
 pickpocketing_volunteer_2:
   id: 11284
 pickpocketing_volunteer_3:
   id: 11286
-coshing_volunteer_1:
+coshing_volunteer:
   id: 11288
 coshing_volunteer_2:
   id: 11290
@@ -20478,23 +20478,23 @@ butler_2:
   id: 11306
 demon_butler_2:
   id: 11307
-gnarly_1:
+gnarly:
   id: 11309
 gnarly_2:
   id: 11310
-general_gromblod_1:
+general_gromblod:
   id: 11312
-general_shredflesh_1:
+general_shredflesh:
   id: 11314
 general_shredflesh_2:
   id: 11315
 mountain_troll_11:
   id: 11316
-general_bre'egth_1:
+general_breegth:
   id: 11318
-k'chunk_1:
+kchunk:
   id: 11320
-k'chunk_2:
+kchunk_2:
   id: 11321
 extractor_fairies:
   id: 11322
@@ -20516,19 +20516,19 @@ mountain_troll_12:
   id: 11330
 general_shredflesh_3:
   id: 11331
-general_bre'egth_2:
+general_breegth_2:
   id: 11332
-ivory_shredflesh_1:
+ivory_shredflesh:
   id: 11334
 ivory_shredflesh_2:
   id: 11335
-ivory_gromblod_1:
+ivory_gromblod:
   id: 11337
 ivory_gromblod_2:
   id: 11338
-ivory_bre'egth_1:
+ivory_breegth:
   id: 11340
-ivory_bre'egth_2:
+ivory_breegth_2:
   id: 11341
 general_gromblod_3:
   id: 11342
@@ -20536,13 +20536,13 @@ general_gromblod_4:
   id: 11343
 general_shredflesh_4:
   id: 11344
-general_bre'egth_3:
+general_breegth_3:
   id: 11345
 fairy_godfather_9:
   id: 11346
 fairy_godfather_10:
   id: 11347
-ork_warrior_1:
+ork_warrior:
   id: 11348
 ork_warrior_2:
   id: 11349
@@ -20550,11 +20550,11 @@ ork_warrior_3:
   id: 11350
 ork_warrior_4:
   id: 11351
-ivory_shredflesh_(cursed)_1:
+ivory_shredflesh_(cursed):
   id: 11352
-ivory_gromblod_(cursed)_1:
+ivory_gromblod_(cursed):
   id: 11353
-ivory_bre'egth_(cursed)_1:
+ivory_breegth_(cursed):
   id: 11354
 ork_5:
   id: 11355
@@ -20580,7 +20580,7 @@ terror_dog_3:
   id: 11365
 fairy_tooth_hunter:
   id: 11366
-fairy_stitcher_1:
+fairy_stitcher:
   id: 11367
 fairy_stitcher_2:
   id: 11368
@@ -20592,7 +20592,7 @@ ivory_shredflesh_(cursed)_2:
   id: 11371
 ivory_gromblod_(cursed)_2:
   id: 11372
-ivory_bre'egth_(cursed)_2:
+ivory_breegth_(cursed)_2:
   id: 11373
 tooth_fairy:
   id: 11376
@@ -20602,7 +20602,7 @@ fairy_queen_4:
   id: 11381
 mountain_troll_13:
   id: 11382
-farming_patch_1:
+farming_patch:
   id: 11383
 farming_patch_2:
   id: 11384
@@ -20652,13 +20652,13 @@ gnarly_3:
   id: 11409
 mountain_troll_16:
   id: 11410
-milk_tooth_creature_1:
+milk_tooth_creature:
   id: 11411
 milk_tooth_creature_2:
   id: 11412
-tooth_creature_(healthy)_1:
+tooth_creature_(healthy):
   id: 11413
-tooth_creature_(decayed)_1:
+tooth_creature_(decayed):
   id: 11414
 ork_9:
   id: 11423
@@ -20714,7 +20714,7 @@ brute_26:
   id: 11448
 brute_27:
   id: 11449
-ballista_1:
+ballista:
   id: 11450
 ballista_2:
   id: 11451
@@ -20724,7 +20724,7 @@ roger_murray:
   id: 11453
 river_troll_2:
   id: 11454
-moira_1:
+moira:
   id: 11455
 molly_21:
   id: 11456
@@ -20732,7 +20732,7 @@ arresting_officer:
   id: 11457
 botros:
   id: 11458
-oliver_b'gard:
+oliver_bgard:
   id: 11459
 richard_maney:
   id: 11460
@@ -20750,9 +20750,9 @@ dealga:
   id: 11475
 xenia_3:
   id: 11476
-knight_ami_1:
+knight_ami:
   id: 11477
-knight_bernard_1:
+knight_bernard:
   id: 11480
 knight_bernard_2:
   id: 11481
@@ -20760,7 +20760,7 @@ knight_ami_2:
   id: 11484
 knight_ami_3:
   id: 11485
-knight_diana_1:
+knight_diana:
   id: 11488
 knight_diana_2:
   id: 11489
@@ -20770,11 +20770,11 @@ spinner_6:
   id: 11491
 torcher_11:
   id: 11492
-commodore_matthias_1:
+commodore_matthias:
   id: 11493
-jessika_1:
+jessika:
   id: 11494
-captain_tyr_1:
+captain_tyr:
   id: 11495
 knight_bernard_3:
   id: 11496
@@ -20782,7 +20782,7 @@ commodore_matthias_2:
   id: 11498
 jessika_2:
   id: 11499
-commander_korasi_1:
+commander_korasi:
   id: 11506
 commander_korasi_2:
   id: 11507
@@ -20790,9 +20790,9 @@ commander_korasi_3:
   id: 11508
 captain_tyr_2:
   id: 11510
-commodore_tyr_1:
+commodore_tyr:
   id: 11511
-sir_tiffy_1:
+sir_tiffy:
   id: 11512
 knight_ami_4:
   id: 11522
@@ -20802,13 +20802,13 @@ terry_gord:
   id: 11524
 mrs_gord:
   id: 11525
-knight_mikhal_1:
+knight_mikhal:
   id: 11526
-mariah_1:
+mariah:
   id: 11527
 mariah_2:
   id: 11528
-squire_sam_1:
+squire_sam:
   id: 11529
 knight_bernard_4:
   id: 11530
@@ -20856,7 +20856,7 @@ knight_bernard_6:
   id: 11551
 knight_ami_6:
   id: 11552
-memory_block_1:
+memory_block:
   id: 11553
 memory_block_2:
   id: 11554
@@ -20874,23 +20874,23 @@ memory_block_8:
   id: 11560
 memory_block_9:
   id: 11561
-pit_dog_1:
+pit_dog:
   id: 11562
-pit_ogre_1:
+pit_ogre:
   id: 11563
-pit_rock_protector_1:
+pit_rock_protector:
   id: 11564
-pit_scabarite_1:
+pit_scabarite:
   id: 11565
-pit_black_demon_1:
+pit_black_demon:
   id: 11566
-pit_iron_dragon_1:
+pit_iron_dragon:
   id: 11567
 wise_old_man_10:
   id: 11568
 wise_old_man_11:
   id: 11569
-zenevivia_1:
+zenevivia:
   id: 11571
 wise_old_man_12:
   id: 11575
@@ -20938,7 +20938,7 @@ sedridor_2:
   id: 11601
 wizard_mizgog_2:
   id: 11602
-wizard_grayzag_1:
+wizard_grayzag:
   id: 11603
 traiborn_3:
   id: 11604
@@ -20946,7 +20946,7 @@ imp_6:
   id: 11605
 thingummywut:
   id: 11606
-dionysius_1:
+dionysius:
   id: 11607
 dionysius_2:
   id: 11608
@@ -20968,7 +20968,7 @@ zenevivia_12:
   id: 11616
 zenevivia_13:
   id: 11617
-yambo_1:
+yambo:
   id: 11618
 yambo_2:
   id: 11619
@@ -20982,7 +20982,7 @@ my_name_rocks:
   id: 11623
 pee_ker_xxl:
   id: 11624
-mabel_1:
+mabel:
   id: 11625
 hay_bales:
   id: 11626
@@ -21000,13 +21000,13 @@ frost_dragon_10:
   id: 11635
 frost_dragon_11:
   id: 11636
-guthix_wizard_1:
+guthix_wizard:
   id: 11638
 guthix_wizard_2:
   id: 11639
 meerkats:
   id: 11640
-ali_tist_1:
+ali_tist:
   id: 11642
 ali_tist_2:
   id: 11643
@@ -21022,13 +21022,13 @@ jessika_3:
   id: 11650
 jessika_4:
   id: 11660
-full_barrel_1:
+full_barrel:
   id: 11671
 empty_barrel:
   id: 11672
 full_barrel_2:
   id: 11673
-shopkeeper_kofi_1:
+shopkeeper_kofi:
   id: 11674
 shopkeeper_kofi_2:
   id: 11675
@@ -21050,13 +21050,13 @@ black_knight_guard:
   id: 11685
 barrel_7:
   id: 11686
-indentured_worker_1:
+indentured_worker:
   id: 11687
-laden_indentured_worker_1:
+laden_indentured_worker:
   id: 11688
 laden_indentured_worker_2:
   id: 11689
-black_knight_doorkeeper_1:
+black_knight_doorkeeper:
   id: 11690
 black_knight_doorkeeper_2:
   id: 11692
@@ -21066,19 +21066,19 @@ indentured_worker_3:
   id: 11694
 indentured_worker_4:
   id: 11695
-black_knight_guardian_1:
+black_knight_guardian:
   id: 11696
 black_knight_guardian_2:
   id: 11697
 void_leech:
   id: 11698
-gerrant_1:
+gerrant:
   id: 11699
-captain_tobias_1:
+captain_tobias:
   id: 11700
-seaman_lorris_1:
+seaman_lorris:
   id: 11701
-seaman_thresnor_1:
+seaman_thresnor:
   id: 11702
 captain_tobias_2:
   id: 11703
@@ -21118,7 +21118,7 @@ gravecreeper_15:
   id: 11720
 portal_controller_2:
   id: 11721
-skeletal_minion_1:
+skeletal_minion:
   id: 11722
 skeletal_minion_2:
   id: 11723
@@ -21148,7 +21148,7 @@ skeletal_minion_14:
   id: 11735
 skeletal_minion_15:
   id: 11736
-necrolord_1:
+necrolord:
   id: 11737
 necrolord_2:
   id: 11738
@@ -21178,7 +21178,7 @@ necrolord_14:
   id: 11750
 necrolord_15:
   id: 11751
-runebound_behemoth_1:
+runebound_behemoth:
   id: 11752
 runebound_behemoth_2:
   id: 11753
@@ -21418,35 +21418,35 @@ runebound_behemoth_119:
   id: 11870
 runebound_behemoth_120:
   id: 11871
-yk'lagor_the_thunderous_1:
+yklagor_the_thunderous:
   id: 11872
-yk'lagor_the_thunderous_2:
+yklagor_the_thunderous_2:
   id: 11873
-yk'lagor_the_thunderous_3:
+yklagor_the_thunderous_3:
   id: 11874
-yk'lagor_the_thunderous_4:
+yklagor_the_thunderous_4:
   id: 11875
-yk'lagor_the_thunderous_5:
+yklagor_the_thunderous_5:
   id: 11876
-yk'lagor_the_thunderous_6:
+yklagor_the_thunderous_6:
   id: 11877
-yk'lagor_the_thunderous_7:
+yklagor_the_thunderous_7:
   id: 11878
-yk'lagor_the_thunderous_8:
+yklagor_the_thunderous_8:
   id: 11879
-yk'lagor_the_thunderous_9:
+yklagor_the_thunderous_9:
   id: 11880
-yk'lagor_the_thunderous_10:
+yklagor_the_thunderous_10:
   id: 11881
-yk'lagor_the_thunderous_11:
+yklagor_the_thunderous_11:
   id: 11882
-yk'lagor_the_thunderous_12:
+yklagor_the_thunderous_12:
   id: 11883
-yk'lagor_the_thunderous_13:
+yklagor_the_thunderous_13:
   id: 11884
-yk'lagor_the_thunderous_14:
+yklagor_the_thunderous_14:
   id: 11885
-yk'lagor_the_thunderous_15:
+yklagor_the_thunderous_15:
   id: 11886
 mysterious_mage_2:
   id: 11887
@@ -21464,7 +21464,7 @@ mysterious_mage_8:
   id: 11893
 mysterious_mage_9:
   id: 11894
-_flesh-spoiler_haasghenahk_1:
+_flesh-spoiler_haasghenahk:
   id: 11895
 _flesh-spoiler_haasghenahk_2:
   id: 11896
@@ -21494,7 +21494,7 @@ _flesh-spoiler_haasghenahk_14:
   id: 11908
 _flesh-spoiler_haasghenahk_15:
   id: 11909
-_flesh-spoiler_spawn_1:
+_flesh-spoiler_spawn:
   id: 11910
 _flesh-spoiler_spawn_2:
   id: 11911
@@ -21554,7 +21554,7 @@ _flesh-spoiler_haasghenahk_29:
   id: 11938
 _flesh-spoiler_haasghenahk_30:
   id: 11939
-skeletal_warrior_1:
+skeletal_warrior:
   id: 11940
 skeletal_warrior_2:
   id: 11941
@@ -21644,7 +21644,7 @@ skeletal_warrior_44:
   id: 11983
 skeletal_warrior_45:
   id: 11984
-skeletal_adventurer_1:
+skeletal_adventurer:
   id: 11985
 skeletal_adventurer_2:
   id: 11986
@@ -21672,7 +21672,7 @@ skeletal_adventurer_13:
   id: 11997
 skeletal_adventurer_14:
   id: 11998
-skeletal_sorcerer_1:
+skeletal_sorcerer:
   id: 11999
 skeletal_sorcerer_2:
   id: 12000
@@ -21762,7 +21762,7 @@ skeletal_sorcerer_44:
   id: 12042
 skeletal_sorcerer_45:
   id: 12043
-skeletal_archer_1:
+skeletal_archer:
   id: 12044
 skeletal_archer_2:
   id: 12045
@@ -21852,7 +21852,7 @@ skeletal_archer_44:
   id: 12087
 skeletal_archer_45:
   id: 12088
-pondskater_1:
+pondskater:
   id: 12089
 pondskater_2:
   id: 12090
@@ -21924,7 +21924,7 @@ statue_139:
   id: 12123
 statue_140:
   id: 12124
-sliding_block_1:
+sliding_block:
   id: 12125
 sliding_block_2:
   id: 12126
@@ -21998,11 +21998,11 @@ ferret_7:
   id: 12160
 ferret_8:
   id: 12161
-enemy_scout_1:
+enemy_scout:
   id: 12162
-enemy_foot_soldier_1:
+enemy_foot_soldier:
   id: 12163
-enemy_halberdier_1:
+enemy_halberdier:
   id: 12164
 ferret_9:
   id: 12165
@@ -22034,13 +22034,13 @@ mage_2:
   id: 12179
 knight_6:
   id: 12180
-enemy_champion_1:
+enemy_champion:
   id: 12181
-enemy_archer_1:
+enemy_archer:
   id: 12182
-enemy_mage_1:
+enemy_mage:
   id: 12183
-enemy_knight_1:
+enemy_knight:
   id: 12184
 dungeoneering_skillcape_(melee)_2:
   id: 12185
@@ -22052,7 +22052,7 @@ chuck_3:
   id: 12188
 mime_2:
   id: 12189
-gamdin_1:
+gamdin:
   id: 12190
 gamdin_2:
   id: 12191
@@ -22072,13 +22072,13 @@ enemy_scout_2:
   id: 12199
 scout_6:
   id: 12201
-foot_soldier_1:
+foot_soldier:
   id: 12203
 enemy_foot_soldier_2:
   id: 12204
 foot_soldier_2:
   id: 12206
-halberdier_1:
+halberdier:
   id: 12208
 enemy_halberdier_2:
   id: 12209
@@ -22096,7 +22096,7 @@ knight_7:
   id: 12221
 enemy_knight_2:
   id: 12222
-champion_1:
+champion:
   id: 12225
 enemy_champion_2:
   id: 12226
@@ -22114,7 +22114,7 @@ flora:
   id: 12233
 party_pete_2:
   id: 12234
-ikis_krum_1:
+ikis_krum:
   id: 12235
 frozen_ikis_krum:
   id: 12236
@@ -22308,7 +22308,7 @@ cow_7:
   id: 12365
 cow_calf_3:
   id: 12366
-lumbridge_guard_1:
+lumbridge_guard:
   id: 12367
 lumbridge_guard_2:
   id: 12368
@@ -22324,11 +22324,11 @@ strange_bones:
   id: 12373
 wizard_20:
   id: 12374
-zabeth_corvid_1:
+zabeth_corvid:
   id: 12375
 zabeth_corvid_2:
   id: 12376
-pumpkin_pete_1:
+pumpkin_pete:
   id: 12377
 pumpkin_pete_2:
   id: 12378
@@ -22338,7 +22338,7 @@ edgar:
   id: 12380
 allan:
   id: 12381
-greta_1:
+greta:
   id: 12384
 greta_2:
   id: 12385
@@ -22352,7 +22352,7 @@ moira_3:
   id: 12393
 minstrel_web:
   id: 12394
-dancer_1:
+dancer:
   id: 12396
 dancer_2:
   id: 12397
@@ -22376,7 +22376,7 @@ green_spider:
   id: 12426
 orange_spider:
   id: 12427
-turquoise_spider_1:
+turquoise_spider:
   id: 12428
 pink_spider:
   id: 12429
@@ -22416,7 +22416,7 @@ famished_mage-eye_14:
   id: 12446
 famished_mage-eye_15:
   id: 12447
-famished_warrior-eye_1:
+famished_warrior-eye:
   id: 12448
 famished_warrior-eye_2:
   id: 12449
@@ -22446,7 +22446,7 @@ famished_warrior-eye_14:
   id: 12461
 famished_warrior-eye_15:
   id: 12462
-famished_ranger-eye_1:
+famished_ranger-eye:
   id: 12463
 famished_ranger-eye_2:
   id: 12464
@@ -22476,7 +22476,7 @@ famished_ranger-eye_14:
   id: 12476
 famished_ranger-eye_15:
   id: 12477
-world-gorger_shukarhazh_1:
+world-gorger_shukarhazh:
   id: 12478
 world-gorger_shukarhazh_2:
   id: 12479
@@ -22656,7 +22656,7 @@ world-gorger_shukarhazh_74:
   id: 12566
 world-gorger_shukarhazh_75:
   id: 12567
-engorged_eye_1:
+engorged_eye:
   id: 12568
 engorged_eye_2:
   id: 12569
@@ -23024,199 +23024,199 @@ warped_gulega_15:
   id: 12750
 warped_gulega_16:
   id: 12751
-kal'ger_the_warmonger_1:
+kalger_the_warmonger:
   id: 12752
-kal'ger_the_warmonger_2:
+kalger_the_warmonger_2:
   id: 12753
-kal'ger_the_warmonger_3:
+kalger_the_warmonger_3:
   id: 12754
-kal'ger_the_warmonger_4:
+kalger_the_warmonger_4:
   id: 12755
-kal'ger_the_warmonger_5:
+kalger_the_warmonger_5:
   id: 12756
-kal'ger_the_warmonger_6:
+kalger_the_warmonger_6:
   id: 12757
-kal'ger_the_warmonger_7:
+kalger_the_warmonger_7:
   id: 12758
-kal'ger_the_warmonger_8:
+kalger_the_warmonger_8:
   id: 12759
-kal'ger_the_warmonger_9:
+kalger_the_warmonger_9:
   id: 12760
-kal'ger_the_warmonger_10:
+kalger_the_warmonger_10:
   id: 12761
-kal'ger_the_warmonger_11:
+kalger_the_warmonger_11:
   id: 12762
-kal'ger_the_warmonger_12:
+kalger_the_warmonger_12:
   id: 12763
-kal'ger_the_warmonger_13:
+kalger_the_warmonger_13:
   id: 12764
-kal'ger_the_warmonger_14:
+kalger_the_warmonger_14:
   id: 12765
-kal'ger_the_warmonger_15:
+kalger_the_warmonger_15:
   id: 12766
-kal'ger_the_warmonger_16:
+kalger_the_warmonger_16:
   id: 12767
-kal'ger_the_warmonger_17:
+kalger_the_warmonger_17:
   id: 12768
-kal'ger_the_warmonger_18:
+kalger_the_warmonger_18:
   id: 12769
-kal'ger_the_warmonger_19:
+kalger_the_warmonger_19:
   id: 12770
-kal'ger_the_warmonger_20:
+kalger_the_warmonger_20:
   id: 12771
-kal'ger_the_warmonger_21:
+kalger_the_warmonger_21:
   id: 12772
-kal'ger_the_warmonger_22:
+kalger_the_warmonger_22:
   id: 12773
-kal'ger_the_warmonger_23:
+kalger_the_warmonger_23:
   id: 12774
-kal'ger_the_warmonger_24:
+kalger_the_warmonger_24:
   id: 12775
-kal'ger_the_warmonger_25:
+kalger_the_warmonger_25:
   id: 12776
-kal'ger_the_warmonger_26:
+kalger_the_warmonger_26:
   id: 12777
-kal'ger_the_warmonger_27:
+kalger_the_warmonger_27:
   id: 12778
-kal'ger_the_warmonger_28:
+kalger_the_warmonger_28:
   id: 12779
-kal'ger_the_warmonger_29:
+kalger_the_warmonger_29:
   id: 12780
-kal'ger_the_warmonger_30:
+kalger_the_warmonger_30:
   id: 12781
-kal'ger_the_warmonger_31:
+kalger_the_warmonger_31:
   id: 12782
-kal'ger_the_warmonger_32:
+kalger_the_warmonger_32:
   id: 12783
-kal'ger_the_warmonger_33:
+kalger_the_warmonger_33:
   id: 12784
-kal'ger_the_warmonger_34:
+kalger_the_warmonger_34:
   id: 12785
-kal'ger_the_warmonger_35:
+kalger_the_warmonger_35:
   id: 12786
-kal'ger_the_warmonger_36:
+kalger_the_warmonger_36:
   id: 12787
-kal'ger_the_warmonger_37:
+kalger_the_warmonger_37:
   id: 12788
-kal'ger_the_warmonger_38:
+kalger_the_warmonger_38:
   id: 12789
-kal'ger_the_warmonger_39:
+kalger_the_warmonger_39:
   id: 12790
-kal'ger_the_warmonger_40:
+kalger_the_warmonger_40:
   id: 12791
-kal'ger_the_warmonger_41:
+kalger_the_warmonger_41:
   id: 12792
-kal'ger_the_warmonger_42:
+kalger_the_warmonger_42:
   id: 12793
-kal'ger_the_warmonger_43:
+kalger_the_warmonger_43:
   id: 12794
-kal'ger_the_warmonger_44:
+kalger_the_warmonger_44:
   id: 12795
-kal'ger_the_warmonger_45:
+kalger_the_warmonger_45:
   id: 12796
-kal'ger_the_warmonger_46:
+kalger_the_warmonger_46:
   id: 12797
-kal'ger_the_warmonger_47:
+kalger_the_warmonger_47:
   id: 12798
-kal'ger_the_warmonger_48:
+kalger_the_warmonger_48:
   id: 12799
-kal'ger_the_warmonger_49:
+kalger_the_warmonger_49:
   id: 12800
-kal'ger_the_warmonger_50:
+kalger_the_warmonger_50:
   id: 12801
-kal'ger_the_warmonger_51:
+kalger_the_warmonger_51:
   id: 12802
-kal'ger_the_warmonger_52:
+kalger_the_warmonger_52:
   id: 12803
-kal'ger_the_warmonger_53:
+kalger_the_warmonger_53:
   id: 12804
-kal'ger_the_warmonger_54:
+kalger_the_warmonger_54:
   id: 12805
-kal'ger_the_warmonger_55:
+kalger_the_warmonger_55:
   id: 12806
-kal'ger_the_warmonger_56:
+kalger_the_warmonger_56:
   id: 12807
-kal'ger_the_warmonger_57:
+kalger_the_warmonger_57:
   id: 12808
-kal'ger_the_warmonger_58:
+kalger_the_warmonger_58:
   id: 12809
-kal'ger_the_warmonger_59:
+kalger_the_warmonger_59:
   id: 12810
-kal'ger_the_warmonger_60:
+kalger_the_warmonger_60:
   id: 12811
-kal'ger_the_warmonger_61:
+kalger_the_warmonger_61:
   id: 12812
-kal'ger_the_warmonger_62:
+kalger_the_warmonger_62:
   id: 12813
-kal'ger_the_warmonger_63:
+kalger_the_warmonger_63:
   id: 12814
-kal'ger_the_warmonger_64:
+kalger_the_warmonger_64:
   id: 12815
-kal'ger_the_warmonger_65:
+kalger_the_warmonger_65:
   id: 12816
-kal'ger_the_warmonger_66:
+kalger_the_warmonger_66:
   id: 12817
-kal'ger_the_warmonger_67:
+kalger_the_warmonger_67:
   id: 12818
-kal'ger_the_warmonger_68:
+kalger_the_warmonger_68:
   id: 12819
-kal'ger_the_warmonger_69:
+kalger_the_warmonger_69:
   id: 12820
-kal'ger_the_warmonger_70:
+kalger_the_warmonger_70:
   id: 12821
-kal'ger_the_warmonger_71:
+kalger_the_warmonger_71:
   id: 12822
-kal'ger_the_warmonger_72:
+kalger_the_warmonger_72:
   id: 12823
-kal'ger_the_warmonger_73:
+kalger_the_warmonger_73:
   id: 12824
-kal'ger_the_warmonger_74:
+kalger_the_warmonger_74:
   id: 12825
-kal'ger_the_warmonger_75:
+kalger_the_warmonger_75:
   id: 12826
-kal'ger_the_warmonger_76:
+kalger_the_warmonger_76:
   id: 12827
-kal'ger_the_warmonger_77:
+kalger_the_warmonger_77:
   id: 12828
-kal'ger_the_warmonger_78:
+kalger_the_warmonger_78:
   id: 12829
-kal'ger_the_warmonger_79:
+kalger_the_warmonger_79:
   id: 12830
-kal'ger_the_warmonger_80:
+kalger_the_warmonger_80:
   id: 12831
-kal'ger_the_warmonger_81:
+kalger_the_warmonger_81:
   id: 12832
-kal'ger_the_warmonger_82:
+kalger_the_warmonger_82:
   id: 12833
-kal'ger_the_warmonger_83:
+kalger_the_warmonger_83:
   id: 12834
-kal'ger_the_warmonger_84:
+kalger_the_warmonger_84:
   id: 12835
-kal'ger_the_warmonger_85:
+kalger_the_warmonger_85:
   id: 12836
-kal'ger_the_warmonger_86:
+kalger_the_warmonger_86:
   id: 12837
-kal'ger_the_warmonger_87:
+kalger_the_warmonger_87:
   id: 12838
-kal'ger_the_warmonger_88:
+kalger_the_warmonger_88:
   id: 12839
-kal'ger_the_warmonger_89:
+kalger_the_warmonger_89:
   id: 12840
-kal'ger_the_warmonger_90:
+kalger_the_warmonger_90:
   id: 12841
 warped_sphere:
   id: 12842
-to'kash_the_bloodchiller_17:
+tokash_the_bloodchiller_17:
   id: 12843
-har'lakk_the_riftsplitter_15:
+harlakk_the_riftsplitter_15:
   id: 12844
-bal'lak_the_pummeller_15:
+ballak_the_pummeller_15:
   id: 12845
-yk'lagor_the_thunderous_16:
+yklagor_the_thunderous_16:
   id: 12846
 portal_controller_3:
   id: 12847
-dreadnaut_1:
+dreadnaut:
   id: 12848
 dreadnaut_2:
   id: 12849
@@ -23250,7 +23250,7 @@ brute_28:
   id: 12863
 brute_29:
   id: 12864
-blink_1:
+blink:
   id: 12865
 blink_2:
   id: 12866
@@ -23280,7 +23280,7 @@ blink_14:
   id: 12878
 blink_15:
   id: 12879
-troll_runt_1:
+troll_runt:
   id: 12880
 troll_runt_2:
   id: 12881
@@ -23292,7 +23292,7 @@ troll_runt_5:
   id: 12884
 troll_runt_6:
   id: 12885
-hope_devourer_1:
+hope_devourer:
   id: 12886
 hope_devourer_2:
   id: 12887
@@ -23326,7 +23326,7 @@ troll_runt_7:
   id: 12901
 troll_runt_8:
   id: 12902
-reborn_mage_1:
+reborn_mage:
   id: 12903
 reborn_mage_2:
   id: 12904
@@ -23362,7 +23362,7 @@ giant_rat_35:
   id: 12919
 giant_rat_36:
   id: 12920
-cliff_1:
+cliff:
   id: 12921
 guard_dog_14:
   id: 12922
@@ -23402,7 +23402,7 @@ brute_37:
   id: 12939
 brute_38:
   id: 12940
-reborn_warrior_1:
+reborn_warrior:
   id: 12941
 reborn_warrior_2:
   id: 12942
@@ -23568,15 +23568,15 @@ ramokee_bloodrager_10:
   id: 13022
 ramokee_bloodrager_11:
   id: 13023
-block_1:
+block:
   id: 13024
-blue_block_1:
+blue_block:
   id: 13025
-green_block_1:
+green_block:
   id: 13026
-yellow_block_1:
+yellow_block:
   id: 13027
-violet_block_1:
+violet_block:
   id: 13028
 block_2:
   id: 13029
@@ -23724,7 +23724,7 @@ hobgoblin_18:
   id: 13100
 zombie_farmer:
   id: 13101
-astlayrix_1:
+astlayrix:
   id: 13104
 astlayrix_2:
   id: 13105
@@ -23732,27 +23732,27 @@ bettamax:
   id: 13106
 wilbur:
   id: 13107
-common_jadinko_1:
+common_jadinko:
   id: 13119
-amphibious_jadinko_1:
+amphibious_jadinko:
   id: 13130
-draconic_jadinko_1:
+draconic_jadinko:
   id: 13131
-aquatic_jadinko_1:
+aquatic_jadinko:
   id: 13142
-igneous_jadinko_1:
+igneous_jadinko:
   id: 13143
-carrion_jadinko_1:
+carrion_jadinko:
   id: 13154
-cannibal_jadinko_1:
+cannibal_jadinko:
   id: 13155
-saradomin_jadinko_1:
+saradomin_jadinko:
   id: 13163
-guthix_jadinko_1:
+guthix_jadinko:
   id: 13164
-zamorak_jadinko_1:
+zamorak_jadinko:
   id: 13165
-senliten_1:
+senliten:
   id: 13167
 senliten_2:
   id: 13168
@@ -23762,7 +23762,7 @@ senliten_4:
   id: 13170
 senliten_5:
   id: 13171
-leela_1:
+leela:
   id: 13172
 leela_2:
   id: 13173
@@ -23792,7 +23792,7 @@ unarmed_monkey_guard:
   id: 13193
 armed_monkey_guard:
   id: 13194
-monkey_knife_fighter_1:
+monkey_knife_fighter:
   id: 13195
 monkey_colonist:
   id: 13197
@@ -23816,19 +23816,19 @@ monkey_knife_fighter_2:
   id: 13212
 monkey_knife_fighter_3:
   id: 13213
-leeuni_1:
+leeuni:
   id: 13215
 leeuni_2:
   id: 13216
 leeuni_3:
   id: 13217
-ayuni_1:
+ayuni:
   id: 13218
 ayuni_2:
   id: 13219
 ayuni_3:
   id: 13220
-eruni_1:
+eruni:
   id: 13221
 eruni_2:
   id: 13222
@@ -23878,13 +23878,13 @@ goblin_168:
   id: 13250
 fremennik_man_2:
   id: 13251
-fremennik_woman_1:
+fremennik_woman:
   id: 13252
 fremennik_woman_2:
   id: 13253
 snow_angel_statue:
   id: 13254
-seal_1:
+seal:
   id: 13255
 seal_2:
   id: 13256
@@ -23932,7 +23932,7 @@ chair_4:
   id: 13289
 chair_5:
   id: 13290
-monarchist_1:
+monarchist:
   id: 13293
 monarchist_2:
   id: 13294
@@ -23948,7 +23948,7 @@ hreidmar:
   id: 13300
 cloaked_figure:
   id: 13301
-lava-flow_miner_sven_1:
+lava-flow_miner_sven:
   id: 13302
 lava-flow_miner_sven_2:
   id: 13303
@@ -23964,11 +23964,11 @@ black_guard_19:
   id: 13308
 black_guard_20:
   id: 13309
-foreman_jaak_1:
+foreman_jaak:
   id: 13310
 foreman_jaak_2:
   id: 13311
-king_veldaban_1:
+king_veldaban:
   id: 13313
 king_veldaban_2:
   id: 13314
@@ -24068,7 +24068,7 @@ black_guard_25:
   id: 13366
 cliff_4:
   id: 13381
-protester_1:
+protester:
   id: 13389
 protester_2:
   id: 13390
@@ -24136,7 +24136,7 @@ big_rock_4:
   id: 13425
 troll_11:
   id: 13426
-consortium_general_secretary_1:
+consortium_general_secretary:
   id: 13427
 blue_opal_director_3:
   id: 13428
@@ -24176,7 +24176,7 @@ cyrisus_14:
   id: 13445
 zombie_head_23:
   id: 13446
-nex_1:
+nex:
   id: 13447
 nex_2:
   id: 13448
@@ -24214,7 +24214,7 @@ hilda_2:
   id: 13464
 revenant_imp:
   id: 13465
-revenant_goblin_1:
+revenant_goblin:
   id: 13466
 revenant_goblin_2:
   id: 13467
@@ -24432,11 +24432,11 @@ baron_von_hattenkrapper:
   id: 13576
 barrelchest_mk_ii_2:
   id: 13577
-general_malpractitioner_1:
+general_malpractitioner:
   id: 13578
 barrelchest_mk_ii_3:
   id: 13579
-dis-orderly_1:
+dis-orderly:
   id: 13580
 dis-orderly_2:
   id: 13581
@@ -24454,7 +24454,7 @@ dis-orderly_8:
   id: 13587
 dis-orderly_9:
   id: 13588
-grimtern_1:
+grimtern:
   id: 13589
 grimtern_2:
   id: 13590
@@ -24464,7 +24464,7 @@ residead:
   id: 13592
 attendead:
   id: 13593
-sado-machinist_1:
+sado-machinist:
   id: 13594
 sado-machinist_2:
   id: 13595
@@ -24482,15 +24482,15 @@ general_malpractitioner_2:
   id: 13601
 general_malpractitioner_3:
   id: 13602
-'''rum''-pumped_crab_1':
+rum-pumped_crab:
   id: 13603
-'''rum''-pumped_crab_2':
+rum-pumped_crab_2:
   id: 13604
-'''rum''-pumped_crab_3':
+rum-pumped_crab_3:
   id: 13605
-'''rum''-pumped_crab_4':
+rum-pumped_crab_4:
   id: 13606
-'''rum''-pumped_crab_5':
+rum-pumped_crab_5:
   id: 13607
 man_31:
   id: 13609
@@ -24508,9 +24508,9 @@ goblin_171:
   id: 13616
 sergeant-at-arms_2:
   id: 13617
-captain_of_the_guard_1:
+captain_of_the_guard:
   id: 13618
-pauline_polaris_1:
+pauline_polaris:
   id: 13619
 drained_pauline_polaris:
   id: 13620
@@ -24564,7 +24564,7 @@ jack_frost_7:
   id: 13650
 easter_bunny_5:
   id: 13651
-troll_ranger_1:
+troll_ranger:
   id: 13652
 troll_ranger_2:
   id: 13653
@@ -24584,7 +24584,7 @@ troll_ranger_7:
   id: 13660
 troll_ranger_8:
   id: 13661
-poorly_cooked_karambwan_1:
+poorly_cooked_karambwan:
   id: 13662
 poorly_cooked_karambwan_2:
   id: 13663
@@ -24600,7 +24600,7 @@ poorly_cooked_karambwan_7:
   id: 13668
 poorly_cooked_karambwan_8:
   id: 13669
-summoner_1:
+summoner:
   id: 13670
 summoner_2:
   id: 13671
@@ -24654,7 +24654,7 @@ ballista_4:
   id: 13695
 wall_guard:
   id: 13696
-captain_jute_1:
+captain_jute:
   id: 13697
 captain_jute_2:
   id: 13698
@@ -24686,7 +24686,7 @@ troll_ranger_9:
   id: 13711
 huge_troll:
   id: 13712
-dynamite_1:
+dynamite:
   id: 13713
 dynamite_2:
   id: 13714
@@ -24732,11 +24732,11 @@ fisherman_8:
   id: 13734
 kennith_9:
   id: 13735
-ezekial_1:
+ezekial:
   id: 13736
 ezekial_2:
   id: 13737
-eva_1:
+eva:
   id: 13738
 eva_2:
   id: 13739
@@ -24746,7 +24746,7 @@ forgotten_ranger_57:
   id: 13741
 forgotten_mage_56:
   id: 13742
-risen_knight_1:
+risen_knight:
   id: 13743
 risen_knight_2:
   id: 13744
@@ -24774,7 +24774,7 @@ caustic_gazer:
   id: 13762
 bailey_2:
   id: 13763
-slug_thrall_1:
+slug_thrall:
   id: 13764
 slug_thrall_2:
   id: 13765
@@ -24870,11 +24870,11 @@ maverick:
   id: 13824
 chicken_12:
   id: 13825
-avalani_1:
+avalani:
   id: 13826
 avalani_2:
   id: 13827
-ball_1:
+ball:
   id: 13828
 ball_2:
   id: 13829
@@ -24890,9 +24890,9 @@ battlemaster:
   id: 13834
 mage_4:
   id: 13835
-red_mage_1:
+red_mage:
   id: 13836
-blue_mage_1:
+blue_mage:
   id: 13837
 mage_5:
   id: 13838
@@ -24920,9 +24920,9 @@ blue_mage_5:
   id: 13849
 warrior_3:
   id: 13850
-red_warrior_1:
+red_warrior:
   id: 13851
-blue_warrior_1:
+blue_warrior:
   id: 13852
 warrior_4:
   id: 13853
@@ -24950,9 +24950,9 @@ blue_warrior_5:
   id: 13864
 ranger_3:
   id: 13865
-red_ranger_1:
+red_ranger:
   id: 13866
-blue_ranger_1:
+blue_ranger:
   id: 13867
 ranger_4:
   id: 13868
@@ -25106,7 +25106,7 @@ xenia_5:
   id: 13952
 xenia_6:
   id: 13953
-the_raptor_1:
+the_raptor:
   id: 13955
 the_raptor_2:
   id: 13957
@@ -25198,43 +25198,43 @@ skeleton_136:
   id: 14009
 mercenary_adventurer_2:
   id: 14010
-dean_vellio_1:
+dean_vellio:
   id: 14011
 dean_vellio_2:
   id: 14012
-pazuzu_1:
+pazuzu:
   id: 14013
 pazuzu_2:
   id: 14014
-jayene_kliyn_1:
+jayene_kliyn:
   id: 14015
 jayene_kliyn_2:
   id: 14016
-zachory_bragg_1:
+zachory_bragg:
   id: 14017
 zachory_bragg_2:
   id: 14018
-smiddi_ryak_1:
+smiddi_ryak:
   id: 14019
 smiddi_ryak_2:
   id: 14020
-rolayne_twickit_1:
+rolayne_twickit:
   id: 14021
 rolayne_twickit_2:
   id: 14022
-swamp_snake_1:
+swamp_snake:
   id: 14023
 swamp_snake_2:
   id: 14024
 swamp_snake_3:
   id: 14025
-dead_swamp_snake_1:
+dead_swamp_snake:
   id: 14026
 dead_swamp_snake_2:
   id: 14027
 dead_swamp_snake_3:
   id: 14028
-giant_snail_1:
+giant_snail:
   id: 14029
 giant_snail_2:
   id: 14030
@@ -25258,7 +25258,7 @@ ghast_9:
   id: 14039
 ghast_10:
   id: 14040
-juvinate_1:
+juvinate:
   id: 14041
 juvinate_2:
   id: 14042
@@ -25310,7 +25310,7 @@ rolayne_twickit_3:
   id: 14067
 rolayne_twickit_4:
   id: 14068
-will_o'_the_wisp_5:
+will_o_the_wisp_5:
   id: 14070
 rook_2:
   id: 14071
@@ -25340,7 +25340,7 @@ sentinel_gorthaur:
   id: 14083
 vyrewatch_95:
   id: 14084
-held_vyrewatch_1:
+held_vyrewatch:
   id: 14085
 vyrewatch_96:
   id: 14086
@@ -25370,7 +25370,7 @@ vyrewatch_102:
   id: 14098
 held_vyrewatch_8:
   id: 14099
-vyrewatch_guard_1:
+vyrewatch_guard:
   id: 14100
 held_vyrewatch_guard:
   id: 14101
@@ -25388,7 +25388,7 @@ vyrewatch_guard_2:
   id: 14115
 vyrewatch_guard_3:
   id: 14116
-arboretum_guard_1:
+arboretum_guard:
   id: 14117
 arboretum_guard_2:
   id: 14118
@@ -25434,7 +25434,7 @@ vyrelord_10:
   id: 14138
 vyrelady_10:
   id: 14139
-captured_meiyerditch_citizen_1:
+captured_meiyerditch_citizen:
   id: 14141
 captured_meiyerditch_citizen_2:
   id: 14142
@@ -25470,7 +25470,7 @@ darkmeyer_trader:
   id: 14164
 darkmeyer_blood_trader:
   id: 14165
-canifis_settler_1:
+canifis_settler:
   id: 14166
 canifis_settler_2:
   id: 14167
@@ -25510,7 +25510,7 @@ meiyerditch_citizen_30:
   id: 14189
 vertida_sefalatis_3:
   id: 14194
-mekritus_a'hara_3:
+mekritus_ahara_3:
   id: 14195
 zombie_110:
   id: 14196
@@ -25598,11 +25598,11 @@ troll_12:
   id: 14238
 troll_13:
   id: 14239
-mercenary_warrior_1:
+mercenary_warrior:
   id: 14240
 mercenary_warrior_2:
   id: 14241
-mercenary_ranger_1:
+mercenary_ranger:
   id: 14242
 mercenary_ranger_2:
   id: 14243
@@ -25622,7 +25622,7 @@ elite_khazard_guard_7:
   id: 14250
 ali_the_wise_3:
   id: 14251
-wahisietel_1:
+wahisietel:
   id: 14252
 akrisae_2:
   id: 14253
@@ -25642,7 +25642,7 @@ guardian_of_armadyl_9:
   id: 14260
 ice_demon_2:
   id: 14261
-sliske_1:
+sliske:
   id: 14262
 ahrim_the_blighted_2:
   id: 14263
@@ -25708,7 +25708,7 @@ hazeel_3:
   id: 14293
 lucien_7:
   id: 14294
-akrisae_the_doomed_1:
+akrisae_the_doomed:
   id: 14295
 thaerisk_cemphier_3:
   id: 14296
@@ -25730,7 +25730,7 @@ enduring_glacyte:
   id: 14304
 frozen_adventurer_3:
   id: 14305
-sir_tendeth_1:
+sir_tendeth:
   id: 14319
 sir_tendeth_2:
   id: 14320
@@ -25780,7 +25780,7 @@ dragonkin_2:
   id: 14351
 bilrach:
   id: 14352
-khazard_1:
+khazard:
   id: 14353
 khazard_2:
   id: 14354
@@ -25798,7 +25798,7 @@ bob_8:
   id: 14360
 ophelia:
   id: 14361
-talent_scout_1:
+talent_scout:
   id: 14362
 talent_scout_2:
   id: 14363
@@ -25806,7 +25806,7 @@ talent_scout_3:
   id: 14364
 talent_scout_4:
   id: 14365
-snotgut_1:
+snotgut:
   id: 14366
 snotgut_2:
   id: 14367
@@ -25814,7 +25814,7 @@ snotgut_3:
   id: 14368
 snotgut_4:
   id: 14369
-scrambles_1:
+scrambles:
   id: 14370
 scrambles_2:
   id: 14371

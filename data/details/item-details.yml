@@ -1,8 +1,8 @@
 dwarf_remains:
   id: 0
-toolkit_1:
+toolkit:
   id: 1
-cannonball_1:
+cannonball:
   id: 2
 nulodions_notes:
   id: 3
@@ -10,11 +10,11 @@ ammo_mould:
   id: 4
 instruction_manual:
   id: 5
-cannon_base_1:
+cannon_base:
   id: 6
 cannon_base_noted:
   id: 7
-cannon_stand_1:
+cannon_stand:
   id: 8
 cannon_stand_noted:
   id: 9
@@ -22,7 +22,7 @@ cannon_barrels:
   id: 10
 cannon_barrels_noted:
   id: 11
-cannon_furnace_1:
+cannon_furnace:
   id: 12
 cannon_furnace_noted:
   id: 13
@@ -56,7 +56,7 @@ fishing_pass:
   id: 27
 insect_repellent:
   id: 28
-tinderbox_1:
+tinderbox:
   id: 29
 bucket_of_wax:
   id: 30
@@ -64,11 +64,11 @@ tinderbox_2:
   id: 31
 lit_black_candle:
   id: 32
-lit_candle_1:
+lit_candle:
   id: 33
 lit_candle_2:
   id: 34
-excalibur_1:
+excalibur:
   id: 35
   slot: Weapon
 candle:
@@ -103,9 +103,9 @@ shortbow_(u):
   id: 50
 shortbow_(u)_noted:
   id: 51
-arrow_shaft_1:
+arrow_shaft:
   id: 52
-headless_arrow_1:
+headless_arrow:
   id: 53
 oak_shortbow_(u):
   id: 54
@@ -162,7 +162,7 @@ khali_brew:
 ice_arrows:
   id: 78
   slot: Arrows
-lever_1:
+lever:
   id: 83
 staff_of_armadyl:
   id: 84
@@ -174,7 +174,7 @@ pendant_of_lucien:
 armadyl_pendant:
   id: 87
   slot: Amulet
-boots_of_lightness_1:
+boots_of_lightness:
   id: 88
   slot: Feet
 boots_of_lightness_2:
@@ -266,41 +266,41 @@ restore_potion_(1):
   id: 131
 restore_potion_(1)_noted:
   id: 132
-defence_potion_(3)_1:
+defence_potion_(3):
   id: 133
-defence_potion_(3)_noted_1:
+defence_potion_(3)_noted:
   id: 134
-defence_potion_(2)_1:
+defence_potion_(2):
   id: 135
-defence_potion_(2)_noted_1:
+defence_potion_(2)_noted:
   id: 136
-defence_potion_(1)_1:
+defence_potion_(1):
   id: 137
-defence_potion_(1)_noted_1:
+defence_potion_(1)_noted:
   id: 138
-prayer_potion_(3)_1:
+prayer_potion_(3):
   id: 139
-prayer_potion_(3)_noted_1:
+prayer_potion_(3)_noted:
   id: 140
-prayer_potion_(2)_1:
+prayer_potion_(2):
   id: 141
-prayer_potion_(2)_noted_1:
+prayer_potion_(2)_noted:
   id: 142
-prayer_potion_(1)_1:
+prayer_potion_(1):
   id: 143
-prayer_potion_(1)_noted_1:
+prayer_potion_(1)_noted:
   id: 144
-super_attack_(3)_1:
+super_attack_(3):
   id: 145
-super_attack_(3)_noted_1:
+super_attack_(3)_noted:
   id: 146
-super_attack_(2)_1:
+super_attack_(2):
   id: 147
-super_attack_(2)_noted_1:
+super_attack_(2)_noted:
   id: 148
-super_attack_(1)_1:
+super_attack_(1):
   id: 149
-super_attack_(1)_noted_1:
+super_attack_(1)_noted:
   id: 150
 fishing_potion_(3):
   id: 151
@@ -314,17 +314,17 @@ fishing_potion_(1):
   id: 155
 fishing_potion_(1)_noted:
   id: 156
-super_strength_(3)_1:
+super_strength_(3):
   id: 157
-super_strength_(3)_noted_1:
+super_strength_(3)_noted:
   id: 158
-super_strength_(2)_1:
+super_strength_(2):
   id: 159
-super_strength_(2)_noted_1:
+super_strength_(2)_noted:
   id: 160
-super_strength_(1)_1:
+super_strength_(1):
   id: 161
-super_strength_(1)_noted_1:
+super_strength_(1)_noted:
   id: 162
 super_defence_(3):
   id: 163
@@ -338,17 +338,17 @@ super_defence_(1):
   id: 167
 super_defence_(1)_noted:
   id: 168
-ranging_potion_(3)_1:
+ranging_potion_(3):
   id: 169
-ranging_potion_(3)_noted_1:
+ranging_potion_(3)_noted:
   id: 170
-ranging_potion_(2)_1:
+ranging_potion_(2):
   id: 171
-ranging_potion_(2)_noted_1:
+ranging_potion_(2)_noted:
   id: 172
-ranging_potion_(1)_1:
+ranging_potion_(1):
   id: 173
-ranging_potion_(1)_noted_1:
+ranging_potion_(1)_noted:
   id: 174
 antipoison_(3):
   id: 175
@@ -374,9 +374,9 @@ super_antipoison_(1):
   id: 185
 super_antipoison_(1)_noted:
   id: 186
-weapon_poison_1:
+weapon_poison:
   id: 187
-weapon_poison_noted_1:
+weapon_poison_noted:
   id: 188
 zamorak_brew_(3):
   id: 189
@@ -390,7 +390,7 @@ zamorak_brew_(1):
   id: 193
 zamorak_brew_(1)_noted:
   id: 194
-potion_1:
+potion:
   id: 195
 potion_noted:
   id: 196
@@ -454,19 +454,19 @@ limpwurt_root:
   id: 225
 limpwurt_root_noted:
   id: 226
-vial_of_water_1:
+vial_of_water:
   id: 227
-vial_of_water_noted_1:
+vial_of_water_noted:
   id: 228
-vial_1:
+vial:
   id: 229
-vial_noted_1:
+vial_noted:
   id: 230
 snape_grass:
   id: 231
 snape_grass_noted:
   id: 232
-pestle_and_mortar_1:
+pestle_and_mortar:
   id: 233
 pestle_and_mortar_noted:
   id: 234
@@ -474,7 +474,7 @@ unicorn_horn_dust:
   id: 235
 unicorn_horn_dust_noted:
   id: 236
-unicorn_horn_1:
+unicorn_horn:
   id: 237
 unicorn_horn_noted:
   id: 238
@@ -498,7 +498,7 @@ jangerberries:
   id: 247
 jangerberries_noted:
   id: 248
-clean_guam_1:
+clean_guam:
   id: 249
 clean_guam_noted:
   id: 250
@@ -547,7 +547,7 @@ pressure_gauge:
 fish_food:
   id: 272
   slot: Shield
-poison_1:
+poison:
   id: 273
 poisoned_fish_food:
   id: 274
@@ -590,18 +590,18 @@ goblin_mail_noted:
   id: 289
 research_package:
   id: 290
-research_notes_1:
+research_notes:
   id: 291
 book_on_baxtorian:
   id: 292
-a_key_1:
+a_key:
   id: 293
 glarials_pebble:
   id: 294
 glarials_amulet:
   id: 295
   slot: Amulet
-glarials_urn_1:
+glarials_urn:
   id: 296
 glarials_urn_2:
   id: 297
@@ -615,11 +615,11 @@ lobster_pot:
   id: 301
 lobster_pot_noted:
   id: 302
-small_fishing_net_1:
+small_fishing_net:
   id: 303
 small_fishing_net_noted:
   id: 304
-big_fishing_net_1:
+big_fishing_net:
   id: 305
 big_fishing_net_noted:
   id: 306
@@ -627,9 +627,9 @@ fishing_rod:
   id: 307
 fishing_rod_noted:
   id: 308
-fly_fishing_rod_1:
+fly_fishing_rod:
   id: 309
-fly_fishing_rod_noted_1:
+fly_fishing_rod_noted:
   id: 310
 harpoon:
   id: 311
@@ -637,15 +637,15 @@ harpoon_noted:
   id: 312
 fishing_bait:
   id: 313
-feather_1:
+feather:
   id: 314
 shrimps:
   id: 315
 shrimps_noted:
   id: 316
-raw_shrimps_1:
+raw_shrimps:
   id: 317
-raw_shrimps_noted_1:
+raw_shrimps_noted:
   id: 318
 anchovies:
   id: 319
@@ -655,15 +655,15 @@ raw_anchovies:
   id: 321
 raw_anchovies_noted:
   id: 322
-burnt_fish_1:
+burnt_fish:
   id: 323
-burnt_fish_noted_1:
+burnt_fish_noted:
   id: 324
 sardine:
   id: 325
 sardine_noted:
   id: 326
-raw_sardine_1:
+raw_sardine:
   id: 327
 raw_sardine_noted:
   id: 328
@@ -691,7 +691,7 @@ cod:
   id: 339
 cod_noted:
   id: 340
-raw_cod_1:
+raw_cod:
   id: 341
 raw_cod_noted:
   id: 342
@@ -735,7 +735,7 @@ tuna:
   id: 361
 tuna_noted:
   id: 362
-raw_bass_1:
+raw_bass:
   id: 363
 raw_bass_noted:
   id: 364
@@ -755,7 +755,7 @@ raw_swordfish:
   id: 371
 raw_swordfish_noted:
   id: 372
-swordfish_1:
+swordfish:
   id: 373
 swordfish_noted:
   id: 374
@@ -763,7 +763,7 @@ burnt_swordfish:
   id: 375
 burnt_swordfish_noted:
   id: 376
-raw_lobster_1:
+raw_lobster:
   id: 377
 raw_lobster_noted:
   id: 378
@@ -775,11 +775,11 @@ burnt_lobster:
   id: 381
 burnt_lobster_noted:
   id: 382
-raw_shark_1:
+raw_shark:
   id: 383
 raw_shark_noted:
   id: 384
-shark_1:
+shark:
   id: 385
 shark_noted:
   id: 386
@@ -811,7 +811,7 @@ burnt_sea_turtle:
   id: 399
 burnt_sea_turtle_noted:
   id: 400
-seaweed_1:
+seaweed:
   id: 401
 seaweed_noted:
   id: 402
@@ -819,7 +819,7 @@ edible_seaweed:
   id: 403
 edible_seaweed_noted:
   id: 404
-casket_1:
+casket:
   id: 405
 casket_noted:
   id: 406
@@ -858,17 +858,17 @@ lathas_amulet:
   slot: Amulet
 bird_feed:
   id: 422
-key_1:
+key:
   id: 423
-pigeon_cage_1:
+pigeon_cage:
   id: 424
 pigeon_cage_2:
   id: 425
-priest_gown_1:
+priest_gown:
   id: 426
   slot: Chest
   type: FullBody
-priest_gown_noted_1:
+priest_gown_noted:
   id: 427
 priest_gown_2:
   id: 428
@@ -879,9 +879,9 @@ doctors_gown:
   id: 430
   slot: Chest
   type: FullBody
-karamjan_rum_1:
+karamjan_rum:
   id: 431
-chest_key_1:
+chest_key:
   id: 432
 pirate_message:
   id: 433
@@ -897,7 +897,7 @@ tin_ore:
   id: 438
 tin_ore_noted:
   id: 439
-iron_ore_1:
+iron_ore:
   id: 440
 iron_ore_noted:
   id: 441
@@ -905,7 +905,7 @@ silver_ore:
   id: 442
 silver_ore_noted:
   id: 443
-gold_ore_1:
+gold_ore:
   id: 444
 gold_ore_noted:
   id: 445
@@ -915,7 +915,7 @@ mithril_ore:
   id: 447
 mithril_ore_noted:
   id: 448
-adamantite_ore_1:
+adamantite_ore:
   id: 449
 adamantite_ore_noted:
   id: 450
@@ -929,7 +929,7 @@ coal_noted:
   id: 454
 barcrawl_card:
   id: 455
-scorpion_cage_1:
+scorpion_cage:
   id: 456
 scorpion_cage_2:
   id: 457
@@ -954,10 +954,10 @@ pickaxe_handle:
   slot: Weapon
 pickaxe_handle_noted:
   id: 467
-broken_pickaxe_1:
+broken_pickaxe:
   id: 468
   slot: Weapon
-broken_pickaxe_noted_1:
+broken_pickaxe_noted:
   id: 469
 broken_pickaxe_2:
   id: 470
@@ -984,9 +984,9 @@ broken_pickaxe_6:
   slot: Weapon
 broken_pickaxe_noted_6:
   id: 479
-pickaxe_head_1:
+pickaxe_head:
   id: 480
-pickaxe_head_noted_1:
+pickaxe_head_noted:
   id: 481
 pickaxe_head_2:
   id: 482
@@ -1008,15 +1008,15 @@ pickaxe_head_6:
   id: 490
 pickaxe_head_noted_6:
   id: 491
-hatchet_handle_1:
+hatchet_handle:
   id: 492
   slot: Weapon
-hatchet_handle_noted_1:
+hatchet_handle_noted:
   id: 493
-broken_hatchet_1:
+broken_hatchet:
   id: 494
   slot: Weapon
-broken_hatchet_noted_1:
+broken_hatchet_noted:
   id: 495
 broken_hatchet_2:
   id: 496
@@ -1048,9 +1048,9 @@ broken_hatchet_7:
   slot: Weapon
 broken_hatchet_noted_7:
   id: 507
-hatchet_head_1:
+hatchet_head:
   id: 508
-hatchet_head_noted_1:
+hatchet_head_noted:
   id: 509
 hatchet_head_2:
   id: 510
@@ -1084,34 +1084,34 @@ enchanted_bear_meat:
   id: 524
 enchanted_chicken:
   id: 525
-bones_1:
+bones:
   id: 526
-bones_noted_1:
+bones_noted:
   id: 527
 burnt_bones:
   id: 528
 burnt_bones_noted:
   id: 529
-bat_bones_1:
+bat_bones:
   id: 530
-bat_bones_noted_1:
+bat_bones_noted:
   id: 531
-big_bones_1:
+big_bones:
   id: 532
-big_bones_noted_1:
+big_bones_noted:
   id: 533
 babydragon_bones:
   id: 534
 babydragon_bones_noted:
   id: 535
-dragon_bones_1:
+dragon_bones:
   id: 536
-dragon_bones_noted_1:
+dragon_bones_noted:
   id: 537
-druids_robe_1:
+druids_robe:
   id: 538
   slot: Legs
-druids_robe_noted_1:
+druids_robe_noted:
   id: 539
 druids_robe_2:
   id: 540
@@ -1119,10 +1119,10 @@ druids_robe_2:
   type: FullBody
 druids_robe_noted_2:
   id: 541
-monks_robe_1:
+monks_robe:
   id: 542
   slot: Legs
-monks_robe_noted_1:
+monks_robe_noted:
   id: 543
 monks_robe_2:
   id: 544
@@ -1130,11 +1130,11 @@ monks_robe_2:
   type: FullBody
 monks_robe_noted_2:
   id: 545
-shade_robe_1:
+shade_robe:
   id: 546
   slot: Chest
   type: FullBody
-picture_1:
+picture:
   id: 547
 shade_robe_2:
   id: 548
@@ -1145,36 +1145,36 @@ newcomer_map:
   id: 550
 newcomer_map_noted:
   id: 551
-ghostspeak_amulet_1:
+ghostspeak_amulet:
   id: 552
   slot: Amulet
 muddy_skull:
   id: 553
-fire_rune_1:
+fire_rune:
   id: 554
-water_rune_1:
+water_rune:
   id: 555
-air_rune_1:
+air_rune:
   id: 556
-earth_rune_1:
+earth_rune:
   id: 557
-mind_rune_1:
+mind_rune:
   id: 558
-body_rune_1:
+body_rune:
   id: 559
-death_rune_1:
+death_rune:
   id: 560
-nature_rune_1:
+nature_rune:
   id: 561
-chaos_rune_1:
+chaos_rune:
   id: 562
-law_rune_1:
+law_rune:
   id: 563
-cosmic_rune_1:
+cosmic_rune:
   id: 564
-blood_rune_1:
+blood_rune:
   id: 565
-soul_rune_1:
+soul_rune:
   id: 566
 unpowered_orb:
   id: 567
@@ -1202,11 +1202,11 @@ wizard_robe:
   type: FullBody
 wizard_robe_noted:
   id: 578
-wizard_hat_1:
+wizard_hat:
   id: 579
   slot: Hat
   type: Hair
-wizard_hat_noted_1:
+wizard_hat_noted:
   id: 580
 black_robe:
   id: 581
@@ -1214,9 +1214,9 @@ black_robe:
   type: FullBody
 black_robe_noted:
   id: 582
-bailing_bucket_1:
+bailing_bucket:
   id: 583
-bailing_bucket_noted_1:
+bailing_bucket_noted:
   id: 584
 bailing_bucket_2:
   id: 585
@@ -1231,21 +1231,21 @@ gnome_amulet:
   slot: Amulet
 tinderbox_3:
   id: 590
-tinderbox_noted_1:
+tinderbox_noted:
   id: 591
-ashes_1:
+ashes:
   id: 592
-ashes_noted_1:
+ashes_noted:
   id: 593
 lit_torch:
   id: 594
-torch_1:
+torch:
   id: 595
 unlit_torch:
   id: 596
 unlit_torch_noted:
   id: 597
-bronze_fire_arrows_1:
+bronze_fire_arrows:
   id: 598
   slot: Arrows
 picture_3:
@@ -1260,7 +1260,7 @@ observatory_lens:
   id: 603
 bone_shard:
   id: 604
-bone_key_1:
+bone_key:
   id: 605
 stone-plaque:
   id: 606
@@ -1272,7 +1272,7 @@ rashiliyia_corpse:
   id: 609
 zadimus_corpse:
   id: 610
-locating_crystal_1:
+locating_crystal:
   id: 611
 locating_crystal_2:
   id: 612
@@ -1285,11 +1285,11 @@ locating_crystal_5:
 beads_of_the_dead:
   id: 616
   slot: Amulet
-coins_1:
+coins:
   id: 617
 bone_beads:
   id: 618
-paramaya_ticket_1:
+paramaya_ticket:
   id: 619
 paramaya_ticket_2:
   id: 620
@@ -1393,7 +1393,7 @@ green_hat:
   slot: Hat
 green_hat_noted:
   id: 659
-blue_hat_1:
+blue_hat:
   id: 660
   slot: Hat
 blue_hat_noted:
@@ -1432,7 +1432,7 @@ rock_pick:
   slot: Weapon
 trowel:
   id: 676
-panning_tray_1:
+panning_tray:
   id: 677
 panning_tray_2:
   id: 678
@@ -1450,7 +1450,7 @@ belt_buckle:
   id: 684
 old_boot:
   id: 685
-rusty_sword_1:
+rusty_sword:
   id: 686
 broken_arrow:
   id: 687
@@ -1476,7 +1476,7 @@ damaged_armour:
   id: 697
 broken_armour:
   id: 698
-stone_tablet_1:
+stone_tablet:
   id: 699
 chemical_powder:
   id: 700
@@ -1488,7 +1488,7 @@ nitroglycerin:
   id: 703
 ground_charcoal:
   id: 704
-mixed_chemicals_1:
+mixed_chemicals:
   id: 705
 mixed_chemicals_2:
   id: 706
@@ -1498,15 +1498,15 @@ arcenia_root:
   id: 708
 chest_key_2:
   id: 709
-vase_1:
+vase:
   id: 710
 book_on_chemicals:
   id: 711
-cup_of_tea_1:
+cup_of_tea:
   id: 712
 picture_5:
   id: 713
-radimus_notes_1:
+radimus_notes:
   id: 714
 radimus_notes_2:
   id: 715
@@ -1524,7 +1524,7 @@ gold_bowl:
   id: 721
 blessed_gold_bowl:
   id: 722
-golden_bowl_1:
+golden_bowl:
   id: 723
 golden_bowl_2:
   id: 724
@@ -1532,7 +1532,7 @@ golden_bowl_3:
   id: 725
 golden_bowl_4:
   id: 726
-hollow_reed_1:
+hollow_reed:
   id: 727
 hollow_reed_2:
   id: 728
@@ -1549,7 +1549,7 @@ smashed_glass:
   id: 733
 tinderbox_5:
   id: 734
-yommi_tree_seeds_1:
+yommi_tree_seeds:
   id: 735
 yommi_tree_seeds_2:
   id: 736
@@ -1568,7 +1568,7 @@ hunk_of_crystal:
   id: 742
 lump_of_crystal:
   id: 743
-heart_crystal_1:
+heart_crystal:
   id: 744
 heart_crystal_2:
   id: 745
@@ -1593,11 +1593,11 @@ cadava_berries:
   id: 753
 cadava_berries_noted:
   id: 754
-message_1:
+message:
   id: 755
 cadava_potion:
   id: 756
-book_1:
+book:
   id: 757
 phoenix_hq_key:
   id: 758
@@ -1609,7 +1609,7 @@ intel_report:
   id: 761
 picture_6:
   id: 762
-broken_shield_1:
+broken_shield:
   id: 763
 picture_7:
   id: 764
@@ -1617,12 +1617,12 @@ broken_shield_2:
   id: 765
 picture_8:
   id: 766
-phoenix_crossbow_1:
+phoenix_crossbow:
   id: 767
   slot: Weapon
-phoenix_crossbow_noted_1:
+phoenix_crossbow_noted:
   id: 768
-certificate_1:
+certificate:
   id: 769
 picture_9:
   id: 770
@@ -1649,7 +1649,7 @@ chaos_gauntlets:
 family_gauntlets:
   id: 778
   slot: Hands
-crest_part_1:
+crest_part:
   id: 779
 crest_part_2:
   id: 780
@@ -1669,7 +1669,7 @@ lumber_order:
   id: 787
 gloughs_key:
   id: 788
-twigs_1:
+twigs:
   id: 789
 twigs_2:
   id: 790
@@ -1794,7 +1794,7 @@ adamant_javelin_(p):
 rune_javelin_(p):
   id: 836
   slot: Weapon
-crossbow_1:
+crossbow:
   id: 837
   slot: Weapon
 crossbow_noted:
@@ -1946,7 +1946,7 @@ steel_arrow:
 steel_arrow_(p):
   id: 887
   slot: Arrows
-mithril_arrow_1:
+mithril_arrow:
   id: 888
   slot: Arrows
 mithril_arrow_(p):
@@ -1974,9 +1974,9 @@ worm_noted:
 throwing_rope:
   id: 945
   slot: Weapon
-knife_1:
+knife:
   id: 946
-knife_noted_1:
+knife_noted:
   id: 947
 bear_fur:
   id: 948
@@ -1986,13 +1986,13 @@ silk:
   id: 950
 silk_noted:
   id: 951
-spade_1:
+spade:
   id: 952
 spade_noted:
   id: 953
-rope_1:
+rope:
   id: 954
-rope_noted_1:
+rope_noted:
   id: 955
 flier:
   id: 956
@@ -2002,7 +2002,7 @@ grey_wolf_fur:
   id: 958
 grey_wolf_fur_noted:
   id: 959
-plank_1:
+plank:
   id: 960
 plank_noted:
   id: 961
@@ -2010,7 +2010,7 @@ christmas_cracker:
   id: 962
 christmas_cracker_noted:
   id: 963
-skull_1:
+skull:
   id: 964
 skull_2:
   id: 965
@@ -2018,17 +2018,17 @@ tile:
   id: 966
 tinderbox_7:
   id: 967
-rock_1:
+rock:
   id: 968
 tinderbox_8:
   id: 969
-papyrus_1:
+papyrus:
   id: 970
 papyrus_noted:
   id: 971
 papyrus_2:
   id: 972
-charcoal_1:
+charcoal:
   id: 973
 charcoal_noted:
   id: 974
@@ -2071,15 +2071,15 @@ sinister_key_noted:
   id: 994
 coins_2:
   id: 995
-white_apron_1:
+white_apron:
   id: 1005
   slot: Chest
 white_apron_noted:
   id: 1006
-cape_1:
+cape:
   id: 1007
   slot: Cape
-cape_noted_1:
+cape_noted:
   id: 1008
 brass_necklace:
   id: 1009
@@ -2142,10 +2142,10 @@ cape_7:
   slot: Cape
 cape_noted_7:
   id: 1032
-zamorak_robe_1:
+zamorak_robe:
   id: 1033
   slot: Legs
-zamorak_robe_noted_1:
+zamorak_robe_noted:
   id: 1034
 zamorak_robe_2:
   id: 1035
@@ -2153,7 +2153,7 @@ zamorak_robe_2:
   type: FullBody
 zamorak_robe_noted_2:
   id: 1036
-bunny_ears_1:
+bunny_ears:
   id: 1037
   slot: Hat
 red_partyhat:
@@ -2166,7 +2166,7 @@ yellow_partyhat:
   slot: Hat
 yellow_partyhat_noted:
   id: 1041
-blue_partyhat_1:
+blue_partyhat:
   id: 1042
   slot: Hat
 blue_partyhat_noted:
@@ -2191,7 +2191,7 @@ santa_hat:
   slot: Hat
 santa_hat_noted:
   id: 1051
-cape_of_legends_1:
+cape_of_legends:
   id: 1052
   slot: Cape
 green_hween_mask:
@@ -2217,7 +2217,7 @@ leather_gloves:
   slot: Hands
 leather_gloves_noted:
   id: 1060
-leather_boots_1:
+leather_boots:
   id: 1061
   slot: Feet
 leather_boots_noted:
@@ -2449,7 +2449,7 @@ mithril_med_helm:
   type: Hair
 mithril_med_helm_noted:
   id: 1144
-adamant_med_helm_1:
+adamant_med_helm:
   id: 1145
   slot: Hat
   type: Hair
@@ -2461,7 +2461,7 @@ rune_med_helm:
   type: Hair
 rune_med_helm_noted:
   id: 1148
-dragon_med_helm_1:
+dragon_med_helm:
   id: 1149
   slot: Hat
   type: Hair
@@ -2527,7 +2527,7 @@ coif:
   type: Hair
 coif_noted:
   id: 1170
-wooden_shield_1:
+wooden_shield:
   id: 1171
   slot: Shield
 wooden_shield_noted:
@@ -2582,7 +2582,7 @@ iron_kiteshield:
   slot: Shield
 iron_kiteshield_noted:
   id: 1192
-steel_kiteshield_1:
+steel_kiteshield:
   id: 1193
   slot: Shield
 steel_kiteshield_noted:
@@ -2597,12 +2597,12 @@ mithril_kiteshield:
   slot: Shield
 mithril_kiteshield_noted:
   id: 1198
-adamant_kiteshield_1:
+adamant_kiteshield:
   id: 1199
   slot: Shield
 adamant_kiteshield_noted:
   id: 1200
-rune_kiteshield_1:
+rune_kiteshield:
   id: 1201
   slot: Shield
 rune_kiteshield_noted:
@@ -2871,7 +2871,7 @@ adamant_longsword:
   slot: Weapon
 adamant_longsword_noted:
   id: 1302
-rune_longsword_1:
+rune_longsword:
   id: 1303
   slot: Weapon
 rune_longsword_noted:
@@ -2993,10 +2993,10 @@ rune_warhammer:
   slot: Weapon
 rune_warhammer_noted:
   id: 1348
-iron_hatchet_1:
+iron_hatchet:
   id: 1349
   slot: Weapon
-iron_hatchet_noted_1:
+iron_hatchet_noted:
   id: 1350
 bronze_hatchet:
   id: 1351
@@ -3143,7 +3143,7 @@ mystic_earth_staff:
   slot: Weapon
 mystic_earth_staff_noted:
   id: 1408
-ibans_staff_1:
+ibans_staff:
   id: 1409
   slot: Weapon
 ibans_staff_2:
@@ -3164,7 +3164,7 @@ javelin:
   id: 1417
 javelin_noted:
   id: 1418
-scythe_1:
+scythe:
   id: 1419
   slot: Weapon
   type: TwoHanded
@@ -3208,7 +3208,7 @@ dragon_mace:
   slot: Weapon
 dragon_mace_noted:
   id: 1435
-rune_essence_1:
+rune_essence:
   id: 1436
 rune_essence_noted:
   id: 1437
@@ -3299,7 +3299,7 @@ amulet_of_accuracy_noted:
   id: 1479
 rock_2:
   id: 1480
-orb_of_light_1:
+orb_of_light:
   id: 1481
 orb_of_light_2:
   id: 1482
@@ -3313,7 +3313,7 @@ piece_of_railing:
   id: 1486
 unicorn_horn_2:
   id: 1487
-paladins_badge_1:
+paladins_badge:
   id: 1488
 paladins_badge_2:
   id: 1489
@@ -3348,7 +3348,7 @@ warrant:
   id: 1503
 hangover_cure:
   id: 1504
-a_magic_scroll_1:
+a_magic_scroll:
   id: 1505
 gas_mask:
   id: 1506
@@ -3362,7 +3362,7 @@ book_2:
   id: 1509
 picture_10:
   id: 1510
-logs_1:
+logs:
   id: 1511
 logs_noted:
   id: 1512
@@ -3374,11 +3374,11 @@ yew_logs:
   id: 1515
 yew_logs_noted:
   id: 1516
-maple_logs_1:
+maple_logs:
   id: 1517
 maple_logs_noted:
   id: 1518
-willow_logs_1:
+willow_logs:
   id: 1519
 willow_logs_noted:
   id: 1520
@@ -3410,7 +3410,7 @@ grimy_rogues_purse:
   id: 1533
 clean_rogues_purse:
   id: 1534
-map_part_1:
+map_part:
   id: 1535
 map_part_2:
   id: 1536
@@ -3420,10 +3420,10 @@ crandor_map:
   id: 1538
 steel_nails:
   id: 1539
-anti-dragon_shield_1:
+anti-dragon_shield:
   id: 1540
   slot: Shield
-anti-dragon_shield_noted_1:
+anti-dragon_shield_noted:
   id: 1541
 maze_key:
   id: 1542
@@ -3450,7 +3450,7 @@ doogle_sardine:
   id: 1552
 tinderbox_9:
   id: 1553
-pet_kitten_1:
+pet_kitten:
   id: 1555
 pet_kitten_2:
   id: 1556
@@ -3462,7 +3462,7 @@ pet_kitten_5:
   id: 1559
 pet_kitten_6:
   id: 1560
-pet_cat_1:
+pet_cat:
   id: 1561
 pet_cat_2:
   id: 1562
@@ -3474,7 +3474,7 @@ pet_cat_5:
   id: 1565
 pet_cat_6:
   id: 1566
-overgrown_cat_1:
+overgrown_cat:
   id: 1567
 overgrown_cat_2:
   id: 1568
@@ -3548,15 +3548,15 @@ diamond:
   id: 1601
 diamond_noted:
   id: 1602
-ruby_1:
+ruby:
   id: 1603
 ruby_noted:
   id: 1604
-emerald_1:
+emerald:
   id: 1605
 emerald_noted:
   id: 1606
-sapphire_1:
+sapphire:
   id: 1607
 sapphire_noted:
   id: 1608
@@ -3572,7 +3572,7 @@ red_topaz:
   id: 1613
 red_topaz_noted:
   id: 1614
-dragonstone_1:
+dragonstone:
   id: 1615
 dragonstone_noted:
   id: 1616
@@ -3580,7 +3580,7 @@ uncut_diamond:
   id: 1617
 uncut_diamond_noted:
   id: 1618
-uncut_ruby_1:
+uncut_ruby:
   id: 1619
 uncut_ruby_noted:
   id: 1620
@@ -3617,27 +3617,27 @@ gold_ring:
   slot: Ring
 gold_ring_noted:
   id: 1636
-sapphire_ring_1:
+sapphire_ring:
   id: 1637
   slot: Ring
 sapphire_ring_noted:
   id: 1638
-emerald_ring_1:
+emerald_ring:
   id: 1639
   slot: Ring
 emerald_ring_noted:
   id: 1640
-ruby_ring_1:
+ruby_ring:
   id: 1641
   slot: Ring
 ruby_ring_noted:
   id: 1642
-diamond_ring_1:
+diamond_ring:
   id: 1643
   slot: Ring
 diamond_ring_noted:
   id: 1644
-dragonstone_ring_1:
+dragonstone_ring:
   id: 1645
   slot: Ring
 dragonstone_ring_noted:
@@ -3657,27 +3657,27 @@ gold_necklace:
   slot: Amulet
 gold_necklace_noted:
   id: 1655
-sapphire_necklace_1:
+sapphire_necklace:
   id: 1656
   slot: Amulet
 sapphire_necklace_noted:
   id: 1657
-emerald_necklace_1:
+emerald_necklace:
   id: 1658
   slot: Amulet
 emerald_necklace_noted:
   id: 1659
-ruby_necklace_1:
+ruby_necklace:
   id: 1660
   slot: Amulet
 ruby_necklace_noted:
   id: 1661
-diamond_necklace_1:
+diamond_necklace:
   id: 1662
   slot: Amulet
 diamond_necklace_noted:
   id: 1663
-dragon_necklace_1:
+dragon_necklace:
   id: 1664
   slot: Amulet
 dragon_necklace_noted:
@@ -3692,29 +3692,29 @@ diamond_necklace_2:
   id: 1671
 dragon_necklace_2:
   id: 1672
-gold_amulet_1:
+gold_amulet:
   id: 1673
-gold_amulet_noted_1:
+gold_amulet_noted:
   id: 1674
-sapphire_amulet_1:
+sapphire_amulet:
   id: 1675
-sapphire_amulet_noted_1:
+sapphire_amulet_noted:
   id: 1676
-emerald_amulet_1:
+emerald_amulet:
   id: 1677
-emerald_amulet_noted_1:
+emerald_amulet_noted:
   id: 1678
-ruby_amulet_1:
+ruby_amulet:
   id: 1679
-ruby_amulet_noted_1:
+ruby_amulet_noted:
   id: 1680
-diamond_amulet_1:
+diamond_amulet:
   id: 1681
-diamond_amulet_noted_1:
+diamond_amulet_noted:
   id: 1682
-dragonstone_ammy_1:
+dragonstone_ammy:
   id: 1683
-dragonstone_ammy_noted_1:
+dragonstone_ammy_noted:
   id: 1684
 sapphire_amulet_2:
   id: 1687
@@ -3756,7 +3756,7 @@ dragonstone_ammy_3:
   slot: Amulet
 dragonstone_ammy_noted_2:
   id: 1703
-amulet_of_glory_1:
+amulet_of_glory:
   id: 1704
   slot: Amulet
 amulet_of_glory_noted:
@@ -3790,7 +3790,7 @@ unblessed_symbol:
   slot: Amulet
 unblessed_symbol_noted:
   id: 1717
-holy_symbol_1:
+holy_symbol:
   id: 1718
   slot: Amulet
 holy_symbol_noted:
@@ -3804,7 +3804,7 @@ unpowered_symbol:
   slot: Amulet
 unpowered_symbol_noted:
   id: 1723
-unholy_symbol_1:
+unholy_symbol:
   id: 1724
   slot: Amulet
 amulet_of_strength:
@@ -3827,11 +3827,11 @@ amulet_of_power:
   slot: Amulet
 amulet_of_power_noted:
   id: 1732
-needle_1:
+needle:
   id: 1733
-thread_1:
+thread:
   id: 1734
-shears_1:
+shears:
   id: 1735
 shears_noted:
   id: 1736
@@ -3867,13 +3867,13 @@ blue_dragonhide:
   id: 1751
 blue_dragonhide_noted:
   id: 1752
-green_dragonhide_1:
+green_dragonhide:
   id: 1753
 green_dragonhide_noted:
   id: 1754
-chisel_1:
+chisel:
   id: 1755
-chisel_noted_1:
+chisel_noted:
   id: 1756
 brown_apron:
   id: 1757
@@ -3916,9 +3916,9 @@ molten_glass:
   id: 1775
 molten_glass_noted:
   id: 1776
-bow_string_1:
+bow_string:
   id: 1777
-bow_string_noted_1:
+bow_string_noted:
   id: 1778
 flax:
   id: 1779
@@ -3948,39 +3948,39 @@ bowl_(unfired):
   id: 1791
 bowl_(unfired)_noted:
   id: 1792
-woad_leaf_1:
+woad_leaf:
   id: 1793
-bronze_wire_1:
+bronze_wire:
   id: 1794
 bronze_wire_noted:
   id: 1795
-silver_necklace_1:
+silver_necklace:
   id: 1796
   slot: Amulet
 silver_necklace_2:
   id: 1797
   slot: Amulet
-silver_cup_1:
+silver_cup:
   id: 1798
 silver_cup_2:
   id: 1799
-silver_bottle_1:
+silver_bottle:
   id: 1800
 silver_bottle_2:
   id: 1801
-silver_book_1:
+silver_book:
   id: 1802
 silver_book_2:
   id: 1803
-silver_needle_1:
+silver_needle:
   id: 1804
 silver_needle_2:
   id: 1805
-silver_pot_1:
+silver_pot:
   id: 1806
 silver_pot_2:
   id: 1807
-criminals_thread_1:
+criminals_thread:
   id: 1808
 criminals_thread_2:
   id: 1809
@@ -3990,7 +3990,7 @@ flypaper:
   id: 1811
 pungent_pot:
   id: 1812
-criminals_dagger_1:
+criminals_dagger:
   id: 1813
 criminals_dagger_2:
   id: 1814
@@ -4050,7 +4050,7 @@ metal_key:
   id: 1839
 cell_door_key:
   id: 1840
-barrel_1:
+barrel:
   id: 1841
 ana_in_a_barrel:
   id: 1842
@@ -4138,9 +4138,9 @@ kebab_mix:
   id: 1881
 kebab_mix_noted:
   id: 1882
-ugthanki_kebab_1:
+ugthanki_kebab:
   id: 1883
-ugthanki_kebab_noted_1:
+ugthanki_kebab_noted:
   id: 1884
 ugthanki_kebab_2:
   id: 1885
@@ -4182,21 +4182,21 @@ burnt_cake:
   id: 1903
 burnt_cake_noted:
   id: 1904
-asgarnian_ale_1:
+asgarnian_ale:
   id: 1905
-asgarnian_ale_noted_1:
+asgarnian_ale_noted:
   id: 1906
 wizards_mind_bomb:
   id: 1907
 wizards_mind_bomb_noted:
   id: 1908
-greenmans_ale_1:
+greenmans_ale:
   id: 1909
-greenmans_ale_noted_1:
+greenmans_ale_noted:
   id: 1910
-dragon_bitter_1:
+dragon_bitter:
   id: 1911
-dragon_bitter_noted_1:
+dragon_bitter_noted:
   id: 1912
 dwarven_stout:
   id: 1913
@@ -4206,32 +4206,32 @@ grog:
   id: 1915
 grog_noted:
   id: 1916
-beer_1:
+beer:
   id: 1917
   slot: Weapon
-beer_noted_1:
+beer_noted:
   id: 1918
-beer_glass_1:
+beer_glass:
   id: 1919
-beer_glass_noted_1:
+beer_glass_noted:
   id: 1920
 bowl_of_water:
   id: 1921
 bowl_of_water_noted:
   id: 1922
-bowl_1:
+bowl:
   id: 1923
 bowl_noted:
   id: 1924
-bucket_1:
+bucket:
   id: 1925
 bucket_noted:
   id: 1926
-bucket_of_milk_1:
+bucket_of_milk:
   id: 1927
 bucket_of_milk_noted:
   id: 1928
-bucket_of_water_1:
+bucket_of_water:
   id: 1929
 bucket_of_water_noted:
   id: 1930
@@ -4239,9 +4239,9 @@ empty_pot:
   id: 1931
 empty_pot_noted:
   id: 1932
-pot_of_flour_1:
+pot_of_flour:
   id: 1933
-pot_of_flour_noted_1:
+pot_of_flour_noted:
   id: 1934
 jug:
   id: 1935
@@ -4267,7 +4267,7 @@ egg_noted:
   id: 1945
 flour:
   id: 1946
-grain_1:
+grain:
   id: 1947
 grain_noted:
   id: 1948
@@ -4296,18 +4296,18 @@ pumpkin:
   id: 1959
 pumpkin_noted:
   id: 1960
-easter_egg_1:
+easter_egg:
   id: 1961
 easter_egg_noted:
   id: 1962
-banana_1:
+banana:
   id: 1963
   slot: Weapon
-banana_noted_1:
+banana_noted:
   id: 1964
-cabbage_1:
+cabbage:
   id: 1965
-cabbage_noted_1:
+cabbage_noted:
   id: 1966
 cabbage_2:
   id: 1967
@@ -4336,9 +4336,9 @@ cup_of_tea_2:
   id: 1978
 cup_of_tea_noted:
   id: 1979
-empty_cup_1:
+empty_cup:
   id: 1980
-empty_cup_noted_1:
+empty_cup_noted:
   id: 1981
 tomato:
   id: 1982
@@ -4358,7 +4358,7 @@ half_full_wine_jug:
   id: 1989
 half_full_wine_jug_noted:
   id: 1990
-jug_of_bad_wine_1:
+jug_of_bad_wine:
   id: 1991
 jug_of_bad_wine_2:
   id: 1992
@@ -4366,13 +4366,13 @@ jug_of_wine:
   id: 1993
 jug_of_wine_noted:
   id: 1994
-unfermented_wine_1:
+unfermented_wine:
   id: 1995
 unfermented_wine_2:
   id: 1996
-incomplete_stew_1:
+incomplete_stew:
   id: 1997
-incomplete_stew_noted_1:
+incomplete_stew_noted:
   id: 1998
 incomplete_stew_2:
   id: 1999
@@ -4462,7 +4462,7 @@ premade_wiz_blzd_noted:
   id: 2041
 picture_12:
   id: 2042
-picture_noted_1:
+picture_noted:
   id: 2043
 picture_13:
   id: 2044
@@ -4472,9 +4472,9 @@ picture_14:
   id: 2046
 picture_noted_3:
   id: 2047
-pineapple_punch_1:
+pineapple_punch:
   id: 2048
-pineapple_punch_noted_1:
+pineapple_punch_noted:
   id: 2049
 picture_15:
   id: 2050
@@ -4484,9 +4484,9 @@ picture_16:
   id: 2052
 picture_noted_5:
   id: 2053
-wizard_blizzard_1:
+wizard_blizzard:
   id: 2054
-wizard_blizzard_noted_1:
+wizard_blizzard_noted:
   id: 2055
 picture_17:
   id: 2056
@@ -4504,9 +4504,9 @@ picture_20:
   id: 2062
 picture_noted_9:
   id: 2063
-blurberry_special_1:
+blurberry_special:
   id: 2064
-blurberry_special_noted_1:
+blurberry_special_noted:
   id: 2065
 picture_21:
   id: 2066
@@ -4524,9 +4524,9 @@ picture_24:
   id: 2072
 picture_noted_13:
   id: 2073
-choc_saturday_1:
+choc_saturday:
   id: 2074
-choc_saturday_noted_1:
+choc_saturday_noted:
   id: 2075
 picture_25:
   id: 2076
@@ -4536,17 +4536,17 @@ picture_26:
   id: 2078
 picture_noted_15:
   id: 2079
-short_green_guy_1:
+short_green_guy:
   id: 2080
-short_green_guy_noted_1:
+short_green_guy_noted:
   id: 2081
 picture_27:
   id: 2082
 picture_noted_16:
   id: 2083
-fruit_blast_1:
+fruit_blast:
   id: 2084
-fruit_blast_noted_1:
+fruit_blast_noted:
   id: 2085
 picture_28:
   id: 2086
@@ -4560,9 +4560,9 @@ picture_30:
   id: 2090
 picture_noted_19:
   id: 2091
-drunk_dragon_1:
+drunk_dragon:
   id: 2092
-drunk_dragon_noted_1:
+drunk_dragon_noted:
   id: 2093
 picture_31:
   id: 2094
@@ -4640,9 +4640,9 @@ pot_of_cream:
   id: 2130
 pot_of_cream_noted:
   id: 2131
-raw_beef_1:
+raw_beef:
   id: 2132
-raw_beef_noted_1:
+raw_beef_noted:
   id: 2133
 raw_rat_meat:
   id: 2134
@@ -4652,17 +4652,17 @@ raw_bear_meat:
   id: 2136
 raw_bear_meat_noted:
   id: 2137
-raw_chicken_1:
+raw_chicken:
   id: 2138
-raw_chicken_noted_1:
+raw_chicken_noted:
   id: 2139
-cooked_chicken_1:
+cooked_chicken:
   id: 2140
-cooked_chicken_noted_1:
+cooked_chicken_noted:
   id: 2141
-cooked_meat_1:
+cooked_meat:
   id: 2142
-cooked_meat_noted_1:
+cooked_meat_noted:
   id: 2143
 burnt_chicken:
   id: 2144
@@ -4704,7 +4704,7 @@ king_worm:
   id: 2162
 king_worm_noted:
   id: 2163
-batta_tin_1:
+batta_tin:
   id: 2164
 crunchy_tray:
   id: 2165
@@ -4746,29 +4746,29 @@ picture_39:
   id: 2183
 picture_noted_28:
   id: 2184
-chocolate_bomb_1:
+chocolate_bomb:
   id: 2185
-chocolate_bomb_noted_1:
+chocolate_bomb_noted:
   id: 2186
-tangled_toads_legs_1:
+tangled_toads_legs:
   id: 2187
-tangled_toads_legs_noted_1:
+tangled_toads_legs_noted:
   id: 2188
 picture_40:
   id: 2189
 picture_noted_29:
   id: 2190
-worm_hole_1:
+worm_hole:
   id: 2191
-worm_hole_noted_1:
+worm_hole_noted:
   id: 2192
 picture_41:
   id: 2193
 picture_noted_30:
   id: 2194
-veg_ball_1:
+veg_ball:
   id: 2195
-veg_ball_noted_1:
+veg_ball_noted:
   id: 2196
 odd_crunchies:
   id: 2197
@@ -4786,33 +4786,33 @@ picture_42:
   id: 2203
 picture_noted_31:
   id: 2204
-worm_crunchies_1:
+worm_crunchies:
   id: 2205
-worm_crunchies_noted_1:
+worm_crunchies_noted:
   id: 2206
 picture_43:
   id: 2207
 picture_noted_32:
   id: 2208
-chocchip_crunchies_1:
+chocchip_crunchies:
   id: 2209
-chocchip_crunchies_noted_1:
+chocchip_crunchies_noted:
   id: 2210
 picture_44:
   id: 2211
 picture_noted_33:
   id: 2212
-spicy_crunchies_1:
+spicy_crunchies:
   id: 2213
-spicy_crunchies_noted_1:
+spicy_crunchies_noted:
   id: 2214
 picture_45:
   id: 2215
 picture_noted_34:
   id: 2216
-toad_crunchies_1:
+toad_crunchies:
   id: 2217
-toad_crunchies_noted_1:
+toad_crunchies_noted:
   id: 2218
 premade_wm_batta:
   id: 2219
@@ -4882,25 +4882,25 @@ picture_47:
   id: 2251
 picture_noted_36:
   id: 2252
-worm_batta_1:
+worm_batta:
   id: 2253
-worm_batta_noted_1:
+worm_batta_noted:
   id: 2254
-toad_batta_1:
+toad_batta:
   id: 2255
-toad_batta_noted_1:
+toad_batta_noted:
   id: 2256
 picture_48:
   id: 2257
 picture_noted_37:
   id: 2258
-cheese+tom_batta_1:
+cheese+tom_batta:
   id: 2259
-cheese+tom_batta_noted_1:
+cheese+tom_batta_noted:
   id: 2260
-unfinished_batta_1:
+unfinished_batta:
   id: 2261
-unfinished_batta_noted_1:
+unfinished_batta_noted:
   id: 2262
 unfinished_batta_2:
   id: 2263
@@ -4930,17 +4930,17 @@ picture_49:
   id: 2275
 picture_noted_38:
   id: 2276
-fruit_batta_1:
+fruit_batta:
   id: 2277
-fruit_batta_noted_1:
+fruit_batta_noted:
   id: 2278
 picture_50:
   id: 2279
 picture_noted_39:
   id: 2280
-vegetable_batta_1:
+vegetable_batta:
   id: 2281
-vegetable_batta_noted_1:
+vegetable_batta_noted:
   id: 2282
 pizza_base:
   id: 2283
@@ -5054,7 +5054,7 @@ raw_oomlie:
   id: 2337
 raw_oomlie_noted:
   id: 2338
-palm_leaf_1:
+palm_leaf:
   id: 2339
 palm_leaf_2:
   id: 2340
@@ -5070,9 +5070,9 @@ burnt_oomlie_wrap:
   id: 2345
 burnt_oomlie_wrap_noted:
   id: 2346
-hammer_1:
+hammer:
   id: 2347
-hammer_noted_1:
+hammer_noted:
   id: 2348
 bronze_bar:
   id: 2349
@@ -5082,7 +5082,7 @@ iron_bar:
   id: 2351
 iron_bar_noted:
   id: 2352
-steel_bar_1:
+steel_bar:
   id: 2353
 steel_bar_noted:
   id: 2354
@@ -5090,7 +5090,7 @@ silver_bar:
   id: 2355
 silver_bar_noted:
   id: 2356
-gold_bar_1:
+gold_bar:
   id: 2357
 gold_bar_noted:
   id: 2358
@@ -5136,7 +5136,7 @@ tobans_key:
   id: 2378
 rock_cake:
   id: 2379
-crystal_1:
+crystal:
   id: 2380
 crystal_2:
   id: 2381
@@ -5175,13 +5175,13 @@ shaman_robe:
   id: 2397
 cave_nightshade:
   id: 2398
-silverlight_key_1:
+silverlight_key:
   id: 2399
 silverlight_key_2:
   id: 2400
 silverlight_key_3:
   id: 2401
-silverlight_1:
+silverlight:
   id: 2402
   slot: Weapon
 hazeel_scroll:
@@ -5195,20 +5195,20 @@ carnillean_armour:
 hazeels_mark:
   id: 2406
   slot: Amulet
-ball_1:
+ball:
   id: 2407
-diary_1:
+diary:
   id: 2408
-door_key_1:
+door_key:
   id: 2409
-magnet_1:
+magnet:
   id: 2410
 key_8:
   id: 2411
 saradomin_cape:
   id: 2412
   slot: Cape
-guthix_cape_1:
+guthix_cape:
   id: 2413
   slot: Cape
 zamorak_cape:
@@ -5223,9 +5223,9 @@ guthix_staff:
 zamorak_staff:
   id: 2417
   slot: Weapon
-bronze_key_1:
+bronze_key:
   id: 2418
-wig_1:
+wig:
   id: 2419
 picture_51:
   id: 2420
@@ -5251,33 +5251,33 @@ restore_potion_(4):
   id: 2430
 restore_potion_(4)_noted:
   id: 2431
-defence_potion_(4)_1:
+defence_potion_(4):
   id: 2432
-defence_potion_(4)_noted_1:
+defence_potion_(4)_noted:
   id: 2433
-prayer_potion_(4)_1:
+prayer_potion_(4):
   id: 2434
-prayer_potion_(4)_noted_1:
+prayer_potion_(4)_noted:
   id: 2435
-super_attack_(4)_1:
+super_attack_(4):
   id: 2436
-super_attack_(4)_noted_1:
+super_attack_(4)_noted:
   id: 2437
 fishing_potion_(4):
   id: 2438
 fishing_potion_(4)_noted:
   id: 2439
-super_strength_(4)_1:
+super_strength_(4):
   id: 2440
-super_strength_(4)_noted_1:
+super_strength_(4)_noted:
   id: 2441
 super_defence_(4):
   id: 2442
 super_defence_(4)_noted:
   id: 2443
-ranging_potion_(4)_1:
+ranging_potion_(4):
   id: 2444
-ranging_potion_(4)_noted_1:
+ranging_potion_(4)_noted:
   id: 2445
 antipoison_(4):
   id: 2446
@@ -5307,20 +5307,20 @@ antifire_(1):
   id: 2458
 antifire_(1)_noted:
   id: 2459
-flowers_1:
+flowers:
   id: 2460
   slot: Weapon
-flowers_noted_1:
+flowers_noted:
   id: 2461
-red_flowers_1:
+red_flowers:
   id: 2462
   slot: Weapon
-red_flowers_noted_1:
+red_flowers_noted:
   id: 2463
-blue_flowers_1:
+blue_flowers:
   id: 2464
   slot: Weapon
-blue_flowers_noted_1:
+blue_flowers_noted:
   id: 2465
 yellow_flowers:
   id: 2466
@@ -5434,7 +5434,7 @@ logs_2:
   id: 2511
 picture_54:
   id: 2512
-dragon_chainbody_1:
+dragon_chainbody:
   id: 2513
 raw_shrimps_2:
   id: 2514
@@ -5448,9 +5448,9 @@ rotten_tomato:
   id: 2518
 rotten_tomato_noted:
   id: 2519
-toy_horsey_1:
+toy_horsey:
   id: 2520
-toy_horsey_noted_1:
+toy_horsey_noted:
   id: 2521
 toy_horsey_2:
   id: 2522
@@ -5464,7 +5464,7 @@ toy_horsey_4:
   id: 2526
 toy_horsey_noted_4:
   id: 2527
-lamp_1:
+lamp:
   id: 2528
 orb_of_light_5:
   id: 2529
@@ -5472,31 +5472,31 @@ bones_2:
   id: 2530
 bones_noted_2:
   id: 2531
-iron_fire_arrows_1:
+iron_fire_arrows:
   id: 2532
   slot: Arrows
 iron_fire_arrows_2:
   id: 2533
   slot: Arrows
-steel_fire_arrows_1:
+steel_fire_arrows:
   id: 2534
   slot: Arrows
 steel_fire_arrows_2:
   id: 2535
   slot: Arrows
-mithril_fire_arrows_1:
+mithril_fire_arrows:
   id: 2536
   slot: Arrows
 mithril_fire_arrows_2:
   id: 2537
   slot: Arrows
-adamant_fire_arrows_1:
+adamant_fire_arrows:
   id: 2538
   slot: Arrows
 adamant_fire_arrows_2:
   id: 2539
   slot: Arrows
-rune_fire_arrows_1:
+rune_fire_arrows:
   id: 2540
   slot: Arrows
 rune_fire_arrows_2:
@@ -5507,7 +5507,7 @@ ring_of_recoil:
   slot: Ring
 ring_of_recoil_noted:
   id: 2551
-ring_of_duelling_(8)_1:
+ring_of_duelling_(8):
   id: 2552
   slot: Ring
 ring_of_duelling_(8)_noted:
@@ -5568,22 +5568,22 @@ watch:
   id: 2575
 chart:
   id: 2576
-ranger_boots_1:
+ranger_boots:
   id: 2577
   slot: Feet
 ranger_boots_noted:
   id: 2578
-wizard_boots_1:
+wizard_boots:
   id: 2579
   slot: Feet
 wizard_boots_noted:
   id: 2580
-robin_hood_hat_1:
+robin_hood_hat:
   id: 2581
   slot: Hat
 robin_hood_hat_noted:
   id: 2582
-black_platebody_(t)_1:
+black_platebody_(t):
   id: 2583
   slot: Chest
   type: FullBody
@@ -5605,7 +5605,7 @@ black_kiteshield_(t):
   slot: Shield
 black_kiteshield_(t)_noted:
   id: 2590
-black_platebody_(g)_1:
+black_platebody_(g):
   id: 2591
   slot: Chest
   type: FullBody
@@ -5671,7 +5671,7 @@ adamant_full_helm_(g):
   type: Hair
 adamant_full_helm_(g)_noted:
   id: 2614
-rune_platebody_(g)_1:
+rune_platebody_(g):
   id: 2615
   slot: Chest
   type: FullBody
@@ -5693,7 +5693,7 @@ rune_kiteshield_(g):
   slot: Shield
 rune_kiteshield_(g)_noted:
   id: 2622
-rune_platebody_(t)_1:
+rune_platebody_(t):
   id: 2623
   slot: Chest
   type: FullBody
@@ -5715,62 +5715,62 @@ rune_kiteshield_(t):
   slot: Shield
 rune_kiteshield_(t)_noted:
   id: 2630
-highwayman_mask_1:
+highwayman_mask:
   id: 2631
   slot: Hat
 highwayman_mask_noted:
   id: 2632
-blue_beret_1:
+blue_beret:
   id: 2633
   slot: Hat
 blue_beret_noted:
   id: 2634
-black_beret_1:
+black_beret:
   id: 2635
   slot: Hat
 black_beret_noted:
   id: 2636
-white_beret_1:
+white_beret:
   id: 2637
   slot: Hat
 white_beret_noted:
   id: 2638
-tan_cavalier_1:
+tan_cavalier:
   id: 2639
   slot: Hat
 tan_cavalier_noted:
   id: 2640
-dark_cavalier_1:
+dark_cavalier:
   id: 2641
   slot: Hat
 dark_cavalier_noted:
   id: 2642
-black_cavalier_1:
+black_cavalier:
   id: 2643
   slot: Hat
 black_cavalier_noted:
   id: 2644
-red_headband_1:
+red_headband:
   id: 2645
   slot: Hat
 red_headband_noted:
   id: 2646
-black_headband_1:
+black_headband:
   id: 2647
   slot: Hat
 black_headband_noted:
   id: 2648
-brown_headband_1:
+brown_headband:
   id: 2649
   slot: Hat
 brown_headband_noted:
   id: 2650
-pirates_hat_1:
+pirates_hat:
   id: 2651
   slot: Hat
 pirates_hat_noted:
   id: 2652
-zamorak_platebody_1:
+zamorak_platebody:
   id: 2653
   slot: Chest
   type: FullBody
@@ -5814,7 +5814,7 @@ saradomin_kiteshield:
   slot: Shield
 saradomin_kiteshield_noted:
   id: 2668
-guthix_platebody_1:
+guthix_platebody:
   id: 2669
   slot: Chest
   type: FullBody
@@ -5836,7 +5836,7 @@ guthix_kiteshield:
   slot: Shield
 guthix_kiteshield_noted:
   id: 2676
-clue_scroll_(easy)_1:
+clue_scroll_(easy):
   id: 2677
 clue_scroll_(easy)_2:
   id: 2678
@@ -5910,7 +5910,7 @@ clue_scroll_(easy)_36:
   id: 2712
 clue_scroll_(easy)_37:
   id: 2713
-casket_(easy)_1:
+casket_(easy):
   id: 2714
 casket_(easy)_2:
   id: 2715
@@ -5926,11 +5926,11 @@ casket_(easy)_5:
   id: 2720
 casket_(easy)_6:
   id: 2721
-clue_scroll_(hard)_1:
+clue_scroll_(hard):
   id: 2722
 clue_scroll_(hard)_2:
   id: 2723
-casket_(hard)_1:
+casket_(hard):
   id: 2724
 clue_scroll_(hard)_3:
   id: 2725
@@ -5980,7 +5980,7 @@ clue_scroll_(hard)_14:
   id: 2747
 casket_(hard)_13:
   id: 2748
-sliding_piece_1:
+sliding_piece:
   id: 2749
 sliding_piece_2:
   id: 2750
@@ -6072,7 +6072,7 @@ clue_scroll_(hard)_27:
   id: 2793
 clue_scroll_(hard)_28:
   id: 2794
-puzzle_box_1:
+puzzle_box:
   id: 2795
 clue_scroll_(hard)_29:
   id: 2796
@@ -6084,9 +6084,9 @@ clue_scroll_(hard)_31:
   id: 2799
 puzzle_box_3:
   id: 2800
-clue_scroll_(medium)_1:
+clue_scroll_(medium):
   id: 2801
-casket_(medium)_1:
+casket_(medium):
   id: 2802
 clue_scroll_(medium)_2:
   id: 2803
@@ -6166,7 +6166,7 @@ key_13:
   id: 2840
 clue_scroll_(medium)_21:
   id: 2841
-challenge_scroll_1:
+challenge_scroll:
   id: 2842
 clue_scroll_(medium)_22:
   id: 2843
@@ -6231,9 +6231,9 @@ raw_chompy:
   id: 2876
 raw_chompy_noted:
   id: 2877
-cooked_chompy_1:
+cooked_chompy:
   id: 2878
-cooked_chompy_noted_1:
+cooked_chompy_noted:
   id: 2879
 ruined_chompy:
   id: 2880
@@ -6249,7 +6249,7 @@ battered_book:
   id: 2886
 battered_key:
   id: 2887
-a_stone_bowl_1:
+a_stone_bowl:
   id: 2888
   slot: Weapon
 a_stone_bowl_2:
@@ -6264,31 +6264,31 @@ elemental_ore:
   id: 2892
 elemental_bar:
   id: 2893
-boots_1:
+boots:
   id: 2894
   slot: Feet
-boots_noted_1:
+boots_noted:
   id: 2895
-robe_top_1:
+robe_top:
   id: 2896
   slot: Chest
   type: FullBody
-robe_top_noted_1:
+robe_top_noted:
   id: 2897
-robe_bottoms_1:
+robe_bottoms:
   id: 2898
   slot: Legs
-robe_bottoms_noted_1:
+robe_bottoms_noted:
   id: 2899
-hat_1:
+hat:
   id: 2900
   slot: Hat
-hat_noted_1:
+hat_noted:
   id: 2901
-gloves_1:
+gloves:
   id: 2902
   slot: Hands
-gloves_noted_1:
+gloves_noted:
   id: 2903
 boots_2:
   id: 2904
@@ -6396,17 +6396,17 @@ gloves_noted_5:
   id: 2943
 golden_key:
   id: 2944
-iron_key_1:
+iron_key:
   id: 2945
-golden_tinderbox_1:
+golden_tinderbox:
   id: 2946
 golden_candle:
   id: 2947
 golden_pot:
   id: 2948
-golden_hammer_1:
+golden_hammer:
   id: 2949
-golden_feather_1:
+golden_feather:
   id: 2950
 golden_needle:
   id: 2951
@@ -6417,11 +6417,11 @@ bucket_of_water_2:
   id: 2953
 bucket_of_water_3:
   id: 2954
-moonlight_mead_1:
+moonlight_mead:
   id: 2955
-moonlight_mead_noted_1:
+moonlight_mead_noted:
   id: 2956
-druid_pouch_1:
+druid_pouch:
   id: 2957
 druid_pouch_2:
   id: 2958
@@ -6443,7 +6443,7 @@ picture_55:
   id: 2965
 mirror:
   id: 2966
-journal_1:
+journal:
   id: 2967
 druidic_spell:
   id: 2968
@@ -6465,7 +6465,7 @@ sickle_mould:
   id: 2976
 sickle_mould_noted:
   id: 2977
-chompy_bird_hat_1:
+chompy_bird_hat:
   id: 2978
   slot: Hat
 chompy_bird_hat_2:
@@ -6540,25 +6540,25 @@ snapdragon_potion_(unf):
   id: 3004
 snapdragon_potion_(unf)_noted:
   id: 3005
-firework_1:
+firework:
   id: 3006
-firework_noted_1:
+firework_noted:
   id: 3007
-energy_potion_(4)_1:
+energy_potion_(4):
   id: 3008
-energy_potion_(4)_noted_1:
+energy_potion_(4)_noted:
   id: 3009
-energy_potion_(3)_1:
+energy_potion_(3):
   id: 3010
-energy_potion_(3)_noted_1:
+energy_potion_(3)_noted:
   id: 3011
-energy_potion_(2)_1:
+energy_potion_(2):
   id: 3012
-energy_potion_(2)_noted_1:
+energy_potion_(2)_noted:
   id: 3013
-energy_potion_(1)_1:
+energy_potion_(1):
   id: 3014
-energy_potion_(1)_noted_1:
+energy_potion_(1)_noted:
   id: 3015
 super_energy_(4):
   id: 3016
@@ -6608,21 +6608,21 @@ agility_potion_(1):
   id: 3038
 agility_potion_(1)_noted:
   id: 3039
-magic_potion_(4)_1:
+magic_potion_(4):
   id: 3040
-magic_potion_(4)_noted_1:
+magic_potion_(4)_noted:
   id: 3041
-magic_potion_(3)_1:
+magic_potion_(3):
   id: 3042
-magic_potion_(3)_noted_1:
+magic_potion_(3)_noted:
   id: 3043
-magic_potion_(2)_1:
+magic_potion_(2):
   id: 3044
-magic_potion_(2)_noted_1:
+magic_potion_(2)_noted:
   id: 3045
-magic_potion_(1)_1:
+magic_potion_(1):
   id: 3046
-magic_potion_(1)_noted_1:
+magic_potion_(1)_noted:
   id: 3047
 pirates_hook_noted:
   id: 3048
@@ -6644,7 +6644,7 @@ lava_battlestaff_noted:
   id: 3055
 mystic_lava_staff_noted:
   id: 3056
-mime_mask_1:
+mime_mask:
   id: 3057
   slot: Hat
   type: Mask
@@ -6713,7 +6713,7 @@ spiked_boots:
   slot: Feet
 picture_56:
   id: 3108
-stone_ball_1:
+stone_ball:
   id: 3109
 stone_ball_2:
   id: 3110
@@ -6752,11 +6752,11 @@ jogre_bones_noted:
   id: 3126
 burnt_jogre_bones:
   id: 3127
-pasty_jogre_bones_1:
+pasty_jogre_bones:
   id: 3128
 pasty_jogre_bones_2:
   id: 3129
-marinated_j_bones_1:
+marinated_j_bones:
   id: 3130
 pasty_jogre_bones_3:
   id: 3131
@@ -6766,7 +6766,7 @@ marinated_j_bones_2:
   id: 3133
 granite_shield_noted:
   id: 3134
-prison_key_1:
+prison_key:
   id: 3135
 cell_key_1:
   id: 3136
@@ -6786,7 +6786,7 @@ raw_karambwan:
   id: 3142
 raw_karambwan_noted:
   id: 3143
-cooked_karambwan_1:
+cooked_karambwan:
   id: 3144
 cooked_karambwan_noted:
   id: 3145
@@ -6802,20 +6802,20 @@ raw_karambwanji:
   id: 3150
 karambwanji:
   id: 3151
-karambwan_paste_1:
+karambwan_paste:
   id: 3152
 karambwan_paste_2:
   id: 3153
 karambwan_paste_3:
   id: 3154
-karambwanji_paste_1:
+karambwanji_paste:
   id: 3155
 karambwanji_paste_2:
   id: 3156
-karambwan_vessel_1:
+karambwan_vessel:
   id: 3157
   slot: Weapon
-karambwan_vessel_noted_1:
+karambwan_vessel_noted:
   id: 3158
 karambwan_vessel_2:
   id: 3159
@@ -6872,7 +6872,7 @@ picture_57:
   slot: Shield
 picture_noted_40:
   id: 3178
-monkey_bones_1:
+monkey_bones:
   id: 3179
 monkey_bones_2:
   id: 3180
@@ -6967,7 +6967,7 @@ barrel_2:
   id: 3216
 barrel_noted:
   id: 3217
-barrel_bomb_1:
+barrel_bomb:
   id: 3218
 barrel_bomb_2:
   id: 3219
@@ -6975,7 +6975,7 @@ barrel_of_coal-tar:
   id: 3220
 barrel_of_naphtha:
   id: 3221
-naphtha_mix_1:
+naphtha_mix:
   id: 3222
 naphtha_mix_2:
   id: 3223
@@ -7033,7 +7033,7 @@ gnome:
   id: 3257
 hero:
   id: 3259
-goutweed_1:
+goutweed:
   id: 3261
 troll_thistle:
   id: 3262
@@ -7057,29 +7057,29 @@ vampyre_dust:
   id: 3325
 vampyre_dust_noted:
   id: 3326
-myre_snelm_1:
+myre_snelm:
   id: 3327
   slot: Hat
   type: Hair
-myre_snelm_noted_1:
+myre_snelm_noted:
   id: 3328
-bloodntar_snelm_1:
+bloodntar_snelm:
   id: 3329
   slot: Hat
   type: Hair
-bloodntar_snelm_noted_1:
+bloodntar_snelm_noted:
   id: 3330
-ochre_snelm_1:
+ochre_snelm:
   id: 3331
   slot: Hat
   type: Hair
-ochre_snelm_noted_1:
+ochre_snelm_noted:
   id: 3332
-bruise_blue_snelm_1:
+bruise_blue_snelm:
   id: 3333
   slot: Hat
   type: Hair
-bruise_blue_snelm_noted_1:
+bruise_blue_snelm_noted:
   id: 3334
 broken_bark_snelm:
   id: 3335
@@ -7111,21 +7111,21 @@ bruise_blue_snelm_2:
   type: Hair
 bruise_blue_snelm_noted_2:
   id: 3344
-blamish_myre_shell_1:
+blamish_myre_shell:
   id: 3345
-blamish_myre_shell_noted_1:
+blamish_myre_shell_noted:
   id: 3346
-blamish_red_shell_1:
+blamish_red_shell:
   id: 3347
-blamish_red_shell_noted_1:
+blamish_red_shell_noted:
   id: 3348
-blamish_ochre_shell_1:
+blamish_ochre_shell:
   id: 3349
-blamish_ochre_shell_noted_1:
+blamish_ochre_shell_noted:
   id: 3350
-blamish_blue_shell_1:
+blamish_blue_shell:
   id: 3351
-blamish_blue_shell_noted_1:
+blamish_blue_shell_noted:
   id: 3352
 blamish_bark_shell:
   id: 3353
@@ -7191,7 +7191,7 @@ burnt_eel:
   id: 3383
 tinderbox_17:
   id: 3384
-splitbark_helm_1:
+splitbark_helm:
   id: 3385
   slot: Hat
 splitbark_helm_noted:
@@ -7398,7 +7398,7 @@ saradomin_plateskirt:
 guthix_plateskirt:
   id: 3480
   slot: Legs
-gilded_platebody_1:
+gilded_platebody:
   id: 3481
   slot: Chest
   type: FullBody
@@ -7829,17 +7829,17 @@ enchanted_lyre:
 enchanted_lyre_(1):
   id: 3691
   slot: Weapon
-branch_1:
+branch:
   id: 3692
 golden_fleece:
   id: 3693
 golden_wool:
   id: 3694
-pet_rock_1:
+pet_rock:
   id: 3695
   slot: Weapon
   type: TwoHanded
-hunters_talisman_1:
+hunters_talisman:
   id: 3696
 hunters_talisman_2:
   id: 3697
@@ -7869,7 +7869,7 @@ promissory_note:
   id: 3709
 warriors_contract:
   id: 3710
-keg_of_beer_1:
+keg_of_beer:
   id: 3711
 low_alcohol_keg:
   id: 3712
@@ -7889,7 +7889,7 @@ pick:
   id: 3720
 ship_toy:
   id: 3721
-full_bucket_1:
+full_bucket:
   id: 3722
 "4/5ths_full_bucket":
   id: 3723
@@ -7921,13 +7921,13 @@ frozen_vase:
   id: 3736
 vase_lid:
   id: 3737
-sealed_vase_1:
+sealed_vase:
   id: 3738
 sealed_vase_2:
   id: 3739
 sealed_vase_3:
   id: 3740
-frozen_key_1:
+frozen_key:
   id: 3741
 red_herring:
   id: 3742
@@ -7975,10 +7975,10 @@ fremennik_blade:
 fremennik_shield:
   id: 3758
   slot: Shield
-fremennik_cloak_1:
+fremennik_cloak:
   id: 3759
   slot: Cape
-fremennik_cloak_noted_1:
+fremennik_cloak_noted:
   id: 3760
 fremennik_cloak_2:
   id: 3761
@@ -7995,11 +7995,11 @@ fremennik_cloak_4:
   slot: Cape
 fremennik_cloak_noted_4:
   id: 3766
-fremennik_shirt_1:
+fremennik_shirt:
   id: 3767
   slot: Chest
   type: FullBody
-fremennik_shirt_noted_1:
+fremennik_shirt_noted:
   id: 3768
 fremennik_shirt_2:
   id: 3769
@@ -8122,7 +8122,7 @@ guthix_page_3:
   id: 3837
 guthix_page_4:
   id: 3838
-damaged_book_1:
+damaged_book:
   id: 3839
   slot: Shield
 holy_book:
@@ -8144,7 +8144,7 @@ journal_2:
   id: 3845
 diary_3:
   id: 3846
-manual_1:
+manual:
   id: 3847
 lighthouse_key:
   id: 3848
@@ -8192,7 +8192,7 @@ games_necklace_(1):
   slot: Amulet
 games_necklace_(1)_noted:
   id: 3868
-board_game_piece_1:
+board_game_piece:
   id: 3869
 board_game_piece_2:
   id: 3870
@@ -8216,7 +8216,7 @@ board_game_piece_11:
   id: 3879
 board_game_piece_12:
   id: 3880
-stool_1:
+stool:
   id: 3893
   slot: Weapon
 awful_anthem:
@@ -8240,7 +8240,7 @@ picture_73:
   id: 3902
 picture_74:
   id: 3903
-sliding_button_1:
+sliding_button:
   id: 3904
 sliding_button_2:
   id: 3906
@@ -8352,7 +8352,7 @@ monkey_dentures:
   id: 4006
 enchanted_bar:
   id: 4007
-eye_of_gnome_1:
+eye_of_gnome:
   id: 4008
 eye_of_gnome_2:
   id: 4009
@@ -8386,13 +8386,13 @@ mspeak_amulet:
 monkey_talisman:
   id: 4023
   slot: Weapon
-ninja_monkey_greegree_1:
+ninja_monkey_greegree:
   id: 4024
   slot: Weapon
 ninja_monkey_greegree_2:
   id: 4025
   slot: Weapon
-gorilla_greegree_1:
+gorilla_greegree:
   id: 4026
   slot: Weapon
 gorilla_greegree_2:
@@ -8401,7 +8401,7 @@ gorilla_greegree_2:
 gorilla_greegree_3:
   id: 4028
   slot: Weapon
-zombie_monkey_greegree_1:
+zombie_monkey_greegree:
   id: 4029
   slot: Weapon
 zombie_monkey_greegree_2:
@@ -8410,9 +8410,9 @@ zombie_monkey_greegree_2:
 monkey_greegree:
   id: 4031
   slot: Weapon
-dummy_1:
+dummy:
   id: 4032
-monkey_1:
+monkey:
   id: 4033
 monkey_skull:
   id: 4034
@@ -8431,7 +8431,7 @@ zamorak_flag:
   type: TwoHanded
 zamorak_flag_noted:
   id: 4040
-hooded_cloak_1:
+hooded_cloak:
   id: 4041
   slot: Cape
   type: HoodedCape
@@ -8443,7 +8443,7 @@ rock_4:
   id: 4043
 rock_noted:
   id: 4044
-explosive_potion_1:
+explosive_potion:
   id: 4045
 explosive_potion_noted:
   id: 4046
@@ -8451,15 +8451,15 @@ climbing_rope:
   id: 4047
 climbing_rope_noted:
   id: 4048
-bandages_1:
+bandages:
   id: 4049
 bandages_noted:
   id: 4050
 toolkit_2:
   id: 4051
-toolkit_noted_1:
+toolkit_noted:
   id: 4052
-barricade_1:
+barricade:
   id: 4053
 barricade_noted:
   id: 4054
@@ -8470,7 +8470,7 @@ castle_wars_ticket:
 basic_decorative_sword:
   id: 4068
   slot: Weapon
-basic_decorative_platebody_1:
+basic_decorative_platebody:
   id: 4069
   slot: Chest
   type: FullBody
@@ -8496,14 +8496,14 @@ crystal-mine_key:
   id: 4077
 zealots_key:
   id: 4078
-yo-yo_1:
+yo-yo:
   id: 4079
 salve_amulet:
   id: 4081
   slot: Amulet
 salve_shard:
   id: 4082
-sled_1:
+sled:
   id: 4083
   slot: Weapon
 sled_2:
@@ -8516,37 +8516,37 @@ wax:
 trollweiss:
   id: 4086
   slot: Weapon
-dragon_platelegs_1:
+dragon_platelegs:
   id: 4087
   slot: Legs
 dragon_platelegs_noted:
   id: 4088
-mystic_hat_1:
+mystic_hat:
   id: 4089
   slot: Hat
   type: Hair
-mystic_hat_noted_1:
+mystic_hat_noted:
   id: 4090
-mystic_robe_top_1:
+mystic_robe_top:
   id: 4091
   slot: Chest
   type: FullBody
-mystic_robe_top_noted_1:
+mystic_robe_top_noted:
   id: 4092
-mystic_robe_bottom_1:
+mystic_robe_bottom:
   id: 4093
   slot: Legs
-mystic_robe_bottom_noted_1:
+mystic_robe_bottom_noted:
   id: 4094
-mystic_gloves_1:
+mystic_gloves:
   id: 4095
   slot: Hands
-mystic_gloves_noted_1:
+mystic_gloves_noted:
   id: 4096
-mystic_boots_1:
+mystic_boots:
   id: 4097
   slot: Feet
-mystic_boots_noted_1:
+mystic_boots_noted:
   id: 4098
 mystic_hat_2:
   id: 4099
@@ -8637,7 +8637,7 @@ rune_boots:
   slot: Feet
 rune_boots_noted:
   id: 4132
-crawling_hand_1:
+crawling_hand:
   id: 4133
 cave_crawler:
   id: 4134
@@ -8671,9 +8671,9 @@ nechryael:
   id: 4148
 abyssal_demon:
   id: 4149
-broad_arrows_1:
+broad_arrows:
   id: 4150
-abyssal_whip_1:
+abyssal_whip:
   id: 4151
   slot: Weapon
 abyssal_whip_noted:
@@ -8691,7 +8691,7 @@ mirror_shield:
   slot: Shield
 mirror_shield_noted:
   id: 4157
-leaf-bladed_spear_1:
+leaf-bladed_spear:
   id: 4158
   slot: Weapon
   type: TwoHanded
@@ -8746,7 +8746,7 @@ picture_83:
   id: 4177
 abyssal_whip_2:
   id: 4178
-stick_1:
+stick:
   id: 4179
 dragon_platelegs_2:
   id: 4180
@@ -8771,20 +8771,20 @@ garden_cane:
   id: 4189
 garden_brush:
   id: 4190
-extended_brush_1:
+extended_brush:
   id: 4191
 extended_brush_2:
   id: 4192
 extended_brush_3:
   id: 4193
   slot: Weapon
-torso_1:
+torso:
   id: 4194
 arms:
   id: 4195
 legs:
   id: 4196
-decapitated_head_1:
+decapitated_head:
   id: 4197
 decapitated_head_2:
   id: 4198
@@ -8799,9 +8799,9 @@ ring_of_charos:
   slot: Ring
 journal_3:
   id: 4203
-letter_1:
+letter:
   id: 4204
-consecration_seed_1:
+consecration_seed:
   id: 4205
 consecration_seed_2:
   id: 4206
@@ -8904,7 +8904,7 @@ nettle-water:
   id: 4237
 puddle_of_slime:
   id: 4238
-nettle_tea_1:
+nettle_tea:
   id: 4239
 nettle_tea_2:
   id: 4240
@@ -8914,7 +8914,7 @@ cup_of_tea_3:
   id: 4242
 cup_of_tea_4:
   id: 4243
-porcelain_cup_1:
+porcelain_cup:
   id: 4244
 cup_of_tea_5:
   id: 4245
@@ -8929,15 +8929,15 @@ translation_manual:
 ghostspeak_amulet_2:
   id: 4250
   slot: Amulet
-ectophial_1:
+ectophial:
   id: 4251
 ectophial_2:
   id: 4252
-model_ship_1:
+model_ship:
   id: 4253
 model_ship_2:
   id: 4254
-bonemeal_1:
+bonemeal:
   id: 4255
 bonemeal_2:
   id: 4256
@@ -8975,7 +8975,7 @@ bone_key_2:
   id: 4272
 chest_key_4:
   id: 4273
-map_scrap_1:
+map_scrap:
   id: 4274
 map_scrap_2:
   id: 4275
@@ -8987,7 +8987,7 @@ ecto-token:
   id: 4278
 petition_form:
   id: 4283
-bedsheet_1:
+bedsheet:
   id: 4284
   slot: Hat
 bedsheet_2:
@@ -9056,7 +9056,7 @@ crystal_of_seren:
   id: 4313
 tinderbox_23:
   id: 4314
-team-1_cape_1:
+team-1_cape:
   id: 4315
   slot: Cape
 team-1_cape_noted:
@@ -9334,7 +9334,7 @@ iron_oxide:
   id: 4427
 animate_rock_scroll:
   id: 4428
-broken_vane_part_1:
+broken_vane_part:
   id: 4429
 directionals:
   id: 4430
@@ -9370,7 +9370,7 @@ red_mahogany_logs:
   id: 4445
 steel_key_ring:
   id: 4446
-antique_lamp_1:
+antique_lamp:
   id: 4447
 bowl_of_hot_water:
   id: 4456
@@ -9388,9 +9388,9 @@ ruined_herb_tea:
   id: 4462
 ruined_herb_tea_noted:
   id: 4463
-herb_tea_mix_1:
+herb_tea_mix:
   id: 4464
-herb_tea_mix_noted_1:
+herb_tea_mix_noted:
   id: 4465
 herb_tea_mix_2:
   id: 4466
@@ -9440,7 +9440,7 @@ corpse_of_woman:
   id: 4488
 asleifs_necklace:
   id: 4489
-mud_1:
+mud:
   id: 4490
 tinderbox_24:
   id: 4491
@@ -9448,7 +9448,7 @@ muddy_rock:
   id: 4492
 tinderbox_25:
   id: 4493
-pole_1:
+pole:
   id: 4494
 pole_2:
   id: 4495
@@ -9529,9 +9529,9 @@ swamp_cave_slime:
   id: 4520
 swamp_cave_bug:
   id: 4521
-oil_lamp_1:
+oil_lamp:
   id: 4522
-oil_lamp_noted_1:
+oil_lamp_noted:
   id: 4523
 oil_lamp_2:
   id: 4524
@@ -9539,9 +9539,9 @@ oil_lamp_3:
   id: 4525
 oil_lamp_noted_2:
   id: 4526
-candle_lantern_1:
+candle_lantern:
   id: 4527
-candle_lantern_noted_1:
+candle_lantern_noted:
   id: 4528
 candle_lantern_2:
   id: 4529
@@ -9555,9 +9555,9 @@ candle_lantern_noted_3:
   id: 4533
 candle_lantern_5:
   id: 4534
-oil_lantern_1:
+oil_lantern:
   id: 4535
-oil_lantern_noted_1:
+oil_lantern_noted:
   id: 4536
 oil_lantern_2:
   id: 4537
@@ -9573,9 +9573,9 @@ lantern_lens:
   id: 4542
 lantern_lens_noted:
   id: 4543
-bullseye_lantern_1:
+bullseye_lantern:
   id: 4544
-bullseye_lantern_noted_1:
+bullseye_lantern_noted:
   id: 4545
 bullseye_lantern_2:
   id: 4546
@@ -9599,7 +9599,7 @@ deep_blue_sweets:
   id: 4559
 white_sweets:
   id: 4560
-purple_sweets_1:
+purple_sweets:
   id: 4561
 red_sweets:
   id: 4562
@@ -9610,7 +9610,7 @@ pink_sweets:
 basket_of_eggs:
   id: 4565
   slot: Weapon
-rubber_chicken_1:
+rubber_chicken:
   id: 4566
   slot: Weapon
 gold_helmet:
@@ -9625,21 +9625,21 @@ book_page_2:
   id: 4570
 book_page_3:
   id: 4571
-pages_1:
+pages:
   id: 4572
 pages_2:
   id: 4573
 base_schematics:
   id: 4574
-schematic_1:
+schematic:
   id: 4575
-schematics_1:
+schematics:
   id: 4576
 schematics_2:
   id: 4577
 schematic_2:
   id: 4578
-cannon_ball_1:
+cannon_ball:
   id: 4579
 black_spear:
   id: 4580
@@ -9675,7 +9675,7 @@ karidian_headpiece:
   id: 4591
 picture_84:
   id: 4592
-fake_beard_1:
+fake_beard:
   id: 4593
 picture_85:
   id: 4594
@@ -9683,7 +9683,7 @@ karidian_disguise:
   id: 4595
 picture_86:
   id: 4596
-note_1:
+note:
   id: 4597
 note_2:
   id: 4598
@@ -9693,7 +9693,7 @@ oak-blackjack:
 willow-blackjack:
   id: 4600
   slot: Weapon
-ugthanki_dung_1:
+ugthanki_dung:
   id: 4601
 ugthanki_dung_2:
   id: 4602
@@ -9731,7 +9731,7 @@ varmens_notes:
   id: 4616
 display_cabinet_key:
   id: 4617
-statuette_1:
+statuette:
   id: 4618
 strange_implement:
   id: 4619
@@ -9745,7 +9745,7 @@ phoenix_quill_pen:
   id: 4623
 golem_program:
   id: 4624
-bandit_1:
+bandit:
   id: 4625
 bandits_brew:
   id: 4627
@@ -9764,7 +9764,7 @@ ring_of_visibility:
   slot: Ring
 silver_pot_3:
   id: 4658
-blessed_pot_1:
+blessed_pot:
   id: 4659
 silver_pot_4:
   id: 4660
@@ -9804,7 +9804,7 @@ ancient_staff_noted:
 catspeak_amulet:
   id: 4677
   slot: Amulet
-canopic_jar_1:
+canopic_jar:
   id: 4678
 canopic_jar_2:
   id: 4679
@@ -9832,7 +9832,7 @@ tinderbox_29:
   id: 4690
 sphinxs_token:
   id: 4691
-gold_leaf_1:
+gold_leaf:
   id: 4692
 full_bucket_2:
   id: 4693
@@ -9848,13 +9848,13 @@ mud_rune:
   id: 4698
 lava_rune:
   id: 4699
-sapphire_lantern_1:
+sapphire_lantern:
   id: 4700
 sapphire_lantern_2:
   id: 4701
 sapphire_lantern_3:
   id: 4702
-magic_stone_1:
+magic_stone:
   id: 4703
 stone_bowl:
   id: 4704
@@ -10027,7 +10027,7 @@ black_prism:
   id: 4808
 torn_page:
   id: 4809
-ruined_backpack_1:
+ruined_backpack:
   id: 4810
 dragon_inn_tankard:
   id: 4811
@@ -10035,7 +10035,7 @@ zogre_bones:
   id: 4812
 zogre_bones_noted:
   id: 4813
-sithik_portrait_1:
+sithik_portrait:
   id: 4814
 sithik_portrait_2:
   id: 4815
@@ -10079,9 +10079,9 @@ raurg_bones:
   id: 4832
 raurg_bones_noted:
   id: 4833
-ourg_bones_1:
+ourg_bones:
   id: 4834
-ourg_bones_noted_1:
+ourg_bones_noted:
   id: 4835
 strange_potion:
   id: 4836
@@ -10636,7 +10636,7 @@ burnt_cave_eel_noted:
   id: 5006
 cave_eel_noted:
   id: 5007
-brooch_1:
+brooch:
   id: 5008
 goblin_symbol_book:
   id: 5009
@@ -10646,7 +10646,7 @@ silverware:
   id: 5011
 peace_treaty:
   id: 5012
-mining_helmet_1:
+mining_helmet:
   id: 5013
   slot: Hat
 mining_helmet_2:
@@ -10664,7 +10664,7 @@ bone_club:
   slot: Weapon
 bone_club_noted:
   id: 5019
-minecart_ticket_1:
+minecart_ticket:
   id: 5020
 minecart_ticket_2:
   id: 5021
@@ -10672,11 +10672,11 @@ minecart_ticket_3:
   id: 5022
 minecart_ticket_4:
   id: 5023
-woven_top_1:
+woven_top:
   id: 5024
   slot: Chest
   type: FullBody
-woven_top_noted_1:
+woven_top_noted:
   id: 5025
 woven_top_2:
   id: 5026
@@ -10690,11 +10690,11 @@ woven_top_3:
   type: FullBody
 woven_top_noted_3:
   id: 5029
-shirt_1:
+shirt:
   id: 5030
   slot: Chest
   type: FullBody
-shirt_noted_1:
+shirt_noted:
   id: 5031
 shirt_2:
   id: 5032
@@ -10708,10 +10708,10 @@ shirt_3:
   type: FullBody
 shirt_noted_3:
   id: 5035
-trousers_1:
+trousers:
   id: 5036
   slot: Legs
-trousers_noted_1:
+trousers_noted:
   id: 5037
 trousers_2:
   id: 5038
@@ -10723,10 +10723,10 @@ trousers_3:
   slot: Legs
 trousers_noted_3:
   id: 5041
-shorts_1:
+shorts:
   id: 5042
   slot: Legs
-shorts_noted_1:
+shorts_noted:
   id: 5043
 shorts_2:
   id: 5044
@@ -10738,10 +10738,10 @@ shorts_3:
   slot: Legs
 shorts_noted_3:
   id: 5047
-skirt_1:
+skirt:
   id: 5048
   slot: Legs
-skirt_noted_1:
+skirt_noted:
   id: 5049
 skirt_2:
   id: 5050
@@ -10753,11 +10753,11 @@ skirt_3:
   slot: Legs
 skirt_noted_3:
   id: 5053
-dwarf_1:
+dwarf:
   id: 5054
 dwarf_noted:
   id: 5055
-dwarven_battleaxe_1:
+dwarven_battleaxe:
   id: 5056
 dwarven_battleaxe_2:
   id: 5057
@@ -10785,7 +10785,7 @@ exquisite_clothes:
   id: 5067
 master_farmer:
   id: 5068
-birds_nest_1:
+birds_nest:
   id: 5070
 birds_nest_2:
   id: 5071
@@ -10797,7 +10797,7 @@ birds_nest_5:
   id: 5074
 birds_nest_6:
   id: 5075
-birds_egg_1:
+birds_egg:
   id: 5076
 birds_egg_2:
   id: 5077
@@ -10903,15 +10903,15 @@ magic_seed:
   id: 5316
 spirit_seed:
   id: 5317
-potato_seed_1:
+potato_seed:
   id: 5318
-onion_seed_1:
+onion_seed:
   id: 5319
 sweetcorn_seed:
   id: 5320
 watermelon_seed:
   id: 5321
-tomato_seed_1:
+tomato_seed:
   id: 5322
 strawberry_seed:
   id: 5323
@@ -10930,7 +10930,7 @@ secateurs:
   slot: Weapon
 secateurs_noted:
   id: 5330
-watering_can_1:
+watering_can:
   id: 5331
 watering_can_noted:
   id: 5332
@@ -10967,9 +10967,9 @@ rake_handle:
   id: 5347
 rake_head:
   id: 5348
-plant_pot_1:
+plant_pot:
   id: 5350
-plant_pot_noted_1:
+plant_pot_noted:
   id: 5351
 unfired_plant_pot:
   id: 5352
@@ -10983,17 +10983,17 @@ plant_pot_3:
   id: 5356
 plant_pot_noted_3:
   id: 5357
-oak_seedling_1:
+oak_seedling:
   id: 5358
-willow_seedling_1:
+willow_seedling:
   id: 5359
-maple_seedling_1:
+maple_seedling:
   id: 5360
-yew_seedling_1:
+yew_seedling:
   id: 5361
-magic_seedling_1:
+magic_seedling:
   id: 5362
-spirit_seedling_1:
+spirit_seedling:
   id: 5363
 oak_seedling_2:
   id: 5364
@@ -11103,7 +11103,7 @@ bananas_(5):
   id: 5416
 bananas_(5)_noted:
   id: 5417
-empty_sack_1:
+empty_sack:
   id: 5418
 empty_sack_noted:
   id: 5419
@@ -11227,21 +11227,21 @@ cabbages_(10):
   id: 5478
 cabbages_(10)_noted:
   id: 5479
-apple_seedling_1:
+apple_seedling:
   id: 5480
-banana_seedling_1:
+banana_seedling:
   id: 5481
-orange_seedling_1:
+orange_seedling:
   id: 5482
-curry_seedling_1:
+curry_seedling:
   id: 5483
-pineapple_seedling_1:
+pineapple_seedling:
   id: 5484
-papaya_seedling_1:
+papaya_seedling:
   id: 5485
-palm_seedling_1:
+palm_seedling:
   id: 5486
-calquat_seedling_1:
+calquat_seedling:
   id: 5487
 apple_seedling_2:
   id: 5488
@@ -11287,15 +11287,15 @@ book_of_folklore:
   id: 5508
 small_pouch:
   id: 5509
-medium_pouch_1:
+medium_pouch:
   id: 5510
 medium_pouch_2:
   id: 5511
-large_pouch_1:
+large_pouch:
   id: 5512
 large_pouch_2:
   id: 5513
-giant_pouch_1:
+giant_pouch:
   id: 5514
 giant_pouch_2:
   id: 5515
@@ -11303,7 +11303,7 @@ elemental_talisman:
   id: 5516
 elemental_talisman_noted:
   id: 5517
-scrying_orb_1:
+scrying_orb:
   id: 5518
 scrying_orb_2:
   id: 5519
@@ -11392,7 +11392,7 @@ rogue_top:
   id: 5553
   slot: Chest
   type: FullBody
-rogue_mask_1:
+rogue_mask:
   id: 5554
   slot: Hat
   type: Hair
@@ -11440,7 +11440,7 @@ initiate_sallet:
   id: 5574
   slot: Hat
   type: Hair
-initiate_hauberk_1:
+initiate_hauberk:
   id: 5575
   slot: Chest
   type: FullBody
@@ -11465,19 +11465,19 @@ cupric_ore_powder:
   id: 5584
 bronze_key_2:
   id: 5585
-metal_spade_1:
+metal_spade:
   id: 5586
 metal_spade_2:
   id: 5587
 alchemical_notes:
   id: 5588
-???_mixture_1:
+???_mixture:
   id: 5589
 ???_mixture_2:
   id: 5590
 ???_mixture_3:
   id: 5591
-tin_1:
+tin:
   id: 5592
 tin_2:
   id: 5593
@@ -11516,7 +11516,7 @@ fox:
 chicken:
   id: 5609
   slot: Shield
-hourglass_1:
+hourglass:
   id: 5610
 initiate_sallet_noted:
   id: 5611
@@ -11910,9 +11910,9 @@ axemans_folly_(m):
   id: 5753
 axemans_folly_(m)_noted:
   id: 5754
-chefs_delight_1:
+chefs_delight:
   id: 5755
-chefs_delight_noted_1:
+chefs_delight_noted:
   id: 5756
 chefs_delight_(m):
   id: 5757
@@ -11926,9 +11926,9 @@ slayers_respite_(m):
   id: 5761
 slayers_respite_(m)_noted:
   id: 5762
-cider_1:
+cider:
   id: 5763
-cider_noted_1:
+cider_noted:
   id: 5764
 mature_cider:
   id: 5765
@@ -12348,9 +12348,9 @@ papaya_fruit:
   id: 5972
 papaya_fruit_noted:
   id: 5973
-coconut_1:
+coconut:
   id: 5974
-coconut_noted_1:
+coconut_noted:
   id: 5975
 coconut_2:
   id: 5976
@@ -12372,9 +12372,9 @@ watermelon_slice:
   id: 5984
 watermelon_slice_noted:
   id: 5985
-sweetcorn_1:
+sweetcorn:
   id: 5986
-sweetcorn_noted_1:
+sweetcorn_noted:
   id: 5987
 cooked_sweetcorn:
   id: 5988
@@ -12420,7 +12420,7 @@ barley_malt:
   id: 6008
 barley_malt_noted:
   id: 6009
-marigolds_1:
+marigolds:
   id: 6010
 marigolds_noted:
   id: 6011
@@ -12428,7 +12428,7 @@ nasturtiums:
   id: 6012
 nasturtiums_noted:
   id: 6013
-rosemary_1:
+rosemary:
   id: 6014
 rosemary_noted:
   id: 6015
@@ -12440,9 +12440,9 @@ poison_ivy_berries:
   id: 6018
 poison_ivy_berries_noted:
   id: 6019
-leaves_1:
+leaves:
   id: 6020
-leaves_noted_1:
+leaves_noted:
   id: 6021
 leaves_2:
   id: 6022
@@ -12472,7 +12472,7 @@ supercompost:
   id: 6034
 supercompost_noted:
   id: 6035
-plant_cure_1:
+plant_cure:
   id: 6036
 plant_cure_noted:
   id: 6037
@@ -12516,7 +12516,7 @@ weeds:
   id: 6055
 weeds_noted:
   id: 6056
-hay_sack_1:
+hay_sack:
   id: 6057
 hay_sack_2:
   id: 6058
@@ -12534,11 +12534,11 @@ spirit_tree:
   id: 6063
 bloody_mourner_top:
   id: 6064
-mourner_top_1:
+mourner_top:
   id: 6065
   slot: Chest
   type: FullBody
-mourner_trousers_1:
+mourner_trousers:
   id: 6066
 mourner_trousers_2:
   id: 6067
@@ -12624,10 +12624,10 @@ new_key:
   id: 6104
 elf:
   id: 6105
-ghostly_boots_1:
+ghostly_boots:
   id: 6106
   slot: Feet
-ghostly_robe_1:
+ghostly_robe:
   id: 6107
   slot: Chest
   type: FullBody
@@ -12650,7 +12650,7 @@ kelda_hops:
   id: 6113
 kelda_stout:
   id: 6118
-square_stone_1:
+square_stone:
   id: 6119
 square_stone_2:
   id: 6120
@@ -12673,7 +12673,7 @@ enchanted_lyre_(3):
 enchanted_lyre_(4):
   id: 6127
   slot: Weapon
-rock-shell_helm_1:
+rock-shell_helm:
   id: 6128
   slot: Hat
   type: Hair
@@ -12684,7 +12684,7 @@ rock-shell_plate:
 rock-shell_legs:
   id: 6130
   slot: Legs
-spined_helm_1:
+spined_helm:
   id: 6131
   slot: Hat
   type: Hair
@@ -12701,7 +12701,7 @@ spined_chaps:
   slot: Legs
 spined_chaps_noted:
   id: 6136
-skeletal_helm_1:
+skeletal_helm:
   id: 6137
   slot: Hat
   type: Hair
@@ -12794,11 +12794,11 @@ rock-shell_plate_noted:
   id: 6176
 rock-shell_legs_noted:
   id: 6177
-raw_pheasant_1:
+raw_pheasant:
   id: 6178
 raw_pheasant_2:
   id: 6179
-lederhosen_top_1:
+lederhosen_top:
   id: 6180
   slot: Chest
   type: FullBody
@@ -12809,7 +12809,7 @@ lederhosen_hat:
   id: 6182
   slot: Hat
   type: Hair
-random_event_gift_1:
+random_event_gift:
   id: 6183
 prince_tunic:
   id: 6184
@@ -12818,24 +12818,24 @@ prince_tunic:
 prince_leggings:
   id: 6185
   slot: Legs
-princess_blouse_1:
+princess_blouse:
   id: 6186
   slot: Chest
   type: FullBody
 princess_skirt:
   id: 6187
   slot: Legs
-frog_mask_1:
+frog_mask:
   id: 6188
   slot: Hat
   type: Hair
-mystery_box_1:
+mystery_box:
   id: 6199
-raw_fish-like_thing_1:
+raw_fish-like_thing:
   id: 6200
 picture_102:
   id: 6201
-fish-like_thing_1:
+fish-like_thing:
   id: 6202
 picture_103:
   id: 6203
@@ -12862,60 +12862,60 @@ mahogany_pyre_logs:
   id: 6213
 mahogany_pyre_logs_noted:
   id: 6214
-broodoo_shield_(10)_1:
+broodoo_shield_(10):
   id: 6215
   slot: Shield
-broodoo_shield_(10)_noted_1:
+broodoo_shield_(10)_noted:
   id: 6216
-broodoo_shield_(9)_1:
+broodoo_shield_(9):
   id: 6217
   slot: Shield
-broodoo_shield_(9)_noted_1:
+broodoo_shield_(9)_noted:
   id: 6218
-broodoo_shield_(8)_1:
+broodoo_shield_(8):
   id: 6219
   slot: Shield
-broodoo_shield_(8)_noted_1:
+broodoo_shield_(8)_noted:
   id: 6220
-broodoo_shield_(7)_1:
+broodoo_shield_(7):
   id: 6221
   slot: Shield
-broodoo_shield_(7)_noted_1:
+broodoo_shield_(7)_noted:
   id: 6222
-broodoo_shield_(6)_1:
+broodoo_shield_(6):
   id: 6223
   slot: Shield
-broodoo_shield_(6)_noted_1:
+broodoo_shield_(6)_noted:
   id: 6224
-broodoo_shield_(5)_1:
+broodoo_shield_(5):
   id: 6225
   slot: Shield
-broodoo_shield_(5)_noted_1:
+broodoo_shield_(5)_noted:
   id: 6226
-broodoo_shield_(4)_1:
+broodoo_shield_(4):
   id: 6227
   slot: Shield
-broodoo_shield_(4)_noted_1:
+broodoo_shield_(4)_noted:
   id: 6228
-broodoo_shield_(3)_1:
+broodoo_shield_(3):
   id: 6229
   slot: Shield
-broodoo_shield_(3)_noted_1:
+broodoo_shield_(3)_noted:
   id: 6230
-broodoo_shield_(2)_1:
+broodoo_shield_(2):
   id: 6231
   slot: Shield
-broodoo_shield_(2)_noted_1:
+broodoo_shield_(2)_noted:
   id: 6232
-broodoo_shield_(1)_1:
+broodoo_shield_(1):
   id: 6233
   slot: Shield
-broodoo_shield_(1)_noted_1:
+broodoo_shield_(1)_noted:
   id: 6234
-broodoo_shield_1:
+broodoo_shield:
   id: 6235
   slot: Shield
-broodoo_shield_noted_1:
+broodoo_shield_noted:
   id: 6236
 broodoo_shield_(10)_2:
   id: 6237
@@ -13042,9 +13042,9 @@ thatch_spar_dense:
   slot: Shield
 thatch_spar_dense_noted:
   id: 6286
-snake_hide_1:
+snake_hide:
   id: 6287
-snake_hide_noted_1:
+snake_hide_noted:
   id: 6288
 snakeskin:
   id: 6289
@@ -13054,13 +13054,13 @@ spider_carcass:
   id: 6291
 spider_carcass_noted:
   id: 6292
-spider_on_stick_1:
+spider_on_stick:
   id: 6293
-spider_on_stick_noted_1:
+spider_on_stick_noted:
   id: 6294
-spider_on_shaft_1:
+spider_on_shaft:
   id: 6295
-spider_on_shaft_noted_1:
+spider_on_shaft_noted:
   id: 6296
 spider_on_stick_2:
   id: 6297
@@ -13136,10 +13136,10 @@ teak_logs:
   id: 6333
 teak_logs_noted:
   id: 6334
-tribal_mask_1:
+tribal_mask:
   id: 6335
   slot: Hat
-tribal_mask_noted_1:
+tribal_mask_noted:
   id: 6336
 tribal_mask_2:
   id: 6337
@@ -13151,31 +13151,31 @@ tribal_mask_3:
   slot: Hat
 tribal_mask_noted_3:
   id: 6340
-tribal_top_1:
+tribal_top:
   id: 6341
   slot: Chest
   type: FullBody
-tribal_top_noted_1:
+tribal_top_noted:
   id: 6342
-villager_robe_1:
+villager_robe:
   id: 6343
   slot: Legs
-villager_robe_noted_1:
+villager_robe_noted:
   id: 6344
-villager_hat_1:
+villager_hat:
   id: 6345
   slot: Hat
-villager_hat_noted_1:
+villager_hat_noted:
   id: 6346
-villager_armband_1:
+villager_armband:
   id: 6347
   slot: Hands
-villager_armband_noted_1:
+villager_armband_noted:
   id: 6348
-villager_sandals_1:
+villager_sandals:
   id: 6349
   slot: Feet
-villager_sandals_noted_1:
+villager_sandals_noted:
   id: 6350
 tribal_top_2:
   id: 6351
@@ -13262,11 +13262,11 @@ fez:
   slot: Hat
 fez_noted:
   id: 6383
-desert_top_1:
+desert_top:
   id: 6384
   slot: Chest
   type: FullBody
-desert_top_noted_1:
+desert_top_noted:
   id: 6385
 desert_robes:
   id: 6386
@@ -13284,27 +13284,27 @@ desert_legs:
   slot: Legs
 desert_legs_noted:
   id: 6391
-menap_headgear_1:
+menap_headgear:
   id: 6392
   slot: Hat
   type: Hair
-menap_headgear_noted_1:
+menap_headgear_noted:
   id: 6393
-menaphite_top_1:
+menaphite_top:
   id: 6394
   slot: Chest
   type: FullBody
-menaphite_top_noted_1:
+menaphite_top_noted:
   id: 6395
-menaphite_robe_1:
+menaphite_robe:
   id: 6396
   slot: Legs
-menaphite_robe_noted_1:
+menaphite_robe_noted:
   id: 6397
-menap_action_kilt_1:
+menap_action_kilt:
   id: 6398
   slot: Legs
-menap_action_kilt_noted_1:
+menap_action_kilt_noted:
   id: 6399
 menap_headgear_2:
   id: 6400
@@ -13365,11 +13365,11 @@ maple_blackjack_(d)_noted:
   id: 6421
 air_rune_2:
   id: 6422
-air_rune_noted_1:
+air_rune_noted:
   id: 6423
 water_rune_2:
   id: 6424
-water_rune_noted_1:
+water_rune_noted:
   id: 6425
 earth_rune_2:
   id: 6426
@@ -13377,11 +13377,11 @@ earth_rune_noted:
   id: 6427
 fire_rune_2:
   id: 6428
-fire_rune_noted_1:
+fire_rune_noted:
   id: 6429
 chaos_rune_2:
   id: 6430
-chaos_rune_noted_1:
+chaos_rune_noted:
   id: 6431
 death_rune_2:
   id: 6432
@@ -13411,13 +13411,13 @@ vine_seed:
   id: 6456
 delphinium_seed:
   id: 6457
-orchid_seed_1:
+orchid_seed:
   id: 6458
 orchid_seed_2:
   id: 6459
 snowdrop_seed:
   id: 6460
-white_tree_shoot_1:
+white_tree_shoot:
   id: 6461
 white_tree_shoot_2:
   id: 6462
@@ -13456,13 +13456,13 @@ trolley:
   id: 6478
 list:
   id: 6479
-agility_jump_1:
+agility_jump:
   id: 6514
-agility_balance_1:
+agility_balance:
   id: 6515
-agility_contortion_1:
+agility_contortion:
   id: 6516
-agility_climb_1:
+agility_climb:
   id: 6517
 agility_jump_2:
   id: 6518
@@ -13512,7 +13512,7 @@ tzhaar-ket-om_noted:
 mouse_toy:
   id: 6541
   slot: Weapon
-present_1:
+present:
   id: 6542
 antique_lamp_2:
   id: 6543
@@ -13529,7 +13529,7 @@ doctors_hat:
 nurse_hat:
   id: 6548
   slot: Hat
-lazy_cat_1:
+lazy_cat:
   id: 6549
 lazy_cat_2:
   id: 6550
@@ -13541,7 +13541,7 @@ lazy_cat_5:
   id: 6553
 lazy_cat_6:
   id: 6554
-wily_cat_1:
+wily_cat:
   id: 6555
 wily_cat_2:
   id: 6556
@@ -13561,18 +13561,18 @@ mud_battlestaff:
 mystic_mud_staff:
   id: 6563
   slot: Weapon
-onyx_ring_1:
+onyx_ring:
   id: 6564
-onyx_necklace_1:
+onyx_necklace:
   id: 6565
-onyx_amulet_1:
+onyx_amulet:
   id: 6566
-obsidian_cape_1:
+obsidian_cape:
   id: 6568
   slot: Cape
 obsidian_cape_noted:
   id: 6569
-fire_cape_1:
+fire_cape:
   id: 6570
   slot: Cape
 uncut_onyx:
@@ -13595,7 +13595,7 @@ onyx_necklace_noted:
   id: 6578
 onyx_amulet_2:
   id: 6579
-onyx_amulet_noted_1:
+onyx_amulet_noted:
   id: 6580
 onyx_amulet_3:
   id: 6581
@@ -13690,7 +13690,7 @@ white_chainbody:
   type: FullBody
 white_chainbody_noted:
   id: 6616
-white_platebody_1:
+white_platebody:
   id: 6617
   slot: Chest
   type: FullBody
@@ -13738,7 +13738,7 @@ white_kiteshield:
   slot: Shield
 white_kiteshield_noted:
   id: 6634
-commorb_1:
+commorb:
   id: 6635
 soluss_hat:
   id: 6636
@@ -13760,7 +13760,7 @@ blue_crystal:
   id: 6644
 magenta_crystal:
   id: 6645
-fractured_crystal_1:
+fractured_crystal:
   id: 6646
 fractured_crystal_2:
   id: 6647
@@ -13770,13 +13770,13 @@ ederns_journal:
   id: 6649
 blackened_crystal:
   id: 6650
-newly_made_crystal_1:
+newly_made_crystal:
   id: 6651
 newly_made_crystal_2:
   id: 6652
 crystal_trinket:
   id: 6653
-camo_top_1:
+camo_top:
   id: 6654
   slot: Chest
   type: FullBody
@@ -13786,7 +13786,7 @@ camo_bottoms:
 camo_helmet:
   id: 6656
   slot: Hat
-fishing_explosive_1:
+fishing_explosive:
   id: 6660
 mogre:
   id: 6661
@@ -13803,7 +13803,7 @@ mudskipper_hat:
 flippers:
   id: 6666
   slot: Feet
-fishbowl_1:
+fishbowl:
   id: 6667
 fishbowl_2:
   id: 6668
@@ -13818,11 +13818,11 @@ fishbowl_5:
 fishbowl_6:
   id: 6672
   slot: Weapon
-fishbowl_and_net_1:
+fishbowl_and_net:
   id: 6673
 tiny_net:
   id: 6674
-empty_box_1:
+empty_box:
   id: 6675
 tinderbox_30:
   id: 6676
@@ -13834,7 +13834,7 @@ seaweed-in-a-box:
   id: 6679
 seaweed-in-a-box?:
   id: 6680
-ground_guam_1:
+ground_guam:
   id: 6681
 ground_guam_noted:
   id: 6682
@@ -13889,7 +13889,7 @@ potato_with_cheese_noted:
 camulet:
   id: 6707
   slot: Amulet
-slayer_gloves_1:
+slayer_gloves:
   id: 6708
 fever_spider:
   id: 6709
@@ -13905,7 +13905,7 @@ holy_wrench:
   id: 6714
 sluglings:
   id: 6715
-karamthulhu_1:
+karamthulhu:
   id: 6716
 karamthulhu_2:
   id: 6717
@@ -13918,7 +13918,7 @@ slayer_gloves_2:
   slot: Hands
 rusty_scimitar:
   id: 6721
-zombie_head_1:
+zombie_head:
   id: 6722
 fishbowl_noted:
   id: 6723
@@ -13975,7 +13975,7 @@ hatchet_head_noted_8:
 silverlight_2:
   id: 6745
   slot: Weapon
-darklight_1:
+darklight:
   id: 6746
   slot: Weapon
 demonic_sigil_mould:
@@ -13995,7 +13995,7 @@ black_desert_robe:
   slot: Legs
 picture_108:
   id: 6753
-enchanted_key_1:
+enchanted_key:
   id: 6754
   slot: Weapon
 journal_4:
@@ -14004,7 +14004,7 @@ letter_4:
   id: 6756
 letter_5:
   id: 6757
-scroll_1:
+scroll:
   id: 6758
 chest:
   id: 6759
@@ -14040,7 +14040,7 @@ pot_of_weeds:
   id: 6771
 smouldering_pot:
   id: 6772
-rat_pole_1:
+rat_pole:
   id: 6773
   slot: Weapon
   type: TwoHanded
@@ -14076,18 +14076,18 @@ bandit_3:
   id: 6782
 statuette_2:
   id: 6785
-robe_of_elidinis_1:
+robe_of_elidinis:
   id: 6786
   slot: Chest
   type: FullBody
 robe_of_elidinis_2:
   id: 6787
   slot: Legs
-torn_robe_1:
+torn_robe:
   id: 6788
 torn_robe_2:
   id: 6789
-shoes_1:
+shoes:
   id: 6790
   slot: Feet
 sole:
@@ -14104,7 +14104,7 @@ lamp_2:
   id: 6796
 watering_can_2:
   id: 6797
-champions_scroll_1:
+champions_scroll:
   id: 6798
 champions_scroll_2:
   id: 6799
@@ -14153,11 +14153,11 @@ bow-sword:
   type: TwoHanded
 large_pouch_3:
   id: 6819
-relic_1:
+relic:
   id: 6820
-orb_1:
+orb:
   id: 6821
-star_bauble_1:
+star_bauble:
   id: 6822
 star_bauble_2:
   id: 6823
@@ -14169,7 +14169,7 @@ star_bauble_5:
   id: 6826
 star_bauble_6:
   id: 6827
-box_bauble_1:
+box_bauble:
   id: 6828
 box_bauble_2:
   id: 6829
@@ -14181,7 +14181,7 @@ box_bauble_5:
   id: 6832
 box_bauble_6:
   id: 6833
-diamond_bauble_1:
+diamond_bauble:
   id: 6834
 diamond_bauble_2:
   id: 6835
@@ -14193,7 +14193,7 @@ diamond_bauble_5:
   id: 6838
 diamond_bauble_6:
   id: 6839
-tree_bauble_1:
+tree_bauble:
   id: 6840
 tree_bauble_2:
   id: 6841
@@ -14205,7 +14205,7 @@ tree_bauble_5:
   id: 6844
 tree_bauble_6:
   id: 6845
-bell_bauble_1:
+bell_bauble:
   id: 6846
 bell_bauble_2:
   id: 6847
@@ -14217,18 +14217,18 @@ bell_bauble_5:
   id: 6850
 bell_bauble_6:
   id: 6851
-puppet_box_1:
+puppet_box:
   id: 6852
-bauble_box_1:
+bauble_box:
   id: 6853
 puppet_box_2:
   id: 6854
 bauble_box_2:
   id: 6855
-bobble_hat_1:
+bobble_hat:
   id: 6856
   slot: Hat
-bobble_scarf_1:
+bobble_scarf:
   id: 6857
   slot: Amulet
 jester_hat:
@@ -14252,11 +14252,11 @@ woolly_scarf:
 marionette_handle:
   id: 6864
   slot: Weapon
-blue_marionette_1:
+blue_marionette:
   id: 6865
-green_marionette_1:
+green_marionette:
   id: 6866
-red_marionette_1:
+red_marionette:
   id: 6867
 blue_marionette_2:
   id: 6868
@@ -14290,7 +14290,7 @@ green_marionette_6:
   id: 6882
 peach:
   id: 6883
-progress_hat_1:
+progress_hat:
   id: 6885
   slot: Hat
 progress_hat_2:
@@ -14332,7 +14332,7 @@ orb_2:
   id: 6902
 dragonstone_2:
   id: 6903
-animals_bones_1:
+animals_bones:
   id: 6904
 animals_bones_2:
   id: 6905
@@ -14360,13 +14360,13 @@ master_wand:
   slot: Weapon
 master_wand_noted:
   id: 6915
-infinity_top_1:
+infinity_top:
   id: 6916
   slot: Chest
   type: FullBody
 infinity_top_noted:
   id: 6917
-infinity_hat_1:
+infinity_hat:
   id: 6918
   slot: Hat
 infinity_hat_noted:
@@ -14381,12 +14381,12 @@ infinity_gloves:
   slot: Hands
 infinity_gloves_noted:
   id: 6923
-infinity_bottoms_1:
+infinity_bottoms:
   id: 6924
   slot: Legs
 infinity_bottoms_noted:
   id: 6925
-bones_to_peaches_1:
+bones_to_peaches:
   id: 6926
 sandy_hand:
   id: 6945
@@ -14479,7 +14479,7 @@ sandstone_body:
   id: 6987
 sandstone_base:
   id: 6988
-stone_head_1:
+stone_head:
   id: 6989
 stone_head_2:
   id: 6990
@@ -14632,38 +14632,38 @@ board_game_piece_23:
   id: 7106
 board_game_piece_24:
   id: 7107
-gunpowder_1:
+gunpowder:
   id: 7108
-fuse_1:
+fuse:
   id: 7109
-stripy_pirate_shirt_1:
+stripy_pirate_shirt:
   id: 7110
   slot: Chest
-stripy_pirate_shirt_noted_1:
+stripy_pirate_shirt_noted:
   id: 7111
-pirate_bandana_1:
+pirate_bandana:
   id: 7112
   slot: Hat
   type: Hair
-pirate_bandana_noted_1:
+pirate_bandana_noted:
   id: 7113
 pirate_boots:
   id: 7114
   slot: Feet
 pirate_boots_noted:
   id: 7115
-pirate_leggings_1:
+pirate_leggings:
   id: 7116
   slot: Legs
-pirate_leggings_noted_1:
+pirate_leggings_noted:
   id: 7117
-canister_1:
+canister:
   id: 7118
 cannon_ball_2:
   id: 7119
 ramrod:
   id: 7120
-repair_plank_1:
+repair_plank:
   id: 7121
 stripy_pirate_shirt_2:
   id: 7122
@@ -14726,7 +14726,7 @@ plunder:
   id: 7143
 book_o_piracy:
   id: 7144
-cannon_barrel_1:
+cannon_barrel:
   id: 7145
 broken_cannon:
   id: 7146
@@ -14759,9 +14759,9 @@ pie_recipe_book:
   id: 7162
 pie_recipe_book_noted:
   id: 7163
-part_mud_pie_1:
+part_mud_pie:
   id: 7164
-part_mud_pie_noted_1:
+part_mud_pie_noted:
   id: 7165
 part_mud_pie_2:
   id: 7166
@@ -14776,9 +14776,9 @@ mud_pie:
   slot: Weapon
 mud_pie_noted:
   id: 7171
-part_garden_pie_1:
+part_garden_pie:
   id: 7172
-part_garden_pie_noted_1:
+part_garden_pie_noted:
   id: 7173
 part_garden_pie_2:
   id: 7174
@@ -14796,9 +14796,9 @@ half_a_garden_pie:
   id: 7180
 half_a_garden_pie_noted:
   id: 7181
-part_fish_pie_1:
+part_fish_pie:
   id: 7182
-part_fish_pie_noted_1:
+part_fish_pie_noted:
   id: 7183
 part_fish_pie_2:
   id: 7184
@@ -14816,9 +14816,9 @@ half_a_fish_pie:
   id: 7190
 half_a_fish_pie_noted:
   id: 7191
-part_admiral_pie_1:
+part_admiral_pie:
   id: 7192
-part_admiral_pie_noted_1:
+part_admiral_pie_noted:
   id: 7193
 part_admiral_pie_2:
   id: 7194
@@ -14836,9 +14836,9 @@ half_an_admiral_pie:
   id: 7200
 half_an_admiral_pie_noted:
   id: 7201
-part_wild_pie_1:
+part_wild_pie:
   id: 7202
-part_wild_pie_noted_1:
+part_wild_pie_noted:
   id: 7203
 part_wild_pie_2:
   id: 7204
@@ -14856,9 +14856,9 @@ half_a_wild_pie:
   id: 7210
 half_a_wild_pie_noted:
   id: 7211
-part_summer_pie_1:
+part_summer_pie:
   id: 7212
-part_summer_pie_noted_1:
+part_summer_pie_noted:
   id: 7213
 part_summer_pie_2:
   id: 7214
@@ -15070,27 +15070,27 @@ clue_scroll_(medium)_81:
   id: 7317
 casket_(medium)_37:
   id: 7318
-red_boater_1:
+red_boater:
   id: 7319
   slot: Hat
 red_boater_noted:
   id: 7320
-orange_boater_1:
+orange_boater:
   id: 7321
   slot: Hat
 orange_boater_noted:
   id: 7322
-green_boater_1:
+green_boater:
   id: 7323
   slot: Hat
 green_boater_noted:
   id: 7324
-blue_boater_1:
+blue_boater:
   id: 7325
   slot: Hat
 blue_boater_noted:
   id: 7326
-black_boater_1:
+black_boater:
   id: 7327
   slot: Hat
 black_boater_noted:
@@ -15101,88 +15101,88 @@ green_firelighter:
   id: 7330
 blue_firelighter:
   id: 7331
-black_shield_(h1)_1:
+black_shield_(h1):
   id: 7332
   slot: Shield
 black_shield_(h1)_noted:
   id: 7333
-adamant_shield_(h1)_1:
+adamant_shield_(h1):
   id: 7334
   slot: Shield
 adamant_shield_(h1)_noted:
   id: 7335
-rune_shield_(h1)_1:
+rune_shield_(h1):
   id: 7336
   slot: Shield
 rune_shield_(h1)_noted:
   id: 7337
-black_shield_(h2)_1:
+black_shield_(h2):
   id: 7338
   slot: Shield
 black_shield_(h2)_noted:
   id: 7339
-adamant_shield_(h2)_1:
+adamant_shield_(h2):
   id: 7340
   slot: Shield
 adamant_shield_(h2)_noted:
   id: 7341
-rune_shield_(h2)_1:
+rune_shield_(h2):
   id: 7342
   slot: Shield
 rune_shield_(h2)_noted:
   id: 7343
-black_shield_(h3)_1:
+black_shield_(h3):
   id: 7344
   slot: Shield
 black_shield_(h3)_noted:
   id: 7345
-adamant_shield_(h3)_1:
+adamant_shield_(h3):
   id: 7346
   slot: Shield
 adamant_shield_(h3)_noted:
   id: 7347
-rune_shield_(h3)_1:
+rune_shield_(h3):
   id: 7348
   slot: Shield
 rune_shield_(h3)_noted:
   id: 7349
-black_shield_(h4)_1:
+black_shield_(h4):
   id: 7350
   slot: Shield
 black_shield_(h4)_noted:
   id: 7351
-adamant_shield_(h4)_1:
+adamant_shield_(h4):
   id: 7352
   slot: Shield
 adamant_shield_(h4)_noted:
   id: 7353
-rune_shield_(h4)_1:
+rune_shield_(h4):
   id: 7354
   slot: Shield
 rune_shield_(h4)_noted:
   id: 7355
-black_shield_(h5)_1:
+black_shield_(h5):
   id: 7356
   slot: Shield
 black_shield_(h5)_noted:
   id: 7357
-adamant_shield_(h5)_1:
+adamant_shield_(h5):
   id: 7358
   slot: Shield
 adamant_shield_(h5)_noted:
   id: 7359
-rune_shield_(h5)_1:
+rune_shield_(h5):
   id: 7360
   slot: Shield
 rune_shield_(h5)_noted:
   id: 7361
-studded_body_(g)_1:
+studded_body_(g):
   id: 7362
   slot: Chest
   type: FullBody
 studded_body_(g)_noted:
   id: 7363
-studded_body_(t)_1:
+studded_body_(t):
   id: 7364
   slot: Chest
   type: FullBody
@@ -15198,17 +15198,17 @@ studded_chaps_(t):
   slot: Legs
 studded_chaps_(t)_noted:
   id: 7369
-dragonhide_body_(g)_1:
+dragonhide_body_(g):
   id: 7370
   slot: Chest
   type: FullBody
-dragonhide_body_(g)_noted_1:
+dragonhide_body_(g)_noted:
   id: 7371
-dragonhide_body_(t)_1:
+dragonhide_body_(t):
   id: 7372
   slot: Chest
   type: FullBody
-dragonhide_body_(t)_noted_1:
+dragonhide_body_(t)_noted:
   id: 7373
 dragonhide_body_(g)_2:
   id: 7374
@@ -15222,15 +15222,15 @@ dragonhide_body_(t)_2:
   type: FullBody
 dragonhide_body_(t)_noted_2:
   id: 7377
-dragonhide_chaps_(g)_1:
+dragonhide_chaps_(g):
   id: 7378
   slot: Legs
-dragonhide_chaps_(g)_noted_1:
+dragonhide_chaps_(g)_noted:
   id: 7379
-dragonhide_chaps_(t)_1:
+dragonhide_chaps_(t):
   id: 7380
   slot: Legs
-dragonhide_chaps_(t)_noted_1:
+dragonhide_chaps_(t)_noted:
   id: 7381
 dragonhide_chaps_(g)_2:
   id: 7382
@@ -15252,13 +15252,13 @@ blue_skirt_(t):
   slot: Legs
 blue_skirt_(t)_noted:
   id: 7389
-wizard_robe_(g)_1:
+wizard_robe_(g):
   id: 7390
   slot: Chest
   type: FullBody
 wizard_robe_(g)_noted:
   id: 7391
-wizard_robe_(t)_1:
+wizard_robe_(t):
   id: 7392
   slot: Chest
   type: FullBody
@@ -15279,7 +15279,7 @@ wizard_hat_(t)_noted:
 enchanted_robe:
   id: 7398
   slot: Legs
-enchanted_top_1:
+enchanted_top:
   id: 7399
   slot: Chest
   type: FullBody
@@ -15306,7 +15306,7 @@ draynor_skull:
 magic_secateurs:
   id: 7409
   slot: Weapon
-queens_secateurs_1:
+queens_secateurs:
   id: 7410
   slot: Weapon
 symptoms_list:
@@ -15444,7 +15444,7 @@ gloves_15:
 gloves_16:
   id: 7462
   slot: Hands
-cornflour_1:
+cornflour:
   id: 7463
 book_on_chickens:
   id: 7464
@@ -15464,7 +15464,7 @@ milky_mixture:
   id: 7471
 cinnamon:
   id: 7472
-brulee_1:
+brulee:
   id: 7473
 brulee_2:
   id: 7474
@@ -15536,7 +15536,7 @@ skrach:
   id: 7507
 asgoldian_ale:
   id: 7508
-dwarven_rock_cake_1:
+dwarven_rock_cake:
   id: 7509
 dwarven_rock_cake_2:
   id: 7510
@@ -15554,13 +15554,13 @@ kelp:
   id: 7516
 ground_kelp:
   id: 7517
-crab_meat_1:
+crab_meat:
   id: 7518
 crab_meat_2:
   id: 7519
 burnt_crab_meat:
   id: 7520
-cooked_crab_meat_1:
+cooked_crab_meat:
   id: 7521
 cooked_crab_meat_noted:
   id: 7522
@@ -15595,7 +15595,7 @@ diving_apparatus:
   slot: Cape
 fresh_crab_claw:
   id: 7536
-crab_claw_1:
+crab_claw:
   id: 7537
   slot: Hands
 fresh_crab_shell:
@@ -15652,7 +15652,7 @@ tomato_seed_2:
   id: 7562
 tomato_seed_noted:
   id: 7563
-balloon_toad_1:
+balloon_toad:
   id: 7564
 balloon_toad_2:
   id: 7565
@@ -15699,7 +15699,7 @@ wily_hellcat:
   id: 7585
 dummy_2:
   id: 7586
-coffin_1:
+coffin:
   id: 7587
 coffin_2:
   id: 7588
@@ -15709,7 +15709,7 @@ coffin_4:
   id: 7590
 coffin_5:
   id: 7591
-zombie_shirt_1:
+zombie_shirt:
   id: 7592
   slot: Chest
 zombie_trousers:
@@ -15725,7 +15725,7 @@ zombie_gloves:
 zombie_boots:
   id: 7596
   slot: Feet
-item_1:
+item:
   id: 7597
 item_2:
   id: 7598
@@ -15769,9 +15769,9 @@ item_21:
   id: 7617
 item_22:
   id: 7618
-silvthrill_rod_1:
+silvthrill_rod:
   id: 7620
-bucket_of_rubble_1:
+bucket_of_rubble:
   id: 7622
 tinderbox_36:
   id: 7623
@@ -15787,7 +15787,7 @@ plaster_fragment:
   id: 7628
 dusty_scroll:
   id: 7629
-crate_1:
+crate:
   id: 7630
 tinderbox_39:
   id: 7631
@@ -15842,9 +15842,9 @@ silver_dust:
   id: 7650
 silver_dust_noted:
   id: 7651
-guthix_balance_(unf)_1:
+guthix_balance_(unf):
   id: 7652
-guthix_balance_(unf)_noted_1:
+guthix_balance_(unf)_noted:
   id: 7653
 guthix_balance_(unf)_2:
   id: 7654
@@ -15880,7 +15880,7 @@ gadderhammer:
   type: TwoHanded
 gadderhammer_noted:
   id: 7669
-boxing_gloves_1:
+boxing_gloves:
   id: 7671
   slot: Weapon
   type: TwoHanded
@@ -15933,29 +15933,29 @@ full_kettle:
   id: 7690
 hot_kettle:
   id: 7691
-pot_of_tea_(4)_1:
+pot_of_tea_(4):
   id: 7692
-pot_of_tea_(4)_noted_1:
+pot_of_tea_(4)_noted:
   id: 7693
-pot_of_tea_(3)_1:
+pot_of_tea_(3):
   id: 7694
-pot_of_tea_(3)_noted_1:
+pot_of_tea_(3)_noted:
   id: 7695
-pot_of_tea_(2)_1:
+pot_of_tea_(2):
   id: 7696
-pot_of_tea_(2)_noted_1:
+pot_of_tea_(2)_noted:
   id: 7697
-pot_of_tea_(1)_1:
+pot_of_tea_(1):
   id: 7698
-pot_of_tea_(1)_noted_1:
+pot_of_tea_(1)_noted:
   id: 7699
-teapot_with_leaves_1:
+teapot_with_leaves:
   id: 7700
-teapot_with_leaves_noted_1:
+teapot_with_leaves_noted:
   id: 7701
-teapot_1:
+teapot:
   id: 7702
-teapot_noted_1:
+teapot_noted:
   id: 7703
 pot_of_tea_(4)_2:
   id: 7704
@@ -16100,7 +16100,7 @@ clockwork_cat_noted:
 branch_2:
   id: 7773
   slot: Weapon
-reward_token_1:
+reward_token:
   id: 7774
 reward_token_2:
   id: 7775
@@ -16110,43 +16110,43 @@ long_vine:
   id: 7777
 short_vine:
   id: 7778
-fishing_tome_1:
+fishing_tome:
   id: 7779
 fishing_tome_2:
   id: 7780
 fishing_tome_3:
   id: 7781
-agility_tome_1:
+agility_tome:
   id: 7782
 agility_tome_2:
   id: 7783
 agility_tome_3:
   id: 7784
-thieving_tome_1:
+thieving_tome:
   id: 7785
 thieving_tome_2:
   id: 7786
 thieving_tome_3:
   id: 7787
-slayer_tome_1:
+slayer_tome:
   id: 7788
 slayer_tome_2:
   id: 7789
 slayer_tome_3:
   id: 7790
-mining_tome_1:
+mining_tome:
   id: 7791
 mining_tome_2:
   id: 7792
 mining_tome_3:
   id: 7793
-firemaking_tome_1:
+firemaking_tome:
   id: 7794
 firemaking_tome_2:
   id: 7795
 firemaking_tome_3:
   id: 7796
-woodcutting_tome_1:
+woodcutting_tome:
   id: 7797
 woodcutting_tome_2:
   id: 7798
@@ -16186,7 +16186,7 @@ pot_of_vinegar:
   id: 7811
 goblin_skull:
   id: 7812
-bone_in_vinegar_1:
+bone_in_vinegar:
   id: 7813
 polished_goblin_skull:
   id: 7814
@@ -16408,7 +16408,7 @@ empty_wine_bottle:
   id: 7921
 al_kharid_flyer:
   id: 7922
-easter_ring_1:
+easter_ring:
   id: 7927
 easter_egg_2:
   id: 7928
@@ -16438,7 +16438,7 @@ tortoise_shell_noted:
   id: 7940
 iron_sheet:
   id: 7941
-fresh_monkfish_1:
+fresh_monkfish:
   id: 7942
 fresh_monkfish_2:
   id: 7943
@@ -16446,7 +16446,7 @@ raw_monkfish:
   id: 7944
 raw_monkfish_noted:
   id: 7945
-monkfish_1:
+monkfish:
   id: 7946
 monkfish_noted:
   id: 7947
@@ -16477,7 +16477,7 @@ heavy_box:
   id: 7959
 empty_box_2:
   id: 7960
-burnt_diary_1:
+burnt_diary:
   id: 7961
 burnt_diary_2:
   id: 7962
@@ -16507,17 +16507,17 @@ servant_bell:
   id: 7974
 crawling_hand_2:
   id: 7975
-cockatrice_head_1:
+cockatrice_head:
   id: 7976
-basilisk_head_1:
+basilisk_head:
   id: 7977
-kurask_head_1:
+kurask_head:
   id: 7978
-abyssal_head_1:
+abyssal_head:
   id: 7979
-kbd_heads_1:
+kbd_heads:
   id: 7980
-kq_head_1:
+kq_head:
   id: 7981
 crawling_hand_3:
   id: 7982
@@ -16533,15 +16533,15 @@ kbd_heads_2:
   id: 7987
 kq_head_2:
   id: 7988
-big_bass_1:
+big_bass:
   id: 7989
 big_bass_2:
   id: 7990
-big_swordfish_1:
+big_swordfish:
   id: 7991
 big_swordfish_2:
   id: 7992
-big_shark_1:
+big_shark:
   id: 7993
 big_shark_2:
   id: 7994
@@ -16563,11 +16563,11 @@ lumbridge_painting:
   id: 8002
 morytania_painting:
   id: 8003
-small_map_1:
+small_map:
   id: 8004
-medium_map_1:
+medium_map:
   id: 8005
-large_map_1:
+large_map:
   id: 8006
 varrock_teleport:
   id: 8007
@@ -16617,53 +16617,53 @@ weapons_rack:
   id: 8029
 extra_weapons_rack:
   id: 8030
-wooden_bed_1:
+wooden_bed:
   id: 8031
-oak_bed_1:
+oak_bed:
   id: 8032
-large_oak_bed_1:
+large_oak_bed:
   id: 8033
-teak_bed_1:
+teak_bed:
   id: 8034
-large_teak_bed_1:
+large_teak_bed:
   id: 8035
-"4-poster_1":
+"4-poster":
   id: 8036
-gilded_4-poster_1:
+gilded_4-poster:
   id: 8037
-shoe_box_1:
+shoe_box:
   id: 8038
-oak_drawers_1:
+oak_drawers:
   id: 8039
-oak_wardrobe_1:
+oak_wardrobe:
   id: 8040
-teak_drawers_1:
+teak_drawers:
   id: 8041
-teak_wardrobe_1:
+teak_wardrobe:
   id: 8042
-mahogany_drobe_1:
+mahogany_drobe:
   id: 8043
-gilded_wardrobe_1:
+gilded_wardrobe:
   id: 8044
-shaving_stand_1:
+shaving_stand:
   id: 8045
-oak_shaving_stand_1:
+oak_shaving_stand:
   id: 8046
-oak_dresser_1:
+oak_dresser:
   id: 8047
-teak_dresser_1:
+teak_dresser:
   id: 8048
-fancy_teak_dresser_1:
+fancy_teak_dresser:
   id: 8049
-mahogany_dresser_1:
+mahogany_dresser:
   id: 8050
-gilded_dresser_1:
+gilded_dresser:
   id: 8051
-oak_clock_1:
+oak_clock:
   id: 8052
-teak_clock_1:
+teak_clock:
   id: 8053
-gilded_clock_1:
+gilded_clock:
   id: 8054
 saradomin_symbol:
   id: 8055
@@ -16771,33 +16771,33 @@ square_shield:
   id: 8106
 kite_shield:
   id: 8107
-wooden_bench_1:
+wooden_bench:
   id: 8108
-oak_bench_1:
+oak_bench:
   id: 8109
-carved_oak_bench_1:
+carved_oak_bench:
   id: 8110
-teak_dining_bench_1:
+teak_dining_bench:
   id: 8111
-carved_teak_bench_1:
+carved_teak_bench:
   id: 8112
-mahogany_bench_1:
+mahogany_bench:
   id: 8113
-gilded_bench_1:
+gilded_bench:
   id: 8114
-wood_dining_table_1:
+wood_dining_table:
   id: 8115
-oak_dining_table_1:
+oak_dining_table:
   id: 8116
-carved_oak_table_1:
+carved_oak_table:
   id: 8117
-teak_table_1:
+teak_table:
   id: 8118
-carved_teak_table_1:
+carved_teak_table:
   id: 8119
-mahogany_table_1:
+mahogany_table:
   id: 8120
-opulent_table_1:
+opulent_table:
   id: 8121
 oak_door:
   id: 8122
@@ -16857,7 +16857,7 @@ oak_chest:
   id: 8149
 teak_chest:
   id: 8150
-mahogany_chest_1:
+mahogany_chest:
   id: 8151
 magic_chest:
   id: 8152
@@ -16919,7 +16919,7 @@ plant:
   id: 8180
 small_fern:
   id: 8181
-fern_1:
+fern:
   id: 8182
 dock_leaf:
   id: 8183
@@ -16961,19 +16961,19 @@ garden_fence:
   id: 8201
 marble_wall:
   id: 8202
-thorny_hedge_1:
+thorny_hedge:
   id: 8203
-nice_hedge_1:
+nice_hedge:
   id: 8204
-small_box_hedge_1:
+small_box_hedge:
   id: 8205
-topiary_hedge_1:
+topiary_hedge:
   id: 8206
-fancy_hedge_1:
+fancy_hedge:
   id: 8207
-tall_fancy_hedge_1:
+tall_fancy_hedge:
   id: 8208
-tall_box_hedge_1:
+tall_box_hedge:
   id: 8209
 rosemary_2:
   id: 8210
@@ -17033,9 +17033,9 @@ cat_basket:
   id: 8237
 cushioned_basket:
   id: 8238
-beer_barrel_1:
+beer_barrel:
   id: 8239
-cider_barrel_1:
+cider_barrel:
   id: 8240
 asgarnian_ale_3:
   id: 8241
@@ -17047,25 +17047,25 @@ chefs_delight_3:
   id: 8244
 blank_poh_entity:
   id: 8245
-wood_kitchen_table_1:
+wood_kitchen_table:
   id: 8246
-oak_kitchen_table_1:
+oak_kitchen_table:
   id: 8247
-teak_kitchen_table_1:
+teak_kitchen_table:
   id: 8248
-oak_staircase_1:
+oak_staircase:
   id: 8249
 oak_staircase_2:
   id: 8250
 oak_staircase_3:
   id: 8251
-teak_staircase_1:
+teak_staircase:
   id: 8252
 teak_staircase_2:
   id: 8253
 teak_staircase_3:
   id: 8254
-marble_staircase_1:
+marble_staircase:
   id: 8255
 marble_staircase_2:
   id: 8256
@@ -17153,13 +17153,13 @@ oak_cage:
   id: 8297
 oak_and_steel_cage:
   id: 8298
-steel_cage_1:
+steel_cage:
   id: 8299
 spiked_cage:
   id: 8300
 bone_cage:
   id: 8301
-spikes_1:
+spikes:
   id: 8302
 tentacle_pool:
   id: 8303
@@ -17173,19 +17173,19 @@ teak_ladder:
   id: 8307
 mahogany_ladder:
   id: 8308
-crude_wooden_chair_1:
+crude_wooden_chair:
   id: 8309
-wooden_chair_1:
+wooden_chair:
   id: 8310
-rocking_chair_1:
+rocking_chair:
   id: 8311
-oak_chair_1:
+oak_chair:
   id: 8312
-oak_armchair_1:
+oak_armchair:
   id: 8313
-teak_armchair_1:
+teak_armchair:
   id: 8314
-mahogany_armchair_1:
+mahogany_armchair:
   id: 8315
 brown_rug:
   id: 8316
@@ -17193,11 +17193,11 @@ rug:
   id: 8317
 opulent_rug:
   id: 8318
-wooden_bookcase_1:
+wooden_bookcase:
   id: 8319
-oak_bookcase_1:
+oak_bookcase:
   id: 8320
-mahogany_bkcase_1:
+mahogany_bkcase:
   id: 8321
 torn_curtains:
   id: 8322
@@ -17223,45 +17223,45 @@ greater_focus:
   id: 8332
 scrying_pool:
   id: 8333
-oak_lectern_1:
+oak_lectern:
   id: 8334
-eagle_lectern_1:
+eagle_lectern:
   id: 8335
-demon_lectern_1:
+demon_lectern:
   id: 8336
-teak_eagle_lectern_1:
+teak_eagle_lectern:
   id: 8337
-teak_demon_lectern_1:
+teak_demon_lectern:
   id: 8338
-mahogany_eagle_1:
+mahogany_eagle:
   id: 8339
-mahogany_demon_1:
+mahogany_demon:
   id: 8340
-globe_1:
+globe:
   id: 8341
-ornamental_globe_1:
+ornamental_globe:
   id: 8342
-lunar_globe_1:
+lunar_globe:
   id: 8343
-celestial_globe_1:
+celestial_globe:
   id: 8344
-armillary_sphere_1:
+armillary_sphere:
   id: 8345
-small_orrery_1:
+small_orrery:
   id: 8346
-large_orrery_1:
+large_orrery:
   id: 8347
-wooden_telescope_1:
+wooden_telescope:
   id: 8348
-teak_telescope_1:
+teak_telescope:
   id: 8349
-mahogany_scope_1:
+mahogany_scope:
   id: 8350
-crystal_ball_1:
+crystal_ball:
   id: 8351
-elemental_sphere_1:
+elemental_sphere:
   id: 8352
-crystal_of_power_1:
+crystal_of_power:
   id: 8353
 alchemical_chart:
   id: 8354
@@ -17289,7 +17289,7 @@ teak_lever:
   id: 8365
 mahogany_lever:
   id: 8366
-trapdoor_1:
+trapdoor:
   id: 8367
 trapdoor_2:
   id: 8368
@@ -17357,7 +17357,7 @@ games_room:
   id: 8399
 combat_room:
   id: 8400
-hall_1:
+hall:
   id: 8401
 hall_2:
   id: 8402
@@ -17483,7 +17483,7 @@ bagged_roses_noted:
   id: 8462
 construction_guide:
   id: 8463
-rune_heraldic_helm_1:
+rune_heraldic_helm:
   id: 8464
   slot: Hat
   type: Hair
@@ -17855,7 +17855,7 @@ mahogany_scope_2:
   id: 8648
 mahogany_scope_noted:
   id: 8649
-banner_1:
+banner:
   id: 8650
   slot: Weapon
 banner_2:
@@ -17903,7 +17903,7 @@ banner_15:
 banner_16:
   id: 8680
   slot: Weapon
-steel_heraldic_helm_1:
+steel_heraldic_helm:
   id: 8682
   slot: Hat
   type: Hair
@@ -18110,7 +18110,7 @@ timber_beam:
   id: 8837
 timber_beam_noted:
   id: 8838
-void_knight_top_1:
+void_knight_top:
   id: 8839
   slot: Chest
   type: FullBody
@@ -18180,7 +18180,7 @@ silver_key:
   id: 8868
 iron_key_2:
   id: 8869
-zanik_1:
+zanik:
   id: 8870
 crate_with_zanik:
   id: 8871
@@ -18282,7 +18282,7 @@ black_mask_noted:
 witchwood_icon:
   id: 8923
   slot: Amulet
-bandana_and_eyepatch_1:
+bandana_and_eyepatch:
   id: 8924
   slot: Hat
   type: Hair
@@ -18324,19 +18324,19 @@ red_flowers_2:
   id: 8938
 red_flowers_noted_2:
   id: 8939
-rum_1:
+rum:
   id: 8940
 rum_2:
   id: 8941
 monkey_3:
   id: 8942
-blue_monkey_1:
+blue_monkey:
   id: 8943
 blue_monkey_2:
   id: 8944
 blue_monkey_3:
   id: 8945
-red_monkey_1:
+red_monkey:
   id: 8946
 red_monkey_2:
   id: 8947
@@ -18351,53 +18351,53 @@ pirate_hat:
   slot: Hat
 pieces_of_eight:
   id: 8951
-blue_naval_shirt_1:
+blue_naval_shirt:
   id: 8952
   slot: Chest
   type: FullBody
-green_naval_shirt_1:
+green_naval_shirt:
   id: 8953
   slot: Chest
   type: FullBody
-red_naval_shirt_1:
+red_naval_shirt:
   id: 8954
   slot: Chest
   type: FullBody
-brown_naval_shirt_1:
+brown_naval_shirt:
   id: 8955
   slot: Chest
   type: FullBody
-black_naval_shirt_1:
+black_naval_shirt:
   id: 8956
   slot: Chest
   type: FullBody
-purple_naval_shirt_1:
+purple_naval_shirt:
   id: 8957
   slot: Chest
   type: FullBody
-grey_naval_shirt_1:
+grey_naval_shirt:
   id: 8958
   slot: Chest
   type: FullBody
-blue_tricorn_hat_1:
+blue_tricorn_hat:
   id: 8959
   slot: Hat
-green_tricorn_hat_1:
+green_tricorn_hat:
   id: 8960
   slot: Hat
-red_tricorn_hat_1:
+red_tricorn_hat:
   id: 8961
   slot: Hat
-brown_tricorn_hat_1:
+brown_tricorn_hat:
   id: 8962
   slot: Hat
-black_tricorn_hat_1:
+black_tricorn_hat:
   id: 8963
   slot: Hat
-purple_tricorn_hat_1:
+purple_tricorn_hat:
   id: 8964
   slot: Hat
-grey_tricorn_hat_1:
+grey_tricorn_hat:
   id: 8965
   slot: Hat
 cutthroat_flag:
@@ -18453,32 +18453,32 @@ torch_2:
   slot: Weapon
 the_stuff:
   id: 8988
-brewin_guide_1:
+brewin_guide:
   id: 8989
 brewin_guide_2:
   id: 8990
-blue_navy_slacks_1:
+blue_navy_slacks:
   id: 8991
   slot: Legs
-green_navy_slacks_1:
+green_navy_slacks:
   id: 8992
   slot: Legs
-red_navy_slacks_1:
+red_navy_slacks:
   id: 8993
   slot: Legs
-brown_navy_slacks_1:
+brown_navy_slacks:
   id: 8994
   slot: Legs
-black_navy_slacks_1:
+black_navy_slacks:
   id: 8995
   slot: Legs
-purple_navy_slacks_1:
+purple_navy_slacks:
   id: 8996
   slot: Legs
-grey_navy_slacks_1:
+grey_navy_slacks:
   id: 8997
   slot: Legs
-bandana_and_eyepatch_noted_1:
+bandana_and_eyepatch_noted:
   id: 8998
 bandana_and_eyepatch_noted_2:
   id: 8999
@@ -18620,7 +18620,7 @@ purple_goblin_mail:
 pink_goblin_mail:
   id: 9059
   slot: Chest
-emerald_lantern_1:
+emerald_lantern:
   id: 9064
 emerald_lantern_2:
   id: 9065
@@ -18632,7 +18632,7 @@ dream_log:
 moonclan_helm:
   id: 9068
   slot: Hat
-moonclan_hat_1:
+moonclan_hat:
   id: 9069
   slot: Hat
 moonclan_armour:
@@ -18651,7 +18651,7 @@ moonclan_boots:
 moonclan_cape:
   id: 9074
   slot: Cape
-astral_rune_1:
+astral_rune:
   id: 9075
 lunar_ore:
   id: 9076
@@ -18698,24 +18698,24 @@ kindling:
   id: 9094
 soaked_kindling:
   id: 9095
-lunar_helm_1:
+lunar_helm:
   id: 9096
   slot: Hat
   type: Hair
-lunar_torso_1:
+lunar_torso:
   id: 9097
   slot: Chest
   type: FullBody
-lunar_legs_1:
+lunar_legs:
   id: 9098
   slot: Legs
-lunar_gloves_1:
+lunar_gloves:
   id: 9099
   slot: Hands
-lunar_boots_1:
+lunar_boots:
   id: 9100
   slot: Feet
-lunar_cape_1:
+lunar_cape:
   id: 9101
   slot: Cape
 lunar_amulet:
@@ -18940,7 +18940,7 @@ mith_grapple_tip:
   id: 9416
 mith_grapple_tip_noted:
   id: 9417
-mith_grapple_1:
+mith_grapple:
   id: 9418
 mith_grapple_2:
   id: 9419
@@ -19059,7 +19059,7 @@ sawdust:
   id: 9468
 grand_seed_pod:
   id: 9469
-gnome_scarf_1:
+gnome_scarf:
   id: 9470
   slot: Amulet
 gnome_scarf_noted:
@@ -19077,7 +19077,7 @@ mint_cake_noted:
   id: 9476
 aluft_aloft_box:
   id: 9477
-half_made_batta_1:
+half_made_batta:
   id: 9478
 unfinished_batta_8:
   id: 9479
@@ -19133,7 +19133,7 @@ blurberry_special_noted_2:
   id: 9521
 batta_tin_2:
   id: 9522
-batta_tin_noted_1:
+batta_tin_noted:
   id: 9523
 batta_tin_3:
   id: 9524
@@ -19191,11 +19191,11 @@ chocolate_bomb_2:
   id: 9553
 chocolate_bomb_noted_2:
   id: 9554
-half_made_bowl_1:
+half_made_bowl:
   id: 9558
 half_made_bowl_2:
   id: 9559
-unfinished_bowl_1:
+unfinished_bowl:
   id: 9560
 half_made_bowl_3:
   id: 9561
@@ -19217,21 +19217,21 @@ mixed_punch:
   id: 9569
 mixed_blurberry_special:
   id: 9570
-mixed_saturday_1:
+mixed_saturday:
   id: 9571
 mixed_saturday_2:
   id: 9572
 mixed_saturday_3:
   id: 9573
-mixed_dragon_1:
+mixed_dragon:
   id: 9574
 mixed_dragon_2:
   id: 9575
 mixed_dragon_3:
   id: 9576
-half_made_crunchy_1:
+half_made_crunchy:
   id: 9577
-unfinished_crunchy_1:
+unfinished_crunchy:
   id: 9578
 half_made_crunchy_2:
   id: 9579
@@ -19253,7 +19253,7 @@ gnomebowl_mould_noted:
   id: 9587
 raw_crunchies_noted:
   id: 9588
-dossier_1:
+dossier:
   id: 9589
 dossier_2:
   id: 9590
@@ -19269,68 +19269,68 @@ hazelmeres_book:
   id: 9595
 picture_113:
   id: 9596
-red_circle_1:
+red_circle:
   id: 9597
-red_triangle_1:
+red_triangle:
   id: 9598
-red_square_1:
+red_square:
   id: 9599
-red_pentagon_1:
+red_pentagon:
   id: 9600
-orange_circle_1:
+orange_circle:
   id: 9601
-orange_triangle_1:
+orange_triangle:
   id: 9602
-orange_square_1:
+orange_square:
   id: 9603
-orange_pentagon_1:
+orange_pentagon:
   id: 9604
-yellow_circle_1:
+yellow_circle:
   id: 9605
-yellow_triangle_1:
+yellow_triangle:
   id: 9606
-yellow_square_1:
+yellow_square:
   id: 9607
-yellow_pentagon_1:
+yellow_pentagon:
   id: 9608
-green_circle_1:
+green_circle:
   id: 9609
-green_triangle_1:
+green_triangle:
   id: 9610
-green_square_1:
+green_square:
   id: 9611
-green_pentagon_1:
+green_pentagon:
   id: 9612
-blue_circle_1:
+blue_circle:
   id: 9613
-blue_triangle_1:
+blue_triangle:
   id: 9614
-blue_square_1:
+blue_square:
   id: 9615
-blue_pentagon_1:
+blue_pentagon:
   id: 9616
-indigo_circle_1:
+indigo_circle:
   id: 9617
-indigo_triangle_1:
+indigo_triangle:
   id: 9618
-indigo_square_1:
+indigo_square:
   id: 9619
-indigo_pentagon_1:
+indigo_pentagon:
   id: 9620
-violet_circle_1:
+violet_circle:
   id: 9621
-violet_triangle_1:
+violet_triangle:
   id: 9622
-violet_square_1:
+violet_square:
   id: 9623
-violet_pentagon_1:
+violet_pentagon:
   id: 9624
 crystal_saw:
   id: 9625
   slot: Weapon
 small_crystal_seed:
   id: 9626
-a_handwritten_book_1:
+a_handwritten_book:
   id: 9627
 tyras_helm:
   id: 9629
@@ -19427,7 +19427,7 @@ proselyte_sallet:
   type: Hair
 proselyte_sallet_noted:
   id: 9673
-proselyte_hauberk_1:
+proselyte_hauberk:
   id: 9674
   slot: Chest
   type: FullBody
@@ -19519,7 +19519,7 @@ scroll_3:
   id: 9721
 key_20:
   id: 9722
-pipe_1:
+pipe:
   id: 9723
 large_cog:
   id: 9724
@@ -19570,7 +19570,7 @@ combat_potion_(1):
   id: 9745
 combat_potion_(1)_noted:
   id: 9746
-attack_cape_1:
+attack_cape:
   id: 9747
   slot: Cape
 attack_cape_(t):
@@ -19580,7 +19580,7 @@ attack_hood:
   id: 9749
   slot: Hat
   type: Hair
-strength_cape_1:
+strength_cape:
   id: 9750
   slot: Cape
 strength_cape_(t):
@@ -19590,7 +19590,7 @@ strength_hood:
   id: 9752
   slot: Hat
   type: Hair
-defence_cape_1:
+defence_cape:
   id: 9753
   slot: Cape
 defence_cape_(t):
@@ -19600,7 +19600,7 @@ defence_hood:
   id: 9755
   slot: Hat
   type: Hair
-ranging_cape_1:
+ranging_cape:
   id: 9756
   slot: Cape
 ranging_cape_(t):
@@ -19610,7 +19610,7 @@ ranging_hood:
   id: 9758
   slot: Hat
   type: Hair
-prayer_cape_1:
+prayer_cape:
   id: 9759
   slot: Cape
 prayer_cape_(t):
@@ -19620,7 +19620,7 @@ prayer_hood:
   id: 9761
   slot: Hat
   type: Hair
-magic_cape_1:
+magic_cape:
   id: 9762
   slot: Cape
 magic_cape_(t):
@@ -19630,7 +19630,7 @@ magic_hood:
   id: 9764
   slot: Hat
   type: Hair
-runecraft_cape_1:
+runecraft_cape:
   id: 9765
   slot: Cape
 runecraft_cape_(t):
@@ -19640,7 +19640,7 @@ runecrafting_hood:
   id: 9767
   slot: Hat
   type: Hair
-constitution_cape_1:
+constitution_cape:
   id: 9768
   slot: Cape
 constitution_cape_(t):
@@ -19650,7 +19650,7 @@ constitution_hood:
   id: 9770
   slot: Hat
   type: Hair
-agility_cape_1:
+agility_cape:
   id: 9771
   slot: Cape
 agility_cape_(t):
@@ -19660,7 +19660,7 @@ agility_hood:
   id: 9773
   slot: Hat
   type: Hair
-herblore_cape_1:
+herblore_cape:
   id: 9774
   slot: Cape
 herblore_cape_(t):
@@ -19670,7 +19670,7 @@ herblore_hood:
   id: 9776
   slot: Hat
   type: Hair
-thieving_cape_1:
+thieving_cape:
   id: 9777
   slot: Cape
 thieving_cape_(t):
@@ -19680,7 +19680,7 @@ thieving_hood:
   id: 9779
   slot: Hat
   type: Hair
-crafting_cape_1:
+crafting_cape:
   id: 9780
   slot: Cape
 crafting_cape_(t):
@@ -19690,7 +19690,7 @@ crafting_hood:
   id: 9782
   slot: Hat
   type: Hair
-fletching_cape_1:
+fletching_cape:
   id: 9783
   slot: Cape
 fletching_cape_(t):
@@ -19700,7 +19700,7 @@ fletching_hood:
   id: 9785
   slot: Hat
   type: Hair
-slayer_cape_1:
+slayer_cape:
   id: 9786
   slot: Cape
 slayer_cape_(t):
@@ -19710,7 +19710,7 @@ slayer_hood:
   id: 9788
   slot: Hat
   type: Hair
-construct._cape_1:
+construct._cape:
   id: 9789
   slot: Cape
 construct._cape_(t):
@@ -19720,7 +19720,7 @@ construct._hood:
   id: 9791
   slot: Hat
   type: Hair
-mining_cape_1:
+mining_cape:
   id: 9792
   slot: Cape
 mining_cape_(t):
@@ -19730,7 +19730,7 @@ mining_hood:
   id: 9794
   slot: Hat
   type: Hair
-smithing_cape_1:
+smithing_cape:
   id: 9795
   slot: Cape
 smithing_cape_(t):
@@ -19740,7 +19740,7 @@ smithing_hood:
   id: 9797
   slot: Hat
   type: Hair
-fishing_cape_1:
+fishing_cape:
   id: 9798
   slot: Cape
 fishing_cape_(t):
@@ -19750,7 +19750,7 @@ fishing_hood:
   id: 9800
   slot: Hat
   type: Hair
-cooking_cape_1:
+cooking_cape:
   id: 9801
   slot: Cape
 cooking_cape_(t):
@@ -19760,7 +19760,7 @@ cooking_hood:
   id: 9803
   slot: Hat
   type: Hair
-firemaking_cape_1:
+firemaking_cape:
   id: 9804
   slot: Cape
 firemaking_cape_(t):
@@ -19770,7 +19770,7 @@ firemaking_hood:
   id: 9806
   slot: Hat
   type: Hair
-woodcutting_cape_1:
+woodcutting_cape:
   id: 9807
   slot: Cape
 woodcut._cape_(t):
@@ -19780,7 +19780,7 @@ woodcutting_hood:
   id: 9809
   slot: Hat
   type: Hair
-farming_cape_1:
+farming_cape:
   id: 9810
   slot: Cape
 farming_cape_(t):
@@ -19790,7 +19790,7 @@ farming_hood:
   id: 9812
   slot: Hat
   type: Hair
-quest_point_cape_1:
+quest_point_cape:
   id: 9813
   slot: Cape
 quest_point_hood:
@@ -19803,55 +19803,55 @@ bobble_hat_2:
 bobble_scarf_2:
   id: 9816
   slot: Amulet
-oak_cape_rack_1:
+oak_cape_rack:
   id: 9817
-teak_cape_rack_1:
+teak_cape_rack:
   id: 9818
-mgany_cape_rack_1:
+mgany_cape_rack:
   id: 9819
-gilded_cape_rack_1:
+gilded_cape_rack:
   id: 9820
-marble_cape_rack_1:
+marble_cape_rack:
   id: 9821
-magical_cape_rack_1:
+magical_cape_rack:
   id: 9822
-oak_costume_box_1:
+oak_costume_box:
   id: 9823
-teak_costume_box_1:
+teak_costume_box:
   id: 9824
-mahogany_cos_box_1:
+mahogany_cos_box:
   id: 9825
-oak_armour_case_1:
+oak_armour_case:
   id: 9826
-teak_armour_case_1:
+teak_armour_case:
   id: 9827
-mgany_armr_case_1:
+mgany_armr_case:
   id: 9828
-oak_magic_wardrobe_1:
+oak_magic_wardrobe:
   id: 9829
-carved_oak_magic_wardrobe_1:
+carved_oak_magic_wardrobe:
   id: 9830
-teak_magic_wardrobe_1:
+teak_magic_wardrobe:
   id: 9831
-carved_teak_magic_wardrobe_1:
+carved_teak_magic_wardrobe:
   id: 9832
-mahogany_magic_wardrobe_1:
+mahogany_magic_wardrobe:
   id: 9833
-gilded_magic_wardrobe_1:
+gilded_magic_wardrobe:
   id: 9834
-marble_magic_wardrobe_1:
+marble_magic_wardrobe:
   id: 9835
-oak_toy_box_1:
+oak_toy_box:
   id: 9836
-teak_toy_box_1:
+teak_toy_box:
   id: 9837
-mahogany_toy_box_1:
+mahogany_toy_box:
   id: 9838
-oak_treasure_chest_1:
+oak_treasure_chest:
   id: 9839
-teak_treas_chest_1:
+teak_treas_chest:
   id: 9840
-mgany_treas_chest_1:
+mgany_treas_chest:
   id: 9841
 costume_room:
   id: 9842
@@ -19963,7 +19963,7 @@ farming_manual:
   id: 9903
 sailing_book:
   id: 9904
-ghost_buster_500_1:
+ghost_buster_500:
   id: 9906
   slot: Weapon
 ghost_buster_500_2:
@@ -20004,24 +20004,24 @@ black_destabiliser:
   slot: Shield
 evil_root:
   id: 9919
-jack_lantern_mask_1:
+jack_lantern_mask:
   id: 9920
   slot: Hat
   type: Hair
-skeleton_boots_1:
+skeleton_boots:
   id: 9921
   slot: Feet
-skeleton_gloves_1:
+skeleton_gloves:
   id: 9922
   slot: Hands
-skeleton_leggings_1:
+skeleton_leggings:
   id: 9923
   slot: Legs
-skeleton_shirt_1:
+skeleton_shirt:
   id: 9924
   slot: Chest
   type: FullBody
-skeleton_mask_1:
+skeleton_mask:
   id: 9925
   slot: Hat
   type: Hair
@@ -20050,7 +20050,7 @@ black_balloon:
 sandbag:
   id: 9943
   slot: Weapon
-bomber_jacket_1:
+bomber_jacket:
   id: 9944
   slot: Chest
   type: FullBody
@@ -20064,7 +20064,7 @@ cap_and_goggles:
   type: Hair
 old_red_disk:
   id: 9947
-hunter_cape_1:
+hunter_cape:
   id: 9948
   slot: Cape
 hunter_cape_(t):
@@ -20078,7 +20078,7 @@ footprint:
   id: 9951
 imp:
   id: 9952
-kebbit_1:
+kebbit:
   id: 9953
 kebbit_2:
   id: 9954
@@ -20112,7 +20112,7 @@ golden_warbler:
   id: 9968
 tropical_wagtail:
   id: 9969
-butterfly_1:
+butterfly:
   id: 9970
 butterfly_2:
   id: 9971
@@ -20124,9 +20124,9 @@ giant_eagle:
   id: 9974
 rabbit:
   id: 9975
-chinchompa_1:
+chinchompa:
   id: 9976
-red_chinchompa_1:
+red_chinchompa:
   id: 9977
 raw_bird_meat:
   id: 9978
@@ -20217,7 +20217,7 @@ ruby_harvest:
   id: 10020
 ruby_harvest_noted:
   id: 10021
-falconers_glove_1:
+falconers_glove:
   id: 10023
   slot: Weapon
   type: TwoHanded
@@ -20253,7 +20253,7 @@ kyatt_legs:
   slot: Legs
 kyatt_legs_noted:
   id: 10036
-kyatt_top_1:
+kyatt_top:
   id: 10037
   slot: Chest
   type: FullBody
@@ -20270,7 +20270,7 @@ larupia_legs:
   slot: Legs
 larupia_legs_noted:
   id: 10042
-larupia_top_1:
+larupia_top:
   id: 10043
   slot: Chest
   type: FullBody
@@ -20287,7 +20287,7 @@ graahk_legs:
   slot: Legs
 graahk_legs_noted:
   id: 10048
-graahk_top_1:
+graahk_top:
   id: 10049
   slot: Chest
   type: FullBody
@@ -20299,7 +20299,7 @@ graahk_headdress:
   type: Hair
 graahk_headdress_noted:
   id: 10052
-wood_camo_top_1:
+wood_camo_top:
   id: 10053
   slot: Chest
   type: FullBody
@@ -20310,7 +20310,7 @@ wood_camo_legs:
   slot: Legs
 wood_camo_legs_noted:
   id: 10056
-jungle_camo_top_1:
+jungle_camo_top:
   id: 10057
   slot: Chest
   type: FullBody
@@ -20321,7 +20321,7 @@ jungle_camo_legs:
   slot: Legs
 jungle_camo_legs_noted:
   id: 10060
-desert_camo_top_1:
+desert_camo_top:
   id: 10061
   slot: Chest
   type: FullBody
@@ -20332,7 +20332,7 @@ desert_camo_legs:
   slot: Legs
 desert_camo_legs_noted:
   id: 10064
-polar_camo_top_1:
+polar_camo_top:
   id: 10065
   slot: Chest
   type: FullBody
@@ -20343,12 +20343,12 @@ polar_camo_legs:
   slot: Legs
 polar_camo_legs_noted:
   id: 10068
-spotted_cape_1:
+spotted_cape:
   id: 10069
   slot: Cape
 spotted_cape_noted:
   id: 10070
-spottier_cape_1:
+spottier_cape:
   id: 10071
   slot: Cape
 spottier_cape_noted:
@@ -20491,7 +20491,7 @@ rainbow_fish:
   id: 10136
 rainbow_fish_noted:
   id: 10137
-raw_rainbow_fish_1:
+raw_rainbow_fish:
   id: 10138
 raw_rainbow_fish_noted:
   id: 10139
@@ -20796,101 +20796,101 @@ magic_composite_bow:
   type: TwoHanded
 magic_composite_bow_noted:
   id: 10285
-rune_helm_(h1)_1:
+rune_helm_(h1):
   id: 10286
   slot: Hat
   type: Hair
 rune_helm_(h1)_noted:
   id: 10287
-rune_helm_(h2)_1:
+rune_helm_(h2):
   id: 10288
   slot: Hat
   type: Hair
 rune_helm_(h2)_noted:
   id: 10289
-rune_helm_(h3)_1:
+rune_helm_(h3):
   id: 10290
   slot: Hat
   type: Hair
 rune_helm_(h3)_noted:
   id: 10291
-rune_helm_(h4)_1:
+rune_helm_(h4):
   id: 10292
   slot: Hat
   type: Hair
 rune_helm_(h4)_noted:
   id: 10293
-rune_helm_(h5)_1:
+rune_helm_(h5):
   id: 10294
   slot: Hat
   type: Hair
 rune_helm_(h5)_noted:
   id: 10295
-adamant_helm_(h1)_1:
+adamant_helm_(h1):
   id: 10296
   slot: Hat
   type: Hair
 adamant_helm_(h1)_noted:
   id: 10297
-adamant_helm_(h2)_1:
+adamant_helm_(h2):
   id: 10298
   slot: Hat
   type: Hair
 adamant_helm_(h2)_noted:
   id: 10299
-adamant_helm_(h3)_1:
+adamant_helm_(h3):
   id: 10300
   slot: Hat
   type: Hair
 adamant_helm_(h3)_noted:
   id: 10301
-adamant_helm_(h4)_1:
+adamant_helm_(h4):
   id: 10302
   slot: Hat
   type: Hair
 adamant_helm_(h4)_noted:
   id: 10303
-adamant_helm_(h5)_1:
+adamant_helm_(h5):
   id: 10304
   slot: Hat
   type: Hair
 adamant_helm_(h5)_noted:
   id: 10305
-black_helm_(h1)_1:
+black_helm_(h1):
   id: 10306
   slot: Hat
   type: Hair
 black_helm_(h1)_noted:
   id: 10307
-black_helm_(h2)_1:
+black_helm_(h2):
   id: 10308
   slot: Hat
   type: Hair
 black_helm_(h2)_noted:
   id: 10309
-black_helm_(h3)_1:
+black_helm_(h3):
   id: 10310
   slot: Hat
   type: Hair
 black_helm_(h3)_noted:
   id: 10311
-black_helm_(h4)_1:
+black_helm_(h4):
   id: 10312
   slot: Hat
   type: Hair
 black_helm_(h4)_noted:
   id: 10313
-black_helm_(h5)_1:
+black_helm_(h5):
   id: 10314
   slot: Hat
   type: Hair
 black_helm_(h5)_noted:
   id: 10315
-bob_shirt_1:
+bob_shirt:
   id: 10316
   slot: Chest
   type: FullBody
-bob_shirt_noted_1:
+bob_shirt_noted:
   id: 10317
 bob_shirt_2:
   id: 10318
@@ -21010,17 +21010,17 @@ amulet_of_glory_(t1):
   slot: Amulet
 amulet_of_glory_(t1)_noted:
   id: 10361
-amulet_of_glory_(t)_1:
+amulet_of_glory_(t):
   id: 10362
   slot: Amulet
 amulet_of_glory_(t)_noted:
   id: 10363
-strength_amulet_(t)_1:
+strength_amulet_(t):
   id: 10364
   slot: Amulet
 strength_amulet_(t)_noted:
   id: 10365
-amulet_of_magic_(t)_1:
+amulet_of_magic_(t):
   id: 10366
   slot: Amulet
 amulet_of_magic_(t)_noted:
@@ -21091,23 +21091,23 @@ saradomin_coif:
   type: Hair
 saradomin_coif_noted:
   id: 10391
-a_powdered_wig_1:
+a_powdered_wig:
   id: 10392
   slot: Hat
   type: Hair
 a_powdered_wig_noted:
   id: 10393
-flared_trousers_1:
+flared_trousers:
   id: 10394
   slot: Legs
 flared_trousers_noted:
   id: 10395
-pantaloons_1:
+pantaloons:
   id: 10396
   slot: Legs
 pantaloons_noted:
   id: 10397
-sleeping_cap_1:
+sleeping_cap:
   id: 10398
   slot: Hat
   type: Hair
@@ -21271,19 +21271,19 @@ zamorak_mitre:
   type: Hair
 zamorak_mitre_noted:
   id: 10457
-saradomin_robe_top_1:
+saradomin_robe_top:
   id: 10458
   slot: Chest
   type: FullBody
 saradomin_robe_top_noted:
   id: 10459
-zamorak_robe_top_1:
+zamorak_robe_top:
   id: 10460
   slot: Chest
   type: FullBody
 zamorak_robe_top_noted:
   id: 10461
-guthix_robe_top_1:
+guthix_robe_top:
   id: 10462
   slot: Chest
   type: FullBody
@@ -21360,12 +21360,12 @@ avas_accumulator:
 crone-made_amulet:
   id: 10500
   slot: Amulet
-snowball_1:
+snowball:
   id: 10501
   slot: Weapon
 gublinch_shards:
   id: 10506
-reindeer_hat_1:
+reindeer_hat:
   id: 10507
   slot: Hat
   type: Hair
@@ -21385,7 +21385,7 @@ tofu:
   id: 10514
 worms:
   id: 10515
-attacker_horn_1:
+attacker_horn:
   id: 10516
 attacker_horn_2:
   id: 10517
@@ -21395,7 +21395,7 @@ attacker_horn_4:
   id: 10519
 attacker_horn_5:
   id: 10520
-collection_bag_1:
+collection_bag:
   id: 10521
 collection_bag_2:
   id: 10522
@@ -21405,7 +21405,7 @@ collection_bag_4:
   id: 10524
 collection_bag_5:
   id: 10525
-healer_horn_1:
+healer_horn:
   id: 10526
 healer_horn_2:
   id: 10527
@@ -21468,7 +21468,7 @@ fighter_torso:
 runner_boots:
   id: 10552
   slot: Feet
-penance_gloves_1:
+penance_gloves:
   id: 10553
   slot: Hands
 penance_gloves_2:
@@ -21553,9 +21553,9 @@ keris_(p+):
 keris_(p++):
   id: 10584
   slot: Weapon
-parchment_1:
+parchment:
   id: 10585
-combat_lamp_1:
+combat_lamp:
   id: 10586
 tarns_diary:
   id: 10587
@@ -21576,17 +21576,17 @@ cowbells:
   id: 10593
 clockwork_book:
   id: 10594
-clockwork_suit_1:
+clockwork_suit:
   id: 10595
 clockwork_suit_2:
   id: 10596
-mission_report_1:
+mission_report:
   id: 10597
 mission_report_2:
   id: 10598
 mission_report_3:
   id: 10599
-kgp_id_card_1:
+kgp_id_card:
   id: 10600
 mystic_hat_4:
   id: 10601
@@ -21855,10 +21855,10 @@ studded_body_(g)_2:
 studded_body_(t)_2:
   id: 10681
   slot: Chest
-dhide_body_(g)_1:
+dhide_body_(g):
   id: 10682
   slot: Chest
-dhide_body_(t)_1:
+dhide_body_(t):
   id: 10683
   slot: Chest
 dhide_body_(g)_2:
@@ -22076,7 +22076,7 @@ sleeping_cap_2:
   type: Hair
 picture_131:
   id: 10747
-elegant_shirt_1:
+elegant_shirt:
   id: 10748
   slot: Chest
   type: FullBody
@@ -22272,11 +22272,11 @@ cured_yak-hide:
   id: 10820
 cured_yak-hide_noted:
   id: 10821
-yak-hide_armour_1:
+yak-hide_armour:
   id: 10822
   slot: Chest
   type: FullBody
-yak-hide_armour_noted_1:
+yak-hide_armour_noted:
   id: 10823
 yak-hide_armour_2:
   id: 10824
@@ -22360,13 +22360,13 @@ shadow_sword:
   id: 10858
   slot: Weapon
   type: TwoHanded
-tea_flask_1:
+tea_flask:
   id: 10859
 tea_flask_2:
   id: 10860
 tea_flask_3:
   id: 10861
-hard_hat_1:
+hard_hat:
   id: 10862
   slot: Hat
 builders_shirt:
@@ -22418,11 +22418,11 @@ hard_hat_2:
   slot: Hat
 fuse_2:
   id: 10884
-keg_1:
+keg:
   id: 10885
-prayer_book_1:
+prayer_book:
   id: 10886
-barrelchest_anchor_1:
+barrelchest_anchor:
   id: 10887
   slot: Weapon
   type: TwoHanded
@@ -22513,7 +22513,7 @@ nail_beast_nails:
   id: 10937
 nail_beast_nails_noted:
   id: 10938
-lumberjack_top_1:
+lumberjack_top:
   id: 10939
   slot: Chest
   type: FullBody
@@ -22542,7 +22542,7 @@ sit_up:
   id: 10948
 star_jump:
   id: 10949
-skull_staples_1:
+skull_staples:
   id: 10950
 skull_staples_2:
   id: 10951
@@ -22576,7 +22576,7 @@ coated_frogs_legs:
   id: 10963
 bat_shish:
   id: 10964
-fingers_1:
+fingers:
   id: 10965
 grubs_￠_la_mode:
   id: 10966
@@ -22612,7 +22612,7 @@ cave_goblin_wire:
   id: 10981
 cave_goblin_wire_noted:
   id: 10982
-cog_1:
+cog:
   id: 10983
 cog_2:
   id: 10984
@@ -22620,11 +22620,11 @@ fuse_3:
   id: 10985
 fuse_4:
   id: 10986
-meter_1:
+meter:
   id: 10987
 meter_2:
   id: 10988
-capacitor_1:
+capacitor:
   id: 10989
 capacitor_2:
   id: 10990
@@ -22632,7 +22632,7 @@ lever_2:
   id: 10991
 lever_3:
   id: 10992
-powerbox_1:
+powerbox:
   id: 10993
 powerbox_2:
   id: 10994
@@ -22675,18 +22675,18 @@ infused_wand:
 beacon_ring:
   id: 11014
   slot: Ring
-chicken_head_1:
+chicken_head:
   id: 11015
   slot: Hat
   type: Hair
-chicken_feet_1:
+chicken_feet:
   id: 11016
   slot: Feet
-chicken_wings_1:
+chicken_wings:
   id: 11017
   slot: Chest
   type: FullBody
-chicken_legs_1:
+chicken_legs:
   id: 11018
   slot: Legs
 chicken_feet_2:
@@ -22707,7 +22707,7 @@ magic_egg:
   id: 11023
 rabbit_mould:
   id: 11024
-chocolate_chunks_1:
+chocolate_chunks:
   id: 11025
 chocolate_kebbit:
   id: 11026
@@ -22750,7 +22750,7 @@ key_24:
   id: 11042
 key_25:
   id: 11043
-rotten_barrel_1:
+rotten_barrel:
   id: 11044
 rotten_barrel_2:
   id: 11045
@@ -22760,7 +22760,7 @@ brine_rat:
   id: 11047
 armour_shard:
   id: 11048
-artefact_1:
+artefact:
   id: 11049
 hatchet_head_9:
   id: 11050
@@ -22994,15 +22994,15 @@ phoenix_crossbow_3:
   slot: Weapon
 phoenix_crossbow_noted_3:
   id: 11168
-newspaper_1:
+newspaper:
   id: 11169
-newspaper_noted_1:
+newspaper_noted:
   id: 11170
 newspaper_2:
   id: 11171
 newspaper_noted_2:
   id: 11172
-half_certificate_1:
+half_certificate:
   id: 11173
 half_certificate_2:
   id: 11174
@@ -23084,7 +23084,7 @@ magic_beans:
 dragon_arrow:
   id: 11212
   slot: Arrows
-dragon_fire_arrows_1:
+dragon_fire_arrows:
   id: 11217
   slot: Arrows
 dragon_fire_arrows_2:
@@ -23113,7 +23113,7 @@ dragon_dart_(p+):
 dragon_dart_(p++):
   id: 11234
   slot: Weapon
-dark_bow_1:
+dark_bow:
   id: 11235
   slot: Weapon
   type: TwoHanded
@@ -23166,7 +23166,7 @@ jar_generator:
 magic_butterfly_net:
   id: 11259
   slot: Weapon
-impling_jar_1:
+impling_jar:
   id: 11260
 impling_jar_noted:
   id: 11261
@@ -23198,13 +23198,12 @@ ham_shirt:
   id: 11274
   slot: Chest
   type: FullBody
-mith_grapple_noted_1:
+mith_grapple_noted:
   id: 11275
 mith_grapple_noted_2:
   id: 11276
 cavalier_mask:
   id: 11277
-  slot: Hat
 beret_mask:
   id: 11278
   slot: Hat
@@ -23221,7 +23220,7 @@ beret_and_mask:
   id: 11282
   slot: Hat
   type: Hair
-dragonfire_shield_1:
+dragonfire_shield:
   id: 11283
   slot: Shield
 dragonfire_shield_2:
@@ -23271,6 +23270,8 @@ my_notes:
   id: 11339
 barbarian_skills:
   id: 11340
+ancient_page:
+  id: 11341
 ancient_page_5:
   id: 11345
 ancient_page_6:
@@ -23453,7 +23454,7 @@ rune_hasta_(p++):
   slot: Weapon
 rune_hasta_(p++)_noted:
   id: 11420
-fish_vial_1:
+fish_vial:
   id: 11427
 fish_vial_2:
   id: 11428
@@ -23651,7 +23652,7 @@ zamorak_mix_(1)_noted:
   id: 11524
 wimpy_feather:
   id: 11525
-book_of_knowledge_1:
+book_of_knowledge:
   id: 11640
 astronomy_book_noted:
   id: 11655
@@ -23659,14 +23660,14 @@ glassblowing_book:
   id: 11656
 glassblowing_book_noted:
   id: 11657
-void_mage_helm_1:
+void_mage_helm:
   id: 11663
   slot: Hat
   type: Hair
-void_ranger_helm_1:
+void_ranger_helm:
   id: 11664
   slot: Hat
-void_melee_helm_1:
+void_melee_helm:
   id: 11665
   slot: Hat
   type: Hair
@@ -23718,9 +23719,9 @@ scrap_paper:
   id: 11681
 hair_clip:
   id: 11682
-godsword_shards_1:
+godsword_shards:
   id: 11686
-godsword_shards_noted_1:
+godsword_shards_noted:
   id: 11687
 godsword_shards_2:
   id: 11688
@@ -23836,7 +23837,7 @@ dragon_boots:
   slot: Feet
 dragon_boots_noted:
   id: 11733
-knights_notes_1:
+knights_notes:
   id: 11734
 knights_notes_2:
   id: 11735
@@ -23898,7 +23899,7 @@ locked_diary:
   id: 11761
 unlocked_diary:
   id: 11762
-hand_1:
+hand:
   id: 11763
 foot:
   id: 11764
@@ -23912,7 +23913,7 @@ left_leg:
   id: 11768
 right_leg:
   id: 11769
-root_cutting_1:
+root_cutting:
   id: 11770
 root_cutting_2:
   id: 11771
@@ -23948,7 +23949,7 @@ human_eye:
   id: 11787
 voice_of_doom_potion:
   id: 11788
-grim_reaper_hood_1:
+grim_reaper_hood:
   id: 11789
   slot: Hat
   type: Hair
@@ -24270,7 +24271,7 @@ skeletal_armour_set:
   id: 11946
 skeletal_armour_set_noted:
   id: 11947
-snow_globe_1:
+snow_globe:
   id: 11949
   slot: Weapon
 snow_globe_2:
@@ -24326,7 +24327,7 @@ scabaras_research:
   id: 11973
 artefact_receipt:
   id: 11974
-scabarite_notes_1:
+scabarite_notes:
   id: 11975
 scabarite_notes_2:
   id: 11976
@@ -24470,7 +24471,7 @@ stranger_plant_pouch:
   id: 12045
 stranger_plant_pouch_noted:
   id: 12046
-spirit_wolf_pouch_1:
+spirit_wolf_pouch:
   id: 12047
 spirit_wolf_pouch_noted:
   id: 12048
@@ -24594,7 +24595,7 @@ sp._vulatrice_pouch:
   id: 12107
 sp._vulatrice_pouch_noted:
   id: 12108
-cockatrice_egg_1:
+cockatrice_egg:
   id: 12109
 cockatrice_egg_noted:
   id: 12110
@@ -24656,21 +24657,21 @@ evil_turnip_noted:
   id: 12138
 "1/3_evil_turnip_noted":
   id: 12139
-summoning_potion_(4)_1:
+summoning_potion_(4):
   id: 12140
-summoning_potion_(4)_noted_1:
+summoning_potion_(4)_noted:
   id: 12141
-summoning_potion_(3)_1:
+summoning_potion_(3):
   id: 12142
-summoning_potion_(3)_noted_1:
+summoning_potion_(3)_noted:
   id: 12143
-summoning_potion_(2)_1:
+summoning_potion_(2):
   id: 12144
-summoning_potion_(2)_noted_1:
+summoning_potion_(2)_noted:
   id: 12145
-summoning_potion_(1)_1:
+summoning_potion_(1):
   id: 12146
-summoning_potion_(1)_noted_1:
+summoning_potion_(1)_noted:
   id: 12147
 evil_turnip_seed:
   id: 12148
@@ -24678,23 +24679,23 @@ carved_evil_turnip:
   id: 12153
 carved_evil_turnip_noted:
   id: 12154
-pouch_1:
+pouch:
   id: 12155
 honeycomb:
   id: 12156
 honeycomb_noted:
   id: 12157
-gold_charm_1:
+gold_charm:
   id: 12158
-green_charm_1:
+green_charm:
   id: 12159
-crimson_charm_1:
+crimson_charm:
   id: 12160
 abyssal_charm:
   id: 12161
 talon_beast_charm:
   id: 12162
-blue_charm_1:
+blue_charm:
   id: 12163
 ravager_charm:
   id: 12164
@@ -24706,7 +24707,7 @@ torcher_charm:
   id: 12167
 obsidian_charm:
   id: 12168
-summoning_cape_1:
+summoning_cape:
   id: 12169
   slot: Cape
 summoning_cape_(t):
@@ -24730,45 +24731,45 @@ spirit_weed_potion_(unf):
   id: 12181
 spirit_weed_potion_(unf)_noted:
   id: 12182
-spirit_shards_1:
+spirit_shards:
   id: 12183
-gecko_1:
+gecko:
   id: 12184
-saradomin_owl_1:
+saradomin_owl:
   id: 12185
-zamorak_hawk_1:
+zamorak_hawk:
   id: 12186
-guthix_raptor_1:
+guthix_raptor:
   id: 12187
-penguin_1:
+penguin:
   id: 12188
 bird:
   id: 12189
-vulture_1:
+vulture:
   id: 12190
-terrier_puppy_1:
+terrier_puppy:
   id: 12191
-greyhound_puppy_1:
+greyhound_puppy:
   id: 12192
-labrador_puppy_1:
+labrador_puppy:
   id: 12193
-dalmatian_puppy_1:
+dalmatian_puppy:
   id: 12194
-sheepdog_puppy_1:
+sheepdog_puppy:
   id: 12195
-bulldog_puppy_1:
+bulldog_puppy:
   id: 12196
 dragon_hatchling:
   id: 12197
-baby_giant_crab_1:
+baby_giant_crab:
   id: 12198
-baby_raccoon_1:
+baby_raccoon:
   id: 12199
-squirrel_1:
+squirrel:
   id: 12200
 monkey_4:
   id: 12201
-chameleon_1:
+chameleon:
   id: 12203
 antlers:
   id: 12204
@@ -24790,12 +24791,12 @@ lizard_skull_(charged):
   id: 12209
   slot: Hat
   type: Hair
-feather_headdress_1:
+feather_headdress:
   id: 12210
   slot: Hat
-feather_headdress_noted_1:
+feather_headdress_noted:
   id: 12211
-feather_headdress_(charged)_1:
+feather_headdress_(charged):
   id: 12212
   slot: Hat
 feather_headdress_2:
@@ -24968,7 +24969,7 @@ pouch_69:
   id: 12292
 pouch_70:
   id: 12293
-pouch_noted_1:
+pouch_noted:
   id: 12294
 pouch_71:
   id: 12295
@@ -25230,7 +25231,7 @@ fruitfall_scroll:
   id: 12423
 fish_rain_scroll:
   id: 12424
-howl_scroll_1:
+howl_scroll:
   id: 12425
 thieving_fingers_scroll:
   id: 12426
@@ -25318,9 +25319,9 @@ poisonous_blast_scroll:
   id: 12467
 dust_cloud_scroll:
   id: 12468
-hatchling_dragon_1:
+hatchling_dragon:
   id: 12469
-baby_dragon_1:
+baby_dragon:
   id: 12470
 hatchling_dragon_2:
   id: 12471
@@ -25342,25 +25343,25 @@ green_dragon_egg:
   id: 12479
 black_dragon_egg:
   id: 12480
-baby_penguin_1:
+baby_penguin:
   id: 12481
 penguin_2:
   id: 12482
 penguin_egg:
   id: 12483
-raven_chick_1:
+raven_chick:
   id: 12484
-raven_1:
+raven:
   id: 12485
 baby_raccoon_2:
   id: 12486
-raccoon_1:
+raccoon:
   id: 12487
-baby_gecko_1:
+baby_gecko:
   id: 12488
 gecko_2:
   id: 12489
-baby_squirrel_1:
+baby_squirrel:
   id: 12490
 squirrel_2:
   id: 12491
@@ -25368,21 +25369,21 @@ baby_chameleon:
   id: 12492
 chameleon_2:
   id: 12493
-chameleon_egg_1:
+chameleon_egg:
   id: 12494
 chameleon_egg_2:
   id: 12495
-baby_monkey_1:
+baby_monkey:
   id: 12496
 monkey_5:
   id: 12497
-vulture_chick_1:
+vulture_chick:
   id: 12498
 vulture_2:
   id: 12499
 baby_giant_crab_2:
   id: 12500
-giant_crab_1:
+giant_crab:
   id: 12501
 crunchy_claw_token:
   id: 12502
@@ -25406,27 +25407,27 @@ guthix_raptor_2:
   id: 12511
 terrier_puppy_2:
   id: 12512
-terrier_1:
+terrier:
   id: 12513
 greyhound_puppy_2:
   id: 12514
-greyhound_1:
+greyhound:
   id: 12515
 labrador_puppy_2:
   id: 12516
-labrador_1:
+labrador:
   id: 12517
 dalmatian_puppy_2:
   id: 12518
-dalmatian_1:
+dalmatian:
   id: 12519
 sheepdog_puppy_2:
   id: 12520
-sheepdog_1:
+sheepdog:
   id: 12521
 bulldog_puppy_2:
   id: 12522
-bulldog_1:
+bulldog:
   id: 12523
 summoning_cape_2:
   id: 12524
@@ -25465,7 +25466,7 @@ picture_noted_59:
   id: 12545
 enchanted_pawya_meat:
   id: 12546
-platypus_1:
+platypus:
   id: 12547
 platypus_2:
   id: 12548
@@ -25473,7 +25474,7 @@ platypus_3:
   id: 12549
 platypus_4:
   id: 12550
-baby_platypus_1:
+baby_platypus:
   id: 12551
 baby_platypus_2:
   id: 12552
@@ -25574,7 +25575,7 @@ sailors_hat:
   slot: Hat
 metal_catapult_parts:
   id: 12596
-mahogany_catapult_part_1:
+mahogany_catapult_part:
   id: 12597
 mahogany_catapult_part_2:
   id: 12598
@@ -25639,7 +25640,7 @@ amulet_of_farming_(8)_noted:
   id: 12623
 ogleroot:
   id: 12624
-flag_1:
+flag:
   id: 12625
 test_paper:
   id: 12626
@@ -25658,7 +25659,7 @@ note_3:
   id: 12632
 super_fishing_explosive:
   id: 12633
-chocatrice_cape_1:
+chocatrice_cape:
   id: 12634
   slot: Cape
 easter_egg_12:
@@ -25684,7 +25685,7 @@ easter_egg_21:
 chocatrice_cape_2:
   id: 12645
   slot: Cape
-chocolate_egg_1:
+chocolate_egg:
   id: 12646
 chocolate_egg_2:
   id: 12647
@@ -25696,7 +25697,7 @@ bucket_of_water_6:
   id: 12650
 bucket_of_water_7:
   id: 12651
-bucket_of_coal_1:
+bucket_of_coal:
   id: 12652
 bucket_of_coal_2:
   id: 12653
@@ -26133,7 +26134,7 @@ gnomecopter_ticket:
 toy_kite:
   id: 12844
   slot: Weapon
-stone_of_power_1:
+stone_of_power:
   id: 12845
   slot: Weapon
   type: TwoHanded
@@ -26816,62 +26817,62 @@ black_bolts_(p+):
 black_bolts_(p++):
   id: 13086
   slot: Arrows
-black_cane_1:
+black_cane:
   id: 13095
   slot: Weapon
 black_cane_noted:
   id: 13096
-adamant_cane_1:
+adamant_cane:
   id: 13097
   slot: Weapon
 adamant_cane_noted:
   id: 13098
-rune_cane_1:
+rune_cane:
   id: 13099
   slot: Weapon
 rune_cane_noted:
   id: 13100
-top_hat_1:
+top_hat:
   id: 13101
   slot: Hat
 top_hat_noted:
   id: 13102
-pith_helmet_1:
+pith_helmet:
   id: 13103
   slot: Hat
 pith_helmet_noted:
   id: 13104
-spiked_helmet_1:
+spiked_helmet:
   id: 13105
   slot: Hat
   type: Hair
 spiked_helmet_noted:
   id: 13106
-sheep_mask_1:
+sheep_mask:
   id: 13107
   slot: Hat
   type: Hair
 sheep_mask_noted:
   id: 13108
-penguin_mask_1:
+penguin_mask:
   id: 13109
   slot: Hat
   type: Hair
 penguin_mask_noted:
   id: 13110
-bat_mask_1:
+bat_mask:
   id: 13111
   slot: Hat
   type: Hair
 bat_mask_noted:
   id: 13112
-cat_mask_1:
+cat_mask:
   id: 13113
   slot: Hat
   type: Hair
 cat_mask_noted:
   id: 13114
-wolf_mask_1:
+wolf_mask:
   id: 13115
   slot: Hat
   type: Hair
@@ -27017,7 +27018,7 @@ silver_sickle_emerald_(b):
 enchanted_sickle_emerald_(b):
   id: 13156
   slot: Weapon
-vyre_corpse_1:
+vyre_corpse:
   id: 13157
 columbarium_key:
   id: 13158
@@ -27161,7 +27162,7 @@ baby_icefiend:
   slot: Weapon
 tent:
   id: 13232
-plans_1:
+plans:
   id: 13233
 dwarven_key:
   id: 13234
@@ -27179,11 +27180,11 @@ stone_tablet_2:
   id: 13243
 tzhaar_tourist_guide:
   id: 13244
-stone_slab_1:
+stone_slab:
   id: 13245
 pillar:
   id: 13246
-splat_1:
+splat:
   id: 13247
 splat_2:
   id: 13248
@@ -27260,7 +27261,7 @@ customs_trousers:
 customs_hat:
   id: 13299
   slot: Hat
-file_1:
+file:
   id: 13300
 file_2:
   id: 13301
@@ -27276,13 +27277,13 @@ idol_of_many_heads:
   id: 13307
 bill_teachs_mark:
   id: 13308
-paper_1:
+paper:
   id: 13309
 confession:
   id: 13310
 note_4:
   id: 13311
-ink_bottle_1:
+ink_bottle:
   id: 13312
 inky_paper:
   id: 13313
@@ -27301,7 +27302,7 @@ fishy_prison_uniform_top:
   id: 13318
   slot: Chest
   type: FullBody
-tin_cup_1:
+tin_cup:
   id: 13319
   slot: Weapon
 tin_cup_2:
@@ -27309,7 +27310,7 @@ tin_cup_2:
   slot: Weapon
 pipe_3:
   id: 13321
-accordion_1:
+accordion:
   id: 13322
 accordion_2:
   id: 13323
@@ -27336,7 +27337,7 @@ ex-parrot_in_a_magic_cage:
   id: 13333
 ex-ex-parrot_in_a_magic_cage:
   id: 13334
-ex-ex-parrot_1:
+ex-ex-parrot:
   id: 13335
 ex-ex-parrot_2:
   id: 13336
@@ -27348,7 +27349,7 @@ bandana_and_eyepatch_5:
   id: 13339
   slot: Hat
   type: Hair
-bandana_and_eyepatches_1:
+bandana_and_eyepatches:
   id: 13340
   slot: Hat
   type: Hair
@@ -27446,11 +27447,11 @@ pirate_leggings_7:
   slot: Legs
 pirate_leggings_noted_7:
   id: 13369
-bandana_1:
+bandana:
   id: 13370
   slot: Hat
   type: Hair
-bandana_noted_1:
+bandana_noted:
   id: 13371
 bandana_2:
   id: 13372
@@ -27480,7 +27481,7 @@ rock_fragments:
   id: 13379
 introduction_letter:
   id: 13380
-broken_hand_1:
+broken_hand:
   id: 13381
 broken_hand_2:
   id: 13382
@@ -27642,7 +27643,7 @@ burnt_crayfish_noted:
   id: 13438
 antique_lamp_18:
   id: 13439
-bag_of_runes_1:
+bag_of_runes:
   id: 13440
 amulet_of_fury_lent:
   id: 13442
@@ -27858,21 +27859,21 @@ dragon_sq_shield_lent:
 rune_kiteshield_lent:
   id: 13507
   slot: Shield
-mystic_hat_lent_1:
+mystic_hat_lent:
   id: 13508
   slot: Hat
   type: Hair
-mystic_robe_top_lent_1:
+mystic_robe_top_lent:
   id: 13509
   slot: Chest
   type: FullBody
-mystic_robe_bottom_lent_1:
+mystic_robe_bottom_lent:
   id: 13510
   slot: Legs
-mystic_gloves_lent_1:
+mystic_gloves_lent:
   id: 13511
   slot: Hands
-mystic_boots_lent_1:
+mystic_boots_lent:
   id: 13512
   slot: Feet
 mystic_hat_lent_2:
@@ -28134,13 +28135,13 @@ blood_altar_teleport:
   id: 13610
 astral_altar_teleport:
   id: 13611
-runecrafter_hat_1:
+runecrafter_hat:
   id: 13612
   slot: Hat
 runecrafter_hat_2:
   id: 13613
   slot: Hat
-runecrafter_robe_1:
+runecrafter_robe:
   id: 13614
   slot: Chest
   type: FullBody
@@ -28150,10 +28151,10 @@ runecrafter_hat_3:
 runecrafter_hat_4:
   id: 13616
   slot: Hat
-runecrafter_skirt_1:
+runecrafter_skirt:
   id: 13617
   slot: Legs
-runecrafter_gloves_1:
+runecrafter_gloves:
   id: 13618
   slot: Hands
 runecrafter_robe_2:
@@ -28249,7 +28250,7 @@ yellow_barrier_generator:
   slot: Weapon
 omni-talisman:
   id: 13649
-runecrafting_guild_token_1:
+runecrafting_guild_token:
   id: 13650
 runecrafting_guild_token_2:
   id: 13651
@@ -28322,17 +28323,17 @@ ringmaster_boots:
 mega-phonus:
   id: 13676
   slot: Weapon
-acrobat_shirt_1:
+acrobat_shirt:
   id: 13677
   slot: Chest
   type: FullBody
-acrobat_pants_1:
+acrobat_pants:
   id: 13678
   slot: Legs
-acrobat_shoes_1:
+acrobat_shoes:
   id: 13679
   slot: Feet
-acrobat_hood_1:
+acrobat_hood:
   id: 13680
   slot: Hat
   type: Hair
@@ -28350,7 +28351,7 @@ acrobat_hood_2:
   id: 13684
   slot: Hat
   type: Hair
-a_stylish_hat_1:
+a_stylish_hat:
   id: 13685
   slot: Hat
 a_stylish_hat_2:
@@ -28395,7 +28396,7 @@ shirt_9:
   id: 13696
   slot: Chest
   type: FullBody
-leggings_1:
+leggings:
   id: 13697
   slot: Legs
 leggings_2:
@@ -29249,7 +29250,7 @@ corrupt_dragon_spear_(deg):
   id: 13990
   slot: Weapon
   type: TwoHanded
-wilderness_manual_1:
+wilderness_manual:
   id: 14056
 broomstick:
   id: 14057
@@ -29293,14 +29294,14 @@ warlock_top:
 warlock_legs:
   id: 14077
   slot: Legs
-witch_top_1:
+witch_top:
   id: 14078
   slot: Chest
   type: FullBody
-witch_skirt_1:
+witch_skirt:
   id: 14079
   slot: Legs
-witch_cloak_1:
+witch_cloak:
   id: 14080
   slot: Cape
 warlock_cloak:
@@ -30235,18 +30236,18 @@ super_truth_serum:
   id: 14488
 suspect_sketch:
   id: 14489
-elite_black_platelegs_1:
+elite_black_platelegs:
   id: 14490
   slot: Legs
 elite_black_platelegs_noted:
   id: 14491
-elite_black_platebody_1:
+elite_black_platebody:
   id: 14492
   slot: Chest
   type: FullBody
 elite_black_platebody_noted:
   id: 14493
-elite_black_full_helm_1:
+elite_black_full_helm:
   id: 14494
   slot: Hat
   type: Hair
@@ -30254,32 +30255,32 @@ elite_black_full_helm_noted:
   id: 14495
 cell_key:
   id: 14496
-dagonhai_robe_top_1:
+dagonhai_robe_top:
   id: 14497
   slot: Chest
   type: FullBody
 dagonhai_robe_top_noted:
   id: 14498
-dagonhai_hat_1:
+dagonhai_hat:
   id: 14499
   slot: Hat
 dagonhai_hat_noted:
   id: 14500
-dagonhai_robe_bottom_1:
+dagonhai_robe_bottom:
   id: 14501
   slot: Legs
 dagonhai_robe_bottom_noted:
   id: 14502
-silif_1:
+silif:
   id: 14503
 silif_2:
   id: 14504
-teleorb_1:
+teleorb:
   id: 14505
   slot: Shield
 enriched_snapdragon_seed:
   id: 14506
-dolmen_1:
+dolmen:
   id: 14507
 dolmen_2:
   id: 14508
@@ -30295,13 +30296,13 @@ dolmen_7:
   id: 14513
 dolmen_8:
   id: 14514
-air_key_1:
+air_key:
   id: 14515
-earth_key_1:
+earth_key:
   id: 14516
-fire_key_1:
+fire_key:
   id: 14517
-water_key_1:
+water_key:
   id: 14518
 air_key_2:
   id: 14519
@@ -30333,11 +30334,11 @@ strange_teleorb:
   id: 14534
 turkey_book:
   id: 14536
-cornucopia_1:
+cornucopia:
   id: 14537
 cornucopia_2:
   id: 14538
-raw_turkey_1:
+raw_turkey:
   id: 14539
 cooked_turkey:
   id: 14540
@@ -30404,11 +30405,11 @@ elite_black_full_helm_lent:
   id: 14594
   slot: Hat
   type: Hair
-santa_costume_top_1:
+santa_costume_top:
   id: 14595
   slot: Chest
   type: FullBody
-ice_amulet_1:
+ice_amulet:
   id: 14596
   slot: Amulet
 stones:
@@ -30429,7 +30430,7 @@ santa_costume_top_3:
 santa_costume_gloves:
   id: 14602
   slot: Hands
-santa_costume_legs_1:
+santa_costume_legs:
   id: 14603
   slot: Legs
 santa_costume_legs_2:
@@ -30474,7 +30475,7 @@ phoenix_pouch_noted:
   id: 14624
 pouch_136:
   id: 14625
-phoenix_eggling_1:
+phoenix_eggling:
   id: 14626
 phoenix_eggling_2:
   id: 14627
@@ -30504,14 +30505,14 @@ slayer_helmet_(charged):
   type: Hair
 bones_4:
   id: 14638
-soul_fragment_1:
+soul_fragment:
   id: 14639
 bandages_3:
   id: 14640
-red_cape_1:
+red_cape:
   id: 14641
   slot: Cape
-blue_cape_1:
+blue_cape:
   id: 14642
   slot: Cape
 barricade_2:
@@ -30531,15 +30532,15 @@ barricade_3:
   id: 14649
 explosive_potion_3:
   id: 14650
-abyssal_minion_1:
+abyssal_minion:
   id: 14651
-creeping_hand_1:
+creeping_hand:
   id: 14652
-minitrice_1:
+minitrice:
   id: 14653
-baby_basilisk_1:
+baby_basilisk:
   id: 14654
-baby_kurask_1:
+baby_kurask:
   id: 14655
 abyssal_minion_2:
   id: 14656
@@ -30595,11 +30596,11 @@ granite_mace_noted:
 granite_mace_lent:
   id: 14681
   slot: Weapon
-pendant_1:
+pendant:
   id: 14682
 pendant_2:
   id: 14683
-zaniks_crossbow_1:
+zaniks_crossbow:
   id: 14684
   slot: Weapon
 crossbow_2:
@@ -30656,7 +30657,7 @@ antique_lamp_32:
 beer_4:
   id: 14712
   slot: Weapon
-easter_carrot_1:
+easter_carrot:
   id: 14713
   slot: Weapon
 sunflower_seeds:
@@ -30675,7 +30676,7 @@ pistons:
   id: 14720
 wet_pipe:
   id: 14721
-clean_pipe_1:
+clean_pipe:
   id: 14722
 sooty_pipe:
   id: 14723
@@ -30713,7 +30714,7 @@ dagonhai_hat_2:
 dagonhai_robe_bottom_2:
   id: 14734
   slot: Legs
-driftwood_1:
+driftwood:
   id: 14735
 fire_raft:
   id: 14736
@@ -31112,7 +31113,7 @@ third_age_carafe_noted:
   id: 14908
 broken_statue_headdress_noted:
   id: 14909
-agile_top_1:
+agile_top:
   id: 14936
   slot: Chest
   type: FullBody
@@ -31120,7 +31121,7 @@ agile_top_2:
   id: 14937
   slot: Chest
   type: FullBody
-agile_legs_1:
+agile_legs:
   id: 14938
   slot: Legs
 agile_legs_2:
@@ -31304,7 +31305,7 @@ archers_ring_(i):
 warrior_ring_(i):
   id: 15020
   slot: Ring
-serjeant_cap_1:
+serjeant_cap:
   id: 15021
   slot: Hat
 serjeant_top:
@@ -31323,7 +31324,7 @@ serjeant_boots:
 serjeant_gloves:
   id: 15026
   slot: Hands
-commander_cap_1:
+commander_cap:
   id: 15027
   slot: Hat
 commander_top:
@@ -31342,7 +31343,7 @@ commander_boots:
 commander_gloves:
   id: 15032
   slot: Hands
-war-chief_cap_1:
+war-chief_cap:
   id: 15033
   slot: Hat
 war-chief_top:
@@ -31361,7 +31362,7 @@ war-chief_boots:
 war-chief_gloves:
   id: 15038
   slot: Hands
-lord_marshal_cap_1:
+lord_marshal_cap:
   id: 15039
   slot: Hat
 lord_marshal_top:
@@ -31741,7 +31742,7 @@ bonesack(e):
   slot: Cape
 old_diary:
   id: 15216
-arm_1:
+arm:
   id: 15217
 arm_2:
   id: 15218
@@ -32055,12 +32056,12 @@ basket_pack:
   id: 15366
 empty_sack_pack:
   id: 15367
-statue_1:
+statue:
   id: 15368
 roddecks_pipe:
   id: 15373
   slot: Hat
-magnifying_glass_1:
+magnifying_glass:
   id: 15374
   slot: Weapon
 raw_turkey_2:
@@ -32071,7 +32072,7 @@ dr_nabanik:
   id: 15377
 barrows_icon:
   id: 15378
-heat_globe_1:
+heat_globe:
   id: 15379
 heat_globe_2:
   id: 15380
@@ -32175,7 +32176,7 @@ christmas_ghost_hood:
   id: 15422
   slot: Hat
   type: Hair
-christmas_ghost_top_1:
+christmas_ghost_top:
   id: 15423
   slot: Chest
   type: FullBody
@@ -32333,7 +32334,7 @@ guardian_legs:
   id: 15481
 rune_essence_2:
   id: 15482
-rune_guardian_1:
+rune_guardian:
   id: 15483
 orb_of_oculus:
   id: 15484
@@ -32343,7 +32344,7 @@ penance_master_trident:
   id: 15485
   slot: Weapon
   type: TwoHanded
-staff_of_light_1:
+staff_of_light:
   id: 15486
   slot: Weapon
 staff_of_light_noted:
@@ -32381,7 +32382,7 @@ box_of_summoning_ingredients:
 staff_of_light_lent:
   id: 15502
   slot: Weapon
-royal_shirt_1:
+royal_shirt:
   id: 15503
   slot: Chest
   type: FullBody
@@ -32425,7 +32426,7 @@ statue_list:
   id: 15520
 statue_plinth:
   id: 15521
-strange_rock_1:
+strange_rock:
   id: 15522
 strange_rock_2:
   id: 15523
@@ -32485,7 +32486,7 @@ strange_rock_29:
   id: 15550
 strange_rock_30:
   id: 15551
-replica_statue_piece_1:
+replica_statue_piece:
   id: 15552
 replica_statue_piece_2:
   id: 15553
@@ -32562,7 +32563,7 @@ ruby_demon_statuette:
   id: 15588
 diamond_demon_statuette:
   id: 15589
-mask_of_dragith_nurn_1:
+mask_of_dragith_nurn:
   id: 15590
   slot: Hat
 mask_part_1:
@@ -32585,7 +32586,7 @@ kayles_sling:
 caitlins_staff:
   id: 15598
   slot: Weapon
-helmet_of_trials_1:
+helmet_of_trials:
   id: 15599
   slot: Hat
   type: Hair
@@ -32790,7 +32791,7 @@ dark_bow_5:
   id: 15704
   slot: Weapon
   type: TwoHanded
-dungeoneering_cape_1:
+dungeoneering_cape:
   id: 15706
   slot: Cape
 ring_of_kinship:
@@ -32880,11 +32881,11 @@ m._and_thok_letter_(part_5):
   id: 15748
 m._and_thok_letter_(part_6):
   id: 15749
-blue_power_crystal_1:
+blue_power_crystal:
   id: 15750
-green_power_crystal_1:
+green_power_crystal:
   id: 15751
-red_power_crystal_1:
+red_power_crystal:
   id: 15752
 novite_battleaxe:
   id: 15753
@@ -34638,7 +34639,7 @@ promethium_gauntlets:
   slot: Hands
 promethium_gauntlets_noted:
   id: 16292
-primal_gauntlets_1:
+primal_gauntlets:
   id: 16293
   slot: Hands
 primal_gauntlets_noted:
@@ -34663,7 +34664,7 @@ kratonite_pickaxe:
   slot: Weapon
 kratonite_pickaxe_noted:
   id: 16302
-fractite_pickaxe_1:
+fractite_pickaxe:
   id: 16303
   slot: Weapon
 fractite_pickaxe_noted:
@@ -34814,7 +34815,7 @@ promethium_boots:
   slot: Feet
 promethium_boots_noted:
   id: 16358
-primal_boots_1:
+primal_boots:
   id: 16359
   slot: Feet
 primal_boots_noted:
@@ -34894,10 +34895,10 @@ kratonite_longsword:
   slot: Weapon
 kratonite_longsword_noted:
   id: 16390
-fractite_longsword_1:
+fractite_longsword:
   id: 16391
   slot: Weapon
-fractite_longsword_noted_1:
+fractite_longsword_noted:
   id: 16392
 zephyrium_longsword:
   id: 16393
@@ -34914,17 +34915,17 @@ katagon_longsword:
   slot: Weapon
 katagon_longsword_noted:
   id: 16398
-gorgonite_longsword_1:
+gorgonite_longsword:
   id: 16399
   slot: Weapon
-gorgonite_longsword_noted_1:
+gorgonite_longsword_noted:
   id: 16400
 promethium_longsword:
   id: 16401
   slot: Weapon
 promethium_longsword_noted:
   id: 16402
-primal_longsword_1:
+primal_longsword:
   id: 16403
   slot: Weapon
 primal_longsword_noted:
@@ -34977,11 +34978,11 @@ katagon_maul:
   type: TwoHanded
 katagon_maul_noted:
   id: 16420
-gorgonite_maul_1:
+gorgonite_maul:
   id: 16421
   slot: Weapon
   type: TwoHanded
-gorgonite_maul_noted_1:
+gorgonite_maul_noted:
   id: 16422
 promethium_maul:
   id: 16423
@@ -35004,7 +35005,7 @@ bathus_arrows:
 marmaros_arrows:
   id: 16437
   slot: Arrows
-kratonite_arrows_1:
+kratonite_arrows:
   id: 16442
   slot: Arrows
 fractite_arrows:
@@ -35217,7 +35218,7 @@ argonite_platelegs:
   slot: Legs
 argonite_platelegs_noted:
   id: 16682
-katagon_platelegs_1:
+katagon_platelegs:
   id: 16683
   slot: Legs
 katagon_platelegs_noted:
@@ -35232,7 +35233,7 @@ promethium_platelegs:
   slot: Legs
 promethium_platelegs_noted:
   id: 16688
-primal_platelegs_1:
+primal_platelegs:
   id: 16689
   slot: Legs
 primal_platelegs_noted:
@@ -35279,7 +35280,7 @@ argonite_full_helm:
   type: Hair
 argonite_full_helm_noted:
   id: 16704
-katagon_full_helm_1:
+katagon_full_helm:
   id: 16705
   slot: Hat
   type: Hair
@@ -35297,7 +35298,7 @@ promethium_full_helm:
   type: Hair
 promethium_full_helm_noted:
   id: 16710
-primal_full_helm_1:
+primal_full_helm:
   id: 16711
   slot: Hat
   type: Hair
@@ -35734,11 +35735,11 @@ utuku_shortbow:
   type: TwoHanded
 utuku_shortbow_noted:
   id: 16874
-spinebeam_shortbow_1:
+spinebeam_shortbow:
   id: 16875
   slot: Weapon
   type: TwoHanded
-spinebeam_shortbow_noted_1:
+spinebeam_shortbow_noted:
   id: 16876
 bovistrangler_shortbow:
   id: 16877
@@ -35800,11 +35801,11 @@ kratonite_2h_sword:
   type: TwoHanded
 kratonite_2h_sword_noted:
   id: 16896
-fractite_2h_sword_1:
+fractite_2h_sword:
   id: 16897
   slot: Weapon
   type: TwoHanded
-fractite_2h_sword_noted_1:
+fractite_2h_sword_noted:
   id: 16898
 zephyrium_2h_sword:
   id: 16899
@@ -35824,7 +35825,7 @@ katagon_2h_sword:
   type: TwoHanded
 katagon_2h_sword_noted:
   id: 16904
-gorgonite_2h_sword_1:
+gorgonite_2h_sword:
   id: 16905
   slot: Weapon
   type: TwoHanded
@@ -35922,10 +35923,10 @@ kratonite_rapier:
   slot: Weapon
 kratonite_rapier_noted:
   id: 16942
-fractite_rapier_1:
+fractite_rapier:
   id: 16943
   slot: Weapon
-fractite_rapier_noted_1:
+fractite_rapier_noted:
   id: 16944
 zephyrium_rapier:
   id: 16945
@@ -35942,10 +35943,10 @@ katagon_rapier:
   slot: Weapon
 katagon_rapier_noted:
   id: 16950
-gorgonite_rapier_1:
+gorgonite_rapier:
   id: 16951
   slot: Weapon
-gorgonite_rapier_noted_1:
+gorgonite_rapier_noted:
   id: 16952
 promethium_rapier:
   id: 16953
@@ -35983,20 +35984,20 @@ gorgonite_maul_2:
   type: TwoHanded
 gorgonite_maul_noted_2:
   id: 16966
-catalytic_staff_1:
+catalytic_staff:
   id: 16967
   slot: Weapon
-catalytic_staff_noted_1:
+catalytic_staff_noted:
   id: 16968
 catalytic_warstaff:
   id: 16969
   slot: Weapon
 catalytic_warstaff_noted:
   id: 16970
-gorgonite_kiteshield_1:
+gorgonite_kiteshield:
   id: 16971
   slot: Shield
-gorgonite_kiteshield_noted_1:
+gorgonite_kiteshield_noted:
   id: 16972
 fractite_2h_sword_2:
   id: 16973
@@ -36784,7 +36785,7 @@ argonite_platebody:
   type: FullBody
 argonite_platebody_noted:
   id: 17252
-katagon_platebody_1:
+katagon_platebody:
   id: 17253
   slot: Chest
   type: FullBody
@@ -36802,7 +36803,7 @@ promethium_platebody:
   type: FullBody
 promethium_platebody_noted:
   id: 17258
-primal_platebody_1:
+primal_platebody:
   id: 17259
   slot: Chest
   type: FullBody
@@ -36894,7 +36895,7 @@ doomcore_staff:
   slot: Weapon
 doomcore_staff_noted:
   id: 17294
-hexhunter_bow_1:
+hexhunter_bow:
   id: 17295
   slot: Weapon
   type: TwoHanded
@@ -37020,7 +37021,7 @@ bathus_kiteshield:
   slot: Shield
 bathus_kiteshield_noted:
   id: 17344
-marmaros_kiteshield_1:
+marmaros_kiteshield:
   id: 17345
   slot: Shield
 marmaros_kiteshield_noted:
@@ -37067,7 +37068,7 @@ primal_kiteshield_noted:
   id: 17362
 guard_room_key:
   id: 17363
-lump_of_stone_1:
+lump_of_stone:
   id: 17364
 spare_construct_arm_(u):
   id: 17365
@@ -37315,7 +37316,7 @@ spiritbloom_cloth:
   id: 17486
 spiritbloom_cloth_noted:
   id: 17487
-gatestone_1:
+gatestone:
   id: 17489
 vial_4:
   id: 17490
@@ -37597,11 +37598,11 @@ strong_survivalists_potion:
   id: 17628
 strong_survivalists_potion_noted:
   id: 17629
-novite_ore_1:
+novite_ore:
   id: 17630
 novite_ore_noted:
   id: 17631
-bathus_ore_1:
+bathus_ore:
   id: 17632
 bathus_ore_noted:
   id: 17633
@@ -37617,7 +37618,7 @@ fractite_ore:
   id: 17638
 fractite_ore_noted:
   id: 17639
-zephyrium_ore_1:
+zephyrium_ore:
   id: 17640
 zephyrium_ore_noted:
   id: 17641
@@ -38457,7 +38458,7 @@ moray_&_edicap_potato:
   id: 18157
 moray_&_edicap_potato_noted:
   id: 18158
-heim_crab_1:
+heim_crab:
   id: 18159
 heim_crab_noted:
   id: 18160
@@ -38465,11 +38466,11 @@ red-eye:
   id: 18161
 red-eye_noted:
   id: 18162
-dusk_eel_1:
+dusk_eel:
   id: 18163
 dusk_eel_noted:
   id: 18164
-giant_flatfish_1:
+giant_flatfish:
   id: 18165
 giant_flatfish_noted:
   id: 18166
@@ -38596,7 +38597,7 @@ silver_corner_key:
   id: 18226
 silver_corner_key_noted:
   id: 18227
-silver_crescent_key_1:
+silver_crescent_key:
   id: 18228
 silver_crescent_key_noted:
   id: 18229
@@ -38648,7 +38649,7 @@ green_diamond_key:
   id: 18252
 green_diamond_key_noted:
   id: 18253
-green_rectangle_key_1:
+green_rectangle_key:
   id: 18254
 green_rectangle_key_noted:
   id: 18255
@@ -38672,7 +38673,7 @@ green_shield_key:
   id: 18264
 green_shield_key_noted:
   id: 18265
-blue_triangle_key_1:
+blue_triangle_key:
   id: 18266
 blue_triangle_key_noted:
   id: 18267
@@ -38736,7 +38737,7 @@ purple_shield_key:
   id: 18296
 purple_shield_key_noted:
   id: 18297
-crimson_triangle_key_1:
+crimson_triangle_key:
   id: 18298
 crimson_triangle_key_noted:
   id: 18299
@@ -38744,7 +38745,7 @@ crimson_diamond_key:
   id: 18300
 crimson_diamond_key_noted:
   id: 18301
-crimson_rectangle_key_1:
+crimson_rectangle_key:
   id: 18302
 crimson_rectangle_key_noted:
   id: 18303
@@ -38788,7 +38789,7 @@ gold_corner_key:
   id: 18322
 gold_corner_key_noted:
   id: 18323
-gold_crescent_key_1:
+gold_crescent_key:
   id: 18324
 gold_crescent_key_noted:
   id: 18325
@@ -39212,7 +39213,7 @@ pouch_noted_70:
   id: 18575
 pouch_noted_71:
   id: 18576
-kinship_ring_1:
+kinship_ring:
   id: 18577
   slot: Ring
 kinship_ring_2:
@@ -39221,19 +39222,19 @@ kinship_ring_2:
 kinship_ring_3:
   id: 18579
   slot: Ring
-viking_crossbow_1:
+viking_crossbow:
   id: 18580
   slot: Weapon
 viking_crossbow_2:
   id: 18581
   slot: Weapon
-viking_shield_1:
+viking_shield:
   id: 18582
   slot: Shield
 viking_shield_2:
   id: 18583
   slot: Shield
-catalytic_shield_1:
+catalytic_shield:
   id: 18584
   slot: Shield
 catalytic_shield_2:
@@ -39255,7 +39256,7 @@ scroll_13:
   id: 18592
 scroll_14:
   id: 18593
-herb_1:
+herb:
   id: 18594
 herb_2:
   id: 18595
@@ -39366,7 +39367,7 @@ toy_baby_dragon:
   id: 18651
 bankers_note:
   id: 18652
-flame_fragment_1:
+flame_fragment:
   id: 18653
 flame_fragment_2:
   id: 18654
@@ -39384,7 +39385,7 @@ flame_fragment_8:
   id: 18660
 vial_of_stench:
   id: 18661
-vial_of_stench_(a)_1:
+vial_of_stench_(a):
   id: 18662
 vial_of_stench_(a)_2:
   id: 18663
@@ -39403,7 +39404,7 @@ tooth_creature_(healthy):
   id: 18669
 tooth_creature_(decayed):
   id: 18670
-milk_tooth_creature_1:
+milk_tooth_creature:
   id: 18671
 milk_tooth_creature_2:
   id: 18672
@@ -39609,7 +39610,7 @@ humble_pie:
   id: 18767
 mystery_box_2:
   id: 18768
-dossier_photo_1:
+dossier_photo:
   id: 18769
 dossier_photo_2:
   id: 18770
@@ -39642,7 +39643,7 @@ dragonkin_lamp:
   id: 18782
 antique_lamp_38:
   id: 18783
-korasis_sword_1:
+korasis_sword:
   id: 18786
   slot: Weapon
 picture_259:
@@ -39680,7 +39681,7 @@ twig:
   id: 18804
 dummy_3:
   id: 18805
-teleport_to_house_(chipped)_1:
+teleport_to_house_(chipped):
   id: 18806
 teleport_to_house_(chipped)_2:
   id: 18807
@@ -39698,7 +39699,7 @@ brimhaven_tablet:
   id: 18813
 yanille_tablet:
   id: 18814
-junk_1:
+junk:
   id: 18815
 junk_2:
   id: 18816
@@ -39740,9 +39741,9 @@ ring_of_kinship_(artisan):
   slot: Ring
 group_gatestone:
   id: 18829
-frost_dragon_bones_1:
+frost_dragon_bones:
   id: 18830
-frost_dragon_bones_noted_1:
+frost_dragon_bones_noted:
   id: 18831
 frost_dragon_bones_2:
   id: 18832
@@ -39944,7 +39945,7 @@ sliding_piece_167:
   id: 18935
 sliding_piece_168:
   id: 18936
-scroll_box_(hard)_1:
+scroll_box_(hard):
   id: 18937
 scroll_box_(hard)_2:
   id: 18938
@@ -40080,7 +40081,7 @@ scroll_box_(hard)_67:
   id: 19003
 scroll_box_(hard)_68:
   id: 19004
-scroll_box_(easy)_1:
+scroll_box_(easy):
   id: 19005
 scroll_box_(easy)_2:
   id: 19006
@@ -40156,7 +40157,7 @@ scroll_box_(elite):
   id: 19041
 puzzle_scroll_box_(elite):
   id: 19042
-clue_scroll_(elite)_1:
+clue_scroll_(elite):
   id: 19043
 clue_scroll_(elite)_2:
   id: 19044
@@ -40200,7 +40201,7 @@ clue_scroll_(elite)_21:
   id: 19063
 clue_scroll_(elite)_22:
   id: 19064
-scroll_box_(medium)_1:
+scroll_box_(medium):
   id: 19065
 scroll_box_(medium)_2:
   id: 19066
@@ -40355,7 +40356,7 @@ guthix_arrows:
 zamorak_arrows:
   id: 19162
   slot: Arrows
-black_platebody_(h1)_1:
+black_platebody_(h1):
   id: 19167
   slot: Chest
   type: FullBody
@@ -40371,7 +40372,7 @@ black_plateskirt_(h1):
   slot: Legs
 black_plateskirt_(h1)_noted:
   id: 19172
-adamant_platebody_(h1)_1:
+adamant_platebody_(h1):
   id: 19173
   slot: Chest
   type: FullBody
@@ -40387,7 +40388,7 @@ adamant_plateskirt_(h1):
   slot: Legs
 adamant_plateskirt_(h1)_noted:
   id: 19178
-rune_platebody_(h1)_1:
+rune_platebody_(h1):
   id: 19179
   slot: Chest
   type: FullBody
@@ -40413,7 +40414,7 @@ rune_plateskirt_(h1)_noted:
 rune_plateskirt_(h1)_lent:
   id: 19187
   slot: Legs
-black_platebody_(h2)_1:
+black_platebody_(h2):
   id: 19188
   slot: Chest
   type: FullBody
@@ -40429,7 +40430,7 @@ black_plateskirt_(h2):
   slot: Legs
 black_plateskirt_(h2)_noted:
   id: 19193
-adamant_platebody_(h2)_1:
+adamant_platebody_(h2):
   id: 19194
   slot: Chest
   type: FullBody
@@ -40445,7 +40446,7 @@ adamant_plateskirt_(h2):
   slot: Legs
 adamant_plateskirt_(h2)_noted:
   id: 19199
-rune_platebody_(h2)_1:
+rune_platebody_(h2):
   id: 19200
   slot: Chest
   type: FullBody
@@ -40471,7 +40472,7 @@ rune_plateskirt_(h2)_noted:
 rune_plateskirt_(h2)_lent:
   id: 19208
   slot: Legs
-black_platebody_(h3)_1:
+black_platebody_(h3):
   id: 19209
   slot: Chest
   type: FullBody
@@ -40487,7 +40488,7 @@ black_plateskirt_(h3):
   slot: Legs
 black_plateskirt_(h3)_noted:
   id: 19214
-adamant_platebody_(h3)_1:
+adamant_platebody_(h3):
   id: 19215
   slot: Chest
   type: FullBody
@@ -40503,7 +40504,7 @@ adamant_plateskirt_(h3):
   slot: Legs
 adamant_plateskirt_(h3)_noted:
   id: 19220
-rune_platebody_(h3)_1:
+rune_platebody_(h3):
   id: 19221
   slot: Chest
   type: FullBody
@@ -40529,7 +40530,7 @@ rune_plateskirt_(h3)_noted:
 rune_plateskirt_(h3)_lent:
   id: 19229
   slot: Legs
-black_platebody_(h4)_1:
+black_platebody_(h4):
   id: 19230
   slot: Chest
   type: FullBody
@@ -40545,7 +40546,7 @@ black_plateskirt_(h4):
   slot: Legs
 black_plateskirt_(h4)_noted:
   id: 19235
-adamant_platebody_(h4)_1:
+adamant_platebody_(h4):
   id: 19236
   slot: Chest
   type: FullBody
@@ -40561,7 +40562,7 @@ adamant_plateskirt_(h4):
   slot: Legs
 adamant_plateskirt_(h4)_noted:
   id: 19241
-rune_platebody_(h4)_1:
+rune_platebody_(h4):
   id: 19242
   slot: Chest
   type: FullBody
@@ -40587,7 +40588,7 @@ rune_plateskirt_(h4)_noted:
 rune_plateskirt_(h4)_lent:
   id: 19250
   slot: Legs
-black_platebody_(h5)_1:
+black_platebody_(h5):
   id: 19251
   slot: Chest
   type: FullBody
@@ -40603,7 +40604,7 @@ black_plateskirt_(h5):
   slot: Legs
 black_plateskirt_(h5)_noted:
   id: 19256
-adamant_platebody_(h5)_1:
+adamant_platebody_(h5):
   id: 19257
   slot: Chest
   type: FullBody
@@ -40619,7 +40620,7 @@ adamant_plateskirt_(h5):
   slot: Legs
 adamant_plateskirt_(h5)_noted:
   id: 19262
-rune_platebody_(h5)_1:
+rune_platebody_(h5):
   id: 19263
   slot: Chest
   type: FullBody
@@ -40645,7 +40646,7 @@ rune_plateskirt_(h5)_noted:
 rune_plateskirt_(h5)_lent:
   id: 19271
   slot: Legs
-fox_mask_1:
+fox_mask:
   id: 19272
   slot: Hat
   type: Mask
@@ -40655,7 +40656,7 @@ fox_mask_lent:
   id: 19274
   slot: Hat
   type: Mask
-white_unicorn_mask_1:
+white_unicorn_mask:
   id: 19275
   slot: Hat
   type: Mask
@@ -40665,7 +40666,7 @@ white_unicorn_mask_lent:
   id: 19277
   slot: Hat
   type: Mask
-black_unicorn_mask_1:
+black_unicorn_mask:
   id: 19278
   slot: Hat
   type: Mask
@@ -40675,7 +40676,7 @@ black_unicorn_mask_lent:
   id: 19280
   slot: Hat
   type: Mask
-green_dragon_mask_1:
+green_dragon_mask:
   id: 19281
   slot: Hat
   type: Mask
@@ -40685,7 +40686,7 @@ green_dragon_mask_lent:
   id: 19283
   slot: Hat
   type: Mask
-blue_dragon_mask_1:
+blue_dragon_mask:
   id: 19284
   slot: Hat
   type: Mask
@@ -40695,7 +40696,7 @@ blue_dragon_mask_lent:
   id: 19286
   slot: Hat
   type: Mask
-red_dragon_mask_1:
+red_dragon_mask:
   id: 19287
   slot: Hat
   type: Mask
@@ -40705,7 +40706,7 @@ red_dragon_mask_lent:
   id: 19289
   slot: Hat
   type: Mask
-black_dragon_mask_1:
+black_dragon_mask:
   id: 19290
   slot: Hat
   type: Mask
@@ -40715,7 +40716,7 @@ black_dragon_mask_lent:
   id: 19292
   slot: Hat
   type: Mask
-frost_dragon_mask_1:
+frost_dragon_mask:
   id: 19293
   slot: Hat
   type: Mask
@@ -40725,7 +40726,7 @@ frost_dragon_mask_lent:
   id: 19295
   slot: Hat
   type: Mask
-bronze_dragon_mask_1:
+bronze_dragon_mask:
   id: 19296
   slot: Hat
   type: Mask
@@ -40735,7 +40736,7 @@ bronze_dragon_mask_lent:
   id: 19298
   slot: Hat
   type: Mask
-iron_dragon_mask_1:
+iron_dragon_mask:
   id: 19299
   slot: Hat
   type: Mask
@@ -40745,7 +40746,7 @@ iron_dragon_mask_lent:
   id: 19301
   slot: Hat
   type: Mask
-steel_dragon_mask_1:
+steel_dragon_mask:
   id: 19302
   slot: Hat
   type: Mask
@@ -40755,7 +40756,7 @@ steel_dragon_mask_lent:
   id: 19304
   slot: Hat
   type: Mask
-mithril_dragon_mask_1:
+mithril_dragon_mask:
   id: 19305
   slot: Hat
   type: Mask
@@ -40953,19 +40954,19 @@ ancient_mitre:
   type: Hair
 ancient_mitre_noted:
   id: 19379
-armadyl_robe_top_1:
+armadyl_robe_top:
   id: 19380
   slot: Chest
   type: FullBody
 armadyl_robe_top_noted:
   id: 19381
-ancient_robe_top_1:
+ancient_robe_top:
   id: 19382
   slot: Chest
   type: FullBody
 ancient_robe_top_noted:
   id: 19383
-bandos_robe_top_1:
+bandos_robe_top:
   id: 19384
   slot: Chest
   type: FullBody
@@ -41001,7 +41002,7 @@ ancient_stole:
   slot: Amulet
 ancient_stole_noted:
   id: 19397
-ancient_platebody_1:
+ancient_platebody:
   id: 19398
   slot: Chest
   type: FullBody
@@ -41045,7 +41046,7 @@ ancient_kiteshield_noted:
 ancient_kiteshield_lent:
   id: 19412
   slot: Shield
-armadyl_platebody_1:
+armadyl_platebody:
   id: 19413
   slot: Chest
   type: FullBody
@@ -41089,7 +41090,7 @@ armadyl_kiteshield_noted:
 armadyl_kiteshield_lent:
   id: 19427
   slot: Shield
-bandos_platebody_1:
+bandos_platebody:
   id: 19428
   slot: Chest
   type: FullBody
@@ -41594,7 +41595,7 @@ ring_of_vigour:
   slot: Ring
 scroll_of_efficiency:
   id: 19670
-magical_blastbox_1:
+magical_blastbox:
   id: 19671
   slot: Shield
 eye_of_the_ranger:
@@ -41639,7 +41640,7 @@ m._and_thok_letter_(part_8):
 kinship_ring_4:
   id: 19690
   slot: Ring
-"..._1":
+"...":
   id: 19691
   slot: Ring
 "..._2":
@@ -41684,13 +41685,13 @@ investigators_trousers:
 investigators_hat:
   id: 19708
   slot: Hat
-dungeoneering_master_cape_1:
+dungeoneering_master_cape:
   id: 19709
   slot: Cape
 dungeoneering_master_cape_2:
   id: 19710
   slot: Cape
-void_knight_deflector_1:
+void_knight_deflector:
   id: 19711
 void_knight_deflector_2:
   id: 19712
@@ -41845,7 +41846,7 @@ ring_from_jeffery:
   id: 19770
 dororans_engraved_ring:
   id: 19771
-gunnars_ground_1:
+gunnars_ground:
   id: 19772
 gunnars_ground_2:
   id: 19773
@@ -41853,7 +41854,7 @@ love_poem:
   id: 19774
 antique_lamp_51:
   id: 19775
-swanky_boots_1:
+swanky_boots:
   id: 19776
   slot: Feet
 swanky_boots_2:
@@ -41879,11 +41880,11 @@ black_full_helm_(bugged):
 korasis_sword_3:
   id: 19784
   slot: Weapon
-elite_void_knight_top_1:
+elite_void_knight_top:
   id: 19785
   slot: Chest
   type: FullBody
-elite_void_knight_robe_1:
+elite_void_knight_robe:
   id: 19786
   slot: Legs
 elite_void_knight_top_2:
@@ -41930,7 +41931,7 @@ elite_void_knight_torso:
   id: 19803
 elite_void_knight_legs:
   id: 19804
-sprite_lure_1:
+sprite_lure:
   id: 19805
 sprite_lure_bag:
   id: 19806
@@ -41959,7 +41960,7 @@ empty_moonshine_vial:
   id: 19833
 strained_moonshine_vial:
   id: 19834
-unfinished_moonshine_1:
+unfinished_moonshine:
   id: 19835
 unfinished_moonshine_2:
   id: 19836
@@ -42026,7 +42027,7 @@ celestial_surgebox_(b):
 magical_blastbox_2:
   id: 19867
   slot: Shield
-celestial_surgebox_1:
+celestial_surgebox:
   id: 19868
   slot: Shield
 blue_vial:
@@ -42077,7 +42078,7 @@ celestial_surgebox_2:
   slot: Shield
 scroll_of_cleansing:
   id: 19890
-sneakerpeeper_1:
+sneakerpeeper:
   id: 19891
 amulet_of_zealots:
   id: 19892
@@ -42242,7 +42243,7 @@ juju_fishing_potion_(2):
   id: 20021
 juju_fishing_potion_(1):
   id: 20022
-juju_hunter_potion_(4)_1:
+juju_hunter_potion_(4):
   id: 20023
 juju_hunter_potion_(3):
   id: 20024
@@ -42284,14 +42285,14 @@ zamoraks_favour_(1):
   id: 20042
 juju_hunter_potion_(4)_2:
   id: 20043
-witchdoctor_robes_1:
+witchdoctor_robes:
   id: 20044
   slot: Chest
   type: FullBody
-witchdoctor_legs_1:
+witchdoctor_legs:
   id: 20045
   slot: Legs
-witchdoctor_mask_1:
+witchdoctor_mask:
   id: 20046
   slot: Hat
 juju_vial_pack:
@@ -42335,7 +42336,7 @@ economy_building_for_dummies:
   slot: Weapon
 bundle_of_carpets:
   id: 20063
-cramulet_1:
+cramulet:
   id: 20064
   slot: Amulet
 cramulet_2:
@@ -42361,11 +42362,11 @@ cyclopean_helmet_noted:
 dragon_defender:
   id: 20072
   slot: Shield
-thorvars_bucket_1:
+thorvars_bucket:
   id: 20073
 thorvars_bucket_2:
   id: 20074
-thorvars_bag_1:
+thorvars_bag:
   id: 20075
 thorvars_bag_2:
   id: 20076
@@ -42380,7 +42381,7 @@ golden_hammer_2:
   id: 20084
   slot: Weapon
   type: TwoHanded
-miner_1:
+miner:
   id: 20085
 miner_2:
   id: 20086
@@ -42424,7 +42425,7 @@ keldagrim_key_5:
   id: 20108
 keldagrim_key_6:
   id: 20109
-"10th_anniversary_cake_1":
+"10th_anniversary_cake":
   id: 20111
 "10th_anniversary_cake_2":
   id: 20112
@@ -42436,17 +42437,17 @@ ancient_ceremonial_hood:
   id: 20115
   slot: Hat
   type: Hair
-ancient_ceremonial_top_1:
+ancient_ceremonial_top:
   id: 20116
   slot: Chest
   type: FullBody
-ancient_ceremonial_legs_1:
+ancient_ceremonial_legs:
   id: 20117
   slot: Legs
-ancient_ceremonial_gloves_1:
+ancient_ceremonial_gloves:
   id: 20118
   slot: Hands
-ancient_ceremonial_boots_1:
+ancient_ceremonial_boots:
   id: 20119
   slot: Feet
 frozen_key_2:
@@ -42486,7 +42487,7 @@ ancient_ceremonial_boots_2:
   slot: Feet
 ancient_ceremonial_boots_noted:
   id: 20134
-torva_full_helm_1:
+torva_full_helm:
   id: 20135
   slot: Hat
   type: Hair
@@ -42500,7 +42501,7 @@ torva_full_helm_(broken):
   id: 20138
   slot: Hat
   type: Hair
-torva_platebody_1:
+torva_platebody:
   id: 20139
   slot: Chest
   type: FullBody
@@ -42514,7 +42515,7 @@ torva_platebody_(broken):
   id: 20142
   slot: Chest
   type: FullBody
-torva_platelegs_1:
+torva_platelegs:
   id: 20143
   slot: Legs
 torva_platelegs_noted:
@@ -42525,7 +42526,7 @@ torva_platelegs_2:
 torva_platelegs_(broken):
   id: 20146
   slot: Legs
-pernix_cowl_1:
+pernix_cowl:
   id: 20147
   slot: Hat
   type: Hair
@@ -42539,7 +42540,7 @@ pernix_cowl_(broken):
   id: 20150
   slot: Hat
   type: Hair
-pernix_body_1:
+pernix_body:
   id: 20151
   slot: Chest
   type: FullBody
@@ -42553,7 +42554,7 @@ pernix_body_(broken):
   id: 20154
   slot: Chest
   type: FullBody
-pernix_chaps_1:
+pernix_chaps:
   id: 20155
   slot: Legs
 pernix_chaps_noted:
@@ -42564,7 +42565,7 @@ pernix_chaps_2:
 pernix_chaps_(broken):
   id: 20158
   slot: Legs
-virtus_mask_1:
+virtus_mask:
   id: 20159
   slot: Hat
   type: Hair
@@ -42578,7 +42579,7 @@ virtus_mask_(broken):
   id: 20162
   slot: Hat
   type: Hair
-virtus_robe_top_1:
+virtus_robe_top:
   id: 20163
   slot: Chest
   type: FullBody
@@ -42592,7 +42593,7 @@ virtus_robe_top_(broken):
   id: 20166
   slot: Chest
   type: FullBody
-virtus_robe_legs_1:
+virtus_robe_legs:
   id: 20167
   slot: Legs
 virtus_robe_legs_noted:
@@ -42603,7 +42604,7 @@ virtus_robe_legs_2:
 virtus_robe_legs_(broken):
   id: 20170
   slot: Legs
-zaryte_bow_1:
+zaryte_bow:
   id: 20171
   slot: Weapon
   type: TwoHanded
@@ -42628,7 +42629,7 @@ hati_head:
 hati_paws:
   id: 20178
   slot: Hands
-celebration_cake_1:
+celebration_cake:
   id: 20179
 celebration_candles:
   id: 20180
@@ -42638,7 +42639,7 @@ celebration_cake_3:
   id: 20182
 bandana_and_eyepatch_noted_5:
   id: 20183
-bandana_and_eyepatches_noted_1:
+bandana_and_eyepatches_noted:
   id: 20184
 bandana_and_eyepatches_noted_2:
   id: 20185
@@ -42680,7 +42681,7 @@ to_page_2:
   id: 20203
 to_page_1:
   id: 20204
-celebration_cake_noted_1:
+celebration_cake_noted:
   id: 20205
 celebration_cake_noted_2:
   id: 20206
@@ -42788,23 +42789,23 @@ violet_hexagon:
   id: 20257
 a_handwritten_book_2:
   id: 20258
-golrana_1:
+golrana:
   id: 20261
 golrana_2:
   id: 20262
 bolrie:
   id: 20263
-impious_ashes_1:
+impious_ashes:
   id: 20264
-impious_ashes_noted_1:
+impious_ashes_noted:
   id: 20265
-accursed_ashes_1:
+accursed_ashes:
   id: 20266
-accursed_ashes_noted_1:
+accursed_ashes_noted:
   id: 20267
-infernal_ashes_1:
+infernal_ashes:
   id: 20268
-infernal_ashes_noted_1:
+infernal_ashes_noted:
   id: 20269
 a￧a￭:
   id: 20270
@@ -43219,7 +43220,7 @@ chaos_gloves:
   slot: Hands
 chaos_gloves_noted:
   id: 20467
-broken_cannon_stand_1:
+broken_cannon_stand:
   id: 20468
 broken_cannon_stand_2:
   id: 20469
@@ -43237,7 +43238,7 @@ cannon_cog:
   id: 20475
 cog_mould:
   id: 20476
-broken_cannon_barrel_1:
+broken_cannon_barrel:
   id: 20477
 broken_cannon_barrel_2:
   id: 20478
@@ -43289,9 +43290,9 @@ royale_cannon_furnace:
   id: 20501
 bronze_ingot_i:
   id: 20502
-iron_ingot_i_1:
+iron_ingot_i:
   id: 20503
-steel_ingot_i_1:
+steel_ingot_i:
   id: 20504
 dummy_component:
   id: 20505
@@ -43668,7 +43669,7 @@ pirate_spell_sheet:
   id: 20675
 zombie_head_3:
   id: 20676
-twiblick_night_special_1:
+twiblick_night_special:
   id: 20677
 twiblick_night_special_2:
   id: 20678
@@ -43716,7 +43717,7 @@ mambos_potion:
   id: 20706
 clan_charter:
   id: 20707
-clan_cloak_1:
+clan_cloak:
   id: 20708
   slot: Cape
 clan_vexillum:
@@ -43762,7 +43763,7 @@ sunbeam_crown:
 icicle_crown:
   id: 20728
   slot: Hat
-year_1:
+year:
   id: 20729
 stone_key:
   id: 20730
@@ -43774,56 +43775,56 @@ year_2:
   id: 20733
 easter_evil_tree_kindling:
   id: 20734
-milestone_cape_(10)_1:
+milestone_cape_(10):
   id: 20735
   slot: Cape
-milestone_cape_(20)_1:
+milestone_cape_(20):
   id: 20736
   slot: Cape
-milestone_cape_(30)_1:
+milestone_cape_(30):
   id: 20737
   slot: Cape
-milestone_cape_(40)_1:
+milestone_cape_(40):
   id: 20738
   slot: Cape
-milestone_cape_(50)_1:
+milestone_cape_(50):
   id: 20739
   slot: Cape
-milestone_cape_(60)_1:
+milestone_cape_(60):
   id: 20740
   slot: Cape
-milestone_cape_(70)_1:
+milestone_cape_(70):
   id: 20741
   slot: Cape
-milestone_cape_(80)_1:
+milestone_cape_(80):
   id: 20742
   slot: Cape
-milestone_cape_(90)_1:
+milestone_cape_(90):
   id: 20743
   slot: Cape
-veteran_hood_1:
+veteran_hood:
   id: 20744
   slot: Hat
   type: Hair
-veteran_cape_1:
+veteran_cape:
   id: 20745
-classic_cape_1:
+classic_cape:
   id: 20746
-max_cape_1:
+max_cape:
   id: 20747
-completionist_cape_1:
+completionist_cape:
   id: 20748
 completionist_cape_2:
   id: 20749
-classic_hood_1:
+classic_hood:
   id: 20750
   slot: Hat
   type: Hair
-max_hood_1:
+max_hood:
   id: 20751
   slot: Hat
   type: Hair
-completionist_hood_1:
+completionist_hood:
   id: 20752
   slot: Hat
   type: Hair
@@ -43920,7 +43921,7 @@ golden_mining_gloves:
 golden_mining_boots:
   id: 20788
   slot: Feet
-golden_mining_helmet_1:
+golden_mining_helmet:
   id: 20789
   slot: Hat
   type: Hair
@@ -43941,7 +43942,7 @@ minecart:
 dog_bone:
   id: 20794
   slot: Weapon
-duellists_cap_1:
+duellists_cap:
   id: 20795
   slot: Hat
 duellists_cap_2:
@@ -43959,7 +43960,7 @@ duellists_cap_5:
 duellists_cap_6:
   id: 20800
   slot: Hat
-wildstalker_helmet_1:
+wildstalker_helmet:
   id: 20801
   slot: Hat
   type: Hair
@@ -43983,7 +43984,7 @@ wildstalker_helmet_6:
   id: 20806
   slot: Hat
   type: Hair
-duelist_hat_1:
+duelist_hat:
   id: 20807
   slot: Weapon
 duelist_hat_2:
@@ -44278,7 +44279,7 @@ bucket_of_oil:
   id: 20933
 empty_oil_bucket:
   id: 20934
-reward_book_1:
+reward_book:
   id: 20935
 reward_book_2:
   id: 20936
@@ -44332,7 +44333,7 @@ eastern_headdress:
   id: 20955
   slot: Hat
   type: Hair
-samba_headdress_1:
+samba_headdress:
   id: 20956
   slot: Hat
   type: Hair
@@ -44368,11 +44369,11 @@ call_of_the_sea:
 sharpshooter:
   id: 20967
   slot: Aura
-dervish_head_wrap_1:
+dervish_head_wrap:
   id: 20970
   slot: Hat
   type: Hair
-dervish_head_wrap_note_1:
+dervish_head_wrap_note:
   id: 20971
   slot: Hat
   type: Hair
@@ -44408,11 +44409,11 @@ dervish_head_wrap_note_5:
   id: 20979
   slot: Hat
   type: Hair
-dervish_robe_1:
+dervish_robe:
   id: 20980
   slot: Chest
   type: FullBody
-dervish_robe_note_1:
+dervish_robe_note:
   id: 20981
   slot: Chest
   type: FullBody
@@ -44448,10 +44449,10 @@ dervish_robe_note_5:
   id: 20989
   slot: Chest
   type: FullBody
-dervish_trousers_1:
+dervish_trousers:
   id: 20990
   slot: Legs
-dervish_trousers_note_1:
+dervish_trousers_note:
   id: 20991
   slot: Legs
 dervish_trousers_2:
@@ -44478,10 +44479,10 @@ dervish_trousers_5:
 dervish_trousers_note_5:
   id: 20999
   slot: Legs
-dervish_shoes_1:
+dervish_shoes:
   id: 21000
   slot: Feet
-dervish_shoes_note_1:
+dervish_shoes_note:
   id: 21001
   slot: Feet
 dervish_shoes_2:
@@ -44508,11 +44509,11 @@ dervish_shoes_5:
 dervish_shoes_note_5:
   id: 21009
   slot: Feet
-dervish_hood_1:
+dervish_hood:
   id: 21010
   slot: Hat
   type: Hair
-dervish_hood_note_1:
+dervish_hood_note:
   id: 21011
   slot: Hat
   type: Hair
@@ -44588,10 +44589,10 @@ dervish_robe_note_10:
   id: 21029
   slot: Chest
   type: FullBody
-dervish_skirt_1:
+dervish_skirt:
   id: 21030
   slot: Legs
-dervish_skirt_note_1:
+dervish_skirt_note:
   id: 21031
   slot: Legs
 dervish_skirt_2:
@@ -44648,7 +44649,7 @@ dervish_shoes_10:
 dervish_shoes_note_10:
   id: 21049
   slot: Feet
-eastern_knot_1:
+eastern_knot:
   id: 21050
   slot: Hat
   type: Hair
@@ -44656,11 +44657,11 @@ eastern_knot_note:
   id: 21051
   slot: Hat
   type: Hair
-eastern_robe_1:
+eastern_robe:
   id: 21052
   slot: Chest
   type: FullBody
-eastern_robe_note_1:
+eastern_robe_note:
   id: 21053
   slot: Chest
   type: FullBody
@@ -44696,10 +44697,10 @@ eastern_robe_note_5:
   id: 21061
   slot: Chest
   type: FullBody
-eastern_trousers_1:
+eastern_trousers:
   id: 21062
   slot: Legs
-eastern_trousers_note_1:
+eastern_trousers_note:
   id: 21063
   slot: Legs
 eastern_trousers_2:
@@ -44726,10 +44727,10 @@ eastern_trousers_5:
 eastern_trousers_note_5:
   id: 21071
   slot: Legs
-eastern_sandals_1:
+eastern_sandals:
   id: 21072
   slot: Feet
-eastern_sandals_note_1:
+eastern_sandals_note:
   id: 21073
   slot: Feet
 eastern_bun:
@@ -44740,11 +44741,11 @@ eastern_bun_note:
   id: 21075
   slot: Hat
   type: Hair
-eastern_kimono_1:
+eastern_kimono:
   id: 21076
   slot: Chest
   type: FullBody
-eastern_kimono_note_1:
+eastern_kimono_note:
   id: 21077
   slot: Chest
   type: FullBody
@@ -44780,10 +44781,10 @@ eastern_kimono_note_5:
   id: 21085
   slot: Chest
   type: FullBody
-eastern_skirt_1:
+eastern_skirt:
   id: 21086
   slot: Legs
-eastern_skirt_note_1:
+eastern_skirt_note:
   id: 21087
   slot: Legs
 eastern_skirt_2:
@@ -44840,11 +44841,11 @@ eastern_sandals_6:
 eastern_sandals_note_6:
   id: 21105
   slot: Feet
-saxon_ringlet_1:
+saxon_ringlet:
   id: 21106
   slot: Hat
   type: Hair
-saxon_ringlet_note_1:
+saxon_ringlet_note:
   id: 21107
   slot: Hat
   type: Hair
@@ -44880,11 +44881,11 @@ saxon_ringlet_note_5:
   id: 21115
   slot: Hat
   type: Hair
-saxon_shirt_1:
+saxon_shirt:
   id: 21116
   slot: Chest
   type: FullBody
-saxon_shirt_note_1:
+saxon_shirt_note:
   id: 21117
   slot: Chest
   type: FullBody
@@ -44920,10 +44921,10 @@ saxon_shirt_note_5:
   id: 21125
   slot: Chest
   type: FullBody
-saxon_trousers_1:
+saxon_trousers:
   id: 21126
   slot: Legs
-saxon_trousers_note_1:
+saxon_trousers_note:
   id: 21127
   slot: Legs
 saxon_trousers_2:
@@ -44950,10 +44951,10 @@ saxon_trousers_5:
 saxon_trousers_note_5:
   id: 21135
   slot: Legs
-saxon_shoes_1:
+saxon_shoes:
   id: 21136
   slot: Feet
-saxon_shoes_note_1:
+saxon_shoes_note:
   id: 21137
   slot: Feet
 saxon_shoes_2:
@@ -45020,11 +45021,11 @@ saxon_ringlet_note_10:
   id: 21155
   slot: Hat
   type: Hair
-saxon_top_1:
+saxon_top:
   id: 21156
   slot: Chest
   type: FullBody
-saxon_top_note_1:
+saxon_top_note:
   id: 21157
   slot: Chest
   type: FullBody
@@ -45060,10 +45061,10 @@ saxon_top_note_5:
   id: 21165
   slot: Chest
   type: FullBody
-saxon_skirt_1:
+saxon_skirt:
   id: 21166
   slot: Legs
-saxon_skirt_note_1:
+saxon_skirt_note:
   id: 21167
   slot: Legs
 saxon_skirt_2:
@@ -45100,7 +45101,7 @@ samba_headdress_2:
   id: 21178
   slot: Hat
   type: Hair
-samba_headdress_note_1:
+samba_headdress_note:
   id: 21179
   slot: Hat
   type: Hair
@@ -45136,11 +45137,11 @@ samba_headdress_note_5:
   id: 21187
   slot: Hat
   type: Hair
-samba_top_1:
+samba_top:
   id: 21188
   slot: Chest
   type: FullBody
-samba_top_note_1:
+samba_top_note:
   id: 21189
   slot: Chest
   type: FullBody
@@ -45176,10 +45177,10 @@ samba_top_note_5:
   id: 21197
   slot: Chest
   type: FullBody
-samba_loincloth_1:
+samba_loincloth:
   id: 21198
   slot: Legs
-samba_loincloth_note_1:
+samba_loincloth_note:
   id: 21199
   slot: Legs
 samba_loincloth_2:
@@ -45206,10 +45207,10 @@ samba_loincloth_5:
 samba_loincloth_note_5:
   id: 21207
   slot: Legs
-samba_sandals_1:
+samba_sandals:
   id: 21208
   slot: Feet
-samba_sandals_note_1:
+samba_sandals_note:
   id: 21209
   slot: Feet
 samba_sandals_2:
@@ -45356,7 +45357,7 @@ pet_rock_2:
   id: 21250
   slot: Weapon
   type: TwoHanded
-pet_rock_note_1:
+pet_rock_note:
   id: 21251
   slot: Weapon
   type: TwoHanded
@@ -45387,7 +45388,7 @@ pet_rock_note_4:
 robin_hood_hat_3:
   id: 21258
   slot: Hat
-robin_hood_hat_note_1:
+robin_hood_hat_note:
   id: 21259
   slot: Hat
 robin_hood_hat_4:
@@ -45410,7 +45411,7 @@ robin_hood_hat_note_4:
   slot: Hat
 picture_264:
   id: 21266
-picture_note_1:
+picture_note:
   id: 21267
 picture_265:
   id: 21268
@@ -45571,7 +45572,7 @@ anti-mind_control_serum:
 dwarven_army_axe:
   id: 21340
   slot: Weapon
-dummy_axe_1:
+dummy_axe:
   id: 21341
   slot: Weapon
 dummy_axe_2:
@@ -45594,7 +45595,7 @@ straight_root:
   id: 21349
 curly_root:
   id: 21350
-hardened_straight_root_1:
+hardened_straight_root:
   id: 21351
 hardened_straight_root_2:
   id: 21352
@@ -45614,7 +45615,7 @@ whip_vine:
   id: 21369
 whip_vine_noted:
   id: 21370
-abyssal_vine_whip_1:
+abyssal_vine_whip:
   id: 21371
   slot: Weapon
 abyssal_vine_whip_2:
@@ -45683,11 +45684,11 @@ flag_2:
   id: 21396
   slot: Weapon
   type: TwoHanded
-red_flag_1:
+red_flag:
   id: 21397
   slot: Weapon
   type: TwoHanded
-blue_flag_1:
+blue_flag:
   id: 21398
   slot: Weapon
   type: TwoHanded
@@ -45713,7 +45714,7 @@ clan_hatchet:
 clan_pickaxe:
   id: 21405
   slot: Weapon
-battlefield_cape_1:
+battlefield_cape:
   id: 21406
   slot: Cape
 battlefield_cape_2:
@@ -45758,7 +45759,7 @@ citadel_handbook_(basic):
   id: 21432
 citadel_handbook_(advanced):
   id: 21433
-herald_cape_1:
+herald_cape:
   id: 21434
 herald_cape_2:
   id: 21435
@@ -45769,7 +45770,7 @@ raf_xp_boost_dummy_note:
   id: 21437
 mystery_cracker:
   id: 21438
-constructors_hat_1:
+constructors_hat:
   id: 21439
   slot: Hat
   type: Hair
@@ -45777,13 +45778,13 @@ constructors_body:
   id: 21440
   slot: Chest
   type: FullBody
-constructors_trousers_1:
+constructors_trousers:
   id: 21441
   slot: Legs
-constructors_gloves_1:
+constructors_gloves:
   id: 21442
   slot: Hands
-constructors_boots_1:
+constructors_boots:
   id: 21443
   slot: Feet
 ghast_pouch:
@@ -45831,80 +45832,80 @@ vyre_corpse_8:
   id: 21460
 vyre_corpse_9:
   id: 21461
-battle-mage_helm_1:
+battle-mage_helm:
   id: 21462
   slot: Hat
   type: Hair
-battle-mage_robe_1:
+battle-mage_robe:
   id: 21463
   slot: Chest
   type: FullBody
-battle-mage_robe_legs_1:
+battle-mage_robe_legs:
   id: 21464
   slot: Legs
-battle-mage_gloves_1:
+battle-mage_gloves:
   id: 21465
   slot: Hands
-battle-mage_boots_1:
+battle-mage_boots:
   id: 21466
   slot: Feet
-trickster_helm_1:
+trickster_helm:
   id: 21467
   slot: Hat
   type: Hair
-trickster_robe_1:
+trickster_robe:
   id: 21468
   slot: Chest
   type: FullBody
-trickster_robe_legs_1:
+trickster_robe_legs:
   id: 21469
   slot: Legs
-trickster_gloves_1:
+trickster_gloves:
   id: 21470
   slot: Hands
-trickster_boots_1:
+trickster_boots:
   id: 21471
   slot: Feet
-vanguard_helm_1:
+vanguard_helm:
   id: 21472
   slot: Hat
   type: Hair
-vanguard_body_1:
+vanguard_body:
   id: 21473
   slot: Chest
   type: FullBody
-vanguard_legs_1:
+vanguard_legs:
   id: 21474
   slot: Legs
-vanguard_gloves_1:
+vanguard_gloves:
   id: 21475
   slot: Hands
-vanguard_boots_1:
+vanguard_boots:
   id: 21476
   slot: Feet
-necromancer_robe_top_1:
+necromancer_robe_top:
   id: 21477
   slot: Chest
   type: FullBody
-necromancer_hood_1:
+necromancer_hood:
   id: 21478
   slot: Hat
   type: Hair
-necromancer_robe_bottom_1:
+necromancer_robe_bottom:
   id: 21479
   slot: Legs
-black_ibis_body_1:
+black_ibis_body:
   id: 21480
   slot: Chest
   type: FullBody
-black_ibis_legs_1:
+black_ibis_legs:
   id: 21481
   slot: Legs
-black_ibis_mask_1:
+black_ibis_mask:
   id: 21482
   slot: Hat
   type: Hair
-black_ibis_boots_1:
+black_ibis_boots:
   id: 21483
   slot: Feet
 runecrafter_robe_4:
@@ -45917,7 +45918,7 @@ runecrafter_hat_12:
 runecrafter_skirt_4:
   id: 21486
   slot: Legs
-runecrafter_boots_1:
+runecrafter_boots:
   id: 21487
   slot: Feet
 shade_skull:
@@ -46166,18 +46167,18 @@ vanguard_boots_3:
   slot: Feet
 jewelled_diamond_statuette:
   id: 21570
-darkmeyer_hood_1:
+darkmeyer_hood:
   id: 21571
   slot: Hat
   type: Hair
-darkmeyer_torso_1:
+darkmeyer_torso:
   id: 21572
   slot: Chest
   type: FullBody
-darkmeyer_trousers_1:
+darkmeyer_trousers:
   id: 21573
   slot: Legs
-darkmeyer_boots_1:
+darkmeyer_boots:
   id: 21574
   slot: Feet
 mysterious_medallion:
@@ -46246,7 +46247,7 @@ blisterwood_logs:
   id: 21600
 vertidas_bottle_of_holy_water:
   id: 21601
-bloodveld_youngling_1:
+bloodveld_youngling:
   id: 21602
 bloodveld_youngling_2:
   id: 21603
@@ -46516,7 +46517,7 @@ barrows_-_akrisaes_set:
   id: 21768
 barrows_-_akrisaes_set_noted:
   id: 21769
-odd_lamp_1:
+odd_lamp:
   id: 21770
 odd_lamp_2:
   id: 21771
@@ -46597,9 +46598,9 @@ teleorb_2:
   id: 21806
 arravs_heart:
   id: 21807
-beacon_1:
+beacon:
   id: 21808
-beacon_part_1:
+beacon_part:
   id: 21809
 beacon_part_2:
   id: 21810
@@ -46674,11 +46675,11 @@ picture_297:
   id: 21884
 picture_note_34:
   id: 21885
-theatrical_hat_1:
+theatrical_hat:
   id: 21887
   slot: Hat
   type: Hair
-theatrical_hat_note_1:
+theatrical_hat_note:
   id: 21888
   slot: Hat
   type: Hair
@@ -46714,11 +46715,11 @@ theatrical_hat_note_5:
   id: 21896
   slot: Hat
   type: Hair
-theatrical_tunic_1:
+theatrical_tunic:
   id: 21897
   slot: Chest
   type: FullBody
-theatrical_tunic_note_1:
+theatrical_tunic_note:
   id: 21898
   slot: Chest
   type: FullBody
@@ -46754,10 +46755,10 @@ theatrical_tunic_note_5:
   id: 21906
   slot: Chest
   type: FullBody
-theatrical_trousers_1:
+theatrical_trousers:
   id: 21907
   slot: Legs
-theatrical_trousers_note_1:
+theatrical_trousers_note:
   id: 21908
   slot: Legs
 theatrical_trousers_2:
@@ -46784,10 +46785,10 @@ theatrical_trousers_5:
 theatrical_trousers_note_5:
   id: 21916
   slot: Legs
-theatrical_shoes_1:
+theatrical_shoes:
   id: 21917
   slot: Feet
-theatrical_shoes_note_1:
+theatrical_shoes_note:
   id: 21918
   slot: Feet
 theatrical_shoes_2:
@@ -46814,11 +46815,11 @@ theatrical_shoes_5:
 theatrical_shoes_note_5:
   id: 21926
   slot: Feet
-theatrical_earrings_1:
+theatrical_earrings:
   id: 21927
   slot: Hat
   type: Hair
-theatrical_earrings_note_1:
+theatrical_earrings_note:
   id: 21928
   slot: Hat
   type: Hair
@@ -46894,10 +46895,10 @@ theatrical_tunic_note_10:
   id: 21946
   slot: Chest
   type: FullBody
-theatrical_skirt_1:
+theatrical_skirt:
   id: 21947
   slot: Legs
-theatrical_skirt_note_1:
+theatrical_skirt_note:
   id: 21948
   slot: Legs
 theatrical_skirt_2:
@@ -46954,11 +46955,11 @@ theatrical_shoes_10:
 theatrical_shoes_note_10:
   id: 21966
   slot: Feet
-pharaoh_nemes_1:
+pharaoh_nemes:
   id: 21967
   slot: Hat
   type: Hair
-pharaoh_nemes_note_1:
+pharaoh_nemes_note:
   id: 21968
   slot: Hat
   type: Hair
@@ -46994,11 +46995,11 @@ pharaoh_nemes_note_5:
   id: 21976
   slot: Hat
   type: Hair
-pharaoh_ankh_1:
+pharaoh_ankh:
   id: 21977
   slot: Chest
   type: FullBody
-pharaoh_ankh_note_1:
+pharaoh_ankh_note:
   id: 21978
   slot: Chest
   type: FullBody
@@ -47034,10 +47035,10 @@ pharaoh_ankh_note_5:
   id: 21986
   slot: Chest
   type: FullBody
-pharaoh_shendyt_1:
+pharaoh_shendyt:
   id: 21987
   slot: Legs
-pharaoh_shendyt_note_1:
+pharaoh_shendyt_note:
   id: 21988
   slot: Legs
 pharaoh_shendyt_2:
@@ -47064,10 +47065,10 @@ pharaoh_shendyt_5:
 pharaoh_shendyt_note_5:
   id: 21996
   slot: Legs
-pharaoh_sandals_1:
+pharaoh_sandals:
   id: 21997
   slot: Feet
-pharaoh_sandals_note_1:
+pharaoh_sandals_note:
   id: 21998
   slot: Feet
 pharaoh_sandals_2:
@@ -47094,11 +47095,11 @@ pharaoh_sandals_5:
 pharaoh_sandals_note_5:
   id: 22006
   slot: Feet
-pharaoh_bun_1:
+pharaoh_bun:
   id: 22007
   slot: Hat
   type: Hair
-pharaoh_bun_note_1:
+pharaoh_bun_note:
   id: 22008
   slot: Hat
   type: Hair
@@ -47134,11 +47135,11 @@ pharaoh_bun_note_5:
   id: 22016
   slot: Hat
   type: Hair
-pharaoh_top_1:
+pharaoh_top:
   id: 22017
   slot: Chest
   type: FullBody
-pharaoh_top_note_1:
+pharaoh_top_note:
   id: 22018
   slot: Chest
   type: FullBody
@@ -47234,11 +47235,11 @@ pharaoh_sandals_10:
 pharaoh_sandals_note_10:
   id: 22046
   slot: Feet
-changshan_hat_1:
+changshan_hat:
   id: 22047
   slot: Hat
   type: Hair
-changshan_hat_note_1:
+changshan_hat_note:
   id: 22048
   slot: Hat
   type: Hair
@@ -47274,11 +47275,11 @@ changshan_hat_note_5:
   id: 22056
   slot: Hat
   type: Hair
-changshan_jacket_1:
+changshan_jacket:
   id: 22057
   slot: Chest
   type: FullBody
-changshan_jacket_note_1:
+changshan_jacket_note:
   id: 22058
   slot: Chest
   type: FullBody
@@ -47314,10 +47315,10 @@ changshan_jacket_note_5:
   id: 22066
   slot: Chest
   type: FullBody
-changshan_trousers_1:
+changshan_trousers:
   id: 22067
   slot: Legs
-changshan_trousers_note_1:
+changshan_trousers_note:
   id: 22068
   slot: Legs
 changshan_trousers_2:
@@ -47344,10 +47345,10 @@ changshan_trousers_5:
 changshan_trousers_note_5:
   id: 22076
   slot: Legs
-changshan_shoes_1:
+changshan_shoes:
   id: 22077
   slot: Feet
-changshan_shoes_note_1:
+changshan_shoes_note:
   id: 22078
   slot: Feet
 changshan_shoes_2:
@@ -47374,11 +47375,11 @@ changshan_shoes_5:
 changshan_shoes_note_5:
   id: 22086
   slot: Feet
-cheongsam_headdress_1:
+cheongsam_headdress:
   id: 22087
   slot: Hat
   type: Hair
-cheongsam_headdress_note_1:
+cheongsam_headdress_note:
   id: 22088
   slot: Hat
   type: Hair
@@ -47414,11 +47415,11 @@ cheongsam_headdress_note_5:
   id: 22096
   slot: Hat
   type: Hair
-cheongsam_top_1:
+cheongsam_top:
   id: 22097
   slot: Chest
   type: FullBody
-cheongsam_top_note_1:
+cheongsam_top_note:
   id: 22098
   slot: Chest
   type: FullBody
@@ -47454,10 +47455,10 @@ cheongsam_top_note_5:
   id: 22106
   slot: Chest
   type: FullBody
-cheongsam_skirt_1:
+cheongsam_skirt:
   id: 22107
   slot: Legs
-cheongsam_skirt_note_1:
+cheongsam_skirt_note:
   id: 22108
   slot: Legs
 cheongsam_skirt_2:
@@ -47484,10 +47485,10 @@ cheongsam_skirt_5:
 cheongsam_skirt_note_5:
   id: 22116
   slot: Legs
-cheongsam_shoes_1:
+cheongsam_shoes:
   id: 22117
   slot: Feet
-cheongsam_shoes_note_1:
+cheongsam_shoes_note:
   id: 22118
   slot: Feet
 cheongsam_shoes_2:
@@ -47514,11 +47515,11 @@ cheongsam_shoes_5:
 cheongsam_shoes_note_5:
   id: 22126
   slot: Feet
-silken_pagri_1:
+silken_pagri:
   id: 22127
   slot: Hat
   type: Hair
-silken_pagri_note_1:
+silken_pagri_note:
   id: 22128
   slot: Hat
   type: Hair
@@ -47554,11 +47555,11 @@ silken_pagri_note_5:
   id: 22136
   slot: Hat
   type: Hair
-silken_top_1:
+silken_top:
   id: 22137
   slot: Chest
   type: FullBody
-silken_top_note_1:
+silken_top_note:
   id: 22138
   slot: Chest
   type: FullBody
@@ -47594,10 +47595,10 @@ silken_top_note_5:
   id: 22146
   slot: Chest
   type: FullBody
-silken_trousers_1:
+silken_trousers:
   id: 22147
   slot: Legs
-silken_trousers_note_1:
+silken_trousers_note:
   id: 22148
   slot: Legs
 silken_trousers_2:
@@ -47624,10 +47625,10 @@ silken_trousers_5:
 silken_trousers_note_5:
   id: 22156
   slot: Legs
-silken_boots_1:
+silken_boots:
   id: 22157
   slot: Feet
-silken_boots_note_1:
+silken_boots_note:
   id: 22158
   slot: Feet
 silken_boots_2:
@@ -47734,10 +47735,10 @@ silken_top_note_10:
   id: 22186
   slot: Chest
   type: FullBody
-silken_skirt_1:
+silken_skirt:
   id: 22187
   slot: Legs
-silken_skirt_note_1:
+silken_skirt_note:
   id: 22188
   slot: Legs
 silken_skirt_2:
@@ -47797,7 +47798,7 @@ silken_boots_note_10:
 staff_of_light_2:
   id: 22207
   slot: Weapon
-staff_of_light_note_1:
+staff_of_light_note:
   id: 22208
   slot: Weapon
 staff_of_light_3:
@@ -47834,7 +47835,7 @@ lunar_helm_3:
   id: 22219
   slot: Hat
   type: Hair
-lunar_helm_note_1:
+lunar_helm_note:
   id: 22220
   slot: Hat
   type: Hair
@@ -47842,32 +47843,32 @@ lunar_torso_2:
   id: 22221
   slot: Chest
   type: FullBody
-lunar_torso_note_1:
+lunar_torso_note:
   id: 22222
   slot: Chest
   type: FullBody
 lunar_legs_2:
   id: 22223
   slot: Legs
-lunar_legs_note_1:
+lunar_legs_note:
   id: 22224
   slot: Legs
 lunar_gloves_2:
   id: 22225
   slot: Hands
-lunar_gloves_note_1:
+lunar_gloves_note:
   id: 22226
   slot: Hands
 lunar_boots_2:
   id: 22227
   slot: Feet
-lunar_boots_note_1:
+lunar_boots_note:
   id: 22228
   slot: Feet
 lunar_cape_2:
   id: 22229
   slot: Cape
-lunar_cape_note_1:
+lunar_cape_note:
   id: 22230
   slot: Cape
 lunar_helm_4:
@@ -48100,7 +48101,7 @@ wisdom:
 wisdom_note:
   id: 22303
   slot: Aura
-gnome_scarf_note_1:
+gnome_scarf_note:
   id: 22304
   slot: Amulet
 gnome_scarf_note_2:
@@ -48128,7 +48129,7 @@ gorilla_mask:
   id: 22314
   slot: Hat
   type: Hair
-stone_shape_1:
+stone_shape:
   id: 22315
   slot: Weapon
 stone_shape_2:

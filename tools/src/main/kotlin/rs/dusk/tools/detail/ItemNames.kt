@@ -57,7 +57,7 @@ private class ItemNames(val decoder: ItemDecoder) : NameDumper() {
         val slot = equipSlots[id]
         if(slot != null) {
             val s = EquipSlot.by(slot)
-            if(s == null) {
+            if(s == EquipSlot.None) {
                 println("Unknown slot $slot $id")
             } else {
                 map["slot"] = s.name
@@ -66,7 +66,7 @@ private class ItemNames(val decoder: ItemDecoder) : NameDumper() {
         val type = equipTypes[id]
         if(type != null) {
             val t = EquipType.by(type)
-            if(t == null) {
+            if(t == EquipType.None) {
                 println("Unknown type $type $id")
             } else {
                 map["type"] = t.name

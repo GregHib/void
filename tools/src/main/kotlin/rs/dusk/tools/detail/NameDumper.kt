@@ -4,9 +4,6 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.EntityDetails.Companion.toIdentifier
 
 abstract class NameDumper {
-    internal interface Ids {
-        val id: Int
-    }
 
     abstract fun createName(id: Int): String?
 
@@ -37,7 +34,11 @@ abstract class NameDumper {
         map.forEach { (name, list) ->
             if (list.size > 1) {
                 list.forEachIndexed { index, id ->
-                    unique["${toIdentifier(name)}_${index + 1}"] = createData(id)
+                    if(index == 0) {
+                        unique[toIdentifier(name)] = createData(id)
+                    } else {
+                        unique["${toIdentifier(name)}_${index + 1}"] = createData(id)
+                    }
                 }
             } else {
                 unique[toIdentifier(name)] = createData(list.first())
