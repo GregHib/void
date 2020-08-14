@@ -1,3 +1,4 @@
+import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.client.ui.dialogue.dialogue
@@ -5,11 +6,14 @@ import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.PlayerRegistered
+import rs.dusk.engine.entity.character.player.chat.ChatType
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.update.visual.player.tele
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
+import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.dialogue.type.*
@@ -36,12 +40,14 @@ Command where { prefix == "tele" || prefix == "tp" } then {
 
 Command where { prefix == "npc" } then {
     val id = content.toIntOrNull() ?: 1
-    println("""
+    println(
+        """
         - id: $id
           x: ${player.tile.x}
           y: ${player.tile.y}
           plane: ${player.tile.plane}
-    """.trimIndent())
+    """.trimIndent()
+    )
     val npc = bus.emit(NPCSpawn(id, player.tile, Direction.NORTH))
 //    npc?.movement?.frozen = true
 }
@@ -73,7 +79,7 @@ Command where { prefix == "bot" } then {
 
 Command where { prefix == "inter" } then {
     val id = content.toInt()
-    if(id == -1) {
+    if (id == -1) {
         val id = player.interfaces.get("main_screen") ?: return@then
         player.interfaces.close(id)
     } else {
@@ -84,8 +90,28 @@ Command where { prefix == "inter" } then {
 Command where { prefix == "item" } then {
     val parts = content.split(" ")
     val id = parts[0].toInt()
-    val amount = if(parts.size > 1) parts[1].toInt() else 1
+    val amount = if (parts.size > 1) parts[1].toInt() else 1
     player.inventory.add(id, amount)
+}
+
+Command where { prefix == "find" } then {
+    val items: ItemDecoder = get()
+    val search = content.toLowerCase()
+    var found = false
+    repeat(items.size) { id ->
+        val def = items.get(id) ?: return@repeat
+        if (def.name.toLowerCase().contains(search)) {
+            player.message("[${def.name.toLowerCase()}] - id: $id", ChatType.Console)
+            found = true
+        }
+    }
+    if (!found) {
+        player.message("No results found for '$search'", ChatType.Console)
+    }
+}
+
+Command where { prefix == "clear" } then {
+    player.inventory.clearAll()
 }
 
 Command where { prefix == "test" } then {
@@ -93,20 +119,24 @@ Command where { prefix == "test" } then {
         player("Hi")
         npc("Hello Adventurer")
         statement("Words")
-        val choice = choice(title = "Should we change something?", text = """
+        val choice = choice(
+            title = "Should we change something?", text = """
             Yes change something
             No leave it how it is
-        """)
+        """
+        )
         println("Choice: $choice")
         println("Destroy ${destroy("<br>Can't be undone.", 11694)}")
         println("Integer: ${intEntry("Enter a number")}")
         println("String: ${stringEntry("Enter some text")}")
         levelUp("Congratzzzz", 12)
-        item("""
+        item(
+            """
             The two halves of the skull fit perfectly, they appear to
             have a fixing point, perhaps they are to be mounted on
             something?
-        """, 9009, 650)
+        """, 9009, 650
+        )
         println("Make: ${makeAmount(listOf(385, 329), "Make", 23)}")
     }
 }

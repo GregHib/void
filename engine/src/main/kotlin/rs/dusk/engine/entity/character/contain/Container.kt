@@ -96,8 +96,10 @@ data class Container(
      * Clears all indices
      */
     fun clearAll() {
-        items.fill(-1)
-        amounts.fill(minimumStack)
+        repeat(items.size) { index ->
+            clear(index, false)
+        }
+        update()
     }
 
     fun set(index: Int, id: Int, amount: Int = 1, update: Boolean = true): Boolean {
