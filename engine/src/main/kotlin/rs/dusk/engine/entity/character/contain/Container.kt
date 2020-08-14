@@ -34,7 +34,7 @@ data class Container(
     fun stackable(id: Int) = when (stackMode) {
         StackMode.Always -> true
         StackMode.Never -> false
-        StackMode.Normal -> decoder.getSafe(id).stackable == 1
+        StackMode.Normal -> decoder.get(id).stackable == 1
     }
 
     val spaces: Int

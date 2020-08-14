@@ -11,7 +11,7 @@ class ItemDetailsLoader(private val loader: FileLoader, private val decoder: Ite
 
     private var equipmentCount = 0
     private val equipmentIndices = (0 until decoder.size).map {
-        val def = decoder.get(it)
+        val def = decoder.getOrNull(it)
         it to if(def != null && (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0)) {
             equipmentCount++
         } else {

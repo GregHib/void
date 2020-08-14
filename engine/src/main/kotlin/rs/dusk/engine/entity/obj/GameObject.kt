@@ -25,7 +25,7 @@ data class GameObject(
     val owner: String? = null
 ) : Entity {
     val def: ObjectDefinition
-        get() = get<ObjectDecoder>().getSafe(id)
+        get() = get<ObjectDecoder>().get(id)
 
     val size: Size by lazy { Size(def.sizeX, def.sizeY) }
 

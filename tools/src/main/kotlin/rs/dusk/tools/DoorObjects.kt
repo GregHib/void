@@ -30,7 +30,7 @@ object DoorObjects {
         var total = 0
         var count = 0
         fences.forEach { id ->
-            val def = decoder.get(id) ?: return@forEach
+            val def = decoder.getOrNull(id) ?: return@forEach
             total++
             if(match(decoder, def)) {
                 count++
@@ -43,7 +43,7 @@ object DoorObjects {
         var total = 0
         var count = 0
         for (id in 0 until decoder.size) {
-            val def = decoder.get(id) ?: continue
+            val def = decoder.getOrNull(id) ?: continue
             if (def.isDoor() && !fences.contains(id)) {
                 val options = def.options
                 if (options != null) {
@@ -87,7 +87,7 @@ object DoorObjects {
     }
     fun ObjectDecoder.findMatchingModels(definition: ObjectDefinition): List<ObjectDefinition> {
         return (0 until size).mapNotNull {
-            val def = get(it) ?: return@mapNotNull null
+            val def = getOrNull(it) ?: return@mapNotNull null
             if(definition.id == it) {
                 return@mapNotNull null
             }

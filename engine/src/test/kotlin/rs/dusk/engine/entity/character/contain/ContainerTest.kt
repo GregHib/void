@@ -41,7 +41,7 @@ internal class ContainerTest {
             stackMode = StackMode.Always,
             capacity = 10
         )
-        every { decoder.getSafe(id) } returns ItemDefinition(stackable = 0)
+        every { decoder.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -57,7 +57,7 @@ internal class ContainerTest {
             stackMode = StackMode.Never,
             capacity = 10
         )
-        every { decoder.getSafe(id) } returns ItemDefinition(stackable = 1)
+        every { decoder.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -73,7 +73,7 @@ internal class ContainerTest {
             stackMode = StackMode.Normal,
             capacity = 10
         )
-        every { decoder.getSafe(id) } returns ItemDefinition(stackable = 1)
+        every { decoder.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -89,7 +89,7 @@ internal class ContainerTest {
             stackMode = StackMode.Normal,
             capacity = 10
         )
-        every { decoder.getSafe(id) } returns ItemDefinition(stackable = 0)
+        every { decoder.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
         // Then

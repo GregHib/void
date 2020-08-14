@@ -36,7 +36,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
         reader = spyk(GameObjectMapReader(objects, get()))
 
         declareMock<ObjectDecoder> {
-            every { getSafe(any()) } returns mockk(relaxed = true)
+            every { get(any<Int>()) } returns mockk(relaxed = true)
         }
     }
 

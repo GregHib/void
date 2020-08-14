@@ -14,7 +14,7 @@ private class ObjectNames(val decoder: ObjectDecoder) : NameDumper() {
 
 
     override fun createName(id: Int): String? {
-        return decoder.get(id)?.name
+        return decoder.getOrNull(id)?.name
     }
 
     override fun createData(id: Int): Map<String, Any> {

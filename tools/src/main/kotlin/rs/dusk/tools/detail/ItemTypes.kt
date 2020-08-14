@@ -211,7 +211,7 @@ class ItemTypes(val decoder: ItemDecoder) {
 
 
     fun getEquipType(id: Int): EquipType {
-        val def = decoder.get(id) ?: return EquipType.None
+        val def = decoder.getOrNull(id) ?: return EquipType.None
         val name = def.name.toLowerCase()
         val slot = slots[id]
         return when {

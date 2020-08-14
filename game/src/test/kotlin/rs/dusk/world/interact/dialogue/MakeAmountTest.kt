@@ -43,9 +43,9 @@ internal class MakeAmountTest : KoinMock() {
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaces } returns interfaces
         declareMock<ItemDecoder> {
-            every { getSafe(1) } returns ItemDefinition(name = "Jimmy")
-            every { getSafe(2) } returns ItemDefinition(name = "Jerome")
-            every { getSafe(3) } returns ItemDefinition(name = "Jorge")
+            every { get(1) } returns ItemDefinition(name = "Jimmy")
+            every { get(2) } returns ItemDefinition(name = "Jerome")
+            every { get(3) } returns ItemDefinition(name = "Jorge")
         }
     }
 

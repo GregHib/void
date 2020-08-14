@@ -99,7 +99,7 @@ Command where { prefix == "find" } then {
     val search = content.toLowerCase()
     var found = false
     repeat(items.size) { id ->
-        val def = items.get(id) ?: return@repeat
+        val def = items.getOrNull(id) ?: return@repeat
         if (def.name.toLowerCase().contains(search)) {
             player.message("[${def.name.toLowerCase()}] - id: $id", ChatType.Console)
             found = true

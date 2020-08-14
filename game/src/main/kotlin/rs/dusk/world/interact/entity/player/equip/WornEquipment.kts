@@ -43,7 +43,7 @@ val bus: EventBus by inject()
 val logger = InlineLogger()
 
 InterfaceInteraction where { name == "worn_equipment" && option == "*" } then {
-    val itemDef = decoder.getSafe(itemId)
+    val itemDef = decoder.get(itemId)
     var equipOption = itemDef.params?.get(526L + optionId) as? String ?: itemDef.options.getOrNull(optionId)
     if(equipOption == null) {
         logger.info { "Unhandled equipment option $itemId - $optionId" }

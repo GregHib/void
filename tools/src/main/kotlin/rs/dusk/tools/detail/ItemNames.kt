@@ -15,7 +15,7 @@ import rs.dusk.engine.entity.item.EquipType
 private class ItemNames(val decoder: ItemDecoder, val types: ItemTypes) : NameDumper() {
 
     override fun createName(id: Int): String? {
-        val decoder = decoder.get(id) ?: return "null"
+        val decoder = decoder.getOrNull(id) ?: return "null"
         val builder = StringBuilder()
         builder.append(decoder.name)
         when {
@@ -29,7 +29,7 @@ private class ItemNames(val decoder: ItemDecoder, val types: ItemTypes) : NameDu
     override fun createData(id: Int): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         map["id"] = id
-        val def = decoder.getSafe(id)
+        val def = decoder.get(id)
         if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
             val slot = types.slots[id]
             if (slot != null) {

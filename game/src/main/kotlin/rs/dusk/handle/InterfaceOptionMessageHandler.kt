@@ -44,7 +44,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         }
 
         val componentId = hash and 0xffff
-        val definition = decoder.getSafe(id)
+        val definition = decoder.get(id)
         val component = definition.components?.get(componentId)
         if(component == null) {
             logger.info { "Interface $id component $componentId not found for player $player" }

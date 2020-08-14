@@ -41,7 +41,7 @@ ContainerAction where { container == "inventory" && option == "Drop" } then {
 }
 
 Drop then {
-    val definition = decoder.getSafe(id)
+    val definition = decoder.get(id)
     if (definition.stackable == 1) {
         val existing = items.getExistingStack(tile, id)
         if (existing != null && combinedStacks(existing, amount, disappearTicks)) {

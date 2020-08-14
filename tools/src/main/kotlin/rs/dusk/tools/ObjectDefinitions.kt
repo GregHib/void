@@ -24,7 +24,7 @@ object ObjectDefinitions {
 
     fun ObjectDecoder.findMatchingName(name: String) {
         for (i in 0 until size) {
-            val def = get(i) ?: continue
+            val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.name.contains(name, true)) {
                 println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
             }
@@ -33,7 +33,7 @@ object ObjectDefinitions {
 
     fun ObjectDecoder.findMatchingSize(width: Int, height: Int) {
         for (i in 0 until size) {
-            val def = get(i) ?: continue
+            val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.sizeX == width && def.sizeY == height) {
                 println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
             }
@@ -41,9 +41,9 @@ object ObjectDefinitions {
     }
 
     fun ObjectDecoder.findMatchingModels(id: Int) {
-        val original = get(id)!!
+        val original = getOrNull(id)!!
         for (i in 0 until size) {
-            val def = get(i) ?: continue
+            val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!)) {
                 println("Found $i ${def.options?.get(0)}")
             }

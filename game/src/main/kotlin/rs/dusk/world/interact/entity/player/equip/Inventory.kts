@@ -49,7 +49,7 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
 }
 
 InterfaceInteraction where { name == "inventory" && component == "container" } then {
-    val itemDef = decoder.getSafe(itemId)
+    val itemDef = decoder.get(itemId)
     val equipOption = when (optionId) {
         7 -> if (itemDef.options.any { it == "Destroy" }) "Destroy" else "Drop"
         8 -> "Examine"

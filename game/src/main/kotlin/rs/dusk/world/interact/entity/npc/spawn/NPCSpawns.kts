@@ -24,7 +24,7 @@ val indexer = IndexAllocator(MAX_NPCS)
 val decoder: NPCDecoder by inject()
 
 NPCSpawn then {
-    val definition = decoder.getSafe(id)
+    val definition = decoder.get(id)
     val size = Size(definition.size, definition.size)
     val npc = NPC(id, tile, size)
     val collisions: Collisions = rs.dusk.utility.get()

@@ -67,7 +67,7 @@ Command where { prefix == "tfm" || prefix == "transform" } then {
     player.transform = id
     if (id != -1) {
         val decoder = get<NPCDecoder>()
-        val definition = decoder.getSafe(id)
+        val definition = decoder.get(id)
         player.emote = definition.renderEmote
         player.size = Size(definition.size, definition.size)
         val collisions: Collisions = get()

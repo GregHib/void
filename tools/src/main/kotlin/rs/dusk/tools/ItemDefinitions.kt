@@ -13,9 +13,9 @@ object ItemDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
-        println(decoder.get(22017))
+        println(decoder.getOrNull(22017))
         for (i in 0 until decoder.size) {
-            val def = decoder.get(i) ?: continue
+            val def = decoder.getOrNull(i) ?: continue
             if(def.name.equals("Alfonse", true)) {
                 println("Found $i $def")
             }

@@ -44,7 +44,7 @@ PlayerRegistered then {
         for ((index, _, _) in list) {
             if (index == EquipSlot.Weapon.index) {
                 val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
-                val def = itemDecoder.getSafe(weapon)
+                val def = itemDecoder.get(weapon)
                 val anim = def.params?.get(644) as? Int ?: 1426
                 player.emote = anim
             }

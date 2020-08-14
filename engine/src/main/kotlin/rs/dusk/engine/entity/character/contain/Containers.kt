@@ -27,7 +27,7 @@ fun Player.container(detail: ContainerDetail): Container {
     return containers.getOrPut(detail.id) {
         Container(
             decoder = get(),
-            capacity = get<ItemContainerDecoder>().getSafe(detail.id).length,
+            capacity = get<ItemContainerDecoder>().get(detail.id).length,
             listeners = mutableListOf({ updates -> send(InterfaceItemUpdateMessage(detail.id, updates)) }),
             stackMode = detail.stack
         )

@@ -133,7 +133,7 @@ internal class BodyPartsTest {
         every { equipment.getItem(0) } returns -1
         val detail: ItemDetail = mockk()
         every { details.get(-1) } returns detail
-        every { decoder.getSafe(123) } returns ItemDefinition(name = "bald")
+        every { decoder.get(123) } returns ItemDefinition(name = "bald")
         every { detail.type } returns EquipType.FullFace
         body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))

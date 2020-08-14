@@ -46,7 +46,7 @@ private fun setItemOptions(player: Player, items: List<Int>) {
         val item = items.getOrNull(index) ?: -1
         player.setVar("skill_creation_item_$index", item)
         if (item != -1) {
-            player.setVar("skill_creation_name_$index", decoder.getSafe(item).name)
+            player.setVar("skill_creation_name_$index", decoder.get(item).name)
         }
     }
 }

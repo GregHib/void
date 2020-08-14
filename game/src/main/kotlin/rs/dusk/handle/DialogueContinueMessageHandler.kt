@@ -39,7 +39,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
             return
         }
 
-        val definition = decoder.getSafe(id)
+        val definition = decoder.get(id)
         val component = definition.components?.get(componentId)
         if (component == null) {
             logger.debug { "Dialogue $id component $componentId not found for player $player" }
