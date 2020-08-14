@@ -38,7 +38,7 @@ internal class BodyPartsTest {
     @BeforeEach
     fun setup() {
         looks = IntArray(12)
-        body = BodyParts(equipment, looks, details, decoder)
+        body = BodyParts(equipment, details, looks)
     }
 
     @Test
@@ -65,64 +65,77 @@ internal class BodyPartsTest {
     fun `Update missing item defaults to body part`() {
         looks[2] = 321
         every { equipment.getItem(4) } returns -1
+        every { details.get(-1) } returns mockk(relaxed = true)
         body.update(BodyPart.Chest)
         assertEquals(321 or 0x100, body.get(4))
     }
 
     @Test
     fun `Update missing item and look sets to zero`() {
+        // Given
+        every { equipment.getItem(-1) } returns -1
         every { equipment.getItem(14) } returns 123
         val detail: ItemDetail = mockk()
         every { details.get(123) } returns detail
         every { detail.equip } returns 0
         body.update(BodyPart.Aura)
         every { equipment.getItem(14) } returns -1
+        every { details.get(-1) } returns mockk(relaxed = true)
+        // When
         val result = body.update(BodyPart.Aura)
+        // Then
         assertTrue(result)
         assertEquals(0, body.get(12))
     }
 
     @Test
-    fun `Update semi body skips arms`() {
+    fun `Arms skipped if sleeveless`() {
         every { equipment.getItem(4) } returns 123
         val detail: ItemDetail = mockk()
         every { details.get(123) } returns detail
-        every { detail.type } returns EquipType.None
+        every { detail.type } returns EquipType.Sleeveless
         body.update(BodyPart.Arms)
         assertEquals(0, body.get(4))
     }
 
     @Test
-    fun `Update hat skips hair`() {
-        every { equipment.getItem(0) } returns 123
+    fun `Skull skipped if hair`() {
+        every { equipment.getItem(0) } returns -1
         val detail: ItemDetail = mockk()
-        every { details.get(123) } returns detail
-        every { decoder.getSafe(123) } returns ItemDefinition(name = "bald")
+        every { details.get(-1) } returns detail
         every { detail.type } returns EquipType.Hair
         body.update(BodyPart.Hat)
         assertEquals(0, body.get(0))
     }
 
     @Test
-    fun `Update beard skips if bald chin`() {
-        every { equipment.getItem(-1) } returns -1
+    fun `Skull skipped if full face`() {
+        every { equipment.getItem(0) } returns -1
         val detail: ItemDetail = mockk()
-        every { details.get(123) } returns detail
-        every { decoder.getSafe(123) } returns ItemDefinition(name = "bald")
-        every { detail.type } returns EquipType.None
+        every { details.get(-1) } returns detail
+        every { detail.type } returns EquipType.FullFace
+        body.update(BodyPart.Hat)
+        assertEquals(0, body.get(0))
+    }
+
+    @Test
+    fun `Jaw skipped if mask`() {
+        every { equipment.getItem(0) } returns -1
+        val detail: ItemDetail = mockk()
+        every { details.get(-1) } returns detail
+        every { detail.type } returns EquipType.Mask
         body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))
     }
 
     @Test
-    fun `Update hair skips if hooded cape`() {
-        every { equipment.getItem(-1) } returns -1
-        every { equipment.getItem(1) } returns 123
+    fun `Jaw skipped if full face`() {
+        every { equipment.getItem(0) } returns -1
         val detail: ItemDetail = mockk()
-        every { details.get(123) } returns detail
+        every { details.get(-1) } returns detail
         every { decoder.getSafe(123) } returns ItemDefinition(name = "bald")
-        every { detail.type } returns EquipType.HoodedCape
-        body.update(BodyPart.Hair)
+        every { detail.type } returns EquipType.FullFace
+        body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))
     }
 
@@ -145,16 +158,6 @@ internal class BodyPartsTest {
         verify {
             body.update(BodyPart.Hair)
             body.update(BodyPart.Beard)
-        }
-    }
-
-    @Test
-    fun `Update cape connected to hat`() {
-        val body = spyk(body)
-        every { body.update(any()) } returns true
-        body.updateConnected(BodyPart.Cape)
-        verify {
-            body.update(BodyPart.Hat)
         }
     }
 

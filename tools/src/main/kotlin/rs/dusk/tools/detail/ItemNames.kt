@@ -8,36 +8,11 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
-import java.io.DataInputStream
-import java.io.File
 
 /**
  * Dumps unique string identifiers for items using formatted item definition name plus index for duplicates
  */
-private class ItemNames(val decoder: ItemDecoder) : NameDumper() {
-
-    val equipSlots = readEquipSlots()
-    val equipTypes = readEquipTypes()
-
-    fun readEquipSlots(): Map<Int, Int> {
-        val equipSlots = mutableMapOf<Int, Int>()
-        val file = File("./equipmentSlots.dat")
-        val stream = DataInputStream(file.inputStream())
-        while(stream.available() > 0) {
-            equipSlots[stream.readShort().toInt()] = stream.readByte().toInt()
-        }
-        return equipSlots
-    }
-
-    fun readEquipTypes(): Map<Int, Int> {
-        val equipTypes = mutableMapOf<Int, Int>()
-        val file = File("./equipmentTypes.dat")
-        val stream = DataInputStream(file.inputStream())
-        while(stream.available() > 0) {
-            equipTypes[stream.readShort().toInt()] = stream.readByte().toInt()
-        }
-        return equipTypes
-    }
+private class ItemNames(val decoder: ItemDecoder, val types: ItemTypes) : NameDumper() {
 
     override fun createName(id: Int): String? {
         val decoder = decoder.get(id) ?: return "null"
@@ -54,22 +29,23 @@ private class ItemNames(val decoder: ItemDecoder) : NameDumper() {
     override fun createData(id: Int): Map<String, Any> {
         val map = mutableMapOf<String, Any>()
         map["id"] = id
-        val slot = equipSlots[id]
-        if(slot != null) {
-            val s = EquipSlot.by(slot)
-            if(s == EquipSlot.None) {
-                println("Unknown slot $slot $id")
-            } else {
-                map["slot"] = s.name
+        val def = decoder.getSafe(id)
+        if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
+            val slot = types.slots[id]
+            if (slot != null) {
+                var s = EquipSlot.by(slot)
+                if(id == 11277) {
+                    s = EquipSlot.Hat
+                }
+                if (s == EquipSlot.None) {
+                    println("Unknown slot $slot $id")
+                } else {
+                    map["slot"] = s.name
+                }
             }
-        }
-        val type = equipTypes[id]
-        if(type != null) {
-            val t = EquipType.by(type)
-            if(t == EquipType.None) {
-                println("Unknown type $type $id")
-            } else {
-                map["type"] = t.name
+            val type = types.getEquipType(id)
+            if (type != EquipType.None) {
+                map["type"] = type.name
             }
         }
         return map
@@ -85,9 +61,9 @@ private class ItemNames(val decoder: ItemDecoder) : NameDumper() {
             }.koin
             val decoder = ItemDecoder(koin.get())
             val loader: FileLoader = koin.get()
-            val names = ItemNames(decoder)
+            val types = ItemTypes(decoder)
+            val names = ItemNames(decoder, types)
             names.dump(loader, "./item-details.yml", "item", decoder.size)
-
         }
     }
 

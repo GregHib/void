@@ -98,7 +98,7 @@ fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
 fun Player.getAppearance() =
     visuals.getOrPut(APPEARANCE_MASK) {
-        val bodyParts = BodyParts(equipment, intArrayOf(0, 10, 18, 26, 33, 36, 42), get(), get())
+        val bodyParts = BodyParts(equipment, get(), intArrayOf(1, 11, 18, 26, 33, 36, 42))
         BodyPart.all.forEach {
             bodyParts.updateConnected(it)
         }

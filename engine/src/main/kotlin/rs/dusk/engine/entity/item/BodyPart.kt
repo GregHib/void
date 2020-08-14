@@ -5,14 +5,14 @@ enum class BodyPart(val slot: EquipSlot = EquipSlot.None, val index: Int = -1) {
     Cape(EquipSlot.Cape),
     Amulet(EquipSlot.Amulet),
     Weapon(EquipSlot.Weapon),
-    Chest(EquipSlot.Chest, 2),
+    Chest(EquipSlot.Chest, index = 2),
     Shield(EquipSlot.Shield),
     Arms(EquipSlot.Chest, index = 3),
-    Legs(EquipSlot.Legs, 5),
-    Hair(index = 0),
-    Bracelet(EquipSlot.Hands, 4),
-    Feet(EquipSlot.Feet, 6),
-    Beard(index = 1),
+    Legs(EquipSlot.Legs, index = 5),
+    Hair(EquipSlot.Hat, index = 0),
+    Bracelet(EquipSlot.Hands, index = 4),
+    Feet(EquipSlot.Feet, index = 6),
+    Beard(EquipSlot.Hat, index = 1),
     Aura(EquipSlot.Aura);
 
     companion object {

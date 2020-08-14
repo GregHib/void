@@ -154,14 +154,12 @@ khazard_helmet:
 khazard_armour:
   id: 75
   slot: Chest
-  type: FullBody
 khazard_cell_keys:
   id: 76
 khali_brew:
   id: 77
 ice_arrows:
   id: 78
-  slot: Arrows
 lever:
   id: 83
 staff_of_armadyl:
@@ -573,19 +571,15 @@ sheep_bones_(4):
 plague_jacket:
   id: 284
   slot: Chest
-  type: FullBody
 plague_trousers:
   id: 285
   slot: Legs
 orange_goblin_mail:
   id: 286
-  slot: Chest
 blue_goblin_mail:
   id: 287
-  slot: Chest
 goblin_mail:
   id: 288
-  slot: Chest
 goblin_mail_noted:
   id: 289
 research_package:
@@ -867,7 +861,6 @@ pigeon_cage_2:
 priest_gown:
   id: 426
   slot: Chest
-  type: FullBody
 priest_gown_noted:
   id: 427
 priest_gown_2:
@@ -878,7 +871,6 @@ priest_gown_noted_2:
 doctors_gown:
   id: 430
   slot: Chest
-  type: FullBody
 karamjan_rum:
   id: 431
 chest_key:
@@ -1116,7 +1108,6 @@ druids_robe_noted:
 druids_robe_2:
   id: 540
   slot: Chest
-  type: FullBody
 druids_robe_noted_2:
   id: 541
 monks_robe:
@@ -1127,13 +1118,11 @@ monks_robe_noted:
 monks_robe_2:
   id: 544
   slot: Chest
-  type: FullBody
 monks_robe_noted_2:
   id: 545
 shade_robe:
   id: 546
   slot: Chest
-  type: FullBody
 picture:
   id: 547
 shade_robe_2:
@@ -1199,7 +1188,6 @@ earth_orb_noted:
 wizard_robe:
   id: 577
   slot: Chest
-  type: FullBody
 wizard_robe_noted:
   id: 578
 wizard_hat:
@@ -1211,7 +1199,6 @@ wizard_hat_noted:
 black_robe:
   id: 581
   slot: Chest
-  type: FullBody
 black_robe_noted:
   id: 582
 bailing_bucket:
@@ -1247,7 +1234,6 @@ unlit_torch_noted:
   id: 597
 bronze_fire_arrows:
   id: 598
-  slot: Arrows
 picture_3:
   id: 599
 astronomy_book:
@@ -1331,31 +1317,26 @@ turquoise_boots_noted:
 pink_robe_top:
   id: 636
   slot: Chest
-  type: FullBody
 pink_robe_top_noted:
   id: 637
 green_robe_top:
   id: 638
   slot: Chest
-  type: FullBody
 green_robe_top_noted:
   id: 639
 blue_robe_top:
   id: 640
   slot: Chest
-  type: FullBody
 blue_robe_top_noted:
   id: 641
 cream_robe_top:
   id: 642
   slot: Chest
-  type: FullBody
 cream_robe_top_noted:
   id: 643
 turquoise_robe_top:
   id: 644
   slot: Chest
-  type: FullBody
 turquoise_robe_top_noted:
   id: 645
 pink_robe_bottoms:
@@ -1386,26 +1367,31 @@ turquoise_robe_bottoms_noted:
 pink_hat:
   id: 656
   slot: Hat
+  type: Hair
 pink_hat_noted:
   id: 657
 green_hat:
   id: 658
   slot: Hat
+  type: Hair
 green_hat_noted:
   id: 659
 blue_hat:
   id: 660
   slot: Hat
+  type: Hair
 blue_hat_noted:
   id: 661
 cream_hat:
   id: 662
   slot: Hat
+  type: Hair
 cream_hat_noted:
   id: 663
 turquoise_hat:
   id: 664
   slot: Hat
+  type: Hair
 turquoise_hat_noted:
   id: 665
 portrait:
@@ -1562,6 +1548,7 @@ bravery_potion:
 blue_hat_2:
   id: 740
   slot: Hat
+  type: Hair
 chunk_of_crystal:
   id: 741
 hunk_of_crystal:
@@ -1633,7 +1620,6 @@ dramen_staff:
   slot: Weapon
 perfect_ring:
   id: 773
-  slot: Ring
 perfect_necklace:
   id: 774
   slot: Amulet
@@ -1915,58 +1901,40 @@ rune_knife_(p):
   slot: Weapon
 bronze_bolts:
   id: 877
-  slot: Arrows
 bronze_bolts_(p):
   id: 878
-  slot: Arrows
 opal_bolts:
   id: 879
-  slot: Arrows
 pearl_bolts:
   id: 880
-  slot: Arrows
 barbed_bolts:
   id: 881
-  slot: Arrows
 bronze_arrow:
   id: 882
-  slot: Arrows
 bronze_arrow_(p):
   id: 883
-  slot: Arrows
 iron_arrow:
   id: 884
-  slot: Arrows
 iron_arrow_(p):
   id: 885
-  slot: Arrows
 steel_arrow:
   id: 886
-  slot: Arrows
 steel_arrow_(p):
   id: 887
-  slot: Arrows
 mithril_arrow:
   id: 888
-  slot: Arrows
 mithril_arrow_(p):
   id: 889
-  slot: Arrows
 adamant_arrow:
   id: 890
-  slot: Arrows
 adamant_arrow_(p):
   id: 891
-  slot: Arrows
 rune_arrow:
   id: 892
-  slot: Arrows
 rune_arrow_(p):
   id: 893
-  slot: Arrows
 bronze_fire_arrows_2:
   id: 942
-  slot: Arrows
 worm:
   id: 943
 worm_noted:
@@ -2150,7 +2118,6 @@ zamorak_robe_noted:
 zamorak_robe_2:
   id: 1035
   slot: Chest
-  type: FullBody
 zamorak_robe_noted_2:
   id: 1036
 bunny_ears:
@@ -2197,19 +2164,19 @@ cape_of_legends:
 green_hween_mask:
   id: 1053
   slot: Hat
-  type: Hair
+  type: FullFace
 green_hween_mask_noted:
   id: 1054
 blue_hween_mask:
   id: 1055
   slot: Hat
-  type: Hair
+  type: FullFace
 blue_hween_mask_noted:
   id: 1056
 red_hween_mask:
   id: 1057
   slot: Hat
-  type: Hair
+  type: FullFace
 red_hween_mask_noted:
   id: 1058
 leather_gloves:
@@ -2320,109 +2287,102 @@ green_dhide_chaps_noted:
 iron_chainbody:
   id: 1101
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 iron_chainbody_noted:
   id: 1102
 bronze_chainbody:
   id: 1103
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 bronze_chainbody_noted:
   id: 1104
 steel_chainbody:
   id: 1105
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 steel_chainbody_noted:
   id: 1106
 black_chainbody:
   id: 1107
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 black_chainbody_noted:
   id: 1108
 mithril_chainbody:
   id: 1109
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 mithril_chainbody_noted:
   id: 1110
 adamant_chainbody:
   id: 1111
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 adamant_chainbody_noted:
   id: 1112
 rune_chainbody:
   id: 1113
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 rune_chainbody_noted:
   id: 1114
 iron_platebody:
   id: 1115
   slot: Chest
-  type: FullBody
 iron_platebody_noted:
   id: 1116
 bronze_platebody:
   id: 1117
   slot: Chest
-  type: FullBody
 bronze_platebody_noted:
   id: 1118
 steel_platebody:
   id: 1119
   slot: Chest
-  type: FullBody
 steel_platebody_noted:
   id: 1120
 mithril_platebody:
   id: 1121
   slot: Chest
-  type: FullBody
 mithril_platebody_noted:
   id: 1122
 adamant_platebody:
   id: 1123
   slot: Chest
-  type: FullBody
 adamant_platebody_noted:
   id: 1124
 black_platebody:
   id: 1125
   slot: Chest
-  type: FullBody
 black_platebody_noted:
   id: 1126
 rune_platebody:
   id: 1127
   slot: Chest
-  type: FullBody
 rune_platebody_noted:
   id: 1128
 leather_body:
   id: 1129
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_noted:
   id: 1130
 hardleather_body:
   id: 1131
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 hardleather_body_noted:
   id: 1132
 studded_body:
   id: 1133
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 studded_body_noted:
   id: 1134
 green_dhide_body:
   id: 1135
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 green_dhide_body_noted:
   id: 1136
 iron_med_helm:
@@ -2476,43 +2436,43 @@ black_med_helm_noted:
 iron_full_helm:
   id: 1153
   slot: Hat
-  type: Hair
+  type: FullFace
 iron_full_helm_noted:
   id: 1154
 bronze_full_helm:
   id: 1155
   slot: Hat
-  type: Hair
+  type: FullFace
 bronze_full_helm_noted:
   id: 1156
 steel_full_helm:
   id: 1157
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_full_helm_noted:
   id: 1158
 mithril_full_helm:
   id: 1159
   slot: Hat
-  type: Hair
+  type: FullFace
 mithril_full_helm_noted:
   id: 1160
 adamant_full_helm:
   id: 1161
   slot: Hat
-  type: Hair
+  type: FullFace
 adamant_full_helm_noted:
   id: 1162
 rune_full_helm:
   id: 1163
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_full_helm_noted:
   id: 1164
 black_full_helm:
   id: 1165
   slot: Hat
-  type: Hair
+  type: FullFace
 black_full_helm_noted:
   id: 1166
 leather_cowl:
@@ -3353,7 +3313,7 @@ a_magic_scroll:
 gas_mask:
   id: 1506
   slot: Hat
-  type: Hair
+  type: FullFace
 a_small_key:
   id: 1507
 a_scruffy_note:
@@ -3614,32 +3574,26 @@ crushed_gem_noted:
   id: 1634
 gold_ring:
   id: 1635
-  slot: Ring
 gold_ring_noted:
   id: 1636
 sapphire_ring:
   id: 1637
-  slot: Ring
 sapphire_ring_noted:
   id: 1638
 emerald_ring:
   id: 1639
-  slot: Ring
 emerald_ring_noted:
   id: 1640
 ruby_ring:
   id: 1641
-  slot: Ring
 ruby_ring_noted:
   id: 1642
 diamond_ring:
   id: 1643
-  slot: Ring
 diamond_ring_noted:
   id: 1644
 dragonstone_ring:
   id: 1645
-  slot: Ring
 dragonstone_ring_noted:
   id: 1646
 sapphire_ring_2:
@@ -4033,7 +3987,6 @@ waterskin_(0)_noted:
 desert_shirt:
   id: 1833
   slot: Chest
-  type: FullBody
 desert_shirt_noted:
   id: 1834
 desert_robe:
@@ -4059,7 +4012,6 @@ wrought_iron_key:
 slave_shirt:
   id: 1844
   slot: Chest
-  type: FullBody
 slave_robe:
   id: 1845
   slot: Legs
@@ -5191,7 +5143,6 @@ chest_key_3:
 carnillean_armour:
   id: 2405
   slot: Chest
-  type: FullBody
 hazeels_mark:
   id: 2406
   slot: Amulet
@@ -5403,19 +5354,19 @@ black_dhide_chaps_noted:
 blue_dhide_body:
   id: 2499
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 blue_dhide_body_noted:
   id: 2500
 red_dhide_body:
   id: 2501
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 red_dhide_body_noted:
   id: 2502
 black_dhide_body:
   id: 2503
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 black_dhide_body_noted:
   id: 2504
 blue_dragon_leather:
@@ -5474,92 +5425,70 @@ bones_noted_2:
   id: 2531
 iron_fire_arrows:
   id: 2532
-  slot: Arrows
 iron_fire_arrows_2:
   id: 2533
-  slot: Arrows
 steel_fire_arrows:
   id: 2534
-  slot: Arrows
 steel_fire_arrows_2:
   id: 2535
-  slot: Arrows
 mithril_fire_arrows:
   id: 2536
-  slot: Arrows
 mithril_fire_arrows_2:
   id: 2537
-  slot: Arrows
 adamant_fire_arrows:
   id: 2538
-  slot: Arrows
 adamant_fire_arrows_2:
   id: 2539
-  slot: Arrows
 rune_fire_arrows:
   id: 2540
-  slot: Arrows
 rune_fire_arrows_2:
   id: 2541
-  slot: Arrows
 ring_of_recoil:
   id: 2550
-  slot: Ring
 ring_of_recoil_noted:
   id: 2551
 ring_of_duelling_(8):
   id: 2552
-  slot: Ring
 ring_of_duelling_(8)_noted:
   id: 2553
 ring_of_duelling_(7):
   id: 2554
-  slot: Ring
 ring_of_duelling_(7)_noted:
   id: 2555
 ring_of_duelling_(6):
   id: 2556
-  slot: Ring
 ring_of_duelling_(6)_noted:
   id: 2557
 ring_of_duelling_(5):
   id: 2558
-  slot: Ring
 ring_of_duelling_(5)_noted:
   id: 2559
 ring_of_duelling_(4):
   id: 2560
-  slot: Ring
 ring_of_duelling_(4)_noted:
   id: 2561
 ring_of_duelling_(3):
   id: 2562
-  slot: Ring
 ring_of_duelling_(3)_noted:
   id: 2563
 ring_of_duelling_(2):
   id: 2564
-  slot: Ring
 ring_of_duelling_(2)_noted:
   id: 2565
 ring_of_duelling_(1):
   id: 2566
-  slot: Ring
 ring_of_duelling_(1)_noted:
   id: 2567
 ring_of_forging:
   id: 2568
-  slot: Ring
 ring_of_forging_noted:
   id: 2569
 ring_of_life:
   id: 2570
-  slot: Ring
 ring_of_life_noted:
   id: 2571
 ring_of_wealth:
   id: 2572
-  slot: Ring
 ring_of_wealth_noted:
   id: 2573
 sextant:
@@ -5586,7 +5515,6 @@ robin_hood_hat_noted:
 black_platebody_(t):
   id: 2583
   slot: Chest
-  type: FullBody
 black_platebody_(t)_noted:
   id: 2584
 black_platelegs_(t):
@@ -5597,7 +5525,7 @@ black_platelegs_(t)_noted:
 black_full_helm_(t):
   id: 2587
   slot: Hat
-  type: Hair
+  type: FullFace
 black_full_helm_(t)_noted:
   id: 2588
 black_kiteshield_(t):
@@ -5608,7 +5536,6 @@ black_kiteshield_(t)_noted:
 black_platebody_(g):
   id: 2591
   slot: Chest
-  type: FullBody
 black_platebody_(g)_noted:
   id: 2592
 black_platelegs_(g):
@@ -5619,7 +5546,7 @@ black_platelegs_(g)_noted:
 black_full_helm_(g):
   id: 2595
   slot: Hat
-  type: Hair
+  type: FullFace
 black_full_helm_(g)_noted:
   id: 2596
 black_kiteshield_(g):
@@ -5630,7 +5557,6 @@ black_kiteshield_(g)_noted:
 adamant_platebody_(t):
   id: 2599
   slot: Chest
-  type: FullBody
 adamant_platebody_(t)_noted:
   id: 2600
 adamant_platelegs_(t):
@@ -5646,13 +5572,12 @@ adamant_kiteshield_(t)_noted:
 adamant_full_helm_(t):
   id: 2605
   slot: Hat
-  type: Hair
+  type: FullFace
 adamant_full_helm_(t)_noted:
   id: 2606
 adamant_platebody_(g):
   id: 2607
   slot: Chest
-  type: FullBody
 adamant_platebody_(g)_noted:
   id: 2608
 adamant_platelegs_(g):
@@ -5668,13 +5593,12 @@ adamant_kiteshield_(g)_noted:
 adamant_full_helm_(g):
   id: 2613
   slot: Hat
-  type: Hair
+  type: FullFace
 adamant_full_helm_(g)_noted:
   id: 2614
 rune_platebody_(g):
   id: 2615
   slot: Chest
-  type: FullBody
 rune_platebody_(g)_noted:
   id: 2616
 rune_platelegs_(g):
@@ -5685,7 +5609,7 @@ rune_platelegs_(g)_noted:
 rune_full_helm_(g):
   id: 2619
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_full_helm_(g)_noted:
   id: 2620
 rune_kiteshield_(g):
@@ -5696,7 +5620,6 @@ rune_kiteshield_(g)_noted:
 rune_platebody_(t):
   id: 2623
   slot: Chest
-  type: FullBody
 rune_platebody_(t)_noted:
   id: 2624
 rune_platelegs_(t):
@@ -5707,7 +5630,7 @@ rune_platelegs_(t)_noted:
 rune_full_helm_(t):
   id: 2627
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_full_helm_(t)_noted:
   id: 2628
 rune_kiteshield_(t):
@@ -5773,7 +5696,6 @@ pirates_hat_noted:
 zamorak_platebody:
   id: 2653
   slot: Chest
-  type: FullBody
 zamorak_platebody_noted:
   id: 2654
 zamorak_platelegs:
@@ -5784,7 +5706,7 @@ zamorak_platelegs_noted:
 zamorak_full_helm:
   id: 2657
   slot: Hat
-  type: Hair
+  type: FullFace
 zamorak_full_helm_noted:
   id: 2658
 zamorak_kiteshield:
@@ -5795,7 +5717,6 @@ zamorak_kiteshield_noted:
 saradomin_platebody:
   id: 2661
   slot: Chest
-  type: FullBody
 saradomin_platebody_noted:
   id: 2662
 saradomin_platelegs:
@@ -5806,7 +5727,7 @@ saradomin_platelegs_noted:
 saradomin_full_helm:
   id: 2665
   slot: Hat
-  type: Hair
+  type: FullFace
 saradomin_full_helm_noted:
   id: 2666
 saradomin_kiteshield:
@@ -5817,7 +5738,6 @@ saradomin_kiteshield_noted:
 guthix_platebody:
   id: 2669
   slot: Chest
-  type: FullBody
 guthix_platebody_noted:
   id: 2670
 guthix_platelegs:
@@ -5828,7 +5748,7 @@ guthix_platelegs_noted:
 guthix_full_helm:
   id: 2673
   slot: Hat
-  type: Hair
+  type: FullFace
 guthix_full_helm_noted:
   id: 2674
 guthix_kiteshield:
@@ -6216,7 +6136,6 @@ flighted_ogre_arrow:
   id: 2865
 ogre_arrow:
   id: 2866
-  slot: Arrows
 ogre_bellows:
   id: 2871
 ogre_bellows_(3):
@@ -6272,7 +6191,6 @@ boots_noted:
 robe_top:
   id: 2896
   slot: Chest
-  type: FullBody
 robe_top_noted:
   id: 2897
 robe_bottoms:
@@ -6298,7 +6216,6 @@ boots_noted_2:
 robe_top_2:
   id: 2906
   slot: Chest
-  type: FullBody
 robe_top_noted_2:
   id: 2907
 robe_bottoms_2:
@@ -6324,7 +6241,6 @@ boots_noted_3:
 robe_top_3:
   id: 2916
   slot: Chest
-  type: FullBody
 robe_top_noted_3:
   id: 2917
 robe_bottoms_3:
@@ -6350,7 +6266,6 @@ boots_noted_4:
 robe_top_4:
   id: 2926
   slot: Chest
-  type: FullBody
 robe_top_noted_4:
   id: 2927
 robe_bottoms_4:
@@ -6376,7 +6291,6 @@ boots_noted_5:
 robe_top_5:
   id: 2936
   slot: Chest
-  type: FullBody
 robe_top_noted_5:
   id: 2937
 robe_bottoms_5:
@@ -6647,11 +6561,9 @@ mystic_lava_staff_noted:
 mime_mask:
   id: 3057
   slot: Hat
-  type: Mask
 mime_top:
   id: 3058
   slot: Chest
-  type: FullBody
 mime_legs:
   id: 3059
   slot: Legs
@@ -6779,7 +6691,6 @@ potato_cactus_noted:
 dragon_chainbody_2:
   id: 3140
   slot: Chest
-  type: FullBody
 dragon_chainbody_noted:
   id: 3141
 raw_karambwan:
@@ -7194,12 +7105,12 @@ tinderbox_17:
 splitbark_helm:
   id: 3385
   slot: Hat
+  type: Hair
 splitbark_helm_noted:
   id: 3386
 splitbark_body:
   id: 3387
   slot: Chest
-  type: FullBody
 splitbark_body_noted:
   id: 3388
 splitbark_legs:
@@ -7401,7 +7312,6 @@ guthix_plateskirt:
 gilded_platebody:
   id: 3481
   slot: Chest
-  type: FullBody
 gilded_platebody_noted:
   id: 3482
 gilded_platelegs:
@@ -7415,7 +7325,7 @@ gilded_plateskirt:
 gilded_full_helm:
   id: 3486
   slot: Hat
-  type: Hair
+  type: FullFace
 gilded_full_helm_noted:
   id: 3487
 gilded_kiteshield:
@@ -7998,31 +7908,26 @@ fremennik_cloak_noted_4:
 fremennik_shirt:
   id: 3767
   slot: Chest
-  type: FullBody
 fremennik_shirt_noted:
   id: 3768
 fremennik_shirt_2:
   id: 3769
   slot: Chest
-  type: FullBody
 fremennik_shirt_noted_2:
   id: 3770
 fremennik_shirt_3:
   id: 3771
   slot: Chest
-  type: FullBody
 fremennik_shirt_noted_3:
   id: 3772
 fremennik_shirt_4:
   id: 3773
   slot: Chest
-  type: FullBody
 fremennik_shirt_noted_4:
   id: 3774
 fremennik_shirt_5:
   id: 3775
   slot: Chest
-  type: FullBody
 fremennik_shirt_noted_5:
   id: 3776
 fremennik_cloak_5:
@@ -8068,7 +7973,6 @@ fremennik_boots_noted:
 fremennik_robe:
   id: 3793
   slot: Chest
-  type: FullBody
 fremennik_robe_noted:
   id: 3794
 fremennik_skirt:
@@ -8385,31 +8289,22 @@ mspeak_amulet:
   id: 4022
 monkey_talisman:
   id: 4023
-  slot: Weapon
 ninja_monkey_greegree:
   id: 4024
-  slot: Weapon
 ninja_monkey_greegree_2:
   id: 4025
-  slot: Weapon
 gorilla_greegree:
   id: 4026
-  slot: Weapon
 gorilla_greegree_2:
   id: 4027
-  slot: Weapon
 gorilla_greegree_3:
   id: 4028
-  slot: Weapon
 zombie_monkey_greegree:
   id: 4029
-  slot: Weapon
 zombie_monkey_greegree_2:
   id: 4030
-  slot: Weapon
 monkey_greegree:
   id: 4031
-  slot: Weapon
 dummy:
   id: 4032
 monkey:
@@ -8434,11 +8329,9 @@ zamorak_flag_noted:
 hooded_cloak:
   id: 4041
   slot: Cape
-  type: HoodedCape
 hooded_cloak_2:
   id: 4042
   slot: Cape
-  type: HoodedCape
 rock_4:
   id: 4043
 rock_noted:
@@ -8473,14 +8366,13 @@ basic_decorative_sword:
 basic_decorative_platebody:
   id: 4069
   slot: Chest
-  type: FullBody
 basic_decorative_platelegs:
   id: 4070
   slot: Legs
 basic_decorative_helm:
   id: 4071
   slot: Hat
-  type: Hair
+  type: FullFace
 basic_decorative_shield:
   id: 4072
   slot: Shield
@@ -8530,7 +8422,6 @@ mystic_hat_noted:
 mystic_robe_top:
   id: 4091
   slot: Chest
-  type: FullBody
 mystic_robe_top_noted:
   id: 4092
 mystic_robe_bottom:
@@ -8557,7 +8448,6 @@ mystic_hat_noted_2:
 mystic_robe_top_2:
   id: 4101
   slot: Chest
-  type: FullBody
 mystic_robe_top_noted_2:
   id: 4102
 mystic_robe_bottom_2:
@@ -8584,7 +8474,6 @@ mystic_hat_noted_3:
 mystic_robe_top_3:
   id: 4111
   slot: Chest
-  type: FullBody
 mystic_robe_top_noted_3:
   id: 4112
 mystic_robe_bottom_3:
@@ -8701,7 +8590,6 @@ leaf-bladed_spear_2:
   type: TwoHanded
 broad_arrow:
   id: 4160
-  slot: Arrows
 bag_of_salt:
   id: 4161
 rock_hammer:
@@ -8732,16 +8620,12 @@ slayers_staff_noted:
   id: 4171
 broad_arrows_2:
   id: 4172
-  slot: Arrows
 broad_arrows_3:
   id: 4173
-  slot: Arrows
 broad_arrows_4:
   id: 4174
-  slot: Arrows
 broad_arrows_5:
   id: 4175
-  slot: Arrows
 picture_83:
   id: 4177
 abyssal_whip_2:
@@ -8796,7 +8680,6 @@ conductor:
   id: 4201
 ring_of_charos:
   id: 4202
-  slot: Ring
 journal_3:
   id: 4203
 letter:
@@ -8989,10 +8872,8 @@ petition_form:
   id: 4283
 bedsheet:
   id: 4284
-  slot: Hat
 bedsheet_2:
   id: 4285
-  slot: Hat
 bucket_of_slime:
   id: 4286
 raw_beef_2:
@@ -9018,7 +8899,6 @@ male_h.a.m.:
 h.a.m._shirt:
   id: 4298
   slot: Chest
-  type: FullBody
 h.a.m._shirt_noted:
   id: 4299
 h.a.m._robe:
@@ -9477,14 +9357,13 @@ detailed_decorative_sword:
 detailed_decorative_platebody:
   id: 4504
   slot: Chest
-  type: FullBody
 detailed_decorative_platelegs:
   id: 4505
   slot: Legs
 detailed_decorative_helm:
   id: 4506
   slot: Hat
-  type: Hair
+  type: FullFace
 detailed_decorative_shield:
   id: 4507
   slot: Shield
@@ -9494,14 +9373,13 @@ intricate_decorative_sword:
 intricate_decorative_platebody:
   id: 4509
   slot: Chest
-  type: FullBody
 intricate_decorative_platelegs:
   id: 4510
   slot: Legs
 intricate_decorative_helm:
   id: 4511
   slot: Hat
-  type: Hair
+  type: FullFace
 intricate_decorative_shield:
   id: 4512
   slot: Shield
@@ -9590,7 +9468,7 @@ bullseye_lantern_4:
 spiny_helmet:
   id: 4551
   slot: Hat
-  type: Hair
+  type: FullFace
 spiny_helmet_noted:
   id: 4552
 blue_sweets:
@@ -9718,7 +9596,7 @@ red_hot_sauce:
 desert_disguise:
   id: 4611
   slot: Hat
-  type: Hair
+  type: FullFace
 willow-blackjack_noted:
   id: 4612
 spinning_plate:
@@ -9761,7 +9639,6 @@ warm_key:
   id: 4656
 ring_of_visibility:
   id: 4657
-  slot: Ring
 silver_pot_3:
   id: 4658
 blessed_pot:
@@ -9876,7 +9753,6 @@ ahrims_staff_noted:
 ahrims_robe_top:
   id: 4712
   slot: Chest
-  type: FullBody
 ahrims_robe_top_noted:
   id: 4713
 ahrims_robe_skirt:
@@ -9899,7 +9775,6 @@ dharoks_greataxe_noted:
 dharoks_platebody:
   id: 4720
   slot: Chest
-  type: FullBody
 dharoks_platebody_noted:
   id: 4721
 dharoks_platelegs:
@@ -9910,7 +9785,7 @@ dharoks_platelegs_noted:
 guthans_helm:
   id: 4724
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_noted:
   id: 4725
 guthans_warspear:
@@ -9922,7 +9797,6 @@ guthans_warspear_noted:
 guthans_platebody:
   id: 4728
   slot: Chest
-  type: FullBody
 guthans_platebody_noted:
   id: 4729
 guthans_chainskirt:
@@ -9945,7 +9819,6 @@ karils_crossbow_noted:
 karils_top:
   id: 4736
   slot: Chest
-  type: FullBody
 karils_top_noted:
   id: 4737
 karils_skirt:
@@ -9955,11 +9828,10 @@ karils_skirt_noted:
   id: 4739
 bolt_rack:
   id: 4740
-  slot: Arrows
 torags_helm:
   id: 4745
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_noted:
   id: 4746
 torags_hammers:
@@ -9971,7 +9843,6 @@ torags_hammers_noted:
 torags_platebody:
   id: 4749
   slot: Chest
-  type: FullBody
 torags_platebody_noted:
   id: 4750
 torags_platelegs:
@@ -9982,7 +9853,7 @@ torags_platelegs_noted:
 veracs_helm:
   id: 4753
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_noted:
   id: 4754
 veracs_flail:
@@ -9994,7 +9865,6 @@ veracs_flail_noted:
 veracs_brassard:
   id: 4757
   slot: Chest
-  type: FullBody
 veracs_brassard_noted:
   id: 4758
 veracs_plateskirt:
@@ -10004,25 +9874,18 @@ veracs_plateskirt_noted:
   id: 4760
 bronze_brutal:
   id: 4773
-  slot: Arrows
 iron_brutal:
   id: 4778
-  slot: Arrows
 steel_brutal:
   id: 4783
-  slot: Arrows
 black_brutal:
   id: 4788
-  slot: Arrows
 mithril_brutal:
   id: 4793
-  slot: Arrows
 adamant_brutal:
   id: 4798
-  slot: Arrows
 rune_brutal:
   id: 4803
-  slot: Arrows
 black_prism:
   id: 4808
 torn_page:
@@ -10171,23 +10034,18 @@ ahrims_staff_0_noted:
 ahrims_robe_top_100:
   id: 4868
   slot: Chest
-  type: FullBody
 ahrims_robe_top_75:
   id: 4869
   slot: Chest
-  type: FullBody
 ahrims_robe_top_50:
   id: 4870
   slot: Chest
-  type: FullBody
 ahrims_robe_top_25:
   id: 4871
   slot: Chest
-  type: FullBody
 ahrims_robe_top_0:
   id: 4872
   slot: Chest
-  type: FullBody
 ahrims_robe_top_0_noted:
   id: 4873
 ahrims_robe_skirt_100:
@@ -10254,23 +10112,18 @@ dharoks_greataxe_0_noted:
 dharoks_platebody_100:
   id: 4892
   slot: Chest
-  type: FullBody
 dharoks_platebody_75:
   id: 4893
   slot: Chest
-  type: FullBody
 dharoks_platebody_50:
   id: 4894
   slot: Chest
-  type: FullBody
 dharoks_platebody_25:
   id: 4895
   slot: Chest
-  type: FullBody
 dharoks_platebody_0:
   id: 4896
   slot: Chest
-  type: FullBody
 dharoks_platebody_0_noted:
   id: 4897
 dharoks_platelegs_100:
@@ -10293,23 +10146,23 @@ dharoks_platelegs_0_noted:
 guthans_helm_100:
   id: 4904
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_75:
   id: 4905
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_50:
   id: 4906
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_25:
   id: 4907
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_0:
   id: 4908
   slot: Hat
-  type: Hair
+  type: FullFace
 guthans_helm_0_noted:
   id: 4909
 guthans_warspear_100:
@@ -10337,23 +10190,18 @@ guthans_warspear_0_noted:
 guthans_platebody_100:
   id: 4916
   slot: Chest
-  type: FullBody
 guthans_platebody_75:
   id: 4917
   slot: Chest
-  type: FullBody
 guthans_platebody_50:
   id: 4918
   slot: Chest
-  type: FullBody
 guthans_platebody_25:
   id: 4919
   slot: Chest
-  type: FullBody
 guthans_platebody_0:
   id: 4920
   slot: Chest
-  type: FullBody
 guthans_platebody_0_noted:
   id: 4921
 guthans_chainskirt_100:
@@ -10420,23 +10268,18 @@ karils_crossbow_0_noted:
 karils_top_100:
   id: 4940
   slot: Chest
-  type: FullBody
 karils_top_75:
   id: 4941
   slot: Chest
-  type: FullBody
 karils_top_50:
   id: 4942
   slot: Chest
-  type: FullBody
 karils_top_25:
   id: 4943
   slot: Chest
-  type: FullBody
 karils_top_0:
   id: 4944
   slot: Chest
-  type: FullBody
 karils_top_0_noted:
   id: 4945
 karils_skirt_100:
@@ -10459,23 +10302,23 @@ karils_skirt_0_noted:
 torags_helm_100:
   id: 4952
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_75:
   id: 4953
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_50:
   id: 4954
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_25:
   id: 4955
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_0:
   id: 4956
   slot: Hat
-  type: Hair
+  type: FullFace
 torags_helm_0_noted:
   id: 4957
 torags_hammers_100:
@@ -10503,23 +10346,18 @@ torags_hammers_0_noted:
 torags_platebody_100:
   id: 4964
   slot: Chest
-  type: FullBody
 torags_platebody_75:
   id: 4965
   slot: Chest
-  type: FullBody
 torags_platebody_50:
   id: 4966
   slot: Chest
-  type: FullBody
 torags_platebody_25:
   id: 4967
   slot: Chest
-  type: FullBody
 torags_platebody_0:
   id: 4968
   slot: Chest
-  type: FullBody
 torags_platebody_0_noted:
   id: 4969
 torags_platelegs_100:
@@ -10542,23 +10380,23 @@ torags_platelegs_0_noted:
 veracs_helm_100:
   id: 4976
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_75:
   id: 4977
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_50:
   id: 4978
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_25:
   id: 4979
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_0:
   id: 4980
   slot: Hat
-  type: Hair
+  type: FullFace
 veracs_helm_0_noted:
   id: 4981
 veracs_flail_100:
@@ -10586,23 +10424,18 @@ veracs_flail_0_noted:
 veracs_brassard_100:
   id: 4988
   slot: Chest
-  type: FullBody
 veracs_brassard_75:
   id: 4989
   slot: Chest
-  type: FullBody
 veracs_brassard_50:
   id: 4990
   slot: Chest
-  type: FullBody
 veracs_brassard_25:
   id: 4991
   slot: Chest
-  type: FullBody
 veracs_brassard_0:
   id: 4992
   slot: Chest
-  type: FullBody
 veracs_brassard_0_noted:
   id: 4993
 veracs_plateskirt_100:
@@ -10649,9 +10482,11 @@ peace_treaty:
 mining_helmet:
   id: 5013
   slot: Hat
+  type: Hair
 mining_helmet_2:
   id: 5014
   slot: Hat
+  type: Hair
 mining_helmet_noted:
   id: 5015
 bone_spear:
@@ -10675,37 +10510,31 @@ minecart_ticket_4:
 woven_top:
   id: 5024
   slot: Chest
-  type: FullBody
 woven_top_noted:
   id: 5025
 woven_top_2:
   id: 5026
   slot: Chest
-  type: FullBody
 woven_top_noted_2:
   id: 5027
 woven_top_3:
   id: 5028
   slot: Chest
-  type: FullBody
 woven_top_noted_3:
   id: 5029
 shirt:
   id: 5030
   slot: Chest
-  type: FullBody
 shirt_noted:
   id: 5031
 shirt_2:
   id: 5032
   slot: Chest
-  type: FullBody
 shirt_noted_2:
   id: 5033
 shirt_3:
   id: 5034
   slot: Chest
-  type: FullBody
 shirt_noted_3:
   id: 5035
 trousers:
@@ -11391,7 +11220,6 @@ soul_tiara_noted:
 rogue_top:
   id: 5553
   slot: Chest
-  type: FullBody
 rogue_mask:
   id: 5554
   slot: Hat
@@ -11439,11 +11267,10 @@ dial:
 initiate_sallet:
   id: 5574
   slot: Hat
-  type: Hair
+  type: FullFace
 initiate_hauberk:
   id: 5575
   slot: Chest
-  type: FullBody
 initiate_cuisse:
   id: 5576
   slot: Legs
@@ -11531,40 +11358,28 @@ bonemeal_22:
   id: 5615
 bronze_arrow_(p+):
   id: 5616
-  slot: Arrows
 iron_arrow_(p+):
   id: 5617
-  slot: Arrows
 steel_arrow_(p+):
   id: 5618
-  slot: Arrows
 mithril_arrow_(p+):
   id: 5619
-  slot: Arrows
 adamant_arrow_(p+):
   id: 5620
-  slot: Arrows
 rune_arrow_(p+):
   id: 5621
-  slot: Arrows
 bronze_arrow_(p++):
   id: 5622
-  slot: Arrows
 iron_arrow_(p++):
   id: 5623
-  slot: Arrows
 steel_arrow_(p++):
   id: 5624
-  slot: Arrows
 mithril_arrow_(p++):
   id: 5625
-  slot: Arrows
 adamant_arrow_(p++):
   id: 5626
-  slot: Arrows
 rune_arrow_(p++):
   id: 5627
-  slot: Arrows
 bronze_dart_(p+):
   id: 5628
   slot: Weapon
@@ -12526,10 +12341,8 @@ stool_noted:
   id: 6060
 bronze_bolts_(p+):
   id: 6061
-  slot: Arrows
 bronze_bolts_(p++):
   id: 6062
-  slot: Arrows
 spirit_tree:
   id: 6063
 bloody_mourner_top:
@@ -12537,7 +12350,6 @@ bloody_mourner_top:
 mourner_top:
   id: 6065
   slot: Chest
-  type: FullBody
 mourner_trousers:
   id: 6066
 mourner_trousers_2:
@@ -12630,7 +12442,6 @@ ghostly_boots:
 ghostly_robe:
   id: 6107
   slot: Chest
-  type: FullBody
 ghostly_robe_2:
   id: 6108
   slot: Legs
@@ -12680,7 +12491,6 @@ rock-shell_helm:
 rock-shell_plate:
   id: 6129
   slot: Chest
-  type: FullBody
 rock-shell_legs:
   id: 6130
   slot: Legs
@@ -12693,7 +12503,6 @@ spined_helm_noted:
 spined_body:
   id: 6133
   slot: Chest
-  type: FullBody
 spined_body_noted:
   id: 6134
 spined_chaps:
@@ -12710,7 +12519,6 @@ skeletal_helm_noted:
 skeletal_top:
   id: 6139
   slot: Chest
-  type: FullBody
 skeletal_top_noted:
   id: 6140
 skeletal_bottoms:
@@ -12801,7 +12609,6 @@ raw_pheasant_2:
 lederhosen_top:
   id: 6180
   slot: Chest
-  type: FullBody
 lederhosen_shorts:
   id: 6181
   slot: Legs
@@ -12814,21 +12621,19 @@ random_event_gift:
 prince_tunic:
   id: 6184
   slot: Chest
-  type: FullBody
 prince_leggings:
   id: 6185
   slot: Legs
 princess_blouse:
   id: 6186
   slot: Chest
-  type: FullBody
 princess_skirt:
   id: 6187
   slot: Legs
 frog_mask:
   id: 6188
   slot: Hat
-  type: Hair
+  type: FullFace
 mystery_box:
   id: 6199
 raw_fish-like_thing:
@@ -13106,7 +12911,6 @@ proboscis:
 snakeskin_body:
   id: 6322
   slot: Chest
-  type: FullBody
 snakeskin_body_noted:
   id: 6323
 snakeskin_chaps:
@@ -13154,7 +12958,6 @@ tribal_mask_noted_3:
 tribal_top:
   id: 6341
   slot: Chest
-  type: FullBody
 tribal_top_noted:
   id: 6342
 villager_robe:
@@ -13180,7 +12983,6 @@ villager_sandals_noted:
 tribal_top_2:
   id: 6351
   slot: Chest
-  type: FullBody
 tribal_top_noted_2:
   id: 6352
 villager_robe_2:
@@ -13206,7 +13008,6 @@ villager_armband_noted_2:
 tribal_top_3:
   id: 6361
   slot: Chest
-  type: FullBody
 tribal_top_noted_3:
   id: 6362
 villager_robe_3:
@@ -13232,7 +13033,6 @@ villager_armband_noted_3:
 tribal_top_4:
   id: 6371
   slot: Chest
-  type: FullBody
 tribal_top_noted_4:
   id: 6372
 villager_robe_4:
@@ -13265,7 +13065,6 @@ fez_noted:
 desert_top:
   id: 6384
   slot: Chest
-  type: FullBody
 desert_top_noted:
   id: 6385
 desert_robes:
@@ -13276,7 +13075,6 @@ desert_robes_noted:
 desert_top_2:
   id: 6388
   slot: Chest
-  type: FullBody
 desert_top_noted_2:
   id: 6389
 desert_legs:
@@ -13293,7 +13091,6 @@ menap_headgear_noted:
 menaphite_top:
   id: 6394
   slot: Chest
-  type: FullBody
 menaphite_top_noted:
   id: 6395
 menaphite_robe:
@@ -13315,7 +13112,6 @@ menap_headgear_noted_2:
 menaphite_top_2:
   id: 6402
   slot: Chest
-  type: FullBody
 menaphite_top_noted_2:
   id: 6403
 menaphite_robe_2:
@@ -13427,7 +13223,6 @@ white_tree_sapling:
   id: 6464
 ring_of_charos_(a):
   id: 6465
-  slot: Ring
 rune_shards:
   id: 6466
 rune_dust:
@@ -13585,7 +13380,6 @@ onyx_noted:
   id: 6574
 onyx_ring_2:
   id: 6575
-  slot: Ring
 onyx_ring_noted:
   id: 6576
 onyx_necklace_2:
@@ -13687,13 +13481,12 @@ white_warhammer_noted:
 white_chainbody:
   id: 6615
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 white_chainbody_noted:
   id: 6616
 white_platebody:
   id: 6617
   slot: Chest
-  type: FullBody
 white_platebody_noted:
   id: 6618
 white_boots:
@@ -13710,7 +13503,7 @@ white_med_helm_noted:
 white_full_helm:
   id: 6623
   slot: Hat
-  type: Hair
+  type: FullFace
 white_full_helm_noted:
   id: 6624
 white_platelegs:
@@ -13779,7 +13572,6 @@ crystal_trinket:
 camo_top:
   id: 6654
   slot: Chest
-  type: FullBody
 camo_bottoms:
   id: 6655
   slot: Legs
@@ -13940,22 +13732,18 @@ dagannoth_bones_noted:
   id: 6730
 seers_ring:
   id: 6731
-  slot: Ring
 seers_ring_noted:
   id: 6732
 archers_ring:
   id: 6733
-  slot: Ring
 archers_ring_noted:
   id: 6734
 warrior_ring:
   id: 6735
-  slot: Ring
 warrior_ring_noted:
   id: 6736
 berserker_ring:
   id: 6737
-  slot: Ring
 berserker_ring_noted:
   id: 6738
 dragon_hatchet:
@@ -13987,7 +13775,6 @@ demonic_tome:
 black_desert_shirt:
   id: 6750
   slot: Chest
-  type: FullBody
 tinderbox_31:
   id: 6751
 black_desert_robe:
@@ -14079,7 +13866,6 @@ statuette_2:
 robe_of_elidinis:
   id: 6786
   slot: Chest
-  type: FullBody
 robe_of_elidinis_2:
   id: 6787
   slot: Legs
@@ -14228,24 +14014,28 @@ bauble_box_2:
 bobble_hat:
   id: 6856
   slot: Hat
+  type: Hair
 bobble_scarf:
   id: 6857
   slot: Amulet
 jester_hat:
   id: 6858
   slot: Hat
+  type: Hair
 jester_scarf:
   id: 6859
   slot: Amulet
 tri-jester_hat:
   id: 6860
   slot: Hat
+  type: Hair
 tri-jester_scarf:
   id: 6861
   slot: Amulet
 woolly_hat:
   id: 6862
   slot: Hat
+  type: Hair
 woolly_scarf:
   id: 6863
   slot: Amulet
@@ -14293,12 +14083,15 @@ peach:
 progress_hat:
   id: 6885
   slot: Hat
+  type: Hair
 progress_hat_2:
   id: 6886
   slot: Hat
+  type: Hair
 progress_hat_3:
   id: 6887
   slot: Hat
+  type: Hair
 guardian_statue:
   id: 6888
 mages_book:
@@ -14363,7 +14156,6 @@ master_wand_noted:
 infinity_top:
   id: 6916
   slot: Chest
-  type: FullBody
 infinity_top_noted:
   id: 6917
 infinity_hat:
@@ -15179,13 +14971,13 @@ rune_shield_(h5)_noted:
 studded_body_(g):
   id: 7362
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 studded_body_(g)_noted:
   id: 7363
 studded_body_(t):
   id: 7364
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 studded_body_(t)_noted:
   id: 7365
 studded_chaps_(g):
@@ -15201,25 +14993,25 @@ studded_chaps_(t)_noted:
 dragonhide_body_(g):
   id: 7370
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dragonhide_body_(g)_noted:
   id: 7371
 dragonhide_body_(t):
   id: 7372
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dragonhide_body_(t)_noted:
   id: 7373
 dragonhide_body_(g)_2:
   id: 7374
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dragonhide_body_(g)_noted_2:
   id: 7375
 dragonhide_body_(t)_2:
   id: 7376
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dragonhide_body_(t)_noted_2:
   id: 7377
 dragonhide_chaps_(g):
@@ -15255,13 +15047,11 @@ blue_skirt_(t)_noted:
 wizard_robe_(g):
   id: 7390
   slot: Chest
-  type: FullBody
 wizard_robe_(g)_noted:
   id: 7391
 wizard_robe_(t):
   id: 7392
   slot: Chest
-  type: FullBody
 wizard_robe_(t)_noted:
   id: 7393
 wizard_hat_(g):
@@ -15282,7 +15072,6 @@ enchanted_robe:
 enchanted_top:
   id: 7399
   slot: Chest
-  type: FullBody
 enchanted_hat:
   id: 7400
   slot: Hat
@@ -15589,7 +15378,7 @@ rock_5:
 fishbowl_helmet:
   id: 7534
   slot: Hat
-  type: Hair
+  type: FullFace
 diving_apparatus:
   id: 7535
   slot: Cape
@@ -15718,7 +15507,7 @@ zombie_trousers:
 zombie_mask:
   id: 7594
   slot: Hat
-  type: Hair
+  type: FullFace
 zombie_gloves:
   id: 7595
   slot: Hands
@@ -17486,67 +17275,67 @@ construction_guide:
 rune_heraldic_helm:
   id: 8464
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_2:
   id: 8466
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_3:
   id: 8468
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_4:
   id: 8470
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_5:
   id: 8472
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_6:
   id: 8474
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_7:
   id: 8476
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_8:
   id: 8478
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_9:
   id: 8480
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_10:
   id: 8482
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_11:
   id: 8484
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_12:
   id: 8486
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_13:
   id: 8488
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_14:
   id: 8490
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_15:
   id: 8492
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_heraldic_helm_16:
   id: 8494
   slot: Hat
-  type: Hair
+  type: FullFace
 crude_wooden_chair_2:
   id: 8496
 crude_wooden_chair_noted:
@@ -17906,67 +17695,67 @@ banner_16:
 steel_heraldic_helm:
   id: 8682
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_2:
   id: 8684
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_3:
   id: 8686
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_4:
   id: 8688
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_5:
   id: 8690
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_6:
   id: 8692
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_7:
   id: 8694
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_8:
   id: 8696
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_9:
   id: 8698
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_10:
   id: 8700
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_11:
   id: 8702
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_12:
   id: 8704
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_13:
   id: 8706
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_14:
   id: 8708
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_15:
   id: 8710
   slot: Hat
-  type: Hair
+  type: FullFace
 steel_heraldic_helm_16:
   id: 8712
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_kiteshield_2:
   id: 8714
   slot: Shield
@@ -18113,7 +17902,6 @@ timber_beam_noted:
 void_knight_top:
   id: 8839
   slot: Chest
-  type: FullBody
 void_knight_robe:
   id: 8840
   slot: Legs
@@ -18213,7 +18001,6 @@ dorgeshuun_cbow_noted:
   id: 8881
 bone_bolts:
   id: 8882
-  slot: Arrows
 zanik_2:
   id: 8887
 zanik_(ham):
@@ -18301,6 +18088,7 @@ bandana_and_eyepatch_4:
 hat_and_eyepatch:
   id: 8928
   slot: Hat
+  type: Hair
 crabclaw_and_hook:
   id: 8929
   slot: Hands
@@ -18349,57 +18137,58 @@ pirate_bandana_5:
 pirate_hat:
   id: 8950
   slot: Hat
+  type: Hair
 pieces_of_eight:
   id: 8951
 blue_naval_shirt:
   id: 8952
   slot: Chest
-  type: FullBody
 green_naval_shirt:
   id: 8953
   slot: Chest
-  type: FullBody
 red_naval_shirt:
   id: 8954
   slot: Chest
-  type: FullBody
 brown_naval_shirt:
   id: 8955
   slot: Chest
-  type: FullBody
 black_naval_shirt:
   id: 8956
   slot: Chest
-  type: FullBody
 purple_naval_shirt:
   id: 8957
   slot: Chest
-  type: FullBody
 grey_naval_shirt:
   id: 8958
   slot: Chest
-  type: FullBody
 blue_tricorn_hat:
   id: 8959
   slot: Hat
+  type: Hair
 green_tricorn_hat:
   id: 8960
   slot: Hat
+  type: Hair
 red_tricorn_hat:
   id: 8961
   slot: Hat
+  type: Hair
 brown_tricorn_hat:
   id: 8962
   slot: Hat
+  type: Hair
 black_tricorn_hat:
   id: 8963
   slot: Hat
+  type: Hair
 purple_tricorn_hat:
   id: 8964
   slot: Hat
+  type: Hair
 grey_tricorn_hat:
   id: 8965
   slot: Hat
+  type: Hair
 cutthroat_flag:
   id: 8966
   slot: Weapon
@@ -18604,22 +18393,16 @@ locust_meat_noted:
   id: 9053
 red_goblin_mail:
   id: 9054
-  slot: Chest
 black_goblin_mail:
   id: 9055
-  slot: Chest
 yellow_goblin_mail:
   id: 9056
-  slot: Chest
 green_goblin_mail:
   id: 9057
-  slot: Chest
 purple_goblin_mail:
   id: 9058
-  slot: Chest
 pink_goblin_mail:
   id: 9059
-  slot: Chest
 emerald_lantern:
   id: 9064
 emerald_lantern_2:
@@ -18632,13 +18415,13 @@ dream_log:
 moonclan_helm:
   id: 9068
   slot: Hat
+  type: Hair
 moonclan_hat:
   id: 9069
   slot: Hat
 moonclan_armour:
   id: 9070
   slot: Chest
-  type: FullBody
 moonclan_skirt:
   id: 9071
   slot: Legs
@@ -18701,11 +18484,10 @@ soaked_kindling:
 lunar_helm:
   id: 9096
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_torso:
   id: 9097
   slot: Chest
-  type: FullBody
 lunar_legs:
   id: 9098
   slot: Legs
@@ -18725,7 +18507,6 @@ a_special_tiara:
   id: 9103
 lunar_ring:
   id: 9104
-  slot: Ring
 suqah_monster:
   id: 9105
 astral_tiara:
@@ -18733,25 +18514,18 @@ astral_tiara:
   slot: Hat
 blurite_bolts:
   id: 9139
-  slot: Arrows
 iron_bolts:
   id: 9140
-  slot: Arrows
 steel_bolts:
   id: 9141
-  slot: Arrows
 mithril_bolts:
   id: 9142
-  slot: Arrows
 adamant_bolts:
   id: 9143
-  slot: Arrows
 runite_bolts:
   id: 9144
-  slot: Arrows
 silver_bolts:
   id: 9145
-  slot: Arrows
 bronze_crossbow:
   id: 9174
   slot: Weapon
@@ -18803,121 +18577,82 @@ onyx_bolt_tips:
   id: 9194
 opal_bolts_(e):
   id: 9236
-  slot: Arrows
 jade_bolts_(e):
   id: 9237
-  slot: Arrows
 pearl_bolts_(e):
   id: 9238
-  slot: Arrows
 topaz_bolts_(e):
   id: 9239
-  slot: Arrows
 sapphire_bolts_(e):
   id: 9240
-  slot: Arrows
 emerald_bolts_(e):
   id: 9241
-  slot: Arrows
 ruby_bolts_(e):
   id: 9242
-  slot: Arrows
 diamond_bolts_(e):
   id: 9243
-  slot: Arrows
 dragon_bolts_(e):
   id: 9244
-  slot: Arrows
 onyx_bolts_(e):
   id: 9245
-  slot: Arrows
 blurite_bolts_(p):
   id: 9286
-  slot: Arrows
 iron_bolts_(p):
   id: 9287
-  slot: Arrows
 steel_bolts_(p):
   id: 9288
-  slot: Arrows
 mithril_bolts_(p):
   id: 9289
-  slot: Arrows
 adamant_bolts_(p):
   id: 9290
-  slot: Arrows
 runite_bolts_(p):
   id: 9291
-  slot: Arrows
 silver_bolts_(p):
   id: 9292
-  slot: Arrows
 blurite_bolts_(p+):
   id: 9293
-  slot: Arrows
 iron_bolts_(p+):
   id: 9294
-  slot: Arrows
 steel_bolts_(p+):
   id: 9295
-  slot: Arrows
 mithril_bolts_(p+):
   id: 9296
-  slot: Arrows
 adamant_bolts_(p+):
   id: 9297
-  slot: Arrows
 runite_bolts_(p+):
   id: 9298
-  slot: Arrows
 silver_bolts_(p+):
   id: 9299
-  slot: Arrows
 blurite_bolts_(p++):
   id: 9300
-  slot: Arrows
 iron_bolts_(p++):
   id: 9301
-  slot: Arrows
 steel_bolts_(p++):
   id: 9302
-  slot: Arrows
 mithril_bolts_(p++):
   id: 9303
-  slot: Arrows
 adamant_bolts_(p++):
   id: 9304
-  slot: Arrows
 runite_bolts_(p++):
   id: 9305
-  slot: Arrows
 silver_bolts_(p++):
   id: 9306
-  slot: Arrows
 jade_bolts:
   id: 9335
-  slot: Arrows
 topaz_bolts:
   id: 9336
-  slot: Arrows
 sapphire_bolts:
   id: 9337
-  slot: Arrows
 emerald_bolts:
   id: 9338
-  slot: Arrows
 ruby_bolts:
   id: 9339
-  slot: Arrows
 diamond_bolts:
   id: 9340
-  slot: Arrows
 dragon_bolts:
   id: 9341
-  slot: Arrows
 onyx_bolts:
   id: 9342
-  slot: Arrows
 bronze_bolts_(unf):
   id: 9375
 blurite_bolts_(unf):
@@ -18944,7 +18679,6 @@ mith_grapple:
   id: 9418
 mith_grapple_2:
   id: 9419
-  slot: Arrows
 bronze_limbs:
   id: 9420
   slot: Shield
@@ -19335,7 +19069,7 @@ a_handwritten_book:
 tyras_helm:
   id: 9629
   slot: Hat
-  type: Hair
+  type: FullFace
 tyras_helm_noted:
   id: 9630
 daeyalt_ore:
@@ -19345,7 +19079,6 @@ message_2:
 vyrewatch_top:
   id: 9634
   slot: Chest
-  type: FullBody
 vyrewatch_top_noted:
   id: 9635
 vyrewatch_legs:
@@ -19361,7 +19094,6 @@ vyrewatch_shoes_noted:
 citizen_top:
   id: 9640
   slot: Chest
-  type: FullBody
 citizen_top_noted:
   id: 9641
 citizen_trousers:
@@ -19424,13 +19156,12 @@ prosyte_harness_f_noted:
 proselyte_sallet:
   id: 9672
   slot: Hat
-  type: Hair
+  type: FullFace
 proselyte_sallet_noted:
   id: 9673
 proselyte_hauberk:
   id: 9674
   slot: Chest
-  type: FullBody
 proselyte_hauberk_noted:
   id: 9675
 proselyte_cuisse:
@@ -19502,7 +19233,6 @@ training_bow:
   type: TwoHanded
 training_arrows:
   id: 9706
-  slot: Arrows
 slashed_book:
   id: 9715
 rock_6:
@@ -19709,7 +19439,7 @@ slayer_cape_(t):
 slayer_hood:
   id: 9788
   slot: Hat
-  type: Hair
+  type: FullFace
 construct._cape:
   id: 9789
   slot: Cape
@@ -19800,6 +19530,7 @@ quest_point_hood:
 bobble_hat_2:
   id: 9815
   slot: Hat
+  type: Hair
 bobble_scarf_2:
   id: 9816
   slot: Amulet
@@ -20007,7 +19738,7 @@ evil_root:
 jack_lantern_mask:
   id: 9920
   slot: Hat
-  type: Hair
+  type: FullFace
 skeleton_boots:
   id: 9921
   slot: Feet
@@ -20020,7 +19751,6 @@ skeleton_leggings:
 skeleton_shirt:
   id: 9924
   slot: Chest
-  type: FullBody
 skeleton_mask:
   id: 9925
   slot: Hat
@@ -20053,7 +19783,6 @@ sandbag:
 bomber_jacket:
   id: 9944
   slot: Chest
-  type: FullBody
 bomber_cap:
   id: 9945
   slot: Hat
@@ -20256,7 +19985,6 @@ kyatt_legs_noted:
 kyatt_top:
   id: 10037
   slot: Chest
-  type: FullBody
 kyatt_top_noted:
   id: 10038
 kyatt_hat:
@@ -20273,7 +20001,6 @@ larupia_legs_noted:
 larupia_top:
   id: 10043
   slot: Chest
-  type: FullBody
 larupia_top_noted:
   id: 10044
 larupia_hat:
@@ -20290,19 +20017,17 @@ graahk_legs_noted:
 graahk_top:
   id: 10049
   slot: Chest
-  type: FullBody
 graahk_top_noted:
   id: 10050
 graahk_headdress:
   id: 10051
   slot: Hat
-  type: Hair
+  type: FullFace
 graahk_headdress_noted:
   id: 10052
 wood_camo_top:
   id: 10053
   slot: Chest
-  type: FullBody
 wood_camo_top_noted:
   id: 10054
 wood_camo_legs:
@@ -20313,7 +20038,6 @@ wood_camo_legs_noted:
 jungle_camo_top:
   id: 10057
   slot: Chest
-  type: FullBody
 jungle_camo_top_noted:
   id: 10058
 jungle_camo_legs:
@@ -20324,7 +20048,6 @@ jungle_camo_legs_noted:
 desert_camo_top:
   id: 10061
   slot: Chest
-  type: FullBody
 desert_camo_top_noted:
   id: 10062
 desert_camo_legs:
@@ -20335,7 +20058,6 @@ desert_camo_legs_noted:
 polar_camo_top:
   id: 10065
   slot: Chest
-  type: FullBody
 polar_camo_top_noted:
   id: 10066
 polar_camo_legs:
@@ -20501,16 +20223,12 @@ burnt_rainbow_fish_noted:
   id: 10141
 guam_tar:
   id: 10142
-  slot: Arrows
 marrentill_tar:
   id: 10143
-  slot: Arrows
 tarromin_tar:
   id: 10144
-  slot: Arrows
 harralander_tar:
   id: 10145
-  slot: Arrows
 orange_salamander:
   id: 10146
   slot: Weapon
@@ -20540,10 +20258,8 @@ hunters_crossbow_noted:
   id: 10157
 kebbit_bolts:
   id: 10158
-  slot: Arrows
 long_kebbit_bolts:
   id: 10159
-  slot: Arrows
 orange_salamander_noted:
   id: 10160
 red_salamander_noted:
@@ -20889,31 +20605,26 @@ black_helm_(h5)_noted:
 bob_shirt:
   id: 10316
   slot: Chest
-  type: FullBody
 bob_shirt_noted:
   id: 10317
 bob_shirt_2:
   id: 10318
   slot: Chest
-  type: FullBody
 bob_shirt_noted_2:
   id: 10319
 bob_shirt_3:
   id: 10320
   slot: Chest
-  type: FullBody
 bob_shirt_noted_3:
   id: 10321
 bob_shirt_4:
   id: 10322
   slot: Chest
-  type: FullBody
 bob_shirt_noted_4:
   id: 10323
 bob_shirt_5:
   id: 10324
   slot: Chest
-  type: FullBody
 bob_shirt_noted_5:
   id: 10325
 purple_firelighter:
@@ -20927,7 +20638,6 @@ purple_logs:
 third-age_range_top:
   id: 10330
   slot: Chest
-  type: FullBody
 third-age_range_top_noted:
   id: 10331
 third-age_range_legs:
@@ -20949,7 +20659,6 @@ third-age_vambraces_noted:
 third-age_robe_top:
   id: 10338
   slot: Chest
-  type: FullBody
 third-age_robe_top_noted:
   id: 10339
 third-age_robe:
@@ -20976,7 +20685,6 @@ third-age_platelegs_noted:
 third-age_platebody:
   id: 10348
   slot: Chest
-  type: FullBody
 third-age_platebody_noted:
   id: 10349
 third-age_full_helmet:
@@ -21033,7 +20741,6 @@ zamorak_vambraces_noted:
 zamorak_body:
   id: 10370
   slot: Chest
-  type: FullBody
 zamorak_body_noted:
   id: 10371
 zamorak_chaps:
@@ -21055,7 +20762,6 @@ guthix_vambraces_noted:
 guthix_body:
   id: 10378
   slot: Chest
-  type: FullBody
 guthix_body_noted:
   id: 10379
 guthix_chaps:
@@ -21077,7 +20783,6 @@ saradomin_vambraces_noted:
 saradomin_body:
   id: 10386
   slot: Chest
-  type: FullBody
 saradomin_body_noted:
   id: 10387
 saradomin_chaps:
@@ -21116,7 +20821,6 @@ sleeping_cap_noted:
 black_elegant_shirt:
   id: 10400
   slot: Chest
-  type: FullBody
 black_elegant_shirt_noted:
   id: 10401
 black_elegant_legs:
@@ -21127,7 +20831,6 @@ black_elegant_legs_noted:
 red_elegant_shirt:
   id: 10404
   slot: Chest
-  type: FullBody
 red_elegant_shirt_noted:
   id: 10405
 red_elegant_legs:
@@ -21138,7 +20841,6 @@ red_elegant_legs_noted:
 blue_elegant_shirt:
   id: 10408
   slot: Chest
-  type: FullBody
 blue_elegant_shirt_noted:
   id: 10409
 blue_elegant_legs:
@@ -21149,7 +20851,6 @@ blue_elegant_legs_noted:
 green_elegant_shirt:
   id: 10412
   slot: Chest
-  type: FullBody
 green_elegant_shirt_noted:
   id: 10413
 green_elegant_legs:
@@ -21160,7 +20861,6 @@ green_elegant_legs_noted:
 purple_elegant_shirt:
   id: 10416
   slot: Chest
-  type: FullBody
 purple_elegant_shirt_noted:
   id: 10417
 purple_elegant_legs:
@@ -21171,7 +20871,6 @@ purple_elegant_legs_noted:
 white_elegant_blouse:
   id: 10420
   slot: Chest
-  type: FullBody
 white_elegant_blouse_noted:
   id: 10421
 white_elegant_skirt:
@@ -21182,7 +20881,6 @@ white_elegant_skirt_noted:
 red_elegant_blouse:
   id: 10424
   slot: Chest
-  type: FullBody
 red_elegant_blouse_noted:
   id: 10425
 red_elegant_skirt:
@@ -21193,7 +20891,6 @@ red_elegant_skirt_noted:
 blue_elegant_blouse:
   id: 10428
   slot: Chest
-  type: FullBody
 blue_elegant_blouse_noted:
   id: 10429
 blue_elegant_skirt:
@@ -21204,7 +20901,6 @@ blue_elegant_skirt_noted:
 green_elegant_blouse:
   id: 10432
   slot: Chest
-  type: FullBody
 green_elegant_blouse_noted:
   id: 10433
 green_elegant_skirt:
@@ -21215,7 +20911,6 @@ green_elegant_skirt_noted:
 purple_elegant_blouse:
   id: 10436
   slot: Chest
-  type: FullBody
 purple_elegant_blouse_noted:
   id: 10437
 purple_elegant_skirt:
@@ -21274,19 +20969,16 @@ zamorak_mitre_noted:
 saradomin_robe_top:
   id: 10458
   slot: Chest
-  type: FullBody
 saradomin_robe_top_noted:
   id: 10459
 zamorak_robe_top:
   id: 10460
   slot: Chest
-  type: FullBody
 zamorak_robe_top_noted:
   id: 10461
 guthix_robe_top:
   id: 10462
   slot: Chest
-  type: FullBody
 guthix_robe_top_noted:
   id: 10463
 saradomin_robe_legs:
@@ -21464,7 +21156,6 @@ ranger_hat:
 fighter_torso:
   id: 10551
   slot: Chest
-  type: FullBody
 runner_boots:
   id: 10552
   slot: Feet
@@ -21500,7 +21191,6 @@ no_eggs:
 granite_body:
   id: 10564
   slot: Chest
-  type: FullBody
 granite_body_noted:
   id: 10565
 fire_cape_2:
@@ -21591,12 +21281,15 @@ kgp_id_card:
 mystic_hat_4:
   id: 10601
   slot: Hat
+  type: Hair
 mystic_hat_5:
   id: 10602
   slot: Hat
+  type: Hair
 mystic_hat_6:
   id: 10603
   slot: Hat
+  type: Hair
 skeletal_helm_2:
   id: 10604
   slot: Hat
@@ -21604,10 +21297,10 @@ skeletal_helm_2:
 infinity_top_2:
   id: 10605
   slot: Chest
-  type: FullBody
 splitbark_helm_2:
   id: 10606
   slot: Hat
+  type: Hair
 ghostly_boots_2:
   id: 10607
   slot: Feet
@@ -21617,15 +21310,13 @@ moonclan_hat_2:
 lunar_helm_2:
   id: 10609
   slot: Hat
-  type: Hair
+  type: FullFace
 basic_decorative_platebody_2:
   id: 10610
   slot: Chest
-  type: FullBody
 void_knight_top_2:
   id: 10611
   slot: Chest
-  type: FullBody
 rogue_mask_2:
   id: 10612
   slot: Hat
@@ -21650,70 +21341,54 @@ tribal_mask_6:
 white_platebody_2:
   id: 10618
   slot: Chest
-  type: FullBody
 initiate_hauberk_2:
   id: 10619
   slot: Chest
-  type: FullBody
 proselyte_hauberk_2:
   id: 10620
   slot: Chest
-  type: FullBody
 mourner_top_2:
   id: 10621
   slot: Chest
-  type: FullBody
 kyatt_top_2:
   id: 10622
   slot: Chest
-  type: FullBody
 larupia_top_2:
   id: 10623
   slot: Chest
-  type: FullBody
 graahk_top_2:
   id: 10624
   slot: Chest
-  type: FullBody
 wood_camo_top_2:
   id: 10625
   slot: Chest
-  type: FullBody
 jungle_camo_top_2:
   id: 10626
   slot: Chest
-  type: FullBody
 desert_camo_top_2:
   id: 10627
   slot: Chest
-  type: FullBody
 polar_camo_top_2:
   id: 10628
   slot: Chest
-  type: FullBody
 mime_mask_2:
   id: 10629
   slot: Hat
-  type: Mask
 princess_blouse_2:
   id: 10630
   slot: Chest
-  type: FullBody
 zombie_shirt_2:
   id: 10631
   slot: Chest
 camo_top_2:
   id: 10632
   slot: Chest
-  type: FullBody
 lederhosen_top_2:
   id: 10633
   slot: Chest
-  type: FullBody
 shade_robe_3:
   id: 10634
   slot: Chest
-  type: FullBody
 cape_of_legends_3:
   id: 10635
   slot: Cape
@@ -21852,44 +21527,45 @@ rune_shield_(h5)_2:
 studded_body_(g)_2:
   id: 10680
   slot: Chest
+  type: Sleeveless
 studded_body_(t)_2:
   id: 10681
   slot: Chest
+  type: Sleeveless
 dhide_body_(g):
   id: 10682
   slot: Chest
+  type: Sleeveless
 dhide_body_(t):
   id: 10683
   slot: Chest
+  type: Sleeveless
 dhide_body_(g)_2:
   id: 10684
   slot: Chest
+  type: Sleeveless
 dhide_body_(t)_2:
   id: 10685
   slot: Chest
+  type: Sleeveless
 wizard_robe_(g)_2:
   id: 10686
   slot: Chest
-  type: FullBody
 wizard_robe_(t)_2:
   id: 10687
   slot: Chest
-  type: FullBody
 enchanted_top_2:
   id: 10688
   slot: Chest
-  type: FullBody
 wizard_boots_2:
   id: 10689
   slot: Feet
 black_platebody_(t)_2:
   id: 10690
   slot: Chest
-  type: FullBody
 black_platebody_(g)_2:
   id: 10691
   slot: Chest
-  type: FullBody
 highwayman_mask_2:
   id: 10692
   slot: Hat
@@ -21908,11 +21584,9 @@ ranger_boots_2:
 adam_platebody_(t):
   id: 10697
   slot: Chest
-  type: FullBody
 adam_platebody_(g):
   id: 10698
   slot: Chest
-  type: FullBody
 black_helm_(h1)_2:
   id: 10699
   slot: Hat
@@ -21976,23 +21650,18 @@ adamant_helm_(h5)_2:
 bob_shirt_6:
   id: 10714
   slot: Chest
-  type: FullBody
 bob_shirt_7:
   id: 10715
   slot: Chest
-  type: FullBody
 bob_shirt_8:
   id: 10716
   slot: Chest
-  type: FullBody
 bob_shirt_9:
   id: 10717
   slot: Chest
-  type: FullBody
 bob_shirt_10:
   id: 10718
   slot: Chest
-  type: FullBody
 amulet_of_glory_(t)_2:
   id: 10719
   slot: Amulet
@@ -22002,13 +21671,13 @@ guthix_cape_2:
 frog_mask_2:
   id: 10721
   slot: Hat
-  type: Hair
+  type: FullFace
 reindeer_hat_2:
   id: 10722
 jack_lantern_mask_2:
   id: 10723
   slot: Hat
-  type: Hair
+  type: FullFace
 skeleton_boots_2:
   id: 10724
   slot: Feet
@@ -22021,7 +21690,6 @@ skeleton_leggings_2:
 skeleton_shirt_2:
   id: 10727
   slot: Chest
-  type: FullBody
 skeleton_mask_2:
   id: 10728
   slot: Hat
@@ -22079,31 +21747,26 @@ picture_131:
 elegant_shirt:
   id: 10748
   slot: Chest
-  type: FullBody
 picture_132:
   id: 10749
 elegant_shirt_2:
   id: 10750
   slot: Chest
-  type: FullBody
 picture_133:
   id: 10751
 elegant_shirt_3:
   id: 10752
   slot: Chest
-  type: FullBody
 picture_134:
   id: 10753
 elegant_shirt_4:
   id: 10754
   slot: Chest
-  type: FullBody
 picture_135:
   id: 10755
 elegant_shirt_5:
   id: 10756
   slot: Chest
-  type: FullBody
 picture_136:
   id: 10757
 red_boater_2:
@@ -22154,61 +21817,51 @@ picture_145:
 zamorak_platebody_2:
   id: 10776
   slot: Chest
-  type: FullBody
 picture_146:
   id: 10777
 saradomin_plate:
   id: 10778
   slot: Chest
-  type: FullBody
 picture_147:
   id: 10779
 guthix_platebody_2:
   id: 10780
   slot: Chest
-  type: FullBody
 picture_148:
   id: 10781
 gilded_platebody_2:
   id: 10782
   slot: Chest
-  type: FullBody
 picture_149:
   id: 10783
 saradomin_robe_top_2:
   id: 10784
   slot: Chest
-  type: FullBody
 picture_150:
   id: 10785
 zamorak_robe_top_2:
   id: 10786
   slot: Chest
-  type: FullBody
 picture_151:
   id: 10787
 guthix_robe_top_2:
   id: 10788
   slot: Chest
-  type: FullBody
 picture_152:
   id: 10789
 zamorak_dragonhide:
   id: 10790
   slot: Chest
-  type: FullBody
 picture_153:
   id: 10791
 saradomin_dragonhide:
   id: 10792
   slot: Chest
-  type: FullBody
 picture_154:
   id: 10793
 guthix_dragonhide:
   id: 10794
   slot: Chest
-  type: FullBody
 picture_155:
   id: 10795
 robin_hood_hat_2:
@@ -22219,13 +21872,11 @@ picture_156:
 rune_platebody_(g)_2:
   id: 10798
   slot: Chest
-  type: FullBody
 picture_157:
   id: 10799
 rune_platebody_(t)_2:
   id: 10800
   slot: Chest
-  type: FullBody
 picture_158:
   id: 10801
 tan_cavalier_2:
@@ -22275,7 +21926,6 @@ cured_yak-hide_noted:
 yak-hide_armour:
   id: 10822
   slot: Chest
-  type: FullBody
 yak-hide_armour_noted:
   id: 10823
 yak-hide_armour_2:
@@ -22309,10 +21959,10 @@ bulging_taxbag:
 silly_jester_hat:
   id: 10836
   slot: Hat
+  type: Hair
 silly_jester_top:
   id: 10837
   slot: Chest
-  type: FullBody
 silly_jester_tights:
   id: 10838
   slot: Legs
@@ -22369,10 +22019,10 @@ tea_flask_3:
 hard_hat:
   id: 10862
   slot: Hat
+  type: Hair
 builders_shirt:
   id: 10863
   slot: Chest
-  type: FullBody
 builders_trousers:
   id: 10864
   slot: Legs
@@ -22416,6 +22066,7 @@ rune_satchel:
 hard_hat_2:
   id: 10883
   slot: Hat
+  type: Hair
 fuse_2:
   id: 10884
 keg:
@@ -22516,7 +22167,6 @@ nail_beast_nails_noted:
 lumberjack_top:
   id: 10939
   slot: Chest
-  type: FullBody
 lumberjack_legs:
   id: 10940
   slot: Legs
@@ -22533,7 +22183,6 @@ reward_token_10:
 lumberjack_top_2:
   id: 10945
   slot: Chest
-  type: FullBody
 push_up:
   id: 10946
 run:
@@ -22553,7 +22202,7 @@ slayer_bell_noted:
 frog-leather_body:
   id: 10954
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 frog-leather_body_noted:
   id: 10955
 frog-leather_chaps:
@@ -22674,18 +22323,14 @@ infused_wand:
   slot: Weapon
 beacon_ring:
   id: 11014
-  slot: Ring
 chicken_head:
   id: 11015
-  slot: Hat
-  type: Hair
 chicken_feet:
   id: 11016
   slot: Feet
 chicken_wings:
   id: 11017
   slot: Chest
-  type: FullBody
 chicken_legs:
   id: 11018
   slot: Legs
@@ -22695,7 +22340,6 @@ chicken_feet_2:
 chicken_wings_2:
   id: 11020
   slot: Chest
-  type: FullBody
 chicken_head_2:
   id: 11021
   slot: Hat
@@ -22948,7 +22592,6 @@ regen_bracelet_noted:
 bomber_jacket_2:
   id: 11135
   slot: Chest
-  type: FullBody
 karamja_gloves_1:
   id: 11136
   slot: Hands
@@ -23083,22 +22726,16 @@ magic_beans:
   id: 11211
 dragon_arrow:
   id: 11212
-  slot: Arrows
 dragon_fire_arrows:
   id: 11217
-  slot: Arrows
 dragon_fire_arrows_2:
   id: 11222
-  slot: Arrows
 dragon_arrow_(p):
   id: 11227
-  slot: Arrows
 dragon_arrow_(p+):
   id: 11228
-  slot: Arrows
 dragon_arrow_(p++):
   id: 11229
-  slot: Arrows
 dragon_dart:
   id: 11230
   slot: Weapon
@@ -23197,16 +22834,17 @@ impling_scroll:
 ham_shirt:
   id: 11274
   slot: Chest
-  type: FullBody
 mith_grapple_noted:
   id: 11275
 mith_grapple_noted_2:
   id: 11276
 cavalier_mask:
   id: 11277
+  slot: Hat
 beret_mask:
   id: 11278
   slot: Hat
+  type: FullFace
 elvargs_head:
   id: 11279
   slot: Weapon
@@ -23219,7 +22857,6 @@ cavalier_and_mask_noted:
 beret_and_mask:
   id: 11282
   slot: Hat
-  type: Hair
 dragonfire_shield:
   id: 11283
   slot: Shield
@@ -23259,7 +22896,7 @@ fish_offcuts:
 dragon_full_helm:
   id: 11335
   slot: Hat
-  type: Hair
+  type: FullFace
 dragon_full_helm_noted:
   id: 11336
 mangled_bones:
@@ -23667,6 +23304,7 @@ void_mage_helm:
 void_ranger_helm:
   id: 11664
   slot: Hat
+  type: Hair
 void_melee_helm:
   id: 11665
   slot: Hat
@@ -23802,7 +23440,6 @@ armadyl_helmet_noted:
 armadyl_chestplate:
   id: 11720
   slot: Chest
-  type: FullBody
 armadyl_chestplate_noted:
   id: 11721
 armadyl_chainskirt:
@@ -23813,7 +23450,6 @@ armadyl_chainskirt_noted:
 bandos_chestplate:
   id: 11724
   slot: Chest
-  type: FullBody
 bandos_chestplate_noted:
   id: 11725
 bandos_tassets:
@@ -23884,15 +23520,12 @@ antique_lamp_15:
 varrock_armour_1:
   id: 11756
   slot: Chest
-  type: FullBody
 varrock_armour_2:
   id: 11757
   slot: Chest
-  type: FullBody
 varrock_armour_3:
   id: 11758
   slot: Chest
-  type: FullBody
 logs_3:
   id: 11760
 locked_diary:
@@ -23952,14 +23585,13 @@ voice_of_doom_potion:
 grim_reaper_hood:
   id: 11789
   slot: Hat
-  type: Hair
+  type: FullFace
 grim_reaper_hood_2:
   id: 11790
   slot: Hat
-  type: Hair
+  type: FullFace
 white_goblin_mail:
   id: 11791
-  slot: Chest
 grubfoot:
   id: 11792
 zanik_3:
@@ -24784,53 +24416,63 @@ antlers_(charged):
 lizard_skull:
   id: 12207
   slot: Hat
-  type: Hair
+  type: FullFace
 lizard_skull_noted:
   id: 12208
 lizard_skull_(charged):
   id: 12209
   slot: Hat
-  type: Hair
+  type: FullFace
 feather_headdress:
   id: 12210
   slot: Hat
+  type: FullFace
 feather_headdress_noted:
   id: 12211
 feather_headdress_(charged):
   id: 12212
   slot: Hat
+  type: FullFace
 feather_headdress_2:
   id: 12213
   slot: Hat
+  type: FullFace
 feather_headdress_noted_2:
   id: 12214
 feather_headdress_(charged)_2:
   id: 12215
   slot: Hat
+  type: FullFace
 feather_headdress_3:
   id: 12216
   slot: Hat
+  type: FullFace
 feather_headdress_noted_3:
   id: 12217
 feather_headdress_(charged)_3:
   id: 12218
   slot: Hat
+  type: FullFace
 feather_headdress_4:
   id: 12219
   slot: Hat
+  type: FullFace
 feather_headdress_noted_4:
   id: 12220
 feather_headdress_(charged)_4:
   id: 12221
   slot: Hat
+  type: FullFace
 feather_headdress_5:
   id: 12222
   slot: Hat
+  type: FullFace
 feather_headdress_noted_5:
   id: 12223
 feather_headdress_(charged)_5:
   id: 12224
   slot: Hat
+  type: FullFace
 pouch_2:
   id: 12225
 pouch_3:
@@ -25505,7 +25147,6 @@ ogre_kilt_noted:
 ogre_top:
   id: 12563
   slot: Chest
-  type: FullBody
 ogre_top_noted:
   id: 12564
 ogre_boots:
@@ -25549,7 +25190,6 @@ smouldering_tansymum:
   slot: Weapon
 eucalyptus_logs:
   id: 12581
-  slot: Shield
 eucalyptus_logs_noted:
   id: 12582
 eucalyptus_pyre_logs:
@@ -25573,6 +25213,7 @@ engineers_letter:
 sailors_hat:
   id: 12595
   slot: Hat
+  type: Hair
 metal_catapult_parts:
   id: 12596
 mahogany_catapult_part:
@@ -25713,11 +25354,11 @@ chocolate_chunks_2:
 adamant_full_helm_(e):
   id: 12658
   slot: Hat
-  type: Hair
+  type: FullFace
 adamant_full_helm_(charged):
   id: 12659
   slot: Hat
-  type: Hair
+  type: FullFace
 snakeskin_bandana_(e):
   id: 12660
   slot: Hat
@@ -25737,11 +25378,11 @@ splitbark_helm_(charged):
 rune_full_helm_(e):
   id: 12664
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_full_helm_(charged):
   id: 12665
   slot: Hat
-  type: Hair
+  type: FullFace
 dragon_med_helm_(e):
   id: 12666
   slot: Hat
@@ -25753,11 +25394,11 @@ dragon_med_helm_(charged):
 lunar_helm_(e):
   id: 12668
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_helm_(charged):
   id: 12669
   slot: Hat
-  type: Hair
+  type: FullFace
 armadyl_helmet_(e):
   id: 12670
   slot: Hat
@@ -26128,7 +25769,6 @@ inferno_scroll:
   id: 12841
 gnomecopter:
   id: 12842
-  slot: Cape
 gnomecopter_ticket:
   id: 12843
 toy_kite:
@@ -26223,27 +25863,21 @@ battle_hood_0_noted:
 battle_robe_top_100:
   id: 12873
   slot: Chest
-  type: FullBody
 battle_robe_top_80:
   id: 12874
   slot: Chest
-  type: FullBody
 battle_robe_top_60:
   id: 12875
   slot: Chest
-  type: FullBody
 battle_robe_top_40:
   id: 12876
   slot: Chest
-  type: FullBody
 battle_robe_top_20:
   id: 12877
   slot: Chest
-  type: FullBody
 battle_robe_top_0:
   id: 12878
   slot: Chest
-  type: FullBody
 battle_robe_top_0_noted:
   id: 12879
 battle_robe_bottom_100:
@@ -26295,27 +25929,21 @@ druidic_mage_hood_0_noted:
 druidic_mage_top_100:
   id: 12894
   slot: Chest
-  type: FullBody
 druidic_mage_top_80:
   id: 12895
   slot: Chest
-  type: FullBody
 druidic_mage_top_60:
   id: 12896
   slot: Chest
-  type: FullBody
 druidic_mage_top_40:
   id: 12897
   slot: Chest
-  type: FullBody
 druidic_mage_top_20:
   id: 12898
   slot: Chest
-  type: FullBody
 druidic_mage_top_0:
   id: 12899
   slot: Chest
-  type: FullBody
 druidic_mage_top_0_noted:
   id: 12900
 druidic_mage_bottom_100:
@@ -26551,27 +26179,21 @@ combat_hood_0_noted:
 combat_robe_top_100:
   id: 12971
   slot: Chest
-  type: FullBody
 combat_robe_top_80:
   id: 12972
   slot: Chest
-  type: FullBody
 combat_robe_top_60:
   id: 12973
   slot: Chest
-  type: FullBody
 combat_robe_top_40:
   id: 12974
   slot: Chest
-  type: FullBody
 combat_robe_top_20:
   id: 12975
   slot: Chest
-  type: FullBody
 combat_robe_top_0:
   id: 12976
   slot: Chest
-  type: FullBody
 combat_robe_top_0_noted:
   id: 12977
 combat_robe_bottom_100:
@@ -26807,16 +26429,12 @@ black_crossbow_noted:
   id: 13082
 black_bolts:
   id: 13083
-  slot: Arrows
 black_bolts_(p):
   id: 13084
-  slot: Arrows
 black_bolts_(p+):
   id: 13085
-  slot: Arrows
 black_bolts_(p++):
   id: 13086
-  slot: Arrows
 black_cane:
   id: 13095
   slot: Weapon
@@ -26840,6 +26458,7 @@ top_hat_noted:
 pith_helmet:
   id: 13103
   slot: Hat
+  type: Hair
 pith_helmet_noted:
   id: 13104
 spiked_helmet:
@@ -27042,7 +26661,6 @@ rune_cane_2:
 top_hat_2:
   id: 13166
   slot: Hat
-  type: Hair
 pith_helmet_2:
   id: 13167
   slot: Hat
@@ -27095,31 +26713,24 @@ grey_navy_slacks_2:
 blue_naval_shirt_2:
   id: 13181
   slot: Chest
-  type: FullBody
 green_naval_shirt_2:
   id: 13182
   slot: Chest
-  type: FullBody
 red_naval_shirt_2:
   id: 13183
   slot: Chest
-  type: FullBody
 brown_naval_shirt_2:
   id: 13184
   slot: Chest
-  type: FullBody
 black_naval_shirt_2:
   id: 13185
   slot: Chest
-  type: FullBody
 purple_naval_shirt_2:
   id: 13186
   slot: Chest
-  type: FullBody
 grey_naval_shirt_2:
   id: 13187
   slot: Chest
-  type: FullBody
 blue_tricorn_hat_2:
   id: 13188
   slot: Hat
@@ -27199,43 +26810,35 @@ magic_path_key:
 slayer_helmet:
   id: 13263
   slot: Hat
-  type: Hair
+  type: FullFace
 banshee_voice:
   id: 13276
 masked_earmuffs:
   id: 13277
   slot: Hat
+  type: Mask
 broad_arrow_heads:
   id: 13278
 unfinished_broad_bolts:
   id: 13279
 broad-tipped_bolts:
   id: 13280
-  slot: Arrows
 ring_of_slaying_(8):
   id: 13281
-  slot: Ring
 ring_of_slaying_(7):
   id: 13282
-  slot: Ring
 ring_of_slaying_(6):
   id: 13283
-  slot: Ring
 ring_of_slaying_(5):
   id: 13284
-  slot: Ring
 ring_of_slaying_(4):
   id: 13285
-  slot: Ring
 ring_of_slaying_(3):
   id: 13286
-  slot: Ring
 ring_of_slaying_(2):
   id: 13287
-  slot: Ring
 ring_of_slaying_(1):
   id: 13288
-  slot: Ring
 leaf-bladed_sword:
   id: 13290
   slot: Weapon
@@ -27254,13 +26857,13 @@ crude_lockpick:
 customs_shirt:
   id: 13297
   slot: Chest
-  type: FullBody
 customs_trousers:
   id: 13298
   slot: Legs
 customs_hat:
   id: 13299
   slot: Hat
+  type: Hair
 file:
   id: 13300
 file_2:
@@ -27294,14 +26897,12 @@ smashed_bottle:
 prison_uniform_top:
   id: 13316
   slot: Chest
-  type: FullBody
 prison_uniform_trousers:
   id: 13317
   slot: Legs
 fishy_prison_uniform_top:
   id: 13318
   slot: Chest
-  type: FullBody
 tin_cup:
   id: 13319
   slot: Weapon
@@ -27518,9 +27119,11 @@ fake_beard_2:
 fake_moustache_and_nose:
   id: 13397
   slot: Hat
+  type: Mask
 fake_monocle,_moustache_and_nose:
   id: 13398
   slot: Hat
+  type: Mask
 curly_wig:
   id: 13399
   slot: Hat
@@ -27565,7 +27168,6 @@ rock-shell_helm_lent:
 rock-shell_plate_lent:
   id: 13412
   slot: Chest
-  type: FullBody
 rock-shell_legs_lent:
   id: 13413
   slot: Legs
@@ -27576,7 +27178,6 @@ spined_helm_lent:
 spined_body_lent:
   id: 13415
   slot: Chest
-  type: FullBody
 spined_chaps_lent:
   id: 13416
   slot: Legs
@@ -27587,7 +27188,6 @@ skeletal_helm_lent:
 skeletal_top_lent:
   id: 13418
   slot: Chest
-  type: FullBody
 skeletal_bottoms_lent:
   id: 13419
   slot: Legs
@@ -27611,16 +27211,12 @@ skeletal_gloves_lent:
   slot: Hands
 seers_ring_lent:
   id: 13426
-  slot: Ring
 archers_ring_lent:
   id: 13427
-  slot: Ring
 warrior_ring_lent:
   id: 13428
-  slot: Ring
 berserker_ring_lent:
   id: 13429
-  slot: Ring
 dragon_2h_sword_lent:
   id: 13430
   slot: Weapon
@@ -27667,7 +27263,7 @@ antique_lamp_21:
 dragon_full_helm_lent:
   id: 13449
   slot: Hat
-  type: Hair
+  type: FullFace
 armadyl_godsword_lent:
   id: 13450
   slot: Weapon
@@ -27695,14 +27291,12 @@ armadyl_helmet_lent:
 armadyl_chestplate_lent:
   id: 13456
   slot: Chest
-  type: FullBody
 armadyl_chainskirt_lent:
   id: 13457
   slot: Legs
 bandos_chestplate_lent:
   id: 13458
   slot: Chest
-  type: FullBody
 bandos_tassets_lent:
   id: 13459
   slot: Legs
@@ -27772,27 +27366,25 @@ rune_pickaxe_lent:
 dragon_chainbody_lent:
   id: 13481
   slot: Chest
-  type: FullBody
 rune_platebody_lent:
   id: 13482
   slot: Chest
-  type: FullBody
 green_dhide_body_lent:
   id: 13483
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 blue_dhide_body_lent:
   id: 13484
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 red_dhide_body_lent:
   id: 13485
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 black_dhide_body_lent:
   id: 13486
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 rune_platelegs_lent:
   id: 13487
   slot: Legs
@@ -27824,7 +27416,7 @@ dragon_med_helm_lent:
 rune_full_helm_lent:
   id: 13496
   slot: Hat
-  type: Hair
+  type: FullFace
 green_dhide_vambraces_lent:
   id: 13497
   slot: Hands
@@ -27840,10 +27432,10 @@ black_dhide_vambraces_lent:
 splitbark_helm_lent:
   id: 13501
   slot: Hat
+  type: Hair
 splitbark_body_lent:
   id: 13502
   slot: Chest
-  type: FullBody
 splitbark_legs_lent:
   id: 13503
   slot: Legs
@@ -27866,7 +27458,6 @@ mystic_hat_lent:
 mystic_robe_top_lent:
   id: 13509
   slot: Chest
-  type: FullBody
 mystic_robe_bottom_lent:
   id: 13510
   slot: Legs
@@ -27883,7 +27474,6 @@ mystic_hat_lent_2:
 mystic_robe_top_lent_2:
   id: 13514
   slot: Chest
-  type: FullBody
 mystic_robe_bottom_lent_2:
   id: 13515
   slot: Legs
@@ -27900,7 +27490,6 @@ mystic_hat_lent_3:
 mystic_robe_top_lent_3:
   id: 13519
   slot: Chest
-  type: FullBody
 mystic_robe_bottom_lent_3:
   id: 13520
   slot: Legs
@@ -27965,15 +27554,15 @@ santa_hat_lent:
 green_hween_mask_lent:
   id: 13538
   slot: Hat
-  type: Hair
+  type: FullFace
 blue_hween_mask_lent:
   id: 13539
   slot: Hat
-  type: Hair
+  type: FullFace
 red_hween_mask_lent:
   id: 13540
   slot: Hat
-  type: Hair
+  type: FullFace
 willow_composite_bow_lent:
   id: 13541
   slot: Weapon
@@ -27989,7 +27578,6 @@ magic_composite_bow_lent:
 third-age_range_top_lent:
   id: 13544
   slot: Chest
-  type: FullBody
 third-age_range_legs_lent:
   id: 13545
   slot: Legs
@@ -28003,7 +27591,6 @@ third-age_vambraces_lent:
 third-age_robe_top_lent:
   id: 13548
   slot: Chest
-  type: FullBody
 third-age_robe_lent:
   id: 13549
   slot: Legs
@@ -28020,7 +27607,6 @@ third-age_platelegs_lent:
 third-age_platebody_lent:
   id: 13553
   slot: Chest
-  type: FullBody
 third-age_full_helmet_lent:
   id: 13554
   slot: Hat
@@ -28039,13 +27625,10 @@ robin_hood_hat_lent:
   slot: Hat
 explorers_ring_1:
   id: 13560
-  slot: Ring
 explorers_ring_2:
   id: 13561
-  slot: Ring
 explorers_ring_3:
   id: 13562
-  slot: Ring
 button_mushroom:
   id: 13563
 button_mushroom_noted:
@@ -28054,7 +27637,6 @@ doll:
   id: 13565
 jennicas_ring:
   id: 13566
-  slot: Ring
 cursed_magic_logs:
   id: 13567
 cursed_magic_logs_noted:
@@ -28138,19 +27720,22 @@ astral_altar_teleport:
 runecrafter_hat:
   id: 13612
   slot: Hat
+  type: Hair
 runecrafter_hat_2:
   id: 13613
   slot: Hat
+  type: Hair
 runecrafter_robe:
   id: 13614
   slot: Chest
-  type: FullBody
 runecrafter_hat_3:
   id: 13615
   slot: Hat
+  type: Hair
 runecrafter_hat_4:
   id: 13616
   slot: Hat
+  type: Hair
 runecrafter_skirt:
   id: 13617
   slot: Legs
@@ -28160,13 +27745,14 @@ runecrafter_gloves:
 runecrafter_robe_2:
   id: 13619
   slot: Chest
-  type: FullBody
 runecrafter_hat_5:
   id: 13620
   slot: Hat
+  type: Hair
 runecrafter_hat_6:
   id: 13621
   slot: Hat
+  type: Hair
 runecrafter_skirt_2:
   id: 13622
   slot: Legs
@@ -28176,13 +27762,14 @@ runecrafter_gloves_2:
 runecrafter_robe_3:
   id: 13624
   slot: Chest
-  type: FullBody
 runecrafter_hat_7:
   id: 13625
   slot: Hat
+  type: Hair
 runecrafter_hat_8:
   id: 13626
   slot: Hat
+  type: Hair
 runecrafter_skirt_3:
   id: 13627
   slot: Legs
@@ -28266,15 +27853,17 @@ omni-tiara:
 runecrafter_hat_9:
   id: 13656
   slot: Hat
+  type: Hair
 runecrafter_hat_10:
   id: 13657
   slot: Hat
+  type: Hair
 runecrafter_hat_11:
   id: 13658
   slot: Hat
+  type: Hair
 ring_of_fire:
   id: 13659
-  slot: Ring
 flame_gloves:
   id: 13660
   slot: Hands
@@ -28297,7 +27886,6 @@ clown_hat:
 clown_shirt:
   id: 13668
   slot: Chest
-  type: FullBody
 clown_leggings:
   id: 13669
   slot: Legs
@@ -28313,7 +27901,6 @@ ringmaster_hat:
 ringmaster_shirt:
   id: 13673
   slot: Chest
-  type: FullBody
 ringmaster_pants:
   id: 13674
   slot: Legs
@@ -28326,7 +27913,6 @@ mega-phonus:
 acrobat_shirt:
   id: 13677
   slot: Chest
-  type: FullBody
 acrobat_pants:
   id: 13678
   slot: Legs
@@ -28336,11 +27922,10 @@ acrobat_shoes:
 acrobat_hood:
   id: 13680
   slot: Hat
-  type: Hair
+  type: FullFace
 acrobat_shirt_2:
   id: 13681
   slot: Chest
-  type: FullBody
 acrobat_pants_2:
   id: 13682
   slot: Legs
@@ -28350,7 +27935,7 @@ acrobat_shoes_2:
 acrobat_hood_2:
   id: 13684
   slot: Hat
-  type: Hair
+  type: FullFace
 a_stylish_hat:
   id: 13685
   slot: Hat
@@ -28363,39 +27948,30 @@ a_stylish_hat_3:
 a_stylish_hat_4:
   id: 13688
   slot: Hat
-  type: Hair
 a_stylish_hat_5:
   id: 13689
   slot: Hat
-  type: Hair
 a_stylish_hat_6:
   id: 13690
   slot: Hat
-  type: Hair
 shirt_4:
   id: 13691
   slot: Chest
-  type: FullBody
 shirt_5:
   id: 13692
   slot: Chest
-  type: FullBody
 shirt_6:
   id: 13693
   slot: Chest
-  type: FullBody
 shirt_7:
   id: 13694
   slot: Chest
-  type: FullBody
 shirt_8:
   id: 13695
   slot: Chest
-  type: FullBody
 shirt_9:
   id: 13696
   slot: Chest
-  type: FullBody
 leggings:
   id: 13697
   slot: Legs
@@ -28472,7 +28048,6 @@ performance_throwing_axe:
   slot: Weapon
 performance_arrow:
   id: 13722
-  slot: Arrows
 teleport_spell:
   id: 13723
 levitation_spell:
@@ -28618,7 +28193,7 @@ rune_mace_lent:
 rune_chainbody_lent:
   id: 13781
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 rune_boots_lent:
   id: 13782
   slot: Feet
@@ -28633,7 +28208,6 @@ granite_helm_lent:
 granite_body_lent:
   id: 13785
   slot: Chest
-  type: FullBody
 granite_legs_lent:
   id: 13786
   slot: Legs
@@ -28686,7 +28260,6 @@ wolf_mask_lent:
 rune_platebody_(g)_lent:
   id: 13800
   slot: Chest
-  type: FullBody
 rune_platelegs_(g)_lent:
   id: 13801
   slot: Legs
@@ -28696,14 +28269,13 @@ rune_plateskirt_(g)_lent:
 rune_full_helm_(g)_lent:
   id: 13803
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_kiteshield_(g)_lent:
   id: 13804
   slot: Shield
 rune_platebody_(t)_lent:
   id: 13805
   slot: Chest
-  type: FullBody
 rune_platelegs_(t)_lent:
   id: 13806
   slot: Legs
@@ -28713,7 +28285,7 @@ rune_plateskirt_(t)_lent:
 rune_full_helm_(t)_lent:
   id: 13808
   slot: Hat
-  type: Hair
+  type: FullFace
 rune_kiteshield_(t)_lent:
   id: 13809
   slot: Shield
@@ -28750,7 +28322,6 @@ brown_headband_lent:
 zamorak_platebody_lent:
   id: 13820
   slot: Chest
-  type: FullBody
 zamorak_platelegs_lent:
   id: 13821
   slot: Legs
@@ -28760,14 +28331,13 @@ zamorak_plateskirt_lent:
 zamorak_full_helm_lent:
   id: 13823
   slot: Hat
-  type: Hair
+  type: FullFace
 zamorak_kiteshield_lent:
   id: 13824
   slot: Shield
 saradomin_platebody_lent:
   id: 13825
   slot: Chest
-  type: FullBody
 saradomin_platelegs_lent:
   id: 13826
   slot: Legs
@@ -28777,14 +28347,13 @@ saradomin_plateskirt_lent:
 saradomin_full_helm_lent:
   id: 13828
   slot: Hat
-  type: Hair
+  type: FullFace
 saradomin_kiteshield_lent:
   id: 13829
   slot: Shield
 guthix_platebody_lent:
   id: 13830
   slot: Chest
-  type: FullBody
 guthix_platelegs_lent:
   id: 13831
   slot: Legs
@@ -28794,14 +28363,13 @@ guthix_plateskirt_lent:
 guthix_full_helm_lent:
   id: 13833
   slot: Hat
-  type: Hair
+  type: FullFace
 guthix_kiteshield_lent:
   id: 13834
   slot: Shield
 gilded_platebody_lent:
   id: 13835
   slot: Chest
-  type: FullBody
 gilded_platelegs_lent:
   id: 13836
   slot: Legs
@@ -28811,7 +28379,7 @@ gilded_plateskirt_lent:
 gilded_full_helm_lent:
   id: 13838
   slot: Hat
-  type: Hair
+  type: FullFace
 gilded_kiteshield_lent:
   id: 13839
   slot: Shield
@@ -28857,13 +28425,11 @@ brawling_gloves_(cooking):
 zuriels_robe_top:
   id: 13858
   slot: Chest
-  type: FullBody
 zuriels_robe_top_noted:
   id: 13859
 zuriels_robe_top_(deg):
   id: 13860
   slot: Chest
-  type: FullBody
 zuriels_robe_bottom:
   id: 13861
   slot: Legs
@@ -28893,13 +28459,11 @@ zuriels_staff_(deg):
 morrigans_leather_body:
   id: 13870
   slot: Chest
-  type: FullBody
 morrigans_leather_body_noted:
   id: 13871
 morrigans_leather_body_(deg):
   id: 13872
   slot: Chest
-  type: FullBody
 morrigans_leather_chaps:
   id: 13873
   slot: Legs
@@ -28936,23 +28500,21 @@ morrigans_throwing_axe:
 statiuss_platebody:
   id: 13884
   slot: Chest
-  type: FullBody
 statiuss_platebody_noted:
   id: 13885
 statiuss_platebody_(deg):
   id: 13886
   slot: Chest
-  type: FullBody
 vestas_chainbody:
   id: 13887
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 vestas_chainbody_noted:
   id: 13888
 vestas_chainbody_(deg):
   id: 13889
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 statiuss_platelegs:
   id: 13890
   slot: Legs
@@ -29008,23 +28570,21 @@ vestas_spear_(deg):
 corrupt_statiuss_platebody:
   id: 13908
   slot: Chest
-  type: FullBody
 corrupt_statiuss_platebody_noted:
   id: 13909
 corrupt_statiuss_platebody_(deg):
   id: 13910
   slot: Chest
-  type: FullBody
 corrupt_vestas_chainbody:
   id: 13911
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 corrupt_vestas_chainbody_noted:
   id: 13912
 corrupt_vestas_chainbody_(deg):
   id: 13913
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 corrupt_statiuss_platelegs:
   id: 13914
   slot: Legs
@@ -29080,13 +28640,11 @@ corrupt_vestas_spear_(deg):
 corrupt_zuriels_robe_top:
   id: 13932
   slot: Chest
-  type: FullBody
 corrupt_zuriels_robe_top_noted:
   id: 13933
 corrupt_zuriels_robe_top_(deg):
   id: 13934
   slot: Chest
-  type: FullBody
 corrupt_zuriels_robe_bottom:
   id: 13935
   slot: Legs
@@ -29116,13 +28674,11 @@ corrupt_zuriels_staff_(deg):
 corrupt_morrigans_leather_body:
   id: 13944
   slot: Chest
-  type: FullBody
 corrupt_morrigans_leather_body_noted:
   id: 13945
 corrupt_morrigans_leather_body_(deg):
   id: 13946
   slot: Chest
-  type: FullBody
 corrupt_morrigans_leather_chaps:
   id: 13947
   slot: Legs
@@ -29159,13 +28715,11 @@ c._morrigans_throwing_axe:
 corrupt_dragon_chainbody:
   id: 13958
   slot: Chest
-  type: FullBody
 corrupt_dragon_chainbody_noted:
   id: 13959
 corrupt_dragon_chainbody_(deg):
   id: 13960
   slot: Chest
-  type: FullBody
 corrupt_dragon_med_helm:
   id: 13961
   slot: Hat
@@ -29290,14 +28844,12 @@ snail:
 warlock_top:
   id: 14076
   slot: Chest
-  type: FullBody
 warlock_legs:
   id: 14077
   slot: Legs
 witch_top:
   id: 14078
   slot: Chest
-  type: FullBody
 witch_skirt:
   id: 14079
   slot: Legs
@@ -29318,7 +28870,6 @@ armadyl_communiqu￩:
 witch_top_2:
   id: 14086
   slot: Chest
-  type: FullBody
 witch_skirt_2:
   id: 14087
   slot: Legs
@@ -29338,7 +28889,6 @@ wily_cat_7:
 sacred_clay_platebody:
   id: 14094
   slot: Chest
-  type: FullBody
 sacred_clay_platelegs:
   id: 14095
   slot: Legs
@@ -29396,7 +28946,6 @@ sacred_clay_needle:
 sacred_clay_robe_top:
   id: 14114
   slot: Chest
-  type: FullBody
 sacred_clay_robe_bottom:
   id: 14115
   slot: Legs
@@ -29409,7 +28958,6 @@ sacred_clay_staff:
 sacred_clay_body:
   id: 14118
   slot: Chest
-  type: FullBody
 sacred_clay_chaps:
   id: 14119
   slot: Legs
@@ -29613,19 +29161,14 @@ bow_(class_5)_noted:
   id: 14201
 arrows_(class_1):
   id: 14202
-  slot: Arrows
 arrows_(class_2):
   id: 14203
-  slot: Arrows
 arrows_(class_3):
   id: 14204
-  slot: Arrows
 arrows_(class_4):
   id: 14205
-  slot: Arrows
 arrows_(class_5):
   id: 14206
-  slot: Arrows
 prayer_potion_(5):
   id: 14207
 prayer_potion_(5)_noted:
@@ -29864,31 +29407,26 @@ warhammer_(class_5)_noted:
 robe_top_(class_1):
   id: 14317
   slot: Chest
-  type: FullBody
 robe_top_(class_1)_noted:
   id: 14318
 robe_top_(class_2):
   id: 14319
   slot: Chest
-  type: FullBody
 robe_top_(class_2)_noted:
   id: 14320
 robe_top_(class_3):
   id: 14321
   slot: Chest
-  type: FullBody
 robe_top_(class_3)_noted:
   id: 14322
 robe_top_(class_4):
   id: 14323
   slot: Chest
-  type: FullBody
 robe_top_(class_4)_noted:
   id: 14324
 robe_top_(class_5):
   id: 14325
   slot: Chest
-  type: FullBody
 robe_top_(class_5)_noted:
   id: 14326
 robe_bottom_(class_1):
@@ -29944,31 +29482,26 @@ hat_(class_5)_noted:
 platebody_(class_1):
   id: 14347
   slot: Chest
-  type: FullBody
 platebody_(class_1)_noted:
   id: 14348
 platebody_(class_2):
   id: 14349
   slot: Chest
-  type: FullBody
 platebody_(class_2)_noted:
   id: 14350
 platebody_(class_3):
   id: 14351
   slot: Chest
-  type: FullBody
 platebody_(class_3)_noted:
   id: 14352
 platebody_(class_4):
   id: 14353
   slot: Chest
-  type: FullBody
 platebody_(class_4)_noted:
   id: 14354
 platebody_(class_5):
   id: 14355
   slot: Chest
-  type: FullBody
 platebody_(class_5)_noted:
   id: 14356
 platelegs_(class_1):
@@ -30060,31 +29593,31 @@ cape_10:
 leather_body_(class_1):
   id: 14391
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_(class_1)_noted:
   id: 14392
 leather_body_(class_2):
   id: 14393
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_(class_2)_noted:
   id: 14394
 leather_body_(class_3):
   id: 14395
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_(class_3)_noted:
   id: 14396
 leather_body_(class_4):
   id: 14397
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_(class_4)_noted:
   id: 14398
 leather_body_(class_5):
   id: 14399
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 leather_body_(class_5)_noted:
   id: 14400
 chaps_(class_1):
@@ -30213,13 +29746,11 @@ blast_fusion_hammer:
 dragon_platebody:
   id: 14479
   slot: Chest
-  type: FullBody
 dragon_platebody_noted:
   id: 14480
 dragon_platebody_lent:
   id: 14481
   slot: Chest
-  type: FullBody
 dragon_claws:
   id: 14484
   slot: Weapon
@@ -30244,13 +29775,12 @@ elite_black_platelegs_noted:
 elite_black_platebody:
   id: 14492
   slot: Chest
-  type: FullBody
 elite_black_platebody_noted:
   id: 14493
 elite_black_full_helm:
   id: 14494
   slot: Hat
-  type: Hair
+  type: FullFace
 elite_black_full_helm_noted:
   id: 14495
 cell_key:
@@ -30258,7 +29788,6 @@ cell_key:
 dagonhai_robe_top:
   id: 14497
   slot: Chest
-  type: FullBody
 dagonhai_robe_top_noted:
   id: 14498
 dagonhai_hat:
@@ -30400,15 +29929,13 @@ elite_black_platelegs_lent:
 elite_black_platebody_lent:
   id: 14593
   slot: Chest
-  type: FullBody
 elite_black_full_helm_lent:
   id: 14594
   slot: Hat
-  type: Hair
+  type: FullFace
 santa_costume_top:
   id: 14595
   slot: Chest
-  type: FullBody
 ice_amulet:
   id: 14596
   slot: Amulet
@@ -30422,11 +29949,9 @@ ice_amulet_2:
 santa_costume_top_2:
   id: 14600
   slot: Chest
-  type: FullBody
 santa_costume_top_3:
   id: 14601
   slot: Chest
-  type: FullBody
 santa_costume_gloves:
   id: 14602
   slot: Hands
@@ -30498,11 +30023,11 @@ antique_lamp_31:
 slayer_helmet_(e):
   id: 14636
   slot: Hat
-  type: Hair
+  type: FullFace
 slayer_helmet_(charged):
   id: 14637
   slot: Hat
-  type: Hair
+  type: FullFace
 bones_4:
   id: 14638
 soul_fragment:
@@ -30699,15 +30224,13 @@ elite_black_platelegs_2:
 elite_black_platebody_2:
   id: 14730
   slot: Chest
-  type: FullBody
 elite_black_full_helm_2:
   id: 14731
   slot: Hat
-  type: Hair
+  type: FullFace
 dagonhai_robe_top_2:
   id: 14732
   slot: Chest
-  type: FullBody
 dagonhai_hat_2:
   id: 14733
   slot: Hat
@@ -31116,11 +30639,9 @@ broken_statue_headdress_noted:
 agile_top:
   id: 14936
   slot: Chest
-  type: FullBody
 agile_top_2:
   id: 14937
   slot: Chest
-  type: FullBody
 agile_legs:
   id: 14938
   slot: Legs
@@ -31271,47 +30792,34 @@ superior_locator:
   slot: Weapon
 gold_ring_(i):
   id: 15009
-  slot: Ring
 sapphire_ring_(i):
   id: 15010
-  slot: Ring
 emerald_ring_(i):
   id: 15011
-  slot: Ring
 ruby_ring_(i):
   id: 15012
-  slot: Ring
 diamond_ring_(i):
   id: 15013
-  slot: Ring
 dragonstone_ring_(i):
   id: 15014
-  slot: Ring
 lunar_ring_(i):
   id: 15015
-  slot: Ring
 ring_of_charos_(a)(i):
   id: 15016
-  slot: Ring
 onyx_ring_(i):
   id: 15017
-  slot: Ring
 seers_ring_(i):
   id: 15018
-  slot: Ring
 archers_ring_(i):
   id: 15019
-  slot: Ring
 warrior_ring_(i):
   id: 15020
-  slot: Ring
 serjeant_cap:
   id: 15021
   slot: Hat
 serjeant_top:
   id: 15022
   slot: Chest
-  type: FullBody
 serjeant_trousers:
   id: 15023
   slot: Legs
@@ -31330,7 +30838,6 @@ commander_cap:
 commander_top:
   id: 15028
   slot: Chest
-  type: FullBody
 commander_trousers:
   id: 15029
   slot: Legs
@@ -31349,7 +30856,6 @@ war-chief_cap:
 war-chief_top:
   id: 15034
   slot: Chest
-  type: FullBody
 war-chief_trousers:
   id: 15035
   slot: Legs
@@ -31368,7 +30874,6 @@ lord_marshal_cap:
 lord_marshal_top:
   id: 15040
   slot: Chest
-  type: FullBody
 lord_marshal_trousers:
   id: 15041
   slot: Legs
@@ -31460,17 +30965,14 @@ faruqs_toolonomicon:
   id: 15077
 ring_of_seeking_(hide):
   id: 15078
-  slot: Ring
 ring_of_seeking_(hide)_noted:
   id: 15079
 ring_of_seeking_(seek):
   id: 15080
-  slot: Ring
 ring_of_seeking_(seek)_noted:
   id: 15081
 ring_of_seeking_(both):
   id: 15082
-  slot: Ring
 ring_of_seeking_(both)_noted:
   id: 15083
 dice_bag:
@@ -31750,7 +31252,6 @@ tail:
   id: 15219
 berserker_ring_(i):
   id: 15220
-  slot: Ring
 menagerie:
   id: 15221
 garden_habitat:
@@ -31799,7 +31300,6 @@ hand_cannon_noted:
   id: 15242
 hand_cannon_shot:
   id: 15243
-  slot: Arrows
 commander_veldaban:
   id: 15244
 mysterious_slip:
@@ -32117,19 +31617,14 @@ alis_pendant_(5):
   slot: Amulet
 ferocious_ring_(5):
   id: 15398
-  slot: Ring
 ferocious_ring_(4):
   id: 15399
-  slot: Ring
 ferocious_ring_(3):
   id: 15400
-  slot: Ring
 ferocious_ring_(2):
   id: 15401
-  slot: Ring
 ferocious_ring_(1):
   id: 15402
-  slot: Ring
 balmung:
   id: 15403
   slot: Weapon
@@ -32175,15 +31670,13 @@ chains:
 christmas_ghost_hood:
   id: 15422
   slot: Hat
-  type: Hair
+  type: FullFace
 christmas_ghost_top:
   id: 15423
   slot: Chest
-  type: FullBody
 christmas_ghost_top_2:
   id: 15424
   slot: Chest
-  type: FullBody
 christmas_ghost_bottoms:
   id: 15425
   slot: Legs
@@ -32362,15 +31855,15 @@ focus_sight_noted:
 full_slayer_helmet:
   id: 15492
   slot: Hat
-  type: Hair
+  type: FullFace
 full_slayer_helmet_(e):
   id: 15496
   slot: Hat
-  type: Hair
+  type: FullFace
 full_slayer_helmet_(charged):
   id: 15497
   slot: Hat
-  type: Hair
+  type: FullFace
 desert_strykewyrm:
   id: 15498
 jungle_strykewyrm:
@@ -32385,7 +31878,6 @@ staff_of_light_lent:
 royal_shirt:
   id: 15503
   slot: Chest
-  type: FullBody
 royal_shirt_noted:
   id: 15504
 royal_leggings:
@@ -32593,7 +32085,6 @@ helmet_of_trials:
 infinity_top_3:
   id: 15600
   slot: Chest
-  type: FullBody
 picture_175:
   id: 15601
 infinity_hat_2:
@@ -32609,7 +32100,6 @@ picture_177:
 infinity_top_4:
   id: 15606
   slot: Chest
-  type: FullBody
 picture_178:
   id: 15607
 infinity_hat_3:
@@ -32625,7 +32115,6 @@ picture_180:
 infinity_top_5:
   id: 15612
   slot: Chest
-  type: FullBody
 picture_181:
   id: 15613
 infinity_hat_4:
@@ -32641,7 +32130,6 @@ picture_183:
 infinity_top_6:
   id: 15618
   slot: Chest
-  type: FullBody
 picture_184:
   id: 15619
 infinity_hat_5:
@@ -32796,7 +32284,6 @@ dungeoneering_cape:
   slot: Cape
 ring_of_kinship:
   id: 15707
-  slot: Ring
 mysterious_chronicle_(part_1):
   id: 15708
 mysterious_chronicle_(part_2):
@@ -33144,47 +32631,36 @@ hexhunter_bow_(b):
 salve_robe_top_(b):
   id: 15837
   slot: Chest
-  type: FullBody
 wildercress_robe_top_(b):
   id: 15838
   slot: Chest
-  type: FullBody
 blightleaf_robe_top_(b):
   id: 15839
   slot: Chest
-  type: FullBody
 roseblood_robe_top_(b):
   id: 15840
   slot: Chest
-  type: FullBody
 bryll_robe_top_(b):
   id: 15841
   slot: Chest
-  type: FullBody
 duskweed_robe_top_(b):
   id: 15842
   slot: Chest
-  type: FullBody
 soulbell_robe_top_(b):
   id: 15843
   slot: Chest
-  type: FullBody
 ectorobe_top_(b):
   id: 15844
   slot: Chest
-  type: FullBody
 runic_robe_top_(b):
   id: 15845
   slot: Chest
-  type: FullBody
 spiritbloom_robe_top_(b):
   id: 15846
   slot: Chest
-  type: FullBody
 celestial_robe_top_(b):
   id: 15847
   slot: Chest
-  type: FullBody
 novite_dagger_(b):
   id: 15848
   slot: Weapon
@@ -33320,47 +32796,47 @@ primal_dagger_(p++)_(b):
 salve_hood_(b):
   id: 15892
   slot: Hat
-  type: Hair
+  type: FullFace
 wildercress_hood_(b):
   id: 15893
   slot: Hat
-  type: Hair
+  type: FullFace
 blightleaf_hood_(b):
   id: 15894
   slot: Hat
-  type: Hair
+  type: FullFace
 roseblood_hood_(b):
   id: 15895
   slot: Hat
-  type: Hair
+  type: FullFace
 bryll_hood_(b):
   id: 15896
   slot: Hat
-  type: Hair
+  type: FullFace
 duskweed_hood_(b):
   id: 15897
   slot: Hat
-  type: Hair
+  type: FullFace
 soulbell_hood_(b):
   id: 15898
   slot: Hat
-  type: Hair
+  type: FullFace
 ectohood_(b):
   id: 15899
   slot: Hat
-  type: Hair
+  type: FullFace
 runic_hood_(b):
   id: 15900
   slot: Hat
-  type: Hair
+  type: FullFace
 spiritbloom_hood_(b):
   id: 15901
   slot: Hat
-  type: Hair
+  type: FullFace
 celestial_hood_(b):
   id: 15902
   slot: Hat
-  type: Hair
+  type: FullFace
 tangle_gum_longbow_(b):
   id: 15903
   slot: Weapon
@@ -33408,47 +32884,47 @@ sagittarian_longbow_(b):
 novite_full_helm_(b):
   id: 15914
   slot: Hat
-  type: Hair
+  type: FullFace
 bathus_full_helm_(b):
   id: 15915
   slot: Hat
-  type: Hair
+  type: FullFace
 marmaros_full_helm_(b):
   id: 15916
   slot: Hat
-  type: Hair
+  type: FullFace
 kratonite_full_helm_(b):
   id: 15917
   slot: Hat
-  type: Hair
+  type: FullFace
 fractite_full_helm_(b):
   id: 15918
   slot: Hat
-  type: Hair
+  type: FullFace
 zephyrium_full_helm_(b):
   id: 15919
   slot: Hat
-  type: Hair
+  type: FullFace
 argonite_full_helm_(b):
   id: 15920
   slot: Hat
-  type: Hair
+  type: FullFace
 katagon_full_helm_(b):
   id: 15921
   slot: Hat
-  type: Hair
+  type: FullFace
 gorgonite_full_helm_(b):
   id: 15922
   slot: Hat
-  type: Hair
+  type: FullFace
 promethium_full_helm_(b):
   id: 15923
   slot: Hat
-  type: Hair
+  type: FullFace
 primal_full_helm_(b):
   id: 15924
   slot: Hat
-  type: Hair
+  type: FullFace
 novite_platelegs_(b):
   id: 15925
   slot: Legs
@@ -33517,136 +32993,92 @@ primal_gauntlets_(b):
   slot: Hands
 novite_arrows_(b):
   id: 15947
-  slot: Arrows
 bathus_arrows_(b):
   id: 15948
-  slot: Arrows
 marmaros_arrows_(b):
   id: 15949
-  slot: Arrows
 kratonite_arrows_(b):
   id: 15950
-  slot: Arrows
 fractite_arrows_(b):
   id: 15951
-  slot: Arrows
 zephyrium_arrows_(b):
   id: 15952
-  slot: Arrows
 argonite_arrows_(b):
   id: 15953
-  slot: Arrows
 katagon_arrows_(b):
   id: 15954
-  slot: Arrows
 gorgonite_arrows_(b):
   id: 15955
-  slot: Arrows
 promethium_arrows_(b):
   id: 15956
-  slot: Arrows
 sagittarian_arrows_(b):
   id: 15957
-  slot: Arrows
 novite_arrows_(p)_(b):
   id: 15958
-  slot: Arrows
 bathus_arrows_(p)_(b):
   id: 15959
-  slot: Arrows
 marmaros_arrows_(p)_(b):
   id: 15960
-  slot: Arrows
 kratonite_arrows_(p)_(b):
   id: 15961
-  slot: Arrows
 fractite_arrows_(p)_(b):
   id: 15962
-  slot: Arrows
 zephyrium_arrows_(p)_(b):
   id: 15963
-  slot: Arrows
 argonite_arrows_(p)_(b):
   id: 15964
-  slot: Arrows
 katagon_arrows_(p)_(b):
   id: 15965
-  slot: Arrows
 gorgonite_arrows_(p)_(b):
   id: 15966
-  slot: Arrows
 promethium_arrows_(p)_(b):
   id: 15967
-  slot: Arrows
 sagittarian_arrows_(p)_(b):
   id: 15968
-  slot: Arrows
 novite_arrows_(p+)_(b):
   id: 15969
-  slot: Arrows
 bathus_arrows_(p+)_(b):
   id: 15970
-  slot: Arrows
 marmaros_arrows_(p+)_(b):
   id: 15971
-  slot: Arrows
 kratonite_arrows_(p+)_(b):
   id: 15972
-  slot: Arrows
 fractite_arrows_(p+)_(b):
   id: 15973
-  slot: Arrows
 zephyrium_arrows_(p+)_(b):
   id: 15974
-  slot: Arrows
 argonite_arrows_(p+)_(b):
   id: 15975
-  slot: Arrows
 katagon_arrows_(p+)_(b):
   id: 15976
-  slot: Arrows
 gorgonite_arrows_(p+)_(b):
   id: 15977
-  slot: Arrows
 promethium_arrows_(p+)_(b):
   id: 15978
-  slot: Arrows
 sagittarian_arrows_(p+)_(b):
   id: 15979
-  slot: Arrows
 novite_arrows_(p++)_(b):
   id: 15980
-  slot: Arrows
 bathus_arrows_(p++)_(b):
   id: 15981
-  slot: Arrows
 marmaros_arrows_(p++)_(b):
   id: 15982
-  slot: Arrows
 kratonite_arrows_(p++)_(b):
   id: 15983
-  slot: Arrows
 fractite_arrows_(p++)_(b):
   id: 15984
-  slot: Arrows
 zephyrium_arrows_(p++)_(b):
   id: 15985
-  slot: Arrows
 argonite_arrows_(p++)_(b):
   id: 15986
-  slot: Arrows
 katagon_arrows_(p++)_(b):
   id: 15987
-  slot: Arrows
 gorgonite_arrows_(p++)_(b):
   id: 15988
-  slot: Arrows
 promethium_arrows_(p++)_(b):
   id: 15989
-  slot: Arrows
 sagittarian_arrows_(p++)_(b):
   id: 15990
-  slot: Arrows
 novite_hatchet_(b):
   id: 15991
   slot: Weapon
@@ -33716,47 +33148,36 @@ sagittarian_boots_(b):
 novite_platebody_(b):
   id: 16013
   slot: Chest
-  type: FullBody
 bathus_platebody_(b):
   id: 16014
   slot: Chest
-  type: FullBody
 marmaros_platebody_(b):
   id: 16015
   slot: Chest
-  type: FullBody
 kratonite_platebody_(b):
   id: 16016
   slot: Chest
-  type: FullBody
 fractite_platebody_(b):
   id: 16017
   slot: Chest
-  type: FullBody
 zephyrium_platebody_(b):
   id: 16018
   slot: Chest
-  type: FullBody
 argonite_platebody_(b):
   id: 16019
   slot: Chest
-  type: FullBody
 katagon_platebody_(b):
   id: 16020
   slot: Chest
-  type: FullBody
 gorgonite_platebody_(b):
   id: 16021
   slot: Chest
-  type: FullBody
 promethium_platebody_(b):
   id: 16022
   slot: Chest
-  type: FullBody
 primal_platebody_(b):
   id: 16023
   slot: Chest
-  type: FullBody
 novite_longsword_(b):
   id: 16024
   slot: Weapon
@@ -33858,15 +33279,15 @@ stegoleather_coif_(b):
 megaleather_coif_(b):
   id: 16054
   slot: Hat
-  type: Hair
+  type: FullFace
 tyrannoleather_coif_(b):
   id: 16055
   slot: Hat
-  type: Hair
+  type: FullFace
 sagittarian_coif_(b):
   id: 16056
   slot: Hat
-  type: Hair
+  type: FullFace
 protoleather_chaps_(b):
   id: 16057
   slot: Legs
@@ -33903,94 +33324,83 @@ sagittarian_chaps_(b):
 protoleather_body_(b):
   id: 16068
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 subleather_body_(b):
   id: 16069
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 paraleather_body_(b):
   id: 16070
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 archleather_body_(b):
   id: 16071
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dromoleather_body_(b):
   id: 16072
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 spinoleather_body_(b):
   id: 16073
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 gallileather_body_(b):
   id: 16074
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 stegoleather_body_(b):
   id: 16075
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 megaleather_body_(b):
   id: 16076
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 tyrannoleather_body_(b):
   id: 16077
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 sagittarian_body_(b):
   id: 16078
   slot: Chest
-  type: FullBody
 anti-dragon_shield_(b):
   id: 16079
   slot: Shield
 novite_chainbody_(b):
   id: 16080
   slot: Chest
-  type: FullBody
 bathus_chainbody_(b):
   id: 16081
   slot: Chest
-  type: FullBody
 marmaros_chainbody_(b):
   id: 16082
   slot: Chest
-  type: FullBody
 kratonite_chainbody_(b):
   id: 16083
   slot: Chest
-  type: FullBody
 fractite_chainbody_(b):
   id: 16084
   slot: Chest
-  type: FullBody
 zephyrium_chainbody_(b):
   id: 16085
   slot: Chest
-  type: FullBody
 argonite_chainbody_(b):
   id: 16086
   slot: Chest
-  type: FullBody
 katagon_chainbody_(b):
   id: 16087
   slot: Chest
-  type: FullBody
 gorgonite_chainbody_(b):
   id: 16088
   slot: Chest
-  type: FullBody
 promethium_chainbody_(b):
   id: 16089
   slot: Chest
-  type: FullBody
 primal_chainbody_(b):
   id: 16090
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 air_rune_(b):
   id: 16091
 water_rune_(b):
@@ -34998,136 +34408,92 @@ primal_maul_noted:
   id: 16426
 novite_arrows:
   id: 16427
-  slot: Arrows
 bathus_arrows:
   id: 16432
-  slot: Arrows
 marmaros_arrows:
   id: 16437
-  slot: Arrows
 kratonite_arrows:
   id: 16442
-  slot: Arrows
 fractite_arrows:
   id: 16447
-  slot: Arrows
 zephyrium_arrows:
   id: 16452
-  slot: Arrows
 argonite_arrows:
   id: 16457
-  slot: Arrows
 katagon_arrows:
   id: 16462
-  slot: Arrows
 gorgonite_arrows:
   id: 16467
-  slot: Arrows
 promethium_arrows:
   id: 16472
-  slot: Arrows
 sagittarian_arrows:
   id: 16477
-  slot: Arrows
 novite_arrows_(p):
   id: 16482
-  slot: Arrows
 bathus_arrows_(p):
   id: 16487
-  slot: Arrows
 marmaros_arrows_(p):
   id: 16492
-  slot: Arrows
 kratonite_arrows_(p):
   id: 16497
-  slot: Arrows
 fractite_arrows_(p):
   id: 16502
-  slot: Arrows
 zephyrium_arrows_(p):
   id: 16507
-  slot: Arrows
 argonite_arrows_(p):
   id: 16512
-  slot: Arrows
 katagon_arrows_(p):
   id: 16517
-  slot: Arrows
 gorgonite_arrows_(p):
   id: 16522
-  slot: Arrows
 promethium_arrows_(p):
   id: 16527
-  slot: Arrows
 sagittarian_arrows_(p):
   id: 16532
-  slot: Arrows
 novite_arrows_(p+):
   id: 16537
-  slot: Arrows
 bathus_arrows_(p+):
   id: 16542
-  slot: Arrows
 marmaros_arrows_(p+):
   id: 16547
-  slot: Arrows
 kratonite_arrows_(p+):
   id: 16552
-  slot: Arrows
 fractite_arrows_(p+):
   id: 16557
-  slot: Arrows
 zephyrium_arrows_(p+):
   id: 16562
-  slot: Arrows
 argonite_arrows_(p+):
   id: 16567
-  slot: Arrows
 katagon_arrows_(p+):
   id: 16572
-  slot: Arrows
 gorgonite_arrows_(p+):
   id: 16577
-  slot: Arrows
 promethium_arrows_(p+):
   id: 16582
-  slot: Arrows
 sagittarian_arrows_(p+):
   id: 16587
-  slot: Arrows
 novite_arrows_(p++):
   id: 16592
-  slot: Arrows
 bathus_arrows_(p++):
   id: 16597
-  slot: Arrows
 marmaros_arrows_(p++):
   id: 16602
-  slot: Arrows
 kratonite_arrows_(p++):
   id: 16607
-  slot: Arrows
 fractite_arrows_(p++):
   id: 16612
-  slot: Arrows
 zephyrium_arrows_(p++):
   id: 16617
-  slot: Arrows
 argonite_arrows_(p++):
   id: 16622
-  slot: Arrows
 katagon_arrows_(p++):
   id: 16627
-  slot: Arrows
 gorgonite_arrows_(p++):
   id: 16632
-  slot: Arrows
 promethium_arrows_(p++):
   id: 16637
-  slot: Arrows
 sagittarian_arrows_(p++):
   id: 16642
-  slot: Arrows
 novite_plateskirt:
   id: 16647
   slot: Legs
@@ -35241,199 +34607,189 @@ primal_platelegs_noted:
 novite_full_helm:
   id: 16691
   slot: Hat
-  type: Hair
+  type: FullFace
 novite_full_helm_noted:
   id: 16692
 bathus_full_helm:
   id: 16693
   slot: Hat
-  type: Hair
+  type: FullFace
 bathus_full_helm_noted:
   id: 16694
 marmaros_full_helm:
   id: 16695
   slot: Hat
-  type: Hair
+  type: FullFace
 marmaros_full_helm_noted:
   id: 16696
 kratonite_full_helm:
   id: 16697
   slot: Hat
-  type: Hair
+  type: FullFace
 kratonite_full_helm_noted:
   id: 16698
 fractite_full_helm:
   id: 16699
   slot: Hat
-  type: Hair
+  type: FullFace
 fractite_full_helm_noted:
   id: 16700
 zephyrium_full_helm:
   id: 16701
   slot: Hat
-  type: Hair
+  type: FullFace
 zephyrium_full_helm_noted:
   id: 16702
 argonite_full_helm:
   id: 16703
   slot: Hat
-  type: Hair
+  type: FullFace
 argonite_full_helm_noted:
   id: 16704
 katagon_full_helm:
   id: 16705
   slot: Hat
-  type: Hair
+  type: FullFace
 katagon_full_helm_noted:
   id: 16706
 gorgonite_full_helm:
   id: 16707
   slot: Hat
-  type: Hair
+  type: FullFace
 gorgonite_full_helm_noted:
   id: 16708
 promethium_full_helm:
   id: 16709
   slot: Hat
-  type: Hair
+  type: FullFace
 promethium_full_helm_noted:
   id: 16710
 primal_full_helm:
   id: 16711
   slot: Hat
-  type: Hair
+  type: FullFace
 primal_full_helm_noted:
   id: 16712
 novite_chainbody:
   id: 16713
   slot: Chest
-  type: FullBody
 novite_chainbody_noted:
   id: 16714
 bathus_chainbody:
   id: 16715
   slot: Chest
-  type: FullBody
 bathus_chainbody_noted:
   id: 16716
 marmaros_chainbody:
   id: 16717
   slot: Chest
-  type: FullBody
 marmaros_chainbody_noted:
   id: 16718
 kratonite_chainbody:
   id: 16719
   slot: Chest
-  type: FullBody
 kratonite_chainbody_noted:
   id: 16720
 fractite_chainbody:
   id: 16721
   slot: Chest
-  type: FullBody
 fractite_chainbody_noted:
   id: 16722
 zephyrium_chainbody:
   id: 16723
   slot: Chest
-  type: FullBody
 zephyrium_chainbody_noted:
   id: 16724
 argonite_chainbody:
   id: 16725
   slot: Chest
-  type: FullBody
 argonite_chainbody_noted:
   id: 16726
 katagon_chainbody:
   id: 16727
   slot: Chest
-  type: FullBody
 katagon_chainbody_noted:
   id: 16728
 gorgonite_chainbody:
   id: 16729
   slot: Chest
-  type: FullBody
 gorgonite_chainbody_noted:
   id: 16730
 promethium_chainbody:
   id: 16731
   slot: Chest
-  type: FullBody
 promethium_chainbody_noted:
   id: 16732
 primal_chainbody:
   id: 16733
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 primal_chainbody_noted:
   id: 16734
 salve_hood:
   id: 16735
   slot: Hat
-  type: Hair
+  type: FullFace
 salve_hood_noted:
   id: 16736
 wildercress_hood:
   id: 16737
   slot: Hat
-  type: Hair
+  type: FullFace
 wildercress_hood_noted:
   id: 16738
 blightleaf_hood:
   id: 16739
   slot: Hat
-  type: Hair
+  type: FullFace
 blightleaf_hood_noted:
   id: 16740
 roseblood_hood:
   id: 16741
   slot: Hat
-  type: Hair
+  type: FullFace
 roseblood_hood_noted:
   id: 16742
 bryll_hood:
   id: 16743
   slot: Hat
-  type: Hair
+  type: FullFace
 bryll_hood_noted:
   id: 16744
 duskweed_hood:
   id: 16745
   slot: Hat
-  type: Hair
+  type: FullFace
 duskweed_hood_noted:
   id: 16746
 soulbell_hood:
   id: 16747
   slot: Hat
-  type: Hair
+  type: FullFace
 soulbell_hood_noted:
   id: 16748
 ectohood:
   id: 16749
   slot: Hat
-  type: Hair
+  type: FullFace
 ectohood_noted:
   id: 16750
 runic_hood:
   id: 16751
   slot: Hat
-  type: Hair
+  type: FullFace
 runic_hood_noted:
   id: 16752
 spiritbloom_hood:
   id: 16753
   slot: Hat
-  type: Hair
+  type: FullFace
 spiritbloom_hood_noted:
   id: 16754
 celestial_hood:
   id: 16755
   slot: Hat
-  type: Hair
+  type: FullFace
 celestial_hood_noted:
   id: 16756
 novite_dagger:
@@ -36198,43 +35554,43 @@ archleather_coif_noted:
 dromoleather_coif:
   id: 17049
   slot: Hat
-  type: Mask
+  type: Hair
 dromoleather_coif_noted:
   id: 17050
 spinoleather_coif:
   id: 17051
   slot: Hat
-  type: Mask
+  type: Hair
 spinoleather_coif_noted:
   id: 17052
 gallileather_coif:
   id: 17053
   slot: Hat
-  type: Mask
+  type: Hair
 gallileather_coif_noted:
   id: 17054
 stegoleather_coif:
   id: 17055
   slot: Hat
-  type: Mask
+  type: Hair
 stegoleather_coif_noted:
   id: 17056
 megaleather_coif:
   id: 17057
   slot: Hat
-  type: Hair
+  type: FullFace
 megaleather_coif_noted:
   id: 17058
 tyrannoleather_coif:
   id: 17059
   slot: Hat
-  type: Hair
+  type: FullFace
 tyrannoleather_coif_noted:
   id: 17060
 sagittarian_coif:
   id: 17061
   slot: Hat
-  type: Hair
+  type: FullFace
 sagittarian_coif_noted:
   id: 17062
 novite_spear:
@@ -36559,67 +35915,66 @@ celestial_gloves_noted:
 protoleather_body:
   id: 17173
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 protoleather_body_noted:
   id: 17174
 subleather_body:
   id: 17175
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 subleather_body_noted:
   id: 17176
 paraleather_body:
   id: 17177
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 paraleather_body_noted:
   id: 17178
 archleather_body:
   id: 17179
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 archleather_body_noted:
   id: 17180
 dromoleather_body:
   id: 17181
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 dromoleather_body_noted:
   id: 17182
 spinoleather_body:
   id: 17183
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 spinoleather_body_noted:
   id: 17184
 gallileather_body:
   id: 17185
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 gallileather_body_noted:
   id: 17186
 stegoleather_body:
   id: 17187
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 stegoleather_body_noted:
   id: 17188
 megaleather_body:
   id: 17189
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 megaleather_body_noted:
   id: 17190
 tyrannoleather_body:
   id: 17191
   slot: Chest
-  type: FullBody
+  type: Sleeveless
 tyrannoleather_body_noted:
   id: 17192
 sagittarian_body:
   id: 17193
   slot: Chest
-  type: FullBody
 sagittarian_body_noted:
   id: 17194
 protoleather_vambraces:
@@ -36680,133 +36035,111 @@ sagittarian_vambraces_noted:
 salve_robe_top:
   id: 17217
   slot: Chest
-  type: FullBody
 salve_robe_top_noted:
   id: 17218
 wildercress_robe_top:
   id: 17219
   slot: Chest
-  type: FullBody
 wildercress_robe_top_noted:
   id: 17220
 blightleaf_robe_top:
   id: 17221
   slot: Chest
-  type: FullBody
 blightleaf_robe_top_noted:
   id: 17222
 roseblood_robe_top:
   id: 17223
   slot: Chest
-  type: FullBody
 roseblood_robe_top_noted:
   id: 17224
 bryll_robe_top:
   id: 17225
   slot: Chest
-  type: FullBody
 bryll_robe_top_noted:
   id: 17226
 duskweed_robe_top:
   id: 17227
   slot: Chest
-  type: FullBody
 duskweed_robe_top_noted:
   id: 17228
 soulbell_robe_top:
   id: 17229
   slot: Chest
-  type: FullBody
 soulbell_robe_top_noted:
   id: 17230
 ectorobe_top:
   id: 17231
   slot: Chest
-  type: FullBody
 ectorobe_top_noted:
   id: 17232
 runic_robe_top:
   id: 17233
   slot: Chest
-  type: FullBody
 runic_robe_top_noted:
   id: 17234
 spiritbloom_robe_top:
   id: 17235
   slot: Chest
-  type: FullBody
 spiritbloom_robe_top_noted:
   id: 17236
 celestial_robe_top:
   id: 17237
   slot: Chest
-  type: FullBody
 celestial_robe_top_noted:
   id: 17238
 novite_platebody:
   id: 17239
   slot: Chest
-  type: FullBody
 novite_platebody_noted:
   id: 17240
 bathus_platebody:
   id: 17241
   slot: Chest
-  type: FullBody
 bathus_platebody_noted:
   id: 17242
 marmaros_platebody:
   id: 17243
   slot: Chest
-  type: FullBody
 marmaros_platebody_noted:
   id: 17244
 kratonite_platebody:
   id: 17245
   slot: Chest
-  type: FullBody
 kratonite_platebody_noted:
   id: 17246
 fractite_platebody:
   id: 17247
   slot: Chest
-  type: FullBody
 fractite_platebody_noted:
   id: 17248
 zephyrium_platebody:
   id: 17249
   slot: Chest
-  type: FullBody
 zephyrium_platebody_noted:
   id: 17250
 argonite_platebody:
   id: 17251
   slot: Chest
-  type: FullBody
 argonite_platebody_noted:
   id: 17252
 katagon_platebody:
   id: 17253
   slot: Chest
-  type: FullBody
 katagon_platebody_noted:
   id: 17254
 gorgonite_platebody:
   id: 17255
   slot: Chest
-  type: FullBody
 gorgonite_platebody_noted:
   id: 17256
 promethium_platebody:
   id: 17257
   slot: Chest
-  type: FullBody
 promethium_platebody_noted:
   id: 17258
 primal_platebody:
   id: 17259
   slot: Chest
-  type: FullBody
 primal_platebody_noted:
   id: 17260
 silver_precision_bracelet:
@@ -39215,13 +38548,10 @@ pouch_noted_71:
   id: 18576
 kinship_ring:
   id: 18577
-  slot: Ring
 kinship_ring_2:
   id: 18578
-  slot: Ring
 kinship_ring_3:
   id: 18579
-  slot: Ring
 viking_crossbow:
   id: 18580
   slot: Weapon
@@ -39457,19 +38787,16 @@ body_helmet_noted:
 body_body:
   id: 18695
   slot: Chest
-  type: FullBody
 body_body_noted:
   id: 18696
 mind_body:
   id: 18697
   slot: Chest
-  type: FullBody
 mind_body_noted:
   id: 18698
 elemental_body:
   id: 18699
   slot: Chest
-  type: FullBody
 elemental_body_noted:
   id: 18700
 diagram:
@@ -39486,14 +38813,13 @@ profound_decorative_sword:
 profound_decorative_platebody:
   id: 18706
   slot: Chest
-  type: FullBody
 profound_decorative_platelegs:
   id: 18707
   slot: Legs
 profound_decorative_helm:
   id: 18708
   slot: Hat
-  type: Hair
+  type: FullFace
 profound_decorative_shield:
   id: 18709
   slot: Shield
@@ -39705,40 +39031,28 @@ junk_2:
   id: 18816
 ring_of_kinship_(tank):
   id: 18817
-  slot: Ring
 ring_of_kinship_(tactician):
   id: 18818
-  slot: Ring
 ring_of_kinship_(berserker):
   id: 18819
-  slot: Ring
 ring_of_kinship_(sniper):
   id: 18820
-  slot: Ring
 ring_of_kinship_(keen-eye):
   id: 18821
-  slot: Ring
 ring_of_kinship_(desperado):
   id: 18822
-  slot: Ring
 ring_of_kinship_(blazer):
   id: 18823
-  slot: Ring
 ring_of_kinship_(blaster):
   id: 18824
-  slot: Ring
 ring_of_kinship_(blitzer):
   id: 18825
-  slot: Ring
 ring_of_kinship_(medic):
   id: 18826
-  slot: Ring
 ring_of_kinship_(gatherer):
   id: 18827
-  slot: Ring
 ring_of_kinship_(artisan):
   id: 18828
-  slot: Ring
 group_gatestone:
   id: 18829
 frost_dragon_bones:
@@ -40349,17 +39663,13 @@ zamorak_bow_lent:
   type: TwoHanded
 saradomin_arrows:
   id: 19152
-  slot: Arrows
 guthix_arrows:
   id: 19157
-  slot: Arrows
 zamorak_arrows:
   id: 19162
-  slot: Arrows
 black_platebody_(h1):
   id: 19167
   slot: Chest
-  type: FullBody
 black_platebody_(h1)_noted:
   id: 19168
 black_platelegs_(h1):
@@ -40375,7 +39685,6 @@ black_plateskirt_(h1)_noted:
 adamant_platebody_(h1):
   id: 19173
   slot: Chest
-  type: FullBody
 adamant_platebody_(h1)_noted:
   id: 19174
 adamant_platelegs_(h1):
@@ -40391,13 +39700,11 @@ adamant_plateskirt_(h1)_noted:
 rune_platebody_(h1):
   id: 19179
   slot: Chest
-  type: FullBody
 rune_platebody_(h1)_noted:
   id: 19180
 rune_platebody_(h1)_lent:
   id: 19181
   slot: Chest
-  type: FullBody
 rune_platelegs_(h1):
   id: 19182
   slot: Legs
@@ -40417,7 +39724,6 @@ rune_plateskirt_(h1)_lent:
 black_platebody_(h2):
   id: 19188
   slot: Chest
-  type: FullBody
 black_platebody_(h2)_noted:
   id: 19189
 black_platelegs_(h2):
@@ -40433,7 +39739,6 @@ black_plateskirt_(h2)_noted:
 adamant_platebody_(h2):
   id: 19194
   slot: Chest
-  type: FullBody
 adamant_platebody_(h2)_noted:
   id: 19195
 adamant_platelegs_(h2):
@@ -40449,13 +39754,11 @@ adamant_plateskirt_(h2)_noted:
 rune_platebody_(h2):
   id: 19200
   slot: Chest
-  type: FullBody
 rune_platebody_(h2)_noted:
   id: 19201
 rune_platebody_(h2)_lent:
   id: 19202
   slot: Chest
-  type: FullBody
 rune_platelegs_(h2):
   id: 19203
   slot: Legs
@@ -40475,7 +39778,6 @@ rune_plateskirt_(h2)_lent:
 black_platebody_(h3):
   id: 19209
   slot: Chest
-  type: FullBody
 black_platebody_(h3)_noted:
   id: 19210
 black_platelegs_(h3):
@@ -40491,7 +39793,6 @@ black_plateskirt_(h3)_noted:
 adamant_platebody_(h3):
   id: 19215
   slot: Chest
-  type: FullBody
 adamant_platebody_(h3)_noted:
   id: 19216
 adamant_platelegs_(h3):
@@ -40507,13 +39808,11 @@ adamant_plateskirt_(h3)_noted:
 rune_platebody_(h3):
   id: 19221
   slot: Chest
-  type: FullBody
 rune_platebody_(h3)_noted:
   id: 19222
 rune_platebody_(h3)_lent:
   id: 19223
   slot: Chest
-  type: FullBody
 rune_platelegs_(h3):
   id: 19224
   slot: Legs
@@ -40533,7 +39832,6 @@ rune_plateskirt_(h3)_lent:
 black_platebody_(h4):
   id: 19230
   slot: Chest
-  type: FullBody
 black_platebody_(h4)_noted:
   id: 19231
 black_platelegs_(h4):
@@ -40549,7 +39847,6 @@ black_plateskirt_(h4)_noted:
 adamant_platebody_(h4):
   id: 19236
   slot: Chest
-  type: FullBody
 adamant_platebody_(h4)_noted:
   id: 19237
 adamant_platelegs_(h4):
@@ -40565,13 +39862,11 @@ adamant_plateskirt_(h4)_noted:
 rune_platebody_(h4):
   id: 19242
   slot: Chest
-  type: FullBody
 rune_platebody_(h4)_noted:
   id: 19243
 rune_platebody_(h4)_lent:
   id: 19244
   slot: Chest
-  type: FullBody
 rune_platelegs_(h4):
   id: 19245
   slot: Legs
@@ -40591,7 +39886,6 @@ rune_plateskirt_(h4)_lent:
 black_platebody_(h5):
   id: 19251
   slot: Chest
-  type: FullBody
 black_platebody_(h5)_noted:
   id: 19252
 black_platelegs_(h5):
@@ -40607,7 +39901,6 @@ black_plateskirt_(h5)_noted:
 adamant_platebody_(h5):
   id: 19257
   slot: Chest
-  type: FullBody
 adamant_platebody_(h5)_noted:
   id: 19258
 adamant_platelegs_(h5):
@@ -40623,13 +39916,11 @@ adamant_plateskirt_(h5)_noted:
 rune_platebody_(h5):
   id: 19263
   slot: Chest
-  type: FullBody
 rune_platebody_(h5)_noted:
   id: 19264
 rune_platebody_(h5)_lent:
   id: 19265
   slot: Chest
-  type: FullBody
 rune_platelegs_(h5):
   id: 19266
   slot: Legs
@@ -40649,123 +39940,123 @@ rune_plateskirt_(h5)_lent:
 fox_mask:
   id: 19272
   slot: Hat
-  type: Mask
+  type: FullFace
 fox_mask_noted:
   id: 19273
 fox_mask_lent:
   id: 19274
   slot: Hat
-  type: Mask
+  type: FullFace
 white_unicorn_mask:
   id: 19275
   slot: Hat
-  type: Mask
+  type: FullFace
 white_unicorn_mask_noted:
   id: 19276
 white_unicorn_mask_lent:
   id: 19277
   slot: Hat
-  type: Mask
+  type: FullFace
 black_unicorn_mask:
   id: 19278
   slot: Hat
-  type: Mask
+  type: FullFace
 black_unicorn_mask_noted:
   id: 19279
 black_unicorn_mask_lent:
   id: 19280
   slot: Hat
-  type: Mask
+  type: FullFace
 green_dragon_mask:
   id: 19281
   slot: Hat
-  type: Mask
+  type: FullFace
 green_dragon_mask_noted:
   id: 19282
 green_dragon_mask_lent:
   id: 19283
   slot: Hat
-  type: Mask
+  type: FullFace
 blue_dragon_mask:
   id: 19284
   slot: Hat
-  type: Mask
+  type: FullFace
 blue_dragon_mask_noted:
   id: 19285
 blue_dragon_mask_lent:
   id: 19286
   slot: Hat
-  type: Mask
+  type: FullFace
 red_dragon_mask:
   id: 19287
   slot: Hat
-  type: Mask
+  type: FullFace
 red_dragon_mask_noted:
   id: 19288
 red_dragon_mask_lent:
   id: 19289
   slot: Hat
-  type: Mask
+  type: FullFace
 black_dragon_mask:
   id: 19290
   slot: Hat
-  type: Mask
+  type: FullFace
 black_dragon_mask_noted:
   id: 19291
 black_dragon_mask_lent:
   id: 19292
   slot: Hat
-  type: Mask
+  type: FullFace
 frost_dragon_mask:
   id: 19293
   slot: Hat
-  type: Mask
+  type: FullFace
 frost_dragon_mask_noted:
   id: 19294
 frost_dragon_mask_lent:
   id: 19295
   slot: Hat
-  type: Mask
+  type: FullFace
 bronze_dragon_mask:
   id: 19296
   slot: Hat
-  type: Mask
+  type: FullFace
 bronze_dragon_mask_noted:
   id: 19297
 bronze_dragon_mask_lent:
   id: 19298
   slot: Hat
-  type: Mask
+  type: FullFace
 iron_dragon_mask:
   id: 19299
   slot: Hat
-  type: Mask
+  type: FullFace
 iron_dragon_mask_noted:
   id: 19300
 iron_dragon_mask_lent:
   id: 19301
   slot: Hat
-  type: Mask
+  type: FullFace
 steel_dragon_mask:
   id: 19302
   slot: Hat
-  type: Mask
+  type: FullFace
 steel_dragon_mask_noted:
   id: 19303
 steel_dragon_mask_lent:
   id: 19304
   slot: Hat
-  type: Mask
+  type: FullFace
 mithril_dragon_mask:
   id: 19305
   slot: Hat
-  type: Mask
+  type: FullFace
 mithril_dragon_mask_noted:
   id: 19306
 mithril_dragon_mask_lent:
   id: 19307
   slot: Hat
-  type: Mask
+  type: FullFace
 third-age_druidic_staff:
   id: 19308
   slot: Weapon
@@ -40793,13 +40084,11 @@ third-age_druidic_wreath_lent:
 third-age_druidic_robe_top:
   id: 19317
   slot: Chest
-  type: FullBody
 third-age_druidic_robe_top_noted:
   id: 19318
 third-age_druidic_robe_top_lent:
   id: 19319
   slot: Chest
-  type: FullBody
 third-age_druidic_robe:
   id: 19320
   slot: Legs
@@ -40843,11 +40132,10 @@ amulet_of_fury_(or):
 dragon_full_helm_(or):
   id: 19336
   slot: Hat
-  type: Hair
+  type: FullFace
 dragon_platebody_(or):
   id: 19337
   slot: Chest
-  type: FullBody
 dragon_platelegs_(or):
   id: 19338
   slot: Legs
@@ -40860,11 +40148,10 @@ dragon_square_shield_(or):
 dragon_full_helm_(sp):
   id: 19341
   slot: Hat
-  type: Hair
+  type: FullFace
 dragon_platebody_(sp):
   id: 19342
   slot: Chest
-  type: FullBody
 dragon_platelegs_(sp):
   id: 19343
   slot: Legs
@@ -40957,19 +40244,16 @@ ancient_mitre_noted:
 armadyl_robe_top:
   id: 19380
   slot: Chest
-  type: FullBody
 armadyl_robe_top_noted:
   id: 19381
 ancient_robe_top:
   id: 19382
   slot: Chest
-  type: FullBody
 ancient_robe_top_noted:
   id: 19383
 bandos_robe_top:
   id: 19384
   slot: Chest
-  type: FullBody
 bandos_robe_top_noted:
   id: 19385
 armadyl_robe_legs:
@@ -41005,13 +40289,11 @@ ancient_stole_noted:
 ancient_platebody:
   id: 19398
   slot: Chest
-  type: FullBody
 ancient_platebody_noted:
   id: 19399
 ancient_platebody_lent:
   id: 19400
   slot: Chest
-  type: FullBody
 ancient_platelegs:
   id: 19401
   slot: Legs
@@ -41031,13 +40313,13 @@ ancient_plateskirt_lent:
 ancient_full_helm:
   id: 19407
   slot: Hat
-  type: Hair
+  type: FullFace
 ancient_full_helm_noted:
   id: 19408
 ancient_full_helm_lent:
   id: 19409
   slot: Hat
-  type: Hair
+  type: FullFace
 ancient_kiteshield:
   id: 19410
   slot: Shield
@@ -41049,13 +40331,11 @@ ancient_kiteshield_lent:
 armadyl_platebody:
   id: 19413
   slot: Chest
-  type: FullBody
 armadyl_platebody_noted:
   id: 19414
 armadyl_platebody_lent:
   id: 19415
   slot: Chest
-  type: FullBody
 armadyl_platelegs:
   id: 19416
   slot: Legs
@@ -41075,13 +40355,13 @@ armadyl_plateskirt_lent:
 armadyl_full_helm:
   id: 19422
   slot: Hat
-  type: Hair
+  type: FullFace
 armadyl_full_helm_noted:
   id: 19423
 armadyl_full_helm_lent:
   id: 19424
   slot: Hat
-  type: Hair
+  type: FullFace
 armadyl_kiteshield:
   id: 19425
   slot: Shield
@@ -41093,13 +40373,11 @@ armadyl_kiteshield_lent:
 bandos_platebody:
   id: 19428
   slot: Chest
-  type: FullBody
 bandos_platebody_noted:
   id: 19429
 bandos_platebody_lent:
   id: 19430
   slot: Chest
-  type: FullBody
 bandos_platelegs:
   id: 19431
   slot: Legs
@@ -41119,13 +40397,13 @@ bandos_plateskirt_lent:
 bandos_full_helm:
   id: 19437
   slot: Hat
-  type: Hair
+  type: FullFace
 bandos_full_helm_noted:
   id: 19438
 bandos_full_helm_lent:
   id: 19439
   slot: Hat
-  type: Hair
+  type: FullFace
 bandos_kiteshield:
   id: 19440
   slot: Shield
@@ -41142,7 +40420,6 @@ ancient_vambraces_noted:
 ancient_body:
   id: 19445
   slot: Chest
-  type: FullBody
 ancient_body_noted:
   id: 19446
 ancient_chaps:
@@ -41164,7 +40441,6 @@ bandos_vambraces_noted:
 bandos_body:
   id: 19453
   slot: Chest
-  type: FullBody
 bandos_body_noted:
   id: 19454
 bandos_chaps:
@@ -41186,7 +40462,6 @@ armadyl_vambraces_noted:
 armadyl_body:
   id: 19461
   slot: Chest
-  type: FullBody
 armadyl_body_noted:
   id: 19462
 armadyl_chaps:
@@ -41592,7 +40867,6 @@ climbing_hook:
   id: 19668
 ring_of_vigour:
   id: 19669
-  slot: Ring
 scroll_of_efficiency:
   id: 19670
 magical_blastbox:
@@ -41600,13 +40874,10 @@ magical_blastbox:
   slot: Shield
 eye_of_the_ranger:
   id: 19672
-  slot: Ring
 eye_of_the_warrior:
   id: 19673
-  slot: Ring
 eye_of_the_mage:
   id: 19674
-  slot: Ring
 herbicide:
   id: 19675
 mysterious_chronicle_(part_19):
@@ -41639,22 +40910,16 @@ m._and_thok_letter_(part_8):
   id: 19689
 kinship_ring_4:
   id: 19690
-  slot: Ring
 "...":
   id: 19691
-  slot: Ring
 "..._2":
   id: 19692
-  slot: Ring
 "..._3":
   id: 19693
-  slot: Ring
 "..._4":
   id: 19694
-  slot: Ring
 "..._5":
   id: 19695
-  slot: Ring
 rand_kalergian_demon_icon:
   id: 19696
 rand_portal_demon_icon:
@@ -41678,7 +40943,6 @@ mysterious_book:
 investigators_coat:
   id: 19706
   slot: Chest
-  type: FullBody
 investigators_trousers:
   id: 19707
   slot: Legs
@@ -41765,7 +41029,6 @@ junk_24:
 barrister_top:
   id: 19735
   slot: Chest
-  type: FullBody
 dossier_photo_8:
   id: 19736
 dossier_photo_9:
@@ -41814,14 +41077,12 @@ antique_lamp_43:
 varrock_armour_4:
   id: 19757
   slot: Chest
-  type: FullBody
 antique_lamp_44:
   id: 19758
 antique_lamp_45:
   id: 19759
 explorers_ring_4:
   id: 19760
-  slot: Ring
 antique_lamp_46:
   id: 19761
 hamper:
@@ -41869,35 +41130,31 @@ korasis_sword_2:
 black_platebody_(bugged):
   id: 19781
   slot: Chest
-  type: FullBody
 black_platelegs_(bugged):
   id: 19782
   slot: Legs
 black_full_helm_(bugged):
   id: 19783
   slot: Hat
-  type: Hair
+  type: FullFace
 korasis_sword_3:
   id: 19784
   slot: Weapon
 elite_void_knight_top:
   id: 19785
   slot: Chest
-  type: FullBody
 elite_void_knight_robe:
   id: 19786
   slot: Legs
 elite_void_knight_top_2:
   id: 19787
   slot: Chest
-  type: FullBody
 elite_void_knight_robe_2:
   id: 19788
   slot: Legs
 elite_void_knight_top_3:
   id: 19789
   slot: Chest
-  type: FullBody
 elite_void_knight_robe_3:
   id: 19790
   slot: Legs
@@ -42092,7 +41349,6 @@ sneakerpeeper_2:
   id: 19895
 kinship_ring_5:
   id: 19896
-  slot: Ring
 erzille_seed:
   id: 19897
 ugune_seed:
@@ -42288,7 +41544,6 @@ juju_hunter_potion_(4)_2:
 witchdoctor_robes:
   id: 20044
   slot: Chest
-  type: FullBody
 witchdoctor_legs:
   id: 20045
   slot: Legs
@@ -42300,7 +41555,6 @@ juju_vial_pack:
 witchdoctor_robes_2:
   id: 20048
   slot: Chest
-  type: FullBody
 witchdoctor_legs_2:
   id: 20049
   slot: Legs
@@ -42313,10 +41567,8 @@ clay_ring_(unfired):
   id: 20052
 clay_ring:
   id: 20053
-  slot: Ring
 ring_of_devotion:
   id: 20054
-  slot: Ring
 clay_ring_(unfired)_noted:
   id: 20055
 clay_ring_noted:
@@ -42333,7 +41585,6 @@ metal_crate:
   id: 20061
 economy_building_for_dummies:
   id: 20062
-  slot: Weapon
 bundle_of_carpets:
   id: 20063
 cramulet:
@@ -42356,7 +41607,7 @@ green_banana:
 cyclopean_helmet:
   id: 20070
   slot: Hat
-  type: Hair
+  type: FullFace
 cyclopean_helmet_noted:
   id: 20071
 dragon_defender:
@@ -42436,11 +41687,10 @@ keldagrim_key_6:
 ancient_ceremonial_hood:
   id: 20115
   slot: Hat
-  type: Hair
+  type: FullFace
 ancient_ceremonial_top:
   id: 20116
   slot: Chest
-  type: FullBody
 ancient_ceremonial_legs:
   id: 20117
   slot: Legs
@@ -42463,13 +41713,12 @@ frozen_key_piece_(saradomin):
 ancient_ceremonial_mask:
   id: 20125
   slot: Hat
-  type: Hair
+  type: FullFace
 ancient_ceremonial_mask_noted:
   id: 20126
 ancient_ceremonial_top_2:
   id: 20127
   slot: Chest
-  type: FullBody
 ancient_ceremonial_top_noted:
   id: 20128
 ancient_ceremonial_legs_2:
@@ -42490,31 +41739,28 @@ ancient_ceremonial_boots_noted:
 torva_full_helm:
   id: 20135
   slot: Hat
-  type: Hair
+  type: FullFace
 torva_full_helm_noted:
   id: 20136
 torva_full_helm_2:
   id: 20137
   slot: Hat
-  type: Hair
+  type: FullFace
 torva_full_helm_(broken):
   id: 20138
   slot: Hat
-  type: Hair
+  type: FullFace
 torva_platebody:
   id: 20139
   slot: Chest
-  type: FullBody
 torva_platebody_noted:
   id: 20140
 torva_platebody_2:
   id: 20141
   slot: Chest
-  type: FullBody
 torva_platebody_(broken):
   id: 20142
   slot: Chest
-  type: FullBody
 torva_platelegs:
   id: 20143
   slot: Legs
@@ -42529,31 +41775,28 @@ torva_platelegs_(broken):
 pernix_cowl:
   id: 20147
   slot: Hat
-  type: Hair
+  type: FullFace
 pernix_cowl_noted:
   id: 20148
 pernix_cowl_2:
   id: 20149
   slot: Hat
-  type: Hair
+  type: FullFace
 pernix_cowl_(broken):
   id: 20150
   slot: Hat
-  type: Hair
+  type: FullFace
 pernix_body:
   id: 20151
   slot: Chest
-  type: FullBody
 pernix_body_noted:
   id: 20152
 pernix_body_2:
   id: 20153
   slot: Chest
-  type: FullBody
 pernix_body_(broken):
   id: 20154
   slot: Chest
-  type: FullBody
 pernix_chaps:
   id: 20155
   slot: Legs
@@ -42568,31 +41811,28 @@ pernix_chaps_(broken):
 virtus_mask:
   id: 20159
   slot: Hat
-  type: Hair
+  type: FullFace
 virtus_mask_noted:
   id: 20160
 virtus_mask_2:
   id: 20161
   slot: Hat
-  type: Hair
+  type: FullFace
 virtus_mask_(broken):
   id: 20162
   slot: Hat
-  type: Hair
+  type: FullFace
 virtus_robe_top:
   id: 20163
   slot: Chest
-  type: FullBody
 virtus_robe_top_noted:
   id: 20164
 virtus_robe_top_2:
   id: 20165
   slot: Chest
-  type: FullBody
 virtus_robe_top_(broken):
   id: 20166
   slot: Chest
-  type: FullBody
 virtus_robe_legs:
   id: 20167
   slot: Legs
@@ -42625,7 +41865,7 @@ miners_diary:
 hati_head:
   id: 20177
   slot: Hat
-  type: Hair
+  type: FullFace
 hati_paws:
   id: 20178
   slot: Hands
@@ -43161,13 +42401,11 @@ chaos_helmet_noted:
 cosmic_body:
   id: 20444
   slot: Chest
-  type: FullBody
 cosmic_body_noted:
   id: 20445
 chaos_body:
   id: 20446
   slot: Chest
-  type: FullBody
 chaos_body_noted:
   id: 20447
 elemental_boots:
@@ -43617,22 +42855,18 @@ rune_ingot_iv:
   id: 20652
 ring_of_wealth_(1):
   id: 20653
-  slot: Ring
 ring_of_wealth_(1)_noted:
   id: 20654
 ring_of_wealth_(2):
   id: 20655
-  slot: Ring
 ring_of_wealth_(2)_noted:
   id: 20656
 ring_of_wealth_(3):
   id: 20657
-  slot: Ring
 ring_of_wealth_(3)_noted:
   id: 20658
 ring_of_wealth_(4):
   id: 20659
-  slot: Ring
 ring_of_wealth_(4)_noted:
   id: 20660
 jewelled_golden_statuette:
@@ -43931,7 +43165,6 @@ golden_mining_trousers:
 golden_mining_top:
   id: 20791
   slot: Chest
-  type: FullBody
 golden_mining_helmet_2:
   id: 20792
   slot: Hat
@@ -43963,27 +43196,27 @@ duellists_cap_6:
 wildstalker_helmet:
   id: 20801
   slot: Hat
-  type: Hair
+  type: FullFace
 wildstalker_helmet_2:
   id: 20802
   slot: Hat
-  type: Hair
+  type: FullFace
 wildstalker_helmet_3:
   id: 20803
   slot: Hat
-  type: Hair
+  type: FullFace
 wildstalker_helmet_4:
   id: 20804
   slot: Hat
-  type: Hair
+  type: FullFace
 wildstalker_helmet_5:
   id: 20805
   slot: Hat
-  type: Hair
+  type: FullFace
 wildstalker_helmet_6:
   id: 20806
   slot: Hat
-  type: Hair
+  type: FullFace
 duelist_hat:
   id: 20807
   slot: Weapon
@@ -44033,14 +43266,13 @@ thoks_sword:
 primal_platebody_2:
   id: 20822
   slot: Chest
-  type: FullBody
 primal_platelegs_2:
   id: 20823
   slot: Legs
 primal_full_helm_2:
   id: 20824
   slot: Hat
-  type: Hair
+  type: FullFace
 primal_gauntlets_2:
   id: 20825
   slot: Hands
@@ -44113,7 +43345,6 @@ sir_owens_longsword:
   slot: Weapon
 kratonite_arrows_2:
   id: 20858
-  slot: Arrows
 ozans_longbow:
   id: 20859
   slot: Weapon
@@ -44155,14 +43386,13 @@ gorgonite_2h_sword_2:
 katagon_platebody_2:
   id: 20875
   slot: Chest
-  type: FullBody
 katagon_platelegs_2:
   id: 20876
   slot: Legs
 katagon_full_helm_2:
   id: 20877
   slot: Hat
-  type: Hair
+  type: FullFace
 vial_5:
   id: 20878
 antipoison_elixir:
@@ -44324,19 +43554,19 @@ white_robin_hood_hat:
 dervish_headdress:
   id: 20953
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_headdress:
   id: 20954
   slot: Hat
-  type: Hair
+  type: FullFace
 eastern_headdress:
   id: 20955
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress:
   id: 20956
   slot: Hat
-  type: Hair
+  type: FullFace
 oddball:
   id: 20957
   slot: Aura
@@ -44372,83 +43602,73 @@ sharpshooter:
 dervish_head_wrap:
   id: 20970
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_note:
   id: 20971
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_2:
   id: 20972
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_note_2:
   id: 20973
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_3:
   id: 20974
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_note_3:
   id: 20975
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_4:
   id: 20976
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_note_4:
   id: 20977
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_5:
   id: 20978
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_head_wrap_note_5:
   id: 20979
   slot: Hat
-  type: Hair
+  type: FullFace
 dervish_robe:
   id: 20980
   slot: Chest
-  type: FullBody
 dervish_robe_note:
   id: 20981
   slot: Chest
-  type: FullBody
 dervish_robe_2:
   id: 20982
   slot: Chest
-  type: FullBody
 dervish_robe_note_2:
   id: 20983
   slot: Chest
-  type: FullBody
 dervish_robe_3:
   id: 20984
   slot: Chest
-  type: FullBody
 dervish_robe_note_3:
   id: 20985
   slot: Chest
-  type: FullBody
 dervish_robe_4:
   id: 20986
   slot: Chest
-  type: FullBody
 dervish_robe_note_4:
   id: 20987
   slot: Chest
-  type: FullBody
 dervish_robe_5:
   id: 20988
   slot: Chest
-  type: FullBody
 dervish_robe_note_5:
   id: 20989
   slot: Chest
-  type: FullBody
 dervish_trousers:
   id: 20990
   slot: Legs
@@ -44552,43 +43772,33 @@ dervish_hood_note_5:
 dervish_robe_6:
   id: 21020
   slot: Chest
-  type: FullBody
 dervish_robe_note_6:
   id: 21021
   slot: Chest
-  type: FullBody
 dervish_robe_7:
   id: 21022
   slot: Chest
-  type: FullBody
 dervish_robe_note_7:
   id: 21023
   slot: Chest
-  type: FullBody
 dervish_robe_8:
   id: 21024
   slot: Chest
-  type: FullBody
 dervish_robe_note_8:
   id: 21025
   slot: Chest
-  type: FullBody
 dervish_robe_9:
   id: 21026
   slot: Chest
-  type: FullBody
 dervish_robe_note_9:
   id: 21027
   slot: Chest
-  type: FullBody
 dervish_robe_10:
   id: 21028
   slot: Chest
-  type: FullBody
 dervish_robe_note_10:
   id: 21029
   slot: Chest
-  type: FullBody
 dervish_skirt:
   id: 21030
   slot: Legs
@@ -44652,51 +43862,41 @@ dervish_shoes_note_10:
 eastern_knot:
   id: 21050
   slot: Hat
-  type: Hair
+  type: FullFace
 eastern_knot_note:
   id: 21051
   slot: Hat
-  type: Hair
+  type: FullFace
 eastern_robe:
   id: 21052
   slot: Chest
-  type: FullBody
 eastern_robe_note:
   id: 21053
   slot: Chest
-  type: FullBody
 eastern_robe_2:
   id: 21054
   slot: Chest
-  type: FullBody
 eastern_robe_note_2:
   id: 21055
   slot: Chest
-  type: FullBody
 eastern_robe_3:
   id: 21056
   slot: Chest
-  type: FullBody
 eastern_robe_note_3:
   id: 21057
   slot: Chest
-  type: FullBody
 eastern_robe_4:
   id: 21058
   slot: Chest
-  type: FullBody
 eastern_robe_note_4:
   id: 21059
   slot: Chest
-  type: FullBody
 eastern_robe_5:
   id: 21060
   slot: Chest
-  type: FullBody
 eastern_robe_note_5:
   id: 21061
   slot: Chest
-  type: FullBody
 eastern_trousers:
   id: 21062
   slot: Legs
@@ -44736,51 +43936,39 @@ eastern_sandals_note:
 eastern_bun:
   id: 21074
   slot: Hat
-  type: Hair
 eastern_bun_note:
   id: 21075
   slot: Hat
-  type: Hair
 eastern_kimono:
   id: 21076
   slot: Chest
-  type: FullBody
 eastern_kimono_note:
   id: 21077
   slot: Chest
-  type: FullBody
 eastern_kimono_2:
   id: 21078
   slot: Chest
-  type: FullBody
 eastern_kimono_note_2:
   id: 21079
   slot: Chest
-  type: FullBody
 eastern_kimono_3:
   id: 21080
   slot: Chest
-  type: FullBody
 eastern_kimono_note_3:
   id: 21081
   slot: Chest
-  type: FullBody
 eastern_kimono_4:
   id: 21082
   slot: Chest
-  type: FullBody
 eastern_kimono_note_4:
   id: 21083
   slot: Chest
-  type: FullBody
 eastern_kimono_5:
   id: 21084
   slot: Chest
-  type: FullBody
 eastern_kimono_note_5:
   id: 21085
   slot: Chest
-  type: FullBody
 eastern_skirt:
   id: 21086
   slot: Legs
@@ -44844,83 +44032,73 @@ eastern_sandals_note_6:
 saxon_ringlet:
   id: 21106
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note:
   id: 21107
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_2:
   id: 21108
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_2:
   id: 21109
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_3:
   id: 21110
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_3:
   id: 21111
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_4:
   id: 21112
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_4:
   id: 21113
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_5:
   id: 21114
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_5:
   id: 21115
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_shirt:
   id: 21116
   slot: Chest
-  type: FullBody
 saxon_shirt_note:
   id: 21117
   slot: Chest
-  type: FullBody
 saxon_shirt_2:
   id: 21118
   slot: Chest
-  type: FullBody
 saxon_shirt_note_2:
   id: 21119
   slot: Chest
-  type: FullBody
 saxon_shirt_3:
   id: 21120
   slot: Chest
-  type: FullBody
 saxon_shirt_note_3:
   id: 21121
   slot: Chest
-  type: FullBody
 saxon_shirt_4:
   id: 21122
   slot: Chest
-  type: FullBody
 saxon_shirt_note_4:
   id: 21123
   slot: Chest
-  type: FullBody
 saxon_shirt_5:
   id: 21124
   slot: Chest
-  type: FullBody
 saxon_shirt_note_5:
   id: 21125
   slot: Chest
-  type: FullBody
 saxon_trousers:
   id: 21126
   slot: Legs
@@ -44984,83 +44162,73 @@ saxon_shoes_note_5:
 saxon_ringlet_6:
   id: 21146
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_6:
   id: 21147
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_7:
   id: 21148
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_7:
   id: 21149
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_8:
   id: 21150
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_8:
   id: 21151
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_9:
   id: 21152
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_9:
   id: 21153
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_10:
   id: 21154
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_ringlet_note_10:
   id: 21155
   slot: Hat
-  type: Hair
+  type: FullFace
 saxon_top:
   id: 21156
   slot: Chest
-  type: FullBody
 saxon_top_note:
   id: 21157
   slot: Chest
-  type: FullBody
 saxon_top_2:
   id: 21158
   slot: Chest
-  type: FullBody
 saxon_top_note_2:
   id: 21159
   slot: Chest
-  type: FullBody
 saxon_top_3:
   id: 21160
   slot: Chest
-  type: FullBody
 saxon_top_note_3:
   id: 21161
   slot: Chest
-  type: FullBody
 saxon_top_4:
   id: 21162
   slot: Chest
-  type: FullBody
 saxon_top_note_4:
   id: 21163
   slot: Chest
-  type: FullBody
 saxon_top_5:
   id: 21164
   slot: Chest
-  type: FullBody
 saxon_top_note_5:
   id: 21165
   slot: Chest
-  type: FullBody
 saxon_skirt:
   id: 21166
   slot: Legs
@@ -45100,83 +44268,73 @@ saxon_shoes_note_6:
 samba_headdress_2:
   id: 21178
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note:
   id: 21179
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_3:
   id: 21180
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_2:
   id: 21181
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_4:
   id: 21182
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_3:
   id: 21183
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_5:
   id: 21184
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_4:
   id: 21185
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_6:
   id: 21186
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_5:
   id: 21187
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_top:
   id: 21188
   slot: Chest
-  type: FullBody
 samba_top_note:
   id: 21189
   slot: Chest
-  type: FullBody
 samba_top_2:
   id: 21190
   slot: Chest
-  type: FullBody
 samba_top_note_2:
   id: 21191
   slot: Chest
-  type: FullBody
 samba_top_3:
   id: 21192
   slot: Chest
-  type: FullBody
 samba_top_note_3:
   id: 21193
   slot: Chest
-  type: FullBody
 samba_top_4:
   id: 21194
   slot: Chest
-  type: FullBody
 samba_top_note_4:
   id: 21195
   slot: Chest
-  type: FullBody
 samba_top_5:
   id: 21196
   slot: Chest
-  type: FullBody
 samba_top_note_5:
   id: 21197
   slot: Chest
-  type: FullBody
 samba_loincloth:
   id: 21198
   slot: Legs
@@ -45240,83 +44398,73 @@ samba_sandals_note_5:
 samba_headdress_7:
   id: 21218
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_6:
   id: 21219
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_8:
   id: 21220
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_7:
   id: 21221
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_9:
   id: 21222
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_8:
   id: 21223
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_10:
   id: 21224
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_9:
   id: 21225
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_11:
   id: 21226
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_headdress_note_10:
   id: 21227
   slot: Hat
-  type: Hair
+  type: FullFace
 samba_top_6:
   id: 21228
   slot: Chest
-  type: FullBody
 samba_top_note_6:
   id: 21229
   slot: Chest
-  type: FullBody
 samba_top_7:
   id: 21230
   slot: Chest
-  type: FullBody
 samba_top_note_7:
   id: 21231
   slot: Chest
-  type: FullBody
 samba_top_8:
   id: 21232
   slot: Chest
-  type: FullBody
 samba_top_note_8:
   id: 21233
   slot: Chest
-  type: FullBody
 samba_top_9:
   id: 21234
   slot: Chest
-  type: FullBody
 samba_top_note_9:
   id: 21235
   slot: Chest
-  type: FullBody
 samba_top_10:
   id: 21236
   slot: Chest
-  type: FullBody
 samba_top_note_10:
   id: 21237
   slot: Chest
-  type: FullBody
 samba_loincloth_6:
   id: 21238
   slot: Legs
@@ -45659,10 +44807,10 @@ zamorak_fruit:
 avalanis_hat:
   id: 21389
   slot: Hat
+  type: Hair
 avalanis_robe_top:
   id: 21390
   slot: Chest
-  type: FullBody
 avalanis_robe_bottoms:
   id: 21391
   slot: Legs
@@ -45725,28 +44873,20 @@ battlefield_cape_3:
   slot: Cape
 uncharged_ring:
   id: 21409
-  slot: Ring
 cooking_ring:
   id: 21410
-  slot: Ring
 crafting_ring:
   id: 21411
-  slot: Ring
 firemaking_ring:
   id: 21412
-  slot: Ring
 mining_ring:
   id: 21413
-  slot: Ring
 smithing_ring:
   id: 21414
-  slot: Ring
 summoning_ring:
   id: 21415
-  slot: Ring
 woodcutting_ring:
   id: 21416
-  slot: Ring
 master_invitation:
   id: 21428
 clan_meeting_invitation:
@@ -45773,11 +44913,10 @@ mystery_cracker:
 constructors_hat:
   id: 21439
   slot: Hat
-  type: Hair
+  type: FullFace
 constructors_body:
   id: 21440
   slot: Chest
-  type: FullBody
 constructors_trousers:
   id: 21441
   slot: Legs
@@ -45795,11 +44934,10 @@ ramblers_backpack:
 constructors_hat_2:
   id: 21446
   slot: Hat
-  type: Hair
+  type: FullFace
 constructors_garb:
   id: 21447
   slot: Chest
-  type: FullBody
 constructors_trousers_2:
   id: 21448
   slot: Legs
@@ -45839,7 +44977,6 @@ battle-mage_helm:
 battle-mage_robe:
   id: 21463
   slot: Chest
-  type: FullBody
 battle-mage_robe_legs:
   id: 21464
   slot: Legs
@@ -45852,11 +44989,10 @@ battle-mage_boots:
 trickster_helm:
   id: 21467
   slot: Hat
-  type: Hair
+  type: FullFace
 trickster_robe:
   id: 21468
   slot: Chest
-  type: FullBody
 trickster_robe_legs:
   id: 21469
   slot: Legs
@@ -45869,11 +45005,10 @@ trickster_boots:
 vanguard_helm:
   id: 21472
   slot: Hat
-  type: Hair
+  type: FullFace
 vanguard_body:
   id: 21473
   slot: Chest
-  type: FullBody
 vanguard_legs:
   id: 21474
   slot: Legs
@@ -45886,7 +45021,6 @@ vanguard_boots:
 necromancer_robe_top:
   id: 21477
   slot: Chest
-  type: FullBody
 necromancer_hood:
   id: 21478
   slot: Hat
@@ -45897,24 +45031,23 @@ necromancer_robe_bottom:
 black_ibis_body:
   id: 21480
   slot: Chest
-  type: FullBody
 black_ibis_legs:
   id: 21481
   slot: Legs
 black_ibis_mask:
   id: 21482
   slot: Hat
-  type: Hair
+  type: FullFace
 black_ibis_boots:
   id: 21483
   slot: Feet
 runecrafter_robe_4:
   id: 21484
   slot: Chest
-  type: FullBody
 runecrafter_hat_12:
   id: 21485
   slot: Hat
+  type: Hair
 runecrafter_skirt_4:
   id: 21486
   slot: Legs
@@ -45982,7 +45115,6 @@ necromancers_steam_staff:
 necromancer_robe_top_2:
   id: 21508
   slot: Chest
-  type: FullBody
 necromancer_hood_2:
   id: 21509
   slot: Hat
@@ -46005,10 +45137,10 @@ patch_protection_scroll:
 runecrafter_robe_5:
   id: 21516
   slot: Chest
-  type: FullBody
 runecrafter_hat_13:
   id: 21517
   slot: Hat
+  type: Hair
 runecrafter_skirt_5:
   id: 21518
   slot: Legs
@@ -46049,14 +45181,13 @@ castlewars_chinchompa:
 black_ibis_body_2:
   id: 21532
   slot: Chest
-  type: FullBody
 black_ibis_legs_2:
   id: 21533
   slot: Legs
 black_ibis_mask_2:
   id: 21534
   slot: Hat
-  type: Hair
+  type: FullFace
 black_ibis_boots_2:
   id: 21535
   slot: Feet
@@ -46074,11 +45205,9 @@ battle-mage_helm_3:
 battle-mage_robe_2:
   id: 21539
   slot: Chest
-  type: FullBody
 battle-mage_robe_3:
   id: 21540
   slot: Chest
-  type: FullBody
 battle-mage_robe_legs_2:
   id: 21541
   slot: Legs
@@ -46100,19 +45229,17 @@ battle-mage_boots_3:
 trickster_helm_2:
   id: 21547
   slot: Hat
-  type: Hair
+  type: FullFace
 trickster_helm_3:
   id: 21548
   slot: Hat
-  type: Hair
+  type: FullFace
 trickster_robe_2:
   id: 21549
   slot: Chest
-  type: FullBody
 trickster_robe_3:
   id: 21550
   slot: Chest
-  type: FullBody
 trickster_robe_legs_2:
   id: 21551
   slot: Legs
@@ -46134,19 +45261,17 @@ trickster_boots_3:
 vanguard_helm_2:
   id: 21557
   slot: Hat
-  type: Hair
+  type: FullFace
 vanguard_helm_3:
   id: 21558
   slot: Hat
-  type: Hair
+  type: FullFace
 vanguard_body_2:
   id: 21559
   slot: Chest
-  type: FullBody
 vanguard_body_3:
   id: 21560
   slot: Chest
-  type: FullBody
 vanguard_legs_2:
   id: 21561
   slot: Legs
@@ -46174,7 +45299,6 @@ darkmeyer_hood:
 darkmeyer_torso:
   id: 21572
   slot: Chest
-  type: FullBody
 darkmeyer_trousers:
   id: 21573
   slot: Legs
@@ -46236,7 +45360,6 @@ darkmeyer_hood_2:
 darkmeyer_torso_2:
   id: 21597
   slot: Chest
-  type: FullBody
 darkmeyer_trousers_2:
   id: 21598
   slot: Legs
@@ -46313,100 +45436,68 @@ prayer_renewal_(1)_noted:
   id: 21637
 dragonbane_arrow:
   id: 21640
-  slot: Arrows
 wallasalkibane_arrow:
   id: 21645
-  slot: Arrows
 basiliskbane_arrow:
   id: 21650
-  slot: Arrows
 abyssalbane_arrow:
   id: 21655
-  slot: Arrows
 dragonbane_bolt:
   id: 21660
-  slot: Arrows
 wallasalkibane_bolt:
   id: 21665
-  slot: Arrows
 basiliskbane_bolt:
   id: 21670
-  slot: Arrows
 abyssalbane_bolt:
   id: 21675
-  slot: Arrows
 dragonbane_bolts_(p):
   id: 21680
-  slot: Arrows
 dragonbane_bolts_(p+):
   id: 21681
-  slot: Arrows
 dragonbane_bolts_(p++):
   id: 21682
-  slot: Arrows
 basiliskbane_bolts_(p):
   id: 21687
-  slot: Arrows
 basiliskbane_bolts_(p+):
   id: 21688
-  slot: Arrows
 basiliskbane_bolts_(p++):
   id: 21689
-  slot: Arrows
 wallasalkibane_bolts_(p):
   id: 21694
-  slot: Arrows
 wallasalkibane_bolts_(p+):
   id: 21695
-  slot: Arrows
 wallasalkibane_bolts_(p++):
   id: 21696
-  slot: Arrows
 abyssalbane_bolts_(p):
   id: 21701
-  slot: Arrows
 abyssalbane_bolts_(p+):
   id: 21702
-  slot: Arrows
 abyssalbane_bolts_(p++):
   id: 21703
-  slot: Arrows
 dragonbane_arrow_(p):
   id: 21712
-  slot: Arrows
 dragonbane_arrows_(p+):
   id: 21713
-  slot: Arrows
 dragonbane_arrows_(p++):
   id: 21714
-  slot: Arrows
 basiliskbane_arrow_(p):
   id: 21719
-  slot: Arrows
 basiliskbane_arrows_(p+):
   id: 21720
-  slot: Arrows
 basiliskbane_arrows_(p++):
   id: 21721
-  slot: Arrows
 wallasalkibane_arrow_(p):
   id: 21726
-  slot: Arrows
 wallasalkibane_arrows_(p+):
   id: 21727
-  slot: Arrows
 wallasalkibane_arrows_(p++):
   id: 21728
-  slot: Arrows
 abyssalbane_arrow_(p):
   id: 21733
-  slot: Arrows
 abyssalbane_arrows_(p+):
   id: 21734
-  slot: Arrows
 abyssalbane_arrows_(p++):
   id: 21735
-  slot: Arrows
 akrisaes_hood:
   id: 21736
   slot: Hat
@@ -46466,29 +45557,23 @@ akrisaes_war_mace_0_noted:
 akrisaes_robe_top:
   id: 21752
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_noted:
   id: 21753
 akrisaes_robe_top_100:
   id: 21754
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_75:
   id: 21755
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_50:
   id: 21756
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_25:
   id: 21757
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_0:
   id: 21758
   slot: Chest
-  type: FullBody
 akrisaes_robe_top_0_noted:
   id: 21759
 akrisaes_robe_skirt:
@@ -46678,83 +45763,73 @@ picture_note_34:
 theatrical_hat:
   id: 21887
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_note:
   id: 21888
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_2:
   id: 21889
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_note_2:
   id: 21890
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_3:
   id: 21891
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_note_3:
   id: 21892
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_4:
   id: 21893
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_note_4:
   id: 21894
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_5:
   id: 21895
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_hat_note_5:
   id: 21896
   slot: Hat
-  type: Hair
+  type: FullFace
 theatrical_tunic:
   id: 21897
   slot: Chest
-  type: FullBody
 theatrical_tunic_note:
   id: 21898
   slot: Chest
-  type: FullBody
 theatrical_tunic_2:
   id: 21899
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_2:
   id: 21900
   slot: Chest
-  type: FullBody
 theatrical_tunic_3:
   id: 21901
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_3:
   id: 21902
   slot: Chest
-  type: FullBody
 theatrical_tunic_4:
   id: 21903
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_4:
   id: 21904
   slot: Chest
-  type: FullBody
 theatrical_tunic_5:
   id: 21905
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_5:
   id: 21906
   slot: Chest
-  type: FullBody
 theatrical_trousers:
   id: 21907
   slot: Legs
@@ -46818,83 +45893,63 @@ theatrical_shoes_note_5:
 theatrical_earrings:
   id: 21927
   slot: Hat
-  type: Hair
 theatrical_earrings_note:
   id: 21928
   slot: Hat
-  type: Hair
 theatrical_earrings_2:
   id: 21929
   slot: Hat
-  type: Hair
 theatrical_earrings_note_2:
   id: 21930
   slot: Hat
-  type: Hair
 theatrical_earrings_3:
   id: 21931
   slot: Hat
-  type: Hair
 theatrical_earrings_note_3:
   id: 21932
   slot: Hat
-  type: Hair
 theatrical_earrings_4:
   id: 21933
   slot: Hat
-  type: Hair
 theatrical_earrings_note_4:
   id: 21934
   slot: Hat
-  type: Hair
 theatrical_earrings_5:
   id: 21935
   slot: Hat
-  type: Hair
 theatrical_earrings_note_5:
   id: 21936
   slot: Hat
-  type: Hair
 theatrical_tunic_6:
   id: 21937
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_6:
   id: 21938
   slot: Chest
-  type: FullBody
 theatrical_tunic_7:
   id: 21939
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_7:
   id: 21940
   slot: Chest
-  type: FullBody
 theatrical_tunic_8:
   id: 21941
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_8:
   id: 21942
   slot: Chest
-  type: FullBody
 theatrical_tunic_9:
   id: 21943
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_9:
   id: 21944
   slot: Chest
-  type: FullBody
 theatrical_tunic_10:
   id: 21945
   slot: Chest
-  type: FullBody
 theatrical_tunic_note_10:
   id: 21946
   slot: Chest
-  type: FullBody
 theatrical_skirt:
   id: 21947
   slot: Legs
@@ -46958,83 +46013,73 @@ theatrical_shoes_note_10:
 pharaoh_nemes:
   id: 21967
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_note:
   id: 21968
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_2:
   id: 21969
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_note_2:
   id: 21970
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_3:
   id: 21971
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_note_3:
   id: 21972
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_4:
   id: 21973
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_note_4:
   id: 21974
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_5:
   id: 21975
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_nemes_note_5:
   id: 21976
   slot: Hat
-  type: Hair
+  type: FullFace
 pharaoh_ankh:
   id: 21977
   slot: Chest
-  type: FullBody
 pharaoh_ankh_note:
   id: 21978
   slot: Chest
-  type: FullBody
 pharaoh_ankh_2:
   id: 21979
   slot: Chest
-  type: FullBody
 pharaoh_ankh_note_2:
   id: 21980
   slot: Chest
-  type: FullBody
 pharaoh_ankh_3:
   id: 21981
   slot: Chest
-  type: FullBody
 pharaoh_ankh_note_3:
   id: 21982
   slot: Chest
-  type: FullBody
 pharaoh_ankh_4:
   id: 21983
   slot: Chest
-  type: FullBody
 pharaoh_ankh_note_4:
   id: 21984
   slot: Chest
-  type: FullBody
 pharaoh_ankh_5:
   id: 21985
   slot: Chest
-  type: FullBody
 pharaoh_ankh_note_5:
   id: 21986
   slot: Chest
-  type: FullBody
 pharaoh_shendyt:
   id: 21987
   slot: Legs
@@ -47098,83 +46143,63 @@ pharaoh_sandals_note_5:
 pharaoh_bun:
   id: 22007
   slot: Hat
-  type: Hair
 pharaoh_bun_note:
   id: 22008
   slot: Hat
-  type: Hair
 pharaoh_bun_2:
   id: 22009
   slot: Hat
-  type: Hair
 pharaoh_bun_note_2:
   id: 22010
   slot: Hat
-  type: Hair
 pharaoh_bun_3:
   id: 22011
   slot: Hat
-  type: Hair
 pharaoh_bun_note_3:
   id: 22012
   slot: Hat
-  type: Hair
 pharaoh_bun_4:
   id: 22013
   slot: Hat
-  type: Hair
 pharaoh_bun_note_4:
   id: 22014
   slot: Hat
-  type: Hair
 pharaoh_bun_5:
   id: 22015
   slot: Hat
-  type: Hair
 pharaoh_bun_note_5:
   id: 22016
   slot: Hat
-  type: Hair
 pharaoh_top:
   id: 22017
   slot: Chest
-  type: FullBody
 pharaoh_top_note:
   id: 22018
   slot: Chest
-  type: FullBody
 pharaoh_top_2:
   id: 22019
   slot: Chest
-  type: FullBody
 pharaoh_top_note_2:
   id: 22020
   slot: Chest
-  type: FullBody
 pharaoh_top_3:
   id: 22021
   slot: Chest
-  type: FullBody
 pharaoh_top_note_3:
   id: 22022
   slot: Chest
-  type: FullBody
 pharaoh_top_4:
   id: 22023
   slot: Chest
-  type: FullBody
 pharaoh_top_note_4:
   id: 22024
   slot: Chest
-  type: FullBody
 pharaoh_top_5:
   id: 22025
   slot: Chest
-  type: FullBody
 pharaoh_top_note_5:
   id: 22026
   slot: Chest
-  type: FullBody
 pharaoh_shendyt_6:
   id: 22027
   slot: Legs
@@ -47238,83 +46263,73 @@ pharaoh_sandals_note_10:
 changshan_hat:
   id: 22047
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_note:
   id: 22048
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_2:
   id: 22049
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_note_2:
   id: 22050
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_3:
   id: 22051
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_note_3:
   id: 22052
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_4:
   id: 22053
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_note_4:
   id: 22054
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_5:
   id: 22055
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_hat_note_5:
   id: 22056
   slot: Hat
-  type: Hair
+  type: FullFace
 changshan_jacket:
   id: 22057
   slot: Chest
-  type: FullBody
 changshan_jacket_note:
   id: 22058
   slot: Chest
-  type: FullBody
 changshan_jacket_2:
   id: 22059
   slot: Chest
-  type: FullBody
 changshan_jacket_note_2:
   id: 22060
   slot: Chest
-  type: FullBody
 changshan_jacket_3:
   id: 22061
   slot: Chest
-  type: FullBody
 changshan_jacket_note_3:
   id: 22062
   slot: Chest
-  type: FullBody
 changshan_jacket_4:
   id: 22063
   slot: Chest
-  type: FullBody
 changshan_jacket_note_4:
   id: 22064
   slot: Chest
-  type: FullBody
 changshan_jacket_5:
   id: 22065
   slot: Chest
-  type: FullBody
 changshan_jacket_note_5:
   id: 22066
   slot: Chest
-  type: FullBody
 changshan_trousers:
   id: 22067
   slot: Legs
@@ -47378,83 +46393,73 @@ changshan_shoes_note_5:
 cheongsam_headdress:
   id: 22087
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_note:
   id: 22088
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_2:
   id: 22089
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_note_2:
   id: 22090
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_3:
   id: 22091
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_note_3:
   id: 22092
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_4:
   id: 22093
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_note_4:
   id: 22094
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_5:
   id: 22095
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_headdress_note_5:
   id: 22096
   slot: Hat
-  type: Hair
+  type: FullFace
 cheongsam_top:
   id: 22097
   slot: Chest
-  type: FullBody
 cheongsam_top_note:
   id: 22098
   slot: Chest
-  type: FullBody
 cheongsam_top_2:
   id: 22099
   slot: Chest
-  type: FullBody
 cheongsam_top_note_2:
   id: 22100
   slot: Chest
-  type: FullBody
 cheongsam_top_3:
   id: 22101
   slot: Chest
-  type: FullBody
 cheongsam_top_note_3:
   id: 22102
   slot: Chest
-  type: FullBody
 cheongsam_top_4:
   id: 22103
   slot: Chest
-  type: FullBody
 cheongsam_top_note_4:
   id: 22104
   slot: Chest
-  type: FullBody
 cheongsam_top_5:
   id: 22105
   slot: Chest
-  type: FullBody
 cheongsam_top_note_5:
   id: 22106
   slot: Chest
-  type: FullBody
 cheongsam_skirt:
   id: 22107
   slot: Legs
@@ -47518,83 +46523,73 @@ cheongsam_shoes_note_5:
 silken_pagri:
   id: 22127
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note:
   id: 22128
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_2:
   id: 22129
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_2:
   id: 22130
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_3:
   id: 22131
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_3:
   id: 22132
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_4:
   id: 22133
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_4:
   id: 22134
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_5:
   id: 22135
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_5:
   id: 22136
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_top:
   id: 22137
   slot: Chest
-  type: FullBody
 silken_top_note:
   id: 22138
   slot: Chest
-  type: FullBody
 silken_top_2:
   id: 22139
   slot: Chest
-  type: FullBody
 silken_top_note_2:
   id: 22140
   slot: Chest
-  type: FullBody
 silken_top_3:
   id: 22141
   slot: Chest
-  type: FullBody
 silken_top_note_3:
   id: 22142
   slot: Chest
-  type: FullBody
 silken_top_4:
   id: 22143
   slot: Chest
-  type: FullBody
 silken_top_note_4:
   id: 22144
   slot: Chest
-  type: FullBody
 silken_top_5:
   id: 22145
   slot: Chest
-  type: FullBody
 silken_top_note_5:
   id: 22146
   slot: Chest
-  type: FullBody
 silken_trousers:
   id: 22147
   slot: Legs
@@ -47658,83 +46653,73 @@ silken_boots_note_5:
 silken_pagri_6:
   id: 22167
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_6:
   id: 22168
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_7:
   id: 22169
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_7:
   id: 22170
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_8:
   id: 22171
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_8:
   id: 22172
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_9:
   id: 22173
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_9:
   id: 22174
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_10:
   id: 22175
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_pagri_note_10:
   id: 22176
   slot: Hat
-  type: Hair
+  type: FullFace
 silken_top_6:
   id: 22177
   slot: Chest
-  type: FullBody
 silken_top_note_6:
   id: 22178
   slot: Chest
-  type: FullBody
 silken_top_7:
   id: 22179
   slot: Chest
-  type: FullBody
 silken_top_note_7:
   id: 22180
   slot: Chest
-  type: FullBody
 silken_top_8:
   id: 22181
   slot: Chest
-  type: FullBody
 silken_top_note_8:
   id: 22182
   slot: Chest
-  type: FullBody
 silken_top_9:
   id: 22183
   slot: Chest
-  type: FullBody
 silken_top_note_9:
   id: 22184
   slot: Chest
-  type: FullBody
 silken_top_10:
   id: 22185
   slot: Chest
-  type: FullBody
 silken_top_note_10:
   id: 22186
   slot: Chest
-  type: FullBody
 silken_skirt:
   id: 22187
   slot: Legs
@@ -47834,19 +46819,17 @@ gnome_scarf_5:
 lunar_helm_3:
   id: 22219
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_helm_note:
   id: 22220
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_torso_2:
   id: 22221
   slot: Chest
-  type: FullBody
 lunar_torso_note:
   id: 22222
   slot: Chest
-  type: FullBody
 lunar_legs_2:
   id: 22223
   slot: Legs
@@ -47874,19 +46857,17 @@ lunar_cape_note:
 lunar_helm_4:
   id: 22231
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_helm_note_2:
   id: 22232
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_torso_3:
   id: 22233
   slot: Chest
-  type: FullBody
 lunar_torso_note_2:
   id: 22234
   slot: Chest
-  type: FullBody
 lunar_legs_3:
   id: 22235
   slot: Legs
@@ -47914,19 +46895,17 @@ lunar_cape_note_2:
 lunar_helm_5:
   id: 22243
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_helm_note_3:
   id: 22244
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_torso_4:
   id: 22245
   slot: Chest
-  type: FullBody
 lunar_torso_note_3:
   id: 22246
   slot: Chest
-  type: FullBody
 lunar_legs_4:
   id: 22247
   slot: Legs
@@ -47954,19 +46933,17 @@ lunar_cape_note_3:
 lunar_helm_6:
   id: 22255
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_helm_note_4:
   id: 22256
   slot: Hat
-  type: Hair
+  type: FullFace
 lunar_torso_5:
   id: 22257
   slot: Chest
-  type: FullBody
 lunar_torso_note_4:
   id: 22258
   slot: Chest
-  type: FullBody
 lunar_legs_5:
   id: 22259
   slot: Legs
@@ -48128,7 +47105,7 @@ infernal_ashes_noted_2:
 gorilla_mask:
   id: 22314
   slot: Hat
-  type: Hair
+  type: FullFace
 stone_shape:
   id: 22315
   slot: Weapon
