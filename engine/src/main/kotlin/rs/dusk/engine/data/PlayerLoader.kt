@@ -1,12 +1,14 @@
 package rs.dusk.engine.data
 
 import org.koin.dsl.module
+import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
+import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 import rs.dusk.utility.getProperty
 
 /**
@@ -25,6 +27,10 @@ class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceD
         val player = super.load(name) ?: Player(id = -1, tile = tile)
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
+        player.experience.addListener { skill, _, experience ->
+            val level = player.levels.get(skill)
+            player.send(SkillLevelMessage(skill.ordinal, level, experience.toInt()))
+        }
         return player
     }
 }

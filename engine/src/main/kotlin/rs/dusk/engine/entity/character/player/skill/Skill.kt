@@ -1,4 +1,4 @@
-package rs.dusk.world.activity.skill
+package rs.dusk.engine.entity.character.player.skill
 
 enum class Skill {
     Attack,
@@ -28,4 +28,9 @@ enum class Skill {
     Dungeoneering;
 
     val combat: Boolean = ordinal <= 6 || ordinal == 23
+
+    companion object {
+        val all = values()
+        val count = all.size
+    }
 }

@@ -1,13 +1,13 @@
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
-import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.player.tele
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -113,7 +113,8 @@ Command where { prefix == "clear" } then {
     player.inventory.clearAll()
 }
 
-Command where { prefix == "test" } then {
-    player.open("chat_box")
-    player.open("chat_background")
+Command where { prefix == "master" } then {
+    for (skill in Skill.all) {
+        player.experience.set(skill, 14000000.0)
+    }
 }
