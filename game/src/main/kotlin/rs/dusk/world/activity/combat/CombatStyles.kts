@@ -6,7 +6,7 @@ import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(43, Variable.Type.VARP, true, 0).register("combat_style")
 
@@ -17,7 +17,7 @@ InterfaceOpened where { name == "combat_styles" } then {
     }
 }
 
-InterfaceInteraction where { name == "combat_styles" } then {
+InterfaceOption where { name == "combat_styles" } then {
     when (componentId) {
         in 11..14 -> player.setVar("combat_style", componentId - 11)//Attack style
     }

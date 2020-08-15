@@ -5,9 +5,9 @@ import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == "friends_chat" && component == "settings" && option == "Open Settings"
     }

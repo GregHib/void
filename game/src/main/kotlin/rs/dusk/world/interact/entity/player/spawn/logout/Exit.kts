@@ -7,13 +7,13 @@ import rs.dusk.engine.event.*
 import rs.dusk.engine.tick.TickInput
 import rs.dusk.network.rs.codec.game.encode.message.LogoutMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.spawn.PlayerDespawn
 
 val logoutQueue: LogoutQueue by inject()
 val bus: EventBus by inject()
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == player.gameFrame.name && component == "logout" && option == "Exit"
     }
@@ -22,7 +22,7 @@ on(InterfaceInteraction) {
     }
 }
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == "logout" && (component == "lobby" || component == "login") && option == "*"
     }

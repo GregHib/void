@@ -8,7 +8,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 import rs.dusk.world.activity.skill.Skill.*
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 val menu = listOf(Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
@@ -27,7 +27,7 @@ InterfaceOpened where { name == "stats" } then {
     }
 }
 
-InterfaceInteraction where { name == "stats" && option == "View" } then {
+InterfaceOption where { name == "stats" && option == "View" } then {
     val skill = valueOf(component.toUpperCase())
     val menuIndex = menu.indexOf(skill) + 1
 

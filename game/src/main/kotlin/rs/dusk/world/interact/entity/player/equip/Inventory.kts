@@ -9,7 +9,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
 
 val logger = InlineLogger()
@@ -48,7 +48,7 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
     player.inventory.switch(fromSlot, toSlot)
 }
 
-InterfaceInteraction where { name == "inventory" && component == "container" } then {
+InterfaceOption where { name == "inventory" && component == "container" } then {
     val itemDef = decoder.get(itemId)
     val equipOption = when (optionId) {
         7 -> if (itemDef.options.any { it == "Destroy" }) "Destroy" else "Drop"

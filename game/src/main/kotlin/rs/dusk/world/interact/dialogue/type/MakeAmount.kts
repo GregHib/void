@@ -3,7 +3,7 @@ package rs.dusk.world.interact.dialogue.type
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(8094, Variable.Type.VARBIT, false, 1).register("skill_creation_maximum")
 IntVariable(8095, Variable.Type.VARBIT, true, 1).register("skill_creation_amount")
@@ -50,24 +50,24 @@ StringVariable(281, Variable.Type.VARCSTR).register("skill_creation_name_7")
 StringVariable(282, Variable.Type.VARCSTR).register("skill_creation_name_8")
 StringVariable(283, Variable.Type.VARCSTR).register("skill_creation_name_9")
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "create1" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "create1" } then {
     player.setVar("skill_creation_amount", 1, refresh = false)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "create5" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "create5" } then {
     player.setVar("skill_creation_amount", 5, refresh = false)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "create10" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "create10" } then {
     player.setVar("skill_creation_amount", 10, refresh = false)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "all" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "all" } then {
     val max = player.getVar("skill_creation_maximum", 1)
     player.setVar("skill_creation_amount", max, refresh = false)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "increment" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "increment" } then {
     var current = player.getVar("skill_creation_amount", 0)
     val maximum = player.getVar("skill_creation_maximum", 1)
     current++
@@ -77,7 +77,7 @@ InterfaceInteraction where { name == "skill_creation_amount" && component == "in
     player.setVar("skill_creation_amount", current)
 }
 
-InterfaceInteraction where { name == "skill_creation_amount" && component == "decrement" } then {
+InterfaceOption where { name == "skill_creation_amount" && component == "decrement" } then {
     var current = player.getVar("skill_creation_amount", 0)
     current--
     if(current < 0) {

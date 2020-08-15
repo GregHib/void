@@ -9,9 +9,9 @@ import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats"
     }
@@ -20,7 +20,7 @@ on(InterfaceInteraction) {
     }
 }
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == "worn_equipment" && component == "price" && option == "Show Price-checker"
     }
@@ -29,7 +29,7 @@ on(InterfaceInteraction) {
     }
 }
 
-on(InterfaceInteraction) {
+on(InterfaceOption) {
     where {
         name == "worn_equipment" && component == "items" && option == "Show Items Kept on Death"
     }
@@ -42,7 +42,7 @@ val decoder: ItemDecoder by inject()
 val bus: EventBus by inject()
 val logger = InlineLogger()
 
-InterfaceInteraction where { name == "worn_equipment" && option == "*" } then {
+InterfaceOption where { name == "worn_equipment" && option == "*" } then {
     val itemDef = decoder.get(itemId)
     var equipOption = itemDef.params?.get(526L + optionId) as? String ?: itemDef.options.getOrNull(optionId)
     if(equipOption == null) {
@@ -56,6 +56,6 @@ InterfaceInteraction where { name == "worn_equipment" && option == "*" } then {
     bus.emit(ContainerAction(player, name, item, slot.index, equipOption))
 }
 
-InterfaceInteraction where { name == "inventory" && component == "container" && optionId == 8 } then {
+InterfaceOption where { name == "inventory" && component == "container" && optionId == 8 } then {
     bus.emit(ContainerAction(player, name, item, itemIndex, "Examine"))
 }

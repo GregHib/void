@@ -19,7 +19,7 @@ import rs.dusk.world.activity.combat.prayer.PrayerConfigs.QUICK_PRAYERS
 import rs.dusk.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import rs.dusk.world.activity.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import rs.dusk.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.display.Tab
 import rs.dusk.world.interact.entity.player.spawn.logout.Logout
 
@@ -78,13 +78,13 @@ val cursesGroups = setOf(
     setOf("Sap Spirit", "Leech Special Attack", "Turmoil")
 )
 
-InterfaceInteraction where { name == "prayer_list" && component == "regular_prayers" } then {
+InterfaceOption where { name == "prayer_list" && component == "regular_prayers" } then {
     val prayers = player.getActiveVarKey()
     player.togglePrayer(itemIndex, prayers)
     player.updateOverhead(prayers)
 }
 
-InterfaceInteraction where { name == "prayer_list" && component == "quick_prayers" } then {
+InterfaceOption where { name == "prayer_list" && component == "quick_prayers" } then {
     player.togglePrayer(itemIndex, player.getQuickVarKey())
 }
 
@@ -117,7 +117,7 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String) {
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
 
-InterfaceInteraction where { name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" } then {
+InterfaceOption where { name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" } then {
     val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player.setVar("tab", Tab.PrayerList)
@@ -128,7 +128,7 @@ InterfaceInteraction where { name == "prayer_orb" && component == "orb" && optio
     player.interfaces.sendSetting("prayer_list", if (selecting) "quick_prayers" else "regular_prayers", 0, 29, 2)
 }
 
-InterfaceInteraction where { name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" } then {
+InterfaceOption where { name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" } then {
     val active = player.toggleVar(USING_QUICK_PRAYERS)
     val activePrayers = player.getActiveVarKey()
     if (active) {
@@ -142,7 +142,7 @@ InterfaceInteraction where { name == "prayer_orb" && component == "orb" && optio
     player.updateOverhead(activePrayers)
 }
 
-InterfaceInteraction where { name == "prayer_list" && component == "confirm" && option == "Confirm Selection" } then {
+InterfaceOption where { name == "prayer_list" && component == "confirm" && option == "Confirm Selection" } then {
     player.saveQuickPrayers()
 }
 

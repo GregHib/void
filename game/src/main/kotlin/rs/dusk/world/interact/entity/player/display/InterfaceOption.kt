@@ -4,7 +4,7 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventCompanion
 
-data class InterfaceInteraction(
+data class InterfaceOption(
     override val player: Player,
     val id: Int,
     val name: String,
@@ -16,5 +16,5 @@ data class InterfaceInteraction(
     val itemId: Int,
     val itemIndex: Int
 ) : PlayerEvent() {
-    companion object : EventCompanion<InterfaceInteraction>
+    companion object : EventCompanion<InterfaceOption>
 }

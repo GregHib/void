@@ -63,7 +63,7 @@ fun String.toUnderscoreCase(): String {
 
 Tab.values().forEach { tab ->
     val name = tab.name.toUnderscoreCase()
-    InterfaceInteraction where { name == player.gameFrame.name && component == name && option == name } then {
+    InterfaceOption where { name == player.gameFrame.name && component == name && option == name } then {
         player.setVar("tab", tab, refresh = false)
     }
 }

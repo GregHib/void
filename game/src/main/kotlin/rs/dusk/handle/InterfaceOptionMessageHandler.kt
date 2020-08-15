@@ -15,7 +15,7 @@ import rs.dusk.engine.task.start
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceOptionMessage
 import rs.dusk.utility.inject
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -76,7 +76,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val componentName = inter.components[componentId] ?: ""
         executor.start {
             bus.emit(
-                InterfaceInteraction(
+                InterfaceOption(
                     player,
                     id,
                     name,
