@@ -553,6 +553,7 @@ prayer_list:
     stat_adjustments: 12
     quick_prayers: 42
     regular_prayers: 8
+    confirm: 43
 
 assist_xp:
   id: 301

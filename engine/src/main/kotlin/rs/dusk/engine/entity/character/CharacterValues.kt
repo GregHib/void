@@ -17,6 +17,8 @@ class CharacterValues {
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> getOrNull(key: String) = map[key] as? T
 
+    fun has(key: String) = map.containsKey(key)
+
     fun getBoolean(key: String) = get(key, false)
 
     fun getLong(key: String) = get(key, -1L)
@@ -43,6 +45,8 @@ fun Character.inc(key: String): Int {
     values[key] = value
     return value
 }
+
+fun Character.has(key: String) = values.has(key)
 
 operator fun <T : Any> Character.get(key: String) = values.get<T>(key)
 

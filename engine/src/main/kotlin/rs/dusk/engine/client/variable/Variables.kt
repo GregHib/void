@@ -52,9 +52,9 @@ class Variables {
 
     fun <T : Any> add(player: Player, key: String, id: T, refresh: Boolean) {
         val store = player.variables
-        val variable = variables[key] as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = variables[key] as? BitwiseVar<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
-        val power = variable.getPower(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
+        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = store.get(variable)
 
         if (!value.has(power)) {//If isn't already added
@@ -69,7 +69,7 @@ class Variables {
         val store = player.variables
         val variable = variables[key] as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
-        val power = variable.getPower(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
+        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = store.get(variable)
 
         if (value.has(power)) {//If is added
@@ -84,7 +84,7 @@ class Variables {
         val store = player.variables
         val variable = variables[key] as? BitwiseVariable<T> ?: return false
 
-        val power = variable.getPower(id) ?: return false
+        val power = variable.getValue(id) ?: return false
         val value = store.get(variable)
 
         return value.has(power)
@@ -111,18 +111,6 @@ class Variables {
 
     companion object {
         private val logger = InlineLogger()
-
-        /**
-         * Checks a [BitwiseVariable] for [id] value
-         * @return pow(2, index) or null if not found
-         */
-        private fun <T : Any> BitwiseVariable<T>.getPower(id: T): Int? {
-            val index = values.indexOf(id)
-            if (index == -1) {
-                return null// Invalid value
-            }
-            return 1 shl index// Return power of 2 of the index
-        }
 
         /**
          * Checks if value [this] contains value [power]
@@ -160,9 +148,11 @@ fun <T : Any> Player.addVar(key: String, value: T, refresh: Boolean = true) =
 fun <T : Any> Player.removeVar(key: String, value: T, refresh: Boolean = true) =
     get<Variables>().remove(this, key, value, refresh)
 
-fun Player.toggleVar(key: String, refresh: Boolean = true) {
+fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     val variables: Variables = get()
-    variables.set(this, key, !variables.get(this, key, false), refresh)
+    val value = variables.get(this, key, false)
+    variables.set(this, key, !value, refresh)
+    return !value
 }
 
 fun <T : Any> Player.hasVar(key: String, id: T): Boolean {

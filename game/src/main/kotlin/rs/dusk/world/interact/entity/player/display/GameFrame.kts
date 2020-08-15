@@ -3,41 +3,45 @@ package rs.dusk.world.interact.entity.player.display
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.client.variable.ListVariable
+import rs.dusk.engine.client.variable.Variable
+import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.character.player.PlayerRegistered
-import rs.dusk.engine.entity.character.set
-import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+
+ListVariable(168, Variable.Type.VARC, values = Tab.values().toList(), defaultValue = Tab.Inventory).register("tab")
+
+val list = listOf(
+    "chat_box",
+    "chat_background",
+    "filter_buttons",
+    "private_chat",
+    "health_orb",
+    "prayer_orb",
+    "energy_orb",
+    "summoning_orb",
+    "combat_styles",
+    "task_system",
+    "stats",
+    "quest_journals",
+    "inventory",
+    "worn_equipment",
+    "prayer_list",
+    "modern_spellbook",
+    "friends_list",
+    "friends_chat",
+    "clan_chat",
+    "options",
+    "emotes",
+    "music_player",
+    "notes",
+    "area_status_icon"
+)
 
 PlayerRegistered then {
     player.open(player.gameFrame.name)
 
-    val list = listOf(
-        "chat_box",
-        "chat_background",
-        "filter_buttons",
-        "private_chat",
-        "health_orb",
-        "prayer_orb",
-        "energy_orb",
-        "summoning_orb",
-        "combat_styles",
-        "task_system",
-        "stats",
-        "quest_journals",
-        "inventory",
-        "worn_equipment",
-        "prayer_list",
-        "modern_spellbook",
-        "friends_list",
-        "friends_chat",
-        "clan_chat",
-        "options",
-        "emotes",
-        "music_player",
-        "notes",
-        "area_status_icon"
-    )
     list.forEach {
         player.open(it)
     }
@@ -59,13 +63,8 @@ fun String.toUnderscoreCase(): String {
 
 Tab.values().forEach { tab ->
     val name = tab.name.toUnderscoreCase()
-    on(InterfaceInteraction) {
-        where {
-            name == player.gameFrame.name && component == name && option == name
-        }
-        then {
-            player["tab"] = tab
-        }
+    InterfaceInteraction where { name == player.gameFrame.name && component == name && option == name } then {
+        player.setVar("tab", tab, refresh = false)
     }
 }
 

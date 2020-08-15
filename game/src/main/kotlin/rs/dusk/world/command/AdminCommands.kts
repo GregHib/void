@@ -1,7 +1,7 @@
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
-import rs.dusk.engine.client.ui.dialogue.dialogue
+import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
@@ -16,7 +16,6 @@ import rs.dusk.engine.map.area.area
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
-import rs.dusk.world.interact.dialogue.type.*
 import rs.dusk.world.interact.entity.npc.spawn.NPCSpawn
 import rs.dusk.world.interact.entity.player.spawn.login.Login
 import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
@@ -115,28 +114,6 @@ Command where { prefix == "clear" } then {
 }
 
 Command where { prefix == "test" } then {
-    player.dialogue(1, "Man") {
-        player("Hi")
-        npc("Hello Adventurer")
-        statement("Words")
-        val choice = choice(
-            title = "Should we change something?", text = """
-            Yes change something
-            No leave it how it is
-        """
-        )
-        println("Choice: $choice")
-        println("Destroy ${destroy("<br>Can't be undone.", 11694)}")
-        println("Integer: ${intEntry("Enter a number")}")
-        println("String: ${stringEntry("Enter some text")}")
-        levelUp("Congratzzzz", 12)
-        item(
-            """
-            The two halves of the skull fit perfectly, they appear to
-            have a fixing point, perhaps they are to be mounted on
-            something?
-        """, 9009, 650
-        )
-        println("Make: ${makeAmount(listOf(385, 329), "Make", 23)}")
-    }
+    player.open("chat_box")
+    player.open("chat_background")
 }
