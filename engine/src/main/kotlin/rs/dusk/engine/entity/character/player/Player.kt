@@ -43,8 +43,10 @@ class Player(
     override val effects = CharacterEffects(this)
 
     @Transient
-    val gameFrame: PlayerGameFrame =
-        PlayerGameFrame()
+    val options = PlayerOptions(this)
+
+    @Transient
+    val gameFrame = PlayerGameFrame()
 
     @Transient
     lateinit var interfaces: Interfaces
@@ -54,6 +56,12 @@ class Player(
 
     @Transient
     var changeValue: Int = -1
+
+    fun start() {
+        options.set(2, "Follow")
+        options.set(4, "Trade with")
+        options.set(7, "Req Assist")
+    }
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
