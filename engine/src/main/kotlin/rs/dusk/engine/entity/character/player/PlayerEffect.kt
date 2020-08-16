@@ -3,7 +3,7 @@ package rs.dusk.engine.entity.character.player
 import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.Effect
 
-abstract class PlayerEffect(type: String) : Effect(type) {
+abstract class PlayerEffect(name: String) : Effect(name) {
 
     override fun immune(character: Character): Boolean {
         return character !is Player

@@ -5,7 +5,7 @@ import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.get
 
-abstract class Effect(val type: String) {
+abstract class Effect(val effectType: String) {
 
     private var task: Task? = null
 

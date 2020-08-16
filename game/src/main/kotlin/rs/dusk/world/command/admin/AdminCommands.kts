@@ -7,6 +7,7 @@ import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.player.effect.Hidden
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.player.tele
 import rs.dusk.engine.event.EventBus
@@ -117,4 +118,8 @@ Command where { prefix == "master" } then {
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
     }
+}
+
+Command where { prefix == "hide" } then {
+    player.effects.toggle(Hidden)
 }

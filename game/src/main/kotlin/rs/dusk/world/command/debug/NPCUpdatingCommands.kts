@@ -1,9 +1,14 @@
 import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.character.effect.Colour
+import rs.dusk.engine.entity.character.effect.Transform
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCMoveType
 import rs.dusk.engine.entity.character.npc.NPCs
 import rs.dusk.engine.entity.character.update.visual.*
-import rs.dusk.engine.entity.character.update.visual.npc.*
+import rs.dusk.engine.entity.character.update.visual.npc.combatLevel
+import rs.dusk.engine.entity.character.update.visual.npc.name
+import rs.dusk.engine.entity.character.update.visual.npc.setModelChange
+import rs.dusk.engine.entity.character.update.visual.npc.turn
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
@@ -35,7 +40,7 @@ Command where { prefix == "npcname" } then {
 
 Command where { prefix == "npctfm" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    npc.transform = 50
+    npc.effects.add(Transform(50))
 }
 
 Command where { prefix == "npcturn" } then {
@@ -61,7 +66,7 @@ Command where { prefix == "npcanim" } then {
 
 Command where { prefix == "npcoverlay" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
-    npc.setColourOverlay(-2108002746, 10, 100)
+    npc.effects.add(Colour(-2108002746, 10, 100))
 }
 
 Command where { prefix == "npcchat" } then {

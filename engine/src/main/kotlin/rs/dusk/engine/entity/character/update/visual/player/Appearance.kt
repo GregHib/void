@@ -137,12 +137,6 @@ fun Player.setSkillLevel(level: Int = -1) = flag {
     skillLevel = level
 }
 
-var Player.size: Int
-    get() = appearance.size
-    set(value) = flag {
-        size = value
-    }
-
 fun Player.setTrimTitle(trim: Boolean = false) = flag {
     this.trimTitle = trim
 }
@@ -159,59 +153,11 @@ var Player.prefix: String
         prefix = value
     }
 
-var Player.skull: Int
-    get() = appearance.skull
-    set(value) = flag {
-        skull = value
-    }
-
-fun Player.skull() {
-    skull = 1
-}
-
-fun Player.unskull() {
-    skull = -1
-}
-
 var Player.headIcon: Int
     get() = appearance.headIcon
     set(value) = flag {
         headIcon = value
     }
-
-var Player.hidden: Boolean
-    get() = appearance.hidden
-    set(value) = flag {
-        hidden = value
-    }
-
-fun Player.hide() {
-    hidden = true
-}
-
-fun Player.show() {
-    hidden = false
-}
-
-var Player.transform: Int
-    get() = appearance.transform
-    set(value) = flag {
-        transform = value
-    }
-
-fun Player.setTransformSounds(
-    idleSound: Int = -1,
-    crawlSound: Int = -1,
-    walkSound: Int = -1,
-    runSound: Int = -1,
-    soundDistance: Int = 0
-) = flag {
-    this.idleSound = idleSound
-    this.crawlSound = crawlSound
-    this.walkSound = walkSound
-    this.runSound = runSound
-    this.soundDistance = soundDistance
-}
 
 fun Player.setLook(index: Int, look: Int) = flag {
     val part = BodyPart.by(index) ?: return@flag

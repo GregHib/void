@@ -15,9 +15,6 @@ val batcher: ChunkBatcher by inject()
 Command where { prefix == "spawn" } then {
     batcher.sendChunk(player, player.tile.chunk)
     val parts = content.split(" ")
-    // 45506 22 1
-    // 37121 0 2
-    //36846 0 2
     player.send(ObjectAddMessage(player.tile.offset(), parts[0].toInt(), parts.getOrNull(1)?.toInt() ?: 0, parts.getOrNull(2)?.toInt() ?: 0))
 }
 
@@ -29,7 +26,7 @@ Command where { prefix == "despawn" } then {
 
 Command where { prefix == "get" } then {
     val obj = objects[player.tile.chunk]
-    obj?.filter { it.tile == player.tile }?.forEach {
+    obj.filter { it.tile == player.tile }.forEach {
         println(it)
     }
 }

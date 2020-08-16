@@ -120,4 +120,21 @@ internal class CharacterEffectsTest {
         assertNull(effects.getOrNull("nerf"))
         assertTrue(called)
     }
+
+    @Test
+    fun `Get all effects`() {
+        val effect = object : Effect("buff") {}
+        assertTrue(effects.add(effect))
+        val effects: Map<String, Effect> = effects.getAll()
+        assertEquals(mapOf("buff" to effect), effects)
+    }
+
+    @Test
+    fun `Toggle effect`() {
+        val effect = object : Effect("buff") {}
+        assertTrue(effects.toggle(effect))
+        assertTrue(effects.has("buff"))
+        assertTrue(effects.toggle(effect))
+        assertFalse(effects.has("buff"))
+    }
 }

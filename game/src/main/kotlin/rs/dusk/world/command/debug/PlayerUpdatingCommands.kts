@@ -1,22 +1,20 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.entity.Direction
-import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.character.effect.Colour
+import rs.dusk.engine.entity.character.effect.Transform
 import rs.dusk.engine.entity.character.player.Players
 import rs.dusk.engine.entity.character.update.visual.*
-import rs.dusk.engine.entity.character.update.visual.player.*
+import rs.dusk.engine.entity.character.update.visual.player.clanmate
+import rs.dusk.engine.entity.character.update.visual.player.face
+import rs.dusk.engine.entity.character.update.visual.player.minimapHighlight
+import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.DynamicChunks
-import rs.dusk.engine.map.collision.Collisions
-import rs.dusk.engine.path.TraversalType
-import rs.dusk.engine.path.traverse.LargeTraversal
-import rs.dusk.engine.path.traverse.MediumTraversal
-import rs.dusk.engine.path.traverse.SmallTraversal
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
@@ -64,35 +62,15 @@ Command where { prefix == "gfx" } then {
 
 Command where { prefix == "tfm" || prefix == "transform" } then {
     val id = content.toInt()
-    player.transform = id
     if (id != -1) {
-        val decoder = get<NPCDecoder>()
-        val definition = decoder.get(id)
-        player.emote = definition.renderEmote
-        player.size = Size(definition.size, definition.size)
-        val collisions: Collisions = get()
-        player.movement.traversal = when (definition.size) {
-            1 -> SmallTraversal(TraversalType.Land, false, collisions)
-            2 -> MediumTraversal(TraversalType.Land, false, collisions)
-            else -> LargeTraversal(TraversalType.Land, false, player.size, collisions)
-        }
-        player.setTransformSounds(
-            definition.idleSound,
-            definition.crawlSound,
-            definition.walkSound,
-            definition.runSound,
-            definition.soundDistance
-        )
+        player.effects.add(Transform(id))
     } else {
-        player.emote = 1426
-        player.size = Size.TILE
-        player.movement.traversal = get<SmallTraversal>()
-        player.setTransformSounds()
+        player.effects.remove("transform")
     }
 }
 
 Command where { prefix == "overlay" } then {
-    player.setColourOverlay(-2108002746, 10, 100)
+    player.effects.add(Colour(-2108002746, 10, 100))
 }
 
 Command where { prefix == "chat" } then {
@@ -134,7 +112,7 @@ Command where { prefix == "face" } then {
     player.face(parts[0].toInt(), parts[1].toInt())
 }
 
-Command where { prefix == "hide" } then {
+Command where { prefix == "highlight" } then {
     player.minimapHighlight = !player.minimapHighlight
 }
 
