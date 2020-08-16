@@ -46,6 +46,32 @@ internal class DelaysTest {
     }
 
     @Test
+    fun `Remaining time`() {
+        // Given
+        val delays = Delays()
+        GameLoop.tick = 4
+        delays.start(Delay.DoorSlam)
+        GameLoop.tick += 6
+        // When
+        val remaining = delays.remaining(Delay.DoorSlam)
+        // Then
+        assertEquals(4, remaining)
+    }
+
+    @Test
+    fun `Remaining after returns zero`() {
+        // Given
+        val delays = Delays()
+        GameLoop.tick = 4
+        delays.start(Delay.DoorSlam)
+        GameLoop.tick += 12
+        // When
+        val elapsed = delays.remaining(Delay.DoorSlam)
+        // Then
+        assertEquals(0, elapsed)
+    }
+
+    @Test
     fun `Elapsed after time`() {
         // Given
         val delays = Delays()
@@ -66,7 +92,7 @@ internal class DelaysTest {
         // When
         val elapsed = delays.elapsed(Delay.DoorSlam)
         // Then
-        assertEquals(0, elapsed)
+        assertEquals(10, elapsed)
     }
 
     @Test
@@ -103,6 +129,6 @@ internal class DelaysTest {
         // When
         delays.reset(Delay.DoorSlam)
         // Then
-        assertEquals(0, delays.elapsed(Delay.DoorSlam))
+        assertEquals(10, delays.elapsed(Delay.DoorSlam))
     }
 }
