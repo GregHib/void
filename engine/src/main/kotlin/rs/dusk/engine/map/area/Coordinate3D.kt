@@ -4,6 +4,10 @@ interface Coordinate3D : Coordinate2D {
     val plane: Int
 
     fun add(x: Int = 0, y: Int = 0, plane: Int = 0): Coordinate3D
+
+    fun within(other: Coordinate3D, radius: Int): Boolean {
+        return plane == other.plane && super.within(other, radius)
+    }
 }
 
 @Suppress("UNCHECKED_CAST")

@@ -558,6 +558,18 @@ prayer_list:
 assist_xp:
   id: 301
   type: main_screen
+  components:
+    description: 10
+    title: 73
+    runecrafting: 74
+    crafting: 75
+    fletching: 76
+    construction: 77
+    farming: 78
+    magic: 79
+    smithing: 80
+    cooking: 81
+    herblore: 82
 
 stats:
   id: 320
@@ -797,6 +809,8 @@ audio_options:
 area_status_icon:
   id: 745
   type: area_status
+  components:
+    assist: 2
 
 toplevel_full:
   id: 746

@@ -46,6 +46,9 @@ class Action {
         }
     }
 
+    fun cancel() {
+        cancel(CancellationException())
+    }
     /**
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]

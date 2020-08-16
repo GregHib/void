@@ -7,6 +7,7 @@ sealed class ActionType : CancellationException() {
     object Teleport : ActionType()
     object Combat : ActionType()
     object Misc : ActionType()
+    object Assisting : ActionType()
     object Global : ActionType()
     object FloorItem : ActionType()
 }

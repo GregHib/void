@@ -10,6 +10,7 @@ import rs.dusk.engine.entity.character.CharacterValues
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.entity.character.player.delay.Delays
+import rs.dusk.engine.entity.character.player.req.Requests
 import rs.dusk.engine.entity.character.player.skill.Experience
 import rs.dusk.engine.entity.character.player.skill.Levels
 import rs.dusk.engine.entity.character.update.LocalChange
@@ -41,6 +42,9 @@ class Player(
 ) : Character {
 
     override val effects = CharacterEffects(this)
+
+    @Transient
+    val requests: Requests = Requests(this)
 
     @Transient
     val options = PlayerOptions(this)

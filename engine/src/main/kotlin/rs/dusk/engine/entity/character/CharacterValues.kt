@@ -5,6 +5,7 @@ package rs.dusk.engine.entity.character
  */
 class CharacterValues {
     private val map = HashMap<String, Any>()
+    private val persistent = mutableSetOf<String>()
 
     @Suppress("UNCHECKED_CAST")
     fun <T> get(key: String, defaultValue: T): T {
@@ -33,11 +34,25 @@ class CharacterValues {
         map[key] = value
     }
 
-    fun clear(key: String) = map.remove(key)
+    @Suppress("UNCHECKED_CAST")
+    fun <T : Any> remove(key: String): T? = map.remove(key) as? T
+
+    fun clear(key: String) {
+        map.remove(key)
+    }
+
+    fun persist(key: String) = persistent.add(key)
 }
 
 operator fun Character.set(key: String, value: Any) {
     values[key] = value
+}
+
+operator fun Character.set(key: String, persistent: Boolean, value: Any) {
+    values[key] = value
+    if (persistent) {
+        values.persist(key)
+    }
 }
 
 fun Character.inc(key: String): Int {
@@ -53,5 +68,7 @@ operator fun <T : Any> Character.get(key: String) = values.get<T>(key)
 operator fun <T : Any> Character.get(key: String, defaultValue: T) = values.get(key, defaultValue)
 
 fun <T : Any> Character.getOrNull(key: String): T? = values.getOrNull(key)
+
+fun <T : Any> Character.remove(key: String): T? = values.remove(key)
 
 fun Character.clear(key: String) = values.clear(key)

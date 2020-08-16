@@ -54,7 +54,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val options = component.options
         val index = option - 1
         if (options != null && index !in options.indices) {
-            logger.info { "Interface $id component $componentId option $index not found for player $player" }
+            logger.info { "Interface $id component $componentId option $index not found for player $player ${options.toList()}" }
             return
         }
 

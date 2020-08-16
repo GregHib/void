@@ -5,8 +5,7 @@ import rs.dusk.engine.entity.character.clear
 import rs.dusk.engine.entity.character.inc
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.delay.Delay
-import rs.dusk.engine.entity.character.player.delay.isDelayed
-import rs.dusk.engine.entity.character.player.delay.start
+import rs.dusk.engine.entity.character.player.delay.delayed
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
@@ -33,7 +32,7 @@ val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPat
 
 ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     // Prevent players from trapping one another
-    if(player.isDelayed(Delay.DoorSlam)) {
+    if(player.delayed(Delay.DoorSlam)) {
         if(player.inc("doorSlamCount") > doorStuckCount) {
             player.message("The door seems to be stuck.")
             return@then
@@ -41,7 +40,6 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     } else {
         player.clear("doorSlamCount")
     }
-    player.start(Delay.DoorSlam)
 
     // Close door
     val double = getDoubleDoor(obj, 1)

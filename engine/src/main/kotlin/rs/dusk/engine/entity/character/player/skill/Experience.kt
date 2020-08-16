@@ -8,6 +8,7 @@ class Experience(
     private val blocked: MutableSet<Skill> = mutableSetOf()
 ) {
     private val listeners: MutableList<(Skill, Double, Double) -> Unit> = mutableListOf()
+    private val blockedListeners: MutableList<(Skill, Double) -> Unit> = mutableListOf()
 
     fun get(skill: Skill): Double {
         return experiences[skill.ordinal]
@@ -21,6 +22,12 @@ class Experience(
         }
     }
 
+    fun notify(skill: Skill, experience: Double) {
+        for (listener in blockedListeners) {
+            listener.invoke(skill, experience)
+        }
+    }
+
     fun update(skill: Skill, previous: Double = get(skill)) {
         val experience = get(skill)
         for (listener in listeners) {
@@ -30,12 +37,16 @@ class Experience(
 
     fun add(skill: Skill, experience: Double) {
         if (experience > 0.0) {
-            val current = get(skill)
-            set(skill, current + experience)
+            if (blocked.contains(skill)) {
+                notify(skill, experience)
+            } else {
+                val current = get(skill)
+                set(skill, current + experience)
+            }
         }
     }
 
-    fun addListener(listener: (Skill, Double, Double) -> Unit) {
+    fun addListener(listener: (Skill, from: Double, to: Double) -> Unit) {
         listeners.add(listener)
     }
 
@@ -43,9 +54,19 @@ class Experience(
         listeners.remove(listener)
     }
 
+    fun addBlockedListener(listener: (Skill, experience: Double) -> Unit) {
+        blockedListeners.add(listener)
+    }
+
+    fun removeBlockedListener(listener: (Skill, Double) -> Unit) {
+        blockedListeners.remove(listener)
+    }
+
     fun addBlock(skill: Skill) {
         blocked.add(skill)
     }
+
+    fun blocked(skill: Skill) = blocked.contains(skill)
 
     fun removeBlock(skill: Skill) {
         blocked.remove(skill)

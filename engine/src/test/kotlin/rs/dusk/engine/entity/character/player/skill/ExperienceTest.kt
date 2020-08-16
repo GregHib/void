@@ -112,6 +112,50 @@ internal class ExperienceTest {
     }
 
     @Test
+    fun `Listen for blocked exp`() {
+        var called = false
+        experience.set(Skill.Attack, 100.0)
+        experience.addBlockedListener { skill, amount ->
+            assertEquals(Skill.Attack, skill)
+            assertEquals(10.0, amount)
+            called = true
+        }
+        experience.addBlock(Skill.Attack)
+        experience.add(Skill.Attack, 10.0)
+        assertTrue(called)
+    }
+
+    @Test
+    fun `Blocked listener ignores unblocked exp`() {
+        var called = false
+        experience.addBlockedListener { _, _ ->
+            called = true
+        }
+        experience.add(Skill.Attack, 10.0)
+        assertFalse(called)
+    }
+
+    @Test
+    fun `Check if blocked`() {
+        experience.addBlock(Skill.Attack)
+        assertTrue(experience.blocked(Skill.Attack))
+        experience.removeBlock(Skill.Attack)
+        assertFalse(experience.blocked(Skill.Attack))
+    }
+
+    @Test
+    fun `Removed listener for blocked exp`() {
+        var called = false
+        val listener: (Skill, Double) -> Unit = { _, _ ->
+            called = true
+        }
+        experience.addBlockedListener(listener)
+        experience.removeBlockedListener(listener)
+        experience.add(Skill.Attack, 10.0)
+        assertFalse(called)
+    }
+
+    @Test
     fun `Add experience extension`() {
         mockkStatic("rs.dusk.engine.entity.character.player.skill.ExperienceKt")
         val player: Player = mockk(relaxed = true)
