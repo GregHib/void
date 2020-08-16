@@ -96,8 +96,8 @@ const val APPEARANCE_MASK = 0x8
 
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
-fun Player.getAppearance() =
-    visuals.getOrPut(APPEARANCE_MASK) {
+val Player.appearance: Appearance
+    get() = visuals.getOrPut(APPEARANCE_MASK) {
         val bodyParts = BodyParts(equipment, get(), intArrayOf(1, 11, 18, 26, 33, 36, 42))
         BodyPart.all.forEach {
             bodyParts.updateConnected(it)
@@ -123,13 +123,12 @@ private fun Player.updateAppearanceOnEquipmentChanges(parts: BodyParts) {
 }
 
 private fun Player.flag(action: Appearance.() -> Unit) {
-    val appearance = getAppearance()
     action(appearance)
     flagAppearance()
 }
 
 var Player.male: Boolean
-    get() = getAppearance().male
+    get() = appearance.male
     set(value) = flag {
         male = value
     }
@@ -139,7 +138,7 @@ fun Player.setSkillLevel(level: Int = -1) = flag {
 }
 
 var Player.size: Int
-    get() = getAppearance().size
+    get() = appearance.size
     set(value) = flag {
         size = value
     }
@@ -149,19 +148,19 @@ fun Player.setTrimTitle(trim: Boolean = false) = flag {
 }
 
 var Player.title: Int
-    get() = getAppearance().title
+    get() = appearance.title
     set(value) = flag {
         title = value
     }
 
 var Player.prefix: String
-    get() = getAppearance().prefix
+    get() = appearance.prefix
     set(value) = flag {
         prefix = value
     }
 
 var Player.skull: Int
-    get() = getAppearance().skull
+    get() = appearance.skull
     set(value) = flag {
         skull = value
     }
@@ -175,13 +174,13 @@ fun Player.unskull() {
 }
 
 var Player.headIcon: Int
-    get() = getAppearance().headIcon
+    get() = appearance.headIcon
     set(value) = flag {
         headIcon = value
     }
 
 var Player.hidden: Boolean
-    get() = getAppearance().hidden
+    get() = appearance.hidden
     set(value) = flag {
         hidden = value
     }
@@ -195,7 +194,7 @@ fun Player.show() {
 }
 
 var Player.transform: Int
-    get() = getAppearance().transform
+    get() = appearance.transform
     set(value) = flag {
         transform = value
     }
@@ -221,35 +220,35 @@ fun Player.setLook(index: Int, look: Int) = flag {
 }
 
 val Player.looks: IntArray
-    get() = getAppearance().body.looks
+    get() = appearance.body.looks
 
 fun Player.setColour(index: Int, colour: Int) = flag {
     this.colours[index] = colour
 }
 
 val Player.colours: IntArray
-    get() = getAppearance().colours
+    get() = appearance.colours
 
 var Player.emote: Int
-    get() = getAppearance().emote
+    get() = appearance.emote
     set(value) = flag {
         emote = value
     }
 
 var Player.name: String
-    get() = getAppearance().displayName
+    get() = appearance.displayName
     set(value) = flag {
         displayName = value
     }
 
 var Player.combatLevel: Int
-    get() = getAppearance().combatLevel
+    get() = appearance.combatLevel
     set(value) = flag {
         combatLevel = value
     }
 
 var Player.summoningCombatLevel: Int
-    get() = getAppearance().summoningCombatLevel
+    get() = appearance.summoningCombatLevel
     set(value) = flag {
         summoningCombatLevel = value
     }

@@ -14,7 +14,7 @@ import rs.dusk.engine.entity.character.player.skill.Experience
 import rs.dusk.engine.entity.character.player.skill.Levels
 import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
-import rs.dusk.engine.entity.character.update.visual.player.getAppearance
+import rs.dusk.engine.entity.character.update.visual.player.appearance
 import rs.dusk.engine.map.Tile
 
 /**
@@ -67,6 +67,6 @@ class Player(
     }
 
     override fun toString(): String {
-        return "Player(${getAppearance().displayName}, index=$index, tile=$tile)"
+        return "Player(${appearance.displayName}, index=$index, tile=$tile)"
     }
 }
