@@ -5,6 +5,7 @@ import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.CharacterEffects
 import rs.dusk.engine.entity.character.CharacterValues
 import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.entity.character.update.LocalChange
@@ -26,6 +27,8 @@ data class NPC(
     override val action: Action = Action(),
     override val values: CharacterValues = CharacterValues()
 ) : Character {
+
+    override val effects = CharacterEffects(this)
 
     override var change: LocalChange? = null
     var walkDirection: Int = -1

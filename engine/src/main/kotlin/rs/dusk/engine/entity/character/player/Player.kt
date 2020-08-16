@@ -5,6 +5,7 @@ import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.character.CharacterEffects
 import rs.dusk.engine.entity.character.CharacterValues
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.move.Movement
@@ -38,6 +39,8 @@ class Player(
     val experience: Experience = Experience(),
     val levels: Levels = Levels(experience)
 ) : Character {
+
+    override val effects = CharacterEffects(this)
 
     @Transient
     val gameFrame: PlayerGameFrame =
