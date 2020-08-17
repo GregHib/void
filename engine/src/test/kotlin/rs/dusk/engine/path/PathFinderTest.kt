@@ -19,6 +19,7 @@ import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.find.DirectDiagonalSearch
 import rs.dusk.engine.path.find.DirectSearch
 import rs.dusk.engine.path.target.*
 
@@ -32,6 +33,7 @@ internal class PathFinderTest {
     lateinit var ds: DirectSearch
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
+    lateinit var dd: DirectDiagonalSearch
 
     @BeforeEach
     fun setup() {
@@ -39,7 +41,8 @@ internal class PathFinderTest {
         ds = mockk(relaxed = true)
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, ds, bfs))
+        dd = mockk(relaxed = true)
+        pf = spyk(PathFinder(collisions, aa, ds, dd, bfs))
     }
 
     @Test
@@ -49,7 +52,7 @@ internal class PathFinderTest {
         val target = Tile(1, 1)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
-        every { pf.getFinder(any()) } returns bfs
+        every { pf.getFinder(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
@@ -67,7 +70,7 @@ internal class PathFinderTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
         every { pf.getStrategy(any()) } returns strategy
-        every { pf.getFinder(any()) } returns bfs
+        every { pf.getFinder(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
@@ -81,7 +84,7 @@ internal class PathFinderTest {
         // Given
         val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getFinder(source)
+        val finder = pf.getFinder(source, true)
         // Then
         assertEquals(bfs, finder)
     }
@@ -91,7 +94,7 @@ internal class PathFinderTest {
         // Given
         val source: NPC = mockk(relaxed = true)
         // When
-        val finder = pf.getFinder(source)
+        val finder = pf.getFinder(source, true)
         // Then
         assertEquals(aa, finder)
     }

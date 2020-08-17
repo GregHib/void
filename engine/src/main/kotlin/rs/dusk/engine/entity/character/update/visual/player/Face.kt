@@ -9,7 +9,13 @@ import rs.dusk.engine.entity.character.update.Visual
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 25, 2020
  */
-data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual
+data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual {
+    fun getDirection(): Direction {
+        val dx = deltaX.coerceIn(-1, 1)
+        val dy = deltaY.coerceIn(-1, 1)
+        return Direction.of(dx, dy)
+    }
+}
 
 const val FACE_DIRECTION_MASK = 0x20
 
