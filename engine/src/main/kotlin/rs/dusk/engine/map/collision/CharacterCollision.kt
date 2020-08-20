@@ -2,7 +2,8 @@ package rs.dusk.engine.map.collision
 
 import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.character.Character
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.NPCMoved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCRegistered
 import rs.dusk.engine.entity.character.player.Player
@@ -26,8 +27,12 @@ class CharacterCollision(val collisions: Collisions) {
             remove(entity as Character)
         }
 
-        Moved priority 9 where { entity is Character } then {
-            move(entity as Character, from, to)
+        PlayerMoved priority 9 then {
+            move(player, from, to)
+        }
+
+        NPCMoved priority 9 then {
+            move(npc, from, to)
         }
     }
 

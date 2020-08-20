@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.update.task.player
 
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerMoveType
 import rs.dusk.engine.entity.character.player.Players
@@ -21,7 +21,7 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
     override fun run() {
         players.forEach { player ->
             val locked = player.movement.frozen || !player.viewport.loaded
-            if(!locked) {
+            if (!locked) {
                 step(player)
                 move(player)
             }
@@ -69,7 +69,7 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
         if (movement.delta != Tile.EMPTY) {
             val from = player.tile
             player.tile = player.tile.add(movement.delta)
-            bus.emit(Moved(player, from, player.tile))
+            bus.emit(PlayerMoved(player, from, player.tile))
         }
     }
 }

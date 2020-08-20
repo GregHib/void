@@ -1,7 +1,8 @@
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Unregistered
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.NPCMoved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.Players
@@ -51,8 +52,12 @@ Registered where { entity is Player } then {
     maps.load(entity.tile.region)
 }
 
-Moved then {
-    maps.load(entity.tile.region)
+PlayerMoved then {
+    maps.load(player.tile.region)
+}
+
+NPCMoved then {
+    maps.load(npc.tile.region)
 }
 
 /*
@@ -71,13 +76,11 @@ Unregistered where { entity is Player } then {
     Region updating
  */
 
-Moved where { entity is Player && from.regionPlane != to.regionPlane } then {
-    val player = entity as Player
+PlayerMoved where { from.regionPlane != to.regionPlane } then {
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-Moved where { entity is Player && needsRegionChange(entity as Player) } then {
-    val player = entity as Player
+PlayerMoved where { needsRegionChange(player) } then {
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

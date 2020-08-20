@@ -1,8 +1,7 @@
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Unregistered
-import rs.dusk.engine.entity.character.Character
-import rs.dusk.engine.entity.character.move.Moved
-import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.move.NPCMoved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.npc.NPCs
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerMoveType
@@ -36,9 +35,10 @@ Unregistered priority 9 then {
     }
 }
 
-Moved priority 9 where { entity is Character } then {
-    when(entity) {
-        is Player -> players.update(from, to, entity as Player)
-        is NPC -> npcs.update(from, to, entity as NPC)
-    }
+PlayerMoved priority 9 then {
+    players.update(from, to, player)
+}
+
+NPCMoved priority 9 then {
+    npcs.update(from, to, npc)
 }

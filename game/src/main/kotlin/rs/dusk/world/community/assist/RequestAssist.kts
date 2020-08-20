@@ -6,7 +6,7 @@ import rs.dusk.engine.client.ui.awaitInterfaces
 import rs.dusk.engine.client.ui.close
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.*
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerMoveType
 import rs.dusk.engine.entity.character.player.PlayerOption
@@ -280,8 +280,7 @@ fun revertExpBlocks(player: Player) {
     }
 }
 
-Moved where { entity is Player && (entity as Player).has("assistant") } then {
-    val player = entity as Player
+PlayerMoved where { player.has("assistant") } then {
     when (player.movementType) {
         PlayerMoveType.Teleport -> player["assist_point"] = player.tile
         else -> {
