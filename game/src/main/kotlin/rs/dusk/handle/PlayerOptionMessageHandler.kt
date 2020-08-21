@@ -4,10 +4,16 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.entity.character.move.walkTo
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerOption
 import rs.dusk.engine.entity.character.player.PlayerOptions
 import rs.dusk.engine.entity.character.player.Players
+import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.update.visual.player.getFace
 import rs.dusk.engine.event.EventBus
+import rs.dusk.engine.map.Tile
+import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.PlayerOptionMessage
 import rs.dusk.utility.inject
@@ -33,8 +39,20 @@ class PlayerOptionMessageHandler : GameMessageHandler<PlayerOptionMessage>() {
             logger.info { "Invalid player option $optionIndex ${player.options.get(optionIndex)} for $player on $target" }
             return
         }
-        player.approach(target) {
-            bus.emit(PlayerOption(player, target, option, optionIndex))
+
+        player.walkTo(target, if (option == "Follow") getTileBehind(target) else target.tile) { result ->
+            if (result is PathResult.Failure) {
+                player.message("You can't reach that.")
+                return@walkTo
+            }
+            bus.emit(PlayerOption(player, target, option, index))
+        }
+    }
+
+    companion object {
+        fun getTileBehind(target: Player): Tile {
+            val direction = target.getFace().getDirection()
+            return target.tile.minus(direction.delta)
         }
     }
 

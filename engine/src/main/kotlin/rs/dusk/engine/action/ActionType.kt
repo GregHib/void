@@ -10,4 +10,5 @@ sealed class ActionType : CancellationException() {
     object Assisting : ActionType()
     object Global : ActionType()
     object FloorItem : ActionType()
+    object Logout : ActionType()
 }

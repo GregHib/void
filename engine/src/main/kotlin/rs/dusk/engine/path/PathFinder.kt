@@ -36,7 +36,7 @@ class PathFinder(
 ) {
 
     fun find(source: Character, tile: Tile, smart: Boolean = true): PathResult {
-        val strategy = TileTargetStrategy(tile = tile)
+        val strategy = getStrategy(tile)
         if (strategy.reached(source.tile, source.size)) {
             return PathResult.Success.Complete(source.tile)
         }
@@ -60,6 +60,8 @@ class PathFinder(
             aa
         }
     }
+
+    fun getStrategy(target: Tile) = TileTargetStrategy(tile = target)
 
     fun getStrategy(target: Entity) = when (target) {
         is GameObject -> when (target.type) {

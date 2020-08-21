@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.entity.character.move.walkTo
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
@@ -32,12 +34,16 @@ class ObjectOptionMessageHandler : GameMessageHandler<ObjectOptionMessage>() {
         val definition = loc.def
         val options = definition.options
         val index = option - 1
-        if (options == null || index !in options.indices) {
+        if (index !in options.indices) {
             //Invalid option
             return
         }
         val selectedOption = options[index]
-        player.approach(loc) { result ->
+        player.walkTo(loc) { result ->
+            if (result is PathResult.Failure) {
+                player.message("You can't reach that.")
+                return@walkTo
+            }
             val partial = result is PathResult.Success.Partial
             bus.emit(ObjectOption(player, loc, selectedOption, partial))
         }

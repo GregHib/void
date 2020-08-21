@@ -10,8 +10,10 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.PathFinder
 import rs.dusk.engine.path.PathResult
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.target.TileTargetStrategy
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
 import rs.dusk.utility.get
@@ -61,19 +63,48 @@ private fun calcPath(source: Character, target: Any) = when (target) {
     else -> PathResult.Failure
 }
 
-fun Player.walkTo(target: Any, action: (PathResult) -> Unit) = get<TaskExecutor>().start {
+fun getStrategy(target: Any): TargetStrategy? {
+    val pf: PathFinder = get()
+    return when (target) {
+        is Entity -> pf.getStrategy(target)
+        is Tile -> TileTargetStrategy(tile = target)
+        else -> null
+    }
+}
+
+fun Player.walkTo(target: Any, tile: Tile = if (target is Entity) target.tile else (target as Tile), action: (PathResult) -> Unit) = get<TaskExecutor>().start {
     action(ActionType.Movement) {
         try {
-            var result = calcPath(this@walkTo, target)
-            if (result is PathResult.Failure) {
-                action(result)
-            } else {
-                while (delay(0) && awaitInterfaces()) {
-                    if (movement.steps.isEmpty()) {
+            retry@ while (true) {
+                val strategy = getStrategy(target)
+                if (strategy == null) {
+                    action(PathResult.Failure)
+                    break
+                } else if (strategy.reached(this@walkTo.tile, size)) {
+                    action(PathResult.Success.Complete(tile))
+                    break
+                } else {
+                    val result = calcPath(this@walkTo, target)
+                    if (result is PathResult.Failure) {
+                        action(result)
+                        break
+                    }
+
+                    // Await until reached the end of the path
+                    while (delay(0) && awaitInterfaces()) {
+                        if (movement.steps.isEmpty()) {
+                            break
+                        }
+                        if ((target as? Character)?.action?.type == ActionType.Movement) {
+                            continue@retry
+                        }
+                    }
+
+                    if (result is PathResult.Success.Partial) {
+                        action(result)
                         break
                     }
                 }
-                action(result)
             }
         } finally {
             movement.clear()

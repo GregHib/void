@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.entity.character.move.walkTo
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.item.FloorItemOption
 import rs.dusk.engine.entity.item.FloorItems
 import rs.dusk.engine.event.EventBus
@@ -38,7 +40,11 @@ class FloorItemOptionMessageHandler : GameMessageHandler<FloorItemOptionMessage>
             return
         }
         val selectedOption = options[index]
-        player.approach(item) { result ->
+        player.walkTo(item) { result ->
+            if (result is PathResult.Failure) {
+                player.message("You can't reach that.")
+                return@walkTo
+            }
             val partial = result is PathResult.Success.Partial
             bus.emit(FloorItemOption(player, item, selectedOption, partial))
         }

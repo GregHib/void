@@ -69,7 +69,7 @@ internal class PathFinderTest {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
-        every { pf.getStrategy(any()) } returns strategy
+        every { pf.getStrategy(any<Entity>()) } returns strategy
         every { pf.getFinder(any(), any()) } returns bfs
         // When
         pf.find(source, target)
