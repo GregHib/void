@@ -11,7 +11,7 @@ import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceOptionMessage
 import rs.dusk.utility.inject
@@ -73,7 +73,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
 
         val selectedOption = options?.getOrNull(option) ?: ""
         val componentName = inter.components[componentId] ?: ""
-        executor.start {
+        executor.sync {
             bus.emit(
                 InterfaceOption(
                     player,

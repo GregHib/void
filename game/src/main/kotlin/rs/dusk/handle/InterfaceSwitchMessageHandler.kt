@@ -8,7 +8,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 import rs.dusk.utility.inject
@@ -69,7 +69,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
         val toComponentName = toInter.components[toComponentId] ?: ""
 
 
-        executor.start {
+        executor.sync {
             bus.emit(
                 InterfaceSwitch(
                     player,

@@ -2,7 +2,10 @@ package rs.dusk.engine.task
 
 import rs.dusk.utility.get
 
-class StartTask : CancelTask() {
+/**
+ * Syncs task with the start of the current or next tick
+ */
+class SyncTask : CancelTask() {
 
     val subTasks = mutableListOf<(Long) -> Unit>()
 
@@ -17,7 +20,7 @@ class StartTask : CancelTask() {
 }
 
 @Suppress("unused")
-fun TaskExecutor.start(task: (Long) -> Unit) {
-    val start: StartTask = get()
-    start.subTasks.add(task)
+fun TaskExecutor.sync(task: (Long) -> Unit) {
+    val sync: SyncTask = get()
+    sync.subTasks.add(task)
 }

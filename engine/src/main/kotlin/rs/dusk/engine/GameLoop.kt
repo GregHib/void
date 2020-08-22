@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.task.StartTask
+import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.engine.task.repeat
@@ -29,7 +29,7 @@ class GameLoop(
 
     private val logger = InlineLogger()
 
-    fun setup(start: StartTask) {
+    fun setup(start: SyncTask) {
         executor.delay {
             bus.emit(Startup)
         }

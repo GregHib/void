@@ -8,7 +8,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.DialogueContinueMessage
 import rs.dusk.utility.inject
@@ -56,7 +56,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
         val name = inter.name
         val componentName = inter.components[componentId] ?: ""
 
-        executor.start {
+        executor.sync {
             bus.emit(
                 ContinueDialogue(
                     player,

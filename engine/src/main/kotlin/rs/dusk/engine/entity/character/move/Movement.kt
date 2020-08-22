@@ -14,7 +14,7 @@ import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.utility.get
 import java.util.*
 
@@ -57,7 +57,7 @@ data class Movement(
     }
 }
 
-fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), action: (PathResult) -> Unit) = get<TaskExecutor>().start {
+fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), action: (PathResult) -> Unit) = get<TaskExecutor>().sync {
     action(ActionType.Movement) {
         try {
             val player = this@walkTo

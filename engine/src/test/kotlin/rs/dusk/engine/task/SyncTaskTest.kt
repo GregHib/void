@@ -5,14 +5,14 @@ import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-internal class StartTaskTest {
+internal class SyncTaskTest {
 
     @Test
     fun `Run invokes all sub tasks`() {
         // Given
         val task1: (Long) -> Unit = mockk(relaxed = true)
         val task2: (Long) -> Unit = mockk(relaxed = true)
-        val startTask = StartTask()
+        val startTask = SyncTask()
         startTask.subTasks.add(task1)
         startTask.subTasks.add(task2)
         // When

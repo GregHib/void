@@ -29,7 +29,7 @@ import rs.dusk.engine.map.region.obj.xteaModule
 import rs.dusk.engine.map.region.regionModule
 import rs.dusk.engine.map.region.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
-import rs.dusk.engine.task.StartTask
+import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
 import rs.dusk.network.codecRepositoryModule
@@ -60,7 +60,7 @@ object Dusk {
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
-        val start: StartTask = get()
+        val start: SyncTask = get()
         val engine = GameLoop(bus, executor, service)
 
         server.run()

@@ -13,7 +13,7 @@ import rs.dusk.engine.tick.Tick
 import rs.dusk.engine.tick.TickInput
 import rs.dusk.engine.tick.TickUpdate
 
-internal class StartTaskIntegrationTest : KoinMock() {
+internal class SyncTaskIntegrationTest : KoinMock() {
 
     lateinit var bus: EventBus
 
@@ -28,7 +28,7 @@ internal class StartTaskIntegrationTest : KoinMock() {
     fun `Start sub tasks are delayed until next call`() {
         // Given
         val executor = spyk(TaskExecutor())
-        val startTask = StartTask()
+        val startTask = SyncTask()
         TickInput then {
             startTask.subTasks.add {
                 bus.emit(TickUpdate)

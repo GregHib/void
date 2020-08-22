@@ -5,7 +5,7 @@ import org.koin.dsl.module
 import java.util.*
 
 val executorModule = module {
-    single { StartTask() }
+    single { SyncTask() }
     single { TaskExecutor() }
 }
 
