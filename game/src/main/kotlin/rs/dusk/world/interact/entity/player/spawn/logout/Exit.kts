@@ -1,7 +1,10 @@
 package rs.dusk.world.interact.entity.player.spawn.logout
 
+import rs.dusk.engine.action.ActionType
+import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.*
 import rs.dusk.engine.tick.TickInput
@@ -45,5 +48,9 @@ TickInput priority Priority.LOGOUT_QUEUE then {
 
 fun disconnect(player: Player) {
     bus.emit(Logout(player))
+    bus.emit(Unregistered(player))
     bus.emit(PlayerDespawn(player))
+    player.action.run(ActionType.Logout) {
+        await<Unit>(Suspension.Infinite)
+    }
 }

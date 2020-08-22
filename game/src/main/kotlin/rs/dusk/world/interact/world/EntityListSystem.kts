@@ -1,5 +1,4 @@
 import rs.dusk.engine.entity.Registered
-import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.character.move.NPCMoved
 import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.npc.NPCs
@@ -26,12 +25,6 @@ Registered priority 9 then {
             entity.flagTemporaryMoveType()
             entity.face()
         }
-    }
-}
-
-Unregistered priority 9 then {
-    when (entity) {
-        is Player -> players.remove(entity as Player)
     }
 }
 
