@@ -14,7 +14,7 @@ object GameOpcodes {
     const val CLAN_NAME = 7
     const val REMOVE_FRIEND = 8
     const val NPC_OPTION_1 = 9
-    const val INTERFACE_OPTION_7 = 10
+    const val INTERFACE_OPTION_8 = 10
     const val OBJECT_OPTION_1 = 11
     const val WALK = 12
     const val RESUME_PLAYER_OBJ_DIALOGUE = 13
@@ -22,14 +22,14 @@ object GameOpcodes {
     const val RECEIVE_COUNT = 15
     const val PING = 16
     const val ADD_IGNORE = 17
-    const val INTERFACE_OPTION_6 = 18
+    const val INTERFACE_OPTION_7 = 18
     const val PLAYER_OPTION_10 = 19
-    const val INTERFACE_OPTION_10 = 20
+    const val INTERFACE_OPTION_9 = 20
     const val INTERFACE_ON_FLOOR_ITEM = 21
     const val COLOUR_ID = 22
     const val CHAT_TYPE = 23
     const val FLOOR_ITEM_OPTION_3 = 24
-    const val INTERFACE_OPTION_8 = 25
+    const val INTERFACE_OPTION_10 = 25
     const val SWITCH_INTERFACE_COMPONENTS = 26
     const val FLOOR_ITEM_OPTION_6 = 27
     const val NPC_OPTION_5 = 28
@@ -95,7 +95,7 @@ object GameOpcodes {
     const val HYPERLINK_TEXT = 88
     const val WORLD_MAP_CLICK = 89
     const val SCRIPT_4701 = 90
-    const val INTERFACE_OPTION_9 = 91
+    const val INTERFACE_OPTION_6 = 91
     const val NPC_OPTION_6 = 92
     const val TOGGLE_FOCUS = 93
 
