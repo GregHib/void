@@ -11,6 +11,7 @@ import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
 import rs.dusk.engine.map.Tile
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get
 
 /**
@@ -23,7 +24,7 @@ data class NPC(
     override var tile: Tile,
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
-    override val movement: Movement = Movement(),
+    override val movement: Movement = Movement(tile.minus(1)),
     override val action: Action = Action(),
     override val values: CharacterValues = CharacterValues()
 ) : Character {
@@ -35,6 +36,9 @@ data class NPC(
     var runDirection: Int = -1
 
     var movementType: NPCMoveType = NPCMoveType.None
+
+    @Transient
+    override lateinit var interactTarget: TargetStrategy
 
     val def: NPCDefinition
         get() = get<NPCDecoder>().get(id)

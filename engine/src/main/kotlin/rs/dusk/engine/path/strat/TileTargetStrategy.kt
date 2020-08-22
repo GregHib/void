@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.target
+package rs.dusk.engine.path.strat
 
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.map.Tile

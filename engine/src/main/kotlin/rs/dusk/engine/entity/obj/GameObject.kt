@@ -9,6 +9,7 @@ import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationSpecificMessage
 import rs.dusk.utility.get
 
@@ -28,6 +29,8 @@ data class GameObject(
         get() = get<ObjectDecoder>().get(id)
 
     val size: Size by lazy { Size(def.sizeX, def.sizeY) }
+
+    lateinit var interactTarget: TargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name
 }

@@ -17,6 +17,7 @@ import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.entity.detailsModule
 import rs.dusk.engine.entity.list.entityListModule
+import rs.dusk.engine.entity.obj.objectFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.chunk.batchedChunkModule
@@ -100,7 +101,8 @@ object Dusk {
                 instanceModule,
                 instancePoolModule,
                 detailsModule,
-                logoutModule
+                logoutModule,
+                objectFactoryModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

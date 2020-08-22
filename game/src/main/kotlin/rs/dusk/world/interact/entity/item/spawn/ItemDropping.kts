@@ -15,6 +15,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
+import rs.dusk.engine.path.strat.PointTargetStrategy
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
@@ -49,6 +50,7 @@ Drop then {
         }
     }
     val item = FloorItem(tile, id, amount, owner = owner?.name)
+    item.interactTarget = PointTargetStrategy(item)
     items.add(item)
     batcher.update(tile.chunk, FloorItemAddMessage(tile.offset(), id, amount))
     reveal(item, revealTicks, owner?.index ?: -1)

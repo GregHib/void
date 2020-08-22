@@ -4,16 +4,15 @@ import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
 import rs.dusk.engine.client.ui.awaitInterfaces
 import rs.dusk.engine.entity.Direction
-import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.PathFinder
+import rs.dusk.engine.path.PathFinder.Companion.getStrategy
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.find.BreadthFirstSearch
-import rs.dusk.engine.path.target.TileTargetStrategy
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.start
 import rs.dusk.utility.get
@@ -27,7 +26,8 @@ import java.util.*
 typealias Steps = LinkedList<Direction>
 
 data class Movement(
-    var lastTile: Tile = Tile.EMPTY,
+    var previousTile: Tile,
+    var trailingTile: Tile = Tile.EMPTY,
     var delta: Tile = Tile.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
@@ -57,34 +57,18 @@ data class Movement(
     }
 }
 
-private fun calcPath(source: Character, target: Any) = when (target) {
-    is Tile -> get<PathFinder>().find(source, target)
-    is Entity -> get<PathFinder>().find(source, target)
-    else -> PathResult.Failure
-}
-
-fun getStrategy(target: Any): TargetStrategy? {
-    val pf: PathFinder = get()
-    return when (target) {
-        is Entity -> pf.getStrategy(target)
-        is Tile -> TileTargetStrategy(tile = target)
-        else -> null
-    }
-}
-
-fun Player.walkTo(target: Any, tile: Tile = if (target is Entity) target.tile else (target as Tile), action: (PathResult) -> Unit) = get<TaskExecutor>().start {
+fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), action: (PathResult) -> Unit) = get<TaskExecutor>().start {
     action(ActionType.Movement) {
         try {
+            val player = this@walkTo
+            val path: PathFinder = get()
             retry@ while (true) {
-                val strategy = getStrategy(target)
-                if (strategy == null) {
-                    action(PathResult.Failure)
-                    break
-                } else if (strategy.reached(this@walkTo.tile, size)) {
+                if (strategy.reached(player.tile, size)) {
                     action(PathResult.Success.Complete(tile))
                     break
                 } else {
-                    val result = calcPath(this@walkTo, target)
+                    movement.clear()
+                    val result = path.find(player, strategy)
                     if (result is PathResult.Failure) {
                         action(result)
                         break

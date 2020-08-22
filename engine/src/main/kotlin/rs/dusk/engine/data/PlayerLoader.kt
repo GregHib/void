@@ -8,6 +8,9 @@ import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.path.strat.FollowTargetStrategy
+import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 import rs.dusk.utility.getProperty
 
@@ -15,7 +18,7 @@ import rs.dusk.utility.getProperty
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
+class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, private val collisions: Collisions, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
 
     private val x = getProperty("homeX", 0)
     private val y = getProperty("homeY", 0)
@@ -31,10 +34,12 @@ class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceD
             val level = player.levels.get(skill)
             player.send(SkillLevelMessage(skill.ordinal, level, experience.toInt()))
         }
+        player.interactTarget = RectangleTargetStrategy(collisions, player)
+        player.followTarget = FollowTargetStrategy(player)
         return player
     }
 }
 
 val playerLoaderModule = module {
-    single { PlayerLoader(get(), get(), get()) }
+    single { PlayerLoader(get(), get(), get(), get()) }
 }

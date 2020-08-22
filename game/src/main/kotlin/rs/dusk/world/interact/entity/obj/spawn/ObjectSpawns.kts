@@ -6,6 +6,7 @@ import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -24,6 +25,7 @@ val objects: Objects by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
+val factory: GameObjectFactory by inject()
 val logger = InlineLogger()
 
 val spawns: MutableMap<Region, MutableList<GameObject>> = mutableMapOf()
@@ -48,7 +50,7 @@ RegionLoaded then {
  * Spawns an object, optionally removing after a set time
  */
 SpawnObject then {
-    val gameObject = GameObject(id, tile, type, rotation, owner)
+    val gameObject = factory.spawn(id, tile, type, rotation, owner)
     spawnCustom(gameObject)
     // Revert
     if (ticks >= 0) {

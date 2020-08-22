@@ -8,6 +8,7 @@ import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.map.Tile
+import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get
 
 /**
@@ -33,4 +34,6 @@ data class FloorItem(
     var state: FloorItemState = FloorItemState.Private
 
     var disappear: Job? = null
+
+    lateinit var interactTarget: TargetStrategy
 }

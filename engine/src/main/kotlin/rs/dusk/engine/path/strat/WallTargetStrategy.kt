@@ -1,7 +1,8 @@
-package rs.dusk.engine.path.target
+package rs.dusk.engine.path.strat
 
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
@@ -17,11 +18,20 @@ import rs.dusk.engine.path.TargetStrategy
  */
 data class WallTargetStrategy(
     private val collisions: Collisions,
-    override val tile: Tile,
-    override val size: Size = Size.TILE,
-    val rotation: Int,
-    val type: Int
+    private val gameObject: GameObject
 ) : TargetStrategy {
+
+    override val tile: Tile
+        get() = gameObject.tile
+
+    override val size: Size
+        get() = gameObject.size
+
+    val rotation: Int
+        get() = gameObject.rotation
+
+    val type: Int
+        get() = gameObject.type
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val sizeXY = size.width

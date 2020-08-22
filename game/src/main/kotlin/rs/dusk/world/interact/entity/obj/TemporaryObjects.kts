@@ -4,6 +4,7 @@ import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -18,13 +19,14 @@ val objects: Objects by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
+val factory: GameObjectFactory by inject()
 
 /**
  * Replaces two objects, linking them to the same job so both revert after timeout
  */
 ReplaceObjectPair then {
-    val firstReplacement = GameObject(firstReplacement, firstTile, firstOriginal.type, firstRotation)
-    val secondReplacement = GameObject(secondReplacement, secondTile, secondOriginal.type, secondRotation)
+    val firstReplacement = factory.spawn(firstReplacement, firstTile, firstOriginal.type, firstRotation)
+    val secondReplacement = factory.spawn(secondReplacement, secondTile, secondOriginal.type, secondRotation)
     switch(firstOriginal, firstReplacement)
     switch(secondOriginal, secondReplacement)
     // Revert
@@ -46,7 +48,7 @@ ReplaceObjectPair then {
  * Replaces one object with another, optionally reverting after a set time
  */
 ReplaceObject then {
-    val replacement = GameObject(id, tile, type, rotation)
+    val replacement = factory.spawn(id, tile, type, rotation)
 
     switch(original, replacement)
     // Revert

@@ -33,7 +33,7 @@ class PlayerTrackingSet(
 
     override fun finish() {
         remove.forEach {
-            lastSeen[it] = it.movement.lastTile
+            lastSeen[it] = it.movement.trailingTile
         }
     }
 

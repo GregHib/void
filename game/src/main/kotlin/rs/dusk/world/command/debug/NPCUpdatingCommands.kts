@@ -95,22 +95,6 @@ Command where { prefix == "npcwatch" } then {
     npc.watch(player)
 }
 
-Command where { prefix == "npcwalk" } then {
-    val d = when (content) {
-        "n" -> Direction.NORTH
-        "s" -> Direction.SOUTH
-        "e" -> Direction.EAST
-        "w" -> Direction.WEST
-        "ne" -> Direction.NORTH_EAST
-        "nw" -> Direction.NORTH_WEST
-        "se" -> Direction.SOUTH_EAST
-        "sw" -> Direction.SOUTH_WEST
-        else -> Direction.NONE
-    }
-    val npc = npcs[player.tile.add(y = 2)]!!.first()!!
-    println(pf.find(npc, npc.tile.add(x = d.delta.x, y = d.delta.y)))
-}
-
 Command where { prefix == "npccrawl" } then {
     val npc = npcs[player.tile.add(y = 1)]!!.first()!!
     val direction = Direction.NORTH

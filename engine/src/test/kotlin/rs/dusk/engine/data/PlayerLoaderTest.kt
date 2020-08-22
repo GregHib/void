@@ -8,6 +8,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.eventModule
+import rs.dusk.engine.map.collision.collisionModule
+import rs.dusk.engine.path.strat.FollowTargetStrategy
+import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.engine.script.KoinMock
 
 /**
@@ -16,14 +19,15 @@ import rs.dusk.engine.script.KoinMock
  */
 internal class PlayerLoaderTest : KoinMock() {
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(eventModule, collisionModule)
+
 
     @Test
     fun `load strategy`() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns mockk(relaxed = true)
-        val loader = PlayerLoader(mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
         // When
         loader.loadPlayer("test")
         // Then
@@ -35,7 +39,7 @@ internal class PlayerLoaderTest : KoinMock() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns null
-        val loader = PlayerLoader(mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
         // When
         val result = loader.loadPlayer("test")
         // Then
@@ -57,7 +61,7 @@ internal class PlayerLoaderTest : KoinMock() {
         // Given
         val strategy = mockk<StorageStrategy<Player>>(relaxed = true)
         every { strategy.load("test") } returns null
-        val loader = PlayerLoader(mockk(), mockk(), strategy)
+        val loader = PlayerLoader(mockk(), mockk(), mockk(), strategy)
         // When
         val result = loader.loadPlayer("test")
         // Then
@@ -66,6 +70,8 @@ internal class PlayerLoaderTest : KoinMock() {
         assertEquals(100, result.tile.x)
         assertEquals(100, result.tile.y)
         assertEquals(1, result.tile.plane)
+        assert(result.interactTarget is RectangleTargetStrategy)
+        assertEquals(FollowTargetStrategy(result), result.followTarget)
         verifyOrder {
             strategy.load("test")
         }

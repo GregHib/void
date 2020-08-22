@@ -1,7 +1,10 @@
-package rs.dusk.engine.path.target
+package rs.dusk.engine.path.strat
 
 import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.character.Character
+import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
@@ -18,10 +21,19 @@ import kotlin.math.min
  */
 data class RectangleTargetStrategy(
     private val collisions: Collisions,
-    override val tile: Tile,
-    override val size: Size = Size.TILE,
+    private val entity: Entity,
     val blockFlag: Int = 0
 ) : TargetStrategy {
+
+    override val tile: Tile
+        get() = entity.tile
+
+    override val size: Size
+        get() = when (entity) {
+            is GameObject -> entity.size
+            is Character -> entity.size
+            else -> Size.TILE
+        }
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         val srcEndX = currentX + size.width

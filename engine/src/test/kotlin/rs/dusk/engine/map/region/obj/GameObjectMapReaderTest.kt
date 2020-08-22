@@ -10,6 +10,7 @@ import org.koin.test.mock.declareMock
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
@@ -26,6 +27,7 @@ internal class GameObjectMapReaderTest : KoinMock() {
 
     lateinit var reader: GameObjectMapReader
     lateinit var objects: Objects
+    lateinit var factory: GameObjectFactory
     val region = Tile(0, 0)
 
     override val modules = listOf(eventModule, cacheDefinitionModule)
@@ -33,7 +35,16 @@ internal class GameObjectMapReaderTest : KoinMock() {
     @BeforeEach
     fun setup() {
         objects = mockk(relaxed = true)
-        reader = spyk(GameObjectMapReader(objects, get()))
+        factory = mockk(relaxed = true)
+        reader = spyk(GameObjectMapReader(objects, get(), factory))
+
+        every { factory.spawn(any(), any(), any(), any()) } answers {
+            val id: Int = arg(0)
+            val tile: Tile = arg(1)
+            val type: Int = arg(2)
+            val rotation: Int = arg(3)
+            GameObject(id, tile, type, rotation)
+        }
 
         declareMock<ObjectDecoder> {
             every { get(any<Int>()) } returns mockk(relaxed = true)

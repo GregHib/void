@@ -17,6 +17,7 @@ import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
 import rs.dusk.engine.entity.character.update.visual.player.appearance
 import rs.dusk.engine.map.Tile
+import rs.dusk.engine.path.TargetStrategy
 
 /**
  * A player controlled by client or bot
@@ -54,6 +55,12 @@ class Player(
 
     @Transient
     lateinit var interfaces: Interfaces
+
+    @Transient
+    override lateinit var interactTarget: TargetStrategy
+
+    @Transient
+    lateinit var followTarget: TargetStrategy
 
     @Transient
     override var change: LocalChange? = null

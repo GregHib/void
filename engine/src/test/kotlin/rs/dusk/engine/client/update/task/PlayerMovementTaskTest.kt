@@ -42,7 +42,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         viewport = mockk(relaxed = true)
         task = PlayerMovementTask(
             players,
-            mockk(relaxed = true),
             mockk(relaxed = true)
         )
         every { players.forEach(any()) } answers {

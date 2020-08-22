@@ -1,6 +1,7 @@
-package rs.dusk.engine.path.target
+package rs.dusk.engine.path.strat
 
 import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.item.FloorItem
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 
@@ -12,9 +13,14 @@ import rs.dusk.engine.path.TargetStrategy
  * @since May 18, 2020
  */
 data class PointTargetStrategy(
-    override val tile: Tile,
-    override val size: Size = Size.TILE
+    private val floorItem: FloorItem
 ) : TargetStrategy {
+
+    override val tile: Tile
+        get() = floorItem.tile
+
+    override val size: Size
+        get() = floorItem.size
 
     override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
         if (tile.x + size.width <= currentX || tile.x >= currentX + size.width) {
