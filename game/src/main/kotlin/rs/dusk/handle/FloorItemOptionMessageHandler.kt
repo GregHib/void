@@ -6,6 +6,7 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.item.FloorItemOption
 import rs.dusk.engine.entity.item.FloorItems
 import rs.dusk.engine.event.EventBus
@@ -41,6 +42,7 @@ class FloorItemOptionMessageHandler : GameMessageHandler<FloorItemOptionMessage>
         }
         val selectedOption = options[index]
         player.walkTo(item) { result ->
+            player.face(item)
             if (result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo

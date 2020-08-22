@@ -1,9 +1,11 @@
 package rs.dusk.engine.entity.character.update.visual.player
 
 import rs.dusk.engine.entity.Direction
+import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.map.Tile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -28,6 +30,13 @@ fun PlayerEvent.face(direction: Direction) = face(direction.delta.x, direction.d
 fun PlayerEvent.face(deltaX: Int = 0, deltaY: Int = -1) = player.face(deltaX, deltaY)
 
 fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.y)
+
+fun Player.face(entity: Entity) {
+    val delta = entity.tile.delta(tile)
+    if(delta != Tile.EMPTY) {
+        face(delta.x, delta.y)
+    }
+}
 
 fun Player.face(deltaX: Int = 0, deltaY: Int = -1) {
     val face = getFace()

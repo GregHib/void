@@ -8,6 +8,8 @@ import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.npc.NPCOption
 import rs.dusk.engine.entity.character.npc.NPCs
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.update.visual.player.face
+import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
@@ -36,8 +38,13 @@ class NPCOptionMessageHandler : GameMessageHandler<NPCOptionMessage>() {
             //Invalid option
             return
         }
+
+        player.watch(npc)
+        player.face(npc)
         val selectedOption = options[index]
         player.walkTo(npc) { result ->
+            player.watch(null)
+            player.face(npc)
             if (result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo

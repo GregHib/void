@@ -9,6 +9,8 @@ import rs.dusk.engine.entity.character.player.PlayerOption
 import rs.dusk.engine.entity.character.player.PlayerOptions
 import rs.dusk.engine.entity.character.player.Players
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.update.visual.player.face
+import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
 import rs.dusk.network.rs.codec.game.GameMessageHandler
@@ -37,10 +39,15 @@ class PlayerOptionMessageHandler : GameMessageHandler<PlayerOptionMessage>() {
             return
         }
 
+        player.watch(target)
+        player.face(target)
+
         val under = player.tile == target.tile
         val follow = option == "Follow"
         val strategy = if (follow && under) target.followTarget else target.interactTarget
         player.walkTo(target, strategy) { result ->
+            player.watch(null)
+            player.face(target)
             if (result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo

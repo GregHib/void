@@ -6,6 +6,7 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
@@ -30,22 +31,25 @@ class ObjectOptionMessageHandler : GameMessageHandler<ObjectOptionMessage>() {
         val player = sessions.get(session) ?: return
         val (objectId, x, y, run, option) = msg
         val tile = player.tile.copy(x = x, y = y)
-        val loc = objects[tile, objectId] ?: return
-        val definition = loc.def
+        val target = objects[tile, objectId] ?: return
+        val definition = target.def
         val options = definition.options
         val index = option - 1
         if (index !in options.indices) {
             //Invalid option
             return
         }
+
+        player.face(target)
         val selectedOption = options[index]
-        player.walkTo(loc) { result ->
+        player.walkTo(target) { result ->
+            player.face(target)
             if (result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
             val partial = result is PathResult.Success.Partial
-            bus.emit(ObjectOption(player, loc, selectedOption, partial))
+            bus.emit(ObjectOption(player, target, selectedOption, partial))
         }
     }
 
