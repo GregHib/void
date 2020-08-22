@@ -52,9 +52,8 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         }
 
         val options = component.options
-        val index = option - 1
-        if (options != null && index !in options.indices) {
-            logger.info { "Interface $id component $componentId option $index not found for player $player ${options.toList()}" }
+        if (options != null && option !in options.indices) {
+            logger.info { "Interface $id component $componentId option $option not found for player $player ${options.toList()}" }
             return
         }
 
@@ -72,7 +71,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
             item = itemDetails.getName(itemId)
         }
 
-        val selectedOption = options?.getOrNull(index) ?: ""
+        val selectedOption = options?.getOrNull(option) ?: ""
         val componentName = inter.components[componentId] ?: ""
         executor.start {
             bus.emit(

@@ -43,19 +43,28 @@ val bus: EventBus by inject()
 val logger = InlineLogger()
 
 InterfaceOption where { name == "worn_equipment" && option == "*" } then {
-    val itemDef = decoder.get(itemId)
-    var equipOption = itemDef.params?.get(526L + optionId) as? String ?: itemDef.options.getOrNull(optionId)
+    val equipOption = getEquipmentOption(itemId, optionId)
     if(equipOption == null) {
         logger.info { "Unhandled equipment option $itemId - $optionId" }
         return@then
-    }
-    if(equipOption == "Wield" || equipOption == "Wear") {
-        equipOption = "Remove"
     }
     val slot = EquipSlot.by(component)
     bus.emit(ContainerAction(player, name, item, slot.index, equipOption))
 }
 
-InterfaceOption where { name == "inventory" && component == "container" && optionId == 8 } then {
+fun getEquipmentOption(itemId: Int, optionId: Int): String? {
+    val itemDef = decoder.get(itemId)
+    val equipOption = itemDef.params?.get(527L + optionId) as? String
+    if(equipOption != null) {
+        return equipOption
+    }
+    return when(optionId) {
+        0 -> "Remove"
+        9 -> "Examine"
+        else -> null
+    }
+}
+
+InterfaceOption where { name == "inventory" && component == "container" && optionId == 9 } then {
     bus.emit(ContainerAction(player, name, item, itemIndex, "Examine"))
 }

@@ -52,8 +52,8 @@ InterfaceOption where { name == "inventory" && component == "container" } then {
     val itemDef = decoder.get(itemId)
     val equipOption = when (optionId) {
         7 -> if (itemDef.options.any { it == "Destroy" }) "Destroy" else "Drop"
-        8 -> "Examine"
-        else -> itemDef.options.getOrNull(optionId - 1)
+        9 -> "Examine"
+        else -> itemDef.options.getOrNull(optionId)
     }
     if (equipOption == null) {
         logger.info { "Unknown item option $itemId $optionId" }
