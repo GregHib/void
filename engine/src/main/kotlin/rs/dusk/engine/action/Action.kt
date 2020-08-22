@@ -47,6 +47,12 @@ class Action {
         }
     }
 
+    fun cancel(expected: ActionType) {
+        if(type == expected) {
+            cancel()
+        }
+    }
+
     fun cancel() {
         cancel(CancellationException())
     }
