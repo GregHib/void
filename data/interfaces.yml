@@ -604,10 +604,32 @@ stats:
 trade_confirm:
   id: 334
   type: main_screen
+  components:
+    other: 54
+    status: 34
 
 trade_main:
   id: 335
   type: main_screen
+  components:
+    title: 15
+    accept: 16
+    decline: 18
+    slots: 21
+    other: 22
+    offerItems: 30
+    offerOptions: 31
+    otherItems: 32
+    otherStuff: 33
+    otherOptions: 34
+    status: 37
+    modified: 39
+    otherModified: 40
+    loan: 55
+    loanItem: 56
+    loanTime: 57
+    otherLoanItem: 52
+    otherLoanTime: 53
 
 trade_side:
   id: 336
