@@ -21,7 +21,7 @@ class ScriptMessageEncoder : GameMessageEncoder<ScriptMessage>() {
                 types.append(if (param is String) "s" else "i")
             }
             writeString(types.reverse().toString())
-            for (param in params.reversed()) {
+            for (param in params) {
                 if (param is String) {
                     writeString(param)
                 } else if (param is Int) {
