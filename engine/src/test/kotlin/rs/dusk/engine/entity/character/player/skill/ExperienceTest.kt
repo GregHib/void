@@ -160,8 +160,8 @@ internal class ExperienceTest {
         mockkStatic("rs.dusk.engine.entity.character.player.skill.ExperienceKt")
         val player: Player = mockk(relaxed = true)
         every { player.experience } returns experience
-        player.addExp(Skill.Attack, 10.0)
-        player.addExp(Skill.Attack, 10.0)
+        player.exp(Skill.Attack, 10.0)
+        player.exp(Skill.Attack, 10.0)
         assertEquals(20.0, experience.get(Skill.Attack))
     }
 

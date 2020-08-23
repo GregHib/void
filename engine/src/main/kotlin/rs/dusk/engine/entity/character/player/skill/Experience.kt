@@ -84,4 +84,4 @@ class Experience(
     }
 }
 
-fun Player.addExp(skill: Skill, experience: Double) = this.experience.add(skill, experience)
+fun Player.exp(skill: Skill, experience: Double) = this.experience.add(skill, experience)
