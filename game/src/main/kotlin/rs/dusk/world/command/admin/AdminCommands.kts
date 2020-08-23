@@ -77,16 +77,6 @@ Command where { prefix == "bot" } then {
     }
 }
 
-Command where { prefix == "inter" } then {
-    val id = content.toInt()
-    if (id == -1) {
-        val id = player.interfaces.get("main_screen") ?: return@then
-        player.interfaces.close(id)
-    } else {
-        player.interfaces.open(id)
-    }
-}
-
 Command where { prefix == "item" } then {
     val parts = content.split(" ")
     val id = parts[0].toInt()
