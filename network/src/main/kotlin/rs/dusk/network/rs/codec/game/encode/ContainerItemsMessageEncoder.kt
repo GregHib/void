@@ -5,20 +5,20 @@ import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_ITEMS
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemsMessage
+import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 31, 2020
  */
-class InterfaceItemsMessageEncoder : GameMessageEncoder<InterfaceItemsMessage>() {
+class ContainerItemsMessageEncoder : GameMessageEncoder<ContainerItemsMessage>() {
 
-    override fun encode(builder: PacketWriter, msg: InterfaceItemsMessage) {
-        val (key, items, amounts, negativeKey) = msg
+    override fun encode(builder: PacketWriter, msg: ContainerItemsMessage) {
+        val (key, items, amounts, primary) = msg
         builder.apply {
             writeOpcode(INTERFACE_ITEMS, PacketType.SHORT)
             writeShort(key)
-            writeByte(negativeKey)
+            writeByte(primary)
             writeShort(items.size)
             for((index, item) in items.withIndex()) {
                 val amount = amounts[index]

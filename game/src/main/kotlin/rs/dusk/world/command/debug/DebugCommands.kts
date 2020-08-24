@@ -7,7 +7,16 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 import rs.dusk.world.command.Command
 
 Command where { prefix == "test" } then {
-
+    player.interfaces.apply {
+        open("trade_main")
+        open("trade_side")
+        sendText("trade_main", "status", "This is a status update")
+        sendText("trade_main", "title", "Trading with: Someone")
+        sendText("trade_main", "slots", "Many free inventory slots.")
+//        sendText("trade_main", "loanTime", "1 hour")
+//        sendVisibility("trade_main", "loan", true)
+//        sendSetting("trade_main", "loan", 0, 1, 264190)
+    }
     //Self
     player.send(
         ScriptMessage(
@@ -36,23 +45,10 @@ Command where { prefix == "test" } then {
     player.interfaces.sendSetting(336, 0, 0, 27, 1278)
 
     sendFlash(player, 335, 33, 4, 7, 0)
-    player.interfaces.apply {
-        open("trade_main")
-        open("trade_side")
-        sendText("trade_main", "status", "This is a status update")
-        sendText("trade_main", "title", "Trading with: Someone")
-        sendText("trade_main", "slots", "Many free inventory slots.")
-//        sendText("trade_main", "loanTime", "1 hour")
-//        sendVisibility("trade_main", "loan", true)
-//        sendSetting("trade_main", "loan", 0, 1, 264190)
-    }
+    sendFlash(player, 336, 0, 4, 7, 0)
     player.setVar("other_trader_name", "Bob")
 }
 
 fun sendFlash(player: Player, id: Int, component: Int, width: Int, height: Int, slot: Int) {
-    player.send(
-        ScriptMessage(
-            143, slot, height, width, (id shl 16) or component
-        )
-    )
+    player.send(ScriptMessage(143, slot, height, width, (id shl 16) or component))
 }

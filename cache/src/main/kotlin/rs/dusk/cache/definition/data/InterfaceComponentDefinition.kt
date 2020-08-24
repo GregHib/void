@@ -102,7 +102,7 @@ data class InterfaceComponentDefinition(
     var anObjectArray4688: Array<Any?>? = null,
     var anObjectArray4775: Array<Any?>? = null,
     var clientVarp: IntArray? = null,
-    var monitoredInventories: IntArray? = null,
+    var containers: IntArray? = null,
     var anIntArray4789: IntArray? = null,
     var clientVarc: IntArray? = null,
     var anIntArray4805: IntArray? = null,

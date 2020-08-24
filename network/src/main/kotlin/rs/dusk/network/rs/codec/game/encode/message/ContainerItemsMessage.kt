@@ -4,21 +4,22 @@ import rs.dusk.core.network.model.message.Message
 
 /**
  * Sends a list of items to display on a interface item group component
- * @param key The id of the interface item group
- * @param items List of the item ids and amounts to display
- * @param negativeKey Whether the key is negative and needs encoding differently (optional - calculated automatically)
+ * @param key The id of the container
+ * @param items List of the item ids to display
+ * @param amounts List of the item amounts to display
+ * @param secondary Optional to send to the primary or secondary container
  */
-data class InterfaceItemsMessage(val key: Int, val items: IntArray, val amounts: IntArray, val negativeKey: Boolean = key < 0) : Message {
+data class ContainerItemsMessage(val key: Int, val items: IntArray, val amounts: IntArray, val secondary: Boolean) : Message {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
 
-        other as InterfaceItemsMessage
+        other as ContainerItemsMessage
 
         if (key != other.key) return false
         if (!items.contentEquals(other.items)) return false
         if (!amounts.contentEquals(other.amounts)) return false
-        if (negativeKey != other.negativeKey) return false
+        if (secondary != other.secondary) return false
 
         return true
     }
@@ -27,7 +28,7 @@ data class InterfaceItemsMessage(val key: Int, val items: IntArray, val amounts:
         var result = key
         result = 31 * result + items.contentHashCode()
         result = 31 * result + amounts.contentHashCode()
-        result = 31 * result + negativeKey.hashCode()
+        result = 31 * result + secondary.hashCode()
         return result
     }
 }
