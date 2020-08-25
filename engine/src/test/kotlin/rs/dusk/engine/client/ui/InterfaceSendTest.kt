@@ -9,6 +9,7 @@ import rs.dusk.engine.client.ui.detail.InterfaceDetail
 abstract class InterfaceSendTest : InterfaceTest() {
 
     abstract fun sendStrings(name: String, component: String): Boolean
+
     abstract fun sendIds(id: Int, component: Int): Boolean
 
     abstract fun expected(inter: InterfaceDetail, component: Int)
