@@ -3,7 +3,7 @@ package rs.dusk.engine.client.ui
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.client.ui.menu.ContextMenuSettings.getHash
+import rs.dusk.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
 
