@@ -1,5 +1,6 @@
-package rs.dusk.engine.client.ui
+package rs.dusk.engine.client.ui.io
 
+import rs.dusk.engine.client.ui.InterfaceSendTest
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 
 internal class InterfacePlayerHeadTest : InterfaceSendTest() {
