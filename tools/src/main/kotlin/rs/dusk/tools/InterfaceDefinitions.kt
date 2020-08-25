@@ -13,10 +13,11 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        for (i in 334..334/*0 until decoder.size*/) {
+        for (i in 271 .. 271) {
             val def = decoder.getOrNull(i) ?: continue
             for ((id, component) in def.components ?: continue) {
-                println("$i $id ${component.containers?.toList()}")
+                println(component)
+//                println("$i $id ${component.containers?.toList()}")
             }
         }
     }

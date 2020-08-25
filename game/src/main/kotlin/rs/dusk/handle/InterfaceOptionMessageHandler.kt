@@ -2,12 +2,14 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
+import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.character.contain.hasContainer
 import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
@@ -29,6 +31,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()
     val containerDetails: ContainerDetails by inject()
+    val containerDecoder: ItemContainerDecoder by inject()
     val itemDetails: ItemDetails by inject()
     val logger = InlineLogger()
 
@@ -62,13 +65,40 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         var item = ""
 
         if(itemId != -1 && itemSlot != -1) {
-            val containerId = containerDetails.getId(name)
-            val container = containerDetails.get(containerId)
-            if(!player.container(container).isValidId(itemSlot, itemId)) {
-                logger.info { "Interface $name item $itemId $itemSlot not found in $containerId for player $player" }
+            val containers = component.containers
+            if(containers == null) {
+                logger.info { "Interface $name container not found for $itemId $itemSlot $player" }
                 return
             }
-            item = itemDetails.getName(itemId)
+            var found = false
+            for(containerId in containers) {
+                val def = containerDecoder.get(containerId)
+                if(itemSlot > def.length) {
+                    continue
+                }
+
+                if(!player.hasContainer(containerId)) {
+                    continue
+                }
+                val containerDetails = containerDetails.get(containerId)
+
+                val primary = player.container(containerDetails, secondary = false)
+                if(primary.isValidId(itemSlot, itemId)) {
+                    item = itemDetails.getName(itemId)
+                    found = true
+                    break
+                }
+                val secondary = player.container(containerDetails, secondary = true)
+                if(secondary.isValidId(itemSlot, itemId)) {
+                    item = itemDetails.getName(itemId)
+                    found = true
+                    break
+                }
+            }
+            if(!found) {
+                logger.info { "Interface $name container item $itemId $itemSlot not found for player $player" }
+                return
+            }
         }
 
         val selectedOption = options?.getOrNull(option) ?: ""
