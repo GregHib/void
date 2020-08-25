@@ -54,7 +54,7 @@ BitwiseVariable(
 
 InterfaceOpened where { name == "emotes" } then {
     for (index in 11..14) {
-        player.interfaces.sendSetting(id, index, -1, 190, 2150)
+        player.interfaces.sendSettings(id, index, -1, 190, 0, 1, 4, 5, 10)
     }
 
     player.sendVar("lost_tribe_emotes")

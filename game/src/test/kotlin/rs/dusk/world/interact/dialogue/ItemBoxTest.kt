@@ -42,7 +42,7 @@ internal class ItemBoxTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
                 context.await<Unit>("item")
-                player.send(ScriptMessage(3449, 9009, 650))
+                player.send(ScriptMessage(3449, 650, 9009))
             }
         }
     }

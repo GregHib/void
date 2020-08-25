@@ -948,6 +948,10 @@ combat_styles:
   id: 884
   type: combat_styles_tab
   components:
+    style1: 11
+    style2: 12
+    style3: 13
+    style4: 14
     retaliate: 15
     special_attack_bar: 4
 

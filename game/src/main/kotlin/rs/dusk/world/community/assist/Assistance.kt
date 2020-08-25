@@ -19,8 +19,10 @@ object Assistance {
     }
 
     fun toggleInventory(player: Player, enabled: Boolean) {
-        player.interfaces.sendSetting("inventory", "container", 0, 27, if (enabled) 4554126 else 65536)
-        player.interfaces.sendSettings("inventory", "container", 28, 55, if (enabled) 21 else -1)
+        var settings: IntArray = if (enabled) intArrayOf(0, 1, 2, 6, 7, 9, 10, 11, 12, 13, 15, 17, 21) else intArrayOf()
+        player.interfaces.sendSettings("inventory", "container", 0, 27, *settings)
+        settings = if (enabled) intArrayOf(21) else intArrayOf()
+        player.interfaces.sendSettings("inventory", "container", 28, 55, *settings)
     }
 
     fun canAssist(player: Player, assisted: Player, skill: Skill) =

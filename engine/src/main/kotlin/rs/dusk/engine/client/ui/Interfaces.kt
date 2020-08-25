@@ -3,6 +3,7 @@ package rs.dusk.engine.client.ui
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
+import rs.dusk.engine.client.ui.menu.ContextMenuSettings.getHash
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
 
@@ -107,24 +108,16 @@ abstract class Interfaces(private val details: InterfaceDetails) {
             = sendSetting(details.get(id), component, from, to, setting)
 
     fun sendSettings(name: String, component: String, from: Int, to: Int, vararg settings: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, settings(*settings)) }
+            = details.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, getHash(*settings)) }
 
     fun sendSettings(id: Int, component: Int, from: Int, to: Int, vararg settings: Int): Boolean
-            = sendSetting(details.get(id), component, from, to, settings(*settings))
+            = sendSetting(details.get(id), component, from, to, getHash(*settings))
 
     protected abstract fun sendSetting(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int): Boolean
 
     companion object {
         const val ROOT_ID = -1
         const val ROOT_INDEX = 0
-
-        fun settings(vararg options: Int): Int {
-            var settings = 0
-            for(slot in options) {
-                settings = settings or (2 shl slot)
-            }
-            return settings
-        }
     }
 }
 

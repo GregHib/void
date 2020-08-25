@@ -17,8 +17,8 @@ val decoder: ItemDecoder by inject()
 val bus: EventBus by inject()
 
 InterfaceOpened where { name == "inventory" } then {
-    player.interfaces.sendSetting(name, "container", 0, 27, 4554126)// Item slots
-    player.interfaces.sendSetting(name, "container", 28, 55, 2097152)// Draggable slots
+    player.interfaces.sendSettings(name, "container", 0, 27, 0, 1, 2, 6, 7, 9, 10, 11, 12, 13, 15, 17, 21)// Item slots
+    player.interfaces.sendSettings(name, "container", 28, 55, 20)// Draggable slots
     player.sendContainer(name)
 }
 

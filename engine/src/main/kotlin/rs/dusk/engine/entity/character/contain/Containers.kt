@@ -16,6 +16,10 @@ fun Player.sendContainer(name: String, secondary: Boolean = false) {
     send(ContainerItemsMessage(containerId, container.getItems(), container.getAmounts(), secondary))
 }
 
+fun Player.hasContainer(id: Int): Boolean {
+    return containers.containsKey(id)
+}
+
 fun Player.container(name: String, secondary: Boolean = false): Container {
     val details: ContainerDetails = get()
     val id = details.getId(name)

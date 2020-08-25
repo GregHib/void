@@ -10,7 +10,7 @@ private const val ITEM_SCRIPT_ID = 3449
 
 suspend fun DialogueContext.item(text: String, model: Int, zoom: Int, sprite: Int? = null) {
     if (player.open(ITEM_INTERFACE_NAME)) {
-        player.send(ScriptMessage(ITEM_SCRIPT_ID, model, zoom))
+        player.send(ScriptMessage(ITEM_SCRIPT_ID, zoom, model))
         if (sprite != null) {
             player.interfaces.sendSprite(ITEM_INTERFACE_NAME, "sprite", sprite)
         }
