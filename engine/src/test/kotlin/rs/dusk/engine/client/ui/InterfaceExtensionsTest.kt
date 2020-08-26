@@ -42,8 +42,9 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     fun `Interface already open with same type is closed first`() {
         interfaces[0] = InterfaceDetail(id = 0, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         interfaces[1] = InterfaceDetail(id = 1, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        names["interface"] = 1
         names["interface_name"] = 1
-        manager.open(0)
+        manager.open("interface")
         val result = player.open("interface_name")
         verifyOrder {
             manager.close(0)

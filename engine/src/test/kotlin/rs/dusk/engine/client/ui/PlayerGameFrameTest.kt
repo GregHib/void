@@ -16,6 +16,8 @@ import rs.dusk.engine.entity.character.player.setDisplayMode
 internal class PlayerGameFrameTest : InterfaceTest() {
 
     private lateinit var player: Player
+    lateinit var detail1: InterfaceDetail
+    lateinit var detail2: InterfaceDetail
 
     @BeforeEach
     override fun setup() {
@@ -23,6 +25,12 @@ internal class PlayerGameFrameTest : InterfaceTest() {
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
         every { player.interfaces } returns manager
+        detail1 = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
+        detail2 = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[123] = detail1
+        interfaces[124] = detail2
+        names["toplevel_full"] = 123
+        names["toplevel"] = 124
     }
 
     @Test
@@ -39,10 +47,6 @@ internal class PlayerGameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set top level if full open`() {
-        interfaces[123] = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["toplevel_full"] = 123
-        names["toplevel"] = 124
         gameframe.resizable = true
         manager.open("toplevel_full")
         val result = player.setDisplayMode(PlayerGameFrame.FIXED_SCREEN)
@@ -52,10 +56,6 @@ internal class PlayerGameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set full if top level open`() {
-        interfaces[123] = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
-        interfaces[124] = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["toplevel_full"] = 123
-        names["toplevel"] = 124
         manager.open("toplevel")
         val result = player.setDisplayMode(PlayerGameFrame.RESIZABLE_SCREEN)
         assertTrue(result)
