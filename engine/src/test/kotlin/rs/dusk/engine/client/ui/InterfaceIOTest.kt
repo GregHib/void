@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.event.InterfaceClosed
 import rs.dusk.engine.client.ui.event.InterfaceOpened
@@ -114,7 +115,9 @@ internal class InterfaceIOTest {
     fun `Send player head`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 10
-        io.sendPlayerHead(inter, 100)
+        val comp = InterfaceComponentDetail(100, "")
+        comp.parent = inter.id
+        io.sendPlayerHead(comp)
         verify {
             player.send(InterfaceHeadPlayerMessage(10, 100))
         }
@@ -124,7 +127,9 @@ internal class InterfaceIOTest {
     fun `Send npc head`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendNPCHead(inter, 10, 123)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendNPCHead(comp, 123)
         verify {
             player.send(InterfaceHeadNPCMessage(100, 10, 123))
         }
@@ -134,7 +139,9 @@ internal class InterfaceIOTest {
     fun `Send animation`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendAnimation(inter, 10, 123)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendAnimation(comp, 123)
         verify {
             player.send(InterfaceAnimationMessage(100, 10, 123))
         }
@@ -144,7 +151,9 @@ internal class InterfaceIOTest {
     fun `Send text`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendText(inter, 10, "words")
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendText(comp, "words")
         verify {
             player.send(InterfaceTextMessage(100, 10, "words"))
         }
@@ -154,7 +163,9 @@ internal class InterfaceIOTest {
     fun `Send visibility`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendVisibility(inter, 10, visible = false)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendVisibility(comp, visible = false)
         verify {
             player.send(InterfaceVisibilityMessage(100, 10, hide = true))
         }
@@ -164,7 +175,9 @@ internal class InterfaceIOTest {
     fun `Send sprite`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendSprite(inter, 10, 123)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendSprite(comp, 123)
         verify {
             player.send(InterfaceSpriteMessage(100, 10, 123))
         }
@@ -174,7 +187,9 @@ internal class InterfaceIOTest {
     fun `Send item`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendItem(inter, 10, 123, 4)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendItem(comp, 123, 4)
         verify {
             player.send(InterfaceItemMessage(100, 10, 123, 4))
         }
@@ -184,7 +199,9 @@ internal class InterfaceIOTest {
     fun `Send settings`() {
         val inter: InterfaceDetail = mockk()
         every { inter.id } returns 100
-        io.sendSettings(inter, 10, 1, 2, 1234)
+        val comp = InterfaceComponentDetail(10, "")
+        comp.parent = inter.id
+        io.sendSettings(comp, 1, 2, 1234)
         verify {
             player.send(InterfaceSettingsMessage(100, 10, 1, 2, 1234))
         }

@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui.io
 
 import rs.dusk.engine.client.ui.InterfaceSendTest
-import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 
 internal class InterfaceSettingsVarargTest : InterfaceSendTest() {
 
@@ -9,8 +9,8 @@ internal class InterfaceSettingsVarargTest : InterfaceSendTest() {
         return manager.sendSettings(name, component, 12, 34, 56, 57, 58, 59)
     }
 
-    override fun expected(inter: InterfaceDetail, component: Int) {
-        io.sendSettings(inter, component, 12, 34, 503316480)
+    override fun expected(component: InterfaceComponentDetail) {
+        io.sendSettings(component, 12, 34, 503316480)
     }
 
 }

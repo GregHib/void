@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui.io
 
 import rs.dusk.engine.client.ui.InterfaceSendTest
-import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 
 internal class InterfaceSpriteTest : InterfaceSendTest() {
 
@@ -9,8 +9,8 @@ internal class InterfaceSpriteTest : InterfaceSendTest() {
         return manager.sendSprite(name, component, 123)
     }
 
-    override fun expected(inter: InterfaceDetail, component: Int) {
-        io.sendSprite(inter, component, 123)
+    override fun expected(component: InterfaceComponentDetail) {
+        io.sendSprite(component, 123)
     }
 
 }

@@ -61,9 +61,13 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         name to InterfaceDetail(id, name, typeName, type, components)
     }.toMap()
 
-    private fun Map<String, Any>.getComponents(): Map<String, Int> {
+    private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
         val value = this["components"] as? Map<*, *>
-        val components = value?.map { it.key as String to it.value as Int }?.toMap()
+        val components = value?.map {
+            val name = it.key as String
+            val id = it.value as Int
+            name to InterfaceComponentDetail(id, name)
+        }?.toMap()
         return components ?: emptyMap()
     }
 

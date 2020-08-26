@@ -8,10 +8,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import rs.dusk.engine.client.ui.detail.InterfaceData
-import rs.dusk.engine.client.ui.detail.InterfaceDetail
-import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.client.ui.detail.InterfaceDetailsLoader
+import rs.dusk.engine.client.ui.detail.*
 import rs.dusk.engine.data.file.FileLoader
 
 internal class InterfaceLoaderTest {
@@ -31,7 +28,7 @@ internal class InterfaceLoaderTest {
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf("interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to 0)))
+        val expected = mapOf("interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to InterfaceComponentDetail(0, "component_name"))))
         assertEquals(expected, results)
     }
 
@@ -45,8 +42,8 @@ internal class InterfaceLoaderTest {
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
         val expected = mapOf(
-            "interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to 1, "component_name_two" to 2)),
-            "interface_name_two" to InterfaceDetail(id = 2, name = "interface_name_two", type = "interface_type", data = data, components = mapOf("component_name" to 3))
+            "interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to InterfaceComponentDetail(1, "component_name"), "component_name_two" to InterfaceComponentDetail(2, "component_name_two"))),
+            "interface_name_two" to InterfaceDetail(id = 2, name = "interface_name_two", type = "interface_type", data = data, components = mapOf("component_name" to InterfaceComponentDetail(3, "component_name")))
         )
         assertEquals(expected, results)
     }
@@ -136,7 +133,7 @@ internal class InterfaceLoaderTest {
                     name = "interface_name",
                     type = "interface_type",
                     data = InterfaceData(2, 3, 0, 0),
-                    components = mapOf("component_name" to 1)
+                    components = mapOf("component_name" to InterfaceComponentDetail(1, "component_name"))
                 ),
                 "toplevel" to InterfaceDetail(id = 2, name = "toplevel", type = "root", data = InterfaceData(-1, -1, 0, 0)),
                 "toplevel_full" to InterfaceDetail(id = 3, name = "toplevel_full", type = "root", data = InterfaceData(-1, -1, 0, 0)),

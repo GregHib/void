@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui.io
 
 import rs.dusk.engine.client.ui.InterfaceSendTest
-import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 
 internal class InterfacePlayerHeadTest : InterfaceSendTest() {
 
@@ -9,8 +9,8 @@ internal class InterfacePlayerHeadTest : InterfaceSendTest() {
         return manager.sendPlayerHead(name, component)
     }
 
-    override fun expected(inter: InterfaceDetail, component: Int) {
-        io.sendPlayerHead(inter, component)
+    override fun expected(component: InterfaceComponentDetail) {
+        io.sendPlayerHead(component)
     }
 
 }

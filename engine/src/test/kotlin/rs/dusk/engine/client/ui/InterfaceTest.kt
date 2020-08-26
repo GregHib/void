@@ -15,22 +15,22 @@ abstract class InterfaceTest : KoinMock() {
     internal lateinit var manager: InterfaceManager
     internal lateinit var io: InterfaceIO
     internal lateinit var interfaces: MutableMap<String, InterfaceDetail>
-    internal lateinit var lookup: InterfaceDetails
+    internal lateinit var details: InterfaceDetails
     internal lateinit var gameframe: PlayerGameFrame
     internal lateinit var names: MutableMap<Int, String>
 
     @BeforeEach
     open fun setup() {
         io = mockk(relaxed = true)
-        every { io.sendOpen(any())} answers {
+        every { io.sendOpen(any()) } answers {
             val inter: InterfaceDetail = arg(0)
             inter.getParent(gameframe.resizable)
             inter.getIndex(gameframe.resizable)
         }
         interfaces = mutableMapOf()
         names = mutableMapOf()
-        lookup = declare { spyk(InterfaceDetails(interfaces, names)) }
+        details = declare { spyk(InterfaceDetails(interfaces, names)) }
         gameframe = spyk(PlayerGameFrame())
-        manager = spyk(InterfaceManager(io, lookup, gameframe))
+        manager = spyk(InterfaceManager(io, details, gameframe))
     }
 }

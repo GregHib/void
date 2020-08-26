@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.ui.io
 
 import rs.dusk.engine.client.ui.InterfaceSendTest
-import rs.dusk.engine.client.ui.detail.InterfaceDetail
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 
 internal class InterfaceVisibilityTest : InterfaceSendTest() {
 
@@ -9,8 +9,8 @@ internal class InterfaceVisibilityTest : InterfaceSendTest() {
         return manager.sendVisibility(name, component, true)
     }
 
-    override fun expected(inter: InterfaceDetail, component: Int) {
-        io.sendVisibility(inter, component, true)
+    override fun expected(component: InterfaceComponentDetail) {
+        io.sendVisibility(component, true)
     }
 
 }

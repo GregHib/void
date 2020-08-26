@@ -1,5 +1,6 @@
 package rs.dusk.engine.client.ui
 
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.PlayerGameFrame
@@ -59,67 +60,43 @@ class InterfaceManager(
         }
     }
 
-    override fun sendPlayerHead(inter: InterfaceDetail, component: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendPlayerHead(inter, component)
+    override fun sendPlayerHead(component: InterfaceComponentDetail): Boolean {
+        io.sendPlayerHead(component)
         return true
     }
 
-    override fun sendAnimation(inter: InterfaceDetail, component: Int, animation: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendAnimation(inter, component, animation)
+    override fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean {
+        io.sendAnimation(component, animation)
         return true
     }
 
-    override fun sendNPCHead(inter: InterfaceDetail, component: Int, npc: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendNPCHead(inter, component, npc)
+    override fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean {
+        io.sendNPCHead(component, npc)
         return true
     }
 
-    override fun sendText(inter: InterfaceDetail, component: Int, text: String): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendText(inter, component, text)
+    override fun sendText(component: InterfaceComponentDetail, text: String): Boolean {
+        io.sendText(component, text)
         return true
     }
 
-    override fun sendVisibility(inter: InterfaceDetail, component: Int, visible: Boolean): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendVisibility(inter, component, visible)
+    override fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean {
+        io.sendVisibility(component, visible)
         return true
     }
 
-    override fun sendSprite(inter: InterfaceDetail, component: Int, sprite: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendSprite(inter, component, sprite)
+    override fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean {
+        io.sendSprite(component, sprite)
         return true
     }
 
-    override fun sendItem(inter: InterfaceDetail, component: Int, item: Int, amount: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendItem(inter, component, item, amount)
+    override fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean {
+        io.sendItem(component, item, amount)
         return true
     }
 
-    override fun sendSetting(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int): Boolean {
-        if(!inter.containsComponent(component)) {
-            return false
-        }
-        io.sendSettings(inter, component, from, to, setting)
+    override fun sendSetting(component: InterfaceComponentDetail, from: Int, to: Int, setting: Int): Boolean {
+        io.sendSettings(component, from, to, setting)
         return true
     }
 

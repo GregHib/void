@@ -11,10 +11,9 @@ data class InterfaceDetails(
 
     fun getSafe(name: String) = interfaces[name] ?: InterfaceDetail(id = INVALID_ID, name = name)
 
-    fun get(name: String, component: String, block: (InterfaceDetail, Int) -> Boolean): Boolean {
+    fun get(name: String, component: String): InterfaceComponentDetail? {
         val inter = getSafe(name)
-        val componentId = inter.getComponent(component) ?: return false
-        return block.invoke(inter, componentId)
+        return inter.getComponent(component)
     }
 
     fun get(id: Int) = get(getName(id))

@@ -10,9 +10,8 @@ object Trade {
 
     fun sendWarningFlash(player: Player, name: String, component: String, width: Int, height: Int, slot: Int) {
         val details: InterfaceDetails = get()
-        details.get(name, component) { inter, comp ->
-            sendWarningFlash(player, inter.id, comp, width, height, slot)
-        }
+        val comp = details.get(name, component) ?: return
+        sendWarningFlash(player, comp.parent, comp.id, width, height, slot)
     }
 
     fun sendWarningFlash(player: Player, id: Int, component: Int, width: Int, height: Int, slot: Int): Boolean {

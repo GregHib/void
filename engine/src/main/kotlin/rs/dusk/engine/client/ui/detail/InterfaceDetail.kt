@@ -9,10 +9,16 @@ data class InterfaceDetail(
     val name: String = "",
     val type: String = "",
     val data: InterfaceData? = null,
-    val components: BiMap<String, Int> = HashBiMap.create()
+    val components: BiMap<String, InterfaceComponentDetail> = HashBiMap.create()
 ) {
 
-    constructor(id: Int, name: String = "", type: String = "", data: InterfaceData? = null, components: Map<String, Int>) : this(id, name, type, data, HashBiMap.create(components))
+    constructor(id: Int, name: String = "", type: String = "", data: InterfaceData? = null, components: Map<String, InterfaceComponentDetail>) : this(id, name, type, data, HashBiMap.create(components))
+
+    init {
+        components.values.forEach {
+            it.parent = id
+        }
+    }
 
     class InvalidInterfaceException : InterfaceException()
 
@@ -24,10 +30,10 @@ data class InterfaceDetail(
         return data?.getParent(resizable) ?: throw InvalidInterfaceException()
     }
 
-    fun containsComponent(component: Int): Boolean = components.inverse().containsKey(component)
+    fun containsComponent(component: InterfaceComponentDetail): Boolean = components.inverse().containsKey(component)
 
-    fun getComponent(name: String): Int? = components[name]
+    fun getComponent(name: String): InterfaceComponentDetail? = components[name]
 
-    fun getComponentName(id: Int): String = components.inverse()[id] ?: ""
+    fun getComponentName(id: Int): String = components.filter { it.value.id == id }.values.firstOrNull()?.name ?: ""
 
 }
