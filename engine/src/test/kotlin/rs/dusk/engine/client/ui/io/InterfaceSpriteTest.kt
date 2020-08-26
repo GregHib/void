@@ -9,10 +9,6 @@ internal class InterfaceSpriteTest : InterfaceSendTest() {
         return manager.sendSprite(name, component, 123)
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendSprite(id, component, 123)
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendSprite(inter, component, 123)
     }

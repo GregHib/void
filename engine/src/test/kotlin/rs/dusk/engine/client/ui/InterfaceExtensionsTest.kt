@@ -35,20 +35,20 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
             player.open("interface_name")
         }
         verify { manager.open("interface_name") }
-        verify(exactly = 0) { manager.close(any<Int>()) }
+        verify(exactly = 0) { manager.close(any<String>()) }
     }
 
     @Test
     fun `Interface already open with same type is closed first`() {
-        interfaces[0] = InterfaceDetail(id = 0, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[1] = InterfaceDetail(id = 1, type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names["interface"] = 1
-        names["interface_name"] = 1
-        manager.open("interface")
-        val result = player.open("interface_name")
+        interfaces[0] = InterfaceDetail(id = 0, name = "first", type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        interfaces[1] = InterfaceDetail(id = 1, name = "second", type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        names["first"] = 0
+        names["second"] = 1
+        manager.open("first")
+        val result = player.open("second")
         verifyOrder {
-            manager.close(0)
-            manager.open("interface_name")
+            manager.close("first")
+            manager.open("second")
         }
         assertTrue(result)
     }
@@ -77,11 +77,12 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface type`() {
-        every { manager.get("interface_type") } returns 1
+        names["second"] = 1
+        every { manager.get("interface_type") } returns "second"
         val result = player.closeType("interface_type")
         verifyOrder {
             manager.get("interface_type")
-            manager.close(1)
+            manager.close("second")
         }
         assertFalse(result)
     }
@@ -98,10 +99,11 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     fun `Suspend interface`() = runBlocking {
         val action: Action = mockk()
         val interfaces: Interfaces = mockk()
+        names["four"] = 4
         every { player.interfaces } returns interfaces
         every { player.action } returns action
-        every { interfaces.get("main_screen") } returns  4
-        val suspension = Suspension.Interface(4)
+        every { interfaces.get("main_screen") } returns "four"
+        val suspension = Suspension.Interface("four")
         coEvery { action.await<Unit>(suspension) } returns Unit
         assertTrue(player.awaitInterfaces())
         coVerify { action.await<Unit>(suspension) }

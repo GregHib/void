@@ -68,6 +68,6 @@ Tab.values().forEach { tab ->
     }
 }
 
-InterfaceClosed where { (player.action.suspension as? Suspension.Interface)?.id == id } then {
+InterfaceClosed where { (player.action.suspension as? Suspension.Interface)?.id == name } then {
     player.action.resume()
 }

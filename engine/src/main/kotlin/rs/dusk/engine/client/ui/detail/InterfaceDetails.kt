@@ -31,9 +31,7 @@ data class InterfaceDetails(
         return block.invoke(componentId)
     }
 
-    fun getId(name: String) = getIdOrNull(name) ?: throw IllegalNameException(
-        name
-    )
+    fun getId(name: String) = getIdOrNull(name) ?: throw IllegalNameException(name)
 
     fun getIdOrNull(name: String) = names[name]
 

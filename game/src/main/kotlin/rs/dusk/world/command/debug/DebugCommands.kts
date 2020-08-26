@@ -19,13 +19,13 @@ Command where { prefix == "test" } then {
     }
     //Self
     sendContainerOptions(player, 335, 31, 90, false, 4, 7, arrayOf("Remove", "Remove-5", "Remove-10", "Remove-All", "Remove-X", "Value"))
-    player.interfaces.sendSettings(335, 31, 0, 27, 0, 1, 2, 3, 4, 5, 9)
+    player.interfaces.sendSettings("trade_main", "offer_options", 0, 27, 0, 1, 2, 3, 4, 5, 9)
     // Other
     sendContainerOptions(player, 335, 34, 90, true, 4, 7, arrayOf("Value<col=FF9040>"))
-    player.interfaces.sendSettings(335, 34, 0, 27, 0, 9)
+    player.interfaces.sendSettings("trade_main", "other_options", 0, 27, 0, 9)
     // Side
     sendContainerOptions(player, 336, 0, 93, false, 4, 7, arrayOf("Offer", "Offer-5", "Offer-10", "Offer-All", "Offer-X", "Value", "Lend"))
-    player.interfaces.sendSettings(336, 0, 0, 27, 0, 1, 2, 3, 4, 5, 6, 9)
+    player.interfaces.sendSettings("trade_side", "offer", 0, 27, 0, 1, 2, 3, 4, 5, 6, 9)
 
 //    sendFlash(player, 335, 33, 4, 7, 0)
 //    sendFlash(player, 336, 0, 4, 7, 0)

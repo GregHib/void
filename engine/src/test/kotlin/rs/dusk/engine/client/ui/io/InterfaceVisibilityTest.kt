@@ -9,10 +9,6 @@ internal class InterfaceVisibilityTest : InterfaceSendTest() {
         return manager.sendVisibility(name, component, true)
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendVisibility(id, component, true)
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendVisibility(inter, component, true)
     }

@@ -9,10 +9,6 @@ internal class InterfaceTextTest : InterfaceSendTest() {
         return manager.sendText(name, component, "text")
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendText(id, component, "text")
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendText(inter, component, "text")
     }

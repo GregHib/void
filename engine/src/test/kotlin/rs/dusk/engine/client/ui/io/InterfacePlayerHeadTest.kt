@@ -9,10 +9,6 @@ internal class InterfacePlayerHeadTest : InterfaceSendTest() {
         return manager.sendPlayerHead(name, component)
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendPlayerHead(id, component)
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendPlayerHead(inter, component)
     }

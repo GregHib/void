@@ -17,7 +17,7 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        detail = InterfaceDetail(id = 0, type = "type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
+        detail = InterfaceDetail(id = 0, name = name, type = "type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names[name] = 0
         interfaces[0] = detail
     }
@@ -32,7 +32,7 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
     fun `Opened contains with type`() {
         assertTrue(manager.open(name))
         assertTrue(manager.contains(name))
-        assertEquals(0, manager.get("type"))
+        assertEquals(name, manager.get("type"))
 
         verifyOrder {
             io.sendOpen(detail)

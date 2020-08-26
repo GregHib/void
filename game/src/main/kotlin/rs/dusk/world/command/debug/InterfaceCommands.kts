@@ -5,6 +5,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage
+import rs.dusk.network.rs.codec.game.encode.message.InterfaceVisibilityMessage
 import rs.dusk.world.command.Command
 
 Command where { prefix == "inter" } then {
@@ -30,7 +31,7 @@ fun closeInterface(player: Player): Boolean {
 
 Command where { prefix == "show" } then {
     val parts = content.split(" ")
-    player.interfaces.sendVisibility(parts[0], parts[1], parts[2].toBoolean())
+    player.send(InterfaceVisibilityMessage(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean()))
 }
 
 Command where { prefix == "sendItem" } then {

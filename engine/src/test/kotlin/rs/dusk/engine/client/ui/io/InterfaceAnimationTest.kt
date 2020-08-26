@@ -9,10 +9,6 @@ internal class InterfaceAnimationTest : InterfaceSendTest() {
         return manager.sendAnimation(name, component, 123)
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendAnimation(id, component, 123)
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendAnimation(inter, component, 123)
     }

@@ -9,10 +9,6 @@ internal class InterfaceItemTest : InterfaceSendTest() {
         return manager.sendItem(name, component, 1234, 10)
     }
 
-    override fun sendIds(id: Int, component: Int): Boolean {
-        return manager.sendItem(id, component, 1234, 10)
-    }
-
     override fun expected(inter: InterfaceDetail, component: Int) {
         io.sendItem(inter, component, 1234, 10)
     }

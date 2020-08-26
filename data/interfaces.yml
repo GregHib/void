@@ -22,6 +22,7 @@ notes:
   type: notes_tab
   components:
     delete: 8
+    emotes: 9
 
 castlewars_score:
   id: 55
@@ -617,23 +618,25 @@ trade_main:
     decline: 18
     slots: 21
     other: 22
-    offerItems: 30
-    offerOptions: 31
-    otherItems: 32
-    otherStuff: 33
-    otherOptions: 34
+    offer_items: 30
+    offer_options: 31
+    other_items: 32
+    other_stuff: 33
+    other_options: 34
     status: 37
     modified: 39
-    otherModified: 40
+    other_modified: 40
     loan: 55
-    loanItem: 56
-    loanTime: 57
-    otherLoanItem: 52
-    otherLoanTime: 53
+    loan_item: 56
+    loan_time: 57
+    other_loan_item: 52
+    other_loan_time: 53
 
 trade_side:
   id: 336
   type: inventory_tab
+  components:
+    offer: 0
 
 # 6 lines
 tutorial_text:
@@ -758,6 +761,8 @@ multi2_mes:
 emotes:
   id: 590
   type: emotes_tab
+  components:
+    emotes: 8
 
 unknown_side1:
   id: 602

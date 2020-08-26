@@ -46,7 +46,9 @@ class InterfaceManager(
         return false
     }
 
-    override fun get(type: String) = openInterfaces.firstOrNull { it.type == type }?.id
+    override fun get(type: String): String? {
+        return openInterfaces.firstOrNull { it.type == type }?.name
+    }
 
     override fun contains(inter: InterfaceDetail): Boolean = openInterfaces.contains(inter)
 
