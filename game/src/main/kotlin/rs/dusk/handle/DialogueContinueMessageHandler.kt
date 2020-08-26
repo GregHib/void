@@ -54,7 +54,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
 
         val inter = lookup.get(id)
         val name = inter.name
-        val componentName = inter.components[componentId] ?: ""
+        val componentName = inter.getComponentName(componentId)
 
         executor.sync {
             bus.emit(

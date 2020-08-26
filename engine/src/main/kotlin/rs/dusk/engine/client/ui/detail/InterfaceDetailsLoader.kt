@@ -22,13 +22,13 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         val detailData = loadFile(detailPath)
         val typeData = loadFile(typesPath)
         val names = loadNames(detailData)
-        val types = loadTypes(typeData, names)
+        val types = loadTypes(typeData, names.map { it.value to it.key }.toMap())
         val details = loadDetails(detailData, types)
         count = names.size
         return InterfaceDetails(details, names)
     }
 
-    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> name to values.getId() }.toMap()
+    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
 
     fun loadTypes(data: Map<String, Map<String, Any>>, names: Map<String, Int>) = data.map { (name, values) ->
         val index = values.readInt("index")
@@ -58,12 +58,12 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
-        id to InterfaceDetail(id, name, typeName, type, components)
+        name to InterfaceDetail(id, name, typeName, type, components)
     }.toMap()
 
-    private fun Map<String, Any>.getComponents(): Map<Int, String> {
+    private fun Map<String, Any>.getComponents(): Map<String, Int> {
         val value = this["components"] as? Map<*, *>
-        val components = value?.map { it.value as Int to it.key as String }?.toMap()
+        val components = value?.map { it.key as String to it.value as Int }?.toMap()
         return components ?: emptyMap()
     }
 

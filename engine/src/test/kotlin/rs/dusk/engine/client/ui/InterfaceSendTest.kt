@@ -14,9 +14,9 @@ abstract class InterfaceSendTest : InterfaceTest() {
 
     @Test
     fun `Interface send component player head names`() {
-        names["name"] = 1
-        val inter = InterfaceDetail(id = 1, components = mapOf(2 to "component_name"))
-        interfaces[1] = inter
+        names[1] = "name"
+        val inter = InterfaceDetail(id = 1, components = mapOf("component_name" to 2))
+        interfaces["name"] = inter
         val result = sendStrings("name", "component_name")
         assertTrue(result)
         verify { expected(inter, 2) }
@@ -24,9 +24,9 @@ abstract class InterfaceSendTest : InterfaceTest() {
 
     @Test
     fun `Interface send player head invalid component`() {
-        names["name"] = 1
-        val inter = InterfaceDetail(id = 1, components = mapOf(2 to "component_name"))
-        interfaces[1] = inter
+        names[1] = "name"
+        val inter = InterfaceDetail(id = 1, components = mapOf("component_name" to 2))
+        interfaces["name"] = inter
         val result = manager.sendPlayerHead("name", "unknown")
         assertFalse(result)
         verify(exactly = 0) { expected(inter, any()) }

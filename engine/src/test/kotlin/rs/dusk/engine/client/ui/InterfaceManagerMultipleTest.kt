@@ -26,12 +26,12 @@ internal class InterfaceManagerMultipleTest : InterfaceTest() {
         detail = InterfaceDetail(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
         detail1 = InterfaceDetail(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
         detail2 = InterfaceDetail(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names[zero] = 0
-        names[one] = 1
-        names[two] = 2
-        interfaces[0] = detail
-        interfaces[1] = detail1
-        interfaces[2] = detail2
+        names[0] = zero
+        names[1] = one
+        names[2] = two
+        interfaces[zero] = detail
+        interfaces[one] = detail1
+        interfaces[two] = detail2
     }
 
     @Test

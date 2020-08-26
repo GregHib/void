@@ -14,10 +14,10 @@ abstract class InterfaceTest : KoinMock() {
 
     internal lateinit var manager: InterfaceManager
     internal lateinit var io: InterfaceIO
-    internal lateinit var interfaces: MutableMap<Int, InterfaceDetail>
+    internal lateinit var interfaces: MutableMap<String, InterfaceDetail>
     internal lateinit var lookup: InterfaceDetails
     internal lateinit var gameframe: PlayerGameFrame
-    internal lateinit var names: MutableMap<String, Int>
+    internal lateinit var names: MutableMap<Int, String>
 
     @BeforeEach
     open fun setup() {

@@ -37,8 +37,8 @@ internal class InterfaceManagerTest : InterfaceTest() {
     fun `Unopened interface can't be interacted`() {
         val detail = InterfaceDetail(id = 0, type = "type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         val name = "zero"
-        names[name] = 0
-        interfaces[0] = detail
+        names[0] = name
+        interfaces[name] = detail
         assertFalse(manager.contains(name))
         assertFalse(manager.close(name))
         assertFalse(manager.remove(name))
@@ -55,8 +55,8 @@ internal class InterfaceManagerTest : InterfaceTest() {
         gameframe.resizable = resizable
         val parentless = InterfaceDetail(id = 0, data = InterfaceData(null, null, null, null))
         val name = "zero"
-        names[name] = 0
-        interfaces[0] = parentless
+        names[0] = name
+        interfaces[name] = parentless
         assertThrows<InterfaceDetail.InvalidInterfaceException> {
             manager.open(name)
         }
@@ -66,8 +66,9 @@ internal class InterfaceManagerTest : InterfaceTest() {
     @ValueSource(booleans = [false, true])
     fun `Interface details lookup`(resizable: Boolean) {
         gameframe.resizable = resizable
-        interfaces[4] = InterfaceDetail(id = 4, data = InterfaceData(fixedParent = 8, fixedIndex = 9, resizableParent = 10, resizableIndex = 11))
-        val result = lookup.get(4)
+        names[4] = "four"
+        interfaces["four"] = InterfaceDetail(id = 4, data = InterfaceData(fixedParent = 8, fixedIndex = 9, resizableParent = 10, resizableIndex = 11))
+        val result = lookup.get("four")
         assertEquals(if (resizable) 10 else 8, result.getParent(gameframe.resizable))
         assertEquals(if (resizable) 11 else 9, result.getIndex(gameframe.resizable))
     }

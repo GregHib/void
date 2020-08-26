@@ -20,7 +20,7 @@ internal class InterfaceLoaderNameTest {
     fun `Load name`() {
         val data = mapOf("interface_name" to mapOf("id" to 1))
         val result = loader.loadNames(data)
-        val expected = mapOf("interface_name" to 1)
+        val expected = mapOf(1 to "interface_name")
         assertEquals(expected, result)
     }
 
@@ -31,7 +31,7 @@ internal class InterfaceLoaderNameTest {
             "interface_name_two" to mapOf("id" to 2)
         )
         val result = loader.loadNames(data)
-        val expected = mapOf("interface_name" to 1, "interface_name_two" to 2)
+        val expected = mapOf(1 to "interface_name", 2 to "interface_name_two")
         assertEquals(expected, result)
     }
 

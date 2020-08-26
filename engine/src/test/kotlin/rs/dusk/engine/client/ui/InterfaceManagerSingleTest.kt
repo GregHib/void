@@ -18,8 +18,8 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
     override fun setup() {
         super.setup()
         detail = InterfaceDetail(id = 0, name = name, type = "type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names[name] = 0
-        interfaces[0] = detail
+        names[0] = name
+        interfaces[name] = detail
     }
 
     @Test

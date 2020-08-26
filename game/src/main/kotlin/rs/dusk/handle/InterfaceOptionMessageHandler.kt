@@ -102,7 +102,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         }
 
         val selectedOption = options?.getOrNull(option) ?: ""
-        val componentName = inter.components[componentId] ?: ""
+        val componentName = inter.getComponentName(componentId)
         executor.sync {
             bus.emit(
                 InterfaceOption(

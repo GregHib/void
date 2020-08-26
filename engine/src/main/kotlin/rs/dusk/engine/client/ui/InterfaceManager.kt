@@ -60,7 +60,7 @@ class InterfaceManager(
     }
 
     override fun sendPlayerHead(inter: InterfaceDetail, component: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendPlayerHead(inter, component)
@@ -68,7 +68,7 @@ class InterfaceManager(
     }
 
     override fun sendAnimation(inter: InterfaceDetail, component: Int, animation: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendAnimation(inter, component, animation)
@@ -76,7 +76,7 @@ class InterfaceManager(
     }
 
     override fun sendNPCHead(inter: InterfaceDetail, component: Int, npc: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendNPCHead(inter, component, npc)
@@ -84,7 +84,7 @@ class InterfaceManager(
     }
 
     override fun sendText(inter: InterfaceDetail, component: Int, text: String): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendText(inter, component, text)
@@ -92,7 +92,7 @@ class InterfaceManager(
     }
 
     override fun sendVisibility(inter: InterfaceDetail, component: Int, visible: Boolean): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendVisibility(inter, component, visible)
@@ -100,7 +100,7 @@ class InterfaceManager(
     }
 
     override fun sendSprite(inter: InterfaceDetail, component: Int, sprite: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendSprite(inter, component, sprite)
@@ -108,7 +108,7 @@ class InterfaceManager(
     }
 
     override fun sendItem(inter: InterfaceDetail, component: Int, item: Int, amount: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendItem(inter, component, item, amount)
@@ -116,7 +116,7 @@ class InterfaceManager(
     }
 
     override fun sendSetting(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int): Boolean {
-        if(!inter.components.containsKey(component)) {
+        if(!inter.containsComponent(component)) {
             return false
         }
         io.sendSettings(inter, component, from, to, setting)

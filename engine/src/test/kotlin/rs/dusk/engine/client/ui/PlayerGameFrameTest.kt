@@ -27,10 +27,10 @@ internal class PlayerGameFrameTest : InterfaceTest() {
         every { player.interfaces } returns manager
         detail1 = InterfaceDetail(id = 123, data = InterfaceData(resizableParent = ROOT_ID, resizableIndex = ROOT_INDEX))
         detail2 = InterfaceDetail(id = 124, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces[123] = detail1
-        interfaces[124] = detail2
-        names["toplevel_full"] = 123
-        names["toplevel"] = 124
+        interfaces["toplevel_full"] = detail1
+        interfaces["toplevel"] = detail2
+        names[123] = "toplevel_full"
+        names[124] = "toplevel"
     }
 
     @Test

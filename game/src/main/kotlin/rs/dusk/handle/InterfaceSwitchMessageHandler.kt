@@ -48,7 +48,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val fromInter = lookup.get(fromId)
         val fromName = fromInter.name
-        val fromComponentName = fromInter.components[fromComponentId] ?: ""
+        val fromComponentName = fromInter.getComponentName(fromComponentId)
 
         val toId = toHash shr 16
         if (!player.interfaces.contains(toId)) {
@@ -66,7 +66,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val toInter = lookup.get(toId)
         val toName = toInter.name
-        val toComponentName = toInter.components[toComponentId] ?: ""
+        val toComponentName = toInter.getComponentName(toComponentId)
 
 
         executor.sync {
