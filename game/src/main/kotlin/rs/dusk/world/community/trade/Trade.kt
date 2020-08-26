@@ -10,7 +10,7 @@ object Trade {
 
     fun sendWarningFlash(player: Player, name: String, component: String, width: Int, height: Int, slot: Int) {
         val details: InterfaceDetails = get()
-        val comp = details.get(name, component) ?: return
+        val comp = details.getComponent(name, component) ?: return
         sendWarningFlash(player, comp.parent, comp.id, width, height, slot)
     }
 

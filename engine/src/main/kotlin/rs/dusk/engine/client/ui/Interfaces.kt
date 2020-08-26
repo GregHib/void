@@ -40,61 +40,56 @@ abstract class Interfaces(private val details: InterfaceDetails) {
     abstract fun refresh()
 
     fun sendPlayerHead(name: String, component: String): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendPlayerHead(comp)
     }
 
     protected abstract fun sendPlayerHead(component: InterfaceComponentDetail): Boolean
 
     fun sendAnimation(name: String, component: String, animation: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendAnimation(comp, animation)
     }
 
     protected abstract fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean
 
     fun sendNPCHead(name: String, component: String, npc: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendNPCHead(comp, npc)
     }
 
     protected abstract fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean
 
     fun sendText(name: String, component: String, text: String): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendText(comp, text)
     }
 
     protected abstract fun sendText(component: InterfaceComponentDetail, text: String): Boolean
 
     fun sendVisibility(name: String, component: String, visible: Boolean): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendVisibility(comp, visible)
     }
 
     protected abstract fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean
 
     fun sendSprite(name: String, component: String, sprite: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendSprite(comp, sprite)
     }
 
     protected abstract fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean
 
     fun sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendItem(comp, item, amount)
     }
 
     protected abstract fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean
 
-    fun sendSetting(name: String, component: String, from: Int, to: Int, setting: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
-        return sendSetting(comp, from, to, setting)
-    }
-
     fun sendSettings(name: String, component: String, from: Int, to: Int, vararg settings: Int): Boolean {
-        val comp = details.get(name, component) ?: return false
+        val comp = details.getComponent(name, component) ?: return false
         return sendSetting(comp, from, to, getHash(*settings))
     }
 
