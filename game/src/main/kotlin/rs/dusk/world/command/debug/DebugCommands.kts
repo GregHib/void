@@ -4,6 +4,7 @@ import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 import rs.dusk.utility.get
 import rs.dusk.world.command.Command
@@ -32,6 +33,11 @@ Command where { prefix == "test" } then {
 //    sendFlash(player, 335, 33, 4, 7, 0)
 //    sendFlash(player, 336, 0, 4, 7, 0)
 //    player.setVar("other_trader_name", "Bob")
+}
+
+Command where { prefix == "sendItems" } then {
+    player.send(ContainerItemsMessage(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false))
+    player.send(ContainerItemsMessage(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true))
 }
 
 fun Player.highlight(name: String, component: String, slot: Int) {
