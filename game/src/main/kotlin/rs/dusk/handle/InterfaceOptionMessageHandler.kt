@@ -48,61 +48,64 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
 
         val componentId = hash and 0xffff
         val definition = decoder.get(id)
-        val component = definition.components?.get(componentId)
-        if(component == null) {
+        val componentDef = definition.components?.get(componentId)
+        if (componentDef == null) {
             logger.info { "Interface $id component $componentId not found for player $player" }
             return
         }
 
-        val options = component.options
+        var options = componentDef.options
+
+        val inter = interfaceDetails.get(id)
+        val componentName = inter.getComponentName(componentId)
+        val component = inter.getComponent(componentName)
+        val name = inter.name
+        var item = ""
+
+        if (itemId != -1 && itemSlot != -1) {
+            if (component == null) {
+                return
+            }
+            val containerName = component.container
+            if (!player.hasContainer(containerName)) {
+                logger.info { "Interface $name container $containerName not found for player $player" }
+                return
+            }
+
+            val container = containerDetails.get(containerName)
+            val def = containerDecoder.get(container.id)
+            if (itemSlot > def.length) {
+                logger.info { "Invalid interface $name container $containerName ${def.length} slot $itemSlot not found for player $player" }
+                return
+            }
+
+            var found = false
+            val primary = player.container(container, secondary = false)
+            if (primary.isValidId(itemSlot, itemId)) {
+                item = itemDetails.getName(itemId)
+                found = true
+            } else {
+                val secondary = player.container(container, secondary = true)
+                if (secondary.isValidId(itemSlot, itemId)) {
+                    item = itemDetails.getName(itemId)
+                    found = true
+                }
+            }
+            if (!found) {
+                logger.info { "Interface $name container item $itemId $itemSlot not found for player $player" }
+                return
+            }
+            if(options == null) {
+                options = player.interfaceOptions.get(name, componentName)
+            }
+        }
+
         if (options != null && option !in options.indices) {
             logger.info { "Interface $id component $componentId option $option not found for player $player ${options.toList()}" }
             return
         }
 
-        val inter = interfaceDetails.get(id)
-        val name = inter.name
-        var item = ""
-
-        if(itemId != -1 && itemSlot != -1) {
-            val containers = component.containers
-            if(containers == null) {
-                logger.info { "Interface $name container not found for $itemId $itemSlot $player" }
-                return
-            }
-            var found = false
-            for(containerId in containers) {
-                val def = containerDecoder.get(containerId)
-                if(itemSlot > def.length) {
-                    continue
-                }
-
-                if(!player.hasContainer(containerId)) {
-                    continue
-                }
-                val containerDetails = containerDetails.get(containerId)
-
-                val primary = player.container(containerDetails, secondary = false)
-                if(primary.isValidId(itemSlot, itemId)) {
-                    item = itemDetails.getName(itemId)
-                    found = true
-                    break
-                }
-                val secondary = player.container(containerDetails, secondary = true)
-                if(secondary.isValidId(itemSlot, itemId)) {
-                    item = itemDetails.getName(itemId)
-                    found = true
-                    break
-                }
-            }
-            if(!found) {
-                logger.info { "Interface $name container item $itemId $itemSlot not found for player $player" }
-                return
-            }
-        }
-
         val selectedOption = options?.getOrNull(option) ?: ""
-        val componentName = inter.getComponentName(componentId)
         executor.sync {
             bus.emit(
                 InterfaceOption(

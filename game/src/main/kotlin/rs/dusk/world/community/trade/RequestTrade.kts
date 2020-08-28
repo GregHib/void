@@ -54,8 +54,8 @@ fun modified(player: Player) {
 }
 
 fun unlockLend(player: Player) {
-    player.interfaces.sendSettings("trade_main", "loan_item", -1, -1, 9, 0)// 9 - examine, 0 - remove
-    player.interfaces.sendSettings("trade_main", "loan_time", -1, -1, 1, 0)// 1 - 'until logout'/specify 0 - edit
+    player.interfaceOptions.unlockAll("trade_main", "loan_item")
+    player.interfaceOptions.unlockAll("trade_main", "loan_time")
 }
 
 fun Player.hasFriend(other: Player) = true// TODO friends chat

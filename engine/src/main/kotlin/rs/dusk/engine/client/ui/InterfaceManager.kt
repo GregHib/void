@@ -95,11 +95,6 @@ class InterfaceManager(
         return true
     }
 
-    override fun sendSetting(component: InterfaceComponentDetail, from: Int, to: Int, setting: Int): Boolean {
-        io.sendSettings(component, from, to, setting)
-        return true
-    }
-
     private fun hasOpenOrRootParent(inter: InterfaceDetail): Boolean = parentIsRoot(inter) || hasOpenParent(inter)
 
     private fun parentIsRoot(inter: InterfaceDetail): Boolean = inter.getParent(gameFrame.resizable) == ROOT_ID

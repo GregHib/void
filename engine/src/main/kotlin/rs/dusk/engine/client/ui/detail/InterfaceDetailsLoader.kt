@@ -65,10 +65,31 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         val value = this["components"] as? Map<*, *>
         val components = value?.map {
             val name = it.key as String
-            val id = it.value as Int
-            name to InterfaceComponentDetail(id, name)
+            name to createComponent(name, it.value!!)
         }?.toMap()
         return components ?: emptyMap()
+    }
+
+    fun createComponent(name: String, value: Any): InterfaceComponentDetail {
+        return if (value is Int) {
+            InterfaceComponentDetail(value, name)
+        } else {
+            val map = value as Map<*, *>
+            val id = map["id"] as Int
+            val container = map["container"] as? String ?: ""
+            val primary = map["primary"] as? Boolean ?: true
+            val options = map["options"] as? Map<*, *>
+            InterfaceComponentDetail(id, name, container = container, primaryContainer = primary, options = convert(options))
+        }
+    }
+
+    private fun convert(map: Map<*, *>?): Array<String> {
+        val max = map?.maxBy { it.value as Int }?.value as? Int ?: -1
+        val array = Array(max + 1) { "" }
+        map?.forEach { (option, index) ->
+            array[index as Int] = option as String
+        }
+        return array
     }
 
     private fun Map<String, Any>.getId(): Int {

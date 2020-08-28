@@ -21,6 +21,8 @@ class ContainerDetailsLoader(private val loader: FileLoader) : TimedLoader<Conta
         val id: Int by map
         val stack = map["stack"] as? String ?: "Normal"
         val mode = StackMode.valueOf(stack)
-        return ContainerDetail(id, mode)
+        val width = map["width"] as? Int ?: 0
+        val height = map["height"] as? Int ?: 0
+        return ContainerDetail(id, width, height, mode)
     }
 }

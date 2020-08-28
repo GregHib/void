@@ -125,7 +125,11 @@ InterfaceOption where { name == "prayer_orb" && component == "orb" && option == 
     } else if (player.has(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
-    player.interfaces.sendSettings("prayer_list", if (selecting) "quick_prayers" else "regular_prayers", 0, 29, 0)
+    if(selecting) {
+        player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)
+    } else {
+        player.interfaceOptions.unlockAll(name, "regular_prayers", 0..29)
+    }
 }
 
 InterfaceOption where { name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" } then {

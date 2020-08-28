@@ -9,6 +9,7 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Dialogues
@@ -22,6 +23,7 @@ import rs.dusk.world.script.KoinMock
 internal class MakeAmountTest : KoinMock() {
 
     lateinit var interfaces: Interfaces
+    lateinit var interfaceOptions: InterfaceOptions
     lateinit var manager: Dialogues
     lateinit var player: Player
     lateinit var context: DialogueContext
@@ -34,6 +36,7 @@ internal class MakeAmountTest : KoinMock() {
         mockkStatic("rs.dusk.engine.client.variable.VariablesKt")
         player = mockk(relaxed = true)
         interfaces = mockk(relaxed = true)
+        interfaceOptions = mockk(relaxed = true)
         manager = spyk(Dialogues())
         context = mockk(relaxed = true)
         every { context.player } returns player
@@ -42,6 +45,7 @@ internal class MakeAmountTest : KoinMock() {
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaces } returns interfaces
+        every { player.interfaceOptions } returns interfaceOptions
         declareMock<ItemDecoder> {
             every { get(1) } returns ItemDefinition(name = "Jimmy")
             every { get(2) } returns ItemDefinition(name = "Jerome")
@@ -122,7 +126,7 @@ internal class MakeAmountTest : KoinMock() {
         runBlocking(Contexts.Game) {
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "Just a test")
-                interfaces.sendSettings("skill_creation_amount", "all", -1, 0, 0)
+                interfaceOptions.unlockAll("skill_creation_amount", "all")
                 interfaces.sendVisibility("skill_creation", "all", true)
                 interfaces.sendVisibility("skill_creation", "custom", false)
             }
@@ -136,7 +140,7 @@ internal class MakeAmountTest : KoinMock() {
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
-                interfaces.sendSettings("skill_creation_amount", "all", -1, 0, 0)
+                interfaceOptions.unlockAll("skill_creation_amount", "all")
             }
             verify {
                 interfaces.sendText("skill_creation_amount", "line1", "test")

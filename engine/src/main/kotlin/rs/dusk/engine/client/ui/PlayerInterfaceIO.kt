@@ -71,8 +71,4 @@ class PlayerInterfaceIO(val player: Player, val bus: EventBus) : InterfaceIO {
     override fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int) {
         player.send(InterfaceItemMessage(component.parent, component.id, item, amount))
     }
-
-    override fun sendSettings(component: InterfaceComponentDetail, from: Int, to: Int, setting: Int) {
-        player.send(InterfaceSettingsMessage(component.parent, component.id, from, to, setting))
-    }
 }

@@ -194,16 +194,4 @@ internal class InterfaceIOTest {
             player.send(InterfaceItemMessage(100, 10, 123, 4))
         }
     }
-
-    @Test
-    fun `Send settings`() {
-        val inter: InterfaceDetail = mockk()
-        every { inter.id } returns 100
-        val comp = InterfaceComponentDetail(10, "")
-        comp.parent = inter.id
-        io.sendSettings(comp, 1, 2, 1234)
-        verify {
-            player.send(InterfaceSettingsMessage(100, 10, 1, 2, 1234))
-        }
-    }
 }

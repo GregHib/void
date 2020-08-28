@@ -24,11 +24,11 @@ internal class InterfaceLoaderTest {
 
     @Test
     fun `Load details`() {
-        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type", "components" to mapOf("component_name" to 0)))
+        val raw = mapOf("interface_name" to mapOf("id" to 1, "type" to "interface_type", "components" to mapOf("component_name" to 0, "component" to mapOf("id" to 1, "options" to mapOf("Option1" to 0, "Examine" to 3)))))
         val data = InterfaceData()
         val types = mapOf("interface_type" to data)
         val results = loader.loadDetails(raw, types)
-        val expected = mapOf("interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to InterfaceComponentDetail(0, "component_name"))))
+        val expected = mapOf("interface_name" to InterfaceDetail(id = 1, name = "interface_name", type = "interface_type", data = data, components = mapOf("component_name" to InterfaceComponentDetail(0, "component_name"), "component" to InterfaceComponentDetail(1, "component", options = arrayOf("Option1", "", "", "Examine")))))
         assertEquals(expected, results)
     }
 

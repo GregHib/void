@@ -53,8 +53,7 @@ BitwiseVariable(
 ).register("event_emotes")
 
 InterfaceOpened where { name == "emotes" } then {
-    player.interfaces.sendSettings("emotes", "emotes", 0, 190, 0, 1, 4, 5, 10)
-
+    player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
     player.sendVar("lost_tribe_emotes")
     player.sendVar("stronghold_of_security_emotes")
     player.sendVar("zombie_hand_emote")

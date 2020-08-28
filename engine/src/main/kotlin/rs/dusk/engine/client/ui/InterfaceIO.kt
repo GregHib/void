@@ -16,5 +16,4 @@ interface InterfaceIO {
     fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean)
     fun sendSprite(component: InterfaceComponentDetail, sprite: Int)
     fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int)
-    fun sendSettings(component: InterfaceComponentDetail, from: Int, to: Int, setting: Int)
 }

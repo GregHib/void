@@ -41,10 +41,10 @@ Command where { prefix == "sendItem" } then {
 
 Command where { prefix == "setting" } then {
     val parts = content.split(" ")
-    player.interfaces.sendSetting(parts[0], parts[1], parts[2].toInt(), parts[3].toInt(), parts.getOrNull(4)?.toInt() ?: 0)
+//    player.interfaces.sendSetting(parts[0], parts[1], parts[2].toInt(), parts[3].toInt(), parts.getOrNull(4)?.toInt() ?: 0)
 }
 
 Command where { prefix == "sendItems" } then {
-    player.send(ContainerItemsMessage(90, IntArray(28) { 995 }, IntArray(28) { 1 }, true))
     player.send(ContainerItemsMessage(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false))
+    player.send(ContainerItemsMessage(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true))
 }

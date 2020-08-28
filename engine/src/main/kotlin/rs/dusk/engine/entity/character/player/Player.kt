@@ -1,6 +1,7 @@
 package rs.dusk.engine.entity.character.player
 
 import rs.dusk.engine.action.Action
+import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.Interfaces
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.entity.Size
@@ -55,6 +56,9 @@ class Player(
 
     @Transient
     lateinit var interfaces: Interfaces
+
+    @Transient
+    lateinit var interfaceOptions: InterfaceOptions
 
     @Transient
     override lateinit var interactTarget: TargetStrategy

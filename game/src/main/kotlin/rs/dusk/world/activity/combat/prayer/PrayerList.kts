@@ -29,5 +29,9 @@ InterfaceOpened where { name == "prayer_list" } then {
     player.sendVar(PRAYERS)
     player.sendVar(PRAYER_POINTS)
     val quickPrayers = player.getVar(SELECTING_QUICK_PRAYERS, false)
-    player.interfaces.sendSettings(name, if (quickPrayers) "quick_prayers" else "regular_prayers", 0, 29, 0)
+    if(quickPrayers) {
+        player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)
+    } else {
+        player.interfaceOptions.unlockAll(name, "regular_prayers", 0..29)
+    }
 }

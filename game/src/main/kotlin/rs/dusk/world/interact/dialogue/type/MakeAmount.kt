@@ -22,7 +22,7 @@ suspend fun DialogueContext.makeAmount(
 ): Pair<Int, Int> {
     return if (player.open(INTERFACE_NAME) && player.open(INTERFACE_AMOUNT_NAME)) {
         if (allowAll) {
-            player.interfaces.sendSettings(INTERFACE_AMOUNT_NAME, "all", -1, 0, 0)
+            player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_NAME, "all")
         }
         player.interfaces.sendVisibility(INTERFACE_NAME, "all", allowAll)
         player.interfaces.sendVisibility(INTERFACE_NAME, "custom", false)

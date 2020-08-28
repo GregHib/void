@@ -158,10 +158,14 @@ funchs_fine_groceries:
   id: 88
 grand_tree_groceries:
   id: 89
-price_checker:
+trade_offer:
   id: 90
+  width: 4
+  height: 7
 inventory:
   id: 93
+  width: 4
+  height: 7
 worn_equipment:
   id: 94
 bank:

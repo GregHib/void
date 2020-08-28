@@ -9,11 +9,11 @@ import rs.dusk.engine.entity.character.contain.StackMode
 internal class ContainerDetailsTest : EntityDetailsTest<ContainerDetail, ContainerDetails>() {
 
     override fun map(id: Int): Map<String, Any> {
-        return mapOf("id" to id, "stack" to "Always")
+        return mapOf("id" to id, "width" to 2, "height" to 3, "stack" to "Always")
     }
 
     override fun populated(id: Int): ContainerDetail {
-        return ContainerDetail(id, StackMode.Always)
+        return ContainerDetail(id, 2, 3, StackMode.Always)
     }
 
     override fun detail(id: Int): ContainerDetail {
