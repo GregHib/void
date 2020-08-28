@@ -632,9 +632,8 @@ trade_main:
     decline: 18
     slots: 21
     other: 22
-    offer_items: 30
     offer_options:
-      id: 31
+      id: 30
       container: trade_offer
       options:
         Remove: 0
@@ -644,15 +643,21 @@ trade_main:
         Remove-X: 4
         Value: 5
         Examine: 8
+    item_warning:
+      id: 31
+      container: trade_offer
     other_items: 32
-    other_stuff: 33
     other_options:
-      id: 34
+      id: 33
       container: trade_offer
       primary: false
       options:
         Value<col=FF9040>: 0
         Examine<col=FF9040>: 8
+    other_warning:
+      id: 34
+      container: trade_offer
+      primary: false
     status: 37
     modified: 39
     other_modified: 40

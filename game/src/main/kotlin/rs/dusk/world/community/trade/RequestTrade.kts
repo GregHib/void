@@ -21,10 +21,8 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
-import rs.dusk.world.community.trade.loan
-import rs.dusk.world.community.trade.offer
-import rs.dusk.world.community.trade.otherLoan
-import rs.dusk.world.community.trade.otherOffer
+import rs.dusk.world.community.trade.*
+import rs.dusk.world.community.trade.Trade.status
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 /**
@@ -59,6 +57,17 @@ PlayerOption where { option == "Trade with" } then {
 }
 
 Command where { prefix == "trade" } then {
+//    val bus: EventBus = get()
+//    val callback = { response: LoginResponse ->
+//        if (response is LoginResponse.Success) {
+//            val bot = response.player
+//            bus.emit(PlayerRegistered(bot))
+//            bus.emit(Registered(bot))
+//            bot.viewport.loaded = true
+//            startTrade(player, bot)
+//        }
+//    }
+//    bus.emit(Login("Bot", callback = callback))
     startTrade(player, player)
 }
 
@@ -68,18 +77,35 @@ fun startTrade(player: Player, other: Player) {
     player["trade_partner"] = other
 
     val offerListener: (List<Triple<Int, Int, Int>>) -> Unit = { list ->
+        val warn = player.requests.has(other, "trade_accept")
         for ((index, item, amount) in list) {
             other.otherOffer.set(index, item, amount)
+            if(warn) {
+                player.warn("trade_main", "item_warning", index)
+                other.warn("trade_main", "other_warning", index)
+            }
+        }
+        if(warn) {
+            player.setVar("offer_modified", true)
+            other.setVar("other_offer_modified", true)
         }
         val value = calculateValue(player.offer.getItems(), player.offer.getAmounts())
         player.setVar("offer_value", value)
         other.setVar("other_offer_value", value)
+        player.requests.remove(other, "trade_accept")
+        status(player, "")
     }
 
     val loanListener: (List<Triple<Int, Int, Int>>) -> Unit = { list ->
+        val warn = player.requests.has(other, "trade_accept")
         for ((index, item, amount) in list) {
             other.otherLoan.set(index, item, amount)
+            if(warn) {
+                player.warn("trade_main", "other_loan_item", index)
+            }
         }
+        player.requests.remove(other, "trade_accept")
+        status(player, "")
     }
 
     val inventoryListener: (List<Triple<Int, Int, Int>>) -> Unit = {
@@ -101,6 +127,8 @@ fun startTrade(player: Player, other: Player) {
             player.offer.listeners.remove(offerListener)
             player.loan.listeners.remove(loanListener)
             reset(player)
+            player.interfaces.close("trade_main")
+            player.interfaces.close("trade_side")
         }
     }
 }
@@ -153,10 +181,6 @@ fun sendMain(player: Player, other: Player) {
 
 InterfaceOption then {
     println(this)
-}
-
-fun status(player: Player, status: String) {
-    player.interfaces.sendText("trade_main", "status", status)
 }
 
 fun reset(player: Player) {
