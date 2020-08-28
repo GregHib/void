@@ -665,7 +665,7 @@ trade_main:
     loan_time:
       id: 57
       options:
-        Edit: 0
+        "‘Until Logout‘": 0
         Specify: 1
     other_loan_item: 52
     other_loan_time: 53
@@ -676,7 +676,7 @@ trade_side:
   components:
     offer:
       id: 0
-      container: 93
+      container: inventory
       options:
         Offer: 0
         Offer-5: 1

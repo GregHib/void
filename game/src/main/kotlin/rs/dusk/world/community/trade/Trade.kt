@@ -2,6 +2,8 @@ package rs.dusk.world.community.trade
 
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
+import rs.dusk.engine.entity.character.contain.Container
+import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 import rs.dusk.utility.get
@@ -18,9 +20,16 @@ object Trade {
         player.send(ScriptMessage(143, (id shl 16) or component, width, height, slot))
         return true
     }
-
-    fun sendContainerOptions(player: Player, id: Int, component: Int, container: Int, secondary: Boolean, width: Int, height: Int, options: Array<String>): Boolean {
-        player.send(ScriptMessage(if(secondary) 695 else 150, (id shl 16) or component, container, width, height, 0, -1, *options))
-        return true
-    }
 }
+
+val Player.offer: Container
+    get() = container("trade_offer", false)
+
+val Player.otherOffer: Container
+    get() = container("trade_offer", true)
+
+val Player.loan: Container
+    get() = container("item_loan", false)
+
+val Player.otherLoan: Container
+    get() = container("item_loan", true)

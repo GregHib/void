@@ -16,9 +16,6 @@ Command where { prefix == "test" } then {
         sendText("trade_main", "status", "This is a status update")
         sendText("trade_main", "title", "Trading with: Someone")
         sendText("trade_main", "slots", "Many free inventory slots.")
-//        sendText("trade_main", "loanTime", "1 hour")
-//        sendVisibility("trade_main", "loan", true)
-//        sendSetting("trade_main", "loan", 0, 1, 264190)
     }
     //Self
     player.interfaceOptions.send("trade_main", "offer_options")
@@ -32,7 +29,6 @@ Command where { prefix == "test" } then {
 
 //    sendFlash(player, 335, 33, 4, 7, 0)
 //    sendFlash(player, 336, 0, 4, 7, 0)
-//    player.setVar("other_trader_name", "Bob")
 }
 
 Command where { prefix == "sendItems" } then {

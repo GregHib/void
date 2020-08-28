@@ -459,7 +459,7 @@ beefy_bills_supplies:
   id: 536
 slayer_equipment:
   id: 538
-trade_item_loan:
+item_loan:
   id: 541
 candle_shop:
   id: 547

@@ -95,17 +95,17 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
                 logger.info { "Interface $name container item $itemId $itemSlot not found for player $player" }
                 return
             }
-            if(options == null) {
-                options = player.interfaceOptions.get(name, componentName)
-            }
+        }
+        if(options == null) {
+            options = player.interfaceOptions.get(name, componentName)
         }
 
-        if (options != null && option !in options.indices) {
+        if (option !in options.indices) {
             logger.info { "Interface $id component $componentId option $option not found for player $player ${options.toList()}" }
             return
         }
 
-        val selectedOption = options?.getOrNull(option) ?: ""
+        val selectedOption = options.getOrNull(option) ?: ""
         executor.sync {
             bus.emit(
                 InterfaceOption(
