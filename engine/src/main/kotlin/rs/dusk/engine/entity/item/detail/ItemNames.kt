@@ -1,7 +1,6 @@
 package rs.dusk.engine.entity.item.detail
 
 import rs.dusk.engine.entity.character.contain.Container
-import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.utility.get
 
 fun Container.stackable(name: String): Boolean {
@@ -33,26 +32,26 @@ fun Container.replace(name: String, replacement: String): Boolean {
     return replace(id, replacementId)
 }
 
-fun Container.add(index: Int, name: String, amount: Int = 1): ContainerResult.Addition {
+fun Container.add(index: Int, name: String, amount: Int = 1): Boolean {
     val details: ItemDetails = get()
-    val id = details.getIdOrNull(name) ?: return ContainerResult.Addition.Failure.Invalid
+    val id = details.getIdOrNull(name) ?: return false
     return add(index, id, amount)
 }
 
-fun Container.add(name: String, amount: Int = 1): ContainerResult.Addition {
+fun Container.add(name: String, amount: Int = 1): Boolean {
     val details: ItemDetails = get()
-    val id = details.getIdOrNull(name) ?: return ContainerResult.Addition.Failure.Invalid
+    val id = details.getIdOrNull(name) ?: return false
     return add(id, amount)
 }
 
-fun Container.remove(index: Int, name: String, amount: Int = 1): ContainerResult.Removal {
+fun Container.remove(index: Int, name: String, amount: Int = 1): Boolean {
     val details: ItemDetails = get()
-    val id = details.getIdOrNull(name) ?: return ContainerResult.Removal.Failure.Invalid
+    val id = details.getIdOrNull(name) ?: return false
     return remove(index, id, amount)
 }
 
-fun Container.remove(name: String, amount: Int = 1): ContainerResult.Removal {
+fun Container.remove(name: String, amount: Int = 1): Boolean {
     val details: ItemDetails = get()
-    val id = details.getIdOrNull(name) ?: return ContainerResult.Removal.Failure.Invalid
+    val id = details.getIdOrNull(name) ?: return false
     return remove(id, amount)
 }

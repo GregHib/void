@@ -9,7 +9,6 @@ sealed class ContainerResult {
             object WrongType : Failure()
             object Unstackable : Failure()
             object Invalid : Failure()
-
         }
     }
     sealed class Removal : ContainerResult() {

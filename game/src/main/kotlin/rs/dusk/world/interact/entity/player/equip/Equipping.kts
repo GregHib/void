@@ -33,9 +33,10 @@ ContainerAction where { container == "inventory" && (option == "Wield" || option
 }
 
 ContainerAction where { container == "worn_equipment" && option == "Remove" } then {
-    val result = player.equipment.move(slot, player.inventory)
-    if (result is ContainerResult.Addition.Failure.Full) {
-        player.message("You don't have enough inventory space.")
+    if(!player.equipment.move(slot, player.inventory)) {
+        if (player.equipment.result is ContainerResult.Addition.Failure.Full) {
+            player.message("You don't have enough inventory space.")
+        }
     }
 }
 
@@ -67,8 +68,7 @@ fun failedToMoveToInventory(player: Player, details: ItemDetail): Boolean {
 fun getOtherHandSlot(slot: EquipSlot) = if (slot == EquipSlot.Shield) EquipSlot.Weapon else EquipSlot.Shield
 
 fun movedEquipmentToInventory(player: Player, oppositeSlot: EquipSlot): Boolean {
-    val moveResult = player.equipment.move(oppositeSlot.index, player.inventory)
-    return moveResult == ContainerResult.Addition.Added
+    return player.equipment.move(oppositeSlot.index, player.inventory)
 }
 
 fun isHandSlot(slot: EquipSlot) = slot == EquipSlot.Weapon || slot == EquipSlot.Shield

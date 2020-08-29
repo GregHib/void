@@ -1,6 +1,5 @@
 import kotlinx.coroutines.cancel
 import rs.dusk.engine.entity.Unregistered
-import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.item.FloorItemOption
 import rs.dusk.engine.entity.item.FloorItemState
@@ -21,13 +20,13 @@ FloorItemOption where { option == "Take" } then {
     val item = floorItem
     item.disappear?.cancel("Floor item picked up.")
     val result = player.inventory.add(item.id, item.amount)
-    if(result is ContainerResult.Addition.Added) {
+    if(result) {
         item.state = FloorItemState.Removed
         batcher.update(item.tile.chunk, FloorItemRemoveMessage(item.tile.offset(), item.id))
         items.remove(item)
         bus.emit(Unregistered(item))
-    } else if(result is ContainerResult.Addition.Failure) {
-        println("Failure $result")
+    } else {
+        println("Failure ${player.inventory.result}")
         // TODO
     }
 }

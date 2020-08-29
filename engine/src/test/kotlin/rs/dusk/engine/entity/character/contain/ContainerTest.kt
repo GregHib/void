@@ -281,9 +281,9 @@ internal class ContainerTest {
         // Given
         val index = 1
         // When
-        val result = container.add(index, 1, 0)
+        assertFalse(container.add(index, 1, 0))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, result)
+        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
     }
 
     @Test
@@ -291,9 +291,9 @@ internal class ContainerTest {
         // Given
         val index = items.size + 1
         // When
-        val result = container.add(index, 1, 1)
+        assertFalse(container.add(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, result)
+        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
     }
 
     @Test
@@ -302,9 +302,9 @@ internal class ContainerTest {
         val index = 0
         items[index] = 5
         // When
-        val result = container.add(index, 1, 1)
+        assertFalse(container.add(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.WrongType, result)
+        assertEquals(ContainerResult.Addition.Failure.WrongType, container.result)
     }
 
     @Test
@@ -313,9 +313,9 @@ internal class ContainerTest {
         val index = 0
         items[index] = -1
         // When
-        val result = container.add(index, 1, 1)
+        assertTrue(container.add(index, 1, 1))
         // Then
-        assertNotEquals(ContainerResult.Addition.Failure.WrongType, result)
+        assertNotEquals(ContainerResult.Addition.Failure.WrongType, container.result)
     }
 
     @Test
@@ -326,9 +326,9 @@ internal class ContainerTest {
         items[index] = id
         amounts[index] = Int.MAX_VALUE
         // When
-        val result = container.add(index, id, 1)
+        assertFalse(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Overflow, result)
+        assertEquals(ContainerResult.Addition.Failure.Overflow, container.result)
     }
 
     @Test
@@ -340,9 +340,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns false
         // When
-        val result = container.add(index, id, 3)
+        assertFalse(container.add(index, id, 3))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Unstackable, result)
+        assertEquals(ContainerResult.Addition.Failure.Unstackable, container.result)
     }
 
     @Test
@@ -354,9 +354,9 @@ internal class ContainerTest {
         amounts[index] = 0
         every { container.stackable(id) } returns false
         // When
-        val result = container.add(index, id, 1)
+        assertTrue(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
     }
 
     @Test
@@ -368,9 +368,9 @@ internal class ContainerTest {
         amounts[index] = 0
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(index, id, 2)
+        assertTrue(container.add(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
     }
 
     @Test
@@ -382,9 +382,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(index, id, 1)
+        assertTrue(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -394,9 +394,9 @@ internal class ContainerTest {
     @Test
     fun `Adding zero amount fails`() {
         // When
-        val result = container.add(1, 0)
+        assertFalse(container.add(1, 0))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, result)
+        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
     }
 
     @Test
@@ -408,9 +408,9 @@ internal class ContainerTest {
         amounts[index] = Int.MAX_VALUE
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(id, 1)
+        assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Overflow, result)
+        assertEquals(ContainerResult.Addition.Failure.Overflow, container.result)
     }
 
     @Test
@@ -422,9 +422,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(id, 1)
+        assertTrue(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -435,9 +435,9 @@ internal class ContainerTest {
         every { container.freeIndex() } returns -1
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(id, 1)
+        assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, result)
+        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
     }
 
     @Test
@@ -449,9 +449,9 @@ internal class ContainerTest {
         every { container.freeIndex() } returns index
         every { container.stackable(id) } returns true
         // When
-        val result = container.add(id, amount)
+        assertTrue(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify { container.set(index, id, amount) }
     }
 
@@ -463,9 +463,9 @@ internal class ContainerTest {
         every { container.spaces } returns amount - 1
         every { container.stackable(id) } returns false
         // When
-        val result = container.add(id, amount)
+        assertFalse(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, result)
+        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
     }
 
     @Test
@@ -476,9 +476,9 @@ internal class ContainerTest {
         amounts[0] = 1
         every { container.stackable(id) } returns false
         // When
-        val result = container.add(id, amount)
+        assertTrue(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify {
             container.set(1, id, 1, false)
             container.set(2, id, 1, false)
@@ -493,9 +493,9 @@ internal class ContainerTest {
         // Given
         val index = 1
         // When
-        val result = container.remove(index, 1, 0)
+        assertFalse(container.remove(index, 1, 0))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, result)
+        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
     }
 
     @Test
@@ -503,9 +503,9 @@ internal class ContainerTest {
         // Given
         val index = items.size + 1
         // When
-        val result = container.remove(index, 1, 1)
+        assertFalse(container.remove(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, result)
+        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
     }
 
     @Test
@@ -514,9 +514,9 @@ internal class ContainerTest {
         val index = 0
         items[index] = 5
         // When
-        val result = container.remove(index, 1, 1)
+        assertFalse(container.remove(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.WrongType, result)
+        assertEquals(ContainerResult.Removal.Failure.WrongType, container.result)
     }
 
     @Test
@@ -527,9 +527,9 @@ internal class ContainerTest {
         items[index] = id
         amounts[index] = 1
         // When
-        val result = container.remove(index, id, Int.MAX_VALUE)
+        assertFalse(container.remove(index, id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, result)
+        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
     }
 
     @Test
@@ -540,9 +540,9 @@ internal class ContainerTest {
         items[index] = id
         amounts[index] = 1
         // When
-        val result = container.remove(index, id, 2)
+        assertFalse(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, result)
+        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
     }
 
     @Test
@@ -553,9 +553,9 @@ internal class ContainerTest {
         items[index] = id
         amounts[index] = 2
         // When
-        val result = container.remove(index, id, 2)
+        assertTrue(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify { container.clear(index) }
     }
 
@@ -568,9 +568,9 @@ internal class ContainerTest {
         amounts[index] = 3// Should be impossible
         every { container.stackable(id) } returns false
         // When
-        val result = container.remove(index, id, 1)
+        assertFalse(container.remove(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Unstackable, result)
+        assertEquals(ContainerResult.Removal.Failure.Unstackable, container.result)
     }
 
     @Test
@@ -582,9 +582,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns false
         // When
-        val result = container.remove(index, id, 1)
+        assertTrue(container.remove(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify { container.clear(index) }
     }
 
@@ -597,9 +597,9 @@ internal class ContainerTest {
         amounts[index] = 4
         every { container.stackable(id) } returns true
         // When
-        val result = container.remove(index, id, 2)
+        assertTrue(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -610,9 +610,9 @@ internal class ContainerTest {
     @Test
     fun `Removing zero amount fails`() {
         // When
-        val result = container.remove(1, 0)
+        assertFalse(container.remove(1, 0))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, result)
+        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
     }
 
     @Test
@@ -620,9 +620,9 @@ internal class ContainerTest {
         // Given
         val id = 1
         // When
-        val result = container.remove(id, 1)
+        assertFalse(container.remove(id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, result)
+        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
     }
 
     @Test
@@ -634,9 +634,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns true
         // When
-        val result = container.remove(id, Int.MAX_VALUE)
+        assertFalse(container.remove(id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, result)
+        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
     }
 
     @Test
@@ -648,9 +648,9 @@ internal class ContainerTest {
         amounts[index] = 1
         every { container.stackable(id) } returns true
         // When
-        val result = container.remove(id, 2)
+        assertFalse(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, result)
+        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
     }
 
     @Test
@@ -662,9 +662,9 @@ internal class ContainerTest {
         amounts[index] = 2
         every { container.stackable(id) } returns true
         // When
-        val result = container.remove(id, 2)
+        assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify { container.clear(index) }
     }
 
@@ -677,9 +677,9 @@ internal class ContainerTest {
         amounts[index] = 4
         every { container.stackable(id) } returns true
         // When
-        val result = container.remove(id, 2)
+        assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -691,9 +691,9 @@ internal class ContainerTest {
         items[2] = id
         every { container.stackable(id) } returns false
         // When
-        val result = container.remove(id, 3)
+        assertFalse(container.remove(id, 3))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, result)
+        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
     }
 
     @Test
@@ -704,9 +704,9 @@ internal class ContainerTest {
         items[2] = id
         every { container.stackable(id) } returns false
         // When
-        val result = container.remove(id, 2)
+        assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify {
             container.set(0, -1, 0, false)
             container.set(2, -1, 0, false)
@@ -722,9 +722,9 @@ internal class ContainerTest {
         items[4] = id
         every { container.stackable(id) } returns false
         // When
-        val result = container.remove(id, 2)
+        assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, result)
+        assertEquals(ContainerResult.Removal.Removed, container.result)
         verify {
             container.clear(0, false)
             container.clear(2, false)
@@ -774,12 +774,12 @@ internal class ContainerTest {
                 capacity = 10
             )
         )
-        every { container.remove(index, id, amount) } returns ContainerResult.Removal.Removed
-        every { other.add(otherIndex, id, amount) } returns ContainerResult.Addition.Added
+        every { container.remove(index, id, amount) } returns true
+        every { other.add(otherIndex, id, amount) } returns true
         // When
-        val result = container.move(other, id, amount, index = index, targetIndex = otherIndex)
+        assertTrue(container.move(other, id, amount, index = index, targetIndex = otherIndex))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify {
             container.remove(index, id, amount)
             other.add(otherIndex, id, amount)
@@ -798,12 +798,12 @@ internal class ContainerTest {
                 capacity = 10
             )
         )
-        every { container.remove(index, id, amount) } returns ContainerResult.Removal.Removed
-        every { other.add(id, amount) } returns ContainerResult.Addition.Added
+        every { container.remove(index, id, amount) } returns true
+        every { other.add(id, amount) } returns true
         // When
-        val result = container.move(other, id, amount, index = index)
+        assertTrue(container.move(other, id, amount, index = index))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify {
             container.remove(index, id, amount)
             other.add(id, amount)
@@ -822,12 +822,12 @@ internal class ContainerTest {
                 capacity = 10
             )
         )
-        every { container.remove(id, amount) } returns ContainerResult.Removal.Removed
-        every { other.add(otherIndex, id, amount) } returns ContainerResult.Addition.Added
+        every { container.remove(id, amount) } returns true
+        every { other.add(otherIndex, id, amount) } returns true
         // When
-        val result = container.move(other, id, amount, targetIndex = otherIndex)
+        assertTrue(container.move(other, id, amount, targetIndex = otherIndex))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify {
             container.remove(id, amount)
             other.add(otherIndex, id, amount)
@@ -845,12 +845,12 @@ internal class ContainerTest {
                 capacity = 10
             )
         )
-        every { container.remove(id, amount) } returns ContainerResult.Removal.Removed
-        every { other.add(id, amount) } returns ContainerResult.Addition.Added
+        every { container.remove(id, amount) } returns true
+        every { other.add(id, amount) } returns true
         // When
-        val result = container.move(other, id, amount, index = null, targetIndex = null)
+        assertTrue(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         verify {
             container.remove(id, amount)
             other.add(id, amount)
@@ -868,11 +868,10 @@ internal class ContainerTest {
                 capacity = 10
             )
         )
-        every { container.remove(id, amount) } returns ContainerResult.Removal.Failure.Deficient
         // When
-        val result = container.move(other, id, amount)
+        assertFalse(container.move(other, id, amount))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, result)
+        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
     }
 
     @Test
@@ -883,16 +882,17 @@ internal class ContainerTest {
         val other = spyk(
             Container(
                 decoder = decoder,
-                capacity = 10
+                capacity = 1
             )
         )
-        every { container.remove(id, amount) } returns ContainerResult.Removal.Removed
-        every { container.add(id, amount) } returns ContainerResult.Addition.Added
-        every { other.add(id, amount) } returns ContainerResult.Addition.Failure.Full
+        every { container.stackable(any()) } returns true
+        every { other.stackable(any()) } returns false
+        items[0] = id
+        amounts[0] = amount
         // When
-        val result = container.move(other, id, amount, index = null, targetIndex = null)
+        assertFalse(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, result)
+        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
         verify {
             container.remove(id, amount)
             other.add(id, amount)
@@ -1086,9 +1086,9 @@ internal class ContainerTest {
         every { container.stackable(any()) } returns true
         every { other.stackable(any()) } returns true
         // When
-        val result = container.moveAll(other)
+        assertTrue(container.moveAll(other))
         // Then
-        assertEquals(ContainerResult.Addition.Added, result)
+        assertEquals(ContainerResult.Addition.Added, container.result)
         assertArrayEquals(intArrayOf(1, 2, 3, 4, -1, -1, -1, -1, -1, -1), other.getItems())
         assertArrayEquals(intArrayOf(1, 2, 3, 4, 0, 0, 0, 0, 0, 0), other.getAmounts())
     }
@@ -1109,9 +1109,9 @@ internal class ContainerTest {
         every { container.stackable(any()) } returns true
         every { other.stackable(any()) } returns true
         // When
-        val result = container.moveAll(other)
+        assertFalse(container.moveAll(other))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, result)
+        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
         assertArrayEquals(intArrayOf(1, 2), other.getItems())
         assertArrayEquals(intArrayOf(1, 2), other.getAmounts())
     }
