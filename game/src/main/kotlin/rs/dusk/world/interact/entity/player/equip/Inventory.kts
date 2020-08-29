@@ -51,7 +51,7 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
 InterfaceOption where { name == "inventory" && component == "container" } then {
     val itemDef = decoder.get(itemId)
     val equipOption = when (optionId) {
-        7 -> if (itemDef.options.any { it == "Destroy" }) "Destroy" else "Drop"
+        7 -> itemDef.options.getOrNull(4)
         9 -> "Examine"
         else -> itemDef.options.getOrNull(optionId)
     }

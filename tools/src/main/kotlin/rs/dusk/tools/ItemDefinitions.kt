@@ -13,12 +13,19 @@ object ItemDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
-        println(decoder.getOrNull(22017))
+        var count = 0
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-            if(def.name.equals("Alfonse", true)) {
-                println("Found $i $def")
+
+            if(!def.exchangeable) {
+                val unnotedDef = decoder.getOrNull(def.noteId) ?: continue
+                if(unnotedDef.exchangeable) {
+
+                }
+                println("${def.name} ${i} ${def.notedTemplateId} ${def.noteId}")
+                count++
             }
         }
+        println(count)
     }
 }

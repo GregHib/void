@@ -49,6 +49,8 @@ import java.util.concurrent.Executors
  */
 object Dusk {
 
+    val name = "Dusk"
+
     @JvmStatic
     fun main(args: Array<String>) {
         preload()

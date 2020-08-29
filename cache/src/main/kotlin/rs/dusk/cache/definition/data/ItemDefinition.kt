@@ -34,7 +34,7 @@ data class ItemDefinition(
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
     override var recolourPalette: ByteArray? = null,
-    var unnoted: Boolean = false,
+    var exchangeable: Boolean = false,
     var tertiaryMaleModel: Int = -1,
     var tertiaryFemaleModel: Int = -1,
     var primaryMaleDialogueHead: Int = -1,

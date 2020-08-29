@@ -11,7 +11,7 @@ import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 /**
- * Item lending duration
+ * Item lending duration modifying
  */
 
 IntVariable(5026, Variable.Type.VARBIT).register("lend_time")
@@ -19,7 +19,7 @@ IntVariable(5070, Variable.Type.VARBIT).register("other_lend_time")
 
 InterfaceOption where { name == "trade_main" && component == "loan_time" && option == "Specify" } then {
     player.dialogue {
-        val hours = intEntry("Enter duration (hours):").coerceIn(0, 72)
+        val hours = intEntry("Set the loan duration in hours: (1 - 72)<br>(Enter <col=7f0000>0</col> for 'Just until logout'.)").coerceIn(0, 72)
         setLend(player, hours)
     }
 }
@@ -31,7 +31,7 @@ InterfaceOption where { name == "trade_main" && component == "loan_time" && opti
 fun setLend(player: Player, time: Int) {
     player.setVar("lend_time", time)
     val partner: Player? = player["trade_partner"]
-    if(partner == null) {
+    if (partner == null) {
         player.action.cancel(ActionType.Trade)
         return
     }

@@ -3,6 +3,9 @@ root:
   id: -1
   type: full_screen
 
+bank_pin:
+  id: 13
+
 items_kept_on_death:
   id: 17
   type: main_screen
@@ -165,6 +168,19 @@ confirm_destroy:
 
 stock_side:
   id: 107
+
+collection_box:
+  id: 109
+  components:
+    box1: 19
+    box2: 23
+    box3: 27
+    box4: 32
+    box5: 37
+    box6: 42
+    box_lent:
+      id: 58
+      container: lent_collection_box
 
 # Item
 double_obj_box:
@@ -620,18 +636,22 @@ trade_confirm:
   id: 334
   type: main_screen
   components:
-    other: 54
+    close: 6
+    accept: 21
+    decline: 22
     status: 34
+    modified: 55
 
 trade_main:
   id: 335
   type: main_screen
   components:
+    close: 12
     title: 15
     accept: 16
     decline: 18
     slots: 21
-    other: 22
+    name: 22
     offer_options:
       id: 30
       container: trade_offer
@@ -643,7 +663,7 @@ trade_main:
         Remove-X: 4
         Value: 5
         Examine: 8
-    item_warning:
+    offer_warning:
       id: 31
       container: trade_offer
     other_items: 32
@@ -664,15 +684,20 @@ trade_main:
     loan: 55
     loan_item:
       id: 56
+      container: item_loan
       options:
         Remove: 0
         Examine: 9
     loan_time:
       id: 57
+      container: item_loan
       options:
         "‘Until Logout‘": 0
         Specify: 1
-    other_loan_item: 52
+    other_loan_item:
+      id: 52
+      container: item_loan
+      primary: false
     other_loan_time: 53
 
 trade_side:
@@ -987,7 +1012,10 @@ world_map:
   components:
     close: 44
 
-bank_v2_side:
+bank:
+  id: 762
+
+bank_side:
   id: 763
 
 unknown_side4:

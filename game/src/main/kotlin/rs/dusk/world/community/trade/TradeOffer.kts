@@ -1,5 +1,4 @@
 import rs.dusk.cache.definition.decoder.ItemDecoder
-import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
@@ -8,6 +7,7 @@ import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
+import rs.dusk.world.community.trade.Trade.isValidAmount
 import rs.dusk.world.community.trade.loan
 import rs.dusk.world.community.trade.offer
 import rs.dusk.world.interact.dialogue.type.intEntry
@@ -19,16 +19,15 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 val itemDecoder: ItemDecoder by inject()
 
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer" } then {
-    offer(player, itemId, itemIndex, 1)
-}
-
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer-5" } then {
-    offer(player, itemId, itemIndex, 5)
-}
-
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer-10" } then {
-    offer(player, itemId, itemIndex, 10)
+InterfaceOption where { name == "trade_side" && component == "offer" } then {
+    val amount = when(option) {
+       "Offer" -> 1
+        "Offer-5" -> 5
+        "Offer-10" -> 10
+        "Offer-All" -> player.inventory.getCount(itemId).toInt()
+        else -> return@then
+    }
+    offer(player, itemId, itemIndex, amount)
 }
 
 InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer-X" } then {
@@ -36,11 +35,6 @@ InterfaceOption where { name == "trade_side" && component == "offer" && option =
         val amount = intEntry("Enter amount:")
         offer(player, itemId, itemIndex, amount)
     }
-}
-
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer-All" } then {
-    val amount = player.inventory.getAmount(itemIndex)// TODO count not amount
-    offer(player, itemId, itemIndex, amount)
 }
 
 InterfaceOption where { name == "trade_side" && component == "offer" && option == "Value" } then {
@@ -52,27 +46,49 @@ InterfaceOption where { name == "trade_side" && component == "offer" && option =
     lend(player, itemId, itemIndex)
 }
 
+val decoder: ItemDecoder by inject()
+
 fun offer(player: Player, id: Int, slot: Int, amount: Int) {
-    if (!valid(player, amount)) {
+    if (!isValidAmount(player, amount)) {
         return
     }
-    // TODO can item be traded
+
+    if (!canBeTraded(id)) {
+        player.message("That item is not tradeable.")
+        return
+    }
+
+    var amount = amount
+    val currentAmount = player.inventory.getCount(id).toInt()
+    if (amount > currentAmount) {
+        amount = currentAmount
+    }
+
     player.inventory.move(player.offer, id, amount, slot)
 }
 
+fun canBeTraded(id: Int): Boolean {
+    val def = decoder.get(id)
+    return def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
+}
+
 fun lend(player: Player, id: Int, slot: Int) {
-    if (!valid(player, 1)) {
+    if (!isValidAmount(player, 1)) {
         return
     }
-    // TODO is item loanable
+
+    if (!canBeLent(player, id)) {
+        return
+    }
+
     player.inventory.move(player.loan, id, 1, slot)
 }
 
-fun valid(player: Player, amount: Int): Boolean {
-    if (player.action.type != ActionType.Trade) {
-        return false
-    }
-    if (amount < 1) {
+fun canBeLent(player: Player, id: Int): Boolean {
+    val itemDef = decoder.get(id)
+    if (itemDef.lendId == -1) {
+        val name = itemDef.name
+        player.message("$name cannot be lent.")
         return false
     }
     return true

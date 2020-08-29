@@ -447,6 +447,18 @@ reldaks_leather_armour:
   id: 512
 dorgesh-kaan_general_supplies:
   id: 513
+collection_box_1:
+  id: 523
+collection_box_2:
+  id: 524
+collection_box_3:
+  id: 525
+collection_box_4:
+  id: 526
+collection_box_5:
+  id: 527
+collection_box_6:
+  id: 528
 pet_shop:
   id: 531
 summoning_supplies:
@@ -459,8 +471,14 @@ beefy_bills_supplies:
   id: 536
 slayer_equipment:
   id: 538
+lent_collection_box:
+  id: 540
+  width: 0
+  height: 1
 item_loan:
   id: 541
+  width: 0
+  height: 1
 candle_shop:
   id: 547
 party_petes_emporium:

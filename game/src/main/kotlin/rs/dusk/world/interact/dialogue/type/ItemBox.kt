@@ -8,9 +8,9 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 private const val ITEM_INTERFACE_NAME = "obj_box"
 private const val ITEM_SCRIPT_ID = 3449
 
-suspend fun DialogueContext.item(text: String, model: Int, zoom: Int, sprite: Int? = null) {
+suspend fun DialogueContext.item(text: String, item: Int, zoom: Int, sprite: Int? = null) {
     if (player.open(ITEM_INTERFACE_NAME)) {
-        player.send(ScriptMessage(ITEM_SCRIPT_ID, zoom, model))
+        player.send(ScriptMessage(ITEM_SCRIPT_ID, item, zoom))
         if (sprite != null) {
             player.interfaces.sendSprite(ITEM_INTERFACE_NAME, "sprite", sprite)
         }

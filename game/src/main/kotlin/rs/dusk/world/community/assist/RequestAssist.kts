@@ -31,6 +31,7 @@ import rs.dusk.world.community.assist.Assistance.maximumExperience
 import rs.dusk.world.community.assist.Assistance.redirectSkillExperience
 import rs.dusk.world.community.assist.Assistance.stopRedirectingSkillExp
 import rs.dusk.world.community.assist.Assistance.toggleInventory
+import rs.dusk.world.community.friend.hasFriend
 import java.util.concurrent.TimeUnit
 import kotlin.math.min
 
@@ -207,5 +208,3 @@ fun stopRedirectingAllExp(player: Player) {
 fun setAssistAreaStatus(player: Player, visible: Boolean) {
     player.interfaces.sendVisibility("area_status_icon", "assist", visible)
 }
-
-fun Player.hasFriend(other: Player) = true// TODO friends chat

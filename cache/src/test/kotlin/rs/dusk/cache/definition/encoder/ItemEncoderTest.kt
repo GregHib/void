@@ -37,7 +37,7 @@ internal class ItemEncoderTest {
             originalTextureColours = shortArrayOf(14000, 15000, 16000),
             modifiedTextureColours = shortArrayOf(14000, 15000, 16000),
             recolourPalette = byteArrayOf(0, 1, 2, 3, 4),
-            unnoted = true,
+            exchangeable = true,
             tertiaryMaleModel = 13441,
             tertiaryFemaleModel = 2673,
             primaryMaleDialogueHead = 875,

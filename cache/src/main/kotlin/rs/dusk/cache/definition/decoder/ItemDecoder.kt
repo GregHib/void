@@ -50,7 +50,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
             42 -> readColourPalette(buffer)
-            65 -> unnoted = true
+            65 -> exchangeable = true
             78 -> tertiaryMaleModel = buffer.readShort()
             79 -> tertiaryFemaleModel = buffer.readShort()
             90 -> primaryMaleDialogueHead = buffer.readShort()

@@ -147,7 +147,7 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             }
         }
 
-        if (definition.unnoted) {
+        if (definition.exchangeable) {
             writeByte(65)
         }
 

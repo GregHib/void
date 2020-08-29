@@ -12,6 +12,10 @@ internal class ItemDetailsTest : EntityDetailsTest<ItemDetail, ItemDetails>() {
         return mapOf("id" to id)
     }
 
+    override fun populated(id: Int): ItemDetail {
+        return ItemDetail(id)
+    }
+
     override fun detail(id: Int): ItemDetail {
         return ItemDetail(id)
     }

@@ -1,27 +1,34 @@
 package rs.dusk.world.community.trade
 
-import rs.dusk.engine.client.send
-import rs.dusk.engine.client.ui.detail.InterfaceDetails
+import rs.dusk.cache.definition.decoder.ItemDecoder
+import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.container
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
-import rs.dusk.utility.get
 
 object Trade {
-
-    fun status(player: Player, status: String) {
-        player.interfaces.sendText("trade_main", "status", status)
+    fun isValidAmount(player: Player, amount: Int): Boolean {
+        if (player.action.type != ActionType.Trade) {
+            return false
+        }
+        if (amount < 1) {
+            return false
+        }
+        return true
     }
 }
-
-fun Player.warn(name: String, component: String, slot: Int) {
-    val details: InterfaceDetails = get()
-    val containerDetails: ContainerDetails = get()
-    val comp = details.getComponent(name, component)
-    val container = containerDetails.get(comp.container)
-    send(ScriptMessage(143, (comp.parent shl 16) or comp.id, container.width, container.height, slot))
+fun Container.calculateValue(decoder: ItemDecoder): Long {
+    val items = getItems()
+    val amounts = getAmounts()
+    var value = 0L
+    for ((index, item) in items.withIndex()) {
+        val amount = amounts[index]
+        if (item != -1 && amount > 0) {
+            val itemDef = decoder.get(item)
+            value += (itemDef.cost * amount)
+        }
+    }
+    return value
 }
 
 val Player.offer: Container
@@ -29,6 +36,9 @@ val Player.offer: Container
 
 val Player.otherOffer: Container
     get() = container("trade_offer", true)
+
+val Player.lent: Container
+    get() = container("lent_collection_box", false)
 
 val Player.loan: Container
     get() = container("item_loan", false)
