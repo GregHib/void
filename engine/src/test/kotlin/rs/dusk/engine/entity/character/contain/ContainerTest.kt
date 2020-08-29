@@ -328,7 +328,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Overflow, container.result)
+        assertEquals(ContainerResult.Full, container.result)
     }
 
     @Test
@@ -410,7 +410,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Overflow, container.result)
+        assertEquals(ContainerResult.Full, container.result)
     }
 
     @Test
@@ -529,7 +529,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Underflow, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -542,7 +542,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Underflow, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -636,7 +636,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Underflow, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -650,7 +650,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Underflow, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test

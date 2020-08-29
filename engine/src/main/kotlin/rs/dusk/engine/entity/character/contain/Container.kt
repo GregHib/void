@@ -67,12 +67,10 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && id < decoder.size
+        return isValidId(id) && !isUnderMin(amount) && id < decoder.size
     }
 
     private fun isValidId(id: Int) = id >= 0
-
-    private fun isValidAmount(amount: Int) = amount > minimumStack
 
     /**
      * Checks [amount] for a slot is empty
@@ -207,7 +205,7 @@ data class Container(
         val combined = stack + amount
 
         if (stack xor combined and (amount xor combined) < 0) {
-            return result(ContainerResult.Overflow)
+            return result(ContainerResult.Full)
         }
 
         if (combined > 1 && !stackable(id)) {
@@ -235,7 +233,7 @@ data class Container(
                 val combined = stack + amount
 
                 if (stack xor combined and (amount xor combined) < 0) {
-                    return result(ContainerResult.Overflow)
+                    return result(ContainerResult.Full)
                 }
 
                 set(index, id, combined)
@@ -283,11 +281,11 @@ data class Container(
         val combined = stack - amount
 
         if (stack xor amount and (stack xor combined) < 0) {
-            return result(ContainerResult.Underflow)
+            return result(ContainerResult.Deficient)
         }
 
         if (isUnderMin(combined)) {
-            return result(ContainerResult.Underflow)
+            return result(ContainerResult.Deficient)
         }
 
         if (isFree(combined)) {
@@ -323,11 +321,11 @@ data class Container(
             val combined = stack - amount
 
             if (stack xor amount and (stack xor combined) < 0) {
-                return result(ContainerResult.Underflow)
+                return result(ContainerResult.Deficient)
             }
 
             if (isUnderMin(combined)) {
-                return result(ContainerResult.Underflow)
+                return result(ContainerResult.Deficient)
             }
 
             if (isFree(combined)) {

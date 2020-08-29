@@ -1,29 +1,24 @@
 package rs.dusk.engine.entity.character.contain
 
 enum class ContainerResult {
+    /**
+     * Transaction successful
+     */
     Success,
     /**
-     * Container doesn't have enough slots or stacks
+     * Container doesn't have enough slots, stacks or would exceed [Int.MAX_VALUE]
      */
     Full,
     /**
-     * Not enough items available
+     * Not enough items available stacked or otherwise
      */
     Deficient,
     /**
-     * Combined item total exceeds [Int.MAX_VALUE]
-     */
-    Overflow,
-    /**
-     * Combined item total is less than container minimum amount
-     */
-    Underflow,
-    /**
-     * Item can't be added at a specific slot as the item types are different
+     * Item can't be added to slot as the item types are different
      */
     WrongType,
     /**
-     * Item can't be added at a slot as the items cannot be stacked
+     * Item can't be added to slot as the items cannot be stacked
      */
     Unstackable,
     /**
