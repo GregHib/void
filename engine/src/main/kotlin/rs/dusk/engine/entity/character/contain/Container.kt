@@ -31,12 +31,12 @@ data class Container(
     private var updates = mutableListOf<Triple<Int, Int, Int>>()
     private val logger = InlineLogger()
 
-    var result: ContainerResult = ContainerResult.Addition.Added
+    var result: ContainerResult = ContainerResult.Success
         private set
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
-        return result is ContainerResult.Addition.Added || result is ContainerResult.Removal.Removed
+        return result == ContainerResult.Success
     }
 
     fun stackable(id: Int) = when (stackMode) {
@@ -195,27 +195,27 @@ data class Container(
      */
     fun add(index: Int, id: Int, amount: Int = 1): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
-            return result(ContainerResult.Addition.Failure.Invalid)
+            return result(ContainerResult.Invalid)
         }
 
         val item = items[index]
         if (item != -1 && item != id) {
-            return result(ContainerResult.Addition.Failure.WrongType)
+            return result(ContainerResult.WrongType)
         }
 
         val stack = amounts[index]
         val combined = stack + amount
 
         if (stack xor combined and (amount xor combined) < 0) {
-            return result(ContainerResult.Addition.Failure.Overflow)
+            return result(ContainerResult.Overflow)
         }
 
         if (combined > 1 && !stackable(id)) {
-            return result(ContainerResult.Addition.Failure.Unstackable)
+            return result(ContainerResult.Unstackable)
         }
 
         set(index, id, combined)
-        return result(ContainerResult.Addition.Added)
+        return result(ContainerResult.Success)
     }
 
     /**
@@ -226,7 +226,7 @@ data class Container(
      */
     fun add(id: Int, amount: Int = 1): Boolean {
         if (!isValidInput(id, amount)) {
-            return result(ContainerResult.Addition.Failure.Invalid)
+            return result(ContainerResult.Invalid)
         }
         if (stackable(id)) {
             var index = indexOf(id)
@@ -235,21 +235,21 @@ data class Container(
                 val combined = stack + amount
 
                 if (stack xor combined and (amount xor combined) < 0) {
-                    return result(ContainerResult.Addition.Failure.Overflow)
+                    return result(ContainerResult.Overflow)
                 }
 
                 set(index, id, combined)
             } else {
                 index = freeIndex()
                 if (index == -1) {
-                    return result(ContainerResult.Addition.Failure.Full)
+                    return result(ContainerResult.Full)
                 }
 
                 set(index, id, amount)
             }
         } else {
             if (spaces < amount) {
-                return result(ContainerResult.Addition.Failure.Full)
+                return result(ContainerResult.Full)
             }
 
             repeat(amount) {
@@ -258,7 +258,7 @@ data class Container(
             }
             update()
         }
-        return result(ContainerResult.Addition.Added)
+        return result(ContainerResult.Success)
     }
 
 
@@ -271,36 +271,36 @@ data class Container(
      */
     fun remove(index: Int, id: Int, amount: Int = 1): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
-            return result(ContainerResult.Removal.Failure.Invalid)
+            return result(ContainerResult.Invalid)
         }
 
         val item = items[index]
         if (item != id) {
-            return result(ContainerResult.Removal.Failure.WrongType)
+            return result(ContainerResult.WrongType)
         }
 
         val stack = amounts[index]
         val combined = stack - amount
 
         if (stack xor amount and (stack xor combined) < 0) {
-            return result(ContainerResult.Removal.Failure.Underflow)
+            return result(ContainerResult.Underflow)
         }
 
         if (isUnderMin(combined)) {
-            return result(ContainerResult.Removal.Failure.Underflow)
+            return result(ContainerResult.Underflow)
         }
 
         if (isFree(combined)) {
             clear(index)
-            return result(ContainerResult.Removal.Removed)
+            return result(ContainerResult.Success)
         }
 
         if (combined > 1 && !stackable(id)) {
-            return result(ContainerResult.Removal.Failure.Unstackable)
+            return result(ContainerResult.Unstackable)
         }
 
         set(index, id, combined)
-        return result(ContainerResult.Removal.Removed)
+        return result(ContainerResult.Success)
     }
 
     /**
@@ -311,11 +311,11 @@ data class Container(
      */
     fun remove(id: Int, amount: Int = 1): Boolean {
         if (!isValidInput(id, amount)) {
-            return result(ContainerResult.Removal.Failure.Invalid)
+            return result(ContainerResult.Invalid)
         }
         var index = indexOf(id)
         if (index == -1) {
-            return result(ContainerResult.Removal.Failure.Deficient)
+            return result(ContainerResult.Deficient)
         }
 
         if (stackable(id)) {
@@ -323,23 +323,23 @@ data class Container(
             val combined = stack - amount
 
             if (stack xor amount and (stack xor combined) < 0) {
-                return result(ContainerResult.Removal.Failure.Underflow)
+                return result(ContainerResult.Underflow)
             }
 
             if (isUnderMin(combined)) {
-                return result(ContainerResult.Removal.Failure.Underflow)
+                return result(ContainerResult.Underflow)
             }
 
             if (isFree(combined)) {
                 clear(index)
-                return result(ContainerResult.Removal.Removed)
+                return result(ContainerResult.Success)
             }
 
             set(index, id, combined)
         } else {
             val count = items.count { it == id }
             if (count < amount) {
-                return result(ContainerResult.Removal.Failure.Deficient)
+                return result(ContainerResult.Deficient)
             }
 
             repeat(amount) {
@@ -348,7 +348,7 @@ data class Container(
             }
             update()
         }
-        return result(ContainerResult.Removal.Removed)
+        return result(ContainerResult.Success)
     }
 
     fun sort() {
@@ -390,7 +390,7 @@ data class Container(
         val id = getItem(index)
         val amount = getAmount(index)
         if (id == -1 || amount == minimumStack) {
-            return result(ContainerResult.Removal.Failure.Invalid)
+            return result(ContainerResult.Invalid)
         }
         return move(container, id, amount, index, targetIndex)
     }

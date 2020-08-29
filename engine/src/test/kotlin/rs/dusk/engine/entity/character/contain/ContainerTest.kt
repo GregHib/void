@@ -283,7 +283,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, 1, 0))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -293,7 +293,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -304,7 +304,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.WrongType, container.result)
+        assertEquals(ContainerResult.WrongType, container.result)
     }
 
     @Test
@@ -315,7 +315,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(index, 1, 1))
         // Then
-        assertNotEquals(ContainerResult.Addition.Failure.WrongType, container.result)
+        assertNotEquals(ContainerResult.WrongType, container.result)
     }
 
     @Test
@@ -328,7 +328,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Overflow, container.result)
+        assertEquals(ContainerResult.Overflow, container.result)
     }
 
     @Test
@@ -342,7 +342,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, id, 3))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Unstackable, container.result)
+        assertEquals(ContainerResult.Unstackable, container.result)
     }
 
     @Test
@@ -356,7 +356,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
     }
 
     @Test
@@ -370,7 +370,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
     }
 
     @Test
@@ -384,7 +384,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -396,7 +396,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(1, 0))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -410,7 +410,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Overflow, container.result)
+        assertEquals(ContainerResult.Overflow, container.result)
     }
 
     @Test
@@ -424,7 +424,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -437,7 +437,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
+        assertEquals(ContainerResult.Full, container.result)
     }
 
     @Test
@@ -451,7 +451,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.set(index, id, amount) }
     }
 
@@ -465,7 +465,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
+        assertEquals(ContainerResult.Full, container.result)
     }
 
     @Test
@@ -478,7 +478,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.add(id, amount))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.set(1, id, 1, false)
             container.set(2, id, 1, false)
@@ -495,7 +495,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, 1, 0))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -505,7 +505,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -516,7 +516,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, 1, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.WrongType, container.result)
+        assertEquals(ContainerResult.WrongType, container.result)
     }
 
     @Test
@@ -529,7 +529,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
+        assertEquals(ContainerResult.Underflow, container.result)
     }
 
     @Test
@@ -542,7 +542,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
+        assertEquals(ContainerResult.Underflow, container.result)
     }
 
     @Test
@@ -555,7 +555,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.clear(index) }
     }
 
@@ -570,7 +570,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Unstackable, container.result)
+        assertEquals(ContainerResult.Unstackable, container.result)
     }
 
     @Test
@@ -584,7 +584,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.clear(index) }
     }
 
@@ -599,7 +599,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(index, id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -612,7 +612,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(1, 0))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Invalid, container.result)
+        assertEquals(ContainerResult.Invalid, container.result)
     }
 
     @Test
@@ -622,7 +622,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, 1))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -636,7 +636,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, Int.MAX_VALUE))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
+        assertEquals(ContainerResult.Underflow, container.result)
     }
 
     @Test
@@ -650,7 +650,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Underflow, container.result)
+        assertEquals(ContainerResult.Underflow, container.result)
     }
 
     @Test
@@ -664,7 +664,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.clear(index) }
     }
 
@@ -679,7 +679,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify { container.set(index, id, 2) }
     }
 
@@ -693,7 +693,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.remove(id, 3))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -706,7 +706,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.set(0, -1, 0, false)
             container.set(2, -1, 0, false)
@@ -724,7 +724,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.remove(id, 2))
         // Then
-        assertEquals(ContainerResult.Removal.Removed, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.clear(0, false)
             container.clear(2, false)
@@ -779,7 +779,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.move(other, id, amount, index = index, targetIndex = otherIndex))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.remove(index, id, amount)
             other.add(otherIndex, id, amount)
@@ -803,7 +803,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.move(other, id, amount, index = index))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.remove(index, id, amount)
             other.add(id, amount)
@@ -827,7 +827,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.move(other, id, amount, targetIndex = otherIndex))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.remove(id, amount)
             other.add(otherIndex, id, amount)
@@ -850,7 +850,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         verify {
             container.remove(id, amount)
             other.add(id, amount)
@@ -871,7 +871,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.move(other, id, amount))
         // Then
-        assertEquals(ContainerResult.Removal.Failure.Deficient, container.result)
+        assertEquals(ContainerResult.Deficient, container.result)
     }
 
     @Test
@@ -892,7 +892,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
+        assertEquals(ContainerResult.Full, container.result)
         verify {
             container.remove(id, amount)
             other.add(id, amount)
@@ -1088,7 +1088,7 @@ internal class ContainerTest {
         // When
         assertTrue(container.moveAll(other))
         // Then
-        assertEquals(ContainerResult.Addition.Added, container.result)
+        assertEquals(ContainerResult.Success, container.result)
         assertArrayEquals(intArrayOf(1, 2, 3, 4, -1, -1, -1, -1, -1, -1), other.getItems())
         assertArrayEquals(intArrayOf(1, 2, 3, 4, 0, 0, 0, 0, 0, 0), other.getAmounts())
     }
@@ -1111,7 +1111,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.moveAll(other))
         // Then
-        assertEquals(ContainerResult.Addition.Failure.Full, container.result)
+        assertEquals(ContainerResult.Full, container.result)
         assertArrayEquals(intArrayOf(1, 2), other.getItems())
         assertArrayEquals(intArrayOf(1, 2), other.getAmounts())
     }

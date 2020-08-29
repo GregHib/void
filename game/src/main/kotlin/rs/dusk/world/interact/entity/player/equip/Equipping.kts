@@ -33,10 +33,8 @@ ContainerAction where { container == "inventory" && (option == "Wield" || option
 }
 
 ContainerAction where { container == "worn_equipment" && option == "Remove" } then {
-    if(!player.equipment.move(slot, player.inventory)) {
-        if (player.equipment.result is ContainerResult.Addition.Failure.Full) {
-            player.message("You don't have enough inventory space.")
-        }
+    if (!player.equipment.move(slot, player.inventory) && player.equipment.result == ContainerResult.Full) {
+        player.message("You don't have enough inventory space.")
     }
 }
 

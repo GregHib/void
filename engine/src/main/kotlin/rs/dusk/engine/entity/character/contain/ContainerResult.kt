@@ -1,24 +1,33 @@
 package rs.dusk.engine.entity.character.contain
 
-sealed class ContainerResult {
-    sealed class Addition : ContainerResult() {
-        object Added : Addition()
-        sealed class Failure : Addition() {
-            object Full : Failure()
-            object Overflow : Failure()
-            object WrongType : Failure()
-            object Unstackable : Failure()
-            object Invalid : Failure()
-        }
-    }
-    sealed class Removal : ContainerResult() {
-        object Removed : Removal()
-        sealed class Failure : Removal() {
-            object Deficient : Failure()
-            object Underflow : Failure()
-            object WrongType : Failure()
-            object Unstackable : Failure()
-            object Invalid : Failure()
-        }
-    }
+enum class ContainerResult {
+    Success,
+    /**
+     * Container doesn't have enough slots or stacks
+     */
+    Full,
+    /**
+     * Not enough items available
+     */
+    Deficient,
+    /**
+     * Combined item total exceeds [Int.MAX_VALUE]
+     */
+    Overflow,
+    /**
+     * Combined item total is less than container minimum amount
+     */
+    Underflow,
+    /**
+     * Item can't be added at a specific slot as the item types are different
+     */
+    WrongType,
+    /**
+     * Item can't be added at a slot as the items cannot be stacked
+     */
+    Unstackable,
+    /**
+     * Invalid slot, id or amount entered.
+     */
+    Invalid;
 }
