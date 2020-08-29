@@ -958,20 +958,20 @@ internal class ContainerTest {
     @Test
     fun `Listeners notified of updates`() {
         // Given
-        var captured: List<Triple<Int, Int, Int>>? = null
+        var captured: List<ContainerModification>? = null
         container.listeners.add {
             captured = it.toList()
         }
         // When
         container.set(2, 123, 2)
         // Then
-        assertEquals(listOf(Triple(2, 123, 2)), captured)
+        assertEquals(listOf(ContainerModification(2, -1, 0, 123, 2)), captured)
     }
 
     @Test
     fun `Listeners notified multiple changes`() {
         // Given
-        var captured: List<Triple<Int, Int, Int>>? = null
+        var captured: List<ContainerModification>? = null
         container.listeners.add {
             captured = it.toList()
         }
@@ -980,8 +980,8 @@ internal class ContainerTest {
         // Then
         assertEquals(
             listOf(
-                Triple(2, -1, 0),
-                Triple(3, -1, 0)
+                ContainerModification(2, -1, 0, -1, 0),
+                ContainerModification(3, -1, 0, -1, 0)
             ), captured
         )
     }

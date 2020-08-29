@@ -6,7 +6,7 @@ import java.util.*
 
 data class Container(
     private val decoder: ItemDecoder,
-    val listeners: MutableList<(List<Triple<Int, Int, Int>>) -> Unit> = mutableListOf(),
+    val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
     private val amounts: IntArray,
@@ -17,7 +17,7 @@ data class Container(
         decoder: ItemDecoder,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
-        listeners: MutableList<(List<Triple<Int, Int, Int>>) -> Unit> = mutableListOf(),
+        listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
         minimumStack: Int = 0
     ) : this(
         decoder,
@@ -28,7 +28,7 @@ data class Container(
         minimumStack
     )
 
-    private var updates = mutableListOf<Triple<Int, Int, Int>>()
+    private var updates = mutableListOf<ContainerModification>()
     private val logger = InlineLogger()
 
     var result: ContainerResult = ContainerResult.Success
@@ -67,10 +67,12 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
-        return isValidId(id) && !isUnderMin(amount) && id < decoder.size
+        return isValidId(id) && isValidAmount(amount) && id < decoder.size
     }
 
     private fun isValidId(id: Int) = id >= 0
+
+    private fun isValidAmount(amount: Int) = amount > minimumStack
 
     /**
      * Checks [amount] for a slot is empty
@@ -126,9 +128,9 @@ data class Container(
         if (!inBounds(index)) {
             return false
         }
+        track(index, items[index], amounts[index], id, amount)
         items[index] = id
         amounts[index] = amount
-        track(index, id, amount)
         if (update) {
             update()
         }
@@ -436,8 +438,8 @@ data class Container(
         return result(result)
     }
 
-    private fun track(index: Int, id: Int, amount: Int) {
-        updates.add(Triple(index, id, amount))
+    private fun track(index: Int, oldItem: Int, oldAmount: Int, item: Int, amount: Int) {
+        updates.add(ContainerModification(index, oldItem, oldAmount, item, amount))
     }
 
     private fun update() {

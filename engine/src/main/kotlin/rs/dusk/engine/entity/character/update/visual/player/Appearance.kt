@@ -109,7 +109,7 @@ val Player.appearance: Appearance
 private fun Player.updateAppearanceOnEquipmentChanges(parts: BodyParts) {
     equipment.listeners.add { list ->
         var changed = false
-        for ((index, _, _) in list) {
+        for ((index, _, _, _, _) in list) {
             val slot = EquipSlot.by(index)
             val part = BodyPart.by(slot) ?: continue
             if (parts.updateConnected(part)) {

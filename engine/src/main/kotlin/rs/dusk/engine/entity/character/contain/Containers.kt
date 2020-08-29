@@ -30,11 +30,11 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
 }
 
 fun Player.container(detail: ContainerDetail, secondary: Boolean = false): Container {
-    return containers.getOrPut(if(secondary) -detail.id else detail.id) {
+    return containers.getOrPut(if (secondary) -detail.id else detail.id) {
         Container(
             decoder = get(),
             capacity = get<ItemContainerDecoder>().get(detail.id).length,
-            listeners = mutableListOf({ updates -> send(ContainerItemUpdateMessage(detail.id, updates, secondary)) }),
+            listeners = mutableListOf({ updates -> send(ContainerItemUpdateMessage(detail.id, updates.map { Triple(it.index, it.item, it.amount) }, secondary)) }),
             stackMode = detail.stack
         )
     }

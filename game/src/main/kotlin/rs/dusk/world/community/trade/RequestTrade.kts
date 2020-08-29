@@ -8,6 +8,7 @@ import rs.dusk.engine.client.variable.BooleanVariable
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.setVar
+import rs.dusk.engine.entity.character.contain.ContainerModification
 import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.get
@@ -76,9 +77,9 @@ fun startTrade(player: Player, other: Player) {
     player.setVar("other_trader_name", other.name)
     player["trade_partner"] = other
 
-    val offerListener: (List<Triple<Int, Int, Int>>) -> Unit = { list ->
+    val offerListener: (List<ContainerModification>) -> Unit = { list ->
         val warn = player.requests.has(other, "trade_accept")
-        for ((index, item, amount) in list) {
+        for ((index, oldItem, oldAmount, item, amount) in list) {
             other.otherOffer.set(index, item, amount)
             if(warn) {
                 player.warn("trade_main", "item_warning", index)
@@ -96,9 +97,9 @@ fun startTrade(player: Player, other: Player) {
         status(player, "")
     }
 
-    val loanListener: (List<Triple<Int, Int, Int>>) -> Unit = { list ->
+    val loanListener: (List<ContainerModification>) -> Unit = { list ->
         val warn = player.requests.has(other, "trade_accept")
-        for ((index, item, amount) in list) {
+        for ((index, oldItem, oldAmount, item, amount) in list) {
             other.otherLoan.set(index, item, amount)
             if(warn) {
                 player.warn("trade_main", "other_loan_item", index)
@@ -108,7 +109,7 @@ fun startTrade(player: Player, other: Player) {
         status(player, "")
     }
 
-    val inventoryListener: (List<Triple<Int, Int, Int>>) -> Unit = {
+    val inventoryListener: (List<ContainerModification>) -> Unit = {
         updateInventorySpaces(other, player)
     }
     player.inventory.listeners.add(inventoryListener)
