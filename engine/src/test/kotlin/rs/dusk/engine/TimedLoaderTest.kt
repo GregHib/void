@@ -1,7 +1,7 @@
 package rs.dusk.engine
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
 internal class TimedLoaderTest {
@@ -23,7 +23,7 @@ internal class TimedLoaderTest {
         val arguments = arrayOf("One", 2, '3')
         val loader = object : TimedLoader<Int>("Test") {
             override fun load(vararg args: Any?): Int {
-                assertTrue(args.contentEquals(arguments))
+                assertArrayEquals(arguments, args)
                 return 42
             }
         }

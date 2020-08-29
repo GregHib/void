@@ -1038,7 +1038,7 @@ internal class ContainerTest {
         // When
         val items = container.getItems()
         // Then
-        assertTrue(this.items.contentEquals(items))
+        assertArrayEquals(this.items, items)
     }
 
     @Test
@@ -1049,7 +1049,7 @@ internal class ContainerTest {
         // When
         val amounts = container.getAmounts()
         // Then
-        assertTrue(this.amounts.contentEquals(amounts))
+        assertArrayEquals(this.amounts, amounts)
     }
 
     companion object {

@@ -1,5 +1,6 @@
 package rs.dusk.engine.map.region.tile
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 
 /**
@@ -25,6 +26,6 @@ internal class TileWriterTest {
         // When
         val result = writer.write(settings)
         // Then
-        assert(result.contentEquals(byteArrayOf(50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 55, 0, 56, 0, 57, 0)))
+        assertArrayEquals(byteArrayOf(50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 55, 0, 56, 0, 57, 0), result)
     }
 }

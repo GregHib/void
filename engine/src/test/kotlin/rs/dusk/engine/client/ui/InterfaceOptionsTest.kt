@@ -45,9 +45,9 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Get returns static options by default`() {
-        assertEquals(emptyArray(), options.get(name, "unknown"))
+        assertArrayEquals(emptyArray(), options.get(name, "unknown"))
         assertEquals("", options.get(name, "unknown", 9))
-        assertEquals(staticOptions, options.get(name, comp))
+        assertArrayEquals(staticOptions, options.get(name, comp))
         assertEquals("", options.get(name, comp, 0))
         assertEquals("Examine", options.get(name, comp, 9))
     }
@@ -55,7 +55,7 @@ internal class InterfaceOptionsTest {
     @Test
     fun `Options can be overridden`() {
         assertTrue(options.set(name, comp, overrideOptions))
-        assertEquals(overrideOptions, options.get(name, comp))
+        assertArrayEquals(overrideOptions, options.get(name, comp))
     }
 
     @Test
@@ -64,13 +64,13 @@ internal class InterfaceOptionsTest {
 
         assertTrue(options.remove(name, comp))
         assertFalse(options.remove(name, comp))
-        assertEquals(staticOptions, options.get(name, comp))
+        assertArrayEquals(staticOptions, options.get(name, comp))
     }
 
     @Test
     fun `Set individual options`() {
         assertTrue(options.set(name, comp, 0, "option"))
-        assertEquals(arrayOf("option", "", "", "", "", "", "", "", "", "Examine"), options.get(name, comp))
+        assertArrayEquals(arrayOf("option", "", "", "", "", "", "", "", "", "Examine"), options.get(name, comp))
     }
 
     @Test
@@ -108,9 +108,5 @@ internal class InterfaceOptionsTest {
         verify {
             player.send(InterfaceSettingsMessage(5, 0, 0, 27, 0))
         }
-    }
-
-    private fun assertEquals(expected: Array<String>, actual: Array<String>) {
-        check(expected.contentEquals(actual)) { "expected: ${expected.toList()} but was: ${actual.toList()}" }
     }
 }

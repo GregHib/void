@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.encoder
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.core.io.write.BufferWriter
@@ -104,7 +105,7 @@ internal class ObjectEncoderTest {
 //        file.writeBytes(data)
         val stream = ObjectEncoderTest::class.java.getResourceAsStream("object-definition.dat")
         val expected = stream.readAllBytes()
-        assert(data.contentEquals(expected))
+        assertArrayEquals(expected, data)
     }
 
 }

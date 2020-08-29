@@ -23,19 +23,19 @@ internal class XteaLoaderTest {
         val xteas = Xteas(mapOf(0 to intArrayOf(1, 2, 3, 4)))
         val xtea = xteas[Region(0)]
         assertNotNull(xtea)
-        assertTrue(xtea!!.contentEquals(intArrayOf(1, 2, 3, 4)))
+        assertArrayEquals(intArrayOf(1, 2, 3, 4), xtea!!)
     }
 
     @Test
     fun `Load xteas from text`() {
         val array = loader.loadText("1\n2\n99\n100")
-        assertTrue(array.contentEquals(intArrayOf(1, 2, 99, 100)))
+        assertArrayEquals(intArrayOf(1, 2, 99, 100), array)
     }
 
     @Test
     fun `Load too few text lines filled with zero`() {
         val array = loader.loadText("1\n2\n99")
-        assertTrue(array.contentEquals(intArrayOf(1, 2, 99, 0)))
+        assertArrayEquals(intArrayOf(1, 2, 99, 0), array)
     }
 
     @Test
@@ -43,7 +43,7 @@ internal class XteaLoaderTest {
         val xteas = loader.loadJson("[\n\t{\n\t\t\"region\": 123,\n\t\t\"keys\": [1,2,99,100]\n\t}\n]", "region", "keys")
         val values = xteas[123]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(1, 2, 99, 100)))
+        assertArrayEquals(intArrayOf(1, 2, 99, 100), values!!)
     }
 
     @Test
@@ -51,7 +51,7 @@ internal class XteaLoaderTest {
         val xteas = loader.loadJson("[\n\t{\n\t\t\"region\": 123,\n\t\t\"keys\": [1, 2, 99, 100]\n\t},\n\t{\n\t\t\"region\": 321,\n\t\t\"keys\": [100, 99, 2, 1]\n\t}\n]", "region", "keys")
         val values = xteas[321]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(100, 99, 2, 1)))
+        assertArrayEquals(intArrayOf(100, 99, 2, 1), values!!)
     }
 
     @Test
@@ -76,7 +76,7 @@ internal class XteaLoaderTest {
         val xteas = loader.run(path)
         val values = xteas[123]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(-1, 2, 3, 0)))
+        assertArrayEquals(intArrayOf(-1, 2, 3, 0), values!!)
         file.delete()
     }
 
@@ -89,7 +89,7 @@ internal class XteaLoaderTest {
         assertEquals(1, loader.count)
         val values = xteas[123]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(-1, 2, 99, 100)))
+        assertArrayEquals(intArrayOf(-1, 2, 99, 100), values!!)
         file.delete()
     }
 
@@ -102,7 +102,7 @@ internal class XteaLoaderTest {
         assertEquals(1, loader.count)
         val values = xteas[123]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(-1, 2, 99, 100)))
+        assertArrayEquals(intArrayOf(-1, 2, 99, 100), values!!)
         file.delete()
     }
 
@@ -121,7 +121,7 @@ internal class XteaLoaderTest {
         assertEquals(1, loader.count)
         val values = xtea[123]
         assertNotNull(values)
-        assertTrue(values!!.contentEquals(intArrayOf(-100, 99, 2, 1)))
+        assertArrayEquals(intArrayOf(-100, 99, 2, 1), values!!)
         file.delete()
     }
 
