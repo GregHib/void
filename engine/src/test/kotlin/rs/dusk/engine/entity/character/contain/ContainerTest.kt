@@ -1052,6 +1052,70 @@ internal class ContainerTest {
         assertArrayEquals(this.amounts, amounts)
     }
 
+    @Test
+    fun `Get count of all item amounts`() {
+        // Given
+        every { container.stackable(2) } returns true
+        items[1] = 2
+        items[2] = 3
+        items[3] = 2
+        items[4] = 2
+        amounts[1] = 2
+        amounts[2] = 1
+        amounts[3] = 4
+        amounts[4] = -1
+        // When
+        val amounts = container.getCount(2)
+        // Then
+        assertEquals(6L, amounts)
+    }
+
+    @Test
+    fun `Move all items from one container to another`() {
+        // Given
+        repeat(4) {
+            items[it * 2] = it + 1
+            amounts[it * 2] = it + 1
+        }
+        val other = spyk(
+            Container(
+                decoder = decoder,
+                capacity = 10
+            )
+        )
+        every { container.stackable(any()) } returns true
+        every { other.stackable(any()) } returns true
+        // When
+        val result = container.moveAll(other)
+        // Then
+        assertEquals(ContainerResult.Addition.Added, result)
+        assertArrayEquals(intArrayOf(1, 2, 3, 4, -1, -1, -1, -1, -1, -1), other.getItems())
+        assertArrayEquals(intArrayOf(1, 2, 3, 4, 0, 0, 0, 0, 0, 0), other.getAmounts())
+    }
+
+    @Test
+    fun `Move all partial to other container`() {
+        // Given
+        repeat(4) {
+            items[it * 2] = it + 1
+            amounts[it * 2] = it + 1
+        }
+        val other = spyk(
+            Container(
+                decoder = decoder,
+                capacity = 2
+            )
+        )
+        every { container.stackable(any()) } returns true
+        every { other.stackable(any()) } returns true
+        // When
+        val result = container.moveAll(other)
+        // Then
+        assertEquals(ContainerResult.Addition.Failure.Full, result)
+        assertArrayEquals(intArrayOf(1, 2), other.getItems())
+        assertArrayEquals(intArrayOf(1, 2), other.getAmounts())
+    }
+
     companion object {
 
         private const val TYPE_1 = 115

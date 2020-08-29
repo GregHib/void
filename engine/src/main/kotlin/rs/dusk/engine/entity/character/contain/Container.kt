@@ -59,8 +59,12 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
-        return id >= 0 && amount > 0 && id < decoder.size
+        return isValidId(id) && isValidAmount(amount) && id < decoder.size
     }
+
+    private fun isValidId(id: Int) = id >= 0
+
+    private fun isValidAmount(amount: Int) = amount > minimumStack
 
     /**
      * Checks [amount] for a slot is empty
@@ -84,6 +88,16 @@ data class Container(
             }
         }
         return -1
+    }
+
+    fun getCount(id: Int): Long {
+        var count = 0L
+        for (index in items.indices) {
+            if (getItem(index) == id && getAmount(index) > minimumStack) {
+                count += getAmount(index)
+            }
+        }
+        return count
     }
 
     /**
@@ -350,10 +364,24 @@ data class Container(
         }
     }
 
+    fun moveAll(other: Container): ContainerResult {
+        var result: ContainerResult = ContainerResult.Addition.Added
+        for (index in items.indices) {
+            if (!isIndexFree(index)) {
+                val r = move(index, other)
+                if (r is ContainerResult.Addition.Failure || r is ContainerResult.Removal.Failure) {
+                    result = r
+                    break
+                }
+            }
+        }
+        return result
+    }
+
     fun move(index: Int, container: Container, targetIndex: Int? = null): ContainerResult {
         val id = getItem(index)
         val amount = getAmount(index)
-        if(id == -1 || amount == minimumStack) {
+        if (id == -1 || amount == minimumStack) {
             return ContainerResult.Removal.Failure.Invalid
         }
         return move(container, id, amount, index, targetIndex)
