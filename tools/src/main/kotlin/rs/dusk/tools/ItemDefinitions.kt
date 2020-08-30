@@ -14,6 +14,7 @@ object ItemDefinitions {
         }.koin
         val decoder = ItemDecoder(koin.get())
         var count = 0
+        println(decoder.get(8786))
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
 

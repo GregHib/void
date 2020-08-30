@@ -16,7 +16,7 @@ internal object RunescapeWikiDumper {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        dumpItems("Items?pagefrom=Scrap+of+paper#mw-pages")
+        dumpItems("Items?pagefrom=Symptoms+list#mw-pages")
     }
 
     fun dumpItemInfoBox(url: String): Map<String, Map<String, String>> {
