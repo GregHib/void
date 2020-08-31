@@ -77,6 +77,7 @@ fun startTrade(player: Player, other: Player) {
     val inventoryListener: (List<ContainerModification>) -> Unit = {
         updateInventorySpaces(other, player)
     }
+
     player.offer.listeners.add(offerListener)
     player.loan.listeners.add(loanListener)
     player.inventory.listeners.add(inventoryListener)

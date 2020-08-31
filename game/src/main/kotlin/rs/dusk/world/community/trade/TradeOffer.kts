@@ -1,13 +1,16 @@
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.entity.character.contain.inventory
+import rs.dusk.engine.entity.character.has
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
-import rs.dusk.world.community.trade.Trade.isValidAmount
+import rs.dusk.world.community.trade.Trade.getPartner
+import rs.dusk.world.community.trade.Trade.isTrading
 import rs.dusk.world.community.trade.loan
 import rs.dusk.world.community.trade.offer
 import rs.dusk.world.interact.dialogue.type.intEntry
@@ -18,6 +21,21 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
  */
 
 val itemDecoder: ItemDecoder by inject()
+
+val lendable: (Int, Int) -> Boolean = { id, amount ->
+    val def = itemDecoder.get(id)
+    amount == 1 && def.lendId != -1
+}
+
+val tradeable: (Int, Int) -> Boolean = { id, _ ->
+    val def = itemDecoder.get(id)
+    def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
+}
+
+PlayerRegistered then {
+    player.loan.predicate = lendable
+    player.offer.predicate = tradeable
+}
 
 InterfaceOption where { name == "trade_side" && component == "offer" } then {
     val amount = when(option) {
@@ -43,18 +61,12 @@ InterfaceOption where { name == "trade_side" && component == "offer" && option =
 }
 
 InterfaceOption where { name == "trade_side" && component == "offer" && option == "Lend" } then {
-    lend(player, itemId, itemIndex)
+    val partner = getPartner(player) ?: return@then
+    lend(player, partner, itemId, itemIndex)
 }
 
-val decoder: ItemDecoder by inject()
-
 fun offer(player: Player, id: Int, slot: Int, amount: Int) {
-    if (!isValidAmount(player, amount)) {
-        return
-    }
-
-    if (!canBeTraded(id)) {
-        player.message("That item is not tradeable.")
+    if (!isTrading(player, amount)) {
         return
     }
 
@@ -64,32 +76,27 @@ fun offer(player: Player, id: Int, slot: Int, amount: Int) {
         amount = currentAmount
     }
 
-    player.inventory.move(player.offer, id, amount, slot)
+    if(!player.inventory.move(player.offer, id, amount, slot)) {
+        player.message("That item is not tradeable.")
+    }
 }
 
-fun canBeTraded(id: Int): Boolean {
-    val def = decoder.get(id)
-    return def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
-}
-
-fun lend(player: Player, id: Int, slot: Int) {
-    if (!isValidAmount(player, 1)) {
+fun lend(player: Player, other: Player, id: Int, slot: Int) {
+    if (!isTrading(player, 1)) {
         return
     }
 
-    if (!canBeLent(player, id)) {
+    if(player.has("lent_item")) {
+        player.message("You are already lending an item, you can't lend another.")
         return
     }
 
-    player.inventory.move(player.loan, id, 1, slot)
-}
-
-fun canBeLent(player: Player, id: Int): Boolean {
-    val itemDef = decoder.get(id)
-    if (itemDef.lendId == -1) {
-        val name = itemDef.name
-        player.message("$name cannot be lent.")
-        return false
+    if(other.has("borrowed_item")) {
+        player.message("They are already borrowing an item and can't borrow another.")
+        return
     }
-    return true
+
+    if(!player.inventory.move(player.loan, id, 1, slot)) {
+        player.message("That item cannot be lent.")
+    }
 }

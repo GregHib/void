@@ -4,10 +4,11 @@ import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.container
+import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
 
 object Trade {
-    fun isValidAmount(player: Player, amount: Int): Boolean {
+    fun isTrading(player: Player, amount: Int): Boolean {
         if (player.action.type != ActionType.Trade) {
             return false
         }
@@ -15,6 +16,14 @@ object Trade {
             return false
         }
         return true
+    }
+
+    fun getPartner(player: Player): Player? {
+        val partner: Player? = player["trade_partner"]
+        if(partner == null) {
+            player.action.cancel(ActionType.Trade)
+        }
+        return partner
     }
 }
 fun Container.calculateValue(decoder: ItemDecoder): Long {

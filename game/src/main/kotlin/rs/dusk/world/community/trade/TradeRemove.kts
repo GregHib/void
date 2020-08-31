@@ -7,7 +7,7 @@ import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
-import rs.dusk.world.community.trade.Trade.isValidAmount
+import rs.dusk.world.community.trade.Trade.isTrading
 import rs.dusk.world.community.trade.loan
 import rs.dusk.world.community.trade.offer
 import rs.dusk.world.interact.dialogue.type.intEntry
@@ -47,14 +47,14 @@ InterfaceOption where { name == "trade_main" && component == "loan_item" && opti
 }
 
 fun remove(player: Player, id: Int, slot: Int, amount: Int) {
-    if (!isValidAmount(player, amount)) {
+    if (!isTrading(player, amount)) {
         return
     }
     player.offer.move(player.inventory, id, amount, slot)
 }
 
 fun removeLend(player: Player, id: Int, slot: Int) {
-    if (!isValidAmount(player, 1)) {
+    if (!isTrading(player, 1)) {
         return
     }
     player.loan.move(player.inventory, id, 1, slot)

@@ -1,9 +1,8 @@
-import rs.dusk.engine.action.ActionType
-import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.world.community.trade.Trade.getPartner
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 /**
@@ -38,12 +37,4 @@ InterfaceOption where { name == "trade_confirm" && component == "accept" && opti
         requester.action.resume()
         acceptor.action.resume()
     }
-}
-
-fun getPartner(player: Player): Player? {
-    val partner: Player? = player["trade_partner"]
-    if(partner == null) {
-        player.action.cancel(ActionType.Trade)
-    }
-    return partner
 }

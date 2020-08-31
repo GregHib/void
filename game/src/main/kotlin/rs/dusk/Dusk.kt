@@ -49,7 +49,7 @@ import java.util.concurrent.Executors
  */
 object Dusk {
 
-    val name = "Dusk"
+    const val name = "Dusk"
 
     @JvmStatic
     fun main(args: Array<String>) {
