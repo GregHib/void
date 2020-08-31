@@ -39,3 +39,10 @@ InterfaceOption where { name == "stats" && option == "View" } then {
         player.open("skill_guide")
     }
 }
+
+InterfaceOption where { name == "skill_guide" && option == "Open subsection" } then {
+    val index = componentId - 10
+    val guide = player.getVar("skill_guide", 0)
+    val menuIndex = guide
+    player.setVar("skill_guide", menuIndex + index * 1024)
+}
