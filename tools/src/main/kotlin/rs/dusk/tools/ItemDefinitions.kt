@@ -14,18 +14,9 @@ object ItemDefinitions {
         }.koin
         val decoder = ItemDecoder(koin.get())
         var count = 0
-        println(decoder.get(8786))
+        println(decoder.get(4051))
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-
-            if(!def.exchangeable) {
-                val unnotedDef = decoder.getOrNull(def.noteId) ?: continue
-                if(unnotedDef.exchangeable) {
-
-                }
-                println("${def.name} ${i} ${def.notedTemplateId} ${def.noteId}")
-                count++
-            }
         }
         println(count)
     }

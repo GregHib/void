@@ -224,7 +224,7 @@ class ItemTypes(val decoder: ItemDecoder) {
 
     fun readEquipTypes(): Map<Int, Int> {
         val equipTypes = mutableMapOf<Int, Int>()
-        val file = File("./equipmentTypes.dat")
+        val file = File("./data/dump/equipmentTypes.dat")
         val stream = DataInputStream(file.inputStream())
         while (stream.available() > 0) {
             equipTypes[stream.readShort().toInt()] = stream.readByte().toInt()
@@ -234,7 +234,7 @@ class ItemTypes(val decoder: ItemDecoder) {
 
     fun readEquipSlots(): Map<Int, Int> {
         val equipSlots = mutableMapOf<Int, Int>()
-        val file = File("./equipmentSlots.dat")
+        val file = File("./data/dump/equipmentSlots.dat")
         val stream = DataInputStream(file.inputStream())
         while (stream.available() > 0) {
             equipSlots[stream.readShort().toInt()] = stream.readByte().toInt()

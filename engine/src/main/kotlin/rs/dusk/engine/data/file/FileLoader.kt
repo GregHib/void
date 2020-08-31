@@ -12,8 +12,12 @@ import java.io.File
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class FileLoader {
-    val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).enable(YAMLGenerator.Feature.MINIMIZE_QUOTES))
+class FileLoader(private val quotes: Boolean = false) {
+    val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
+        if (!quotes) {
+            enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
+        }
+    })
     private val logger = InlineLogger()
 
     init {

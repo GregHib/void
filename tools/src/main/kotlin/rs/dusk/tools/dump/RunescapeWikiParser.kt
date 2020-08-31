@@ -13,7 +13,7 @@ internal object RunescapeWikiParser {
     @Suppress("UNCHECKED_CAST")
     @JvmStatic
     fun main(args: Array<String>) {
-        val file = File("./Items.json")
+        val file = File("./data/dump/Items.json")
         val text = file.readText()
         val mapper = ObjectMapper(JsonFactory())
         val raw: MutableMap<String, Any> = mapper.readValue(text)
@@ -98,13 +98,13 @@ internal object RunescapeWikiParser {
 
     fun savePretty(map: Map<String, Any>) {
         val writer = ObjectMapper(JsonFactory()).writerWithDefaultPrettyPrinter()
-        val out = File("./ItemsPretty.json")
+        val out = File("./data/dump/ItemsPretty.json")
         writer.writeValue(out, map)
     }
 
     fun saveNormal(map: Map<String, Any>) {
         val writer = ObjectMapper(JsonFactory())
-        val out = File("./ItemsNormal.json")
+        val out = File("./data/dump/ItemsNormal.json")
         writer.writeValue(out, map)
     }
 }

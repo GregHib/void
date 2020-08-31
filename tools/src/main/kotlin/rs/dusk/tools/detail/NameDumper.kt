@@ -7,7 +7,13 @@ abstract class NameDumper {
 
     abstract fun createName(id: Int): String?
 
-    internal abstract fun createData(id: Int): Map<String, Any>
+    internal open fun createData(name: String, id: Int): Map<String, Any> {
+        return createData(id)
+    }
+
+    internal open fun createData(id: Int): Map<String, Any> {
+        return emptyMap()
+    }
 
     fun dump(loader: FileLoader, path: String, name: String, count: Int) {
         val entities = getNamedEntities(count)
@@ -35,13 +41,13 @@ abstract class NameDumper {
             if (list.size > 1) {
                 list.forEachIndexed { index, id ->
                     if(index == 0) {
-                        unique[toIdentifier(name)] = createData(id)
+                        unique[toIdentifier(name)] = createData(name, id)
                     } else {
-                        unique["${toIdentifier(name)}_${index + 1}"] = createData(id)
+                        unique["${toIdentifier(name)}_${index + 1}"] = createData(name, id)
                     }
                 }
             } else {
-                unique[toIdentifier(name)] = createData(list.first())
+                unique[toIdentifier(name)] = createData(name, list.first())
             }
         }
         return unique

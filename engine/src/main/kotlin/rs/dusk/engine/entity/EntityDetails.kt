@@ -40,7 +40,7 @@ interface EntityDetails<T : EntityDetail> {
 
     companion object {
         private val regex = Regex("<.*>")
-        fun toIdentifier(name: String) = name.toLowerCase().replace(" ", "_").replace(regex, "").replace("\"", "").replace("\'", "")
+        fun toIdentifier(name: String) = name.toLowerCase().replace(" ", "_").replace(regex, "").replace("\"", "").replace("\'", "").replace(",", "").replace("(", "").replace(")", "")
     }
 }
 
