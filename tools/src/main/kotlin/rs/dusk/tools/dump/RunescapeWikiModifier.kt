@@ -331,7 +331,7 @@ internal object RunescapeWikiModifier {
         // Default is "Drop"
         val value = remove("On death") as? String ?: return
         if(value.contains("Reclaimable")) {
-            val tradeable = this["Tradeable"] as? Boolean ?: false
+            val tradeable = this["Tradeable"] as? Boolean ?: true
             if(!tradeable) {
                 this["Demise"] = "Reclaim"
             }
