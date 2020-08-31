@@ -33,6 +33,10 @@ data class Container(
 
     var result: ContainerResult = ContainerResult.Success
         private set
+    /**
+     * A predicate to check if an item is allowed to be added to this container.
+     */
+    var predicate: ((Int, Int) -> Boolean)? = null
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
@@ -67,8 +71,10 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && id < decoder.size
+        return isValidId(id) && isValidAmount(amount) && id < decoder.size && (predicate == null || predicate!!.invoke(id, amount))
     }
+
+    fun isValidOrEmpty(id: Int, amount: Int) = (!isValidId(id) && !isValidAmount(amount)) || isValidInput(id, amount)
 
     private fun isValidId(id: Int) = id >= 0
 
@@ -159,12 +165,22 @@ data class Container(
      */
     fun switch(firstIndex: Int, container: Container, secondIndex: Int): Boolean {
         if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
+            result(ContainerResult.Invalid)
+            container.result(ContainerResult.Invalid)
             return false
         }
-        val tempId = items[firstIndex]
-        val tempAmount = amounts[firstIndex]
-        set(firstIndex, container.items[secondIndex], container.amounts[secondIndex])
-        container.set(secondIndex, tempId, tempAmount)
+        val fromId = items[firstIndex]
+        val fromAmount = amounts[firstIndex]
+        val toId = container.items[secondIndex]
+        val toAmount = container.amounts[secondIndex]
+
+        if(!isValidOrEmpty(toId, toAmount) || !container.isValidOrEmpty(fromId, fromAmount)) {
+            result(ContainerResult.Invalid)
+            container.result(ContainerResult.Invalid)
+            return false
+        }
+        set(firstIndex, toId, toAmount)
+        container.set(secondIndex, fromId, fromAmount)
         return true
     }
 

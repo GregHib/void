@@ -273,6 +273,16 @@ internal class ContainerTest {
         assertTrue(valid)
     }
 
+    @Test
+    fun `Valid input checks predicate`() {
+        // Given
+        container.predicate = { _, _ -> false }
+        // When
+        val valid = container.isValidInput(1, 1)
+        // Then
+        assertFalse(valid)
+    }
+
     /*
         ADD INDEX
      */
@@ -943,6 +953,32 @@ internal class ContainerTest {
         assertTrue(result)
         verify {
             container.set(firstIndex, 4, 5)
+            other.set(secondIndex, 2, 3)
+        }
+    }
+
+    @Test
+    fun `Switch empty slot with item in another container`() {
+        // Given
+        val otherItems = IntArray(10) { -1 }
+        val otherAmounts = IntArray(10) { 0 }
+        val other = spyk(
+            Container(
+                decoder = decoder,
+                items = otherItems,
+                amounts = otherAmounts
+            )
+        )
+        val firstIndex = 1
+        val secondIndex = 3
+        items[firstIndex] = 2
+        amounts[firstIndex] = 3
+        // When
+        val result = container.switch(firstIndex, other, secondIndex)
+        // Then
+        assertTrue(result)
+        verify {
+            container.set(firstIndex, -1, 0)
             other.set(secondIndex, 2, 3)
         }
     }
