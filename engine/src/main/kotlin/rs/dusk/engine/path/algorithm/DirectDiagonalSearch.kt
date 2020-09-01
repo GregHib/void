@@ -1,10 +1,10 @@
-package rs.dusk.engine.path.find
+package rs.dusk.engine.path.algorithm
 
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.map.Tile
-import rs.dusk.engine.path.Finder
+import rs.dusk.engine.path.PathAlgorithm
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
@@ -15,7 +15,7 @@ import rs.dusk.engine.path.TraversalStrategy
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 20, 2020
  */
-class DirectDiagonalSearch : Finder {
+class DirectDiagonalSearch : PathAlgorithm {
 
     override fun find(
         tile: Tile,

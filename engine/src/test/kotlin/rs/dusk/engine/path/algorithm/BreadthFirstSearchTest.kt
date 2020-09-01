@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.find
+package rs.dusk.engine.path.algorithm
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -12,7 +12,7 @@ import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
-import rs.dusk.engine.path.find.BreadthFirstSearch.Companion.GRAPH_SIZE
+import rs.dusk.engine.path.algorithm.BreadthFirstSearch.Companion.GRAPH_SIZE
 import java.util.*
 
 /**

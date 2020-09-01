@@ -1,4 +1,4 @@
-package rs.dusk.engine.path.find
+package rs.dusk.engine.path.algorithm
 
 import io.mockk.every
 import io.mockk.mockk
