@@ -7,10 +7,10 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.item.FloorItem
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
-import rs.dusk.engine.path.find.AxisAlignment
-import rs.dusk.engine.path.find.BreadthFirstSearch
-import rs.dusk.engine.path.find.DirectDiagonalSearch
-import rs.dusk.engine.path.find.DirectSearch
+import rs.dusk.engine.path.algorithm.AxisAlignment
+import rs.dusk.engine.path.algorithm.BreadthFirstSearch
+import rs.dusk.engine.path.algorithm.DirectDiagonalSearch
+import rs.dusk.engine.path.algorithm.DirectSearch
 import rs.dusk.engine.path.strat.EntityTileTargetStrategy
 import rs.dusk.engine.path.strat.TileTargetStrategy
 
@@ -47,11 +47,11 @@ class PathFinder(
         if (strategy.reached(source.tile, source.size)) {
             return PathResult.Success.Complete(source.tile)
         }
-        val finder = getFinder(source, smart)
-        return finder.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
+        val algorithm = getAlgorithm(source, smart)
+        return algorithm.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
-    fun getFinder(source: Character, smart: Boolean): Finder {
+    fun getAlgorithm(source: Character, smart: Boolean): PathAlgorithm {
         return if (source is Player) {
             if (smart) bfs else dd
         } else {

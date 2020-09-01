@@ -12,7 +12,7 @@ import rs.dusk.engine.path.PathFinder.Companion.getStrategy
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
-import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.algorithm.BreadthFirstSearch
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
 import rs.dusk.utility.get
