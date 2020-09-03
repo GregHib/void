@@ -13,16 +13,16 @@ abstract class ScriptMock(private val suffix: String = "Test") : KoinMock() {
 
     protected lateinit var script: ScriptTemplateWithArgs
 
-    private fun loadScriptClass(): Class<*> {
-        val clazz = this::class.java
-        val scriptPackage = "${clazz.packageName}.${clazz.simpleName.substring(0, clazz.simpleName.length - suffix.length)}"
-        return Class.forName(scriptPackage)
-    }
-
     @Suppress("UNCHECKED_CAST")
     private fun <T : Any> loadScript(): T {
         val clazz = this::class.java
-        val scriptPackage = "${clazz.packageName}.${clazz.simpleName.substring(0, clazz.simpleName.length - suffix.length)}"
+        return loadScript(clazz.simpleName.substring(0, clazz.simpleName.length - suffix.length))
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    internal fun <T : Any> loadScript(name: String): T {
+        val clazz = this::class.java
+        val scriptPackage = "${clazz.packageName}.$name"
         return Class.forName(scriptPackage).constructors.first().newInstance(emptyArray<String>()) as T
     }
 

@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade
+
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CancellationException
 import rs.dusk.cache.definition.decoder.ItemDecoder

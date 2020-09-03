@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade.lend
+
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.has

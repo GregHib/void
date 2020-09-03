@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade
+
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.event.then

@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade
+
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where

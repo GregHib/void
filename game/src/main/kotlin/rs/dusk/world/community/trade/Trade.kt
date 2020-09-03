@@ -26,6 +26,7 @@ object Trade {
         return partner
     }
 }
+
 fun Container.calculateValue(decoder: ItemDecoder): Long {
     val items = getItems()
     val amounts = getAmounts()

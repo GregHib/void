@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade.lend
+
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.dialogue.dialogue

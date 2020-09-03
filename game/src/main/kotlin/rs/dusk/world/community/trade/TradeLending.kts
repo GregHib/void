@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade
+
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable

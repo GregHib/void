@@ -1,3 +1,5 @@
+package rs.dusk.world.community.trade
+
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.entity.character.contain.inventory

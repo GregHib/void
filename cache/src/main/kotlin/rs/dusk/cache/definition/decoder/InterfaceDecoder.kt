@@ -17,6 +17,9 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
 
     override fun create() = InterfaceDefinition()
 
+    override val size: Int
+        get() = cache.lastIndexId(index)
+
     override fun readData(id: Int): InterfaceDefinition? {
         val archive = getArchive(id)
         val lastArchive = cache.lastFileId(index, archive)
