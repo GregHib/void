@@ -39,14 +39,11 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
     }
 
     fun InterfaceComponentDefinition.read(buffer: Reader) {
-        var i = buffer.readUnsignedByte()
-        if (i == 255) {
-            i = -1
-        }
+        buffer.readUnsignedByte()
         type = buffer.readUnsignedByte()
         if (type and 0x80 != 0) {
             type = type and 0x7f
-            aString4765 = buffer.readString()
+            unknown = buffer.readString()
         }
         contentType = buffer.readShort()
         basePositionX = buffer.readUnsignedShort()
@@ -58,22 +55,15 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         horizontalPositionMode = buffer.readByte().toByte()
         verticalPositionMode = buffer.readByte().toByte()
         parent = buffer.readShort()
-        parent = if (parent == 65535) {
-            -1
-        } else {
-            parent + (id and -65536)
+        if (parent == 65535) {
+            parent = -1
         }
         val i_17_ = buffer.readUnsignedByte()
         hidden = 0x1 and i_17_ != 0
-        if (i >= 0) {
-            disableHover = i_17_ and 0x2 != 0
-        }
         if (type == 0) {
             scrollWidth = buffer.readShort()
             scrollHeight = buffer.readShort()
-            if (i < 0) {
-                disableHover = buffer.readUnsignedByte() == 1
-            }
+            disableHover = buffer.readUnsignedByte() == 1
         }
         if (type == 3) {
             colour = buffer.readInt()
@@ -85,9 +75,6 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             if (fontId == 65535) {
                 fontId = -1
             }
-            if (i >= 2) {
-                monochrome = buffer.readUnsignedByte() == 1
-            }
             text = buffer.readString()
             lineHeight = buffer.readUnsignedByte()
             horizontalTextAlign = buffer.readUnsignedByte()
@@ -95,9 +82,6 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             shaded = buffer.readUnsignedByte() == 1
             colour = buffer.readInt()
             alpha = buffer.readUnsignedByte()
-            if (i >= 0) {
-                lineCount = buffer.readUnsignedByte()
-            }
         }
         if (type == 5) {
             defaultImage = buffer.readInt()
@@ -111,9 +95,6 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             flipVertical = buffer.readUnsignedByte() == 1
             flipHorizontal = buffer.readUnsignedByte() == 1
             colour = buffer.readInt()
-            if (i >= 3) {
-                aBoolean4782 = buffer.readUnsignedByte() == 1
-            }
         }
         if (type == 6) {
             defaultMediaType = 1
@@ -122,7 +103,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
                 defaultMediaId = -1
             }
             val i_19_ = buffer.readUnsignedByte()
-            aBoolean4707 = 0x4 and i_19_ == 4
+            animated = 0x4 and i_19_ == 4
             val bool = 0x1 and i_19_ == 1
             centreType = i_19_ and 0x2 == 2
             ignoreZBuffer = 0x8 and i_19_ == 8
@@ -164,7 +145,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             keyRepeat = ByteArray(11)
             keyCodes = ByteArray(11)
             keyModifiers = IntArray(11)
-            while ( /**/i_21_ != 0) {
+            while (i_21_ != 0) {
                 val i_22_ = (i_21_ shr 4) - 1
                 i_21_ = buffer.readUnsignedByte() or i_21_ shl 8
                 i_21_ = i_21_ and 0xfff
@@ -173,7 +154,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
                 }
                 val b_23_ = buffer.readByte().toByte()
                 if (b_23_.toInt() != 0) {
-                    aBoolean4802 = true
+                    clickable = true
                 }
                 val b_24_ = buffer.readByte().toByte()
                 keyModifiers!![i_22_] = i_21_
@@ -182,35 +163,36 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
                 i_21_ = buffer.readUnsignedByte()
             }
         }
-        applyText = buffer.readString()
+        name = buffer.readString()
         val i_25_ = buffer.readUnsignedByte()
+        println("Read $i_25_ expecting ${i_25_ and 0xf} options and ${i_25_ shr 4} icons")
         val optionCount = i_25_ and 0xf
         if (optionCount > 0) {
             options = (0 until optionCount).map { buffer.readString() }.toTypedArray()
         }
-        val i_28_ = i_25_ shr 4
-        if (i_28_ > 0) {
+        val iconCount = i_25_ shr 4
+        if (iconCount > 0) {
             val i_29_ = buffer.readUnsignedByte()
-            anIntArray4863 = IntArray(i_29_ + 1)
+            mouseIcon = IntArray(i_29_ + 1)
             var i_30_ = 0
-            while (anIntArray4863!!.size > i_30_) {
-                anIntArray4863!![i_30_] = -1
+            while (mouseIcon!!.size > i_30_) {
+                mouseIcon!![i_30_] = -1
                 i_30_++
             }
-            anIntArray4863!![i_29_] = buffer.readShort()
+            mouseIcon!![i_29_] = buffer.readShort()
         }
-        if (i_28_ > 1) {
+        if (iconCount > 1) {
             val i_31_ = buffer.readUnsignedByte()
-            anIntArray4863!![i_31_] = buffer.readShort()
+            mouseIcon!![i_31_] = buffer.readShort()
         }
-        aString4784 = buffer.readString()
-        if (aString4784 == "") {
-            aString4784 = null
+        optionOverride = buffer.readString()
+        if (optionOverride == "") {
+            optionOverride = null
         }
         anInt4708 = buffer.readUnsignedByte()
         anInt4795 = buffer.readUnsignedByte()
         anInt4860 = buffer.readUnsignedByte()
-        aString4786 = buffer.readString()
+        useOption = buffer.readString()
         var i_32_ = -1
         if (setting and 0x3fda8 shr 11 != 0) {
             i_32_ = buffer.readShort()
@@ -226,29 +208,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
                 anInt4839 = -1
             }
         }
-        if (i >= 0) {
-            anInt4761 = buffer.readShort()
-            if (anInt4761 == 65535) {
-                anInt4761 = -1
-            }
-        }
         this.setting = InterfaceComponentSetting(setting, i_32_)
-        if (i >= 0) {
-            val i_33_ = buffer.readUnsignedByte()
-            var i_34_ = 0
-            while (i_33_ > i_34_) {
-                val i_35_ = buffer.readMedium()
-                val i_36_ = buffer.readInt()
-                params!![i_35_.toLong()] = i_36_
-                i_34_++
-            }
-            val i_37_ = buffer.readUnsignedByte()
-            for (i_38_ in 0 until i_37_) {
-                val i_39_ = buffer.readMedium()
-                val string = buffer.readString()
-                params!![i_39_.toLong()] = string
-            }
-        }
         anObjectArray4758 = decodeScript(buffer)
         mouseEnterHandler = decodeScript(buffer)
         mouseExitHandler = decodeScript(buffer)
@@ -259,9 +219,6 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         refreshHandler = decodeScript(buffer)
         updateHandler = decodeScript(buffer)
         anObjectArray4770 = decodeScript(buffer)
-        if (i >= 0) {
-            anObjectArray4751 = decodeScript(buffer)
-        }
         mouseMotionHandler = decodeScript(buffer)
         mousePressedHandler = decodeScript(buffer)
         mouseDraggedHandler = decodeScript(buffer)
@@ -285,15 +242,14 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
 
     companion object {
 
-        private fun InterfaceComponentDefinition.decodeScript(buffer: Reader): Array<Any?>? {
+        private fun InterfaceComponentDefinition.decodeScript(buffer: Reader): Array<Any>? {
             val length = buffer.readUnsignedByte()
             if (length == 0) {
                 return null
             }
-            val objects = arrayOfNulls<Any>(length)
-            repeat(length) {
+            val objects = Array<Any>(length) {
                 val string = buffer.readUnsignedBoolean()
-                objects[it] = if (string) buffer.readString() else buffer.readInt()
+                if (string) buffer.readString() else buffer.readInt()
             }
             hasScript = true
             return objects
@@ -304,11 +260,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             if (length == 0) {
                 return null
             }
-            val data = IntArray(length)
-            for (index in 0 until length) {
-                data[index] = buffer.readInt()
-            }
-            return data
+            return IntArray(length) { buffer.readInt() }
         }
     }
 }

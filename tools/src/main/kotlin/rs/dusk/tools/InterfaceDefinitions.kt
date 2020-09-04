@@ -13,11 +13,11 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        for (i in 0 until decoder.size) {
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            for ((id, component) in def.components ?: continue) {
-                if(component.toString().contains("Lent")) {
-                    println("$i $component")
+            for((id, comp) in def.components ?: continue) {
+                if(comp.anIntArray4789 != null) {
+                    println("$i $id ${comp.anIntArray4789?.toList()} ${comp.type}")
                 }
             }
         }

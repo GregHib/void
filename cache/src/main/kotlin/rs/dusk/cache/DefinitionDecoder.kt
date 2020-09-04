@@ -15,6 +15,9 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
     open val size: Int
         get() = cache.lastIndexId(index) * 256 + (cache.archiveCount(index, cache.lastIndexId(index)))
 
+    val indices: IntRange
+        get() = 0 until size
+
     fun getOrNull(id: Int): T? {
         var value = dataCache[id]
         if (value == null) {

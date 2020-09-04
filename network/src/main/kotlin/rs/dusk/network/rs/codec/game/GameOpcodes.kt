@@ -139,6 +139,7 @@ object GameOpcodes {
     const val SCRIPT = 50
     const val LOGOUT = 51
     const val CLIENT_VARC_STR = 54
+
     const val IGNORE_LIST = 57
     const val INTERFACE_MODEL = 58
     const val LOGOUT_LOBBY = 59
