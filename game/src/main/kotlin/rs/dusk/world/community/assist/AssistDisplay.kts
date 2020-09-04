@@ -4,7 +4,6 @@ import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.client.variable.toggleVar
 import rs.dusk.engine.entity.character.getOrNull
-import rs.dusk.engine.entity.character.has
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.skill.Skill
@@ -14,7 +13,6 @@ import rs.dusk.world.community.assist.Assistance.canAssist
 import rs.dusk.world.community.assist.Assistance.redirectSkillExperience
 import rs.dusk.world.community.assist.Assistance.stopRedirectingSkillExp
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
-import rs.dusk.world.interact.entity.player.spawn.logout.Logout
 
 /**
  * Assistance system display interface
@@ -29,15 +27,6 @@ BooleanVariable(4098, Variable.Type.VARBIT, true).register("assist_toggle_magic"
 BooleanVariable(4100, Variable.Type.VARBIT, true).register("assist_toggle_smithing")
 BooleanVariable(4101, Variable.Type.VARBIT, true).register("assist_toggle_cooking")
 BooleanVariable(4102, Variable.Type.VARBIT, true).register("assist_toggle_herblore")
-
-Logout where { player.has("assistant") } then {
-    val assistant: Player? = player.getOrNull("assistant")
-    assistant?.action?.cancel(ActionType.Assisting)
-}
-
-Logout where { player.has("assisted") } then {
-    player.action.cancel(ActionType.Assisting)
-}
 
 InterfaceOption where { name == "assist_xp" && option == "Toggle Skill On / Off" } then {
     val skill = Skill.valueOf(component.capitalize())

@@ -47,10 +47,10 @@ TickInput priority Priority.LOGOUT_QUEUE then {
 }
 
 fun disconnect(player: Player) {
-    bus.emit(Logout(player))
-    bus.emit(Unregistered(player))
-    bus.emit(PlayerDespawn(player))
     player.action.run(ActionType.Logout) {
         await<Unit>(Suspension.Infinite)
     }
+    bus.emit(Logout(player))
+    bus.emit(Unregistered(player))
+    bus.emit(PlayerDespawn(player))
 }
