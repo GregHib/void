@@ -662,7 +662,7 @@ trade_main:
         Remove-All: 3
         Remove-X: 4
         Value: 5
-        Examine: 8
+        Examine: 9
     offer_warning:
       id: 31
       container: trade_offer
@@ -715,7 +715,7 @@ trade_side:
         Offer-X: 4
         Value: 5
         Lend: 6
-        Examine: 8
+        Examine: 9
 
 # 6 lines
 tutorial_text:
@@ -873,13 +873,35 @@ lore_bank_side:
 equipment_bonuses:
   id: 667
   type: main_screen
+  components:
+    container:
+      id: 7
+      container: inventory
+      options:
+        Option1: 0
+        Equip: 1
+        Option3: 2
+        Option4: 6
+        Drop: 7
+        Examine: 9
+        Option7: 10
 
 pick_a_puppy:
   id: 668
   type: dialogue_box
 
-inventory_wear2:
+equipment_side:
   id: 670
+  type: inventory_tab
+  components:
+    container:
+      id: 0
+      container: inventory
+      options:
+        Equip: 0
+        Compare: 1
+        Stats: 2
+        Examine: 9
 
 inventory:
   id: 679
@@ -1014,9 +1036,36 @@ world_map:
 
 bank:
   id: 762
+  components:
+    container:
+      id: 93
+      container: bank
+      options:
+        Withdraw-1: 0
+        Withdraw-5: 1
+        Withdraw-10: 2
+        Withdraw-*: 3
+        Withdraw-X: 4
+        Withdraw-All: 5
+        Withdraw-All but one: 6
+        Examine: 9
+    equipment: 117
 
 bank_side:
   id: 763
+  type: inventory_tab
+  components:
+    container:
+      id: 0
+      container: inventory
+      options:
+        Deposit-1: 0
+        Deposit-5: 1
+        Deposit-10: 2
+        Deposit-*: 3
+        Deposit-X: 4
+        Deposit-All: 5
+        Examine: 9
 
 unknown_side4:
   id: 771

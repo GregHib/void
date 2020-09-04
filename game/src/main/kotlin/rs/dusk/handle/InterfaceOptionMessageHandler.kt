@@ -39,6 +39,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
         val (hash, itemId, itemSlot, option) = msg
+        println(msg)
 
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {
@@ -64,6 +65,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
 
         if (itemId != -1 && itemSlot != -1) {
             if (component == null) {
+                logger.info { "Interface $name component $componentId not found for player $player" }
                 return
             }
             val containerName = component.container

@@ -12,4 +12,5 @@ sealed class ActionType : CancellationException() {
     object FloorItem : ActionType()
     object Logout : ActionType()
     object Trade : ActionType()
+    object Bank : ActionType()
 }

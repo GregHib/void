@@ -43,9 +43,6 @@ fun Player.container(detail: ContainerDetail, secondary: Boolean = false): Conta
 val Player.inventory: Container
     get() = container("inventory")
 
-val Player.bank: Container
-    get() = container("bank")
-
 val Player.equipment: Container
     get() = container("worn_equipment")
 

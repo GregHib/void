@@ -3,7 +3,6 @@ package rs.dusk.world.community.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.*
-import rs.dusk.engine.entity.character.contain.bank
 import rs.dusk.engine.entity.character.contain.beastOfBurden
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
@@ -14,6 +13,7 @@ import rs.dusk.engine.task.delay
 import rs.dusk.utility.Time
 import rs.dusk.utility.func.plural
 import rs.dusk.utility.inject
+import rs.dusk.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
 object Loan {

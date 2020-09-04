@@ -165,7 +165,6 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
         }
         name = buffer.readString()
         val i_25_ = buffer.readUnsignedByte()
-        println("Read $i_25_ expecting ${i_25_ and 0xf} options and ${i_25_ shr 4} icons")
         val optionCount = i_25_ and 0xf
         if (optionCount > 0) {
             options = (0 until optionCount).map { buffer.readString() }.toTypedArray()

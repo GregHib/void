@@ -14,11 +14,12 @@ object InterfaceDefinitions {
         }.koin
         val decoder = InterfaceDecoder(koin.get())
         for (i in decoder.indices) {
+            if(i != 762) {
+                continue
+            }
             val def = decoder.getOrNull(i) ?: continue
             for((id, comp) in def.components ?: continue) {
-                if(comp.anIntArray4789 != null) {
-                    println("$i $id ${comp.anIntArray4789?.toList()} ${comp.type}")
-                }
+                println(comp.options?.toList())
             }
         }
     }
