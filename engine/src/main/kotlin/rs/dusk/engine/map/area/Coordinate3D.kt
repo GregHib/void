@@ -15,6 +15,10 @@ interface Coordinate3D : Coordinate2D {
     fun within(other: Coordinate3D, radius: Int): Boolean {
         return plane == other.plane && super.within(other, radius)
     }
+
+    fun within(x: Int, y: Int, plane: Int, radius: Int): Boolean {
+        return this.plane == plane && super.within(x, y, radius)
+    }
 }
 
 @Suppress("UNCHECKED_CAST")

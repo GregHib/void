@@ -17,6 +17,10 @@ interface Coordinate2D {
         return abs(x - other.x) <= radius && abs(y - other.y) <= radius
     }
 
+    fun within(x: Int, y: Int, radius: Int): Boolean {
+        return abs(this.x - x) <= radius && abs(this.y - y) <= radius
+    }
+
 }
 
 @Suppress("UNCHECKED_CAST")
