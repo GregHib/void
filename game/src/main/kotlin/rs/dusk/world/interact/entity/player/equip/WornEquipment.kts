@@ -3,6 +3,7 @@ package rs.dusk.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.open
+import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.on
@@ -11,13 +12,9 @@ import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
-on(InterfaceOption) {
-    where {
-        name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats"
-    }
-    then {
-        player.open("equipment_bonuses")
-    }
+InterfaceOption where {  name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" } then {
+    player.setVar("equipment_banking", false)
+    player.open("equipment_bonuses")
 }
 
 on(InterfaceOption) {

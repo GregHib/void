@@ -8,6 +8,7 @@ import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
+import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.event.then
@@ -51,15 +52,14 @@ InterfaceOption where { name == "bank" && component == "equipment" && option == 
     player.close("bank")
     player.close("bank_side")
     player.open("equipment_bonuses")
+    player.setVar("equipment_banking", true)
     player.open("equipment_side")
 }
 
-InterfaceOption then {
-    println(this)
-}
 
-InterfaceOption where { name == "equipment_side" } then {
-    player.interfaceOptions.send("equipment_side", "container")
-    // TODO why aren't options clickable?
-    player.interfaceOptions.unlockAll("equipment_side", "container", 0 until 28)
+InterfaceOption where { name == "equipment_bonuses" && component == "bank" && option == "Show bank" && player.getVar("equipment_banking", false) } then {
+    player.close("equipment_bonuses")
+    player.close("equipment_side")
+    player.open("bank")
+    player.open("bank_side")
 }

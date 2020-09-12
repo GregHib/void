@@ -876,15 +876,13 @@ equipment_bonuses:
   components:
     container:
       id: 7
-      container: inventory
+      container: worn_equipment
       options:
-        Option1: 0
-        Equip: 1
-        Option3: 2
-        Option4: 6
-        Drop: 7
+        Remove: 0
+        Stats: 8
         Examine: 9
-        Option7: 10
+    bank: 49
+    stats: 52
 
 pick_a_puppy:
   id: 668
