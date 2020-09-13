@@ -69,6 +69,7 @@ allprojects {
         implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$jacksonVersion")
         implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:$jacksonVersion")
         implementation("org.postgresql:postgresql:42.2.12")
+	    implementation("com.zaxxer:HikariCP:3.4.5")
         implementation("it.unimi.dsi:fastutil:8.3.1")
 
         //Testing

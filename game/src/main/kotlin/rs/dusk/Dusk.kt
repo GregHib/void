@@ -29,6 +29,8 @@ import rs.dusk.engine.map.region.obj.xteaModule
 import rs.dusk.engine.map.region.regionModule
 import rs.dusk.engine.map.region.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
+import rs.dusk.engine.storage.databaseModule
+import rs.dusk.engine.task.StartTask
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
@@ -103,6 +105,7 @@ object Dusk {
                 instanceModule,
                 instancePoolModule,
                 detailsModule,
+	              databaseModule
                 logoutModule,
                 objectFactoryModule
             )

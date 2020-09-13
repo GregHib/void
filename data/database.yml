@@ -1,0 +1,3 @@
+jdbcUrl:  "jdbc:postgresql://localhost:5432/dusk"
+username: "postgres"
+password: "admin"
