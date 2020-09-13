@@ -163,6 +163,7 @@ object GameOpcodes {
     const val INTERFACE_NPC_HEAD = 98
     const val OBJECT_CUSTOMISE = 99
     const val CLIENT_VARP = 101
+    const val PLAYER_WEIGHT = 103
     const val CHAT = 102
     const val INTERFACE_COMPONENT_POSITION = 104
     const val IGNORE_LIST_UPDATE = 105

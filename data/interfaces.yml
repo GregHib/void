@@ -881,6 +881,24 @@ equipment_bonuses:
         Remove: 0
         Stats: 8
         Examine: 9
+    stab: 31
+    slash: 32
+    crush: 33
+    magic: 34
+    range: 35
+    stab_def: 36
+    slash_def: 37
+    crush_def: 38
+    magic_def: 39
+    ranged_def: 40
+    summoning: 41
+    absorb_melee: 42
+    absorb_magic: 43
+    absorb_ranged: 44
+    strength: 45
+    ranged_strength: 46
+    prayer: 47
+    magic_damage: 48
     bank: 49
     stats: 52
 
@@ -897,7 +915,6 @@ equipment_side:
       container: inventory
       options:
         Equip: 0
-        Compare: 1
         Stats: 2
         Examine: 9
 

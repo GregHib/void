@@ -14,9 +14,11 @@ object ItemDefinitions {
         }.koin
         val decoder = ItemDecoder(koin.get())
         var count = 0
-        println(decoder.get(4051))
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
+            if(def.params?.containsKey(1) == true) {
+                println("Found $i")
+            }
         }
         println(count)
     }

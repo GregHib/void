@@ -39,7 +39,6 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
         val (hash, itemId, itemSlot, option) = msg
-        println(msg)
 
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {

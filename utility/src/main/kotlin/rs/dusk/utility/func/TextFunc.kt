@@ -90,7 +90,6 @@ fun String.plural(count: Int, plural: String = "s"): String {
 fun Boolean?.toInt() = if (this == true) 1 else 0
 fun Int?.toBoolean() = this == 1
 
-
 fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
@@ -105,17 +104,13 @@ fun String?.protocolFormat(): String {
     return formatted?.toLowerCase() ?: ""
 }
 
-/**
- * Formats a players username for display, uppercase on only beginning of new words
- * @return The formatted name
- */
-fun String?.displayFormat(): String {
+fun String?.toCamelCase(): String {
     if (this == null) {
         return ""
     }
     val formatted = StringBuilder()
     var newWord = true
-    for (char in this.toLowerCase().replace("_", " ")) {
+    for (char in toLowerCase().replace("_", " ")) {
         formatted.append(
             if (newWord) {
                 newWord = false
@@ -126,6 +121,30 @@ fun String?.displayFormat(): String {
         )
         if (char == ' ') {
             newWord = true
+        }
+    }
+    return formatted.toString()
+}
+
+fun String?.toPascalCase(): String {
+    if (this == null) {
+        return ""
+    }
+    val formatted = StringBuilder()
+    val text = replace("_", " ").toLowerCase()
+    var word = false
+    for (i in indices) {
+        val char = text[i]
+        formatted.append(
+            if (i == 0 || word) {
+                word = false
+                char.toUpperCase()
+            } else {
+                char
+            }
+        )
+        if (char == ' ') {
+            word = true
         }
     }
     return formatted.toString()

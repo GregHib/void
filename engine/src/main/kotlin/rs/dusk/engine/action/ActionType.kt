@@ -13,4 +13,5 @@ sealed class ActionType : CancellationException() {
     object Logout : ActionType()
     object Trade : ActionType()
     object Bank : ActionType()
+    object Equipping : ActionType()
 }

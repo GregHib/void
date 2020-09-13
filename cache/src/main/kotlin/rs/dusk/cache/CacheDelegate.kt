@@ -80,4 +80,13 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
     override fun getArchiveId(index: Int, name: String): Int {
         return delegate.index(index).archiveId(name)
     }
+
+    override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
+        delegate.put(index, archive, file, data, xteas)
+    }
+
+    override fun update(): Boolean {
+        delegate.update()
+        return true
+    }
 }
