@@ -13,7 +13,7 @@ interface Storable {
 	/**
 	 * This function handles reading from the database
 	 */
-	fun read(connection : Connection)
+	fun read(connection : Connection) : Any
 	
 	/**
 	 * This function handles writing to the database
