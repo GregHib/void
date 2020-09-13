@@ -7,12 +7,13 @@ import org.koin.dsl.module
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
+import java.sql.Connection
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since August 12, 2020
  */
-class DatabaseFactory {
+class DatabaseHandler {
 	
 	private val logger = InlineLogger()
 	
@@ -40,7 +41,7 @@ class DatabaseFactory {
 	/**
 	 * The connection to use
 	 */
-	val connection = dataSource.connection
+	var connection : Connection? = null
 	
 	/**
 	 * Loads the configuration from the file containing the data and constructs a new [instance][HikariConfig]
@@ -64,8 +65,9 @@ class DatabaseFactory {
 	 * Starts the database factory
 	 */
 	fun start() {
-		val config = loadConfiguration()
-		construct()
+		config = loadConfiguration()
+		dataSource = construct()
+		connection = dataSource.connection
 	}
 	
 	init {
@@ -76,5 +78,5 @@ class DatabaseFactory {
 }
 
 val databaseModule = module {
-	single(createdAtStart = true) { DatabaseFactory() }
+	single(createdAtStart = true) { DatabaseHandler() }
 }

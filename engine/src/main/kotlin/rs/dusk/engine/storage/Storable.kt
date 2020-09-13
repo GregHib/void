@@ -1,5 +1,7 @@
 package rs.dusk.engine.storage
 
+import java.sql.Connection
+
 /**
  * This class provides the storage functionality for all data that will be saved in a sql database
  *
@@ -8,9 +10,15 @@ package rs.dusk.engine.storage
  */
 interface Storable {
 	
-	fun save()
+	/**
+	 * This function handles reading from the database
+	 */
+	fun read(connection : Connection)
 	
-	fun load()
+	/**
+	 * This function handles writing to the database
+	 */
+	fun write(connection : Connection)
 	
 	
 }
