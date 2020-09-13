@@ -18,7 +18,7 @@ object ItemDefinitionsParamConverter {
             single { CacheDelegate("./cache/data/cache/", "1", "1") as Cache }
         }
         val cache718 = module {
-            single { CacheDelegate("C:\\Users\\Greg\\Downloads\\rs718_cache\\", "1", "1") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") as Cache }
         }
 
         val koin = startKoin {

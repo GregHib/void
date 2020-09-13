@@ -375,6 +375,7 @@ khali_brew:
   examine: "A bottle of Khazard's worst brew."
 ice_arrows:
   id: 78
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "An ice arrow."
@@ -1200,18 +1201,21 @@ plague_trousers:
   examine: "These should protect me from the plague, I hope!"
 orange_goblin_mail:
   id: 286
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 blue_goblin_mail:
   id: 287
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 goblin_mail:
   id: 288
+  slot: "Chest"
   weight: 3.628
   limit: 100
   demise: "Wilderness"
@@ -2514,6 +2518,7 @@ unlit_torch_noted:
   id: 597
 bronze_fire_arrows_unlit:
   id: 598
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with bronze heads and oil-soaked cloth."
 picture_3:
@@ -3502,6 +3507,7 @@ dramen_staff:
   examine: "Crafted from a Dramen tree branch."
 perfect_ring:
   id: 773
+  slot: "Ring"
   weight: 0.007
   tradeable: false
   demise: "Wilderness"
@@ -4039,76 +4045,94 @@ rune_knife_p:
   examine: "A finely balanced throwing knife."
 bronze_bolts:
   id: 877
+  slot: "Arrows"
   limit: 10000
   examine: "Bronze ammunition for crossbows. ."
 bronze_bolts_p:
   id: 878
+  slot: "Arrows"
   limit: 10000
   examine: "Bronze ammunition for crossbows. ."
 opal_bolts:
   id: 879
+  slot: "Arrows"
   limit: 25000
   examine: "Opal tipped Bronze crossbow bolts."
 pearl_bolts:
   id: 880
+  slot: "Arrows"
   limit: 25000
   examine: "Pearl tipped Iron crossbow bolts."
 barbed_bolts:
   id: 881
+  slot: "Arrows"
   limit: 10000
   examine: "Great if you have a crossbow!"
 bronze_arrow:
   id: 882
+  slot: "Arrows"
   limit: 10000
   demise: "Wilderness"
   examine: "Ammunition for longbows and shortbows. ."
 bronze_arrow_p:
   id: 883
+  slot: "Arrows"
   limit: 10000
   demise: "Wilderness"
   examine: "Ammunition for longbows and shortbows. ."
 iron_arrow:
   id: 884
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 iron_arrow_p:
   id: 885
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 steel_arrow:
   id: 886
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 steel_arrow_p:
   id: 887
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 mithril_arrow:
   id: 888
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with mithril heads."
 mithril_arrow_p:
   id: 889
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with mithril heads."
 adamant_arrow:
   id: 890
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with adamant heads."
 adamant_arrow_p:
   id: 891
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with adamant heads."
 rune_arrow:
   id: 892
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with rune heads."
 rune_arrow_p:
   id: 893
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with rune heads."
 bronze_fire_arrows_lit:
   id: 942
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, bronze-headed fire arrow."
 worm:
@@ -7069,6 +7093,7 @@ crushed_gem_noted:
   id: 1634
 gold_ring:
   id: 1635
+  slot: "Ring"
   weight: 0.004
   limit: 10000
   demise: "Wilderness"
@@ -7077,6 +7102,7 @@ gold_ring_noted:
   id: 1636
 sapphire_ring:
   id: 1637
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   demise: "Wilderness"
@@ -7085,6 +7111,7 @@ sapphire_ring_noted:
   id: 1638
 emerald_ring:
   id: 1639
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "A valuable ring."
@@ -7092,6 +7119,7 @@ emerald_ring_noted:
   id: 1640
 ruby_ring:
   id: 1641
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   examine: "A valuable ring."
@@ -7099,6 +7127,7 @@ ruby_ring_noted:
   id: 1642
 diamond_ring:
   id: 1643
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   examine: "A valuable ring."
@@ -7106,6 +7135,7 @@ diamond_ring_noted:
   id: 1644
 dragonstone_ring:
   id: 1645
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "A valuable ring."
@@ -10746,46 +10776,57 @@ bones_noted_2:
   id: 2531
 iron_fire_arrows_unlit:
   id: 2532
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with iron heads and oil-soaked cloth."
 iron_fire_arrows_lit:
   id: 2533
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, iron-headed fire arrow."
 steel_fire_arrows_unlit:
   id: 2534
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with steel heads and oil-soaked cloth."
 steel_fire_arrows_lit:
   id: 2535
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, steel-headed fire arrow."
 mithril_fire_arrows_unlit:
   id: 2536
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with mithril heads and oil-soaked cloth."
 mithril_fire_arrows_lit:
   id: 2537
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, mithril-headed fire arrow."
 adamant_fire_arrows_unlit:
   id: 2538
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with adamant heads and oil-soaked cloth."
 adamant_fire_arrows_lit:
   id: 2539
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, adamant-headed fire arrow."
 rune_fire_arrows_unlit:
   id: 2540
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with rune heads and oil-soaked cloth."
 rune_fire_arrows_lit:
   id: 2541
+  slot: "Arrows"
   limit: 10000
   examine: "An easy to make, rune-headed fire arrow."
 ring_of_recoil:
   id: 2550
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   examine: "An enchanted ring."
@@ -10793,6 +10834,7 @@ ring_of_recoil_noted:
   id: 2551
 ring_of_duelling_8:
   id: 2552
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10800,6 +10842,7 @@ ring_of_duelling_8_noted:
   id: 2553
 ring_of_duelling_7:
   id: 2554
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10807,6 +10850,7 @@ ring_of_duelling_7_noted:
   id: 2555
 ring_of_duelling_6:
   id: 2556
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10814,6 +10858,7 @@ ring_of_duelling_6_noted:
   id: 2557
 ring_of_duelling_5:
   id: 2558
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10821,6 +10866,7 @@ ring_of_duelling_5_noted:
   id: 2559
 ring_of_duelling_4:
   id: 2560
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10828,6 +10874,7 @@ ring_of_duelling_4_noted:
   id: 2561
 ring_of_duelling_3:
   id: 2562
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10835,6 +10882,7 @@ ring_of_duelling_3_noted:
   id: 2563
 ring_of_duelling_2:
   id: 2564
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10842,6 +10890,7 @@ ring_of_duelling_2_noted:
   id: 2565
 ring_of_duelling_1:
   id: 2566
+  slot: "Ring"
   weight: 0.006
   limit: 10000
   examine: "An enchanted ring."
@@ -10849,6 +10898,7 @@ ring_of_duelling_1_noted:
   id: 2567
 ring_of_forging:
   id: 2568
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   examine: "An enchanted ring."
@@ -10856,6 +10906,7 @@ ring_of_forging_noted:
   id: 2569
 ring_of_life:
   id: 2570
+  slot: "Ring"
   weight: 0.006
   limit: 5000
   examine: "An enchanted ring."
@@ -10863,6 +10914,7 @@ ring_of_life_noted:
   id: 2571
 ring_of_wealth:
   id: 2572
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "An enchanted ring."
@@ -12393,6 +12445,7 @@ flighted_ogre_arrow:
   examine: "A wooden arrow shaft with four flights attached."
 ogre_arrow:
   id: 2866
+  slot: "Arrows"
   limit: 1000
   examine: "A large ogre arrow with a bone tip."
 ogre_bellows:
@@ -17073,54 +17126,63 @@ mspeak_amulet:
   examine: "It's an unstrung amulet of monkeyspeak. It makes vague chattering noises."
 monkey_talisman:
   id: 4023
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a monkey head."
 ninja_monkey_greegree:
   id: 4024
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a small ninja monkey head."
 ninja_monkey_greegree_small:
   id: 4025
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a medium ninja monkey head."
 gorilla_greegree:
   id: 4026
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a gorilla head."
 gorilla_greegree_bearded:
   id: 4027
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a bearded gorilla head."
 gorilla_greegree_ancient:
   id: 4028
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a mysterious monkey head."
 zombie_monkey_greegree_small:
   id: 4029
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a small zombie monkey head."
 zombie_monkey_greegree:
   id: 4030
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
   examine: "A magical talisman in the shape of a big zombie monkey head."
 monkey_greegree:
   id: 4031
+  slot: "Weapon"
   weight: 0.085
   tradeable: false
   demise: "Reclaim"
@@ -17635,6 +17697,7 @@ leaf-bladed_spear_2:
   examine: "A spear with a leaf-shaped point."
 broad_arrow_2:
   id: 4160
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Arrow with a wider than normal tip."
@@ -17688,21 +17751,25 @@ slayers_staff_noted:
   id: 4171
 broad_arrow_3:
   id: 4172
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Arrow with a wider than normal tip."
 broad_arrow_4:
   id: 4173
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Arrow with a wider than normal tip."
 broad_arrow_5:
   id: 4174
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Arrow with a wider than normal tip."
 broad_arrow_6:
   id: 4175
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Arrow with a wider than normal tip."
@@ -17858,6 +17925,7 @@ conductor:
   examine: "A silver lightning conductor."
 ring_of_charos:
   id: 4202
+  slot: "Ring"
   weight: 0.005
   tradeable: false
   alchable: false
@@ -18361,12 +18429,16 @@ petition_form:
   examine: "A scroll of paper containing signatures."
 bedsheet:
   id: 4284
+  slot: "Hat"
+  type: "FullFace"
   weight: 1.0
   tradeable: false
   demise: "Wilderness"
   examine: "It's a bedsheet."
 bedsheet_ectoplasm:
   id: 4285
+  slot: "Hat"
+  type: "FullFace"
   weight: 1.0
   tradeable: false
   demise: "Wilderness"
@@ -19991,6 +20063,7 @@ warm_key:
   examine: "This key is unusually warm to the touch."
 ring_of_visibility:
   id: 4657
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Wilderness"
@@ -20435,6 +20508,7 @@ karils_skirt_noted:
   id: 4739
 bolt_rack:
   id: 4740
+  slot: "Arrows"
   limit: 10000
   examine: "Must need a special type of crossbow to use this."
 torags_helm:
@@ -20507,30 +20581,37 @@ veracs_plateskirt_noted:
   id: 4760
 bronze_brutal:
   id: 4773
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt bronze arrow...ouch"
 iron_brutal:
   id: 4778
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt iron arrow...ouch"
 steel_brutal:
   id: 4783
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt steel arrow...ouch"
 black_brutal:
   id: 4788
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt black arrow...ouch"
 mithril_brutal:
   id: 4793
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt mithril arrow...ouch"
 adamant_brutal:
   id: 4798
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt adamantite arrow...ouch"
 rune_brutal:
   id: 4803
+  slot: "Arrows"
   limit: 1000
   examine: "Blunt rune arrow...ouch"
 black_prism:
@@ -23645,52 +23726,64 @@ shaikahan_bonemeal:
   examine: "A pot of crushed Shaikahan bones."
 bronze_arrow_p+:
   id: 5616
+  slot: "Arrows"
   limit: 10000
   demise: "Wilderness"
   examine: "Ammunition for longbows and shortbows. ."
 iron_arrow_p+:
   id: 5617
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 steel_arrow_p+:
   id: 5618
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 mithril_arrow_p+:
   id: 5619
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with mithril heads."
 adamant_arrow_p+:
   id: 5620
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with adamant heads."
 rune_arrow_p+:
   id: 5621
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with rune heads."
 bronze_arrow_p++:
   id: 5622
+  slot: "Arrows"
   limit: 10000
   demise: "Wilderness"
   examine: "Ammunition for longbows and shortbows. ."
 iron_arrow_p++:
   id: 5623
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 steel_arrow_p++:
   id: 5624
+  slot: "Arrows"
   limit: 10000
   examine: "Ammunition for longbows and shortbows. ."
 mithril_arrow_p++:
   id: 5625
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with mithril heads."
 adamant_arrow_p++:
   id: 5626
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with adamant heads."
 rune_arrow_p++:
   id: 5627
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with rune heads."
 bronze_dart_p+:
@@ -25310,10 +25403,12 @@ stool_noted:
   id: 6060
 bronze_bolts_p+:
   id: 6061
+  slot: "Arrows"
   limit: 10000
   examine: "Bronze ammunition for crossbows. ."
 bronze_bolts_p++:
   id: 6062
+  slot: "Arrows"
   limit: 10000
   examine: "Bronze ammunition for crossbows. ."
 spirit_tree:
@@ -26985,6 +27080,7 @@ white_tree_sapling:
   examine: "A white tree sapling."
 ring_of_charos_a:
   id: 6465
+  slot: "Ring"
   weight: 0.005
   tradeable: false
   alchable: false
@@ -27283,6 +27379,7 @@ onyx_noted:
   id: 6574
 onyx_ring_2:
   id: 6575
+  slot: "Ring"
   weight: 0.006
   limit: 100
   examine: "A valuable ring."
@@ -28013,6 +28110,7 @@ dagannoth_bones_noted:
   id: 6730
 seers_ring:
   id: 6731
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A mysterious ring that can fill the wearer with magical power..."
@@ -28020,6 +28118,7 @@ seers_ring_noted:
   id: 6732
 archers_ring:
   id: 6733
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A fabled ring that improves the wearer's skill with a bow..."
@@ -28027,6 +28126,7 @@ archers_ring_noted:
   id: 6734
 warrior_ring:
   id: 6735
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A legendary ring once worn by Fremennik warriors."
@@ -28034,6 +28134,7 @@ warrior_ring_noted:
   id: 6736
 berserker_ring:
   id: 6737
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A ring reputed to bring out a berserk fury in its wearer."
@@ -36737,6 +36838,7 @@ dorgeshuun_cbow_noted:
   id: 8881
 bone_bolts:
   id: 8882
+  slot: "Arrows"
   limit: 10000
   examine: "Good if you have a bone crossbow!"
 zanik:
@@ -37579,36 +37681,42 @@ locust_meat_noted:
   id: 9053
 red_goblin_mail:
   id: 9054
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 black_goblin_mail:
   id: 9055
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 yellow_goblin_mail:
   id: 9056
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 green_goblin_mail:
   id: 9057
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 purple_goblin_mail:
   id: 9058
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
   examine: "Armour designed to fit goblins."
 pink_goblin_mail:
   id: 9059
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
@@ -37899,6 +38007,7 @@ a_special_tiara:
   examine: "I'll be the talk of the town with this... maybe."
 lunar_ring:
   id: 9104
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   alchable: false
@@ -37912,31 +38021,38 @@ astral_tiara:
   slot: "Hat"
 blurite_bolts:
   id: 9139
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Blurite crossbow bolts."
 iron_bolts:
   id: 9140
+  slot: "Arrows"
   limit: 25000
   examine: "Iron ammunition for crossbows. ."
 steel_bolts:
   id: 9141
+  slot: "Arrows"
   limit: 10000
   examine: "Steel ammunition for crossbows. ."
 mithril_bolts:
   id: 9142
+  slot: "Arrows"
   limit: 10000
   examine: "Mithril crossbow bolts."
 adamant_bolts:
   id: 9143
+  slot: "Arrows"
   limit: 10000
   examine: "Adamantite crossbow bolts."
 runite_bolts:
   id: 9144
+  slot: "Arrows"
   limit: 10000
   examine: "Runite crossbow bolts."
 silver_bolts:
   id: 9145
+  slot: "Arrows"
   limit: 10000
   examine: "Silver crossbow bolts."
 bronze_crossbow:
@@ -38029,164 +38145,203 @@ onyx_bolt_tips:
   examine: "Onyx bolt tips."
 opal_bolts_e:
   id: 9236
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted opal-tipped bronze crossbow bolts."
 jade_bolts_e:
   id: 9237
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Enchanted jade-tipped blurite crossbow bolts."
 pearl_bolts_e:
   id: 9238
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted pearl-tipped iron crossbow bolts."
 topaz_bolts_e:
   id: 9239
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted red topaz-tipped steel crossbow bolts."
 sapphire_bolts_e:
   id: 9240
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted sapphire-tipped mithril crossbow bolts."
 emerald_bolts_e:
   id: 9241
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted emerald-tipped mithril crossbow bolts."
 ruby_bolts_e:
   id: 9242
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted ruby-tipped adamantite crossbow bolts."
 diamond_bolts_e:
   id: 9243
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted diamond-tipped adamantite crossbow bolts."
 dragon_bolts_e:
   id: 9244
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted dragonstone-tipped runite crossbow bolts."
 onyx_bolts_e:
   id: 9245
+  slot: "Arrows"
   limit: 25000
   examine: "Enchanted onyx-tipped runite crossbow bolts."
 blurite_bolts_p:
   id: 9286
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Blurite crossbow bolts."
 iron_bolts_p:
   id: 9287
+  slot: "Arrows"
   limit: 25000
   examine: "Iron ammunition for crossbows. ."
 steel_bolts_p:
   id: 9288
+  slot: "Arrows"
   limit: 10000
   examine: "Steel ammunition for crossbows. ."
 mithril_bolts_p:
   id: 9289
+  slot: "Arrows"
   limit: 10000
   examine: "Mithril crossbow bolts."
 adamant_bolts_p:
   id: 9290
+  slot: "Arrows"
   limit: 10000
   examine: "Adamantite crossbow bolts."
 runite_bolts_p:
   id: 9291
+  slot: "Arrows"
   limit: 10000
   examine: "Runite crossbow bolts."
 silver_bolts_p:
   id: 9292
+  slot: "Arrows"
   limit: 10000
   examine: "Silver crossbow bolts."
 blurite_bolts_p+:
   id: 9293
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Blurite crossbow bolts."
 iron_bolts_p+:
   id: 9294
+  slot: "Arrows"
   limit: 25000
   examine: "Iron ammunition for crossbows. ."
 steel_bolts_p+:
   id: 9295
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Some poisoned steel bolts."
 mithril_bolts_p+:
   id: 9296
+  slot: "Arrows"
   limit: 10000
   examine: "Mithril crossbow bolts."
 adamant_bolts_p+:
   id: 9297
+  slot: "Arrows"
   limit: 10000
   examine: "Adamantite crossbow bolts."
 runite_bolts_p+:
   id: 9298
+  slot: "Arrows"
   limit: 10000
   examine: "Runite crossbow bolts."
 silver_bolts_p+:
   id: 9299
+  slot: "Arrows"
   limit: 10000
   examine: "Silver crossbow bolts."
 blurite_bolts_p++:
   id: 9300
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Blurite crossbow bolts."
 iron_bolts_p++:
   id: 9301
+  slot: "Arrows"
   limit: 25000
   examine: "Iron ammunition for crossbows. ."
 steel_bolts_p++:
   id: 9302
+  slot: "Arrows"
   limit: 10000
   examine: "Steel ammunition for crossbows. ."
 mithril_bolts_p++:
   id: 9303
+  slot: "Arrows"
   limit: 10000
   examine: "Mithril crossbow bolts."
 adamant_bolts_p++:
   id: 9304
+  slot: "Arrows"
   limit: 10000
   examine: "Adamantite crossbow bolts."
 runite_bolts_p++:
   id: 9305
+  slot: "Arrows"
   limit: 10000
   examine: "Runite crossbow bolts."
 silver_bolts_p++:
   id: 9306
+  slot: "Arrows"
   limit: 10000
   examine: "Silver crossbow bolts."
 jade_bolts:
   id: 9335
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Jade tipped Blurite crossbow bolts."
 topaz_bolts:
   id: 9336
+  slot: "Arrows"
   limit: 25000
   examine: "Topaz tipped Steel crossbow bolts."
 sapphire_bolts:
   id: 9337
+  slot: "Arrows"
   limit: 25000
   examine: "Sapphire tipped Mithril crossbow bolts."
 emerald_bolts:
   id: 9338
+  slot: "Arrows"
   limit: 25000
   examine: "Emerald tipped Mithril crossbow bolts."
 ruby_bolts:
   id: 9339
+  slot: "Arrows"
   limit: 25000
   examine: "Ruby tipped Adamantite crossbow bolts."
 diamond_bolts:
   id: 9340
+  slot: "Arrows"
   limit: 25000
   examine: "Diamond tipped Adamantite crossbow bolts."
 dragon_bolts:
   id: 9341
+  slot: "Arrows"
   limit: 25000
   examine: "Dragonstone tipped Runite crossbow bolts."
 onyx_bolts:
   id: 9342
+  slot: "Arrows"
   limit: 10000
   examine: "Onyx tipped Runite crossbow bolts."
 bronze_bolts_unf:
@@ -38238,6 +38393,7 @@ mithril_grapple_unf:
   examine: "A mithril grapple tipped bolt - needs a rope."
 mithril_grapple:
   id: 9419
+  slot: "Arrows"
   weight: 0.001
   limit: 1000
   examine: "A mithril grapple tipped bolt with a rope."
@@ -39526,6 +39682,7 @@ training_bow:
   examine: "Light and flexible; good for a beginner."
 training_arrows:
   id: 9706
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Standard training arrows."
@@ -41476,18 +41633,22 @@ burnt_rainbow_fish_noted:
   id: 10141
 guam_tar:
   id: 10142
+  slot: "Arrows"
   limit: 10000
   examine: "A thick, foul-smelling, tar-like substance with a green tinge."
 marrentill_tar:
   id: 10143
+  slot: "Arrows"
   limit: 10000
   examine: "A thick, foul-smelling, tar-like substance with an orange tinge."
 tarromin_tar:
   id: 10144
+  slot: "Arrows"
   limit: 10000
   examine: "A thick, foul-smelling, tar-like substance with a red tinge."
 harralander_tar:
   id: 10145
+  slot: "Arrows"
   limit: 10000
   examine: "A dark, thick, foul-smelling, tar-like substance."
 orange_salamander:
@@ -41544,10 +41705,12 @@ hunters_crossbow_noted:
   id: 10157
 kebbit_bolts:
   id: 10158
+  slot: "Arrows"
   limit: 1000
   examine: "Bolts made from the spikes of a prickly kebbit."
 long_kebbit_bolts:
   id: 10159
+  slot: "Arrows"
   limit: 1000
   examine: "Bolts made from the spikes of a razor-backed kebbit."
 orange_salamander_noted:
@@ -46171,6 +46334,7 @@ infused_wand:
   examine: "This wand is glowing with chaos magic."
 beacon_ring:
   id: 11014
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   alchable: false
@@ -46179,6 +46343,8 @@ beacon_ring:
   examine: "A magical ring."
 chicken_head:
   id: 11015
+  slot: "Hat"
+  type: "Hair"
   weight: 0.25
   tradeable: false
   demise: "Wilderness"
@@ -47172,26 +47338,32 @@ magic_beans_grim_tales:
   examine: "A bag of magic beans."
 dragon_arrow:
   id: 11212
+  slot: "Arrows"
   limit: 10000
   examine: "An arrow made using a dragon's talon."
 dragon_fire_arrows_unlit:
   id: 11217
+  slot: "Arrows"
   limit: 10000
   examine: "Arrows with dragon heads and oil-soaked cloth."
 dragon_fire_arrows_lit:
   id: 11222
+  slot: "Arrows"
   limit: 10000
   examine: "Dragon-headed fire arrow."
 dragon_arrow_p:
   id: 11227
+  slot: "Arrows"
   limit: 10000
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p+:
   id: 11228
+  slot: "Arrows"
   limit: 10000
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p++:
   id: 11229
+  slot: "Arrows"
   limit: 10000
   examine: "An arrow made using a dragon's talon."
 dragon_dart:
@@ -49048,6 +49220,7 @@ grim_reaper_hood_2:
   examine: "Allows me to imitate the harbinger of doom, the stealer of souls, the eternal end..."
 white_goblin_mail:
   id: 11791
+  slot: "Chest"
   weight: 3.628
   tradeable: false
   demise: "Wilderness"
@@ -52491,6 +52664,7 @@ smouldering_tansymum:
   examine: "Slowly-burning, spicy-smelling tansymum."
 eucalyptus_logs:
   id: 12581
+  slot: "Shield"
   weight: 0.001
   limit: 25000
   examine: "Logs cut from a eucalyptus tree."
@@ -53554,6 +53728,7 @@ inferno_scroll:
   examine: "A scroll for a forge regent familiar."
 gnomecopter:
   id: 12842
+  slot: "Cape"
 gnomecopter_ticket:
   id: 12843
   weight: 0.07
@@ -55071,18 +55246,22 @@ black_crossbow_noted:
   id: 13082
 black_bolts:
   id: 13083
+  slot: "Arrows"
   limit: 100
   examine: "Black crossbow bolts."
 black_bolts_p:
   id: 13084
+  slot: "Arrows"
   limit: 100
   examine: "Black crossbow bolts."
 black_bolts_p+:
   id: 13085
+  slot: "Arrows"
   limit: 100
   examine: "Black crossbow bolts."
 black_bolts_p++:
   id: 13086
+  slot: "Arrows"
   limit: 100
   examine: "Black crossbow bolts."
 black_cane:
@@ -55919,52 +56098,61 @@ unfinished_broad_bolts:
   examine: "For use against turoth and kurasks."
 broad-tipped_bolts:
   id: 13280
+  slot: "Arrows"
   limit: 10000
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
   id: 13281
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_7:
   id: 13282
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_6:
   id: 13283
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_5:
   id: 13284
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_4:
   id: 13285
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_3:
   id: 13286
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_2:
   id: 13287
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "An enchanted ring."
 ring_of_slaying_1:
   id: 13288
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
@@ -56874,21 +57062,25 @@ skeletal_gloves_lent:
   examine: "Fremennik gloves stitched together from wallasalki bones fragments."
 seers_ring_lent:
   id: 13426
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A mysterious ring that can fill the wearer with magical power..."
 archers_ring_lent:
   id: 13427
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A fabled ring that improves the wearer's skill with a bow..."
 warrior_ring_lent:
   id: 13428
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A legendary ring once worn by Fremennik warriors."
 berserker_ring_lent:
   id: 13429
+  slot: "Ring"
   weight: 0.004
   limit: 10
   examine: "A ring reputed to bring out a berserk fury in its wearer."
@@ -57604,6 +57796,7 @@ robin_hood_hat_lent:
   examine: "Endorsed by Robin Hood."
 explorers_ring_1:
   id: 13560
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -57612,6 +57805,7 @@ explorers_ring_1:
   examine: "A Lumbridge explorer's ring."
 explorers_ring_2:
   id: 13561
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -57620,6 +57814,7 @@ explorers_ring_2:
   examine: "A Lumbridge explorer's ring."
 explorers_ring_3:
   id: 13562
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -57642,6 +57837,7 @@ doll_spirit_of_summer:
   examine: "A very, very old doll in surprisingly good condition."
 jennicas_ring:
   id: 13566
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -58256,6 +58452,7 @@ runecrafter_hat_3:
   type: "Hair"
 ring_of_fire:
   id: 13659
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -58795,6 +58992,7 @@ performance_throwing_axe:
   examine: "A finely balanced throwing axe."
 performance_arrow:
   id: 13722
+  slot: "Arrows"
   tradeable: false
   alchable: false
   bankable: false
@@ -61118,26 +61316,31 @@ bow_class_5_noted:
   alchable: false
 arrows_class_1:
   id: 14202
+  slot: "Arrows"
   alchable: false
   bankable: false
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_2:
   id: 14203
+  slot: "Arrows"
   alchable: false
   bankable: false
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_3:
   id: 14204
+  slot: "Arrows"
   alchable: false
   bankable: false
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_4:
   id: 14205
+  slot: "Arrows"
   alchable: false
   bankable: false
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_5:
   id: 14206
+  slot: "Arrows"
   alchable: false
   bankable: false
   examine: "The sacred clay has transformed into a wood-like substance."
@@ -65122,42 +65325,49 @@ superior_locator:
   examine: "Helps me to get to useful resources."
 gold_ring_i:
   id: 15009
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Wilderness"
   examine: "A valuable ring, imbued at Soul Wars."
 sapphire_ring_i:
   id: 15010
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 emerald_ring_i:
   id: 15011
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 ruby_ring_i:
   id: 15012
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 diamond_ring_i:
   id: 15013
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 dragonstone_ring_i:
   id: 15014
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 lunar_ring_i:
   id: 15015
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   alchable: false
@@ -65165,6 +65375,7 @@ lunar_ring_i:
   examine: "A mysterious ring, imbued at Soul Wars."
 ring_of_charos_ai:
   id: 15016
+  slot: "Ring"
   weight: 0.005
   tradeable: false
   alchable: false
@@ -65173,24 +65384,28 @@ ring_of_charos_ai:
   examine: "This ring has been activated and imbued."
 onyx_ring_i:
   id: 15017
+  slot: "Ring"
   weight: 0.006
   tradeable: false
   demise: "Reclaim"
   examine: "A valuable ring, imbued at Soul Wars."
 seers_ring_i:
   id: 15018
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "A mysterious ring that has been imbued at Soul Wars."
 archers_ring_i:
   id: 15019
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "Improves the wearer's skill with a bow. This has been imbued."
 warrior_ring_i:
   id: 15020
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
@@ -65509,18 +65724,21 @@ faruqs_toolonomicon:
   examine: "The book of the Tools for Games."
 ring_of_seeking_hide:
   id: 15078
+  slot: "Ring"
   weight: 0.001
   examine: "Wear it and challenge people to find you."
 ring_of_seeking_hide_noted:
   id: 15079
 ring_of_seeking_seek:
   id: 15080
+  slot: "Ring"
   weight: 0.006
   examine: "Wear it to find hiding rings."
 ring_of_seeking_seek_noted:
   id: 15081
 ring_of_seeking_both:
   id: 15082
+  slot: "Ring"
   weight: 0.006
   examine: "This ring can find or be found."
 ring_of_seeking_both_noted:
@@ -66349,6 +66567,7 @@ tail:
   examine: "A sad, sorry but fairly restless tail."
 berserker_ring_i:
   id: 15220
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -66409,6 +66628,7 @@ hand_cannon_noted:
   id: 15242
 hand_cannon_shot:
   id: 15243
+  slot: "Arrows"
   limit: 10000
   examine: "The bag contains shot and powder for the hand cannon."
 commander_veldaban:
@@ -67347,30 +67567,35 @@ alis_pendant_5:
   examine: "An enchanted necklace."
 ferocious_ring_5:
   id: 15398
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "It looks like it's going to break soon."
 ferocious_ring_4:
   id: 15399
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "It looks like it's going to break soon."
 ferocious_ring_3:
   id: 15400
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "It looks like it's going to break soon."
 ferocious_ring_2:
   id: 15401
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
   examine: "It looks like it's going to break soon."
 ferocious_ring_1:
   id: 15402
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   demise: "Reclaim"
@@ -69187,6 +69412,7 @@ dungeoneering_cape:
   examine: "The cape worn by veterans of Daemonheim."
 ring_of_kinship:
   id: 15707
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -70674,178 +70900,222 @@ primal_gauntlets_b:
   examine: "A pair of heavy gauntlets. (Tier 11)"
 novite_arrows_b:
   id: 15947
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_b:
   id: 15948
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_b:
   id: 15949
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_b:
   id: 15950
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_b:
   id: 15951
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_b:
   id: 15952
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_b:
   id: 15953
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_b:
   id: 15954
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_b:
   id: 15955
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_b:
   id: 15956
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_b:
   id: 15957
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p_b:
   id: 15958
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p_b:
   id: 15959
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p_b:
   id: 15960
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p_b:
   id: 15961
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p_b:
   id: 15962
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p_b:
   id: 15963
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p_b:
   id: 15964
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p_b:
   id: 15965
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p_b:
   id: 15966
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p_b:
   id: 15967
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p_b:
   id: 15968
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p+_b:
   id: 15969
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p+_b:
   id: 15970
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p+_b:
   id: 15971
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p+_b:
   id: 15972
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p+_b:
   id: 15973
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p+_b:
   id: 15974
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p+_b:
   id: 15975
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p+_b:
   id: 15976
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p+_b:
   id: 15977
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p+_b:
   id: 15978
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p+_b:
   id: 15979
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p++_b:
   id: 15980
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p++_b:
   id: 15981
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p++_b:
   id: 15982
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p++_b:
   id: 15983
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p++_b:
   id: 15984
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p++_b:
   id: 15985
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p++_b:
   id: 15986
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p++_b:
   id: 15987
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p++_b:
   id: 15988
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p++_b:
   id: 15989
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p++_b:
   id: 15990
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_hatchet_b:
@@ -73235,178 +73505,222 @@ primal_maul_noted:
   id: 16426
 novite_arrows:
   id: 16427
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows:
   id: 16432
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows:
   id: 16437
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows:
   id: 16442
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows:
   id: 16447
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows:
   id: 16452
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows:
   id: 16457
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows:
   id: 16462
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows:
   id: 16467
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows:
   id: 16472
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows:
   id: 16477
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p:
   id: 16482
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p:
   id: 16487
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p:
   id: 16492
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p:
   id: 16497
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p:
   id: 16502
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p:
   id: 16507
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p:
   id: 16512
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p:
   id: 16517
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p:
   id: 16522
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p:
   id: 16527
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p:
   id: 16532
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p+:
   id: 16537
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p+:
   id: 16542
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p+:
   id: 16547
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p+:
   id: 16552
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p+:
   id: 16557
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p+:
   id: 16562
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p+:
   id: 16567
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p+:
   id: 16572
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p+:
   id: 16577
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p+:
   id: 16582
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p+:
   id: 16587
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_arrows_p++:
   id: 16592
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 1)"
 bathus_arrows_p++:
   id: 16597
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 2)"
 marmaros_arrows_p++:
   id: 16602
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 3)"
 kratonite_arrows_p++:
   id: 16607
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 fractite_arrows_p++:
   id: 16612
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 5)"
 zephyrium_arrows_p++:
   id: 16617
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 6)"
 argonite_arrows_p++:
   id: 16622
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 7)"
 katagon_arrows_p++:
   id: 16627
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 8)"
 gorgonite_arrows_p++:
   id: 16632
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 9)"
 promethium_arrows_p++:
   id: 16637
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 10)"
 sagittarian_arrows_p++:
   id: 16642
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 11)"
 novite_plateskirt:
@@ -80703,10 +81017,13 @@ pouch_noted_71:
   id: 18576
 kinship_ring:
   id: 18577
+  slot: "Ring"
 kinship_ring_2:
   id: 18578
+  slot: "Ring"
 kinship_ring_3:
   id: 18579
+  slot: "Ring"
 viking_crossbow:
   id: 18580
   slot: "Weapon"
@@ -81873,6 +82190,7 @@ junk_2:
   id: 18816
 ring_of_kinship_tank:
   id: 18817
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81881,6 +82199,7 @@ ring_of_kinship_tank:
   examine: "A kinship ring with tank specialisation properties."
 ring_of_kinship_tactician:
   id: 18818
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81889,6 +82208,7 @@ ring_of_kinship_tactician:
   examine: "A kinship ring with tactician specialisation properties."
 ring_of_kinship_berserker:
   id: 18819
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81897,6 +82217,7 @@ ring_of_kinship_berserker:
   examine: "A kinship ring with berserker specialisation properties."
 ring_of_kinship_sniper:
   id: 18820
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81905,6 +82226,7 @@ ring_of_kinship_sniper:
   examine: "A kinship ring with sniper specialisation properties."
 ring_of_kinship_keen-eye:
   id: 18821
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81913,6 +82235,7 @@ ring_of_kinship_keen-eye:
   examine: "A kinship ring with keen-eye specialisation properties."
 ring_of_kinship_desperado:
   id: 18822
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81921,6 +82244,7 @@ ring_of_kinship_desperado:
   examine: "A kinship ring with desperado specialisation properties."
 ring_of_kinship_blazer:
   id: 18823
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81929,6 +82253,7 @@ ring_of_kinship_blazer:
   examine: "A kinship ring with blazer specialisation properties."
 ring_of_kinship_blaster:
   id: 18824
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81937,6 +82262,7 @@ ring_of_kinship_blaster:
   examine: "A kinship ring with blaster specialisation properties."
 ring_of_kinship_blitzer:
   id: 18825
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81945,6 +82271,7 @@ ring_of_kinship_blitzer:
   examine: "A kinship ring with blitzer specialisation properties."
 ring_of_kinship_medic:
   id: 18826
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81953,6 +82280,7 @@ ring_of_kinship_medic:
   examine: "A kinship ring with medic specialisation properties."
 ring_of_kinship_gatherer:
   id: 18827
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -81961,6 +82289,7 @@ ring_of_kinship_gatherer:
   examine: "A kinship ring with gatherer specialisation properties."
 ring_of_kinship_artisan:
   id: 18828
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -83381,14 +83710,17 @@ zamorak_bow_lent:
   examine: "A bow imbued with the power of Zamorak."
 saradomin_arrows:
   id: 19152
+  slot: "Arrows"
   limit: 1000
   examine: "Arrows imbued with the power of Saradomin."
 guthix_arrows:
   id: 19157
+  slot: "Arrows"
   limit: 1000
   examine: "Arrows imbued with the power of Guthix."
 zamorak_arrows:
   id: 19162
+  slot: "Arrows"
   limit: 1000
   examine: "Arrows imbued with the power of Zamorak."
 black_platebody_h1:
@@ -85679,6 +86011,7 @@ climbing_hook:
   examine: "A climbing hook attached to a tough rope."
 ring_of_vigour:
   id: 19669
+  slot: "Ring"
   weight: 0.025
   tradeable: false
   alchable: false
@@ -85702,6 +86035,7 @@ magical_blastbox_reward:
   examine: "It's brimming with power."
 eye_of_the_ranger:
   id: 19672
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -85710,6 +86044,7 @@ eye_of_the_ranger:
   examine: "The eye of one who is focused and calm."
 eye_of_the_warrior:
   id: 19673
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -85718,6 +86053,7 @@ eye_of_the_warrior:
   examine: "The eye of one who is headstrong and courageous."
 eye_of_the_mage:
   id: 19674
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -85845,16 +86181,22 @@ m._and_thok_letter_part_8:
   examine: "A letter left behind by wandering adventurers."
 kinship_ring_4:
   id: 19690
+  slot: "Ring"
 "...":
   id: 19691
+  slot: "Ring"
 "..._2":
   id: 19692
+  slot: "Ring"
 "..._3":
   id: 19693
+  slot: "Ring"
 "..._4":
   id: 19694
+  slot: "Ring"
 "..._5":
   id: 19695
+  slot: "Ring"
 rand_kalergian_demon_icon:
   id: 19696
 rand_portal_demon_icon:
@@ -86146,6 +86488,7 @@ antique_lamp_elite_varrock_tasks_40k:
   examine: "I wonder what happens if I rub it."
 explorers_ring_4:
   id: 19760
+  slot: "Ring"
   weight: 0.004
   tradeable: false
   alchable: false
@@ -86941,6 +87284,7 @@ sneakerpeeper_2:
   id: 19895
 kinship_ring_5:
   id: 19896
+  slot: "Ring"
 erzille_seed:
   id: 19897
   tradeable: false
@@ -87570,11 +87914,13 @@ clay_ring_unfired:
   examine: "I need to fire this in a pottery oven."
 clay_ring:
   id: 20053
+  slot: "Ring"
   weight: 0.005
   limit: 100
   examine: "I can have this blessed by a priest."
 ring_of_devotion:
   id: 20054
+  slot: "Ring"
   weight: 0.005
   tradeable: false
   demise: "Reclaim"
@@ -87626,6 +87972,7 @@ metal_crate:
   examine: "A large, metal crate."
 economy_building_for_dummies:
   id: 20062
+  slot: "Weapon"
   weight: 0.453
   tradeable: false
   alchable: false
@@ -91099,6 +91446,7 @@ rune_ingot_iv:
   examine: "It's a rune ingot of absolute purity."
 ring_of_wealth_1:
   id: 20653
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "An enchanted ring."
@@ -91106,6 +91454,7 @@ ring_of_wealth_1_noted:
   id: 20654
 ring_of_wealth_2:
   id: 20655
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "An enchanted ring."
@@ -91113,6 +91462,7 @@ ring_of_wealth_2_noted:
   id: 20656
 ring_of_wealth_3:
   id: 20657
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "An enchanted ring."
@@ -91120,6 +91470,7 @@ ring_of_wealth_3_noted:
   id: 20658
 ring_of_wealth_4:
   id: 20659
+  slot: "Ring"
   weight: 0.006
   limit: 500
   examine: "An enchanted ring."
@@ -92339,6 +92690,7 @@ sir_owens_longsword:
   examine: "A razor-sharp longsword. (Tier 4)"
 kratonite_arrows_2:
   id: 20858
+  slot: "Arrows"
   demise: "Priority"
   examine: "Bow ammunition. (Tier 4)"
 ozans_longbow:
@@ -92800,8 +93152,6 @@ reward_book_2:
   examine: "Your reward for defending the gatehouse./Your reward for helping us test the tutorial in the Combat Beta."
 ornate_katana_note:
   id: 20937
-  slot: "Weapon"
-  type: "TwoHanded"
   weight: 3.628
   tradeable: false
   alchable: false
@@ -93001,8 +93351,6 @@ dervish_head_wrap_blue-gold:
   examine: "Prevents sunburn."
 dervish_head_wrap_note:
   id: 20971
-  slot: "Hat"
-  type: "FullFace"
 dervish_head_wrap_maroon:
   id: 20972
   slot: "Hat"
@@ -93015,8 +93363,6 @@ dervish_head_wrap_maroon:
   examine: "Prevents sunburn."
 dervish_head_wrap_note_2:
   id: 20973
-  slot: "Hat"
-  type: "FullFace"
 dervish_head_wrap_green-yellow:
   id: 20974
   slot: "Hat"
@@ -93029,8 +93375,6 @@ dervish_head_wrap_green-yellow:
   examine: "Prevents sunburn."
 dervish_head_wrap_note_3:
   id: 20975
-  slot: "Hat"
-  type: "FullFace"
 dervish_head_wrap_blue-red:
   id: 20976
   slot: "Hat"
@@ -93043,8 +93387,6 @@ dervish_head_wrap_blue-red:
   examine: "Prevents sunburn."
 dervish_head_wrap_note_4:
   id: 20977
-  slot: "Hat"
-  type: "FullFace"
 dervish_head_wrap_blue:
   id: 20978
   slot: "Hat"
@@ -93057,8 +93399,6 @@ dervish_head_wrap_blue:
   examine: "Prevents sunburn."
 dervish_head_wrap_note_5:
   id: 20979
-  slot: "Hat"
-  type: "FullFace"
 dervish_robe_blue-gold:
   id: 20980
   slot: "Chest"
@@ -93070,7 +93410,6 @@ dervish_robe_blue-gold:
   examine: "Prevents sunburn."
 dervish_robe_note:
   id: 20981
-  slot: "Chest"
 dervish_robe_maroon:
   id: 20982
   slot: "Chest"
@@ -93082,7 +93421,6 @@ dervish_robe_maroon:
   examine: "Prevents sunburn."
 dervish_robe_note_2:
   id: 20983
-  slot: "Chest"
 dervish_robe_green-yellow:
   id: 20984
   slot: "Chest"
@@ -93094,7 +93432,6 @@ dervish_robe_green-yellow:
   examine: "Prevents sunburn."
 dervish_robe_note_3:
   id: 20985
-  slot: "Chest"
 dervish_robe_blue-red:
   id: 20986
   slot: "Chest"
@@ -93106,7 +93443,6 @@ dervish_robe_blue-red:
   examine: "Prevents sunburn."
 dervish_robe_note_4:
   id: 20987
-  slot: "Chest"
 dervish_robe_blue_male:
   id: 20988
   slot: "Chest"
@@ -93118,7 +93454,6 @@ dervish_robe_blue_male:
   examine: "Prevents sunburn."
 dervish_robe_note_5:
   id: 20989
-  slot: "Chest"
 dervish_trousers_blue-gold:
   id: 20990
   slot: "Legs"
@@ -93130,7 +93465,6 @@ dervish_trousers_blue-gold:
   examine: "Prevents sunburn."
 dervish_trousers_note:
   id: 20991
-  slot: "Legs"
 dervish_trousers_maroon:
   id: 20992
   slot: "Legs"
@@ -93142,7 +93476,6 @@ dervish_trousers_maroon:
   examine: "Prevents sunburn."
 dervish_trousers_note_2:
   id: 20993
-  slot: "Legs"
 dervish_trousers_yellow-green:
   id: 20994
   slot: "Legs"
@@ -93154,7 +93487,6 @@ dervish_trousers_yellow-green:
   examine: "Prevents sunburn."
 dervish_trousers_note_3:
   id: 20995
-  slot: "Legs"
 dervish_trousers_blue-red:
   id: 20996
   slot: "Legs"
@@ -93166,7 +93498,6 @@ dervish_trousers_blue-red:
   examine: "Prevents sunburn."
 dervish_trousers_note_4:
   id: 20997
-  slot: "Legs"
 dervish_trousers_blue:
   id: 20998
   slot: "Legs"
@@ -93178,7 +93509,6 @@ dervish_trousers_blue:
   examine: "Prevents sunburn."
 dervish_trousers_note_5:
   id: 20999
-  slot: "Legs"
 dervish_shoes_blue-gold:
   id: 21000
   slot: "Feet"
@@ -93190,7 +93520,6 @@ dervish_shoes_blue-gold:
   examine: "Keeps your feet cool."
 dervish_shoes_note:
   id: 21001
-  slot: "Feet"
 dervish_shoes_maroon:
   id: 21002
   slot: "Feet"
@@ -93202,7 +93531,6 @@ dervish_shoes_maroon:
   examine: "Keeps your feet cool."
 dervish_shoes_note_2:
   id: 21003
-  slot: "Feet"
 dervish_shoes_green-yellow:
   id: 21004
   slot: "Feet"
@@ -93214,7 +93542,6 @@ dervish_shoes_green-yellow:
   examine: "Keeps your feet cool."
 dervish_shoes_note_3:
   id: 21005
-  slot: "Feet"
 dervish_shoes_blue-red:
   id: 21006
   slot: "Feet"
@@ -93226,7 +93553,6 @@ dervish_shoes_blue-red:
   examine: "Keeps your feet cool."
 dervish_shoes_note_4:
   id: 21007
-  slot: "Feet"
 dervish_shoes_blue_male:
   id: 21008
   slot: "Feet"
@@ -93238,7 +93564,6 @@ dervish_shoes_blue_male:
   examine: "Keeps your feet cool."
 dervish_shoes_note_5:
   id: 21009
-  slot: "Feet"
 dervish_hood_red:
   id: 21010
   slot: "Hat"
@@ -93251,8 +93576,6 @@ dervish_hood_red:
   examine: "Prevents sunburn."
 dervish_hood_note:
   id: 21011
-  slot: "Hat"
-  type: "Hair"
 dervish_hood_blue:
   id: 21012
   slot: "Hat"
@@ -93265,8 +93588,6 @@ dervish_hood_blue:
   examine: "Prevents sunburn."
 dervish_hood_note_2:
   id: 21013
-  slot: "Hat"
-  type: "Hair"
 dervish_hood_sepia:
   id: 21014
   slot: "Hat"
@@ -93279,8 +93600,6 @@ dervish_hood_sepia:
   examine: "Prevents sunburn."
 dervish_hood_note_3:
   id: 21015
-  slot: "Hat"
-  type: "Hair"
 dervish_hood_pink:
   id: 21016
   slot: "Hat"
@@ -93293,8 +93612,6 @@ dervish_hood_pink:
   examine: "Prevents sunburn."
 dervish_hood_note_4:
   id: 21017
-  slot: "Hat"
-  type: "Hair"
 dervish_hood_violet:
   id: 21018
   slot: "Hat"
@@ -93307,8 +93624,6 @@ dervish_hood_violet:
   examine: "Prevents sunburn."
 dervish_hood_note_5:
   id: 21019
-  slot: "Hat"
-  type: "Hair"
 dervish_robe_red:
   id: 21020
   slot: "Chest"
@@ -93320,7 +93635,6 @@ dervish_robe_red:
   examine: "Prevents sunburn."
 dervish_robe_note_6:
   id: 21021
-  slot: "Chest"
 dervish_robe_blue_female:
   id: 21022
   slot: "Chest"
@@ -93332,7 +93646,6 @@ dervish_robe_blue_female:
   examine: "Prevents sunburn."
 dervish_robe_note_7:
   id: 21023
-  slot: "Chest"
 dervish_robe_sepia:
   id: 21024
   slot: "Chest"
@@ -93344,7 +93657,6 @@ dervish_robe_sepia:
   examine: "Prevents sunburn."
 dervish_robe_note_8:
   id: 21025
-  slot: "Chest"
 dervish_robe_pink:
   id: 21026
   slot: "Chest"
@@ -93356,7 +93668,6 @@ dervish_robe_pink:
   examine: "Prevents sunburn."
 dervish_robe_note_9:
   id: 21027
-  slot: "Chest"
 dervish_robe_violet:
   id: 21028
   slot: "Chest"
@@ -93368,7 +93679,6 @@ dervish_robe_violet:
   examine: "Prevents sunburn."
 dervish_robe_note_10:
   id: 21029
-  slot: "Chest"
 dervish_skirt_red:
   id: 21030
   slot: "Legs"
@@ -93380,7 +93690,6 @@ dervish_skirt_red:
   examine: "Prevents sunburn."
 dervish_skirt_note:
   id: 21031
-  slot: "Legs"
 dervish_skirt_blue:
   id: 21032
   slot: "Legs"
@@ -93392,7 +93701,6 @@ dervish_skirt_blue:
   examine: "Prevents sunburn."
 dervish_skirt_note_2:
   id: 21033
-  slot: "Legs"
 dervish_skirt_sepia:
   id: 21034
   slot: "Legs"
@@ -93404,7 +93712,6 @@ dervish_skirt_sepia:
   examine: "Prevents sunburn."
 dervish_skirt_note_3:
   id: 21035
-  slot: "Legs"
 dervish_skirt_pink:
   id: 21036
   slot: "Legs"
@@ -93416,7 +93723,6 @@ dervish_skirt_pink:
   examine: "Prevents sunburn."
 dervish_skirt_note_4:
   id: 21037
-  slot: "Legs"
 dervish_skirt_violet:
   id: 21038
   slot: "Legs"
@@ -93428,7 +93734,6 @@ dervish_skirt_violet:
   examine: "Prevents sunburn."
 dervish_skirt_note_5:
   id: 21039
-  slot: "Legs"
 dervish_shoes_red:
   id: 21040
   slot: "Feet"
@@ -93440,7 +93745,6 @@ dervish_shoes_red:
   examine: "Keeps your feet cool."
 dervish_shoes_note_6:
   id: 21041
-  slot: "Feet"
 dervish_shoes_blue_female:
   id: 21042
   slot: "Feet"
@@ -93452,7 +93756,6 @@ dervish_shoes_blue_female:
   examine: "Keeps your feet cool."
 dervish_shoes_note_7:
   id: 21043
-  slot: "Feet"
 dervish_shoes_sepia:
   id: 21044
   slot: "Feet"
@@ -93464,7 +93767,6 @@ dervish_shoes_sepia:
   examine: "Keeps your feet cool."
 dervish_shoes_note_8:
   id: 21045
-  slot: "Feet"
 dervish_shoes_pink:
   id: 21046
   slot: "Feet"
@@ -93476,7 +93778,6 @@ dervish_shoes_pink:
   examine: "Keeps your feet cool."
 dervish_shoes_note_9:
   id: 21047
-  slot: "Feet"
 dervish_shoes_violet:
   id: 21048
   slot: "Feet"
@@ -93488,7 +93789,6 @@ dervish_shoes_violet:
   examine: "Keeps your feet cool."
 dervish_shoes_note_10:
   id: 21049
-  slot: "Feet"
 eastern_knot:
   id: 21050
   slot: "Hat"
@@ -93501,8 +93801,6 @@ eastern_knot:
   examine: "A fashionable hairstyle from the Eastern Lands."
 eastern_knot_note:
   id: 21051
-  slot: "Hat"
-  type: "FullFace"
   weight: 0.453
   tradeable: false
   alchable: false
@@ -93520,7 +93818,6 @@ eastern_robe_brown:
   examine: "Fashion from the Eastern Lands."
 eastern_robe_note:
   id: 21053
-  slot: "Chest"
 eastern_robe_orange:
   id: 21054
   slot: "Chest"
@@ -93532,7 +93829,6 @@ eastern_robe_orange:
   examine: "Fashion from the Eastern Lands."
 eastern_robe_note_2:
   id: 21055
-  slot: "Chest"
 eastern_robe_purple:
   id: 21056
   slot: "Chest"
@@ -93544,7 +93840,6 @@ eastern_robe_purple:
   examine: "Fashion from the Eastern Lands."
 eastern_robe_note_3:
   id: 21057
-  slot: "Chest"
 eastern_robe_green:
   id: 21058
   slot: "Chest"
@@ -93556,7 +93851,6 @@ eastern_robe_green:
   examine: "Fashion from the Eastern Lands."
 eastern_robe_note_4:
   id: 21059
-  slot: "Chest"
 eastern_robe_blue:
   id: 21060
   slot: "Chest"
@@ -93568,7 +93862,6 @@ eastern_robe_blue:
   examine: "Fashion from the Eastern Lands."
 eastern_robe_note_5:
   id: 21061
-  slot: "Chest"
 eastern_trousers_brown:
   id: 21062
   slot: "Legs"
@@ -93580,7 +93873,6 @@ eastern_trousers_brown:
   examine: "Fashion from the Eastern Lands."
 eastern_trousers_note:
   id: 21063
-  slot: "Legs"
 eastern_trousers_orange:
   id: 21064
   slot: "Legs"
@@ -93592,7 +93884,6 @@ eastern_trousers_orange:
   examine: "Fashion from the Eastern Lands."
 eastern_trousers_note_2:
   id: 21065
-  slot: "Legs"
 eastern_trousers_purple:
   id: 21066
   slot: "Legs"
@@ -93604,7 +93895,6 @@ eastern_trousers_purple:
   examine: "Fashion from the Eastern Lands."
 eastern_trousers_note_3:
   id: 21067
-  slot: "Legs"
 eastern_trousers_green:
   id: 21068
   slot: "Legs"
@@ -93616,7 +93906,6 @@ eastern_trousers_green:
   examine: "Fashion from the Eastern Lands."
 eastern_trousers_note_4:
   id: 21069
-  slot: "Legs"
 eastern_trousers_blue:
   id: 21070
   slot: "Legs"
@@ -93628,7 +93917,6 @@ eastern_trousers_blue:
   examine: "Fashion from the Eastern Lands."
 eastern_trousers_note_5:
   id: 21071
-  slot: "Legs"
 eastern_sandals_male:
   id: 21072
   slot: "Feet"
@@ -93640,7 +93928,6 @@ eastern_sandals_male:
   examine: "Sandals worn in the Eastern Lands."
 eastern_sandals_note:
   id: 21073
-  slot: "Feet"
 eastern_bun:
   id: 21074
   slot: "Hat"
@@ -93652,7 +93939,6 @@ eastern_bun:
   examine: "A fashionable hairstyle from the Eastern Lands."
 eastern_bun_note:
   id: 21075
-  slot: "Hat"
   weight: 0.453
   tradeable: false
   alchable: false
@@ -93670,7 +93956,6 @@ eastern_kimono_brown:
   examine: "Fashion from the Eastern Lands."
 eastern_kimono_note:
   id: 21077
-  slot: "Chest"
 eastern_kimono_orange:
   id: 21078
   slot: "Chest"
@@ -93682,7 +93967,6 @@ eastern_kimono_orange:
   examine: "Fashion from the Eastern Lands."
 eastern_kimono_note_2:
   id: 21079
-  slot: "Chest"
 eastern_kimono_purple:
   id: 21080
   slot: "Chest"
@@ -93694,7 +93978,6 @@ eastern_kimono_purple:
   examine: "Fashion from the Eastern Lands."
 eastern_kimono_note_3:
   id: 21081
-  slot: "Chest"
 eastern_kimono_green:
   id: 21082
   slot: "Chest"
@@ -93706,7 +93989,6 @@ eastern_kimono_green:
   examine: "Fashion from the Eastern Lands."
 eastern_kimono_note_4:
   id: 21083
-  slot: "Chest"
 eastern_kimono_blue:
   id: 21084
   slot: "Chest"
@@ -93718,7 +94000,6 @@ eastern_kimono_blue:
   examine: "Fashion from the Eastern Lands."
 eastern_kimono_note_5:
   id: 21085
-  slot: "Chest"
 eastern_skirt_brown:
   id: 21086
   slot: "Legs"
@@ -93730,7 +94011,6 @@ eastern_skirt_brown:
   examine: "Fashion from the Eastern Lands."
 eastern_skirt_note:
   id: 21087
-  slot: "Legs"
 eastern_skirt_orange:
   id: 21088
   slot: "Legs"
@@ -93742,7 +94022,6 @@ eastern_skirt_orange:
   examine: "Fashion from the Eastern Lands."
 eastern_skirt_note_2:
   id: 21089
-  slot: "Legs"
 eastern_skirt_purple:
   id: 21090
   slot: "Legs"
@@ -93754,7 +94033,6 @@ eastern_skirt_purple:
   examine: "Fashion from the Eastern Lands."
 eastern_skirt_note_3:
   id: 21091
-  slot: "Legs"
 eastern_skirt_green:
   id: 21092
   slot: "Legs"
@@ -93766,7 +94044,6 @@ eastern_skirt_green:
   examine: "Fashion from the Eastern Lands."
 eastern_skirt_note_4:
   id: 21093
-  slot: "Legs"
 eastern_skirt_blue:
   id: 21094
   slot: "Legs"
@@ -93778,7 +94055,6 @@ eastern_skirt_blue:
   examine: "Fashion from the Eastern Lands."
 eastern_skirt_note_5:
   id: 21095
-  slot: "Legs"
 eastern_sandals_brown_female:
   id: 21096
   slot: "Feet"
@@ -93790,7 +94066,6 @@ eastern_sandals_brown_female:
   examine: "Fashion from the Eastern Lands."
 eastern_sandals_note_2:
   id: 21097
-  slot: "Feet"
 eastern_sandals_orange_female:
   id: 21098
   slot: "Feet"
@@ -93802,7 +94077,6 @@ eastern_sandals_orange_female:
   examine: "Fashion from the Eastern Lands."
 eastern_sandals_note_3:
   id: 21099
-  slot: "Feet"
 eastern_sandals_purple_female:
   id: 21100
   slot: "Feet"
@@ -93814,7 +94088,6 @@ eastern_sandals_purple_female:
   examine: "Fashion from the Eastern Lands."
 eastern_sandals_note_4:
   id: 21101
-  slot: "Feet"
 eastern_sandals_green_female:
   id: 21102
   slot: "Feet"
@@ -93826,7 +94099,6 @@ eastern_sandals_green_female:
   examine: "Fashion from the Eastern Lands."
 eastern_sandals_note_5:
   id: 21103
-  slot: "Feet"
 eastern_sandals_blue_female:
   id: 21104
   slot: "Feet"
@@ -93838,7 +94110,6 @@ eastern_sandals_blue_female:
   examine: "Fashion from the Eastern Lands."
 eastern_sandals_note_6:
   id: 21105
-  slot: "Feet"
 tribal_ringlet_orange_male:
   id: 21106
   slot: "Hat"
@@ -93851,8 +94122,6 @@ tribal_ringlet_orange_male:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note:
   id: 21107
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_purple_male:
   id: 21108
   slot: "Hat"
@@ -93865,8 +94134,6 @@ tribal_ringlet_purple_male:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_2:
   id: 21109
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_pink_male:
   id: 21110
   slot: "Hat"
@@ -93879,8 +94146,6 @@ tribal_ringlet_pink_male:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_3:
   id: 21111
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_black_male:
   id: 21112
   slot: "Hat"
@@ -93893,8 +94158,6 @@ tribal_ringlet_black_male:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_4:
   id: 21113
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_red_male:
   id: 21114
   slot: "Hat"
@@ -93907,8 +94170,6 @@ tribal_ringlet_red_male:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_5:
   id: 21115
-  slot: "Hat"
-  type: "FullFace"
 tribal_shirt_orange:
   id: 21116
   slot: "Chest"
@@ -93920,7 +94181,6 @@ tribal_shirt_orange:
   examine: "A shirt in a tribal style."
 saxon_shirt_note:
   id: 21117
-  slot: "Chest"
 tribal_shirt_purple:
   id: 21118
   slot: "Chest"
@@ -93932,7 +94192,6 @@ tribal_shirt_purple:
   examine: "A shirt in a tribal style."
 saxon_shirt_note_2:
   id: 21119
-  slot: "Chest"
 tribal_shirt_pink:
   id: 21120
   slot: "Chest"
@@ -93944,7 +94203,6 @@ tribal_shirt_pink:
   examine: "A shirt in a tribal style."
 saxon_shirt_note_3:
   id: 21121
-  slot: "Chest"
 tribal_shirt_black:
   id: 21122
   slot: "Chest"
@@ -93956,7 +94214,6 @@ tribal_shirt_black:
   examine: "A shirt in a tribal style."
 saxon_shirt_note_4:
   id: 21123
-  slot: "Chest"
 tribal_shirt_red:
   id: 21124
   slot: "Chest"
@@ -93968,7 +94225,6 @@ tribal_shirt_red:
   examine: "A shirt in a tribal style."
 saxon_shirt_note_5:
   id: 21125
-  slot: "Chest"
 tribal_trousers_orange:
   id: 21126
   slot: "Legs"
@@ -93980,7 +94236,6 @@ tribal_trousers_orange:
   examine: "Trousers in a tribal style."
 saxon_trousers_note:
   id: 21127
-  slot: "Legs"
 tribal_trousers_purple:
   id: 21128
   slot: "Legs"
@@ -93992,7 +94247,6 @@ tribal_trousers_purple:
   examine: "Trousers in a tribal style."
 saxon_trousers_note_2:
   id: 21129
-  slot: "Legs"
 tribal_trousers_pink:
   id: 21130
   slot: "Legs"
@@ -94004,7 +94258,6 @@ tribal_trousers_pink:
   examine: "Trousers in a tribal style."
 saxon_trousers_note_3:
   id: 21131
-  slot: "Legs"
 tribal_trousers_black:
   id: 21132
   slot: "Legs"
@@ -94016,7 +94269,6 @@ tribal_trousers_black:
   examine: "Trousers in a tribal style."
 saxon_trousers_note_4:
   id: 21133
-  slot: "Legs"
 tribal_trousers_red:
   id: 21134
   slot: "Legs"
@@ -94028,7 +94280,6 @@ tribal_trousers_red:
   examine: "Trousers in a tribal style."
 saxon_trousers_note_5:
   id: 21135
-  slot: "Legs"
 tribal_shoes_orange_male:
   id: 21136
   slot: "Feet"
@@ -94040,7 +94291,6 @@ tribal_shoes_orange_male:
   examine: "Shoes in a tribal style."
 saxon_shoes_note:
   id: 21137
-  slot: "Feet"
 tribal_shoes_purple_male:
   id: 21138
   slot: "Feet"
@@ -94052,7 +94302,6 @@ tribal_shoes_purple_male:
   examine: "Shoes in a tribal style."
 saxon_shoes_note_2:
   id: 21139
-  slot: "Feet"
 tribal_shoes_pink_male:
   id: 21140
   slot: "Feet"
@@ -94064,7 +94313,6 @@ tribal_shoes_pink_male:
   examine: "Shoes in a tribal style."
 saxon_shoes_note_3:
   id: 21141
-  slot: "Feet"
 tribal_shoes_black_male:
   id: 21142
   slot: "Feet"
@@ -94076,7 +94324,6 @@ tribal_shoes_black_male:
   examine: "Shoes in a tribal style."
 saxon_shoes_note_4:
   id: 21143
-  slot: "Feet"
 tribal_shoes_red_male:
   id: 21144
   slot: "Feet"
@@ -94088,7 +94335,6 @@ tribal_shoes_red_male:
   examine: "Shoes in a tribal style."
 saxon_shoes_note_5:
   id: 21145
-  slot: "Feet"
 tribal_ringlet_orange_female:
   id: 21146
   slot: "Hat"
@@ -94101,8 +94347,6 @@ tribal_ringlet_orange_female:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_6:
   id: 21147
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_purple_female:
   id: 21148
   slot: "Hat"
@@ -94115,8 +94359,6 @@ tribal_ringlet_purple_female:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_7:
   id: 21149
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_pink_female:
   id: 21150
   slot: "Hat"
@@ -94129,8 +94371,6 @@ tribal_ringlet_pink_female:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_8:
   id: 21151
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_black_female:
   id: 21152
   slot: "Hat"
@@ -94143,8 +94383,6 @@ tribal_ringlet_black_female:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_9:
   id: 21153
-  slot: "Hat"
-  type: "FullFace"
 tribal_ringlet_red_female:
   id: 21154
   slot: "Hat"
@@ -94157,8 +94395,6 @@ tribal_ringlet_red_female:
   examine: "A ringlet in a tribal style."
 saxon_ringlet_note_10:
   id: 21155
-  slot: "Hat"
-  type: "FullFace"
 tribal_top_orange:
   id: 21156
   slot: "Chest"
@@ -94170,7 +94406,6 @@ tribal_top_orange:
   examine: "A top in a tribal style."
 saxon_top_note:
   id: 21157
-  slot: "Chest"
 tribal_top_purple:
   id: 21158
   slot: "Chest"
@@ -94182,7 +94417,6 @@ tribal_top_purple:
   examine: "A top in a tribal style."
 saxon_top_note_2:
   id: 21159
-  slot: "Chest"
 tribal_top_pink_loyalty:
   id: 21160
   slot: "Chest"
@@ -94194,7 +94428,6 @@ tribal_top_pink_loyalty:
   examine: "A top in a tribal style."
 saxon_top_note_3:
   id: 21161
-  slot: "Chest"
 tribal_top_black:
   id: 21162
   slot: "Chest"
@@ -94206,7 +94439,6 @@ tribal_top_black:
   examine: "A top in a tribal style."
 saxon_top_note_4:
   id: 21163
-  slot: "Chest"
 tribal_top_red:
   id: 21164
   slot: "Chest"
@@ -94218,7 +94450,6 @@ tribal_top_red:
   examine: "A top in a tribal style."
 saxon_top_note_5:
   id: 21165
-  slot: "Chest"
 tribal_skirt_orange:
   id: 21166
   slot: "Legs"
@@ -94230,7 +94461,6 @@ tribal_skirt_orange:
   examine: "A skirt in a tribal style."
 saxon_skirt_note:
   id: 21167
-  slot: "Legs"
 tribal_skirt_purple:
   id: 21168
   slot: "Legs"
@@ -94242,7 +94472,6 @@ tribal_skirt_purple:
   examine: "A skirt in a tribal style."
 saxon_skirt_note_2:
   id: 21169
-  slot: "Legs"
 tribal_skirt_pink:
   id: 21170
   slot: "Legs"
@@ -94254,7 +94483,6 @@ tribal_skirt_pink:
   examine: "A skirt in a tribal style."
 saxon_skirt_note_3:
   id: 21171
-  slot: "Legs"
 tribal_skirt_black:
   id: 21172
   slot: "Legs"
@@ -94266,7 +94494,6 @@ tribal_skirt_black:
   examine: "A skirt in a tribal style."
 saxon_skirt_note_4:
   id: 21173
-  slot: "Legs"
 tribal_skirt_red:
   id: 21174
   slot: "Legs"
@@ -94278,7 +94505,6 @@ tribal_skirt_red:
   examine: "A skirt in a tribal style."
 saxon_skirt_note_5:
   id: 21175
-  slot: "Legs"
 tribal_shoes_female:
   id: 21176
   slot: "Feet"
@@ -94290,7 +94516,6 @@ tribal_shoes_female:
   examine: "Shoes in a tribal style."
 saxon_shoes_note_6:
   id: 21177
-  slot: "Feet"
 samba_headdress_pink_male:
   id: 21178
   slot: "Hat"
@@ -94303,8 +94528,6 @@ samba_headdress_pink_male:
   examine: "An exotic headdress covered in feathers."
 samba_headdress_note:
   id: 21179
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_red_male:
   id: 21180
   slot: "Hat"
@@ -94317,8 +94540,6 @@ samba_headdress_red_male:
   examine: "An exotic headdress covered in feathers."
 samba_headdress_note_2:
   id: 21181
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_purple_male:
   id: 21182
   slot: "Hat"
@@ -94331,8 +94552,6 @@ samba_headdress_purple_male:
   examine: "An exotic headdress covered in feathers."
 samba_headdress_note_3:
   id: 21183
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_blue_male:
   id: 21184
   slot: "Hat"
@@ -94345,8 +94564,6 @@ samba_headdress_blue_male:
   examine: "An exotic headdress covered in feathers."
 samba_headdress_note_4:
   id: 21185
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_green_male:
   id: 21186
   slot: "Hat"
@@ -94359,8 +94576,6 @@ samba_headdress_green_male:
   examine: "An exotic headdress covered in feathers."
 samba_headdress_note_5:
   id: 21187
-  slot: "Hat"
-  type: "FullFace"
 samba_top_pink_male:
   id: 21188
   slot: "Chest"
@@ -94372,7 +94587,6 @@ samba_top_pink_male:
   examine: "An exotic top covered in feathers."
 samba_top_note:
   id: 21189
-  slot: "Chest"
 samba_top_red_male:
   id: 21190
   slot: "Chest"
@@ -94384,7 +94598,6 @@ samba_top_red_male:
   examine: "An exotic top covered in feathers."
 samba_top_note_2:
   id: 21191
-  slot: "Chest"
 samba_top_purple_male:
   id: 21192
   slot: "Chest"
@@ -94396,7 +94609,6 @@ samba_top_purple_male:
   examine: "An exotic top covered in feathers."
 samba_top_note_3:
   id: 21193
-  slot: "Chest"
 samba_top_blue_male:
   id: 21194
   slot: "Chest"
@@ -94408,7 +94620,6 @@ samba_top_blue_male:
   examine: "An exotic top covered in feathers."
 samba_top_note_4:
   id: 21195
-  slot: "Chest"
 samba_top_green_male:
   id: 21196
   slot: "Chest"
@@ -94420,7 +94631,6 @@ samba_top_green_male:
   examine: "An exotic top covered in feathers."
 samba_top_note_5:
   id: 21197
-  slot: "Chest"
 samba_loincloth_pink_male:
   id: 21198
   slot: "Legs"
@@ -94432,7 +94642,6 @@ samba_loincloth_pink_male:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note:
   id: 21199
-  slot: "Legs"
 samba_loincloth_red_male:
   id: 21200
   slot: "Legs"
@@ -94444,7 +94653,6 @@ samba_loincloth_red_male:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_2:
   id: 21201
-  slot: "Legs"
 samba_loincloth_purple_male:
   id: 21202
   slot: "Legs"
@@ -94456,7 +94664,6 @@ samba_loincloth_purple_male:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_3:
   id: 21203
-  slot: "Legs"
 samba_loincloth_blue_male:
   id: 21204
   slot: "Legs"
@@ -94468,7 +94675,6 @@ samba_loincloth_blue_male:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_4:
   id: 21205
-  slot: "Legs"
 samba_loincloth_green_male:
   id: 21206
   slot: "Legs"
@@ -94480,7 +94686,6 @@ samba_loincloth_green_male:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_5:
   id: 21207
-  slot: "Legs"
 samba_sandals_pink_male:
   id: 21208
   slot: "Feet"
@@ -94492,7 +94697,6 @@ samba_sandals_pink_male:
   examine: "Good for walking through the jungle."
 samba_sandals_note:
   id: 21209
-  slot: "Feet"
 samba_sandals_red_male:
   id: 21210
   slot: "Feet"
@@ -94504,7 +94708,6 @@ samba_sandals_red_male:
   examine: "Good for walking through the jungle."
 samba_sandals_note_2:
   id: 21211
-  slot: "Feet"
 samba_sandals_purple_male:
   id: 21212
   slot: "Feet"
@@ -94516,7 +94719,6 @@ samba_sandals_purple_male:
   examine: "Good for walking through the jungle."
 samba_sandals_note_3:
   id: 21213
-  slot: "Feet"
 samba_sandals_blue_male:
   id: 21214
   slot: "Feet"
@@ -94528,7 +94730,6 @@ samba_sandals_blue_male:
   examine: "Good for walking through the jungle."
 samba_sandals_note_4:
   id: 21215
-  slot: "Feet"
 samba_sandals_green_male:
   id: 21216
   slot: "Feet"
@@ -94540,7 +94741,6 @@ samba_sandals_green_male:
   examine: "Good for walking through the jungle."
 samba_sandals_note_5:
   id: 21217
-  slot: "Feet"
 samba_headdress_pink_female:
   id: 21218
   slot: "Hat"
@@ -94553,8 +94753,6 @@ samba_headdress_pink_female:
   examine: "A headdress covered in feathers."
 samba_headdress_note_6:
   id: 21219
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_red_female:
   id: 21220
   slot: "Hat"
@@ -94567,8 +94765,6 @@ samba_headdress_red_female:
   examine: "A headdress covered in feathers."
 samba_headdress_note_7:
   id: 21221
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_purple_female:
   id: 21222
   slot: "Hat"
@@ -94581,8 +94777,6 @@ samba_headdress_purple_female:
   examine: "A headdress covered in feathers."
 samba_headdress_note_8:
   id: 21223
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_blue_female:
   id: 21224
   slot: "Hat"
@@ -94595,8 +94789,6 @@ samba_headdress_blue_female:
   examine: "A headdress covered in feathers."
 samba_headdress_note_9:
   id: 21225
-  slot: "Hat"
-  type: "FullFace"
 samba_headdress_green_female:
   id: 21226
   slot: "Hat"
@@ -94609,8 +94801,6 @@ samba_headdress_green_female:
   examine: "A headdress covered in feathers."
 samba_headdress_note_10:
   id: 21227
-  slot: "Hat"
-  type: "FullFace"
 samba_top_pink_female:
   id: 21228
   slot: "Chest"
@@ -94622,7 +94812,6 @@ samba_top_pink_female:
   examine: "An exotic top covered in feathers."
 samba_top_note_6:
   id: 21229
-  slot: "Chest"
 samba_top_red_female:
   id: 21230
   slot: "Chest"
@@ -94634,7 +94823,6 @@ samba_top_red_female:
   examine: "An exotic top covered in feathers."
 samba_top_note_7:
   id: 21231
-  slot: "Chest"
 samba_top_purple_female:
   id: 21232
   slot: "Chest"
@@ -94646,7 +94834,6 @@ samba_top_purple_female:
   examine: "An exotic top covered in feathers."
 samba_top_note_8:
   id: 21233
-  slot: "Chest"
 samba_top_blue_female:
   id: 21234
   slot: "Chest"
@@ -94658,7 +94845,6 @@ samba_top_blue_female:
   examine: "An exotic top covered in feathers."
 samba_top_note_9:
   id: 21235
-  slot: "Chest"
 samba_top_green_female:
   id: 21236
   slot: "Chest"
@@ -94670,7 +94856,6 @@ samba_top_green_female:
   examine: "An exotic top covered in feathers."
 samba_top_note_10:
   id: 21237
-  slot: "Chest"
 samba_loincloth_pink_female:
   id: 21238
   slot: "Legs"
@@ -94682,7 +94867,6 @@ samba_loincloth_pink_female:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_6:
   id: 21239
-  slot: "Legs"
 samba_loincloth_red_female:
   id: 21240
   slot: "Legs"
@@ -94694,7 +94878,6 @@ samba_loincloth_red_female:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_7:
   id: 21241
-  slot: "Legs"
 samba_loincloth_purple_female:
   id: 21242
   slot: "Legs"
@@ -94706,7 +94889,6 @@ samba_loincloth_purple_female:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_8:
   id: 21243
-  slot: "Legs"
 samba_loincloth_blue_female:
   id: 21244
   slot: "Legs"
@@ -94718,7 +94900,6 @@ samba_loincloth_blue_female:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_9:
   id: 21245
-  slot: "Legs"
 samba_loincloth_green_female:
   id: 21246
   slot: "Legs"
@@ -94730,7 +94911,6 @@ samba_loincloth_green_female:
   examine: "An exotic loincloth covered in feathers."
 samba_loincloth_note_10:
   id: 21247
-  slot: "Legs"
 samba_sandals_female:
   id: 21248
   slot: "Feet"
@@ -94742,7 +94922,6 @@ samba_sandals_female:
   examine: "Good for walking through the jungle."
 samba_sandals_note_6:
   id: 21249
-  slot: "Feet"
 pet_rock_red:
   id: 21250
   slot: "Weapon"
@@ -94753,8 +94932,6 @@ pet_rock_red:
   examine: "The lowest maintenance pet you will ever have, painted red."
 pet_rock_note:
   id: 21251
-  slot: "Weapon"
-  type: "TwoHanded"
   weight: 1.36
   tradeable: false
   demise: "Reclaim"
@@ -94769,8 +94946,6 @@ pet_rock_green:
   examine: "The lowest maintenance pet you will ever have, painted green."
 pet_rock_note_2:
   id: 21253
-  slot: "Weapon"
-  type: "TwoHanded"
   weight: 1.36
   tradeable: false
   demise: "Reclaim"
@@ -94785,8 +94960,6 @@ pet_rock_blue:
   examine: "The lowest maintenance pet you will ever have, painted blue."
 pet_rock_note_3:
   id: 21255
-  slot: "Weapon"
-  type: "TwoHanded"
   weight: 1.36
   tradeable: false
   demise: "Reclaim"
@@ -94801,8 +94974,6 @@ pet_rock_yellow:
   examine: "The lowest maintenance pet you will ever have, painted yellow."
 pet_rock_note_4:
   id: 21257
-  slot: "Weapon"
-  type: "TwoHanded"
   weight: 1.36
   tradeable: false
   demise: "Reclaim"
@@ -94816,7 +94987,6 @@ robin_hood_hat_red:
   examine: "Endorsed by Robin Hood, dyed red."
 robin_hood_hat_note:
   id: 21259
-  slot: "Hat"
   weight: 0.283
   limit: 2
   examine: "Endorsed by Robin Hood."
@@ -94829,7 +94999,6 @@ robin_hood_hat_yellow:
   examine: "Endorsed by Robin Hood, dyed yellow."
 robin_hood_hat_note_2:
   id: 21261
-  slot: "Hat"
   weight: 0.283
   limit: 2
   examine: "Endorsed by Robin Hood."
@@ -94842,7 +95011,6 @@ robin_hood_hat_blue:
   examine: "Endorsed by Robin Hood, dyed blue."
 robin_hood_hat_note_3:
   id: 21263
-  slot: "Hat"
   weight: 0.283
   limit: 2
   examine: "Endorsed by Robin Hood."
@@ -94855,7 +95023,6 @@ robin_hood_hat_white:
   examine: "Endorsed by Robin Hood, bleached white."
 robin_hood_hat_note_4:
   id: 21265
-  slot: "Hat"
   weight: 0.283
   limit: 2
   examine: "Endorsed by Robin Hood."
@@ -95197,34 +95364,24 @@ picture_note_28:
   examine: "A picture of a lady called Elena."
 oddball_note:
   id: 21322
-  slot: "Aura"
 poison_purge_note:
   id: 21323
-  slot: "Aura"
 jack_of_trades_note:
   id: 21324
-  slot: "Aura"
 knock-out_note:
   id: 21325
-  slot: "Aura"
 runic_accuracy_note:
   id: 21326
-  slot: "Aura"
 friend_in_need_note:
   id: 21327
-  slot: "Aura"
 surefooted_note:
   id: 21328
-  slot: "Aura"
 reverence_note:
   id: 21329
-  slot: "Aura"
 call_of_the_sea_note:
   id: 21330
-  slot: "Aura"
 sharpshooter_note:
   id: 21331
-  slot: "Aura"
 hexhunter_bow:
   id: 21332
   weight: 1.814
@@ -95718,6 +95875,7 @@ battlefield_cape_blue:
   examine: "This battlefield cape is blue."
 uncharged_ring:
   id: 21409
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95725,6 +95883,7 @@ uncharged_ring:
   examine: "Can be charged at a clan skilling plot to provide bonus XP."
 cooking_ring:
   id: 21410
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95733,6 +95892,7 @@ cooking_ring:
   examine: "This ring provides bonus XP while training Cooking."
 crafting_ring:
   id: 21411
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95741,6 +95901,7 @@ crafting_ring:
   examine: "This ring provides bonus XP while training Crafting."
 firemaking_ring:
   id: 21412
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95749,6 +95910,7 @@ firemaking_ring:
   examine: "This ring provides bonus XP while training Firemaking."
 mining_ring:
   id: 21413
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95757,6 +95919,7 @@ mining_ring:
   examine: "This ring provides bonus XP while training Mining."
 smithing_ring:
   id: 21414
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95765,6 +95928,7 @@ smithing_ring:
   examine: "This ring provides bonus XP while training Smithing."
 summoning_ring:
   id: 21415
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -95773,6 +95937,7 @@ summoning_ring:
   examine: "This ring provides bonus XP while training Summoning."
 woodcutting_ring:
   id: 21416
+  slot: "Ring"
   weight: 0.001
   tradeable: false
   alchable: false
@@ -97313,161 +97478,193 @@ prayer_renewal_1_noted:
   id: 21637
 dragonbane_arrow:
   id: 21640
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 wallasalkibane_arrow:
   id: 21645
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 basiliskbane_arrow:
   id: 21650
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 abyssalbane_arrow:
   id: 21655
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 dragonbane_bolt:
   id: 21660
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 wallasalkibane_bolt:
   id: 21665
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 basiliskbane_bolt:
   id: 21670
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 abyssalbane_bolt:
   id: 21675
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 dragonbane_bolts_p:
   id: 21680
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 dragonbane_bolts_p+:
   id: 21681
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 dragonbane_bolts_p++:
   id: 21682
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 basiliskbane_bolts_p:
   id: 21687
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 basiliskbane_bolts_p+:
   id: 21688
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 basiliskbane_bolts_p++:
   id: 21689
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 wallasalkibane_bolts_p:
   id: 21694
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 wallasalkibane_bolts_p+:
   id: 21695
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 wallasalkibane_bolts_p++:
   id: 21696
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 abyssalbane_bolts_p:
   id: 21701
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 abyssalbane_bolts_p+:
   id: 21702
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 abyssalbane_bolts_p++:
   id: 21703
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 dragonbane_arrow_p:
   id: 21712
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 dragonbane_arrows_p+:
   id: 21713
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 dragonbane_arrows_p++:
   id: 21714
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against dragons."
 basiliskbane_arrow_p:
   id: 21719
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 basiliskbane_arrows_p+:
   id: 21720
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 basiliskbane_arrows_p++:
   id: 21721
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against basilisks."
 wallasalkibane_arrow_p:
   id: 21726
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 wallasalkibane_arrows_p+:
   id: 21727
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 wallasalkibane_arrows_p++:
   id: 21728
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against wallasalki."
 abyssalbane_arrow_p:
   id: 21733
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 abyssalbane_arrows_p+:
   id: 21734
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
 abyssalbane_arrows_p++:
   id: 21735
+  slot: "Arrows"
   tradeable: false
   demise: "Reclaim"
   examine: "Particularly damaging against abyssal demons."
@@ -98124,8 +98321,6 @@ theatrical_hat_red:
   examine: "Helps to tread the boards."
 theatrical_hat_note:
   id: 21888
-  slot: "Hat"
-  type: "FullFace"
 theatrical_hat_blue:
   id: 21889
   slot: "Hat"
@@ -98138,8 +98333,6 @@ theatrical_hat_blue:
   examine: "Helps to tread the boards."
 theatrical_hat_note_2:
   id: 21890
-  slot: "Hat"
-  type: "FullFace"
 theatrical_hat_yellow:
   id: 21891
   slot: "Hat"
@@ -98152,8 +98345,6 @@ theatrical_hat_yellow:
   examine: "Helps to tread the boards."
 theatrical_hat_note_3:
   id: 21892
-  slot: "Hat"
-  type: "FullFace"
 theatrical_hat_green:
   id: 21893
   slot: "Hat"
@@ -98166,8 +98357,6 @@ theatrical_hat_green:
   examine: "Helps to tread the boards."
 theatrical_hat_note_4:
   id: 21894
-  slot: "Hat"
-  type: "FullFace"
 theatrical_hat_purple:
   id: 21895
   slot: "Hat"
@@ -98180,8 +98369,6 @@ theatrical_hat_purple:
   examine: "Helps to tread the boards."
 theatrical_hat_note_5:
   id: 21896
-  slot: "Hat"
-  type: "FullFace"
 theatrical_tunic_red_male:
   id: 21897
   slot: "Chest"
@@ -98193,7 +98380,6 @@ theatrical_tunic_red_male:
   examine: "Helps to tread the boards."
 theatrical_tunic_note:
   id: 21898
-  slot: "Chest"
 theatrical_tunic_blue_male:
   id: 21899
   slot: "Chest"
@@ -98205,7 +98391,6 @@ theatrical_tunic_blue_male:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_2:
   id: 21900
-  slot: "Chest"
 theatrical_tunic_yellow_male:
   id: 21901
   slot: "Chest"
@@ -98217,7 +98402,6 @@ theatrical_tunic_yellow_male:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_3:
   id: 21902
-  slot: "Chest"
 theatrical_tunic_green_male:
   id: 21903
   slot: "Chest"
@@ -98229,7 +98413,6 @@ theatrical_tunic_green_male:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_4:
   id: 21904
-  slot: "Chest"
 theatrical_tunic_purple_male:
   id: 21905
   slot: "Chest"
@@ -98241,7 +98424,6 @@ theatrical_tunic_purple_male:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_5:
   id: 21906
-  slot: "Chest"
 theatrical_trousers_red:
   id: 21907
   slot: "Legs"
@@ -98253,7 +98435,6 @@ theatrical_trousers_red:
   examine: "Helps to tread the boards."
 theatrical_trousers_note:
   id: 21908
-  slot: "Legs"
 theatrical_trousers_blue:
   id: 21909
   slot: "Legs"
@@ -98265,7 +98446,6 @@ theatrical_trousers_blue:
   examine: "Helps to tread the boards."
 theatrical_trousers_note_2:
   id: 21910
-  slot: "Legs"
 theatrical_trousers_yellow:
   id: 21911
   slot: "Legs"
@@ -98277,7 +98457,6 @@ theatrical_trousers_yellow:
   examine: "Helps to tread the boards."
 theatrical_trousers_note_3:
   id: 21912
-  slot: "Legs"
 theatrical_trousers_green:
   id: 21913
   slot: "Legs"
@@ -98289,7 +98468,6 @@ theatrical_trousers_green:
   examine: "Helps to tread the boards."
 theatrical_trousers_note_4:
   id: 21914
-  slot: "Legs"
 theatrical_trousers_purple:
   id: 21915
   slot: "Legs"
@@ -98301,7 +98479,6 @@ theatrical_trousers_purple:
   examine: "Helps to tread the boards."
 theatrical_trousers_note_5:
   id: 21916
-  slot: "Legs"
 theatrical_shoes_red_male:
   id: 21917
   slot: "Feet"
@@ -98313,7 +98490,6 @@ theatrical_shoes_red_male:
   examine: "Helps to tread the boards."
 theatrical_shoes_note:
   id: 21918
-  slot: "Feet"
 theatrical_shoes_blue_male:
   id: 21919
   slot: "Feet"
@@ -98325,7 +98501,6 @@ theatrical_shoes_blue_male:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_2:
   id: 21920
-  slot: "Feet"
 theatrical_shoes_yellow_male:
   id: 21921
   slot: "Feet"
@@ -98337,7 +98512,6 @@ theatrical_shoes_yellow_male:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_3:
   id: 21922
-  slot: "Feet"
 theatrical_shoes_green_male:
   id: 21923
   slot: "Feet"
@@ -98349,7 +98523,6 @@ theatrical_shoes_green_male:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_4:
   id: 21924
-  slot: "Feet"
 theatrical_shoes_purple_male:
   id: 21925
   slot: "Feet"
@@ -98361,7 +98534,6 @@ theatrical_shoes_purple_male:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_5:
   id: 21926
-  slot: "Feet"
 theatrical_earrings_red:
   id: 21927
   slot: "Hat"
@@ -98373,7 +98545,6 @@ theatrical_earrings_red:
   examine: "Helps to tread the boards."
 theatrical_earrings_note:
   id: 21928
-  slot: "Hat"
 theatrical_earrings_blue:
   id: 21929
   slot: "Hat"
@@ -98385,7 +98556,6 @@ theatrical_earrings_blue:
   examine: "Helps to tread the boards."
 theatrical_earrings_note_2:
   id: 21930
-  slot: "Hat"
 theatrical_earrings_yellow:
   id: 21931
   slot: "Hat"
@@ -98397,7 +98567,6 @@ theatrical_earrings_yellow:
   examine: "Helps to tread the boards."
 theatrical_earrings_note_3:
   id: 21932
-  slot: "Hat"
 theatrical_earrings_green:
   id: 21933
   slot: "Hat"
@@ -98409,7 +98578,6 @@ theatrical_earrings_green:
   examine: "Helps to tread the boards."
 theatrical_earrings_note_4:
   id: 21934
-  slot: "Hat"
 theatrical_earrings_purple:
   id: 21935
   slot: "Hat"
@@ -98421,7 +98589,6 @@ theatrical_earrings_purple:
   examine: "Helps to tread the boards."
 theatrical_earrings_note_5:
   id: 21936
-  slot: "Hat"
 theatrical_tunic_red_female:
   id: 21937
   slot: "Chest"
@@ -98433,7 +98600,6 @@ theatrical_tunic_red_female:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_6:
   id: 21938
-  slot: "Chest"
 theatrical_tunic_blue_female:
   id: 21939
   slot: "Chest"
@@ -98445,7 +98611,6 @@ theatrical_tunic_blue_female:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_7:
   id: 21940
-  slot: "Chest"
 theatrical_tunic_yellow_female:
   id: 21941
   slot: "Chest"
@@ -98457,7 +98622,6 @@ theatrical_tunic_yellow_female:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_8:
   id: 21942
-  slot: "Chest"
 theatrical_tunic_green_female:
   id: 21943
   slot: "Chest"
@@ -98469,7 +98633,6 @@ theatrical_tunic_green_female:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_9:
   id: 21944
-  slot: "Chest"
 theatrical_tunic_purple_female:
   id: 21945
   slot: "Chest"
@@ -98481,7 +98644,6 @@ theatrical_tunic_purple_female:
   examine: "Helps to tread the boards."
 theatrical_tunic_note_10:
   id: 21946
-  slot: "Chest"
 theatrical_skirt_red:
   id: 21947
   slot: "Legs"
@@ -98493,7 +98655,6 @@ theatrical_skirt_red:
   examine: "Helps to tread the boards."
 theatrical_skirt_note:
   id: 21948
-  slot: "Legs"
 theatrical_skirt_blue:
   id: 21949
   slot: "Legs"
@@ -98505,7 +98666,6 @@ theatrical_skirt_blue:
   examine: "Helps to tread the boards."
 theatrical_skirt_note_2:
   id: 21950
-  slot: "Legs"
 theatrical_skirt_yellow:
   id: 21951
   slot: "Legs"
@@ -98517,7 +98677,6 @@ theatrical_skirt_yellow:
   examine: "Helps to tread the boards."
 theatrical_skirt_note_3:
   id: 21952
-  slot: "Legs"
 theatrical_skirt_green:
   id: 21953
   slot: "Legs"
@@ -98529,7 +98688,6 @@ theatrical_skirt_green:
   examine: "Helps to tread the boards."
 theatrical_skirt_note_4:
   id: 21954
-  slot: "Legs"
 theatrical_skirt_purple:
   id: 21955
   slot: "Legs"
@@ -98541,7 +98699,6 @@ theatrical_skirt_purple:
   examine: "Helps to tread the boards."
 theatrical_skirt_note_5:
   id: 21956
-  slot: "Legs"
 theatrical_shoes_red_female:
   id: 21957
   slot: "Feet"
@@ -98553,7 +98710,6 @@ theatrical_shoes_red_female:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_6:
   id: 21958
-  slot: "Feet"
 theatrical_shoes_blue_female:
   id: 21959
   slot: "Feet"
@@ -98565,7 +98721,6 @@ theatrical_shoes_blue_female:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_7:
   id: 21960
-  slot: "Feet"
 theatrical_shoes_yellow_female:
   id: 21961
   slot: "Feet"
@@ -98577,7 +98732,6 @@ theatrical_shoes_yellow_female:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_8:
   id: 21962
-  slot: "Feet"
 theatrical_shoes_green_female:
   id: 21963
   slot: "Feet"
@@ -98589,7 +98743,6 @@ theatrical_shoes_green_female:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_9:
   id: 21964
-  slot: "Feet"
 theatrical_shoes_purple_female:
   id: 21965
   slot: "Feet"
@@ -98601,7 +98754,6 @@ theatrical_shoes_purple_female:
   examine: "Helps to tread the boards."
 theatrical_shoes_note_10:
   id: 21966
-  slot: "Feet"
 pharaohs_nemes_red:
   id: 21967
   slot: "Hat"
@@ -98614,8 +98766,6 @@ pharaohs_nemes_red:
   examine: "A fashionable headdress from a forgotten age."
 pharaoh_nemes_note:
   id: 21968
-  slot: "Hat"
-  type: "FullFace"
 pharaohs_nemes_yellow:
   id: 21969
   slot: "Hat"
@@ -98628,8 +98778,6 @@ pharaohs_nemes_yellow:
   examine: "A fashionable headdress from a forgotten age."
 pharaoh_nemes_note_2:
   id: 21970
-  slot: "Hat"
-  type: "FullFace"
 pharaohs_nemes_orange:
   id: 21971
   slot: "Hat"
@@ -98642,8 +98790,6 @@ pharaohs_nemes_orange:
   examine: "A fashionable headdress from a forgotten age."
 pharaoh_nemes_note_3:
   id: 21972
-  slot: "Hat"
-  type: "FullFace"
 pharaohs_nemes_green:
   id: 21973
   slot: "Hat"
@@ -98656,8 +98802,6 @@ pharaohs_nemes_green:
   examine: "A fashionable headdress from a forgotten age."
 pharaoh_nemes_note_4:
   id: 21974
-  slot: "Hat"
-  type: "FullFace"
 pharaohs_nemes_blue:
   id: 21975
   slot: "Hat"
@@ -98670,8 +98814,6 @@ pharaohs_nemes_blue:
   examine: "A fashionable headdress from a forgotten age."
 pharaoh_nemes_note_5:
   id: 21976
-  slot: "Hat"
-  type: "FullFace"
 pharaohs_ankh_red:
   id: 21977
   slot: "Chest"
@@ -98683,7 +98825,6 @@ pharaohs_ankh_red:
   examine: "Attire from a forgotten age."
 pharaoh_ankh_note:
   id: 21978
-  slot: "Chest"
 pharaohs_ankh_yellow:
   id: 21979
   slot: "Chest"
@@ -98695,7 +98836,6 @@ pharaohs_ankh_yellow:
   examine: "Attire from a forgotten age."
 pharaoh_ankh_note_2:
   id: 21980
-  slot: "Chest"
 pharaohs_ankh_orange:
   id: 21981
   slot: "Chest"
@@ -98707,7 +98847,6 @@ pharaohs_ankh_orange:
   examine: "Attire from a forgotten age."
 pharaoh_ankh_note_3:
   id: 21982
-  slot: "Chest"
 pharaohs_ankh_green:
   id: 21983
   slot: "Chest"
@@ -98719,7 +98858,6 @@ pharaohs_ankh_green:
   examine: "Attire from a forgotten age."
 pharaoh_ankh_note_4:
   id: 21984
-  slot: "Chest"
 pharaohs_ankh_blue:
   id: 21985
   slot: "Chest"
@@ -98731,7 +98869,6 @@ pharaohs_ankh_blue:
   examine: "Attire from a forgotten age."
 pharaoh_ankh_note_5:
   id: 21986
-  slot: "Chest"
 pharaohs_shendyt_red_male:
   id: 21987
   slot: "Legs"
@@ -98743,7 +98880,6 @@ pharaohs_shendyt_red_male:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note:
   id: 21988
-  slot: "Legs"
 pharaohs_shendyt_yellow_male:
   id: 21989
   slot: "Legs"
@@ -98755,7 +98891,6 @@ pharaohs_shendyt_yellow_male:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_2:
   id: 21990
-  slot: "Legs"
 pharaohs_shendyt_orange_male:
   id: 21991
   slot: "Legs"
@@ -98767,7 +98902,6 @@ pharaohs_shendyt_orange_male:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_3:
   id: 21992
-  slot: "Legs"
 pharaohs_shendyt_green_male:
   id: 21993
   slot: "Legs"
@@ -98779,7 +98913,6 @@ pharaohs_shendyt_green_male:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_4:
   id: 21994
-  slot: "Legs"
 pharaohs_shendyt_blue_male:
   id: 21995
   slot: "Legs"
@@ -98791,7 +98924,6 @@ pharaohs_shendyt_blue_male:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_5:
   id: 21996
-  slot: "Legs"
 pharaohs_sandals_red_male:
   id: 21997
   slot: "Feet"
@@ -98803,7 +98935,6 @@ pharaohs_sandals_red_male:
   examine: "Sandals worn in the desert."
 pharaoh_sandals_note:
   id: 21998
-  slot: "Feet"
 pharaohs_sandals_yellow_male:
   id: 21999
   slot: "Feet"
@@ -98815,7 +98946,6 @@ pharaohs_sandals_yellow_male:
   examine: "Sandals worn in the desert."
 pharaoh_sandals_note_2:
   id: 22000
-  slot: "Feet"
 pharaohs_sandals_orange_male:
   id: 22001
   slot: "Feet"
@@ -98827,7 +98957,6 @@ pharaohs_sandals_orange_male:
   examine: "Sandals worn in the desert."
 pharaoh_sandals_note_3:
   id: 22002
-  slot: "Feet"
 pharaohs_sandals_green_male:
   id: 22003
   slot: "Feet"
@@ -98839,7 +98968,6 @@ pharaohs_sandals_green_male:
   examine: "Sandals worn in the desert."
 pharaoh_sandals_note_4:
   id: 22004
-  slot: "Feet"
 pharaohs_sandals_blue_male:
   id: 22005
   slot: "Feet"
@@ -98851,7 +98979,6 @@ pharaohs_sandals_blue_male:
   examine: "Sandals worn in the desert."
 pharaoh_sandals_note_5:
   id: 22006
-  slot: "Feet"
 pharaohs_bun_red:
   id: 22007
   slot: "Hat"
@@ -98863,7 +98990,6 @@ pharaohs_bun_red:
   examine: "A fashionable hairstyle from a forgotten age."
 pharaoh_bun_note:
   id: 22008
-  slot: "Hat"
 pharaohs_bun_yellow:
   id: 22009
   slot: "Hat"
@@ -98875,7 +99001,6 @@ pharaohs_bun_yellow:
   examine: "A fashionable hairstyle from a forgotten age."
 pharaoh_bun_note_2:
   id: 22010
-  slot: "Hat"
 pharaohs_bun_purple:
   id: 22011
   slot: "Hat"
@@ -98887,7 +99012,6 @@ pharaohs_bun_purple:
   examine: "A fashionable hairstyle from a forgotten age."
 pharaoh_bun_note_3:
   id: 22012
-  slot: "Hat"
 pharaohs_bun_green:
   id: 22013
   slot: "Hat"
@@ -98899,7 +99023,6 @@ pharaohs_bun_green:
   examine: "A fashionable hairstyle from a forgotten age."
 pharaoh_bun_note_4:
   id: 22014
-  slot: "Hat"
 pharaohs_bun_brown:
   id: 22015
   slot: "Hat"
@@ -98911,7 +99034,6 @@ pharaohs_bun_brown:
   examine: "A fashionable hairstyle from a forgotten age."
 pharaoh_bun_note_5:
   id: 22016
-  slot: "Hat"
 pharaohs_top_red:
   id: 22017
   slot: "Chest"
@@ -98923,7 +99045,6 @@ pharaohs_top_red:
   examine: "Attire from a forgotten age."
 pharaoh_top_note:
   id: 22018
-  slot: "Chest"
 pharaohs_top_yellow:
   id: 22019
   slot: "Chest"
@@ -98935,7 +99056,6 @@ pharaohs_top_yellow:
   examine: "Attire from a forgotten age."
 pharaoh_top_note_2:
   id: 22020
-  slot: "Chest"
 pharaohs_top_purple:
   id: 22021
   slot: "Chest"
@@ -98947,7 +99067,6 @@ pharaohs_top_purple:
   examine: "Attire from a forgotten age."
 pharaoh_top_note_3:
   id: 22022
-  slot: "Chest"
 pharaohs_top_green:
   id: 22023
   slot: "Chest"
@@ -98959,7 +99078,6 @@ pharaohs_top_green:
   examine: "Attire from a forgotten age."
 pharaoh_top_note_4:
   id: 22024
-  slot: "Chest"
 pharaohs_top_blue:
   id: 22025
   slot: "Chest"
@@ -98971,7 +99089,6 @@ pharaohs_top_blue:
   examine: "Attire from a forgotten age."
 pharaoh_top_note_5:
   id: 22026
-  slot: "Chest"
 pharaohs_shendyt_red_female:
   id: 22027
   slot: "Legs"
@@ -98983,7 +99100,6 @@ pharaohs_shendyt_red_female:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_6:
   id: 22028
-  slot: "Legs"
 pharaohs_shendyt_yellow_female:
   id: 22029
   slot: "Legs"
@@ -98995,7 +99111,6 @@ pharaohs_shendyt_yellow_female:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_7:
   id: 22030
-  slot: "Legs"
 pharaohs_shendyt_purple_female:
   id: 22031
   slot: "Legs"
@@ -99007,7 +99122,6 @@ pharaohs_shendyt_purple_female:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_8:
   id: 22032
-  slot: "Legs"
 pharaohs_shendyt_green_female:
   id: 22033
   slot: "Legs"
@@ -99019,7 +99133,6 @@ pharaohs_shendyt_green_female:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_9:
   id: 22034
-  slot: "Legs"
 pharaohs_shendyt_brown_female:
   id: 22035
   slot: "Legs"
@@ -99031,7 +99144,6 @@ pharaohs_shendyt_brown_female:
   examine: "Attire from a forgotten age."
 pharaoh_shendyt_note_10:
   id: 22036
-  slot: "Legs"
 pharaohs_sandals_red_female:
   id: 22037
   slot: "Feet"
@@ -99043,7 +99155,6 @@ pharaohs_sandals_red_female:
   examine: "Attire from a forgotten age."
 pharaoh_sandals_note_6:
   id: 22038
-  slot: "Feet"
 pharaohs_sandals_yellow_female:
   id: 22039
   slot: "Feet"
@@ -99055,7 +99166,6 @@ pharaohs_sandals_yellow_female:
   examine: "Attire from a forgotten age."
 pharaoh_sandals_note_7:
   id: 22040
-  slot: "Feet"
 pharaohs_sandals_purple_female:
   id: 22041
   slot: "Feet"
@@ -99067,7 +99177,6 @@ pharaohs_sandals_purple_female:
   examine: "Attire from a forgotten age."
 pharaoh_sandals_note_8:
   id: 22042
-  slot: "Feet"
 pharaohs_sandals_green_female:
   id: 22043
   slot: "Feet"
@@ -99079,7 +99188,6 @@ pharaohs_sandals_green_female:
   examine: "Attire from a forgotten age."
 pharaoh_sandals_note_9:
   id: 22044
-  slot: "Feet"
 pharaohs_sandals_brown_female:
   id: 22045
   slot: "Feet"
@@ -99091,7 +99199,6 @@ pharaohs_sandals_brown_female:
   examine: "Attire from a forgotten age."
 pharaoh_sandals_note_10:
   id: 22046
-  slot: "Feet"
 wushanko_hat_red:
   id: 22047
   slot: "Hat"
@@ -99104,8 +99211,6 @@ wushanko_hat_red:
   examine: "A hat in a Wushanko style."
 changshan_hat_note:
   id: 22048
-  slot: "Hat"
-  type: "FullFace"
 wushanko_hat_blue:
   id: 22049
   slot: "Hat"
@@ -99118,8 +99223,6 @@ wushanko_hat_blue:
   examine: "A hat in a Wushanko style."
 changshan_hat_note_2:
   id: 22050
-  slot: "Hat"
-  type: "FullFace"
 wushanko_hat_pink:
   id: 22051
   slot: "Hat"
@@ -99132,8 +99235,6 @@ wushanko_hat_pink:
   examine: "A hat in a Wushanko style."
 changshan_hat_note_3:
   id: 22052
-  slot: "Hat"
-  type: "FullFace"
 wushanko_hat_orange:
   id: 22053
   slot: "Hat"
@@ -99146,8 +99247,6 @@ wushanko_hat_orange:
   examine: "A hat in a Wushanko style."
 changshan_hat_note_4:
   id: 22054
-  slot: "Hat"
-  type: "FullFace"
 wushanko_hat_light_red:
   id: 22055
   slot: "Hat"
@@ -99160,8 +99259,6 @@ wushanko_hat_light_red:
   examine: "A hat in a Wushanko style."
 changshan_hat_note_5:
   id: 22056
-  slot: "Hat"
-  type: "FullFace"
 wushanko_jacket_red:
   id: 22057
   slot: "Chest"
@@ -99173,7 +99270,6 @@ wushanko_jacket_red:
   examine: "A jacket in a Wushanko style."
 changshan_jacket_note:
   id: 22058
-  slot: "Chest"
 wushanko_jacket_blue:
   id: 22059
   slot: "Chest"
@@ -99185,7 +99281,6 @@ wushanko_jacket_blue:
   examine: "A jacket in a Wushanko style."
 changshan_jacket_note_2:
   id: 22060
-  slot: "Chest"
 wushanko_jacket_pink:
   id: 22061
   slot: "Chest"
@@ -99197,7 +99292,6 @@ wushanko_jacket_pink:
   examine: "A jacket in a Wushanko style."
 changshan_jacket_note_3:
   id: 22062
-  slot: "Chest"
 wushanko_jacket_orange:
   id: 22063
   slot: "Chest"
@@ -99209,7 +99303,6 @@ wushanko_jacket_orange:
   examine: "A jacket in a Wushanko style."
 changshan_jacket_note_4:
   id: 22064
-  slot: "Chest"
 wushanko_jacket_light_red:
   id: 22065
   slot: "Chest"
@@ -99221,7 +99314,6 @@ wushanko_jacket_light_red:
   examine: "A jacket in a Wushanko style."
 changshan_jacket_note_5:
   id: 22066
-  slot: "Chest"
 wushanko_trousers_red:
   id: 22067
   slot: "Legs"
@@ -99233,7 +99325,6 @@ wushanko_trousers_red:
   examine: "Trousers in a Wushanko style."
 changshan_trousers_note:
   id: 22068
-  slot: "Legs"
 wushanko_trousers_blue:
   id: 22069
   slot: "Legs"
@@ -99245,7 +99336,6 @@ wushanko_trousers_blue:
   examine: "Trousers in a Wushanko style."
 changshan_trousers_note_2:
   id: 22070
-  slot: "Legs"
 wushanko_trousers_pink:
   id: 22071
   slot: "Legs"
@@ -99257,7 +99347,6 @@ wushanko_trousers_pink:
   examine: "Trousers in a Wushanko style."
 changshan_trousers_note_3:
   id: 22072
-  slot: "Legs"
 wushanko_trousers_orange:
   id: 22073
   slot: "Legs"
@@ -99269,7 +99358,6 @@ wushanko_trousers_orange:
   examine: "Trousers in a Wushanko style."
 changshan_trousers_note_4:
   id: 22074
-  slot: "Legs"
 wushanko_trousers_light_red:
   id: 22075
   slot: "Legs"
@@ -99281,7 +99369,6 @@ wushanko_trousers_light_red:
   examine: "Trousers in a Wushanko style."
 changshan_trousers_note_5:
   id: 22076
-  slot: "Legs"
 wushanko_shoes_red_male:
   id: 22077
   slot: "Feet"
@@ -99293,7 +99380,6 @@ wushanko_shoes_red_male:
   examine: "Shoes in a Wushanko style."
 changshan_shoes_note:
   id: 22078
-  slot: "Feet"
 wushanko_shoes_blue_male:
   id: 22079
   slot: "Feet"
@@ -99305,7 +99391,6 @@ wushanko_shoes_blue_male:
   examine: "Shoes in a Wushanko style."
 changshan_shoes_note_2:
   id: 22080
-  slot: "Feet"
 wushanko_shoes_pink_male:
   id: 22081
   slot: "Feet"
@@ -99317,7 +99402,6 @@ wushanko_shoes_pink_male:
   examine: "Shoes in a Wushanko style."
 changshan_shoes_note_3:
   id: 22082
-  slot: "Feet"
 wushanko_shoes_orange_male:
   id: 22083
   slot: "Feet"
@@ -99329,7 +99413,6 @@ wushanko_shoes_orange_male:
   examine: "Shoes in a Wushanko style."
 changshan_shoes_note_4:
   id: 22084
-  slot: "Feet"
 wushanko_shoes_light_red_male:
   id: 22085
   slot: "Feet"
@@ -99341,7 +99424,6 @@ wushanko_shoes_light_red_male:
   examine: "Shoes in a Wushanko style."
 changshan_shoes_note_5:
   id: 22086
-  slot: "Feet"
 wushanko_headdress_red:
   id: 22087
   slot: "Hat"
@@ -99354,8 +99436,6 @@ wushanko_headdress_red:
   examine: "A headdress in a Wushanko style."
 cheongsam_headdress_note:
   id: 22088
-  slot: "Hat"
-  type: "FullFace"
 wushanko_headdress_blue:
   id: 22089
   slot: "Hat"
@@ -99368,8 +99448,6 @@ wushanko_headdress_blue:
   examine: "A headdress in a Wushanko style."
 cheongsam_headdress_note_2:
   id: 22090
-  slot: "Hat"
-  type: "FullFace"
 wushanko_headdress_pink:
   id: 22091
   slot: "Hat"
@@ -99382,8 +99460,6 @@ wushanko_headdress_pink:
   examine: "A headdress in a Wushanko style."
 cheongsam_headdress_note_3:
   id: 22092
-  slot: "Hat"
-  type: "FullFace"
 wushanko_headdress_orange:
   id: 22093
   slot: "Hat"
@@ -99396,8 +99472,6 @@ wushanko_headdress_orange:
   examine: "A headdress in a Wushanko style."
 cheongsam_headdress_note_4:
   id: 22094
-  slot: "Hat"
-  type: "FullFace"
 wushanko_headdress_light_red:
   id: 22095
   slot: "Hat"
@@ -99410,8 +99484,6 @@ wushanko_headdress_light_red:
   examine: "A headdress in a Wushanko style."
 cheongsam_headdress_note_5:
   id: 22096
-  slot: "Hat"
-  type: "FullFace"
 wushanko_top_red:
   id: 22097
   slot: "Chest"
@@ -99423,7 +99495,6 @@ wushanko_top_red:
   examine: "A top in a Wushanko style."
 cheongsam_top_note:
   id: 22098
-  slot: "Chest"
 wushanko_top_blue:
   id: 22099
   slot: "Chest"
@@ -99435,7 +99506,6 @@ wushanko_top_blue:
   examine: "A top in a Wushanko style."
 cheongsam_top_note_2:
   id: 22100
-  slot: "Chest"
 wushanko_top_pink:
   id: 22101
   slot: "Chest"
@@ -99447,7 +99517,6 @@ wushanko_top_pink:
   examine: "A top in a Wushanko style."
 cheongsam_top_note_3:
   id: 22102
-  slot: "Chest"
 wushanko_top_orange:
   id: 22103
   slot: "Chest"
@@ -99459,7 +99528,6 @@ wushanko_top_orange:
   examine: "A top in a Wushanko style."
 cheongsam_top_note_4:
   id: 22104
-  slot: "Chest"
 wushanko_top_light_red:
   id: 22105
   slot: "Chest"
@@ -99471,7 +99539,6 @@ wushanko_top_light_red:
   examine: "A top in a Wushanko style."
 cheongsam_top_note_5:
   id: 22106
-  slot: "Chest"
 wushanko_skirt_red:
   id: 22107
   slot: "Legs"
@@ -99483,7 +99550,6 @@ wushanko_skirt_red:
   examine: "A skirt in a Wushanko style."
 cheongsam_skirt_note:
   id: 22108
-  slot: "Legs"
 wushanko_skirt_blue:
   id: 22109
   slot: "Legs"
@@ -99495,7 +99561,6 @@ wushanko_skirt_blue:
   examine: "A skirt in a Wushanko style."
 cheongsam_skirt_note_2:
   id: 22110
-  slot: "Legs"
 wushanko_skirt_pink:
   id: 22111
   slot: "Legs"
@@ -99507,7 +99572,6 @@ wushanko_skirt_pink:
   examine: "A skirt in a Wushanko style."
 cheongsam_skirt_note_3:
   id: 22112
-  slot: "Legs"
 wushanko_skirt_orange:
   id: 22113
   slot: "Legs"
@@ -99519,7 +99583,6 @@ wushanko_skirt_orange:
   examine: "A skirt in a Wushanko style."
 cheongsam_skirt_note_4:
   id: 22114
-  slot: "Legs"
 wushanko_skirt_light_red:
   id: 22115
   slot: "Legs"
@@ -99531,7 +99594,6 @@ wushanko_skirt_light_red:
   examine: "A skirt in a Wushanko style."
 cheongsam_skirt_note_5:
   id: 22116
-  slot: "Legs"
 wushanko_shoes_red_female:
   id: 22117
   slot: "Feet"
@@ -99543,7 +99605,6 @@ wushanko_shoes_red_female:
   examine: "Shoes in a Wushanko style."
 cheongsam_shoes_note:
   id: 22118
-  slot: "Feet"
 wushanko_shoes_blue_female:
   id: 22119
   slot: "Feet"
@@ -99555,7 +99616,6 @@ wushanko_shoes_blue_female:
   examine: "Shoes in a Wushanko style."
 cheongsam_shoes_note_2:
   id: 22120
-  slot: "Feet"
 wushanko_shoes_pink_female:
   id: 22121
   slot: "Feet"
@@ -99567,7 +99627,6 @@ wushanko_shoes_pink_female:
   examine: "Shoes in a Wushanko style."
 cheongsam_shoes_note_3:
   id: 22122
-  slot: "Feet"
 wushanko_shoes_orange_female:
   id: 22123
   slot: "Feet"
@@ -99579,7 +99638,6 @@ wushanko_shoes_orange_female:
   examine: "Shoes in a Wushanko style."
 cheongsam_shoes_note_4:
   id: 22124
-  slot: "Feet"
 wushanko_shoes_light_red_female:
   id: 22125
   slot: "Feet"
@@ -99591,7 +99649,6 @@ wushanko_shoes_light_red_female:
   examine: "Shoes in a Wushanko style."
 cheongsam_shoes_note_5:
   id: 22126
-  slot: "Feet"
 silken_turban_orange_male:
   id: 22127
   slot: "Hat"
@@ -99604,8 +99661,6 @@ silken_turban_orange_male:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note:
   id: 22128
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_violet_male:
   id: 22129
   slot: "Hat"
@@ -99618,8 +99673,6 @@ silken_turban_violet_male:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_2:
   id: 22130
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_pink_male:
   id: 22131
   slot: "Hat"
@@ -99632,8 +99685,6 @@ silken_turban_pink_male:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_3:
   id: 22132
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_green_male:
   id: 22133
   slot: "Hat"
@@ -99646,8 +99697,6 @@ silken_turban_green_male:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_4:
   id: 22134
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_blue_male:
   id: 22135
   slot: "Hat"
@@ -99660,8 +99709,6 @@ silken_turban_blue_male:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_5:
   id: 22136
-  slot: "Hat"
-  type: "FullFace"
 silken_top_orange_male:
   id: 22137
   slot: "Chest"
@@ -99673,7 +99720,6 @@ silken_top_orange_male:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note:
   id: 22138
-  slot: "Chest"
 silken_top_violet_male:
   id: 22139
   slot: "Chest"
@@ -99685,7 +99731,6 @@ silken_top_violet_male:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_2:
   id: 22140
-  slot: "Chest"
 silken_top_pink_male:
   id: 22141
   slot: "Chest"
@@ -99697,7 +99742,6 @@ silken_top_pink_male:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_3:
   id: 22142
-  slot: "Chest"
 silken_top_green_male:
   id: 22143
   slot: "Chest"
@@ -99709,7 +99753,6 @@ silken_top_green_male:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_4:
   id: 22144
-  slot: "Chest"
 silken_top_blue_male:
   id: 22145
   slot: "Chest"
@@ -99721,7 +99764,6 @@ silken_top_blue_male:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_5:
   id: 22146
-  slot: "Chest"
 silken_trousers_orange:
   id: 22147
   slot: "Legs"
@@ -99733,7 +99775,6 @@ silken_trousers_orange:
   examine: "Fashion of exquisite craftmanship."
 silken_trousers_note:
   id: 22148
-  slot: "Legs"
 silken_trousers_violet:
   id: 22149
   slot: "Legs"
@@ -99745,7 +99786,6 @@ silken_trousers_violet:
   examine: "Fashion of exquisite craftmanship."
 silken_trousers_note_2:
   id: 22150
-  slot: "Legs"
 silken_trousers_pink:
   id: 22151
   slot: "Legs"
@@ -99757,7 +99797,6 @@ silken_trousers_pink:
   examine: "Fashion of exquisite craftmanship."
 silken_trousers_note_3:
   id: 22152
-  slot: "Legs"
 silken_trousers_green:
   id: 22153
   slot: "Legs"
@@ -99769,7 +99808,6 @@ silken_trousers_green:
   examine: "Fashion of exquisite craftmanship."
 silken_trousers_note_4:
   id: 22154
-  slot: "Legs"
 silken_trousers_blue:
   id: 22155
   slot: "Legs"
@@ -99781,7 +99819,6 @@ silken_trousers_blue:
   examine: "Fashion of exquisite craftmanship."
 silken_trousers_note_5:
   id: 22156
-  slot: "Legs"
 silken_boots_orange_male:
   id: 22157
   slot: "Feet"
@@ -99793,7 +99830,6 @@ silken_boots_orange_male:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note:
   id: 22158
-  slot: "Feet"
 silken_boots_violet_male:
   id: 22159
   slot: "Feet"
@@ -99805,7 +99841,6 @@ silken_boots_violet_male:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_2:
   id: 22160
-  slot: "Feet"
 silken_boots_pink_male:
   id: 22161
   slot: "Feet"
@@ -99817,7 +99852,6 @@ silken_boots_pink_male:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_3:
   id: 22162
-  slot: "Feet"
 silken_boots_green_male:
   id: 22163
   slot: "Feet"
@@ -99829,7 +99863,6 @@ silken_boots_green_male:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_4:
   id: 22164
-  slot: "Feet"
 silken_boots_blue_male:
   id: 22165
   slot: "Feet"
@@ -99841,7 +99874,6 @@ silken_boots_blue_male:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_5:
   id: 22166
-  slot: "Feet"
 silken_turban_orange_female:
   id: 22167
   slot: "Hat"
@@ -99854,8 +99886,6 @@ silken_turban_orange_female:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_6:
   id: 22168
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_violet_female:
   id: 22169
   slot: "Hat"
@@ -99868,8 +99898,6 @@ silken_turban_violet_female:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_7:
   id: 22170
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_pink_female:
   id: 22171
   slot: "Hat"
@@ -99882,8 +99910,6 @@ silken_turban_pink_female:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_8:
   id: 22172
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_green_female:
   id: 22173
   slot: "Hat"
@@ -99896,8 +99922,6 @@ silken_turban_green_female:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_9:
   id: 22174
-  slot: "Hat"
-  type: "FullFace"
 silken_turban_blue_female:
   id: 22175
   slot: "Hat"
@@ -99910,8 +99934,6 @@ silken_turban_blue_female:
   examine: "Fashion of exquisite craftmanship."
 silken_pagri_note_10:
   id: 22176
-  slot: "Hat"
-  type: "FullFace"
 silken_top_orange_female:
   id: 22177
   slot: "Chest"
@@ -99923,7 +99945,6 @@ silken_top_orange_female:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_6:
   id: 22178
-  slot: "Chest"
 silken_top_violet_female:
   id: 22179
   slot: "Chest"
@@ -99935,7 +99956,6 @@ silken_top_violet_female:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_7:
   id: 22180
-  slot: "Chest"
 silken_top_pink_female:
   id: 22181
   slot: "Chest"
@@ -99947,7 +99967,6 @@ silken_top_pink_female:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_8:
   id: 22182
-  slot: "Chest"
 silken_top_green_female:
   id: 22183
   slot: "Chest"
@@ -99959,7 +99978,6 @@ silken_top_green_female:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_9:
   id: 22184
-  slot: "Chest"
 silken_top_blue_female:
   id: 22185
   slot: "Chest"
@@ -99971,7 +99989,6 @@ silken_top_blue_female:
   examine: "Fashion of exquisite craftmanship."
 silken_top_note_10:
   id: 22186
-  slot: "Chest"
 silken_skirt_orange:
   id: 22187
   slot: "Legs"
@@ -99983,7 +100000,6 @@ silken_skirt_orange:
   examine: "Fashion of exquisite craftmanship."
 silken_skirt_note:
   id: 22188
-  slot: "Legs"
 silken_skirt_violet:
   id: 22189
   slot: "Legs"
@@ -99995,7 +100011,6 @@ silken_skirt_violet:
   examine: "Fashion of exquisite craftmanship."
 silken_skirt_note_2:
   id: 22190
-  slot: "Legs"
 silken_skirt_pink:
   id: 22191
   slot: "Legs"
@@ -100007,7 +100022,6 @@ silken_skirt_pink:
   examine: "Fashion of exquisite craftmanship."
 silken_skirt_note_3:
   id: 22192
-  slot: "Legs"
 silken_skirt_green:
   id: 22193
   slot: "Legs"
@@ -100019,7 +100033,6 @@ silken_skirt_green:
   examine: "Fashion of exquisite craftmanship."
 silken_skirt_note_4:
   id: 22194
-  slot: "Legs"
 silken_skirt_blue:
   id: 22195
   slot: "Legs"
@@ -100031,7 +100044,6 @@ silken_skirt_blue:
   examine: "Fashion of exquisite craftmanship."
 silken_skirt_note_5:
   id: 22196
-  slot: "Legs"
 silken_boots_orange_female:
   id: 22197
   slot: "Feet"
@@ -100043,7 +100055,6 @@ silken_boots_orange_female:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_6:
   id: 22198
-  slot: "Feet"
 silken_boots_violet_female:
   id: 22199
   slot: "Feet"
@@ -100055,7 +100066,6 @@ silken_boots_violet_female:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_7:
   id: 22200
-  slot: "Feet"
 silken_boots_pink_female:
   id: 22201
   slot: "Feet"
@@ -100067,7 +100077,6 @@ silken_boots_pink_female:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_8:
   id: 22202
-  slot: "Feet"
 silken_boots_green_female:
   id: 22203
   slot: "Feet"
@@ -100079,7 +100088,6 @@ silken_boots_green_female:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_9:
   id: 22204
-  slot: "Feet"
 silken_boots_blue_female:
   id: 22205
   slot: "Feet"
@@ -100091,7 +100099,6 @@ silken_boots_blue_female:
   examine: "Fashion of exquisite craftmanship."
 silken_boots_note_10:
   id: 22206
-  slot: "Feet"
 staff_of_light_red:
   id: 22207
   slot: "Weapon"
@@ -100101,7 +100108,6 @@ staff_of_light_red:
   examine: "Humming with power. It's also red."
 staff_of_light_note:
   id: 22208
-  slot: "Weapon"
   weight: 2.267
   limit: 10
   examine: "Humming with power."
@@ -100114,7 +100120,6 @@ staff_of_light_yellow:
   examine: "Humming with power. It's also yellow."
 staff_of_light_note_2:
   id: 22210
-  slot: "Weapon"
   weight: 2.267
   limit: 10
   examine: "Humming with power."
@@ -100127,7 +100132,6 @@ staff_of_light_blue:
   examine: "Humming with power. It's also blue."
 staff_of_light_note_3:
   id: 22212
-  slot: "Weapon"
   weight: 2.267
   limit: 10
   examine: "Humming with power."
@@ -100140,7 +100144,6 @@ staff_of_light_green:
   examine: "Humming with power. It's also green."
 staff_of_light_note_4:
   id: 22214
-  slot: "Weapon"
   weight: 2.267
   limit: 10
   examine: "Humming with power."
@@ -100183,8 +100186,6 @@ lunar_helm_red:
   examine: "A mystical helmet. It's also red."
 lunar_helm_note:
   id: 22220
-  slot: "Hat"
-  type: "FullFace"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100200,7 +100201,6 @@ lunar_torso_red:
   examine: "Provides good protection. It's also red."
 lunar_torso_note:
   id: 22222
-  slot: "Chest"
   weight: 4.535
   tradeable: false
   demise: "Reclaim"
@@ -100216,7 +100216,6 @@ lunar_legs_red:
   examine: "These should protect my legs. They're also red."
 lunar_legs_note:
   id: 22224
-  slot: "Legs"
   weight: 3.628
   tradeable: false
   demise: "Reclaim"
@@ -100232,7 +100231,6 @@ lunar_gloves_red:
   examine: "These should keep my hands safe. They're also red."
 lunar_gloves_note:
   id: 22226
-  slot: "Hands"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100248,7 +100246,6 @@ lunar_boots_red:
   examine: "Mystical foot protection. They're also red."
 lunar_boots_note:
   id: 22228
-  slot: "Feet"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100264,7 +100261,6 @@ lunar_cape_red:
   examine: "Ooooh, pretty! It's also red."
 lunar_cape_note:
   id: 22230
-  slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
@@ -100281,8 +100277,6 @@ lunar_helm_green:
   examine: "A mystical helmet. It's also green."
 lunar_helm_note_2:
   id: 22232
-  slot: "Hat"
-  type: "FullFace"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100298,7 +100292,6 @@ lunar_torso_green:
   examine: "Provides good protection. It's also green."
 lunar_torso_note_2:
   id: 22234
-  slot: "Chest"
   weight: 4.535
   tradeable: false
   demise: "Reclaim"
@@ -100314,7 +100307,6 @@ lunar_legs_green:
   examine: "These should protect my legs. They're also green."
 lunar_legs_note_2:
   id: 22236
-  slot: "Legs"
   weight: 3.628
   tradeable: false
   demise: "Reclaim"
@@ -100330,7 +100322,6 @@ lunar_gloves_green:
   examine: "These should keep my hands safe. They're also green."
 lunar_gloves_note_2:
   id: 22238
-  slot: "Hands"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100346,7 +100337,6 @@ lunar_boots_green:
   examine: "Mystical foot protection. They're also green."
 lunar_boots_note_2:
   id: 22240
-  slot: "Feet"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100362,7 +100352,6 @@ lunar_cape_green:
   examine: "Oooo pretty! It's also green."
 lunar_cape_note_2:
   id: 22242
-  slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
@@ -100379,8 +100368,6 @@ lunar_helm_blue:
   examine: "A mystical helmet. It's also blue."
 lunar_helm_note_3:
   id: 22244
-  slot: "Hat"
-  type: "FullFace"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100396,7 +100383,6 @@ lunar_torso_blue:
   examine: "Provides good protection. It's also blue."
 lunar_torso_note_3:
   id: 22246
-  slot: "Chest"
   weight: 4.535
   tradeable: false
   demise: "Reclaim"
@@ -100412,7 +100398,6 @@ lunar_legs_blue:
   examine: "These should protect my legs. They're also blue."
 lunar_legs_note_3:
   id: 22248
-  slot: "Legs"
   weight: 3.628
   tradeable: false
   demise: "Reclaim"
@@ -100428,7 +100413,6 @@ lunar_gloves_blue:
   examine: "These should keep my hands safe. They're also blue."
 lunar_gloves_note_3:
   id: 22250
-  slot: "Hands"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100444,7 +100428,6 @@ lunar_boots_blue:
   examine: "Mystical foot protection. They're also blue."
 lunar_boots_note_3:
   id: 22252
-  slot: "Feet"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100460,7 +100443,6 @@ lunar_cape_blue:
   examine: "Ooooh, pretty! It's also blue."
 lunar_cape_note_3:
   id: 22254
-  slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
@@ -100477,8 +100459,6 @@ lunar_helm_yellow:
   examine: "A mystical helmet. It's also yellow."
 lunar_helm_note_4:
   id: 22256
-  slot: "Hat"
-  type: "FullFace"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100494,7 +100474,6 @@ lunar_torso_yellow:
   examine: "Provides good protection. It's also yellow."
 lunar_torso_note_4:
   id: 22258
-  slot: "Chest"
   weight: 4.535
   tradeable: false
   demise: "Reclaim"
@@ -100510,7 +100489,6 @@ lunar_legs_yellow:
   examine: "These should protect my legs. They're also yellow."
 lunar_legs_note_4:
   id: 22260
-  slot: "Legs"
   weight: 3.628
   tradeable: false
   demise: "Reclaim"
@@ -100526,7 +100504,6 @@ lunar_gloves_yellow:
   examine: "These should keep my hands safe. They're also yellow."
 lunar_gloves_note_4:
   id: 22262
-  slot: "Hands"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100542,7 +100519,6 @@ lunar_boots_yellow:
   examine: "Mystical foot protection. They're also yellow."
 lunar_boots_note_4:
   id: 22264
-  slot: "Feet"
   weight: 0.907
   tradeable: false
   demise: "Reclaim"
@@ -100558,7 +100534,6 @@ lunar_cape_yellow:
   examine: "Oooo pretty! It's also yellow."
 lunar_cape_note_4:
   id: 22266
-  slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
@@ -100577,7 +100552,6 @@ greater_poison_purge_aura:
   examine: "Causes poison to heal instead of damage you."
 greater_poison_purge_note:
   id: 22269
-  slot: "Aura"
 greater_runic_accuracy_aura:
   id: 22270
   slot: "Aura"
@@ -100589,7 +100563,6 @@ greater_runic_accuracy_aura:
   examine: "5% greater chance of offensive spells hitting target. Doesn't work in PvP."
 greater_runic_accuracy_note:
   id: 22271
-  slot: "Aura"
 greater_sharpshooter_aura:
   id: 22272
   slot: "Aura"
@@ -100601,7 +100574,6 @@ greater_sharpshooter_aura:
   examine: "Increases your ranged accuracy by 5%. Does not work in PvP."
 greater_sharpshooter_note:
   id: 22273
-  slot: "Aura"
 greater_call_of_the_sea_aura:
   id: 22274
   slot: "Aura"
@@ -100613,7 +100585,6 @@ greater_call_of_the_sea_aura:
   examine: "Increases your chance of catching fish by 5%."
 greater_call_of_the_sea_note:
   id: 22275
-  slot: "Aura"
 greater_reverence_aura:
   id: 22276
   slot: "Aura"
@@ -100625,7 +100596,6 @@ greater_reverence_aura:
   examine: "Slows down prayer drain and increases prayer restoration from potions by 5%."
 greater_reverence_note:
   id: 22277
-  slot: "Aura"
 greater_surefooted_aura:
   id: 22278
   slot: "Aura"
@@ -100637,7 +100607,6 @@ greater_surefooted_aura:
   examine: "Prevents you from failing obstacles if you are on an agility course."
 greater_surefooted_note:
   id: 22279
-  slot: "Aura"
 lumberjack_aura:
   id: 22280
   slot: "Aura"
@@ -100649,7 +100618,6 @@ lumberjack_aura:
   examine: "Increases your chance of chopping wood by 3%."
 lumberjack_note:
   id: 22281
-  slot: "Aura"
 greater_lumberjack_aura:
   id: 22282
   slot: "Aura"
@@ -100661,7 +100629,6 @@ greater_lumberjack_aura:
   examine: "Increases your chance of chopping wood by 5%."
 greater_lumberjack_note:
   id: 22283
-  slot: "Aura"
 quarrymaster_aura:
   id: 22284
   slot: "Aura"
@@ -100673,7 +100640,6 @@ quarrymaster_aura:
   examine: "Increases your chance to critically hit when mining by 2%."
 quarrymaster_note:
   id: 22285
-  slot: "Aura"
 greater_quarrymaster_aura:
   id: 22286
   slot: "Aura"
@@ -100685,7 +100651,6 @@ greater_quarrymaster_aura:
   examine: "Increases your chance to critically hit when mining by 4%"
 greater_quarrymaster_note:
   id: 22287
-  slot: "Aura"
 five-finger_discount_aura:
   id: 22288
   slot: "Aura"
@@ -100697,7 +100662,6 @@ five-finger_discount_aura:
   examine: "Increases your chance of thieving successfully by 3%."
 five_finger_discount_note:
   id: 22289
-  slot: "Aura"
 greater_five-finger_discount_aura:
   id: 22290
   slot: "Aura"
@@ -100709,7 +100673,6 @@ greater_five-finger_discount_aura:
   examine: "Increases your chance of thieving successfully by 5%."
 greater_five_finger_discount_note:
   id: 22291
-  slot: "Aura"
 resourceful_aura:
   id: 22292
   slot: "Aura"
@@ -100721,7 +100684,6 @@ resourceful_aura:
   examine: "When woodcutting or excavating, 10% to not deplete the resource. When mining, +2% geode chance. Whe mining red or crystal sandstone, +10% chance to get double sandstone."
 resourceful_note:
   id: 22293
-  slot: "Aura"
 equilibrium_aura:
   id: 22294
   slot: "Aura"
@@ -100733,7 +100695,6 @@ equilibrium_aura:
   examine: "Decreases your maximum hit by 25%, but increases your minimum hit by the same amount."
 equilibrium_note:
   id: 22295
-  slot: "Aura"
 inspiration_aura:
   id: 22296
   slot: "Aura"
@@ -100745,7 +100706,6 @@ inspiration_aura:
   examine: "Your successful attacks restore 0.2% of your special attack bar.."
 inspiration_note:
   id: 22297
-  slot: "Aura"
 vampyrism_aura:
   id: 22298
   slot: "Aura"
@@ -100757,7 +100717,6 @@ vampyrism_aura:
   examine: "Gain life points equal to 5% of any damage you deal."
 vampyrism_note:
   id: 22299
-  slot: "Aura"
 penance_aura:
   id: 22300
   slot: "Aura"
@@ -100769,7 +100728,6 @@ penance_aura:
   examine: "Gain prayer points equal to 5% of any damage you receive."
 penance_note:
   id: 22301
-  slot: "Aura"
 wisdom_aura:
   id: 22302
   slot: "Aura"
@@ -100781,28 +100739,23 @@ wisdom_aura:
   examine: "Increases all experience gained by 2.5%."
 wisdom_note:
   id: 22303
-  slot: "Aura"
 gnome_scarf_note:
   id: 22304
-  slot: "Amulet"
   weight: 0.01
   limit: 10
   examine: "A scarf. You feel your upper lip stiffening."
 gnome_scarf_note_2:
   id: 22305
-  slot: "Amulet"
   weight: 0.01
   limit: 10
   examine: "A scarf. You feel your upper lip stiffening."
 gnome_scarf_note_3:
   id: 22306
-  slot: "Amulet"
   weight: 0.01
   limit: 10
   examine: "A scarf. You feel your upper lip stiffening."
 gnome_scarf_note_4:
   id: 22307
-  slot: "Amulet"
   weight: 0.01
   limit: 10
   examine: "A scarf. You feel your upper lip stiffening."

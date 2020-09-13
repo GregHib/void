@@ -4,6 +4,8 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import org.koin.core.context.startKoin
+import rs.dusk.cache.Cache
+import rs.dusk.cache.CacheDelegate
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
@@ -11,6 +13,7 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
+import rs.dusk.tools.convert.ItemDecoder718
 import java.io.File
 
 /**
@@ -200,24 +203,21 @@ private class WikiItemNames(val decoder: ItemDecoder, val types: ItemTypes, val 
     override fun createData(name: String, id: Int): Map<String, Any> {
         val map = LinkedHashMap<String, Any>()
         map["id"] = id
-        val def = decoder.get(id)
-        if (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0) {
-            val slot = types.slots[id]
-            if (slot != null) {
-                var s = EquipSlot.by(slot)
-                if (id == 11277) {
-                    s = EquipSlot.Hat
-                }
-                if (s == EquipSlot.None) {
-                    println("Unknown slot $slot $id")
-                } else {
-                    map["slot"] = s.name
-                }
+        val slot = types.slots[id]
+        if (slot != null) {
+            var s = EquipSlot.by(slot)
+            if (id == 11277) {
+                s = EquipSlot.Hat
             }
-            val type = types.getEquipType(id)
-            if (type != EquipType.None) {
-                map["type"] = type.name
+            if (s == EquipSlot.None) {
+                println("Unknown slot $slot $id")
+            } else {
+                map["slot"] = s.name
             }
+        }
+        val type = types.getEquipType(id)
+        if (type != EquipType.None) {
+            map["type"] = type.name
         }
         data[id]?.let { rawData ->
             val data = rawData.mapKeys { it.key.toLowerCase() }
@@ -264,12 +264,20 @@ private class WikiItemNames(val decoder: ItemDecoder, val types: ItemTypes, val 
                 "examine"
         )
 
+        private fun loadEquipSlotsAndTypes() {
+            val decoder718 = ItemDecoder718(CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") as Cache)
+            repeat(decoder718.size) { id ->
+                decoder718.get(id)
+            }
+        }
+
         @JvmStatic
         fun main(args: Array<String>) {
             val koin = startKoin {
                 fileProperties("/tool.properties")
                 modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
             }.koin
+            loadEquipSlotsAndTypes()
             val decoder = ItemDecoder(koin.get())
             val loader = FileLoader(true)
             val types = ItemTypes(decoder)

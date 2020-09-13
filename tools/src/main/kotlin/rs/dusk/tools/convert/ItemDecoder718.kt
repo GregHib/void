@@ -39,8 +39,8 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
             }
             11 -> stackable = 1
             12 -> cost = buffer.readInt()
-            13 -> buffer.readUnsignedByte()// EquipSlot
-            14 -> buffer.readUnsignedByte()// EquipType
+            13 -> equipSlots[id] = buffer.readUnsignedByte()
+            14 -> equipTypes[id] = buffer.readUnsignedByte()
             16 -> members = true
             18 -> multiStackSize = buffer.readShort()
             23 -> primaryMaleModel = buffer.readBigSmart()
@@ -172,6 +172,15 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         maleWieldX = item.maleWieldX
         System.arraycopy(item.options, 0, options, 0, 4)
         options[4] = "Discard"
+
+        val slot = equipSlots[item.id]
+        if(slot != null) {
+            equipSlots[id] = slot
+        }
+        val type = equipTypes[item.id]
+        if(type != null) {
+            equipTypes[id] = type
+        }
     }
 
     fun ItemDefinition.toNote(template: ItemDefinition?, item: ItemDefinition?) {
@@ -238,5 +247,10 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         originalTextureColours = item.originalTextureColours
         System.arraycopy(item.options, 0, options, 0, 4)
         options[4] = "Discard"
+    }
+
+    companion object {
+        val equipSlots = mutableMapOf<Int, Int>()
+        val equipTypes = mutableMapOf<Int, Int>()
     }
 }

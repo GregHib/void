@@ -3,13 +3,12 @@ package rs.dusk.tools.detail
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
-import java.io.DataInputStream
-import java.io.File
+import rs.dusk.tools.convert.ItemDecoder718
 
 class ItemTypes(val decoder: ItemDecoder) {
 
-    val slots = readEquipSlots()
-    private val types = readEquipTypes()
+    val slots = ItemDecoder718.equipSlots
+    private val types = ItemDecoder718.equipTypes
 
     private val sleeveless = arrayOf(
         "chainbody",
@@ -220,25 +219,5 @@ class ItemTypes(val decoder: ItemDecoder) {
             slot == EquipSlot.Hat.index -> getHeadEquipType(name)
             else -> EquipType.None
         }
-    }
-
-    fun readEquipTypes(): Map<Int, Int> {
-        val equipTypes = mutableMapOf<Int, Int>()
-        val file = File("./data/dump/equipmentTypes.dat")
-        val stream = DataInputStream(file.inputStream())
-        while (stream.available() > 0) {
-            equipTypes[stream.readShort().toInt()] = stream.readByte().toInt()
-        }
-        return equipTypes
-    }
-
-    fun readEquipSlots(): Map<Int, Int> {
-        val equipSlots = mutableMapOf<Int, Int>()
-        val file = File("./data/dump/equipmentSlots.dat")
-        val stream = DataInputStream(file.inputStream())
-        while (stream.available() > 0) {
-            equipSlots[stream.readShort().toInt()] = stream.readByte().toInt()
-        }
-        return equipSlots
     }
 }

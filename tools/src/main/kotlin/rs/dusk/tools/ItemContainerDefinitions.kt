@@ -10,7 +10,7 @@ object ItemContainerDefinitions {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            koin.setProperty("cachePath", "C:\\Users\\Greg\\Downloads\\rs718_cache\\")
+            koin.setProperty("cachePath", "${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemContainerDecoder(koin.get())
