@@ -8,7 +8,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 import rs.dusk.utility.inject
@@ -39,7 +39,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
         }
 
         val fromComponentId = fromHash and 0xffff
-        val fromDefinition = decoder.getSafe(fromId)
+        val fromDefinition = decoder.get(fromId)
         val fromComponent = fromDefinition.components?.get(fromComponentId)
         if (fromComponent == null) {
             logger.debug { "Interface $fromId component $fromComponentId not found for player $player" }
@@ -48,7 +48,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val fromInter = lookup.get(fromId)
         val fromName = fromInter.name
-        val fromComponentName = fromInter.components[fromComponentId] ?: ""
+        val fromComponentName = fromInter.getComponentName(fromComponentId)
 
         val toId = toHash shr 16
         if (!player.interfaces.contains(toId)) {
@@ -57,7 +57,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
         }
 
         val toComponentId = toHash and 0xffff
-        val toDefinition = decoder.getSafe(toId)
+        val toDefinition = decoder.get(toId)
         val toComponent = toDefinition.components?.get(toComponentId)
         if (toComponent == null) {
             logger.debug { "Interface $toId component $toComponentId not found for player $player" }
@@ -66,10 +66,10 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
 
         val toInter = lookup.get(toId)
         val toName = toInter.name
-        val toComponentName = toInter.components[toComponentId] ?: ""
+        val toComponentName = toInter.getComponentName(toComponentId)
 
 
-        executor.start {
+        executor.sync {
             bus.emit(
                 InterfaceSwitch(
                     player,

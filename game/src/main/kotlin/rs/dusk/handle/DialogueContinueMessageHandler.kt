@@ -8,7 +8,7 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.DialogueContinueMessage
 import rs.dusk.utility.inject
@@ -39,7 +39,7 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
             return
         }
 
-        val definition = decoder.getSafe(id)
+        val definition = decoder.get(id)
         val component = definition.components?.get(componentId)
         if (component == null) {
             logger.debug { "Dialogue $id component $componentId not found for player $player" }
@@ -54,9 +54,9 @@ class DialogueContinueMessageHandler : GameMessageHandler<DialogueContinueMessag
 
         val inter = lookup.get(id)
         val name = inter.name
-        val componentName = inter.components[componentId] ?: ""
+        val componentName = inter.getComponentName(componentId)
 
-        executor.start {
+        executor.sync {
             bus.emit(
                 ContinueDialogue(
                     player,

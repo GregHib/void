@@ -27,7 +27,7 @@ class InterfaceOptionMessageDecoder : GameMessageDecoder<InterfaceOptionMessage>
         packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
         packet.readShort(Modifier.ADD, Endian.LITTLE),
         packet.readShort(),
-        opcodes!!.indexOf(packet.opcode) + 1
+        opcodes!!.indexOf(packet.opcode)
     )
 
 }

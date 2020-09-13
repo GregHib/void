@@ -50,7 +50,7 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
             40 -> readColours(buffer)
             41 -> readTextures(buffer)
             42 -> readColourPalette(buffer)
-            65 -> unnoted = true
+            65 -> exchangeable = true
             78 -> tertiaryMaleModel = buffer.readShort()
             79 -> tertiaryFemaleModel = buffer.readShort()
             90 -> primaryMaleDialogueHead = buffer.readShort()
@@ -119,13 +119,13 @@ class ItemDecoder(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS
 
     override fun ItemDefinition.changeValues() {
         if (notedTemplateId != -1) {
-            toNote(get(notedTemplateId), get(noteId))
+            toNote(getOrNull(notedTemplateId), getOrNull(noteId))
         }
         if (lendTemplateId != -1) {
-            toLend(get(lendId), get(lendTemplateId))
+            toLend(getOrNull(lendId), getOrNull(lendTemplateId))
         }
         if (singleNoteTemplateId != -1) {
-            toSingleNote(get(singleNoteTemplateId), get(singleNoteId))
+            toSingleNote(getOrNull(singleNoteTemplateId), getOrNull(singleNoteId))
         }
     }
 

@@ -23,6 +23,7 @@ class Action {
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
+    var type: ActionType = ActionType.Misc
 
     /**
      * Whether there is currently an action which is paused
@@ -46,6 +47,15 @@ class Action {
         }
     }
 
+    fun cancel(expected: ActionType) {
+        if(type == expected) {
+            cancel()
+        }
+    }
+
+    fun cancel() {
+        cancel(CancellationException())
+    }
     /**
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]
@@ -62,6 +72,7 @@ class Action {
      * @param action The suspendable action function
      */
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
+        this.type = type
         this@Action.cancel(type)
         val coroutine = action.createCoroutine(this@Action, ActionContinuation)
         scope.launch {

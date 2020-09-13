@@ -1,6 +1,7 @@
 package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.action.Suspension
+import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
@@ -13,27 +14,19 @@ abstract class Interfaces(private val details: InterfaceDetails) {
 
     fun open(name: String): Boolean = open(details.get(name))
 
-    fun open(id: Int): Boolean = open(details.get(id))
-
     protected abstract fun open(inter: InterfaceDetail): Boolean
 
     fun close(name: String): Boolean = close(details.get(name))
 
-    fun close(id: Int): Boolean = close(details.get(id))
-
     protected abstract fun close(inter: InterfaceDetail): Boolean
 
-    abstract fun get(type: String): Int?
+    abstract fun get(type: String): String?
 
     fun closeChildren(name: String): Boolean = closeChildren(details.get(name))
-
-    fun closeChildren(id: Int): Boolean = closeChildren(details.get(id))
 
     protected abstract fun closeChildren(inter: InterfaceDetail): Boolean
 
     fun remove(name: String): Boolean = remove(details.get(name))
-
-    fun remove(id: Int): Boolean = remove(details.get(id))
 
     protected abstract fun remove(inter: InterfaceDetail): Boolean
 
@@ -45,86 +38,58 @@ abstract class Interfaces(private val details: InterfaceDetails) {
 
     abstract fun refresh()
 
-    fun sendPlayerHead(name: String, component: String): Boolean
-            = details.get(name, component) { inter, comp -> sendPlayerHead(inter, comp) }
+    fun sendPlayerHead(name: String, component: String): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendPlayerHead(comp)
+    }
 
-    fun sendPlayerHead(id: Int, component: Int): Boolean = sendPlayerHead(details.get(id), component)
+    protected abstract fun sendPlayerHead(component: InterfaceComponentDetail): Boolean
 
-    protected abstract fun sendPlayerHead(inter: InterfaceDetail, component: Int): Boolean
+    fun sendAnimation(name: String, component: String, animation: Int): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendAnimation(comp, animation)
+    }
 
-    fun sendAnimation(name: String, component: String, animation: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendAnimation(inter, comp, animation) }
+    protected abstract fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean
 
-    fun sendAnimation(id: Int, component: Int, animation: Int): Boolean
-            = sendAnimation(details.get(id), component, animation)
+    fun sendNPCHead(name: String, component: String, npc: Int): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendNPCHead(comp, npc)
+    }
 
-    protected abstract fun sendAnimation(inter: InterfaceDetail, component: Int, animation: Int): Boolean
+    protected abstract fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean
 
-    fun sendNPCHead(name: String, component: String, npc: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendNPCHead(inter, comp, npc) }
+    fun sendText(name: String, component: String, text: String): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendText(comp, text)
+    }
 
-    fun sendNPCHead(id: Int, component: Int, npc: Int): Boolean
-            = sendNPCHead(details.get(id), component, npc)
+    protected abstract fun sendText(component: InterfaceComponentDetail, text: String): Boolean
 
-    protected abstract fun sendNPCHead(inter: InterfaceDetail, component: Int, npc: Int): Boolean
+    fun sendVisibility(name: String, component: String, visible: Boolean): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendVisibility(comp, visible)
+    }
 
-    fun sendText(name: String, component: String, text: String): Boolean
-            = details.get(name, component) { inter, comp -> sendText(inter, comp, text) }
+    protected abstract fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean
 
-    fun sendText(id: Int, component: Int, text: String): Boolean
-            = sendText(details.get(id), component, text)
+    fun sendSprite(name: String, component: String, sprite: Int): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendSprite(comp, sprite)
+    }
 
-    protected abstract fun sendText(inter: InterfaceDetail, component: Int, text: String): Boolean
+    protected abstract fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean
 
-    fun sendVisibility(name: String, component: String, visible: Boolean): Boolean
-            = details.get(name, component) { inter, comp -> sendVisibility(inter, comp, visible) }
+    fun sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
+        val comp = details.getComponentOrNull(name, component) ?: return false
+        return sendItem(comp, item, amount)
+    }
 
-    fun sendVisibility(id: Int, component: Int, visible: Boolean): Boolean
-            = sendVisibility(details.get(id), component, visible)
-
-    protected abstract fun sendVisibility(inter: InterfaceDetail, component: Int, visible: Boolean): Boolean
-
-    fun sendSprite(name: String, component: String, sprite: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendSprite(inter, comp, sprite) }
-
-    fun sendSprite(id: Int, component: Int, sprite: Int): Boolean
-            = sendSprite(details.get(id), component, sprite)
-
-    protected abstract fun sendSprite(inter: InterfaceDetail, component: Int, sprite: Int): Boolean
-
-    fun sendItem(name: String, component: String, item: Int, amount: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendItem(inter, comp, item, amount) }
-
-    fun sendItem(id: Int, component: Int, item: Int, amount: Int): Boolean
-            = sendItem(details.get(id), component, item, amount)
-
-    protected abstract fun sendItem(inter: InterfaceDetail, component: Int, item: Int, amount: Int): Boolean
-
-    fun sendSetting(name: String, component: String, from: Int, to: Int, setting: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, setting) }
-
-    fun sendSetting(id: Int, component: Int, from: Int, to: Int, setting: Int): Boolean
-            = sendSetting(details.get(id), component, from, to, setting)
-
-    fun sendSettings(name: String, component: String, from: Int, to: Int, vararg settings: Int): Boolean
-            = details.get(name, component) { inter, comp -> sendSetting(inter, comp, from, to, settings(*settings)) }
-
-    fun sendSettings(id: Int, component: Int, from: Int, to: Int, vararg settings: Int): Boolean
-            = sendSetting(details.get(id), component, from, to, settings(*settings))
-
-    protected abstract fun sendSetting(inter: InterfaceDetail, component: Int, from: Int, to: Int, setting: Int): Boolean
+    protected abstract fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean
 
     companion object {
         const val ROOT_ID = -1
         const val ROOT_INDEX = 0
-
-        fun settings(vararg options: Int): Int {
-            var settings = 0
-            for(slot in options) {
-                settings = settings or (2 shl slot)
-            }
-            return settings
-        }
     }
 }
 

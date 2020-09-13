@@ -1,14 +1,12 @@
 package rs.dusk.world.activity.skill
 
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.*
+import rs.dusk.engine.entity.character.player.skill.Skill.*
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
-import rs.dusk.world.activity.skill.Skill.*
-import rs.dusk.world.interact.entity.player.display.InterfaceInteraction
+import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 val menu = listOf(Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting,
     Mining, Smithing, Fishing, Cooking, Firemaking, Woodcutting, Fletching, Slayer, Farming, Construction, Hunter, Summoning, Dungeoneering)
@@ -23,12 +21,12 @@ IntVariable(965, Variable.Type.VARP).register("skill_guide")
 InterfaceOpened where { name == "stats" } then {
     player.sendVar("skill_stat_flash")
     values().forEach {
-        player.send(SkillLevelMessage(it.ordinal, 99, 14000000))
+        player.experience.update(it)
     }
 }
 
-InterfaceInteraction where { name == "stats" && option == "View" } then {
-    val skill = valueOf(component.toUpperCase())
+InterfaceOption where { name == "stats" && option == "View" } then {
+    val skill = valueOf(component.capitalize())
     val menuIndex = menu.indexOf(skill) + 1
 
     if(player.hasVar("skill_stat_flash", skill)) {
@@ -40,4 +38,11 @@ InterfaceInteraction where { name == "stats" && option == "View" } then {
         player.setVar("skill_guide", menuIndex)
         player.open("skill_guide")
     }
+}
+
+InterfaceOption where { name == "skill_guide" && option == "Open subsection" } then {
+    val index = componentId - 10
+    val guide = player.getVar("skill_guide", 0)
+    val menuIndex = guide
+    player.setVar("skill_guide", menuIndex + index * 1024)
 }

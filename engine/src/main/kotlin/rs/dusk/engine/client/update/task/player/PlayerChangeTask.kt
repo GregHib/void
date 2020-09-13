@@ -28,10 +28,7 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(PLAY
                 player.change = LocalChange.Walk
 
                 if (movement.runStep != Direction.NONE) {
-                    value =
-                        getRunIndex(
-                            delta
-                        )
+                    value = getRunIndex(delta)
                     if (value != -1) {
                         player.change = LocalChange.Run
                     } else {
@@ -40,18 +37,12 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(PLAY
                 }
 
                 if (value == -1) {
-                    value =
-                        getWalkIndex(
-                            move
-                        )
+                    value = getWalkIndex(move)
                 }
 
                 player.changeValue = value
             } else {
-                player.change = if (withinView(
-                        delta
-                    )
-                ) LocalChange.Tele else LocalChange.TeleGlobal
+                player.change = if (withinView(delta)) LocalChange.Tele else LocalChange.TeleGlobal
                 player.changeValue = if (player.change == LocalChange.Tele) {
                     (delta.y and 0x1f) or (delta.x and 0x1f shl 5) or (delta.plane and 0x3 shl 10)
                 } else {

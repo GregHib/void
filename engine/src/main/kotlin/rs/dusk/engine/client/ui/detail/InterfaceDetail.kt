@@ -1,7 +1,5 @@
 package rs.dusk.engine.client.ui.detail
 
-import com.google.common.collect.BiMap
-import com.google.common.collect.HashBiMap
 import rs.dusk.engine.client.ui.InterfaceException
 
 data class InterfaceDetail(
@@ -9,10 +7,15 @@ data class InterfaceDetail(
     val name: String = "",
     val type: String = "",
     val data: InterfaceData? = null,
-    val components: BiMap<Int, String> = HashBiMap.create()
+    val components: Map<String, InterfaceComponentDetail> = mutableMapOf(),
+    val componentNames: Map<Int, String> = components.map { it.value.id to it.key }.toMap()
 ) {
 
-    constructor(id: Int, name: String = "", type: String = "", data: InterfaceData? = null, components: Map<Int, String>) : this(id, name, type, data, HashBiMap.create(components))
+    init {
+        components.values.forEach {
+            it.parent = id
+        }
+    }
 
     class InvalidInterfaceException : InterfaceException()
 
@@ -24,6 +27,8 @@ data class InterfaceDetail(
         return data?.getParent(resizable) ?: throw InvalidInterfaceException()
     }
 
-    fun getComponent(name: String): Int? = components.inverse()[name]
+    fun getComponent(name: String): InterfaceComponentDetail? = components[name]
+
+    fun getComponentName(id: Int): String = componentNames[id] ?: ""
 
 }

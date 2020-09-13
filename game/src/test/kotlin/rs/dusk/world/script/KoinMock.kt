@@ -16,7 +16,8 @@ import rs.dusk.world.script.koin.MockProviderExtension
 abstract class KoinMock : KoinTest {
 
     open val modules: List<Module>? = null
-    open val properties: List<Pair<String, Any>>? = null
+    open val properties: Map<String, Any>? = null
+    open val propertyPaths: List<String>? = null
 
     @JvmField
     @RegisterExtension
@@ -25,8 +26,11 @@ abstract class KoinMock : KoinTest {
         if (modules != null) {
             modules(modules!!)
         }
+        propertyPaths?.forEach { path ->
+            fileProperties(path)
+        }
         if (properties != null) {
-            properties(properties!!.toMap())
+            properties(properties!!)
         }
     }
 

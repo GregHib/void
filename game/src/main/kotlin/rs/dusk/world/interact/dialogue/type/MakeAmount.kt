@@ -22,7 +22,7 @@ suspend fun DialogueContext.makeAmount(
 ): Pair<Int, Int> {
     return if (player.open(INTERFACE_NAME) && player.open(INTERFACE_AMOUNT_NAME)) {
         if (allowAll) {
-            player.interfaces.sendSettings(INTERFACE_AMOUNT_NAME, "all", -1, 0, 0)
+            player.interfaceOptions.unlockAll(INTERFACE_AMOUNT_NAME, "all")
         }
         player.interfaces.sendVisibility(INTERFACE_NAME, "all", allowAll)
         player.interfaces.sendVisibility(INTERFACE_NAME, "custom", false)
@@ -46,7 +46,7 @@ private fun setItemOptions(player: Player, items: List<Int>) {
         val item = items.getOrNull(index) ?: -1
         player.setVar("skill_creation_item_$index", item)
         if (item != -1) {
-            player.setVar("skill_creation_name_$index", decoder.getSafe(item).name)
+            player.setVar("skill_creation_name_$index", decoder.get(item).name)
         }
     }
 }

@@ -129,6 +129,34 @@ internal class ActionTest : KoinMock() {
     }
 
     @Test
+    fun `Cancel with expected type`() {
+        // Given
+        val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
+        action.continuation = continuation
+        action.type = ActionType.Teleport
+        // When
+        action.cancel(ActionType.Teleport)
+        // Then
+        verify {
+            action.cancel()
+        }
+    }
+
+    @Test
+    fun `Cancel with unexpected type`() {
+        // Given
+        val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
+        action.continuation = continuation
+        action.type = ActionType.Movement
+        // When
+        action.cancel(ActionType.Teleport)
+        // Then
+        verify(exactly = 0) {
+            action.cancel()
+        }
+    }
+
+    @Test
     fun `Run creates and starts coroutine`() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)

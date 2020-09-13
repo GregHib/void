@@ -43,7 +43,7 @@ class EncoderComparator {
                 null
             }
         }
-        val defs = decoder.get(0)
+        val defs = decoder.getOrNull(0)
         println("Expected $definition")
         println("Actual   $defs")
     }

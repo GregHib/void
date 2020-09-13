@@ -10,15 +10,15 @@ import rs.dusk.engine.event.where
 
 StringMapVariable(
     465, Variable.Type.VARP, true, mapOf(
-        0 to "locked",
-        7 to "unlocked"
+        "locked" to 0,
+        "unlocked" to 7
     )
 ).register("lost_tribe_emotes")
 
 StringMapVariable(
     1085, Variable.Type.VARP, true, mapOf(
-        0 to "locked",
-        249852 to "unlocked"
+        "locked" to 0,
+        "unlocked" to 249852
     )
 ).register("zombie_hand_emote")
 
@@ -53,10 +53,7 @@ BitwiseVariable(
 ).register("event_emotes")
 
 InterfaceOpened where { name == "emotes" } then {
-    for (index in 11..14) {
-        player.interfaces.sendSetting(id, index, -1, 190, 2150)
-    }
-
+    player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
     player.sendVar("lost_tribe_emotes")
     player.sendVar("stronghold_of_security_emotes")
     player.sendVar("zombie_hand_emote")

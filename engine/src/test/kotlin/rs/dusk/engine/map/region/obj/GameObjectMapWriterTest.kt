@@ -1,5 +1,6 @@
 package rs.dusk.engine.map.region.obj
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
@@ -24,7 +25,7 @@ internal class GameObjectMapWriterTest {
         // When
         val result = writer.write(map)
         // Then
-        assert(result.contentEquals(byteArrayOf(-80, 58, 1, 50, -64, 0, 17, 0, 0)))
+        assertArrayEquals(byteArrayOf(-80, 58, 1, 50, -64, 0, 17, 0, 0), result)
     }
 
     @Test
@@ -38,7 +39,7 @@ internal class GameObjectMapWriterTest {
         // When
         val result = writer.write(map)
         // Then
-        assert(result.contentEquals(byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0)))
+        assertArrayEquals(byteArrayOf(-80, 58, -115, -82, 50, 0, -13, -41, -115, -82, 0, 0, 0), result)
     }
 
     @Test
@@ -51,6 +52,6 @@ internal class GameObjectMapWriterTest {
         // When
         val result = writer.write(map)
         // Then
-        assert(result.contentEquals(byteArrayOf(-1, -1, -1, -1, -92, -5, -115, -82, 50, 0, 0)))
+        assertArrayEquals(byteArrayOf(-1, -1, -1, -1, -92, -5, -115, -82, 50, 0, 0), result)
     }
 }

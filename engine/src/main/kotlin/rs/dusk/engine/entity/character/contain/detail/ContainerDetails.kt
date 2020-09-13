@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.EntityDetails
 class ContainerDetails(
     override val details: Map<Int, ContainerDetail>,
     override val names: BiMap<Int, String>
-) : EntityDetails {
+) : EntityDetails<ContainerDetail> {
 
     override fun getOrNull(id: Int): ContainerDetail? {
         return details[id]

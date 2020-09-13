@@ -38,7 +38,7 @@ internal class DestroyTest : KoinMock() {
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
         declareMock<ItemDecoder> {
-            every { getSafe(1234) } returns ItemDefinition(name = "magic")
+            every { get(1234) } returns ItemDefinition(name = "magic")
         }
     }
 

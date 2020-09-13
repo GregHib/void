@@ -7,20 +7,15 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
-import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.item.FloorItem
-import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
-import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.find.AxisAlignment
 import rs.dusk.engine.path.find.BreadthFirstSearch
+import rs.dusk.engine.path.find.DirectDiagonalSearch
 import rs.dusk.engine.path.find.DirectSearch
-import rs.dusk.engine.path.target.*
+import rs.dusk.engine.path.strat.TileTargetStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -28,18 +23,18 @@ import rs.dusk.engine.path.target.*
  */
 internal class PathFinderTest {
     lateinit var pf: PathFinder
-    lateinit var collisions: Collisions
     lateinit var ds: DirectSearch
     lateinit var aa: AxisAlignment
     lateinit var bfs: BreadthFirstSearch
+    lateinit var dd: DirectDiagonalSearch
 
     @BeforeEach
     fun setup() {
-        collisions = mockk(relaxed = true)
         ds = mockk(relaxed = true)
         aa = mockk(relaxed = true)
         bfs = mockk(relaxed = true)
-        pf = spyk(PathFinder(collisions, aa, ds, bfs))
+        dd = mockk(relaxed = true)
+        pf = spyk(PathFinder(aa, ds, dd, bfs))
     }
 
     @Test
@@ -49,7 +44,7 @@ internal class PathFinderTest {
         val target = Tile(1, 1)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
-        every { pf.getFinder(any()) } returns bfs
+        every { pf.getFinder(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
@@ -62,12 +57,12 @@ internal class PathFinderTest {
     fun `Find entity`() {
         // Given
         val source: Character = mockk(relaxed = true)
-        val target: Entity = mockk(relaxed = true)
+        val target: Character = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
-        every { pf.getStrategy(any()) } returns strategy
-        every { pf.getFinder(any()) } returns bfs
+        every { target.interactTarget } returns strategy
+        every { pf.getFinder(any(), any()) } returns bfs
         // When
         pf.find(source, target)
         // Then
@@ -77,13 +72,23 @@ internal class PathFinderTest {
     }
 
     @Test
-    fun `Player finder`() {
+    fun `Player smart finder`() {
         // Given
         val source: Player = mockk(relaxed = true)
         // When
-        val finder = pf.getFinder(source)
+        val finder = pf.getFinder(source, true)
         // Then
         assertEquals(bfs, finder)
+    }
+
+    @Test
+    fun `Player dumb finder`() {
+        // Given
+        val source: Player = mockk(relaxed = true)
+        // When
+        val finder = pf.getFinder(source, false)
+        // Then
+        assertEquals(dd, finder)
     }
 
     @Test
@@ -91,100 +96,9 @@ internal class PathFinderTest {
         // Given
         val source: NPC = mockk(relaxed = true)
         // When
-        val finder = pf.getFinder(source)
+        val finder = pf.getFinder(source, true)
         // Then
         assertEquals(aa, finder)
-    }
-
-    @Test
-    fun `Floor item strategy`() {
-        // Given
-        val target: FloorItem = mockk(relaxed = true)
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(PointTargetStrategy(target.tile, target.size), strategy)
-    }
-
-    @Test
-    fun `NPC strategy`() {
-        // Given
-        val target: NPC = mockk(relaxed = true)
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(RectangleTargetStrategy(collisions, target.tile, target.size), strategy)
-    }
-
-    @Test
-    fun `Player strategy`() {
-        // Given
-        val target: Player = mockk(relaxed = true)
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(RectangleTargetStrategy(collisions, target.tile, target.size), strategy)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [0, 1, 2, 9])
-    fun `Wall object strategy`(type: Int) {
-        // Given
-        val target: GameObject = mockk(relaxed = true)
-        every { target.type } returns type
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(WallTargetStrategy(collisions, target.tile, target.size, target.rotation, target.type), strategy)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [3, 4, 5, 6, 7, 8])
-    fun `Wall decoration object strategy`(type: Int) {
-        // Given
-        val target: GameObject = mockk(relaxed = true)
-        every { target.type } returns type
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(
-            DecorationTargetStrategy(collisions, target.tile, target.size, target.rotation, target.type),
-            strategy
-        )
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [10, 11, 22])
-    fun `Floor decoration object strategy`(type: Int) {
-        // Given
-        val target: GameObject = mockk(relaxed = true)
-        every { target.type } returns type
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(RectangleTargetStrategy(collisions, target.tile, target.size, target.def.blockFlag), strategy)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 23, 24])
-    fun `Other object strategy`(type: Int) {
-        // Given
-        val target: GameObject = mockk(relaxed = true)
-        every { target.type } returns type
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(TileTargetStrategy(target.tile), strategy)
-    }
-
-    @Test
-    fun `Other strategy`() {
-        // Given
-        val target: Entity = mockk(relaxed = true)
-        // When
-        val strategy = pf.getStrategy(target)
-        // Then
-        assertEquals(TileTargetStrategy(target.tile), strategy)
     }
 
 }

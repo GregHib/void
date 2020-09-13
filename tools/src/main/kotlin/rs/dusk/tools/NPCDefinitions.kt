@@ -14,7 +14,7 @@ object NPCDefinitions {
         }.koin
         val decoder = NPCDecoder(koin.get(), false)
         for (i in 0 until decoder.size) {
-            val def = decoder.get(i) ?: continue
+            val def = decoder.getOrNull(i) ?: continue
             if(def.name.equals("Alfonse", true)) {
                 println("Found $i $def")
             }

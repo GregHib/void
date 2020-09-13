@@ -65,5 +65,9 @@ enum class Direction(deltaX: Int, deltaY: Int) {
         val ordinal = values().filter { it.isDiagonal() }
         val all = values().copyOfRange(0, size - 1)
         val clockwise = arrayOf(NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST)
+
+        fun of(deltaX: Int, deltaY: Int): Direction {
+            return all.firstOrNull { it.delta.equals(deltaX, deltaY) } ?: NONE
+        }
     }
 }

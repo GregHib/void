@@ -31,7 +31,7 @@ object AnimationNames {
         val renders = getRenderAnimations(cache)
         val map = mutableMapOf<Int, MutableList<String>>()
         repeat(decoder.size) { id ->
-            val def = decoder.get(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: return@repeat
             val render = renders[id]
             if(render != null) {
                 map.getOrPut(id) { mutableListOf() }.add(render)
@@ -49,7 +49,7 @@ object AnimationNames {
         val decoder = RenderAnimationDecoder(cache)
         val map = mutableMapOf<Int, String>()
         repeat(decoder.size) { id ->
-            val def = decoder.get(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: return@repeat
             val name = toIdentifier(renders[id] ?: return@repeat)
             map.add(def.run, name, "_run")
             map.add(def.primaryIdle, name, "_idle")
@@ -73,7 +73,7 @@ object AnimationNames {
         val map = mutableMapOf<Int, String>()
         val decoder = NPCDecoder(cache, member = true)
         repeat(decoder.size) { id ->
-            val def = decoder.get(id) ?: return@repeat
+            val def = decoder.getOrNull(id) ?: return@repeat
             map[def.renderEmote] = def.name
         }
         return map

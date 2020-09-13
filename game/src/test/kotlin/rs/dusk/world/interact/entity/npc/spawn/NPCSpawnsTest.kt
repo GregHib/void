@@ -50,7 +50,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     fun `Spawn registers`() {
         // Given
         declareMock<NPCDecoder> {
-            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
+            every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
         }
         val event = spyk(
             NPCSpawn(
@@ -76,7 +76,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     fun `Traversal size small`() {
         // Given
         declareMock<NPCDecoder> {
-            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 1)
+            every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 1)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
         // When
@@ -93,7 +93,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     fun `Traversal size medium`() {
         // Given
         declareMock<NPCDecoder> {
-            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
+            every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
         // When
@@ -110,7 +110,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     fun `Traversal size large`() {
         // Given
         declareMock<NPCDecoder> {
-            every { getSafe(any<Int>()) } returns NPCDefinition(id = 1, size = 3)
+            every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 3)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
         // When

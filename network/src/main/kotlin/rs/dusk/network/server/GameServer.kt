@@ -11,8 +11,10 @@ import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.connection.ConnectionPipeline
 import rs.dusk.core.network.connection.ConnectionSettings
+import rs.dusk.core.network.connection.event.ChannelEvent
 import rs.dusk.core.network.connection.event.ChannelEventChain
 import rs.dusk.core.network.connection.event.ChannelEventListener
+import rs.dusk.core.network.connection.event.ChannelEventType.DEREGISTER
 import rs.dusk.core.network.connection.event.ChannelEventType.EXCEPTION
 import rs.dusk.core.network.connection.event.type.ChannelExceptionEvent
 import rs.dusk.core.network.model.session.setSession
@@ -32,7 +34,8 @@ class GameServer(
 	/**
 	 * The world this server represents
 	 */
-	private val world : World
+	private val world : World,
+	private val disconnectEvent: ChannelEvent
 ) : NetworkServer() {
 	
 	private val logger = InlineLogger()
@@ -71,6 +74,7 @@ class GameServer(
 		
 		val chain = ChannelEventChain().apply {
 			append(EXCEPTION, ChannelExceptionEvent())
+			append(DEREGISTER, disconnectEvent)
 		}
 		
 		val pipeline = ConnectionPipeline {

@@ -15,7 +15,7 @@ object ItemContainerDefinitions {
         }.koin
         val decoder = ItemContainerDecoder(koin.get())
         for (i in 0 until decoder.size) {
-            val def = decoder.get(i) ?: continue
+            val def = decoder.getOrNull(i) ?: continue
             println(def)
         }
     }

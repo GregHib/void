@@ -3,6 +3,9 @@ root:
   id: -1
   type: full_screen
 
+bank_pin:
+  id: 13
+
 items_kept_on_death:
   id: 17
   type: main_screen
@@ -22,6 +25,15 @@ notes:
   type: notes_tab
   components:
     delete: 8
+    notes:
+      id: 9
+      options:
+        Option1: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 18
+        Option6: 20
 
 castlewars_score:
   id: 55
@@ -156,6 +168,19 @@ confirm_destroy:
 
 stock_side:
   id: 107
+
+collection_box:
+  id: 109
+  components:
+    box1: 19
+    box2: 23
+    box3: 27
+    box4: 32
+    box5: 37
+    box6: 42
+    box_lent:
+      id: 58
+      container: lent_collection_box
 
 # Item
 double_obj_box:
@@ -551,12 +576,31 @@ prayer_list:
   type: prayer_list_tab
   components:
     stat_adjustments: 12
-    quick_prayers: 42
-    regular_prayers: 8
+    quick_prayers:
+      id: 42
+      options:
+        Select: 0
+    regular_prayers:
+      id: 8
+      options:
+        Activate: 0
+    confirm: 43
 
 assist_xp:
   id: 301
   type: main_screen
+  components:
+    description: 10
+    title: 73
+    runecrafting: 74
+    crafting: 75
+    fletching: 76
+    construction: 77
+    farming: 78
+    magic: 79
+    smithing: 80
+    cooking: 81
+    herblore: 82
 
 stats:
   id: 320
@@ -591,14 +635,87 @@ stats:
 trade_confirm:
   id: 334
   type: main_screen
+  components:
+    close: 6
+    accept: 21
+    decline: 22
+    status: 34
+    modified: 55
 
 trade_main:
   id: 335
   type: main_screen
+  components:
+    close: 12
+    title: 15
+    accept: 16
+    decline: 18
+    slots: 21
+    name: 22
+    offer_options:
+      id: 30
+      container: trade_offer
+      options:
+        Remove: 0
+        Remove-5: 1
+        Remove-10: 2
+        Remove-All: 3
+        Remove-X: 4
+        Value: 5
+        Examine: 8
+    offer_warning:
+      id: 31
+      container: trade_offer
+    other_items: 32
+    other_options:
+      id: 33
+      container: trade_offer
+      primary: false
+      options:
+        Value<col=FF9040>: 0
+        Examine<col=FF9040>: 8
+    other_warning:
+      id: 34
+      container: trade_offer
+      primary: false
+    status: 37
+    modified: 39
+    other_modified: 40
+    loan: 55
+    loan_item:
+      id: 56
+      container: item_loan
+      options:
+        Remove: 0
+        Examine: 9
+    loan_time:
+      id: 57
+      container: item_loan
+      options:
+        "‘Until Logout‘": 0
+        Specify: 1
+    other_loan_item:
+      id: 52
+      container: item_loan
+      primary: false
+    other_loan_time: 53
 
 trade_side:
   id: 336
   type: inventory_tab
+  components:
+    offer:
+      id: 0
+      container: inventory
+      options:
+        Offer: 0
+        Offer-5: 1
+        Offer-10: 2
+        Offer-All: 3
+        Offer-X: 4
+        Value: 5
+        Lend: 6
+        Examine: 8
 
 # 6 lines
 tutorial_text:
@@ -612,6 +729,18 @@ worn_equipment:
     bonuses: 39
     price: 42
     items: 45
+    hat: 8
+    cape: 11
+    amulet: 14
+    weapon: 17
+    chest: 20
+    shield: 23
+    legs: 26
+    hands: 29
+    feet: 32
+    ring: 35
+    arrows: 38
+    aura: 50
 
 obj_dialog:
   id: 389
@@ -711,7 +840,15 @@ multi2_mes:
 emotes:
   id: 590
   type: emotes_tab
-
+  components:
+    emotes:
+      id: 8
+      options:
+        Select: 0
+        Option2: 1
+        Option3: 4
+        Option4: 5
+        Option6: 10
 unknown_side1:
   id: 602
 
@@ -748,7 +885,24 @@ inventory:
   id: 679
   type: inventory_tab
   components:
-    container: 0
+    container:
+      id: 0
+      container: inventory
+      options:
+        Option1: 0
+        Equip: 1
+        Option3: 2
+        Option4: 6
+        Drop: 7
+        Examine: 9
+        Option7: 10
+        Option8: 11
+        Option9: 12
+        Option10: 13
+        Option11: 15
+        Option12: 17
+        Drag: 20
+        Option13: 21
 
 multi_var2_wide:
   id: 718
@@ -784,6 +938,8 @@ audio_options:
 area_status_icon:
   id: 745
   type: area_status
+  components:
+    assist: 2
 
 toplevel_full:
   id: 746
@@ -856,7 +1012,10 @@ world_map:
   components:
     close: 44
 
-bank_v2_side:
+bank:
+  id: 762
+
+bank_side:
   id: 763
 
 unknown_side4:
@@ -899,6 +1058,22 @@ combat_styles:
   id: 884
   type: combat_styles_tab
   components:
+    style1:
+      id: 11
+      options:
+        Select: 0
+    style2:
+      id: 12
+      options:
+        Select: 0
+    style3:
+      id: 13
+      options:
+        Select: 0
+    style4:
+      id: 14
+      options:
+        Select: 0
     retaliate: 15
     special_attack_bar: 4
 
@@ -926,7 +1101,10 @@ skill_creation_amount:
     create1: 5
     create5: 6
     create10: 7
-    all: 8
+    all:
+      id: 8
+      options:
+        All: 0
     increment: 19
     decrement: 20
 

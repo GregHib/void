@@ -22,13 +22,13 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         val detailData = loadFile(detailPath)
         val typeData = loadFile(typesPath)
         val names = loadNames(detailData)
-        val types = loadTypes(typeData, names)
+        val types = loadTypes(typeData, names.map { it.value to it.key }.toMap())
         val details = loadDetails(detailData, types)
         count = names.size
         return InterfaceDetails(details, names)
     }
 
-    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> name to values.getId() }.toMap()
+    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
 
     fun loadTypes(data: Map<String, Map<String, Any>>, names: Map<String, Int>) = data.map { (name, values) ->
         val index = values.readInt("index")
@@ -58,13 +58,38 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
-        id to InterfaceDetail(id, name, typeName, type, components)
+        name to InterfaceDetail(id, name, typeName, type, components)
     }.toMap()
 
-    private fun Map<String, Any>.getComponents(): Map<Int, String> {
+    private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
         val value = this["components"] as? Map<*, *>
-        val components = value?.map { it.value as Int to it.key as String }?.toMap()
+        val components = value?.map {
+            val name = it.key as String
+            name to createComponent(name, it.value!!)
+        }?.toMap()
         return components ?: emptyMap()
+    }
+
+    fun createComponent(name: String, value: Any): InterfaceComponentDetail {
+        return if (value is Int) {
+            InterfaceComponentDetail(value, name)
+        } else {
+            val map = value as Map<*, *>
+            val id = map["id"] as Int
+            val container = map["container"] as? String ?: ""
+            val primary = map["primary"] as? Boolean ?: true
+            val options = map["options"] as? Map<*, *>
+            InterfaceComponentDetail(id, name, container = container, primaryContainer = primary, options = convert(options))
+        }
+    }
+
+    private fun convert(map: Map<*, *>?): Array<String> {
+        val max = map?.maxBy { it.value as Int }?.value as? Int ?: -1
+        val array = Array(max + 1) { "" }
+        map?.forEach { (option, index) ->
+            array[index as Int] = option as String
+        }
+        return array
     }
 
     private fun Map<String, Any>.getId(): Int {

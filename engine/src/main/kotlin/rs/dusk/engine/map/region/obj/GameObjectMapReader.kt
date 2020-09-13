@@ -3,7 +3,7 @@ package rs.dusk.engine.map.region.obj
 import org.koin.dsl.module
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.engine.entity.Registered
-import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
@@ -12,14 +12,14 @@ import rs.dusk.engine.map.region.tile.TileSettings
 import rs.dusk.engine.map.region.tile.isTile
 
 val objectMapModule = module {
-    single { GameObjectMapReader(get(), get()) }
+    single { GameObjectMapReader(get(), get(), get()) }
 }
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 16, 2020
  */
-class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
+class GameObjectMapReader(private val objects: Objects, private val bus: EventBus, private val factory: GameObjectFactory) {
 
     fun read(region: Tile, data: ByteArray, settings: TileSettings) {
         val reader = BufferReader(data)
@@ -62,7 +62,7 @@ class GameObjectMapReader(val objects: Objects, val bus: EventBus) {
                 }
 
                 // Valid object
-                val gameObject = GameObject(objectId, Tile(region.x + localX, region.y + localY, plane), type, rotation)
+                val gameObject = factory.spawn(objectId, Tile(region.x + localX, region.y + localY, plane), type, rotation)
                 objects.add(gameObject)
                 bus.emit(Registered(gameObject))
             }

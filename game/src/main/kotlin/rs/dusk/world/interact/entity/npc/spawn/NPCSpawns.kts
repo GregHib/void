@@ -13,6 +13,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
+import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.engine.path.traverse.LargeTraversal
 import rs.dusk.engine.path.traverse.MediumTraversal
 import rs.dusk.engine.path.traverse.SmallTraversal
@@ -24,7 +25,7 @@ val indexer = IndexAllocator(MAX_NPCS)
 val decoder: NPCDecoder by inject()
 
 NPCSpawn then {
-    val definition = decoder.getSafe(id)
+    val definition = decoder.get(id)
     val size = Size(definition.size, definition.size)
     val npc = NPC(id, tile, size)
     val collisions: Collisions = rs.dusk.utility.get()
@@ -33,6 +34,7 @@ NPCSpawn then {
         2 -> MediumTraversal(TraversalType.Land, true, collisions)
         else -> LargeTraversal(TraversalType.Land, true, size, collisions)
     }
+    npc.interactTarget = RectangleTargetStrategy(collisions, npc)
     npc.index = indexer.obtain() ?: return@then
     npc.turn(direction.delta.x, direction.delta.y)
     bus.emit(NPCRegistered(npc))

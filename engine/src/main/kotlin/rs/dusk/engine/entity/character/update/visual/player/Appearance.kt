@@ -1,9 +1,12 @@
 package rs.dusk.engine.entity.character.update.visual.player
 
-import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.equipment
+import rs.dusk.engine.entity.character.player.BodyParts
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.entity.item.BodyPart
+import rs.dusk.engine.entity.item.EquipSlot
+import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -20,9 +23,8 @@ data class Appearance(
     var headIcon: Int = -1,
     var hidden: Boolean = false,
     var transform: Int = -1,
-    val look: IntArray = intArrayOf(0, 10, 18, 26, 33, 36, 42),
+    val body: BodyParts,
     val colours: IntArray = IntArray(10),
-    var equipment: Container,
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
@@ -33,7 +35,6 @@ data class Appearance(
     var runSound: Int = -1,
     var soundDistance: Int = 0
 ) : Visual {
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -50,12 +51,17 @@ data class Appearance(
         if (headIcon != other.headIcon) return false
         if (hidden != other.hidden) return false
         if (transform != other.transform) return false
-        if (!look.contentEquals(other.look)) return false
+        if (body != other.body) return false
         if (!colours.contentEquals(other.colours)) return false
         if (emote != other.emote) return false
         if (displayName != other.displayName) return false
         if (combatLevel != other.combatLevel) return false
         if (summoningCombatLevel != other.summoningCombatLevel) return false
+        if (idleSound != other.idleSound) return false
+        if (crawlSound != other.crawlSound) return false
+        if (walkSound != other.walkSound) return false
+        if (runSound != other.runSound) return false
+        if (soundDistance != other.soundDistance) return false
 
         return true
     }
@@ -71,12 +77,17 @@ data class Appearance(
         result = 31 * result + headIcon
         result = 31 * result + hidden.hashCode()
         result = 31 * result + transform
-        result = 31 * result + look.contentHashCode()
+        result = 31 * result + body.hashCode()
         result = 31 * result + colours.contentHashCode()
         result = 31 * result + emote
         result = 31 * result + displayName.hashCode()
         result = 31 * result + combatLevel
         result = 31 * result + summoningCombatLevel
+        result = 31 * result + idleSound
+        result = 31 * result + crawlSound
+        result = 31 * result + walkSound
+        result = 31 * result + runSound
+        result = 31 * result + soundDistance
         return result
     }
 }
@@ -85,17 +96,39 @@ const val APPEARANCE_MASK = 0x8
 
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
-fun Player.getAppearance() =
-    visuals.getOrPut(APPEARANCE_MASK) { Appearance(equipment = equipment) }
+val Player.appearance: Appearance
+    get() = visuals.getOrPut(APPEARANCE_MASK) {
+        val bodyParts = BodyParts(equipment, get(), intArrayOf(1, 11, 18, 26, 33, 36, 42))
+        BodyPart.all.forEach {
+            bodyParts.updateConnected(it)
+        }
+        updateAppearanceOnEquipmentChanges(bodyParts)
+        Appearance(body = bodyParts)
+    }
+
+private fun Player.updateAppearanceOnEquipmentChanges(parts: BodyParts) {
+    equipment.listeners.add { list ->
+        var changed = false
+        for ((index, _, _, _, _) in list) {
+            val slot = EquipSlot.by(index)
+            val part = BodyPart.by(slot) ?: continue
+            if (parts.updateConnected(part)) {
+                changed = true
+            }
+        }
+        if (changed) {
+            flagAppearance()
+        }
+    }
+}
 
 private fun Player.flag(action: Appearance.() -> Unit) {
-    val appearance = getAppearance()
     action(appearance)
     flagAppearance()
 }
 
 var Player.male: Boolean
-    get() = getAppearance().male
+    get() = appearance.male
     set(value) = flag {
         male = value
     }
@@ -104,116 +137,64 @@ fun Player.setSkillLevel(level: Int = -1) = flag {
     skillLevel = level
 }
 
-var Player.size: Int
-    get() = getAppearance().size
-    set(value) = flag {
-        size = value
-    }
-
 fun Player.setTrimTitle(trim: Boolean = false) = flag {
     this.trimTitle = trim
 }
 
 var Player.title: Int
-    get() = getAppearance().title
+    get() = appearance.title
     set(value) = flag {
         title = value
     }
 
 var Player.prefix: String
-    get() = getAppearance().prefix
+    get() = appearance.prefix
     set(value) = flag {
         prefix = value
     }
 
-var Player.skull: Int
-    get() = getAppearance().skull
-    set(value) = flag {
-        skull = value
-    }
-
-fun Player.skull() {
-    skull = 1
-}
-
-fun Player.unskull() {
-    skull = -1
-}
-
 var Player.headIcon: Int
-    get() = getAppearance().headIcon
+    get() = appearance.headIcon
     set(value) = flag {
         headIcon = value
     }
 
-var Player.hidden: Boolean
-    get() = getAppearance().hidden
-    set(value) = flag {
-        hidden = value
-    }
-
-fun Player.hide() {
-    hidden = true
-}
-
-fun Player.show() {
-    hidden = false
-}
-
-var Player.transform: Int
-    get() = getAppearance().transform
-    set(value) = flag {
-        transform = value
-    }
-
-fun Player.setTransformSounds(
-    idleSound: Int = -1,
-    crawlSound: Int = -1,
-    walkSound: Int = -1,
-    runSound: Int = -1,
-    soundDistance: Int = 0
-) = flag {
-    this.idleSound = idleSound
-    this.crawlSound = crawlSound
-    this.walkSound = walkSound
-    this.runSound = runSound
-    this.soundDistance = soundDistance
-}
-
 fun Player.setLook(index: Int, look: Int) = flag {
-    this.look[index] = look
+    val part = BodyPart.by(index) ?: return@flag
+    body.looks[index] = look
+    body.updateConnected(part)
 }
 
 val Player.looks: IntArray
-    get() = getAppearance().look
+    get() = appearance.body.looks
 
 fun Player.setColour(index: Int, colour: Int) = flag {
     this.colours[index] = colour
 }
 
 val Player.colours: IntArray
-    get() = getAppearance().colours
+    get() = appearance.colours
 
 var Player.emote: Int
-    get() = getAppearance().emote
+    get() = appearance.emote
     set(value) = flag {
         emote = value
     }
 
 var Player.name: String
-    get() = getAppearance().displayName
+    get() = appearance.displayName
     set(value) = flag {
         displayName = value
     }
 
 var Player.combatLevel: Int
-    get() = getAppearance().combatLevel
+    get() = appearance.combatLevel
     set(value) = flag {
         combatLevel = value
     }
 
 var Player.summoningCombatLevel: Int
-    get() = getAppearance().summoningCombatLevel
+    get() = appearance.summoningCombatLevel
     set(value) = flag {
         summoningCombatLevel = value
     }

@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.NPCMoved
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCMoveType
 import rs.dusk.engine.entity.character.npc.NPCs
@@ -64,7 +64,7 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Engin
         if (movement.delta != Tile.EMPTY) {
             val from = npc.tile
             npc.tile = npc.tile.add(movement.delta)
-            bus.emit(Moved(npc, from, npc.tile))
+            bus.emit(NPCMoved(npc, from, npc.tile))
         }
     }
 }

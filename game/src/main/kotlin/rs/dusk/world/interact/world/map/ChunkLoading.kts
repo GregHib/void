@@ -1,4 +1,4 @@
-import rs.dusk.engine.entity.character.move.Moved
+import rs.dusk.engine.entity.character.move.PlayerMoved
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.PlayerUnregistered
@@ -26,8 +26,7 @@ PlayerUnregistered then {
     }
 }
 
-Moved where { entity is Player && from.chunk != to.chunk } then {
-    val player = entity as Player
+PlayerMoved where { from.chunk != to.chunk } then {
     forEachChunk(player, from) { chunk ->
         batcher.unsubscribe(player, chunk)
     }

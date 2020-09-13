@@ -17,6 +17,7 @@ import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.entity.detailsModule
 import rs.dusk.engine.entity.list.entityListModule
+import rs.dusk.engine.entity.obj.objectFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.chunk.batchedChunkModule
@@ -30,6 +31,7 @@ import rs.dusk.engine.map.region.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.storage.databaseModule
 import rs.dusk.engine.task.StartTask
+import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
 import rs.dusk.network.codecRepositoryModule
@@ -39,6 +41,8 @@ import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
+import rs.dusk.world.interact.entity.player.spawn.logout.DisconnectEvent
+import rs.dusk.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
 /**
@@ -47,17 +51,20 @@ import java.util.concurrent.Executors
  */
 object Dusk {
 
+    const val name = "Dusk"
+
     @JvmStatic
     fun main(args: Array<String>) {
         preload()
 
         val world = World(1)
-        val server = GameServer(world)
+        val disconnect = DisconnectEvent()
+        val server = GameServer(world, disconnect)
 
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
-        val start: StartTask = get()
+        val start: SyncTask = get()
         val engine = GameLoop(bus, executor, service)
 
         server.run()
@@ -98,7 +105,9 @@ object Dusk {
                 instanceModule,
                 instancePoolModule,
                 detailsModule,
-	            databaseModule
+	              databaseModule
+                logoutModule,
+                objectFactoryModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

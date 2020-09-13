@@ -64,6 +64,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
 
                 bus.emit(RegionLogin(player))
                 bus.emit(PlayerRegistered(player))
+                player.start()
                 bus.emit(Registered(player))
             } else {
                 pipeline.writeAndFlush(GameLoginConnectionResponseMessage(response.code))

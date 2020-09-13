@@ -1,5 +1,6 @@
 package rs.dusk.cache.definition.encoder
 
+import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.core.io.write.BufferWriter
@@ -36,7 +37,7 @@ internal class ItemEncoderTest {
             originalTextureColours = shortArrayOf(14000, 15000, 16000),
             modifiedTextureColours = shortArrayOf(14000, 15000, 16000),
             recolourPalette = byteArrayOf(0, 1, 2, 3, 4),
-            unnoted = true,
+            exchangeable = true,
             tertiaryMaleModel = 13441,
             tertiaryFemaleModel = 2673,
             primaryMaleDialogueHead = 875,
@@ -90,6 +91,6 @@ internal class ItemEncoderTest {
 //        file.writeBytes(data)
         val stream = ItemEncoderTest::class.java.getResourceAsStream("item-definition.dat")
         val expected = stream.readAllBytes()
-        assert(data.contentEquals(expected))
+        assertArrayEquals(expected, data)
     }
 }

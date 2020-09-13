@@ -6,6 +6,7 @@ import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
+import rs.dusk.engine.path.TargetStrategy
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -19,6 +20,8 @@ interface Character : Entity, Comparable<Character> {
     val movement: Movement
     val action: Action
     val values: CharacterValues
+    val effects: CharacterEffects
+    var interactTarget: TargetStrategy
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)

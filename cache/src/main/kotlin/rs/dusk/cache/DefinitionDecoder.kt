@@ -15,7 +15,10 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
     open val size: Int
         get() = cache.lastIndexId(index) * 256 + (cache.archiveCount(index, cache.lastIndexId(index)))
 
-    fun get(id: Int): T? {
+    val indices: IntRange
+        get() = 0 until size
+
+    fun getOrNull(id: Int): T? {
         var value = dataCache[id]
         if (value == null) {
             value = readData(id)
@@ -26,7 +29,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         return value
     }
 
-    fun getSafe(id: Int) = get(id) ?: create()
+    fun get(id: Int) = getOrNull(id) ?: create()
 
     protected abstract fun create(): T
 

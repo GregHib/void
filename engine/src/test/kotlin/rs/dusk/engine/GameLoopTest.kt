@@ -12,7 +12,7 @@ import org.junit.jupiter.api.extension.ExtendWith
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.DelayTask
 import rs.dusk.engine.task.RepeatTask
-import rs.dusk.engine.task.StartTask
+import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.tick.Tick
 import rs.dusk.engine.tick.TickInput
@@ -49,7 +49,7 @@ internal class GameLoopTest {
     @Test
     fun `Setup game loop`() {
         // Given
-        val start = StartTask()
+        val start = SyncTask()
         // When
         loop.setup(start)
         // Then

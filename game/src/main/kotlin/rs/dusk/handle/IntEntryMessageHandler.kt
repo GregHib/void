@@ -5,7 +5,7 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
-import rs.dusk.engine.task.start
+import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.IntegerEntryMessage
 import rs.dusk.utility.inject
@@ -24,7 +24,7 @@ class IntEntryMessageHandler : GameMessageHandler<IntegerEntryMessage>() {
     override fun handle(ctx: ChannelHandlerContext, msg: IntegerEntryMessage) {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
-        executor.start {
+        executor.sync {
             bus.emit(IntEntered(player, msg.integer))
         }
     }

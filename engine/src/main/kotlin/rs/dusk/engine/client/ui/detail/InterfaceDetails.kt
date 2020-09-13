@@ -3,39 +3,28 @@ package rs.dusk.engine.client.ui.detail
 import rs.dusk.engine.client.ui.InterfaceException
 
 data class InterfaceDetails(
-    private val interfaces: Map<Int, InterfaceDetail>,
-    private val names: Map<String, Int>
+    private val interfaces: Map<String, InterfaceDetail>,
+    private val names: Map<Int, String>
 ) {
 
-    fun get(id: Int) = interfaces[id] ?: InterfaceDetail(id)
+    fun get(name: String) = interfaces[name] ?: throw IllegalNameException(name)
 
-    fun get(name: String) = get(getId(name))
+    fun getSafe(name: String) = interfaces[name] ?: InterfaceDetail(id = INVALID_ID, name = name)
 
-    fun getSafe(name: String) = get(getIdOrNull(name) ?: INVALID_ID)
+    fun getComponent(name: String, component: String): InterfaceComponentDetail {
+        return getComponentOrNull(name, component) ?: InterfaceComponentDetail(-1, "")
+    }
 
-    fun get(name: String, component: String, block: (InterfaceDetail, Int) -> Boolean): Boolean {
+    fun getComponentOrNull(name: String, component: String): InterfaceComponentDetail? {
         val inter = getSafe(name)
-        val componentId = inter.getComponent(component) ?: return false
-        return block.invoke(inter, componentId)
+        return inter.getComponent(component)
     }
 
-    fun get(id: Int, component: String, block: (InterfaceDetail, Int) -> Boolean): Boolean {
-        val inter = get(id)
-        val componentId = inter.getComponent(component) ?: return false
-        return block.invoke(inter, componentId)
-    }
+    fun get(id: Int) = get(getName(id))
 
-    fun get(id: Int, component: String, block: (Int) -> Boolean): Boolean {
-        val inter = get(id)
-        val componentId = inter.getComponent(component) ?: return false
-        return block.invoke(componentId)
-    }
+    fun getName(id: Int) = getNameOrNull(id) ?: throw IllegalNameException("$id")
 
-    fun getId(name: String) = getIdOrNull(name) ?: throw IllegalNameException(
-        name
-    )
-
-    fun getIdOrNull(name: String) = names[name]
+    fun getNameOrNull(id: Int) = names[id]
 
     val size: Int = interfaces.count()
 
