@@ -342,17 +342,20 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Adding more than one unstackable item at index fails`() {
+    fun `Adding more than one unstackable item at index adds normally`() {
         // Given
         val index = 0
         val id = 1
         items[index] = id
         amounts[index] = 1
         every { container.stackable(id) } returns false
+        every { container.add(id, any()) } returns true
         // When
-        assertFalse(container.add(index, id, 3))
+        assertTrue(container.add(index, id, 3))
         // Then
-        assertEquals(ContainerResult.Unstackable, container.result)
+        verify {
+            container.add(id, 3)
+        }
     }
 
     @Test
@@ -530,12 +533,32 @@ internal class ContainerTest {
     }
 
     @Test
+    fun `Removing more than one unstackable at index removes normally`() {
+        // Given
+        val index = 0
+        val otherIndex = 1
+        val id = 1
+        items[index] = id
+        amounts[index] = 1
+        items[otherIndex] = id
+        amounts[otherIndex] = 1
+        every { container.stackable(any()) } returns false
+        every { container.remove(id, any()) } returns true
+        // When
+        assertTrue(container.remove(index, id, 2))
+        verify {
+            container.remove(id, 2)
+        }
+    }
+
+    @Test
     fun `Removing over integer max at index underflows`() {
         // Given
         val index = 0
         val id = 1
         items[index] = id
         amounts[index] = 1
+        every { container.stackable(any()) } returns true
         // When
         assertFalse(container.remove(index, id, Int.MAX_VALUE))
         // Then
@@ -549,6 +572,7 @@ internal class ContainerTest {
         val id = 1
         items[index] = id
         amounts[index] = 1
+        every { container.stackable(any()) } returns true
         // When
         assertFalse(container.remove(index, id, 2))
         // Then
@@ -562,6 +586,7 @@ internal class ContainerTest {
         val id = 1
         items[index] = id
         amounts[index] = 2
+        every { container.stackable(any()) } returns true
         // When
         assertTrue(container.remove(index, id, 2))
         // Then

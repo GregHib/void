@@ -33,6 +33,7 @@ data class Container(
 
     var result: ContainerResult = ContainerResult.Success
         private set
+
     /**
      * A predicate to check if an item is allowed to be added to this container.
      */
@@ -176,7 +177,7 @@ data class Container(
         val toId = container.items[secondIndex]
         val toAmount = container.amounts[secondIndex]
 
-        if(!isValidOrEmpty(toId, toAmount) || !container.isValidOrEmpty(fromId, fromAmount)) {
+        if (!isValidOrEmpty(toId, toAmount) || !container.isValidOrEmpty(fromId, fromAmount)) {
             result(ContainerResult.Invalid)
             container.result(ContainerResult.Invalid)
             return false
@@ -224,12 +225,12 @@ data class Container(
         val stack = amounts[index]
         val combined = stack + amount
 
-        if (stack xor combined and (amount xor combined) < 0) {
-            return result(ContainerResult.Full)
+        if (combined > 1 && !stackable(id)) {
+            return add(id, amount)
         }
 
-        if (combined > 1 && !stackable(id)) {
-            return result(ContainerResult.Unstackable)
+        if (stack xor combined and (amount xor combined) < 0) {
+            return result(ContainerResult.Full)
         }
 
         set(index, id, combined)
@@ -279,7 +280,6 @@ data class Container(
         return result(ContainerResult.Success)
     }
 
-
     /**
      *  Removes items from a specific container index
      *  Note: Will never remove items not in this index
@@ -295,6 +295,10 @@ data class Container(
         val item = items[index]
         if (item != id) {
             return result(ContainerResult.WrongType)
+        }
+
+        if (amount > 1 && !stackable(id)) {
+            return remove(id, amount)
         }
 
         val stack = amounts[index]
