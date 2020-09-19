@@ -1077,7 +1077,7 @@ bank_side:
         Deposit-1: 0
         Deposit-5: 1
         Deposit-10: 2
-        Deposit-0: 3
+        Deposit-*: 3
         Deposit-X: 4
         Deposit-All: 5
         Examine: 9

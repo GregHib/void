@@ -6,14 +6,10 @@ import rs.dusk.engine.client.ui.awaitInterface
 import rs.dusk.engine.client.ui.close
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.client.variable.IntVariable
-import rs.dusk.engine.client.variable.Variable
-import rs.dusk.engine.client.variable.getVar
-import rs.dusk.engine.client.variable.setVar
+import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.world.activity.bank.Bank.sendLastDeposit
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
@@ -43,7 +39,7 @@ InterfaceOpened where { name == "bank" } then {
             player.open("bank_side")
             player.setVar("open_bank_tab", 1)
             player.setVar("bank_tab_1", 1)
-            sendLastDeposit(player)
+            player.sendVar("last_bank_amount")
             player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
             awaitInterface(name)
