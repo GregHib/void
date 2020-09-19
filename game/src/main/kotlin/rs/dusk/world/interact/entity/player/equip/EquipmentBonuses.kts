@@ -49,11 +49,10 @@ InterfaceOpened where { name == "equipment_bonuses" } then {
             player.open("equipment_side")
             player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
             updateStats(player)
-            player.awaitInterfaces()
+            awaitInterface(name)
         } finally {
             player.equipment.listeners.remove(listener)
             player.close("equipment_bonuses")
-            player.close("equipment_side")
             player.open("inventory")
         }
     }
