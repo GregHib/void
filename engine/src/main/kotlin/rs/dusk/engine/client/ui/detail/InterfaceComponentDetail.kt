@@ -6,7 +6,7 @@ data class InterfaceComponentDetail(
     var parent: Int = -1,
     val container: String = "",
     val primaryContainer: Boolean = true,
-    var options: Array<String> = emptyArray()
+    val options: Array<String> = emptyArray()
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

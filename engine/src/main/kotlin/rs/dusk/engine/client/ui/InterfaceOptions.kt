@@ -34,7 +34,7 @@ class InterfaceOptions(
     private fun getId(name: String, component: String) = "${name}_$component"
 
     fun set(name: String, component: String, index: Int, option: String): Boolean {
-        val map = options.getOrPut(getId(name, component)) { getStatic(name, component) }
+        val map = options.getOrPut(getId(name, component)) { getStatic(name, component).clone() }
         map[index] = option
         return true
     }
