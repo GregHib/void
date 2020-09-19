@@ -152,7 +152,7 @@ insect_repellent:
   tradeable: false
   demise: "Wilderness"
   examine: "Drives away all known 6 legged creatures."
-tinderbox:
+tinderbox_2:
   id: 29
   weight: 0.035
   limit: 5000
@@ -164,7 +164,7 @@ bucket_of_wax:
   tradeable: false
   demise: "Wilderness"
   examine: "It's a bucket of wax."
-tinderbox_2:
+tinderbox_3:
   id: 31
   weight: 0.035
   limit: 5000
@@ -2291,7 +2291,7 @@ shade_robe_top:
   tradeable: false
   demise: "Wilderness"
   examine: "I feel closer to the gods when I am wearing this."
-picture:
+picture_2:
   id: 547
   weight: 0.453
   tradeable: false
@@ -2304,7 +2304,7 @@ shade_robe_bottom:
   tradeable: false
   demise: "Wilderness"
   examine: "If a shade had knees, this would keep them nice and warm."
-picture_2:
+picture_3:
   id: 549
   weight: 0.453
   tradeable: false
@@ -2485,7 +2485,7 @@ gnome_amulet:
   alchable: false
   demise: "Wilderness"
   examine: "It's an amulet of protection given to me by the gnomes."
-tinderbox_3:
+tinderbox:
   id: 590
   weight: 0.035
   limit: 5000
@@ -2521,7 +2521,7 @@ bronze_fire_arrows_unlit:
   slot: "Arrows"
   limit: 10000
   examine: "Arrows with bronze heads and oil-soaked cloth."
-picture_3:
+picture_4:
   id: 599
   weight: 0.453
   tradeable: false
@@ -3002,7 +3002,7 @@ broken_staff:
   tradeable: false
   demise: "Reclaim"
   examine: "I pity the poor person beaten with this!"
-picture_4:
+picture_5:
   id: 690
   weight: 0.453
   tradeable: false
@@ -3141,7 +3141,7 @@ cup_of_tea_discontinued_item:
   tradeable: false
   demise: "Wilderness"
   examine: "A refreshing cuppa."
-picture_5:
+picture_6:
   id: 713
   weight: 0.453
   tradeable: false
@@ -3432,7 +3432,7 @@ intel_report:
   demise: "Wilderness"
   destroy: "You'll have to kill Jonny the beard to get another."
   examine: "An intelligence report."
-picture_6:
+picture_7:
   id: 762
   weight: 0.453
   tradeable: false
@@ -3446,7 +3446,7 @@ broken_shield_right:
   demise: "Wilderness"
   destroy: "You will need to enter the Phoenix Gang hideout to reclaim this half of the shield."
   examine: "Half of the Shield of Arrav."
-picture_7:
+picture_8:
   id: 764
   weight: 0.453
   tradeable: false
@@ -3460,7 +3460,7 @@ broken_shield_left:
   demise: "Wilderness"
   destroy: "You will need to enter the Black Arm Gang hideout to reclaim this half of the shield."
   examine: "Half of the Shield of Arrav."
-picture_8:
+picture_9:
   id: 766
   weight: 0.453
   tradeable: false
@@ -3485,7 +3485,7 @@ certificate_shield_of_arrav:
   demise: "Wilderness"
   destroy: "Instead of destroying this I should take it to King Roald to claim my reward."
   examine: "I can use this to claim a reward from the King."
-picture_9:
+picture_10:
   id: 770
   weight: 0.453
   tradeable: false
@@ -6551,7 +6551,7 @@ book_turnip_growing_for_beginners:
   tradeable: false
   demise: "Reclaim"
   examine: "Turnip growing for beginners."
-picture_10:
+picture:
   id: 1510
   weight: 0.453
   tradeable: false
@@ -7281,23 +7281,23 @@ dragonstone_amulet_unstrung:
   examine: "It needs a string so I can wear it."
 dragonstone_ammy_noted:
   id: 1684
-sapphire_amulet:
+sapphire_amulet_2:
   id: 1687
   weight: 0.007
   limit: 5000
   examine: "I wonder if I can get this enchanted."
-emerald_amulet:
+emerald_amulet_2:
   id: 1688
   weight: 0.007
   limit: 5000
   examine: "I wonder if I can get this enchanted."
-ruby_amulet:
+ruby_amulet_2:
   id: 1689
   weight: 0.007
   limit: 5000
   destroy: "No"
   examine: "I wonder if I can get this enchanted."
-diamond_amulet:
+diamond_amulet_2:
   id: 1690
   weight: 0.007
   limit: 5000
@@ -7313,7 +7313,7 @@ gold_amulet:
   examine: "A plain gold amulet."
 gold_amulet_noted_2:
   id: 1693
-sapphire_amulet_2:
+sapphire_amulet:
   id: 1694
   slot: "Amulet"
   weight: 0.007
@@ -7321,7 +7321,7 @@ sapphire_amulet_2:
   examine: "I wonder if I can get this enchanted."
 sapphire_amulet_noted_2:
   id: 1695
-emerald_amulet_2:
+emerald_amulet:
   id: 1696
   slot: "Amulet"
   weight: 0.007
@@ -7329,7 +7329,7 @@ emerald_amulet_2:
   examine: "I wonder if I can get this enchanted."
 emerald_amulet_noted_2:
   id: 1697
-ruby_amulet_2:
+ruby_amulet:
   id: 1698
   slot: "Amulet"
   weight: 0.007
@@ -7338,7 +7338,7 @@ ruby_amulet_2:
   examine: "I wonder if I can get this enchanted."
 ruby_amulet_noted_2:
   id: 1699
-diamond_amulet_2:
+diamond_amulet:
   id: 1700
   slot: "Amulet"
   weight: 0.007
@@ -8172,7 +8172,7 @@ uncooked_cake:
   examine: "Now all I need to do is cook it."
 uncooked_cake_noted:
   id: 1890
-cake:
+cake_2:
   id: 1891
   weight: 0.1
   edible: true
@@ -8184,7 +8184,7 @@ cake_noted:
   id: 1893
 "2/3_cake_noted":
   id: 1894
-cake_2:
+cake:
   id: 1895
   weight: 0.1
   edible: true
@@ -8192,7 +8192,7 @@ cake_2:
   examine: "I'd rather have a whole cake."
 slice_of_cake_noted:
   id: 1896
-chocolate_cake:
+chocolate_cake_2:
   id: 1897
   weight: 0.1
   edible: true
@@ -8204,7 +8204,7 @@ chocolate_cake_noted:
   id: 1899
 "2/3_chocolate_cake_noted":
   id: 1900
-chocolate_cake_2:
+chocolate_cake:
   id: 1901
   weight: 0.1
   edible: true
@@ -10699,7 +10699,7 @@ picture_18:
   tradeable: false
   demise: "Wilderness"
   examine: "A picture of a lady called Elena."
-dragon_chainbody:
+dragon_chainbody_2:
   id: 2513
   weight: 6.803
   limit: 10
@@ -13102,7 +13102,7 @@ snapdragon_potion_unf:
   examine: "I need another ingredient to finish this snapdragon potion."
 snapdragon_potion_unf_noted:
   id: 3005
-firework:
+firework_2:
   id: 3006
   weight: 0.08
   examine: "Keep out of reach of children and familiars."
@@ -13573,7 +13573,7 @@ potato_cactus:
   examine: "How am I supposed to eat that? ."
 potato_cactus_noted:
   id: 3139
-dragon_chainbody_2:
+dragon_chainbody:
   id: 3140
   slot: "Chest"
   weight: 6.803
@@ -17643,7 +17643,7 @@ nechryael:
   id: 4148
 abyssal_demon:
   id: 4149
-broad_arrow:
+broad_arrow_2:
   id: 4150
   tradeable: false
   demise: "Reclaim"
@@ -17695,7 +17695,7 @@ leaf-bladed_spear_2:
   tradeable: false
   demise: "Reclaim"
   examine: "A spear with a leaf-shaped point."
-broad_arrow_2:
+broad_arrow:
   id: 4160
   slot: "Arrows"
   tradeable: false
@@ -19728,13 +19728,13 @@ book_page_3:
   tradeable: false
   demise: "Wilderness"
   examine: "A missing page from Rolad's book! It seems to be the third one."
-pages:
+pages_2:
   id: 4572
   weight: 0.002
   tradeable: false
   demise: "Wilderness"
   examine: "A collection of missing pages from Rolad's book!"
-pages_2:
+pages:
   id: 4573
   weight: 0.002
   tradeable: false
@@ -27333,17 +27333,17 @@ mystic_mud_staff:
   weight: 2.267
   limit: 10
   examine: "It's a slightly magical stick."
-onyx_ring:
+onyx_ring_2:
   id: 6564
   weight: 0.006
   limit: 100
   examine: "A valuable ring."
-onyx_necklace:
+onyx_necklace_2:
   id: 6565
   weight: 0.01
   limit: 100
   examine: "I wonder if this is valuable."
-onyx_amulet:
+onyx_amulet_2:
   id: 6566
   weight: 0.007
   limit: 100
@@ -27377,7 +27377,7 @@ onyx:
   examine: "This looks valuable."
 onyx_noted:
   id: 6574
-onyx_ring_2:
+onyx_ring:
   id: 6575
   slot: "Ring"
   weight: 0.006
@@ -27385,7 +27385,7 @@ onyx_ring_2:
   examine: "A valuable ring."
 onyx_ring_noted:
   id: 6576
-onyx_necklace_2:
+onyx_necklace:
   id: 6577
   slot: "Amulet"
   weight: 0.01
@@ -27399,7 +27399,7 @@ onyx_amulet_unstrung:
   examine: "It needs a string so I can wear it."
 onyx_amulet_noted:
   id: 6580
-onyx_amulet_2:
+onyx_amulet:
   id: 6581
   slot: "Amulet"
   weight: 0.007
@@ -27775,7 +27775,7 @@ camo_helmet:
   tradeable: false
   demise: "Wilderness"
   examine: "Examine what?"
-fishing_explosive:
+fishing_explosive_2:
   id: 6660
   tradeable: false
   demise: "Reclaim"
@@ -27794,7 +27794,7 @@ forlorn_boot:
   tradeable: false
   demise: "Reclaim"
   examine: "It seems someone vacated this boot in a hurry..."
-fishing_explosive_2:
+fishing_explosive:
   id: 6664
   tradeable: false
   demise: "Reclaim"
@@ -27990,7 +27990,7 @@ camulet:
   alchable: false
   demise: "Wilderness"
   examine: "It's an amulet of camelspeak. It makes vague braying noises."
-slayer_gloves:
+slayer_gloves_2:
   id: 6708
   weight: 0.226
   tradeable: false
@@ -28060,7 +28060,7 @@ unsanitary_swill:
   demise: "Wilderness"
   destroy: "Yes"
   examine: "Sorry, I mean a bucket of 'rum'."
-slayer_gloves_2:
+slayer_gloves:
   id: 6720
   slot: "Hands"
   weight: 0.226
@@ -29925,7 +29925,7 @@ pirate_leggings_white:
   examine: "Well, okay, they're beige, but they're part of the white pirate clothing set, so..."
 pirate_leggings_noted:
   id: 7117
-canister:
+canister_2:
   id: 7118
   weight: 0.005
   tradeable: false
@@ -29949,7 +29949,7 @@ ramrod:
   bankable: false
   demise: "Wilderness"
   examine: "For cleaning and packing the cannon."
-repair_plank:
+repair_plank_2:
   id: 7121
   weight: 0.005
   tradeable: false
@@ -30083,14 +30083,14 @@ broken_cannon:
   examine: "Not likely to work again."
 cannon_balls:
   id: 7147
-repair_plank_2:
+repair_plank:
   id: 7148
   weight: 0.005
   tradeable: false
   bankable: false
   demise: "Wilderness"
   examine: "A plank of wood to repair the hull with."
-canister_2:
+canister:
   id: 7149
   weight: 0.005
   tradeable: false
@@ -31898,7 +31898,7 @@ burnt_crab_meat:
   tradeable: false
   demise: "Wilderness"
   examine: "Oh dear, it's burnt."
-cooked_crab_meat:
+cooked_crab_meat_2:
   id: 7521
   weight: 0.907
   edible: true
@@ -31907,28 +31907,28 @@ cooked_crab_meat:
   examine: "Nice and tasty!"
 cooked_crab_meat_noted:
   id: 7522
-cooked_crab_meat_2:
+cooked_crab_meat_3:
   id: 7523
   weight: 0.907
   edible: true
   tradeable: false
   demise: "Wilderness"
   examine: "Nice and tasty!"
-cooked_crab_meat_3:
+cooked_crab_meat_4:
   id: 7524
   weight: 0.907
   edible: true
   tradeable: false
   demise: "Wilderness"
   examine: "Nice and tasty!"
-cooked_crab_meat_4:
+cooked_crab_meat_5:
   id: 7525
   weight: 0.907
   edible: true
   tradeable: false
   demise: "Wilderness"
   examine: "Nice and tasty!"
-cooked_crab_meat_5:
+cooked_crab_meat:
   id: 7526
   weight: 0.907
   edible: true
@@ -32516,28 +32516,28 @@ silver_dust:
   examine: "It's ground up silver."
 silver_dust_noted:
   id: 7651
-guthix_balance_unf:
+guthix_balance_unf_2:
   id: 7652
   weight: 0.035
   limit: 1000
   examine: "An unfinished potion."
 guthix_balance_unf_noted:
   id: 7653
-guthix_balance_unf_2:
+guthix_balance_unf_3:
   id: 7654
   weight: 0.035
   limit: 1000
   examine: "An unfinished potion."
 guthix_balance_unf_noted_2:
   id: 7655
-guthix_balance_unf_3:
+guthix_balance_unf_4:
   id: 7656
   weight: 0.035
   limit: 1000
   examine: "An unfinished potion."
 guthix_balance_unf_noted_3:
   id: 7657
-guthix_balance_unf_4:
+guthix_balance_unf:
   id: 7658
   weight: 0.035
   limit: 1000
@@ -40962,13 +40962,13 @@ giant_eagle:
   id: 9974
 rabbit:
   id: 9975
-chinchompa:
+chinchompa_2:
   id: 9976
   limit: 20000
   demise: "Wilderness"
   destroy: "Release"
   examine: "Handle with care."
-red_chinchompa:
+red_chinchompa_2:
   id: 9977
   limit: 20000
   demise: "Wilderness"
@@ -41189,14 +41189,14 @@ rabbit_snare:
   examine: "The snare will tighten around animals passing through."
 rabbit_snare_noted:
   id: 10032
-chinchompa_2:
+chinchompa:
   id: 10033
   slot: "Weapon"
   limit: 20000
   demise: "Wilderness"
   destroy: "Release"
   examine: "Handle with care."
-red_chinchompa_2:
+red_chinchompa:
   id: 10034
   slot: "Weapon"
   limit: 20000
@@ -45702,7 +45702,7 @@ keg:
   tradeable: false
   demise: "Vanish"
   examine: "A small keg of gunpowder."
-prayer_book:
+prayer_book_2:
   id: 10886
   weight: 0.05
   tradeable: false
@@ -45734,7 +45734,7 @@ blessed_lamp:
   demise: "Wilderness"
   destroy: "If you drop this lamp it will be destroyed, and you will need to see Brother Tranquillity for another."
   examine: "This will answer my prayers."
-prayer_book_2:
+prayer_book:
   id: 10890
   weight: 0.05
   tradeable: false
@@ -46341,7 +46341,7 @@ beacon_ring:
   demise: "Wilderness"
   destroy: "You will need to get another ring from Zaff if you destroy this one."
   examine: "A magical ring."
-chicken_head:
+chicken_head_2:
   id: 11015
   slot: "Hat"
   type: "Hair"
@@ -46350,7 +46350,7 @@ chicken_head:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another chicken head."
   examine: "Cock-a-doodle-do!"
-chicken_feet:
+chicken_feet_2:
   id: 11016
   slot: "Feet"
   weight: 0.25
@@ -46358,7 +46358,7 @@ chicken_feet:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another pair of chicken feet."
   examine: "Perfect for crossing the road."
-chicken_wings:
+chicken_wings_2:
   id: 11017
   slot: "Chest"
   weight: 0.25
@@ -46366,7 +46366,7 @@ chicken_wings:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another set of chicken wings."
   examine: "I look fowl in this."
-chicken_legs:
+chicken_legs_2:
   id: 11018
   slot: "Legs"
   weight: 0.25
@@ -46374,7 +46374,7 @@ chicken_legs:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another set of chicken legs."
   examine: "What's the matter, are you chicken?"
-chicken_feet_2:
+chicken_feet:
   id: 11019
   slot: "Feet"
   weight: 0.25
@@ -46382,7 +46382,7 @@ chicken_feet_2:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another pair of chicken feet."
   examine: "Perfect for crossing the road."
-chicken_wings_2:
+chicken_wings:
   id: 11020
   slot: "Chest"
   weight: 0.25
@@ -46390,7 +46390,7 @@ chicken_wings_2:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another set of chicken wings."
   examine: "I look fowl in this."
-chicken_head_2:
+chicken_head:
   id: 11021
   slot: "Hat"
   type: "Hair"
@@ -46399,7 +46399,7 @@ chicken_head_2:
   demise: "Wilderness"
   destroy: "You will need to speak to Diango to get another chicken head."
   examine: "Cock-a-doodle-do!"
-chicken_legs_2:
+chicken_legs:
   id: 11022
   slot: "Legs"
   weight: 0.25
@@ -46565,14 +46565,14 @@ key_olafs_quest_star:
   demise: "Wilderness"
   destroy: "This key will be destroyed if you drop it and you will need to kill another skeletal fremennik to get another."
   examine: "A large rusty key."
-rotten_barrel:
+rotten_barrel_2:
   id: 11044
   weight: 0.001
   tradeable: false
   demise: "Vanish"
   destroy: "This barrel will be destroyed if you drop it and you will need to pick up another from Sven's cave."
   examine: "Looks like it might still float..."
-rotten_barrel_2:
+rotten_barrel:
   id: 11045
   weight: 0.001
   tradeable: false
@@ -47606,13 +47606,13 @@ beret_and_mask:
   alchable: false
   demise: "Reclaim"
   examine: "Essential mime wear."
-dragonfire_shield:
+dragonfire_shield_2:
   id: 11283
   slot: "Shield"
   weight: 7.257
   limit: 10
   examine: "A heavy shield with a snarling, draconic visage."
-dragonfire_shield_2:
+dragonfire_shield:
   id: 11284
   slot: "Shield"
   weight: 7.257
@@ -49925,7 +49925,7 @@ skeletal_armour_set:
 skeletal_armour_set_noted:
   id: 11947
   alchable: false
-snow_globe:
+snow_globe_2:
   id: 11949
   slot: "Weapon"
   weight: 0.001
@@ -49933,7 +49933,7 @@ snow_globe:
   demise: "Wilderness"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A tiny model of Lumbridge Castle inside a glass dome."
-snow_globe_2:
+snow_globe:
   id: 11950
   slot: "Weapon"
   weight: 0.001
@@ -52936,7 +52936,7 @@ super_fishing_explosive:
   tradeable: false
   demise: "Reclaim"
   examine: "The jar is shaking violently!"
-chocatrice_cape:
+chocatrice_cape_2:
   id: 12634
   slot: "Cape"
   weight: 0.453
@@ -53006,7 +53006,7 @@ easter_egg_2:
   edible: true
   limit: 2
   examine: "Happy Easter."
-chocatrice_cape_2:
+chocatrice_cape:
   id: 12645
   slot: "Cape"
   weight: 0.453
@@ -63046,7 +63046,7 @@ elite_black_full_helm_lent:
   weight: 2.721
   limit: 10
   examine: "A full face helmet, and elite."
-santa_costume_top:
+santa_costume_top_2:
   id: 14595
   slot: "Chest"
   weight: 0.001
@@ -63054,7 +63054,7 @@ santa_costume_top:
   demise: "Wilderness"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A red and jolly top."
-ice_amulet:
+ice_amulet_2:
   id: 14596
   slot: "Amulet"
   weight: 0.05
@@ -63077,7 +63077,7 @@ enchanted_stones:
   demise: "Wilderness"
   destroy: "You will have to fetch more in the last room of the yeti cave, then get them enchanted by snow imps."
   examine: "According to the snow imps, this is enchanted, frozen yeti dung."
-ice_amulet_2:
+ice_amulet:
   id: 14599
   slot: "Amulet"
   weight: 0.05
@@ -63086,7 +63086,7 @@ ice_amulet_2:
   demise: "Wilderness"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A spiky amulet made of ice crystals. It has been enchanted so it will not melt."
-santa_costume_top_2:
+santa_costume_top_3:
   id: 14600
   slot: "Chest"
   weight: 0.001
@@ -63094,7 +63094,7 @@ santa_costume_top_2:
   demise: "Wilderness"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A red and jolly top."
-santa_costume_top_3:
+santa_costume_top:
   id: 14601
   slot: "Chest"
   weight: 0.001
@@ -63349,7 +63349,7 @@ bandages_soul_wars:
   demise: "Reclaim"
   destroy: "You can collect more from the supply areas."
   examine: "A box of bandages for healing."
-red_cape:
+red_cape_2:
   id: 14641
   slot: "Cape"
   weight: 0.453
@@ -63357,7 +63357,7 @@ red_cape:
   alchable: false
   demise: "Reclaim"
   examine: "It's a cape, and it's red."
-blue_cape:
+blue_cape_2:
   id: 14642
   slot: "Cape"
   weight: 0.453
@@ -63773,7 +63773,7 @@ beer_2:
   weight: 0.55
   limit: 100
   examine: "A glass of frothy ale."
-easter_carrot:
+easter_carrot_2:
   id: 14713
   slot: "Weapon"
   weight: 0.453
@@ -63901,7 +63901,7 @@ easter_impling_jar:
   bankable: false
   demise: "Vanish"
   examine: "An Easter impling in a jar. That's a bit cruel."
-easter_carrot_2:
+easter_carrot:
   id: 14728
   slot: "Weapon"
   type: "TwoHanded"
@@ -67801,7 +67801,7 @@ mulled_wine_2009_christmas_event:
   alchable: false
   demise: "Reclaim"
   examine: "Nice, mulled wine."
-red_cape_2:
+red_cape_3:
   id: 15432
   slot: "Cape"
   weight: 0.453
@@ -67809,7 +67809,7 @@ red_cape_2:
   alchable: false
   demise: "Reclaim"
   examine: "It's a cape, and it's red."
-blue_cape_2:
+blue_cape_3:
   id: 15433
   slot: "Cape"
   weight: 0.453
@@ -67817,7 +67817,7 @@ blue_cape_2:
   alchable: false
   demise: "Reclaim"
   examine: "Like a red cape, but blue."
-red_cape_3:
+red_cape:
   id: 15434
   slot: "Cape"
   weight: 0.453
@@ -67825,7 +67825,7 @@ red_cape_3:
   alchable: false
   demise: "Reclaim"
   examine: "It's a cape, and it's red."
-blue_cape_3:
+blue_cape:
   id: 15435
   slot: "Cape"
   weight: 0.453
@@ -75049,7 +75049,7 @@ gorgonite_maul_2:
   examine: "A maul used to claim life from those who don't deserve it. (Tier 9)"
 gorgonite_maul_noted_2:
   id: 16966
-catalytic_staff:
+catalytic_staff_2:
   id: 16967
   slot: "Weapon"
   weight: 1.814
@@ -75232,7 +75232,7 @@ empowered_air_staff:
   examine: "A magical staff of air. (Tier 2)"
 empowered_air_staff_noted:
   id: 17012
-catalytic_staff_2:
+catalytic_staff:
   id: 17013
   slot: "Weapon"
   weight: 1.814
@@ -86270,14 +86270,14 @@ dungeoneering_master_cape_2:
   tradeable: false
   demise: "Reclaim"
   examine: "The cape worn by the true masters of Daemonheim."
-void_knight_deflector:
+void_knight_deflector_2:
   id: 19711
   weight: 0.453
   tradeable: false
   alchable: false
   demise: "Reclaim"
   examine: "A deft Void Knight shield."
-void_knight_deflector_2:
+void_knight_deflector:
   id: 19712
   slot: "Shield"
   weight: 0.453
@@ -88324,25 +88324,25 @@ ancient_ceremonial_hood:
   id: 20115
   slot: "Hat"
   type: "FullFace"
-ancient_ceremonial_top:
+ancient_ceremonial_top_2:
   id: 20116
   slot: "Chest"
   weight: 2.721
   limit: 2
   examine: "The top half of ceremonial robes dedicated to an ancient god."
-ancient_ceremonial_legs:
+ancient_ceremonial_legs_2:
   id: 20117
   slot: "Legs"
   weight: 1.814
   limit: 2
   examine: "The bottom half of ceremonial robes dedicated to an ancient god."
-ancient_ceremonial_gloves:
+ancient_ceremonial_gloves_2:
   id: 20118
   slot: "Hands"
   weight: 0.453
   limit: 2
   examine: "Ceremonial gloves dedicated to an ancient god."
-ancient_ceremonial_boots:
+ancient_ceremonial_boots_2:
   id: 20119
   slot: "Feet"
   weight: 0.453
@@ -88393,7 +88393,7 @@ ancient_ceremonial_mask:
   examine: "A ceremonial mask dedicated to an ancient god."
 ancient_ceremonial_mask_noted:
   id: 20126
-ancient_ceremonial_top_2:
+ancient_ceremonial_top:
   id: 20127
   slot: "Chest"
   weight: 2.721
@@ -88401,7 +88401,7 @@ ancient_ceremonial_top_2:
   examine: "The top half of ceremonial robes dedicated to an ancient god."
 ancient_ceremonial_top_noted:
   id: 20128
-ancient_ceremonial_legs_2:
+ancient_ceremonial_legs:
   id: 20129
   slot: "Legs"
   weight: 1.814
@@ -88409,7 +88409,7 @@ ancient_ceremonial_legs_2:
   examine: "The bottom half of ceremonial robes dedicated to an ancient god."
 ancient_ceremonial_legs_noted:
   id: 20130
-ancient_ceremonial_gloves_2:
+ancient_ceremonial_gloves:
   id: 20131
   slot: "Hands"
   weight: 0.453
@@ -88417,7 +88417,7 @@ ancient_ceremonial_gloves_2:
   examine: "Ceremonial gloves dedicated to an ancient god."
 ancient_ceremonial_gloves_noted:
   id: 20132
-ancient_ceremonial_boots_2:
+ancient_ceremonial_boots:
   id: 20133
   slot: "Feet"
   weight: 0.453
@@ -91818,7 +91818,7 @@ confetti:
   examine: "Use on someone for instant celebration. Not suitable as bird food."
 confetti_noted:
   id: 20719
-firework_2:
+firework:
   id: 20720
   weight: 0.08
   examine: "Keep out of reach of children and familiars."
@@ -91902,63 +91902,63 @@ easter_evil_tree_kindling:
   tradeable: false
   demise: "Reclaim"
   examine: "Kindling from an evil tree's root from the Land of Holly and Hawthorn."
-milestone_cape_10:
+milestone_cape_10_2:
   id: 20735
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 10 in all skills."
-milestone_cape_20:
+milestone_cape_20_2:
   id: 20736
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 20 in all skills."
-milestone_cape_30:
+milestone_cape_30_2:
   id: 20737
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 30 in all skills."
-milestone_cape_40:
+milestone_cape_40_2:
   id: 20738
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 40 in all skills."
-milestone_cape_50:
+milestone_cape_50_2:
   id: 20739
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 50 in all skills."
-milestone_cape_60:
+milestone_cape_60_2:
   id: 20740
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 60 in all skills."
-milestone_cape_70:
+milestone_cape_70_2:
   id: 20741
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 70 in all skills."
-milestone_cape_80:
+milestone_cape_80_2:
   id: 20742
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 80 in all skills."
-milestone_cape_90:
+milestone_cape_90_2:
   id: 20743
   slot: "Cape"
   weight: 0.453
@@ -91971,21 +91971,21 @@ veteran_hood:
   type: "Hair"
 veteran_cape:
   id: 20745
-classic_cape:
+classic_cape_2:
   id: 20746
   weight: 0.453
   tradeable: false
   alchable: false
   demise: "Vanish"
   examine: "A cape worn by those who've seen the world in a different light."
-max_cape:
+max_cape_2:
   id: 20747
   weight: 0.453
   tradeable: false
   alchable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved 99 in all skills."
-completionist_cape:
+completionist_cape_2:
   id: 20748
   weight: 0.453
   tradeable: false
@@ -91993,7 +91993,7 @@ completionist_cape:
   demise: "Reclaim"
   destroy: "You'll have to buy this back for 5,000,000 coins at Varrock Museum if you destroy it."
   examine: "A cape worn by those who've overachieved."
-completionist_cape_2:
+completionist_cape_3:
   id: 20749
   weight: 0.453
   tradeable: false
@@ -92001,7 +92001,7 @@ completionist_cape_2:
   demise: "Reclaim"
   destroy: "You'll have to buy this back for 5,000,000 coins at Varrock Museum if you destroy it."
   examine: "A cape worn by those who've overachieved."
-classic_hood:
+classic_hood_2:
   id: 20750
   slot: "Hat"
   type: "Hair"
@@ -92010,7 +92010,7 @@ classic_hood:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by classic players."
-max_hood:
+max_hood_2:
   id: 20751
   slot: "Hat"
   type: "Hair"
@@ -92019,7 +92019,7 @@ max_hood:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by those who've achieved 99 in all skills."
-completionist_hood:
+completionist_hood_2:
   id: 20752
   slot: "Hat"
   type: "Hair"
@@ -92028,7 +92028,7 @@ completionist_hood:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by those who've overachieved."
-completionist_hood_2:
+completionist_hood_3:
   id: 20753
   slot: "Hat"
   type: "Hair"
@@ -92037,63 +92037,63 @@ completionist_hood_2:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by those who've overachieved."
-milestone_cape_10_2:
+milestone_cape_10:
   id: 20754
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 10 in all skills."
-milestone_cape_20_2:
+milestone_cape_20:
   id: 20755
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 20 in all skills."
-milestone_cape_30_2:
+milestone_cape_30:
   id: 20756
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 30 in all skills."
-milestone_cape_40_2:
+milestone_cape_40:
   id: 20757
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 40 in all skills."
-milestone_cape_50_2:
+milestone_cape_50:
   id: 20758
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 50 in all skills."
-milestone_cape_60_2:
+milestone_cape_60:
   id: 20759
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 60 in all skills."
-milestone_cape_70_2:
+milestone_cape_70:
   id: 20760
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 70 in all skills."
-milestone_cape_80_2:
+milestone_cape_80:
   id: 20761
   slot: "Cape"
   weight: 0.453
   tradeable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved at least level 80 in all skills."
-milestone_cape_90_2:
+milestone_cape_90:
   id: 20762
   slot: "Cape"
   weight: 0.453
@@ -92118,7 +92118,7 @@ veteran_hood_5_year:
   demise: "Reclaim"
   destroy: "Are you sure you want to destroy this? You can purchase another from Hans in Lumbridge."
   examine: "A hood worn by veterans."
-classic_cape_2:
+classic_cape:
   id: 20765
   slot: "Cape"
   weight: 0.453
@@ -92126,7 +92126,7 @@ classic_cape_2:
   alchable: false
   demise: "Vanish"
   examine: "A cape worn by those who've seen the world in a different light."
-classic_hood_2:
+classic_hood:
   id: 20766
   slot: "Hat"
   type: "Hair"
@@ -92135,7 +92135,7 @@ classic_hood_2:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by classic players."
-max_cape_2:
+max_cape:
   id: 20767
   slot: "Cape"
   weight: 0.453
@@ -92143,7 +92143,7 @@ max_cape_2:
   alchable: false
   demise: "Reclaim"
   examine: "A cape worn by those who've achieved 99 in all skills."
-max_hood_2:
+max_hood:
   id: 20768
   slot: "Hat"
   type: "Hair"
@@ -92152,7 +92152,7 @@ max_hood_2:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by those who've achieved 99 in all skills."
-completionist_cape_3:
+completionist_cape:
   id: 20769
   slot: "Cape"
   weight: 0.453
@@ -92161,7 +92161,7 @@ completionist_cape_3:
   demise: "Reclaim"
   destroy: "You'll have to buy this back for 5,000,000 coins at Varrock Museum if you destroy it."
   examine: "A cape worn by those who've overachieved."
-completionist_hood_3:
+completionist_hood:
   id: 20770
   slot: "Hat"
   type: "Hair"
@@ -95989,14 +95989,14 @@ citadel_handbook_advanced:
   demise: "Wilderness"
   destroy: "You can get another from Avalani on your clan citadel."
   examine: "A handbook further detailing clan citadels."
-herald_cape:
+herald_cape_2:
   id: 21434
   weight: 0.453
   tradeable: false
   demise: "Wilderness"
   destroy: "You'll have to revisit a herald to get a new cape if you destroy this one."
   examine: "A cape for those who love their city."
-herald_cape_2:
+herald_cape:
   id: 21435
   slot: "Cape"
   weight: 0.453
@@ -96021,7 +96021,7 @@ mystery_cracker:
   demise: "Wilderness"
   destroy: "You WILL NOT be able to get this item back if you destroy it. If you wish to open it, use it on your friend."
   examine: "You should pull this with a friend to see what is inside! Warning: contains cake."
-constructors_hat:
+constructors_hat_2:
   id: 21439
   slot: "Hat"
   type: "FullFace"
@@ -96034,7 +96034,7 @@ constructors_hat:
 constructors_body:
   id: 21440
   slot: "Chest"
-constructors_trousers:
+constructors_trousers_2:
   id: 21441
   slot: "Legs"
   weight: 0.907
@@ -96043,7 +96043,7 @@ constructors_trousers:
   demise: "Wilderness"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Trousers to keep your legs protected."
-constructors_gloves:
+constructors_gloves_2:
   id: 21442
   slot: "Hands"
   weight: 0.453
@@ -96052,7 +96052,7 @@ constructors_gloves:
   demise: "Wilderness"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Protection for your hands."
-constructors_boots:
+constructors_boots_2:
   id: 21443
   slot: "Feet"
   weight: 0.453
@@ -96075,7 +96075,7 @@ ramblers_backpack:
   alchable: false
   demise: "Wilderness"
   examine: "Makes you look like a true trekker!"
-constructors_hat_2:
+constructors_hat:
   id: 21446
   slot: "Hat"
   type: "FullFace"
@@ -96094,7 +96094,7 @@ constructors_garb:
   demise: "Wilderness"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Good for working outdoors."
-constructors_trousers_2:
+constructors_trousers:
   id: 21448
   slot: "Legs"
   weight: 0.907
@@ -96103,7 +96103,7 @@ constructors_trousers_2:
   demise: "Wilderness"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Trousers to keep your legs protected."
-constructors_gloves_2:
+constructors_gloves:
   id: 21449
   slot: "Hands"
   weight: 0.453
@@ -96112,7 +96112,7 @@ constructors_gloves_2:
   demise: "Wilderness"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Protection for your hands."
-constructors_boots_2:
+constructors_boots:
   id: 21450
   slot: "Feet"
   weight: 0.453
@@ -96181,7 +96181,7 @@ vyre_corpse_9:
   tradeable: false
   demise: "Wilderness"
   examine: "A Vyrewatch corpse. Just a husk, really."
-battle-mage_helm:
+battle-mage_helm_2:
   id: 21462
   slot: "Hat"
   type: "Hair"
@@ -96191,7 +96191,7 @@ battle-mage_helm:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a warrior wizard."
-battle-mage_robe:
+battle-mage_robe_2:
   id: 21463
   slot: "Chest"
   weight: 9.979
@@ -96200,7 +96200,7 @@ battle-mage_robe:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a warrior wizard."
-battle-mage_robe_legs:
+battle-mage_robe_legs_2:
   id: 21464
   slot: "Legs"
   weight: 9.071
@@ -96209,7 +96209,7 @@ battle-mage_robe_legs:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a warrior wizard."
-battle-mage_gloves:
+battle-mage_gloves_2:
   id: 21465
   slot: "Hands"
   weight: 0.453
@@ -96218,7 +96218,7 @@ battle-mage_gloves:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a warrior wizard."
-battle-mage_boots:
+battle-mage_boots_2:
   id: 21466
   slot: "Feet"
   weight: 0.453
@@ -96227,7 +96227,7 @@ battle-mage_boots:
   bankable: false
   demise: "Reclaim"
   examine: "The boots of a warrior wizard."
-trickster_helm:
+trickster_helm_2:
   id: 21467
   slot: "Hat"
   type: "FullFace"
@@ -96237,7 +96237,7 @@ trickster_helm:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a mystical marksman."
-trickster_robe:
+trickster_robe_2:
   id: 21468
   slot: "Chest"
   weight: 9.979
@@ -96246,7 +96246,7 @@ trickster_robe:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a mystical marksman."
-trickster_robe_legs:
+trickster_robe_legs_2:
   id: 21469
   slot: "Legs"
   weight: 9.071
@@ -96255,7 +96255,7 @@ trickster_robe_legs:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a mystical marksman."
-trickster_gloves:
+trickster_gloves_2:
   id: 21470
   slot: "Hands"
   weight: 0.453
@@ -96264,7 +96264,7 @@ trickster_gloves:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a mystical marksman."
-trickster_boots:
+trickster_boots_2:
   id: 21471
   slot: "Feet"
   weight: 0.453
@@ -96273,7 +96273,7 @@ trickster_boots:
   bankable: false
   demise: "Reclaim"
   examine: "Footwear for a mystical marksman."
-vanguard_helm:
+vanguard_helm_2:
   id: 21472
   slot: "Hat"
   type: "FullFace"
@@ -96283,7 +96283,7 @@ vanguard_helm:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a martial master."
-vanguard_body:
+vanguard_body_2:
   id: 21473
   slot: "Chest"
   weight: 9.979
@@ -96292,7 +96292,7 @@ vanguard_body:
   bankable: false
   demise: "Reclaim"
   examine: "Armour for a martial master."
-vanguard_legs:
+vanguard_legs_2:
   id: 21474
   slot: "Legs"
   weight: 9.071
@@ -96301,7 +96301,7 @@ vanguard_legs:
   bankable: false
   demise: "Reclaim"
   examine: "Leg armour for a martial master."
-vanguard_gloves:
+vanguard_gloves_2:
   id: 21475
   slot: "Hands"
   weight: 0.453
@@ -96310,7 +96310,7 @@ vanguard_gloves:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a martial master."
-vanguard_boots:
+vanguard_boots_2:
   id: 21476
   slot: "Feet"
   weight: 0.453
@@ -96319,7 +96319,7 @@ vanguard_boots:
   bankable: false
   demise: "Reclaim"
   examine: "Footwear for a martial master."
-necromancer_robe_top:
+necromancer_robe_top_2:
   id: 21477
   slot: "Chest"
   weight: 0.907
@@ -96327,7 +96327,7 @@ necromancer_robe_top:
   alchable: false
   demise: "Reclaim"
   examine: "A robe worn by twisted necromancers."
-necromancer_hood:
+necromancer_hood_2:
   id: 21478
   slot: "Hat"
   type: "Hair"
@@ -96336,7 +96336,7 @@ necromancer_hood:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by twisted necromancers."
-necromancer_robe_bottom:
+necromancer_robe_bottom_2:
   id: 21479
   slot: "Legs"
   weight: 0.907
@@ -96344,7 +96344,7 @@ necromancer_robe_bottom:
   alchable: false
   demise: "Reclaim"
   examine: "A robe worn by twisted necromancers."
-black_ibis_body:
+black_ibis_body_2:
   id: 21480
   slot: "Chest"
   weight: 1.36
@@ -96353,7 +96353,7 @@ black_ibis_body:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Traditional garb of a shadowy secret society."
-black_ibis_legs:
+black_ibis_legs_2:
   id: 21481
   slot: "Legs"
   weight: 0.907
@@ -96362,7 +96362,7 @@ black_ibis_legs:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Traditional leg wear of a shadowy secret society."
-black_ibis_mask:
+black_ibis_mask_2:
   id: 21482
   slot: "Hat"
   type: "FullFace"
@@ -96372,7 +96372,7 @@ black_ibis_mask:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Keeps your identity secret."
-black_ibis_boots:
+black_ibis_boots_2:
   id: 21483
   slot: "Feet"
   weight: 0.907
@@ -96553,7 +96553,7 @@ necromancers_steam_staff:
   alchable: false
   demise: "Reclaim"
   examine: "A sinister skull staff."
-necromancer_robe_top_2:
+necromancer_robe_top:
   id: 21508
   slot: "Chest"
   weight: 0.907
@@ -96561,7 +96561,7 @@ necromancer_robe_top_2:
   alchable: false
   demise: "Reclaim"
   examine: "A robe worn by twisted necromancers."
-necromancer_hood_2:
+necromancer_hood:
   id: 21509
   slot: "Hat"
   type: "Hair"
@@ -96570,7 +96570,7 @@ necromancer_hood_2:
   alchable: false
   demise: "Reclaim"
   examine: "A hood worn by twisted necromancers."
-necromancer_robe_bottom_2:
+necromancer_robe_bottom:
   id: 21510
   slot: "Legs"
   weight: 0.907
@@ -96742,7 +96742,7 @@ castlewars_chinchompa:
   demise: "Wilderness"
   destroy: "You can get a replacement from Castlewars."
   examine: "It looks fluffy and cute. It's probably deadly."
-black_ibis_body_2:
+black_ibis_body:
   id: 21532
   slot: "Chest"
   weight: 1.36
@@ -96751,7 +96751,7 @@ black_ibis_body_2:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Traditional garb of a shadowy secret society."
-black_ibis_legs_2:
+black_ibis_legs:
   id: 21533
   slot: "Legs"
   weight: 0.907
@@ -96760,7 +96760,7 @@ black_ibis_legs_2:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Traditional leg wear of a shadowy secret society."
-black_ibis_mask_2:
+black_ibis_mask:
   id: 21534
   slot: "Hat"
   type: "FullFace"
@@ -96770,7 +96770,7 @@ black_ibis_mask_2:
   demise: "Always"
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "Keeps your identity secret."
-black_ibis_boots_2:
+black_ibis_boots:
   id: 21535
   slot: "Feet"
   weight: 0.907
@@ -96788,7 +96788,7 @@ sceptre_of_the_gods:
   demise: "Wilderness"
   destroy: "You can find another of these by playing Pyramid Plunder."
   examine: "An impressive pharaoh's sceptre."
-battle-mage_helm_2:
+battle-mage_helm_3:
   id: 21537
   slot: "Hat"
   type: "Hair"
@@ -96798,7 +96798,7 @@ battle-mage_helm_2:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a warrior wizard."
-battle-mage_helm_3:
+battle-mage_helm:
   id: 21538
   slot: "Hat"
   type: "Hair"
@@ -96808,7 +96808,7 @@ battle-mage_helm_3:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a warrior wizard."
-battle-mage_robe_2:
+battle-mage_robe_3:
   id: 21539
   slot: "Chest"
   weight: 9.979
@@ -96817,7 +96817,7 @@ battle-mage_robe_2:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a warrior wizard."
-battle-mage_robe_3:
+battle-mage_robe:
   id: 21540
   slot: "Chest"
   weight: 9.979
@@ -96826,7 +96826,7 @@ battle-mage_robe_3:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a warrior wizard."
-battle-mage_robe_legs_2:
+battle-mage_robe_legs_3:
   id: 21541
   slot: "Legs"
   weight: 9.071
@@ -96835,7 +96835,7 @@ battle-mage_robe_legs_2:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a warrior wizard."
-battle-mage_robe_legs_3:
+battle-mage_robe_legs:
   id: 21542
   slot: "Legs"
   weight: 9.071
@@ -96844,7 +96844,7 @@ battle-mage_robe_legs_3:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a warrior wizard."
-battle-mage_gloves_2:
+battle-mage_gloves_3:
   id: 21543
   slot: "Hands"
   weight: 0.453
@@ -96853,7 +96853,7 @@ battle-mage_gloves_2:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a warrior wizard."
-battle-mage_gloves_3:
+battle-mage_gloves:
   id: 21544
   slot: "Hands"
   weight: 0.453
@@ -96862,7 +96862,7 @@ battle-mage_gloves_3:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a warrior wizard."
-battle-mage_boots_2:
+battle-mage_boots_3:
   id: 21545
   slot: "Feet"
   weight: 0.453
@@ -96871,7 +96871,7 @@ battle-mage_boots_2:
   bankable: false
   demise: "Reclaim"
   examine: "The boots of a warrior wizard."
-battle-mage_boots_3:
+battle-mage_boots:
   id: 21546
   slot: "Feet"
   weight: 0.453
@@ -96880,7 +96880,7 @@ battle-mage_boots_3:
   bankable: false
   demise: "Reclaim"
   examine: "The boots of a warrior wizard."
-trickster_helm_2:
+trickster_helm_3:
   id: 21547
   slot: "Hat"
   type: "FullFace"
@@ -96890,7 +96890,7 @@ trickster_helm_2:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a mystical marksman."
-trickster_helm_3:
+trickster_helm:
   id: 21548
   slot: "Hat"
   type: "FullFace"
@@ -96900,7 +96900,7 @@ trickster_helm_3:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a mystical marksman."
-trickster_robe_2:
+trickster_robe_3:
   id: 21549
   slot: "Chest"
   weight: 9.979
@@ -96909,7 +96909,7 @@ trickster_robe_2:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a mystical marksman."
-trickster_robe_3:
+trickster_robe:
   id: 21550
   slot: "Chest"
   weight: 9.979
@@ -96918,7 +96918,7 @@ trickster_robe_3:
   bankable: false
   demise: "Reclaim"
   examine: "Robes for a mystical marksman."
-trickster_robe_legs_2:
+trickster_robe_legs_3:
   id: 21551
   slot: "Legs"
   weight: 9.071
@@ -96927,7 +96927,7 @@ trickster_robe_legs_2:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a mystical marksman."
-trickster_robe_legs_3:
+trickster_robe_legs:
   id: 21552
   slot: "Legs"
   weight: 9.071
@@ -96936,7 +96936,7 @@ trickster_robe_legs_3:
   bankable: false
   demise: "Reclaim"
   examine: "Robe legs for a mystical marksman."
-trickster_gloves_2:
+trickster_gloves_3:
   id: 21553
   slot: "Hands"
   weight: 0.453
@@ -96945,7 +96945,7 @@ trickster_gloves_2:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a mystical marksman."
-trickster_gloves_3:
+trickster_gloves:
   id: 21554
   slot: "Hands"
   weight: 0.453
@@ -96954,7 +96954,7 @@ trickster_gloves_3:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a mystical marksman."
-trickster_boots_2:
+trickster_boots_3:
   id: 21555
   slot: "Feet"
   weight: 0.453
@@ -96963,7 +96963,7 @@ trickster_boots_2:
   bankable: false
   demise: "Reclaim"
   examine: "Footwear for a mystical marksman."
-trickster_boots_3:
+trickster_boots:
   id: 21556
   slot: "Feet"
   weight: 0.453
@@ -96972,7 +96972,7 @@ trickster_boots_3:
   bankable: false
   demise: "Reclaim"
   examine: "Footwear for a mystical marksman."
-vanguard_helm_2:
+vanguard_helm_3:
   id: 21557
   slot: "Hat"
   type: "FullFace"
@@ -96982,7 +96982,7 @@ vanguard_helm_2:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a martial master."
-vanguard_helm_3:
+vanguard_helm:
   id: 21558
   slot: "Hat"
   type: "FullFace"
@@ -96992,7 +96992,7 @@ vanguard_helm_3:
   bankable: false
   demise: "Reclaim"
   examine: "Headgear for a martial master."
-vanguard_body_2:
+vanguard_body_3:
   id: 21559
   slot: "Chest"
   weight: 9.979
@@ -97001,7 +97001,7 @@ vanguard_body_2:
   bankable: false
   demise: "Reclaim"
   examine: "Armour for a martial master."
-vanguard_body_3:
+vanguard_body:
   id: 21560
   slot: "Chest"
   weight: 9.979
@@ -97010,7 +97010,7 @@ vanguard_body_3:
   bankable: false
   demise: "Reclaim"
   examine: "Armour for a martial master."
-vanguard_legs_2:
+vanguard_legs_3:
   id: 21561
   slot: "Legs"
   weight: 9.071
@@ -97019,7 +97019,7 @@ vanguard_legs_2:
   bankable: false
   demise: "Reclaim"
   examine: "Leg armour for a martial master."
-vanguard_legs_3:
+vanguard_legs:
   id: 21562
   slot: "Legs"
   weight: 9.071
@@ -97028,7 +97028,7 @@ vanguard_legs_3:
   bankable: false
   demise: "Reclaim"
   examine: "Leg armour for a martial master."
-vanguard_gloves_2:
+vanguard_gloves_3:
   id: 21563
   slot: "Hands"
   weight: 0.453
@@ -97037,7 +97037,7 @@ vanguard_gloves_2:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a martial master."
-vanguard_gloves_3:
+vanguard_gloves:
   id: 21564
   slot: "Hands"
   weight: 0.453
@@ -97046,7 +97046,7 @@ vanguard_gloves_3:
   bankable: false
   demise: "Reclaim"
   examine: "The gauntlets of a martial master."
-vanguard_boots_2:
+vanguard_boots_3:
   id: 21565
   slot: "Feet"
   weight: 0.453
@@ -97055,7 +97055,7 @@ vanguard_boots_2:
   bankable: false
   demise: "Reclaim"
   examine: "Footwear for a martial master."
-vanguard_boots_3:
+vanguard_boots:
   id: 21566
   slot: "Feet"
   weight: 0.453
@@ -97070,7 +97070,7 @@ jewelled_diamond_statuette:
   tradeable: false
   demise: "Reclaim"
   examine: "Simon Templeton at the Agility Pyramid will give me 12500 coins for this."
-darkmeyer_hood:
+darkmeyer_hood_2:
   id: 21571
   slot: "Hat"
   type: "Hair"
@@ -97079,7 +97079,7 @@ darkmeyer_hood:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_torso:
+darkmeyer_torso_2:
   id: 21572
   slot: "Chest"
   weight: 0.002
@@ -97087,7 +97087,7 @@ darkmeyer_torso:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_trousers:
+darkmeyer_trousers_2:
   id: 21573
   slot: "Legs"
   weight: 0.002
@@ -97095,7 +97095,7 @@ darkmeyer_trousers:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_boots:
+darkmeyer_boots_2:
   id: 21574
   slot: "Feet"
   weight: 0.003
@@ -97278,7 +97278,7 @@ ripped_darkmeyer_boots:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "These would make a good vyrewatch disguise if they weren't ripped."
-darkmeyer_hood_2:
+darkmeyer_hood:
   id: 21596
   slot: "Hat"
   type: "Hair"
@@ -97287,7 +97287,7 @@ darkmeyer_hood_2:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_torso_2:
+darkmeyer_torso:
   id: 21597
   slot: "Chest"
   weight: 0.002
@@ -97295,7 +97295,7 @@ darkmeyer_torso_2:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_trousers_2:
+darkmeyer_trousers:
   id: 21598
   slot: "Legs"
   weight: 0.002
@@ -97303,7 +97303,7 @@ darkmeyer_trousers_2:
   demise: "Wilderness"
   destroy: "You can find more in low-tier Darkmeyer."
   examine: "Part of a Darkmeyer vyrewatch disguise."
-darkmeyer_boots_2:
+darkmeyer_boots:
   id: 21599
   slot: "Feet"
   weight: 0.003

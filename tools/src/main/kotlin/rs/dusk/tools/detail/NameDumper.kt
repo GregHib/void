@@ -32,8 +32,11 @@ abstract class NameDumper {
         }
         map.remove("null")
         map.remove("")
-        return map
+
+        return map.mapValues { (key, value) -> sortList(key, value) }.toMutableMap()
     }
+
+    open fun sortList(key: String, list: MutableList<Int>): MutableList<Int> = list
 
     private fun getUniqueList(map: MutableMap<String, MutableList<Int>>): MutableMap<String, Map<String, Any>> {
         val unique = mutableMapOf<String, Map<String, Any>>()

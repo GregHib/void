@@ -245,6 +245,10 @@ private class WikiItemNames(val decoder: ItemDecoder, val types: ItemTypes, val 
         return map
     }
 
+    override fun sortList(key: String, list: MutableList<Int>): MutableList<Int> {
+        return list.sortedBy { if(raw.containsKey(it)) it else Int.MAX_VALUE }.toMutableList()
+    }
+
     companion object {
 
         val order = listOf(
