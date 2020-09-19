@@ -10,6 +10,7 @@ import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.effect.Hidden
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.player.tele
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -77,11 +78,16 @@ Command where { prefix == "bot" } then {
     }
 }
 
+val details: ItemDetails by inject()
+
 Command where { prefix == "item" } then {
     val parts = content.split(" ")
-    val id = parts[0].toInt()
-    val amount = if (parts.size > 1) parts[1].toInt() else 1
-    player.inventory.add(id, amount)
+    val id = parts[0].toIntOrNull() ?: details.getId(parts[0].toLowerCase())
+    var amount = parts.getOrNull(1) ?: "1"
+    if(amount == "max") {
+        amount = Int.MAX_VALUE.toString()
+    }
+    player.inventory.add(id, amount.toInt())
 }
 
 Command where { prefix == "find" } then {
