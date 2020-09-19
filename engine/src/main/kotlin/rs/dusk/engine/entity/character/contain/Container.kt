@@ -230,7 +230,7 @@ data class Container(
         }
 
         if (stack xor combined and (amount xor combined) < 0) {
-            return result(ContainerResult.Full)
+            return result(ContainerResult.Overflow)
         }
 
         set(index, id, combined)
@@ -254,7 +254,7 @@ data class Container(
                 val combined = stack + amount
 
                 if (stack xor combined and (amount xor combined) < 0) {
-                    return result(ContainerResult.Full)
+                    return result(ContainerResult.Overflow)
                 }
 
                 set(index, id, combined)
@@ -417,6 +417,10 @@ data class Container(
         return move(container, id, amount, index, targetIndex)
     }
 
+    /**
+     * Moves item from one container to another
+     * Note: In a max-amount scenario it is possible that move returns false even though items have been moved.
+     */
     fun move(
         container: Container,
         id: Int,
@@ -446,7 +450,32 @@ data class Container(
 
         val result = container.result
 
-        // Undo removal when addition fails
+        if (result == ContainerResult.Overflow) {
+            return gracefullyOverflow(container, id, amount, targetIndex)
+        }
+        return revertRemoval(index, id, amount, container, result)
+    }
+
+    private fun gracefullyOverflow(container: Container, id: Int, amount: Int, targetIndex: Int?): Boolean {
+        val index = targetIndex ?: container.indexOf(id)
+        val current = container.getAmount(index)
+
+        if (amount == Int.MAX_VALUE && current == Int.MAX_VALUE) {
+            return revertRemoval(index, id, amount, container, ContainerResult.Full)
+        }
+
+        val overflow = Int.MAX_VALUE - current
+        val newAmount = amount - overflow
+        val success = if (targetIndex == null) {
+            container.add(id, overflow)
+        } else {
+            container.add(targetIndex, id, overflow)
+        }
+
+        return revertRemoval(index, id, if (success) newAmount else amount, container, ContainerResult.Full)
+    }
+
+    private fun revertRemoval(index: Int?, id: Int, amount: Int, container: Container, result: ContainerResult): Boolean {
         val reverted = if (index == null) {
             add(id, amount)
         } else {

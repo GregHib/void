@@ -14,6 +14,10 @@ enum class ContainerResult {
      */
     Deficient,
     /**
+     * Combined values exceed [Int.MAX_VALUE]
+     */
+    Overflow,
+    /**
      * Item can't be added to slot as the item types are different
      */
     WrongType,

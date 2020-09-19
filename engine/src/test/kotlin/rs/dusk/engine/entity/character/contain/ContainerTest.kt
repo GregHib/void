@@ -6,7 +6,9 @@ import io.mockk.spyk
 import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.TestFactory
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 
@@ -338,7 +340,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(index, id, 1))
         // Then
-        assertEquals(ContainerResult.Full, container.result)
+        assertEquals(ContainerResult.Overflow, container.result)
     }
 
     @Test
@@ -423,7 +425,7 @@ internal class ContainerTest {
         // When
         assertFalse(container.add(id, 1))
         // Then
-        assertEquals(ContainerResult.Full, container.result)
+        assertEquals(ContainerResult.Overflow, container.result)
     }
 
     @Test
@@ -557,7 +559,7 @@ internal class ContainerTest {
         val index = 0
         val id = 1
         items[index] = id
-        amounts[index] = 1
+        amounts[index] = -10// Should be impossible
         every { container.stackable(any()) } returns true
         // When
         assertFalse(container.remove(index, id, Int.MAX_VALUE))
@@ -1183,6 +1185,47 @@ internal class ContainerTest {
         assertEquals(ContainerResult.Full, container.result)
         assertArrayEquals(intArrayOf(1, 2), other.getItems())
         assertArrayEquals(intArrayOf(1, 2), other.getAmounts())
+    }
+
+    @TestFactory
+    fun `Move more than max amount overflows cleanly`() = mapOf(
+        1000 to Int.MAX_VALUE,
+        Int.MAX_VALUE to 1000,
+        Int.MAX_VALUE - 1000 to 2000,
+        2000 to Int.MAX_VALUE - 1000
+    ).flatMap { (from, to) ->
+        (0 until 2).map {
+            val indexed = it == 0
+            dynamicTest("Move $from to $to indexed: $indexed") {
+                // Given
+                val index = 0
+                val id = 1
+                items[index] = id
+                amounts[index] = from
+
+                val other = spyk(
+                    Container(
+                        decoder = decoder,
+                        capacity = 1
+                    )
+                )
+                other.set(index, id, to)
+                every { container.stackable(any()) } returns true
+                every { other.stackable(any()) } returns true
+                // When
+                if(indexed) {
+                    assertFalse(container.move(other, id, from))
+                } else {
+                    assertFalse(container.move(other, id, from))
+                }
+                // Then
+                assertEquals(ContainerResult.Full, container.result)
+                assertArrayEquals(intArrayOf(id), other.getItems())
+                assertArrayEquals(intArrayOf(Int.MAX_VALUE), other.getAmounts())
+                assertArrayEquals(intArrayOf(id, -1, -1, -1, -1, -1, -1, -1, -1, -1), items)
+                assertArrayEquals(intArrayOf(1000, 0, 0, 0, 0, 0, 0, 0, 0, 0), amounts)
+            }
+        }
     }
 
     companion object {
