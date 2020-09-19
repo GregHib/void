@@ -44,8 +44,8 @@ InterfaceOpened where { name == "bank" } then {
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
             awaitInterface(name)
         } finally {
-            player.close("bank")
             player.open("inventory")
+            player.close("bank")
         }
     }
 }

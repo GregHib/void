@@ -6,6 +6,8 @@ import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
+import rs.dusk.engine.entity.character.contain.beastOfBurden
+import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
@@ -48,6 +50,39 @@ fun deposit(player: Player, item: Int, slot: Int, amount: Int) {
     }
 
     if(!player.inventory.move(player.bank, item, amount, slot)) {
-        player.message("Your bank is too full to deposit any more.")
+        player.full()
+    }
+}
+
+fun Player.full() = message("Your bank is too full to deposit any more.")
+
+InterfaceOption where { name == "bank" && component == "carried" && option == "Deposit carried items" } then {
+    if(player.inventory.isEmpty()) {
+        player.message("You have no items in your inventory to deposit.")
+    } else {
+        if(!player.inventory.moveAll(player.bank)) {
+            player.full()
+        }
+    }
+}
+
+InterfaceOption where { name == "bank" && component == "worn" && option == "Deposit worn items" } then {
+    if(player.equipment.isEmpty()) {
+        player.message("You have no equipped items to deposit.")
+    } else {
+        if(!player.equipment.moveAll(player.bank)) {
+            player.full()
+        }
+    }
+}
+
+InterfaceOption where { name == "bank" && component == "burden" && option == "Deposit beast of burden inventory" } then {
+    // TODO no familiar & no bob familiar messages
+    if(player.beastOfBurden.isEmpty()) {
+        player.message("Your familiar has no items to deposit.")
+    } else {
+        if(!player.beastOfBurden.moveAll(player.bank)) {
+            player.full()
+        }
     }
 }

@@ -1065,6 +1065,9 @@ bank:
         Withdraw-All but one: 6
         Examine: 9
     equipment: 117
+    carried: 33
+    worn: 35
+    burden: 37
 
 bank_side:
   id: 763

@@ -1,6 +1,8 @@
 import kotlinx.coroutines.cancel
 import rs.dusk.engine.entity.Unregistered
+import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.engine.entity.character.contain.inventory
+import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.item.FloorItemOption
 import rs.dusk.engine.entity.item.FloorItemState
 import rs.dusk.engine.entity.item.FloorItems
@@ -26,7 +28,12 @@ FloorItemOption where { option == "Take" } then {
         items.remove(item)
         bus.emit(Unregistered(item))
     } else {
-        println("Failure ${player.inventory.result}")
+        when(player.inventory.result) {
+            ContainerResult.Full, ContainerResult.Overflow -> {
+                player.message("Your inventory is full.")
+            }
+            else -> println("Failure ${player.inventory.result}")
+        }
         // TODO
     }
 }
