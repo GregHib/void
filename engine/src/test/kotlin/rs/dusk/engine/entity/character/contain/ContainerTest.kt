@@ -1023,6 +1023,14 @@ internal class ContainerTest {
     }
 
     @Test
+    fun `Container is empty`() {
+        assertTrue(container.isEmpty())
+        items[4] = 123
+        amounts[4] = 10
+        assertFalse(container.isEmpty())
+    }
+
+    @Test
     fun `Get container item by index`() {
         // Given
         val index = 1

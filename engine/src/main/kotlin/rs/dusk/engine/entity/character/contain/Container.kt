@@ -52,6 +52,8 @@ data class Container(
     val spaces: Int
         get() = amounts.count { isFree(it) }
 
+    fun isEmpty() = amounts.all { isFree(it) }
+
     fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
 
     fun getItems(): IntArray = items.clone()
