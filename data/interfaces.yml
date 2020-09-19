@@ -1064,10 +1064,20 @@ bank:
         Withdraw-All: 5
         Withdraw-All but one: 6
         Examine: 9
+        Drag-Tab: 18
+        Drag: 20
     equipment: 117
     carried: 33
     worn: 35
     burden: 37
+    tab1: 62
+    tab2: 60
+    tab3: 58
+    tab4: 56
+    tab5: 54
+    tab6: 52
+    tab7: 50
+    tab8: 48
 
 bank_side:
   id: 763

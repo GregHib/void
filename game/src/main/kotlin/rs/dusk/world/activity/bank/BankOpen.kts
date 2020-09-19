@@ -13,7 +13,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
-IntVariable(4893, Variable.Type.VARBIT).register("open_bank_tab")
+IntVariable(4893, Variable.Type.VARBIT, persistent = true, defaultValue = 1).register("open_bank_tab")
 IntVariable(4885, Variable.Type.VARBIT, persistent = true).register("bank_tab_1")
 IntVariable(4886, Variable.Type.VARBIT, persistent = true).register("bank_tab_2")
 IntVariable(4887, Variable.Type.VARBIT, persistent = true).register("bank_tab_3")
@@ -37,8 +37,10 @@ InterfaceOpened where { name == "bank" } then {
     player.action(ActionType.Bank) {
         try {
             player.open("bank_side")
-            player.setVar("open_bank_tab", 1)
-            player.setVar("bank_tab_1", 1)
+            player.sendVar("open_bank_tab")
+            for(tab in 1..8) {
+                player.sendVar("bank_tab_$tab")
+            }
             player.sendVar("last_bank_amount")
             player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)

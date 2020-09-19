@@ -25,4 +25,9 @@ object InterfaceOptionSettings {
         }
         return list
     }
+
+    @JvmStatic
+    fun main(args: Array<String>) {
+        println(getIndices(2425982))
+    }
 }

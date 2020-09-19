@@ -30,7 +30,7 @@ class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponen
     override fun handle(ctx: ChannelHandlerContext, msg: InterfaceSwitchComponentsMessage) {
         val session = ctx.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (fromType, fromSlot, toType, fromHash, toSlot, toHash) = msg
+        val (toType, fromSlot, fromType, fromHash, toSlot, toHash) = msg
 
         val fromId = fromHash shr 16
         if (!player.interfaces.contains(fromId)) {
