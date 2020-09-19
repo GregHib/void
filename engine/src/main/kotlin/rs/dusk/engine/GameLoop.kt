@@ -30,9 +30,7 @@ class GameLoop(
     private val logger = InlineLogger()
 
     fun setup(start: SyncTask) {
-        executor.delay {
-            bus.emit(Startup)
-        }
+        execute(Startup)
         executor.execute(start)
         executor.repeat {
             loopSafe(it)

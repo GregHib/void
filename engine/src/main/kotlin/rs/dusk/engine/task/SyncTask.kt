@@ -1,5 +1,7 @@
 package rs.dusk.engine.task
 
+import kotlinx.coroutines.runBlocking
+import rs.dusk.engine.action.Contexts
 import rs.dusk.utility.get
 
 /**
@@ -9,7 +11,7 @@ class SyncTask : CancelTask() {
 
     val subTasks = mutableListOf<(Long) -> Unit>()
 
-    override fun run(tick: Long) {
+    override fun run(tick: Long) = runBlocking(Contexts.Game) {
         val iterator = subTasks.iterator()
         while (iterator.hasNext()) {
             val subTask = iterator.next()
