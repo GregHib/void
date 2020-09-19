@@ -13,8 +13,6 @@ import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 import rs.dusk.world.community.trade.Trade.getPartner
 import rs.dusk.world.community.trade.Trade.isTrading
-import rs.dusk.world.community.trade.loan
-import rs.dusk.world.community.trade.offer
 import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
@@ -44,7 +42,7 @@ InterfaceOption where { name == "trade_side" && component == "offer" } then {
        "Offer" -> 1
         "Offer-5" -> 5
         "Offer-10" -> 10
-        "Offer-All" -> player.inventory.getCount(itemId).toInt()
+        "Offer-All" -> Int.MAX_VALUE
         else -> return@then
     }
     offer(player, itemId, itemIndex, amount)

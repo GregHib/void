@@ -4,7 +4,7 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
-import rs.dusk.engine.client.ui.awaitInterfaces
+import rs.dusk.engine.client.ui.awaitInterface
 import rs.dusk.engine.client.ui.close
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.open
