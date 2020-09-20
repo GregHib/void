@@ -147,10 +147,10 @@ data class Container(
     }
 
     /**
-     * Switches two indices
-     * @return Whether the indices were switched
+     * Swaps two indices
+     * @return Whether the indices were swapped
      */
-    fun switch(firstIndex: Int, secondIndex: Int): Boolean {
+    fun swap(firstIndex: Int, secondIndex: Int): Boolean {
         if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
             return false
         }
@@ -163,10 +163,10 @@ data class Container(
     }
 
     /**
-     * Switches two indices in different containers
-     * @return Whether the indices were switched
+     * Swaps two indices in different containers
+     * @return Whether the indices were swapped
      */
-    fun switch(firstIndex: Int, container: Container, secondIndex: Int): Boolean {
+    fun swap(firstIndex: Int, container: Container, secondIndex: Int): Boolean {
         if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
             result(ContainerResult.Invalid)
             container.result(ContainerResult.Invalid)

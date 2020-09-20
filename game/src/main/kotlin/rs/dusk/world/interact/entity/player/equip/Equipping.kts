@@ -28,7 +28,7 @@ ContainerAction where { container == "inventory" && (option == "Wield" || option
         return@then
     }
 
-    player.inventory.switch(slot, player.equipment, details.slot.index)
+    player.inventory.swap(slot, player.equipment, details.slot.index)
     player.flagAppearance()
 }
 

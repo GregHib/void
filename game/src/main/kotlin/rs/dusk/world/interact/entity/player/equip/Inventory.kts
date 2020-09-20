@@ -45,7 +45,7 @@ InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
         logger.debug { "Interface $toId component $toComponentId to item $toItemId slot $toSlot not found for player $player" }
         return@then
     }
-    player.inventory.switch(fromSlot, toSlot)
+    player.inventory.swap(fromSlot, toSlot)
 }
 
 InterfaceOption where { name == "inventory" && component == "container" } then {

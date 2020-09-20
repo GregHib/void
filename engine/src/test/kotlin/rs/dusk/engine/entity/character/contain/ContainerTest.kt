@@ -1026,7 +1026,7 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Switch two indices`() {
+    fun `Swap two indices`() {
         // Given
         val firstIndex = 1
         val secondIndex = 3
@@ -1035,7 +1035,7 @@ internal class ContainerTest {
         items[secondIndex] = 4
         amounts[secondIndex] = 5
         // When
-        val result = container.switch(firstIndex, secondIndex)
+        val result = container.swap(firstIndex, secondIndex)
         // Then
         assertTrue(result)
         verify {
@@ -1045,7 +1045,7 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Switch index in one container with index in another`() {
+    fun `Swap index in one container with index in another`() {
         // Given
         val otherItems = IntArray(10) { -1 }
         val otherAmounts = IntArray(10) { 0 }
@@ -1063,7 +1063,7 @@ internal class ContainerTest {
         otherItems[secondIndex] = 4
         otherAmounts[secondIndex] = 5
         // When
-        val result = container.switch(firstIndex, other, secondIndex)
+        val result = container.swap(firstIndex, other, secondIndex)
         // Then
         assertTrue(result)
         verify {
@@ -1073,7 +1073,7 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Switch empty slot with item in another container`() {
+    fun `Swap empty slot with item in another container`() {
         // Given
         val otherItems = IntArray(10) { -1 }
         val otherAmounts = IntArray(10) { 0 }
@@ -1089,7 +1089,7 @@ internal class ContainerTest {
         items[firstIndex] = 2
         amounts[firstIndex] = 3
         // When
-        val result = container.switch(firstIndex, other, secondIndex)
+        val result = container.swap(firstIndex, other, secondIndex)
         // Then
         assertTrue(result)
         verify {
@@ -1099,9 +1099,9 @@ internal class ContainerTest {
     }
 
     @Test
-    fun `Switch checks indices aren't out of bounds`() {
+    fun `Swap checks indices aren't out of bounds`() {
         // When
-        val result = container.switch(0, items.size + 1)
+        val result = container.swap(0, items.size + 1)
         // Then
         assertFalse(result)
     }
@@ -1127,7 +1127,7 @@ internal class ContainerTest {
             captured = it.toList()
         }
         // When
-        container.switch(2, 3)
+        container.swap(2, 3)
         // Then
         assertEquals(
             listOf(
