@@ -44,6 +44,12 @@ class Variables {
         variable.send(player, store)
     }
 
+    fun <T : Any> get(player: Player, key: String): T {
+        val store = player.variables
+        val variable = variables[key] as? Variable<T> ?: throw IllegalArgumentException("Unknown variable '$key'")
+        return store.get(variable)
+    }
+
     fun <T : Any> get(player: Player, key: String, default: T): T {
         val store = player.variables
         val variable = variables[key] as? Variable<T> ?: return default
@@ -155,6 +161,20 @@ fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     return !value
 }
 
+fun Player.incVar(key: String, refresh: Boolean = true): Int {
+    val variables: Variables = get()
+    val value: Int = variables.get(this, key)
+    variables.set(this, key, value + 1, refresh)
+    return value + 1
+}
+
+fun Player.decVar(key: String, refresh: Boolean = true): Int {
+    val variables: Variables = get()
+    val value: Int = variables.get(this, key)
+    variables.set(this, key, value - 1, refresh)
+    return value - 1
+}
+
 fun <T : Any> Player.hasVar(key: String, id: T): Boolean {
     val variables: Variables = get()
     return variables.has(this, key, id)
@@ -163,4 +183,9 @@ fun <T : Any> Player.hasVar(key: String, id: T): Boolean {
 fun <T : Any> Player.getVar(key: String, default: T): T {
     val variables: Variables = get()
     return variables.get(this, key, default)
+}
+
+fun <T : Any> Player.getVar(key: String): T {
+    val variables: Variables = get()
+    return variables.get(this, key)
 }
