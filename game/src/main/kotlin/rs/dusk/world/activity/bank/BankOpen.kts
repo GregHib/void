@@ -26,6 +26,9 @@ IntVariable(4892, Variable.Type.VARBIT, persistent = true).register("bank_tab_8"
 Command where { prefix == "bank" } then {
     player.open("bank")
     if(player.bank.isEmpty()) {
+        for(i in 1038 until 1048 step 2) {
+            player.bank.add(i, 1)
+        }
         player.bank.add(995, 1000)
         player.bank.add(4151, 1)
         player.bank.add(11694, 1)
@@ -38,6 +41,7 @@ InterfaceOpened where { name == "bank" } then {
         try {
             player.open("bank_side")
             player.sendVar("open_bank_tab")
+            player.sendVar("bank_item_mode")
             for(tab in 1..8) {
                 player.sendVar("bank_tab_$tab")
             }

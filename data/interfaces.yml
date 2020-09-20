@@ -1052,6 +1052,21 @@ world_map:
 bank:
   id: 762
   components:
+    item_mode: 15
+    note_mode: 19
+    equipment: 117
+    carried: 33
+    worn: 35
+    burden: 37
+    help: 44
+    tab_8: 48
+    tab_7: 50
+    tab_6: 52
+    tab_5: 54
+    tab_4: 56
+    tab_3: 58
+    tab_2: 60
+    tab_1: 62
     container:
       id: 93
       container: bank
@@ -1066,18 +1081,6 @@ bank:
         Examine: 9
         Drag-Tab: 18
         Drag: 20
-    equipment: 117
-    carried: 33
-    worn: 35
-    burden: 37
-    tab1: 62
-    tab2: 60
-    tab3: 58
-    tab4: 56
-    tab5: 54
-    tab6: 52
-    tab7: 50
-    tab8: 48
 
 bank_side:
   id: 763

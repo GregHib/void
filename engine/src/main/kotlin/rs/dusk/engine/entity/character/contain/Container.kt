@@ -416,10 +416,12 @@ data class Container(
             }
         }
         items.forEachIndexed { index, id ->
+            val amount = amounts[index]
+//            if(this.items[index] != id && this.amounts[index] != amount) {
+//                track(index, this.items[index], this.amounts[index], id, amount)
+//            }
             this.items[index] = id
-        }
-        amounts.forEachIndexed { index, id ->
-            this.amounts[index] = id
+            this.amounts[index] = amount
         }
     }
 
