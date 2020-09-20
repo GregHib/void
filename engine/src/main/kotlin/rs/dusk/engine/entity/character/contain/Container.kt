@@ -206,6 +206,34 @@ data class Container(
     }
 
     /**
+     * Inserts between items at a specific index
+     * @param index The index to insert at
+     * @param id The id of the item(s) to add
+     * @param amount The stack amount or individual count
+     * @return Whether an item was successfully inserted
+     */
+    fun insert(index: Int, id: Int, amount: Int = 1): Boolean {
+        if (!inBounds(index) || !isValidInput(id, amount)) {
+            return result(ContainerResult.Invalid)
+        }
+
+        if (amount > 1 && !stackable(id)) {
+            return result(ContainerResult.Unstackable)
+        }
+
+        val free = freeIndex()
+        if (free == -1) {
+            return result(ContainerResult.Full)
+        }
+
+        for (i in free downTo index + 1) {
+            set(i, items[i - 1], amounts[i - 1], update = false)
+        }
+        set(index, id, amount)
+        return result(ContainerResult.Success)
+    }
+
+    /**
      * Adds items at a specific index
      * Note: Will never add items outside of the given [index]
      * @param id The id of the item(s) to add
@@ -408,13 +436,13 @@ data class Container(
         return success
     }
 
-    fun move(index: Int, container: Container, targetIndex: Int? = null): Boolean {
+    fun move(index: Int, container: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
         val id = getItem(index)
         val amount = getAmount(index)
         if (id == -1 || amount == minimumStack) {
             return result(ContainerResult.Invalid)
         }
-        return move(container, id, amount, index, targetIndex)
+        return move(container, id, amount, index, targetIndex, insert)
     }
 
     /**
@@ -426,7 +454,8 @@ data class Container(
         id: Int,
         amount: Int = 1,
         index: Int? = null,
-        targetIndex: Int? = null
+        targetIndex: Int? = null,
+        insert: Boolean = false
     ): Boolean {
         var success = if (index == null) {
             remove(id, amount)
@@ -441,7 +470,11 @@ data class Container(
         success = if (targetIndex == null) {
             container.add(id, amount)
         } else {
-            container.add(targetIndex, id, amount)
+            if (insert) {
+                container.insert(targetIndex, id, amount)
+            } else {
+                container.add(targetIndex, id, amount)
+            }
         }
 
         if (success) {

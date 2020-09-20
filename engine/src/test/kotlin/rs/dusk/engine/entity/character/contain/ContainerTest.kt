@@ -286,6 +286,69 @@ internal class ContainerTest {
     }
 
     /*
+        INSERT INDEX
+     */
+    @Test
+    fun `Insert single unstackable`() {
+        // Given
+        val index = 0
+        val id = 1
+        every { container.stackable(any()) } returns false
+        // When
+        assertTrue(container.insert(index, id, 1))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+    }
+
+    @Test
+    fun `Insert multiple unstackable`() {
+        // Given
+        val index = 0
+        val id = 1
+        every { container.stackable(any()) } returns false
+        // When
+        assertFalse(container.insert(index, id, 2))
+        // Then
+        assertEquals(ContainerResult.Unstackable, container.result)
+    }
+
+    @Test
+    fun `Insert into full container`() {
+        // Given
+        val index = 0
+        val id = 1
+        items[index] = id
+        amounts[index] = 1
+        for(i in 1 until items.size) {
+            items[i] = 2
+            amounts[i] = 1
+        }
+        every { container.stackable(any()) } returns true
+        // When
+        assertFalse(container.insert(index, id, 1))
+        // Then
+        assertEquals(ContainerResult.Full, container.result)
+    }
+
+    @Test
+    fun `Insert shifts other items forward`() {
+        // Given
+        val index = 1
+        val id = 1
+        repeat(items.size - 1) {
+            items[it] = it
+            amounts[it] = 1
+        }
+        every { container.stackable(any()) } returns true
+        // When
+        assertTrue(container.insert(index, id, 2))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+        assertArrayEquals(intArrayOf(0, 1, 1, 2, 3, 4, 5, 6, 7, 8), items)
+        assertArrayEquals(intArrayOf(1, 2, 1, 1, 1, 1, 1, 1, 1, 1), amounts)
+    }
+
+    /*
         ADD INDEX
      */
     @Test
@@ -820,6 +883,31 @@ internal class ContainerTest {
         verify {
             container.remove(index, id, amount)
             other.add(otherIndex, id, amount)
+        }
+    }
+
+    @Test
+    fun `Move item from index in one container to insert at index in another container`() {
+        // Given
+        val id = 1
+        val amount = 2
+        val index = 3
+        val otherIndex = 4
+        val other = spyk(
+            Container(
+                decoder = decoder,
+                capacity = 10
+            )
+        )
+        every { container.remove(index, id, amount) } returns true
+        every { other.insert(otherIndex, id, amount) } returns true
+        // When
+        assertTrue(container.move(other, id, amount, index = index, targetIndex = otherIndex, insert = true))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+        verify {
+            container.remove(index, id, amount)
+            other.insert(otherIndex, id, amount)
         }
     }
 
