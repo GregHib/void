@@ -30,7 +30,6 @@ import rs.dusk.engine.map.region.regionModule
 import rs.dusk.engine.map.region.tile.tileModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.storage.databaseModule
-import rs.dusk.engine.task.StartTask
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
@@ -50,67 +49,67 @@ import java.util.concurrent.Executors
  * @since April 18, 2020
  */
 object Dusk {
-
-    const val name = "Dusk"
-
-    @JvmStatic
-    fun main(args: Array<String>) {
-        preload()
-
-        val world = World(1)
-        val disconnect = DisconnectEvent()
-        val server = GameServer(world, disconnect)
-
-        val bus: EventBus = get()
-        val executor: TaskExecutor = get()
-        val service = Executors.newSingleThreadScheduledExecutor()
-        val start: SyncTask = get()
-        val engine = GameLoop(bus, executor, service)
-
-        server.run()
-        engine.setup(start)
-        engine.start()
-    }
-
-    fun preload() {
-        startKoin {
-            slf4jLogger()
-            modules(
-                codecRepositoryModule,
-                eventModule,
-                cacheModule,
-                fileLoaderModule,
-                ymlPlayerModule/*, sqlPlayerModule*/,
-                entityListModule,
-                scriptModule,
-                clientSessionModule,
-	            gameServerFactory,
-                playerLoaderModule,
-                xteaModule,
-                visualUpdatingModule,
-                updatingTasksModule,
-                loginQueueModule,
-                regionModule,
-                tileModule,
-                collisionModule,
-                cacheDefinitionModule,
-                cacheConfigModule,
-                objectMapModule,
-                pathFindModule,
-                schedulerModule,
-                batchedChunkModule,
-                executorModule,
-                interfaceModule,
-                variablesModule,
-                instanceModule,
-                instancePoolModule,
-                detailsModule,
-	              databaseModule
-                logoutModule,
-                objectFactoryModule
-            )
-            fileProperties("/game.properties")
-            fileProperties("/private.properties")
-        }
-    }
+	
+	const val name = "Dusk"
+	
+	@JvmStatic
+	fun main(args : Array<String>) {
+		preload()
+		
+		val world = World(1)
+		val disconnect = DisconnectEvent()
+		val server = GameServer(world, disconnect)
+		
+		val bus : EventBus = get()
+		val executor : TaskExecutor = get()
+		val service = Executors.newSingleThreadScheduledExecutor()
+		val start : SyncTask = get()
+		val engine = GameLoop(bus, executor, service)
+		
+		server.run()
+		engine.setup(start)
+		engine.start()
+	}
+	
+	fun preload() {
+		startKoin {
+			slf4jLogger()
+			modules(
+				codecRepositoryModule,
+				eventModule,
+				cacheModule,
+				fileLoaderModule,
+				ymlPlayerModule/*, sqlPlayerModule*/,
+				entityListModule,
+				scriptModule,
+				clientSessionModule,
+				gameServerFactory,
+				playerLoaderModule,
+				xteaModule,
+				visualUpdatingModule,
+				updatingTasksModule,
+				loginQueueModule,
+				regionModule,
+				tileModule,
+				collisionModule,
+				cacheDefinitionModule,
+				cacheConfigModule,
+				objectMapModule,
+				pathFindModule,
+				schedulerModule,
+				batchedChunkModule,
+				executorModule,
+				interfaceModule,
+				variablesModule,
+				instanceModule,
+				instancePoolModule,
+				detailsModule,
+				databaseModule,
+				logoutModule,
+				objectFactoryModule
+			)
+			fileProperties("/game.properties")
+			fileProperties("/private.properties")
+		}
+	}
 }
