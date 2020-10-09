@@ -19,7 +19,11 @@ class GameObjectFactory(private val collisions: Collisions) {
         gameObject.interactTarget = when (gameObject.type) {
             in 0..2, 9 -> WallTargetStrategy(collisions, gameObject)
             in 3..8 -> DecorationTargetStrategy(collisions, gameObject)
-            10, 11, 22 -> RectangleTargetStrategy(collisions, entity = gameObject, blockFlag = gameObject.def.blockFlag)
+            10, 11, 22 -> {
+                var flag: Int = gameObject.def.blockFlag
+                flag = (0xf and flag shl gameObject.rotation) + (flag shr -gameObject.rotation + 4)
+                RectangleTargetStrategy(collisions, entity = gameObject, blockFlag = flag)
+            }
             else -> EntityTileTargetStrategy(gameObject)
         }
         return gameObject
