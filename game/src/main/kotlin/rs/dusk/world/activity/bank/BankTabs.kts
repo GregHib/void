@@ -14,9 +14,6 @@ ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
     "insert"
 )).register("bank_item_mode")
 
-val tabCount = 8
-val mainTab = 0
-
 PlayerSpawn then {
     player.bank.listeners.add {
         player.bank.sort()
@@ -31,6 +28,14 @@ InterfaceSwitch where { name == "bank" && component == "container" && toName == 
     }
 }
 
+InterfaceOption where { name == "bank" && component == "tab_1" && option == "View all" } then {
+    player.setVar("open_bank_tab", 1)
+}
+
+InterfaceOption where { name == "bank" && component.startsWith("tab_") && option == "View Tab" } then {
+    player.setVar("open_bank_tab", component.removePrefix("tab_").toInt())
+}
+
 InterfaceOption where { name == "bank" && component == "item_mode" && option == "Toggle swap/insert" } then {
     val value: String = player.getVar("bank_item_mode")
     player.setVar("bank_item_mode", if (value == "insert") "swap" else "insert")
@@ -38,7 +43,6 @@ InterfaceOption where { name == "bank" && component == "item_mode" && option == 
 
 InterfaceSwitch where { name == "bank" && component == "container" && toName == name && toComponent.startsWith("tab_") } then {
     val toTab = toComponent.removePrefix("tab_").toInt() - 1
-    println("Move $toTab")
     moveItem(player, fromSlot, null, toTab)
 }
 
@@ -47,13 +51,12 @@ fun getLastTabIndex(player: Player, toTab: Int): Int {
 }
 
 fun moveItem(player: Player, fromSlot: Int, toSlot: Int?, toTab: Int?) {
-    val total = player.bank.count
-    val fromTab = getTab(player, fromSlot, total)
-    val toTab = toTab ?: getTab(player, toSlot!!, total)
+    val fromTab = Bank.getTab(player, fromSlot)
+    val toTab = toTab ?: Bank.getTab(player, toSlot!!)
     val moveToDifferentTab = fromTab != toTab
     val emptyTab = fromTab > 0 && moveToDifferentTab && player.decVar("bank_tab_$fromTab") <= 0
     when {
-        toTab == mainTab -> insert(player, fromSlot, toSlot ?: player.bank.freeIndex())
+        toTab == Bank.mainTab -> insert(player, fromSlot, toSlot ?: player.bank.freeIndex())
         moveToDifferentTab -> {
             val index = toSlot ?: getLastTabIndex(player, toTab)
             if (toTab > 0) {
@@ -70,41 +73,11 @@ fun moveItem(player: Player, fromSlot: Int, toSlot: Int?, toTab: Int?) {
 }
 
 fun nudgeTabsBackOne(player: Player, from: Int) {
-    for (i in from..tabCount) {
+    for (i in from..Bank.tabCount) {
         player.setVar("bank_tab_$i", player.getVar("bank_tab_${i + 1}", 0))
     }
 }
 
 fun insert(player: Player, fromSlot: Int, toSlot: Int) {
     player.bank.move(fromSlot, player.bank, toSlot, insert = true)
-}
-
-fun getTab(player: Player, slot: Int, max: Int): Int {
-    var total = 0
-    for (tab in mainTab + 1..tabCount) {
-        val count: Int = player.getVar("bank_tab_$tab")
-        if (count == 0) {
-            continue
-        }
-        total += count
-        if (slot < total) {
-            return tab
-        }
-    }
-    return if(slot <= max) mainTab else -1
-}
-
-fun getTab(player: Player, slot: Int): Int {
-    var total = 0
-    for (tab in mainTab + 1..tabCount) {
-        val count: Int = player.getVar("bank_tab_$tab")
-        if (count == 0) {
-            continue
-        }
-        total += count
-        if (slot < total) {
-            return tab
-        }
-    }
-    return -1
 }

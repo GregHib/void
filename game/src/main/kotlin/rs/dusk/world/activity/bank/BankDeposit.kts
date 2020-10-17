@@ -1,20 +1,19 @@
 package rs.dusk.world.activity.bank
 
+import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.client.ui.dialogue.dialogue
-import rs.dusk.engine.client.variable.IntVariable
-import rs.dusk.engine.client.variable.Variable
-import rs.dusk.engine.client.variable.getVar
-import rs.dusk.engine.client.variable.setVar
-import rs.dusk.engine.entity.character.contain.beastOfBurden
-import rs.dusk.engine.entity.character.contain.equipment
-import rs.dusk.engine.entity.character.contain.inventory
+import rs.dusk.engine.client.variable.*
+import rs.dusk.engine.entity.character.contain.*
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.world.activity.bank.Bank.getIndexOfTab
 import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
+
+val logger = InlineLogger()
 
 IntVariable(1249, Variable.Type.VARP, persistent = true, defaultValue = 0).register("last_bank_amount")
 
@@ -27,62 +26,74 @@ InterfaceOption where { name == "bank_side" && component == "container" && optio
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@then
     }
-    deposit(player, itemId, itemIndex, amount)
+    deposit(player, player.inventory, itemId, itemIndex, amount)
 }
 
 InterfaceOption where { name == "bank_side" && component == "container" && option == "Deposit-X" } then {
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        deposit(player, itemId, itemIndex, amount)
+        deposit(player, player.inventory, itemId, itemIndex, amount)
     }
 }
 
-fun deposit(player: Player, item: Int, slot: Int, amount: Int) {
-    if(player.action.type != ActionType.Bank || amount < 1) {
-        return
+fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: Int): Boolean {
+    if (player.action.type != ActionType.Bank || amount < 1) {
+        return true
     }
 
-    val current = player.inventory.getCount(item).toInt()
+    val current = container.getCount(item).toInt()
     var amount = amount
     if (amount > current) {
         amount = current
     }
 
-    if(!player.inventory.move(player.bank, item, amount, slot)) {
-        player.full()
+    val tab = player.getVar("open_bank_tab", 1) - 1
+    val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
+    if (!container.move(player.bank, item, amount, slot, targetIndex, true)) {
+        if (player.bank.result == ContainerResult.Full) {
+            player.full()
+        } else {
+            logger.info { "Bank deposit issue: $player ${player.bank.result}" }
+        }
+        return false
+    } else if (tab > 0) {
+        player.incVar("bank_tab_$tab")
     }
+    return true
 }
 
 fun Player.full() = message("Your bank is too full to deposit any more.")
 
 InterfaceOption where { name == "bank" && component == "carried" && option == "Deposit carried items" } then {
-    if(player.inventory.isEmpty()) {
+    if (player.inventory.isEmpty()) {
         player.message("You have no items in your inventory to deposit.")
     } else {
-        if(!player.inventory.moveAll(player.bank)) {
-            player.full()
-        }
+        bankAll(player, player.inventory)
     }
 }
 
 InterfaceOption where { name == "bank" && component == "worn" && option == "Deposit worn items" } then {
-    if(player.equipment.isEmpty()) {
+    if (player.equipment.isEmpty()) {
         player.message("You have no equipped items to deposit.")
     } else {
-        if(!player.equipment.moveAll(player.bank)) {
-            player.full()
-        }
+        bankAll(player, player.equipment)
     }
 }
 
 InterfaceOption where { name == "bank" && component == "burden" && option == "Deposit beast of burden inventory" } then {
     // TODO no familiar & no bob familiar messages
-    if(player.beastOfBurden.isEmpty()) {
+    if (player.beastOfBurden.isEmpty()) {
         player.message("Your familiar has no items to deposit.")
     } else {
-        if(!player.beastOfBurden.moveAll(player.bank)) {
-            player.full()
+        bankAll(player, player.beastOfBurden)
+    }
+}
+
+fun bankAll(player: Player, container: Container) {
+    for (index in container.getItems().indices.reversed()) {
+        if (!container.isIndexFree(index) && !deposit(player, container, container.getItem(index), index, container.getAmount(index))) {
+            break
         }
     }
 }

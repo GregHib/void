@@ -428,11 +428,11 @@ data class Container(
         }
     }
 
-    fun moveAll(other: Container): Boolean {
+    fun moveAll(other: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
         var success = true
-        for (index in items.indices) {
+        for (index in items.indices.reversed()) {
             if (!isIndexFree(index)) {
-                if (!move(index, other)) {
+                if (!move(index, other, targetIndex, insert)) {
                     success = false
                     break
                 }

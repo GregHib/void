@@ -1,9 +1,12 @@
 package rs.dusk.world.activity.bank
 
+import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.client.ui.dialogue.dialogue
+import rs.dusk.engine.client.variable.decVar
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
+import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
@@ -11,6 +14,8 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
+
+val logger = InlineLogger()
 
 InterfaceOption where { name == "bank" && component == "container" && option.startsWith("Withdraw") } then {
     val amount = when (option) {
@@ -34,7 +39,7 @@ InterfaceOption where { name == "bank" && component == "container" && option == 
 }
 
 fun withdraw(player: Player, item: Int, slot: Int, amount: Int) {
-    if(player.action.type != ActionType.Bank || amount < 1) {
+    if (player.action.type != ActionType.Bank || amount < 1) {
         return
     }
 
@@ -44,7 +49,16 @@ fun withdraw(player: Player, item: Int, slot: Int, amount: Int) {
         amount = current
     }
 
-    if(!player.bank.move(player.inventory, item, amount, slot)) {
-        player.message("Your inventory is full.")
+    if (!player.bank.move(player.inventory, item, amount, slot)) {
+        if (player.bank.result == ContainerResult.Full) {
+            player.message("Your inventory is full.")
+        } else {
+            logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
+        }
+    } else if (player.bank.getItem(slot) != item) {
+        val tab = Bank.getTab(player, slot)
+        if (tab > 0) {
+            player.decVar("bank_tab_$tab")
+        }
     }
 }
