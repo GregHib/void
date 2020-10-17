@@ -145,7 +145,7 @@ class BreadthFirstSearch : PathAlgorithm {
                 }
                 val cost = deltaX * deltaX + deltaY * deltaY
                 // Accept lower costs or shorter paths
-                if (cost < lowestCost || cost <= lowestCost && distances[graphX][graphY] < lowestDistance) {
+                if (cost < lowestCost || cost == lowestCost && distances[graphX][graphY] < lowestDistance) {
                     lowestCost = cost
                     lowestDistance = distances[graphX][graphY]
                     endX = graphX
