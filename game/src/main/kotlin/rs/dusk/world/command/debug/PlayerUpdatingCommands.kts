@@ -116,10 +116,6 @@ Command where { prefix == "highlight" } then {
     player.minimapHighlight = !player.minimapHighlight
 }
 
-Command where { prefix == "run" } then {
-    player.movement.running = !player.movement.running
-}
-
 Command where { prefix == "chunk" } then {
     val chunks: DynamicChunks = get()
     chunks.set(player.tile.chunk, player.tile.chunk, rotation = 2)
