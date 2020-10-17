@@ -1,21 +1,27 @@
 package rs.dusk.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
+import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.*
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.utility.inject
 import rs.dusk.world.activity.bank.Bank.getIndexOfTab
 import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
+IntVariable(1249, Variable.Type.VARP, persistent = true, defaultValue = 0).register("last_bank_amount")
+
 val logger = InlineLogger()
 
-IntVariable(1249, Variable.Type.VARP, persistent = true, defaultValue = 0).register("last_bank_amount")
+val details: ItemDetails by inject()
+val decoder: ItemDecoder by inject()
 
 InterfaceOption where { name == "bank_side" && component == "container" && option.startsWith("Deposit") } then {
     val amount = when (option) {
@@ -42,6 +48,22 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
         return true
     }
 
+    val details = details.get(item)
+    if (!details.bankable) {
+        player.message("This item cannot be banked.")
+        return true
+    }
+
+    var itemId = item
+    val def = decoder.get(item)
+    if (def.notedTemplateId != -1) {
+        if(def.noteId == -1) {
+            logger.warn { "Issue depositing noted item $item" }
+            return true
+        }
+        itemId = def.noteId
+    }
+
     val current = container.getCount(item).toInt()
     var amount = amount
     if (amount > current) {
@@ -50,7 +72,7 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
 
     val tab = player.getVar("open_bank_tab", 1) - 1
     val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    if (!container.move(player.bank, item, amount, slot, targetIndex, true)) {
+    if (!container.move(player.bank, item, amount, slot, targetIndex, true, itemId)) {
         if (player.bank.result == ContainerResult.Full) {
             player.full()
         } else {
