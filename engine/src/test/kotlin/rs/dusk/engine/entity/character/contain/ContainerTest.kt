@@ -983,6 +983,31 @@ internal class ContainerTest {
     }
 
     @Test
+    fun `Move item from one container to a different item id in another container`() {
+        // Given
+        val id = 1
+        val amount = 2
+        val newId = 3
+        val other = spyk(
+            Container(
+                decoder = decoder,
+                capacity = 10
+            )
+        )
+        every { decoder.get(newId) } returns ItemDefinition()
+        every { container.remove(id, amount) } returns true
+        every { other.add(id, amount) } returns true
+        // When
+        assertTrue(container.move(other, id, amount, index = null, targetIndex = null, targetId = newId))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+        verify {
+            container.remove(id, amount)
+            other.add(newId, amount)
+        }
+    }
+
+    @Test
     fun `Move item from one container fails deletion`() {
         // Given
         val id = 1
@@ -1248,8 +1273,8 @@ internal class ContainerTest {
         assertTrue(container.moveAll(other))
         // Then
         assertEquals(ContainerResult.Success, container.result)
-        assertArrayEquals(intArrayOf(1, 2, 3, 4, -1, -1, -1, -1, -1, -1), other.getItems())
-        assertArrayEquals(intArrayOf(1, 2, 3, 4, 0, 0, 0, 0, 0, 0), other.getAmounts())
+        assertArrayEquals(intArrayOf(4, 3, 2, 1, -1, -1, -1, -1, -1, -1), other.getItems())
+        assertArrayEquals(intArrayOf(4, 3, 2, 1, 0, 0, 0, 0, 0, 0), other.getAmounts())
     }
 
     @Test
@@ -1271,8 +1296,8 @@ internal class ContainerTest {
         assertFalse(container.moveAll(other))
         // Then
         assertEquals(ContainerResult.Full, container.result)
-        assertArrayEquals(intArrayOf(1, 2), other.getItems())
-        assertArrayEquals(intArrayOf(1, 2), other.getAmounts())
+        assertArrayEquals(intArrayOf(4, 3), other.getItems())
+        assertArrayEquals(intArrayOf(4, 3), other.getAmounts())
     }
 
     @TestFactory

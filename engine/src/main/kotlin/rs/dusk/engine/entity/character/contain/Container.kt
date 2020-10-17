@@ -460,7 +460,8 @@ data class Container(
         amount: Int = 1,
         index: Int? = null,
         targetIndex: Int? = null,
-        insert: Boolean = false
+        insert: Boolean = false,
+        targetId: Int = id
     ): Boolean {
         var success = if (index == null) {
             remove(id, amount)
@@ -473,12 +474,12 @@ data class Container(
         }
 
         success = if (targetIndex == null) {
-            container.add(id, amount)
+            container.add(targetId, amount)
         } else {
             if (insert) {
-                container.insert(targetIndex, id, amount)
+                container.insert(targetIndex, targetId, amount)
             } else {
-                container.add(targetIndex, id, amount)
+                container.add(targetIndex, targetId, amount)
             }
         }
 
@@ -489,12 +490,12 @@ data class Container(
         val result = container.result
 
         if (result == ContainerResult.Overflow) {
-            return gracefullyOverflow(container, id, amount, targetIndex)
+            return gracefullyOverflow(container, id, amount, targetIndex, targetId)
         }
         return revertRemoval(index, id, amount, container, result)
     }
 
-    private fun gracefullyOverflow(container: Container, id: Int, amount: Int, targetIndex: Int?): Boolean {
+    private fun gracefullyOverflow(container: Container, id: Int, amount: Int, targetIndex: Int?, targetId: Int): Boolean {
         val index = targetIndex ?: container.indexOf(id)
         val current = container.getAmount(index)
 
@@ -505,9 +506,9 @@ data class Container(
         val overflow = Int.MAX_VALUE - current
         val newAmount = amount - overflow
         val success = if (targetIndex == null) {
-            container.add(id, overflow)
+            container.add(targetId, overflow)
         } else {
-            container.add(targetIndex, id, overflow)
+            container.add(targetIndex, targetId, overflow)
         }
 
         return revertRemoval(index, id, if (success) newAmount else amount, container, ContainerResult.Full)
