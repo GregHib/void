@@ -47,19 +47,22 @@ fun getLastTabIndex(player: Player, toTab: Int): Int {
 }
 
 fun moveItem(player: Player, fromSlot: Int, toSlot: Int?, toTab: Int?) {
-    val fromTab = getTab(player, fromSlot)
-    val toTab = toTab ?: getTab(player, toSlot!!)
+    val total = player.bank.count
+    val fromTab = getTab(player, fromSlot, total)
+    val toTab = toTab ?: getTab(player, toSlot!!, total)
     val moveToDifferentTab = fromTab != toTab
-    val emptyTab = fromTab != -1 && moveToDifferentTab && player.decVar("bank_tab_$fromTab") <= 0
+    val emptyTab = fromTab > 0 && moveToDifferentTab && player.decVar("bank_tab_$fromTab") <= 0
     when {
-        toTab == mainTab -> insert(player, fromSlot, player.bank.freeIndex())
+        toTab == mainTab -> insert(player, fromSlot, toSlot ?: player.bank.freeIndex())
         moveToDifferentTab -> {
             val index = toSlot ?: getLastTabIndex(player, toTab)
-            player.incVar("bank_tab_$toTab")
+            if (toTab > 0) {
+                player.incVar("bank_tab_$toTab")
+            }
             insert(player, fromSlot, index)
         }
         // Move to the end of the same tab
-        else -> insert(player, fromSlot, fromSlot + player.getVar<Int>("bank_tab_$fromTab") - 1)
+        else -> insert(player, fromSlot, toSlot ?: (fromSlot + player.getVar("bank_tab_$fromTab", 0) - 1))
     }
     if (emptyTab) {
         nudgeTabsBackOne(player, fromTab)
@@ -74,6 +77,21 @@ fun nudgeTabsBackOne(player: Player, from: Int) {
 
 fun insert(player: Player, fromSlot: Int, toSlot: Int) {
     player.bank.move(fromSlot, player.bank, toSlot, insert = true)
+}
+
+fun getTab(player: Player, slot: Int, max: Int): Int {
+    var total = 0
+    for (tab in mainTab + 1..tabCount) {
+        val count: Int = player.getVar("bank_tab_$tab")
+        if (count == 0) {
+            continue
+        }
+        total += count
+        if (slot < total) {
+            return tab
+        }
+    }
+    return if(slot <= max) mainTab else -1
 }
 
 fun getTab(player: Player, slot: Int): Int {

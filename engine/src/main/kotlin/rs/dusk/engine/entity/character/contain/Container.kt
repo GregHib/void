@@ -50,6 +50,9 @@ data class Container(
         StackMode.Normal -> decoder.get(id).stackable == 1
     }
 
+    val count: Int
+        get() = amounts.count { !isFree(it) }
+
     val spaces: Int
         get() = amounts.count { isFree(it) }
 
