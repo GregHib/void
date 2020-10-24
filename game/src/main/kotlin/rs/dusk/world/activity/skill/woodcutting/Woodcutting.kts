@@ -2,7 +2,6 @@ package rs.dusk.world.activity.skill.woodcutting
 
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.action
-import rs.dusk.engine.entity.anim.detail.AnimationDetails
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
@@ -21,6 +20,7 @@ import rs.dusk.world.activity.skill.woodcutting.tree.CursedTree
 import rs.dusk.world.activity.skill.woodcutting.tree.DungeoneeringTree
 import rs.dusk.world.activity.skill.woodcutting.tree.RegularTree
 import rs.dusk.world.activity.skill.woodcutting.tree.Tree
+import kotlin.random.Random
 
 fun Player.has(skill: Skill, level: Int, message: Boolean): Boolean {
     if (levels.get(skill) < level) {
@@ -35,10 +35,13 @@ fun Player.has(skill: Skill, level: Int, message: Boolean): Boolean {
 fun ItemDecoder.get(name: String) = get(get<ItemDetails>().get(name).id)// TODO
 
 val decoder: ItemDecoder by inject()
-val details: AnimationDetails by inject()
 
 ObjectOption where { obj.def.name.toLowerCase().contains("tree") && option == "Chop down" } then {
     chopTree(player, obj)
+}
+
+fun success(level: Int): Boolean {
+    return (2 * level + 20) / 256.0 == 0.0
 }
 
 fun chopTree(player: Player, obj: GameObject) {
@@ -51,11 +54,16 @@ fun chopTree(player: Player, obj: GameObject) {
                 player.message("You swing your axe at the tree.")
                 delay(4)
                 val item = decoder.get(tree!!.log.id)
-                if (player.inventory.add(item.id)) {
-                    player.message("You get some ${item.name}.")
-                } else {
-                    player.message("You don't have enough inventory space.")
-                    cancel()
+                if (success(1)) {
+                    if (player.inventory.add(item.id)) {
+                        if (tree.deplete()) {
+                            // TODO
+                        }
+                        player.message("You get some ${item.name}.")
+                    } else {
+                        player.message("You don't have enough inventory space.")
+                        cancel()
+                    }
                 }
             }
         } finally {
@@ -104,7 +112,7 @@ fun getHatchet(player: Player): Hatchet? {
     return list.maxBy { getLevelRequirement(it) }
 }
 
-fun depleteTree(): Boolean = false// 1/8
+fun Tree.deplete() = Random.nextDouble() <= fellRate
 
 val trees: Array<Tree> = arrayOf(*RegularTree.values(), *DungeoneeringTree.values(), *CursedTree.values())
 
