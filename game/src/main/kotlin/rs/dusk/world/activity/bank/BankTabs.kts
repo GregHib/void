@@ -1,11 +1,14 @@
 package rs.dusk.world.activity.bank
 
+import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.variable.*
+import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerSpawn
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
 
@@ -13,12 +16,22 @@ ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
     "swap",
     "insert"
 )).register("bank_item_mode")
+IntVariable(1038, Variable.Type.VARC).register("bank_spaces_used_free")
+IntVariable(192, Variable.Type.VARC).register("bank_spaces_used_member")
 
 PlayerSpawn then {
     player.bank.listeners.add {
+        player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
+        player.setVar("bank_spaces_used_member", player.bank.count)
         player.bank.sort()
         player.sendContainer("bank")
     }
+}
+
+val decoder: ItemDecoder by inject()
+
+fun Container.getFreeToPlayItemCount(): Int {
+    return getItems().count { !(decoder.getOrNull(it)?.members ?: true) }
 }
 
 InterfaceSwitch where { name == "bank" && component == "container" && toName == name && toComponent == component } then {

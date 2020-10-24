@@ -53,14 +53,11 @@ class Action {
         }
     }
 
-    fun cancel() {
-        cancel(CancellationException())
-    }
     /**
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]
      */
-    fun cancel(throwable: Throwable) {
+    fun cancel(throwable: Throwable = CancellationException()) {
         continuation?.resumeWithException(throwable)
         continuation = null
         suspension = null
