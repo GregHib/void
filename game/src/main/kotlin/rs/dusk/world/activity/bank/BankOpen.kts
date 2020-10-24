@@ -60,7 +60,6 @@ InterfaceOpened where { name == "bank" } then {
     }
 }
 
-
 InterfaceOption where { name == "bank" && component == "equipment" && option == "Show Equipment Stats" } then {
     player.open("equipment_bonuses")
     player.setVar("equipment_banking", true)

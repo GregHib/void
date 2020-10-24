@@ -901,6 +901,7 @@ equipment_bonuses:
     magic_damage: 48
     bank: 49
     stats: 52
+    close: 75
 
 pick_a_puppy:
   id: 668
@@ -1067,6 +1068,7 @@ bank:
     tab_3: 58
     tab_2: 60
     tab_1: 62
+    close: 75
     container:
       id: 93
       container: bank

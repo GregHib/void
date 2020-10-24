@@ -44,6 +44,7 @@ InterfaceOpened where { name == "equipment_bonuses" } then {
     player.action(ActionType.Equipping) {
         val listener: (List<ContainerModification>) -> Unit = equipmentUpdateListener(player)
         try {
+            player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
             player.equipment.listeners.add(listener)
             updateEmote(player)
             player.open("equipment_side")
@@ -52,8 +53,8 @@ InterfaceOpened where { name == "equipment_bonuses" } then {
             awaitInterface(name)
         } finally {
             player.equipment.listeners.remove(listener)
-            player.close("equipment_bonuses")
             player.open("inventory")
+            player.close("equipment_bonuses")
         }
     }
 }
