@@ -3,6 +3,7 @@ package rs.dusk.engine.storage
 import com.github.michaelbull.logging.InlineLogger
 import com.zaxxer.hikari.HikariConfig
 import com.zaxxer.hikari.HikariDataSource
+import com.zaxxer.hikari.pool.HikariPool
 import org.koin.dsl.module
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.utility.getProperty
@@ -71,8 +72,12 @@ class DatabaseHandler {
 	}
 	
 	init {
-		start()
-		logger.info { "Successfully created the database pool." }
+		try {
+			start()
+			logger.info { "Successfully created the database pool." }
+		} catch (e: HikariPool.PoolInitializationException) {
+			logger.warn { "Unable to connect to database." }
+		}
 	}
 	
 }
