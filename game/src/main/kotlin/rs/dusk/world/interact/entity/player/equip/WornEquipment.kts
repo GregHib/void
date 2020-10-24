@@ -51,7 +51,7 @@ InterfaceOption where { name == "worn_equipment" && option == "*" } then {
 
 fun getEquipmentOption(itemId: Int, optionId: Int): String? {
     val itemDef = decoder.get(itemId)
-    val equipOption = itemDef.params?.get(527L + optionId) as? String
+    val equipOption: String? = itemDef.getParam(527L + optionId)
     if(equipOption != null) {
         return equipOption
     }
