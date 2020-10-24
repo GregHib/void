@@ -1,21 +1,33 @@
-bees!_walk:
+bees_walk:
   id: 0
-cap'n_arnav_idle:
+capn_arnav_idle:
   id: 3
 boulder_walk:
-  id: 15028
+  id: 6
 shark_walk:
   id: 10
 shade_walk:
-  id: 1281
+  id: 13
 shade_idle:
-  id: 1282
+  id: 15
 baby_dragon_walk:
   id: 21
 lava_monster_walk2:
   id: 22
 baby_dragon_idle:
   id: 27
+hammer:
+  id: 37
+hammer_2:
+  id: 38
+hammer_3:
+  id: 39
+hammer_4:
+  id: 40
+hammer_5:
+  id: 41
+hammer_6:
+  id: 42
 warrior_ancestor_step_right:
   id: 52
 liquid_gold_nymph_walk2:
@@ -26,6 +38,18 @@ delrith_walk:
   id: 63
 delrith_idle:
   id: 66
+gilded_rune_pickaxe:
+  id: 72
+gilded_bronze_pickaxe:
+  id: 74
+gilded_iron_pickaxe:
+  id: 75
+gilded_steel_pickaxe:
+  id: 76
+gilded_mithril_pickaxe:
+  id: 77
+gilded_adamant_pickaxe:
+  id: 78
 steel_dragon_walk:
   id: 79
 king_black_dragon_idle:
@@ -35,13 +59,17 @@ tree_spirit_walk:
 tree_spirit_idle:
   id: 96
 lava-flow_miner_walk:
-  id: 15216
+  id: 98
 colonel_grimsson_idle:
-  id: 2336
+  id: 101
 tool_leprechaun_idle:
-  id: 11701
+  id: 103
 gauss_walk:
   id: 104
+gilded_dragon_pickaxe:
+  id: 108
+gilded_rune_pickaxe_2:
+  id: 111
 azzanadra_walk:
   id: 119
 azzanadra_idle:
@@ -50,26 +78,50 @@ black_knight_titan_walk:
   id: 127
 black_knight_titan_idle:
   id: 130
+gilded_bronze_pickaxe_2:
+  id: 132
+gilded_iron_pickaxe_2:
+  id: 133
+gilded_steel_pickaxe_2:
+  id: 134
+gilded_mithril_pickaxe_2:
+  id: 135
 spidine_walk:
   id: 142
 spidine_idle:
   id: 145
 cow_idle:
   id: 147
+gilded_adamant_pickaxe_2:
+  id: 148
 cow_walk:
   id: 149
+mystery_cracker:
+  id: 151
 rock_golem_walk:
   id: 152
 rock_golem_idle:
   id: 155
+gilded_dragon_pickaxe_2:
+  id: 157
+hammer_7:
+  id: 158
+hammer_8:
+  id: 159
+sacred_clay_hammer:
+  id: 160
+sacred_clay_hammer_2:
+  id: 161
 hobgoblin_idle:
-  id: 12403
+  id: 165
 hobgoblin_walk:
-  id: 12404
+  id: 167
 snow_imp_walk:
   id: 168
 snow_imp_idle:
   id: 171
+bull_roarer:
+  id: 173
 iron_pickaxe_walk:
   id: 181
 animated_pickaxe_idle:
@@ -79,19 +131,39 @@ yaktwee_swinmari_cianta_walk:
 glophren_idle:
   id: 195
 mounted_terrorbird_gnome_idle:
-  id: 6793
+  id: 202
 gnome_baller_walk:
+  id: 205
+gnome_baller_walk_2:
   id: 208
+volatile_clay_hammer:
+  id: 210
 rug_merchant_step_right:
   id: 219
 rug_merchant_idle:
   id: 222
 king_vargas_idle:
-  id: 8977
+  id: 226
 man_walk2:
   id: 227
 man_step_right:
   id: 228
+volatile_clay_hammer_2:
+  id: 230
+golden_hammer:
+  id: 231
+golden_hammer_2:
+  id: 233
+gilded_bronze_pickaxe_3:
+  id: 234
+gilded_iron_pickaxe_3:
+  id: 235
+gilded_steel_pickaxe_3:
+  id: 236
+gilded_adamant_pickaxe_3:
+  id: 237
+gilded_mithril_pickaxe_3:
+  id: 238
 crypt_rat_walk:
   id: 239
 crypt_rat_idle:
@@ -102,9 +174,19 @@ pig_idle:
   id: 247
 piglet_step_left:
   id: 248
-witch's_experiment_walk:
+gilded_rune_pickaxe_3:
+  id: 249
+gilded_dragon_pickaxe_3:
+  id: 250
+gilded_bronze_pickaxe_4:
+  id: 251
+gilded_iron_pickaxe_4:
+  id: 252
+gilded_steel_pickaxe_4:
+  id: 253
+witchs_experiment_walk:
   id: 254
-witch's_experiment_idle:
+witchs_experiment_idle:
   id: 257
 baby_basilisk_idle:
   id: 262
@@ -112,8 +194,18 @@ basilisk_walk:
   id: 263
 cave_crawler_idle:
   id: 268
+gilded_mithril_pickaxe_4:
+  id: 269
+gilded_adamant_pickaxe_4:
+  id: 270
+gilded_rune_pickaxe_4:
+  id: 271
+gilded_dragon_pickaxe_4:
+  id: 272
+gilded_rune_pickaxe_5:
+  id: 273
 snake_walk:
-  id: 11808
+  id: 274
 snake_idle:
   id: 277
 piglet_idle:
@@ -122,21 +214,37 @@ cow_calf_walk:
   id: 280
 cow_calf_idle:
   id: 281
+gilded_bronze_pickaxe_5:
+  id: 282
 ug_walk:
   id: 283
+gilded_iron_pickaxe_5:
+  id: 294
+gilded_steel_pickaxe_5:
+  id: 295
+gilded_adamant_pickaxe_5:
+  id: 297
 cave_crawler_walk:
   id: 298
 waterfiend_idle:
   id: 302
+gilded_mithril_pickaxe_5:
+  id: 308
 the_shaikahan_idle:
   id: 311
 the_shaikahan_walk:
   id: 312
 nastroth_idle:
   id: 316
+duelist_hat:
+  id: 317
+duelist_hat_2:
+  id: 318
 spirit_tree_idle:
   id: 332
 leprechaun_walk:
+  id: 334
+leprechaun_walk_2:
   id: 335
 soulless_walk:
   id: 336
@@ -147,19 +255,53 @@ lord_iban_idle:
 strange_plant_walk:
   id: 349
 leprechaun_idle:
-  id: 1717
+  id: 351
 ruby_harvest_walk:
   id: 362
+null:
+  id: 363
 alrena_idle:
-  id: 3185
+  id: 364
+herb_bowl:
+  id: 364
+grinder:
+  id: 364
+exploding_vial:
+  id: 365
 sparky_walk:
   id: 392
 sparky_idle:
   id: 405
 abidor_crank_idle:
   id: 436
+steel_crossbow:
+  id: 442
 adventurer_idle:
   id: 479
+steel_crossbow_2:
+  id: 484
+duelist_hat_3:
+  id: 507
+duelist_hat_4:
+  id: 508
+duelist_hat_5:
+  id: 509
+duelist_hat_6:
+  id: 510
+duelist_hat_7:
+  id: 511
+duelist_hat_8:
+  id: 512
+duelist_hat_9:
+  id: 513
+duelist_hat_10:
+  id: 530
+duelist_hat_11:
+  id: 531
+duelist_hat_12:
+  id: 532
+duelist_hat_13:
+  id: 533
 yak_walk:
   id: 543
 yak_idle:
@@ -168,22 +310,56 @@ estocada_walk:
   id: 546
 mr_ex_walk:
   id: 552
+harpoon:
+  id: 618
+lobster_pot:
+  id: 619
+big_fishing_net:
+  id: 620
+small_fishing_net:
+  id: 621
+fishing_rod:
+  id: 622
+fishing_rod_2:
+  id: 623
 fisherman_idle:
-  id: 4825
+  id: 623
+rune_pickaxe:
+  id: 624
+bronze_pickaxe:
+  id: 625
+iron_pickaxe:
+  id: 626
+steel_pickaxe:
+  id: 627
+adamant_pickaxe:
+  id: 628
+mithril_pickaxe:
+  id: 629
+ibans_staff:
+  id: 708
+tinderbox:
+  id: 733
 auguste_step_right:
   id: 772
 auguste_idle:
   id: 773
 miss_schism_idle:
   id: 774
+throwing_rope:
+  id: 775
 mounted_terrorbird_gnome_step_right:
-  id: 6796
+  id: 781
+gnomeball:
+  id: 783
 knight_idle:
   id: 784
 genie_idle:
   id: 792
 fairy_very_wise_idle:
   id: 793
+cattleprod:
+  id: 799
 half-soulless_walk:
   id: 800
 hooded_man_idle:
@@ -194,6 +370,8 @@ hooded_man_walk:
   id: 812
 rolayne_twickit_idle:
   id: 813
+bucket_of_icy_water:
+  id: 817
 ranis_drakan_walk:
   id: 819
 ranis_drakan_walk_back:
@@ -205,13 +383,19 @@ ranis_drakan_step_right:
 ranis_drakan_walk2:
   id: 823
 ozan_run:
-  id: 1083
+  id: 824
 ajjat_idle:
   id: 825
 ajjat_walk:
   id: 826
 slave_idle:
-  id: 1728
+  id: 830
+spade:
+  id: 830
+spade_2:
+  id: 831
+null_2:
+  id: 840
 ice_warrior_walk:
   id: 841
 nature_spirit_idle:
@@ -227,9 +411,59 @@ rogue_pack_yak_walk:
 rogue_pack_yak_idle:
   id: 850
 dancer_idle:
-  id: 2108
+  id: 866
+rune_hatchet:
+  id: 867
+adamant_hatchet:
+  id: 869
+dragon_hatchet:
+  id: 870
+mithril_hatchet:
+  id: 871
+rune_hatchet_2:
+  id: 872
+black_hatchet:
+  id: 873
+adamant_hatchet_2:
+  id: 874
 carpenter_kjallak_idle:
   id: 875
+steel_hatchet:
+  id: 875
+mithril_hatchet_2:
+  id: 876
+iron_hatchet:
+  id: 877
+black_hatchet_2:
+  id: 878
+bronze_hatchet:
+  id: 879
+steel_hatchet_2:
+  id: 880
+glassblowing_pipe:
+  id: 884
+dragonstone:
+  id: 885
+diamond:
+  id: 886
+ruby:
+  id: 887
+sapphire:
+  id: 888
+emerald:
+  id: 889
+opal:
+  id: 890
+jade:
+  id: 891
+red_topaz:
+  id: 892
+shears:
+  id: 893
+bucket:
+  id: 895
+hammer_9:
+  id: 898
 drunken_dwarf_idle:
   id: 900
 white_knight_step_right:
@@ -242,8 +476,26 @@ wandering_beige_spider_run:
   id: 905
 guardian_run:
   id: 906
+bull_roarer_2:
+  id: 908
+charcoal:
+  id: 909
+papyrus:
+  id: 909
+machete:
+  id: 910
+iron_knife:
+  id: 911
 dr_jekyll_walk2:
   id: 915
+toy_horsey:
+  id: 918
+toy_horsey_2:
+  id: 919
+toy_horsey_3:
+  id: 920
+toy_horsey_4:
+  id: 921
 sea_slug_idle:
   id: 932
 sea_slug_walk:
@@ -261,7 +513,7 @@ bloated_toad_walk:
 plague_frog_walk:
   id: 1021
 argax_idle:
-  id: 2995
+  id: 1025
 fire_elemental_idle:
   id: 1027
 fire_elemental_walk:
@@ -282,8 +534,10 @@ white_knight_walk:
   id: 1059
 sir_tiffy_cashien_walk:
   id: 1065
-will_o'_the_wisp_walk:
-  id: 7068
+will_o_the_wisp_walk:
+  id: 1071
+bucket_of_water:
+  id: 1077
 sir_owen_run:
   id: 1079
 ozan_walk2:
@@ -292,12 +546,16 @@ ozan_step_right:
   id: 1081
 ozan_walk_back:
   id: 1082
+ozan_run_2:
+  id: 1083
+silver_sickle_b:
+  id: 1100
 strange_watcher_idle:
   id: 1137
 sir_tiffy_cashien_walk_back:
   id: 1138
 ariane_walk2:
-  id: 1673
+  id: 1142
 soldier_step_right:
   id: 1144
 "1337sp34kr_walk":
@@ -308,18 +566,40 @@ ariane_step_right:
   id: 1162
 ariane_walk_back:
   id: 1177
+null_3:
+  id: 1180
+null_4:
+  id: 1180
+dragon_pickaxe:
+  id: 1181
+null_5:
+  id: 1182
+null_6:
+  id: 1182
 flesh_crawler_idle:
   id: 1183
 flesh_crawler_walk:
   id: 1189
 ariane_run:
   id: 1191
+picture:
+  id: 1192
+knife:
+  id: 1192
+karambwan_vessel:
+  id: 1193
+karamjan_rum:
+  id: 1194
+karamjan_rum_2:
+  id: 1195
+banana:
+  id: 1195
 sir_tiffy_cashien_step_left:
   id: 1198
 sir_tiffy_cashien_step_right:
   id: 1201
 rolayne_twickit_walk:
-  id: 14693
+  id: 1205
 rolayne_twickit_walk_back:
   id: 1206
 rolayne_twickit_step_left:
@@ -329,17 +609,45 @@ rolayne_twickit_step_right:
 farmer_walk2:
   id: 1209
 farmer_run:
-  id: 1215
+  id: 1210
 farmer_idle:
-  id: 12907
+  id: 1214
+farmer_run_2:
+  id: 1215
 child_idle:
   id: 1225
 glophren_walk:
   id: 1226
+gilded_rune_pickaxe_6:
+  id: 1238
+gilded_bronze_pickaxe_6:
+  id: 1239
 guard_bunny_idle:
   id: 1242
 guard_bunny_walk:
   id: 1243
+knife_2:
+  id: 1248
+logs:
+  id: 1248
+leather:
+  id: 1249
+needle:
+  id: 1249
+null_7:
+  id: 1250
+null_8:
+  id: 1250
+null_9:
+  id: 1251
+null_10:
+  id: 1251
+gilded_iron_pickaxe_6:
+  id: 1254
+gilded_steel_pickaxe_6:
+  id: 1256
+gilded_adamant_pickaxe_6:
+  id: 1259
 spirit_scorpion_run:
   id: 1260
 wolpertinger_run:
@@ -352,42 +660,104 @@ leech_idle:
   id: 1270
 ravenous_ghoul_idle:
   id: 1275
+blamish_myre_shell:
+  id: 1280
+shade_walk_2:
+  id: 1281
+shade_idle_2:
+  id: 1282
 fiyr_shadow_walk:
   id: 1289
 fiyr_shadow_idle:
   id: 1290
+abyssal_whip:
+  id: 1291
 afflicted_walk:
   id: 1306
 shade_spirit_walk:
   id: 1308
+limestone:
+  id: 1309
 crab_idle:
-  id: 14276
+  id: 1310
 rocks_walk:
   id: 1311
 rocks_idle:
   id: 1315
+gilded_mithril_pickaxe_6:
+  id: 1316
 olaf_the_bard_idle:
   id: 1318
+lyre:
+  id: 1318
+lyre_2:
+  id: 1319
+lyre_3:
+  id: 1320
+lyre_4:
+  id: 1321
 sir_ren_itchood_idle:
   id: 1321
 khazard_guard_idle:
-  id: 11685
+  id: 1322
+beer:
+  id: 1322
+beer_2:
+  id: 1323
 ahab_walk:
   id: 1323
+beer_3:
+  id: 1324
 ahab_walk_back:
   id: 1324
+beer_4:
+  id: 1325
 ahab_step_left:
   id: 1325
+beer_5:
+  id: 1326
 ahab_step_right:
   id: 1326
+gilded_dragon_pickaxe_5:
+  id: 1328
 pikkupstix_idle:
   id: 1329
+keg_of_beer:
+  id: 1330
+pet_rock:
+  id: 1333
 ariane_idle:
-  id: 1736
+  id: 1334
+null_11:
+  id: 1335
+null_12:
+  id: 1336
+null_13:
+  id: 1337
 dagannoth_idle:
   id: 1338
 dagannoth_mother_walk:
+  id: 1339
+dagannoth_mother_walk_2:
+  id: 1344
+dagannoth_mother_walk_3:
+  id: 1345
+dagannoth_mother_walk_4:
   id: 1346
+null_14:
+  id: 1350
+stool:
+  id: 1351
+stool_2:
+  id: 1352
+stool_3:
+  id: 1353
+stool_4:
+  id: 1354
+null_15:
+  id: 1367
+knife_3:
+  id: 1367
 tentacle_walk2:
   id: 1369
 anemone_walk2:
@@ -395,7 +765,7 @@ anemone_walk2:
 urchin_walk2:
   id: 1371
 linza_walk2:
-  id: 1772
+  id: 1376
 sleeping_monkey_walk:
   id: 1380
 kikazaru_run:
@@ -416,6 +786,8 @@ monkey_guard_run:
   id: 1400
 monkey_guard_idle:
   id: 1401
+bucket_2:
+  id: 1406
 waterfiend_walk:
   id: 1417
 rug_merchant_run:
@@ -430,6 +802,18 @@ innocent-looking_key_idle:
   id: 1450
 innocent-looking_key_walk:
   id: 1451
+null_16:
+  id: 1457
+null_17:
+  id: 1458
+null_18:
+  id: 1459
+null_19:
+  id: 1460
+wax:
+  id: 1470
+sled:
+  id: 1470
 war_tortoise_run:
   id: 1471
 spirit_dagannoth_run:
@@ -440,6 +824,10 @@ troll_child_idle:
   id: 1476
 arctic_bear_run:
   id: 1478
+ariane_walk2_2:
+  id: 1479
+trollweiss:
+  id: 1487
 apprentice_idle:
   id: 1493
 apprentice_walk:
@@ -454,19 +842,23 @@ baba_yaga_idle:
   id: 1507
 baba_yaga_walk:
   id: 1508
+bronze_pickaxe_2:
+  id: 1511
 silas_idle:
   id: 1514
 princess_astrid_idle:
   id: 1516
 prince_brand_idle:
   id: 1517
-astrid's_pyre_ship_walk:
+astrids_pyre_ship_walk:
   id: 1521
-brand's_pyre_ship_walk:
+brands_pyre_ship_walk:
   id: 1525
 trawler_walk:
-  id: 1564
+  id: 1527
 dagannoth_walk:
+  id: 1528
+dagannoth_walk_2:
   id: 1529
 dagannoth_mother_idle:
   id: 1530
@@ -475,13 +867,15 @@ abyssal_minion_walk:
 abyssal_minion_idle:
   id: 1536
 trawler_walk2:
-  id: 1654
+  id: 1540
 jones_walk2:
   id: 1551
 smokedevil_walk:
   id: 1554
 smokedevil_idle:
   id: 1556
+trawler_walk_2:
+  id: 1564
 small_lizard_idle:
   id: 1577
 small_lizard_walk:
@@ -493,27 +887,63 @@ skeletal_wyvern_walk:
 skeletal_wyvern_idle:
   id: 1588
 mutated_zygomite_walk:
-  id: 2310
+  id: 1597
+mouth_grip:
+  id: 1601
+mouth_grip_2:
+  id: 1602
 skullball_idle:
   id: 1607
 skullball_walk:
   id: 1608
 experiment_idle:
-  id: 1625
+  id: 1609
 experiment_walk:
-  id: 1624
+  id: 1610
+experiment_idle_2:
+  id: 1614
+experiment_walk_2:
+  id: 1615
 lord_rologarth_walk:
   id: 1622
 lord_rologarth_idle:
   id: 1623
-ghost_(?)_idle:
+experiment_walk_3:
+  id: 1624
+experiment_idle_3:
+  id: 1625
+extended_brush:
+  id: 1633
+ghost_?_idle:
   id: 1639
-ghost_(?)_walk:
+ghost_?_walk:
   id: 1640
+empty_pot:
+  id: 1650
+trawler_walk2_2:
+  id: 1654
+ariane_idle_2:
+  id: 1669
+ariane_walk2_3:
+  id: 1673
 registrar_5_idle:
   id: 1705
-'''the_guns''_walk2':
+leprechaun_idle_2:
+  id: 1717
+stick:
+  id: 1722
+stick_2:
+  id: 1723
+stick_3:
+  id: 1724
+stick_4:
+  id: 1725
+slave_idle_2:
+  id: 1728
+the_guns_walk2:
   id: 1735
+ariane_idle_3:
+  id: 1736
 sam_walk:
   id: 1739
 sam_idle:
@@ -526,6 +956,8 @@ slagilith_idle:
   id: 1753
 rock_pile_walk:
   id: 1754
+hammer_10:
+  id: 1755
 the_kendal_idle:
   id: 1756
 the_kendal_walk:
@@ -536,12 +968,16 @@ granite_lobster_run:
   id: 1763
 abyssal_lurker_run:
   id: 1764
+pole:
+  id: 1766
 ibis_run:
   id: 1769
 bloated_leech_run:
   id: 1770
 void_torcher_run:
   id: 1771
+linza_walk2_2:
+  id: 1772
 karamjan_jungle_eagle_walk:
   id: 1773
 cave_bug_larva_walk:
@@ -561,13 +997,19 @@ hole_in_the_wall_idle:
 wall_beast_idle:
   id: 1799
 crow_walk:
-  id: 1826
+  id: 1824
 crow_idle:
   id: 1825
+crow_walk_2:
+  id: 1826
 easter_bunny_walk:
-  id: 3851
+  id: 1828
 easter_bunny_idle:
-  id: 15346
+  id: 1829
+rubber_chicken:
+  id: 1833
+rubber_chicken_2:
+  id: 1834
 arzinian_being_of_bordanzan_idle:
   id: 1838
 arzinian_being_of_bordanzan_walk:
@@ -576,44 +1018,84 @@ vampyre_bat_run:
   id: 1848
 karamthulhu_overlord_run:
   id: 1849
+dog_bone:
+  id: 1872
 linza_idle:
   id: 1873
+snake_charm:
+  id: 1877
+snake_charm_2:
+  id: 1878
+hags_poison:
+  id: 1894
+red_hot_sauce:
+  id: 1895
+spinning_plate:
+  id: 1902
+small_fishing_net_2:
+  id: 1903
+small_fishing_net_3:
+  id: 1903
+spinning_plate_2:
+  id: 1904
+sacred_clay_hatchet:
+  id: 1905
+spinning_plate_3:
+  id: 1906
+volatile_clay_hatchet:
+  id: 1907
 clay_golem_walk:
   id: 1912
 clay_golem_idle:
   id: 1913
 linza_walk:
-  id: 3218
+  id: 1919
 cliff_idle:
   id: 1928
 cliff_step_right:
   id: 1929
 ozan_idle:
-  id: 2649
+  id: 1936
 scarab_swarm_walk:
   id: 1945
 scarab_swarm_idle:
   id: 1947
 bandit_idle:
-  id: 1955
+  id: 1952
 captain_siad_idle:
   id: 1953
+bandit_idle_2:
+  id: 1954
+bandit_idle_3:
+  id: 1955
 ozan_walk:
-  id: 2648
+  id: 1968
 poorly_cooked_karambwan_walk:
   id: 1972
+knife_4:
+  id: 1989
+chocolate_bar:
+  id: 1989
 dynamite_run:
   id: 1991
+null_20:
+  id: 2009
+knife_5:
+  id: 2009
+bucket_3:
+  id: 2010
 locust_walk:
   id: 2011
 locust_idle:
   id: 2012
 vulture_walk:
-  id: 7658
+  id: 2016
 vulture_idle:
-  id: 7659
+  id: 2017
 dynamite_step_right:
   id: 2018
+vulture_walk_2:
+  id: 2024
 wizard_step_right:
   id: 2035
 faruq_idle:
@@ -640,12 +1122,20 @@ obsidian_golem_run:
   id: 2093
 forge_regent_run:
   id: 2095
+dancer_idle_2:
+  id: 2108
 fishing_spot_walk:
   id: 2126
+dwarven_battleaxe:
+  id: 2144
+dwarven_battleaxe_2:
+  id: 2145
 spirit_tz-kih_run:
   id: 2147
+minecart:
+  id: 2148
 commander_veldaban_walk:
-  id: 12131
+  id: 2150
 purple_pewter_director_idle:
   id: 2151
 white_chisel_director_idle:
@@ -655,9 +1145,13 @@ poorly_cooked_karambwan_idle:
 brown_engine_director_walk:
   id: 2156
 banker_walk:
-  id: 11870
+  id: 2157
 brown_engine_secretary_idle:
   id: 2158
+pet_rock_2:
+  id: 2161
+pet_rock_3:
+  id: 2162
 seth_groats_idle:
   id: 2163
 seth_groats_walk:
@@ -684,38 +1178,136 @@ abyssal_walker_walk:
   id: 2190
 abyssal_walker_idle:
   id: 2191
+pet_rock_4:
+  id: 2206
 spin_blades_walk:
   id: 2212
+pet_rock_5:
+  id: 2213
+pet_rock_6:
+  id: 2214
+pet_rock_7:
+  id: 2215
+pet_rock_8:
+  id: 2216
+pet_rock_9:
+  id: 2217
+pet_rock_10:
+  id: 2218
+pet_rock_11:
+  id: 2219
+pet_rock_12:
+  id: 2220
+pet_rock_13:
+  id: 2230
+null_21:
+  id: 2238
 sir_tinley_idle:
   id: 2253
 ms._hynn_terprett_idle:
   id: 2255
 savant_idle:
   id: 2256
+vial:
+  id: 2259
 sheepdog_idle:
   id: 2268
+knife_6:
+  id: 2269
+watermelon:
+  id: 2269
+trowel:
+  id: 2271
+gardening_trowel:
+  id: 2272
+rake:
+  id: 2273
+secateurs:
+  id: 2274
+secateurs_2:
+  id: 2275
+secateurs_3:
+  id: 2276
+secateurs_4:
+  id: 2277
+secateurs_5:
+  id: 2278
+secateurs_6:
+  id: 2279
+bucket_4:
+  id: 2283
+dwarven_stout_1:
+  id: 2284
+beer_glass:
+  id: 2285
+plant_cure:
+  id: 2288
+dwarven_stout_1_2:
+  id: 2289
+knife_7:
+  id: 2290
+calquat_keg:
+  id: 2290
+seed_dibber:
+  id: 2291
+watering_can_8:
+  id: 2293
 evil_chicken_walk:
   id: 2297
 evil_chicken_idle:
   id: 2298
+bucket_5:
+  id: 2305
+mutated_zygomite_walk_2:
+  id: 2310
 void_shifter_run:
   id: 2325
+feather:
+  id: 2332
 mysterious_ghost_walk:
   id: 2333
 mysterious_ghost_idle:
   id: 2334
 colonel_grimsson_walk:
   id: 2335
+colonel_grimsson_idle_2:
+  id: 2336
 ulifed_idle:
   id: 2337
+beer_glass_2:
+  id: 2339
+a_chair:
+  id: 2339
+beer_glass_3:
+  id: 2340
+a_chair_2:
+  id: 2340
+beer_glass_4:
+  id: 2342
+beer_glass_5:
+  id: 2343
 door_idle:
-  id: 2358
+  id: 2351
+door_idle_2:
+  id: 2352
+door_idle_3:
+  id: 2353
 door-support_idle:
+  id: 2354
+door_idle_4:
+  id: 2355
+door_idle_5:
+  id: 2356
+door-support_idle_2:
   id: 2357
+door_idle_6:
+  id: 2358
+null_22:
+  id: 2360
 dagannoth_spawn_walk:
   id: 2361
 egg_walk:
-  id: 3853
+  id: 2362
 wallasalki_walk:
   id: 2363
 wallasalki_idle:
@@ -724,32 +1316,156 @@ pheasant_walk:
   id: 2369
 pheasant_idle:
   id: 2370
+null_23:
+  id: 2378
+machete_2:
+  id: 2382
+machete_3:
+  id: 2384
+thatch_spar_med:
+  id: 2384
+machete_4:
+  id: 2385
+thatch_spar_med_2:
+  id: 2385
+machete_5:
+  id: 2386
+thatch_spar_med_3:
+  id: 2386
+thatch_spar_med_4:
+  id: 2387
+machete_6:
+  id: 2389
+thatch_spar_med_5:
+  id: 2389
 pyrefiend_run:
   id: 2391
 bush_snake_walk:
   id: 2392
+skewer_stick:
+  id: 2393
+spider_carcass:
+  id: 2393
+insect_repellent:
+  id: 2394
 giant_mosquito_idle:
   id: 2395
 giant_mosquito_walk:
   id: 2396
 broodoo_victim_idle:
+  id: 2400
+broodoo_victim_idle_2:
   id: 2401
+ozan_idle_2:
+  id: 2406
+ozan_walk_2:
+  id: 2407
+hammer_11:
+  id: 2409
+broodoo_shield_10:
+  id: 2409
+hammer_12:
+  id: 2410
+broodoo_shield_10_2:
+  id: 2410
+hammer_13:
+  id: 2411
+broodoo_shield_10_3:
+  id: 2411
+thatch_spar_med_6:
+  id: 2420
+opal_machete:
+  id: 2420
+thatch_spar_med_7:
+  id: 2421
+opal_machete_2:
+  id: 2421
+thatch_spar_med_8:
+  id: 2422
+opal_machete_3:
+  id: 2422
+thatch_spar_med_9:
+  id: 2423
+jade_machete:
+  id: 2423
+thatch_spar_med_10:
+  id: 2424
+jade_machete_2:
+  id: 2424
+thatch_spar_med_11:
+  id: 2425
+jade_machete_3:
+  id: 2425
+thatch_spar_med_12:
+  id: 2426
+red_topaz_machete:
+  id: 2426
+thatch_spar_med_13:
+  id: 2427
+red_topaz_machete_2:
+  id: 2427
+thatch_spar_med_14:
+  id: 2428
+red_topaz_machete_3:
+  id: 2428
+thatch_spar_med_15:
+  id: 2429
+opal_machete_4:
+  id: 2429
+thatch_spar_med_16:
+  id: 2430
+jade_machete_4:
+  id: 2430
+thatch_spar_med_17:
+  id: 2431
+red_topaz_machete_4:
+  id: 2431
+null_24:
+  id: 2432
+null_25:
+  id: 2433
+spade_3:
+  id: 2441
+spadeful_of_coke:
+  id: 2442
+spade_4:
+  id: 2443
+bucket_6:
+  id: 2450
 skeletal_warrior_idle:
   id: 2561
 skeletal_warrior_step_right:
   id: 2562
+compost_potion_4:
+  id: 2569
+secateurs_7:
+  id: 2570
 ellamaria_idle:
   id: 2578
+null_26:
+  id: 2613
+ozan_idle_3:
+  id: 2617
 giant_bat_idle:
-  id: 4914
+  id: 2618
 giant_bat_walk:
-  id: 4913
+  id: 2619
 mother_mallum_idle:
-  id: 4819
+  id: 2626
+mother_mallum_idle_2:
+  id: 2627
+mother_mallum_idle_3:
+  id: 2630
 lucy_idle:
   id: 2636
 mayor_hobb_idle:
   id: 2646
+ozan_walk_3:
+  id: 2648
+ozan_idle_4:
+  id: 2649
+mother_mallum_idle_4:
+  id: 2663
 odysseus_walk:
   id: 2667
 odysseus_idle:
@@ -758,10 +1474,12 @@ dragonkin_idle:
   id: 2688
 dragonkin_walk:
   id: 2689
+shears_2:
+  id: 2695
 bull_ant_run:
   id: 2698
 guard_idle:
-  id: 13064
+  id: 2700
 mugger_idle:
   id: 2701
 king_rat_walk:
@@ -774,16 +1492,20 @@ chancy_idle:
   id: 2713
 mandrith_walk:
   id: 2715
+onyx:
+  id: 2717
 lord_daquarius_step_right:
   id: 2724
 mage_of_zamorak_step_right:
+  id: 2726
+mage_of_zamorak_step_right_2:
   id: 2727
 ranger_idle:
   id: 2728
 kolodion_walk:
   id: 2729
 kolodion_idle:
-  id: 10813
+  id: 2730
 shadow_walk:
   id: 2737
 shadow_idle:
@@ -796,6 +1518,8 @@ drunken_sailor_walk:
   id: 2769
 jimmy_idle:
   id: 2770
+bailing_bucket:
+  id: 2771
 fishbowl_idle:
   id: 2772
 larry_the_lumberjack_run:
@@ -804,6 +1528,40 @@ mutated_zygomite_idle:
   id: 2774
 fungi_walk:
   id: 2778
+fishbowl:
+  id: 2780
+fishbowl_2:
+  id: 2781
+fish_food:
+  id: 2781
+fishbowl_3:
+  id: 2782
+fishbowl_4:
+  id: 2783
+fishbowl_5:
+  id: 2784
+fish_food_2:
+  id: 2784
+fishbowl_6:
+  id: 2785
+fishbowl_7:
+  id: 2786
+fishbowl_8:
+  id: 2787
+fish_food_3:
+  id: 2787
+fishbowl_9:
+  id: 2788
+dummy_axe:
+  id: 2789
+dwarven_army_axe:
+  id: 2794
+stick_5:
+  id: 2798
+stick_6:
+  id: 2799
+stick_7:
+  id: 2800
 spirit_mosquito_run:
   id: 2801
 evil_spirit_walk:
@@ -812,18 +1570,42 @@ evil_spirit_idle:
   id: 2803
 praying_mantis_run:
   id: 2809
+holy_wrench:
+  id: 2810
+holy_wrench_2:
+  id: 2811
 barker_toad_run:
   id: 2812
+fishbowl_and_net:
+  id: 2813
 zombie_head_walk:
   id: 2818
 the_raptor_idle:
   id: 2822
+dummy_axe_2:
+  id: 2831
 the_raptor_walk:
   id: 2832
+dwarven_army_axe_2:
+  id: 2833
 sir_owen_idle:
-  id: 3000
+  id: 2834
 gee_idle:
   id: 2836
+dwarven_army_axe_3:
+  id: 2837
+dwarven_army_axe_4:
+  id: 2838
+dwarven_army_axe_5:
+  id: 2839
+zombie_head:
+  id: 2840
+zombie_head_2:
+  id: 2844
+dragon_hatchet_2:
+  id: 2846
+iron_hatchet_2:
+  id: 2847
 dagannoth_rex_walk:
   id: 2849
 dagannoth_rex_idle:
@@ -837,23 +1619,55 @@ spinolyp_walk:
 spinolyp_idle:
   id: 2867
 sir_owen_walk:
-  id: 2944
+  id: 2875
+demonic_sigil:
+  id: 2879
+demonic_sigil_2:
+  id: 2880
 sand_storm_walk:
   id: 2882
 droalak_idle:
   id: 2893
+smouldering_pot:
+  id: 2902
+snake_charm_3:
+  id: 2903
 amulet_of_nature_idle:
   id: 2906
 tirrie_walk:
   id: 2907
 tirrie_idle:
   id: 2908
+rope:
+  id: 2910
 rokuh_idle:
   id: 2911
 rokuh_walk:
   id: 2912
+needle_2:
+  id: 2913
+torn_robe:
+  id: 2913
+needle_3:
+  id: 2914
+torn_robe_2:
+  id: 2914
+snow_globe:
+  id: 2926
+excalibur:
+  id: 2930
+sir_owen_idle_2:
+  id: 2934
 mystery_figure_idle:
-  id: 9299
+  id: 2939
+mystery_figure_idle_2:
+  id: 2940
+mystery_figure_idle_3:
+  id: 2942
+mystery_figure_idle_4:
+  id: 2943
+sir_owen_walk_2:
+  id: 2944
 earth_warrior_champion_idle:
   id: 2945
 earth_warrior_champion_walk:
@@ -868,10 +1682,34 @@ ice_demon_idle:
   id: 2978
 ice_demon_walk:
   id: 2979
+stake:
+  id: 2992
 monk_idle:
-  id: 5877
+  id: 2993
 monk_walk:
-  id: 5876
+  id: 2994
+argax_idle_2:
+  id: 2995
+mithril_2h_sword:
+  id: 2999
+sir_owen_idle_3:
+  id: 3000
+bolas:
+  id: 3001
+bolas_2:
+  id: 3002
+marionette_handle:
+  id: 3003
+marionette_handle_2:
+  id: 3004
+marionette_handle_3:
+  id: 3005
+marionette_handle_4:
+  id: 3006
+knife_8:
+  id: 3007
+hardened_straight_root:
+  id: 3007
 ronan_idle:
   id: 3008
 ronan_walk:
@@ -902,6 +1740,8 @@ sandwich_lady_walk:
   id: 3042
 sandwich_lady_idle:
   id: 3043
+null_27:
+  id: 3044
 balloon_animal_walk:
   id: 3048
 balloon_animal_idle:
@@ -913,21 +1753,51 @@ boneguard_idle:
 boneguard_walk:
   id: 3078
 xenia_idle:
-  id: 12849
+  id: 3085
+xenia_idle_2:
+  id: 3086
+chisel:
+  id: 3102
+canister:
+  id: 3133
+cannon_ball:
+  id: 3134
+ramrod:
+  id: 3136
+hammer_14:
+  id: 3137
+repair_plank:
+  id: 3137
+null_28:
+  id: 3140
+null_29:
+  id: 3141
+linza_walk_2:
+  id: 3151
+linza_walk_3:
+  id: 3153
+linza_walk_4:
+  id: 3158
 mutated_jadinko_guard_walk2:
   id: 3165
 storm_cloud_walk:
-  id: 3169
+  id: 3167
 storm_cloud_idle:
   id: 3168
+storm_cloud_walk_2:
+  id: 3169
+alrena_idle_2:
+  id: 3185
 bravek_idle:
   id: 3186
-clay_familiar_(class_5)_run:
+clay_familiar_class_5_run:
   id: 3190
 geyser_titan_run:
   id: 3193
 swamp_titan_run:
   id: 3194
+stick_8:
+  id: 3195
 engineering_assistant_walk:
   id: 3207
 engineering_assistant_idle:
@@ -940,6 +1810,10 @@ big_ben_idle:
   id: 3212
 mutated_jadinko_male_walk_back:
   id: 3213
+linza_walk_5:
+  id: 3218
+straight_root:
+  id: 3235
 swan_walk:
   id: 3241
 swan_idle:
@@ -948,26 +1822,66 @@ sweeper_idle:
   id: 3244
 sweeper_walk:
   id: 3245
+dragon_hatchet_3:
+  id: 3260
+rune_hatchet_3:
+  id: 3261
+adamant_hatchet_3:
+  id: 3262
+mithril_hatchet_3:
+  id: 3263
+farmer_idle_2:
+  id: 3269
 farmer_walk:
-  id: 9724
+  id: 3270
 farmer_step_left:
   id: 3271
 farmer_step_right:
-  id: 9738
+  id: 3272
 martina_scorsby_idle:
   id: 3281
 jeremy_clerksin_idle:
   id: 3282
+vial_2:
+  id: 3283
+black_hatchet_3:
+  id: 3284
+steel_hatchet_3:
+  id: 3292
+juju_hunter_potion_4:
+  id: 3307
 baby_mole_idle:
   id: 3309
 baby_mole_walk:
   id: 3313
+iron_hatchet_3:
+  id: 3323
+bronze_hatchet_2:
+  id: 3324
+inferno_adze:
+  id: 3325
+sacred_clay_hatchet_2:
+  id: 3326
 count_draynor_idle:
   id: 3330
 count_draynor_walk:
   id: 3333
-k'klik_idle:
+magic_secateurs:
+  id: 3337
+magic_secateurs_2:
+  id: 3338
+magic_secateurs_3:
+  id: 3339
+magic_secateurs_4:
+  id: 3340
+magic_secateurs_5:
+  id: 3341
+magic_secateurs_6:
+  id: 3342
+kklik_idle:
   id: 3346
+brulee:
+  id: 3348
 void_ravager_run:
   id: 3356
 culinaromancer_step_right:
@@ -990,12 +1904,16 @@ monarchist_walk:
   id: 3379
 awowogei_walk:
   id: 3390
+volatile_clay_hatchet_2:
+  id: 3394
 general_wartface_walk:
   id: 3395
+dwarven_rock_cake:
+  id: 3399
 goblin_cook_walk:
   id: 3401
 giant_crab_idle:
-  id: 8098
+  id: 3424
 crab_walk:
   id: 3426
 mudskipper_idle:
@@ -1003,12 +1921,18 @@ mudskipper_idle:
 mudskipper_walk:
   id: 3432
 fish_walk:
-  id: 10427
+  id: 3441
 fish_idle:
+  id: 3442
+fish_walk_2:
+  id: 3443
+fish_idle_2:
   id: 3444
 mining_tutor_idle:
   id: 3461
 balloon_toad_walk:
+  id: 3469
+balloon_toad_walk_2:
   id: 3472
 pauline_polaris_walk2:
   id: 3480
@@ -1030,24 +1954,34 @@ mizaru_idle:
   id: 3525
 sea_snake_hatchling_idle:
   id: 3535
+hardened_straight_root_2:
+  id: 3536
 sea_snake_hatchling_walk:
   id: 3537
 vampyre_juvinate_idle:
-  id: 5836
+  id: 3551
+guthix_balance_3:
+  id: 3553
 luminata_idle:
   id: 3557
 gadderanks_idle:
   id: 3563
+empty_pot_2:
+  id: 3564
+silvthrill_rod:
+  id: 3566
 sheep_walk:
-  id: 5340
+  id: 3568
 sheep_idle:
-  id: 5339
+  id: 3569
 mutated_jadinko_guard_walk_back:
   id: 3571
 elemental_balance_idle:
   id: 3584
 man_run:
   id: 3589
+hoop:
+  id: 3602
 will_idle:
   id: 3605
 will_walk:
@@ -1057,7 +1991,47 @@ head_guard_walk:
 sergeant-at-arms_walk:
   id: 3609
 tentacle_walk:
-  id: 3729
+  id: 3617
+kettle:
+  id: 3625
+paintbrush:
+  id: 3655
+rusty_sword:
+  id: 3657
+tinderbox_2:
+  id: 3658
+beer_glass_6:
+  id: 3660
+beer_6:
+  id: 3661
+asgarnian_ale:
+  id: 3662
+greenmans_ale:
+  id: 3663
+dragon_bitter:
+  id: 3664
+moonlight_mead:
+  id: 3665
+cider:
+  id: 3666
+hammer_15:
+  id: 3676
+hammer_16:
+  id: 3683
+hammer_17:
+  id: 3684
+tinderbox_3:
+  id: 3687
+boxing_gloves:
+  id: 3689
+boxing_gloves_2:
+  id: 3690
+empty_cup:
+  id: 3702
+porcelain_cup:
+  id: 3703
+porcelain_cup_2:
+  id: 3704
 rocnar_idle:
   id: 3707
 rocnar_walk:
@@ -1075,7 +2049,19 @@ toy_mouse_walk:
 sir_renitee_idle:
   id: 3719
 head_walk:
+  id: 3728
+tentacle_walk_2:
+  id: 3729
+head_walk_2:
   id: 3730
+branch:
+  id: 3734
+null_30:
+  id: 3739
+short_vine:
+  id: 3740
+knife_9:
+  id: 3747
 fear_reaper_walk:
   id: 3809
 fear_reaper_idle:
@@ -1100,14 +2086,30 @@ morris_idle:
   id: 3845
 culinaromancer_idle:
   id: 3846
+easter_bunny_walk_2:
+  id: 3851
+easter_bunny_idle_2:
+  id: 3852
+egg_walk_2:
+  id: 3853
+easter_egg:
+  id: 3860
+easter_egg_2:
+  id: 3861
+easter_egg_3:
+  id: 3862
+easter_egg_4:
+  id: 3863
 geoffrey_step_right:
   id: 3865
 geoffrey_idle:
   id: 3866
 rabbit_walk:
-  id: 6088
+  id: 3871
 rabbit_idle:
-  id: 8737
+  id: 3872
+hammer_18:
+  id: 3877
 torcher_idle:
   id: 3878
 torcher_walk:
@@ -1125,9 +2127,9 @@ shifter_walk:
 shifter_idle:
   id: 3899
 spinner_idle:
-  id: 8171
+  id: 3906
 spinner_walk:
-  id: 8175
+  id: 3907
 ravager_idle:
   id: 3913
 ravager_walk:
@@ -1136,12 +2138,22 @@ defiler_idle:
   id: 3918
 defiler_walk:
   id: 3919
+sacred_clay_hammer_3:
+  id: 3923
 ball_walk:
   id: 3925
 void_knight_idle:
   id: 3926
 portal_walk:
-  id: 6880
+  id: 3928
+hammer_19:
+  id: 3931
+portal_walk_2:
+  id: 3933
+portal_walk_3:
+  id: 3936
+volatile_clay_hammer_3:
+  id: 3943
 postie_pete_walk:
   id: 3947
 postie_pete_idle:
@@ -1164,6 +2176,8 @@ guard_dog_walk2:
   id: 3967
 wise_old_man_idle:
   id: 3970
+hammer_20:
+  id: 3971
 battlemaster_walk:
   id: 3983
 sea_troll_queen_idle:
@@ -1172,14 +2186,202 @@ milk_seller_step_right:
   id: 3997
 suspect_walk:
   id: 3999
+dragon_hatchet_4:
+  id: 4008
+rune_hatchet_4:
+  id: 4011
+adamant_hatchet_4:
+  id: 4012
+mithril_hatchet_4:
+  id: 4017
 ferd_idle:
   id: 4021
+golden_hammer_3:
+  id: 4030
+steel_hatchet_4:
+  id: 4031
+iron_hatchet_4:
+  id: 4036
 giant_sea_snake_walk:
   id: 4037
+staff_of_air:
+  id: 4043
+staff_of_air_2:
+  id: 4044
+staff_of_earth:
+  id: 4045
+staff_of_earth_2:
+  id: 4046
+staff_of_water:
+  id: 4047
+staff_of_water_2:
+  id: 4048
+staff_of_fire:
+  id: 4049
+staff_of_fire_2:
+  id: 4050
+air_battlestaff:
+  id: 4051
+air_battlestaff_2:
+  id: 4052
+earth_battlestaff:
+  id: 4053
+earth_battlestaff_2:
+  id: 4054
+water_battlestaff:
+  id: 4055
+water_battlestaff_2:
+  id: 4056
+fire_battlestaff:
+  id: 4057
+fire_battlestaff_2:
+  id: 4058
+mystic_air_staff:
+  id: 4059
+mystic_air_staff_2:
+  id: 4060
+mystic_earth_staff:
+  id: 4061
+mystic_earth_staff_2:
+  id: 4062
+mystic_water_staff:
+  id: 4063
+mystic_water_staff_2:
+  id: 4064
+mystic_fire_staff:
+  id: 4065
+mystic_fire_staff_2:
+  id: 4066
+starved_ancient_effigy:
+  id: 4067
+starved_ancient_effigy_2:
+  id: 4068
+null_31:
+  id: 4073
+null_32:
+  id: 4074
+null_33:
+  id: 4075
+null_34:
+  id: 4076
+bronze_hatchet_3:
+  id: 4077
+sacred_clay_hatchet_3:
+  id: 4078
+null_35:
+  id: 4079
+null_36:
+  id: 4080
+null_37:
+  id: 4081
+null_38:
+  id: 4082
+null_39:
+  id: 4083
+null_40:
+  id: 4084
+null_41:
+  id: 4085
+null_42:
+  id: 4086
+null_43:
+  id: 4087
 giles_walk:
   id: 4087
+null_44:
+  id: 4088
+null_45:
+  id: 4089
+null_46:
+  id: 4090
+null_47:
+  id: 4091
+null_48:
+  id: 4092
+null_49:
+  id: 4093
+null_50:
+  id: 4094
+null_51:
+  id: 4095
+null_52:
+  id: 4096
+null_53:
+  id: 4097
+null_54:
+  id: 4098
+null_55:
+  id: 4099
+null_56:
+  id: 4100
+null_57:
+  id: 4101
+null_58:
+  id: 4102
+null_59:
+  id: 4107
+null_60:
+  id: 4108
+null_61:
+  id: 4109
+null_62:
+  id: 4110
+null_63:
+  id: 4111
+null_64:
+  id: 4112
+null_65:
+  id: 4113
+null_66:
+  id: 4114
+null_67:
+  id: 4115
+null_68:
+  id: 4116
+null_69:
+  id: 4117
+volatile_clay_hatchet_3:
+  id: 4137
+null_70:
+  id: 4141
+null_71:
+  id: 4142
+null_72:
+  id: 4143
+null_73:
+  id: 4144
+null_74:
+  id: 4145
+null_75:
+  id: 4146
+null_76:
+  id: 4147
+null_77:
+  id: 4148
+null_78:
+  id: 4149
+null_79:
+  id: 4150
+null_80:
+  id: 4151
+null_81:
+  id: 4152
+null_82:
+  id: 4153
+null_83:
+  id: 4154
 vanstrom_klause_idle:
-  id: 8562
+  id: 4158
+sacred_clay_hammer_4:
+  id: 4176
+dragon_pickaxe_2:
+  id: 4181
+rune_pickaxe_2:
+  id: 4182
+adamant_pickaxe_2:
+  id: 4183
+hammer_21:
+  id: 4190
 h.a.m._deacon_idle:
   id: 4208
 nardok_idle:
@@ -1192,6 +2394,12 @@ cave_horror_idle:
   id: 4231
 cave_horror_walk:
   id: 4236
+mithril_pickaxe_2:
+  id: 4243
+bucket_7:
+  id: 4255
+torch:
+  id: 4258
 parrot_idle:
   id: 4259
 minotaur_walk:
@@ -1202,6 +2410,8 @@ catablepon_walk:
   id: 4268
 catablepon_idle:
   id: 4269
+impious_urn_full:
+  id: 4292
 gorak_walk:
   id: 4298
 gorak_idle:
@@ -1215,15 +2425,53 @@ bree_walk:
 bree_idle:
   id: 4311
 starflower_idle:
+  id: 4314
+starflower_idle_2:
   id: 4315
 spiritual_mage_idle:
   id: 4318
 spiritual_mage_walk:
   id: 4319
+steel_pickaxe_2:
+  id: 4321
+iron_pickaxe_2:
+  id: 4329
+bronze_pickaxe_3:
+  id: 4330
+gilded_dragon_pickaxe_6:
+  id: 4343
+null_84:
+  id: 4348
+null_85:
+  id: 4348
+null_86:
+  id: 4349
+null_87:
+  id: 4349
+null_88:
+  id: 4350
+null_89:
+  id: 4350
+gilded_rune_pickaxe_7:
+  id: 4362
+emerald_lantern:
+  id: 4368
+emerald_lantern_2:
+  id: 4369
+gilded_adamant_pickaxe_7:
+  id: 4370
 enchanted_broom_walk:
   id: 4372
+gilded_mithril_pickaxe_7:
+  id: 4373
 enchanted_bucket_walk:
   id: 4374
+gilded_steel_pickaxe_7:
+  id: 4376
+gilded_iron_pickaxe_7:
+  id: 4378
+gilded_bronze_pickaxe_7:
+  id: 4379
 suqah_walk:
   id: 4383
 suqah_idle:
@@ -1232,6 +2480,16 @@ house_walk:
   id: 4390
 house_idle:
   id: 4391
+sacred_clay_pickaxe:
+  id: 4400
+volatile_clay_pickaxe:
+  id: 4401
+inferno_adze_2:
+  id: 4402
+dwarven_army_axe_6:
+  id: 4405
+dramen_staff:
+  id: 4406
 troll_ranger_step_right:
   id: 4415
 sirsal_banker_walk:
@@ -1244,22 +2502,204 @@ pauline_polaris_step_left:
   id: 4428
 pauline_polaris_step_right:
   id: 4429
+null_90:
+  id: 4433
+knife_10:
+  id: 4433
+bronze_limbs:
+  id: 4436
+wooden_stock:
+  id: 4436
+blurite_limbs:
+  id: 4437
+oak_stock:
+  id: 4437
+iron_limbs:
+  id: 4438
+willow_stock:
+  id: 4438
+steel_limbs:
+  id: 4439
+teak_stock:
+  id: 4439
+mithril_limbs:
+  id: 4440
+maple_stock:
+  id: 4440
+adamantite_limbs:
+  id: 4441
+mahogany_stock:
+  id: 4441
+runite_limbs:
+  id: 4442
+yew_stock:
+  id: 4442
+steel_crossbow_3:
+  id: 4455
 automaton_idle:
-  id: 15321
+  id: 4457
 automaton_walk:
-  id: 15320
+  id: 4458
+automaton_walk_2:
+  id: 4459
+chisel_2:
+  id: 4470
+oyster_pearl:
+  id: 4470
+bucket_8:
+  id: 4471
+null_91:
+  id: 4479
+null_92:
+  id: 4480
+null_93:
+  id: 4481
+null_94:
+  id: 4482
+null_95:
+  id: 4483
+null_96:
+  id: 4484
+null_97:
+  id: 4485
+null_98:
+  id: 4486
+null_99:
+  id: 4487
+null_100:
+  id: 4488
+null_101:
+  id: 4489
+null_102:
+  id: 4490
+null_103:
+  id: 4491
+null_104:
+  id: 4492
+null_105:
+  id: 4493
+null_106:
+  id: 4494
+null_107:
+  id: 4495
+null_108:
+  id: 4496
+null_109:
+  id: 4497
+null_110:
+  id: 4498
+null_111:
+  id: 4499
+null_112:
+  id: 4500
+null_113:
+  id: 4501
+null_114:
+  id: 4502
+null_115:
+  id: 4503
+null_116:
+  id: 4504
+null_117:
+  id: 4505
+null_118:
+  id: 4506
+null_119:
+  id: 4507
+null_120:
+  id: 4508
+null_121:
+  id: 4509
+null_122:
+  id: 4510
+null_123:
+  id: 4511
+null_124:
+  id: 4512
+null_125:
+  id: 4513
+null_126:
+  id: 4514
+null_127:
+  id: 4515
+null_128:
+  id: 4516
+null_129:
+  id: 4517
+null_130:
+  id: 4518
+null_131:
+  id: 4519
+null_132:
+  id: 4520
+null_133:
+  id: 4521
+null_134:
+  id: 4522
+null_135:
+  id: 4523
+null_136:
+  id: 4524
+null_137:
+  id: 4525
+null_138:
+  id: 4526
+null_139:
+  id: 4527
+null_140:
+  id: 4528
+null_141:
+  id: 4529
+null_142:
+  id: 4530
+null_143:
+  id: 4531
+null_144:
+  id: 4532
+null_145:
+  id: 4533
+null_146:
+  id: 4534
 gianne_jnr_idle:
   id: 4536
 dalila_idle:
   id: 4537
 perrdur_idle:
   id: 4538
+accursed_urn_full:
+  id: 4541
+infernal_urn_full:
+  id: 4542
+dossier:
+  id: 4549
+null_147:
+  id: 4567
+impious_urn_nr:
+  id: 4567
+null_148:
+  id: 4569
+accursed_urn_nr:
+  id: 4569
+null_149:
+  id: 4578
+infernal_urn_nr:
+  id: 4578
+cracked_smelting_urn_full:
+  id: 4580
+guard_idle_2:
+  id: 4591
+rock_pick:
+  id: 4592
 nisha_idle:
+  id: 4593
+panning_tray:
   id: 4593
 nick_idle:
   id: 4594
 blue_warrior_idle:
   id: 4607
+beer_7:
+  id: 4611
 weakened_delrith_idle:
   id: 4619
 jayene_kliyn_walk:
@@ -1279,12 +2719,18 @@ hill_giant_walk:
 hill_giant_idle:
   id: 4650
 moss_giant_walk:
+  id: 4654
+moss_giant_walk_2:
   id: 4655
 moss_giant_idle:
   id: 4656
 fire_giant_walk:
+  id: 4660
+fire_giant_walk_2:
   id: 4661
 fire_giant_idle:
+  id: 4662
+fire_giant_idle_2:
   id: 4663
 ice_giant_walk:
   id: 4669
@@ -1295,13 +2741,15 @@ blue_ranger_walk:
 blue_mage_walk:
   id: 4680
 vyrewatch_walk:
-  id: 9114
+  id: 4683
 blue_mage_idle:
   id: 4688
 vyrewatch_idle:
-  id: 9117
+  id: 4689
 vampyre_juvinate_walk:
   id: 4699
+vampyre_juvinate_idle_2:
+  id: 4711
 meiyerditch_citizen_idle:
   id: 4712
 shanty_claws_idle:
@@ -1312,36 +2760,70 @@ boat_idle:
   id: 4755
 boat_walk:
   id: 4756
+hammer_22:
+  id: 4757
 protester_walk:
-  id: 11173
+  id: 4759
+rune_pickaxe_3:
+  id: 4760
+bronze_pickaxe_4:
+  id: 4761
+iron_pickaxe_3:
+  id: 4762
+steel_pickaxe_3:
+  id: 4763
+adamant_pickaxe_3:
+  id: 4764
+mithril_pickaxe_3:
+  id: 4765
+dragon_pickaxe_3:
+  id: 4766
 stray_dog_walk:
   id: 4773
 stray_dog_idle:
   id: 4777
 fisherman_walk:
   id: 4779
-col._o'niall_idle:
+col._oniall_idle:
   id: 4780
 holgart_walk:
   id: 4787
 holgart_idle:
   id: 4788
 kennith_walk:
-  id: 8811
+  id: 4789
+torch_2:
+  id: 4791
+null_150:
+  id: 4793
+volatile_clay_hammer_4:
+  id: 4794
+chisel_3:
+  id: 4794
+mother_mallum_idle_5:
+  id: 4819
 mother_mallum_walk:
   id: 4820
 slug_prince_walk:
   id: 4821
 jeb_walk:
   id: 4824
+fisherman_idle_2:
+  id: 4825
 slug_prince_idle:
   id: 4828
+volatile_clay_hammer_5:
+  id: 4838
 jallek_lenkin_idle:
   id: 4857
 gee_walk:
   id: 4858
 fritz_the_glassblower_walk2:
   id: 4859
+a_stone_bowl:
+  id: 4862
+needle_4:
+  id: 4863
 elemental_rock_walk:
   id: 4864
 earth_elemental_idle:
@@ -1350,6 +2832,12 @@ earth_elemental_walk:
   id: 4867
 ballista_walk2:
   id: 4872
+flare:
+  id: 4874
+giant_bat_walk_2:
+  id: 4913
+giant_bat_idle_2:
+  id: 4914
 arctic_bear_idle:
   id: 4919
 bear_cub_idle:
@@ -1362,6 +2850,30 @@ rat_walk:
   id: 4931
 rat_idle:
   id: 4932
+rune_pickaxe_4:
+  id: 4941
+hammer_23:
+  id: 4943
+null_151:
+  id: 4949
+null_152:
+  id: 4949
+null_153:
+  id: 4953
+null_154:
+  id: 4955
+null_155:
+  id: 4957
+null_156:
+  id: 4961
+null_157:
+  id: 4961
+watering_can:
+  id: 4963
+null_158:
+  id: 4969
+longbow:
+  id: 4973
 troll_ranger_run:
   id: 4990
 giant_roc_idle:
@@ -1374,6 +2886,10 @@ baby_roc_walk:
   id: 5030
 cart_camel_idle:
   id: 5044
+null_159:
+  id: 5050
+snowball:
+  id: 5063
 gublinch_walk:
   id: 5069
 gublinch_idle:
@@ -1394,6 +2910,8 @@ penance_healer_idle:
   id: 5104
 penance_healer_walk:
   id: 5107
+null_160:
+  id: 5108
 bob_idle:
   id: 5146
 curly_idle:
@@ -1401,7 +2919,7 @@ curly_idle:
 moe_idle:
   id: 5148
 larry_idle:
-  id: 11740
+  id: 5149
 bob_walk:
   id: 5150
 curly_walk:
@@ -1409,7 +2927,9 @@ curly_walk:
 moe_walk:
   id: 5152
 larry_walk:
-  id: 11741
+  id: 5153
+sandbag:
+  id: 5155
 matthias_idle:
   id: 5160
 yambo_walk2:
@@ -1430,12 +2950,36 @@ carnivorous_chinchompa_idle:
   id: 5182
 gyr_falcon_idle:
   id: 5202
+null_161:
+  id: 5210
+null_162:
+  id: 5213
 dawg_idle:
   id: 5225
 dawg_walk:
   id: 5226
+teasing_stick:
+  id: 5236
+needle_5:
+  id: 5243
+knife_11:
+  id: 5244
 chaos_elemental_idle:
   id: 5248
+herb_bowl_2:
+  id: 5249
+grinder_2:
+  id: 5249
+noose_wand:
+  id: 5255
+null_163:
+  id: 5256
+null_164:
+  id: 5257
+null_165:
+  id: 5258
+null_166:
+  id: 5259
 swamp_lizard_walk:
   id: 5262
 swamp_lizard_idle:
@@ -1450,6 +2994,8 @@ kebbit_walk:
   id: 5301
 kebbit_idle:
   id: 5302
+boulder_walk_2:
+  id: 5309
 boulder_idle:
   id: 5310
 huge_spider_walk:
@@ -1462,16 +3008,54 @@ jungle_spider_idle:
   id: 5326
 jungle_spider_walk:
   id: 5333
+sheep_walk_2:
+  id: 5334
+sheep_idle_2:
+  id: 5335
+sheep_idle_3:
+  id: 5339
+sheep_walk_3:
+  id: 5340
 golden_sheep_walk:
   id: 5344
 golden_sheep_idle:
   id: 5345
-alice's_husband_idle:
+null_167:
+  id: 5349
+scroll:
+  id: 5354
+magic_ogre_potion:
+  id: 5361
+undead_chicken:
+  id: 5363
+undead_chicken_2:
+  id: 5364
+hammer_24:
+  id: 5365
+selected_iron:
+  id: 5365
+mithril_hatchet_5:
+  id: 5366
+adamant_hatchet_5:
+  id: 5367
+rune_hatchet_5:
+  id: 5368
+dragon_hatchet_5:
+  id: 5369
+alices_husband_idle:
   id: 5371
-alice's_husband_walk:
+empty_sack:
+  id: 5371
+empty_sack_2:
+  id: 5373
+alices_husband_walk:
   id: 5373
 ice_troll_king_walk:
   id: 5379
+blessed_hatchet:
+  id: 5383
+blessed_hatchet_2:
+  id: 5384
 rooster_walk:
   id: 5385
 dreadfowl_idle:
@@ -1480,49 +3064,75 @@ penance_ranger_idle:
   id: 5393
 penance_ranger_walk:
   id: 5394
+healing_vial_2:
+  id: 5400
 penance_queen_walk:
   id: 5409
 penance_queen_idle:
   id: 5410
+hammer_25:
+  id: 5416
+hammer_26:
+  id: 5417
 egg_launcher_idle:
   id: 5424
+undead_chicken_3:
+  id: 5438
+undead_chicken_4:
+  id: 5439
 flippa_walk:
   id: 5440
+undead_chicken_5:
+  id: 5441
 chaos_elemental_walk:
   id: 5442
 giant_scarab_walk:
-  id: 7592
+  id: 5454
 giant_scarab_idle:
-  id: 7593
+  id: 5455
 bolrie_idle:
   id: 5471
 corpse_walk:
   id: 5479
 skeleton_walk:
-  id: 12862
+  id: 5481
 skeleton_idle:
-  id: 12883
+  id: 5483
 giant_skeleton_idle:
   id: 5493
+skeleton_idle_2:
+  id: 5495
+skeleton_walk_2:
+  id: 5497
 mummy_champion_idle:
   id: 5504
 nazastarool_idle:
-  id: 5572
+  id: 5505
 nazastarool_walk:
   id: 5506
 skeleton_champion_idle:
   id: 5510
 skeleton_champion_walk:
   id: 5511
+skeleton_idle_3:
+  id: 5517
+skeleton_walk_3:
+  id: 5518
 ghost_idle:
-  id: 5538
+  id: 5530
 ghost_walk:
+  id: 5531
+ghost_idle_2:
+  id: 5538
+ghost_walk_2:
   id: 5539
 mummy_idle:
-  id: 6856
+  id: 5548
 mummy_warrior_idle:
   id: 5551
 mummy_walk:
+  id: 5552
+mummy_walk_2:
   id: 5553
 mummy_warrior_walk:
   id: 5557
@@ -1533,13 +3143,19 @@ dead_swamp_snake_step_right:
 mummy_ashes_walk:
   id: 5563
 zombie_idle:
-  id: 6855
+  id: 5565
 zombie_walk:
-  id: 5577
+  id: 5566
 armoured_zombie_walk:
   id: 5570
+nazastarool_idle_2:
+  id: 5572
 zombie_champion_idle:
   id: 5573
+zombie_idle_2:
+  id: 5576
+zombie_walk_2:
+  id: 5577
 zombie_champion_walk:
   id: 5582
 zombie_protester_walk:
@@ -1558,6 +3174,8 @@ animated_spade_idle:
   id: 5594
 animated_spade_walk:
   id: 5595
+banker_walk_2:
+  id: 5606
 banker_idle:
   id: 5607
 mutant_tarn_walk:
@@ -1568,22 +3186,28 @@ terror_dog_walk:
   id: 5622
 terror_dog_idle:
   id: 5623
+tarns_diary:
+  id: 5637
 general_malpractitioner_idle:
   id: 5641
 general_malpractitioner_walk:
   id: 5642
 zombie_pirate_walk:
-  id: 5887
+  id: 5645
 zombie_pirate_idle:
-  id: 5888
+  id: 5646
+zombie_pirate_idle_2:
+  id: 5650
+zombie_pirate_walk_2:
+  id: 5652
 captain_donnie_walk:
   id: 5655
 captain_donnie_idle:
   id: 5656
 penguin_walk:
-  id: 8317
+  id: 5666
 penguin_idle:
-  id: 11750
+  id: 5668
 ping_walk:
   id: 5673
 pong_walk:
@@ -1592,27 +3216,55 @@ army_commander_walk:
   id: 5676
 army_commander_idle:
   id: 5677
+penguin_idle_2:
+  id: 5680
+penguin_idle_3:
+  id: 5682
+penguin_idle_4:
+  id: 5685
 chuck_walk:
   id: 5719
 chuck_idle:
-  id: 11714
+  id: 5720
 icelord_walk:
   id: 5721
 icelord_idle:
   id: 5722
+spade_5:
+  id: 5746
 delgon_idle:
   id: 5751
 tolna_idle:
   id: 5752
+hammer_27:
+  id: 5754
+knife_12:
+  id: 5756
+a_jester_stick:
+  id: 5762
+apricot_cream_pie:
+  id: 5763
 tilt_walk:
   id: 5769
 iceberg_walk:
   id: 5770
+decapitated_head:
+  id: 5777
+decapitated_head_2:
+  id: 5778
+rune_hatchet_6:
+  id: 5781
 zombie_step_left:
-  id: 5792
+  id: 5788
 zombie_step_right:
-  id: 5791
+  id: 5789
 zombie_walk_back:
+  id: 5790
+zombie_step_right_2:
+  id: 5791
+zombie_step_left_2:
+  id: 5792
+zombie_walk_back_2:
   id: 5793
 sanchez_walk:
   id: 5799
@@ -1622,28 +3274,40 @@ winter_elemental_walk:
   id: 5802
 winter_elemental_idle:
   id: 5803
+tool_leprechaun_idle_2:
+  id: 5804
 shamus_idle:
   id: 5806
+tool_leprechaun_idle_3:
+  id: 5808
 sin_seer_walk:
   id: 5809
 sin_seer_idle:
   id: 5810
+severed_leg:
+  id: 5812
 bonafido_idle:
   id: 5814
-'''no_fingers''_idle':
+no_fingers_idle:
   id: 5815
-'''gummy''_idle':
+gummy_idle:
   id: 5816
-'''black-eye''_idle':
+black-eye_idle:
   id: 5817
 mushroom_idle:
   id: 5821
 sea_troll_general_idle:
   id: 5826
+tea_flask:
+  id: 5827
+tea_flask_2:
+  id: 5827
 homunculus_idle:
   id: 5831
 homunculus_walk:
   id: 5832
+vampyre_juvinate_idle_3:
+  id: 5836
 huge_troll_idle:
   id: 5837
 sea_troll_general_walk:
@@ -1652,42 +3316,78 @@ frogeel_idle:
   id: 5839
 frogeel_walk:
   id: 5840
+hammer_28:
+  id: 5846
 mi-gor_walk:
   id: 5858
 mi-gor_idle:
   id: 5859
+wolf_whistle:
+  id: 5863
+prayer_book:
+  id: 5864
+barrelchest_anchor:
+  id: 5865
+barrelchest_anchor_2:
+  id: 5866
+barrelchest_anchor_3:
+  id: 5870
 puffin_walk:
   id: 5872
 puffin_idle:
   id: 5873
 brother_tranquility_idle:
   id: 5875
+monk_walk_2:
+  id: 5876
+monk_idle_2:
+  id: 5877
+zombie_pirate_walk_3:
+  id: 5878
+zombie_pirate_idle_3:
+  id: 5879
+zombie_pirate_walk_4:
+  id: 5882
+zombie_pirate_idle_4:
+  id: 5883
+zombie_pirate_walk_5:
+  id: 5887
+zombie_pirate_idle_5:
+  id: 5888
 barrelchest_mk_ii_walk:
   id: 5892
 barrelchest_mk_ii_idle:
   id: 5893
+hammer_29:
+  id: 5907
 undead_lumberjack_walk:
-  id: 5969
+  id: 5965
+undead_lumberjack_walk_2:
+  id: 5966
+undead_lumberjack_walk_3:
+  id: 5967
 vampyre_juvinate_walk_back:
   id: 5968
+undead_lumberjack_walk_4:
+  id: 5969
 undead_lumberjack_idle:
   id: 5973
-rachel_(well)_walk:
+rachel_well_walk:
   id: 5974
-rachel_(sick)_walk:
+rachel_sick_walk:
   id: 5975
-rachel_(very_sick)_walk:
+rachel_very_sick_walk:
   id: 5976
-rachel_(ghastly!)_walk:
+rachel_ghastly_walk:
   id: 5977
 talon_beast_idle:
   id: 5986
 talon_beast_walk:
   id: 5987
 zanik_idle:
-  id: 11390
+  id: 5994
 zanik_walk:
-  id: 6215
+  id: 5995
 cave_goblin_miner_idle:
   id: 6004
 cave_goblin_miner_walk:
@@ -1700,8 +3400,10 @@ molanisk_walk:
   id: 6011
 moths_walk:
   id: 6036
+zanik_idle_2:
+  id: 6040
 zanik_step_right:
-  id: 11391
+  id: 6041
 jobo_walk:
   id: 6042
 crate_goblin_idle:
@@ -1712,6 +3414,8 @@ goblin_scribe_idle:
   id: 6045
 goblin_scribe_walk:
   id: 6046
+steel_pickaxe_4:
+  id: 6051
 kenti_idle:
   id: 6052
 kenti_walk:
@@ -1719,6 +3423,8 @@ kenti_walk:
 nipper_walk:
   id: 6057
 nipper_idle:
+  id: 6058
+nipper_idle_2:
   id: 6059
 spit_goblin_idle:
   id: 6060
@@ -1730,20 +3436,52 @@ cave_bug_walk:
   id: 6077
 cave_bug_idle:
   id: 6078
+slayer_bell:
+  id: 6083
+opal_machete_5:
+  id: 6085
+jade_machete_5:
+  id: 6086
+red_topaz_machete_5:
+  id: 6087
+rabbit_walk_2:
+  id: 6088
+rabbit_idle_2:
+  id: 6089
+rats_paper:
+  id: 6096
+bronze_pickaxe_5:
+  id: 6102
+wand:
+  id: 6104
 bench_idle:
   id: 6106
 ulfric_walk:
   id: 6112
 ulfric_idle:
-  id: 6126
+  id: 6113
 brine_rat_walk:
   id: 6114
+boulder_walk_3:
+  id: 6120
+ulfric_idle_2:
+  id: 6126
 brine_rat_idle:
   id: 6127
+null_168:
+  id: 6133
+null_169:
+  id: 6134
+null_170:
+  id: 6135
 goblin_walk:
-  id: 6201
+  id: 6138
 goblin_idle:
-  id: 6859
+  id: 6139
+goblin_idle_2:
+  id: 6140
+goblin_walk_2:
+  id: 6141
 sigmund_and_zanik_walk:
   id: 6150
 sigmund_and_zanik_idle:
@@ -1756,16 +3494,34 @@ grubfoot_step_right:
   id: 6180
 grubfoot_walk2:
   id: 6181
+goblin_idle_3:
+  id: 6186
 junior_cadet_grimeface_walk:
   id: 6187
+goblin_walk_3:
+  id: 6193
+null_171:
+  id: 6194
+goblin_idle_4:
+  id: 6200
+goblin_walk_4:
+  id: 6201
 general_bentnoze_walk:
-  id: 9650
+  id: 6202
 general_bentnoze_idle:
   id: 6203
 builder_idle:
-  id: 6208
+  id: 6205
+builder_idle_2:
+  id: 6206
 baden_idle:
   id: 6207
+builder_idle_3:
+  id: 6208
+zanik_walk_2:
+  id: 6215
+null_172:
+  id: 6217
 kalphite_larva_idle:
   id: 6218
 kalphite_guardian_idle:
@@ -1781,6 +3537,8 @@ angry_juvinate_walk_back:
 angry_juvinate_idle:
   id: 6231
 kalphite_queen_walk:
+  id: 6236
+kalphite_queen_walk_2:
   id: 6238
 kalphite_queen_idle:
   id: 6239
@@ -1796,10 +3554,14 @@ lobster_idle:
   id: 6263
 lobster_walk:
   id: 6264
+tool_leprechaun_idle_4:
+  id: 6268
 fallen_man_walk:
+  id: 6280
+fallen_man_walk_2:
   id: 6282
 cyrisus_walk:
-  id: 10973
+  id: 6284
 a_doubt_idle:
   id: 6311
 a_doubt_walk:
@@ -1813,13 +3575,23 @@ nex_idle:
 the_untouchable_walk:
   id: 6328
 the_illusive_idle:
-  id: 6350
+  id: 6338
 the_illusive_walk:
   id: 6339
 the_everlasting_idle:
   id: 6343
 the_everlasting_walk:
   id: 6344
+the_illusive_idle_2:
+  id: 6350
+null_173:
+  id: 6362
+black_hatchet_4:
+  id: 6364
+arctic_pine_logs:
+  id: 6364
+null_174:
+  id: 6367
 giant_champion_idle:
   id: 6371
 giant_champion_walk:
@@ -1828,24 +3600,62 @@ unicorn_stallion_walk:
   id: 6373
 unicorn_stallion_idle:
   id: 6374
+fragile_smelting_urn_full:
+  id: 6380
+smelting_urn_full:
+  id: 6381
+strong_smelting_urn_full:
+  id: 6382
+null_175:
+  id: 6384
+cracked_smelting_urn_nr:
+  id: 6384
+null_176:
+  id: 6385
+fragile_smelting_urn_nr:
+  id: 6385
+null_177:
+  id: 6386
+smelting_urn_nr:
+  id: 6386
+null_178:
+  id: 6387
+strong_smelting_urn_nr:
+  id: 6387
 art_critic_jacques_walk:
   id: 6388
 art_critic_jacques_idle:
   id: 6389
 museum_guard_idle:
-  id: 6464
+  id: 6390
 natural_historian_idle:
-  id: 11586
+  id: 6393
+cracked_fishing_urn_full:
+  id: 6394
 natural_historian_walk:
-  id: 11587
+  id: 6395
 teacher_and_pupil_walk:
-  id: 6412
+  id: 6410
 teacher_and_pupil_idle:
+  id: 6411
+teacher_and_pupil_walk_2:
+  id: 6412
+teacher_and_pupil_idle_2:
   id: 6413
 workman_walk:
-  id: 6420
+  id: 6414
 workman_idle:
-  id: 6456
+  id: 6415
+workman_walk_2:
+  id: 6418
+workman_walk_3:
+  id: 6419
+workman_walk_4:
+  id: 6420
+workman_idle_2:
+  id: 6422
+workman_idle_3:
+  id: 6423
 digsite_workman_idle:
   id: 6425
 leech_display_idle:
@@ -1866,22 +3676,56 @@ terrorbird_display_idle:
   id: 6443
 wyvern_display_idle:
   id: 6445
+null_179:
+  id: 6446
 battle_tortoise_display_idle:
   id: 6449
 mole_display_idle:
   id: 6451
+workman_idle_4:
+  id: 6454
 barge_workman_idle:
+  id: 6455
+workman_idle_5:
+  id: 6456
+barge_workman_idle_2:
   id: 6457
 barge_foreman_idle:
   id: 6458
+rock_pick_2:
+  id: 6459
+fragile_fishing_urn_full:
+  id: 6463
+museum_guard_idle_2:
+  id: 6464
 local_mage_walk:
   id: 6468
 local_mage_idle:
   id: 6469
+fishing_urn_full:
+  id: 6471
+strong_fishing_urn_full:
+  id: 6472
+decorated_fishing_urn_full:
+  id: 6473
+null_180:
+  id: 6474
+cracked_fishing_urn_nr:
+  id: 6474
+null_181:
+  id: 6475
+fragile_fishing_urn_nr:
+  id: 6475
 elsie_idle:
   id: 6478
+null_182:
+  id: 6480
+null_183:
+  id: 6483
 guard_walk:
-  id: 7731
+  id: 6486
+guard_idle_3:
+  id: 6487
 steel_dragon_idle:
   id: 6496
 glod_idle:
@@ -1893,21 +3737,27 @@ experiment_no.2_walk:
 experiment_no.2_idle:
   id: 6511
 mouse_walk:
-  id: 11546
+  id: 6517
 mouse_idle:
   id: 6518
+shrink-me-quick:
+  id: 6529
 queen_of_snow_walk:
   id: 6531
 miazrqa_walk_back:
   id: 6532
 gnome_idle:
-  id: 15269
+  id: 6533
 winkin_idle:
   id: 6534
+gnome_idle_2:
+  id: 6535
 agility_boss_idle:
   id: 6539
 moira_walk:
   id: 6541
+mystery_figure_idle_5:
+  id: 6542
 shadowy_figure_walk:
   id: 6544
 shadowy_figure_idle:
@@ -1928,20 +3778,166 @@ bouncer_walk:
   id: 6582
 dog_walk:
   id: 6583
+seed_dibber_2:
+  id: 6584
+null_184:
+  id: 6587
+statue_piece:
+  id: 6608
 impling_manager_idle:
   id: 6613
 impling_manager_walk:
   id: 6614
+statue_piece_2:
+  id: 6616
+null_185:
+  id: 6631
+null_186:
+  id: 6632
+null_187:
+  id: 6633
+elvargs_head:
+  id: 6655
+pet_rock_14:
+  id: 6664
+pet_rock_15:
+  id: 6665
+bronze_cbow_u:
+  id: 6671
+blurite_cbow_u:
+  id: 6672
+iron_cbow_u:
+  id: 6673
+steel_cbow_u:
+  id: 6674
+mithril_cbow_u:
+  id: 6675
+adamant_cbow_u:
+  id: 6676
+runite_cbow_u:
+  id: 6677
+shortbow_u:
+  id: 6678
+oak_shortbow_u:
+  id: 6679
+willow_shortbow_u:
+  id: 6680
+maple_shortbow_u:
+  id: 6681
+yew_shortbow_u:
+  id: 6682
+magic_shortbow_u:
+  id: 6683
+longbow_u:
+  id: 6684
+oak_longbow_u:
+  id: 6685
+willow_longbow_u:
+  id: 6686
+maple_longbow_u:
+  id: 6687
+yew_longbow_u:
+  id: 6688
+magic_longbow_u:
+  id: 6689
+dragonfire_shield:
+  id: 6700
+knife_13:
+  id: 6702
+null_188:
+  id: 6704
+null_189:
+  id: 6705
+null_190:
+  id: 6706
+null_191:
+  id: 6707
+null_192:
+  id: 6708
+null_193:
+  id: 6710
+null_194:
+  id: 6711
+hammer_30:
+  id: 6712
+null_195:
+  id: 6713
+null_196:
+  id: 6714
+null_197:
+  id: 6715
+null_198:
+  id: 6716
+null_199:
+  id: 6717
+null_200:
+  id: 6718
+null_201:
+  id: 6719
+null_202:
+  id: 6720
 vampyre_juvenile_idle:
   id: 6721
 ferocious_barbarian_spirit_idle:
   id: 6729
 ferocious_barbarian_spirit_walk:
   id: 6730
+rune_hatchet_7:
+  id: 6738
+adamant_hatchet_6:
+  id: 6739
+mithril_hatchet_6:
+  id: 6740
+black_hatchet_5:
+  id: 6741
+steel_hatchet_5:
+  id: 6742
+iron_hatchet_5:
+  id: 6743
+bronze_hatchet_4:
+  id: 6744
+dragon_hatchet_6:
+  id: 6745
+rune_pickaxe_5:
+  id: 6746
+bronze_pickaxe_6:
+  id: 6747
+iron_pickaxe_4:
+  id: 6748
+steel_pickaxe_5:
+  id: 6749
+adamant_pickaxe_4:
+  id: 6750
+mithril_pickaxe_4:
+  id: 6751
+rune_pickaxe_6:
+  id: 6752
+bronze_pickaxe_7:
+  id: 6753
+iron_pickaxe_5:
+  id: 6754
+steel_pickaxe_6:
+  id: 6755
+adamant_pickaxe_5:
+  id: 6756
+mithril_pickaxe_5:
+  id: 6757
+dragon_pickaxe_4:
+  id: 6758
 chompy_bird_idle:
   id: 6764
 chompy_bird_walk:
+  id: 6765
+chompy_bird_walk_2:
   id: 6768
+null_203:
+  id: 6769
+fishing_urn_nr:
+  id: 6769
+null_204:
+  id: 6770
+strong_fishing_urn_nr:
+  id: 6770
 gull_idle:
   id: 6771
 cormorant_idle:
@@ -1952,6 +3948,22 @@ cormorant_walk:
   id: 6774
 vampyre_juvenile_walk_back:
   id: 6780
+null_205:
+  id: 6784
+null_206:
+  id: 6786
+null_207:
+  id: 6789
+decorated_fishing_urn_nr:
+  id: 6789
+mounted_terrorbird_gnome_idle_2:
+  id: 6793
+cracked_cooking_urn_full:
+  id: 6794
+fragile_cooking_urn_full:
+  id: 6795
+mounted_terrorbird_gnome_step_right_2:
+  id: 6796
 terrorchick_idle:
   id: 6798
 terrorchick_step_right:
@@ -1998,12 +4010,28 @@ clothears_idle:
   id: 6836
 clerk_idle:
   id: 6841
+zombie_idle_3:
+  id: 6855
+mummy_idle_2:
+  id: 6856
 giant_idle:
   id: 6857
+goblin_idle_5:
+  id: 6858
+goblin_idle_6:
+  id: 6859
 town_crier_idle:
   id: 6864
 town_crier_walk:
   id: 6867
+portal_walk_4:
+  id: 6878
+portal_walk_5:
+  id: 6879
+portal_walk_6:
+  id: 6880
+guard_idle_4:
+  id: 6918
 anna_walk:
   id: 6926
 renegade_knight_idle:
@@ -2011,7 +4039,7 @@ renegade_knight_idle:
 renegade_knight_walk:
   id: 6928
 armoured_zombie_idle:
-  id: 10415
+  id: 6932
 clive_idle:
   id: 6935
 aviansie_idle:
@@ -2022,12 +4050,16 @@ commander_zilyana_walk:
   id: 6962
 commander_zilyana_idle:
   id: 6963
-kree'arra_idle:
+kreearra_idle:
   id: 6972
-kree'arra_walk:
+kreearra_walk:
   id: 6973
 blood_reaver_walk:
   id: 7001
+hammer_31:
+  id: 7002
+vanstrom_klause_idle_2:
+  id: 7005
 blood_reaver_idle:
   id: 7008
 growler_idle:
@@ -2037,29 +4069,49 @@ growler_walk:
 white_knight_idle:
   id: 7047
 vanstrom_klause_walk_back:
-  id: 8592
+  id: 7054
 general_graardor_walk:
   id: 7058
 general_graardor_idle:
   id: 7059
+will_o_the_wisp_walk_2:
+  id: 7068
+zamorak_godsword:
+  id: 7070
+zamorak_godsword_2:
+  id: 7070
 held_vampyre_juvenile_idle:
   id: 7077
+crystal_chime:
+  id: 7088
+crystal_chime_2:
+  id: 7088
 warped_tortoise_walk:
   id: 7089
 warped_tortoise_idle:
   id: 7090
 guard_no._72_walk:
-  id: 7103
+  id: 7098
 no._202_idle:
   id: 7099
 guard_no._72_idle:
-  id: 7111
+  id: 7101
+guard_no._72_walk_2:
+  id: 7103
 warped_terrorbird_idle:
   id: 7105
 warped_terrorbird_walk:
   id: 7106
+guard_no._72_idle_2:
+  id: 7111
+cooking_urn_full:
+  id: 7126
+strong_cooking_urn_full:
+  id: 7133
+hammer_32:
+  id: 7151
 kennith_idle:
-  id: 8852
+  id: 7158
 summer_walk:
   id: 7160
 philop_idle:
@@ -2068,13 +4120,15 @@ kanel_idle:
   id: 7164
 schoolgirl_walk:
   id: 7165
+kennith_walk_2:
+  id: 7166
 schoolgirl_idle:
   id: 7167
 queen_of_snow_idle:
-  id: 15361
-cap'n_arnav_walk:
+  id: 7188
+capn_arnav_walk:
   id: 7189
-cap'n_arnav_walk_back:
+capn_arnav_walk_back:
   id: 7190
 akrisae_walk:
   id: 7191
@@ -2084,28 +4138,38 @@ akrisae_step_left:
   id: 7193
 akrisae_step_right:
   id: 7194
-cap'n_hand_idle:
+capn_hand_idle:
   id: 7199
-cap'n_hand_walk:
+capn_hand_walk:
   id: 7200
-cap'n_hand_walk_back:
+capn_hand_walk_back:
   id: 7201
-cap'n_hand_step_left:
+capn_hand_step_left:
   id: 7202
-cap'n_hand_step_right:
+capn_hand_step_right:
   id: 7203
 cave_lizard_idle:
   id: 7209
 cave_lizard_walk:
   id: 7210
+knife_14:
+  id: 7211
+magic_logs:
+  id: 7211
 master_guard_walk:
   id: 7216
 master_guard_idle:
   id: 7217
 arresting_officer_idle:
   id: 7222
+guard_walk_2:
+  id: 7223
 arresting_officer_walk:
   id: 7224
+secateurs_8:
+  id: 7227
+magic_secateurs_7:
+  id: 7228
 giant_ant_soldier_walk:
   id: 7235
 giant_ant_soldier_idle:
@@ -2124,6 +4188,8 @@ fisherman_frodi_idle:
   id: 7261
 grim_reaper_idle:
   id: 7295
+goblin_potion_4:
+  id: 7304
 preacher_idle:
   id: 7315
 strongbones_walk:
@@ -2132,22 +4198,24 @@ grubfoot_run:
   id: 7332
 vanstrom_klause_walk:
   id: 7357
-relobo_blinyo_(logs)_walk:
+relobo_blinyo_logs_walk:
   id: 7364
-murky_matt_(runes)_walk:
+murky_matt_runes_walk:
   id: 7365
-bob_barter_(herbs)_walk:
+bob_barter_herbs_walk:
   id: 7366
-farid_morrisane_(ores)_walk:
+farid_morrisane_ores_walk:
   id: 7367
 grand_exchange_tutor_walk:
   id: 7368
 brugsen_bursen_walk:
   id: 7369
-hofuthand_(armour_and_weapons)_walk:
+hofuthand_armour_and_weapons_walk:
   id: 7370
 collapsing_grave_marker_idle:
   id: 7375
+inferno_adze_3:
+  id: 7383
 revenant_werewolf_idle:
   id: 7400
 revenant_werewolf_walk:
@@ -2196,16 +4264,24 @@ revenant_pyrefiend_idle:
   id: 7486
 revenant_pyrefiend_walk:
   id: 7487
+snowball_2:
+  id: 7529
+snowball_3:
+  id: 7530
 altar_walk:
   id: 7536
+snow_globe_2:
+  id: 7538
 snow_walk:
+  id: 7543
+snow_walk_2:
   id: 7553
 snow_fremennik_walk:
   id: 7556
 snow_fremennik_idle:
   id: 7557
 dalmatian_idle:
-  id: 8339
+  id: 7575
 bulldog_walk:
   id: 7576
 assistant_archaeologist_kerner_idle:
@@ -2220,6 +4296,10 @@ crocodile_walk:
   id: 7587
 crocodile_idle:
   id: 7589
+giant_scarab_walk_2:
+  id: 7592
+giant_scarab_idle_2:
+  id: 7593
 pit_scabarite_idle:
   id: 7605
 pit_scabarite_walk:
@@ -2234,6 +4314,8 @@ scabaras_mage_walk:
   id: 7619
 maisa_idle:
   id: 7629
+guard_walk_3:
+  id: 7643
 artisan_walk:
   id: 7647
 quartermaster_walk:
@@ -2246,6 +4328,10 @@ bloated_leech_walk:
   id: 7653
 bloated_leech_idle:
   id: 7654
+vulture_walk_3:
+  id: 7658
+vulture_idle_2:
+  id: 7659
 abyssal_parasite_walk:
   id: 7667
 abyssal_parasite_idle:
@@ -2262,6 +4348,8 @@ beaver_walk:
   id: 7719
 undead_broav_idle:
   id: 7728
+guard_walk_4:
+  id: 7731
 vyrelord_idle:
   id: 7733
 vyrelord_run:
@@ -2284,6 +4372,8 @@ rogue_compost_mound_walk:
   id: 7768
 rogue_compost_mound_idle:
   id: 7772
+bucket_9:
+  id: 7774
 spirit_dagannoth_idle:
   id: 7781
 spirit_dagannoth_walk:
@@ -2320,6 +4410,8 @@ geyser_titan_idle:
   id: 7876
 geyser_titan_walk:
   id: 7877
+bowl:
+  id: 7892
 bull_ant_idle:
   id: 7893
 bull_ant_walk:
@@ -2347,6 +4439,8 @@ lava_titan_idle:
 ravenous_locust_walk:
   id: 7991
 ravenous_locust_idle:
+  id: 7992
+ravenous_locust_idle_2:
   id: 8001
 macaw_idle:
   id: 8006
@@ -2373,12 +4467,14 @@ praying_mantis_walk:
 icefiend_walk:
   id: 8076
 baby_icefiend_idle:
-  id: 9145
+  id: 8077
 void_ravager_idle:
   id: 8089
 void_ravager_walk:
   id: 8092
-'''rum''-pumped_crab_walk':
+giant_crab_idle_2:
+  id: 8098
+rum-pumped_crab_walk:
   id: 8100
 giant_crab_walk:
   id: 8101
@@ -2400,6 +4496,10 @@ spirit_cobra_walk:
   id: 8158
 clan_vexillum_idle:
   id: 8169
+spinner_idle_2:
+  id: 8171
+spinner_walk_2:
+  id: 8175
 steel_titan_idle:
   id: 8186
 steel_titan_walk:
@@ -2448,6 +4548,12 @@ vulture_chick_idle:
   id: 8310
 vulture_chick_walk:
   id: 8312
+penguin_walk_2:
+  id: 8314
+penguin_idle_5:
+  id: 8315
+penguin_walk_3:
+  id: 8317
 baby_penguin_walk:
   id: 8318
 baby_penguin_idle:
@@ -2474,6 +4580,10 @@ terrier_puppy_walk:
   id: 8336
 terrier_walk:
   id: 8337
+dalmatian_idle_2:
+  id: 8338
+dalmatian_idle_3:
+  id: 8339
 dealga_walk:
   id: 8343
 dealga_idle:
@@ -2506,17 +4616,23 @@ bettamax_idle:
   id: 8528
 bettamax_walk:
   id: 8529
+vanstrom_klause_idle_3:
+  id: 8562
 jelly_idle:
   id: 8572
 ogress_walk:
-  id: 8643
+  id: 8573
 chargurr_idle:
   id: 8574
 jelly_walk:
   id: 8575
+vanstrom_klause_walk_back_2:
+  id: 8592
 vanescula_drakan_idle:
   id: 8593
 grenwall_idle:
+  id: 8601
+grenwall_idle_2:
   id: 8604
 grenwall_walk:
   id: 8606
@@ -2534,6 +4650,8 @@ glum_idle:
   id: 8627
 ogress_banker_idle:
   id: 8628
+decorated_cooking_urn_full:
+  id: 8629
 snurgh_idle:
   id: 8630
 snurgh_walk:
@@ -2543,19 +4661,61 @@ seegud_idle:
 seegud_walk:
   id: 8633
 ogress_idle:
-  id: 8642
+  id: 8634
 ogress_warrior_idle:
   id: 8635
+ogress_idle_2:
+  id: 8642
+ogress_walk_2:
+  id: 8643
+null_208:
+  id: 8649
+cracked_cooking_urn_nr:
+  id: 8649
+null_209:
+  id: 8651
+fragile_cooking_urn_nr:
+  id: 8651
+null_210:
+  id: 8652
+cooking_urn_nr:
+  id: 8652
+null_211:
+  id: 8654
+strong_cooking_urn_nr:
+  id: 8654
 flying_bugs_walk:
   id: 8667
 platypus_idle:
   id: 8671
 platypus_walk:
   id: 8672
+null_212:
+  id: 8691
+decorated_cooking_urn_nr:
+  id: 8691
+hammer_33:
+  id: 8704
+picture_2:
+  id: 8704
 supreme_commander_idle:
   id: 8706
 drunken_sailor_idle:
   id: 8707
+spade_6:
+  id: 8709
+cracked_woodcutting_urn_full:
+  id: 8713
+farmer_walk_2:
+  id: 8723
+fragile_woodcutting_urn_full:
+  id: 8727
+woodcutting_urn_full:
+  id: 8729
+strong_woodcutting_urn_full:
+  id: 8730
+rabbit_idle_3:
+  id: 8737
 bork_walk:
   id: 8752
 bork_idle:
@@ -2565,10 +4725,32 @@ ork_legion_idle:
 ork_legion_walk:
   id: 8764
 gublinch_jailmate_idle:
-  id: 8777
+  id: 8771
 gublinchette_jailmate_idle:
+  id: 8772
+gublinchette_jailmate_idle_2:
   id: 8773
+gublinch_jailmate_idle_2:
+  id: 8774
+gublinch_jailmate_idle_3:
+  id: 8775
+gublinch_jailmate_idle_4:
+  id: 8776
+gublinch_jailmate_idle_5:
+  id: 8777
 student_idle:
+  id: 8778
+student_idle_2:
+  id: 8779
+student_idle_3:
+  id: 8780
+student_idle_4:
+  id: 8781
+student_idle_5:
+  id: 8782
+student_idle_6:
+  id: 8783
+student_idle_7:
   id: 8784
 warped_cockroach_walk:
   id: 8794
@@ -2580,6 +4762,14 @@ cockroach_soldier_idle:
   id: 8797
 warped_cockroach_idle:
   id: 8798
+guard_idle_5:
+  id: 8800
+kennith_idle_2:
+  id: 8807
+kennith_walk_3:
+  id: 8808
+kennith_walk_4:
+  id: 8811
 kimberly_idle:
   id: 8816
 herald_of_varrock_idle:
@@ -2588,34 +4778,124 @@ herald_of_falador_idle:
   id: 8827
 herald_of_lumbridge_idle:
   id: 8828
+bronze_pickaxe_8:
+  id: 8836
+iron_pickaxe_6:
+  id: 8837
+steel_pickaxe_7:
+  id: 8838
+adamant_pickaxe_6:
+  id: 8839
+mithril_pickaxe_6:
+  id: 8840
+rune_pickaxe_7:
+  id: 8841
 vanescula_drakan_walk_back:
   id: 8842
+kennith_idle_3:
+  id: 8852
+hammer_34:
+  id: 8861
 villager_walk:
-  id: 8875
+  id: 8862
 villager_idle:
+  id: 8863
+sacred_clay_hammer_5:
+  id: 8864
+volatile_clay_hammer_6:
+  id: 8865
+villager_walk_2:
+  id: 8875
+villager_idle_2:
+  id: 8877
+villager_idle_3:
   id: 8878
+golden_hammer_4:
+  id: 8887
+hammer_35:
+  id: 8888
+sacred_clay_hammer_6:
+  id: 8889
+volatile_clay_hammer_7:
+  id: 8890
+golden_hammer_5:
+  id: 8891
+hammer_36:
+  id: 8893
+bucket_10:
+  id: 8905
+chocatrice_egg:
+  id: 8906
+chocatrice_egg_2:
+  id: 8907
+bucket_11:
+  id: 8909
+sacred_clay_hammer_7:
+  id: 8943
+volatile_clay_hammer_8:
+  id: 8950
 gnoeals_idle:
-  id: 11488
+  id: 8958
 gnoeals_walk:
+  id: 8959
+gnoeals_walk_2:
   id: 8960
 yeti_walk:
-  id: 11037
+  id: 8968
+king_vargas_idle_2:
+  id: 8977
 king_vargas_walk:
   id: 8979
+farmer_idle_3:
+  id: 8980
+toy_kite:
+  id: 8990
 fiara_idle:
   id: 9009
+tele-orb:
+  id: 9012
+enchanted_sickle_emerald_b:
+  id: 9021
+golden_hammer_6:
+  id: 9022
 my_arm_walk2:
   id: 9026
 spectral_vyrewatch_walk:
   id: 9028
+saw:
+  id: 9031
+saw_2:
+  id: 9032
 ug_idle:
   id: 9045
+ivandis_flail_30:
+  id: 9047
+ivandis_flail_30_2:
+  id: 9048
+silver_sickle_b_2:
+  id: 9064
+enchanted_sickle_emerald_b_2:
+  id: 9065
 safalaan_idle:
   id: 9069
 safalaan_step_right:
   id: 9070
+cannonball_barrel-boat:
+  id: 9096
+ivandis_flail_30_3:
+  id: 9097
 black_knight_doorkeeper_idle:
   id: 9099
+silver_sickle_emerald_b:
+  id: 9104
+vyrewatch_walk_2:
+  id: 9114
+vyrewatch_idle_2:
+  id: 9115
+cannonball_barrel-boat_2:
+  id: 9116
+vyrewatch_idle_3:
+  id: 9117
 held_vyrewatch_idle:
   id: 9118
 magic_instructor_idle:
@@ -2630,6 +4910,10 @@ mutated_bloodveld_step_right:
   id: 9134
 assistant_idle:
   id: 9138
+baby_icefiend_idle_2:
+  id: 9145
+saw_3:
+  id: 9151
 baby_icefiend_walk:
   id: 9153
 kitten_walk:
@@ -2640,9 +4924,15 @@ kitten_idle:
   id: 9158
 red_axe_cat_idle:
   id: 9169
-dromund's_cat_idle:
+dromunds_cat_idle:
   id: 9171
+glistening_shell:
+  id: 9174
+shimmering_shell:
+  id: 9176
 love_cats_idle:
+  id: 9194
+love_cats_idle_2:
   id: 9196
 love_cats_walk:
   id: 9197
@@ -2667,6 +4957,8 @@ tz-kih_walk:
 tz-kek_idle:
   id: 9236
 tz-kek_walk:
+  id: 9237
+tz-kek_walk_2:
   id: 9238
 tok-xil_walk:
   id: 9240
@@ -2691,15 +4983,15 @@ tztok-jad_idle:
 tzhaar-hur-klag_walk:
   id: 9280
 tzhaar-hur-brekt_walk:
-  id: 9326
+  id: 9281
 tzhaar-ket-jok_idle:
   id: 9282
 tzhaar-xil-mor_idle:
   id: 9283
 tzhaar-mej-kol_idle:
-  id: 9314
+  id: 9284
 tzhaar-hur-klag_idle:
-  id: 9313
+  id: 9285
 tzhaar-mej-kah_idle:
   id: 9294
 tzhaar-mej-kah_walk:
@@ -2707,19 +4999,35 @@ tzhaar-mej-kah_walk:
 tzhaar-ket-lurk_walk:
   id: 9296
 tzhaar-xil_walk:
-  id: 9322
+  id: 9297
 tzhaar-xil_idle:
-  id: 9323
+  id: 9298
+mystery_figure_idle_6:
+  id: 9299
+treated_plank:
+  id: 9304
+treated_plank_2:
+  id: 9305
 library_assistant_idle:
   id: 9311
+tzhaar-hur-klag_idle_2:
+  id: 9313
+tzhaar-mej-kol_idle_2:
+  id: 9314
 tzhaar-mej_walk:
   id: 9320
 tzhaar-hur_walk:
   id: 9321
+tzhaar-xil_walk_2:
+  id: 9322
+tzhaar-xil_idle_2:
+  id: 9323
 tzhaar-hur_idle:
   id: 9324
 tzhaar-mej_idle:
   id: 9325
+tzhaar-hur-brekt_walk_2:
+  id: 9326
 toktz-ket-dill_walk:
   id: 9333
 toktz-ket-dill_idle:
@@ -2728,6 +5036,22 @@ lava_monster_walk:
   id: 9339
 fire_monster_walk:
   id: 9343
+hammer_37:
+  id: 9350
+chisel_4:
+  id: 9350
+bronze_pickaxe_9:
+  id: 9360
+iron_pickaxe_7:
+  id: 9361
+steel_pickaxe_8:
+  id: 9362
+mithril_pickaxe_7:
+  id: 9363
+adamant_pickaxe_7:
+  id: 9364
+rune_pickaxe_8:
+  id: 9365
 mightiest_turoth_walk:
   id: 9409
 mightiest_turoth_idle:
@@ -2737,8 +5061,12 @@ monstrous_cave_crawler_walk:
 monstrous_cave_crawler_idle:
   id: 9416
 bloodveld_idle:
-  id: 9437
+  id: 9432
 bloodveld_walk:
+  id: 9433
+bloodveld_idle_2:
+  id: 9437
+bloodveld_walk_2:
   id: 9438
 kurask_idle:
   id: 9442
@@ -2765,22 +5093,30 @@ ghast_idle:
 ghast_walk:
   id: 9470
 turoth_idle:
-  id: 9484
+  id: 9474
 turoth_walk:
-  id: 9485
+  id: 9475
 swarming_turoth_idle:
   id: 9479
 swarming_turoth_walk:
   id: 9480
+turoth_idle_2:
+  id: 9484
+turoth_walk_2:
+  id: 9485
 nechryael_idle:
   id: 9490
 nechryael_walk:
   id: 9492
 corruption_beast_walk:
   id: 9500
+charcoal_2:
+  id: 9504
 rockslug_idle:
   id: 9509
 rockslug_walk:
+  id: 9510
+rockslug_walk_2:
   id: 9511
 nomad_walk2:
   id: 9515
@@ -2794,6 +5130,10 @@ karamthulhu_walk:
   id: 9540
 karamthulhu_idle:
   id: 9541
+tin_cup:
+  id: 9542
+null_213:
+  id: 9549
 locker_officer_walk:
   id: 9551
 locker_officer_walk_back:
@@ -2804,12 +5144,28 @@ locker_officer_step_left:
   id: 9554
 locker_officer_step_right:
   id: 9555
+vacuum_pump:
+  id: 9565
+vacuum_pump_2:
+  id: 9566
 jack_walk:
   id: 9570
 jack_idle:
   id: 9571
+vacuum_pump_and_gull:
+  id: 9579
+lyre_5:
+  id: 9600
+skull_sceptre:
+  id: 9601
+rum:
+  id: 9604
+rum_2:
+  id: 9605
 large_crate_idle:
   id: 9608
+ectophial:
+  id: 9609
 dead_brewer_idle:
   id: 9627
 zombie_head_idle:
@@ -2818,6 +5174,8 @@ baron_von_hattenkrapper_walk:
   id: 9635
 rocktail_shoal_walk:
   id: 9645
+general_bentnoze_walk_2:
+  id: 9650
 barricade_idle:
   id: 9654
 ali_the_camel_walk:
@@ -2844,38 +5202,62 @@ bloodveld_leecher_walk2:
   id: 9688
 nutrition_energy_idle:
   id: 9702
+farmer_walk_3:
+  id: 9724
 dis-orderly_walk:
+  id: 9725
+dis-orderly_walk_2:
   id: 9726
 border_guard_walk2:
   id: 9735
 border_guard_walk:
   id: 9736
+farmer_step_right_2:
+  id: 9738
+charcoal_3:
+  id: 9740
 elite_dark_ranger_run:
   id: 9754
-mi-gor's_zomboat_walk:
+mi-gors_zomboat_walk:
   id: 9755
 melee_tutor_idle:
   id: 9868
 explorer_jack_step_right:
   id: 9869
+banker_walk_3:
+  id: 9870
 lumbridge_sage_walk:
-  id: 12294
+  id: 9872
 sir_amik_varze_walk:
-  id: 12689
+  id: 9873
 evil_dave_walk:
   id: 9874
 pirate_pete_walk:
   id: 9875
 osman_walk:
   id: 9876
+null_214:
+  id: 9886
 dragon_idle:
-  id: 12249
+  id: 9917
 dragon_walk:
-  id: 12255
+  id: 9918
 blood_tither_idle:
   id: 9922
 ranis_drakan_idle:
   id: 9923
+dragon_idle_2:
+  id: 9924
+dragon_walk_2:
+  id: 9925
+dragon_walk_3:
+  id: 9926
+dragon_idle_3:
+  id: 9927
+dragon_idle_4:
+  id: 9930
+dragon_walk_4:
+  id: 9931
 sir_vant_idle:
   id: 9940
 troll_walk:
@@ -2885,15 +5267,49 @@ roddeck_walk2:
 baby_raccoon_walk:
   id: 9948
 roddeck_step_right:
-  id: 12280
+  id: 9954
 sir_vant_walk2:
-  id: 12234
+  id: 9956
 sir_vant_step_right:
   id: 9957
 sir_vant_walk:
   id: 9958
+dragon_hatchet_7:
+  id: 9992
+rune_hatchet_8:
+  id: 9993
+adamant_hatchet_7:
+  id: 9994
+mithril_hatchet_7:
+  id: 9995
+black_hatchet_6:
+  id: 9996
+steel_hatchet_6:
+  id: 9997
+iron_hatchet_6:
+  id: 9998
+bronze_hatchet_5:
+  id: 9999
 pentyn_idle:
   id: 10000
+bronze_pickaxe_10:
+  id: 10001
+iron_pickaxe_8:
+  id: 10002
+steel_pickaxe_9:
+  id: 10003
+mithril_pickaxe_8:
+  id: 10004
+adamant_pickaxe_8:
+  id: 10005
+rune_pickaxe_9:
+  id: 10006
+dragon_pickaxe_5:
+  id: 10007
+crayfish_cage:
+  id: 10009
+tinderbox_4:
+  id: 10011
 mercenary_ranger_walk2:
   id: 10020
 mercenary_ranger_step_right:
@@ -2901,6 +5317,14 @@ mercenary_ranger_step_right:
 mercenary_ranger_run:
   id: 10022
 spirit_idle:
+  id: 10027
+spirit_idle_2:
+  id: 10028
+spirit_idle_3:
+  id: 10029
+spirit_idle_4:
+  id: 10030
+spirit_idle_5:
   id: 10031
 corporeal_beast_walk:
   id: 10055
@@ -2908,18 +5332,42 @@ corporeal_beast_idle:
   id: 10056
 spirit_beast_idle:
   id: 10064
+bronze_hatchet_6:
+  id: 10071
+iron_hatchet_7:
+  id: 10072
+steel_hatchet_7:
+  id: 10073
+black_hatchet_7:
+  id: 10074
+mithril_hatchet_8:
+  id: 10075
+adamant_hatchet_8:
+  id: 10076
+rune_hatchet_9:
+  id: 10077
+dragon_hatchet_8:
+  id: 10078
 zomboat_walk:
   id: 10084
 roger_idle:
   id: 10090
 laura_walk:
-  id: 10106
+  id: 10102
 laura_idle:
+  id: 10103
+laura_idle_2:
   id: 10104
+laura_walk_2:
+  id: 10106
 sarah_idle:
   id: 10107
 sarah_walk:
   id: 10108
+null_215:
+  id: 10110
+null_216:
+  id: 10110
 green_orb_idle:
   id: 10136
 green_orb_walk:
@@ -2946,6 +5394,48 @@ wizard_walk:
   id: 10210
 wizard_idle:
   id: 10211
+inferno_adze_4:
+  id: 10222
+inferno_adze_5:
+  id: 10223
+inferno_adze_6:
+  id: 10224
+inferno_adze_7:
+  id: 10225
+inferno_adze_8:
+  id: 10226
+inferno_adze_9:
+  id: 10227
+inferno_adze_10:
+  id: 10228
+inferno_adze_11:
+  id: 10247
+inferno_adze_12:
+  id: 10249
+inferno_adze_13:
+  id: 10250
+inferno_adze_14:
+  id: 10251
+performance_knife:
+  id: 10261
+performance_throwing_axe:
+  id: 10262
+null_217:
+  id: 10271
+null_218:
+  id: 10271
+null_219:
+  id: 10279
+cracked_woodcutting_urn_nr:
+  id: 10279
+null_220:
+  id: 10280
+fragile_woodcutting_urn_nr:
+  id: 10280
+null_221:
+  id: 10281
+woodcutting_urn_nr:
+  id: 10281
 acrobat_walk:
   id: 10288
 acrobat_idle:
@@ -2956,20 +5446,50 @@ ringmaster_idle:
   id: 10318
 ticket_vendor_walk:
   id: 10321
+rune_pickaxe_10:
+  id: 10335
+bronze_pickaxe_11:
+  id: 10336
+iron_pickaxe_9:
+  id: 10337
+steel_pickaxe_10:
+  id: 10338
+mithril_pickaxe_9:
+  id: 10339
+adamant_pickaxe_9:
+  id: 10340
+inferno_adze_15:
+  id: 10341
+rune_pickaxe_11:
+  id: 10342
+bronze_pickaxe_12:
+  id: 10343
+iron_pickaxe_10:
+  id: 10344
+steel_pickaxe_11:
+  id: 10345
+mithril_pickaxe_10:
+  id: 10346
+adamant_pickaxe_10:
+  id: 10347
+inferno_adze_16:
+  id: 10348
 star_sprite_idle:
   id: 10352
+null_222:
+  id: 10355
 barrel_idle:
   id: 10356
 barrel_walk:
   id: 10357
 bush_idle:
-  id: 11005
+  id: 10358
 bush_walk:
-  id: 11002
+  id: 10359
 cactus_idle:
-  id: 11006
+  id: 10360
 cactus_walk:
-  id: 11003
+  id: 10361
 crate_idle:
   id: 10362
 crate_walk:
@@ -2977,29 +5497,57 @@ crate_walk:
 rock_idle:
   id: 10364
 rock_walk:
-  id: 11004
+  id: 10365
 toadstool_idle:
   id: 10366
 toadstool_walk:
   id: 10367
 dark_energy_core_idle:
   id: 10392
+armoured_zombie_idle_2:
+  id: 10415
+fish_walk_3:
+  id: 10426
+fish_walk_4:
+  id: 10427
 sharathteerk_idle:
   id: 10428
 sharathteerk_walk:
   id: 10429
 zemouregal_idle:
-  id: 12025
+  id: 10432
 zemouregal_walk:
-  id: 12026
+  id: 10433
 arrav_idle:
-  id: 11663
+  id: 10434
 arrav_step_right:
   id: 10436
 ramarno_walk:
   id: 10464
 ramarno_idle:
   id: 10465
+bottle:
+  id: 10470
+spade_7:
+  id: 10475
+broomstick:
+  id: 10532
+broomstick_2:
+  id: 10535
+broomstick_3:
+  id: 10537
+broomstick_4:
+  id: 10538
+broomstick_5:
+  id: 10543
+null_223:
+  id: 10544
+null_224:
+  id: 10545
+null_225:
+  id: 10550
+newt:
+  id: 10551
 maggie_walk:
   id: 10564
 maggie_idle:
@@ -3016,37 +5564,183 @@ lottie_idle:
   id: 10570
 lottie_walk:
   id: 10571
+rake_2:
+  id: 10574
 farmer_fromund_idle:
   id: 10574
+panning_tray_2:
+  id: 10576
 head_mystic_idle:
   id: 10587
 head_mystic_walk:
   id: 10588
-clay_familiar_(class_5)_idle:
+clay_familiar_class_5_idle:
   id: 10594
-clay_familiar_(class_5)_walk:
+clay_familiar_class_5_walk:
   id: 10596
+hatchet_class_1:
+  id: 10603
+hatchet_class_1_2:
+  id: 10603
+hatchet_class_2:
+  id: 10604
+hatchet_class_2_2:
+  id: 10604
+hatchet_class_3:
+  id: 10605
+hatchet_class_3_2:
+  id: 10605
+hatchet_class_4:
+  id: 10606
+hatchet_class_4_2:
+  id: 10606
+hatchet_class_5:
+  id: 10607
+hatchet_class_5_2:
+  id: 10607
+pickaxe_class_1:
+  id: 10608
+pickaxe_class_1_2:
+  id: 10608
+pickaxe_class_2:
+  id: 10609
+pickaxe_class_2_2:
+  id: 10609
+pickaxe_class_3:
+  id: 10610
+pickaxe_class_3_2:
+  id: 10610
+pickaxe_class_4:
+  id: 10611
+pickaxe_class_4_2:
+  id: 10611
+pickaxe_class_5:
+  id: 10612
+pickaxe_class_5_2:
+  id: 10612
+harpoon_class_1:
+  id: 10613
+harpoon_class_1_2:
+  id: 10613
+harpoon_class_2:
+  id: 10614
+harpoon_class_2_2:
+  id: 10614
+harpoon_class_3:
+  id: 10615
+harpoon_class_3_2:
+  id: 10615
+harpoon_class_4:
+  id: 10616
+harpoon_class_4_2:
+  id: 10616
+harpoon_class_5:
+  id: 10617
+harpoon_class_5_2:
+  id: 10617
+butterfly_net_class_1:
+  id: 10618
+butterfly_net_class_1_2:
+  id: 10618
+butterfly_net_class_2:
+  id: 10619
+butterfly_net_class_2_2:
+  id: 10619
+butterfly_net_class_3:
+  id: 10620
+butterfly_net_class_3_2:
+  id: 10620
+butterfly_net_class_4:
+  id: 10621
+butterfly_net_class_4_2:
+  id: 10621
+butterfly_net_class_5:
+  id: 10622
+butterfly_net_class_5_2:
+  id: 10622
 gruh_walk:
   id: 10625
 pit_ogre_idle:
   id: 10626
+rose-tinted_lens:
+  id: 10627
 undead_hero_idle:
-  id: 10656
+  id: 10635
 undead_hero_walk:
+  id: 10636
+undead_hero_idle_2:
+  id: 10639
+undead_hero_walk_2:
+  id: 10640
+spade_8:
+  id: 10647
+undead_hero_idle_3:
+  id: 10656
+undead_hero_walk_3:
   id: 10657
 balance_elemental_walk:
-  id: 10671
+  id: 10664
 balance_elemental_idle:
+  id: 10665
+balance_elemental_walk_2:
+  id: 10667
+balance_elemental_idle_2:
+  id: 10668
+balance_elemental_walk_3:
+  id: 10671
+balance_elemental_idle_3:
   id: 10672
+dirty_laundry:
+  id: 10706
+fire_orb:
+  id: 10715
+water_orb:
+  id: 10716
+earth_orb:
+  id: 10717
+air_orb:
+  id: 10718
+earth_key:
+  id: 10720
+water_key:
+  id: 10721
+air_key:
+  id: 10722
+teleorb:
+  id: 10727
+strange_key_loop:
+  id: 10749
+strange_key_teeth:
+  id: 10749
+blast_fusion_hammer:
+  id: 10758
+null_226:
+  id: 10765
 dragon_head_walk:
+  id: 10766
+dragon_head_walk_2:
   id: 10767
+null_227:
+  id: 10769
 lady_table_idle:
   id: 10769
 troll_child_walk:
   id: 10812
+kolodion_idle_2:
+  id: 10813
 troll_ranger_idle:
   id: 10814
-hazelmere's_hat_walk:
+null_228:
+  id: 10828
+strong_woodcutting_urn_nr:
+  id: 10828
+cracked_mining_urn_full:
+  id: 10829
+fragile_mining_urn_full:
+  id: 10830
+mining_urn_full:
+  id: 10831
+hazelmeres_hat_walk:
   id: 10834
 elite_dark_ranger_idle:
   id: 10842
@@ -3069,23 +5763,41 @@ enduring_glacyte_idle:
 elite_dark_mage_idle:
   id: 10869
 druid_idle:
-  id: 10873
+  id: 10870
 druid_walk:
   id: 10871
+druid_idle_2:
+  id: 10873
 jessika_walk:
   id: 10881
 enduring_glacyte_walk:
   id: 10901
 scribe_walk:
   id: 10903
+hammer_38:
+  id: 10914
 tormented_demon_walk:
   id: 10920
 tormented_demon_idle:
   id: 10921
+bubble_maker:
+  id: 10940
+bouquet:
+  id: 10941
+souvenir_mug:
+  id: 10942
+strong_mining_urn_full:
+  id: 10947
 undead_mage_idle:
   id: 10949
+bouquet_2:
+  id: 10951
+confetti:
+  id: 10952
 undead_broav_walk:
   id: 10954
+bouquet_3:
+  id: 10964
 sloane_idle:
   id: 10968
 sloane_walk:
@@ -3096,20 +5808,58 @@ turael_walk:
   id: 10971
 cyrisus_idle:
   id: 10972
+cyrisus_walk_2:
+  id: 10973
 mazchna_walk:
   id: 10974
 lazy_khazard_guard_walk:
-  id: 11670
+  id: 10979
+null_229:
+  id: 10990
 turkey_idle:
   id: 10997
 turkey_walk:
   id: 10998
+bush_walk_2:
+  id: 11002
+cactus_walk_2:
+  id: 11003
+rock_walk_2:
+  id: 11004
+bush_idle_2:
+  id: 11005
+cactus_idle_2:
+  id: 11006
 azzandra_idle:
   id: 11013
+sacred_clay_pickaxe_2:
+  id: 11019
+sacred_clay_pickaxe_3:
+  id: 11020
+sacred_clay_pickaxe_4:
+  id: 11021
+sacred_clay_pickaxe_5:
+  id: 11022
+sacred_clay_pickaxe_6:
+  id: 11023
+sacred_clay_pickaxe_7:
+  id: 11024
+sacred_clay_pickaxe_8:
+  id: 11025
+sacred_clay_pickaxe_9:
+  id: 11026
 yeti_idle:
-  id: 11036
+  id: 11027
 enakhra_idle:
-  id: 11124
+  id: 11031
+yeti_idle_2:
+  id: 11036
+yeti_walk_2:
+  id: 11037
+hammer_39:
+  id: 11041
+chisel_5:
+  id: 11041
 santa_claus_idle:
   id: 11046
 santa_claus_walk:
@@ -3119,7 +5869,35 @@ jack_frost_walk_back:
 jack_frost_step_right:
   id: 11052
 jack_frost_idle:
-  id: 15355
+  id: 11053
+sacred_clay_hatchet_4:
+  id: 11060
+volatile_clay_hatchet_4:
+  id: 11061
+sacred_clay_hammer_8:
+  id: 11062
+volatile_clay_hammer_9:
+  id: 11063
+leather_2:
+  id: 11064
+sacred_clay_needle:
+  id: 11064
+leather_3:
+  id: 11065
+volatile_clay_needle:
+  id: 11065
+sacred_clay_hammer_9:
+  id: 11066
+volatile_clay_hammer_10:
+  id: 11067
+sacred_clay_pickaxe_10:
+  id: 11068
+volatile_clay_pickaxe_2:
+  id: 11069
+sacred_clay_hammer_10:
+  id: 11070
+volatile_clay_hammer_11:
+  id: 11071
 wounded_phoenix_idle:
   id: 11072
 wounded_phoenix_walk:
@@ -3129,11 +5907,15 @@ phoenix_idle:
 phoenix_walk:
   id: 11075
 phoenix_eggling_walk:
-  id: 11139
+  id: 11082
 phoenix_eggling_idle:
-  id: 11138
+  id: 11083
 large_egg_idle:
   id: 11085
+secateurs_9:
+  id: 11088
+magic_secateurs_8:
+  id: 11089
 guardian_idle:
   id: 11092
 guardian_walk:
@@ -3146,12 +5928,148 @@ reborn_warrior_idle:
   id: 11118
 greater_reborn_warrior_walk:
   id: 11119
+enakhra_idle_2:
+  id: 11124
 enakhra_walk:
   id: 11125
 greater_reborn_mage_idle:
   id: 11130
 greater_reborn_warrior_idle:
   id: 11131
+phoenix_eggling_idle_2:
+  id: 11138
+phoenix_eggling_walk_2:
+  id: 11139
+spinning_plate_4:
+  id: 11142
+spinning_plate_5:
+  id: 11143
+spinning_plate_6:
+  id: 11144
+chisel_6:
+  id: 11146
+granite_5kg:
+  id: 11146
+sacred_clay_hammer_11:
+  id: 11147
+chisel_7:
+  id: 11147
+sacred_clay_hammer_12:
+  id: 11150
+chisel_8:
+  id: 11150
+volatile_clay_hammer_12:
+  id: 11151
+chisel_9:
+  id: 11151
+opal_2:
+  id: 11152
+jade_2:
+  id: 11153
+red_topaz_2:
+  id: 11154
+sacred_clay_hammer_13:
+  id: 11155
+volatile_clay_hammer_13:
+  id: 11156
+sacred_clay_hammer_14:
+  id: 11157
+volatile_clay_hammer_14:
+  id: 11158
+sacred_clay_hammer_15:
+  id: 11159
+volatile_clay_hammer_15:
+  id: 11160
+sacred_clay_hammer_16:
+  id: 11161
+broodoo_shield_10_4:
+  id: 11161
+sacred_clay_hammer_17:
+  id: 11162
+broodoo_shield_10_5:
+  id: 11162
+sacred_clay_hammer_18:
+  id: 11163
+broodoo_shield_10_6:
+  id: 11163
+volatile_clay_hammer_16:
+  id: 11164
+broodoo_shield_10_7:
+  id: 11164
+volatile_clay_hammer_17:
+  id: 11165
+broodoo_shield_10_8:
+  id: 11165
+volatile_clay_hammer_18:
+  id: 11166
+broodoo_shield_10_9:
+  id: 11166
+sacred_clay_hammer_19:
+  id: 11167
+volatile_clay_hammer_19:
+  id: 11168
+sacred_clay_hammer_20:
+  id: 11169
+volatile_clay_hammer_20:
+  id: 11170
+sacred_clay_hammer_21:
+  id: 11171
+picture_3:
+  id: 11171
+volatile_clay_hammer_21:
+  id: 11172
+picture_4:
+  id: 11172
+protester_walk_2:
+  id: 11173
+sacred_clay_hammer_22:
+  id: 11175
+volatile_clay_hammer_22:
+  id: 11176
+sacred_clay_hammer_23:
+  id: 11177
+repair_plank_2:
+  id: 11177
+volatile_clay_hammer_23:
+  id: 11178
+repair_plank_3:
+  id: 11178
+sacred_clay_hammer_24:
+  id: 11179
+volatile_clay_hammer_24:
+  id: 11180
+sacred_clay_hammer_25:
+  id: 11181
+volatile_clay_hammer_25:
+  id: 11182
+sacred_clay_hammer_26:
+  id: 11183
+volatile_clay_hammer_26:
+  id: 11184
+sacred_clay_hammer_27:
+  id: 11185
+selected_iron_2:
+  id: 11185
+volatile_clay_hammer_27:
+  id: 11186
+selected_iron_3:
+  id: 11186
+sacred_clay_hammer_28:
+  id: 11187
+volatile_clay_hammer_28:
+  id: 11188
+sacred_clay_hammer_29:
+  id: 11189
+volatile_clay_hammer_29:
+  id: 11190
+sacred_clay_hammer_30:
+  id: 11191
+volatile_clay_hammer_30:
+  id: 11192
+sacred_clay_hammer_31:
+  id: 11193
+volatile_clay_hammer_31:
+  id: 11194
 avatar_of_destruction_idle:
   id: 11195
 avatar_of_destruction_walk:
@@ -3171,23 +6089,35 @@ gerdi_idle:
 jobo_idle:
   id: 11226
 bandos_avatar_idle:
+  id: 11241
+bandos_avatar_idle_2:
   id: 11242
 bandos_avatar_walk:
   id: 11255
 zanik_run:
-  id: 11392
+  id: 11267
 captain_undak_idle:
   id: 11289
 lucien_idle:
   id: 11292
+zanik_idle_3:
+  id: 11304
 sigmund_step_right:
   id: 11309
 lucien_walk:
-  id: 11541
+  id: 11317
 ork_statue_idle:
   id: 11357
 ogre_statue_idle:
   id: 11358
+zaniks_crossbow:
+  id: 11359
+zanik_idle_4:
+  id: 11390
+zanik_step_right_2:
+  id: 11391
+zanik_run_2:
+  id: 11392
 goblin_statue_walk:
   id: 11394
 goblin_statue_idle:
@@ -3198,26 +6128,52 @@ ourg_statue_walk:
   id: 11406
 ourg_statue_idle:
   id: 11407
+boulder_walk_4:
+  id: 11411
 ogre_statue_walk:
   id: 11413
+decorated_mining_urn_full:
+  id: 11419
+null_230:
+  id: 11420
+cracked_mining_urn_nr:
+  id: 11420
+null_231:
+  id: 11421
+fragile_mining_urn_nr:
+  id: 11421
 skogre_walk:
   id: 11422
 pilg_idle:
   id: 11423
 grug_idle:
   id: 11424
+null_232:
+  id: 11425
+mining_urn_nr:
+  id: 11425
 gruh_idle:
   id: 11426
 sakirth_idle:
-  id: 11517
+  id: 11431
 zogre_walk:
   id: 11433
 zogre_idle:
+  id: 11434
+zogre_idle_2:
   id: 11436
 nung_idle:
   id: 11441
 nung_walk:
   id: 11442
+null_233:
+  id: 11447
+strong_mining_urn_nr:
+  id: 11447
+null_234:
+  id: 11448
+decorated_mining_urn_nr:
+  id: 11448
 ernie_idle:
   id: 11449
 skrach_uglogwee_walk:
@@ -3235,17 +6191,27 @@ slash_bash_idle:
 slash_bash_walk:
   id: 11461
 ogre_chieftain_walk:
+  id: 11464
+ogre_chieftain_walk_2:
   id: 11465
 ogre_shaman_walk:
   id: 11466
 ogre_chieftain_idle:
+  id: 11467
+ogre_chieftain_idle_2:
   id: 11468
 ogre_shaman_idle:
   id: 11469
 pirate_idle:
+  id: 11475
+pirate_idle_2:
   id: 11484
 prince_vargas_idle:
   id: 11486
+gnoeals_idle_2:
+  id: 11488
+spade_9:
+  id: 11495
 fire_raft_walk:
   id: 11496
 muspah_idle:
@@ -3255,28 +6221,92 @@ easter_bunny_walk2:
 easter_bunny_step_right:
   id: 11503
 sakirth_walk:
-  id: 11516
+  id: 11506
 easter_bunny_jr_step_right:
   id: 11510
 impling_worker_walk:
+  id: 11511
+impling_worker_walk_2:
   id: 11515
+sakirth_walk_2:
+  id: 11516
+sakirth_idle_2:
+  id: 11517
 hazeel_idle:
   id: 11522
 wahisietel_idle:
   id: 11523
+easter_carrot:
+  id: 11524
+lucien_walk_2:
+  id: 11541
+mouse_walk_2:
+  id: 11546
+easter_carrot_2:
+  id: 11547
 easter_bird_idle:
   id: 11550
 easter_bird_walk:
   id: 11551
+null_235:
+  id: 11554
 lady_table_walk:
   id: 11554
+spade_10:
+  id: 11562
+log:
+  id: 11569
+spade_11:
+  id: 11577
+natural_historian_idle_2:
+  id: 11586
+natural_historian_walk_2:
+  id: 11587
+bronze_hatchet_7:
+  id: 11594
+rune_hatchet_10:
+  id: 11595
+adamant_hatchet_9:
+  id: 11596
+mithril_hatchet_9:
+  id: 11597
+black_hatchet_8:
+  id: 11598
+steel_hatchet_8:
+  id: 11599
+iron_hatchet_8:
+  id: 11600
+dragon_hatchet_9:
+  id: 11601
+sacred_clay_hatchet_5:
+  id: 11602
+volatile_clay_hatchet_5:
+  id: 11603
+inferno_adze_17:
+  id: 11604
 erjolf_walk:
+  id: 11610
+erjolf_walk_2:
+  id: 11611
+erjolf_walk_3:
   id: 11612
 erjolf_idle:
   id: 11613
-tumeken's_shadow_idle:
+sacred_clay_hatchet_6:
+  id: 11617
+volatile_clay_hatchet_6:
+  id: 11618
+lily_of_the_valley:
+  id: 11619
+lily_of_the_valley_2:
+  id: 11620
+lily_of_the_valley_3:
+  id: 11622
+scroll_of_the_dead:
+  id: 11625
+tumekens_shadow_idle:
   id: 11626
-tumeken's_shadow_walk:
+tumekens_shadow_walk:
   id: 11630
 small_scarab_idle:
   id: 11631
@@ -3288,22 +6318,68 @@ ice_elemental_idle:
   id: 11641
 justin_servil_idle:
   id: 11660
+arrav_idle_2:
+  id: 11663
+lazy_khazard_guard_walk_2:
+  id: 11668
+lazy_khazard_guard_walk_3:
+  id: 11670
+khazard_guard_idle_2:
+  id: 11671
+khazard_guard_idle_3:
+  id: 11672
+khazard_guard_idle_4:
+  id: 11673
+khazard_guard_idle_5:
+  id: 11676
+khazard_guard_idle_6:
+  id: 11677
+khazard_guard_idle_7:
+  id: 11679
+khazard_guard_idle_8:
+  id: 11682
+khazard_guard_idle_9:
+  id: 11683
+khazard_guard_idle_10:
+  id: 11685
 citizen_idle:
   id: 11690
+tool_leprechaun_idle_5:
+  id: 11691
+tool_leprechaun_idle_6:
+  id: 11692
 tool_leprechaun_walk:
-  id: 11700
+  id: 11693
 tool_leprechaun_run:
   id: 11694
+tool_leprechaun_walk_2:
+  id: 11695
 shamus_walk:
   id: 11696
+tool_leprechaun_walk_3:
+  id: 11697
+tool_leprechaun_walk_4:
+  id: 11698
+tool_leprechaun_idle_7:
+  id: 11699
+tool_leprechaun_walk_5:
+  id: 11700
+tool_leprechaun_idle_8:
+  id: 11701
 jim_idle:
   id: 11711
+chuck_idle_2:
+  id: 11714
 glosur_idle:
   id: 11736
 obert_idle:
   id: 11737
 obert_walk:
   id: 11738
+larry_idle_2:
+  id: 11740
+larry_walk_2:
+  id: 11741
 kgp_interrogator_walk:
   id: 11742
 kgp_interrogator_idle:
@@ -3312,26 +6388,50 @@ office_penguin_walk:
   id: 11746
 office_penguin_idle:
   id: 11747
+penguin_idle_6:
+  id: 11750
 pescaling_pax_idle:
   id: 11751
 pescaling_pax_walk:
   id: 11752
 kgp_agent_walk:
   id: 11756
+null_236:
+  id: 11782
 drummer_walk:
   id: 11795
 musician_walk:
-  id: 11816
+  id: 11796
+musician_walk_2:
+  id: 11797
+musician_walk_3:
+  id: 11798
 ghostly_piper_walk:
   id: 11799
 goblin_musician_walk:
   id: 11800
 drunken_musician_walk:
   id: 11802
+snake_walk_2:
+  id: 11808
 bill_blakey_walk:
   id: 11809
+musician_walk_4:
+  id: 11810
+musician_walk_5:
+  id: 11811
+musician_walk_6:
+  id: 11812
+musician_walk_7:
+  id: 11814
+musician_walk_8:
+  id: 11815
+musician_walk_9:
+  id: 11816
 elf_musician_walk:
   id: 11817
+null_237:
+  id: 11826
 junior_cadet_grimeface_idle:
   id: 11848
 goblin_recruiter_walk:
@@ -3340,18 +6440,38 @@ elven_recruiter_walk:
   id: 11868
 dwarven_recruiter_walk:
   id: 11869
+banker_walk_4:
+  id: 11870
+inferior_locator:
+  id: 11871
+inferior_locator_2:
+  id: 11873
+inferior_locator_3:
+  id: 11885
 junior_cadet_mal_idle:
   id: 11893
 sphinx_idle:
   id: 11895
 sphinx_walk:
   id: 11896
+magic_skullball:
+  id: 11901
+starting_horn:
+  id: 11904
+timepiece_stopped:
+  id: 11908
+timepiece_stopped_2:
+  id: 11909
 jhallan_idle:
   id: 11910
+timepiece_stopped_3:
+  id: 11911
 marker_plant_idle:
   id: 11912
-marker_plant_(w)_idle:
+marker_plant_w_idle:
   id: 11914
+grapple:
+  id: 11924
 elemental_creature_idle:
   id: 11935
 elemental_creature_walk:
@@ -3392,10 +6512,26 @@ ancient_warrior_walk_back:
   id: 11987
 ancient_warrior_walk2:
   id: 11988
+armadyl_godsword:
+  id: 11989
+armadyl_godsword_2:
+  id: 11989
+bandos_godsword:
+  id: 11991
+bandos_godsword_2:
+  id: 11991
+saradomin_sword:
+  id: 11993
+saradomin_sword_2:
+  id: 11993
 general_khazard_idle:
-  id: 12007
+  id: 11995
 general_khazard_walk:
+  id: 11996
+general_khazard_walk_2:
   id: 11997
+general_khazard_idle_2:
+  id: 12007
 wizard_grayzag_idle:
   id: 12010
 wizard_grayzag_walk:
@@ -3406,21 +6542,43 @@ wizard_grayzag_step_left:
   id: 12014
 wizard_grayzag_step_right:
   id: 12015
+saradomin_godsword:
+  id: 12019
+saradomin_godsword_2:
+  id: 12019
 knight_diana_walk2:
   id: 12021
 mercenary_warrior_walk2:
   id: 12024
+zemouregal_idle_2:
+  id: 12025
+zemouregal_walk_2:
+  id: 12026
 aquanite_walk:
   id: 12037
 aquanite_idle:
   id: 12038
 odd_old_man_idle:
-  id: 12050
+  id: 12048
 odd_old_man_walk:
+  id: 12049
+odd_old_man_idle_2:
+  id: 12050
+odd_old_man_walk_2:
   id: 12051
 skeletal_horror_idle:
+  id: 12074
+skeletal_horror_idle_2:
+  id: 12076
+skeletal_horror_idle_3:
   id: 12077
 skeletal_horror_walk:
+  id: 12078
+skeletal_horror_walk_2:
+  id: 12079
+skeletal_horror_walk_3:
+  id: 12080
+skeletal_horror_walk_4:
   id: 12081
 left_hand_idle:
   id: 12089
@@ -3434,11 +6592,23 @@ tail_idle:
   id: 12099
 tail_walk:
   id: 12100
+null_238:
+  id: 12120
 commander_veldaban_idle:
-  id: 12133
+  id: 12121
+turnscrew:
+  id: 12122
+commander_veldaban_walk_2:
+  id: 12128
+commander_veldaban_walk_3:
+  id: 12131
 colonel_grimsson_run:
   id: 12132
+commander_veldaban_idle_2:
+  id: 12133
 black_guard_walk:
+  id: 12139
+black_guard_walk_2:
   id: 12140
 brunolt_idle:
   id: 12144
@@ -3448,22 +6618,44 @@ chaos_dwogre_idle:
   id: 12148
 chaos_dwogre_walk:
   id: 12149
+null_239:
+  id: 12161
+null_240:
+  id: 12162
+null_241:
+  id: 12163
+dragon_pickaxe_6:
+  id: 12169
 living_rock_remains_walk:
-  id: 12207
+  id: 12170
 chaos_dwarf_hand_cannoneer_idle:
   id: 12179
 chaos_dwarf_hand_cannoneer_walk:
   id: 12180
 brown_engine_director_idle:
   id: 12186
+dragon_pickaxe_7:
+  id: 12187
+dragon_pickaxe_8:
+  id: 12188
+dragon_pickaxe_9:
+  id: 12189
+dragon_pickaxe_10:
+  id: 12190
+dragon_pickaxe_11:
+  id: 12191
 pit_rock_protector_idle:
   id: 12193
 pit_rock_protector_walk:
   id: 12195
+living_rock_remains_walk_2:
+  id: 12200
 living_rock_striker_idle:
   id: 12202
 living_rock_striker_walk:
   id: 12203
+living_rock_remains_walk_3:
+  id: 12207
 living_rock_patriarch_walk:
   id: 12209
 living_rock_patriarch_idle:
@@ -3476,28 +6668,144 @@ squire_step_right:
   id: 12227
 squire_walk2:
   id: 12228
+sir_vant_walk2_2:
+  id: 12233
+sir_vant_walk2_3:
+  id: 12234
 sir_tiffy_walk2:
   id: 12235
+oily_rag:
+  id: 12237
 brutal_green_dragon_step_right:
   id: 12246
+dragon_walk_5:
+  id: 12247
 brutal_green_dragon_idle:
   id: 12248
+dragon_idle_5:
+  id: 12249
+dragon_walk_6:
+  id: 12253
+dragon_walk_7:
+  id: 12255
+null_242:
+  id: 12276
+null_243:
+  id: 12277
+bronze_pickaxe_13:
+  id: 12278
+bronze_pickaxe_14:
+  id: 12279
+roddeck_step_right_2:
+  id: 12280
+bronze_hatchet_8:
+  id: 12282
+drugged_meat:
+  id: 12283
 hank_idle:
   id: 12290
 hank_walk2:
   id: 12291
 doomsayer_idle:
   id: 12292
+lumbridge_sage_walk_2:
+  id: 12294
 muncher_idle:
   id: 12297
+sacred_clay_hatchet_7:
+  id: 12318
+volatile_clay_hatchet_7:
+  id: 12319
+bronze_hatchet_9:
+  id: 12322
+inferno_adze_18:
+  id: 12323
+sacred_clay_hatchet_8:
+  id: 12324
+volatile_clay_hatchet_8:
+  id: 12325
+bronze_hatchet_10:
+  id: 12329
+iron_hatchet_9:
+  id: 12330
+steel_hatchet_9:
+  id: 12331
+black_hatchet_9:
+  id: 12332
+mithril_hatchet_10:
+  id: 12333
+adamant_hatchet_10:
+  id: 12334
+rune_hatchet_11:
+  id: 12335
+dragon_hatchet_10:
+  id: 12336
+inferno_adze_19:
+  id: 12337
+sacred_clay_hatchet_9:
+  id: 12338
+volatile_clay_hatchet_9:
+  id: 12339
+rune_hatchet_12:
+  id: 12340
+adamant_hatchet_11:
+  id: 12341
+mithril_hatchet_11:
+  id: 12342
+steel_hatchet_10:
+  id: 12343
+iron_hatchet_10:
+  id: 12344
+bronze_hatchet_11:
+  id: 12345
+dragon_hatchet_11:
+  id: 12346
+inferno_adze_20:
+  id: 12347
+sacred_clay_hatchet_10:
+  id: 12348
+volatile_clay_hatchet_10:
+  id: 12349
 akrisae_idle:
   id: 12350
+saw_4:
+  id: 12363
+null_244:
+  id: 12364
+crystal_saw:
+  id: 12365
+crystal_saw_2:
+  id: 12366
+crystal_saw_3:
+  id: 12367
+crystal_saw_4:
+  id: 12368
+null_245:
+  id: 12375
+bark:
+  id: 12375
+saw_5:
+  id: 12379
 shady_stranger_idle:
   id: 12380
+crystal_saw_5:
+  id: 12381
+crystal_saw_6:
+  id: 12382
+crystal_saw_7:
+  id: 12383
+crystal_saw_8:
+  id: 12384
 suspicious_outsider_idle:
   id: 12393
 shady_stranger_walk:
   id: 12399
+eucalyptus_logs:
+  id: 12400
+hobgoblin_idle_2:
+  id: 12403
+hobgoblin_walk_2:
+  id: 12404
 suspicious_outsider_walk:
   id: 12407
 iconis_walk:
@@ -3510,12 +6818,24 @@ dwarf_step_right:
   id: 12435
 sanchez_idle:
   id: 12454
+steel_pickaxe_12:
+  id: 12455
 bat_walk:
   id: 12459
 bat_idle:
   id: 12460
+null_246:
+  id: 12463
+null_247:
+  id: 12468
+null_248:
+  id: 12469
+null_249:
+  id: 12470
+null_250:
+  id: 12471
 grim_reaper_walk:
-  id: 14872
+  id: 12483
 spider_herald_idle:
   id: 12486
 spider_idle:
@@ -3536,26 +6856,58 @@ strange_old_man_idle:
   id: 12543
 dark_mage_walk:
   id: 12547
+stake_2:
+  id: 12602
+stake_hammer:
+  id: 12603
+stake_hammer_2:
+  id: 12606
 gypsy_aris_idle:
   id: 12610
 denath_walk:
   id: 12611
+silverlight:
+  id: 12619
+bucket_of_water_2:
+  id: 12621
+silverlight_2:
+  id: 12625
+bucket_of_water_3:
+  id: 12643
+queen_of_snow_idle_2:
+  id: 12657
+candy_cane:
+  id: 12664
 partygoer_walk:
   id: 12673
 ebenezer_scourge_idle:
-  id: 12681
+  id: 12679
 ebenezer_scourge_walk:
   id: 12680
+ebenezer_scourge_idle_2:
+  id: 12681
 tiny_thom_idle:
   id: 12684
 tiny_thom_walk:
   id: 12685
+null_251:
+  id: 12687
+null_252:
+  id: 12688
+sir_amik_varze_walk_2:
+  id: 12689
+null_253:
+  id: 12690
 nomad_walk:
+  id: 12692
+nomad_walk_2:
   id: 12695
 flame_vortex_idle:
   id: 12721
 taevas_idle:
   id: 12745
+penance_master_horn:
+  id: 12755
 mound_idle:
   id: 12788
 mound_walk:
@@ -3592,12 +6944,18 @@ zombie_impling_walk:
   id: 12833
 zombie_impling_idle:
   id: 12834
+statue_piece_3:
+  id: 12835
+xenia_idle_3:
+  id: 12849
 xenia_walk:
   id: 12850
 ilona_walk:
   id: 12860
 risen_knight_idle:
   id: 12861
+skeleton_walk_4:
+  id: 12862
 dragith_nurn_idle:
   id: 12871
 dragith_nurn_walk:
@@ -3605,31 +6963,205 @@ dragith_nurn_walk:
 reese_walk:
   id: 12877
 kayle_walk:
-  id: 14864
+  id: 12879
 kay_thanxby_idle:
   id: 12881
+skeleton_idle_4:
+  id: 12883
 crawling_corpse_torso_idle:
   id: 12889
 crawling_corpse_torso_walk:
   id: 12892
+farmer_idle_4:
+  id: 12907
+fishing_rod_3:
+  id: 12919
 gerrant_walk:
   id: 12920
 gerrant_idle:
   id: 12921
+null_254:
+  id: 12928
+volatile_clay_pickaxe_3:
+  id: 12935
+gilded_dragon_pickaxe_7:
+  id: 12983
 hobgoblin_geomancer_idle:
   id: 12984
 hobgoblin_geomancer_step_right:
   id: 12985
+gilded_rune_pickaxe_8:
+  id: 12994
 bulwark_beast_step_right:
   id: 12999
+gilded_adamant_pickaxe_8:
+  id: 13014
 shadow-forger_ihlakhizan_idle:
   id: 13015
+gilded_mithril_pickaxe_8:
+  id: 13041
 brute_walk:
   id: 13059
+guard_idle_6:
+  id: 13064
 statue_idle:
-  id: 13381
+  id: 13068
 monolith_idle:
   id: 13072
+novite_pickaxe:
+  id: 13074
+bathus_pickaxe:
+  id: 13075
+marmaros_pickaxe:
+  id: 13076
+kratonite_pickaxe:
+  id: 13077
+fractite_pickaxe:
+  id: 13078
+zephyrium_pickaxe:
+  id: 13079
+argonite_pickaxe:
+  id: 13080
+katagon_pickaxe:
+  id: 13081
+gorgonite_pickaxe:
+  id: 13082
+promethium_pickaxe:
+  id: 13083
+primal_pickaxe:
+  id: 13084
+novite_pickaxe_2:
+  id: 13085
+bathus_pickaxe_2:
+  id: 13086
+marmaros_pickaxe_2:
+  id: 13087
+kratonite_pickaxe_2:
+  id: 13088
+fractite_pickaxe_2:
+  id: 13089
+zephyrium_pickaxe_2:
+  id: 13090
+argonite_pickaxe_2:
+  id: 13091
+katagon_pickaxe_2:
+  id: 13092
+gorgonite_pickaxe_2:
+  id: 13093
+promethium_pickaxe_2:
+  id: 13094
+primal_pickaxe_2:
+  id: 13095
+novite_pickaxe_3:
+  id: 13096
+bathus_pickaxe_3:
+  id: 13097
+marmaros_pickaxe_3:
+  id: 13098
+kratonite_pickaxe_3:
+  id: 13099
+fractite_pickaxe_3:
+  id: 13100
+zephyrium_pickaxe_3:
+  id: 13101
+argonite_pickaxe_3:
+  id: 13102
+katagon_pickaxe_3:
+  id: 13103
+gorgonite_pickaxe_3:
+  id: 13104
+promethium_pickaxe_3:
+  id: 13105
+primal_pickaxe_3:
+  id: 13106
+novite_pickaxe_4:
+  id: 13107
+bathus_pickaxe_4:
+  id: 13108
+marmaros_pickaxe_4:
+  id: 13109
+kratonite_pickaxe_4:
+  id: 13110
+fractite_pickaxe_4:
+  id: 13111
+zephyrium_pickaxe_4:
+  id: 13112
+argonite_pickaxe_4:
+  id: 13113
+katagon_pickaxe_4:
+  id: 13114
+gorgonite_pickaxe_4:
+  id: 13115
+promethium_pickaxe_4:
+  id: 13116
+primal_pickaxe_4:
+  id: 13117
+novite_hatchet:
+  id: 13118
+bathus_hatchet:
+  id: 13119
+marmaros_hatchet:
+  id: 13120
+kratonite_hatchet:
+  id: 13121
+fractite_hatchet:
+  id: 13122
+zephyrium_hatchet:
+  id: 13123
+argonite_hatchet:
+  id: 13124
+katagon_hatchet:
+  id: 13125
+gorgonite_hatchet:
+  id: 13126
+promethium_hatchet:
+  id: 13127
+primal_hatchet:
+  id: 13128
+novite_hatchet_2:
+  id: 13129
+bathus_hatchet_2:
+  id: 13130
+marmaros_hatchet_2:
+  id: 13131
+kratonite_hatchet_2:
+  id: 13132
+fractite_hatchet_2:
+  id: 13133
+zephyrium_hatchet_2:
+  id: 13134
+argonite_hatchet_2:
+  id: 13135
+katagon_hatchet_2:
+  id: 13136
+gorgonite_hatchet_2:
+  id: 13137
+promethium_hatchet_2:
+  id: 13138
+primal_hatchet_2:
+  id: 13139
+novite_hatchet_3:
+  id: 13140
+bathus_hatchet_3:
+  id: 13141
+marmaros_hatchet_3:
+  id: 13142
+kratonite_hatchet_3:
+  id: 13143
+fractite_hatchet_3:
+  id: 13144
+zephyrium_hatchet_3:
+  id: 13145
+argonite_hatchet_3:
+  id: 13146
+katagon_hatchet_3:
+  id: 13147
+gorgonite_hatchet_3:
+  id: 13148
+promethium_hatchet_3:
+  id: 13149
+primal_hatchet_3:
+  id: 13150
 frost_dragon_idle:
   id: 13156
 frost_dragon_step_right:
@@ -3642,8 +7174,16 @@ unholy_cursebearer_idle:
   id: 13167
 unholy_cursebearer_step_right:
   id: 13168
+gilded_steel_pickaxe_8:
+  id: 13172
+gilded_iron_pickaxe_8:
+  id: 13173
+gilded_bronze_pickaxe_8:
+  id: 13186
 fremennik_warrior_walk:
   id: 13189
+dwarven_army_axe_7:
+  id: 13201
 forgotten_warrior_idle:
   id: 13217
 forgotten_warrior_walk:
@@ -3652,24 +7192,118 @@ forgotten_warrior_walk_back:
   id: 13219
 forgotten_warrior_run:
   id: 13220
+stone_shape:
+  id: 13221
 forgotten_warrior_step_left:
   id: 13222
 forgotten_warrior_step_right:
   id: 13223
+tangle_gum_longbow_u:
+  id: 13225
+seeping_elm_longbow_u:
+  id: 13226
+blood_spindle_longbow_u:
+  id: 13227
+utuku_longbow_u:
+  id: 13228
+spinebeam_longbow_u:
+  id: 13229
+bovistrangler_longbow_u:
+  id: 13230
+thigat_longbow_u:
+  id: 13231
+corpsethorn_longbow_u:
+  id: 13232
+entgallow_longbow_u:
+  id: 13233
+grave_creeper_longbow_u:
+  id: 13234
+tangle_gum_shortbow_u:
+  id: 13235
+seeping_elm_shortbow_u:
+  id: 13236
+blood_spindle_shortbow_u:
+  id: 13237
+utuku_shortbow_u:
+  id: 13238
+spinebeam_shortbow_u:
+  id: 13239
+bovistrangler_shortbow_u:
+  id: 13240
+thigat_shortbow_u:
+  id: 13241
+corpsethorn_shortbow_u:
+  id: 13242
+entgallow_shortbow_u:
+  id: 13243
+grave_creeper_shortbow_u:
+  id: 13244
+needle_6:
+  id: 13245
+salve_cloth:
+  id: 13245
+needle_7:
+  id: 13246
+wildercress_cloth:
+  id: 13246
+needle_8:
+  id: 13247
+blightleaf_cloth:
+  id: 13247
+needle_9:
+  id: 13248
+roseblood_cloth:
+  id: 13248
+needle_10:
+  id: 13249
+bryll_cloth:
+  id: 13249
+needle_11:
+  id: 13250
+duskweed_cloth:
+  id: 13250
+needle_12:
+  id: 13251
+soulbell_cloth:
+  id: 13251
+needle_13:
+  id: 13252
+ectocloth:
+  id: 13252
+needle_14:
+  id: 13253
+runic_cloth:
+  id: 13253
+needle_15:
+  id: 13254
+spiritbloom_cloth:
+  id: 13254
 tyrannomastyx_corpse_walk:
   id: 13256
 tyrannomastyx_idle:
   id: 13257
 tyrannomastyx_step_right:
   id: 13258
+stone_shape_2:
+  id: 13268
+stone_shape_3:
+  id: 13274
+stone_shape_4:
+  id: 13278
+stone_shape_5:
+  id: 13283
 sachem_hoardstalker_run:
   id: 13289
+stone_shape_6:
+  id: 13290
 sneakerpeeper_spawn_step_right:
   id: 13293
 sneakerpeeper_spawn_run:
   id: 13294
 seeker_spawn_step_right:
   id: 13295
+stone_shape_7:
+  id: 13300
 ferret_idle:
   id: 13302
 ferret_walk:
@@ -3681,17 +7315,59 @@ ferret_walk_back:
 ferret_step_left:
   id: 13309
 ferret_step_right:
-  id: 14518
+  id: 13310
+stone_shape_8:
+  id: 13311
+stone_shape_9:
+  id: 13314
+stone_shape_10:
+  id: 13318
+stone_shape_11:
+  id: 13319
 luminescent_icefiend_idle:
   id: 13333
 luminescent_icefiend_step_right:
   id: 13334
 frozen_adventurer_idle:
   id: 13348
+stone_shape_12:
+  id: 13350
+stone_shape_13:
+  id: 13351
+statue_idle_2:
+  id: 13357
+statue_idle_3:
+  id: 13358
+stone_shape_14:
+  id: 13359
+stone_shape_15:
+  id: 13362
+stone_shape_16:
+  id: 13366
+stone_shape_17:
+  id: 13367
+stone_shape_18:
+  id: 13369
+stone_shape_19:
+  id: 13370
+stone_shape_20:
+  id: 13372
+stone_shape_21:
+  id: 13373
+statue_idle_4:
+  id: 13376
+statue_idle_5:
+  id: 13381
+stone_shape_22:
+  id: 13387
 mysterious_shade_walk:
   id: 13395
-thok,_master_of_dungeoneering_walk:
+stone_shape_23:
+  id: 13397
+thok_master_of_dungeoneering_walk:
   id: 13410
+stone_shape_24:
+  id: 13415
 ice_warrior_idle:
   id: 13417
 night-gazer_khighorahk_idle:
@@ -3700,6 +7376,8 @@ night-gazer_khighorahk_step_right:
   id: 13419
 night-gazer_khighorahk_walk2:
   id: 13421
+stone_shape_25:
+  id: 13444
 stomp_walk:
   id: 13445
 scrambles_idle:
@@ -3722,8 +7400,30 @@ snotgut_walk2:
   id: 13591
 scrambles_walk2:
   id: 13592
+stone_shape_26:
+  id: 13599
+stone_shape_27:
+  id: 13600
+stone_shape_28:
+  id: 13601
+stone_shape_29:
+  id: 13602
+stone_shape_30:
+  id: 13603
+stone_shape_31:
+  id: 13604
+stone_shape_32:
+  id: 13605
+stone_shape_33:
+  id: 13606
+stone_shape_34:
+  id: 13611
+stone_shape_35:
+  id: 13612
 ramokee_deathslinger_idle:
   id: 13613
+stone_shape_36:
+  id: 13619
 wiglaf_idle:
   id: 13651
 ramokee_deathslinger_step_right:
@@ -3750,6 +7450,32 @@ edimmu_idle:
   id: 13731
 edimmu_step_right:
   id: 13739
+chisel_10:
+  id: 13740
+stone_block:
+  id: 13740
+tangle_gum_branches:
+  id: 13745
+seeping_elm_branches:
+  id: 13746
+blood_spindle_branches:
+  id: 13747
+utuku_branches:
+  id: 13748
+spinebeam_branches:
+  id: 13749
+bovistrangler_branches:
+  id: 13750
+thigat_branches:
+  id: 13751
+corpsethorn_branches:
+  id: 13752
+entgallow_branches:
+  id: 13753
+grave_creeper_branches:
+  id: 13754
+hammer_40:
+  id: 13759
 seeker_sentinel_idle:
   id: 13767
 caustic_gazer_step_right:
@@ -3769,6 +7495,10 @@ chief_thief_robin_idle:
 darren_lightfinger_idle:
   id: 13801
 guildmaster_darren_lightfinger_idle:
+  id: 13802
+guildmaster_darren_lightfinger_idle_2:
+  id: 13803
+guildmaster_darren_lightfinger_idle_3:
   id: 13804
 registrar_idle:
   id: 13806
@@ -3788,6 +7518,12 @@ guardian_of_armadyl_idle:
   id: 13818
 flagstaff_of_festivities_walk:
   id: 13826
+falador_shield_1:
+  id: 13843
+falador_shield_2:
+  id: 13844
+falador_shield_3:
+  id: 13845
 fairy_very_wise_walk:
   id: 13847
 fairy_idle:
@@ -3807,23 +7543,35 @@ fat_rocco_idle:
 fat_rocco_walk:
   id: 13859
 fairy_godfather_walk:
-  id: 14060
+  id: 13864
 tanglefoot_idle:
   id: 13866
 baby_tanglefoot_idle:
+  id: 13867
+baby_tanglefoot_idle_2:
   id: 13868
 tanglefoot_walk:
   id: 13869
 baby_tanglefoot_walk:
+  id: 13870
+baby_tanglefoot_walk_2:
   id: 13871
 ork_idle:
-  id: 14027
+  id: 13881
 ork_walk:
-  id: 14028
-general_bre'egth_idle:
+  id: 13882
+ork_idle_2:
+  id: 13883
+ork_walk_2:
+  id: 13884
+ork_idle_3:
+  id: 13885
+ork_walk_3:
+  id: 13886
+general_breegth_idle:
   id: 13887
-general_bre'egth_walk:
-  id: 13925
+general_breegth_walk:
+  id: 13888
 zanaris_choir_walk2:
   id: 13889
 zanaris_choir_idle:
@@ -3834,7 +7582,7 @@ gatekeeper_idle:
   id: 13896
 milk_tooth_creature_idle:
   id: 13900
-tooth_creature_(decayed)_walk:
+tooth_creature_decayed_walk:
   id: 13901
 milk_tooth_creature_walk:
   id: 13902
@@ -3842,32 +7590,60 @@ extractor_fairies_idle:
   id: 13906
 extractor_fairies_walk:
   id: 13907
-k'chunk_idle:
+kchunk_idle:
   id: 13908
-k'chunk_walk:
+kchunk_walk:
   id: 13909
-ivory_gromblod_(cursed)_idle:
+ivory_gromblod_cursed_idle:
   id: 13913
 general_gromblod_walk:
   id: 13914
-ivory_bre'egth_(cursed)_idle:
+ivory_breegth_cursed_idle:
   id: 13924
-ivory_shredflesh_(cursed)_idle:
+general_breegth_walk_2:
+  id: 13925
+ivory_shredflesh_cursed_idle:
   id: 13932
 general_shredflesh_walk:
   id: 13933
-ivory_bre'egth_(cursed)_walk:
+ivory_breegth_cursed_walk:
   id: 13950
-ivory_gromblod_(cursed)_walk:
+ivory_gromblod_cursed_walk:
   id: 13951
-ivory_shredflesh_(cursed)_walk:
+ivory_shredflesh_cursed_walk:
   id: 13952
 fairy_godfather_idle:
+  id: 13970
+fairy_godfather_walk_2:
+  id: 13971
+tooth_extractor:
+  id: 13974
+bucket_of_milk:
+  id: 14010
+fairy_godfather_idle_2:
   id: 14017
+ork_idle_4:
+  id: 14023
+ork_walk_4:
+  id: 14024
 ork_warrior_idle:
-  id: 14029
+  id: 14025
 ork_warrior_walk:
+  id: 14026
+ork_idle_5:
+  id: 14027
+ork_walk_5:
+  id: 14028
+ork_warrior_idle_2:
+  id: 14029
+ork_warrior_walk_2:
   id: 14030
+fairy_godfather_walk_3:
+  id: 14060
+hammer_41:
+  id: 14080
+tooth_extractor_2:
+  id: 14081
 centaur_idle:
   id: 14089
 centaur_walk:
@@ -3876,18 +7652,42 @@ irksol_idle:
   id: 14092
 irksol_walk:
   id: 14093
+fishing_rod_4:
+  id: 14098
+body_bar:
+  id: 14150
+primed_bar:
+  id: 14151
+primed_bar_2:
+  id: 14152
+dragonkin_lamp:
+  id: 14177
+null_255:
+  id: 14179
 commander_korasi_walk2:
   id: 14181
 commander_korasi_walk:
   id: 14183
+null_256:
+  id: 14184
+null_257:
+  id: 14185
 knight_diana_step_right:
   id: 14196
 knight_ami_walk2:
   id: 14197
 jessika_run:
   id: 14207
+null_258:
+  id: 14228
 zenevivia_step_right:
   id: 14232
+chisel_11:
+  id: 14233
+chisel_12:
+  id: 14234
+chisel_13:
+  id: 14235
 mabel_step_right:
   id: 14240
 pit_iron_dragon_step_right:
@@ -3910,6 +7710,26 @@ baby_red_dragon_idle:
   id: 14267
 baby_red_dragon_walk:
   id: 14268
+crab_idle_2:
+  id: 14276
+null_259:
+  id: 14293
+bat_staff:
+  id: 14298
+cat_staff:
+  id: 14299
+dragon_staff:
+  id: 14300
+penguin_staff:
+  id: 14301
+wolf_staff:
+  id: 14302
+null_260:
+  id: 14308
+null_261:
+  id: 14309
+null_262:
+  id: 14310
 meerkats_walk:
   id: 14312
 meerkats_run:
@@ -3918,20 +7738,44 @@ laden_indentured_worker_idle:
   id: 14350
 laden_indentured_worker_walk:
   id: 14351
-to'kash_the_bloodchiller_step_right:
+puzzle_box:
+  id: 14352
+void_knight_whistle:
+  id: 14356
+rune_pickaxe_12:
+  id: 14358
+bronze_pickaxe_15:
+  id: 14359
+iron_pickaxe_11:
+  id: 14360
+steel_pickaxe_13:
+  id: 14361
+adamant_pickaxe_11:
+  id: 14362
+mithril_pickaxe_11:
+  id: 14363
+dragon_pickaxe_12:
+  id: 14364
+sacred_clay_pickaxe_11:
+  id: 14365
+inferno_adze_21:
+  id: 14366
+tokash_the_bloodchiller_step_right:
   id: 14372
-har'lakk_the_riftsplitter_step_right:
+harlakk_the_riftsplitter_step_right:
   id: 14377
-bal'lak_the_pummeller_step_right:
+ballak_the_pummeller_step_right:
   id: 14379
-har'lakk_the_riftsplitter_walk2:
+harlakk_the_riftsplitter_walk2:
   id: 14381
-yk'lagor_the_thunderous_step_right:
+yklagor_the_thunderous_step_right:
   id: 14397
 pondskater_idle:
   id: 14406
 pondskater_walk:
   id: 14407
+hammer_42:
+  id: 14413
 runebound_behemoth_idle:
   id: 14420
 runebound_behemoth_walk2:
@@ -3941,9 +7785,11 @@ hope_devourer_walk:
 hope_devourer_idle:
   id: 14454
 _flesh-spoiler_haasghenahk_idle:
-  id: 14470
+  id: 14464
 _flesh-spoiler_haasghenahk_walk:
   id: 14465
+_flesh-spoiler_haasghenahk_idle_2:
+  id: 14470
 _flesh-spoiler_spawn_idle:
   id: 14479
 _flesh-spoiler_spawn_walk:
@@ -3952,6 +7798,16 @@ gravecreeper_idle:
   id: 14499
 gravecreeper_walk:
   id: 14502
+ferret_step_right_2:
+  id: 14518
+climbing_hook:
+  id: 14550
+climbing_hook_2:
+  id: 14557
+hammer_43:
+  id: 14566
+hammer_44:
+  id: 14567
 captain_ethar_walk:
   id: 14571
 champion_idle:
@@ -3986,6 +7842,16 @@ ancient_ranger_walk:
   id: 14605
 smiddi_ryak_walk:
   id: 14683
+rolayne_twickit_walk_2:
+  id: 14693
+falador_shield_4:
+  id: 14713
+ancient_hymnal:
+  id: 14714
+ancient_hymnal_2:
+  id: 14715
+null_263:
+  id: 14716
 kjell_idle:
   id: 14727
 dororan_idle:
@@ -3994,6 +7860,8 @@ spiritual_warrior_idle:
   id: 14730
 spiritual_warrior_step_right:
   id: 14732
+chisel_14:
+  id: 14736
 terror_dog_step_right:
   id: 14742
 the_face_walk:
@@ -4005,13 +7873,15 @@ pest_drone_walk2:
 pest_drone_walk:
   id: 14753
 captain_korasi_idle:
-  id: 14818
+  id: 14763
 pest_queen_step_right:
   id: 14777
 pest_queen_idle:
   id: 14778
 valluta_idle:
   id: 14810
+captain_korasi_idle_2:
+  id: 14818
 captain_korasi_walk2:
   id: 14819
 captain_korasi_walk_back:
@@ -4022,8 +7892,22 @@ captain_korasi_step_right:
   id: 14822
 captain_korasi_run:
   id: 14823
+commorb:
+  id: 14824
+commorb_2:
+  id: 14825
+commorb_3:
+  id: 14827
 jessika_idle:
   id: 14831
+commorb_4:
+  id: 14835
+black_helm:
+  id: 14837
+tinderbox_5:
+  id: 14838
+yaktwee_stick:
+  id: 14841
 slithtils_idle:
   id: 14846
 slithtils_walk:
@@ -4032,8 +7916,12 @@ giant_rat_walk:
   id: 14862
 kayle_idle:
   id: 14863
+kayle_walk_2:
+  id: 14864
 kayle_run:
   id: 14865
+grim_reaper_walk_2:
+  id: 14872
 moira_idle:
   id: 14875
 zabeth_corvid_walk:
@@ -4056,9 +7944,9 @@ blink_idle:
   id: 14948
 blink_walk:
   id: 14950
-kal'ger_the_warmonger_walk:
+kalger_the_warmonger_walk:
   id: 14966
-kal'ger_the_warmonger_idle:
+kalger_the_warmonger_idle:
   id: 14967
 dreadnaut_walk:
   id: 14981
@@ -4076,6 +7964,8 @@ sneakerpeeper_step_left:
   id: 15020
 sneakerpeeper_step_right:
   id: 15021
+boulder_walk_5:
+  id: 15028
 eruni_walk2:
   id: 15039
 leeuni_walk2:
@@ -4108,14 +7998,112 @@ thorvar_crittersmash_idle:
   id: 15115
 explorer_jack_idle:
   id: 15120
+golden_hammer_7:
+  id: 15121
+golden_hammer_8:
+  id: 15122
+golden_hammer_9:
+  id: 15123
+broodoo_shield_10_10:
+  id: 15123
+golden_hammer_10:
+  id: 15124
+broodoo_shield_10_11:
+  id: 15124
+golden_hammer_11:
+  id: 15125
+broodoo_shield_10_12:
+  id: 15125
+golden_hammer_12:
+  id: 15126
+golden_hammer_13:
+  id: 15127
+golden_hammer_14:
+  id: 15128
+repair_plank_4:
+  id: 15128
+golden_hammer_15:
+  id: 15129
+golden_hammer_16:
+  id: 15130
+golden_hammer_17:
+  id: 15131
+selected_iron_4:
+  id: 15131
+hammer_45:
+  id: 15132
+sacred_clay_hammer_32:
+  id: 15133
+volatile_clay_hammer_32:
+  id: 15134
+golden_hammer_18:
+  id: 15135
+golden_hammer_19:
+  id: 15136
+golden_hammer_20:
+  id: 15137
+golden_hammer_21:
+  id: 15138
+golden_hammer_22:
+  id: 15139
+golden_hammer_23:
+  id: 15140
+golden_hammer_24:
+  id: 15141
+chisel_15:
+  id: 15141
+golden_hammer_25:
+  id: 15142
+chisel_16:
+  id: 15142
+golden_hammer_26:
+  id: 15143
+picture_5:
+  id: 15143
+golden_hammer_27:
+  id: 15144
+golden_hammer_28:
+  id: 15145
+golden_hammer_29:
+  id: 15146
+golden_hammer_30:
+  id: 15147
+golden_hammer_31:
+  id: 15148
+null_264:
+  id: 15152
+golden_hammer_32:
+  id: 15156
+lava-flow_miner_walk_2:
+  id: 15167
+big_rock:
+  id: 15180
+big_rock_2:
+  id: 15182
+null_265:
+  id: 15198
 lava-flow_miner_sven_walk:
   id: 15204
 lava-flow_miner_sven_idle:
   id: 15205
+null_266:
+  id: 15207
 meike_idle:
   id: 15208
 lava-flow_miner_idle:
   id: 15211
+lava-flow_miner_walk_3:
+  id: 15212
+lava-flow_miner_walk_4:
+  id: 15213
+lava-flow_miner_walk_5:
+  id: 15214
+lava-flow_miner_walk_6:
+  id: 15215
+lava-flow_miner_walk_7:
+  id: 15216
+null_267:
+  id: 15217
 my_arm_walk:
   id: 15229
 big_rock_idle:
@@ -4132,12 +8120,32 @@ hreidmar_idle:
   id: 15235
 dog_idle:
   id: 15240
+bronze_pickaxe_16:
+  id: 15242
+iron_pickaxe_12:
+  id: 15243
+steel_pickaxe_14:
+  id: 15244
+mithril_pickaxe_12:
+  id: 15245
+adamant_pickaxe_12:
+  id: 15246
+rune_pickaxe_13:
+  id: 15247
+dragon_pickaxe_13:
+  id: 15248
+sacred_clay_pickaxe_12:
+  id: 15249
+inferno_adze_22:
+  id: 15250
 hati_idle:
   id: 15254
 hati_walk:
   id: 15256
 yaktwee_swinmari_cianta_run:
   id: 15263
+gnome_idle_3:
+  id: 15269
 gnome_walk:
   id: 15270
 healthorg_and_tortoise_turn:
@@ -4146,10 +8154,30 @@ healthorg_and_tortoise_walk2:
   id: 15273
 advisor_walk:
   id: 15274
+hammer_46:
+  id: 15295
+chisel_17:
+  id: 15295
+automaton_idle_2:
+  id: 15309
+automaton_walk_3:
+  id: 15320
+automaton_idle_3:
+  id: 15321
 cloud_spirit_idle:
   id: 15335
+queen_of_snow_idle_3:
+  id: 15337
 antipodean_squirrel_idle:
   id: 15345
+easter_bunny_idle_3:
+  id: 15346
+jack_frost_idle_2:
+  id: 15355
+chisel_18:
+  id: 15356
+queen_of_snow_idle_4:
+  id: 15361
 queen_of_sunrise_idle:
   id: 15362
 river_spirit_idle:

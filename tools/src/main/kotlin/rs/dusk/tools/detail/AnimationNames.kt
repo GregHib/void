@@ -4,6 +4,7 @@ import org.koin.core.context.startKoin
 import rs.dusk.cache.Cache
 import rs.dusk.cache.config.decoder.RenderAnimationDecoder
 import rs.dusk.cache.definition.decoder.AnimationDecoder
+import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
@@ -28,18 +29,27 @@ object AnimationNames {
         val cache: Cache = koin.get()
         val loader: FileLoader = koin.get()
         val decoder = AnimationDecoder(cache)
+        val itemDecoder = ItemDecoder(cache)
         val renders = getRenderAnimations(cache)
-        val map = mutableMapOf<Int, MutableList<String>>()
+        val map = mutableMapOf<String, MutableList<Int>>()
         repeat(decoder.size) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             val render = renders[id]
             if(render != null) {
-                map.getOrPut(id) { mutableListOf() }.add(render)
+                map.getOrPut(render) { mutableListOf() }.add(id)
+            }
+            if (def.leftHand != -1) {
+                map.getOrPut(toIdentifier(itemDecoder.get(def.leftHand).name)) { mutableListOf() }.add(id)
+            }
+            if (def.rightHand != -1) {
+                map.getOrPut(toIdentifier(itemDecoder.get(def.rightHand).name)) { mutableListOf() }.add(id)
             }
         }
 
         val path = "./animation-details.yml"
-        val sorted = map.map { it.value.first() to Ids(it.key) }.sortedBy { it.second.id }.toMap()
+        val sorted = map.flatMap {
+            it.value.sortedBy { it }.mapIndexed { index, i -> (if(index > 0) "${it.key}_${index + 1}" else it.key) to Ids(i) }
+        }.sortedBy { it.second.id }.toMap()
         loader.save(path, sorted)
         println("${sorted.size} animation identifiers dumped to $path.")
     }
