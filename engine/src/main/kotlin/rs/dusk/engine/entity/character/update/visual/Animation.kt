@@ -6,6 +6,8 @@ import rs.dusk.engine.entity.character.npc.NPCEvent
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.entity.character.update.Visual
+import rs.dusk.engine.entity.definition.AnimationDefinitions
+import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -52,6 +54,10 @@ fun NPC.setAnimation(id: Int, speed: Int = 0) {
     setAnimation(getAnimation(), id, speed)
     flagAnimation()
 }
+
+fun Player.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)
+
+fun NPC.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)
 
 private fun setAnimation(anim: Animation, id: Int, speed: Int) {
     when {

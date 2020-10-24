@@ -412,33 +412,33 @@ rogue_pack_yak_idle:
   id: 850
 dancer_idle:
   id: 866
-rune_hatchet:
+rune_hatchet_chop:
   id: 867
-adamant_hatchet:
+adamant_hatchet_chop:
   id: 869
-dragon_hatchet:
+dragon_hatchet_chop_ivy:
   id: 870
-mithril_hatchet:
+mithril_hatchet_chop:
   id: 871
-rune_hatchet_2:
+rune_hatchet_chop_ivy:
   id: 872
-black_hatchet:
+black_hatchet_chop:
   id: 873
-adamant_hatchet_2:
+adamant_hatchet_chop_ivy:
   id: 874
 carpenter_kjallak_idle:
   id: 875
-steel_hatchet:
+steel_hatchet_chop:
   id: 875
-mithril_hatchet_2:
+mithril_hatchet_chop_ivy:
   id: 876
-iron_hatchet:
+iron_hatchet_chop:
   id: 877
-black_hatchet_2:
+black_hatchet_chop_ivy:
   id: 878
-bronze_hatchet:
+bronze_hatchet_chop:
   id: 879
-steel_hatchet_2:
+steel_hatchet_chop_ivy:
   id: 880
 glassblowing_pipe:
   id: 884
@@ -1038,11 +1038,11 @@ small_fishing_net_3:
   id: 1903
 spinning_plate_2:
   id: 1904
-sacred_clay_hatchet:
+sacred_clay_hatchet_chop:
   id: 1905
 spinning_plate_3:
   id: 1906
-volatile_clay_hatchet:
+volatile_clay_hatchet_chop:
   id: 1907
 clay_golem_walk:
   id: 1912
@@ -1554,7 +1554,7 @@ fishbowl_9:
   id: 2788
 dummy_axe:
   id: 2789
-dwarven_army_axe:
+dwarven_army_axe_chop:
   id: 2794
 stick_5:
   id: 2798
@@ -1586,25 +1586,25 @@ dummy_axe_2:
   id: 2831
 the_raptor_walk:
   id: 2832
-dwarven_army_axe_2:
+dwarven_army_axe_chop_ivy:
   id: 2833
 sir_owen_idle:
   id: 2834
 gee_idle:
   id: 2836
-dwarven_army_axe_3:
+dwarven_army_axe_dugout_canoe:
   id: 2837
-dwarven_army_axe_4:
+dwarven_army_axe_stable_canoe:
   id: 2838
-dwarven_army_axe_5:
+dwarven_army_axe_waka_canoe:
   id: 2839
 zombie_head:
   id: 2840
 zombie_head_2:
   id: 2844
-dragon_hatchet_2:
+dragon_hatchet_chop:
   id: 2846
-iron_hatchet_2:
+iron_hatchet_chop_ivy:
   id: 2847
 dagannoth_rex_walk:
   id: 2849
@@ -1822,13 +1822,13 @@ sweeper_idle:
   id: 3244
 sweeper_walk:
   id: 3245
-dragon_hatchet_3:
+dragon_hatchet_chop_ivy_stop:
   id: 3260
-rune_hatchet_3:
+rune_hatchet_chop_ivy_stop:
   id: 3261
-adamant_hatchet_3:
+adamant_hatchet_chop_ivy_stop:
   id: 3262
-mithril_hatchet_3:
+mithril_hatchet_chop_ivy_stop:
   id: 3263
 farmer_idle_2:
   id: 3269
@@ -1844,9 +1844,9 @@ jeremy_clerksin_idle:
   id: 3282
 vial_2:
   id: 3283
-black_hatchet_3:
+black_hatchet_chop_ivy_stop:
   id: 3284
-steel_hatchet_3:
+steel_hatchet_chop_ivy_stop:
   id: 3292
 juju_hunter_potion_4:
   id: 3307
@@ -1854,13 +1854,13 @@ baby_mole_idle:
   id: 3309
 baby_mole_walk:
   id: 3313
-iron_hatchet_3:
+iron_hatchet_chop_ivy_stop:
   id: 3323
-bronze_hatchet_2:
+bronze_hatchet_chop_ivy_stop:
   id: 3324
-inferno_adze:
+inferno_adze_chop_ivy_stop:
   id: 3325
-sacred_clay_hatchet_2:
+sacred_clay_hatchet_chop_ivy_stop:
   id: 3326
 count_draynor_idle:
   id: 3330
@@ -1904,7 +1904,7 @@ monarchist_walk:
   id: 3379
 awowogei_walk:
   id: 3390
-volatile_clay_hatchet_2:
+volatile_clay_hatchet_chop_ivy_stop:
   id: 3394
 general_wartface_walk:
   id: 3395
@@ -2186,21 +2186,21 @@ milk_seller_step_right:
   id: 3997
 suspect_walk:
   id: 3999
-dragon_hatchet_4:
+dragon_hatchet_chop_canoe_tree:
   id: 4008
-rune_hatchet_4:
+rune_hatchet_chop_canoe_tree:
   id: 4011
-adamant_hatchet_4:
+adamant_hatchet_chop_canoe_tree:
   id: 4012
-mithril_hatchet_4:
+mithril_hatchet_chop_canoe_tree:
   id: 4017
 ferd_idle:
   id: 4021
 golden_hammer_3:
   id: 4030
-steel_hatchet_4:
+steel_hatchet_chop_canoe_tree:
   id: 4031
-iron_hatchet_4:
+iron_hatchet_chop_canoe_tree:
   id: 4036
 giant_sea_snake_walk:
   id: 4037
@@ -2264,9 +2264,9 @@ null_33:
   id: 4075
 null_34:
   id: 4076
-bronze_hatchet_3:
+bronze_hatchet_chop_canoe_tree:
   id: 4077
-sacred_clay_hatchet_3:
+sacred_clay_hatchet_chop_canoe_tree:
   id: 4078
 null_35:
   id: 4079
@@ -2340,7 +2340,7 @@ null_68:
   id: 4116
 null_69:
   id: 4117
-volatile_clay_hatchet_3:
+volatile_clay_hatchet_chop_canoe_tree:
   id: 4137
 null_70:
   id: 4141
@@ -2484,9 +2484,9 @@ sacred_clay_pickaxe:
   id: 4400
 volatile_clay_pickaxe:
   id: 4401
-inferno_adze_2:
+inferno_adze_chop_canoe_tree:
   id: 4402
-dwarven_army_axe_6:
+dwarven_army_axe_chop_canoe_tree:
   id: 4405
 dramen_staff:
   id: 4406
@@ -3034,13 +3034,13 @@ hammer_24:
   id: 5365
 selected_iron:
   id: 5365
-mithril_hatchet_5:
+mithril_hatchet_miss:
   id: 5366
-adamant_hatchet_5:
+adamant_hatchet_miss:
   id: 5367
-rune_hatchet_5:
+rune_hatchet_miss:
   id: 5368
-dragon_hatchet_5:
+dragon_hatchet_miss:
   id: 5369
 alices_husband_idle:
   id: 5371
@@ -3052,9 +3052,9 @@ alices_husband_walk:
   id: 5373
 ice_troll_king_walk:
   id: 5379
-blessed_hatchet:
+blessed_hatchet_chop:
   id: 5383
-blessed_hatchet_2:
+blessed_hatchet_collect:
   id: 5384
 rooster_walk:
   id: 5385
@@ -3252,7 +3252,7 @@ decapitated_head:
   id: 5777
 decapitated_head_2:
   id: 5778
-rune_hatchet_6:
+rune_hatchet_chop_floor:
   id: 5781
 zombie_step_left:
   id: 5788
@@ -3586,7 +3586,7 @@ the_illusive_idle_2:
   id: 6350
 null_173:
   id: 6362
-black_hatchet_4:
+black_hatchet_chop_log:
   id: 6364
 arctic_pine_logs:
   id: 6364
@@ -3882,21 +3882,21 @@ ferocious_barbarian_spirit_idle:
   id: 6729
 ferocious_barbarian_spirit_walk:
   id: 6730
-rune_hatchet_7:
+rune_hatchet_dugout_canoe:
   id: 6738
-adamant_hatchet_6:
+adamant_hatchet_dugout_canoe:
   id: 6739
-mithril_hatchet_6:
+mithril_hatchet_dugout_canoe:
   id: 6740
-black_hatchet_5:
+black_hatchet_dugout_canoe:
   id: 6741
-steel_hatchet_5:
+steel_hatchet_dugout_canoe:
   id: 6742
-iron_hatchet_5:
+iron_hatchet_dugout_canoe:
   id: 6743
-bronze_hatchet_4:
+bronze_hatchet_dugout_canoe:
   id: 6744
-dragon_hatchet_6:
+dragon_hatchet_dugout_canoe:
   id: 6745
 rune_pickaxe_5:
   id: 6746
@@ -4214,7 +4214,7 @@ hofuthand_armour_and_weapons_walk:
   id: 7370
 collapsing_grave_marker_idle:
   id: 7375
-inferno_adze_3:
+inferno_adze_log_canoe:
   id: 7383
 revenant_werewolf_idle:
   id: 7400
@@ -5274,21 +5274,21 @@ sir_vant_step_right:
   id: 9957
 sir_vant_walk:
   id: 9958
-dragon_hatchet_7:
+dragon_hatchet_chop_canoe_tree_2:
   id: 9992
-rune_hatchet_8:
+rune_hatchet_chop_canoe_tree_2:
   id: 9993
-adamant_hatchet_7:
+adamant_hatchet_chop_canoe_tree_2:
   id: 9994
-mithril_hatchet_7:
+mithril_hatchet_chop_canoe_tree_2:
   id: 9995
-black_hatchet_6:
+black_hatchet_chop_canoe_tree_2:
   id: 9996
-steel_hatchet_6:
+steel_hatchet_chop_canoe_tree_2:
   id: 9997
-iron_hatchet_6:
+iron_hatchet_chop_canoe_tree_2:
   id: 9998
-bronze_hatchet_5:
+bronze_hatchet_chop_canoe_tree_2:
   id: 9999
 pentyn_idle:
   id: 10000
@@ -5332,21 +5332,21 @@ corporeal_beast_idle:
   id: 10056
 spirit_beast_idle:
   id: 10064
-bronze_hatchet_6:
+bronze_hatchet_log_canoe:
   id: 10071
-iron_hatchet_7:
+iron_hatchet_log_canoe:
   id: 10072
-steel_hatchet_7:
+steel_hatchet_log_canoe:
   id: 10073
-black_hatchet_7:
+black_hatchet_log_canoe:
   id: 10074
-mithril_hatchet_8:
+mithril_hatchet_log_canoe:
   id: 10075
-adamant_hatchet_8:
+adamant_hatchet_log_canoe:
   id: 10076
-rune_hatchet_9:
+rune_hatchet_log_canoe:
   id: 10077
-dragon_hatchet_8:
+dragon_hatchet_log_canoe:
   id: 10078
 zomboat_walk:
   id: 10084
@@ -5412,9 +5412,9 @@ inferno_adze_11:
   id: 10247
 inferno_adze_12:
   id: 10249
-inferno_adze_13:
+inferno_adze_chop_canoe_tree_2:
   id: 10250
-inferno_adze_14:
+inferno_adze_chop:
   id: 10251
 performance_knife:
   id: 10261
@@ -5870,9 +5870,9 @@ jack_frost_step_right:
   id: 11052
 jack_frost_idle:
   id: 11053
-sacred_clay_hatchet_4:
+sacred_clay_hatchet_dugout_canoe:
   id: 11060
-volatile_clay_hatchet_4:
+volatile_clay_hatchet_dugout_canoe:
   id: 11061
 sacred_clay_hammer_8:
   id: 11062
@@ -6262,27 +6262,27 @@ natural_historian_idle_2:
   id: 11586
 natural_historian_walk_2:
   id: 11587
-bronze_hatchet_7:
+bronze_hatchet_waka_canoe:
   id: 11594
-rune_hatchet_10:
+rune_hatchet_waka_canoe:
   id: 11595
-adamant_hatchet_9:
+adamant_hatchet_waka_canoe:
   id: 11596
-mithril_hatchet_9:
+mithril_hatchet_waka_canoe:
   id: 11597
-black_hatchet_8:
+black_hatchet_waka_canoe:
   id: 11598
-steel_hatchet_8:
+steel_hatchet_waka_canoe:
   id: 11599
-iron_hatchet_8:
+iron_hatchet_waka_canoe:
   id: 11600
-dragon_hatchet_9:
+dragon_hatchet_waka_canoe:
   id: 11601
-sacred_clay_hatchet_5:
+sacred_clay_hatchet_waka_canoe:
   id: 11602
-volatile_clay_hatchet_5:
+volatile_clay_hatchet_waka_canoe:
   id: 11603
-inferno_adze_17:
+inferno_adze_waka_canoe:
   id: 11604
 erjolf_walk:
   id: 11610
@@ -6292,9 +6292,9 @@ erjolf_walk_3:
   id: 11612
 erjolf_idle:
   id: 11613
-sacred_clay_hatchet_6:
+sacred_clay_hatchet_chop_canoe_tree_2:
   id: 11617
-volatile_clay_hatchet_6:
+volatile_clay_hatchet_chop_canoe_tree_2:
   id: 11618
 lily_of_the_valley:
   id: 11619
@@ -6698,7 +6698,7 @@ bronze_pickaxe_14:
   id: 12279
 roddeck_step_right_2:
   id: 12280
-bronze_hatchet_8:
+bronze_hatchet_chop_ivy:
   id: 12282
 drugged_meat:
   id: 12283
@@ -6712,59 +6712,59 @@ lumbridge_sage_walk_2:
   id: 12294
 muncher_idle:
   id: 12297
-sacred_clay_hatchet_7:
+sacred_clay_hatchet_log_canoe:
   id: 12318
-volatile_clay_hatchet_7:
+volatile_clay_hatchet_log_canoe:
   id: 12319
-bronze_hatchet_9:
+bronze_hatchet_chop_ivy_2:
   id: 12322
-inferno_adze_18:
+inferno_adze_chop_ivy:
   id: 12323
-sacred_clay_hatchet_8:
+sacred_clay_hatchet_chop_ivy:
   id: 12324
-volatile_clay_hatchet_8:
+volatile_clay_hatchet_chop_ivy:
   id: 12325
-bronze_hatchet_10:
+bronze_hatchet_chop_tired:
   id: 12329
-iron_hatchet_9:
+iron_hatchet_chop_tired:
   id: 12330
-steel_hatchet_9:
+steel_hatchet_chop_tired:
   id: 12331
-black_hatchet_9:
+black_hatchet_chop_tired:
   id: 12332
-mithril_hatchet_10:
+mithril_hatchet_chop_tired:
   id: 12333
-adamant_hatchet_10:
+adamant_hatchet_chop_tired:
   id: 12334
-rune_hatchet_11:
+rune_hatchet_chop_tired:
   id: 12335
-dragon_hatchet_10:
+dragon_hatchet_chop_tired:
   id: 12336
-inferno_adze_19:
+inferno_adze_chop_tired:
   id: 12337
-sacred_clay_hatchet_9:
+sacred_clay_hatchet_chop_tired:
   id: 12338
-volatile_clay_hatchet_9:
+volatile_clay_hatchet_chop_tired:
   id: 12339
-rune_hatchet_12:
+rune_hatchet_chop_2h_tired:
   id: 12340
-adamant_hatchet_11:
+adamant_hatchet_chop_2h_tired:
   id: 12341
-mithril_hatchet_11:
+mithril_hatchet_chop_2h_tired:
   id: 12342
-steel_hatchet_10:
+steel_hatchet_chop_2h_tired:
   id: 12343
-iron_hatchet_10:
+iron_hatchet_chop_2h_tired:
   id: 12344
-bronze_hatchet_11:
+bronze_hatchet_chop_2h_tired1:
   id: 12345
-dragon_hatchet_11:
+dragon_hatchet_chop_2h_tired:
   id: 12346
-inferno_adze_20:
+inferno_adze_chop_2h_tired:
   id: 12347
-sacred_clay_hatchet_10:
+sacred_clay_hatchet_chop_2h_tired:
   id: 12348
-volatile_clay_hatchet_10:
+volatile_clay_hatchet_chop_2h_tired:
   id: 12349
 akrisae_idle:
   id: 12350
@@ -7096,71 +7096,71 @@ promethium_pickaxe_4:
   id: 13116
 primal_pickaxe_4:
   id: 13117
-novite_hatchet:
+novite_hatchet_chop:
   id: 13118
-bathus_hatchet:
+bathus_hatchet_chop:
   id: 13119
-marmaros_hatchet:
+marmaros_hatchet_chop:
   id: 13120
-kratonite_hatchet:
+kratonite_hatchet_chop:
   id: 13121
-fractite_hatchet:
+fractite_hatchet_chop:
   id: 13122
-zephyrium_hatchet:
+zephyrium_hatchet_chop:
   id: 13123
-argonite_hatchet:
+argonite_hatchet_chop:
   id: 13124
-katagon_hatchet:
+katagon_hatchet_chop:
   id: 13125
-gorgonite_hatchet:
+gorgonite_hatchet_chop:
   id: 13126
-promethium_hatchet:
+promethium_hatchet_chop:
   id: 13127
-primal_hatchet:
+primal_hatchet_chop:
   id: 13128
-novite_hatchet_2:
+novite_hatchet_barricade:
   id: 13129
-bathus_hatchet_2:
+bathus_hatchet_barricade:
   id: 13130
-marmaros_hatchet_2:
+marmaros_hatchet_barricade:
   id: 13131
-kratonite_hatchet_2:
+kratonite_hatchet_barricade:
   id: 13132
-fractite_hatchet_2:
+fractite_hatchet_barricade:
   id: 13133
-zephyrium_hatchet_2:
+zephyrium_hatchet_barricade:
   id: 13134
-argonite_hatchet_2:
+argonite_hatchet_barricade:
   id: 13135
-katagon_hatchet_2:
+katagon_hatchet_barricade:
   id: 13136
-gorgonite_hatchet_2:
+gorgonite_hatchet_barricade:
   id: 13137
-promethium_hatchet_2:
+promethium_hatchet_barricade:
   id: 13138
-primal_hatchet_2:
+primal_hatchet_barricade:
   id: 13139
-novite_hatchet_3:
+novite_hatchet_fail:
   id: 13140
-bathus_hatchet_3:
+bathus_hatchet_fail:
   id: 13141
-marmaros_hatchet_3:
+marmaros_hatchet_fail:
   id: 13142
-kratonite_hatchet_3:
+kratonite_hatchet_fail:
   id: 13143
-fractite_hatchet_3:
+fractite_hatchet_fail:
   id: 13144
-zephyrium_hatchet_3:
+zephyrium_hatchet_fail:
   id: 13145
-argonite_hatchet_3:
+argonite_hatchet_fail:
   id: 13146
-katagon_hatchet_3:
+katagon_hatchet_fail:
   id: 13147
-gorgonite_hatchet_3:
+gorgonite_hatchet_fail:
   id: 13148
-promethium_hatchet_3:
+promethium_hatchet_fail:
   id: 13149
-primal_hatchet_3:
+primal_hatchet_fail:
   id: 13150
 frost_dragon_idle:
   id: 13156
@@ -7182,7 +7182,7 @@ gilded_bronze_pickaxe_8:
   id: 13186
 fremennik_warrior_walk:
   id: 13189
-dwarven_army_axe_7:
+dwarven_army_axe_mine:
   id: 13201
 forgotten_warrior_idle:
   id: 13217
