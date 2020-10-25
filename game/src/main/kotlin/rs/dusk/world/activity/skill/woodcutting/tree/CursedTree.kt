@@ -7,10 +7,13 @@ enum class CursedTree(
     override val log: CursedLog,
     override val level: Int,
     override val xp: Double,
-    override val fellRate: Double
+    override val fellRate: Double,
+    override val chance: IntRange,
+    override val lowDifference: IntRange,
+    override val highDifference: IntRange
 ) : Tree {
-    Cursed_Willow_Roots(CursedLog.Cursed_Willow_Logs, 37, 15.0, 0.125),
-    Cursed_Magic_Tree(CursedLog.Cursed_Magic_Logs, 82, 275.0, 0.125);
+    Cursed_Willow_Roots(CursedLog.Cursed_Willow_Logs, 37, 15.0, 0.125, 0..0, 0..0, 0..0),
+    Cursed_Magic_Tree(CursedLog.Cursed_Magic_Logs, 82, 275.0, 0.125, 0..0, 0..0, 0..0);
 
     override val id: String = name.toLowerCase()
 }

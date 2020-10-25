@@ -6,6 +6,8 @@ import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.player.skill.Level
+import rs.dusk.engine.entity.character.player.skill.Level.has
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.setAnimation
 import rs.dusk.engine.entity.item.detail.ItemDetails
@@ -20,28 +22,24 @@ import rs.dusk.world.activity.skill.woodcutting.tree.CursedTree
 import rs.dusk.world.activity.skill.woodcutting.tree.DungeoneeringTree
 import rs.dusk.world.activity.skill.woodcutting.tree.RegularTree
 import rs.dusk.world.activity.skill.woodcutting.tree.Tree
+import rs.dusk.world.interact.entity.obj.replace
 import kotlin.random.Random
-
-fun Player.has(skill: Skill, level: Int, message: Boolean): Boolean {
-    if (levels.get(skill) < level) {
-        if (message) {
-            message("You need to have an ${skill.name} level of $level.")
-        }
-        return false
-    }
-    return true
-}
 
 fun ItemDecoder.get(name: String) = get(get<ItemDetails>().get(name).id)// TODO
 
 val decoder: ItemDecoder by inject()
 
+val trees: Array<Tree> = arrayOf(*RegularTree.values(), *DungeoneeringTree.values(), *CursedTree.values())
+
 ObjectOption where { obj.def.name.toLowerCase().contains("tree") && option == "Chop down" } then {
     chopTree(player, obj)
 }
 
-fun success(level: Int): Boolean {
-    return (2 * level + 20) / 256.0 == 0.0
+fun success(level: Int, hatchet: Hatchet, tree: Tree): Boolean {
+    val lowHatchetChance = hatchet.calculateChance(tree.lowDifference)
+    val highHatchetChance = hatchet.calculateChance(tree.highDifference)
+    val chance = tree.chance.first + lowHatchetChance..tree.chance.last + highHatchetChance
+    return Level.success(level, chance)
 }
 
 fun chopTree(player: Player, obj: GameObject) {
@@ -53,16 +51,21 @@ fun chopTree(player: Player, obj: GameObject) {
                 player.setAnimation(hatchet!!.id)
                 player.message("You swing your axe at the tree.")
                 delay(4)
-                val item = decoder.get(tree!!.log.id)
-                if (success(1)) {
-                    if (player.inventory.add(item.id)) {
-                        if (tree.deplete()) {
-                            // TODO
+                if (success(player.levels.get(Skill.Woodcutting), hatchet, tree!!)) {
+                    val log = tree.log
+                    if (log != null) {
+                        val item = decoder.get(log.id)
+                        if (player.inventory.add(item.id)) {
+                            player.message("You get some ${item.name}.")
+                        } else {
+                            player.message("You don't have enough inventory space.")
+                            cancel()
                         }
-                        player.message("You get some ${item.name}.")
-                    } else {
-                        player.message("You don't have enough inventory space.")
-                        cancel()
+                    }
+
+                    if (tree.deplete()) {
+                        obj.replace(123)
+                        // TODO
                     }
                 }
             }
@@ -114,9 +117,7 @@ fun getHatchet(player: Player): Hatchet? {
 
 fun Tree.deplete() = Random.nextDouble() <= fellRate
 
-val trees: Array<Tree> = arrayOf(*RegularTree.values(), *DungeoneeringTree.values(), *CursedTree.values())
-
 fun getTree(obj: GameObject): Tree? {
     val tree = obj.def.name.toLowerCase().replace(" ", "_")
-    return trees.firstOrNull { tree == it.id  }
+    return trees.firstOrNull { tree == it.id }
 }
