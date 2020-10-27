@@ -18,6 +18,23 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
 
     override fun getArchive(id: Int) = id ushr 8
 
+    override fun readData(id: Int): ObjectDefinition? {
+        val def = super.readData(id)
+        val replacement = def?.getReplacementId() ?: return def
+        return super.readData(replacement)
+    }
+
+    private fun ObjectDefinition.getReplacementId(): Int? {
+        val configIndex = 0
+        val configs = configObjectIds ?: return null
+        val config = if (configIndex < 0 || (configIndex >= configs.size - 1 || configs[configIndex] == -1)) {
+            configs[configs.size - 1]
+        } else {
+            configs.getOrNull(configIndex)
+        }
+        return if(config != -1) config else null
+    }
+
     override fun ObjectDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1, 5 -> {
@@ -89,7 +106,7 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
                 }
                 var last = -1
                 if (opcode == 92) {
-                    last = buffer.readShort()
+                    last = buffer.readUnsignedShort()
                     if (last == 65535) {
                         last = -1
                     }
@@ -98,7 +115,7 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
                 configObjectIds = IntArray(length + 2)
                 var count = 0
                 while (length >= count) {
-                    configObjectIds!![count] = buffer.readShort()
+                    configObjectIds!![count] = buffer.readUnsignedShort()
                     if (configObjectIds!![count] == 65535) {
                         configObjectIds!![count] = -1
                     }

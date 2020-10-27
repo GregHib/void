@@ -60,7 +60,7 @@ class Objects(
 
     override operator fun get(chunk: Chunk): Set<GameObject> {
         val set = mutableSetOf<GameObject>()
-        val base = chunks[chunk]
+        val base = getStatic(chunk)
         if(base != null) {
             set.addAll(base)
         }

@@ -1,3 +1,4 @@
+import rs.dusk.engine.action.action
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
@@ -6,6 +7,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceTextMessage
 import rs.dusk.world.command.Command
+import rs.dusk.world.interact.entity.obj.spawn.spawnObject
 
 IntVariable(1109, Variable.Type.VARBIT).register("one")
 IntVariable(1112, Variable.Type.VARBIT).register("two")
@@ -38,4 +40,23 @@ Command where { prefix == "test" } then {
 Command where { prefix == "sendItems" } then {
     player.send(ContainerItemsMessage(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false))
     player.send(ContainerItemsMessage(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true))
+}
+
+Command where { prefix == "obj" } then {
+    val parts = content.split(" ")
+    val id = parts[0].toInt()
+    val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
+    spawnObject(id, player.tile, 10, rotation, 10, null)
+}
+
+Command where { prefix == "tree" } then {
+    val parts = content.split(" ")
+    val tree = parts[0].toInt()
+    val stump = parts[1].toInt()
+    val type = parts.getOrNull(2)?.toIntOrNull() ?: 10
+    player.action {
+        spawnObject(tree, player.tile, type, 0, 5, null)
+        delay(5)
+        spawnObject(stump, player.tile, type, 0, 5, null)
+    }
 }
