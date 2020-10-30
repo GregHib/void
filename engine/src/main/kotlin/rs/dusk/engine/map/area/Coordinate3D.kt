@@ -11,8 +11,7 @@ interface Coordinate3D : Coordinate2D {
 }
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Coordinate3D> T.area(radius: Int, planes: Int = 1)
-        = Area3D(
+fun <T : Coordinate3D> T.area(radius: Int, planes: Int = 1) = Area3D(
     add(-radius, -radius) as T,
     (radius * 2) + 1,
     (radius * 2) + 1,

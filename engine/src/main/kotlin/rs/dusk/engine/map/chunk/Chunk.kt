@@ -9,8 +9,7 @@ import rs.dusk.engine.map.region.RegionPlane
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 20, 2020
  */
-data class Chunk(override val x: Int, override val y: Int, override val plane: Int = 0) :
-    Coordinate3D {
+data class Chunk(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {
 
     constructor(id: Int) : this(id shr 12, id and 0xfff, id shr 24)
 

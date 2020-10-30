@@ -42,7 +42,7 @@ fun load(player: Player) {
 }
 
 fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-    val view = tile.chunk.area(player.viewport.tileSize shr 5)
+    val view = tile.chunk.area(player.viewport.tileSize shr 5, planes = 4)
     for (chunk in view) {
         block(chunk)
     }
