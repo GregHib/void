@@ -1,5 +1,15 @@
 package rs.dusk.world.activity.skill.woodcutting
 
+import rs.dusk.engine.entity.character.contain.contains
+import rs.dusk.engine.entity.character.contain.equipment
+import rs.dusk.engine.entity.character.contain.inventory
+import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.character.player.skill.Level.has
+import rs.dusk.engine.entity.character.player.skill.Skill
+import rs.dusk.engine.entity.definition.ItemDefinitions
+import rs.dusk.utility.get
+
 @Suppress("EnumEntryName")
 enum class Hatchet(val index: Int) {
     // Regular hatchet indices taken from RS3 "Skilling Chances" spreadsheet
@@ -34,7 +44,38 @@ enum class Hatchet(val index: Int) {
         return (0 until index).sumBy { calculateHatchetChance(it, treeHatchetDifferences) }
     }
 
+    val requiredLevel: Int
+        get() = when (this) {
+            Inferno_Adze -> 61
+            Sacred_Clay_Hatchet, Volatile_Clay_Hatchet -> 50
+            else -> get<ItemDefinitions>().get(id).getParam(750L, 0)
+        }
+
     companion object {
+
+        fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean): Boolean {
+            if (hatchet == null) {
+                if (message) {
+                    player.message("You need a hatchet to chop down this tree.")
+                    player.message("You do not have a hatchet which you have the woodcutting level to use.")
+                }
+                return false
+            }
+            if (hatchet == Inferno_Adze && !player.has(Skill.Firemaking, 92, message)) {
+                return false
+            }
+            if (!player.has(Skill.Woodcutting, hatchet.requiredLevel, message)) {
+                return false
+            }
+            return true
+        }
+
+        fun get(player: Player): Hatchet? {
+            val list = values().filter { hatchet -> hasRequirements(player, hatchet, false) && player.has(hatchet) }
+            return list.maxBy { hatchet -> hatchet.requiredLevel }
+        }
+
+        private fun Player.has(hatchet: Hatchet) = inventory.contains(hatchet.id) || equipment.contains(hatchet.id)
 
 
         /**
