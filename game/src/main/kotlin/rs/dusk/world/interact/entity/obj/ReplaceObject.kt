@@ -13,7 +13,7 @@ import rs.dusk.utility.get
  * [owner] is also optional to allow for an object to replaced just for one player.
  */
 data class ReplaceObject(
-    val original: GameObject,
+    val gameObject: GameObject,
     val id: Int,
     val tile: Tile,
     val type: Int,

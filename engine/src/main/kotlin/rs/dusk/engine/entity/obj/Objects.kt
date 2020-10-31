@@ -18,16 +18,30 @@ class Objects(
 ) : BatchList<GameObject> {
 
     fun addTemp(gameObject: GameObject) : Boolean {
-        val id = gameObject.tile.chunk
-        removed[id]?.remove(gameObject)
-        return added.getOrPut(id) { mutableSetOf() }.add(gameObject)
+        return if(isOriginal(gameObject)) {
+            removeRemoval(gameObject)
+        } else {
+            addAddition(gameObject)
+        }
     }
 
     fun removeTemp(gameObject: GameObject): Boolean {
-        val id = gameObject.tile.chunk
-        added[id]?.remove(gameObject)
-        return removed.getOrPut(id) { mutableSetOf() }.add(gameObject)
+        return if (isOriginal(gameObject)) {
+            addRemoval(gameObject)
+        } else {
+            removeAddition(gameObject)
+        }
     }
+
+    fun addRemoval(gameObject: GameObject) = removed.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+
+    fun removeRemoval(gameObject: GameObject) = removed[gameObject.tile.chunk]?.remove(gameObject) ?: false
+
+    fun addAddition(gameObject: GameObject) = added.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+
+    fun removeAddition(gameObject: GameObject) = added[gameObject.tile.chunk]?.remove(gameObject) ?: false
+
+    fun isOriginal(gameObject: GameObject) = chunks[gameObject.tile.chunk]?.contains(gameObject) ?: false
 
     override fun clear(chunk: Chunk) {
         super.clear(chunk)

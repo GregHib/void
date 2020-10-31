@@ -50,29 +50,35 @@ ReplaceObjectPair then {
 ReplaceObject then {
     val replacement = factory.spawn(id, tile, type, rotation)
 
-    switch(original, replacement)
+    switch(gameObject, replacement)
     // Revert
     if (ticks >= 0) {
         objects.setTimer(replacement, scheduler.add {
             try {
                 delay(ticks)
             } finally {
-                switch(replacement, original)
+                switch(replacement, gameObject)
             }
         })
     }
 }
 
 fun switch(original: GameObject, replacement: GameObject) {
-    batcher.update(
-        original.tile.chunk,
-        ObjectRemoveMessage(original.tile.offset(), original.type, original.rotation)
-    )
+    if (original.tile != replacement.tile) {
+        batcher.update(
+            original.tile.chunk,
+            ObjectRemoveMessage(original.tile.offset(), original.type, original.rotation)
+        )
+    }
     batcher.update(
         replacement.tile.chunk,
         ObjectAddMessage(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
     )
-    objects.removeTemp(original)
+    if (original.tile != replacement.tile) {
+        objects.removeTemp(original)
+    } else {
+        objects.removeAddition(original)
+    }
     objects.addTemp(replacement)
     bus.emit(Unregistered(original))
     bus.emit(Registered(replacement))
