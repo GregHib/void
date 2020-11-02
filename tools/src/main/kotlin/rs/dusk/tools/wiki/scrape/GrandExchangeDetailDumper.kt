@@ -1,4 +1,4 @@
-package rs.dusk.tools.dump
+package rs.dusk.tools.wiki.scrape
 
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking

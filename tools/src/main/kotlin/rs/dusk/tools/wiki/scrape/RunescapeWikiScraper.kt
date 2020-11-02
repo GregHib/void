@@ -1,4 +1,4 @@
-package rs.dusk.tools.dump
+package rs.dusk.tools.wiki.scrape
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -12,7 +12,7 @@ import kotlin.system.measureTimeMillis
 /**
  * Dumps item details using the grand exchange api
  */
-internal object RunescapeWikiDumper {
+internal object RunescapeWikiScraper {
 
     @JvmStatic
     fun main(args: Array<String>) {

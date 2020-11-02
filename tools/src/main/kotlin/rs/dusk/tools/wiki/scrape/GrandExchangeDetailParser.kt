@@ -1,4 +1,4 @@
-package rs.dusk.tools.dump
+package rs.dusk.tools.wiki.scrape
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper

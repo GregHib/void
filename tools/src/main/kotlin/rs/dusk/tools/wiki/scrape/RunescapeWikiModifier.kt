@@ -1,4 +1,4 @@
-package rs.dusk.tools.dump
+package rs.dusk.tools.wiki.scrape
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -13,7 +13,7 @@ import java.time.Month
 import java.time.format.DateTimeFormatter
 
 /**
- * Takes raw [RunescapeWikiDumper] data converts to usable data for dusk
+ * Takes raw [RunescapeWikiScraper] data converts to usable data for dusk
  */
 internal object RunescapeWikiModifier {
 
