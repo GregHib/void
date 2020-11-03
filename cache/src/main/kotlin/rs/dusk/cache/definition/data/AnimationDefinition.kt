@@ -1,6 +1,7 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
+import rs.dusk.cache.definition.Details
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -27,8 +28,9 @@ data class AnimationDefinition(
     var aBoolean699: Boolean = false,
     var anIntArray701: IntArray? = null,
     var anIntArray690: IntArray? = null,
-    var anIntArray692: IntArray? = null
-) : Definition {
+    var anIntArray692: IntArray? = null,
+    override var details: Map<String, Any> = emptyMap()
+) : Definition, Details {
 
     val time: Int
         get() = (durations?.sum() ?: 0) * 10

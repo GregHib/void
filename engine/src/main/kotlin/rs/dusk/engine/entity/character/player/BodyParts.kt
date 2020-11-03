@@ -32,7 +32,7 @@ class BodyParts(
         val item = equipment.getItem(part.slot.index)
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
-            showItem(part, item) -> details.get(item).equip or 0x8000
+            showItem(part, item) -> details.get(item)["equip", -1] or 0x8000
             showBodyPart(part, item) -> looks[part.index] or 0x100
             else -> 0
         }
@@ -42,13 +42,13 @@ class BodyParts(
     private fun showItem(part: BodyPart, item: Int): Boolean {
         return item != -1 && when (part) {
             BodyPart.Hair, BodyPart.Beard -> false
-            BodyPart.Arms -> details.get(item).type != EquipType.Sleeveless
+            BodyPart.Arms -> details.get(item)["type", EquipType.None] != EquipType.Sleeveless
             else -> true
         }
     }
 
     private fun showBodyPart(part: BodyPart, item: Int): Boolean {
-        val type = details.get(item).type
+        val type = details.get(item)["type", EquipType.None]
         return part.index != -1 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask

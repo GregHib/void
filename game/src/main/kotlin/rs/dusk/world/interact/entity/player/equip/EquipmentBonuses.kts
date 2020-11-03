@@ -1,7 +1,6 @@
 package rs.dusk.world.interact.entity.player.equip
 
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
 import rs.dusk.engine.client.ui.awaitInterface
@@ -16,7 +15,6 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import rs.dusk.engine.entity.character.update.visual.player.appearance
-import rs.dusk.engine.entity.item.detail.ItemDetail
 import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -35,7 +33,6 @@ StringVariable(323, Variable.Type.VARCSTR).register("equipment_names")
 StringVariable(324, Variable.Type.VARCSTR).register("equipment_stats")
 StringVariable(325, Variable.Type.VARCSTR).register("comparison_stats")
 
-val decoder: ItemDecoder by inject()
 val details: ItemDetails by inject()
 
 fun Player.equipping() = action.type == ActionType.Equipping
@@ -65,7 +62,7 @@ InterfaceOpened where { name == "equipment_side" } then {
 }
 
 InterfaceOption where { player.equipping() && (name == "equipment_side" || name == "equipment_bonuses") && component == "container" && option == "Stats" } then {
-    showStats(player, decoder.get(itemId), details.get(itemId))
+    showStats(player, details.get(name))
 }
 
 /*
@@ -101,7 +98,7 @@ fun updateEmote(player: Player) {
 }
 
 fun updateStats(player: Player, id: Int, add: Boolean) {
-    val item = decoder.getOrNull(id) ?: return
+    val item = details.getOrNull(id) ?: return
     names.forEach { (name, key) ->
         val value = item.getInt(key.toLong(), 0)
         if (value > 0) {
@@ -166,7 +163,7 @@ val names = listOf(
     https://www.reddit.com/r/runescape/comments/k0irv/new_clothing_and_weapons_from_branches_of/
     https://www.wikihow-fun.com/images/thumb/0/04/Mine-for-Gems-in-RuneScape-Step-6.jpg/aid803430-v4-728px-Mine-for-Gems-in-RuneScape-Step-6.jpg
  */
-fun showStats(player: Player, item: ItemDefinition, details: ItemDetail) {
+fun showStats(player: Player, item: ItemDefinition) {
     player.setVar("equipment_name", item.name)
 
     val titles = StringBuilder()
@@ -224,7 +221,7 @@ fun showStats(player: Player, item: ItemDefinition, details: ItemDetail) {
             else -> item.attackSpeed().toString()
         })
     }
-    appendLine("weight", "${df.format(details.weight)} kg")
+    appendLine("weight", "${df.format(item["weight", 0.0])} kg")
 
     player.setVar("equipment_titles", titles.toString())
     player.setVar("equipment_names", types.toString())

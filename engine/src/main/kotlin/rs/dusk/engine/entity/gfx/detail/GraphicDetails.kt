@@ -1,19 +1,11 @@
 package rs.dusk.engine.entity.gfx.detail
 
-import com.google.common.collect.BiMap
-import rs.dusk.engine.entity.EntityDetails
+import rs.dusk.cache.definition.data.GraphicDefinition
+import rs.dusk.cache.definition.decoder.GraphicDecoder
+import rs.dusk.engine.entity.DetailsDecoder
 
 class GraphicDetails(
-    override val details: Map<Int, GraphicDetail>,
-    override val names: BiMap<Int, String>
-) : EntityDetails<GraphicDetail> {
-
-    override fun getOrNull(id: Int): GraphicDetail? {
-        return details[id]
-    }
-
-    override fun get(id: Int): GraphicDetail {
-        return getOrNull(id) ?: GraphicDetail(id)
-    }
-
-}
+    override val decoder: GraphicDecoder,
+    override val details: Map<String, Map<String, Any>>,
+    override val names: Map<Int, String>
+) : DetailsDecoder<GraphicDefinition, GraphicDecoder>

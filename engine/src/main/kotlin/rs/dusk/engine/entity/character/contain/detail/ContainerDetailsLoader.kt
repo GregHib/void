@@ -1,28 +1,25 @@
 package rs.dusk.engine.entity.character.contain.detail
 
-import com.google.common.collect.HashBiMap
+import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.character.contain.StackMode
 
-class ContainerDetailsLoader(private val loader: FileLoader) : TimedLoader<ContainerDetails>("container detail") {
+class ContainerDetailsLoader(private val loader: FileLoader, private val decoder: ItemContainerDecoder) : TimedLoader<ContainerDetails>("container detail") {
 
     override fun load(args: Array<out Any?>): ContainerDetails {
         val path = args[0] as String
-        val data: Map<String, LinkedHashMap<String, Any>> = loader.load(path)
-        val map: Map<String, ContainerDetail> = data.mapValues { convert(it.value) }
-        val containers = map.map { it.value.id to it.value }.toMap()
-        val names = map.map { it.value.id to it.key }.toMap()
+        val data: Map<String, Map<String, Any>> = loader.load(path)
+        val map = data.mapValues { entry -> entry.value.mapValues { convert(it.key, it.value) } }.toMap()
+        val names = data.map { it.value["id"] as Int to it.key }.toMap()
         count = names.size
-        return ContainerDetails(containers, HashBiMap.create(names))
+        return ContainerDetails(decoder, map, names)
     }
 
-    fun convert(map: Map<String, Any>): ContainerDetail {
-        val id: Int by map
-        val stack = map["stack"] as? String ?: "Normal"
-        val mode = StackMode.valueOf(stack)
-        val width = map["width"] as? Int ?: 0
-        val height = map["height"] as? Int ?: 0
-        return ContainerDetail(id, width, height, mode)
+    fun convert(key: String, value: Any) : Any {
+        return when(key) {
+            "stack" -> StackMode.valueOf(value as String)
+            else -> value
+        }
     }
 }

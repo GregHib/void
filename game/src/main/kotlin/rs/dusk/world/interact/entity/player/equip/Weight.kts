@@ -29,7 +29,7 @@ fun Container.weight(): Double {
     getItems().forEachIndexed { index, id ->
         val amount = getAmount(index)
         if(id != -1 && amount > 0) {
-            weight += details.get(id).weight * amount
+            weight += details.get(id)["weight", 0.0] * amount
         }
     }
     return weight

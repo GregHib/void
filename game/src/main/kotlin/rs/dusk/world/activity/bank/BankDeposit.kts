@@ -49,7 +49,7 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
     }
 
     val details = details.get(item)
-    if (!details.bankable) {
+    if (!details["bankable", true]) {
         player.message("This item cannot be banked.")
         return true
     }

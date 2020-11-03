@@ -2,6 +2,7 @@ package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
 import rs.dusk.cache.definition.ColourPalette
+import rs.dusk.cache.definition.Details
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 
@@ -9,7 +10,6 @@ import rs.dusk.cache.definition.Recolourable
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 07, 2020
  */
-@Suppress("ArrayInDataClass")
 data class ItemDefinition(
     override var id: Int = -1,
     var modelId: Int = 0,
@@ -73,5 +73,172 @@ data class ItemDefinition(
     var pickSizeShift: Int = 0,
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
-    override var params: HashMap<Long, Any>? = null
-) : Definition, Recolourable, ColourPalette, Parameterized
+    override var params: HashMap<Long, Any>? = null,
+    override var details: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, ColourPalette, Parameterized, Details {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ItemDefinition
+
+        if (id != other.id) return false
+        if (modelId != other.modelId) return false
+        if (name != other.name) return false
+        if (spriteScale != other.spriteScale) return false
+        if (spritePitch != other.spritePitch) return false
+        if (spriteCameraRoll != other.spriteCameraRoll) return false
+        if (spriteTranslateX != other.spriteTranslateX) return false
+        if (spriteTranslateY != other.spriteTranslateY) return false
+        if (stackable != other.stackable) return false
+        if (cost != other.cost) return false
+        if (members != other.members) return false
+        if (multiStackSize != other.multiStackSize) return false
+        if (primaryMaleModel != other.primaryMaleModel) return false
+        if (secondaryMaleModel != other.secondaryMaleModel) return false
+        if (primaryFemaleModel != other.primaryFemaleModel) return false
+        if (secondaryFemaleModel != other.secondaryFemaleModel) return false
+        if (!floorOptions.contentEquals(other.floorOptions)) return false
+        if (!options.contentEquals(other.options)) return false
+        if (originalColours != null) {
+            if (other.originalColours == null) return false
+            if (!originalColours!!.contentEquals(other.originalColours!!)) return false
+        } else if (other.originalColours != null) return false
+        if (modifiedColours != null) {
+            if (other.modifiedColours == null) return false
+            if (!modifiedColours!!.contentEquals(other.modifiedColours!!)) return false
+        } else if (other.modifiedColours != null) return false
+        if (originalTextureColours != null) {
+            if (other.originalTextureColours == null) return false
+            if (!originalTextureColours!!.contentEquals(other.originalTextureColours!!)) return false
+        } else if (other.originalTextureColours != null) return false
+        if (modifiedTextureColours != null) {
+            if (other.modifiedTextureColours == null) return false
+            if (!modifiedTextureColours!!.contentEquals(other.modifiedTextureColours!!)) return false
+        } else if (other.modifiedTextureColours != null) return false
+        if (recolourPalette != null) {
+            if (other.recolourPalette == null) return false
+            if (!recolourPalette!!.contentEquals(other.recolourPalette!!)) return false
+        } else if (other.recolourPalette != null) return false
+        if (exchangeable != other.exchangeable) return false
+        if (tertiaryMaleModel != other.tertiaryMaleModel) return false
+        if (tertiaryFemaleModel != other.tertiaryFemaleModel) return false
+        if (primaryMaleDialogueHead != other.primaryMaleDialogueHead) return false
+        if (primaryFemaleDialogueHead != other.primaryFemaleDialogueHead) return false
+        if (secondaryMaleDialogueHead != other.secondaryMaleDialogueHead) return false
+        if (secondaryFemaleDialogueHead != other.secondaryFemaleDialogueHead) return false
+        if (spriteCameraYaw != other.spriteCameraYaw) return false
+        if (dummyItem != other.dummyItem) return false
+        if (noteId != other.noteId) return false
+        if (notedTemplateId != other.notedTemplateId) return false
+        if (stackIds != null) {
+            if (other.stackIds == null) return false
+            if (!stackIds!!.contentEquals(other.stackIds!!)) return false
+        } else if (other.stackIds != null) return false
+        if (stackAmounts != null) {
+            if (other.stackAmounts == null) return false
+            if (!stackAmounts!!.contentEquals(other.stackAmounts!!)) return false
+        } else if (other.stackAmounts != null) return false
+        if (floorScaleX != other.floorScaleX) return false
+        if (floorScaleY != other.floorScaleY) return false
+        if (floorScaleZ != other.floorScaleZ) return false
+        if (ambience != other.ambience) return false
+        if (diffusion != other.diffusion) return false
+        if (team != other.team) return false
+        if (lendId != other.lendId) return false
+        if (lendTemplateId != other.lendTemplateId) return false
+        if (maleWieldX != other.maleWieldX) return false
+        if (maleWieldY != other.maleWieldY) return false
+        if (maleWieldZ != other.maleWieldZ) return false
+        if (femaleWieldX != other.femaleWieldX) return false
+        if (femaleWieldY != other.femaleWieldY) return false
+        if (femaleWieldZ != other.femaleWieldZ) return false
+        if (primaryCursorOpcode != other.primaryCursorOpcode) return false
+        if (primaryCursor != other.primaryCursor) return false
+        if (secondaryCursorOpcode != other.secondaryCursorOpcode) return false
+        if (secondaryCursor != other.secondaryCursor) return false
+        if (primaryInterfaceCursorOpcode != other.primaryInterfaceCursorOpcode) return false
+        if (primaryInterfaceCursor != other.primaryInterfaceCursor) return false
+        if (secondaryInterfaceCursorOpcode != other.secondaryInterfaceCursorOpcode) return false
+        if (secondaryInterfaceCursor != other.secondaryInterfaceCursor) return false
+        if (campaigns != null) {
+            if (other.campaigns == null) return false
+            if (!campaigns!!.contentEquals(other.campaigns!!)) return false
+        } else if (other.campaigns != null) return false
+        if (pickSizeShift != other.pickSizeShift) return false
+        if (singleNoteId != other.singleNoteId) return false
+        if (singleNoteTemplateId != other.singleNoteTemplateId) return false
+        if (params != other.params) return false
+        if (details != other.details) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + modelId
+        result = 31 * result + name.hashCode()
+        result = 31 * result + spriteScale
+        result = 31 * result + spritePitch
+        result = 31 * result + spriteCameraRoll
+        result = 31 * result + spriteTranslateX
+        result = 31 * result + spriteTranslateY
+        result = 31 * result + stackable
+        result = 31 * result + cost
+        result = 31 * result + members.hashCode()
+        result = 31 * result + multiStackSize
+        result = 31 * result + primaryMaleModel
+        result = 31 * result + secondaryMaleModel
+        result = 31 * result + primaryFemaleModel
+        result = 31 * result + secondaryFemaleModel
+        result = 31 * result + floorOptions.contentHashCode()
+        result = 31 * result + options.contentHashCode()
+        result = 31 * result + (originalColours?.contentHashCode() ?: 0)
+        result = 31 * result + (modifiedColours?.contentHashCode() ?: 0)
+        result = 31 * result + (originalTextureColours?.contentHashCode() ?: 0)
+        result = 31 * result + (modifiedTextureColours?.contentHashCode() ?: 0)
+        result = 31 * result + (recolourPalette?.contentHashCode() ?: 0)
+        result = 31 * result + exchangeable.hashCode()
+        result = 31 * result + tertiaryMaleModel
+        result = 31 * result + tertiaryFemaleModel
+        result = 31 * result + primaryMaleDialogueHead
+        result = 31 * result + primaryFemaleDialogueHead
+        result = 31 * result + secondaryMaleDialogueHead
+        result = 31 * result + secondaryFemaleDialogueHead
+        result = 31 * result + spriteCameraYaw
+        result = 31 * result + dummyItem
+        result = 31 * result + noteId
+        result = 31 * result + notedTemplateId
+        result = 31 * result + (stackIds?.contentHashCode() ?: 0)
+        result = 31 * result + (stackAmounts?.contentHashCode() ?: 0)
+        result = 31 * result + floorScaleX
+        result = 31 * result + floorScaleY
+        result = 31 * result + floorScaleZ
+        result = 31 * result + ambience
+        result = 31 * result + diffusion
+        result = 31 * result + team
+        result = 31 * result + lendId
+        result = 31 * result + lendTemplateId
+        result = 31 * result + maleWieldX
+        result = 31 * result + maleWieldY
+        result = 31 * result + maleWieldZ
+        result = 31 * result + femaleWieldX
+        result = 31 * result + femaleWieldY
+        result = 31 * result + femaleWieldZ
+        result = 31 * result + primaryCursorOpcode
+        result = 31 * result + primaryCursor
+        result = 31 * result + secondaryCursorOpcode
+        result = 31 * result + secondaryCursor
+        result = 31 * result + primaryInterfaceCursorOpcode
+        result = 31 * result + primaryInterfaceCursor
+        result = 31 * result + secondaryInterfaceCursorOpcode
+        result = 31 * result + secondaryInterfaceCursor
+        result = 31 * result + (campaigns?.contentHashCode() ?: 0)
+        result = 31 * result + pickSizeShift
+        result = 31 * result + singleNoteId
+        result = 31 * result + singleNoteTemplateId
+        result = 31 * result + (params?.hashCode() ?: 0)
+        result = 31 * result + details.hashCode()
+        return result
+    }
+}

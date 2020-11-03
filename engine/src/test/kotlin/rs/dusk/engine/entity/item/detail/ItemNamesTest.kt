@@ -1,12 +1,12 @@
 package rs.dusk.engine.entity.item.detail
 
-import com.google.common.collect.HashBiMap
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
+import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.script.KoinMock
 
@@ -14,10 +14,12 @@ internal class ItemNamesTest : KoinMock() {
 
     private lateinit var container: Container
     private lateinit var itemDetails: ItemDetails
+    private lateinit var decoder: ItemDecoder
 
     @BeforeEach
     fun setup() {
         container = mockk()
+        decoder = mockk()
         every { container.stackable(any()) } returns true
         every { container.indexOf(any()) } returns 0
         every { container.set(any(), any(), any(), any()) } returns true
@@ -28,7 +30,7 @@ internal class ItemNamesTest : KoinMock() {
         every { container.remove(any(), any()) } returns true
 
         itemDetails = declare {
-            ItemDetails(mapOf(1 to ItemDetail(1)), HashBiMap.create(mapOf(1 to "item_name")))
+            ItemDetails(decoder, mapOf("item_name" to mapOf<String, Any>("id" to 1)), mapOf(1 to "item_name"))
         }
     }
 

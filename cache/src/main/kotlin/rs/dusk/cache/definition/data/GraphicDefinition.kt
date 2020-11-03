@@ -1,6 +1,7 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
+import rs.dusk.cache.definition.Details
 import rs.dusk.cache.definition.Recolourable
 
 /**
@@ -23,5 +24,6 @@ data class GraphicDefinition(
     override var originalColours: ShortArray? = null,
     override var modifiedColours: ShortArray? = null,
     override var originalTextureColours: ShortArray? = null,
-    override var modifiedTextureColours: ShortArray? = null
-) : Definition, Recolourable
+    override var modifiedTextureColours: ShortArray? = null,
+    override var details: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, Details

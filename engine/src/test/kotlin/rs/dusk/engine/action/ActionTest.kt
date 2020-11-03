@@ -137,9 +137,7 @@ internal class ActionTest : KoinMock() {
         // When
         action.cancel(ActionType.Teleport)
         // Then
-        verify {
-            action.cancel()
-        }
+        assertNull(action.continuation)
     }
 
     @Test

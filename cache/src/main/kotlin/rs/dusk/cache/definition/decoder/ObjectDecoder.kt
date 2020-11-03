@@ -10,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
+open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()
 

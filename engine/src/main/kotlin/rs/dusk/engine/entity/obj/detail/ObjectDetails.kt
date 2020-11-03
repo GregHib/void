@@ -1,19 +1,11 @@
 package rs.dusk.engine.entity.obj.detail
 
-import com.google.common.collect.BiMap
-import rs.dusk.engine.entity.EntityDetails
+import rs.dusk.cache.definition.data.ObjectDefinition
+import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.engine.entity.DetailsDecoder
 
 class ObjectDetails(
-    override val details: Map<Int, ObjectDetail>,
-    override val names: BiMap<Int, String>
-) : EntityDetails<ObjectDetail> {
-
-    override fun getOrNull(id: Int): ObjectDetail? {
-        return details[id]
-    }
-
-    override fun get(id: Int): ObjectDetail {
-        return getOrNull(id) ?: ObjectDetail(id)
-    }
-
-}
+    override val decoder: ObjectDecoder,
+    override val details: Map<String, Map<String, Any>>,
+    override val names: Map<Int, String>
+) : DetailsDecoder<ObjectDefinition, ObjectDecoder>

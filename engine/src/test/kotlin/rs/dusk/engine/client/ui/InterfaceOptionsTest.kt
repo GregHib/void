@@ -4,12 +4,12 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.cache.config.data.ItemContainerDefinition
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.client.ui.menu.InterfaceOptionSettings.getHash
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetail
 import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
@@ -75,16 +75,16 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Send all options`() {
-        every { containerDetails.get(any<String>()) } returns ContainerDetail(10, 2, 3)
+        every { containerDetails.get(any<String>()) } returns ItemContainerDefinition(10, details = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)
         verify {
-            player.send(ScriptMessage(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "", "Examine"))
+            player.send(ScriptMessage(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", ""))
         }
     }
 
     @Test
     fun `Unlock all options`() {
-        every { containerDetails.get(any<Int>()) } returns ContainerDetail(10, 2, 3)
+        every { containerDetails.get(name) } returns ItemContainerDefinition(10, details = mapOf("width" to 2, "height" to 3))
         options.unlockAll(name, comp, 0..27)
         verify {
             player.send(InterfaceSettingsMessage(5, 0, 0, 27, getHash(9)))
@@ -93,7 +93,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Unlock few options`() {
-        every { containerDetails.get(any<Int>()) } returns ContainerDetail(10, 2, 3)
+        every { containerDetails.get(name) } returns ItemContainerDefinition(10, details = mapOf("width" to 2, "height" to 3))
         options.set(name, comp, arrayOf("one", "two", "three"))
         options.unlock(name, comp, 0..27, "two", "three")
         verify {
@@ -103,7 +103,7 @@ internal class InterfaceOptionsTest {
 
     @Test
     fun `Lock all options`() {
-        every { containerDetails.get(any<Int>()) } returns ContainerDetail(10, 2, 3)
+        every { containerDetails.get(name) } returns ItemContainerDefinition(10, details = mapOf("width" to 2, "height" to 3))
         options.lockAll(name, comp, 0..27)
         verify {
             player.send(InterfaceSettingsMessage(5, 0, 0, 27, 0))

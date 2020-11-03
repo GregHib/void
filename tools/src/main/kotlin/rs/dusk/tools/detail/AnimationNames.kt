@@ -9,7 +9,7 @@ import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.data.file.fileLoaderModule
-import rs.dusk.engine.entity.EntityDetails.Companion.toIdentifier
+import rs.dusk.engine.entity.DetailsDecoder.Companion.toIdentifier
 
 /**
  * Dumps unique string identifiers for animation ids

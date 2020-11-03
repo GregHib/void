@@ -1,19 +1,11 @@
 package rs.dusk.engine.entity.anim.detail
 
-import com.google.common.collect.BiMap
-import rs.dusk.engine.entity.EntityDetails
+import rs.dusk.cache.definition.data.AnimationDefinition
+import rs.dusk.cache.definition.decoder.AnimationDecoder
+import rs.dusk.engine.entity.DetailsDecoder
 
 class AnimationDetails(
-    override val details: Map<Int, AnimationDetail>,
-    override val names: BiMap<Int, String>
-) : EntityDetails<AnimationDetail> {
-
-    override fun getOrNull(id: Int): AnimationDetail? {
-        return details[id]
-    }
-
-    override fun get(id: Int): AnimationDetail {
-        return getOrNull(id) ?: AnimationDetail(id)
-    }
-
-}
+    override val decoder: AnimationDecoder,
+    override val details: Map<String, Map<String, Any>>,
+    override val names: Map<Int, String>
+) : DetailsDecoder<AnimationDefinition, AnimationDecoder>

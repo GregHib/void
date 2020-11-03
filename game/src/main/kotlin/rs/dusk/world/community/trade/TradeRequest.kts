@@ -28,7 +28,6 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 import rs.dusk.world.community.friend.hasFriend
-import rs.dusk.world.community.trade.*
 import rs.dusk.world.community.trade.lend.Loan.lendItem
 import rs.dusk.world.interact.entity.player.display.Tab
 
@@ -226,8 +225,8 @@ fun Player.warn(name: String, component: String, slot: Int) {
     val containerDetails: ContainerDetails = rs.dusk.utility.get()
     val comp = details.getComponent(name, component)
     val container = containerDetails.get(comp.container)
-    println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container.width, container.height, slot))
-    send(ScriptMessage(143, (comp.parent shl 16) or comp.id, container.width, container.height, slot))
+    println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
+    send(ScriptMessage(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
 }
 
 fun updateValue(player: Player, other: Player) {
