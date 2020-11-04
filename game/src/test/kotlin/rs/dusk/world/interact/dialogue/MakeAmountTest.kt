@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Contexts
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.ui.InterfaceOptions
@@ -17,6 +16,7 @@ import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.world.interact.dialogue.type.makeAmount
 import rs.dusk.world.script.KoinMock
 
@@ -46,7 +46,7 @@ internal class MakeAmountTest : KoinMock() {
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaces } returns interfaces
         every { player.interfaceOptions } returns interfaceOptions
-        declareMock<ItemDecoder> {
+        declareMock<ItemDetails> {
             every { get(1) } returns ItemDefinition(name = "Jimmy")
             every { get(2) } returns ItemDefinition(name = "Jerome")
             every { get(3) } returns ItemDefinition(name = "Jorge")

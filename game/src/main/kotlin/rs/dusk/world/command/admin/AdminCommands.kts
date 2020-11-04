@@ -1,4 +1,3 @@
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.Scheduler
 import rs.dusk.engine.action.delay
 import rs.dusk.engine.entity.Direction
@@ -91,7 +90,7 @@ Command where { prefix == "item" } then {
 }
 
 Command where { prefix == "find" } then {
-    val items: ItemDecoder = get()
+    val items: ItemDetails = get()
     val search = content.toLowerCase()
     var found = false
     repeat(items.size) { id ->

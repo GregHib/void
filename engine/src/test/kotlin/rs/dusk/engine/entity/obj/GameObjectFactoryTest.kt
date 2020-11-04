@@ -8,8 +8,8 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.definition.data.ObjectDefinition
-import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.entity.obj.detail.ObjectDetails
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.strat.DecorationTargetStrategy
@@ -30,7 +30,7 @@ internal class GameObjectFactoryTest : KoinMock() {
     fun setup() {
         collisions = mockk(relaxed = true)
         factory = GameObjectFactory(collisions)
-        declareMock<ObjectDecoder> {
+        declareMock<ObjectDetails> {
             every { get(any<Int>()) } returns ObjectDefinition(id = 1, blockFlag = 1)
         }
     }

@@ -1,7 +1,6 @@
 package rs.dusk.engine.entity.character.contain
 
 import rs.dusk.cache.config.data.ItemContainerDefinition
-import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
 import rs.dusk.engine.entity.character.player.Player
@@ -32,7 +31,7 @@ fun Player.container(detail: ItemContainerDefinition, secondary: Boolean = false
     return containers.getOrPut(if (secondary) -detail.id else detail.id) {
         Container(
             decoder = get(),
-            capacity = get<ItemContainerDecoder>().get(detail.id).length,
+            capacity = get<ContainerDetails>().get(detail.id).length,
             listeners = mutableListOf({ updates -> send(ContainerItemUpdateMessage(detail.id, updates.map { Triple(it.index, it.item, it.amount) }, secondary)) }),
             stackMode = detail["stack", StackMode.Normal]
         )

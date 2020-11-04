@@ -1,17 +1,15 @@
 package rs.dusk.world.community.trade
 
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 import rs.dusk.world.community.trade.Trade.isTrading
-import rs.dusk.world.community.trade.loan
-import rs.dusk.world.community.trade.offer
 import rs.dusk.world.interact.dialogue.type.intEntry
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
@@ -19,7 +17,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
  * Removing an item from an offer or loan
  */
 
-val itemDecoder: ItemDecoder by inject()
+val itemDecoder: ItemDetails by inject()
 
 InterfaceOption where { name == "trade_main" && component == "offer_options" } then {
     val amount = when(option) {

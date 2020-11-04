@@ -1,11 +1,11 @@
 package rs.dusk.world.community.trade
 
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.item.detail.ItemDetails
 
 object Trade {
     fun isTrading(player: Player, amount: Int): Boolean {
@@ -27,7 +27,7 @@ object Trade {
     }
 }
 
-fun Container.calculateValue(decoder: ItemDecoder): Long {
+fun Container.calculateValue(decoder: ItemDetails): Long {
     val items = getItems()
     val amounts = getAmounts()
     var value = 0L

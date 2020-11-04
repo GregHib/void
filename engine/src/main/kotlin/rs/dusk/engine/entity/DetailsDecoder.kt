@@ -19,6 +19,12 @@ interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : 
     val details: Map<String, Map<String, Any>>
     val names: Map<Int, String>
 
+    val size: Int
+        get() = decoder.size
+
+    val indices: IntRange
+        get() = decoder.indices
+
     fun getOrNull(id: Int) = decoder.getOrNull(id)
 
     fun getOrNull(name: String): T? {

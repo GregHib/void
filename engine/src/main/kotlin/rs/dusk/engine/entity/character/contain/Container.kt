@@ -1,11 +1,11 @@
 package rs.dusk.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.cache.definition.decoder.ItemDecoder
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import java.util.*
 
 data class Container(
-    private val decoder: ItemDecoder,
+    private val decoder: ItemDetails,
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
@@ -14,7 +14,7 @@ data class Container(
 ) {
 
     constructor(
-        decoder: ItemDecoder,
+        decoder: ItemDetails,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
         listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),

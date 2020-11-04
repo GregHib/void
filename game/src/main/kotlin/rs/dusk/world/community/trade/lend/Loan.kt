@@ -1,13 +1,13 @@
 package rs.dusk.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.*
 import rs.dusk.engine.entity.character.contain.beastOfBurden
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.Time
@@ -17,7 +17,7 @@ import rs.dusk.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
 object Loan {
-    private val decoder: ItemDecoder by inject()
+    private val decoder: ItemDetails by inject()
     private val executor: TaskExecutor by inject()
     private val logger = InlineLogger()
 

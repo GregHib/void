@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.definition.data.NPCDefinition
-import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.Direction
@@ -17,6 +16,7 @@ import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCRegistered
+import rs.dusk.engine.entity.character.npc.detail.NPCDetails
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.EventHandler
@@ -49,7 +49,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     @Test
     fun `Spawn registers`() {
         // Given
-        declareMock<NPCDecoder> {
+        declareMock<NPCDetails> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
         }
         val event = spyk(
@@ -75,7 +75,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     @Test
     fun `Traversal size small`() {
         // Given
-        declareMock<NPCDecoder> {
+        declareMock<NPCDetails> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 1)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
@@ -92,7 +92,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     @Test
     fun `Traversal size medium`() {
         // Given
-        declareMock<NPCDecoder> {
+        declareMock<NPCDetails> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 2)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)
@@ -109,7 +109,7 @@ internal class NPCSpawnsTest : ScriptMock() {
     @Test
     fun `Traversal size large`() {
         // Given
-        declareMock<NPCDecoder> {
+        declareMock<NPCDetails> {
             every { get(any<Int>()) } returns NPCDefinition(id = 1, size = 3)
         }
         val event = NPCSpawn(1, Tile(10, 20, 1), Direction.NONE)

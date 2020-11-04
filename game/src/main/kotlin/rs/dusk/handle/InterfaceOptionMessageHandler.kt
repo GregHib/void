@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
@@ -30,8 +29,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
     val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()
-    val containerDetails: ContainerDetails by inject()
-    val containerDecoder: ItemContainerDecoder by inject()
+    val containerDecoder: ContainerDetails by inject()
     val itemDetails: ItemDetails by inject()
     val logger = InlineLogger()
 
@@ -73,20 +71,19 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
                 return
             }
 
-            val container = containerDetails.get(containerName)
-            val def = containerDecoder.get(container.id)
+            val def = containerDecoder.get(containerName)
             if (itemSlot > def.length) {
                 logger.info { "Invalid interface $name container $containerName ${def.length} slot $itemSlot not found for player $player" }
                 return
             }
 
             var found = false
-            val primary = player.container(container, secondary = false)
+            val primary = player.container(def, secondary = false)
             if (primary.isValidId(itemSlot, itemId)) {
                 item = itemDetails.getName(itemId)
                 found = true
             } else {
-                val secondary = player.container(container, secondary = true)
+                val secondary = player.container(def, secondary = true)
                 if (secondary.isValidId(itemSlot, itemId)) {
                     item = itemDetails.getName(itemId)
                     found = true

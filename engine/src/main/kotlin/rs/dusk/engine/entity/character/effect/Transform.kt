@@ -1,9 +1,9 @@
 package rs.dusk.engine.entity.character.effect
 
-import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.CharacterEffect
 import rs.dusk.engine.entity.character.npc.NPC
+import rs.dusk.engine.entity.character.npc.detail.NPCDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.npc.flagTransform
 import rs.dusk.engine.entity.character.update.visual.npc.transform
@@ -20,7 +20,7 @@ import rs.dusk.utility.get
 data class Transform(val npc: Int) : CharacterEffect("transform") {
 
     override fun onPlayerStart(player: Player) {
-        val decoder = get<NPCDecoder>()
+        val decoder = get<NPCDetails>()
         val definition = decoder.get(npc)
         player.emote = definition.renderEmote
         player.size = Size(definition.size, definition.size)

@@ -1,7 +1,6 @@
 package rs.dusk.world.interact.entity.player.equip
 
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
@@ -17,11 +16,10 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 
-val itemDetails: ItemDetails by inject()
-val itemDecoder: ItemDecoder by inject()
+val itemDecoder: ItemDetails by inject()
 
 ContainerAction where { container == "inventory" && (option == "Wield" || option == "Wear") } then {
-    val details = itemDetails.get(item)
+    val details = itemDecoder.get(item)
 
     if (failedToRemoveOtherHand(player, details)) {
         player.message("Your inventory is full.")
@@ -78,5 +76,5 @@ fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == Eq
 
 fun holdingTwoHandedWeapon(player: Player): Boolean {
     val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
-    return itemDetails.get(weapon)["type", EquipType.None] == EquipType.TwoHanded
+    return itemDecoder.get(weapon)["type", EquipType.None] == EquipType.TwoHanded
 }

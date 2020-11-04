@@ -2,11 +2,11 @@ package rs.dusk.engine.entity.item
 
 import kotlinx.coroutines.Job
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
+import rs.dusk.engine.entity.item.detail.ItemDetails
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get
@@ -29,7 +29,7 @@ data class FloorItem(
     }
 
     val def: ItemDefinition
-        get() = get<ItemDecoder>().get(id)
+        get() = get<ItemDetails>().get(id)
 
     var state: FloorItemState = FloorItemState.Private
 
