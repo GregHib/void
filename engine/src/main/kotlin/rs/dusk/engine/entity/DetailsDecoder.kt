@@ -68,10 +68,10 @@ interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : 
 }
 
 val detailsModule = module {
-    single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDetailsPath")) }
-    single(createdAtStart = true) { NPCDefinitionLoader(get(), get()).run(getProperty("npcDetailsPath")) }
-    single(createdAtStart = true) { ItemDefinitionLoader(get(), get()).run(getProperty("itemDetailsPath")) }
-    single(createdAtStart = true) { AnimationDefinitionLoader(get(), get()).run(getProperty("animationDetailsPath")) }
-    single(createdAtStart = true) { GraphicDefinitionLoader(get(), get()).run(getProperty("graphicDetailsPath")) }
-    single(createdAtStart = true) { ContainerDefinitionLoader(get(), get()).run(getProperty("containerDetailsPath")) }
+    single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDefinitionsPath")) }
+    single(createdAtStart = true) { NPCDefinitionLoader(get(), get()).run(getProperty("npcDefinitionsPath")) }
+    single(createdAtStart = true) { ItemDefinitionLoader(get(), get()).run(getProperty("itemDefinitionsPath")) }
+    single(createdAtStart = true) { AnimationDefinitionLoader(get(), get()).run(getProperty("animationDefinitionsPath")) }
+    single(createdAtStart = true) { GraphicDefinitionLoader(get(), get()).run(getProperty("graphicDefinitionsPath")) }
+    single(createdAtStart = true) { ContainerDefinitionLoader(get(), get()).run(getProperty("containerDefinitionsPath")) }
 }
