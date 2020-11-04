@@ -1,11 +1,11 @@
 package rs.dusk.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import java.util.*
 
 data class Container(
-    private val decoder: ItemDetails,
+    private val definitions: ItemDefinitions,
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     val stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
@@ -14,13 +14,13 @@ data class Container(
 ) {
 
     constructor(
-        decoder: ItemDetails,
+        definitions: ItemDefinitions,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
         listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
         minimumStack: Int = 0
     ) : this(
-        decoder,
+        definitions,
         listeners,
         stackMode,
         IntArray(capacity) { -1 },
@@ -47,7 +47,7 @@ data class Container(
     fun stackable(id: Int) = when (stackMode) {
         StackMode.Always -> true
         StackMode.Never -> false
-        StackMode.Normal -> decoder.get(id).stackable == 1
+        StackMode.Normal -> definitions.get(id).stackable == 1
     }
 
     val count: Int
@@ -77,7 +77,7 @@ data class Container(
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
     fun isValidInput(id: Int, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && id < decoder.size && (predicate == null || predicate!!.invoke(id, amount))
+        return isValidId(id) && isValidAmount(amount) && id < definitions.size && (predicate == null || predicate!!.invoke(id, amount))
     }
 
     fun isValidOrEmpty(id: Int, amount: Int) = (!isValidId(id) && !isValidAmount(amount)) || isValidInput(id, amount)

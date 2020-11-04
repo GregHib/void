@@ -5,7 +5,7 @@ import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.utility.get
 
 private const val INTERFACE_NAME = "skill_creation"
@@ -40,7 +40,7 @@ suspend fun DialogueContext.makeAmount(
 }
 
 private fun setItemOptions(player: Player, items: List<Int>) {
-    val decoder: ItemDetails = get()
+    val decoder: ItemDefinitions = get()
     repeat(10) { index ->
         val item = items.getOrNull(index) ?: -1
         player.setVar("skill_creation_item_$index", item)

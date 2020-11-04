@@ -14,7 +14,7 @@ import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Dialogues
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.world.interact.dialogue.type.destroy
 import rs.dusk.world.script.KoinMock
 
@@ -37,7 +37,7 @@ internal class DestroyTest : KoinMock() {
         every { context.player } returns player
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
-        declareMock<ItemDetails> {
+        declareMock<ItemDefinitions> {
             every { get(1234) } returns ItemDefinition(name = "magic")
         }
     }

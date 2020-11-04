@@ -8,7 +8,7 @@ import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.DetailsDecoderTest
 
-internal class AnimationDetailsTest : DetailsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDetails>() {
+internal class AnimationDefinitionsTest : DetailsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -24,12 +24,12 @@ internal class AnimationDetailsTest : DetailsDecoderTest<AnimationDefinition, An
         return AnimationDefinition(id)
     }
 
-    override fun details(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDetails {
-        return AnimationDetails(decoder, id, names)
+    override fun details(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {
+        return AnimationDefinitions(decoder, id, names)
     }
 
-    override fun loader(loader: FileLoader): TimedLoader<AnimationDetails> {
-        return AnimationDetailsLoader(loader, decoder)
+    override fun loader(loader: FileLoader): TimedLoader<AnimationDefinitions> {
+        return AnimationDefinitionLoader(loader, decoder)
     }
 
 }

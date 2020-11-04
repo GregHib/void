@@ -7,10 +7,10 @@ import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.engine.entity.item.ItemDrop
 
-class ItemDetailsLoader(private val loader: FileLoader, private val decoder: ItemDecoder) : TimedLoader<ItemDetails>("item detail") {
+class ItemDefinitionLoader(private val loader: FileLoader, private val decoder: ItemDecoder) : TimedLoader<ItemDefinitions>("item definition") {
 
     private var equipmentCount = 0
-    private val equipmentIndices = (0 until decoder.size).map {// TODO move into details
+    private val equipmentIndices = (0 until decoder.size).map {
         val def = decoder.getOrNull(it)
         it to if (def != null && (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0)) {
             equipmentCount++
@@ -19,7 +19,7 @@ class ItemDetailsLoader(private val loader: FileLoader, private val decoder: Ite
         }
     }.toMap()
 
-    override fun load(args: Array<out Any?>): ItemDetails {
+    override fun load(args: Array<out Any?>): ItemDefinitions {
         val path = args[0] as String
         val data: Map<String, Map<String, Any>> = loader.load(path)
         val map = data.mapValues { entry ->
@@ -29,7 +29,7 @@ class ItemDetailsLoader(private val loader: FileLoader, private val decoder: Ite
         }.toMap()
         val names = data.map { it.value["id"] as Int to it.key }.toMap()
         count = names.size
-        return ItemDetails(decoder, map, names)
+        return ItemDefinitions(decoder, map, names)
     }
 
     fun convert(key: String, value: Any): Any {

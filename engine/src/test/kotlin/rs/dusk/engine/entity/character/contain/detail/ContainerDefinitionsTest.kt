@@ -9,7 +9,7 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.DetailsDecoderTest
 import rs.dusk.engine.entity.character.contain.StackMode
 
-internal class ContainerDetailsTest : DetailsDecoderTest<ItemContainerDefinition, ItemContainerDecoder, ContainerDetails>() {
+internal class ContainerDefinitionsTest : DetailsDecoderTest<ItemContainerDefinition, ItemContainerDecoder, ContainerDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -39,12 +39,12 @@ internal class ContainerDetailsTest : DetailsDecoderTest<ItemContainerDefinition
         return ItemContainerDefinition(id)
     }
 
-    override fun details(decoder: ItemContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDetails {
-        return ContainerDetails(decoder, id, names)
+    override fun details(decoder: ItemContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDefinitions {
+        return ContainerDefinitions(decoder, id, names)
     }
 
-    override fun loader(loader: FileLoader): TimedLoader<ContainerDetails> {
-        return ContainerDetailsLoader(loader, decoder)
+    override fun loader(loader: FileLoader): TimedLoader<ContainerDefinitions> {
+        return ContainerDefinitionLoader(loader, decoder)
     }
 
 }

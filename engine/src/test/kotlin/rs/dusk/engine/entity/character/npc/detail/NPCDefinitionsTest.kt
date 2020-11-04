@@ -8,7 +8,7 @@ import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.DetailsDecoderTest
 
-internal class NPCDetailsTest : DetailsDecoderTest<NPCDefinition, NPCDecoder, NPCDetails>() {
+internal class NPCDefinitionsTest : DetailsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -24,11 +24,11 @@ internal class NPCDetailsTest : DetailsDecoderTest<NPCDefinition, NPCDecoder, NP
         return NPCDefinition(id)
     }
 
-    override fun details(decoder: NPCDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): NPCDetails {
-        return NPCDetails(decoder, id, names)
+    override fun details(decoder: NPCDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): NPCDefinitions {
+        return NPCDefinitions(decoder, id, names)
     }
 
-    override fun loader(loader: FileLoader): TimedLoader<NPCDetails> {
-        return NPCDetailsLoader(loader, decoder)
+    override fun loader(loader: FileLoader): TimedLoader<NPCDefinitions> {
+        return NPCDefinitionLoader(loader, decoder)
     }
 }

@@ -7,9 +7,9 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.contain.container
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.contain.hasContainer
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
@@ -29,8 +29,8 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
     val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()
-    val containerDecoder: ContainerDetails by inject()
-    val itemDetails: ItemDetails by inject()
+    val containerDefinitions: ContainerDefinitions by inject()
+    val itemDefinitions: ItemDefinitions by inject()
     val logger = InlineLogger()
 
     override fun handle(ctx: ChannelHandlerContext, msg: InterfaceOptionMessage) {
@@ -71,7 +71,7 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
                 return
             }
 
-            val def = containerDecoder.get(containerName)
+            val def = containerDefinitions.get(containerName)
             if (itemSlot > def.length) {
                 logger.info { "Invalid interface $name container $containerName ${def.length} slot $itemSlot not found for player $player" }
                 return
@@ -80,12 +80,12 @@ class InterfaceOptionMessageHandler : GameMessageHandler<InterfaceOptionMessage>
             var found = false
             val primary = player.container(def, secondary = false)
             if (primary.isValidId(itemSlot, itemId)) {
-                item = itemDetails.getName(itemId)
+                item = itemDefinitions.getName(itemId)
                 found = true
             } else {
                 val secondary = player.container(def, secondary = true)
                 if (secondary.isValidId(itemSlot, itemId)) {
-                    item = itemDetails.getName(itemId)
+                    item = itemDefinitions.getName(itemId)
                     found = true
                 }
             }

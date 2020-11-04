@@ -16,7 +16,7 @@ import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.world.interact.dialogue.type.makeAmount
 import rs.dusk.world.script.KoinMock
 
@@ -46,7 +46,7 @@ internal class MakeAmountTest : KoinMock() {
         every { player.getVar(any(), any<Int>()) } returns 0
         every { player.interfaces } returns interfaces
         every { player.interfaceOptions } returns interfaceOptions
-        declareMock<ItemDetails> {
+        declareMock<ItemDefinitions> {
             every { get(1) } returns ItemDefinition(name = "Jimmy")
             every { get(2) } returns ItemDefinition(name = "Jerome")
             every { get(3) } returns ItemDefinition(name = "Jorge")

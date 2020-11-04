@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.open
 import rs.dusk.engine.client.variable.setVar
 import rs.dusk.engine.entity.item.EquipSlot
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
@@ -35,7 +35,7 @@ on(InterfaceOption) {
     }
 }
 
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 val bus: EventBus by inject()
 val logger = InlineLogger()
 

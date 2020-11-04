@@ -16,7 +16,7 @@ import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.item.BodyPart
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 
 @ExtendWith(MockKExtension::class)
 internal class BodyPartsTest {
@@ -27,7 +27,7 @@ internal class BodyPartsTest {
     lateinit var looks: IntArray
 
     @MockK
-    lateinit var details: ItemDetails
+    lateinit var definitions: ItemDefinitions
 
     @MockK
     lateinit var decoder: ItemDecoder
@@ -37,7 +37,7 @@ internal class BodyPartsTest {
     @BeforeEach
     fun setup() {
         looks = IntArray(12)
-        body = BodyParts(equipment, details, looks)
+        body = BodyParts(equipment, definitions, looks)
     }
 
     @Test
@@ -54,7 +54,7 @@ internal class BodyPartsTest {
     fun `Update item`() {
         every { equipment.getItem(1) } returns 123
         val detail: ItemDefinition = mockk()
-        every { details.get(123) } returns detail
+        every { definitions.get(123) } returns detail
         every { detail["equip", -1] } returns 2
         body.update(BodyPart.Cape)
         assertEquals(2 or 0x8000, body.get(1))
@@ -65,7 +65,7 @@ internal class BodyPartsTest {
         looks[2] = 321
         every { equipment.getItem(4) } returns -1
         val detail: ItemDefinition = mockk(relaxed = true)
-        every { details.get(-1) } returns detail
+        every { definitions.get(-1) } returns detail
         every { detail["type", EquipType.None] } returns EquipType.None
         body.update(BodyPart.Chest)
         assertEquals(321 or 0x100, body.get(4))
@@ -77,12 +77,12 @@ internal class BodyPartsTest {
         every { equipment.getItem(-1) } returns -1
         every { equipment.getItem(14) } returns 123
         val detail: ItemDefinition = mockk()
-        every { details.get(123) } returns detail
+        every { definitions.get(123) } returns detail
         every { detail["equip", -1] } returns 0
         body.update(BodyPart.Aura)
         every { equipment.getItem(14) } returns -1
         val otherDetail: ItemDefinition = mockk()
-        every { details.get(-1) } returns otherDetail
+        every { definitions.get(-1) } returns otherDetail
         every { otherDetail["type", EquipType.None] } returns EquipType.None
         // When
         val result = body.update(BodyPart.Aura)
@@ -95,7 +95,7 @@ internal class BodyPartsTest {
     fun `Arms skipped if sleeveless`() {
         every { equipment.getItem(4) } returns 123
         val detail: ItemDefinition = mockk()
-        every { details.get(123) } returns detail
+        every { definitions.get(123) } returns detail
         every { detail["type", EquipType.None] } returns EquipType.Sleeveless
         body.update(BodyPart.Arms)
         assertEquals(0, body.get(4))
@@ -105,7 +105,7 @@ internal class BodyPartsTest {
     fun `Skull skipped if hair`() {
         every { equipment.getItem(0) } returns -1
         val detail: ItemDefinition = mockk()
-        every { details.get(-1) } returns detail
+        every { definitions.get(-1) } returns detail
         every { detail["type", EquipType.None] } returns EquipType.Hair
         body.update(BodyPart.Hat)
         assertEquals(0, body.get(0))
@@ -115,7 +115,7 @@ internal class BodyPartsTest {
     fun `Skull skipped if full face`() {
         every { equipment.getItem(0) } returns -1
         val detail: ItemDefinition = mockk()
-        every { details.get(-1) } returns detail
+        every { definitions.get(-1) } returns detail
         every { detail["type", EquipType.None] } returns EquipType.FullFace
         body.update(BodyPart.Hat)
         assertEquals(0, body.get(0))
@@ -125,7 +125,7 @@ internal class BodyPartsTest {
     fun `Jaw skipped if mask`() {
         every { equipment.getItem(0) } returns -1
         val detail: ItemDefinition = mockk()
-        every { details.get(-1) } returns detail
+        every { definitions.get(-1) } returns detail
         every { detail["type", EquipType.None] } returns EquipType.Mask
         body.update(BodyPart.Beard)
         assertEquals(0, body.get(0))
@@ -135,7 +135,7 @@ internal class BodyPartsTest {
     fun `Jaw skipped if full face`() {
         every { equipment.getItem(0) } returns -1
         val detail: ItemDefinition = mockk()
-        every { details.get(-1) } returns detail
+        every { definitions.get(-1) } returns detail
         every { decoder.get(123) } returns ItemDefinition(name = "bald")
         every { detail["type", EquipType.None] } returns EquipType.FullFace
         body.update(BodyPart.Beard)

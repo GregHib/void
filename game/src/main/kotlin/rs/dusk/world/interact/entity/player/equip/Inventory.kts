@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.contain.sendContainer
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -13,7 +13,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
 
 val logger = InlineLogger()
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 val bus: EventBus by inject()
 
 InterfaceOpened where { name == "inventory" } then {

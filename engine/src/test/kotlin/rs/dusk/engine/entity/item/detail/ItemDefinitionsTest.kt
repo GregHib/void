@@ -11,7 +11,7 @@ import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.engine.entity.item.ItemDrop
 
-internal class ItemDetailsTest : DetailsDecoderTest<ItemDefinition, ItemDecoder, ItemDetails>() {
+internal class ItemDefinitionsTest : DetailsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -60,12 +60,12 @@ internal class ItemDetailsTest : DetailsDecoderTest<ItemDefinition, ItemDecoder,
         return ItemDefinition(id)
     }
 
-    override fun details(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDetails {
-        return ItemDetails(decoder, id, names)
+    override fun details(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {
+        return ItemDefinitions(decoder, id, names)
     }
 
-    override fun loader(loader: FileLoader): TimedLoader<ItemDetails> {
-        return ItemDetailsLoader(loader, decoder)
+    override fun loader(loader: FileLoader): TimedLoader<ItemDefinitions> {
+        return ItemDefinitionLoader(loader, decoder)
     }
 
 }

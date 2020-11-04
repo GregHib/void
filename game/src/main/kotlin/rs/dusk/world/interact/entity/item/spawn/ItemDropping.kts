@@ -8,7 +8,7 @@ import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.entity.item.FloorItem
 import rs.dusk.engine.entity.item.FloorItemState
 import rs.dusk.engine.entity.item.FloorItems
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -24,7 +24,7 @@ import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.item.spawn.Drop
 import rs.dusk.world.interact.entity.player.equip.ContainerAction
 
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 val items: FloorItems by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()

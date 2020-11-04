@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.has
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
@@ -20,7 +20,7 @@ import rs.dusk.world.interact.entity.player.equip.ContainerAction
  * Lent item discarding
  */
 
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 val logger = InlineLogger()
 
 ContainerAction where { container == "inventory" && option == "Discard" } then {

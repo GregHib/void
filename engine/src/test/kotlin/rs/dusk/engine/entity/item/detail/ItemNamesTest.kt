@@ -13,7 +13,7 @@ import rs.dusk.engine.script.KoinMock
 internal class ItemNamesTest : KoinMock() {
 
     private lateinit var container: Container
-    private lateinit var itemDetails: ItemDetails
+    private lateinit var itemDefinitions: ItemDefinitions
     private lateinit var decoder: ItemDecoder
 
     @BeforeEach
@@ -29,8 +29,8 @@ internal class ItemNamesTest : KoinMock() {
         every { container.remove(any(), any(), any()) } returns true
         every { container.remove(any(), any()) } returns true
 
-        itemDetails = declare {
-            ItemDetails(decoder, mapOf("item_name" to mapOf<String, Any>("id" to 1)), mapOf(1 to "item_name"))
+        itemDefinitions = declare {
+            ItemDefinitions(decoder, mapOf("item_name" to mapOf<String, Any>("id" to 1)), mapOf(1 to "item_name"))
         }
     }
 

@@ -7,7 +7,7 @@ import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.CharacterEffects
 import rs.dusk.engine.entity.character.CharacterValues
 import rs.dusk.engine.entity.character.move.Movement
-import rs.dusk.engine.entity.character.npc.detail.NPCDetails
+import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
 import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
 import rs.dusk.engine.map.Tile
@@ -41,7 +41,7 @@ data class NPC(
     override lateinit var interactTarget: TargetStrategy
 
     val def: NPCDefinition
-        get() = get<NPCDetails>().get(id)
+        get() = get<NPCDefinitions>().get(id)
 
     constructor(id: Int = 0, tile: Tile = Tile.EMPTY, index: Int) : this(id, tile) {
         this.index = index

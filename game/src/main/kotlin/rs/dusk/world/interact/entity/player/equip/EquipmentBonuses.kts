@@ -15,7 +15,7 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import rs.dusk.engine.entity.character.update.visual.player.appearance
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
@@ -33,7 +33,7 @@ StringVariable(323, Variable.Type.VARCSTR).register("equipment_names")
 StringVariable(324, Variable.Type.VARCSTR).register("equipment_stats")
 StringVariable(325, Variable.Type.VARCSTR).register("comparison_stats")
 
-val details: ItemDetails by inject()
+val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = action.type == ActionType.Equipping
 
@@ -62,7 +62,7 @@ InterfaceOpened where { name == "equipment_side" } then {
 }
 
 InterfaceOption where { player.equipping() && (name == "equipment_side" || name == "equipment_bonuses") && component == "container" && option == "Stats" } then {
-    showStats(player, details.get(name))
+    showStats(player, definitions.get(name))
 }
 
 /*
@@ -98,7 +98,7 @@ fun updateEmote(player: Player) {
 }
 
 fun updateStats(player: Player, id: Int, add: Boolean) {
-    val item = details.getOrNull(id) ?: return
+    val item = definitions.getOrNull(id) ?: return
     names.forEach { (name, key) ->
         val value = item.getInt(key.toLong(), 0)
         if (value > 0) {

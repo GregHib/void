@@ -8,7 +8,7 @@ import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.DetailsDecoderTest
 
-internal class GraphicDetailsTest : DetailsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDetails>() {
+internal class GraphicDefinitionsTest : DetailsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -24,12 +24,12 @@ internal class GraphicDetailsTest : DetailsDecoderTest<GraphicDefinition, Graphi
         return GraphicDefinition(id)
     }
 
-    override fun details(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDetails {
-        return GraphicDetails(decoder, id, names)
+    override fun details(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {
+        return GraphicDefinitions(decoder, id, names)
     }
 
-    override fun loader(loader: FileLoader): TimedLoader<GraphicDetails> {
-        return GraphicDetailsLoader(loader, decoder)
+    override fun loader(loader: FileLoader): TimedLoader<GraphicDefinitions> {
+        return GraphicDefinitionLoader(loader, decoder)
     }
 
 }

@@ -4,7 +4,7 @@ import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder
 import rs.dusk.engine.entity.DetailsDecoder
 
-class AnimationDetails(
+class AnimationDefinitions(
     override val decoder: AnimationDecoder,
     override val details: Map<String, Map<String, Any>>,
     override val names: Map<Int, String>

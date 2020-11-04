@@ -11,12 +11,12 @@ import rs.dusk.engine.entity.character.update.visual.player.emote
 import rs.dusk.engine.entity.character.update.visual.player.flagAppearance
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
 
-val itemDecoder: ItemDetails by inject()
+val itemDecoder: ItemDefinitions by inject()
 
 ContainerAction where { container == "inventory" && (option == "Wield" || option == "Wear") } then {
     val details = itemDecoder.get(item)

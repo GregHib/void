@@ -3,11 +3,11 @@ package rs.dusk.engine.entity.character.player
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.item.BodyPart
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 
 class BodyParts(
     private val equipment: Container,
-    private val details: ItemDetails,
+    private val definitions: ItemDefinitions,
     val looks: IntArray
 ) {
     private val parts = IntArray(13)
@@ -32,7 +32,7 @@ class BodyParts(
         val item = equipment.getItem(part.slot.index)
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
-            showItem(part, item) -> details.get(item)["equip", -1] or 0x8000
+            showItem(part, item) -> definitions.get(item)["equip", -1] or 0x8000
             showBodyPart(part, item) -> looks[part.index] or 0x100
             else -> 0
         }
@@ -42,13 +42,13 @@ class BodyParts(
     private fun showItem(part: BodyPart, item: Int): Boolean {
         return item != -1 && when (part) {
             BodyPart.Hair, BodyPart.Beard -> false
-            BodyPart.Arms -> details.get(item)["type", EquipType.None] != EquipType.Sleeveless
+            BodyPart.Arms -> definitions.get(item)["type", EquipType.None] != EquipType.Sleeveless
             else -> true
         }
     }
 
     private fun showBodyPart(part: BodyPart, item: Int): Boolean {
-        val type = details.get(item)["type", EquipType.None]
+        val type = definitions.get(item)["type", EquipType.None]
         return part.index != -1 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair
             BodyPart.Beard -> type != EquipType.FullFace && type != EquipType.Mask

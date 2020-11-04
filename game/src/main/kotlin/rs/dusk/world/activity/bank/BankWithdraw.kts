@@ -8,7 +8,7 @@ import rs.dusk.engine.entity.character.contain.ContainerResult
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
@@ -19,7 +19,7 @@ BooleanVariable(115, Variable.Type.VARP, persistent = true).register("bank_notes
 
 val logger = InlineLogger()
 
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 
 InterfaceOption where { name == "bank" && component == "container" && option.startsWith("Withdraw") } then {
     val amount = when (option) {

@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get
@@ -29,7 +29,7 @@ data class FloorItem(
     }
 
     val def: ItemDefinition
-        get() = get<ItemDetails>().get(id)
+        get() = get<ItemDefinitions>().get(id)
 
     var state: FloorItemState = FloorItemState.Private
 

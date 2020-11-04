@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.entity.item.offset
-import rs.dusk.engine.entity.obj.detail.ObjectDetails
+import rs.dusk.engine.entity.obj.detail.ObjectDefinitions
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.TargetStrategy
@@ -26,7 +26,7 @@ data class GameObject(
     val owner: String? = null
 ) : Entity {
     val def: ObjectDefinition
-        get() = get<ObjectDetails>().get(id)
+        get() = get<ObjectDefinitions>().get(id)
 
     val size: Size by lazy { Size(def.sizeX, def.sizeY) }
 

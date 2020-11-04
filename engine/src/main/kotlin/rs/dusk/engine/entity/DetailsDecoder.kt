@@ -4,12 +4,12 @@ import org.koin.dsl.module
 import rs.dusk.cache.Definition
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.definition.Details
-import rs.dusk.engine.entity.anim.detail.AnimationDetailsLoader
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetailsLoader
-import rs.dusk.engine.entity.character.npc.detail.NPCDetailsLoader
-import rs.dusk.engine.entity.gfx.detail.GraphicDetailsLoader
-import rs.dusk.engine.entity.item.detail.ItemDetailsLoader
-import rs.dusk.engine.entity.obj.detail.ObjectDetailsLoader
+import rs.dusk.engine.entity.anim.detail.AnimationDefinitionLoader
+import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitionLoader
+import rs.dusk.engine.entity.character.npc.detail.NPCDefinitionLoader
+import rs.dusk.engine.entity.gfx.detail.GraphicDefinitionLoader
+import rs.dusk.engine.entity.item.detail.ItemDefinitionLoader
+import rs.dusk.engine.entity.obj.detail.ObjectDefinitionLoader
 
 /**
  * Stores additional static information about an entity as well as a unique string identifier
@@ -68,10 +68,10 @@ interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : 
 }
 
 val detailsModule = module {
-    single(createdAtStart = true) { ObjectDetailsLoader(get(), get()).run(getProperty("objectDetailsPath")) }
-    single(createdAtStart = true) { NPCDetailsLoader(get(), get()).run(getProperty("npcDetailsPath")) }
-    single(createdAtStart = true) { ItemDetailsLoader(get(), get()).run(getProperty("itemDetailsPath")) }
-    single(createdAtStart = true) { AnimationDetailsLoader(get(), get()).run(getProperty("animationDetailsPath")) }
-    single(createdAtStart = true) { GraphicDetailsLoader(get(), get()).run(getProperty("graphicDetailsPath")) }
-    single(createdAtStart = true) { ContainerDetailsLoader(get(), get()).run(getProperty("containerDetailsPath")) }
+    single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDetailsPath")) }
+    single(createdAtStart = true) { NPCDefinitionLoader(get(), get()).run(getProperty("npcDetailsPath")) }
+    single(createdAtStart = true) { ItemDefinitionLoader(get(), get()).run(getProperty("itemDetailsPath")) }
+    single(createdAtStart = true) { AnimationDefinitionLoader(get(), get()).run(getProperty("animationDetailsPath")) }
+    single(createdAtStart = true) { GraphicDefinitionLoader(get(), get()).run(getProperty("graphicDetailsPath")) }
+    single(createdAtStart = true) { ContainerDefinitionLoader(get(), get()).run(getProperty("containerDetailsPath")) }
 }

@@ -6,7 +6,7 @@ import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
@@ -20,7 +20,7 @@ import rs.dusk.utility.getProperty
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 03, 2020
  */
-class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, private val collisions: Collisions, private val containers: ContainerDetails, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
+class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, private val collisions: Collisions, private val definitions: ContainerDefinitions, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
 
     private val x = getProperty("homeX", 0)
     private val y = getProperty("homeY", 0)
@@ -32,7 +32,7 @@ class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceD
         val player = super.load(name) ?: Player(id = -1, tile = tile)
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
-        player.interfaceOptions = InterfaceOptions(player, interfaces, containers)
+        player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)
         player.experience.addListener { skill, _, experience ->
             val level = player.levels.get(skill)
             player.send(SkillLevelMessage(skill.ordinal, level, experience.toInt()))

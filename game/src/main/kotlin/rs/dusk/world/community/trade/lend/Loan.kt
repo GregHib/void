@@ -7,7 +7,7 @@ import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.Time
@@ -17,7 +17,7 @@ import rs.dusk.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
 object Loan {
-    private val decoder: ItemDetails by inject()
+    private val definitions: ItemDefinitions by inject()
     private val executor: TaskExecutor by inject()
     private val logger = InlineLogger()
 
@@ -95,7 +95,7 @@ object Loan {
     }
 
     fun lendItem(player: Player, other: Player, item: Int, duration: Int) {
-        val def = decoder.get(item)
+        val def = definitions.get(item)
         if (player.inventory.add(def.lendId)) {
             if (duration > 0) {
                 val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)

@@ -10,23 +10,23 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.cache.definition.decoder.ItemDecoder
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 
 internal class ContainerTest {
     private lateinit var container: Container
-    private lateinit var decoder: ItemDecoder
+    private lateinit var definitions: ItemDefinitions
     private lateinit var items: IntArray
     private lateinit var amounts: IntArray
 
     @BeforeEach
     fun setup() {
-        decoder = mockk(relaxed = true)
-        every { decoder.size } returns 100
+        definitions = mockk(relaxed = true)
+        every { definitions.size } returns 100
         items = IntArray(10) { -1 }
         amounts = IntArray(10) { 0 }
         container = spyk(
             Container(
-                decoder = decoder,
+                definitions =definitions,
                 items = items,
                 amounts = amounts,
                 minimumStack = 0
@@ -39,11 +39,11 @@ internal class ContainerTest {
         // Given
         val id = 1
         container = Container(
-            decoder = decoder,
+            definitions = definitions,
             stackMode = StackMode.Always,
             capacity = 10
         )
-        every { decoder.get(id) } returns ItemDefinition(stackable = 0)
+        every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -55,11 +55,11 @@ internal class ContainerTest {
         // Given
         val id = 1
         container = Container(
-            decoder = decoder,
+            definitions = definitions,
             stackMode = StackMode.Never,
             capacity = 10
         )
-        every { decoder.get(id) } returns ItemDefinition(stackable = 1)
+        every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -71,11 +71,11 @@ internal class ContainerTest {
         // Given
         val id = 1
         container = Container(
-            decoder = decoder,
+            definitions = definitions,
             stackMode = StackMode.Normal,
             capacity = 10
         )
-        every { decoder.get(id) } returns ItemDefinition(stackable = 1)
+        every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -87,11 +87,11 @@ internal class ContainerTest {
         // Given
         val id = 1
         container = Container(
-            decoder = decoder,
+            definitions = definitions,
             stackMode = StackMode.Normal,
             capacity = 10
         )
-        every { decoder.get(id) } returns ItemDefinition(stackable = 0)
+        every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
         // Then
@@ -105,7 +105,7 @@ internal class ContainerTest {
         amounts[4] = -1
         amounts[5] = -2
         container = Container(
-            decoder = decoder,
+            definitions =definitions,
             items = IntArray(10),
             amounts = amounts,
             minimumStack = -1
@@ -250,7 +250,7 @@ internal class ContainerTest {
     @Test
     fun `Valid input checks id is less than definitions`() {
         // Given
-        every { decoder.size } returns 15000
+        every { definitions.size } returns 15000
         // When
         val valid = container.isValidInput(20000, 2)
         // Then
@@ -855,7 +855,7 @@ internal class ContainerTest {
     }
 
     private fun items(vararg items: Pair<Int, Int>?) = Container(
-        decoder = decoder,
+        definitions =definitions,
         items = items.map { it?.first ?: -1 }.toIntArray(),
         amounts = items.map { it?.second ?: 0 }.toIntArray(),
         minimumStack = 0
@@ -870,7 +870,7 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -895,7 +895,7 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -919,7 +919,7 @@ internal class ContainerTest {
         val index = 3
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -943,7 +943,7 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -966,7 +966,7 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -990,11 +990,11 @@ internal class ContainerTest {
         val newId = 3
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
-        every { decoder.get(newId) } returns ItemDefinition()
+        every { definitions.get(newId) } returns ItemDefinition()
         every { container.remove(id, amount) } returns true
         every { other.add(id, amount) } returns true
         // When
@@ -1014,7 +1014,7 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -1031,7 +1031,7 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 1
             )
         )
@@ -1076,7 +1076,7 @@ internal class ContainerTest {
         val otherAmounts = IntArray(10) { 0 }
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions =definitions,
                 items = otherItems,
                 amounts = otherAmounts
             )
@@ -1104,7 +1104,7 @@ internal class ContainerTest {
         val otherAmounts = IntArray(10) { 0 }
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions =definitions,
                 items = otherItems,
                 amounts = otherAmounts
             )
@@ -1263,7 +1263,7 @@ internal class ContainerTest {
         }
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 10
             )
         )
@@ -1286,7 +1286,7 @@ internal class ContainerTest {
         }
         val other = spyk(
             Container(
-                decoder = decoder,
+                definitions = definitions,
                 capacity = 2
             )
         )
@@ -1318,7 +1318,7 @@ internal class ContainerTest {
 
                 val other = spyk(
                     Container(
-                        decoder = decoder,
+                        definitions = definitions,
                         capacity = 1
                     )
                 )

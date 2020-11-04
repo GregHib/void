@@ -2,7 +2,7 @@ package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 class InterfaceOptions(
     private val player: Player,
     private val details: InterfaceDetails,
-    private val containerDetails: ContainerDetails,
+    private val containerDefinitions: ContainerDefinitions,
     private val options: MutableMap<String, Array<String>> = mutableMapOf()
 ) {
 
@@ -53,7 +53,7 @@ class InterfaceOptions(
         val script = if (comp.primaryContainer) 150 else 695
         val id = (comp.parent shl 16) or comp.id
         val options = get(name, component).slice(0 until 9).toTypedArray()
-        val container = containerDetails.get(comp.container)
+        val container = containerDefinitions.get(comp.container)
         if(container.id != -1) {
             player.send(ScriptMessage(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options))
         }

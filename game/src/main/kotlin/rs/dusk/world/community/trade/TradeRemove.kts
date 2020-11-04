@@ -5,7 +5,7 @@ import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
@@ -17,7 +17,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
  * Removing an item from an offer or loan
  */
 
-val itemDecoder: ItemDetails by inject()
+val itemDecoder: ItemDefinitions by inject()
 
 InterfaceOption where { name == "trade_main" && component == "offer_options" } then {
     val amount = when(option) {

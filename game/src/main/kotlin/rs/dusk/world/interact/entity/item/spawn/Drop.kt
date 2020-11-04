@@ -2,7 +2,7 @@ package rs.dusk.world.interact.entity.item.spawn
 
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.item.FloorItem
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.map.Tile
@@ -34,7 +34,7 @@ data class Drop(
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
-    ) : this(get<ItemDetails>().getId(name), amount, tile, revealTicks, disappearTicks, owner)
+    ) : this(get<ItemDefinitions>().getId(name), amount, tile, revealTicks, disappearTicks, owner)
 
     companion object : EventCompanion<Drop>
 }

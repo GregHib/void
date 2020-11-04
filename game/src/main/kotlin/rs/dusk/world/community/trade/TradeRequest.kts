@@ -12,7 +12,7 @@ import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.clear
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.ContainerModification
-import rs.dusk.engine.entity.character.contain.detail.ContainerDetails
+import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
@@ -21,7 +21,7 @@ import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
@@ -37,7 +37,7 @@ import rs.dusk.world.interact.entity.player.display.Tab
  */
 
 val logger = InlineLogger()
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 
 BooleanVariable(1042, Variable.Type.VARP).register("offer_modified")
 BooleanVariable(1043, Variable.Type.VARP).register("other_offer_modified")
@@ -222,9 +222,9 @@ fun highlightRemovedSlots(player: Player, other: Player, updates: List<Container
 
 fun Player.warn(name: String, component: String, slot: Int) {
     val details: InterfaceDetails = rs.dusk.utility.get()
-    val containerDetails: ContainerDetails = rs.dusk.utility.get()
+    val containerDefinitions: ContainerDefinitions = rs.dusk.utility.get()
     val comp = details.getComponent(name, component)
-    val container = containerDetails.get(comp.container)
+    val container = containerDefinitions.get(comp.container)
     println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
     send(ScriptMessage(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
 }

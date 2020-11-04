@@ -5,7 +5,7 @@ import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerSpawn
-import rs.dusk.engine.entity.item.detail.ItemDetails
+import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject
@@ -28,7 +28,7 @@ PlayerSpawn then {
     }
 }
 
-val decoder: ItemDetails by inject()
+val decoder: ItemDefinitions by inject()
 
 fun Container.getFreeToPlayItemCount(): Int {
     return getItems().count { !(decoder.getOrNull(it)?.members ?: true) }
