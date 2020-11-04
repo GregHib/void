@@ -6,9 +6,9 @@ import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DetailsDecoderTest
+import rs.dusk.engine.entity.DefinitionsDecoderTest
 
-internal class ObjectDefinitionsTest : DetailsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
+internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -20,11 +20,11 @@ internal class ObjectDefinitionsTest : DetailsDecoderTest<ObjectDefinition, Obje
         return mapOf("id" to id)
     }
 
-    override fun detail(id: Int): ObjectDefinition {
+    override fun definition(id: Int): ObjectDefinition {
         return ObjectDefinition(id)
     }
 
-    override fun details(decoder: ObjectDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ObjectDefinitions {
+    override fun definitions(decoder: ObjectDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ObjectDefinitions {
         return ObjectDefinitions(decoder, id, names)
     }
 

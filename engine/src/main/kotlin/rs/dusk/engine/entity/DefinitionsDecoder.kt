@@ -3,7 +3,7 @@ package rs.dusk.engine.entity
 import org.koin.dsl.module
 import rs.dusk.cache.Definition
 import rs.dusk.cache.DefinitionDecoder
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 import rs.dusk.engine.entity.anim.detail.AnimationDefinitionLoader
 import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitionLoader
 import rs.dusk.engine.entity.character.npc.detail.NPCDefinitionLoader
@@ -14,9 +14,9 @@ import rs.dusk.engine.entity.obj.detail.ObjectDefinitionLoader
 /**
  * Stores additional static information about an entity as well as a unique string identifier
  */
-interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : Details {
+interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : Extra {
     val decoder: D
-    val details: Map<String, Map<String, Any>>
+    val extras: Map<String, Map<String, Any>>
     val names: Map<Int, String>
 
     val size: Int
@@ -28,23 +28,23 @@ interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : 
     fun getOrNull(id: Int) = decoder.getOrNull(id)
 
     fun getOrNull(name: String): T? {
-        val map = details[name] ?: return null
+        val map = extras[name] ?: return null
         val id = map["id"] as? Int ?: return null
-        val definitions = decoder.getOrNull(id) ?: return null
-        definitions.details = map
-        return definitions
+        val definition = decoder.getOrNull(id) ?: return null
+        definition.extras = map
+        return definition
     }
 
     fun get(id: Int) = decoder.get(id)
 
     fun get(name: String): T {
-        val map = details[name]
+        val map = extras[name]
         val id = map?.get("id") as? Int ?: -1
-        val definitions = decoder.get(id)
+        val definition = decoder.get(id)
         if (map != null) {
-            definitions.details = map
+            definition.extras = map
         }
-        return definitions
+        return definition
     }
 
     fun getNameOrNull(id: Int): String? {
@@ -54,7 +54,7 @@ interface DetailsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : 
     fun getName(id: Int): String = getNameOrNull(id) ?: ""
 
     fun getIdOrNull(name: String): Int? {
-        return details[name]?.get("id") as? Int
+        return extras[name]?.get("id") as? Int
     }
 
     fun getId(name: String): Int {

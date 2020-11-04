@@ -6,9 +6,9 @@ import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DetailsDecoderTest
+import rs.dusk.engine.entity.DefinitionsDecoderTest
 
-internal class AnimationDefinitionsTest : DetailsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
+internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -20,11 +20,11 @@ internal class AnimationDefinitionsTest : DetailsDecoderTest<AnimationDefinition
         return mapOf("id" to id)
     }
 
-    override fun detail(id: Int): AnimationDefinition {
+    override fun definition(id: Int): AnimationDefinition {
         return AnimationDefinition(id)
     }
 
-    override fun details(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {
+    override fun definitions(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {
         return AnimationDefinitions(decoder, id, names)
     }
 

@@ -1,7 +1,7 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 import java.util.*
@@ -76,8 +76,8 @@ data class NPCDefinition(
     var anInt2831: Int = 0,
     var anInt2862: Int = 0,
     override var params: HashMap<Long, Any>? = null,
-    override var details: Map<String, Any> = emptyMap()
-) : Definition, Recolourable, Parameterized, Details {
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -179,7 +179,7 @@ data class NPCDefinition(
         if (anInt2831 != other.anInt2831) return false
         if (anInt2862 != other.anInt2862) return false
         if (params != other.params) return false
-        if (details != other.details) return false
+        if (extras != other.extras) return false
 
         return true
     }
@@ -250,7 +250,7 @@ data class NPCDefinition(
         result = 31 * result + anInt2831
         result = 31 * result + anInt2862
         result = 31 * result + (params?.hashCode() ?: 0)
-        result = 31 * result + details.hashCode()
+        result = 31 * result + extras.hashCode()
         return result
     }
 }

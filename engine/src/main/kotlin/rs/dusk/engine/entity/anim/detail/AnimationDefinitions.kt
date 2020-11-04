@@ -2,10 +2,10 @@ package rs.dusk.engine.entity.anim.detail
 
 import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder
-import rs.dusk.engine.entity.DetailsDecoder
+import rs.dusk.engine.entity.DefinitionsDecoder
 
 class AnimationDefinitions(
     override val decoder: AnimationDecoder,
-    override val details: Map<String, Map<String, Any>>,
+    override val extras: Map<String, Map<String, Any>>,
     override val names: Map<Int, String>
-) : DetailsDecoder<AnimationDefinition, AnimationDecoder>
+) : DefinitionsDecoder<AnimationDefinition, AnimationDecoder>

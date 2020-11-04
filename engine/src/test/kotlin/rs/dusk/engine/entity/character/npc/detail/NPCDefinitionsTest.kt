@@ -6,9 +6,9 @@ import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DetailsDecoderTest
+import rs.dusk.engine.entity.DefinitionsDecoderTest
 
-internal class NPCDefinitionsTest : DetailsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
+internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -20,11 +20,11 @@ internal class NPCDefinitionsTest : DetailsDecoderTest<NPCDefinition, NPCDecoder
         return mapOf("id" to id)
     }
 
-    override fun detail(id: Int): NPCDefinition {
+    override fun definition(id: Int): NPCDefinition {
         return NPCDefinition(id)
     }
 
-    override fun details(decoder: NPCDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): NPCDefinitions {
+    override fun definitions(decoder: NPCDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): NPCDefinitions {
         return NPCDefinitions(decoder, id, names)
     }
 

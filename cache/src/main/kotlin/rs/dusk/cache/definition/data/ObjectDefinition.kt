@@ -2,7 +2,7 @@ package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
 import rs.dusk.cache.definition.ColourPalette
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 
@@ -88,8 +88,8 @@ data class ObjectDefinition(
     var aBoolean2992: Boolean = false,
     var anInt2975: Int = 0,
     override var params: HashMap<Long, Any>? = null,
-    override var details: Map<String, Any> = emptyMap()
-) : Definition, Recolourable, ColourPalette, Parameterized, Details {
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -209,7 +209,7 @@ data class ObjectDefinition(
         if (aBoolean2992 != other.aBoolean2992) return false
         if (anInt2975 != other.anInt2975) return false
         if (params != other.params) return false
-        if (details != other.details) return false
+        if (extras != other.extras) return false
 
         return true
     }
@@ -292,7 +292,7 @@ data class ObjectDefinition(
         result = 31 * result + aBoolean2992.hashCode()
         result = 31 * result + anInt2975
         result = 31 * result + (params?.hashCode() ?: 0)
-        result = 31 * result + details.hashCode()
+        result = 31 * result + extras.hashCode()
         return result
     }
 }

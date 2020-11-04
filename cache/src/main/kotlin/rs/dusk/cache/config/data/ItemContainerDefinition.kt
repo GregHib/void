@@ -1,17 +1,46 @@
 package rs.dusk.cache.config.data
 
 import rs.dusk.cache.Definition
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 07, 2020
  */
-@Suppress("ArrayInDataClass")
 data class ItemContainerDefinition(
     override var id: Int = -1,
     var length: Int = 0,
     var ids: IntArray? = null,
     var amounts: IntArray? = null,
-    override var details: Map<String, Any> = emptyMap()
-) : Definition, Details
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Extra {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as ContainerDefinition
+
+        if (id != other.id) return false
+        if (length != other.length) return false
+        if (ids != null) {
+            if (other.ids == null) return false
+            if (!ids!!.contentEquals(other.ids!!)) return false
+        } else if (other.ids != null) return false
+        if (amounts != null) {
+            if (other.amounts == null) return false
+            if (!amounts!!.contentEquals(other.amounts!!)) return false
+        } else if (other.amounts != null) return false
+        if (extras != other.extras) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + length
+        result = 31 * result + (ids?.contentHashCode() ?: 0)
+        result = 31 * result + (amounts?.contentHashCode() ?: 0)
+        result = 31 * result + extras.hashCode()
+        return result
+    }
+}

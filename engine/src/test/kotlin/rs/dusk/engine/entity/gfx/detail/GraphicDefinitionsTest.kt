@@ -6,9 +6,9 @@ import rs.dusk.cache.definition.data.GraphicDefinition
 import rs.dusk.cache.definition.decoder.GraphicDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DetailsDecoderTest
+import rs.dusk.engine.entity.DefinitionsDecoderTest
 
-internal class GraphicDefinitionsTest : DetailsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
+internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -20,11 +20,11 @@ internal class GraphicDefinitionsTest : DetailsDecoderTest<GraphicDefinition, Gr
         return mapOf("id" to id)
     }
 
-    override fun detail(id: Int): GraphicDefinition {
+    override fun definition(id: Int): GraphicDefinition {
         return GraphicDefinition(id)
     }
 
-    override fun details(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {
+    override fun definitions(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {
         return GraphicDefinitions(decoder, id, names)
     }
 

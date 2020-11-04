@@ -6,12 +6,12 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DetailsDecoderTest
+import rs.dusk.engine.entity.DefinitionsDecoderTest
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.engine.entity.item.ItemDrop
 
-internal class ItemDefinitionsTest : DetailsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
+internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -56,11 +56,11 @@ internal class ItemDefinitionsTest : DetailsDecoderTest<ItemDefinition, ItemDeco
         )
     }
 
-    override fun detail(id: Int): ItemDefinition {
+    override fun definition(id: Int): ItemDefinition {
         return ItemDefinition(id)
     }
 
-    override fun details(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {
+    override fun definitions(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {
         return ItemDefinitions(decoder, id, names)
     }
 

@@ -2,7 +2,7 @@ package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
 import rs.dusk.cache.definition.ColourPalette
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 import rs.dusk.cache.definition.Parameterized
 import rs.dusk.cache.definition.Recolourable
 
@@ -74,8 +74,8 @@ data class ItemDefinition(
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
     override var params: HashMap<Long, Any>? = null,
-    override var details: Map<String, Any> = emptyMap()
-) : Definition, Recolourable, ColourPalette, Parameterized, Details {
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
@@ -169,7 +169,7 @@ data class ItemDefinition(
         if (singleNoteId != other.singleNoteId) return false
         if (singleNoteTemplateId != other.singleNoteTemplateId) return false
         if (params != other.params) return false
-        if (details != other.details) return false
+        if (extras != other.extras) return false
 
         return true
     }
@@ -238,7 +238,7 @@ data class ItemDefinition(
         result = 31 * result + singleNoteId
         result = 31 * result + singleNoteTemplateId
         result = 31 * result + (params?.hashCode() ?: 0)
-        result = 31 * result + details.hashCode()
+        result = 31 * result + extras.hashCode()
         return result
     }
 }

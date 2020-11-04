@@ -1,14 +1,13 @@
 package rs.dusk.cache.definition.data
 
 import rs.dusk.cache.Definition
-import rs.dusk.cache.definition.Details
+import rs.dusk.cache.definition.Extra
 import rs.dusk.cache.definition.Recolourable
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 07, 2020
  */
-@Suppress("ArrayInDataClass")
 data class GraphicDefinition(
     override var id: Int = -1,
     var modelId: Int = 0,
@@ -25,5 +24,63 @@ data class GraphicDefinition(
     override var modifiedColours: ShortArray? = null,
     override var originalTextureColours: ShortArray? = null,
     override var modifiedTextureColours: ShortArray? = null,
-    override var details: Map<String, Any> = emptyMap()
-) : Definition, Recolourable, Details
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Recolourable, Extra {
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as GraphicDefinition
+
+        if (id != other.id) return false
+        if (modelId != other.modelId) return false
+        if (animationId != other.animationId) return false
+        if (sizeXY != other.sizeXY) return false
+        if (sizeZ != other.sizeZ) return false
+        if (rotation != other.rotation) return false
+        if (ambience != other.ambience) return false
+        if (contrast != other.contrast) return false
+        if (aByte2381 != other.aByte2381) return false
+        if (anInt2385 != other.anInt2385) return false
+        if (aBoolean2402 != other.aBoolean2402) return false
+        if (originalColours != null) {
+            if (other.originalColours == null) return false
+            if (!originalColours!!.contentEquals(other.originalColours!!)) return false
+        } else if (other.originalColours != null) return false
+        if (modifiedColours != null) {
+            if (other.modifiedColours == null) return false
+            if (!modifiedColours!!.contentEquals(other.modifiedColours!!)) return false
+        } else if (other.modifiedColours != null) return false
+        if (originalTextureColours != null) {
+            if (other.originalTextureColours == null) return false
+            if (!originalTextureColours!!.contentEquals(other.originalTextureColours!!)) return false
+        } else if (other.originalTextureColours != null) return false
+        if (modifiedTextureColours != null) {
+            if (other.modifiedTextureColours == null) return false
+            if (!modifiedTextureColours!!.contentEquals(other.modifiedTextureColours!!)) return false
+        } else if (other.modifiedTextureColours != null) return false
+        if (extras != other.extras) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = id
+        result = 31 * result + modelId
+        result = 31 * result + animationId
+        result = 31 * result + sizeXY
+        result = 31 * result + sizeZ
+        result = 31 * result + rotation
+        result = 31 * result + ambience
+        result = 31 * result + contrast
+        result = 31 * result + aByte2381
+        result = 31 * result + anInt2385
+        result = 31 * result + aBoolean2402.hashCode()
+        result = 31 * result + (originalColours?.contentHashCode() ?: 0)
+        result = 31 * result + (modifiedColours?.contentHashCode() ?: 0)
+        result = 31 * result + (originalTextureColours?.contentHashCode() ?: 0)
+        result = 31 * result + (modifiedTextureColours?.contentHashCode() ?: 0)
+        result = 31 * result + extras.hashCode()
+        return result
+    }
+}
