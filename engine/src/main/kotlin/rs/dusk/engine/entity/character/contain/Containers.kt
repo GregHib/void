@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.character.contain
 
-import rs.dusk.cache.config.data.ItemContainerDefinition
+import rs.dusk.cache.config.data.ContainerDefinition
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
@@ -27,7 +27,7 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
     return container(container, secondary)
 }
 
-fun Player.container(detail: ItemContainerDefinition, secondary: Boolean = false): Container {
+fun Player.container(detail: ContainerDefinition, secondary: Boolean = false): Container {
     return containers.getOrPut(if (secondary) -detail.id else detail.id) {
         Container(
             definitions = get(),

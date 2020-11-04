@@ -2,14 +2,14 @@ package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
-import rs.dusk.cache.config.data.ItemContainerDefinition
-import rs.dusk.cache.config.decoder.ItemContainerDecoder
+import rs.dusk.cache.config.data.ContainerDefinition
+import rs.dusk.cache.config.decoder.ContainerDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.character.contain.StackMode
 import rs.dusk.engine.entity.definition.load.ContainerDefinitionLoader
 
-internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ItemContainerDefinition, ItemContainerDecoder, ContainerDefinitions>() {
+internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ContainerDefinition, ContainerDecoder, ContainerDefinitions>() {
 
     @BeforeEach
     override fun setup() {
@@ -35,11 +35,11 @@ internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ItemContainerDe
         )
     }
 
-    override fun definition(id: Int): ItemContainerDefinition {
-        return ItemContainerDefinition(id)
+    override fun definition(id: Int): ContainerDefinition {
+        return ContainerDefinition(id)
     }
 
-    override fun definitions(decoder: ItemContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDefinitions {
+    override fun definitions(decoder: ContainerDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ContainerDefinitions {
         return ContainerDefinitions(decoder, id, names)
     }
 

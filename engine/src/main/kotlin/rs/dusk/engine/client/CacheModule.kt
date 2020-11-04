@@ -37,7 +37,7 @@ val cacheConfigModule = module {
     single { ClientVariableParameterDecoder(get()) }
     single { HitSplatDecoder(get()) }
     single { IdentityKitDecoder(get()) }
-    single { ItemContainerDecoder(get()) }
+    single { ContainerDecoder(get()) }
     single { MapSceneDecoder(get()) }
     single { OverlayDecoder(get()) }
     single { PlayerVariableParameterDecoder(get()) }

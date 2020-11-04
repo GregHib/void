@@ -7,7 +7,7 @@ import rs.dusk.cache.definition.Extra
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 07, 2020
  */
-data class ItemContainerDefinition(
+data class ContainerDefinition(
     override var id: Int = -1,
     var length: Int = 0,
     var ids: IntArray? = null,

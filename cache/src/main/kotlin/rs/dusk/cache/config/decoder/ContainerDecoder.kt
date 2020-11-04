@@ -3,18 +3,18 @@ package rs.dusk.cache.config.decoder
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.CONTAINERS
 import rs.dusk.cache.config.ConfigDecoder
-import rs.dusk.cache.config.data.ItemContainerDefinition
+import rs.dusk.cache.config.data.ContainerDefinition
 import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class ItemContainerDecoder(cache: Cache) : ConfigDecoder<ItemContainerDefinition>(cache, CONTAINERS) {
+class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache, CONTAINERS) {
 
-    override fun create() = ItemContainerDefinition()
+    override fun create() = ContainerDefinition()
 
-    override fun ItemContainerDefinition.read(opcode: Int, buffer: Reader) {
+    override fun ContainerDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             2 -> length = buffer.readUnsignedShort()
             4 -> {

@@ -4,7 +4,7 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import rs.dusk.cache.Cache
 import rs.dusk.cache.CacheDelegate
-import rs.dusk.cache.config.decoder.ItemContainerDecoder
+import rs.dusk.cache.config.decoder.ContainerDecoder
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 
@@ -25,7 +25,7 @@ object ContainerConverter {
         koin.loadModules(listOf(cache718))
 
         println(koin.get<Cache>())
-        var decoder = ItemContainerDecoder(koin.get())
+        var decoder = ContainerDecoder(koin.get())
 
         val containers = (0 until decoder.size).map { it to decoder.getOrNull(it) }.toMap()
 
@@ -33,7 +33,7 @@ object ContainerConverter {
         koin.loadModules(listOf(cache667))
 
         val itemDecoder = ItemDecoder(koin.get())
-        decoder = ItemContainerDecoder(koin.get())
+        decoder = ContainerDecoder(koin.get())
         var counter = 0
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i)
