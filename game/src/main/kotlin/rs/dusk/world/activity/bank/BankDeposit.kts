@@ -7,7 +7,7 @@ import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.*
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.utility.inject

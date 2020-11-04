@@ -6,8 +6,8 @@ import rs.dusk.engine.client.ui.InterfaceManager
 import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.definition.ContainerDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions

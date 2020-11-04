@@ -1,8 +1,9 @@
-package rs.dusk.engine.entity.gfx.detail
+package rs.dusk.engine.entity.definition.load
 
 import rs.dusk.cache.definition.decoder.GraphicDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.engine.entity.definition.GraphicDefinitions
 
 class GraphicDefinitionLoader(private val loader: FileLoader, private val decoder: GraphicDecoder) : TimedLoader<GraphicDefinitions>("graphic definition") {
 

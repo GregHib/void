@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.obj.detail
+package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder

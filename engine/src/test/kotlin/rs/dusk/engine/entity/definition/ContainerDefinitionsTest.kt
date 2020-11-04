@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.character.contain.detail
+package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
@@ -6,8 +6,8 @@ import rs.dusk.cache.config.data.ItemContainerDefinition
 import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoderTest
 import rs.dusk.engine.entity.character.contain.StackMode
+import rs.dusk.engine.entity.definition.load.ContainerDefinitionLoader
 
 internal class ContainerDefinitionsTest : DefinitionsDecoderTest<ItemContainerDefinition, ItemContainerDecoder, ContainerDefinitions>() {
 

@@ -4,8 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.dialogue.Expression
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.definition.NPCDefinitions
 import rs.dusk.utility.get
 
 private val logger = InlineLogger()

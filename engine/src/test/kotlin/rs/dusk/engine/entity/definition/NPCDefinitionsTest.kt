@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.character.npc.detail
+package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
@@ -6,7 +6,7 @@ import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoderTest
+import rs.dusk.engine.entity.definition.load.NPCDefinitionLoader
 
 internal class NPCDefinitionsTest : DefinitionsDecoderTest<NPCDefinition, NPCDecoder, NPCDefinitions>() {
 

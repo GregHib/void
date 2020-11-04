@@ -1,8 +1,8 @@
 package rs.dusk.world.interact.entity.item.spawn
 
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.item.FloorItem
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 import rs.dusk.engine.map.Tile

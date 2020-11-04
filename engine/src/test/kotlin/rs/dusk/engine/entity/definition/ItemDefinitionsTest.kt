@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.item.detail
+package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
@@ -6,7 +6,7 @@ import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoderTest
+import rs.dusk.engine.entity.definition.load.ItemDefinitionLoader
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.engine.entity.item.ItemDrop

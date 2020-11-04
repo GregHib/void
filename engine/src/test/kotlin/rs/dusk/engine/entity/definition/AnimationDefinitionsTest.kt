@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.anim.detail
+package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
@@ -6,7 +6,7 @@ import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoderTest
+import rs.dusk.engine.entity.definition.load.AnimationDefinitionLoader
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 

@@ -16,7 +16,7 @@ import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCRegistered
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
+import rs.dusk.engine.entity.definition.NPCDefinitions
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.EventHandler

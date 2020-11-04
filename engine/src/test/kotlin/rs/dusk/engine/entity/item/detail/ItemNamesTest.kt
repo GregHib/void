@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declare
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.contain.Container
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.script.KoinMock
 
 internal class ItemNamesTest : KoinMock() {

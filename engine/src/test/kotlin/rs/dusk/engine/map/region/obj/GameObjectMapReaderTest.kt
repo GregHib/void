@@ -8,10 +8,10 @@ import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.test.get
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.cacheDefinitionModule
+import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects
-import rs.dusk.engine.entity.obj.detail.ObjectDefinitions
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.tile.BRIDGE_TILE

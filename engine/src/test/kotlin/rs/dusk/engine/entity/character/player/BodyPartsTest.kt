@@ -14,9 +14,9 @@ import org.junit.jupiter.api.extension.ExtendWith
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.character.contain.Container
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.item.BodyPart
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
 
 @ExtendWith(MockKExtension::class)
 internal class BodyPartsTest {

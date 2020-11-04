@@ -6,8 +6,8 @@ import rs.dusk.engine.entity.character.IndexAllocator
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCRegistered
 import rs.dusk.engine.entity.character.npc.NPCs
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
 import rs.dusk.engine.entity.character.update.visual.npc.turn
+import rs.dusk.engine.entity.definition.NPCDefinitions
 import rs.dusk.engine.entity.list.MAX_NPCS
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then

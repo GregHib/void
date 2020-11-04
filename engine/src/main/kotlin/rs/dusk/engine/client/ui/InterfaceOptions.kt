@@ -2,8 +2,8 @@ package rs.dusk.engine.client.ui
 
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.definition.ContainerDefinitions
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 

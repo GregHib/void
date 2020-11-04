@@ -7,7 +7,7 @@ import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.message
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.Time

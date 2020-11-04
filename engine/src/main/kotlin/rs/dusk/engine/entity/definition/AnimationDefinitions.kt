@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.anim.detail
+package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder

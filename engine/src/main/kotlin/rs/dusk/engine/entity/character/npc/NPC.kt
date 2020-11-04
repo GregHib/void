@@ -7,9 +7,9 @@ import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.CharacterEffects
 import rs.dusk.engine.entity.character.CharacterValues
 import rs.dusk.engine.entity.character.move.Movement
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
 import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.Visuals
+import rs.dusk.engine.entity.definition.NPCDefinitions
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get

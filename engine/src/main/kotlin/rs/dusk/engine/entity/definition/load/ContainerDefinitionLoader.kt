@@ -1,9 +1,10 @@
-package rs.dusk.engine.entity.character.contain.detail
+package rs.dusk.engine.entity.definition.load
 
 import rs.dusk.cache.config.decoder.ItemContainerDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.character.contain.StackMode
+import rs.dusk.engine.entity.definition.ContainerDefinitions
 
 class ContainerDefinitionLoader(private val loader: FileLoader, private val decoder: ItemContainerDecoder) : TimedLoader<ContainerDefinitions>("container definition") {
 

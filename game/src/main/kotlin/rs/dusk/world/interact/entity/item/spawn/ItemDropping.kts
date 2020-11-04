@@ -5,10 +5,10 @@ import rs.dusk.engine.action.delay
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.update.visual.player.name
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.item.FloorItem
 import rs.dusk.engine.entity.item.FloorItemState
 import rs.dusk.engine.entity.item.FloorItems
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
 import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then

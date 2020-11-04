@@ -4,12 +4,7 @@ import org.koin.dsl.module
 import rs.dusk.cache.Definition
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.definition.Extra
-import rs.dusk.engine.entity.anim.detail.AnimationDefinitionLoader
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitionLoader
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitionLoader
-import rs.dusk.engine.entity.gfx.detail.GraphicDefinitionLoader
-import rs.dusk.engine.entity.item.detail.ItemDefinitionLoader
-import rs.dusk.engine.entity.obj.detail.ObjectDefinitionLoader
+import rs.dusk.engine.entity.definition.load.*
 
 /**
  * Stores additional static information about an entity as well as a unique string identifier

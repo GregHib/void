@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.Entity
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.utility.get

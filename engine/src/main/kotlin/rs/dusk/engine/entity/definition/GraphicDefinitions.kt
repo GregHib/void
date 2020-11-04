@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.gfx.detail
+package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.GraphicDefinition
 import rs.dusk.cache.definition.decoder.GraphicDecoder

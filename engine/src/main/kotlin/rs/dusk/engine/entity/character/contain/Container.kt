@@ -1,7 +1,7 @@
 package rs.dusk.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import java.util.*
 
 data class Container(

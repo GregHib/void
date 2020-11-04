@@ -7,9 +7,9 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.contain.container
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.contain.hasContainer
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ContainerDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync

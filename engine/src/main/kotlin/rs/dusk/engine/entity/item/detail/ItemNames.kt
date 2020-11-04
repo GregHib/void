@@ -1,5 +1,6 @@
 package rs.dusk.engine.entity.item.detail
 
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.utility.get
 

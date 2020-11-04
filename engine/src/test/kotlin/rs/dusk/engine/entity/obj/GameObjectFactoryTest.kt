@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.engine.client.cacheDefinitionModule
-import rs.dusk.engine.entity.obj.detail.ObjectDefinitions
+import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.strat.DecorationTargetStrategy

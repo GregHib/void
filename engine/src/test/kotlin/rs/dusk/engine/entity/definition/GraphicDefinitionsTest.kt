@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.gfx.detail
+package rs.dusk.engine.entity.definition
 
 import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
@@ -6,7 +6,7 @@ import rs.dusk.cache.definition.data.GraphicDefinition
 import rs.dusk.cache.definition.decoder.GraphicDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoderTest
+import rs.dusk.engine.entity.definition.load.GraphicDefinitionLoader
 
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 

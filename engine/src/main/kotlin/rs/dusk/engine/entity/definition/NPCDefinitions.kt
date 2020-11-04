@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.character.npc.detail
+package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder

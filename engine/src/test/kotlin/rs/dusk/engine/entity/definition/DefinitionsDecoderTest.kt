@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity
+package rs.dusk.engine.entity.definition
 
 import io.mockk.every
 import io.mockk.mockk
@@ -11,6 +11,7 @@ import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.definition.Extra
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.engine.entity.DefinitionsDecoder
 
 abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : DefinitionsDecoder<T, D>> where T : Definition, T : Extra {
 

@@ -1,9 +1,9 @@
 package rs.dusk.engine.entity.character.player
 
 import rs.dusk.engine.entity.character.contain.Container
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.item.BodyPart
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
 
 class BodyParts(
     private val equipment: Container,

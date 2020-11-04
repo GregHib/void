@@ -10,7 +10,7 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 
 internal class ContainerTest {
     private lateinit var container: Container

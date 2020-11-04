@@ -5,7 +5,7 @@ import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 
 object Trade {
     fun isTrading(player: Player, amount: Int): Boolean {

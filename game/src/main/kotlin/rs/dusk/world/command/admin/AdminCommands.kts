@@ -9,7 +9,7 @@ import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.effect.Hidden
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.player.tele
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where

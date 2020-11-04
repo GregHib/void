@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.contain.sendContainer
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where

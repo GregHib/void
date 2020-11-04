@@ -12,7 +12,6 @@ import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.clear
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.ContainerModification
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
@@ -21,7 +20,8 @@ import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.character.update.visual.player.name
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ContainerDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage

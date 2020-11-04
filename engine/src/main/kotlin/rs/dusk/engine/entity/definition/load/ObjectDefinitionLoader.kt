@@ -1,8 +1,9 @@
-package rs.dusk.engine.entity.obj.detail
+package rs.dusk.engine.entity.definition.load
 
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.data.file.FileLoader
+import rs.dusk.engine.entity.definition.ObjectDefinitions
 
 class ObjectDefinitionLoader(private val decoder: ObjectDecoder, private val loader: FileLoader) : TimedLoader<ObjectDefinitions>("object definition") {
 

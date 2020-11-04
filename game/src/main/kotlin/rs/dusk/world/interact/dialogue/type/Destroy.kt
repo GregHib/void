@@ -2,7 +2,7 @@ package rs.dusk.world.interact.dialogue.type
 
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.entity.item.detail.ItemDefinitions
+import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.utility.get
 
 private const val DESTROY_INTERFACE_NAME = "confirm_destroy"

@@ -3,13 +3,13 @@ package rs.dusk.engine.entity.character.effect
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.character.CharacterEffect
 import rs.dusk.engine.entity.character.npc.NPC
-import rs.dusk.engine.entity.character.npc.detail.NPCDefinitions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.update.visual.npc.flagTransform
 import rs.dusk.engine.entity.character.update.visual.npc.transform
 import rs.dusk.engine.entity.character.update.visual.player.appearance
 import rs.dusk.engine.entity.character.update.visual.player.emote
 import rs.dusk.engine.entity.character.update.visual.player.flagAppearance
+import rs.dusk.engine.entity.definition.NPCDefinitions
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.LargeTraversal

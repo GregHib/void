@@ -2,8 +2,8 @@ package rs.dusk.engine.entity.character.contain
 
 import rs.dusk.cache.config.data.ItemContainerDefinition
 import rs.dusk.engine.client.send
-import rs.dusk.engine.entity.character.contain.detail.ContainerDefinitions
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.definition.ContainerDefinitions
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemUpdateMessage
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.utility.get
