@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity.item.detail
+package rs.dusk.engine.entity.character.contain
 
 import io.mockk.every
 import io.mockk.mockk
