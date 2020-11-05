@@ -1,4 +1,4 @@
-package rs.dusk.engine.entity
+package rs.dusk.engine.entity.definition
 
 import org.koin.dsl.module
 import rs.dusk.cache.Definition
@@ -20,7 +20,19 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
     val indices: IntRange
         get() = decoder.indices
 
-    fun getOrNull(id: Int) = decoder.getOrNull(id)
+    fun getOrNull(id: Int) = decoder.getOrNull(id)?.apply {
+        applyExtras(this)
+    }
+
+    fun get(id: Int) = decoder.get(id).apply {
+        applyExtras(this)
+    }
+
+    private fun applyExtras(definition: T) {
+        val name = names[definition.id] ?: return
+        val map = extras[name] ?: return
+        definition.extras = map
+    }
 
     fun getOrNull(name: String): T? {
         val map = extras[name] ?: return null
@@ -29,8 +41,6 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
         definition.extras = map
         return definition
     }
-
-    fun get(id: Int) = decoder.get(id)
 
     fun get(name: String): T {
         val map = extras[name]

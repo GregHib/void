@@ -2,7 +2,6 @@ package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
-import rs.dusk.engine.entity.DefinitionsDecoder
 
 class ItemDefinitions(
     override val decoder: ItemDecoder,

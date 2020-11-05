@@ -1,7 +1,7 @@
 package rs.dusk.tools.detail
 
 import rs.dusk.engine.data.file.FileLoader
-import rs.dusk.engine.entity.DefinitionsDecoder.Companion.toIdentifier
+import rs.dusk.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import java.io.File
 
 /**

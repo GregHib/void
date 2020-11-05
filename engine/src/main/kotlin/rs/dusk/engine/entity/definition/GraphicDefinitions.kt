@@ -2,7 +2,6 @@ package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.GraphicDefinition
 import rs.dusk.cache.definition.decoder.GraphicDecoder
-import rs.dusk.engine.entity.DefinitionsDecoder
 
 class GraphicDefinitions(
     override val decoder: GraphicDecoder,

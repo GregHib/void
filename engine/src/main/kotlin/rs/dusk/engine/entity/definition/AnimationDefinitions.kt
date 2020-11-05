@@ -2,7 +2,6 @@ package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.AnimationDefinition
 import rs.dusk.cache.definition.decoder.AnimationDecoder
-import rs.dusk.engine.entity.DefinitionsDecoder
 
 class AnimationDefinitions(
     override val decoder: AnimationDecoder,

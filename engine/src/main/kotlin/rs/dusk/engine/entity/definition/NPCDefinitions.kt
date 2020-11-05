@@ -2,7 +2,6 @@ package rs.dusk.engine.entity.definition
 
 import rs.dusk.cache.definition.data.NPCDefinition
 import rs.dusk.cache.definition.decoder.NPCDecoder
-import rs.dusk.engine.entity.DefinitionsDecoder
 
 class NPCDefinitions(
     override val decoder: NPCDecoder,
