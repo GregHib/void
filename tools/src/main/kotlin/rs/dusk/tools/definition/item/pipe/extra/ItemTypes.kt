@@ -1,10 +1,13 @@
-package rs.dusk.tools.detail
+package rs.dusk.tools.definition.item.pipe.extra
 
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.tools.convert.ItemDecoder718
 
+/**
+ * Determines items [EquipType]
+ */
 class ItemTypes(val decoder: ItemDecoder) {
 
     val slots = ItemDecoder718.equipSlots

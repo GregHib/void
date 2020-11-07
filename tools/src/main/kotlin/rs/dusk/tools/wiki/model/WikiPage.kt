@@ -30,20 +30,50 @@ data class WikiPage(
     private val page: EngPage by lazy { engine.parse(pageId, revision.text, null).page }
 
     val templates: List<Pair<String, Any>> by lazy {
-        content.filterIsInstance<WtTemplate>().map { template ->
-            val name = template.name.asString.trim()
-            val arguments = template.args
+        content.filterIsInstance<WtTemplate>().mapNotNull { template ->
+            if(template.name.isResolved) {
+                val name = template.name.asString.trim()
+                val arguments = template.args
 
-            name to if (arguments.isNotEmpty() && (arguments.first() as? WtTemplateArgument)?.hasName() != false) {
-                arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[0] as WtName) to unwrap(arg[1] as WtValue) }.toMap()
+                name to if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
+                    arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[0] as WtName) to unwrap(arg[1] as WtValue) }.toMap()
+                } else {
+                    arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
+                }
             } else {
-                arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
+                null
             }
         }
     }
 
+    val redirected: Boolean = revision.text.contains(redirectPattern)
+
+    fun getRedirect(wiki: Wiki) : WikiPage? {
+        val redirect = redirectPattern.find(revision.text)!!.groupValues[1]
+        return try {
+            wiki.getExactPageOrNull(redirect)
+        } catch (e: StackOverflowError) {
+            println("Overflow $title $redirect ${revision.text}")
+            null
+        }
+    }
+
+    fun getTemplateMap(name: String): Map<String, Any>? {
+        return templates.firstOrNull { it.first.contains(name, true) }?.second as? Map<String, Any>
+    }
+
+    fun getTemplateMaps(name: String): List<Map<String, Any>> {
+        return templates.filter { it.first.contains(name, true) }.mapNotNull { it.second as? Map<String, Any> }
+    }
+
     private fun unwrap(node: WtNode): String {
-        return (node[0] as WtText).content.trim()
+        val first = node.firstOrNull() ?: return ""
+        if(first is WtText) {
+            return first.content.trim()
+        } else if(first is WtTagExtension) {
+            first.body.content.trim()
+        }
+        return ""
     }
 
     val tables: List<WikiPageTable> by lazy {
@@ -64,6 +94,8 @@ data class WikiPage(
     }
 
     companion object {
+
+        val redirectPattern = "#(?:REDIRECT|redirect) ?\\[\\[(.*)]]".toRegex()
 
         private fun addRecursive(list: MutableList<WtNode>, node: WtNode) {
             list.add(node)

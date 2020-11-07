@@ -241,4 +241,14 @@ data class ItemDefinition(
         result = 31 * result + extras.hashCode()
         return result
     }
+
+    val noted: Boolean
+        get() = notedTemplateId != -1
+
+    val lent: Boolean
+        get() = lendTemplateId != -1
+
+    val singleNote: Boolean
+        get() = singleNoteTemplateId != -1
+
 }

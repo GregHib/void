@@ -15,7 +15,7 @@ import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.data.file.ymlPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.character.update.visualUpdatingModule
-import rs.dusk.engine.entity.detailsModule
+import rs.dusk.engine.entity.definition.detailsModule
 import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.obj.objectFactoryModule
 import rs.dusk.engine.event.EventBus

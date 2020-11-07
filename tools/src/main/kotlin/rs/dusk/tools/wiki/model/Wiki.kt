@@ -23,7 +23,38 @@ class Wiki(private val doc: Document) {
         val pages = pages
         val page = pages.firstOrNull { it.title == name } ?: pages.first { it.title.equals(name, true) }
         if (page.redirect.isNotBlank()) {
-           return page(page.redirect)
+            return page(page.redirect)
+        }
+        return page
+    }
+
+    fun getPageOrNull(name: String): WikiPage? {
+        val pages = pages
+        val page = pages.firstOrNull { it.title == name } ?: pages.firstOrNull { it.title.equals(name, true) } ?: return null
+        if (page.redirect.isNotBlank() && page.title.equals(page.redirect, true)) {
+            return try {
+                getPageOrNull(page.redirect)
+            } catch (e: StackOverflowError) {
+                println("Overflow ${page.title} ${page.redirect}")
+                null
+            }
+        }
+        return page
+    }
+
+    val redirectPattern = "#(?:REDIRECT|redirect) ?\\[\\[(.*)]]".toRegex()
+
+    fun getExactPageOrNull(name: String): WikiPage? {
+        val pages = pages
+        val page = pages.firstOrNull { it.title == name } ?: return null
+        if (page.redirect.isNotBlank() && page.revision.text.contains(redirectPattern)) {
+            val redirect = redirectPattern.find(page.revision.text)!!.groupValues[1]
+            return try {
+                getExactPageOrNull(redirect)
+            } catch (e: StackOverflowError) {
+                println("Overflow ${page.title} ${page.redirect}")
+                null
+            }
         }
         return page
     }
@@ -45,6 +76,11 @@ class Wiki(private val doc: Document) {
         fun load(xmlFileDirectory: String): Wiki {
             val inputFile = File(xmlFileDirectory)
             val doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(inputFile)
+            return Wiki(doc)
+        }
+
+        fun loadText(text: String): Wiki {
+            val doc = DocumentBuilderFactory.newInstance().newDocumentBuilder().parse(text)
             return Wiki(doc)
         }
     }

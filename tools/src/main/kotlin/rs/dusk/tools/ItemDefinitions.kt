@@ -14,12 +14,17 @@ object ItemDefinitions {
         }.koin
         val decoder = ItemDecoder(koin.get())
         var count = 0
+        println(decoder.size)
+        val names = mutableSetOf<String>()
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-            if(def.params?.containsKey(1) == true) {
-                println("Found $i")
-            }
+            names.add(def.name)
+            count++
+//            if(def.params?.containsKey(1) == true) {
+//                println("Found $i")
+//            }
         }
+        println(names.size)
         println(count)
     }
 }

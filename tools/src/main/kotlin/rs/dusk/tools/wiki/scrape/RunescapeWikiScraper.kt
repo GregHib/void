@@ -14,9 +14,10 @@ import kotlin.system.measureTimeMillis
  */
 internal object RunescapeWikiScraper {
 
-    @JvmStatic
-    fun main(args: Array<String>) {
-        dumpItems("Items?pagefrom=Symptoms+list#mw-pages")
+    fun getWikiText(url: String): String {
+        val doc = Jsoup.connect("https://runescape.wiki$url?action=edit").get()
+        val element = doc.select("textarea")
+        return element.text()
     }
 
     fun dumpItemInfoBox(url: String): Map<String, Map<String, String>> {

@@ -9,7 +9,7 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.definition.load.ItemDefinitionLoader
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.ItemDrop
+import rs.dusk.engine.entity.item.ItemKept
 
 internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, ItemDecoder, ItemDefinitions>() {
 
@@ -31,7 +31,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
             "bankable" to false,
             "individual" to true,
             "limit" to 100,
-            "demise" to "Wilderness",
+            "kept" to "Wilderness",
             "destroy" to "No going back",
             "examine" to "Floating hands"
         )
@@ -49,7 +49,7 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
             "bankable" to false,
             "individual" to true,
             "limit" to 100,
-            "demise" to ItemDrop.Wilderness,
+            "kept" to ItemKept.Wilderness,
             "destroy" to "No going back",
             "examine" to "Floating hands",
             "equip" to -1

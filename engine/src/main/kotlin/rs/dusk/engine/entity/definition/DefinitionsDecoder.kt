@@ -67,8 +67,14 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
     }
 
     companion object {
-        private val regex = Regex("<.*>")
-        fun toIdentifier(name: String) = name.toLowerCase().replace(" ", "_").replace(regex, "").replace("\"", "").replace("\'", "").replace(",", "").replace("(", "").replace(")", "")
+        private val tagRegex = "<.*?>".toRegex()
+
+        fun removeTags(text: String) = text.replace(tagRegex, "")
+
+        private val chars = "[\"',()]".toRegex()
+        private val underscoreChars = "[ /]".toRegex()
+
+        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&#39;", "")
     }
 }
 

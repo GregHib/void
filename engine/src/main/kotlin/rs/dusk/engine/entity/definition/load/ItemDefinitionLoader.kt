@@ -6,7 +6,7 @@ import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
-import rs.dusk.engine.entity.item.ItemDrop
+import rs.dusk.engine.entity.item.ItemKept
 
 class ItemDefinitionLoader(private val loader: FileLoader, private val decoder: ItemDecoder) : TimedLoader<ItemDefinitions>("item definition") {
 
@@ -37,7 +37,7 @@ class ItemDefinitionLoader(private val loader: FileLoader, private val decoder: 
         return when (key) {
             "slot" -> EquipSlot.valueOf(value as String)
             "type" -> EquipType.valueOf(value as String)
-            "demise" -> ItemDrop.valueOf(value as String)
+            "kept" -> ItemKept.valueOf(value as String)
             else -> value
         }
     }

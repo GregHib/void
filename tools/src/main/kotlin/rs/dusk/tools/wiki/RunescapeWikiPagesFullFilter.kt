@@ -38,7 +38,7 @@ object RunescapeWikiPagesFullFilter {
         val mostRecentRevisionEvents = mutableListOf<XMLEvent>()
         val eventWriter = XMLOutputFactory.newInstance().createXMLEventWriter(FileWriter(file))!!
         val eventFactory = XMLEventFactory.newInstance()!!
-        val redirectPattern = "#(?:REDIRECT|redirect) \\[\\[(.*)]]".toRegex()
+        val redirectPattern = "#(?:REDIRECT|redirect) ?\\[\\[(.*)]]".toRegex()
 
         var validRevision = false
         var revision = 0

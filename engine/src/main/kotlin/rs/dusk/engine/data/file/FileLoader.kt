@@ -17,6 +17,7 @@ class FileLoader(private val quotes: Boolean = false) {
         if (!quotes) {
             enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
         }
+        disable(YAMLGenerator.Feature.SPLIT_LINES)
     })
     private val logger = InlineLogger()
 
@@ -43,6 +44,10 @@ class FileLoader(private val quotes: Boolean = false) {
 
     fun <T : Any> save(path: String, data: T) {
         val file = File(path)
+        return save(file, data)
+    }
+
+    fun <T : Any> save(file: File, data: T) {
         return mapper.writeValue(file, data)
     }
 
