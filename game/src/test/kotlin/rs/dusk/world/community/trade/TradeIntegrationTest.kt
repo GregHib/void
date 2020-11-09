@@ -14,7 +14,7 @@ import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerOption
-import rs.dusk.engine.entity.detailsModule
+import rs.dusk.engine.entity.definition.detailsModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
 import rs.dusk.utility.get
