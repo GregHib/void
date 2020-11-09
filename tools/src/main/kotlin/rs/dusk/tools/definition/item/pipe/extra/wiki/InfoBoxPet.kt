@@ -10,8 +10,8 @@ class InfoBoxPet : Pipeline.Modifier<ItemExtras> {
 
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, _, page, rs3Page, _) = builder
-        process(extras, rs3Page, id)
+        val (id, _, page, _, rs3, _) = builder
+        process(extras, rs3, id)
         process(extras, page, id)
         return content
     }

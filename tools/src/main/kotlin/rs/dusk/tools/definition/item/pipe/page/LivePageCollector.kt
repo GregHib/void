@@ -2,37 +2,36 @@ package rs.dusk.tools.definition.item.pipe.page
 
 import org.apache.commons.io.IOUtils
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemDefinitionPipeline
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.model.WikiPage
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.export
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.getCategoryLinks
 import java.io.File
 
-class ItemPageRS3Wiki : Pipeline.Modifier<ItemDefinitionPipeline.PageCollector> {
+class LivePageCollector(val type: String, categories: List<String>, infoboxes: List<Pair<String, String>>, wiki: String, val modifier: (PageCollector, WikiPage, Boolean) -> Unit) : Pipeline.Modifier<PageCollector> {
 
-    private val itemIds = mutableMapOf<Int, WikiPage>()
-    private val pageNames = mutableMapOf<String, WikiPage>()
-
+    private val ids = mutableMapOf<Int, WikiPage>()
+    private val names = mutableMapOf<String, WikiPage>()
     private val parenthesesRegexWithSPrefix = "s\\s?(?:\\(.*\\)|[0-9]+)".toRegex()
     private val parenthesesRegex = "\\s(?:\\(.*\\)|[0-9]+)".toRegex()
 
     init {
-        val dir = "rs3-items.xml"
+        val dir = "${type}s.xml"
         val file = File(dir)
         if (!file.exists()) {
-            println("No existing item dump found.")
+            println("No existing $type dump found.")
             val start = System.currentTimeMillis()
-            val pageFile = File("rs3-items-list.txt")
+            val pageFile = File("${type}s-list.txt")
             if (!pageFile.exists()) {
                 val list = mutableListOf<String>()
-                getCategoryLinks(list, "/w/Category:Items")
-                getCategoryLinks(list, "/w/Category:Pets")
+                categories.forEach {
+                    getCategoryLinks(list, "/w/Category:$it", wiki)
+                }
                 pageFile.writeText(list.joinToString(separator = "\n") { it.removePrefix("/w/") })
-                println("Obtained ${list.size} item page names...")
+                println("Obtained ${list.size} $type page names...")
             }
             val list = pageFile.readText()
-            val export = export(list)
+            val export = export(list, wiki)
             IOUtils.copy(export, file.outputStream())
             println("Dumped pages in ${System.currentTimeMillis() - start} ms")
         }
@@ -43,10 +42,10 @@ class ItemPageRS3Wiki : Pipeline.Modifier<ItemDefinitionPipeline.PageCollector> 
         // Get pages with explicit ids
         currentWiki.pages.forEach { page ->
             val text = page.revision.text
-            if (text.contains("infobox item", true)) {
-                applyIds(page, pageNames, itemIds, "infobox item", "id")
-            } else if (text.contains("infobox pet", true)) {
-                applyIds(page, pageNames, itemIds, "infobox pet", "itemid")
+            infoboxes.forEach { (infobox, key) ->
+                if (text.contains(infobox, true)) {
+                    applyIds(page, names, ids, infobox, key)
+                }
             }
         }
     }
@@ -60,23 +59,30 @@ class ItemPageRS3Wiki : Pipeline.Modifier<ItemDefinitionPipeline.PageCollector> 
                     val string = value as String
                     if (string.contains(",")) {
                         value.split(",").forEach {
-                            ids.putIfAbsent(it.trim().toInt(), page)
+                            append(ids, it.trim(), page)
                         }
-                    } else if (value.isNotBlank()) {
-                        ids.putIfAbsent(value.toInt(), page)
+                    } else {
+                        append(ids, value, page)
                     }
                 }
             }
         }
     }
+    private fun append(ids: MutableMap<Int, WikiPage>, value: String, page: WikiPage) {
+        val id = value.toIntOrNull()
+        if (id != null) {
+            ids.putIfAbsent(id, page)
+        } else if (value.isNotBlank() && !value.equals("no", true) && !value.startsWith("hist") && value != "removed") {
+            println("Unknown ${page.title} '$value'")
+        }
+    }
 
-    override fun modify(content: ItemDefinitionPipeline.PageCollector): ItemDefinitionPipeline.PageCollector {
-        val (id, name, _, rs3, _, _) = content
-        if (rs3 == null) {
-            val newPage = itemIds[id] ?: pageNames[name.toLowerCase()] ?: pageNames[name.toLowerCase().replace(parenthesesRegex, "")] ?: pageNames[name.toLowerCase().replace(parenthesesRegexWithSPrefix, "")]
-            if (newPage != null) {
-                return content.copy(rs3Page = newPage, idd = itemIds.containsKey(id))
-            }
+    override fun modify(content: PageCollector): PageCollector {
+        val id = content.id
+        val name = content.name
+        val newPage = ids[id] ?: names[name.toLowerCase()] ?: names[name.toLowerCase().replace(parenthesesRegex, "")] ?: names[name.toLowerCase().replace(parenthesesRegexWithSPrefix, "")]
+        if (newPage != null) {
+            modifier.invoke(content, newPage, ids.containsKey(id))
         }
         return content
     }

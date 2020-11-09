@@ -7,7 +7,7 @@ class ItemBonuses : Pipeline.Modifier<ItemExtras> {
 
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, _, page, rs3Page, _, uid) = builder
+        val (id, _, page, _, rs3, _, _, _, uid) = builder
         val template = page?.getTemplateMap("infobox bonuses") ?: return content
         template.forEach { (key, value) ->
             when (key) {
@@ -17,7 +17,7 @@ class ItemBonuses : Pipeline.Modifier<ItemExtras> {
                     if (v != null) {
                         extras[key] = v
                     } else if (text.contains("to")) {
-                        val itemTemplate = rs3Page?.getTemplateMap("infobox item")
+                        val itemTemplate = rs3?.getTemplateMap("infobox item")
                         val versions = itemTemplate?.entries?.count { it.key.startsWith("version") } ?: 0
                         val versionEntry = itemTemplate?.entries?.firstOrNull { (it.value as String).toIntOrNull() == id }
                         val version = versionEntry?.key?.removePrefix("id")?.toIntOrNull()

@@ -54,8 +54,8 @@ class ItemExchangeLimits : Pipeline.Modifier<ItemExtras> {
 
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, _, page, rs3Page, _, _) = builder
-        val limit = idLimits[id] ?: nameLimits[page?.title?.toLowerCase() ?: rs3Page?.title?.toLowerCase()] ?: return content
+        val (id, _, page, _, rs3, _, _) = builder
+        val limit = idLimits[id] ?: nameLimits[page?.title?.toLowerCase() ?: rs3?.title?.toLowerCase()] ?: return content
         extras["limit"] = limit
         return content
     }

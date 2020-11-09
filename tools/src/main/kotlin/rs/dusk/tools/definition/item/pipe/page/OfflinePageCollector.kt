@@ -1,23 +1,19 @@
 package rs.dusk.tools.definition.item.pipe.page
 
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemDefinitionPipeline
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.model.WikiPage
 
-class ItemPageWiki(val wiki: Wiki) : Pipeline.Modifier<ItemDefinitionPipeline.PageCollector> {
+class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function: (PageCollector, WikiPage) -> Unit) : Pipeline.Modifier<PageCollector> {
 
     private val pageNames = mutableMapOf<String, WikiPage>()
 
     init {
         wiki.pages.forEach { page ->
             val text = page.revision.text
-            when {
-                text.contains("infobox item", true) -> {
-                    appendName("infobox item", page)
-                }
-                text.contains("infobox construction", true) -> {
-                    appendName("infobox construction", page)
+            infoboxes.forEach {
+                if(text.contains(it, true)) {
+                    appendName(it, page)
                 }
             }
         }
@@ -54,17 +50,19 @@ class ItemPageWiki(val wiki: Wiki) : Pipeline.Modifier<ItemDefinitionPipeline.Pa
         return wiki.getExactPageOrNull(name)
     }
 
-    override fun modify(content: ItemDefinitionPipeline.PageCollector): ItemDefinitionPipeline.PageCollector {
-        val (_, name, page, rs3, _) = content
+    override fun modify(content: PageCollector): PageCollector {
+        val (_, name, page, _, rs3, _) = content
         val newPage = getPage(rs3, page, name)
         if (newPage != null) {
             if(newPage.redirected) {
                 val redirected = newPage.getRedirect(wiki)
                 if(redirected != null) {
-                    return content.copy(page = redirected)
+                    function.invoke(content, redirected)
+                    return content.copy(rs2 = redirected)
                 }
             }
-            return content.copy(page = newPage)
+            function.invoke(content, newPage)
+            return content
         }
         return content
     }

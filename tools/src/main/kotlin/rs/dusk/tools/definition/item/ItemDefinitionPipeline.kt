@@ -17,8 +17,9 @@ import rs.dusk.tools.definition.item.pipe.extra.ItemEquipmentInfo
 import rs.dusk.tools.definition.item.pipe.extra.ItemManualChanges
 import rs.dusk.tools.definition.item.pipe.extra.ItemNoted
 import rs.dusk.tools.definition.item.pipe.extra.wiki.*
-import rs.dusk.tools.definition.item.pipe.page.ItemPageRS3Wiki
-import rs.dusk.tools.definition.item.pipe.page.ItemPageWiki
+import rs.dusk.tools.definition.item.pipe.page.LivePageCollector
+import rs.dusk.tools.definition.item.pipe.page.OfflinePageCollector
+import rs.dusk.tools.definition.item.pipe.page.PageCollector
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.model.WikiPage
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.export
@@ -27,7 +28,7 @@ import java.time.LocalDate
 import java.time.Month
 import java.util.concurrent.TimeUnit
 
-typealias ItemExtras = Pair<ItemDefinitionPipeline.PageCollector, MutableMap<String, Any>>
+typealias ItemExtras = Pair<PageCollector, MutableMap<String, Any>>
 
 /**
  * Creates item definition extra values
@@ -39,8 +40,6 @@ typealias ItemExtras = Pair<ItemDefinitionPipeline.PageCollector, MutableMap<Str
  * 6. Saves to yaml.
  */
 object ItemDefinitionPipeline {
-
-    data class PageCollector(val id: Int, val name: String, val page: WikiPage?, val rs3Page: WikiPage?, val idd: Boolean, var uid: String)
 
     private val redirectRegex = "#(?:REDIRECT|redirect) ?\\[\\[(.*)]]".toRegex()
     private const val debugId = -1
@@ -93,7 +92,7 @@ object ItemDefinitionPipeline {
             add(ItemDefaults())
         }
         repeat(decoder.size) { id ->
-            if(debugId > 0 && id != debugId) {
+            if (debugId > 0 && id != debugId) {
                 return@repeat
             }
             val def = decoder.getOrNull(id) ?: return@repeat
@@ -113,49 +112,65 @@ object ItemDefinitionPipeline {
      * Collects a rs2 and an rs3 page for each [decoder] item id.
      */
     private fun getPages(decoder: ItemDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
+        val infoboxes = listOf("infobox item" to "id", "infobox pet" to "itemid")
         val pipeline = Pipeline<PageCollector>().apply {
-            add(ItemPageRS3Wiki())
-            add(ItemPageWiki(rs2Wiki))
+            add(LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki") { content, page, idd ->
+                content.rs3 = page
+                content.rs3Idd = idd
+            })
+            add(OfflinePageCollector(rs2Wiki, listOf("infobox item","infobox construction")) { content, page ->
+                content.rs2 = page
+            })
         }
 
         val pages = mutableMapOf<Int, PageCollector>()
         val incomplete = mutableListOf<PageCollector>()
 
         repeat(decoder.size) { id ->
-            if(debugId > 0 && id != debugId) {
+            if (debugId > 0 && id != debugId) {
                 return@repeat
             }
             val def = decoder.getOrNull(id) ?: return@repeat
-            val processed = pipeline.modify(PageCollector(id, def.name, null, null, false, ""))
-            val (_, name, page, rs3, _) = processed
-            if (page == null && rs3 == null && name != "null") {
+            val processed = pipeline.modify(PageCollector(id, def.name))
+            val (_, name, rs2, _, rs3, _) = processed
+            if (rs2 == null && rs3 == null && name != "null") {
                 incomplete.add(processed)
-            } else if (page != null || rs3 != null) {
+            } else if (rs2 != null || rs3 != null) {
                 pages[id] = processed
             }
         }
 
-        collectUnknownPages(incomplete, rs2Wiki, pages, decoder)
+        collectUnknownPages("rs2", incomplete, rs2Wiki, pages, infoboxes.map { it.first }) { id, page ->
+            if (pages.containsKey(id)) {
+                pages[id]!!.copy(rs2 = page)
+            } else {
+                PageCollector(id, decoder.get(id).name, rs2 = page)
+            }
+        }
         return pages
     }
 
     /**
      * Any [incomplete] item ids that the pipeline couldn't find pages for, search the wiki for the exact item def name or potential redirects
      */
-    private fun collectUnknownPages(
+    fun collectUnknownPages(
+        type: String,
         incomplete: MutableList<PageCollector>,
-        rs2Wiki: Wiki,
+        wiki: Wiki?,
         pages: MutableMap<Int, PageCollector>,
-        decoder: ItemDecoder
+        infoboxes: List<String>,
+        function: (Int, WikiPage) -> PageCollector
     ) {
-        val redirects = getRedirects(incomplete.joinToString(separator = "\n") { it.name })
+        val redirects = getRedirects(incomplete.joinToString(separator = "\n") { it.name }, type)
         // Collect those new target pages
-        val wiki = exportCachedWiki(redirects.values.joinToString(separator = "\n"), "redirected.xml")
+        val redirWiki = exportCachedWiki(redirects.values.joinToString(separator = "\n"), "${type}-redirected.xml")
         val redirectPages = mutableMapOf<String, WikiPage>()
-        wiki.pages.forEach { page ->
+        redirWiki.pages.forEach { page ->
             val text = page.revision.text
-            if (text.contains("infobox item", true) || text.contains("infobox pet", true)) {
-                redirectPages[page.title.toLowerCase()] = page
+            infoboxes.forEach {
+                if (text.contains(it, true)) {
+                    redirectPages[page.title.toLowerCase()] = page
+                }
             }
         }
 
@@ -163,20 +178,16 @@ object ItemDefinitionPipeline {
         incomplete.forEach {
             val (id, name, _) = it
             val redirect = redirects[name.toLowerCase()] ?: return@forEach
-            val page = rs2Wiki.getExactPageOrNull(redirect) ?: redirectPages[redirect.toLowerCase()] ?: return@forEach
-            pages[id] = if (pages.containsKey(id)) {
-                pages[id]!!.copy(page = page)
-            } else {
-                PageCollector(id, decoder.get(id).name, page, null, false, "")
-            }
+            val page = wiki?.getExactPageOrNull(redirect) ?: redirectPages[redirect.toLowerCase()] ?: return@forEach
+            pages[id] = function.invoke(id, page)
         }
     }
 
     /**
      * Returns a map of live page names and their redirect names
      */
-    private fun getRedirects(pages: String): MutableMap<String, String> {
-        val wiki = exportCachedWiki(pages, "redirects.xml")
+    private fun getRedirects(pages: String, type: String): MutableMap<String, String> {
+        val wiki = exportCachedWiki(pages, "${type}-redirects.xml")
         val output = mutableMapOf<String, String>()
         wiki.pages.forEach { page ->
             val text = page.revision.text
@@ -194,7 +205,7 @@ object ItemDefinitionPipeline {
                 }
             } else if (text.contains("{{disambig}}", true)) {
                 val item = page.content.filterIsInstance<WtListItem>().first()
-                val result = (((item.first { it is WtInternalLink } as WtInternalLink)[0] as WtPageName)[0] as WtText).content
+                val result = ((((item.firstOrNull { it is WtInternalLink } ?: return@forEach) as WtInternalLink)[0] as WtPageName)[0] as WtText).content
                 output[page.title.toLowerCase()] = result
             }
         }
@@ -225,12 +236,12 @@ object ItemDefinitionPipeline {
         }
 
         // Identified id's take priority
-        output.filter { it.value.first.idd }.forEach { (_, pair) ->
+        output.filter { it.value.first.rs3Idd }.forEach { (_, pair) ->
             val (builder, _) = pair
             makeUniqueId(builder)
         }
         // The rest
-        output.filter { !it.value.first.idd }.forEach { (_, pair) ->
+        output.filter { !it.value.first.rs3Idd }.forEach { (_, pair) ->
             val (builder, _) = pair
             makeUniqueId(builder)
         }

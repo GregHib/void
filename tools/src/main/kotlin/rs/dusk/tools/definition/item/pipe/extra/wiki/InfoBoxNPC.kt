@@ -8,8 +8,8 @@ import rs.dusk.tools.wiki.model.WikiPage
 class InfoBoxNPC : Pipeline.Modifier<ItemExtras> {
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (_, _, _, rs3Page, _) = builder
-        process(extras, rs3Page)
+        val (_, _, _, _, rs3, _) = builder
+        process(extras, rs3)
         return content
     }
 

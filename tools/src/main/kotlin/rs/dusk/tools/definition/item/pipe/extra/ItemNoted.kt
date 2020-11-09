@@ -9,7 +9,7 @@ class ItemNoted(private val decoder: ItemDecoder) : Pipeline.Modifier<ItemExtras
 
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, n, _, _, _, uid) = builder
+        val (id, n, _, _, _, _, _, _, uid) = builder
         val def = decoder.getOrNull(id) ?: return content
 
         if (def.noted || def.lent || def.singleNote) {

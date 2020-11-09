@@ -7,8 +7,8 @@ import rs.dusk.tools.wiki.model.WikiPage
 class InfoBoxConstruction : Pipeline.Modifier<ItemExtras> {
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (_, _, page, rs3Page, _) = builder
-        process(extras, rs3Page)
+        val (_, _, page, _, rs3, _) = builder
+        process(extras, rs3)
         process(extras, page)
         return content
     }

@@ -5,8 +5,8 @@ import rs.dusk.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifie
 import rs.dusk.engine.entity.item.ItemKept
 import rs.dusk.engine.entity.item.ItemUse
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemDefinitionPipeline
 import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.pipe.page.PageCollector
 import rs.dusk.tools.wiki.model.WikiPage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -15,10 +15,10 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
 
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, name, page, rs3Page, _) = builder
+        val (id, name, page, _, rs3, _) = builder
         // Prioritise rs3 pages first as they have better data formats and names
-        if (rs3Page != null) {
-            processRs3(extras, id, rs3Page, builder)
+        if (rs3 != null) {
+            processRs3(extras, id, rs3, builder)
         }
         if (page != null) {
             processRs2(extras, page)
@@ -29,7 +29,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
         return content
     }
 
-    private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage, builder: ItemDefinitionPipeline.PageCollector) {
+    private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage, builder: PageCollector) {
         val template = page.getTemplateMap("infobox item") ?: return
         if (template.any { it.key.startsWith("version") }) {
             val versionEntry = template.entries.firstOrNull { (it.value as String).toIntOrNull() == id }
@@ -42,7 +42,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
         processRs3(template, extras, page, builder, "")
     }
 
-    private fun replaceRs3Names(builder: ItemDefinitionPipeline.PageCollector, page: WikiPage, suffix: String) {
+    private fun replaceRs3Names(builder: PageCollector, page: WikiPage, suffix: String) {
         if (builder.uid.isNotEmpty()) {
             if (isRs3Name(page.title) || page.title.contains("adrenaline", true)) {
                 builder.uid = toIdentifier(builder.name.appendSuffix(" ${toIdentifier(suffix)}").trim())
@@ -54,7 +54,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
         return if (!endsWith(suffix)) "$this$suffix" else this
     }
 
-    private fun processRs3(template: Map<String, Any>, extras: MutableMap<String, Any>, page: WikiPage, builder: ItemDefinitionPipeline.PageCollector, suffix: String) {
+    private fun processRs3(template: Map<String, Any>, extras: MutableMap<String, Any>, page: WikiPage, builder: PageCollector, suffix: String) {
         template.forEach { (key, value) ->
             if (key.startsWith("weight$suffix")) {
                 extras.putIfAbsent(key.removeSuffix(suffix), (value as? String)?.toDoubleOrNull() ?: 0.0)
@@ -67,7 +67,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
                     if (version != null) {
                         builder.uid = uid.appendSuffix("_${toIdentifier(version)}")
                         replaceRs3Names(builder, page, version)
-                    } else if (builder.idd) {
+                    } else if (builder.rs3Idd) {
                         builder.uid = uid
                         replaceRs3Names(builder, page, "")
                     }

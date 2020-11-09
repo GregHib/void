@@ -74,7 +74,7 @@ class ItemManualChanges : Pipeline.Modifier<ItemExtras> {
     val numberRegex = "([0-9]+)".toRegex()
     override fun modify(content: ItemExtras): ItemExtras {
         val (builder, extras) = content
-        val (id, name, rs2Page, rs3Page, idd, uid) = builder
+        val (id, _, _, _, _, _, _, _, uid) = builder
         if (extras.containsKey("examine2")) {
             extras["examine2"] = (extras.getValue("examine2") as String).replace("intrument", "instrument")
         }
