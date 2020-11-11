@@ -114,11 +114,11 @@ object ItemDefinitionPipeline {
     private fun getPages(decoder: ItemDecoder, rs2Wiki: Wiki): MutableMap<Int, PageCollector> {
         val infoboxes = listOf("infobox item" to "id", "infobox pet" to "itemid")
         val pipeline = Pipeline<PageCollector>().apply {
-            add(LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki") { content, page, idd ->
+            add(LivePageCollector("rs3-item", listOf("Items", "Pets"), infoboxes, "runescape.wiki", true) { content, page, idd ->
                 content.rs3 = page
                 content.rs3Idd = idd
             })
-            add(OfflinePageCollector(rs2Wiki, listOf("infobox item","infobox construction")) { content, page ->
+            add(OfflinePageCollector(rs2Wiki, listOf("infobox item", "infobox construction")) { content, page ->
                 content.rs2 = page
             })
         }

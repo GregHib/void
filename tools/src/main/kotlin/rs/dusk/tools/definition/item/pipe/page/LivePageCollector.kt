@@ -8,7 +8,7 @@ import rs.dusk.tools.wiki.scrape.RunescapeWiki.export
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.getCategoryLinks
 import java.io.File
 
-class LivePageCollector(val type: String, categories: List<String>, infoboxes: List<Pair<String, String>>, wiki: String, val modifier: (PageCollector, WikiPage, Boolean) -> Unit) : Pipeline.Modifier<PageCollector> {
+class LivePageCollector(val type: String, categories: List<String>, infoboxes: List<Pair<String, String>>, wiki: String, val searchById: Boolean, val modifier: (PageCollector, WikiPage, Boolean) -> Unit) : Pipeline.Modifier<PageCollector> {
 
     private val ids = mutableMapOf<Int, WikiPage>()
     private val names = mutableMapOf<String, WikiPage>()
@@ -53,7 +53,10 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
     private fun applyIds(page: WikiPage, names: MutableMap<String, WikiPage>, ids: MutableMap<Int, WikiPage>, infobox: String, itemKey: String) {
         page.getTemplateMaps(infobox).forEach { map ->
             val name = (map["name"] as? String ?: page.title).toLowerCase()
-            names[name] = page
+            names.putIfAbsent(name, page)
+            if (!searchById) {
+                return@forEach
+            }
             map.forEach { (key, value) ->
                 if (key.startsWith(itemKey)) {
                     val string = value as String

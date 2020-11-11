@@ -53,11 +53,10 @@ object NPCDefinitionPipeline {
                     "infobox monster" to "id",
                     "infobox npc" to "id"
                 ),
-                "oldschool.runescape.wiki"
-            ) { content, page, idd ->
-                if(!idd) {// OSRS id's are scrambled :(
-                    content.osrs = page
-                }
+                "oldschool.runescape.wiki",
+                false// OSRS id's are scrambled :(
+            ) { content, page, _ ->
+                content.osrs = page
             })
             add(LivePageCollector(
                 "rs3-npc",
@@ -66,7 +65,8 @@ object NPCDefinitionPipeline {
                     "infobox monster" to "id",
                     "infobox npc" to "id"
                 ),
-                "runescape.wiki"
+                "runescape.wiki",
+                true
             ) { content, page, idd ->
                 content.rs3 = page
                 content.rs3Idd = idd

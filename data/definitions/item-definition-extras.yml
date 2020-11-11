@@ -181,12 +181,9 @@ insect_repellent:
 tinderbox_2:
   id: 29
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bucket_of_wax:
   id: 30
   tradeable: false
@@ -196,12 +193,9 @@ bucket_of_wax:
 tinderbox_3:
   id: 31
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 black_candle_lit:
   id: 32
   tradeable: false
@@ -864,10 +858,8 @@ super_antipoison_1_noted:
   id: 186
 weapon_poison:
   id: 187
-  weight: 0.467
+  weight: 0.025
   examine: "A vial of weapon poison."
-  use: "Dungeoneering"
-  kept: "Always"
 weapon_poison_noted:
   id: 188
 zamorak_brew_3:
@@ -2548,9 +2540,9 @@ picture_6:
   id: 547
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 shade_robe_bottom:
   id: 548
   prayer: 4
@@ -2563,9 +2555,9 @@ picture_7:
   id: 549
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 newcomer_map:
   id: 550
   price: 74
@@ -2820,9 +2812,9 @@ picture_8:
   id: 599
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 astronomy_book:
   id: 600
   price: 590
@@ -2995,12 +2987,9 @@ ship_ticket:
 tinderbox_4:
   id: 622
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 sword_pommel:
   id: 623
   tradeable: false
@@ -3344,8 +3333,8 @@ panning_tray:
 panning_tray_2:
   id: 678
   tradeable: false
-  weight: 0.17
-  examine: "This tray contains mud."
+  weight: 0.085
+  examine: "An empty tray for panning."
   use: "Quest"
   kept: "Wilderness"
 panning_tray_full:
@@ -3421,9 +3410,9 @@ picture_9:
   id: 690
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 level_1_certificate:
   id: 691
   tradeable: false
@@ -3577,9 +3566,9 @@ picture_10:
   id: 713
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 radimus_notes_partially_complete:
   id: 714
   tradeable: false
@@ -3712,12 +3701,9 @@ smashed_glass:
 tinderbox_5:
   id: 734
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 yommi_tree_seeds:
   id: 735
   tradeable: false
@@ -3905,9 +3891,9 @@ picture_11:
   id: 762
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 broken_shield_right:
   id: 763
   tradeable: false
@@ -3920,9 +3906,9 @@ picture_12:
   id: 764
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 broken_shield_left:
   id: 765
   tradeable: false
@@ -3935,9 +3921,9 @@ picture_13:
   id: 766
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 phoenix_crossbow:
   id: 767
   tradeable: false
@@ -3960,9 +3946,9 @@ picture_14:
   id: 770
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 dramen_branch:
   id: 771
   tradeable: false
@@ -4894,12 +4880,9 @@ flier:
 tinderbox_6:
   id: 957
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 grey_wolf_fur:
   id: 958
   price: 26
@@ -4935,11 +4918,9 @@ skull:
 skull_2:
   id: 965
   tradeable: false
-  weight: 0.2
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
-  examine: "A skull of someone long deceased."
-  use: "Quest"
-  kept: "Vanish"
+  weight: 0.08
+  examine: "Ooooh spooky!"
+  kept: "Reclaim"
 tile:
   id: 966
   tradeable: false
@@ -4949,12 +4930,9 @@ tile:
 tinderbox_7:
   id: 967
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 rock_limestone:
   id: 968
   tradeable: false
@@ -4964,12 +4942,9 @@ rock_limestone:
 tinderbox_8:
   id: 969
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 papyrus:
   id: 970
   price: 235
@@ -4981,12 +4956,8 @@ papyrus_noted:
 papyrus_2:
   id: 972
   limit: 100
-  tradeable: false
   weight: 0.02
-  destroy: "Hopefully, the family has more."
   examine: "Used for making notes."
-  use: "Quest"
-  kept: "Vanish"
 charcoal:
   id: 973
   price: 307
@@ -6647,9 +6618,8 @@ adamant_kiteshield:
   limit: 100
   absorbmelee: 3
   absorbranged: 6
-  tradeable: false
   dstab: 27.0
-  weight: 5.896
+  weight: 0.01
   amagic: -8.0
   arange: -2.0
   dslash: 31.0
@@ -6658,8 +6628,7 @@ adamant_kiteshield:
   drange: 29.0
   dsummon: 30.0
   slot: "Shield"
-  examine: "A large metal shield."
-  kept: "Always"
+  examine: "An adamant kiteshield."
 adamant_kiteshield_noted:
   id: 1200
 rune_kiteshield:
@@ -6823,8 +6792,6 @@ iron_dagger_p_noted:
 bronze_dagger_p:
   id: 1221
   limit: 100
-  bankable: false
-  tradeable: false
   str: 3.0
   astab: 4.0
   weight: 0.453
@@ -6834,8 +6801,7 @@ bronze_dagger_p:
   dmagic: 1.0
   slot: "Weapon"
   examine: "Short but pointy."
-  use: "Quest"
-  kept: "Reclaim"
+  kept: "Wilderness"
 bronze_dagger_p_noted:
   id: 1222
 steel_dagger_p:
@@ -7210,18 +7176,14 @@ adamant_pickaxe:
   id: 1271
   price: 1781
   limit: 100
-  bankable: false
-  tradeable: false
   str: 19.0
   astab: 17.0
-  weight: 2.267
+  weight: 0.01
   aslash: -2.0
   acrush: 15.0
   dslash: 1.0
   slot: "Weapon"
-  destroy: "You will need to pick up another from the ground if you drop this item."
   examine: "Used for mining."
-  kept: "Vanish"
 adamant_pickaxe_noted:
   id: 1272
 mithril_pickaxe:
@@ -7457,17 +7419,15 @@ rune_longsword:
   id: 1303
   price: 19000
   limit: 100
-  tradeable: false
   str: 49.0
   astab: 38.0
-  weight: 1.814
+  weight: 0.01
   aslash: 47.0
   acrush: -2.0
   dslash: 3.0
   dcrush: 2.0
   slot: "Weapon"
-  examine: "A razor sharp longsword."
-  kept: "Always"
+  examine: "A rune longsword."
 rune_longsword_noted:
   id: 1304
 dragon_longsword:
@@ -8600,10 +8560,8 @@ archery_ticket:
   examine: "I can exchange this for equipment."
 weapon_poison_2:
   id: 1465
-  weight: 0.467
+  weight: 0.025
   examine: "A vial of weapon poison."
-  use: "Dungeoneering"
-  kept: "Always"
 sea_slug_item:
   id: 1466
   tradeable: false
@@ -9119,12 +9077,9 @@ doogle_sardine:
 tinderbox_9:
   id: 1553
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 pet_kitten:
   id: 1555
   food: "Fish or milk as a kitten,"
@@ -9296,12 +9251,9 @@ doogle_leaves:
 tinderbox_10:
   id: 1574
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 cat_training_medal:
   id: 1575
   tradeable: false
@@ -9312,12 +9264,9 @@ cat_training_medal:
 tinderbox_11:
   id: 1576
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 petes_candlestick:
   id: 1577
   weight: 0.5
@@ -9403,9 +9352,9 @@ picture_15:
   id: 1589
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 dusty_key:
   id: 1590
   tradeable: false
@@ -9807,23 +9756,24 @@ dragonstone_ammy_noted:
 sapphire_amulet_2:
   id: 1687
   limit: 5000
-  weight: 0.004
-  examine: "It needs a string so I can wear it."
+  weight: 0.007
+  examine: "I wonder if I can get this enchanted."
 emerald_amulet_2:
   id: 1688
   limit: 5000
-  weight: 0.004
-  examine: "It needs a string so I can wear it."
+  weight: 0.007
+  examine: "I wonder if I can get this enchanted."
 ruby_amulet_2:
   id: 1689
   limit: 5000
-  weight: 0.004
-  examine: "It needs a string so I can wear it."
+  weight: 0.007
+  destroy: "No"
+  examine: "I wonder if I can get this enchanted."
 diamond_amulet_2:
   id: 1690
   limit: 5000
-  weight: 0.004
-  examine: "It needs a string so I can wear it."
+  weight: 0.007
+  examine: "I wonder if I can get this enchanted."
 dragonstone_ammy:
   id: 1691
   limit: 100
@@ -11165,12 +11115,9 @@ spinach_roll:
 tinderbox_12:
   id: 1970
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 kebab:
   id: 1971
   price: 36
@@ -13236,9 +13183,9 @@ picture_16:
   id: 2420
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 wig_grey:
   id: 2421
   tradeable: false
@@ -13248,10 +13195,9 @@ wig_grey:
 blue_partyhat_2:
   id: 2422
   limit: 2
-  tradeable: false
   weight: 0.056
   examine: "A nice hat from a cracker."
-  kept: "Reclaim"
+  use: "Limited"
 key_print:
   id: 2423
   tradeable: false
@@ -13268,9 +13214,9 @@ picture_17:
   id: 2425
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 burnt_oomlie:
   id: 2426
   examine: "Oh dear, it's totally burnt!"
@@ -13500,28 +13446,22 @@ black_flowers_noted:
 tinderbox_13:
   id: 2478
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 tinderbox_14:
   id: 2479
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 picture_18:
   id: 2480
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 clean_lantadyme:
   id: 2481
   price: 6783
@@ -13738,7 +13678,6 @@ black_dragon_leather_noted:
 logs_2:
   id: 2511
   limit: 25000
-  tradeable: false
   weight: 2.0
   examine: "A number of wooden logs."
   kept: "Wilderness"
@@ -13746,9 +13685,9 @@ picture_19:
   id: 2512
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 dragon_chainbody_2:
   id: 2513
   limit: 10
@@ -13773,7 +13712,6 @@ raw_shrimps_noted_2:
 pot_of_flour_2:
   id: 2516
   limit: 1000
-  tradeable: false
   weight: 1.36
   examine: "There is flour in this pot."
   kept: "Wilderness"
@@ -13828,12 +13766,9 @@ orb_of_light_5:
   use: "Quest"
 bones_2:
   id: 2530
-  bankable: false
-  tradeable: false
-  weight: 0.05
-  destroy: "You can kill an opposing player to get some more."
-  examine: "may contain bones."
-  kept: "Reclaim"
+  weight: 0.5
+  examine: "Bones are for burying."
+  kept: "Wilderness"
 bones_noted_2:
   id: 2531
 iron_fire_arrows_unlit:
@@ -15667,7 +15602,7 @@ key:
   id: 2832
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_17:
@@ -15680,7 +15615,7 @@ key_2:
   id: 2834
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_18:
@@ -15693,7 +15628,7 @@ key_3:
   id: 2836
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_19:
@@ -15706,7 +15641,7 @@ key_4:
   id: 2838
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_20:
@@ -15719,7 +15654,7 @@ key_5:
   id: 2840
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_21:
@@ -16391,9 +16326,9 @@ picture_20:
   id: 2965
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 mirror:
   id: 2966
   tradeable: false
@@ -17023,9 +16958,9 @@ picture_21:
   id: 3108
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 stone_ball_red:
   id: 3109
   tradeable: false
@@ -17715,12 +17650,9 @@ sulphur:
 tinderbox_15:
   id: 3210
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 limestone:
   id: 3211
   price: 114
@@ -17810,12 +17742,9 @@ strip_of_cloth:
 tinderbox_16:
   id: 3225
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 raw_rabbit:
   id: 3226
   price: 583
@@ -17844,36 +17773,36 @@ picture_22:
   id: 3231
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_41:
   id: 3232
 picture_23:
   id: 3233
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_42:
   id: 3234
 picture_24:
   id: 3235
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_43:
   id: 3236
 picture_25:
   id: 3237
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_44:
   id: 3238
 bark:
@@ -18304,12 +18233,9 @@ burnt_eel:
 tinderbox_17:
   id: 3384
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 splitbark_helm:
   id: 3385
   price: 6203
@@ -18452,12 +18378,9 @@ serum_207_4:
 tinderbox_18:
   id: 3409
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 serum_207_3:
   id: 3410
   weight: 0.03
@@ -18465,12 +18388,9 @@ serum_207_3:
 tinderbox_19:
   id: 3411
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 serum_207_2:
   id: 3412
   weight: 0.025
@@ -18478,12 +18398,9 @@ serum_207_2:
 tinderbox_20:
   id: 3413
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 serum_207_1:
   id: 3414
   weight: 0.02
@@ -18491,12 +18408,9 @@ serum_207_1:
 tinderbox_21:
   id: 3415
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 serum_208_4:
   id: 3416
   weight: 0.035
@@ -19725,7 +19639,7 @@ key_6:
   id: 3606
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_47:
@@ -19738,7 +19652,7 @@ key_7:
   id: 3608
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_48:
@@ -19805,9 +19719,9 @@ picture_26:
   id: 3667
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 black_plateskirt_t_noted:
   id: 3668
 black_plateskirt_g_noted:
@@ -19838,51 +19752,51 @@ picture_27:
   id: 3679
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_28:
   id: 3680
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_29:
   id: 3681
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_30:
   id: 3682
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_31:
   id: 3683
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_32:
   id: 3684
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_33:
   id: 3685
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 fremennik:
   id: 3686
 unstrung_lyre:
@@ -20074,16 +19988,16 @@ picture_34:
   id: 3715
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_35:
   id: 3716
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 magnet_the_fremennik_trials:
   id: 3718
   bankable: false
@@ -21000,9 +20914,9 @@ picture_36:
   id: 3900
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 ghrims_book:
   id: 3901
   tradeable: false
@@ -21014,16 +20928,16 @@ picture_37:
   id: 3902
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_38:
   id: 3903
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 lost_property_bulky_april_fools_2019:
   id: 3941
   tradeable: false
@@ -21054,9 +20968,9 @@ picture_39:
   id: 4000
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 hardy_gout_tuber:
   id: 4001
   bankable: false
@@ -21077,9 +20991,9 @@ picture_40:
   id: 4003
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 gnome_royal_seal:
   id: 4004
   tradeable: false
@@ -21129,9 +21043,9 @@ picture_41:
   id: 4011
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 monkey_nuts:
   id: 4012
   edible: true
@@ -21143,9 +21057,9 @@ picture_42:
   id: 4013
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 monkey_bar:
   id: 4014
   edible: true
@@ -21157,9 +21071,9 @@ picture_43:
   id: 4015
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 banana_stew:
   id: 4016
   edible: true
@@ -21171,9 +21085,9 @@ picture_44:
   id: 4017
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 monkey_wrench_monkey_madness:
   id: 4018
   tradeable: false
@@ -21184,9 +21098,9 @@ picture_45:
   id: 4019
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 monkeyspeak_amulet_mould:
   id: 4020
   tradeable: false
@@ -21465,9 +21379,9 @@ picture_46:
   id: 4076
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 crystal-mine_key:
   id: 4077
   tradeable: false
@@ -21860,7 +21774,7 @@ crawling_hand:
   id: 4133
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 cave_crawler:
   id: 4134
@@ -22079,17 +21993,15 @@ picture_47:
   id: 4177
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 abyssal_whip_2:
   id: 4178
-  tradeable: false
   str: 82.0
   weight: 0.453
   aslash: 82.0
-  examine: "A weapon from the Abyss, painted yellow from the yolk of a Penance egg."
-  kept: "Reclaim"
+  examine: "A weapon from the Abyss."
 stick_item:
   id: 4179
   tradeable: false
@@ -22269,8 +22181,7 @@ journal:
   id: 4203
   tradeable: false
   weight: 0.51
-  examine: "This must be Filliman Tarlocks personal journal."
-  use: "Quest"
+  examine: "A daily journal."
   kept: "Wilderness"
 letter_creature_of_fenkenstrain:
   id: 4204
@@ -22310,12 +22221,9 @@ cadarn_lineage:
 tinderbox_22:
   id: 4210
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 elf_crystal:
   id: 4211
 new_crystal_bow:
@@ -22947,12 +22855,9 @@ crystal_of_seren:
 tinderbox_23:
   id: 4314
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 team-1_cape:
   id: 4315
   price: 1672
@@ -23913,12 +23818,9 @@ mud_mountain_daughter:
 tinderbox_24:
   id: 4491
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 muddy_rock:
   id: 4492
   tradeable: false
@@ -23929,12 +23831,9 @@ muddy_rock:
 tinderbox_25:
   id: 4493
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 pole:
   id: 4494
   tradeable: false
@@ -23958,22 +23857,15 @@ broken_pole:
 tinderbox_26:
   id: 4497
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 rope_2:
   id: 4498
   limit: 100
-  bankable: false
-  tradeable: false
-  weight: 0.001
+  weight: 1.36
   slot: "Weapon"
-  destroy: "Are you sure you want to destroy this item?"
-  examine: "Always getting roped into things."
-  use: "Quest"
+  examine: "A coil of rope."
   kept: "Wilderness"
 rope_noted_2:
   id: 4499
@@ -24610,9 +24502,9 @@ picture_48:
   id: 4592
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 fake_beard:
   id: 4593
   tradeable: false
@@ -24623,16 +24515,16 @@ picture_49:
   id: 4594
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_50:
   id: 4596
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 note_fibonacci:
   id: 4597
   tradeable: false
@@ -24945,12 +24837,9 @@ garlic_powder:
 tinderbox_27:
   id: 4669
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 blood_diamond:
   id: 4670
   tradeable: false
@@ -25074,9 +24963,9 @@ picture_51:
   id: 4685
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 embalming_manual:
   id: 4686
   tradeable: false
@@ -25093,12 +24982,9 @@ bucket_of_sap:
 tinderbox_28:
   id: 4688
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 pile_of_salt:
   id: 4689
   tradeable: false
@@ -25109,12 +24995,9 @@ pile_of_salt:
 tinderbox_29:
   id: 4690
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 sphinxs_token:
   id: 4691
   tradeable: false
@@ -28055,7 +27938,7 @@ dwarven_battleaxe:
   tradeable: false
   weight: 2.0
   slot: "Weapon"
-  examine: "This axe blade has been sharpened."
+  examine: "This axe has a sharp blade and there are sapphires in the hilt."
   use: "Quest"
   kept: "Wilderness"
 dwarven_battleaxe_2:
@@ -28063,7 +27946,7 @@ dwarven_battleaxe_2:
   tradeable: false
   weight: 2.0
   slot: "Weapon"
-  examine: "This axe blade has been sharpened."
+  examine: "This axe has a sharp blade and there are sapphires in the hilt."
   use: "Quest"
   kept: "Wilderness"
 left_boot:
@@ -29529,44 +29412,44 @@ picture_52:
   id: 5562
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_53:
   id: 5563
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_54:
   id: 5564
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_55:
   id: 5565
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_56:
   id: 5566
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_57:
   id: 5567
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_correct:
   id: 5568
   tradeable: false
@@ -30324,8 +30207,6 @@ iron_dagger_p+_noted:
 bronze_dagger_p+:
   id: 5670
   limit: 100
-  bankable: false
-  tradeable: false
   str: 3.0
   astab: 4.0
   weight: 0.453
@@ -30335,8 +30216,7 @@ bronze_dagger_p+:
   dmagic: 1.0
   slot: "Weapon"
   examine: "Short but pointy."
-  use: "Quest"
-  kept: "Reclaim"
+  kept: "Wilderness"
 bronze_dagger_p+_noted:
   id: 5671
 steel_dagger_p+:
@@ -30443,8 +30323,6 @@ iron_dagger_p++_noted:
 bronze_dagger_p++:
   id: 5688
   limit: 100
-  bankable: false
-  tradeable: false
   str: 3.0
   astab: 4.0
   weight: 0.453
@@ -30454,8 +30332,7 @@ bronze_dagger_p++:
   dmagic: 1.0
   slot: "Weapon"
   examine: "Short but pointy."
-  use: "Quest"
-  kept: "Reclaim"
+  kept: "Wilderness"
 bronze_dagger_p++_noted:
   id: 5689
 steel_dagger_p++:
@@ -32084,9 +31961,9 @@ picture_58:
   id: 6074
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 eastern_discovery:
   id: 6075
   tradeable: false
@@ -32098,9 +31975,9 @@ picture_59:
   id: 6076
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 eastern_settlement:
   id: 6077
   tradeable: false
@@ -32112,9 +31989,9 @@ picture_60:
   id: 6078
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 the_great_divide:
   id: 6079
   tradeable: false
@@ -32125,9 +32002,9 @@ picture_61:
   id: 6080
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 broken_device:
   id: 6081
   tradeable: false
@@ -32836,9 +32713,9 @@ picture_62:
   id: 6203
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 raw_fish-like_thing_incorrect:
   id: 6204
   tradeable: false
@@ -32864,9 +32741,9 @@ picture_63:
   id: 6207
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 manspeak_amulet:
   id: 6208
   tradeable: false
@@ -32885,9 +32762,9 @@ picture_64:
   id: 6210
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 teak_pyre_logs:
   id: 6211
   price: 2858
@@ -33922,9 +33799,9 @@ picture_65:
   id: 6381
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 fez:
   id: 6382
   price: 845
@@ -34122,92 +33999,57 @@ maple_blackjack_d_noted:
   id: 6421
 air_rune_2:
   id: 6422
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An air rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_noted:
   id: 6423
 water_rune_2:
   id: 6424
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A water rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_noted:
   id: 6425
 earth_rune_2:
   id: 6426
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An earth rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_noted:
   id: 6427
 fire_rune_2:
   id: 6428
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A fire rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_noted:
   id: 6429
 chaos_rune_2:
   id: 6430
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from chaotic cloud nodes and chaos esshounds."
   examine: "Used for low level missile spells."
-  kept: "Vanish"
 chaos_rune_noted:
   id: 6431
 death_rune_2:
   id: 6432
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from skeleton nodes, bloody skull nodes, undead soul nodes and death esswraiths."
   examine: "Used for medium level missile spells."
-  kept: "Vanish"
 death_rune_noted:
   id: 6433
 law_rune_2:
   id: 6434
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from jumper nodes and law esshounds."
   examine: "Used for teleport spells."
-  kept: "Vanish"
 law_rune_noted:
   id: 6435
 mind_rune_2:
   id: 6436
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A mind rune."
-  use: "Quest"
+  examine: "A basic level catalytic rune."
   kept: "Wilderness"
 mind_rune_noted:
   id: 6437
 body_rune_2:
   id: 6438
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning fleshy growth nodes and body esshounds."
   examine: "Used for Curse spells"
-  kept: "Vanish"
+  kept: "Wilderness"
 body_rune_noted:
   id: 6439
 spadeful_of_coke:
@@ -34661,8 +34503,9 @@ onyx_necklace_2:
   examine: "I wonder if this is valuable."
 onyx_amulet_2:
   id: 6566
-  weight: 0.004
-  examine: "It needs a string so I can wear it."
+  limit: 100
+  weight: 0.007
+  examine: "I wonder if I can get this enchanted."
 obsidian_cape:
   id: 6568
   price: 35800
@@ -35453,12 +35296,9 @@ empty_box_fish:
 tinderbox_30:
   id: 6676
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 guam-in-a-box:
   id: 6677
   tradeable: false
@@ -35860,12 +35700,9 @@ black_desert_shirt:
 tinderbox_31:
   id: 6751
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 black_desert_robe:
   id: 6752
   tradeable: false
@@ -35877,9 +35714,9 @@ picture_66:
   id: 6753
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 enchanted_key_making_history:
   id: 6754
   tradeable: false
@@ -36619,12 +36456,12 @@ puppet_box_2:
   examine: "A box full of puppets. Bring it to Diango."
 bauble_box_2:
   id: 6855
-  bankable: false
   tradeable: false
   weight1: 1.0
   weight2: 2.0
   examine: "A box for storing painted baubles."
-  kept: "Vanish"
+  kept: "Reclaim"
+  use: "Removed"
 bobble_hat:
   id: 6856
   weight: 2.0
@@ -36899,12 +36736,9 @@ arena_book:
 tinderbox_32:
   id: 6892
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 leather_boots_mage_training_arena:
   id: 6893
   limit: 5000
@@ -37285,10 +37119,9 @@ roll:
   examine: "A freshly made roll."
 coins_11:
   id: 6964
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 square_sandwich:
   id: 6965
   limit: 1000
@@ -37541,13 +37374,10 @@ camel_mask:
 chisel_2:
   id: 7004
   limit: 100
-  bankable: false
-  tradeable: false
   weight: 0.453
   slot: "Weapon"
   examine: "Good for detailed crafting."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 harpie_bug_swarm:
   id: 7050
   examine: "A swarm of bugs."
@@ -38016,22 +37846,15 @@ tacks:
 rope_3:
   id: 7155
   limit: 100
-  bankable: false
-  tradeable: false
-  weight: 0.001
-  destroy: "Are you sure you want to destroy this item?"
-  examine: "Always getting roped into things."
-  use: "Quest"
+  weight: 1.36
+  examine: "A coil of rope."
   kept: "Wilderness"
 tinderbox_33:
   id: 7156
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 braindeath_rum:
   id: 7157
   edible: true
@@ -38712,7 +38535,7 @@ key_8:
   id: 7297
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_70:
@@ -38725,7 +38548,7 @@ key_9:
   id: 7299
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_71:
@@ -38744,7 +38567,7 @@ key_10:
   id: 7302
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_73:
@@ -40044,12 +39867,9 @@ cornflour_2:
 tinderbox_34:
   id: 7467
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 pot_of_cornflour:
   id: 7468
   tradeable: false
@@ -40060,12 +39880,9 @@ pot_of_cornflour:
 tinderbox_35:
   id: 7469
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 cornflour_mixture:
   id: 7470
   tradeable: false
@@ -40226,30 +40043,12 @@ lumbridge_sage:
   id: 7502
 monkey_11:
   id: 7503
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
-  food: "Bananas"
-  examine: "A confused looking monkey."
-  skill_req:
-    summoning: 95
-    hunter: 27
+  bankable: false
+  tradeable: false
+  weight: 15.0
+  examine: "It's a monkey in your backpack. As you look it pokes you."
+  use: "Quest"
+  kept: "Wilderness"
 osman:
   id: 7504
 pirate_pete:
@@ -40543,42 +40342,26 @@ mithril_arrow_noted:
   id: 7553
 fire_rune_3:
   id: 7554
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A fire rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_noted_2:
   id: 7555
 water_rune_3:
   id: 7556
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A water rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_noted_2:
   id: 7557
 air_rune_3:
   id: 7558
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An air rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_noted_2:
   id: 7559
 chaos_rune_3:
   id: 7560
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from chaotic cloud nodes and chaos esshounds."
   examine: "Used for low level missile spells."
-  kept: "Vanish"
 chaos_rune_noted_2:
   id: 7561
 tomato_seed_2:
@@ -40849,12 +40632,9 @@ bucket_of_rubble_partially_filled:
 tinderbox_36:
   id: 7623
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bucket_of_rubble_almost_full:
   id: 7624
   tradeable: false
@@ -40865,12 +40645,9 @@ bucket_of_rubble_almost_full:
 tinderbox_37:
   id: 7625
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bucket_of_rubble_totally_filled:
   id: 7626
   tradeable: false
@@ -40881,12 +40658,9 @@ bucket_of_rubble_totally_filled:
 tinderbox_38:
   id: 7627
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 plaster_fragment:
   id: 7628
   tradeable: false
@@ -40914,12 +40688,9 @@ crate_in_aid_of_the_myreque:
 tinderbox_39:
   id: 7631
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 temple_library_key:
   id: 7632
   tradeable: false
@@ -41213,9 +40984,9 @@ picture_67:
   id: 7672
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 boxing_gloves_blue:
   id: 7673
   bankable: false
@@ -41546,11 +41317,9 @@ dragon_bitter_noted_2:
 moonlight_mead_2:
   id: 7750
   limit: 100
-  tradeable: false
-  weight: 0.001
+  edible: true
+  weight: 0.55
   examine: "A foul smelling brew."
-  use: "Quest"
-  kept: "Reclaim"
 moonlight_mead_noted_2:
   id: 7751
 cider_player-owned_house:
@@ -41829,9 +41598,9 @@ picture_68:
   weight: 0.453
   slot: "Weapon"
   type: "TwoHanded"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_45:
   id: 7805
 anger_sword:
@@ -43884,28 +43653,24 @@ asgarnian_ale_2:
   id: 8241
   limit: 100
   edible: true
-  bankable: false
   weight: 0.55
-  examine: "Probably the finest ale in Asgarnia."
+  examine: "Probably the finest readily-available ale in Asgarnia."
 greenmans_ale_2:
   id: 8242
   limit: 100
   edible: true
-  bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
 dragon_bitter_2:
   id: 8243
   limit: 100
   edible: true
-  bankable: false
   weight: 0.55
   examine: "A glass of bitter."
 chefs_delight_2:
   id: 8244
   limit: 100
   edible: true
-  bankable: false
   weight: 0.55
   examine: "A fruity, full-bodied ale."
 wood_kitchen_table:
@@ -43953,31 +43718,31 @@ crawling_hand_2:
   id: 8260
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 cockatrice_head_2:
   id: 8261
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 basilisk_head_2:
   id: 8262
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 kurask_head_2:
   id: 8263
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 abyssal_head_2:
   id: 8264
   tradeable: false
   weight: 10.0
-  examine: "I could mount this on my wall!"
+  examine: "I should get it stuffed!"
   kept: "Reclaim"
 kbd_heads:
   id: 8265
@@ -44061,7 +43826,6 @@ rune_case_2:
   examine: "Body, Cosmic, Chaos and Nature runes made by a skilled runecrafter."
 silverlight_2:
   id: 8279
-  bankable: false
   tradeable: false
   str: 12.0
   astab: 9.0
@@ -44071,9 +43835,9 @@ silverlight_2:
   dslash: 3.0
   dcrush: 2.0
   dmagic: 1.0
-  destroy: "You will need to pick up another from the ground if you drop this item."
+  destroy: "You can obtain it from Gideon Bede in the Saradominist church in north-east Varrock. You can also reclaim it from the quest storage chest."
   examine: "The magical sword Silverlight."
-  kept: "Vanish"
+  kept: "Reclaim"
 excalibur_2:
   id: 8280
   tradeable: false
@@ -44098,10 +43862,9 @@ darklight_2:
   dslash: 3.0
   dcrush: 2.0
   dmagic: 2.0
-  destroy: "You can reclaim it from Sir Prysin in his house west of the Saradominist church in New Varrock."
+  destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
   examine: "The magical sword 'Silverlight', enhanced with the blood of Agrith Naar."
-  use: "Quest"
-  kept: "Wilderness"
+  kept: "Reclaim"
 anti-dragon_shield_2:
   id: 8282
   weight: 5.443
@@ -44172,10 +43935,11 @@ bone_cage:
   examine: "A cage of bones. How delightfully macabre."
 spikes:
   id: 8302
+  bankable: false
   tradeable: false
-  weight: 0.012
-  examine: "Spikes to allow boots to grip stone a little better."
-  kept: "Wilderness"
+  weight: 0.001
+  examine: "I can attach these to poisoned yellow eggs."
+  kept: "Reclaim"
 tentacle_pool:
   id: 8303
   examine: "Yuck!"
@@ -46183,9 +45947,9 @@ picture_69:
   id: 8797
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 mahogany_logs_noted:
   id: 8836
 timber_beam:
@@ -47128,7 +46892,6 @@ sweetgrubs_noted:
 bucket_2:
   id: 8986
   limit: 100
-  tradeable: false
   weight: 1.0
   examine: "It's a wooden bucket."
   kept: "Wilderness"
@@ -48831,9 +48594,9 @@ picture_70:
   id: 9490
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 wizard_blizzard_4:
   id: 9508
   limit: 1000
@@ -49223,9 +48986,9 @@ picture_71:
   id: 9596
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 red_circle:
   id: 9597
   tradeable: false
@@ -49893,9 +49656,9 @@ picture_72:
   id: 9700
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 torch_noted:
   id: 9701
 stick:
@@ -49961,12 +49724,8 @@ slashed_book:
 rock:
   id: 9716
   bankable: false
-  tradeable: false
-  weight: 0.6
-  destroy: "You can pick another one up from the floor."
-  examine: "It's a rock."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 5.0
+  examine: "I can use this with the catapult."
 beaten_book:
   id: 9717
   tradeable: false
@@ -54807,13 +54566,13 @@ purple_sweets:
   examine: "Remember to brush after eating!"
 scroll:
   id: 10485
+  bankable: false
   tradeable: false
-  weight: 0.01
+  weight: 0.005
   slot: "Weapon"
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 empty_sack_animal_magnetism:
   id: 10486
   limit: 100
@@ -54917,12 +54676,9 @@ polished_buttons:
 tinderbox_40:
   id: 10497
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 avas_attractor:
   id: 10498
   tradeable: false
@@ -54987,12 +54743,10 @@ wintumber_tree:
   use: "Limited"
 snowball:
   id: 10509
-  bankable: false
   tradeable: false
-  destroy: "If destroyed you will need to find some more."
-  examine: "Yep - it's a ball made of snow."
-  use: "Quest"
-  kept: "Wilderness"
+  examine: "Made from snow."
+  kept: "Reclaim"
+  use: "Removed"
 snowball_noted:
   id: 10510
 zanaris_choir:
@@ -55343,33 +55097,33 @@ picture_73:
   tradeable: false
   weight: 0.453
   slot: "Cape"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_74:
   id: 10557
   tradeable: false
   weight: 0.453
   slot: "Cape"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_75:
   id: 10558
   tradeable: false
   weight: 0.453
   slot: "Cape"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_76:
   id: 10559
   tradeable: false
   weight: 0.453
   slot: "Cape"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 collector_horn:
   id: 10560
   bankable: false
@@ -55443,9 +55197,9 @@ picture_77:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_47:
   id: 10570
 picture_78:
@@ -55453,9 +55207,9 @@ picture_78:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_48:
   id: 10572
 picture_79:
@@ -55463,9 +55217,9 @@ picture_79:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_49:
   id: 10574
 picture_80:
@@ -55473,9 +55227,9 @@ picture_80:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_50:
   id: 10576
 picture_81:
@@ -55483,9 +55237,9 @@ picture_81:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_51:
   id: 10578
 picture_82:
@@ -55493,9 +55247,9 @@ picture_82:
   tradeable: false
   weight: 0.453
   slot: "Amulet"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_52:
   id: 10580
 keris:
@@ -55733,14 +55487,12 @@ infinity_top_2:
   id: 10605
   absorbmelee: 3
   absorbmagic: 1
-  tradeable: false
   weight: 2.267
   amagic: 22.0
   dmagic: 22.0
   dsummon: 20.0
   slot: "Chest"
-  examine: "Mystical water robes."
-  kept: "Reclaim"
+  examine: "Mystical robes."
 splitbark_helm_2:
   id: 10606
   limit: 100
@@ -55796,7 +55548,7 @@ lunar_helm_2:
   slot: "Hat"
   type: "FullFace"
   destroy: "The Oneiromancer might be able to help you get another."
-  examine: "A mystical helmet. It's also yellow."
+  examine: "A mystical helmet."
   kept: "Reclaim"
 basic_decorative_platebody_2:
   id: 10610
@@ -56043,9 +55795,9 @@ princess_blouse_2:
   kept: "Wilderness"
 zombie_shirt_2:
   id: 10631
+  tradeable: false
   weight: 0.003
   slot: "Chest"
-  destroy: "You will have to purchase another from Thessalia the seamstress."
   examine: "Aside from the braaaains on the lapel, it's still quite good."
   kept: "Wilderness"
 camo_top_2:
@@ -56064,11 +55816,11 @@ lederhosen_top_2:
   kept: "Wilderness"
 shade_robe:
   id: 10634
-  prayer: 5
+  prayer: 4
   tradeable: false
   weight: 0.907
   slot: "Chest"
-  examine: "I feel closer to the gods when I am wearing this."
+  examine: "If a shade had knees, this would keep them nice and warm."
   kept: "Wilderness"
 cape_of_legends_3:
   id: 10635
@@ -56819,7 +56571,6 @@ white_beret_2:
 ranger_boots_2:
   id: 10696
   limit: 2
-  tradeable: false
   dstab: 2.0
   weight: 0.283
   amagic: -10.0
@@ -56829,8 +56580,7 @@ ranger_boots_2:
   dmagic: 2.0
   dsummon: 10.0
   slot: "Feet"
-  examine: "Lightweight boots ideal for rangers. Dyed yellow."
-  kept: "Reclaim"
+  examine: "Lightweight boots ideal for rangers."
 adam_platebody_t:
   id: 10697
   limit: 2
@@ -57241,19 +56991,18 @@ easter_ring_2:
 blue_marionette_2:
   id: 10730
   tradeable: false
-  weight: 0.2
-  destroy: "If you destroy this, another can be claimed from Diango's workshop."
-  examine: "Needs a head."
-  kept: "Reclaim"
-  use: "Removed"
+  weight: 0.907
+  destroy: "You can obtain another marionette in Diango's workshop by the trap door."
+  examine: "I've got no strings ... oh hang on!"
+  kept: "Vanish"
+  use: "Limited"
 zombie_head_2:
   id: 10731
   tradeable: false
-  weight: 5.0
-  destroy: "You can magically find the zombie head again in the Mos Le'Harmless bar basement."
-  examine: "This used to be on the Mk II barrelchest that attacked your house."
-  use: "Quest"
+  weight: 2.721
+  examine: "Alas...I hardly knew him."
   kept: "Wilderness"
+  use: "Limited"
 rubber_chicken_2:
   id: 10732
   tradeable: false
@@ -57263,18 +57012,16 @@ rubber_chicken_2:
   aslash: -100.0
   acrush: -50.0
   slot: "Weapon"
-  destroy: "Destroying this item will send it back to Zemouregal's lost property chest."
-  examine: "It's got a pulley in the middle."
+  examine: "Perhaps not the most powerful weapon in Gielinor."
   kept: "Wilderness"
+  use: "Limited"
 yo-yo_2:
   id: 10733
-  bankable: false
   tradeable: false
-  weight: 0.001
-  destroy: "This item can be reclaimed from Violet's bedroom."
-  examine: "Hi-hi."
-  use: "Quest"
-  kept: "Vanish"
+  weight: 0.01
+  examine: "A gift from Santa."
+  kept: "Wilderness"
+  use: "Limited"
 bunny_ears_2:
   id: 10734
   tradeable: false
@@ -57310,9 +57057,9 @@ picture_83:
   id: 10737
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 amulet_of_magic_t_2:
   id: 10738
   limit: 2
@@ -57324,9 +57071,9 @@ picture_84:
   id: 10739
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 a_powdered_wig:
   id: 10740
   limit: 2
@@ -57337,9 +57084,9 @@ picture_85:
   id: 10741
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 flared_trousers_2:
   id: 10742
   limit: 2
@@ -57350,9 +57097,9 @@ picture_86:
   id: 10743
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 pantaloons_2:
   id: 10744
   limit: 2
@@ -57363,9 +57110,9 @@ picture_87:
   id: 10745
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 sleeping_cap_2:
   id: 10746
   limit: 2
@@ -57377,9 +57124,9 @@ picture_88:
   id: 10747
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elegant_shirt:
   id: 10748
   slot: "Chest"
@@ -57388,9 +57135,9 @@ picture_89:
   id: 10749
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elegant_shirt_2:
   id: 10750
   slot: "Chest"
@@ -57399,9 +57146,9 @@ picture_90:
   id: 10751
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elegant_shirt_3:
   id: 10752
   slot: "Chest"
@@ -57410,9 +57157,9 @@ picture_91:
   id: 10753
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elegant_shirt_4:
   id: 10754
   slot: "Chest"
@@ -57421,9 +57168,9 @@ picture_92:
   id: 10755
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elegant_shirt_5:
   id: 10756
   slot: "Chest"
@@ -57432,9 +57179,9 @@ picture_93:
   id: 10757
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 red_boater_2:
   id: 10758
   limit: 2
@@ -57445,9 +57192,9 @@ picture_94:
   id: 10759
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 orange_boater_2:
   id: 10760
   limit: 2
@@ -57458,9 +57205,9 @@ picture_95:
   id: 10761
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 green_boater_2:
   id: 10762
   limit: 2
@@ -57471,9 +57218,9 @@ picture_96:
   id: 10763
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 blue_boater_2:
   id: 10764
   limit: 2
@@ -57484,9 +57231,9 @@ picture_97:
   id: 10765
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 black_boater_2:
   id: 10766
   limit: 2
@@ -57497,9 +57244,9 @@ picture_98:
   id: 10767
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 red_headband_2:
   id: 10768
   limit: 2
@@ -57510,9 +57257,9 @@ picture_99:
   id: 10769
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 black_headband_2:
   id: 10770
   limit: 2
@@ -57523,9 +57270,9 @@ picture_100:
   id: 10771
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 brown_headband_2:
   id: 10772
   limit: 2
@@ -57536,9 +57283,9 @@ picture_101:
   id: 10773
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 pirates_hat_2:
   id: 10774
   limit: 2
@@ -57549,9 +57296,9 @@ picture_102:
   id: 10775
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 zamorak_platebody:
   id: 10776
   limit: 2
@@ -57571,9 +57318,9 @@ picture_103:
   id: 10777
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 saradomin_plate:
   id: 10778
   limit: 2
@@ -57593,9 +57340,9 @@ picture_104:
   id: 10779
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 guthix_platebody:
   id: 10780
   limit: 2
@@ -57615,9 +57362,9 @@ picture_105:
   id: 10781
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 gilded_platebody:
   id: 10782
   limit: 2
@@ -57637,9 +57384,9 @@ picture_106:
   id: 10783
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 saradomin_robe_top_2:
   id: 10784
   limit: 2
@@ -57654,9 +57401,9 @@ picture_107:
   id: 10785
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 zamorak_robe_top_3:
   id: 10786
   limit: 2
@@ -57671,9 +57418,9 @@ picture_108:
   id: 10787
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 guthix_robe_top_2:
   id: 10788
   limit: 2
@@ -57688,9 +57435,9 @@ picture_109:
   id: 10789
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 zamorak_dragonhide:
   id: 10790
   slot: "Chest"
@@ -57698,9 +57445,9 @@ picture_110:
   id: 10791
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 saradomin_dragonhide:
   id: 10792
   slot: "Chest"
@@ -57708,9 +57455,9 @@ picture_111:
   id: 10793
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 guthix_dragonhide:
   id: 10794
   limit: 2
@@ -57730,13 +57477,12 @@ picture_112:
   id: 10795
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 robin_hood_hat_2:
   id: 10796
   limit: 2
-  tradeable: false
   dstab: 4.0
   weight: 0.283
   amagic: -10.0
@@ -57747,15 +57493,14 @@ robin_hood_hat_2:
   drange: 4.0
   dsummon: 7.0
   slot: "Hat"
-  examine: "Endorsed by Robin Hood, dyed yellow."
-  kept: "Reclaim"
+  examine: "Endorsed by Robin Hood."
 picture_113:
   id: 10797
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 rune_platebody_g_2:
   id: 10798
   limit: 2
@@ -57776,9 +57521,9 @@ picture_114:
   id: 10799
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 rune_platebody_t_2:
   id: 10800
   limit: 2
@@ -57799,9 +57544,9 @@ picture_115:
   id: 10801
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 tan_cavalier_2:
   id: 10802
   limit: 2
@@ -57812,9 +57557,9 @@ picture_116:
   id: 10803
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 dark_cavalier_2:
   id: 10804
   limit: 2
@@ -57825,9 +57570,9 @@ picture_117:
   id: 10805
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 black_cavalier_2:
   id: 10806
   limit: 2
@@ -57838,9 +57583,9 @@ picture_118:
   id: 10807
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 arctic_pyre_logs:
   id: 10808
   price: 2754
@@ -58568,19 +58313,19 @@ reward_token_4:
   id: 10934
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 reward_token_5:
   id: 10935
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 reward_token_6:
   id: 10936
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 nail_beast_nails:
   id: 10937
@@ -58619,19 +58364,19 @@ reward_token_7:
   id: 10942
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 reward_token_8:
   id: 10943
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 reward_token_9:
   id: 10944
   tradeable: false
   destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
-  examine: "Yellow reward token exchanged at Burgh de Rott/Paterdomus."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
   kept: "Reclaim"
 lumberjack_top_2:
   id: 10945
@@ -58983,9 +58728,9 @@ picture_119:
   id: 11000
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 dagonhai_history:
   id: 11001
   tradeable: false
@@ -59355,12 +59100,8 @@ rotten_barrel:
 rope_4:
   id: 11046
   limit: 100
-  bankable: false
-  tradeable: false
-  weight: 0.001
-  destroy: "Are you sure you want to destroy this item?"
-  examine: "Always getting roped into things."
-  use: "Quest"
+  weight: 1.36
+  examine: "A coil of rope."
   kept: "Wilderness"
 brine_rat:
   id: 11047
@@ -60006,11 +59747,8 @@ newspaper_noted:
   id: 11170
 newspaper_2:
   id: 11171
-  tradeable: false
-  weight: 0.02
-  destroy: "If you destroy the newspaper, you'll have to buy another copy from Benny in New Varrock square."
-  examine: "A collection of written news on paper, dated 'Year 170 of the Fifth Age'."
-  kept: "Wilderness"
+  aka: "Varrock Herald"
+  examine: "A collection of written news on paper!"
 newspaper_noted_2:
   id: 11172
 half_certificate_right:
@@ -60483,32 +60221,32 @@ picture_120:
   id: 11267
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_121:
   id: 11268
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_122:
   id: 11269
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_53:
   id: 11270
 picture_123:
   id: 11271
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_54:
   id: 11272
 impling_scroll:
@@ -62313,27 +62051,27 @@ picture_124:
   id: 11740
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_55:
   id: 11741
 picture_125:
   id: 11742
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_56:
   id: 11743
 picture_126:
   id: 11744
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_57:
   id: 11745
 a_key_to_a_chest:
@@ -62443,7 +62181,6 @@ varrock_armour_3:
 logs_3:
   id: 11760
   limit: 25000
-  tradeable: false
   weight: 2.0
   examine: "A number of wooden logs."
   kept: "Wilderness"
@@ -62806,12 +62543,9 @@ goblin_potion_1:
 tinderbox_41:
   id: 11813
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bronze_armour_set_lg:
   id: 11814
   price: 693
@@ -64803,20 +64537,11 @@ guthix_raptor_2:
     summoning: 70
 penguin_4:
   id: 12188
-  npc1: 6909
-  npc2: 6910
-  npc3: 7314
-  npc4: 7315
-  npc5: 7317
-  npc6: 7318
-  npc7: 9233
-  npc8: 9234
-  npc9: 9235
-  food: "Raw fish"
+  tradeable: false
+  weight: 1.5
   destroy: "Release"
   examine: "A captured penguin."
-  skill_req:
-    summoning: 30
+  kept: "Vanish"
 bird:
   id: 12189
   examine: "It's a brightly coloured bird of the jungle."
@@ -64901,30 +64626,12 @@ squirrel:
     hunter: 29
 monkey_12:
   id: 12201
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
-  food: "Bananas"
-  examine: "A confused looking monkey."
-  skill_req:
-    summoning: 95
-    hunter: 27
+  bankable: false
+  tradeable: false
+  weight: 15.0
+  examine: "It's a monkey in your backpack. As you look it pokes you."
+  use: "Quest"
+  kept: "Wilderness"
 chameleon_2:
   id: 12203
   npc1: 6923
@@ -65392,10 +65099,8 @@ praying_mantis_pouchu:
 pouch_2:
   id: 12248
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 arctic_bear_pouchu:
   id: 12249
   limit: 10000
@@ -65786,594 +65491,464 @@ forge_regent_pouchu:
 pouch_3:
   id: 12292
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_4:
   id: 12293
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted:
   id: 12294
 pouch_5:
   id: 12295
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_2:
   id: 12296
 pouch_6:
   id: 12297
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_3:
   id: 12298
 pouch_7:
   id: 12299
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_4:
   id: 12300
 pouch_8:
   id: 12301
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_5:
   id: 12302
 pouch_9:
   id: 12303
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_6:
   id: 12304
 pouch_10:
   id: 12305
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_7:
   id: 12306
 pouch_11:
   id: 12307
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_8:
   id: 12308
 pouch_12:
   id: 12309
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_9:
   id: 12310
 pouch_13:
   id: 12311
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_10:
   id: 12312
 pouch_14:
   id: 12313
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_11:
   id: 12314
 pouch_15:
   id: 12315
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_12:
   id: 12316
 pouch_16:
   id: 12317
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_13:
   id: 12318
 pouch_17:
   id: 12319
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_14:
   id: 12320
 pouch_18:
   id: 12321
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_15:
   id: 12322
 pouch_19:
   id: 12323
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_16:
   id: 12324
 pouch_20:
   id: 12325
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_17:
   id: 12326
 pouch_21:
   id: 12327
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_18:
   id: 12328
 pouch_22:
   id: 12329
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_19:
   id: 12330
 pouch_23:
   id: 12331
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_20:
   id: 12332
 pouch_24:
   id: 12333
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_21:
   id: 12334
 pouch_25:
   id: 12335
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_22:
   id: 12336
 pouch_26:
   id: 12337
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_23:
   id: 12338
 pouch_27:
   id: 12339
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_24:
   id: 12340
 pouch_28:
   id: 12341
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_25:
   id: 12342
 pouch_29:
   id: 12343
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_26:
   id: 12344
 pouch_30:
   id: 12345
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_27:
   id: 12346
 pouch_31:
   id: 12347
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_28:
   id: 12348
 pouch_32:
   id: 12349
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_29:
   id: 12350
 pouch_33:
   id: 12351
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_30:
   id: 12352
 pouch_34:
   id: 12353
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_31:
   id: 12354
 pouch_35:
   id: 12355
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_32:
   id: 12356
 pouch_36:
   id: 12357
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_33:
   id: 12358
 pouch_37:
   id: 12359
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_34:
   id: 12360
 pouch_38:
   id: 12361
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_35:
   id: 12362
 pouch_39:
   id: 12363
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_36:
   id: 12364
 pouch_40:
   id: 12365
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_37:
   id: 12366
 pouch_41:
   id: 12367
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_38:
   id: 12368
 pouch_42:
   id: 12369
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_39:
   id: 12370
 pouch_43:
   id: 12371
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_40:
   id: 12372
 pouch_44:
   id: 12373
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_41:
   id: 12374
 pouch_45:
   id: 12375
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_42:
   id: 12376
 pouch_46:
   id: 12377
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_43:
   id: 12378
 pouch_47:
   id: 12379
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_44:
   id: 12380
 pouch_48:
   id: 12381
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_45:
   id: 12382
 pouch_49:
   id: 12383
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_46:
   id: 12384
 pouch_50:
   id: 12385
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_47:
   id: 12386
 pouch_51:
   id: 12387
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_48:
   id: 12388
 pouch_52:
   id: 12389
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_49:
   id: 12390
 pouch_53:
   id: 12391
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_50:
   id: 12392
 pouch_54:
   id: 12393
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_51:
   id: 12394
 pouch_55:
   id: 12395
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_52:
   id: 12396
 pouch_56:
   id: 12397
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_53:
   id: 12398
 pouch_57:
   id: 12399
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_54:
   id: 12400
 pouch_58:
   id: 12401
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_55:
   id: 12402
 pouch_59:
   id: 12403
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_56:
   id: 12404
 pouch_60:
   id: 12405
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_57:
   id: 12406
 pouch_61:
   id: 12407
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_58:
   id: 12408
 pouch_62:
   id: 12409
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_59:
   id: 12410
 pouch_63:
   id: 12411
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_60:
   id: 12412
 pouch_64:
   id: 12413
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_61:
   id: 12414
 pouch_65:
   id: 12415
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_62:
   id: 12416
 pouch_66:
   id: 12417
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_63:
   id: 12418
 pouch_67:
   id: 12419
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_64:
   id: 12420
 scroll_2:
   id: 12421
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 herbcall_scroll:
   id: 12422
   price: 97
@@ -67181,9 +66756,9 @@ picture_127:
   id: 12537
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_58:
   id: 12538
 grenwall_spikes:
@@ -67195,9 +66770,9 @@ picture_128:
   id: 12544
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_noted_59:
   id: 12545
 enchanted_pawya_meat:
@@ -67578,9 +67153,9 @@ picture_129:
   tradeable: false
   weight: 0.453
   slot: "Shield"
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 amulet_of_farming_1:
   id: 12608
   price: 241
@@ -67792,11 +67367,10 @@ easter_egg_2008_easter_event_blue_3:
 easter_egg_2:
   id: 12644
   limit: 2
-  tradeable: false
+  edible: true
   weight: 0.085
-  examine: "A chocolate egg wrapped in coloured foil."
-  kept: "Vanish"
-  use: "Removed"
+  examine: "Happy Easter."
+  use: "Limited"
 chocatrice_cape:
   id: 12645
   tradeable: false
@@ -71841,7 +71415,7 @@ key_11:
   id: 13073
   tradeable: false
   weight: 0.01
-  examine: "A yellow key from Melzar's Maze."
+  examine: "Opens things."
   use: "Quest"
   kept: "Wilderness"
 clue_scroll_medium_111:
@@ -72678,11 +72252,9 @@ rune_cane_2:
 top_hat_2:
   id: 13166
   limit: 2
-  tradeable: false
   weight: 1.0
   slot: "Hat"
-  examine: "Comes with a free rabbit! Dyed white."
-  kept: "Reclaim"
+  examine: "Comes with a free rabbit!"
 pith_helmet_2:
   id: 13167
   limit: 2
@@ -72978,12 +72550,9 @@ treated_oak_plank:
 chisel_3:
   id: 13239
   limit: 100
-  bankable: false
-  tradeable: false
   weight: 0.453
   examine: "Good for detailed crafting."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 treated_plank:
   id: 13241
   examine: "A plank of oak that has been treated to resist fire."
@@ -80081,13 +79650,12 @@ fire_key_2:
   kept: "Wilderness"
 water_key_2:
   id: 14522
-  bankable: false
   tradeable: false
-  weight: 0.1
-  destroy: "You can get another by speaking to the river spirit in the Land of Holly and Hawthorn."
-  examine: "Its surface seems to flow under your hand."
-  kept: "Vanish"
-  use: "Removed"
+  weight: 1.0
+  destroy: "You found this in the Chasm of Tears by using an"
+  examine: "An elemental key of water."
+  use: "Quest"
+  kept: "Wilderness"
 dagonhai_robes_set:
   id: 14525
   price: 212381
@@ -80239,9 +79807,9 @@ cornucopia_2:
   id: 14570
   tradeable: false
   stacksinbank: false
-  weight: 0.02
+  weight: 0.01
   destroy: "You will lose all food stored in the Cornucopia. You can get another empty one from Diango in Draynor Village."
-  examine: "A horn of plenty."
+  examine: "An empty horn of plenty."
   kept: "Wilderness"
   use: "Limited"
 fremennik_sea_boots_1:
@@ -80595,10 +80163,8 @@ phoenix_quill_noted:
 pouch_68:
   id: 14620
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_noted_65:
   id: 14621
 rise_from_the_ashes_scroll:
@@ -80765,12 +80331,12 @@ red_cape_2:
 blue_cape_2:
   id: 14642
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   dslash: 1.0
   dcrush: 1.0
   drange: 2.0
+  aka: "Blue Soul Wars cape"
   slot: "Cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
@@ -81161,12 +80727,9 @@ bandos_throne_room_sphere:
   kept: "Reclaim"
 bones_3:
   id: 14693
-  bankable: false
-  tradeable: false
-  weight: 0.05
-  destroy: "You can kill an opposing player to get some more."
-  examine: "may contain bones."
-  kept: "Reclaim"
+  weight: 0.5
+  examine: "Bones are for burying."
+  kept: "Wilderness"
 prophecy_tablet_glorious_memories:
   id: 14696
   tradeable: false
@@ -81299,10 +80862,9 @@ antique_lamp_glorious_memories:
 beer_2:
   id: 14712
   limit: 100
-  edible: true
   weight: 0.55
   slot: "Weapon"
-  examine: "Frothy and alcoholic."
+  examine: "A glass of frothy ale."
 easter_carrot_2:
   id: 14713
   tradeable: false
@@ -84498,12 +84060,8 @@ special_mahogany_log:
   kept: "Vanish"
 plank_2:
   id: 15291
-  bankable: false
-  tradeable: false
-  weight: 0.001
-  examine: "A large plank of wood."
-  kept: "Reclaim"
-  use: "Limited"
+  weight: 0.8
+  examine: "A plank of wood!"
 short_plank:
   id: 15292
   bankable: false
@@ -84968,9 +84526,9 @@ picture_130:
   id: 15376
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 barrows_icon:
   id: 15378
   tradeable: false
@@ -85193,9 +84751,9 @@ picture_131:
   id: 15409
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 ancient_bones_the_restless_ghost:
   id: 15410
   tradeable: false
@@ -85384,12 +84942,12 @@ red_cape_3:
 blue_cape_3:
   id: 15433
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   dslash: 1.0
   dcrush: 1.0
   drange: 2.0
+  aka: "Blue Soul Wars cape"
   slot: "Cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
@@ -85706,12 +85264,12 @@ barbarian_assault_ticket_-_wave_10:
 blue_cape_4:
   id: 15474
   limit: 100
-  bankable: false
   tradeable: false
   weight: 0.453
   dslash: 1.0
   dcrush: 1.0
   drange: 2.0
+  aka: "Blue Soul Wars cape"
   examine: "Like a red cape, but blue."
   kept: "Reclaim"
 combination_runes_book:
@@ -86033,7 +85591,7 @@ strange_rock:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_herblore:
   id: 15524
@@ -86047,14 +85605,14 @@ strange_rock_2:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_3:
   id: 15526
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_thieving:
   id: 15527
@@ -86075,7 +85633,7 @@ strange_rock_4:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_runecrafting:
   id: 15530
@@ -86089,7 +85647,7 @@ strange_rock_5:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_mining:
   id: 15532
@@ -86103,7 +85661,7 @@ strange_rock_6:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_smithing:
   id: 15534
@@ -86117,7 +85675,7 @@ strange_rock_7:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_fishing:
   id: 15536
@@ -86131,7 +85689,7 @@ strange_rock_8:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_cooking:
   id: 15538
@@ -86145,7 +85703,7 @@ strange_rock_9:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_firemaking:
   id: 15540
@@ -86159,7 +85717,7 @@ strange_rock_10:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_woodcutting:
   id: 15542
@@ -86173,7 +85731,7 @@ strange_rock_11:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_fletching:
   id: 15544
@@ -86187,7 +85745,7 @@ strange_rock_12:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_farming:
   id: 15546
@@ -86201,7 +85759,7 @@ strange_rock_13:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_construction:
   id: 15548
@@ -86215,7 +85773,7 @@ strange_rock_14:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 strange_rock_hunter:
   id: 15550
@@ -86229,7 +85787,7 @@ strange_rock_15:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while cutting trees."
+  examine: "A rock found while practising agility."
   kept: "Wilderness"
 replica_statue_piece_agility:
   id: 15552
@@ -86610,9 +86168,9 @@ picture_132:
   id: 15601
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_hat_air:
   id: 15602
   tradeable: false
@@ -86627,9 +86185,9 @@ picture_133:
   id: 15603
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_bottoms_air:
   id: 15604
   absorbmelee: 2
@@ -86646,9 +86204,9 @@ picture_134:
   id: 15605
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_top_water:
   id: 15606
   absorbmelee: 3
@@ -86665,9 +86223,9 @@ picture_135:
   id: 15607
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_hat_water:
   id: 15608
   tradeable: false
@@ -86682,9 +86240,9 @@ picture_136:
   id: 15609
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_bottoms_water:
   id: 15610
   absorbmelee: 2
@@ -86701,9 +86259,9 @@ picture_137:
   id: 15611
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_top_fire:
   id: 15612
   absorbmelee: 3
@@ -86720,9 +86278,9 @@ picture_138:
   id: 15613
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_hat_fire:
   id: 15614
   tradeable: false
@@ -86737,9 +86295,9 @@ picture_139:
   id: 15615
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_bottoms_fire:
   id: 15616
   absorbmelee: 2
@@ -86756,9 +86314,9 @@ picture_140:
   id: 15617
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_top_earth:
   id: 15618
   absorbmelee: 3
@@ -86775,9 +86333,9 @@ picture_141:
   id: 15619
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_hat_earth:
   id: 15620
   tradeable: false
@@ -86792,9 +86350,9 @@ picture_142:
   id: 15621
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 infinity_bottoms_earth:
   id: 15622
   absorbmelee: 2
@@ -86811,9 +86369,9 @@ picture_143:
   id: 15623
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 helmet_of_trials_2:
   id: 15624
   tradeable: false
@@ -86927,58 +86485,58 @@ picture_144:
   id: 15640
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_145:
   id: 15641
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_146:
   id: 15642
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_147:
   id: 15643
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_148:
   id: 15644
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_149:
   id: 15645
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_150:
   id: 15646
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_151:
   id: 15647
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 fish_flingers_scorecard:
   id: 15648
   tradeable: false
@@ -91550,116 +91108,62 @@ primal_chainbody_bound:
   examine: "A series of connected metal rings."
 air_rune_b:
   id: 16091
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An air rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_b:
   id: 16092
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A water rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_b:
   id: 16093
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An earth rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_b:
   id: 16094
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A fire rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune_b:
   id: 16095
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A mind rune."
-  use: "Quest"
+  examine: "A basic level catalytic rune."
   kept: "Wilderness"
 chaos_rune_b:
   id: 16096
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from chaotic cloud nodes and chaos esshounds."
   examine: "Used for low level missile spells."
-  kept: "Vanish"
 death_rune_b:
   id: 16097
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from skeleton nodes, bloody skull nodes, undead soul nodes and death esswraiths."
   examine: "Used for medium level missile spells."
-  kept: "Vanish"
 blood_rune_b:
   id: 16098
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from blood pool nodes, bloody skull nodes and blood esswraiths."
   examine: "Used for high level missile spells."
-  kept: "Vanish"
 body_rune_b:
   id: 16099
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning fleshy growth nodes and body esshounds."
   examine: "Used for Curse spells"
-  kept: "Vanish"
+  kept: "Wilderness"
 cosmic_rune_b:
   id: 16100
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from nebula nodes or cosmic esshounds."
   examine: "Used for enchant spells."
-  kept: "Vanish"
 astral_rune_b:
   id: 16101
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from nebula nodes and astral esshounds."
   examine: "Used for Lunar Spells"
-  kept: "Vanish"
 nature_rune_b:
   id: 16102
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from shifter nodes and nature esshounds."
+  aka: "Nat"
   examine: "Used for alchemy spells."
-  kept: "Vanish"
 law_rune_b:
   id: 16103
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from jumper nodes and law esshounds."
   examine: "Used for teleport spells."
-  kept: "Vanish"
 soul_rune_b:
   id: 16104
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from living soul nodes, undead soul nodes and soul esswraiths."
   examine: "Used for high level curse spells."
-  kept: "Vanish"
 protoleather_vambraces_bound:
   id: 16105
   tradeable: false
@@ -92057,27 +91561,28 @@ primal_2h_sword_bound:
 sapphire_amulet_b:
   id: 16138
   limit: 5000
-  weight: 0.004
+  weight: 0.007
   slot: "Amulet"
-  examine: "It needs a string so I can wear it."
+  examine: "I wonder if I can get this enchanted."
 emerald_amulet_b:
   id: 16139
   limit: 5000
-  weight: 0.004
+  weight: 0.007
   slot: "Amulet"
-  examine: "It needs a string so I can wear it."
+  examine: "I wonder if I can get this enchanted."
 ruby_amulet_b:
   id: 16140
   limit: 5000
-  weight: 0.004
+  weight: 0.007
   slot: "Amulet"
-  examine: "It needs a string so I can wear it."
+  destroy: "No"
+  examine: "I wonder if I can get this enchanted."
 diamond_amulet_b:
   id: 16141
   limit: 5000
-  weight: 0.004
+  weight: 0.007
   slot: "Amulet"
-  examine: "It needs a string so I can wear it."
+  examine: "I wonder if I can get this enchanted."
 novite_pickaxe_bound:
   id: 16142
   tradeable: false
@@ -102419,45 +101924,33 @@ blue_charm_dungeoneering:
 pouch_69:
   id: 18021
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_70:
   id: 18022
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_71:
   id: 18023
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_72:
   id: 18024
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_73:
   id: 18025
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_74:
   id: 18026
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 sundering_strike_tier_1:
   id: 18027
   examine: "A scroll for a cub bloodrager."
@@ -102701,45 +102194,33 @@ glimmer_of_light_tier_10:
 pouch_75:
   id: 18087
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_76:
   id: 18088
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_77:
   id: 18089
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_78:
   id: 18090
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_79:
   id: 18091
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 pouch_80:
   id: 18092
   limit: 10000
-  tradeable: false
-  weight: 0.003
-  examine: "This can be used to create summoning pouches."
-  kept: "Vanish"
+  examine: "Can be used to create Summoning pouches."
+  kept: "Wilderness"
 baked_cave_potato:
   id: 18093
   edible: true
@@ -104162,450 +103643,450 @@ picture_152:
   id: 18376
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_153:
   id: 18378
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_154:
   id: 18380
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_155:
   id: 18382
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_156:
   id: 18384
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_157:
   id: 18386
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_158:
   id: 18388
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_159:
   id: 18390
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_160:
   id: 18392
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_161:
   id: 18394
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_162:
   id: 18396
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_163:
   id: 18398
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_164:
   id: 18400
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_165:
   id: 18402
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_166:
   id: 18404
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_167:
   id: 18406
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_168:
   id: 18408
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_169:
   id: 18410
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_170:
   id: 18412
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_171:
   id: 18414
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_172:
   id: 18416
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_173:
   id: 18418
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_174:
   id: 18420
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_175:
   id: 18422
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_176:
   id: 18424
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_177:
   id: 18426
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_178:
   id: 18428
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_179:
   id: 18430
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_180:
   id: 18432
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_181:
   id: 18434
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_182:
   id: 18436
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_183:
   id: 18438
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_184:
   id: 18440
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_185:
   id: 18442
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_186:
   id: 18444
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_187:
   id: 18446
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_188:
   id: 18448
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_189:
   id: 18450
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_190:
   id: 18452
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_191:
   id: 18454
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_192:
   id: 18456
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_193:
   id: 18458
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_194:
   id: 18460
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_195:
   id: 18462
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_196:
   id: 18464
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_197:
   id: 18466
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_198:
   id: 18468
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_199:
   id: 18470
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_200:
   id: 18472
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_201:
   id: 18474
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_202:
   id: 18476
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_203:
   id: 18478
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_204:
   id: 18480
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_205:
   id: 18482
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_206:
   id: 18484
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_207:
   id: 18486
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_208:
   id: 18488
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_209:
   id: 18490
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_210:
   id: 18492
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_211:
   id: 18494
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_212:
   id: 18496
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_213:
   id: 18498
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_214:
   id: 18500
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_215:
   id: 18502
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 edimmu:
   id: 18503
   tradeable: false
@@ -104799,68 +104280,68 @@ kinship_ring_3:
   examine: "This ties you to your allies and enables party configuration in Daemonheim."
 scroll_3:
   id: 18586
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_4:
   id: 18587
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_5:
   id: 18588
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_6:
   id: 18589
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_7:
   id: 18590
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_8:
   id: 18591
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_9:
   id: 18592
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_10:
   id: 18593
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 herb:
   id: 18594
 herb_2:
@@ -104879,20 +104360,20 @@ herb_8:
   id: 18601
 scroll_11:
   id: 18602
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 scroll_12:
   id: 18603
+  bankable: false
   tradeable: false
-  weight: 0.01
-  destroy: "You can get another scroll by asking King Vargas of Miscellania to write one."
-  examine: "An official-looking scroll."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.005
+  destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
+  examine: "A recruitment scroll."
+  kept: "Reclaim"
 herb_9:
   id: 18604
 herb_10:
@@ -105863,9 +105344,9 @@ picture_216:
   id: 18787
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 climbing_boots:
   id: 18788
   tradeable: false
@@ -110650,10 +110131,7 @@ puzzle_box_a_void_dance:
 puzzle_box_23:
   id: 19625
   tradeable: false
-  weight: 0.5
-  destroy: "You can buy another from Ali Tist in Falador if you wish."
-  examine: "Crack the puzzle to win a fabulous prize!"
-  use: "Quest"
+  examine: "I need to solve this!"
   kept: "Wilderness"
 mysterious_clue_scroll:
   id: 19626
@@ -111830,16 +111308,16 @@ commorb:
   weight: 0.001
   slot: "Weapon"
   destroy: "Your CommOrb will automatically self destruct when dropped. Please speak to your Temple Knight superior to receive another."
-  examine: "A Temple Knight Communication Orb. Top Secret!"
+  examine: "Use this to stay in touch with Korasi and Jessika."
   use: "Quest"
   kept: "Wilderness"
 picture_217:
   id: 19800
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 black_helm_2:
   id: 19801
   limit: 1000
@@ -111858,9 +111336,9 @@ picture_218:
   id: 19802
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 elite_void_knight_torso:
   id: 19803
   prayer: 4
@@ -112051,9 +111529,9 @@ picture_219:
   id: 19844
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 zabeths_autograph:
   id: 19845
   bankable: false
@@ -112920,9 +112398,9 @@ picture_220:
   id: 20051
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 clay_ring_unfired:
   id: 20052
   price: 17
@@ -113113,9 +112591,10 @@ thorvars_bag_2:
   id: 20076
   tradeable: false
   weight: 0.001
-  destroy: "If you destroy this bag you'll have to gather another one from Thorvar Crittersmash in Santa's neighbourhood."
+  destroy: "You should ask Thorvar about getting another one."
   examine: "A large bag."
   kept: "Vanish"
+  use: "Removed"
 salty_claws_hat:
   id: 20077
   tradeable: false
@@ -118431,24 +117910,23 @@ fractite_pickaxe:
 gold_charm_2:
   id: 20850
   tradeable: false
-  weight: 0.005
   examine: "A charm used to summon familiars."
-  kept: "Vanish"
+  kept: "Wilderness"
 novite_ore_2:
   id: 20851
-  bankable: false
-  weight: 2.25
   examine: "It's a rock now, but there's potential for so much more!"
+  use: "Dungeoneering"
+  kept: "Always"
 bathus_ore_2:
   id: 20852
-  bankable: false
-  weight: 2.25
   examine: "It's a rock now, but there's potential for so much more!"
+  use: "Dungeoneering"
+  kept: "Always"
 zephyrium_ore_2:
   id: 20853
-  bankable: false
-  weight: 2.25
   examine: "It's a rock now, but there's potential for so much more!"
+  use: "Dungeoneering"
+  kept: "Always"
 crimson_triangle_key_2:
   id: 20854
   weight: 0.001
@@ -118656,12 +118134,9 @@ katagon_full_helm:
   kept: "Always"
 vial_2:
   id: 20878
-  tradeable: false
   weight: 0.015
-  destroy: "This item will likely break if you put it down here, and you will have to go looking for another."
-  examine: "An infusion of water and jangerberries."
-  use: "Quest"
-  kept: "Reclaim"
+  examine: "An empty glass vial."
+  kept: "Wilderness"
 antipoison_elixir:
   id: 20879
   edible: true
@@ -118768,8 +118243,10 @@ raw_shrimp:
   id: 20893
   tradeable: false
   weight: 0.12
+  destroy: "You will need to catch another shrimp if you destroy this one."
   examine: "I should try cooking this."
-  kept: "Wilderness"
+  use: "Quest"
+  kept: "Vanish"
 willow_logs_2:
   id: 20894
   limit: 25000
@@ -118788,36 +118265,26 @@ raw_cod_2:
 chisel_4:
   id: 20897
   limit: 100
-  bankable: false
-  tradeable: false
   weight: 0.453
   examine: "Good for detailed crafting."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bucket_3:
   id: 20898
   limit: 100
-  tradeable: false
   weight: 1.0
   examine: "It's a wooden bucket."
   kept: "Wilderness"
 logs_4:
   id: 20899
   limit: 25000
-  tradeable: false
   weight: 2.0
   examine: "A number of wooden logs."
   kept: "Wilderness"
 maple_logs_2:
   id: 20900
   limit: 25000
-  bankable: false
-  tradeable: false
   weight: 2.0
-  destroy: "Your item will be destroyed permanently and it may not be reclaimable."
   examine: "Logs cut from a maple tree."
-  use: "Quest"
-  kept: "Wilderness"
 big_fishing_net_2:
   id: 20901
   limit: 100
@@ -118827,12 +118294,11 @@ big_fishing_net_2:
 leather_boots_2:
   id: 20902
   limit: 5000
-  tradeable: false
   weight: 0.34
   dslash: 1.0
   dcrush: 1.0
   examine: "Comfortable leather boots."
-  kept: "Always"
+  kept: "Wilderness"
 iron_ore_2:
   id: 20903
   limit: 25000
@@ -118842,19 +118308,12 @@ iron_ore_2:
 gold_ore_2:
   id: 20904
   limit: 25000
-  bankable: false
-  tradeable: false
-  weight: 1.0
-  examine: "Gold ore, unique to the resource race."
-  kept: "Reclaim"
+  weight: 2.267
+  examine: "This needs refining."
 plank_3:
   id: 20905
-  bankable: false
-  tradeable: false
-  weight: 0.001
-  examine: "A large plank of wood."
-  kept: "Reclaim"
-  use: "Limited"
+  weight: 0.8
+  examine: "A plank of wood!"
 raw_bass_2:
   id: 20906
   limit: 20000
@@ -118882,12 +118341,8 @@ sapphire_2:
   examine: "This looks valuable."
 seaweed_2:
   id: 20911
-  tradeable: false
-  weight: 1.0
-  destroy: "You will need to return to the penguin submarine to get another."
-  examine: "Sticky."
-  use: "Quest"
-  kept: "Wilderness"
+  weight: 0.2
+  examine: "Slightly damp seaweed."
 raw_shark_2:
   id: 20912
   limit: 20000
@@ -118926,60 +118381,45 @@ ruby_2:
 emerald_2:
   id: 20919
   limit: 5000
-  tradeable: false
   weight: 0.002
   examine: "This looks valuable."
-  kept: "Always"
 law_rune_3:
   id: 20920
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from jumper nodes and law esshounds."
   examine: "Used for teleport spells."
-  kept: "Vanish"
 blood_rune_2:
   id: 20921
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from blood pool nodes, bloody skull nodes and blood esswraiths."
   examine: "Used for high level missile spells."
-  kept: "Vanish"
 ring_of_duelling_8_2:
   id: 20922
   weight: 0.006
   examine: "An enchanted ring."
 coins_12:
   id: 20923
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 coins_13:
   id: 20924
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 coins_14:
   id: 20925
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 coins_15:
   id: 20926
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 coins_16:
   id: 20927
-  tradeable: false
-  weight: 0.002
+  aka: "gold pieces, gp"
   examine: "Lovely money!"
-  kept: "Reclaim"
+  kept: "Wilderness"
 green_dragonhide_2:
   id: 20928
   limit: 10000
@@ -119003,18 +118443,14 @@ ornate_katana:
 hammer_2:
   id: 20931
   weight: 0.907
-  examine: "Good for hitting things."
-  use: "Dungeoneering"
-  kept: "Always"
+  examine: "Good for hitting things!"
+  kept: "Wilderness"
 tinderbox_42:
   id: 20932
   limit: 5000
-  tradeable: false
   weight: 0.035
-  destroy: "If destroyed, you can find another in the Black Hole between realms."
   examine: "Useful for lighting a fire."
-  use: "Quest"
-  kept: "Vanish"
+  kept: "Wilderness"
 bucket_of_oil:
   id: 20933
   tradeable: false
@@ -119051,84 +118487,46 @@ tetrahedron_4:
   kept: "Wilderness"
 fire_rune_4:
   id: 20939
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A fire rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_4:
   id: 20940
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A water rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_4:
   id: 20941
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An air rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_3:
   id: 20942
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "An earth rune."
-  use: "Quest"
+  examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune_3:
   id: 20943
-  tradeable: false
-  weight: 0.01
-  destroy: "Are you sure you wish to destroy this?"
-  examine: "A mind rune."
-  use: "Quest"
+  examine: "A basic level catalytic rune."
   kept: "Wilderness"
 body_rune_3:
   id: 20944
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning fleshy growth nodes and body esshounds."
   examine: "Used for Curse spells"
-  kept: "Vanish"
+  kept: "Wilderness"
 death_rune_3:
   id: 20945
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from skeleton nodes, bloody skull nodes, undead soul nodes and death esswraiths."
   examine: "Used for medium level missile spells."
-  kept: "Vanish"
 nature_rune_2:
   id: 20946
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from shifter nodes and nature esshounds."
+  aka: "Nat"
   examine: "Used for alchemy spells."
-  kept: "Vanish"
 chaos_rune_4:
   id: 20947
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from chaotic cloud nodes and chaos esshounds."
   examine: "Used for low level missile spells."
-  kept: "Vanish"
 law_rune_4:
   id: 20948
   limit: 25000
-  bankable: false
-  tradeable: false
-  destroy: "You can get more by siphoning from jumper nodes and law esshounds."
   examine: "Used for teleport spells."
-  kept: "Vanish"
 red_robin_hood_hat:
   id: 20949
   slot: "Hat"
@@ -119170,7 +118568,7 @@ samba_headdress:
   slot: "Hat"
   type: "FullFace"
   destroy: "Are you sure you want to destroy this item? You can now activate this outfit as an override from the Customisation interface."
-  examine: "An exotic headdress covered in feathers."
+  examine: "A headdress covered in feathers."
   kept: "Wilderness"
 oddball_aura:
   id: 20957
@@ -120821,252 +120219,252 @@ picture_221:
   id: 21266
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note:
   id: 21267
 picture_222:
   id: 21268
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_2:
   id: 21269
 picture_223:
   id: 21270
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_3:
   id: 21271
 picture_224:
   id: 21272
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_4:
   id: 21273
 picture_225:
   id: 21274
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_5:
   id: 21275
 picture_226:
   id: 21276
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_6:
   id: 21277
 picture_227:
   id: 21278
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_7:
   id: 21279
 picture_228:
   id: 21280
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_8:
   id: 21281
 picture_229:
   id: 21282
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_9:
   id: 21283
 picture_230:
   id: 21284
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_10:
   id: 21285
 picture_231:
   id: 21286
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_11:
   id: 21287
 picture_232:
   id: 21288
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_12:
   id: 21289
 picture_233:
   id: 21290
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_13:
   id: 21291
 picture_234:
   id: 21292
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_14:
   id: 21293
 picture_235:
   id: 21294
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_15:
   id: 21295
 picture_236:
   id: 21296
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_16:
   id: 21297
 picture_237:
   id: 21298
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_17:
   id: 21299
 picture_238:
   id: 21300
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_18:
   id: 21301
 picture_239:
   id: 21302
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_19:
   id: 21303
 picture_240:
   id: 21304
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_20:
   id: 21305
 picture_241:
   id: 21306
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_21:
   id: 21307
 picture_242:
   id: 21308
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_22:
   id: 21309
 picture_243:
   id: 21310
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_23:
   id: 21311
 picture_244:
   id: 21312
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_24:
   id: 21313
 picture_245:
   id: 21314
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_25:
   id: 21315
 picture_246:
   id: 21316
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_26:
   id: 21317
 picture_247:
   id: 21318
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_27:
   id: 21319
 picture_248:
   id: 21320
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_28:
   id: 21321
 oddball_note:
@@ -123678,60 +123076,60 @@ samba_headdress_2:
   tradeable: false
   weight: 0.453
   destroy: "Are you sure you want to destroy this item? You can now activate this outfit as an override from the Customisation interface."
-  examine: "An exotic headdress covered in feathers."
+  examine: "A headdress covered in feathers."
   kept: "Wilderness"
 picture_249:
   id: 21874
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_29:
   id: 21875
 picture_250:
   id: 21876
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_30:
   id: 21877
 picture_251:
   id: 21878
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_31:
   id: 21879
 picture_252:
   id: 21880
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_32:
   id: 21881
 picture_253:
   id: 21882
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_33:
   id: 21883
 picture_254:
   id: 21884
   tradeable: false
   weight: 0.453
-  examine: "For a mosaic."
-  kept: "Reclaim"
-  use: "Removed"
+  examine: "A picture of a lady called Elena."
+  use: "Quest"
+  kept: "Wilderness"
 picture_note_34:
   id: 21885
 theatrical_hat_red:
