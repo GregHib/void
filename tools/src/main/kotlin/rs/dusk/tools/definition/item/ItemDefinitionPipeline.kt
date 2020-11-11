@@ -140,11 +140,9 @@ object ItemDefinitionPipeline {
             }
         }
 
-        collectUnknownPages("rs2", incomplete, rs2Wiki, pages, infoboxes.map { it.first }) { id, page ->
-            if (pages.containsKey(id)) {
-                pages[id]!!.copy(rs2 = page)
-            } else {
-                PageCollector(id, decoder.get(id).name, rs2 = page)
+        collectUnknownPages("rs2-item", incomplete, rs2Wiki, pages, infoboxes.map { it.first }) { id, page ->
+            (pages[id] ?: PageCollector(id, decoder.get(id).name)).apply {
+                rs2 = page
             }
         }
         return pages

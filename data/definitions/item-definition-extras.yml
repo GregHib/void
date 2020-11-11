@@ -4573,6 +4573,8 @@ yew_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
+yew_longbow_noted:
+  id: 856
 yew_shortbow:
   id: 857
   price: 375
@@ -5905,7 +5907,7 @@ rune_chainbody_noted:
 iron_platebody:
   id: 1115
   price: 223
-  limit: 1000
+  limit: 100
   dstab: 21.0
   weight: 9.979
   amagic: -30.0
@@ -6237,6 +6239,8 @@ black_helm:
   slot: "Hat"
   type: "Hair"
   examine: "A medium sized helmet."
+black_med_helm_noted:
+  id: 1152
 iron_full_helm:
   id: 1153
   price: 45
@@ -13572,6 +13576,8 @@ red_dragonhide_vambraces:
   dsummon: 5.0
   slot: "Hands"
   examine: "Vambraces made from 100% real dragonhide."
+red_dhide_vambraces_noted:
+  id: 2490
 black_dragonhide_vambraces:
   id: 2491
   price: 2738
@@ -13586,6 +13592,8 @@ black_dragonhide_vambraces:
   dsummon: 6.0
   slot: "Hands"
   examine: "Vambraces made from 100% real dragonhide."
+black_dhide_vambraces_noted:
+  id: 2492
 blue_dragonhide_chaps:
   id: 2493
   price: 2406
@@ -13622,6 +13630,8 @@ red_dragonhide_chaps:
   dsummon: 25.0
   slot: "Legs"
   examine: "Made from 100% real dragonhide."
+red_dhide_chaps_noted:
+  id: 2496
 black_dragonhide_chaps:
   id: 2497
   price: 6606
@@ -13639,6 +13649,8 @@ black_dragonhide_chaps:
   dsummon: 30.0
   slot: "Legs"
   examine: "Made from 100% real dragonhide."
+black_dhide_chaps_noted:
+  id: 2498
 blue_dragonhide_body:
   id: 2499
   price: 5471
@@ -13677,6 +13689,8 @@ red_dragonhide_body:
   slot: "Chest"
   type: "Sleeveless"
   examine: "Made from 100% real dragonhide."
+red_dhide_body_noted:
+  id: 2502
 black_dragonhide_body:
   id: 2503
   price: 7949
@@ -13695,6 +13709,8 @@ black_dragonhide_body:
   slot: "Chest"
   type: "Sleeveless"
   examine: "Made from 100% real dragonhide."
+black_dhide_body_noted:
+  id: 2504
 blue_dragon_leather:
   id: 2505
   price: 2365
@@ -14704,6 +14720,8 @@ rune_platelegs_saradomin:
   dsummon: 15.0
   slot: "Legs"
   examine: "Rune platelegs in the colours of Saradomin."
+saradomin_platelegs_noted:
+  id: 2664
 rune_full_helm_saradomin:
   id: 2665
   price: 1100000
@@ -14741,6 +14759,8 @@ rune_kiteshield_saradomin:
   dsummon: 40.0
   slot: "Shield"
   examine: "A rune kiteshield in the colours of Saradomin."
+saradomin_kiteshield_noted:
+  id: 2668
 rune_platebody_guthix:
   id: 2669
   price: 362200
@@ -14777,6 +14797,8 @@ rune_platelegs_guthix:
   dsummon: 15.0
   slot: "Legs"
   examine: "Rune platelegs in the colours of Guthix."
+guthix_platelegs_noted:
+  id: 2672
 rune_full_helm_guthix:
   id: 2673
   price: 332500
@@ -17046,6 +17068,8 @@ iron_claws_noted:
   id: 3116
 steel_claws_noted:
   id: 3117
+black_claws_noted:
+  id: 3118
 mithril_claws_noted:
   id: 3119
 adamant_claws_noted:
@@ -19802,6 +19826,8 @@ saradomin_plateskirt_noted:
   id: 3675
 guthix_plateskirt_noted:
   id: 3676
+gilded_plateskirt_noted:
+  id: 3677
 flamtaer_hammer:
   id: 3678
   tradeable: false
@@ -22470,6 +22496,8 @@ crystal_ward_11:
   examine: "A nice sturdy crystal shield."
   kept: "Reclaim"
   use: "Limited"
+new_crystal_shield_noted:
+  id: 4235
 signed_oak_bow:
   id: 4236
   tradeable: false
@@ -25502,6 +25530,8 @@ torags_hammers_new:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Torag the Corrupted's twin hammers."
+torags_hammers_noted:
+  id: 4748
 torags_platebody_new:
   id: 4749
   price: 524300
@@ -35045,6 +35075,8 @@ white_helm:
   slot: "Hat"
   type: "Hair"
   examine: "A medium sized helmet."
+white_med_helm_noted:
+  id: 6622
 white_full_helm:
   id: 6623
   price: 2163
@@ -49601,18 +49633,24 @@ proselyte_harness_m:
   limit: 100
   weight: 14.514
   examine: "Proselyte level armour pack."
+prosyte_harness_m_noted:
+  id: 9667
 initiate_harness_m:
   id: 9668
   price: 23100
   limit: 100
   weight: 14.514
   examine: "Initiate level armour pack."
+initiate_harness_m_noted:
+  id: 9669
 proselyte_harness_f:
   id: 9670
   price: 29000
   limit: 100
   weight: 14.514
   examine: "Proselyte level armour pack."
+prosyte_harness_f_noted:
+  id: 9671
 proselyte_sallet:
   id: 9672
   price: 4686
@@ -64359,42 +64397,56 @@ spirit_cockatrice_pouch:
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit cockatrice familiar with this."
+sp._cockatrice_pouch_noted:
+  id: 12096
 spirit_guthatrice_pouch:
   id: 12097
   price: 1504
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit guthatrice familiar with this."
+sp._guthatrice_pouch_noted:
+  id: 12098
 spirit_saratrice_pouch:
   id: 12099
   price: 1506
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit saratrice familiar with this."
+sp._saratrice_pouch_noted:
+  id: 12100
 spirit_zamatrice_pouch:
   id: 12101
   price: 1517
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit zamatrice familiar with this."
+sp._zamatrice_pouch_noted:
+  id: 12102
 spirit_pengatrice_pouch:
   id: 12103
   price: 1528
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit pengatrice familiar with this."
+sp._pengatrice_pouch_noted:
+  id: 12104
 spirit_coraxatrice_pouch:
   id: 12105
   price: 4576
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit coraxatrice familiar with this."
+sp._coraxatrice_pouch_noted:
+  id: 12106
 spirit_vulatrice_pouch:
   id: 12107
   price: 4829
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit vulatrice familiar with this."
+sp._vulatrice_pouch_noted:
+  id: 12108
 cockatrice_egg:
   id: 12109
   price: 789
@@ -74087,6 +74139,10 @@ green_dhide_body_lent:
   id: 13483
 blue_dhide_body_lent:
   id: 13484
+red_dhide_body_lent:
+  id: 13485
+black_dhide_body_lent:
+  id: 13486
 rune_platelegs_lent:
   id: 13487
 dragon_platelegs_lent:
@@ -74099,6 +74155,10 @@ green_dhide_chaps_lent:
   id: 13491
 blue_dhide_chaps_lent:
   id: 13492
+red_dhide_chaps_lent:
+  id: 13493
+black_dhide_chaps_lent:
+  id: 13494
 dragon_med_helm_lent:
   id: 13495
 rune_full_helm_lent:
@@ -74107,6 +74167,10 @@ green_dhide_vambraces_lent:
   id: 13497
 blue_dhide_vambraces_lent:
   id: 13498
+red_dhide_vambraces_lent:
+  id: 13499
+black_dhide_vambraces_lent:
+  id: 13500
 splitbark_helm_lent:
   id: 13501
 splitbark_body_lent:
@@ -74151,8 +74215,12 @@ mystic_gloves_lent_3:
   id: 13521
 mystic_boots_lent_3:
   id: 13522
+maple_longbow_lent:
+  id: 13523
 maple_shortbow_lent:
   id: 13524
+yew_longbow_lent:
+  id: 13525
 yew_shortbow_lent:
   id: 13526
 magic_longbow_lent:
@@ -75956,12 +76024,18 @@ zamorak_kiteshield_lent:
   id: 13824
 saradomin_platebody_lent:
   id: 13825
+saradomin_platelegs_lent:
+  id: 13826
 saradomin_plateskirt_lent:
   id: 13827
 saradomin_full_helm_lent:
   id: 13828
+saradomin_kiteshield_lent:
+  id: 13829
 guthix_platebody_lent:
   id: 13830
+guthix_platelegs_lent:
+  id: 13831
 guthix_plateskirt_lent:
   id: 13832
 guthix_full_helm_lent:
@@ -75972,6 +76046,8 @@ gilded_platebody_lent:
   id: 13835
 gilded_platelegs_lent:
   id: 13836
+gilded_plateskirt_lent:
+  id: 13837
 gilded_full_helm_lent:
   id: 13838
 gilded_kiteshield_lent:
