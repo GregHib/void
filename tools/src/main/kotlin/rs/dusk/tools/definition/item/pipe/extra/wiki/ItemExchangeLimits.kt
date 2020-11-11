@@ -2,13 +2,13 @@ package rs.dusk.tools.definition.item.pipe.extra.wiki
 
 import org.apache.commons.io.IOUtils
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.export
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.getCategoryLinks
 import java.io.File
 
-class ItemExchangeLimits : Pipeline.Modifier<ItemExtras> {
+class ItemExchangeLimits : Pipeline.Modifier<Extras> {
 
     private val idLimits = mutableMapOf<Int, Int>()
     private val nameLimits = mutableMapOf<String, Int>()
@@ -52,7 +52,7 @@ class ItemExchangeLimits : Pipeline.Modifier<ItemExtras> {
         }
     }
 
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, _, page, _, rs3, _, _) = builder
         val limit = idLimits[id] ?: nameLimits[page?.title?.toLowerCase() ?: rs3?.title?.toLowerCase()] ?: return content

@@ -3,13 +3,13 @@ package rs.dusk.tools.definition.item.pipe.extra
 import rs.dusk.engine.entity.item.ItemKept
 import rs.dusk.engine.entity.item.ItemUse
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 
 /**
  * Removes default values to save space
  */
-class ItemDefaults : Pipeline.Modifier<ItemExtras> {
-    override fun modify(content: ItemExtras): ItemExtras {
+class ItemDefaults : Pipeline.Modifier<Extras> {
+    override fun modify(content: Extras): Extras {
         val (_, extras) = content
         process(extras)
         return content

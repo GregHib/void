@@ -1,9 +1,9 @@
 package rs.dusk.tools.definition.item.pipe.extra
 
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 
-class ItemManualChanges : Pipeline.Modifier<ItemExtras> {
+class ItemManualChanges : Pipeline.Modifier<Extras> {
 
     val examines: Map<String, Int> = mapOf(
         "pet_kitten" to 1,
@@ -72,7 +72,7 @@ class ItemManualChanges : Pipeline.Modifier<ItemExtras> {
         "pet_cat_6" to 6
     )
     val numberRegex = "([0-9]+)".toRegex()
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, _, _, _, _, _, _, _, uid) = builder
         if (extras.containsKey("examine2")) {
@@ -161,13 +161,13 @@ class ItemManualChanges : Pipeline.Modifier<ItemExtras> {
         return numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: 0
     }
 
-    private fun ItemExtras.selectExamine(uid: String, index: Int) = select(uid, "examine", index)
+    private fun Extras.selectExamine(uid: String, index: Int) = select(uid, "examine", index)
 
-    private fun ItemExtras.selectNPC(uid: String, index: Int) = select(uid, "npc", index)
+    private fun Extras.selectNPC(uid: String, index: Int) = select(uid, "npc", index)
 
-    private fun ItemExtras.selectDestroy(uid: String, index: Int) = select(uid, "destroy", index)
+    private fun Extras.selectDestroy(uid: String, index: Int) = select(uid, "destroy", index)
 
-    private fun ItemExtras.select(uid: String, name: String, index: Int) {
+    private fun Extras.select(uid: String, name: String, index: Int) {
         if (first.uid.startsWith(uid)) {
             val key = "$name${if (index > 1) index.toString() else ""}"
             val choice = second[key]

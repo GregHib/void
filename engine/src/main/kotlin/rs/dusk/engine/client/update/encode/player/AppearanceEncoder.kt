@@ -44,7 +44,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 flag = flag or 0x4// Display skill level rather than combat
             }
 //            flag = flag or (size shl 3 and 0x7)
-//            flag = flag and ((1 and 0xf2) shr 6)// Something about trimming title
+//            flag = flag and ((1 and 0xf2) shr 6)// Title enum id
             writeByte(flag)
             writeByte(title)
             writeByte(skull)

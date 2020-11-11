@@ -3,11 +3,11 @@ package rs.dusk.tools.definition.item.pipe.extra
 import rs.dusk.cache.definition.decoder.ItemDecoder
 import rs.dusk.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 
-class ItemNoted(private val decoder: ItemDecoder) : Pipeline.Modifier<ItemExtras> {
+class ItemNoted(private val decoder: ItemDecoder) : Pipeline.Modifier<Extras> {
 
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, n, _, _, _, _, _, _, uid) = builder
         val def = decoder.getOrNull(id) ?: return content

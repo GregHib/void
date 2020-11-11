@@ -73,7 +73,7 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
         if (id != null) {
             ids.putIfAbsent(id, page)
         } else if (value.isNotBlank() && !value.equals("no", true) && !value.startsWith("hist") && value != "removed") {
-            println("Unknown ${page.title} '$value'")
+            println("Unknown page id ${page.title} '$value'")
         }
     }
 

@@ -28,7 +28,7 @@ import java.time.LocalDate
 import java.time.Month
 import java.util.concurrent.TimeUnit
 
-typealias ItemExtras = Pair<PageCollector, MutableMap<String, Any>>
+typealias Extras = Pair<PageCollector, MutableMap<String, Any>>
 
 /**
  * Creates item definition extra values
@@ -75,9 +75,9 @@ object ItemDefinitionPipeline {
         cache718: CacheDelegate,
         rs2Wiki: Wiki,
         pages: MutableMap<Int, PageCollector>
-    ): MutableMap<Int, ItemExtras> {
-        val output = mutableMapOf<Int, ItemExtras>()
-        val pipeline = Pipeline<ItemExtras>().apply {
+    ): MutableMap<Int, Extras> {
+        val output = mutableMapOf<Int, Extras>()
+        val pipeline = Pipeline<Extras>().apply {
             add(InfoBoxItem(revisionDate))
             add(InfoBoxPet())
             add(InfoBoxConstruction())
@@ -224,7 +224,7 @@ object ItemDefinitionPipeline {
     /**
      * Converts to unique yaml map
      */
-    private fun convertToYaml(output: MutableMap<Int, ItemExtras>): Map<String, Map<String, Any>> {
+    fun convertToYaml(output: MutableMap<Int, Extras>): Map<String, Map<String, Any>> {
         val nameMap = mutableMapOf<String, Int>()
 
         fun makeUniqueId(builder: PageCollector) {

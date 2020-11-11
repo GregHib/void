@@ -6,9 +6,9 @@ import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.convert.ItemDecoder718
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 
-class ItemEquipmentInfo(decoder: ItemDecoder, val cache: Cache) : Pipeline.Modifier<ItemExtras> {
+class ItemEquipmentInfo(decoder: ItemDecoder, val cache: Cache) : Pipeline.Modifier<Extras> {
 
     private val decoder718 = ItemDecoder718(cache)
     init {
@@ -20,7 +20,7 @@ class ItemEquipmentInfo(decoder: ItemDecoder, val cache: Cache) : Pipeline.Modif
 
     private val types = ItemTypes(decoder)
 
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, _, _, _, _) = builder
         val slot = ItemDecoder718.equipSlots[id]

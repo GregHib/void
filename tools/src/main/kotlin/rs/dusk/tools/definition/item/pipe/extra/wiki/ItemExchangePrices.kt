@@ -1,11 +1,11 @@
 package rs.dusk.tools.definition.item.pipe.extra.wiki
 
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.model.WikiPage
 
-class ItemExchangePrices(val wiki: Wiki) : Pipeline.Modifier<ItemExtras> {
+class ItemExchangePrices(val wiki: Wiki) : Pipeline.Modifier<Extras> {
 
     private val itemIds = mutableMapOf<Int, WikiPage>()
 
@@ -22,7 +22,7 @@ class ItemExchangePrices(val wiki: Wiki) : Pipeline.Modifier<ItemExtras> {
         }
     }
 
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, _, _, _, _, _) = builder
         val page = itemIds[id] ?: return content

@@ -5,15 +5,15 @@ import rs.dusk.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifie
 import rs.dusk.engine.entity.item.ItemKept
 import rs.dusk.engine.entity.item.ItemUse
 import rs.dusk.tools.Pipeline
-import rs.dusk.tools.definition.item.ItemExtras
+import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
 import rs.dusk.tools.wiki.model.WikiPage
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
+class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
 
-    override fun modify(content: ItemExtras): ItemExtras {
+    override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, name, page, _, rs3, _) = builder
         // Prioritise rs3 pages first as they have better data formats and names
@@ -79,11 +79,11 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
                 }
                 "examine$suffix" -> {
                     val text = removeLinks(value as String).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()
-                    splitByLineBreak(text, extras, key, suffix, false)
+                    splitExamine(text, extras, key, suffix, false)
                 }
                 "destroy$suffix" -> {
                     val text = removeLinks(value as String)
-                    splitByLineBreak(text, extras, key, suffix, false)
+                    splitExamine(text, extras, key, suffix, false)
                 }
                 "restriction$suffix" -> {
                     val text = value as String
@@ -127,7 +127,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
                         return@forEach
                     }
                     val override = isRs3Name(page.title) || isRs3Examine(examine)
-                    splitByLineBreak(examine, extras, key, "", override)
+                    splitExamine(examine, extras, key, "", override)
                 }
                 else -> return@forEach
             }
@@ -176,7 +176,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
             }
         }
 
-        fun splitByLineBreak(text: String, extras: MutableMap<String, Any>, key: String, suffix: String, override: Boolean) {
+        fun splitExamine(text: String, extras: MutableMap<String, Any>, key: String, suffix: String, override: Boolean) {
             val text = removeBold(formatLineBreaks(text).replace("\"", ""))
             if (text.contains(linebreak) || text.contains(":") || text.contains("(")) {
                 val parts = when {
@@ -208,7 +208,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
             }
         }
 
-        private fun formatLineBreaks(text: String) = text
+        fun formatLineBreaks(text: String) = text
             .replace("<br/>", linebreak)
             .replace("<br />", linebreak)
             .replace("\n", " ")
@@ -217,6 +217,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
             .replace(" / ", linebreak)
             .replace(" OR ", linebreak)
             .replace("./", ".$linebreak")
+            .replace(",", linebreak)
 
         /**
          * Same as [split] but only splits by captured group not full match
@@ -261,6 +262,6 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<ItemExtras> {
         }
 
         fun removeBold(text: String) = text.replace("'''", "").replace("''", "")
-//        fun removeParentheses(text: String) =
+        fun removeParentheses(text: String) = text.replace(removeParentheses, "").replace("(", "").replace(")", "")
     }
 }
