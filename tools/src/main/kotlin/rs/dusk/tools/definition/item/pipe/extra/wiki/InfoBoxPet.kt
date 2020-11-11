@@ -3,6 +3,7 @@ package rs.dusk.tools.definition.item.pipe.extra.wiki
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.removeLinks
+import rs.dusk.tools.wiki.model.Infobox.indexSuffix
 import rs.dusk.tools.wiki.model.WikiPage
 
 class InfoBoxPet : Pipeline.Modifier<Extras> {
@@ -40,7 +41,7 @@ class InfoBoxPet : Pipeline.Modifier<Extras> {
                     val text = value as String
                     if (text.contains(",")) {
                         text.split(",").forEachIndexed { index, id ->
-                            extras.putIfAbsent("npc${index + 1}", id.trim().toInt())
+                            extras.putIfAbsent(indexSuffix("npc", index), id.trim().toInt())
                         }
                     } else {
                         extras["npc"] = text.trim().toInt()

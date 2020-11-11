@@ -1,48 +1,92 @@
 package rs.dusk.tools.definition.npc.pipe.wiki
 
 import rs.dusk.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import rs.dusk.engine.entity.item.ItemUse
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.definition.item.Extras
+import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.formatLineBreaks
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.removeLinks
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.removeParentheses
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.splitExamine
+import rs.dusk.tools.wiki.model.Infobox.indexSuffix
+import rs.dusk.tools.wiki.model.Infobox.splitByVersion
 import rs.dusk.tools.wiki.model.WikiPage
+import java.time.LocalDate
 
-class InfoBoxMonster : Pipeline.Modifier<Extras> {
+class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     override fun modify(content: Extras): Extras {
         val (builder, extras) = content
-        val (_, name, rs2, _, rs3, rs3Idd, osrs, _) = builder
+        val (id, name, rs2, _, rs3, rs3Idd, osrs, _) = builder
         processOsrs(extras, osrs)
-        processRs3(extras, rs3)
-
-        builder.uid = if(rs3 != null && rs3Idd) {
-            toIdentifier(rs3.title)
+        processRs3(extras, id, rs3)
+        processRs2(extras, rs2)
+        builder.uid = if (rs3 != null && rs3Idd) {
+            toIdentifier(rs3.title.replace("(historical)", "").trim())
         } else {
             toIdentifier(name)
         }
-//        processRs2(extras, rs2)
         return content
     }
 
-    private fun processRs3(extras: MutableMap<String, Any>, page: WikiPage?) {
-        val template = page?.getTemplateMap("infobox monster") ?: return
-        template.forEach { (key, value) ->
-            val key = key.toLowerCase()
-            when (key) {
-                "examine" -> splitExamine(value as String, extras, key, "", false)
+    private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage?) {
+        splitByVersion(page, "infobox monster", id, true) { template, suffix ->
+            println("Process rs3 $suffix")
+            template.forEach { (key, value) ->
+                val key = key.toLowerCase()
+                when (key) {
+                    "restriction$suffix" -> {
+                        val text = (value as String).replace("dg", "dungeoneering")
+                        val use = if (text == "removed") {
+                            val removal = template["removal"] as? String
+                            if (removal == null || removal.isBlank() || LocalDate.parse(removeLinks(removal), InfoBoxItem.formatter).isBefore(revision)) {
+                                ItemUse.Removed
+                            } else {
+                                ItemUse.Surface
+                            }
+                        } else if (text.isNotBlank()) {
+                            ItemUse.valueOf(text.toLowerCase().capitalize())
+                        } else {
+                            null
+                        }
+                        if (use != null) {
+                            extras.putIfAbsent("area", use)
+                        }
+                    }
+                    "immune_to_stun$suffix", "immune_to_deflect$suffix", "immune_to_drain$suffix" -> {
+                        appendBool(extras, key.removeSuffix(suffix).replace("_to", ""), value as String)
+                    }
+                    "style$suffix", "primarystyle$suffix", "slayercat$suffix", "assigned_by$suffix" -> {
+                        var index = 0
+                        (value as String).split(",").forEach {
+                            val line = removeLinks(it).toLowerCase().trim()
+                            if (line.isNotBlank()) {
+                                extras.putIfAbsent(indexSuffix(when (key.removeSuffix(suffix)) {
+                                    "slayercat" -> "category"
+                                    "assigned_by" -> "master"
+                                    else -> key.removeSuffix(suffix)
+                                }, index++), line)
+                            }
+                        }
+                    }
+                    "examine$suffix" -> {
+                        splitExamine(value as String, extras, key.removeSuffix(suffix), "", false)
+                    }
+                }
             }
         }
     }
+
     private fun processOsrs(extras: MutableMap<String, Any>, page: WikiPage?) {
         val template = page?.getTemplateMap("infobox monster") ?: return
+        println("OSRS $template")
         template.forEach { (key, value) ->
             val key = key.toLowerCase()
             when (key) {
                 "aka", "attributes" -> extras.putIfAbsent(key, value as String)
                 "members", "aggressive", "immunepoison" -> {
                     val text = removeParentheses(value as String)
-                    extras.putIfAbsent(if(key == "immunepoison") "immune" else key, text.startsWith("yes", true) || text.equals("immune", true))
+                    extras.putIfAbsent(if (key == "immunepoison") "immune_poison" else key, text.startsWith("yes", true) || text.equals("immune", true))
                 }
                 "poisonous" -> {
                     val text = removeLinks(removeParentheses(value as String))
@@ -56,7 +100,7 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
                 }
                 "xpbonus", "slayxp" -> {
                     val text = value as String
-                    appendDouble(extras, key, text)
+                    appendDouble(extras, key, text.replace("%", ""))
                 }
                 "max hit" -> {
                     val text = value as String
@@ -76,7 +120,7 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
                         .split(",").forEach {
                             val line = removeLinks(removeParentheses(it)).trim()
                             if (line.isNotBlank()) {
-                                val key = indexSuffix(when(key) {
+                                val key = indexSuffix(when (key) {
                                     "cat" -> "category"
                                     "attack style" -> "style"
                                     else -> key
@@ -96,7 +140,7 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
                 "combat", "slaylvl", "hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "amagic", "mbns", "arange", "rngbns", "dstab", "dslash", "dcrush", "dmagic", "drange" -> {
                     val text = value as String
                     appendInt(extras, key, text)
-                    if(key == "hitpoints") {
+                    if (key == "hitpoints") {
                         extras[key] = (extras[key] as? Int ?: return@forEach) * 10
                     }
                 }
@@ -110,6 +154,16 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
             extras.putIfAbsent(key, hit)
             return true
         } else if (text.isNotBlank() && !text.contains("varies", true) && !text.contains("n/a", true)) {
+            println("Unknown $key '$text'")
+        }
+        return false
+    }
+
+    private fun appendBool(extras: MutableMap<String, Any>, key: String, text: String): Boolean {
+        if (text.equals("yes", true) || text.equals("no", true)) {
+            extras.putIfAbsent(key, text.equals("yes", true))
+            return true
+        } else if (text.isNotBlank()) {
             println("Unknown $key '$text'")
         }
         return false
@@ -134,6 +188,7 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
 
     private fun processRs2(extras: MutableMap<String, Any>, page: WikiPage?) {
         val template = page?.getTemplateMap("infobox monster") ?: return
+        println("RS2 $template")
         template.forEach { (key, value) ->
             val key = key.toLowerCase()
             when (key) {
@@ -164,16 +219,19 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
                     val key = if (key == "lp") "hp" else key
                     val text = removeLinks(value as String)
                     val list = splitLines(text)
-                    var index = 1
-                    list.map { removeParentheses(it.trim()) }
+                    var index = 0
+                    for (it in list.map { removeParentheses(it.trim()) }
                         .flatMap { it.split(" ") }
                         .map { it.replace(letters, "") }
-                        .filter { it.isNotBlank() }
-                        .forEach {
-                            if (append(extras, it, indexSuffix(key, index))) {
-                                index++
-                            }
+                        .filter { it.isNotBlank() }) {
+                        val key = indexSuffix(key, index)
+                        if (extras.containsKey(key)) {
+                            break
                         }
+                        if (appendRange(extras, it, key)) {
+                            index++
+                        }
+                    }
                 }
                 "immune to poison" -> extras.putIfAbsent("immune", (value as String).equals("yes", true))
                 "members", "aggressive", "poisonous" -> {
@@ -194,10 +252,8 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
         }
     }
 
-    fun indexSuffix(key: String, index: Int) = "$key${if (index > 1) index.toString() else ""}"
-
     private fun splitLines(text: String): List<String> {
-        val text = formatLineBreaks(text).replace("/", "<br>")
+        val text = formatLineBreaks(text).replace(",", "<br>").replace("/", "<br>")
         val list = text.split("<br>")
         list.flatMap { text ->
             when {
@@ -211,13 +267,13 @@ class InfoBoxMonster : Pipeline.Modifier<Extras> {
         return list
     }
 
-    private fun append(extras: MutableMap<String, Any>, text: String, key: String): Boolean {
+    private fun appendRange(extras: MutableMap<String, Any>, text: String, key: String): Boolean {
         val text = text.trim()
         if (text.contains("-")) {
             val first = text.split("-").first().toIntOrNull()
-            val second = text.split("-").last().toIntOrNull()
-            if (first != null && second != null) {
-                extras[key] = "$first-$second"
+//            val second = text.split("-").last().toIntOrNull()
+            if (first != null/* && second != null*/) {
+                extras.putIfAbsent(key, first)
                 return true
             }
         } else {

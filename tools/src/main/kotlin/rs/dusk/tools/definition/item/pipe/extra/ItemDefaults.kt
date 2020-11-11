@@ -8,10 +8,12 @@ import rs.dusk.tools.definition.item.Extras
 /**
  * Removes default values to save space
  */
-class ItemDefaults : Pipeline.Modifier<Extras> {
-    override fun modify(content: Extras): Extras {
-        val (_, extras) = content
-        process(extras)
+class ItemDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
+
+    override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
+        content.forEach { (_, builder) ->
+            process(builder.second)
+        }
         return content
     }
 

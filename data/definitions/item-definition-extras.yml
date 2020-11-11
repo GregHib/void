@@ -2609,7 +2609,7 @@ mind_rune:
   id: 558
   price: 4
   limit: 25000
-  examine: "A basic level catalytic rune."
+  examine: "Used for basic level missile spells."
   kept: "Wilderness"
 body_rune:
   id: 559
@@ -3556,6 +3556,7 @@ book_on_chemicals:
   kept: "Wilderness"
 cup_of_tea_discontinued_item:
   id: 712
+  limit: 1000
   edible: true
   tradeable: false
   weight: 0.15
@@ -5347,7 +5348,13 @@ santa_hat_noted:
 cape_of_legends:
   id: 1052
   tradeable: false
+  dstab: 7.0
   weight: 1.814
+  dslash: 7.0
+  dcrush: 7.0
+  dmagic: 7.0
+  drange: 7.0
+  dsummon: 7.0
   slot: "Cape"
   examine: "The cape worn by members of the Legends' Guild."
   kept: "Wilderness"
@@ -6383,7 +6390,12 @@ wooden_shield:
   id: 1171
   price: 343
   limit: 100
+  dstab: 4.0
   weight: 2.267
+  dslash: 5.0
+  dcrush: 3.0
+  dmagic: 1.0
+  drange: 4.0
   slot: "Shield"
   examine: "A solid wooden shield."
   kept: "Wilderness"
@@ -8997,7 +9009,12 @@ anti-dragon_shield:
   id: 1540
   price: 141
   limit: 100
+  dstab: 7.0
   weight: 5.443
+  dslash: 9.0
+  dcrush: 8.0
+  dmagic: 2.0
+  drange: 8.0
   slot: "Shield"
   examine: "This provides partial protection from dragonbreath attacks."
 anti-dragon_shield_noted:
@@ -9112,106 +9129,40 @@ pet_kitten_6:
   examine: "A friendly little pet."
 pet_cat:
   id: 1561
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 768
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 pet_cat_2:
   id: 1562
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 769
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 pet_cat_3:
   id: 1563
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 770
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 pet_cat_4:
   id: 1564
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 771
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 pet_cat_5:
   id: 1565
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 772
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 pet_cat_6:
   id: 1566
-  npc1: 768
-  npc2: 769
-  npc3: 770
-  npc4: 771
-  npc5: 772
-  npc6: 773
-  npc7: 9272
-  npc8: 9273
-  npc9: 9274
-  npc10: 9275
-  npc11: 9276
-  npc12: 9277
+  npc: 773
   food: "Fish or milk as a kitten,"
   food2: "none as an adult"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 overgrown_cat:
   id: 1567
   food: "Fish or milk as a kitten,"
@@ -9838,24 +9789,79 @@ amulet_of_glory_0:
   id: 1704
   price: 33500
   limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A very powerful dragonstone amulet."
 amulet_of_glory_noted:
   id: 1705
 amulet_of_glory_1:
   id: 1706
+  limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A dragonstone amulet with 1 magic charge."
 amulet_of_glory_1_noted:
   id: 1707
 amulet_of_glory_2:
   id: 1708
+  limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A dragonstone amulet with 2 magic charges."
 amulet_of_glory_2_noted:
   id: 1709
 amulet_of_glory_3:
   id: 1710
+  limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A dragonstone amulet with 3 magic charges."
 amulet_of_glory_3_noted:
@@ -9863,6 +9869,20 @@ amulet_of_glory_3_noted:
 amulet_of_glory_4:
   id: 1712
   price: 35400
+  limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A dragonstone amulet with 4 magic charges."
 amulet_of_glory_4_noted:
@@ -9890,7 +9910,14 @@ holy_symbol:
   id: 1718
   price: 110
   limit: 5000
+  prayer: 8
+  dstab: 2.0
   weight: 0.007
+  dslash: 2.0
+  dcrush: 2.0
+  dmagic: 2.0
+  drange: 2.0
+  dsummon: 3.0
   slot: "Amulet"
   examine: "A blessed holy symbol of Saradomin."
   kept: "Wilderness"
@@ -9919,7 +9946,13 @@ unholy_symbol:
   id: 1724
   price: 57
   limit: 5000
+  prayer: 8
+  astab: 2.0
   weight: 0.007
+  aslash: 2.0
+  acrush: 2.0
+  amagic: 2.0
+  arange: 2.0
   slot: "Amulet"
   examine: "An unholy symbol of Zamorak."
   kept: "Wilderness"
@@ -12907,6 +12940,7 @@ tattered_eye_patch:
   kept: "Wilderness"
 vial_jangerberries:
   id: 2389
+  limit: 10000
   tradeable: false
   weight: 0.015
   destroy: "This item will likely break if you put it down here, and you will have to go looking for another."
@@ -12915,6 +12949,7 @@ vial_jangerberries:
   kept: "Reclaim"
 vial_jangerberries_and_guam_leaves:
   id: 2390
+  limit: 10000
   tradeable: false
   weight: 0.025
   destroy: "This item will likely break if you put it down here, and you will have to go looking for another."
@@ -12939,6 +12974,7 @@ tobans_gold:
   kept: "Wilderness"
 potion:
   id: 2394
+  limit: 100
   tradeable: false
   weight: 0.025
   destroy: "This item will likely break if you put it down here, and you will have to go looking for another."
@@ -13766,6 +13802,7 @@ orb_of_light_5:
   use: "Quest"
 bones_2:
   id: 2530
+  limit: 10000
   weight: 0.5
   examine: "Bones are for burying."
   kept: "Wilderness"
@@ -13961,15 +13998,15 @@ ranger_boots:
   examine: "Lightweight boots ideal for rangers."
 ranger_boots_noted:
   id: 2578
-wizard_boots_t:
-  id: 2579
-  price: 1400000
+wizard_boots:
+  id: 10689
   limit: 2
-  weight: 0.283
+  weight: 0.453
   amagic: 4.0
   dmagic: 4.0
   slot: "Feet"
   examine: "Slightly magical boots."
+  kept: "Wilderness"
 wizard_boots_noted:
   id: 2580
 robin_hood_hat:
@@ -14783,7 +14820,7 @@ clue_scroll_easy_2:
   id: 2678
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_3:
   id: 2679
@@ -14801,7 +14838,7 @@ clue_scroll_easy_5:
   id: 2681
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_6:
   id: 2682
@@ -14819,7 +14856,7 @@ clue_scroll_easy_8:
   id: 2684
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_9:
   id: 2685
@@ -14837,7 +14874,7 @@ clue_scroll_easy_11:
   id: 2687
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_12:
   id: 2688
@@ -14855,7 +14892,7 @@ clue_scroll_easy_14:
   id: 2690
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_15:
   id: 2691
@@ -14873,7 +14910,7 @@ clue_scroll_easy_17:
   id: 2693
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_18:
   id: 2694
@@ -14891,7 +14928,7 @@ clue_scroll_easy_20:
   id: 2696
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_21:
   id: 2697
@@ -14909,7 +14946,7 @@ clue_scroll_easy_23:
   id: 2699
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_24:
   id: 2700
@@ -14927,7 +14964,7 @@ clue_scroll_easy_26:
   id: 2702
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_27:
   id: 2703
@@ -14945,7 +14982,7 @@ clue_scroll_easy_29:
   id: 2705
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_30:
   id: 2706
@@ -14963,7 +15000,7 @@ clue_scroll_easy_32:
   id: 2708
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_33:
   id: 2709
@@ -14981,7 +15018,7 @@ clue_scroll_easy_35:
   id: 2711
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_36:
   id: 2712
@@ -15013,7 +15050,7 @@ clue_scroll_easy_38:
   id: 2716
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_3:
   id: 2717
@@ -15059,7 +15096,7 @@ clue_scroll_hard_2:
   id: 2723
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard:
   id: 2724
@@ -15072,7 +15109,7 @@ clue_scroll_hard_3:
   id: 2725
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_2:
   id: 2726
@@ -15085,7 +15122,7 @@ clue_scroll_hard_4:
   id: 2727
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_3:
   id: 2728
@@ -15124,7 +15161,7 @@ clue_scroll_hard_7:
   id: 2733
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_6:
   id: 2734
@@ -15137,7 +15174,7 @@ clue_scroll_hard_8:
   id: 2735
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_7:
   id: 2736
@@ -15150,7 +15187,7 @@ clue_scroll_hard_9:
   id: 2737
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_8:
   id: 2738
@@ -15189,7 +15226,7 @@ clue_scroll_hard_12:
   id: 2743
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_11:
   id: 2744
@@ -15202,7 +15239,7 @@ clue_scroll_hard_13:
   id: 2745
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_12:
   id: 2746
@@ -15215,7 +15252,7 @@ clue_scroll_hard_14:
   id: 2747
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_13:
   id: 2748
@@ -15247,7 +15284,7 @@ clue_scroll_hard_17:
   id: 2776
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_15:
   id: 2777
@@ -15260,7 +15297,7 @@ clue_scroll_hard_18:
   id: 2778
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_16:
   id: 2779
@@ -15273,7 +15310,7 @@ clue_scroll_hard_19:
   id: 2780
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_17:
   id: 2781
@@ -15305,13 +15342,13 @@ clue_scroll_hard_22:
   id: 2785
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_hard_23:
   id: 2786
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_19:
   id: 2787
@@ -15324,7 +15361,7 @@ clue_scroll_hard_24:
   id: 2788
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_20:
   id: 2789
@@ -15356,13 +15393,13 @@ clue_scroll_hard_27:
   id: 2793
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_hard_28:
   id: 2794
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box:
   id: 2795
@@ -15373,7 +15410,7 @@ clue_scroll_hard_29:
   id: 2796
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_30:
   id: 2797
@@ -15414,7 +15451,7 @@ clue_scroll_medium_2:
   id: 2803
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_2:
   id: 2804
@@ -15427,7 +15464,7 @@ clue_scroll_medium_3:
   id: 2805
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_3:
   id: 2806
@@ -15440,7 +15477,7 @@ clue_scroll_medium_4:
   id: 2807
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_4:
   id: 2808
@@ -15479,7 +15516,7 @@ clue_scroll_medium_7:
   id: 2813
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_7:
   id: 2814
@@ -15492,7 +15529,7 @@ clue_scroll_medium_8:
   id: 2815
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_8:
   id: 2816
@@ -15505,7 +15542,7 @@ clue_scroll_medium_9:
   id: 2817
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_9:
   id: 2818
@@ -15544,7 +15581,7 @@ clue_scroll_medium_12:
   id: 2823
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_12:
   id: 2824
@@ -15557,7 +15594,7 @@ clue_scroll_medium_13:
   id: 2825
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_13:
   id: 2826
@@ -15570,7 +15607,7 @@ clue_scroll_medium_14:
   id: 2827
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_14:
   id: 2828
@@ -15609,7 +15646,7 @@ clue_scroll_medium_17:
   id: 2833
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 key_2:
   id: 2834
@@ -15622,7 +15659,7 @@ clue_scroll_medium_18:
   id: 2835
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 key_3:
   id: 2836
@@ -15635,7 +15672,7 @@ clue_scroll_medium_19:
   id: 2837
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 key_4:
   id: 2838
@@ -15670,7 +15707,7 @@ clue_scroll_medium_22:
   id: 2843
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 challenge_scroll_2:
   id: 2844
@@ -15679,7 +15716,7 @@ clue_scroll_medium_23:
   id: 2845
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 challenge_scroll_3:
   id: 2846
@@ -15688,7 +15725,7 @@ clue_scroll_medium_24:
   id: 2847
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_25:
   id: 2848
@@ -15711,7 +15748,7 @@ clue_scroll_medium_27:
   id: 2851
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 challenge_scroll_15:
   id: 2852
@@ -15722,7 +15759,7 @@ clue_scroll_medium_28:
   id: 2853
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 challenge_scroll_4:
   id: 2854
@@ -15731,7 +15768,7 @@ clue_scroll_medium_29:
   id: 2855
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_30:
   id: 2856
@@ -15749,7 +15786,7 @@ clue_scroll_medium_32:
   id: 2858
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 wolf_bones:
   id: 2859
@@ -17424,12 +17461,14 @@ picture_noted_40:
   id: 3178
 small_ninja_monkey_bones:
   id: 3179
+  limit: 100
   tradeable: false
   weight: 0.5
   examine: "These are smallish monkey bones."
   kept: "Reclaim"
 medium_ninja_monkey_bones:
   id: 3180
+  limit: 100
   tradeable: false
   weight: 0.5
   examine: "These are medium sized monkey bones."
@@ -17442,6 +17481,7 @@ gorilla_bones:
   kept: "Reclaim"
 bearded_gorilla_bones:
   id: 3182
+  limit: 100
   tradeable: false
   weight: 0.8
   examine: "These are quite large monkey bones."
@@ -17456,6 +17496,7 @@ monkey_bones_noted:
   id: 3184
 small_zombie_monkey_bones:
   id: 3185
+  limit: 100
   tradeable: false
   weight: 0.5
   examine: "These are smallish monkey bones. They smell extremely nauseating."
@@ -17468,6 +17509,7 @@ large_zombie_monkey_bones:
   kept: "Reclaim"
 skeletal_monkey_bones:
   id: 3187
+  limit: 10000
   tradeable: false
   weight: 0.5
   examine: "They seem to shake slightly... It might be a good idea to bury them."
@@ -18920,7 +18962,7 @@ clue_scroll_easy_41:
   id: 3491
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_42:
   id: 3492
@@ -18938,7 +18980,7 @@ clue_scroll_easy_44:
   id: 3494
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_45:
   id: 3495
@@ -18956,7 +18998,7 @@ clue_scroll_easy_47:
   id: 3497
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_48:
   id: 3498
@@ -18974,7 +19016,7 @@ clue_scroll_easy_50:
   id: 3500
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_51:
   id: 3501
@@ -18992,7 +19034,7 @@ clue_scroll_easy_53:
   id: 3503
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_54:
   id: 3504
@@ -19010,7 +19052,7 @@ clue_scroll_easy_56:
   id: 3506
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_57:
   id: 3507
@@ -19028,7 +19070,7 @@ clue_scroll_easy_59:
   id: 3509
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_60:
   id: 3510
@@ -19053,7 +19095,7 @@ clue_scroll_easy_62:
   id: 3513
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_easy_63:
   id: 3514
@@ -19071,7 +19113,7 @@ clue_scroll_easy_65:
   id: 3516
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_8:
   id: 3517
@@ -19097,7 +19139,7 @@ clue_scroll_hard_32:
   id: 3520
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_22:
   id: 3521
@@ -19110,7 +19152,7 @@ clue_scroll_hard_33:
   id: 3522
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_23:
   id: 3523
@@ -19123,7 +19165,7 @@ clue_scroll_hard_34:
   id: 3524
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_35:
   id: 3525
@@ -19148,7 +19190,7 @@ clue_scroll_hard_37:
   id: 3528
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_25:
   id: 3529
@@ -19161,7 +19203,7 @@ clue_scroll_hard_38:
   id: 3530
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_26:
   id: 3531
@@ -19174,7 +19216,7 @@ clue_scroll_hard_39:
   id: 3532
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_27:
   id: 3533
@@ -19213,7 +19255,7 @@ clue_scroll_hard_42:
   id: 3538
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_30:
   id: 3539
@@ -19226,7 +19268,7 @@ clue_scroll_hard_43:
   id: 3540
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_31:
   id: 3541
@@ -19239,7 +19281,7 @@ clue_scroll_hard_44:
   id: 3542
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_32:
   id: 3543
@@ -19278,7 +19320,7 @@ clue_scroll_hard_47:
   id: 3548
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_35:
   id: 3549
@@ -19291,7 +19333,7 @@ clue_scroll_hard_48:
   id: 3550
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_36:
   id: 3551
@@ -19304,7 +19346,7 @@ clue_scroll_hard_49:
   id: 3552
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_37:
   id: 3553
@@ -19343,7 +19385,7 @@ clue_scroll_hard_52:
   id: 3558
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_40:
   id: 3559
@@ -19356,7 +19398,7 @@ clue_scroll_hard_53:
   id: 3560
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_41:
   id: 3561
@@ -19369,7 +19411,7 @@ clue_scroll_hard_54:
   id: 3562
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_42:
   id: 3563
@@ -19404,7 +19446,7 @@ clue_scroll_hard_57:
   id: 3568
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 puzzle_box_6:
   id: 3569
@@ -19415,7 +19457,7 @@ clue_scroll_hard_58:
   id: 3570
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box_7:
   id: 3571
@@ -19426,7 +19468,7 @@ clue_scroll_hard_59:
   id: 3572
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_60:
   id: 3573
@@ -19444,7 +19486,7 @@ clue_scroll_hard_62:
   id: 3575
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 puzzle_box_8:
   id: 3576
@@ -19455,7 +19497,7 @@ clue_scroll_hard_63:
   id: 3577
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box_9:
   id: 3578
@@ -19466,7 +19508,7 @@ clue_scroll_hard_64:
   id: 3579
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_65:
   id: 3580
@@ -19485,7 +19527,7 @@ clue_scroll_medium_33:
   id: 3582
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_16:
   id: 3583
@@ -19498,7 +19540,7 @@ clue_scroll_medium_34:
   id: 3584
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_17:
   id: 3585
@@ -19537,7 +19579,7 @@ clue_scroll_medium_37:
   id: 3590
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_20:
   id: 3591
@@ -19550,7 +19592,7 @@ clue_scroll_medium_38:
   id: 3592
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_21:
   id: 3593
@@ -19563,7 +19605,7 @@ clue_scroll_medium_39:
   id: 3594
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_22:
   id: 3595
@@ -19595,7 +19637,7 @@ clue_scroll_medium_42:
   id: 3599
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_24:
   id: 3600
@@ -19608,13 +19650,13 @@ clue_scroll_medium_43:
   id: 3601
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_44:
   id: 3602
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_25:
   id: 3603
@@ -19646,7 +19688,7 @@ clue_scroll_medium_47:
   id: 3607
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 key_7:
   id: 3608
@@ -19659,13 +19701,13 @@ clue_scroll_medium_48:
   id: 3609
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_49:
   id: 3610
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_50:
   id: 3611
@@ -19683,19 +19725,19 @@ clue_scroll_medium_52:
   id: 3613
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_medium_53:
   id: 3614
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_54:
   id: 3615
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_55:
   id: 3616
@@ -19713,7 +19755,7 @@ clue_scroll_medium_57:
   id: 3618
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 picture_26:
   id: 3667
@@ -20009,6 +20051,7 @@ magnet_the_fremennik_trials:
   kept: "Vanish"
 thread_dungeoneering:
   id: 3719
+  limit: 10000
   bankable: false
   tradeable: false
   weight: 0.002
@@ -21998,6 +22041,7 @@ picture_47:
   kept: "Wilderness"
 abyssal_whip_2:
   id: 4178
+  limit: 10
   str: 82.0
   weight: 0.453
   aslash: 82.0
@@ -22458,6 +22502,7 @@ cup_of_tea_nettle_tea:
   kept: "Reclaim"
 cup_of_milky_tea:
   id: 4243
+  limit: 1000
   edible: true
   tradeable: false
   weight: 0.15
@@ -22479,6 +22524,7 @@ cup_of_tea_ghosts_ahoy:
   kept: "Reclaim"
 cup_of_milky_tea_ghosts_ahoy:
   id: 4246
+  limit: 1000
   edible: true
   tradeable: false
   weight: 0.15
@@ -24225,7 +24271,6 @@ bullseye_lantern_noted_3:
   id: 4549
 bullseye_lantern_lit:
   id: 4550
-  limit: 100
   tradeable: false
   weight: 1.36
   examine: "A sturdy steel lantern casting a bright beam."
@@ -24271,9 +24316,10 @@ chocolate_egg_2005_easter_event_pink:
   use: "Removed"
 chocolate_egg_2005_easter_event_magenta:
   id: 4561
+  limit: 1000
   edible: true
   tradeable: false
-  examine: "Remember to brush after eating!"
+  examine: "Best before April 4th 2005."
   use: "Removed"
 chocolate_egg_2005_easter_event_red:
   id: 4562
@@ -24473,7 +24519,12 @@ dragon_scimitar:
   id: 4587
   price: 85200
   limit: 10
+  str: 66.0
+  astab: 8.0
   weight: 1.814
+  aslash: 67.0
+  acrush: -2.0
+  dslash: 1.0
   slot: "Weapon"
   examine: "A vicious, curved sword."
 dragon_scimitar_noted:
@@ -25738,6 +25789,7 @@ necromancy_book:
   kept: "Wilderness"
 cup_of_tea_zogre_flesh_eaters:
   id: 4838
+  limit: 1000
   tradeable: false
   weight: 0.15
   examine: "Looks like an innocent cup of tea."
@@ -29130,11 +29182,9 @@ medium_pouch_2:
 large_pouch:
   id: 5512
   examine: "A large pouch used for storing essence."
-  destroy: "Destroy"
 large_pouch_2:
   id: 5513
   examine: "A large damaged pouch used for storing essence."
-  destroy: "Destroy"
 giant_pouch:
   id: 5514
   examine: "A giant-sized pouch used for storing essence."
@@ -29768,6 +29818,7 @@ magnet_recruitment_drive:
   kept: "Vanish"
 knife_recruitment_drive:
   id: 5605
+  limit: 100
   bankable: false
   tradeable: false
   weight: 0.02
@@ -29813,7 +29864,8 @@ hourglass:
   bankable: false
   tradeable: false
   weight: 0.1
-  examine: "It's an hourglass."
+  destroy: "You'll have to find another from the Grim Reaper's house."
+  examine: "No matter how I turn it, the sand doesn't seem to move."
   use: "Quest"
   kept: "Vanish"
 initiate_sallet_noted:
@@ -33999,24 +34051,28 @@ maple_blackjack_d_noted:
   id: 6421
 air_rune_2:
   id: 6422
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_noted:
   id: 6423
 water_rune_2:
   id: 6424
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_noted:
   id: 6425
 earth_rune_2:
   id: 6426
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_noted:
   id: 6427
 fire_rune_2:
   id: 6428
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_noted:
@@ -34041,7 +34097,8 @@ law_rune_noted:
   id: 6435
 mind_rune_2:
   id: 6436
-  examine: "A basic level catalytic rune."
+  limit: 25000
+  examine: "Used for basic level missile spells."
   kept: "Wilderness"
 mind_rune_noted:
   id: 6437
@@ -35249,7 +35306,7 @@ fishbowl_seaweed:
   kept: "Reclaim"
 fishbowl_2:
   id: 6670
-  npc1: 8737
+  npc: 8737
   npc2: 8738
   npc3: 8739
   limit: 10000
@@ -35258,7 +35315,7 @@ fishbowl_2:
   examine: "An empty fishbowl."
 fishbowl_3:
   id: 6671
-  npc1: 8737
+  npc: 8737
   npc2: 8738
   npc3: 8739
   limit: 10000
@@ -35267,7 +35324,7 @@ fishbowl_3:
   examine: "An empty fishbowl."
 fishbowl_4:
   id: 6672
-  npc1: 8737
+  npc: 8737
   npc2: 8738
   npc3: 8739
   limit: 10000
@@ -36925,6 +36982,7 @@ infinity_hat:
   id: 6918
   price: 1800000
   limit: 10
+  absorbmelee: 1
   weight: 0.453
   amagic: 6.0
   dmagic: 6.0
@@ -38193,7 +38251,7 @@ clue_scroll_easy_68:
   id: 7238
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_hard_66:
   id: 7239
@@ -38212,7 +38270,7 @@ clue_scroll_hard_67:
   id: 7241
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_45:
   id: 7242
@@ -38225,7 +38283,7 @@ clue_scroll_hard_68:
   id: 7243
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_46:
   id: 7244
@@ -38238,7 +38296,7 @@ clue_scroll_hard_69:
   id: 7245
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_47:
   id: 7246
@@ -38263,19 +38321,19 @@ clue_scroll_hard_72:
   id: 7249
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_hard_73:
   id: 7250
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_hard_74:
   id: 7251
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_75:
   id: 7252
@@ -38293,19 +38351,19 @@ clue_scroll_hard_77:
   id: 7254
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_hard_78:
   id: 7255
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_hard_79:
   id: 7256
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_48:
   id: 7257
@@ -38344,7 +38402,7 @@ clue_scroll_hard_82:
   id: 7262
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_51:
   id: 7263
@@ -38357,7 +38415,7 @@ clue_scroll_hard_83:
   id: 7264
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_52:
   id: 7265
@@ -38370,7 +38428,7 @@ clue_scroll_hard_84:
   id: 7266
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_53:
   id: 7267
@@ -38401,7 +38459,7 @@ clue_scroll_hard_87:
   id: 7272
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 challenge_scroll_7:
   id: 7273
@@ -38410,7 +38468,7 @@ clue_scroll_medium_58:
   id: 7274
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 challenge_scroll_8:
   id: 7275
@@ -38419,7 +38477,7 @@ clue_scroll_medium_59:
   id: 7276
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 challenge_scroll_9:
   id: 7277
@@ -38446,7 +38504,7 @@ clue_scroll_medium_62:
   id: 7282
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 challenge_scroll_12:
   id: 7283
@@ -38455,7 +38513,7 @@ clue_scroll_medium_63:
   id: 7284
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 challenge_scroll_13:
   id: 7285
@@ -38464,7 +38522,7 @@ clue_scroll_medium_64:
   id: 7286
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_26:
   id: 7287
@@ -38503,7 +38561,7 @@ clue_scroll_medium_67:
   id: 7292
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_29:
   id: 7293
@@ -38516,7 +38574,7 @@ clue_scroll_medium_68:
   id: 7294
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_30:
   id: 7295
@@ -38529,7 +38587,7 @@ clue_scroll_medium_69:
   id: 7296
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 key_8:
   id: 7297
@@ -38561,7 +38619,7 @@ clue_scroll_medium_72:
   id: 7301
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 key_10:
   id: 7302
@@ -38574,13 +38632,13 @@ clue_scroll_medium_73:
   id: 7303
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_74:
   id: 7304
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_75:
   id: 7305
@@ -38612,7 +38670,7 @@ clue_scroll_medium_77:
   id: 7309
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_33:
   id: 7310
@@ -38625,7 +38683,7 @@ clue_scroll_medium_78:
   id: 7311
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_34:
   id: 7312
@@ -38638,7 +38696,7 @@ clue_scroll_medium_79:
   id: 7313
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_35:
   id: 7314
@@ -40236,7 +40294,12 @@ fresh_crab_claw:
 crab_claw:
   id: 7537
   tradeable: false
+  str: 1.0
+  dstab: 3.0
   weight: 0.907
+  dslash: 4.0
+  dcrush: 2.0
+  dsummon: 1.0
   slot: "Hands"
   examine: "If it's good enough for crabs, it's good enough for me!"
   kept: "Reclaim"
@@ -40342,18 +40405,21 @@ mithril_arrow_noted:
   id: 7553
 fire_rune_3:
   id: 7554
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_noted_2:
   id: 7555
 water_rune_3:
   id: 7556
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_noted_2:
   id: 7557
 air_rune_3:
   id: 7558
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_noted_2:
@@ -40485,7 +40551,7 @@ overgrown_hellcat:
   examine: "A hellish not-so-little pet."
 hellcat:
   id: 7582
-  npc1: 3504
+  npc: 3504
   npc2: 9278
   food: "Fish as a kitten, none for any other stages"
   examine: "A hellish pet cat!"
@@ -41208,6 +41274,7 @@ empty_cup_noted_2:
   id: 7729
 cup_of_tea_clay:
   id: 7730
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41215,6 +41282,7 @@ cup_of_tea_clay:
   kept: "Reclaim"
 cup_of_tea_clay_milky:
   id: 7731
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41229,6 +41297,7 @@ porcelain_cup_white:
   kept: "Reclaim"
 cup_of_tea_white:
   id: 7733
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41236,6 +41305,7 @@ cup_of_tea_white:
   kept: "Reclaim"
 cup_of_tea_white_milky:
   id: 7734
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41250,6 +41320,7 @@ porcelain_cup_gold:
   kept: "Reclaim"
 cup_of_tea_gold:
   id: 7736
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41257,6 +41328,7 @@ cup_of_tea_gold:
   kept: "Reclaim"
 cup_of_tea_gold_milky:
   id: 7737
+  limit: 1000
   bankable: false
   tradeable: false
   weight: 0.15
@@ -41423,16 +41495,16 @@ branch_temple_trekking:
   kept: "Reclaim"
 reward_token:
   id: 7774
-  destroy: "Aluft Aloft jnr. will have a replacement - if you earn it!"
-  examine: "This entitles you to one free gnome food delivery."
+  destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
 reward_token_2:
   id: 7775
-  destroy: "Aluft Aloft jnr. will have a replacement - if you earn it!"
-  examine: "This entitles you to one free gnome food delivery."
+  destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
 reward_token_3:
   id: 7776
-  destroy: "Aluft Aloft jnr. will have a replacement - if you earn it!"
-  examine: "This entitles you to one free gnome food delivery."
+  destroy: "Warning! If you destroy this item, you will lose ALL rewards that it relates to and you will have to make another trek in order to get another one."
+  examine: "Blue/Red/Yellow reward token exchanged at Burgh de Rott/Paterdomus."
 long_vine:
   id: 7777
   tradeable: false
@@ -43370,8 +43442,10 @@ wooden_crate:
   examine: "Is there treasure inside?"
 oak_chest:
   id: 8149
+  examine: "Is there a prize inside?"
 teak_chest:
   id: 8150
+  examine: "Is there a prize inside?"
 mahogany_chest:
   id: 8151
   examine: "Is there a prize inside?"
@@ -43553,7 +43627,6 @@ tall_box_hedge:
   examine: "You can plant this in your garden."
 rosemary_2:
   id: 8210
-  limit: 1000
   weight: 0.028
   examine: "Some rosemary."
 daffodils:
@@ -43567,6 +43640,7 @@ sunflower:
   examine: "Great big sunny flowers."
 marigolds_2:
   id: 8214
+  limit: 1000
   weight: 0.028
   examine: "A bunch of marigolds."
 roses:
@@ -43867,16 +43941,42 @@ darklight_2:
   kept: "Reclaim"
 anti-dragon_shield_2:
   id: 8282
+  limit: 100
+  dstab: 7.0
   weight: 5.443
+  dslash: 9.0
+  dcrush: 8.0
+  dmagic: 2.0
+  drange: 8.0
   examine: "This provides partial protection from dragonbreath attacks."
 amulet_of_glory:
   id: 8283
+  limit: 100
+  prayer: 3
+  str: 6.0
+  astab: 10.0
+  dstab: 3.0
   weight: 0.01
-  examine: "An Amulet of glory, symbol of a member of the Heroes Guild."
+  aslash: 10.0
+  acrush: 10.0
+  amagic: 10.0
+  arange: 10.0
+  dslash: 3.0
+  dcrush: 3.0
+  dmagic: 3.0
+  drange: 3.0
+  dsummon: 3.0
+  examine: "A very powerful dragonstone amulet."
 cape_of_legends_2:
   id: 8284
   tradeable: false
+  dstab: 7.0
   weight: 1.814
+  dslash: 7.0
+  dcrush: 7.0
+  dmagic: 7.0
+  drange: 7.0
+  dsummon: 7.0
   examine: "The cape worn by members of the Legends' Guild."
   kept: "Wilderness"
 king_arthur:
@@ -47545,6 +47645,7 @@ empty_vial:
   kept: "Vanish"
 vial_of_water_lunar_diplomacy:
   id: 9086
+  limit: 10000
   tradeable: false
   weight: 0.5
   destroy: "You'll have to get an empty one from Baba Yaga."
@@ -49367,6 +49468,7 @@ tome_of_xp_1:
   examine: "A tome of experience that awards 2000 XP per chapter."
 bucket_of_water_meiyerditch:
   id: 9659
+  limit: 100
   bankable: false
   tradeable: false
   weight: 3.0
@@ -52516,7 +52618,7 @@ clue_scroll_easy_71:
   id: 10184
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_13:
   id: 10185
@@ -52555,7 +52657,7 @@ clue_scroll_easy_74:
   id: 10190
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_16:
   id: 10191
@@ -52594,7 +52696,7 @@ clue_scroll_easy_77:
   id: 10196
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_19:
   id: 10197
@@ -52633,7 +52735,7 @@ clue_scroll_easy_80:
   id: 10202
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_22:
   id: 10203
@@ -52672,7 +52774,7 @@ clue_scroll_easy_83:
   id: 10208
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_25:
   id: 10209
@@ -52711,7 +52813,7 @@ clue_scroll_easy_86:
   id: 10214
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_28:
   id: 10215
@@ -52750,7 +52852,7 @@ clue_scroll_easy_89:
   id: 10220
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_31:
   id: 10221
@@ -52789,7 +52891,7 @@ clue_scroll_easy_92:
   id: 10226
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_34:
   id: 10227
@@ -52828,7 +52930,7 @@ clue_scroll_easy_95:
   id: 10232
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_easy_37:
   id: 10233
@@ -52841,7 +52943,7 @@ clue_scroll_hard_88:
   id: 10234
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_54:
   id: 10235
@@ -52854,7 +52956,7 @@ clue_scroll_hard_89:
   id: 10236
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_55:
   id: 10237
@@ -52893,7 +52995,7 @@ clue_scroll_hard_92:
   id: 10242
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_58:
   id: 10243
@@ -52906,7 +53008,7 @@ clue_scroll_hard_93:
   id: 10244
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_hard_59:
   id: 10245
@@ -52919,7 +53021,7 @@ clue_scroll_hard_94:
   id: 10246
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_hard_60:
   id: 10247
@@ -52958,7 +53060,7 @@ clue_scroll_hard_97:
   id: 10252
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_63:
   id: 10253
@@ -52971,7 +53073,7 @@ clue_scroll_medium_82:
   id: 10254
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_38:
   id: 10255
@@ -52984,7 +53086,7 @@ clue_scroll_medium_83:
   id: 10256
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_39:
   id: 10257
@@ -52997,7 +53099,7 @@ clue_scroll_medium_84:
   id: 10258
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_40:
   id: 10259
@@ -53036,7 +53138,7 @@ clue_scroll_medium_87:
   id: 10264
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_43:
   id: 10265
@@ -53049,7 +53151,7 @@ clue_scroll_medium_88:
   id: 10266
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_44:
   id: 10267
@@ -53062,7 +53164,7 @@ clue_scroll_medium_89:
   id: 10268
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_45:
   id: 10269
@@ -53101,7 +53203,7 @@ clue_scroll_medium_92:
   id: 10274
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_48:
   id: 10275
@@ -53114,7 +53216,7 @@ clue_scroll_medium_93:
   id: 10276
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_49:
   id: 10277
@@ -53127,7 +53229,7 @@ clue_scroll_medium_94:
   id: 10278
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_50:
   id: 10279
@@ -54563,7 +54665,7 @@ purple_sweets:
   price: 12400
   limit: 1000
   edible: true
-  examine: "Remember to brush after eating!"
+  examine: "Remember to brush after eating this Treasure Trail treat!"
 scroll:
   id: 10485
   bankable: false
@@ -55485,6 +55587,7 @@ skeletal_helm_2:
   examine: "Make your foes cower by wearing a skull as a helmet!"
 infinity_top_2:
   id: 10605
+  limit: 10
   absorbmelee: 3
   absorbmagic: 1
   weight: 2.267
@@ -55825,7 +55928,13 @@ shade_robe:
 cape_of_legends_3:
   id: 10635
   tradeable: false
+  dstab: 7.0
   weight: 1.814
+  dslash: 7.0
+  dcrush: 7.0
+  dmagic: 7.0
+  drange: 7.0
+  dsummon: 7.0
   slot: "Cape"
   examine: "The cape worn by members of the Legends' Guild."
   kept: "Wilderness"
@@ -56503,15 +56612,6 @@ enchanted_top_2:
   dsummon: 20.0
   slot: "Chest"
   examine: "Enchanted wizard robes."
-wizard_boots:
-  id: 10689
-  limit: 2
-  weight: 0.453
-  amagic: 4.0
-  dmagic: 4.0
-  slot: "Feet"
-  examine: "Slightly magical boots."
-  kept: "Wilderness"
 black_platebody_t_2:
   id: 10690
   limit: 2
@@ -57141,7 +57241,7 @@ picture_89:
 elegant_shirt_2:
   id: 10750
   slot: "Chest"
-  examine: "A well made elegant mans' black shirt."
+  examine: "A well made elegant mans' blue shirt."
 picture_90:
   id: 10751
   tradeable: false
@@ -57152,7 +57252,7 @@ picture_90:
 elegant_shirt_3:
   id: 10752
   slot: "Chest"
-  examine: "A well made elegant mans' black shirt."
+  examine: "A well made elegant mans' green shirt."
 picture_91:
   id: 10753
   tradeable: false
@@ -64495,7 +64595,7 @@ spirit_shards:
   kept: "Wilderness"
 gecko_6:
   id: 12184
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -64528,7 +64628,7 @@ zamorak_hawk:
   examine: "A stately zamorak hawk."
 guthix_raptor_2:
   id: 12187
-  npc1: 6957
+  npc: 6957
   npc2: 9187
   food: "Ground fishing bait"
   food2: "Fishing bait"
@@ -64554,7 +64654,7 @@ vulture:
     summoning: 85
 terrier_puppy:
   id: 12191
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -64634,7 +64734,7 @@ monkey_12:
   kept: "Wilderness"
 chameleon_2:
   id: 12203
-  npc1: 6923
+  npc: 6923
   npc2: 6925
   npc3: 6927
   npc4: 6929
@@ -66192,7 +66292,7 @@ hatchling_dragon:
     summoning: 99
 baby_dragon:
   id: 12470
-  npc1: 6901
+  npc: 6901
   npc2: 6903
   npc3: 6905
   npc4: 6907
@@ -66212,7 +66312,7 @@ hatchling_dragon_2:
     summoning: 99
 baby_dragon_2:
   id: 12472
-  npc1: 6901
+  npc: 6901
   npc2: 6903
   npc3: 6905
   npc4: 6907
@@ -66232,7 +66332,7 @@ hatchling_dragon_3:
     summoning: 99
 baby_dragon_3:
   id: 12474
-  npc1: 6901
+  npc: 6901
   npc2: 6903
   npc3: 6905
   npc4: 6907
@@ -66252,7 +66352,7 @@ hatchling_dragon_4:
     summoning: 99
 baby_dragon_4:
   id: 12476
-  npc1: 6901
+  npc: 6901
   npc2: 6903
   npc3: 6905
   npc4: 6907
@@ -66296,7 +66396,7 @@ baby_penguin:
     summoning: 30
 penguin:
   id: 12482
-  npc1: 6909
+  npc: 6909
   npc2: 6910
   npc3: 7314
   npc4: 7315
@@ -66320,7 +66420,7 @@ raven_chick:
   id: 12484
 raven:
   id: 12485
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -66344,7 +66444,7 @@ baby_raccoon_2:
     hunter: 27
 raccoon:
   id: 12487
-  npc1: 6914
+  npc: 6914
   npc2: 7272
   npc3: 7274
   npc4: 9236
@@ -66364,7 +66464,7 @@ baby_gecko:
     hunter: 27
 gecko:
   id: 12489
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -66405,7 +66505,7 @@ baby_chameleon:
     summoning: 90
 chameleon:
   id: 12493
-  npc1: 6923
+  npc: 6923
   npc2: 6925
   npc3: 6927
   npc4: 6929
@@ -66439,36 +66539,18 @@ chameleon_egg_2:
   tradeable: false
   examine: "A lizard's egg."
   kept: "Wilderness"
-baby_monkey:
+pet_baby_monkey_grey_and_beige:
   id: 12496
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey:
+pet_monkey_grey_and_beige:
   id: 12497
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 6943
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
@@ -66495,7 +66577,7 @@ baby_giant_crab_2:
     slayer: 32
 giant_crab:
   id: 12501
-  npc1: 6948
+  npc: 6948
   npc2: 7294
   npc3: 7296
   npc4: 7298
@@ -66556,7 +66638,7 @@ guthix_bird:
   id: 12510
 guthix_raptor:
   id: 12511
-  npc1: 6957
+  npc: 6957
   npc2: 9187
   food: "Ground fishing bait"
   food2: "Fishing bait"
@@ -66565,7 +66647,7 @@ guthix_raptor:
     summoning: 70
 terrier_puppy_2:
   id: 12512
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -66580,7 +66662,7 @@ terrier_puppy_2:
     summoning: 4
 terrier:
   id: 12513
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -66601,7 +66683,7 @@ greyhound_puppy_2:
     summoning: 4
 greyhound:
   id: 12515
-  npc1: 6961
+  npc: 6961
   npc2: 7242
   npc3: 7244
   npc4: 9193
@@ -66619,7 +66701,7 @@ labrador_puppy_2:
     summoning: 4
 labrador:
   id: 12517
-  npc1: 6895
+  npc: 6895
   npc2: 6963
   npc3: 7246
   npc4: 7248
@@ -66638,7 +66720,7 @@ dalmatian_puppy_2:
     summoning: 4
 dalmatian:
   id: 12519
-  npc1: 6896
+  npc: 6896
   npc2: 6965
   npc3: 7250
   npc4: 7252
@@ -66669,7 +66751,7 @@ bulldog_puppy_2:
     summoning: 4
 bulldog_3:
   id: 12523
-  npc1: 6968
+  npc: 6968
   npc2: 7257
   npc3: 7258
   npc4: 9205
@@ -66783,7 +66865,7 @@ enchanted_pawya_meat:
   kept: "Reclaim"
 platypus_4:
   id: 12547
-  npc1: 7015
+  npc: 7015
   npc2: 7016
   npc3: 7017
   npc4: 7021
@@ -66799,7 +66881,7 @@ platypus_4:
     hunter: 48
 platypus:
   id: 12548
-  npc1: 7015
+  npc: 7015
   npc2: 7016
   npc3: 7017
   npc4: 7021
@@ -66815,7 +66897,7 @@ platypus:
     hunter: 48
 platypus_2:
   id: 12549
-  npc1: 7015
+  npc: 7015
   npc2: 7016
   npc3: 7017
   npc4: 7021
@@ -66831,7 +66913,7 @@ platypus_2:
     hunter: 48
 platypus_3:
   id: 12550
-  npc1: 7015
+  npc: 7015
   npc2: 7016
   npc3: 7017
   npc4: 7021
@@ -67410,12 +67492,14 @@ bucket_2008_easter_event:
   kept: "Reclaim"
 bucket_of_water_2008_easter_event:
   id: 12650
+  limit: 100
   edible: true
   tradeable: false
   weight: 3.0
   examine: "It's a bucket of water from the Easter Bunny's warren."
 bucket_of_water_2008_easter_event_2:
   id: 12651
+  limit: 100
   edible: true
   tradeable: false
   weight: 3.0
@@ -67941,306 +68025,144 @@ helm_of_neitiznot_charged:
   type: "Hair"
   examine: "A gift from Neitiznot's Burgher."
   kept: "Reclaim"
-baby_monkey_2:
+pet_baby_monkey_brown_and_beige:
   id: 12682
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_2:
+pet_monkey_brown_and_beige:
   id: 12683
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7211
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_3:
+pet_baby_monkey_black_and_brown:
   id: 12684
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_3:
+pet_monkey_black_and_brown:
   id: 12685
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7213
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_4:
+pet_baby_monkey_beige:
   id: 12686
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_4:
+pet_monkey_beige:
   id: 12687
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7215
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_5:
+pet_baby_monkey_tan_and_beige:
   id: 12688
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_5:
+pet_monkey_tan_and_beige:
   id: 12689
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7217
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_6:
+pet_baby_monkey_grey_and_white:
   id: 12690
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_6:
+pet_monkey_grey_and_white:
   id: 12691
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7219
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_7:
+pet_baby_monkey_blue_and_grey:
   id: 12692
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_7:
+pet_monkey_blue_and_grey:
   id: 12693
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7221
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_8:
+pet_baby_monkey_black_and_white:
   id: 12694
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_8:
+pet_monkey_black_and_white:
   id: 12695
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7223
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_9:
+pet_baby_monkey_orange:
   id: 12696
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_9:
+pet_monkey_orange:
   id: 12697
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7225
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
-baby_monkey_10:
+pet_baby_monkey_blue_and_white:
   id: 12698
   food: "Bananas"
   examine: "It's a tiny, cheeky monkey."
   skill_req:
     summoning: 95
     hunter: 27
-monkey_10:
+pet_monkey_blue_and_white:
   id: 12699
-  npc1: 211
-  npc2: 7213
-  npc3: 7215
-  npc4: 7217
-  npc5: 7219
-  npc6: 7221
-  npc7: 7223
-  npc8: 7225
-  npc9: 7227
-  npc10: 9223
-  npc11: 9224
-  npc12: 9225
-  npc13: 9226
-  npc14: 9227
-  npc15: 9228
-  npc16: 9229
-  npc17: 9230
-  npc18: 9231
-  npc19: 9232
+  npc: 7227
   food: "Bananas"
-  examine: "A confused looking monkey."
+  examine: "It's a monkey in your backpack. As you look it pokes you."
   skill_req:
     summoning: 95
     hunter: 27
 terrier_puppy_3:
   id: 12700
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -68255,7 +68177,7 @@ terrier_puppy_3:
     summoning: 4
 terrier_2:
   id: 12701
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -68270,7 +68192,7 @@ terrier_2:
     summoning: 4
 terrier_puppy_4:
   id: 12702
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -68285,7 +68207,7 @@ terrier_puppy_4:
     summoning: 4
 terrier_3:
   id: 12703
-  npc1: 6958
+  npc: 6958
   npc2: 6959
   npc3: 7237
   npc4: 7238
@@ -68306,7 +68228,7 @@ greyhound_puppy_3:
     summoning: 4
 greyhound_2:
   id: 12705
-  npc1: 6961
+  npc: 6961
   npc2: 7242
   npc3: 7244
   npc4: 9193
@@ -68324,7 +68246,7 @@ greyhound_puppy_4:
     summoning: 4
 greyhound_3:
   id: 12707
-  npc1: 6961
+  npc: 6961
   npc2: 7242
   npc3: 7244
   npc4: 9193
@@ -68342,7 +68264,7 @@ labrador_puppy_3:
     summoning: 4
 labrador_2:
   id: 12709
-  npc1: 6895
+  npc: 6895
   npc2: 6963
   npc3: 7246
   npc4: 7248
@@ -68361,7 +68283,7 @@ labrador_puppy_4:
     summoning: 4
 labrador_3:
   id: 12711
-  npc1: 6895
+  npc: 6895
   npc2: 6963
   npc3: 7246
   npc4: 7248
@@ -68380,7 +68302,7 @@ dalmatian_puppy_3:
     summoning: 4
 dalmatian_2:
   id: 12713
-  npc1: 6896
+  npc: 6896
   npc2: 6965
   npc3: 7250
   npc4: 7252
@@ -68399,7 +68321,7 @@ dalmatian_puppy_4:
     summoning: 4
 dalmatian_3:
   id: 12715
-  npc1: 6896
+  npc: 6896
   npc2: 6965
   npc3: 7250
   npc4: 7252
@@ -68442,7 +68364,7 @@ bulldog_puppy_3:
     summoning: 4
 bulldog:
   id: 12721
-  npc1: 6968
+  npc: 6968
   npc2: 7257
   npc3: 7258
   npc4: 9205
@@ -68460,7 +68382,7 @@ bulldog_puppy_4:
     summoning: 4
 bulldog_2:
   id: 12723
-  npc1: 6968
+  npc: 6968
   npc2: 7257
   npc3: 7258
   npc4: 9205
@@ -68474,7 +68396,7 @@ raven_chick_2:
   id: 12724
 raven_2:
   id: 12725
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -68493,7 +68415,7 @@ raven_chick_3:
   id: 12726
 raven_3:
   id: 12727
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -68512,7 +68434,7 @@ raven_chick_4:
   id: 12728
 raven_4:
   id: 12729
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -68531,7 +68453,7 @@ raven_chick_5:
   id: 12730
 raven_5:
   id: 12731
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -68550,7 +68472,7 @@ raven_chick_6:
   id: 12732
 raven_6:
   id: 12733
-  npc1: 6912
+  npc: 6912
   npc2: 7262
   npc3: 7264
   npc4: 7266
@@ -68574,7 +68496,7 @@ baby_raccoon_3:
     hunter: 27
 raccoon_2:
   id: 12735
-  npc1: 6914
+  npc: 6914
   npc2: 7272
   npc3: 7274
   npc4: 9236
@@ -68594,7 +68516,7 @@ baby_raccoon_4:
     hunter: 27
 raccoon_3:
   id: 12737
-  npc1: 6914
+  npc: 6914
   npc2: 7272
   npc3: 7274
   npc4: 9236
@@ -68635,7 +68557,7 @@ baby_gecko_5:
     hunter: 27
 gecko_2:
   id: 12742
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -68656,7 +68578,7 @@ gecko_2:
     hunter: 27
 gecko_3:
   id: 12743
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -68677,7 +68599,7 @@ gecko_3:
     hunter: 27
 gecko_4:
   id: 12744
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -68698,7 +68620,7 @@ gecko_4:
     hunter: 27
 gecko_5:
   id: 12745
-  npc1: 6916
+  npc: 6916
   npc2: 6918
   npc3: 7281
   npc4: 7282
@@ -68726,7 +68648,7 @@ baby_giant_crab_3:
     slayer: 32
 giant_crab_2:
   id: 12747
-  npc1: 6948
+  npc: 6948
   npc2: 7294
   npc3: 7296
   npc4: 7298
@@ -68750,7 +68672,7 @@ baby_giant_crab_4:
     slayer: 32
 giant_crab_3:
   id: 12749
-  npc1: 6948
+  npc: 6948
   npc2: 7294
   npc3: 7296
   npc4: 7298
@@ -68774,7 +68696,7 @@ baby_giant_crab_5:
     slayer: 32
 giant_crab_4:
   id: 12751
-  npc1: 6948
+  npc: 6948
   npc2: 7294
   npc3: 7296
   npc4: 7298
@@ -68798,7 +68720,7 @@ baby_giant_crab_6:
     slayer: 32
 giant_crab_5:
   id: 12753
-  npc1: 6948
+  npc: 6948
   npc2: 7294
   npc3: 7296
   npc4: 7298
@@ -68871,7 +68793,7 @@ squirrel_6:
     hunter: 29
 penguin_2:
   id: 12762
-  npc1: 6909
+  npc: 6909
   npc2: 6910
   npc3: 7314
   npc4: 7315
@@ -68893,7 +68815,7 @@ baby_penguin_2:
     summoning: 30
 penguin_3:
   id: 12764
-  npc1: 6909
+  npc: 6909
   npc2: 6910
   npc3: 7314
   npc4: 7315
@@ -71038,7 +70960,7 @@ clue_scroll_hard_98:
   id: 13010
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box_10:
   id: 13011
@@ -71049,7 +70971,7 @@ clue_scroll_hard_99:
   id: 13012
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 puzzle_box_11:
   id: 13013
@@ -71082,7 +71004,7 @@ clue_scroll_hard_102:
   id: 13018
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 puzzle_box_14:
   id: 13019
@@ -71093,7 +71015,7 @@ clue_scroll_hard_103:
   id: 13020
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box_15:
   id: 13021
@@ -71104,7 +71026,7 @@ clue_scroll_hard_104:
   id: 13022
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 puzzle_box_16:
   id: 13023
@@ -71137,7 +71059,7 @@ clue_scroll_hard_107:
   id: 13028
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 puzzle_box_19:
   id: 13029
@@ -71148,7 +71070,7 @@ clue_scroll_hard_108:
   id: 13030
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 puzzle_box_20:
   id: 13031
@@ -71159,7 +71081,7 @@ clue_scroll_hard_109:
   id: 13032
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 puzzle_box_21:
   id: 13033
@@ -71194,7 +71116,7 @@ clue_scroll_hard_112:
   id: 13038
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_65:
   id: 13039
@@ -71207,13 +71129,13 @@ clue_scroll_hard_113:
   id: 13040
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_hard_114:
   id: 13041
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_hard_115:
   id: 13042
@@ -71245,7 +71167,7 @@ clue_scroll_hard_117:
   id: 13046
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A clue!"
   kept: "Wilderness"
 casket_hard_68:
   id: 13047
@@ -71258,13 +71180,13 @@ clue_scroll_hard_118:
   id: 13048
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_hard_119:
   id: 13049
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed."
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_95:
   id: 13050
@@ -71289,7 +71211,7 @@ clue_scroll_medium_97:
   id: 13053
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_52:
   id: 13054
@@ -71302,13 +71224,13 @@ clue_scroll_medium_98:
   id: 13055
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_99:
   id: 13056
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_53:
   id: 13057
@@ -71340,7 +71262,7 @@ clue_scroll_medium_102:
   id: 13061
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 casket_medium_55:
   id: 13062
@@ -71353,7 +71275,7 @@ clue_scroll_medium_103:
   id: 13063
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_56:
   id: 13064
@@ -71366,7 +71288,7 @@ clue_scroll_medium_104:
   id: 13065
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 casket_medium_57:
   id: 13066
@@ -71391,19 +71313,19 @@ clue_scroll_medium_107:
   id: 13069
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_medium_108:
   id: 13070
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 clue_scroll_medium_109:
   id: 13071
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_110:
   id: 13072
@@ -71428,13 +71350,13 @@ clue_scroll_medium_112:
   id: 13075
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A clue!"
   kept: "Wilderness"
 clue_scroll_medium_113:
   id: 13076
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "A piece of the world map,but where?"
   kept: "Wilderness"
 casket_medium_58:
   id: 13077
@@ -71447,7 +71369,7 @@ clue_scroll_medium_114:
   id: 13078
   tradeable: false
   destroy: "Are you sure you want to destroy this item? This item cannot be reclaimed."
-  examine: "A set of instructions to be followed"
+  examine: "Perhaps someone at the observatory can teach me to navigate?"
   kept: "Wilderness"
 clue_scroll_medium_115:
   id: 13079
@@ -73047,7 +72969,7 @@ ex-ex-parrot_in_a_magic_cage:
   kept: "Wilderness"
 ex-ex-parrot:
   id: 13335
-  npc1: 7844
+  npc: 7844
   npc2: 9212
   food: "Rock fragments"
   examine: "This parrot has un-ceased to be."
@@ -73055,7 +72977,7 @@ ex-ex-parrot:
     summoning: 71
 ex-ex-parrot_2:
   id: 13336
-  npc1: 7844
+  npc: 7844
   npc2: 9212
   food: "Rock fragments"
   examine: "This parrot has un-ceased to be."
@@ -77472,10 +77394,9 @@ pet_kitten_7:
   examine: "A friendly little pet."
 pet_cat_7:
   id: 14090
-  npc1: 8214
-  npc2: 9279
+  npc: 8214
   food: "Fish as a kitten, none for any other stages"
-  examine: "A fully grown feline."
+  examine: "A friendly little pet."
 lazy_cat_7:
   id: 14091
   food: "None"
@@ -78945,6 +78866,9 @@ cape_stealing_creation_blue:
   bankable: false
   tradeable: false
   weight: 0.02
+  dslash: 1.0
+  dcrush: 1.0
+  drange: 2.0
   slot: "Cape"
   examine: "A thick, blue cape."
   kept: "Vanish"
@@ -78953,6 +78877,9 @@ cape_stealing_creation_red:
   bankable: false
   tradeable: false
   weight: 0.02
+  dslash: 1.0
+  dcrush: 1.0
+  drange: 2.0
   slot: "Cape"
   examine: "A thick, red cape."
   kept: "Vanish"
@@ -79720,7 +79647,7 @@ dragon_plate_armour_set_sk_noted:
   id: 14532
 broav:
   id: 14533
-  npc1: 8491
+  npc: 8491
   npc2: 9188
   food: "Mort myre fungus"
   examine: "A Mort Myre mushroom-muncher."
@@ -80405,7 +80332,7 @@ explosive_potion_tutorial:
   kept: "Always"
 abyssal_minion_2:
   id: 14651
-  npc1: 8624
+  npc: 8624
   npc2: 9245
   food: "Ashes"
   examine: "A denizen of the Abyss."
@@ -80413,7 +80340,7 @@ abyssal_minion_2:
     slayer: 85
 creeping_hand_2:
   id: 14652
-  npc1: 8619
+  npc: 8619
   npc2: 9246
   food: "Gloves and Leather gloves"
   examine: "Gimme five!"
@@ -80421,7 +80348,7 @@ creeping_hand_2:
     slayer: 5
 minitrice_2:
   id: 14653
-  npc1: 8620
+  npc: 8620
   npc2: 9247
   food: "Limpwurt root"
   examine: "Too small to turn people into boulders."
@@ -80429,7 +80356,7 @@ minitrice_2:
     slayer: 25
 baby_basilisk_2:
   id: 14654
-  npc1: 8621
+  npc: 8621
   npc2: 9248
   food: "Eye of newt"
   examine: "Too small to turn people into boulders."
@@ -80437,7 +80364,7 @@ baby_basilisk_2:
     slayer: 40
 baby_kurask_2:
   id: 14655
-  npc1: 8622
+  npc: 8622
   npc2: 9249
   food: "Bones"
   examine: "It's small, but still heavy."
@@ -80445,7 +80372,7 @@ baby_kurask_2:
     slayer: 70
 abyssal_minion:
   id: 14656
-  npc1: 8624
+  npc: 8624
   npc2: 9245
   food: "Ashes"
   examine: "A denizen of the Abyss."
@@ -80453,7 +80380,7 @@ abyssal_minion:
     slayer: 85
 creeping_hand:
   id: 14657
-  npc1: 8619
+  npc: 8619
   npc2: 9246
   food: "Gloves and Leather gloves"
   examine: "Gimme five!"
@@ -80461,7 +80388,7 @@ creeping_hand:
     slayer: 5
 minitrice:
   id: 14658
-  npc1: 8620
+  npc: 8620
   npc2: 9247
   food: "Limpwurt root"
   examine: "Too small to turn people into boulders."
@@ -80469,7 +80396,7 @@ minitrice:
     slayer: 25
 baby_basilisk:
   id: 14659
-  npc1: 8621
+  npc: 8621
   npc2: 9248
   food: "Eye of newt"
   examine: "Too small to turn people into boulders."
@@ -80477,7 +80404,7 @@ baby_basilisk:
     slayer: 40
 baby_kurask:
   id: 14660
-  npc1: 8622
+  npc: 8622
   npc2: 9249
   food: "Bones"
   examine: "It's small, but still heavy."
@@ -80485,6 +80412,7 @@ baby_kurask:
     slayer: 70
 abyssal_whip_fake:
   id: 14661
+  limit: 10
   bankable: false
   tradeable: false
   str: 82.0
@@ -80727,6 +80655,7 @@ bandos_throne_room_sphere:
   kept: "Reclaim"
 bones_3:
   id: 14693
+  limit: 10000
   weight: 0.5
   examine: "Bones are for burying."
   kept: "Wilderness"
@@ -84060,6 +83989,7 @@ special_mahogany_log:
   kept: "Vanish"
 plank_2:
   id: 15291
+  limit: 10000
   weight: 0.8
   examine: "A plank of wood!"
 short_plank:
@@ -84451,7 +84381,7 @@ gnome_champions_scroll:
   kept: "Wilderness"
 champions_scroll:
   id: 15359
-  examine: "It's a challenge from the Mummy Champion!"
+  examine: "A scroll once used by a champion."
 scroll_of_knowledge:
   id: 15360
   tradeable: false
@@ -84510,7 +84440,11 @@ roddecks_pipe:
 magnifying_glass:
   id: 15374
   tradeable: false
+  str: -10.0
+  astab: -100.0
   weight: 0.001
+  aslash: -100.0
+  acrush: -50.0
   slot: "Weapon"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A tool for sleuths."
@@ -86721,6 +86655,7 @@ vial_of_blue_glaze:
   use: "Removed"
 bowl_2010_easter_event:
   id: 15687
+  limit: 100
   bankable: false
   tradeable: false
   weight: 0.453
@@ -91108,23 +91043,28 @@ primal_chainbody_bound:
   examine: "A series of connected metal rings."
 air_rune_b:
   id: 16091
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_b:
   id: 16092
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_b:
   id: 16093
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 fire_rune_b:
   id: 16094
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune_b:
   id: 16095
-  examine: "A basic level catalytic rune."
+  limit: 25000
+  examine: "Used for basic level missile spells."
   kept: "Wilderness"
 chaos_rune_b:
   id: 16096
@@ -100776,6 +100716,7 @@ promethium_bar_noted:
   id: 17669
 bones_dungeoneering:
   id: 17670
+  limit: 10000
   weight: 0.5
   examine: "Bones are for burying."
   use: "Dungeoneering"
@@ -101165,32 +101106,38 @@ grave_creeper_trap_noted:
   id: 17775
 rune_essence_dungeoneering:
   id: 17776
+  limit: 25000
   examine: "Uncharged runes in a pouch."
   use: "Dungeoneering"
   kept: "Always"
 air_rune_dungeoneering:
   id: 17780
+  limit: 25000
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 water_rune_dungeoneering:
   id: 17781
+  limit: 25000
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 earth_rune_dungeoneering:
   id: 17782
+  limit: 25000
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 fire_rune_dungeoneering:
   id: 17783
+  limit: 25000
   examine: "One of the four basic elemental runes."
   use: "Dungeoneering"
   kept: "Always"
 mind_rune_dungeoneering:
   id: 17784
-  examine: "Used for basic-level missile spells."
+  limit: 25000
+  examine: "Used for basic level missile spells."
   use: "Dungeoneering"
   kept: "Always"
 chaos_rune_dungeoneering:
@@ -104632,7 +104579,7 @@ milk_tooth_creature:
 milk_tooth_creature_2:
   id: 18672
   food: "Milk, Chocolatey milk"
-  examine: "A healthy tooth creature from Zanaris."
+  examine: "A baby tooth creature from Zanaris."
   skill_req:
     summoning: 37
 tooth_extractor:
@@ -115040,6 +114987,7 @@ broken_cannon_stand_empty:
   kept: "Vanish"
 cannon_stand_artisans_workshop:
   id: 20470
+  limit: 10
   bankable: false
   tradeable: false
   weight: 0.907
@@ -115064,6 +115012,7 @@ empty_cannon_base:
   kept: "Vanish"
 cannon_base_artisans_workshop:
   id: 20473
+  limit: 10
   bankable: false
   tradeable: false
   weight: 10.0
@@ -115152,6 +115101,7 @@ pipe_mould:
   kept: "Vanish"
 cannon_furnace_artisans_workshop:
   id: 20484
+  limit: 10
   bankable: false
   tradeable: false
   weight: 3.0
@@ -115160,6 +115110,7 @@ cannon_furnace_artisans_workshop:
   kept: "Vanish"
 cannon_furnace_artisans_workshop_repaired:
   id: 20485
+  limit: 10
   bankable: false
   tradeable: false
   weight: 5.0
@@ -115216,6 +115167,7 @@ flint_artisans_workshop:
   kept: "Vanish"
 cannonball_artisans_workshop:
   id: 20492
+  limit: 10000
   bankable: false
   tradeable: false
   weight: 3.628
@@ -118134,6 +118086,7 @@ katagon_full_helm:
   kept: "Always"
 vial_2:
   id: 20878
+  limit: 10000
   weight: 0.015
   examine: "An empty glass vial."
   kept: "Wilderness"
@@ -118312,6 +118265,7 @@ gold_ore_2:
   examine: "This needs refining."
 plank_3:
   id: 20905
+  limit: 10000
   weight: 0.8
   examine: "A plank of wood!"
 raw_bass_2:
@@ -118341,6 +118295,7 @@ sapphire_2:
   examine: "This looks valuable."
 seaweed_2:
   id: 20911
+  limit: 10000
   weight: 0.2
   examine: "Slightly damp seaweed."
 raw_shark_2:
@@ -118442,6 +118397,7 @@ ornate_katana:
   kept: "Wilderness"
 hammer_2:
   id: 20931
+  limit: 1000
   weight: 0.907
   examine: "Good for hitting things!"
   kept: "Wilderness"
@@ -118487,23 +118443,28 @@ tetrahedron_4:
   kept: "Wilderness"
 fire_rune_4:
   id: 20939
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 water_rune_4:
   id: 20940
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 air_rune_4:
   id: 20941
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 earth_rune_3:
   id: 20942
+  limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
 mind_rune_3:
   id: 20943
-  examine: "A basic level catalytic rune."
+  limit: 25000
+  examine: "Used for basic level missile spells."
   kept: "Wilderness"
 body_rune_3:
   id: 20944

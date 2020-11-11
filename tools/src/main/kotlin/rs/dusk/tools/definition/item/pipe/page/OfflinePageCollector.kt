@@ -24,10 +24,10 @@ class OfflinePageCollector(val wiki: Wiki, infoboxes: List<String>, val function
         val name = (map["name"] as? String)?.toLowerCase()
         val redirectedPage = if (page.redirected) page.getRedirect(wiki) ?: page else page
         if(name != null) {
-            pageNames[name] = redirectedPage
+            pageNames.putIfAbsent(name, redirectedPage)
         }
-        pageNames[page.title.toLowerCase()] = redirectedPage
-        pageNames[redirectedPage.title.toLowerCase()] = redirectedPage
+        pageNames.putIfAbsent(page.title.toLowerCase(), redirectedPage)
+        pageNames.putIfAbsent(redirectedPage.title.toLowerCase(), redirectedPage)
     }
 
     fun getPage(rs3: WikiPage?, rs2: WikiPage?, name: String): WikiPage? {

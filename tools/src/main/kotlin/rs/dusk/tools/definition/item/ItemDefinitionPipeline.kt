@@ -20,6 +20,7 @@ import rs.dusk.tools.definition.item.pipe.extra.wiki.*
 import rs.dusk.tools.definition.item.pipe.page.LivePageCollector
 import rs.dusk.tools.definition.item.pipe.page.OfflinePageCollector
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
+import rs.dusk.tools.definition.item.pipe.page.UniqueIdentifiers
 import rs.dusk.tools.wiki.model.Wiki
 import rs.dusk.tools.wiki.model.WikiPage
 import rs.dusk.tools.wiki.scrape.RunescapeWiki.export
@@ -88,8 +89,6 @@ object ItemDefinitionPipeline {
             add(ItemExchangePrices(rs2Wiki))
             add(ItemExchangeLimits())
             add(ItemNoted(decoder))
-            add(ItemManualChanges())
-            add(ItemDefaults())
         }
         repeat(decoder.size) { id ->
             if (debugId > 0 && id != debugId) {
@@ -105,7 +104,12 @@ object ItemDefinitionPipeline {
                 }
             }
         }
-        return output
+        val postProcess = Pipeline<MutableMap<Int, Extras>>().apply {
+            add(UniqueIdentifiers())
+            add(ItemManualChanges())
+            add(ItemDefaults())
+        }
+        return postProcess.modify(output)
     }
 
     /**
@@ -223,27 +227,6 @@ object ItemDefinitionPipeline {
      * Converts to unique yaml map
      */
     fun convertToYaml(output: MutableMap<Int, Extras>): Map<String, Map<String, Any>> {
-        val nameMap = mutableMapOf<String, Int>()
-
-        fun makeUniqueId(builder: PageCollector) {
-            val duplicate = nameMap.containsKey(builder.uid)
-            nameMap[builder.uid] = nameMap.getOrDefault(builder.uid, 0) + 1
-            if (duplicate) {
-                builder.uid = "${builder.uid}_${nameMap[builder.uid]}"
-            }
-        }
-
-        // Identified id's take priority
-        output.filter { it.value.first.rs3Idd }.forEach { (_, pair) ->
-            val (builder, _) = pair
-            makeUniqueId(builder)
-        }
-        // The rest
-        output.filter { !it.value.first.rs3Idd }.forEach { (_, pair) ->
-            val (builder, _) = pair
-            makeUniqueId(builder)
-        }
-
         return output
             .mapNotNull { (id, pair) ->
                 val (builder, extras) = pair

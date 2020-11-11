@@ -2,22 +2,11 @@ package rs.dusk.tools.definition.item.pipe.extra
 
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.definition.item.Extras
+import rs.dusk.tools.definition.item.pipe.page.PageCollector
 
-class ItemManualChanges : Pipeline.Modifier<Extras> {
+class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     val examines: Map<String, Int> = mapOf(
-        "pet_kitten" to 1,
-        "pet_kitten_2" to 3,
-        "pet_kitten_3" to 1,
-        "pet_kitten_4" to 3,
-        "pet_kitten_5" to 0,
-        "pet_kitten_6" to 3,
-        "pet_cat" to 2,
-        "pet_cat_2" to 5,
-        "pet_cat_3" to 2,
-        "pet_cat_4" to 5,
-        "pet_cat_5" to 2,
-        "pet_cat_6" to 5,
         "overgrown_cat" to 3,
         "overgrown_hellcat" to 3,
         "hellcat" to 2,
@@ -64,97 +53,136 @@ class ItemManualChanges : Pipeline.Modifier<Extras> {
     )
 
     val npcs: Map<String, Int> = mapOf(
-        "pet_cat" to 1,
         "pet_cat_2" to 2,
         "pet_cat_3" to 3,
         "pet_cat_4" to 4,
         "pet_cat_5" to 5,
-        "pet_cat_6" to 6
+        "pet_cat_6" to 6,
+        "pet_cat" to 1
     )
     val numberRegex = "([0-9]+)".toRegex()
-    override fun modify(content: Extras): Extras {
-        val (builder, extras) = content
-        val (id, _, _, _, _, _, _, _, uid) = builder
-        if (extras.containsKey("examine2")) {
-            extras["examine2"] = (extras.getValue("examine2") as String).replace("intrument", "instrument")
-        }
-        replaceName(extras)
-        examines.forEach { (id, index) ->
-            content.selectExamine(id, index)
-        }
-        npcs.forEach { (id, index) ->
-            content.selectNPC(id, index)
-        }
-        if (uid.startsWith("clue_scroll_")) {
-            val examines = extras.count { it.key.startsWith("examine") }
-            val suffix = getSuffixNumber(uid)
-            val index = suffix.rem(examines)
-            content.selectExamine(uid, index)
-        }
-        if (uid.startsWith("enchanted_lyre") && !uid.endsWith("0")) {
-            content.selectExamine(uid, 1)
-        }
-        if (uid.startsWith("lazy_cat")) {
-            content.selectExamine(uid, 3)
-        }
-        if (uid.startsWith("wily_cat")) {
-            content.selectExamine(uid, 1)
-        }
-        if (uid.startsWith("black_mask")) {
-            content.selectExamine(uid, if (uid.endsWith("_0")) 2 else 1)
-        }
-        if (uid.startsWith("combat_bracelet_") && !uid.endsWith("0")) {
-            content.selectExamine(uid, 2)
-        }
-        if (uid.contains("_puppy")) {
-            content.selectExamine(uid, 1)
-        }
-        if ((uid.contains("spikeshield") || uid.contains("berserker_shield")) && !uid.endsWith("_0")) {
-            content.selectExamine(uid, 2)
-        }
-        if (uid.contains("dragonhide_coif") && !uid.endsWith("_0")) {
-            content.selectExamine(uid, 1)
-        }
-        if (uid.startsWith("seaweed_net_") && !uid.endsWith("_0")) {
-            content.selectExamine(uid, 2)
-        }
-        if (uid.startsWith("ferocious_ring")) {
-            val suffix = 6 - getSuffixNumber(uid)
-            content.selectExamine(uid, suffix)
-        }
-        if (uid.startsWith("tooth_creature")) {
-            content.selectExamine(uid,
-                when {
-                    uid.endsWith("_health") -> 2
-                    uid.endsWith("_decayed") -> 3
-                    else -> 1
-                }
-            )
-        }
-        if (id == 20823) {//Primal platelegs
-            extras["examine"] = "${extras["examine"]}${extras.remove("examine2")}"
-        }
-        if (uid.startsWith("reward_book")) {
-            content.selectExamine(uid, 1)
-        }
-        if (uid.startsWith("elegant_shirt")) {
-            content.selectExamine(uid, 3)
-            val suffix = getSuffixNumber(uid)
-            extras["examine"] = (extras["examine"] as String).replace("[colour]", when (suffix) {
-                1 -> "red"
-                2 -> "blue"
-                3 -> "green"
-                else -> "black"
-            })
-        }
-        if (uid.contains("shelves")) {
-            content.selectExamine(uid, if (uid.endsWith("_3")) 2 else 1)
-        }
-        if (extras.containsKey("examine2")) {
-            content.selectExamine(uid, 1)
+
+    override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
+        content.forEach { (id, content) ->
+            val (builder, extras) = content
+            val uid = builder.uid
+            if (uid == "wizard_boots_t") {
+                builder.uid = "wizard_boots"
+            }
+            if (extras.containsKey("examine2")) {
+                extras["examine2"] = (extras.getValue("examine2") as String).replace("intrument", "instrument")
+            }
+            replaceGameName(extras)
+            examines.forEach { (uid, index) ->
+                content.selectExamine(uid, index)
+            }
+            npcs.forEach { (uid, index) ->
+                content.selectNPC(uid, index)
+            }
+            if (uid.startsWith("clue_scroll_")) {
+                val examines = extras.count { it.key.startsWith("examine") }
+                val suffix = getSuffixNumber(uid)
+                val index = suffix.rem(examines)
+                content.selectExamine(uid, index)
+            }
+            if (uid.startsWith("enchanted_lyre") && !uid.endsWith("0")) {
+                content.selectExamine(uid, 1)
+            }
+            if (uid.startsWith("lazy_cat")) {
+                content.selectExamine(uid, 3)
+            }
+            if (uid.startsWith("wily_cat")) {
+                content.selectExamine(uid, 1)
+            }
+            if (uid.startsWith("black_mask")) {
+                content.selectExamine(uid, if (uid.endsWith("_0")) 2 else 1)
+            }
+            if (uid.startsWith("combat_bracelet_") && !uid.endsWith("0")) {
+                content.selectExamine(uid, 2)
+            }
+            if (uid.contains("_puppy")) {
+                content.selectExamine(uid, 1)
+            }
+            if ((uid.contains("spikeshield") || uid.contains("berserker_shield")) && !uid.endsWith("_0")) {
+                content.selectExamine(uid, 2)
+            }
+            if (uid.contains("dragonhide_coif") && !uid.endsWith("_0")) {
+                content.selectExamine(uid, 1)
+            }
+            if (uid.startsWith("seaweed_net_") && !uid.endsWith("_0")) {
+                content.selectExamine(uid, 2)
+            }
+            if (uid.startsWith("ferocious_ring")) {
+                val suffix = 6 - getSuffixNumber(uid)
+                content.selectExamine(uid, suffix)
+            }
+            if (uid.startsWith("tooth_creature")) {
+                content.selectExamine(uid,
+                    when {
+                        uid.endsWith("_health") -> 2
+                        uid.endsWith("_decayed") -> 3
+                        else -> 1
+                    }
+                )
+            }
+            if (id == 20823) {//Primal platelegs
+                extras["examine"] = "${extras["examine"]}${extras.remove("examine2")}"
+            }
+            if (uid.startsWith("reward_book")) {
+                content.selectExamine(uid, 1)
+            }
+            if (uid.startsWith("elegant_shirt")) {
+                content.selectExamine(uid, 3)
+                val suffix = getSuffixNumber(uid)
+                extras["examine"] = (extras["examine"] as String).replace("[colour]", when (suffix) {
+                    1 -> "red"
+                    2 -> "blue"
+                    3 -> "green"
+                    else -> "black"
+                })
+            }
+            if (uid.contains("shelves")) {
+                content.selectExamine(uid, if (uid.endsWith("_3")) 2 else 1)
+            }
+
+            if (uid.startsWith("monkey")) {
+                monkey(uid, content, builder, "monkey")
+            }
+
+            if (uid.startsWith("baby_monkey")) {
+                monkey(uid, content, builder, "baby_monkey")
+            }
+
+            if (extras.containsKey("examine2")) {
+                content.selectExamine(uid, 1)
+            }
         }
         // Manual changes go here
         return content
+    }
+
+    private fun monkey(uid: String, content: Extras, builder: PageCollector, name: String) {
+        var suffix = getSuffixNumber(uid)
+        if (uid == name) {
+            suffix = 1
+        }
+        val colour = when (suffix) {
+            1 -> "grey_and_beige"
+            2 -> "brown_and_beige"
+            3 -> "black_and_brown"
+            4 -> "beige"
+            5 -> "tan_and_beige"
+            6 -> "grey_and_white"
+            7 -> "blue_and_grey"
+            8 -> "black_and_white"
+            9 -> "orange"
+            10 -> "blue_and_white"
+            else -> null
+        }
+        if (colour != null) {
+            content.selectNPC(uid, suffix)
+            builder.uid = "pet_${name}_$colour"
+        }
     }
 
     private fun getSuffixNumber(text: String): Int {
@@ -180,7 +208,7 @@ class ItemManualChanges : Pipeline.Modifier<Extras> {
         }
     }
 
-    private fun replaceName(extras: MutableMap<String, Any>) {
+    private fun replaceGameName(extras: MutableMap<String, Any>) {
         forAll {
             if (extras.containsKey("examine$it")) {
                 extras["examine$it"] = (extras.getValue("examine$it") as String).replace("RuneScape", "Dusk")
@@ -192,7 +220,7 @@ class ItemManualChanges : Pipeline.Modifier<Extras> {
     }
 
     private fun forAll(function: (String) -> Unit) {
-        for (i in 1..10) {
+        for (i in 1..20) {
             function(if (i == 1) "" else i.toString())
         }
     }
