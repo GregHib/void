@@ -35304,29 +35304,23 @@ fishbowl_seaweed:
   weight: 2.267
   examine: "A fishless fishbowl with some seaweed."
   kept: "Reclaim"
-fishbowl_2:
+fishbowl_blue:
   id: 6670
   npc: 8737
-  npc2: 8738
-  npc3: 8739
   limit: 10000
   food: "Fish food"
   slot: "Weapon"
   examine: "An empty fishbowl."
-fishbowl_3:
+fishbowl_green:
   id: 6671
-  npc: 8737
-  npc2: 8738
-  npc3: 8739
+  npc: 8738
   limit: 10000
   food: "Fish food"
   slot: "Weapon"
   examine: "An empty fishbowl."
-fishbowl_4:
+fishbowl_red:
   id: 6672
-  npc: 8737
-  npc2: 8738
-  npc3: 8739
+  npc: 8739
   limit: 10000
   food: "Fish food"
   slot: "Weapon"
@@ -64593,22 +64587,9 @@ spirit_shards:
   limit: 10000
   examine: "Shards of an obelisk."
   kept: "Wilderness"
-gecko_6:
+gecko_red_2:
   id: 12184
-  npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
+  npc: 7283
   food: "Flies and Beetle bits"
   examine: "How cute!"
   skill_req:
@@ -64664,37 +64645,37 @@ terrier_puppy:
   npc8: 9191
   npc9: 9192
   food: "Raw meat, bones"
-  examine: "A hyperactive little pup."
+  examine: "It's lively and energetic."
   skill_req:
     summoning: 4
 greyhound_puppy:
   id: 12192
   food: "Raw Beef"
-  examine: "An aerodynamic doggy."
+  examine: "This is one fast little pooch."
   skill_req:
     summoning: 4
 labrador_puppy:
   id: 12193
   food: "Raw beef"
-  examine: "Adult - My most faithful friend."
+  examine: "Puppy - Soft but strong... and cute."
   skill_req:
     summoning: 4
 dalmatian_puppy:
   id: 12194
   food: "Raw meat"
-  examine: "A purebred doggy."
+  examine: "Now, if only I could find another hundred..."
   skill_req:
     summoning: 4
 sheepdog_puppy:
   id: 12195
   food: "Raw meat"
-  examine: "Come by! Come by!"
+  examine: "This little puppy is very quiet."
   skill_req:
     summoning: 4
 bulldog_puppy:
   id: 12196
   food: "Raw meat"
-  examine: "Looks like it's chewing a wasp."
+  examine: "One proud little puppy."
   skill_req:
     summoning: 4
 dragon_hatchling:
@@ -66290,7 +66271,7 @@ hatchling_dragon:
   examine: "A hatchling  dragon."
   skill_req:
     summoning: 99
-baby_dragon:
+baby_dragon_red:
   id: 12470
   npc: 6901
   npc2: 6903
@@ -66301,7 +66282,7 @@ baby_dragon:
   npc7: 9210
   npc8: 9211
   food: "Raw meat and/or fish"
-  examine: "A baby [colour] dragon."
+  examine: "A baby red dragon."
   skill_req:
     summoning: 99
 hatchling_dragon_2:
@@ -66310,7 +66291,7 @@ hatchling_dragon_2:
   examine: "A hatchling  dragon."
   skill_req:
     summoning: 99
-baby_dragon_2:
+baby_dragon_blue:
   id: 12472
   npc: 6901
   npc2: 6903
@@ -66321,7 +66302,7 @@ baby_dragon_2:
   npc7: 9210
   npc8: 9211
   food: "Raw meat and/or fish"
-  examine: "A baby [colour] dragon."
+  examine: "A baby blue dragon."
   skill_req:
     summoning: 99
 hatchling_dragon_3:
@@ -66330,7 +66311,7 @@ hatchling_dragon_3:
   examine: "A hatchling  dragon."
   skill_req:
     summoning: 99
-baby_dragon_3:
+baby_dragon_green:
   id: 12474
   npc: 6901
   npc2: 6903
@@ -66341,7 +66322,7 @@ baby_dragon_3:
   npc7: 9210
   npc8: 9211
   food: "Raw meat and/or fish"
-  examine: "A baby [colour] dragon."
+  examine: "A baby green dragon."
   skill_req:
     summoning: 99
 hatchling_dragon_4:
@@ -66350,7 +66331,7 @@ hatchling_dragon_4:
   examine: "A hatchling  dragon."
   skill_req:
     summoning: 99
-baby_dragon_4:
+baby_dragon_black:
   id: 12476
   npc: 6901
   npc2: 6903
@@ -66361,7 +66342,7 @@ baby_dragon_4:
   npc7: 9210
   npc8: 9211
   food: "Raw meat and/or fish"
-  examine: "A baby [colour] dragon."
+  examine: "A baby black dragon."
   skill_req:
     summoning: 99
 red_dragon_egg:
@@ -66462,22 +66443,9 @@ baby_gecko:
   skill_req:
     summoning: 10
     hunter: 27
-gecko:
-  id: 12489
+gecko_orange:
+  id: 12742
   npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
   food: "Flies and Beetle bits"
   examine: "How cute!"
   skill_req:
@@ -66657,7 +66625,7 @@ terrier_puppy_2:
   npc8: 9191
   npc9: 9192
   food: "Raw meat, bones"
-  examine: "A hyperactive little pup."
+  examine: "It's lively and energetic."
   skill_req:
     summoning: 4
 terrier:
@@ -66678,7 +66646,7 @@ terrier:
 greyhound_puppy_2:
   id: 12514
   food: "Raw Beef"
-  examine: "An aerodynamic doggy."
+  examine: "This is one fast little pooch."
   skill_req:
     summoning: 4
 greyhound:
@@ -66696,7 +66664,7 @@ greyhound:
 labrador_puppy_2:
   id: 12516
   food: "Raw beef"
-  examine: "Adult - My most faithful friend."
+  examine: "Puppy - Soft but strong... and cute."
   skill_req:
     summoning: 4
 labrador:
@@ -66715,7 +66683,7 @@ labrador:
 dalmatian_puppy_2:
   id: 12518
   food: "Raw meat"
-  examine: "A purebred doggy."
+  examine: "Now, if only I could find another hundred..."
   skill_req:
     summoning: 4
 dalmatian:
@@ -66734,7 +66702,7 @@ dalmatian:
 sheepdog_puppy_2:
   id: 12520
   food: "Raw meat"
-  examine: "Come by! Come by!"
+  examine: "This little puppy is very quiet."
   skill_req:
     summoning: 4
 sheepdog:
@@ -66746,7 +66714,7 @@ sheepdog:
 bulldog_puppy_2:
   id: 12522
   food: "Raw meat"
-  examine: "Looks like it's chewing a wasp."
+  examine: "One proud little puppy."
   skill_req:
     summoning: 4
 bulldog_3:
@@ -68172,7 +68140,7 @@ terrier_puppy_3:
   npc8: 9191
   npc9: 9192
   food: "Raw meat, bones"
-  examine: "A hyperactive little pup."
+  examine: "It's lively and energetic."
   skill_req:
     summoning: 4
 terrier_2:
@@ -68202,7 +68170,7 @@ terrier_puppy_4:
   npc8: 9191
   npc9: 9192
   food: "Raw meat, bones"
-  examine: "A hyperactive little pup."
+  examine: "It's lively and energetic."
   skill_req:
     summoning: 4
 terrier_3:
@@ -68223,7 +68191,7 @@ terrier_3:
 greyhound_puppy_3:
   id: 12704
   food: "Raw Beef"
-  examine: "An aerodynamic doggy."
+  examine: "This is one fast little pooch."
   skill_req:
     summoning: 4
 greyhound_2:
@@ -68241,7 +68209,7 @@ greyhound_2:
 greyhound_puppy_4:
   id: 12706
   food: "Raw Beef"
-  examine: "An aerodynamic doggy."
+  examine: "This is one fast little pooch."
   skill_req:
     summoning: 4
 greyhound_3:
@@ -68259,7 +68227,7 @@ greyhound_3:
 labrador_puppy_3:
   id: 12708
   food: "Raw beef"
-  examine: "Adult - My most faithful friend."
+  examine: "Puppy - Soft but strong... and cute."
   skill_req:
     summoning: 4
 labrador_2:
@@ -68278,7 +68246,7 @@ labrador_2:
 labrador_puppy_4:
   id: 12710
   food: "Raw beef"
-  examine: "Adult - My most faithful friend."
+  examine: "Puppy - Soft but strong... and cute."
   skill_req:
     summoning: 4
 labrador_3:
@@ -68297,7 +68265,7 @@ labrador_3:
 dalmatian_puppy_3:
   id: 12712
   food: "Raw meat"
-  examine: "A purebred doggy."
+  examine: "Now, if only I could find another hundred..."
   skill_req:
     summoning: 4
 dalmatian_2:
@@ -68316,7 +68284,7 @@ dalmatian_2:
 dalmatian_puppy_4:
   id: 12714
   food: "Raw meat"
-  examine: "A purebred doggy."
+  examine: "Now, if only I could find another hundred..."
   skill_req:
     summoning: 4
 dalmatian_3:
@@ -68335,7 +68303,7 @@ dalmatian_3:
 sheepdog_puppy_3:
   id: 12716
   food: "Raw meat"
-  examine: "Come by! Come by!"
+  examine: "This little puppy is very quiet."
   skill_req:
     summoning: 4
 sheepdog_2:
@@ -68347,7 +68315,7 @@ sheepdog_2:
 sheepdog_puppy_4:
   id: 12718
   food: "Raw meat"
-  examine: "Come by! Come by!"
+  examine: "This little puppy is very quiet."
   skill_req:
     summoning: 4
 sheepdog_3:
@@ -68359,7 +68327,7 @@ sheepdog_3:
 bulldog_puppy_3:
   id: 12720
   food: "Raw meat"
-  examine: "Looks like it's chewing a wasp."
+  examine: "One proud little puppy."
   skill_req:
     summoning: 4
 bulldog:
@@ -68377,7 +68345,7 @@ bulldog:
 bulldog_puppy_4:
   id: 12722
   food: "Raw meat"
-  examine: "Looks like it's chewing a wasp."
+  examine: "One proud little puppy."
   skill_req:
     summoning: 4
 bulldog_2:
@@ -68555,85 +68523,25 @@ baby_gecko_5:
   skill_req:
     summoning: 10
     hunter: 27
-gecko_2:
-  id: 12742
-  npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
-  food: "Flies and Beetle bits"
-  examine: "How cute!"
-  skill_req:
-    summoning: 10
-    hunter: 27
-gecko_3:
+gecko_green:
   id: 12743
-  npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
+  npc: 6918
   food: "Flies and Beetle bits"
   examine: "How cute!"
   skill_req:
     summoning: 10
     hunter: 27
-gecko_4:
+gecko_red:
   id: 12744
-  npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
+  npc: 7281
   food: "Flies and Beetle bits"
   examine: "How cute!"
   skill_req:
     summoning: 10
     hunter: 27
-gecko_5:
+gecko_blue:
   id: 12745
-  npc: 6916
-  npc2: 6918
-  npc3: 7281
-  npc4: 7282
-  npc5: 7283
-  npc6: 7284
-  npc7: 7289
-  npc8: 7290
-  npc9: 7292
-  npc10: 9213
-  npc11: 9214
-  npc12: 9215
-  npc13: 9216
-  npc14: 9217
+  npc: 7282
   food: "Flies and Beetle bits"
   examine: "How cute!"
   skill_req:

@@ -3,6 +3,7 @@ package rs.dusk.tools.definition.item.pipe.extra
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
+import rs.dusk.tools.wiki.model.Infobox.indexSuffix
 
 class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
@@ -72,6 +73,9 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             if (extras.containsKey("examine2")) {
                 extras["examine2"] = (extras.getValue("examine2") as String).replace("intrument", "instrument")
             }
+            if (uid.contains("_puppy")) {
+                content.selectExamine(uid, 1)
+            }
             replaceGameName(extras)
             examines.forEach { (uid, index) ->
                 content.selectExamine(uid, index)
@@ -100,9 +104,6 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             if (uid.startsWith("combat_bracelet_") && !uid.endsWith("0")) {
                 content.selectExamine(uid, 2)
             }
-            if (uid.contains("_puppy")) {
-                content.selectExamine(uid, 1)
-            }
             if ((uid.contains("spikeshield") || uid.contains("berserker_shield")) && !uid.endsWith("_0")) {
                 content.selectExamine(uid, 2)
             }
@@ -125,7 +126,7 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
                     }
                 )
             }
-            if (id == 20823) {//Primal platelegs
+            if (id == 20823) {//Primal plate legs
                 extras["examine"] = "${extras["examine"]}${extras.remove("examine2")}"
             }
             if (uid.startsWith("reward_book")) {
@@ -151,6 +152,51 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
             if (uid.startsWith("baby_monkey")) {
                 monkey(uid, content, builder, "baby_monkey")
+            }
+
+            if (uid.startsWith("baby_dragon")) {
+                var suffix = getSuffixNumber(uid)
+                if (uid == "baby_dragon") {
+                    suffix = 1
+                }
+                val colour = when (suffix) {
+                    4 -> "black"
+                    3 -> "green"
+                    2 -> "blue"
+                    1 -> "red"
+                    else -> null
+                }
+                if (colour != null) {
+                    builder.uid = "baby_dragon_$colour"
+                    extras["examine"] = (extras["examine"] as String).replace("[colour]", colour)
+                }
+            }
+
+            if (uid.startsWith("fishbowl") && uid != "fishbowl" && !uid.contains("net")) {
+                val suffix = getSuffixNumber(uid)
+                val colour = when (suffix) {
+                    2 -> "blue"
+                    3 -> "green"
+                    4 -> "red"
+                    else -> null
+                }
+                if (colour != null) {
+                    content.selectNPC(uid, suffix - 1)
+                    builder.uid = "fishbowl_$colour"
+                }
+            }
+
+            if (uid.startsWith("gecko")) {
+                val suffix = getSuffixNumber(uid)
+                val colour = when (suffix) {
+                    5 -> "blue"
+                    3 -> "green"
+                    4 -> "red"
+                    6 -> "red_2"
+                    else -> "orange"
+                }
+                content.selectNPC(uid, suffix - 1)
+                builder.uid = "gecko_$colour"
             }
 
             if (extras.containsKey("examine2")) {
@@ -189,21 +235,22 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
         return numberRegex.find(text)?.groupValues?.last()?.toIntOrNull() ?: 0
     }
 
-    private fun Extras.selectExamine(uid: String, index: Int) = select(uid, "examine", index)
+    private fun Extras.selectExamine(uid: String, vararg index: Int) = select(uid, "examine", *index)
 
-    private fun Extras.selectNPC(uid: String, index: Int) = select(uid, "npc", index)
+    private fun Extras.selectNPC(uid: String, vararg index: Int) = select(uid, "npc", *index)
 
-    private fun Extras.selectDestroy(uid: String, index: Int) = select(uid, "destroy", index)
+    private fun Extras.selectDestroy(uid: String, vararg index: Int) = select(uid, "destroy", *index)
 
-    private fun Extras.select(uid: String, name: String, index: Int) {
+    private fun Extras.select(uid: String, name: String, vararg indices: Int) {
         if (first.uid.startsWith(uid)) {
-            val key = "$name${if (index > 1) index.toString() else ""}"
-            val choice = second[key]
-            if (choice != null) {
+            val selections = indices.map { indexSuffix(name, it - 1) }.mapNotNull { second[it] }
+            if (selections.isNotEmpty()) {
                 forAll {
                     second.remove("$name$it")
                 }
-                second[name] = choice
+                selections.forEachIndexed { index, any ->
+                    second[indexSuffix(name, index)] = any
+                }
             }
         }
     }

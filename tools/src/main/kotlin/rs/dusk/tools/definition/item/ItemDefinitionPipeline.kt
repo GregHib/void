@@ -99,7 +99,7 @@ object ItemDefinitionPipeline {
             if (page != null) {
                 val result = pipeline.modify(page to mutableMapOf())
                 val (builder, extras) = result
-                if (builder.uid.isNotEmpty() || extras.isNotEmpty()) {
+                if (builder.uid.isNotEmpty() && !builder.uid.startsWith("null", true)) {
                     output[id] = result
                 }
             }
@@ -227,18 +227,18 @@ object ItemDefinitionPipeline {
      * Converts to unique yaml map
      */
     fun convertToYaml(output: MutableMap<Int, Extras>): Map<String, Map<String, Any>> {
-        return output
-            .mapNotNull { (id, pair) ->
-                val (builder, extras) = pair
-                if (builder.uid.startsWith("null", true)) {
-                    null
-                } else {
+        val map = linkedMapOf<String, Map<String, Any>>()
+        map.putAll(
+            output
+                .mapNotNull { (id, pair) ->
+                    val (builder, extras) = pair
                     extras["id"] = id
                     builder.uid to beautify(extras)
                 }
-            }
-            .sortedBy { it.second["id"] as Int }
-            .toMap()
+                .sortedBy { it.second["id"] as Int }
+        )
+        return map
+
     }
 
     private fun beautify(extras: MutableMap<String, Any>) = extras
