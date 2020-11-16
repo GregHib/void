@@ -13,20 +13,20 @@ object ObjectDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), false, false)
-//        println(decoder.get(2262))
+        println(decoder.get(733))
 //        println(decoder.get(2259))
 //        println(decoder.get(3))
 //        println(decoder.get(1531))
 //        decoder.findMatchingModels(23917)
 //        decoder.findMatchingName("Long hall door")
-        decoder.findMatchingSize(3, 2)
+//        decoder.findMatchingSize(3, 2)
     }
 
     fun ObjectDecoder.findMatchingName(name: String) {
         for (i in 0 until size) {
             val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.name.contains(name, true)) {
-                println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
+                println("Found $i ${def.options.get(0)} ${def.modelIds?.contentDeepToString()}")
             }
         }
     }
@@ -35,7 +35,7 @@ object ObjectDefinitions {
         for (i in 0 until size) {
             val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.sizeX == width && def.sizeY == height) {
-                println("Found $i ${def.options?.get(0)} ${def.modelIds?.contentDeepToString()}")
+                println("Found $i ${def.options.get(0)} ${def.modelIds?.contentDeepToString()}")
             }
         }
     }
@@ -45,7 +45,7 @@ object ObjectDefinitions {
         for (i in 0 until size) {
             val def = getOrNull(i) ?: continue
             if(def.modelIds != null && def.modelIds!!.contentDeepEquals(original.modelIds!!)) {
-                println("Found $i ${def.options?.get(0)}")
+                println("Found $i ${def.options.get(0)}")
             }
         }
     }

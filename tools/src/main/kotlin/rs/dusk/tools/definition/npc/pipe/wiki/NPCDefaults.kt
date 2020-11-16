@@ -6,10 +6,11 @@ import rs.dusk.tools.definition.item.Extras
 /**
  * Removes default values to save space
  */
-class NPCDefaults : Pipeline.Modifier<Extras> {
-    override fun modify(content: Extras): Extras {
-        val (_, extras) = content
-        process(extras)
+class NPCDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
+    override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
+        content.forEach { (_, builder) ->
+            process(builder.second)
+        }
         return content
     }
 
@@ -18,7 +19,11 @@ class NPCDefaults : Pipeline.Modifier<Extras> {
         extras.remove("aggressive", false)
         extras.remove("immune", false)
         extras.remove("diseased", false)
+        extras.remove("immune_stun", false)
+        extras.remove("immune_deflect", false)
+        extras.remove("immune_drain", false)
 
+        extras.remove("weakness", "none")
         extras.remove("xpbonus", 0.0)
         extras.remove("style", "none")
         extras.remove("examine", "It's a null.")

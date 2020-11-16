@@ -12,10 +12,14 @@ import rs.dusk.tools.definition.item.ItemDefinitionPipeline.convertToYaml
 import rs.dusk.tools.definition.item.pipe.page.LivePageCollector
 import rs.dusk.tools.definition.item.pipe.page.OfflinePageCollector
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
-import rs.dusk.tools.definition.npc.pipe.wiki.InfoBoxMonster
+import rs.dusk.tools.definition.item.pipe.page.UniqueIdentifiers
+import rs.dusk.tools.definition.npc.pipe.wiki.InfoBoxNPC
 import rs.dusk.tools.definition.npc.pipe.wiki.NPCDefaults
+import rs.dusk.tools.definition.npc.pipe.wiki.NPCManualChanges
 import rs.dusk.tools.wiki.model.Wiki
 import java.io.File
+import java.time.LocalDate
+import java.time.Month
 import java.util.concurrent.TimeUnit
 
 object NPCDefinitionPipeline {
@@ -63,7 +67,8 @@ object NPCDefinitionPipeline {
                 listOf("Bestiary", "Non-player_characters"),
                 listOf(
                     "infobox monster" to "id",
-                    "infobox npc" to "id"
+                    "infobox npc" to "id",
+                    "infobox non-player character" to "id"
                 ),
                 "runescape.wiki",
                 true
@@ -80,9 +85,9 @@ object NPCDefinitionPipeline {
         val incomplete = mutableListOf<PageCollector>()
 
         repeat(decoder.size) { id ->
-//            if(debugId > 0 && id != debugId) {
-//                return@repeat
-//            }
+            if(debugId >= 0 && id != debugId) {
+                return@repeat
+            }
             val def = decoder.getOrNull(id) ?: return@repeat
             val processed = pipeline.modify(PageCollector(id, def.name))
             val (_, name, page, _, rs3, _) = processed
@@ -93,46 +98,49 @@ object NPCDefinitionPipeline {
             }
         }
 
-        collectUnknownPages("osrs", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
-            if (pages.containsKey(id)) {
-                pages[id]!!.copy(osrs = page)
-            } else {
-                PageCollector(id, decoder.get(id).name, osrs = page)
+        collectUnknownPages("osrs-npc", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
+            (pages[id] ?: PageCollector(id, decoder.get(id).name)).apply {
+                osrs = page
             }
         }
-        collectUnknownPages("rs3", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
-            if (pages.containsKey(id)) {
-                pages[id]!!.copy(rs3 = page)
-            } else {
-                PageCollector(id, decoder.get(id).name, rs3 = page)
+        collectUnknownPages("rs3-npc", incomplete, null, pages, listOf("infobox monster", "infobox npc")) { id, page ->
+            (pages[id] ?: PageCollector(id, decoder.get(id).name)).apply {
+                rs3 = page
             }
         }
         return pages
     }
+
+    private val revision = LocalDate.of(2011, Month.OCTOBER, 4)
 
     private fun buildNPCExtras(
         decoder: NPCDecoder,
         pages: MutableMap<Int, PageCollector>
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
+        val infoboxes = listOf("infobox monster", "infobox npc", "infobox non-player character")
         val pipeline = Pipeline<Extras>().apply {
-            add(InfoBoxMonster())
-            add(NPCDefaults())
+            add(InfoBoxNPC(revision, infoboxes))
         }
         repeat(decoder.size) { id ->
-            if (debugId > 0 && id != debugId) {
+            if (debugId >= 0 && id != debugId) {
                 return@repeat
             }
             val def = decoder.getOrNull(id) ?: return@repeat
             val page = pages[def.id]
             if (page != null) {
                 val result = pipeline.modify(page to mutableMapOf())
-                val (builder, extras) = result
-                if (builder.uid.isNotEmpty() || extras.isNotEmpty()) {
+                val uid = result.first.uid
+                if (uid.isNotEmpty() && !uid.startsWith("null", true)) {
                     output[id] = result
                 }
             }
         }
-        return output
+        val postProcess = Pipeline<MutableMap<Int, Extras>>().apply {
+            add(UniqueIdentifiers())
+            add(NPCManualChanges())
+            add(NPCDefaults())
+        }
+        return postProcess.modify(output)
     }
 }

@@ -8,12 +8,12 @@ class UniqueIdentifiers : Pipeline.Modifier<MutableMap<Int, Extras>> {
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         val nameMap = mutableMapOf<String, Int>()
         // Identified id's take priority
-        content.filter { it.value.first.rs3Idd }.forEach { (_, pair) ->
+        content.filter { it.value.first.rs3Idd || it.value.first.osrsIdd || it.value.first.rs2Idd }.forEach { (_, pair) ->
             val (builder, _) = pair
             nameMap.makeUniqueId(builder)
         }
         // The rest
-        content.filter { !it.value.first.rs3Idd }.forEach { (_, pair) ->
+        content.filter { !it.value.first.rs3Idd && !it.value.first.osrsIdd && !it.value.first.rs2Idd }.forEach { (_, pair) ->
             val (builder, _) = pair
             nameMap.makeUniqueId(builder)
         }

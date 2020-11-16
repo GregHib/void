@@ -9,12 +9,14 @@ import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.forma
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.removeLinks
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.removeParentheses
 import rs.dusk.tools.definition.item.pipe.extra.wiki.InfoBoxItem.Companion.splitExamine
+import rs.dusk.tools.wiki.model.Infobox
+import rs.dusk.tools.wiki.model.Infobox.forEachVersion
 import rs.dusk.tools.wiki.model.Infobox.indexSuffix
 import rs.dusk.tools.wiki.model.Infobox.splitByVersion
 import rs.dusk.tools.wiki.model.WikiPage
 import java.time.LocalDate
 
-class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
+class InfoBoxNPC(val revision: LocalDate, val infoboxes: List<String>) : Pipeline.Modifier<Extras> {
     override fun modify(content: Extras): Extras {
         val (builder, extras) = content
         val (id, name, rs2, _, rs3, rs3Idd, osrs, _) = builder
@@ -30,8 +32,7 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     }
 
     private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage?) {
-        splitByVersion(page, "infobox monster", id, true) { template, suffix ->
-            println("Process rs3 $suffix")
+        splitByVersion(page, infoboxes, id, true) { template, suffix ->
             template.forEach { (key, value) ->
                 val key = key.toLowerCase()
                 when (key) {
@@ -53,14 +54,20 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                             extras.putIfAbsent("area", use)
                         }
                     }
+                    "race" -> extras.putIfAbsent(key, removeLinks(value as String))
                     "immune_to_stun$suffix", "immune_to_deflect$suffix", "immune_to_drain$suffix" -> {
                         appendBool(extras, key.removeSuffix(suffix).replace("_to", ""), value as String)
                     }
                     "style$suffix", "primarystyle$suffix", "slayercat$suffix", "assigned_by$suffix" -> {
-                        var index = 0
-                        (value as String).split(",").forEach {
-                            val line = removeLinks(it).toLowerCase().trim()
+                        var index = 1
+                        (value as String).split(",").forEach lines@{
+                            var line = removeLinks(it).toLowerCase().trim()
                             if (line.isNotBlank()) {
+                                if (line == "achtryn") {
+                                    line = "mazchna"
+                                } else if (line == "morvran" || line == "mandrith" || line == "laniakea") {
+                                    return@lines
+                                }
                                 extras.putIfAbsent(indexSuffix(when (key.removeSuffix(suffix)) {
                                     "slayercat" -> "category"
                                     "assigned_by" -> "master"
@@ -78,70 +85,70 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     }
 
     private fun processOsrs(extras: MutableMap<String, Any>, page: WikiPage?) {
-        val template = page?.getTemplateMap("infobox monster") ?: return
-        println("OSRS $template")
-        template.forEach { (key, value) ->
-            val key = key.toLowerCase()
-            when (key) {
-                "aka", "attributes" -> extras.putIfAbsent(key, value as String)
-                "members", "aggressive", "immunepoison" -> {
-                    val text = removeParentheses(value as String)
-                    extras.putIfAbsent(if (key == "immunepoison") "immune_poison" else key, text.startsWith("yes", true) || text.equals("immune", true))
-                }
-                "poisonous" -> {
-                    val text = removeLinks(removeParentheses(value as String))
-                    val damage = text.toIntOrNull()
-                    when {
-                        damage != null -> extras.putIfAbsent("poison", damage * 10)
-                        text.startsWith("yes", true) -> extras.putIfAbsent("poison", 60)
-                        text.startsWith("no", true) || text.isBlank() -> extras.putIfAbsent("poison", 0)
-                        text.equals("disease", true) -> extras.putIfAbsent("diseased", true)
+        forEachVersion(page, infoboxes) { template, suffix ->
+            template.forEach { (k, value) ->
+                val key = (if (suffix == "1") k.removeSuffix(suffix) else k).toLowerCase()
+                when (k) {
+                    "aka", "attributes$suffix" -> extras.putIfAbsent(key, value as String)
+                    "members", "aggressive$suffix", "immunepoison$suffix" -> {
+                        val text = removeParentheses(value as String)
+                        extras.putIfAbsent(if (key == "immunepoison") key.replace("ep", "e_p") else key, text.startsWith("yes", true) || text.equals("immune", true))
                     }
-                }
-                "xpbonus", "slayxp" -> {
-                    val text = value as String
-                    appendDouble(extras, key, text.replace("%", ""))
-                }
-                "max hit" -> {
-                    val text = value as String
-                    var index = 0
-                    text.replace("+", "")
-                        .split(",").forEach {
-                            val line = removeParentheses(it).trim()
-                            if (appendInt(extras, indexSuffix("max", index), line)) {
-                                index++
-                            }
+                    "poisonous$suffix" -> {
+                        val text = removeLinks(removeParentheses(value as String))
+                        val damage = text.toIntOrNull()
+                        when {
+                            damage != null -> extras.putIfAbsent("poison", damage * 10)
+                            text.startsWith("yes", true) -> extras.putIfAbsent("poison", 60)
+                            text.startsWith("no", true) || text.isBlank() -> extras.putIfAbsent("poison", 0)
+                            text.equals("disease", true) -> extras.putIfAbsent("diseased", true)
                         }
-                }
-                "attack style", "cat" -> {
-                    val text = value as String
-                    var index = 0
-                    text
-                        .split(",").forEach {
-                            val line = removeLinks(removeParentheses(it)).trim()
-                            if (line.isNotBlank()) {
-                                val key = indexSuffix(when (key) {
-                                    "cat" -> "category"
-                                    "attack style" -> "style"
-                                    else -> key
-                                }, index++)
-                                extras.putIfAbsent(key, line.toLowerCase())
+                    }
+                    "xpbonus$suffix", "slayxp$suffix" -> {
+                        val text = value as String
+                        appendDouble(extras, key, text.replace("%", ""))
+                    }
+                    "max hit$suffix" -> {
+                        val text = value as String
+                        var index = 1
+                        text.replace("+", "").replace(" x 2", "").replace("x2", "").replace("×2", "")
+                            .split(",").forEach {
+                                val line = removeParentheses(it).trim()
+                                if (appendInt(extras, indexSuffix("max", index), line)) {
+                                    index++
+                                }
                             }
+                    }
+                    "attack style$suffix", "cat$suffix" -> {
+                        val text = value as String
+                        val array = text
+                            .split(",").map {
+                                removeLinks(removeParentheses(it)).trim()
+                            }.filter { it.isNotBlank() }
+                        if (array.isNotEmpty()) {
+                            val key = when (key) {
+                                "cat$suffix" -> "category${if (suffix == "1") "" else suffix}"
+                                "attack style$suffix" -> "style${if (suffix == "1") "" else suffix}"
+                                else -> key
+                            }
+                            extras.putIfAbsent(key, array.joinToString(separator = ",").toLowerCase())
                         }
-                }
-                "examine" -> {
-                    val text = value as String
-                    splitExamine(text, extras, key, "", false)
-                }
-                "attack speed" -> {
-                    val text = value as String
-                    appendInt(extras, "speed", text)
-                }
-                "combat", "slaylvl", "hitpoints", "att", "str", "def", "mage", "range", "attbns", "strbns", "amagic", "mbns", "arange", "rngbns", "dstab", "dslash", "dcrush", "dmagic", "drange" -> {
-                    val text = value as String
-                    appendInt(extras, key, text)
-                    if (key == "hitpoints") {
-                        extras[key] = (extras[key] as? Int ?: return@forEach) * 10
+                    }
+                    "examine" -> {
+                        val text = value as String
+                        splitExamine(text, extras, key, "", false)
+                    }
+                    "race" -> extras.putIfAbsent(key, removeLinks(value as String))
+                    "attack speed$suffix" -> {
+                        val text = value as String
+                        appendInt(extras, "speed", text)
+                    }
+                    "combat$suffix", "slaylvl$suffix", "hitpoints$suffix", "att$suffix", "str$suffix", "def$suffix", "mage$suffix", "range$suffix", "attbns$suffix", "strbns$suffix", "amagic$suffix", "mbns$suffix", "arange$suffix", "rngbns$suffix", "dstab$suffix", "dslash$suffix", "dcrush$suffix", "dmagic$suffix", "drange$suffix" -> {
+                        val text = value as String
+                        appendInt(extras, key, text)
+                        if (key == "hitpoints") {
+                            extras[key.removeSuffix(suffix)] = (extras[key] as? Int ?: return@forEach) * 10
+                        }
                     }
                 }
             }
@@ -187,8 +194,7 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     val letters = "[a-zA-Z?<>.:;']".toRegex()
 
     private fun processRs2(extras: MutableMap<String, Any>, page: WikiPage?) {
-        val template = page?.getTemplateMap("infobox monster") ?: return
-        println("RS2 $template")
+        val template = Infobox.getFirstMap(page, infoboxes) ?: return
         template.forEach { (key, value) ->
             val key = key.toLowerCase()
             when (key) {
@@ -216,10 +222,10 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                     }
                 }
                 "level", "lp" -> {
-                    val key = if (key == "lp") "hp" else key
+                    val key = if (key == "lp") "hitpoints" else key
                     val text = removeLinks(value as String)
                     val list = splitLines(text)
-                    var index = 0
+                    var index = 1
                     for (it in list.map { removeParentheses(it.trim()) }
                         .flatMap { it.split(" ") }
                         .map { it.replace(letters, "") }
@@ -237,12 +243,21 @@ class InfoBoxMonster(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                 "members", "aggressive", "poisonous" -> {
                     extras.putIfAbsent(key, (value as String).equals("yes", true))
                 }
-                "weakness" -> extras.putIfAbsent(key, removeLinks(value as String))
+                "weakness" -> {
+                    val text = removeLinks(value as String).toLowerCase().replace(",", "<br>").replace("/", "<br>")
+                    var index = 1
+                    for (weakness in text.split("<br>")) {
+                        if (weakness.isBlank()) {
+                            continue
+                        }
+                        extras.putIfAbsent(indexSuffix(key, index++), weakness.trim())
+                    }
+                }
                 "attack style" -> {
                     val style = (value as String).toLowerCase()
                     extras.putIfAbsent("style", removeLinks(style))
                 }
-                "race" -> extras.putIfAbsent(key, value as String)
+                "race" -> extras.putIfAbsent(key, removeLinks(value as String))
                 "examine" -> {
                     val text = removeLinks(value as String)
                     splitExamine(text, extras, key, "", false)

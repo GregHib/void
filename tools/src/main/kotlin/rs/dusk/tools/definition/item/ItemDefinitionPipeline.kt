@@ -91,15 +91,15 @@ object ItemDefinitionPipeline {
             add(ItemNoted(decoder))
         }
         repeat(decoder.size) { id ->
-            if (debugId > 0 && id != debugId) {
+            if (debugId >= 0 && id != debugId) {
                 return@repeat
             }
             val def = decoder.getOrNull(id) ?: return@repeat
             val page = pages[def.id]
             if (page != null) {
                 val result = pipeline.modify(page to mutableMapOf())
-                val (builder, extras) = result
-                if (builder.uid.isNotEmpty() && !builder.uid.startsWith("null", true)) {
+                val uid = result.first.uid
+                if (uid.isNotEmpty() && !uid.startsWith("null", true)) {
                     output[id] = result
                 }
             }
@@ -131,7 +131,7 @@ object ItemDefinitionPipeline {
         val incomplete = mutableListOf<PageCollector>()
 
         repeat(decoder.size) { id ->
-            if (debugId > 0 && id != debugId) {
+            if (debugId >= 0 && id != debugId) {
                 return@repeat
             }
             val def = decoder.getOrNull(id) ?: return@repeat
