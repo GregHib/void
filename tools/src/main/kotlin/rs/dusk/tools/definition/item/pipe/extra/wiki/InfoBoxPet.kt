@@ -49,7 +49,7 @@ class InfoBoxPet : Pipeline.Modifier<Extras> {
                 }
                 "food" -> {
                     // TODO replace with item name
-                    InfoBoxItem.splitExamine(value as String, extras, key, "", false)
+                    InfoBoxItem.splitExamine((value as String).replace(" and/or ", "<br>"), extras, key, "", false)
                 }
                 "examine" -> {
                     val examine = removeLinks(value as String)

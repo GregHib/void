@@ -13,18 +13,11 @@ object ItemDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
-        var count = 0
-        println(decoder.size)
-        val names = mutableSetOf<String>()
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-            names.add(def.name)
-            count++
-//            if(def.params?.containsKey(1) == true) {
-//                println("Found $i")
-//            }
+            if(def.name.contains("chameleon", true)) {
+                println("$i ${def.name}")
+            }
         }
-        println(names.size)
-        println(count)
     }
 }
