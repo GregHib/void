@@ -74,6 +74,13 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         dataCache.clear()
     }
 
+    fun forEach(function: (T) -> Unit) {
+        for (i in indices) {
+            val def = getOrNull(i) ?: continue
+            function.invoke(def)
+        }
+    }
+
     companion object {
 
         fun byteToChar(b: Byte): Char {

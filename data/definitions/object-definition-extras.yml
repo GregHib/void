@@ -1,3 +1,4 @@
+# Don't edit; apply changes to the ObjectDefinitionPipeline tool's ObjectManualChanges class instead.
 crate:
   id: 1
 cave_entrance:
@@ -214,8 +215,10 @@ bar_2:
   id: 136
 willow:
   id: 139
+  stump: 5554
 willow_2:
   id: 142
+  stump: 5554
 compost_heap:
   id: 152
 fountain:
@@ -938,17 +941,17 @@ bank_booth:
   id: 782
 loom:
   id: 787
-emitter_(air):
+emitter_air:
   id: 808
-emitter_(air)_2:
+emitter_air_2:
   id: 809
-emitter_(air)_3:
+emitter_air_3:
   id: 810
-emitter_(earth):
+emitter_earth:
   id: 811
-emitter_(earth)_2:
+emitter_earth_2:
   id: 812
-emitter_(earth)_3:
+emitter_earth_3:
   id: 813
 suit_of_armour:
   id: 817
@@ -1152,17 +1155,17 @@ mangle_2:
   id: 1031
 danger_sign:
   id: 1032
-emitter_(fire):
+emitter_fire:
   id: 1033
-emitter_(fire)_2:
+emitter_fire_2:
   id: 1034
-emitter_(fire)_3:
+emitter_fire_3:
   id: 1035
-emitter_(water):
+emitter_water:
   id: 1038
-emitter_(water)_2:
+emitter_water_2:
   id: 1040
-emitter_(water)_3:
+emitter_water_3:
   id: 1041
 sign:
   id: 1057
@@ -1382,6 +1385,7 @@ tree_5:
   id: 1280
 oak:
   id: 1281
+  stump: 1356
 dead_tree:
   id: 1282
 dead_tree_2:
@@ -1500,9 +1504,9 @@ tree_stump_8:
   id: 1352
 tree_stump_9:
   id: 1353
-tree_stump_10:
+oak_dark_stump:
   id: 1355
-tree_stump_11:
+oak_stump:
   id: 1356
 tree_stump_12:
   id: 1358
@@ -2438,6 +2442,7 @@ flares_table_2:
   id: 2207
 willow_3:
   id: 2210
+  stump: 5554
 grave_of_scorpius:
   id: 2211
 toy_corner:
@@ -2696,6 +2701,7 @@ signpost_6:
   id: 2371
 willow_4:
   id: 2372
+  stump: 5554
 specimen_tray:
   id: 2375
 soil:
@@ -3004,7 +3010,7 @@ rocks_30:
   id: 2561
 mysterious_cape:
   id: 2563
-cape_stand_(empty):
+cape_stand_empty:
   id: 2564
 chair_13:
   id: 2565
@@ -3194,9 +3200,9 @@ bookcase_16:
   id: 2667
 bookcase_17:
   id: 2668
-kharidian_cactus_(healthy):
+kharidian_cactus_healthy:
   id: 2670
-kharidian_cactus_(dry):
+kharidian_cactus_dry:
   id: 2671
 an_experimental_anvil:
   id: 2672
@@ -3758,8 +3764,9 @@ crate_22:
   id: 3035
 tree_20:
   id: 3036
-oak_2:
+oak_dark:
   id: 3037
+  stump: 1355
 rocks_42:
   id: 3038
 range_2:
@@ -4146,7 +4153,7 @@ waterpump:
   id: 3460
 farming_patch:
   id: 3461
-farming_patch_(not-meat_fully_grown):
+farming_patch_not-meat_fully_grown:
   id: 3462
 cell_door_4:
   id: 3463
@@ -4718,7 +4725,7 @@ farming_patch_5:
   id: 3970
 corpse_12:
   id: 3971
-farming_patch_(potato_fully_grown):
+farming_patch_potato_fully_grown:
   id: 3972
 corpse_13:
   id: 3973
@@ -10104,17 +10111,17 @@ dead_maple_7:
   id: 8460
 dead_maple_8:
   id: 8461
-oak_3:
+oak_farming:
   id: 8462
-oak_4:
+oak_farming_2:
   id: 8463
-oak_5:
+oak_farming_3:
   id: 8464
-oak_6:
+oak_farming_4:
   id: 8465
-oak_7:
+oak_farming_5:
   id: 8466
-oak_8:
+oak_farming_6:
   id: 8467
 oak_tree_stump:
   id: 8468
@@ -10134,21 +10141,21 @@ dead_oak_3:
   id: 8479
 dead_oak_4:
   id: 8480
-willow_tree:
+willow_tree_farming:
   id: 8481
-willow_tree_2:
+willow_tree_farming_2:
   id: 8482
-willow_tree_3:
+willow_tree_farming_3:
   id: 8483
-willow_tree_4:
+willow_tree_farming_4:
   id: 8484
-willow_tree_5:
+willow_tree_farming_5:
   id: 8485
-willow_tree_6:
+willow_tree_farming_6:
   id: 8486
-willow_tree_7:
+willow_tree_farming_7:
   id: 8487
-willow_tree_8:
+willow_tree_farming_8:
   id: 8488
 willow_tree_stump:
   id: 8489
@@ -11982,7 +11989,7 @@ tree_51:
   id: 10081
 tree_52:
   id: 10082
-oak_9:
+oak_construction:
   id: 10083
 hay_bales_3:
   id: 10084
@@ -14092,8 +14099,9 @@ door_271:
   id: 11993
 door_272:
   id: 11994
-oak_10:
+oak_pale:
   id: 11999
+  stump: 12007
 yew_2:
   id: 12000
 tree_stump_36:
@@ -14102,7 +14110,7 @@ fairy_ring:
   id: 12003
 tree_stump_37:
   id: 12004
-tree_stump_38:
+oak_pale_stump:
   id: 12007
 dairy_churn_3:
   id: 12011
@@ -14350,9 +14358,9 @@ jade_root_3:
   id: 12274
 jade_root_4:
   id: 12276
-jade_root_(cut):
+jade_root_cut:
   id: 12277
-jade_root_(cut)_2:
+jade_root_cut_2:
   id: 12279
 large_table_11:
   id: 12280
@@ -14372,9 +14380,9 @@ jadinko_queen:
   id: 12287
 egg_4:
   id: 12289
-jade_root_(healthy):
+jade_root_healthy:
   id: 12290
-jade_root_(mutated):
+jade_root_mutated:
   id: 12291
 offering_stone:
   id: 12292
@@ -15008,15 +15016,15 @@ counter_18:
   id: 12933
 invisible_spikes:
   id: 12942
-barrier_(key):
+barrier_key:
   id: 12943
-red_barrier_(key):
+red_barrier_key:
   id: 12957
-blue_barrier_(key):
+blue_barrier_key:
   id: 12958
-barrier_(key)_2:
+barrier_key_2:
   id: 12959
-red_barrier_(key)_2:
+red_barrier_key_2:
   id: 12960
 drawers_14:
   id: 12961
@@ -15030,7 +15038,7 @@ clive_dresdon:
   id: 12966
 burt_mckrakon:
   id: 12967
-blue_barrier_(key)_2:
+blue_barrier_key_2:
   id: 12968
 mavis_grey:
   id: 12969
@@ -15038,11 +15046,11 @@ mud_3:
   id: 12972
 card_table:
   id: 12975
-barrier_(mining):
+barrier_mining:
   id: 12976
-red_barrier_(mining):
+red_barrier_mining:
   id: 12980
-blue_barrier_(mining):
+blue_barrier_mining:
   id: 12981
 sword_case:
   id: 12983
@@ -15058,11 +15066,11 @@ gate_115:
   id: 12988
 gate_116:
   id: 12989
-barrier_(mining)_2:
+barrier_mining_2:
   id: 12990
-red_barrier_(mining)_2:
+red_barrier_mining_2:
   id: 12991
-blue_barrier_(mining)_2:
+blue_barrier_mining_2:
   id: 12992
 door_277:
   id: 13001
@@ -15076,11 +15084,11 @@ door_281:
   id: 13008
 door_282:
   id: 13009
-barrier_(strength):
+barrier_strength:
   id: 13012
-red_barrier_(strength):
+red_barrier_strength:
   id: 13013
-blue_barrier_(strength):
+blue_barrier_strength:
   id: 13014
 door_283:
   id: 13015
@@ -15090,23 +15098,23 @@ door_285:
   id: 13017
 door_286:
   id: 13018
-barrier_(strength)_2:
+barrier_strength_2:
   id: 13043
-red_barrier_(strength)_2:
+red_barrier_strength_2:
   id: 13044
-blue_barrier_(strength)_2:
+blue_barrier_strength_2:
   id: 13045
-barrier_(thieving):
+barrier_thieving:
   id: 13054
-red_barrier_(thieving):
+red_barrier_thieving:
   id: 13071
-blue_barrier_(thieving):
+blue_barrier_thieving:
   id: 13078
-barrier_(thieving)_2:
+barrier_thieving_2:
   id: 13085
-red_barrier_(thieving)_2:
+red_barrier_thieving_2:
   id: 13092
-blue_barrier_(thieving)_2:
+blue_barrier_thieving_2:
   id: 13093
 large_door_45:
   id: 13094
@@ -15150,11 +15158,11 @@ door_297:
   id: 13120
 door_298:
   id: 13121
-barrier_(woodcutting):
+barrier_woodcutting:
   id: 13122
-red_barrier_(woodcutting):
+red_barrier_woodcutting:
   id: 13123
-blue_barrier_(woodcutting):
+blue_barrier_woodcutting:
   id: 13124
 boxing_mat:
   id: 13126
@@ -15662,7 +15670,7 @@ demon:
   id: 13378
 treasure_hunt_fairy_house:
   id: 13379
-barrier_(woodcutting)_2:
+barrier_woodcutting_2:
   id: 13380
 glove_rack:
   id: 13381
@@ -15728,7 +15736,7 @@ tree_56:
   id: 13412
 oak_tree:
   id: 13413
-willow_tree_9:
+willow_tree_construction:
   id: 13414
 maple_tree_13:
   id: 13415
@@ -15742,7 +15750,7 @@ tree_57:
   id: 13419
 oak_tree_2:
   id: 13420
-willow_tree_10:
+willow_tree_construction_2:
   id: 13421
 yew_tree_13:
   id: 13422
@@ -15906,11 +15914,11 @@ staircase_79:
   id: 13502
 staircase_80:
   id: 13503
-red_barrier_(woodcutting)_2:
+red_barrier_woodcutting_2:
   id: 13504
 staircase_81:
   id: 13505
-blue_barrier_(woodcutting)_2:
+blue_barrier_woodcutting_2:
   id: 13506
 rune_display_case:
   id: 13507
@@ -16816,19 +16824,19 @@ bones_24:
   id: 14032
 conveyor:
   id: 14034
-conveyor_(north):
+conveyor_north:
   id: 14035
 conveyor_2:
   id: 14037
-conveyor_(south):
+conveyor_south:
   id: 14038
 conveyor_3:
   id: 14039
-conveyor_(east):
+conveyor_east:
   id: 14040
 conveyor_4:
   id: 14041
-conveyor_(west):
+conveyor_west:
   id: 14043
 inactive_neutral_portal:
   id: 14044
@@ -17628,7 +17636,7 @@ cosmic_token:
   id: 14799
 astral_token:
   id: 14801
-astral_token_(broken):
+astral_token_broken:
   id: 14802
 nature_token:
   id: 14803
@@ -21420,6 +21428,8 @@ statue_68:
   id: 18259
 old_ruin_entrance:
   id: 18266
+guard_6:
+  id: 18302
 chest_58:
   id: 18304
 stool_36:
@@ -23120,7 +23130,7 @@ egg_launcher:
   id: 20133
 blackboard_2:
   id: 20134
-runner_trap(2):
+runner_trap2:
   id: 20135
 trapdoor_62:
   id: 20136
@@ -23246,9 +23256,9 @@ bank_deposit_box_4:
   id: 20228
 information_scroll_3:
   id: 20229
-runner_trap(1):
+runner_trap1:
   id: 20230
-broken_trap(0):
+broken_trap0:
   id: 20231
 lava_crater:
   id: 20232
@@ -23412,7 +23422,7 @@ altar_44:
   id: 20379
 shelf_57:
   id: 20386
-shelf_(earth_cube):
+shelf_earth_cube:
   id: 20387
 table_118:
   id: 20388
@@ -24262,11 +24272,11 @@ rocks_351:
   id: 21288
 rocks_352:
   id: 21289
-shelf_(fire_cube):
+shelf_fire_cube:
   id: 21290
-shelf_(law_cube):
+shelf_law_cube:
   id: 21291
-shelf_(astral_cube):
+shelf_astral_cube:
   id: 21292
 rocks_353:
   id: 21293
@@ -25046,75 +25056,75 @@ fuse_3:
   id: 22484
 path_7:
   id: 22496
-marv_(sick):
+marv_sick:
   id: 22497
-marv_(very_sick):
+marv_very_sick:
   id: 22498
-marv_(ghastly!):
+marv_ghastly!:
   id: 22499
-marv_(sick)_2:
+marv_sick_2:
   id: 22500
-marv_(very_sick)_2:
+marv_very_sick_2:
   id: 22501
-marv_(ghastly!)_2:
+marv_ghastly!_2:
   id: 22502
-marv_(well):
+marv_well:
   id: 22503
-hank_(sick):
+hank_sick:
   id: 22504
-hank_(very_sick):
+hank_very_sick:
   id: 22505
-hank_(ghastly!):
+hank_ghastly!:
   id: 22506
-hank_(sick)_2:
+hank_sick_2:
   id: 22507
-hank_(very_sick)_2:
+hank_very_sick_2:
   id: 22508
-hank_(ghastly!)_2:
+hank_ghastly!_2:
   id: 22509
-hank_(well):
+hank_well:
   id: 22510
-wilf_(sick):
+wilf_sick:
   id: 22511
-wilf_(very_sick):
+wilf_very_sick:
   id: 22512
-wilf_(ghastly!):
+wilf_ghastly!:
   id: 22513
-wilf_(sick)_2:
+wilf_sick_2:
   id: 22514
-wilf_(very_sick)_2:
+wilf_very_sick_2:
   id: 22515
-wilf_(ghastly!)_2:
+wilf_ghastly!_2:
   id: 22516
-wilf_(well):
+wilf_well:
   id: 22517
-sarah_(sick!):
+sarah_sick!:
   id: 22518
-sarah_(very_sick!):
+sarah_very_sick!:
   id: 22519
-sarah_(ghastly!):
+sarah_ghastly!:
   id: 22520
-sarah_(sick!)_2:
+sarah_sick!_2:
   id: 22521
-sarah_(very_sick!)_2:
+sarah_very_sick!_2:
   id: 22522
-sarah_(ghastly!)_2:
+sarah_ghastly!_2:
   id: 22523
-sarah_(well):
+sarah_well:
   id: 22524
-rachel_(sick):
+rachel_sick:
   id: 22525
-rachel_(very_sick):
+rachel_very_sick:
   id: 22526
-rachel_(ghastly!):
+rachel_ghastly!:
   id: 22527
-rachel_(sick)_2:
+rachel_sick_2:
   id: 22528
-rachel_(very_sick)_2:
+rachel_very_sick_2:
   id: 22529
-rachel_(ghastly!)_2:
+rachel_ghastly!_2:
   id: 22530
-rachel_(well):
+rachel_well:
   id: 22531
 empty_clothes:
   id: 22532
@@ -28764,7 +28774,7 @@ table_177:
   id: 26807
 neverberry_bush:
   id: 26808
-neverberry_bush_(ravaged):
+neverberry_bush_ravaged:
   id: 26809
 door_490:
   id: 26810
@@ -28860,7 +28870,7 @@ captain_korasi:
   id: 26930
 ex-pest_queen:
   id: 26931
-neverberry_bush_(dying):
+neverberry_bush_dying:
   id: 26932
 trapdoor_80:
   id: 26933
@@ -28916,7 +28926,7 @@ crates_59:
   id: 26962
 stool_51:
   id: 26963
-neverberry_bush_(withered):
+neverberry_bush_withered:
   id: 26964
 sink_18:
   id: 26966
@@ -28924,7 +28934,7 @@ bank_deposit_box_6:
   id: 26969
 bank_table_9:
   id: 26970
-neverberry_bush_(dead):
+neverberry_bush_dead:
   id: 26971
 bank_booth_24:
   id: 26972
@@ -36068,10 +36078,12 @@ tree_96:
   id: 37477
 tree_97:
   id: 37478
-oak_11:
+oak_2:
   id: 37479
+  stump: 1356
 willow_5:
   id: 37480
+  stump: 1350
 dead_tree_25:
   id: 37481
 dead_tree_26:
@@ -36854,7 +36866,7 @@ tree_99:
   id: 38379
 tree_100:
   id: 38380
-oak_12:
+oak_3:
   id: 38381
 dead_tree_28:
   id: 38382
@@ -36968,25 +36980,25 @@ target_20:
   id: 38521
 target_21:
   id: 38522
-shooting_spot_(level_10_approx.):
+shooting_spot_level_10_approx.:
   id: 38523
-shooting_spot_(level_20_approx.):
+shooting_spot_level_20_approx.:
   id: 38524
-shooting_spot_(level_30_approx.):
+shooting_spot_level_30_approx.:
   id: 38525
-shooting_spot_(level_40_approx.):
+shooting_spot_level_40_approx.:
   id: 38526
-shooting_spot_(level_50_approx.):
+shooting_spot_level_50_approx.:
   id: 38527
-shooting_spot_(level_60_approx.):
+shooting_spot_level_60_approx.:
   id: 38528
-shooting_spot_(level_70_approx.):
+shooting_spot_level_70_approx.:
   id: 38529
-shooting_spot_(level_80_approx.):
+shooting_spot_level_80_approx.:
   id: 38530
-shooting_spot_(level_90_approx.):
+shooting_spot_level_90_approx.:
   id: 38531
-shooting_spot_(level_99_approx.):
+shooting_spot_level_99_approx.:
   id: 38532
 poppinjay:
   id: 38533
@@ -37000,25 +37012,25 @@ poppinjay_5:
   id: 38537
 poppinjay_6:
   id: 38538
-shooting_spot_(level_10_approx.)_2:
+shooting_spot_level_10_approx._2:
   id: 38539
-shooting_spot_(level_20_approx.)_2:
+shooting_spot_level_20_approx._2:
   id: 38540
-shooting_spot_(level_30_approx.)_2:
+shooting_spot_level_30_approx._2:
   id: 38541
-shooting_spot_(level_40_approx.)_2:
+shooting_spot_level_40_approx._2:
   id: 38542
-shooting_spot_(level_50_approx.)_2:
+shooting_spot_level_50_approx._2:
   id: 38543
-shooting_spot_(level_60_approx.)_2:
+shooting_spot_level_60_approx._2:
   id: 38544
-shooting_spot_(level_70_approx.)_2:
+shooting_spot_level_70_approx._2:
   id: 38545
-shooting_spot_(level_80_approx.)_2:
+shooting_spot_level_80_approx._2:
   id: 38546
-shooting_spot_(level_90_approx.)_2:
+shooting_spot_level_90_approx._2:
   id: 38547
-shooting_spot_(level_99_approx.)_2:
+shooting_spot_level_99_approx._2:
   id: 38548
 ladder_397:
   id: 38549
@@ -37098,55 +37110,57 @@ the_audience_30:
   id: 38587
 willow_6:
   id: 38616
+  stump: 38725
+  canopy: 38717
 standing_torch_19:
   id: 38618
 bench_85:
   id: 38626
-willow_7:
+willow_trunk:
   id: 38627
 magic_equipment:
   id: 38631
 magic_equipment_2:
   id: 38632
-book_(level_10_approx.):
+book_level_10_approx.:
   id: 38639
-tree_stump_(level_20_approx.):
+tree_stump_level_20_approx.:
   id: 38640
-helm_(level_30_approx.):
+helm_level_30_approx.:
   id: 38641
-shield_(level_40_approx.):
+shield_level_40_approx.:
   id: 38642
-armour_(level_50_approx.):
+armour_level_50_approx.:
   id: 38643
-book_(level_10_approx.)_2:
+book_level_10_approx._2:
   id: 38644
-tree_stump_(level_20_approx.)_2:
+tree_stump_level_20_approx._2:
   id: 38645
-helm_(level_30_approx.)_2:
+helm_level_30_approx._2:
   id: 38646
-shield_(level_40_approx.)_2:
+shield_level_40_approx._2:
   id: 38647
-armour_(level_50_approx.)_2:
+armour_level_50_approx._2:
   id: 38648
-rat_(level_10_approx.):
+rat_level_10_approx.:
   id: 38649
-cat_(level_20_approx.):
+cat_level_20_approx.:
   id: 38650
-bowl_(level_30_approx.):
+bowl_level_30_approx.:
   id: 38651
-penguin_(level_40_approx.):
+penguin_level_40_approx.:
   id: 38652
-ork_(level_50_approx.):
+ork_level_50_approx.:
   id: 38653
-armour_(level_60_approx.):
+armour_level_60_approx.:
   id: 38654
-stool_(level_70_approx.):
+stool_level_70_approx.:
   id: 38655
-dumb-bells_(level_80_approx.):
+dumb-bells_level_80_approx.:
   id: 38656
-assistant_(level_90_approx.):
+assistant_level_90_approx.:
   id: 38657
-anvil_(level_99_approx.):
+anvil_level_99_approx.:
   id: 38658
 crashed_star:
   id: 38660
@@ -37188,31 +37202,35 @@ portal_95:
   id: 38696
 portal_96:
   id: 38697
-free-for-all_(safe):
+free-for-all_safe:
   id: 38698
-free-for-all_(dangerous):
+free-for-all_dangerous:
   id: 38699
 portal_97:
   id: 38700
-willow_8:
+willow_canopy:
   id: 38717
-willow_9:
+willow_canopy_2:
   id: 38718
 skeleton_78:
   id: 38724
-willow_10:
+willow_stump:
   id: 38725
 oak_trunk:
   id: 38731
-oak_14:
+  stump: 38741
+  canopy: 38736
+oak_trunk_2:
   id: 38732
+  stump: 38754
+  canopy: 38739
 oak_canopy:
   id: 38736
-oak_16:
+oak_canopy_2:
   id: 38739
-oak_stump:
+oak_stump_2:
   id: 38741
-oak_18:
+oak_stump_3:
   id: 38754
 yew_3:
   id: 38755
@@ -37580,15 +37598,15 @@ scrolls_3:
   id: 39213
 red_mist:
   id: 39214
-guard_6:
-  id: 39215
 guard_7:
-  id: 39216
+  id: 39215
 guard_8:
-  id: 39217
+  id: 39216
 guard_9:
-  id: 39218
+  id: 39217
 guard_10:
+  id: 39218
+guard_11:
   id: 39219
 pit_trap_2:
   id: 39229
@@ -37726,23 +37744,23 @@ trapdoor_105:
   id: 39330
 trapdoor_106:
   id: 39331
-wrongly_labelled_crate_(toads):
+wrongly_labelled_crate_toads:
   id: 39334
-wrongly_labelled_crate_(newts):
+wrongly_labelled_crate_newts:
   id: 39335
-wrongly_labelled_crate_(newts_and_toads):
+wrongly_labelled_crate_newts_and_toads:
   id: 39336
-relabelled_crate_(newts):
+relabelled_crate_newts:
   id: 39337
-relabelled_crate_(toads):
+relabelled_crate_toads:
   id: 39338
-relabelled_crate_(newts_and_toads):
+relabelled_crate_newts_and_toads:
   id: 39339
-relabelled_crate_(newts)_2:
+relabelled_crate_newts_2:
   id: 39340
-relabelled_crate_(toads)_2:
+relabelled_crate_toads_2:
   id: 39341
-relabelled_crate_(newts_and_toads)_2:
+relabelled_crate_newts_and_toads_2:
   id: 39342
 staircase_185:
   id: 39345
@@ -37942,105 +37960,105 @@ creation_kiln:
   id: 39546
 altar_74:
   id: 39547
-fragments_(class_1):
+fragments_class_1:
   id: 39548
-fragments_(empty):
+fragments_empty:
   id: 39549
-rock_(class_2):
+rock_class_2:
   id: 39550
-rock_(class_3):
+rock_class_3:
   id: 39551
-rock_(class_4):
+rock_class_4:
   id: 39552
-rock_(class_5):
+rock_class_5:
   id: 39553
-rock_(class_2)_2:
+rock_class_2_2:
   id: 39554
-rock_(class_3)_2:
+rock_class_3_2:
   id: 39555
-rock_(class_4)_2:
+rock_class_4_2:
   id: 39556
-rock_(class_5)_2:
+rock_class_5_2:
   id: 39557
-rock_(empty):
+rock_empty:
   id: 39558
-rock_(empty)_2:
+rock_empty_2:
   id: 39559
-rock_(empty)_3:
+rock_empty_3:
   id: 39560
-rock_(empty)_4:
+rock_empty_4:
   id: 39561
-pool_(class_5):
+pool_class_5:
   id: 39562
-pool_(class_4):
+pool_class_4:
   id: 39563
-pool_(class_3):
+pool_class_3:
   id: 39564
-pool_(class_2):
+pool_class_2:
   id: 39565
-pool_(class_5)_2:
+pool_class_5_2:
   id: 39566
-pool_(class_4)_2:
+pool_class_4_2:
   id: 39567
-pool_(class_3)_2:
+pool_class_3_2:
   id: 39568
-pool_(class_2)_2:
+pool_class_2_2:
   id: 39569
-pool_(empty):
+pool_empty:
   id: 39570
-pool_(empty)_2:
+pool_empty_2:
   id: 39571
-pool_(empty)_3:
+pool_empty_3:
   id: 39572
-pool_(empty)_4:
+pool_empty_4:
   id: 39573
-swarm_(class_5):
+swarm_class_5:
   id: 39574
-swarm_(class_4):
+swarm_class_4:
   id: 39575
-swarm_(class_3):
+swarm_class_3:
   id: 39576
-swarm_(class_2):
+swarm_class_2:
   id: 39577
-swarm_(class_5)_2:
+swarm_class_5_2:
   id: 39578
-swarm_(class_4)_2:
+swarm_class_4_2:
   id: 39579
-swarm_(class_3)_2:
+swarm_class_3_2:
   id: 39580
-swarm_(class_2)_2:
+swarm_class_2_2:
   id: 39581
-swarm_(empty):
+swarm_empty:
   id: 39582
-swarm_(empty)_2:
+swarm_empty_2:
   id: 39583
-swarm_(empty)_3:
+swarm_empty_3:
   id: 39584
-swarm_(empty)_4:
+swarm_empty_4:
   id: 39585
-tree_(class_5):
+tree_class_5:
   id: 39586
-tree_(class_4):
+tree_class_4:
   id: 39587
-tree_(class_3):
+tree_class_3:
   id: 39588
-tree_(class_2):
+tree_class_2:
   id: 39589
-tree_(class_5)_2:
+tree_class_5_2:
   id: 39590
-tree_(class_4)_2:
+tree_class_4_2:
   id: 39591
-tree_(class_3)_2:
+tree_class_3_2:
   id: 39592
-tree_(class_2)_2:
+tree_class_2_2:
   id: 39593
-tree_(empty):
+tree_empty:
   id: 39594
-tree_(empty)_2:
+tree_empty_2:
   id: 39595
-tree_(empty)_3:
+tree_empty_3:
   id: 39596
-tree_(empty)_4:
+tree_empty_4:
   id: 39597
 rift_38:
   id: 39602
@@ -38728,9 +38746,9 @@ fence_4:
   id: 40430
 broken_fence_2:
   id: 40431
-produce_pile_(full):
+produce_pile_full:
   id: 40438
-produce_pile_(empty):
+produce_pile_empty:
   id: 40439
 trade_wagon:
   id: 40443
@@ -39876,9 +39894,9 @@ gravestone_63:
   id: 42072
 gravestone_64:
   id: 42073
-reward_statue_(points):
+reward_statue_points:
   id: 42128
-reward_statue_(xp):
+reward_statue_xp:
   id: 42130
 burning_tree_5:
   id: 42134
@@ -43080,6 +43098,8 @@ trapdoor_111:
   id: 45800
 door_725:
   id: 45801
+grim_reaper:
+  id: 45802
 exit_portal_9:
   id: 45803
 noticeboard_15:
@@ -43232,7 +43252,7 @@ door_736:
   id: 46306
 door_737:
   id: 46307
-plank_stack_(empty):
+plank_stack_empty:
   id: 46310
 planks:
   id: 46311
@@ -46262,173 +46282,173 @@ fire_47:
   id: 49948
 fire_48:
   id: 49949
-cooking_range_(empty):
+cooking_range_empty:
   id: 49950
-cooking_range_(with_logs):
+cooking_range_with_logs:
   id: 49951
-cooking_range_(with_logs)_2:
+cooking_range_with_logs_2:
   id: 49952
-cooking_range_(with_logs)_3:
+cooking_range_with_logs_3:
   id: 49953
-cooking_range_(with_logs)_4:
+cooking_range_with_logs_4:
   id: 49954
-cooking_range_(with_logs)_5:
+cooking_range_with_logs_5:
   id: 49955
-cooking_range_(with_logs)_6:
+cooking_range_with_logs_6:
   id: 49956
-cooking_range_(with_logs)_7:
+cooking_range_with_logs_7:
   id: 49957
-cooking_range_(with_logs)_8:
+cooking_range_with_logs_8:
   id: 49958
-cooking_range_(with_logs)_9:
+cooking_range_with_logs_9:
   id: 49959
-cooking_range_(with_logs)_10:
+cooking_range_with_logs_10:
   id: 49960
-cooking_range_(lit):
+cooking_range_lit:
   id: 49961
-cooking_range_(lit)_2:
+cooking_range_lit_2:
   id: 49962
-cooking_range_(lit)_3:
+cooking_range_lit_3:
   id: 49963
-cooking_range_(lit)_4:
+cooking_range_lit_4:
   id: 49964
-cooking_range_(lit)_5:
+cooking_range_lit_5:
   id: 49965
-cooking_range_(lit)_6:
+cooking_range_lit_6:
   id: 49966
-cooking_range_(lit)_7:
+cooking_range_lit_7:
   id: 49967
-cooking_range_(lit)_8:
+cooking_range_lit_8:
   id: 49968
-cooking_range_(lit)_9:
+cooking_range_lit_9:
   id: 49969
-cooking_range_(lit)_10:
+cooking_range_lit_10:
   id: 49970
-cooking_range_(empty)_2:
+cooking_range_empty_2:
   id: 49971
-cooking_range_(with_logs)_11:
+cooking_range_with_logs_11:
   id: 49972
-cooking_range_(with_logs)_12:
+cooking_range_with_logs_12:
   id: 49973
-cooking_range_(with_logs)_13:
+cooking_range_with_logs_13:
   id: 49974
-cooking_range_(with_logs)_14:
+cooking_range_with_logs_14:
   id: 49975
-cooking_range_(with_logs)_15:
+cooking_range_with_logs_15:
   id: 49976
-cooking_range_(with_logs)_16:
+cooking_range_with_logs_16:
   id: 49977
-cooking_range_(with_logs)_17:
+cooking_range_with_logs_17:
   id: 49978
-cooking_range_(with_logs)_18:
+cooking_range_with_logs_18:
   id: 49979
-cooking_range_(with_logs)_19:
+cooking_range_with_logs_19:
   id: 49980
-cooking_range_(with_logs)_20:
+cooking_range_with_logs_20:
   id: 49981
-cooking_range_(lit)_11:
+cooking_range_lit_11:
   id: 49982
-cooking_range_(lit)_12:
+cooking_range_lit_12:
   id: 49983
-cooking_range_(lit)_13:
+cooking_range_lit_13:
   id: 49984
-cooking_range_(lit)_14:
+cooking_range_lit_14:
   id: 49985
-cooking_range_(lit)_15:
+cooking_range_lit_15:
   id: 49986
-cooking_range_(lit)_16:
+cooking_range_lit_16:
   id: 49987
-cooking_range_(lit)_17:
+cooking_range_lit_17:
   id: 49988
-cooking_range_(lit)_18:
+cooking_range_lit_18:
   id: 49989
-cooking_range_(lit)_19:
+cooking_range_lit_19:
   id: 49990
-cooking_range_(lit)_20:
+cooking_range_lit_20:
   id: 49991
-cooking_range_(empty)_3:
+cooking_range_empty_3:
   id: 49992
-cooking_range_(with_logs)_21:
+cooking_range_with_logs_21:
   id: 49993
-cooking_range_(with_logs)_22:
+cooking_range_with_logs_22:
   id: 49994
-cooking_range_(with_logs)_23:
+cooking_range_with_logs_23:
   id: 49995
-cooking_range_(with_logs)_24:
+cooking_range_with_logs_24:
   id: 49996
-cooking_range_(with_logs)_25:
+cooking_range_with_logs_25:
   id: 49997
-cooking_range_(with_logs)_26:
+cooking_range_with_logs_26:
   id: 49998
-cooking_range_(with_logs)_27:
+cooking_range_with_logs_27:
   id: 49999
-cooking_range_(with_logs)_28:
+cooking_range_with_logs_28:
   id: 50000
-cooking_range_(with_logs)_29:
+cooking_range_with_logs_29:
   id: 50001
-cooking_range_(with_logs)_30:
+cooking_range_with_logs_30:
   id: 50002
-cooking_range_(lit)_21:
+cooking_range_lit_21:
   id: 50003
-cooking_range_(lit)_22:
+cooking_range_lit_22:
   id: 50004
-cooking_range_(lit)_23:
+cooking_range_lit_23:
   id: 50005
-cooking_range_(lit)_24:
+cooking_range_lit_24:
   id: 50006
-cooking_range_(lit)_25:
+cooking_range_lit_25:
   id: 50007
-cooking_range_(lit)_26:
+cooking_range_lit_26:
   id: 50008
-cooking_range_(lit)_27:
+cooking_range_lit_27:
   id: 50009
-cooking_range_(lit)_28:
+cooking_range_lit_28:
   id: 50010
-cooking_range_(lit)_29:
+cooking_range_lit_29:
   id: 50011
-cooking_range_(lit)_30:
+cooking_range_lit_30:
   id: 50012
-cooking_range_(empty)_4:
+cooking_range_empty_4:
   id: 50013
-cooking_range_(with_logs)_31:
+cooking_range_with_logs_31:
   id: 50014
-cooking_range_(with_logs)_32:
+cooking_range_with_logs_32:
   id: 50015
-cooking_range_(with_logs)_33:
+cooking_range_with_logs_33:
   id: 50016
-cooking_range_(with_logs)_34:
+cooking_range_with_logs_34:
   id: 50017
-cooking_range_(with_logs)_35:
+cooking_range_with_logs_35:
   id: 50018
-cooking_range_(with_logs)_36:
+cooking_range_with_logs_36:
   id: 50019
-cooking_range_(with_logs)_37:
+cooking_range_with_logs_37:
   id: 50020
-cooking_range_(with_logs)_38:
+cooking_range_with_logs_38:
   id: 50021
-cooking_range_(with_logs)_39:
+cooking_range_with_logs_39:
   id: 50022
-cooking_range_(with_logs)_40:
+cooking_range_with_logs_40:
   id: 50023
-cooking_range_(lit)_31:
+cooking_range_lit_31:
   id: 50024
-cooking_range_(lit)_32:
+cooking_range_lit_32:
   id: 50025
-cooking_range_(lit)_33:
+cooking_range_lit_33:
   id: 50026
-cooking_range_(lit)_34:
+cooking_range_lit_34:
   id: 50027
-cooking_range_(lit)_35:
+cooking_range_lit_35:
   id: 50028
-cooking_range_(lit)_36:
+cooking_range_lit_36:
   id: 50029
-cooking_range_(lit)_37:
+cooking_range_lit_37:
   id: 50030
-cooking_range_(lit)_38:
+cooking_range_lit_38:
   id: 50031
-cooking_range_(lit)_39:
+cooking_range_lit_39:
   id: 50032
-cooking_range_(lit)_40:
+cooking_range_lit_40:
   id: 50033
 runecrafting_altar_4:
   id: 50035
@@ -46442,73 +46462,73 @@ farming_patch_7:
   id: 50040
 farming_patch_8:
   id: 50041
-farming_patch_(potato_fully_grown)_2:
+farming_patch_potato_fully_grown_2:
   id: 50042
 farming_patch_9:
   id: 50043
 farming_patch_10:
   id: 50044
-farming_patch_(gissel_fully_grown):
+farming_patch_gissel_fully_grown:
   id: 50045
 farming_patch_11:
   id: 50046
 farming_patch_12:
   id: 50047
-farming_patch_(edicap_fully_grown):
+farming_patch_edicap_fully_grown:
   id: 50048
 farming_patch_13:
   id: 50049
 farming_patch_14:
   id: 50050
-farming_patch_(sagewort_fully_grown):
+farming_patch_sagewort_fully_grown:
   id: 50051
 farming_patch_15:
   id: 50052
 farming_patch_16:
   id: 50053
-farming_patch_(valerian_fully_grown):
+farming_patch_valerian_fully_grown:
   id: 50054
 farming_patch_17:
   id: 50055
 farming_patch_18:
   id: 50056
-farming_patch_(aloe_fully_grown):
+farming_patch_aloe_fully_grown:
   id: 50057
 farming_patch_19:
   id: 50058
 farming_patch_20:
   id: 50059
-farming_patch_(wormwood_fully_grown):
+farming_patch_wormwood_fully_grown:
   id: 50060
 farming_patch_21:
   id: 50061
 farming_patch_22:
   id: 50062
-farming_patch_(magebane_fully_grown):
+farming_patch_magebane_fully_grown:
   id: 50063
 farming_patch_23:
   id: 50064
 farming_patch_24:
   id: 50065
-farming_patch_(featherfoil_fully_grown):
+farming_patch_featherfoil_fully_grown:
   id: 50066
 farming_patch_25:
   id: 50067
 farming_patch_26:
   id: 50068
-farming_patch_(winters_grip_fully_grown):
+farming_patch_winters_grip_fully_grown:
   id: 50069
 farming_patch_27:
   id: 50070
 farming_patch_28:
   id: 50071
-farming_patch_(lycopus_fully_grown):
+farming_patch_lycopus_fully_grown:
   id: 50072
 farming_patch_29:
   id: 50073
 farming_patch_30:
   id: 50074
-farming_patch_(buckthorn_fully_grown):
+farming_patch_buckthorn_fully_grown:
   id: 50075
 farming_patch_31:
   id: 50076
@@ -46518,73 +46538,73 @@ farming_patch_33:
   id: 50078
 farming_patch_34:
   id: 50079
-farming_patch_(potato_fully_grown)_3:
+farming_patch_potato_fully_grown_3:
   id: 50080
 farming_patch_35:
   id: 50081
 farming_patch_36:
   id: 50082
-farming_patch_(gissel_fully_grown)_2:
+farming_patch_gissel_fully_grown_2:
   id: 50083
 farming_patch_37:
   id: 50084
 farming_patch_38:
   id: 50085
-farming_patch_(edicap_fully_grown)_2:
+farming_patch_edicap_fully_grown_2:
   id: 50086
 farming_patch_39:
   id: 50087
 farming_patch_40:
   id: 50088
-farming_patch_(sagewort_fully_grown)_2:
+farming_patch_sagewort_fully_grown_2:
   id: 50089
 farming_patch_41:
   id: 50090
 farming_patch_42:
   id: 50091
-farming_patch_(valerian_fully_grown)_2:
+farming_patch_valerian_fully_grown_2:
   id: 50092
 farming_patch_43:
   id: 50093
 farming_patch_44:
   id: 50094
-farming_patch_(aloe_fully_grown)_2:
+farming_patch_aloe_fully_grown_2:
   id: 50095
 farming_patch_45:
   id: 50096
 farming_patch_46:
   id: 50097
-farming_patch_(wormwood_fully_grown)_2:
+farming_patch_wormwood_fully_grown_2:
   id: 50098
 farming_patch_47:
   id: 50099
 farming_patch_48:
   id: 50100
-farming_patch_(magebane_fully_grown)_2:
+farming_patch_magebane_fully_grown_2:
   id: 50101
 farming_patch_49:
   id: 50102
 farming_patch_50:
   id: 50103
-farming_patch_(featherfoil_fully_grown)_2:
+farming_patch_featherfoil_fully_grown_2:
   id: 50104
 farming_patch_51:
   id: 50105
 farming_patch_52:
   id: 50106
-farming_patch_(winters_grip_fully_grown)_2:
+farming_patch_winters_grip_fully_grown_2:
   id: 50107
 farming_patch_53:
   id: 50108
 farming_patch_54:
   id: 50109
-farming_patch_(lycopus_fully_grown)_2:
+farming_patch_lycopus_fully_grown_2:
   id: 50110
 farming_patch_55:
   id: 50111
 farming_patch_56:
   id: 50112
-farming_patch_(buckthorn_fully_grown)_2:
+farming_patch_buckthorn_fully_grown_2:
   id: 50113
 farming_patch_57:
   id: 50114
@@ -46594,73 +46614,73 @@ farming_patch_59:
   id: 50116
 farming_patch_60:
   id: 50117
-farming_patch_(potato_fully_grown)_4:
+farming_patch_potato_fully_grown_4:
   id: 50118
 farming_patch_61:
   id: 50119
 farming_patch_62:
   id: 50120
-farming_patch_(gissel_fully_grown)_3:
+farming_patch_gissel_fully_grown_3:
   id: 50121
 farming_patch_63:
   id: 50122
 farming_patch_64:
   id: 50123
-farming_patch_(edicap_fully_grown)_3:
+farming_patch_edicap_fully_grown_3:
   id: 50124
 farming_patch_65:
   id: 50125
 farming_patch_66:
   id: 50126
-farming_patch_(sagewort_fully_grown)_3:
+farming_patch_sagewort_fully_grown_3:
   id: 50127
 farming_patch_67:
   id: 50128
 farming_patch_68:
   id: 50129
-farming_patch_(valerian_fully_grown)_3:
+farming_patch_valerian_fully_grown_3:
   id: 50130
 farming_patch_69:
   id: 50131
 farming_patch_70:
   id: 50132
-farming_patch_(aloe_fully_grown)_3:
+farming_patch_aloe_fully_grown_3:
   id: 50133
 farming_patch_71:
   id: 50134
 farming_patch_72:
   id: 50135
-farming_patch_(wormwood_fully_grown)_3:
+farming_patch_wormwood_fully_grown_3:
   id: 50136
 farming_patch_73:
   id: 50137
 farming_patch_74:
   id: 50138
-farming_patch_(magebane_fully_grown)_3:
+farming_patch_magebane_fully_grown_3:
   id: 50139
 farming_patch_75:
   id: 50140
 farming_patch_76:
   id: 50141
-farming_patch_(featherfoil_fully_grown)_3:
+farming_patch_featherfoil_fully_grown_3:
   id: 50142
 farming_patch_77:
   id: 50143
 farming_patch_78:
   id: 50144
-farming_patch_(winters_grip_fully_grown)_3:
+farming_patch_winters_grip_fully_grown_3:
   id: 50145
 farming_patch_79:
   id: 50146
 farming_patch_80:
   id: 50147
-farming_patch_(lycopus_fully_grown)_3:
+farming_patch_lycopus_fully_grown_3:
   id: 50148
 farming_patch_81:
   id: 50149
 farming_patch_82:
   id: 50150
-farming_patch_(buckthorn_fully_grown)_3:
+farming_patch_buckthorn_fully_grown_3:
   id: 50151
 farming_patch_83:
   id: 50152
@@ -46670,73 +46690,73 @@ farming_patch_85:
   id: 50154
 farming_patch_86:
   id: 50155
-farming_patch_(potato_fully_grown)_5:
+farming_patch_potato_fully_grown_5:
   id: 50156
 farming_patch_87:
   id: 50157
 farming_patch_88:
   id: 50158
-farming_patch_(gissel_fully_grown)_4:
+farming_patch_gissel_fully_grown_4:
   id: 50159
 farming_patch_89:
   id: 50160
 farming_patch_90:
   id: 50161
-farming_patch_(edicap_fully_grown)_4:
+farming_patch_edicap_fully_grown_4:
   id: 50162
 farming_patch_91:
   id: 50163
 farming_patch_92:
   id: 50164
-farming_patch_(sagewort_fully_grown)_4:
+farming_patch_sagewort_fully_grown_4:
   id: 50165
 farming_patch_93:
   id: 50166
 farming_patch_94:
   id: 50167
-farming_patch_(valerian_fully_grown)_4:
+farming_patch_valerian_fully_grown_4:
   id: 50168
 farming_patch_95:
   id: 50169
 farming_patch_96:
   id: 50170
-farming_patch_(aloe_fully_grown)_4:
+farming_patch_aloe_fully_grown_4:
   id: 50171
 farming_patch_97:
   id: 50172
 farming_patch_98:
   id: 50173
-farming_patch_(wormwood_fully_grown)_4:
+farming_patch_wormwood_fully_grown_4:
   id: 50174
 farming_patch_99:
   id: 50175
 farming_patch_100:
   id: 50176
-farming_patch_(magebane_fully_grown)_4:
+farming_patch_magebane_fully_grown_4:
   id: 50177
 farming_patch_101:
   id: 50178
 farming_patch_102:
   id: 50179
-farming_patch_(featherfoil_fully_grown)_4:
+farming_patch_featherfoil_fully_grown_4:
   id: 50180
 farming_patch_103:
   id: 50181
 farming_patch_104:
   id: 50182
-farming_patch_(winters_grip_fully_grown)_4:
+farming_patch_winters_grip_fully_grown_4:
   id: 50183
 farming_patch_105:
   id: 50184
 farming_patch_106:
   id: 50185
-farming_patch_(lycopus_fully_grown)_4:
+farming_patch_lycopus_fully_grown_4:
   id: 50186
 farming_patch_107:
   id: 50187
 farming_patch_108:
   id: 50188
-farming_patch_(buckthorn_fully_grown)_4:
+farming_patch_buckthorn_fully_grown_4:
   id: 50189
 furnace_40:
   id: 50191
@@ -47606,9 +47626,9 @@ ornate_cuckoo_clock_2:
   id: 51662
 tree_181:
   id: 51668
-oak_19:
+oak_canopy_3:
   id: 51675
-willow_11:
+willow_canopy_3:
   id: 51682
 ardougne_registry_sign:
   id: 51683
@@ -48234,73 +48254,73 @@ farming_patch_110:
   id: 53137
 farming_patch_111:
   id: 53138
-farming_patch_(potato_fully_grown)_6:
+farming_patch_potato_fully_grown_6:
   id: 53139
 farming_patch_112:
   id: 53140
 farming_patch_113:
   id: 53141
-farming_patch_(gissel_fully_grown)_5:
+farming_patch_gissel_fully_grown_5:
   id: 53142
 farming_patch_114:
   id: 53143
 farming_patch_115:
   id: 53144
-farming_patch_(edicap_fully_grown)_5:
+farming_patch_edicap_fully_grown_5:
   id: 53145
 farming_patch_116:
   id: 53146
 farming_patch_117:
   id: 53147
-farming_patch_(sagewort_fully_grown)_5:
+farming_patch_sagewort_fully_grown_5:
   id: 53148
 farming_patch_118:
   id: 53149
 farming_patch_119:
   id: 53150
-farming_patch_(valerian_fully_grown)_5:
+farming_patch_valerian_fully_grown_5:
   id: 53151
 farming_patch_120:
   id: 53152
 farming_patch_121:
   id: 53153
-farming_patch_(aloe_fully_grown)_5:
+farming_patch_aloe_fully_grown_5:
   id: 53154
 farming_patch_122:
   id: 53155
 farming_patch_123:
   id: 53156
-farming_patch_(wormwood_fully_grown)_5:
+farming_patch_wormwood_fully_grown_5:
   id: 53157
 farming_patch_124:
   id: 53158
 farming_patch_125:
   id: 53159
-farming_patch_(magebane_fully_grown)_5:
+farming_patch_magebane_fully_grown_5:
   id: 53160
 farming_patch_126:
   id: 53161
 farming_patch_127:
   id: 53162
-farming_patch_(featherfoil_fully_grown)_5:
+farming_patch_featherfoil_fully_grown_5:
   id: 53163
 farming_patch_128:
   id: 53164
 farming_patch_129:
   id: 53165
-farming_patch_(winters_grip_fully_grown)_5:
+farming_patch_winters_grip_fully_grown_5:
   id: 53166
 farming_patch_130:
   id: 53167
 farming_patch_131:
   id: 53168
-farming_patch_(lycopus_fully_grown)_5:
+farming_patch_lycopus_fully_grown_5:
   id: 53169
 farming_patch_132:
   id: 53170
 farming_patch_133:
   id: 53171
-farming_patch_(buckthorn_fully_grown)_5:
+farming_patch_buckthorn_fully_grown_5:
   id: 53172
 farming_patch_134:
   id: 53173
@@ -48308,73 +48328,73 @@ farming_patch_135:
   id: 53174
 farming_patch_136:
   id: 53175
-farming_patch_(potato_fully_grown)_7:
+farming_patch_potato_fully_grown_7:
   id: 53176
 farming_patch_137:
   id: 53177
 farming_patch_138:
   id: 53178
-farming_patch_(gissel_fully_grown)_6:
+farming_patch_gissel_fully_grown_6:
   id: 53179
 farming_patch_139:
   id: 53180
 farming_patch_140:
   id: 53181
-farming_patch_(edicap_fully_grown)_6:
+farming_patch_edicap_fully_grown_6:
   id: 53182
 farming_patch_141:
   id: 53183
 farming_patch_142:
   id: 53184
-farming_patch_(sagewort_fully_grown)_6:
+farming_patch_sagewort_fully_grown_6:
   id: 53185
 farming_patch_143:
   id: 53186
 farming_patch_144:
   id: 53187
-farming_patch_(valerian_fully_grown)_6:
+farming_patch_valerian_fully_grown_6:
   id: 53188
 farming_patch_145:
   id: 53189
 farming_patch_146:
   id: 53190
-farming_patch_(aloe_fully_grown)_6:
+farming_patch_aloe_fully_grown_6:
   id: 53191
 farming_patch_147:
   id: 53192
 farming_patch_148:
   id: 53193
-farming_patch_(wormwood_fully_grown)_6:
+farming_patch_wormwood_fully_grown_6:
   id: 53194
 farming_patch_149:
   id: 53195
 farming_patch_150:
   id: 53196
-farming_patch_(magebane_fully_grown)_6:
+farming_patch_magebane_fully_grown_6:
   id: 53197
 farming_patch_151:
   id: 53198
 farming_patch_152:
   id: 53199
-farming_patch_(featherfoil_fully_grown)_6:
+farming_patch_featherfoil_fully_grown_6:
   id: 53200
 farming_patch_153:
   id: 53201
 farming_patch_154:
   id: 53202
-farming_patch_(winters_grip_fully_grown)_6:
+farming_patch_winters_grip_fully_grown_6:
   id: 53203
 farming_patch_155:
   id: 53204
 farming_patch_156:
   id: 53205
-farming_patch_(lycopus_fully_grown)_6:
+farming_patch_lycopus_fully_grown_6:
   id: 53206
 farming_patch_157:
   id: 53207
 farming_patch_158:
   id: 53208
-farming_patch_(buckthorn_fully_grown)_6:
+farming_patch_buckthorn_fully_grown_6:
   id: 53209
 farming_patch_159:
   id: 53210
@@ -48382,73 +48402,73 @@ farming_patch_160:
   id: 53211
 farming_patch_161:
   id: 53212
-farming_patch_(potato_fully_grown)_8:
+farming_patch_potato_fully_grown_8:
   id: 53213
 farming_patch_162:
   id: 53214
 farming_patch_163:
   id: 53215
-farming_patch_(gissel_fully_grown)_7:
+farming_patch_gissel_fully_grown_7:
   id: 53216
 farming_patch_164:
   id: 53217
 farming_patch_165:
   id: 53218
-farming_patch_(edicap_fully_grown)_7:
+farming_patch_edicap_fully_grown_7:
   id: 53219
 farming_patch_166:
   id: 53220
 farming_patch_167:
   id: 53221
-farming_patch_(sagewort_fully_grown)_7:
+farming_patch_sagewort_fully_grown_7:
   id: 53222
 farming_patch_168:
   id: 53223
 farming_patch_169:
   id: 53224
-farming_patch_(valerian_fully_grown)_7:
+farming_patch_valerian_fully_grown_7:
   id: 53225
 farming_patch_170:
   id: 53226
 farming_patch_171:
   id: 53227
-farming_patch_(aloe_fully_grown)_7:
+farming_patch_aloe_fully_grown_7:
   id: 53228
 farming_patch_172:
   id: 53229
 farming_patch_173:
   id: 53230
-farming_patch_(wormwood_fully_grown)_7:
+farming_patch_wormwood_fully_grown_7:
   id: 53231
 farming_patch_174:
   id: 53232
 farming_patch_175:
   id: 53233
-farming_patch_(magebane_fully_grown)_7:
+farming_patch_magebane_fully_grown_7:
   id: 53234
 farming_patch_176:
   id: 53235
 farming_patch_177:
   id: 53236
-farming_patch_(featherfoil_fully_grown)_7:
+farming_patch_featherfoil_fully_grown_7:
   id: 53237
 farming_patch_178:
   id: 53238
 farming_patch_179:
   id: 53239
-farming_patch_(winters_grip_fully_grown)_7:
+farming_patch_winters_grip_fully_grown_7:
   id: 53240
 farming_patch_180:
   id: 53241
 farming_patch_181:
   id: 53242
-farming_patch_(lycopus_fully_grown)_7:
+farming_patch_lycopus_fully_grown_7:
   id: 53243
 farming_patch_182:
   id: 53244
 farming_patch_183:
   id: 53245
-farming_patch_(buckthorn_fully_grown)_7:
+farming_patch_buckthorn_fully_grown_7:
   id: 53246
 rock_144:
   id: 53254
@@ -48460,173 +48480,173 @@ component_box:
   id: 53282
 furnace_44:
   id: 53283
-cooking_range_(empty)_5:
+cooking_range_empty_5:
   id: 53284
-cooking_range_(with_logs)_41:
+cooking_range_with_logs_41:
   id: 53285
-cooking_range_(with_logs)_42:
+cooking_range_with_logs_42:
   id: 53286
-cooking_range_(with_logs)_43:
+cooking_range_with_logs_43:
   id: 53287
-cooking_range_(with_logs)_44:
+cooking_range_with_logs_44:
   id: 53288
-cooking_range_(with_logs)_45:
+cooking_range_with_logs_45:
   id: 53289
-cooking_range_(with_logs)_46:
+cooking_range_with_logs_46:
   id: 53290
-cooking_range_(with_logs)_47:
+cooking_range_with_logs_47:
   id: 53291
-cooking_range_(with_logs)_48:
+cooking_range_with_logs_48:
   id: 53292
-cooking_range_(with_logs)_49:
+cooking_range_with_logs_49:
   id: 53293
-cooking_range_(with_logs)_50:
+cooking_range_with_logs_50:
   id: 53294
-cooking_range_(lit)_41:
+cooking_range_lit_41:
   id: 53295
-cooking_range_(lit)_42:
+cooking_range_lit_42:
   id: 53296
-cooking_range_(lit)_43:
+cooking_range_lit_43:
   id: 53297
-cooking_range_(lit)_44:
+cooking_range_lit_44:
   id: 53298
-cooking_range_(lit)_45:
+cooking_range_lit_45:
   id: 53299
-cooking_range_(lit)_46:
+cooking_range_lit_46:
   id: 53300
-cooking_range_(lit)_47:
+cooking_range_lit_47:
   id: 53301
-cooking_range_(lit)_48:
+cooking_range_lit_48:
   id: 53302
-cooking_range_(lit)_49:
+cooking_range_lit_49:
   id: 53303
-cooking_range_(lit)_50:
+cooking_range_lit_50:
   id: 53304
-cooking_range_(empty)_6:
+cooking_range_empty_6:
   id: 53305
-cooking_range_(with_logs)_51:
+cooking_range_with_logs_51:
   id: 53306
-cooking_range_(with_logs)_52:
+cooking_range_with_logs_52:
   id: 53307
-cooking_range_(with_logs)_53:
+cooking_range_with_logs_53:
   id: 53308
-cooking_range_(with_logs)_54:
+cooking_range_with_logs_54:
   id: 53309
-cooking_range_(with_logs)_55:
+cooking_range_with_logs_55:
   id: 53310
-cooking_range_(with_logs)_56:
+cooking_range_with_logs_56:
   id: 53311
-cooking_range_(with_logs)_57:
+cooking_range_with_logs_57:
   id: 53312
-cooking_range_(with_logs)_58:
+cooking_range_with_logs_58:
   id: 53313
-cooking_range_(with_logs)_59:
+cooking_range_with_logs_59:
   id: 53314
-cooking_range_(with_logs)_60:
+cooking_range_with_logs_60:
   id: 53315
-cooking_range_(lit)_51:
+cooking_range_lit_51:
   id: 53316
-cooking_range_(lit)_52:
+cooking_range_lit_52:
   id: 53317
-cooking_range_(lit)_53:
+cooking_range_lit_53:
   id: 53318
-cooking_range_(lit)_54:
+cooking_range_lit_54:
   id: 53319
-cooking_range_(lit)_55:
+cooking_range_lit_55:
   id: 53320
-cooking_range_(lit)_56:
+cooking_range_lit_56:
   id: 53321
-cooking_range_(lit)_57:
+cooking_range_lit_57:
   id: 53322
-cooking_range_(lit)_58:
+cooking_range_lit_58:
   id: 53323
-cooking_range_(lit)_59:
+cooking_range_lit_59:
   id: 53324
-cooking_range_(lit)_60:
+cooking_range_lit_60:
   id: 53325
-cooking_range_(empty)_7:
+cooking_range_empty_7:
   id: 53326
-cooking_range_(with_logs)_61:
+cooking_range_with_logs_61:
   id: 53327
-cooking_range_(with_logs)_62:
+cooking_range_with_logs_62:
   id: 53328
-cooking_range_(with_logs)_63:
+cooking_range_with_logs_63:
   id: 53329
-cooking_range_(with_logs)_64:
+cooking_range_with_logs_64:
   id: 53330
-cooking_range_(with_logs)_65:
+cooking_range_with_logs_65:
   id: 53331
-cooking_range_(with_logs)_66:
+cooking_range_with_logs_66:
   id: 53332
-cooking_range_(with_logs)_67:
+cooking_range_with_logs_67:
   id: 53333
-cooking_range_(with_logs)_68:
+cooking_range_with_logs_68:
   id: 53334
-cooking_range_(with_logs)_69:
+cooking_range_with_logs_69:
   id: 53335
-cooking_range_(with_logs)_70:
+cooking_range_with_logs_70:
   id: 53336
-cooking_range_(lit)_61:
+cooking_range_lit_61:
   id: 53337
-cooking_range_(lit)_62:
+cooking_range_lit_62:
   id: 53338
-cooking_range_(lit)_63:
+cooking_range_lit_63:
   id: 53339
-cooking_range_(lit)_64:
+cooking_range_lit_64:
   id: 53340
-cooking_range_(lit)_65:
+cooking_range_lit_65:
   id: 53341
-cooking_range_(lit)_66:
+cooking_range_lit_66:
   id: 53342
-cooking_range_(lit)_67:
+cooking_range_lit_67:
   id: 53343
-cooking_range_(lit)_68:
+cooking_range_lit_68:
   id: 53344
-cooking_range_(lit)_69:
+cooking_range_lit_69:
   id: 53345
-cooking_range_(lit)_70:
+cooking_range_lit_70:
   id: 53346
-cooking_range_(empty)_8:
+cooking_range_empty_8:
   id: 53347
-cooking_range_(with_logs)_71:
+cooking_range_with_logs_71:
   id: 53348
-cooking_range_(with_logs)_72:
+cooking_range_with_logs_72:
   id: 53349
-cooking_range_(with_logs)_73:
+cooking_range_with_logs_73:
   id: 53350
-cooking_range_(with_logs)_74:
+cooking_range_with_logs_74:
   id: 53351
-cooking_range_(with_logs)_75:
+cooking_range_with_logs_75:
   id: 53352
-cooking_range_(with_logs)_76:
+cooking_range_with_logs_76:
   id: 53353
-cooking_range_(with_logs)_77:
+cooking_range_with_logs_77:
   id: 53354
-cooking_range_(with_logs)_78:
+cooking_range_with_logs_78:
   id: 53355
-cooking_range_(with_logs)_79:
+cooking_range_with_logs_79:
   id: 53356
-cooking_range_(with_logs)_80:
+cooking_range_with_logs_80:
   id: 53357
-cooking_range_(lit)_71:
+cooking_range_lit_71:
   id: 53358
-cooking_range_(lit)_72:
+cooking_range_lit_72:
   id: 53359
-cooking_range_(lit)_73:
+cooking_range_lit_73:
   id: 53360
-cooking_range_(lit)_74:
+cooking_range_lit_74:
   id: 53361
-cooking_range_(lit)_75:
+cooking_range_lit_75:
   id: 53362
-cooking_range_(lit)_76:
+cooking_range_lit_76:
   id: 53363
-cooking_range_(lit)_77:
+cooking_range_lit_77:
   id: 53364
-cooking_range_(lit)_78:
+cooking_range_lit_78:
   id: 53365
-cooking_range_(lit)_79:
+cooking_range_lit_79:
   id: 53366
-cooking_range_(lit)_80:
+cooking_range_lit_80:
   id: 53367
 altar_105:
   id: 53368
@@ -48656,13 +48676,13 @@ pipes_9:
   id: 53401
 pipes_10:
   id: 53402
-sample_reagent_(solid):
+sample_reagent_solid:
   id: 53403
-sample_reagent_(powder):
+sample_reagent_powder:
   id: 53404
-sample_reagent_(liquid):
+sample_reagent_liquid:
   id: 53405
-sample_reagent_(gaseous):
+sample_reagent_gaseous:
   id: 53406
 old_bookshelf_25:
   id: 53414
@@ -48812,73 +48832,73 @@ farming_patch_185:
   id: 53703
 farming_patch_186:
   id: 53704
-farming_patch_(potato_fully_grown)_9:
+farming_patch_potato_fully_grown_9:
   id: 53705
 farming_patch_187:
   id: 53706
 farming_patch_188:
   id: 53707
-farming_patch_(gissel_fully_grown)_8:
+farming_patch_gissel_fully_grown_8:
   id: 53708
 farming_patch_189:
   id: 53709
 farming_patch_190:
   id: 53710
-farming_patch_(edicap_fully_grown)_8:
+farming_patch_edicap_fully_grown_8:
   id: 53711
 farming_patch_191:
   id: 53712
 farming_patch_192:
   id: 53713
-farming_patch_(sagewort_fully_grown)_8:
+farming_patch_sagewort_fully_grown_8:
   id: 53714
 farming_patch_193:
   id: 53715
 farming_patch_194:
   id: 53716
-farming_patch_(valerian_fully_grown)_8:
+farming_patch_valerian_fully_grown_8:
   id: 53717
 farming_patch_195:
   id: 53718
 farming_patch_196:
   id: 53719
-farming_patch_(aloe_fully_grown)_8:
+farming_patch_aloe_fully_grown_8:
   id: 53720
 farming_patch_197:
   id: 53721
 farming_patch_198:
   id: 53722
-farming_patch_(wormwood_fully_grown)_8:
+farming_patch_wormwood_fully_grown_8:
   id: 53723
 farming_patch_199:
   id: 53724
 farming_patch_200:
   id: 53725
-farming_patch_(magebane_fully_grown)_8:
+farming_patch_magebane_fully_grown_8:
   id: 53726
 farming_patch_201:
   id: 53727
 farming_patch_202:
   id: 53728
-farming_patch_(featherfoil_fully_grown)_8:
+farming_patch_featherfoil_fully_grown_8:
   id: 53729
 farming_patch_203:
   id: 53730
 farming_patch_204:
   id: 53731
-farming_patch_(winters_grip_fully_grown)_8:
+farming_patch_winters_grip_fully_grown_8:
   id: 53732
 farming_patch_205:
   id: 53733
 farming_patch_206:
   id: 53734
-farming_patch_(lycopus_fully_grown)_8:
+farming_patch_lycopus_fully_grown_8:
   id: 53735
 farming_patch_207:
   id: 53736
 farming_patch_208:
   id: 53737
-farming_patch_(buckthorn_fully_grown)_8:
+farming_patch_buckthorn_fully_grown_8:
   id: 53738
 altar_108:
   id: 53739
@@ -48954,47 +48974,47 @@ chart_4:
   id: 53821
 chart_5:
   id: 53822
-cooking_range_(empty)_9:
+cooking_range_empty_9:
   id: 53823
-cooking_range_(with_logs)_81:
+cooking_range_with_logs_81:
   id: 53824
-cooking_range_(with_logs)_82:
+cooking_range_with_logs_82:
   id: 53825
-cooking_range_(with_logs)_83:
+cooking_range_with_logs_83:
   id: 53826
-cooking_range_(with_logs)_84:
+cooking_range_with_logs_84:
   id: 53827
-cooking_range_(with_logs)_85:
+cooking_range_with_logs_85:
   id: 53828
-cooking_range_(with_logs)_86:
+cooking_range_with_logs_86:
   id: 53829
-cooking_range_(with_logs)_87:
+cooking_range_with_logs_87:
   id: 53830
-cooking_range_(with_logs)_88:
+cooking_range_with_logs_88:
   id: 53831
-cooking_range_(with_logs)_89:
+cooking_range_with_logs_89:
   id: 53832
-cooking_range_(with_logs)_90:
+cooking_range_with_logs_90:
   id: 53833
-cooking_range_(lit)_81:
+cooking_range_lit_81:
   id: 53834
-cooking_range_(lit)_82:
+cooking_range_lit_82:
   id: 53835
-cooking_range_(lit)_83:
+cooking_range_lit_83:
   id: 53836
-cooking_range_(lit)_84:
+cooking_range_lit_84:
   id: 53837
-cooking_range_(lit)_85:
+cooking_range_lit_85:
   id: 53838
-cooking_range_(lit)_86:
+cooking_range_lit_86:
   id: 53839
-cooking_range_(lit)_87:
+cooking_range_lit_87:
   id: 53840
-cooking_range_(lit)_88:
+cooking_range_lit_88:
   id: 53841
-cooking_range_(lit)_89:
+cooking_range_lit_89:
   id: 53842
-cooking_range_(lit)_90:
+cooking_range_lit_90:
   id: 53843
 runecrafting_altar_7:
   id: 53844
@@ -49006,73 +49026,73 @@ farming_patch_211:
   id: 53847
 farming_patch_212:
   id: 53848
-farming_patch_(potato_fully_grown)_10:
+farming_patch_potato_fully_grown_10:
   id: 53849
 farming_patch_213:
   id: 53850
 farming_patch_214:
   id: 53851
-farming_patch_(gissel_fully_grown)_9:
+farming_patch_gissel_fully_grown_9:
   id: 53852
 farming_patch_215:
   id: 53853
 farming_patch_216:
   id: 53854
-farming_patch_(edicap_fully_grown)_9:
+farming_patch_edicap_fully_grown_9:
   id: 53855
 farming_patch_217:
   id: 53856
 farming_patch_218:
   id: 53857
-farming_patch_(sagewort_fully_grown)_9:
+farming_patch_sagewort_fully_grown_9:
   id: 53858
 farming_patch_219:
   id: 53859
 farming_patch_220:
   id: 53860
-farming_patch_(valerian_fully_grown)_9:
+farming_patch_valerian_fully_grown_9:
   id: 53861
 farming_patch_221:
   id: 53862
 farming_patch_222:
   id: 53863
-farming_patch_(aloe_fully_grown)_9:
+farming_patch_aloe_fully_grown_9:
   id: 53864
 farming_patch_223:
   id: 53865
 farming_patch_224:
   id: 53866
-farming_patch_(wormwood_fully_grown)_9:
+farming_patch_wormwood_fully_grown_9:
   id: 53867
 farming_patch_225:
   id: 53868
 farming_patch_226:
   id: 53869
-farming_patch_(magebane_fully_grown)_9:
+farming_patch_magebane_fully_grown_9:
   id: 53870
 farming_patch_227:
   id: 53871
 farming_patch_228:
   id: 53872
-farming_patch_(featherfoil_fully_grown)_9:
+farming_patch_featherfoil_fully_grown_9:
   id: 53873
 farming_patch_229:
   id: 53874
 farming_patch_230:
   id: 53875
-farming_patch_(winters_grip_fully_grown)_9:
+farming_patch_winters_grip_fully_grown_9:
   id: 53876
 farming_patch_231:
   id: 53877
 farming_patch_232:
   id: 53878
-farming_patch_(lycopus_fully_grown)_9:
+farming_patch_lycopus_fully_grown_9:
   id: 53879
 farming_patch_233:
   id: 53880
 farming_patch_234:
   id: 53881
-farming_patch_(buckthorn_fully_grown)_9:
+farming_patch_buckthorn_fully_grown_9:
   id: 53882
 summoning_obelisk_5:
   id: 53883
@@ -49258,19 +49278,19 @@ door_905:
   id: 53973
 gravestone_67:
   id: 53975
-gravestone_(needs_blessing):
+gravestone_needs_blessing:
   id: 53976
-crystal_of_the_warrior_(active):
+crystal_of_the_warrior_active:
   id: 53977
-crystal_of_the_mage_(active):
+crystal_of_the_mage_active:
   id: 53978
-crystal_of_the_ranger_(active):
+crystal_of_the_ranger_active:
   id: 53979
-crystal_of_the_warrior_(inactive):
+crystal_of_the_warrior_inactive:
   id: 53980
-crystal_of_the_mage_(inactive):
+crystal_of_the_mage_inactive:
   id: 53981
-crystal_of_the_ranger_(inactive):
+crystal_of_the_ranger_inactive:
   id: 53982
 fishing_ledge_2:
   id: 53983
@@ -50392,73 +50412,73 @@ farming_patch_237:
   id: 55569
 farming_patch_238:
   id: 55570
-farming_patch_(potato_fully_grown)_11:
+farming_patch_potato_fully_grown_11:
   id: 55571
 farming_patch_239:
   id: 55572
 farming_patch_240:
   id: 55573
-farming_patch_(gissel_fully_grown)_10:
+farming_patch_gissel_fully_grown_10:
   id: 55574
 farming_patch_241:
   id: 55575
 farming_patch_242:
   id: 55576
-farming_patch_(edicap_fully_grown)_10:
+farming_patch_edicap_fully_grown_10:
   id: 55577
 farming_patch_243:
   id: 55578
 farming_patch_244:
   id: 55579
-farming_patch_(sagewort_fully_grown)_10:
+farming_patch_sagewort_fully_grown_10:
   id: 55580
 farming_patch_245:
   id: 55581
 farming_patch_246:
   id: 55582
-farming_patch_(valerian_fully_grown)_10:
+farming_patch_valerian_fully_grown_10:
   id: 55583
 farming_patch_247:
   id: 55584
 farming_patch_248:
   id: 55585
-farming_patch_(aloe_fully_grown)_10:
+farming_patch_aloe_fully_grown_10:
   id: 55586
 farming_patch_249:
   id: 55587
 farming_patch_250:
   id: 55588
-farming_patch_(wormwood_fully_grown)_10:
+farming_patch_wormwood_fully_grown_10:
   id: 55589
 farming_patch_251:
   id: 55590
 farming_patch_252:
   id: 55591
-farming_patch_(magebane_fully_grown)_10:
+farming_patch_magebane_fully_grown_10:
   id: 55592
 farming_patch_253:
   id: 55593
 farming_patch_254:
   id: 55594
-farming_patch_(featherfoil_fully_grown)_10:
+farming_patch_featherfoil_fully_grown_10:
   id: 55595
 farming_patch_255:
   id: 55596
 farming_patch_256:
   id: 55597
-farming_patch_(winters_grip_fully_grown)_10:
+farming_patch_winters_grip_fully_grown_10:
   id: 55598
 farming_patch_257:
   id: 55599
 farming_patch_258:
   id: 55600
-farming_patch_(lycopus_fully_grown)_10:
+farming_patch_lycopus_fully_grown_10:
   id: 55601
 farming_patch_259:
   id: 55602
 farming_patch_260:
   id: 55603
-farming_patch_(buckthorn_fully_grown)_10:
+farming_patch_buckthorn_fully_grown_10:
   id: 55604
 summoning_obelisk_7:
   id: 55605
@@ -50472,115 +50492,115 @@ farming_patch_262:
   id: 55610
 farming_patch_263:
   id: 55611
-farming_patch_(potato_fully_grown)_12:
+farming_patch_potato_fully_grown_12:
   id: 55612
 farming_patch_264:
   id: 55613
 farming_patch_265:
   id: 55614
-farming_patch_(gissel_fully_grown)_11:
+farming_patch_gissel_fully_grown_11:
   id: 55615
 farming_patch_266:
   id: 55616
 farming_patch_267:
   id: 55617
-farming_patch_(edicap_fully_grown)_11:
+farming_patch_edicap_fully_grown_11:
   id: 55618
 farming_patch_268:
   id: 55619
 farming_patch_269:
   id: 55620
-farming_patch_(sagewort_fully_grown)_11:
+farming_patch_sagewort_fully_grown_11:
   id: 55621
 farming_patch_270:
   id: 55622
 farming_patch_271:
   id: 55623
-farming_patch_(valerian_fully_grown)_11:
+farming_patch_valerian_fully_grown_11:
   id: 55624
 farming_patch_272:
   id: 55625
 farming_patch_273:
   id: 55626
-farming_patch_(aloe_fully_grown)_11:
+farming_patch_aloe_fully_grown_11:
   id: 55627
 farming_patch_274:
   id: 55628
 farming_patch_275:
   id: 55629
-farming_patch_(wormwood_fully_grown)_11:
+farming_patch_wormwood_fully_grown_11:
   id: 55630
 farming_patch_276:
   id: 55631
 farming_patch_277:
   id: 55632
-farming_patch_(magebane_fully_grown)_11:
+farming_patch_magebane_fully_grown_11:
   id: 55633
 farming_patch_278:
   id: 55634
 farming_patch_279:
   id: 55635
-farming_patch_(featherfoil_fully_grown)_11:
+farming_patch_featherfoil_fully_grown_11:
   id: 55636
 farming_patch_280:
   id: 55637
 farming_patch_281:
   id: 55638
-farming_patch_(winters_grip_fully_grown)_11:
+farming_patch_winters_grip_fully_grown_11:
   id: 55639
 farming_patch_282:
   id: 55640
 farming_patch_283:
   id: 55641
-farming_patch_(lycopus_fully_grown)_11:
+farming_patch_lycopus_fully_grown_11:
   id: 55642
 farming_patch_284:
   id: 55643
 farming_patch_285:
   id: 55644
-farming_patch_(buckthorn_fully_grown)_11:
+farming_patch_buckthorn_fully_grown_11:
   id: 55645
-cooking_range_(empty)_10:
+cooking_range_empty_10:
   id: 55646
-cooking_range_(with_logs)_91:
+cooking_range_with_logs_91:
   id: 55647
-cooking_range_(with_logs)_92:
+cooking_range_with_logs_92:
   id: 55648
-cooking_range_(with_logs)_93:
+cooking_range_with_logs_93:
   id: 55649
-cooking_range_(with_logs)_94:
+cooking_range_with_logs_94:
   id: 55650
-cooking_range_(with_logs)_95:
+cooking_range_with_logs_95:
   id: 55651
-cooking_range_(with_logs)_96:
+cooking_range_with_logs_96:
   id: 55652
-cooking_range_(with_logs)_97:
+cooking_range_with_logs_97:
   id: 55653
-cooking_range_(with_logs)_98:
+cooking_range_with_logs_98:
   id: 55654
-cooking_range_(with_logs)_99:
+cooking_range_with_logs_99:
   id: 55655
-cooking_range_(with_logs)_100:
+cooking_range_with_logs_100:
   id: 55656
-cooking_range_(lit)_91:
+cooking_range_lit_91:
   id: 55657
-cooking_range_(lit)_92:
+cooking_range_lit_92:
   id: 55658
-cooking_range_(lit)_93:
+cooking_range_lit_93:
   id: 55659
-cooking_range_(lit)_94:
+cooking_range_lit_94:
   id: 55660
-cooking_range_(lit)_95:
+cooking_range_lit_95:
   id: 55661
-cooking_range_(lit)_96:
+cooking_range_lit_96:
   id: 55662
-cooking_range_(lit)_97:
+cooking_range_lit_97:
   id: 55663
-cooking_range_(lit)_98:
+cooking_range_lit_98:
   id: 55664
-cooking_range_(lit)_99:
+cooking_range_lit_99:
   id: 55665
-cooking_range_(lit)_100:
+cooking_range_lit_100:
   id: 55666
 altar_111:
   id: 55667
@@ -50776,27 +50796,27 @@ anvil_45:
   id: 55815
 water_trough_91:
   id: 55841
-cooking_range_(empty)_11:
+cooking_range_empty_11:
   id: 55842
-cooking_range_(with_logs)_101:
+cooking_range_with_logs_101:
   id: 55843
-cooking_range_(with_logs)_102:
+cooking_range_with_logs_102:
   id: 55844
-cooking_range_(with_logs)_103:
+cooking_range_with_logs_103:
   id: 55845
-cooking_range_(with_logs)_104:
+cooking_range_with_logs_104:
   id: 55846
-cooking_range_(with_logs)_105:
+cooking_range_with_logs_105:
   id: 55847
-cooking_range_(with_logs)_106:
+cooking_range_with_logs_106:
   id: 55848
-cooking_range_(with_logs)_107:
+cooking_range_with_logs_107:
   id: 55849
-cooking_range_(with_logs)_108:
+cooking_range_with_logs_108:
   id: 55850
-cooking_range_(with_logs)_109:
+cooking_range_with_logs_109:
   id: 55851
-cooking_range_(with_logs)_110:
+cooking_range_with_logs_110:
   id: 55852
 torch_29:
   id: 55858
@@ -50908,25 +50928,25 @@ pressure_plate_16:
   id: 56531
 pot_8:
   id: 56535
-cooking_range_(lit)_101:
+cooking_range_lit_101:
   id: 56552
-cooking_range_(lit)_102:
+cooking_range_lit_102:
   id: 56553
-cooking_range_(lit)_103:
+cooking_range_lit_103:
   id: 56554
-cooking_range_(lit)_104:
+cooking_range_lit_104:
   id: 56555
-cooking_range_(lit)_105:
+cooking_range_lit_105:
   id: 56556
-cooking_range_(lit)_106:
+cooking_range_lit_106:
   id: 56557
-cooking_range_(lit)_107:
+cooking_range_lit_107:
   id: 56558
-cooking_range_(lit)_108:
+cooking_range_lit_108:
   id: 56559
-cooking_range_(lit)_109:
+cooking_range_lit_109:
   id: 56560
-cooking_range_(lit)_110:
+cooking_range_lit_110:
   id: 56561
 vine_bush_patch:
   id: 56563
@@ -51774,6 +51794,8 @@ stairs_222:
   id: 58005
 willow_12:
   id: 58006
+  stump: 38725
+  canopy: 38717
 stairs_223:
   id: 58007
 roots_61:
@@ -52852,7 +52874,7 @@ black_stone:
   id: 61566
 black_stone_2:
   id: 61567
-black_stone_(smashed):
+black_stone_smashed:
   id: 61568
 shadow_pedestal:
   id: 61570

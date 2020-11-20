@@ -74,6 +74,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
         private val chars = "[\"',()]".toRegex()
         private val underscoreChars = "[ /]".toRegex()
 
+        // TODO remove exclamations
         fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&#39;", "")
     }
 }

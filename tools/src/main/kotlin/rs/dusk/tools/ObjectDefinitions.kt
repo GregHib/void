@@ -12,14 +12,15 @@ object ObjectDefinitions {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = ObjectDecoder(koin.get(), false, false)
-        println(decoder.get(733))
-//        println(decoder.get(2259))
-//        println(decoder.get(3))
-//        println(decoder.get(1531))
-//        decoder.findMatchingModels(23917)
-//        decoder.findMatchingName("Long hall door")
-//        decoder.findMatchingSize(3, 2)
+        val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
+        val def = decoder.get(38616)
+        println(def.sizeX)
+        println(def.sizeY)
+        decoder.forEach {
+            if(it.sizeX == def.sizeX && it.sizeY == def.sizeY && it.name.contains("tree stump", true)) {
+                println("Found ${it.id}")
+            }
+        }
     }
 
     fun ObjectDecoder.findMatchingName(name: String) {
