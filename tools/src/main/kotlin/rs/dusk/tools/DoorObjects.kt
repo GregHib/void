@@ -15,7 +15,7 @@ object DoorObjects {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = ObjectDecoder(koin.get(), false, false)
+        val decoder = ObjectDecoder(koin.get(), false, false, false)
 //        dumpFences(decoder)
         dumpDoors(decoder)
     }

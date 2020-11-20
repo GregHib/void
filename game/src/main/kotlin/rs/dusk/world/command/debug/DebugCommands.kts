@@ -2,10 +2,12 @@ import rs.dusk.engine.action.action
 import rs.dusk.engine.client.send
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
+import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceTextMessage
+import rs.dusk.utility.get
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.obj.spawn.spawnObject
 
@@ -43,10 +45,16 @@ Command where { prefix == "sendItems" } then {
 }
 
 Command where { prefix == "obj" } then {
-    val parts = content.split(" ")
-    val id = parts[0].toInt()
-    val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-    spawnObject(id, player.tile, 10, rotation, 10, null)
+    if(content.isNotBlank()) {
+        val parts = content.split(" ")
+        val id = parts[0].toInt()
+        val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
+        spawnObject(id, player.tile, 10, rotation, 10, null)
+    } else {
+        get<Objects>()[player.tile].forEach {
+            println(it.id)
+        }
+    }
 }
 
 Command where { prefix == "tree" } then {

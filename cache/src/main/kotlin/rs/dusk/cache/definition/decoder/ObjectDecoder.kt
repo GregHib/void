@@ -10,7 +10,7 @@ import rs.dusk.core.io.read.Reader
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
+open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boolean, val configReplace: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()
 
@@ -25,6 +25,9 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
     }
 
     private fun ObjectDefinition.getReplacementId(): Int? {
+        if (!configReplace) {
+            return null
+        }
         val configIndex = 0
         val configs = configObjectIds ?: return null
         val config = if (configIndex < 0 || (configIndex >= configs.size - 1 || configs[configIndex] == -1)) {
@@ -32,7 +35,7 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
         } else {
             configs.getOrNull(configIndex)
         }
-        return if(config != -1) config else null
+        return if (config != -1) config else null
     }
 
     override fun ObjectDefinition.read(opcode: Int, buffer: Reader) {
@@ -49,7 +52,7 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
                     val size = buffer.readUnsignedByte()
                     modelIds[count] = IntArray(size)
                     repeat(size) { index ->
-                        modelIds[count]!![index] = buffer.readShort()
+                        modelIds[count]!![index] = buffer.readUnsignedShort()
                     }
                 }
                 this.modelIds = modelIds.filterNotNull().toTypedArray()
@@ -113,13 +116,11 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
                 }
                 val length = buffer.readUnsignedByte()
                 configObjectIds = IntArray(length + 2)
-                var count = 0
-                while (length >= count) {
+                for (count in 0..length) {
                     configObjectIds!![count] = buffer.readUnsignedShort()
                     if (configObjectIds!![count] == 65535) {
                         configObjectIds!![count] = -1
                     }
-                    count++
                 }
                 configObjectIds!![length + 1] = last
             }

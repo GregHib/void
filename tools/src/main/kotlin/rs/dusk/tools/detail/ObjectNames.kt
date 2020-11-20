@@ -28,7 +28,7 @@ private class ObjectNames(val decoder: ObjectDecoder) : NameDumper() {
                 fileProperties("/tool.properties")
                 modules(cacheModule, cacheDefinitionModule, fileLoaderModule)
             }.koin
-            val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false)
+            val decoder = ObjectDecoder(koin.get(), member = true, lowDetail = false, configReplace = false)
             val loader: FileLoader = koin.get()
             val names = ObjectNames(decoder)
             names.dump(loader, "./object-details.yml", "object", decoder.size)

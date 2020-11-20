@@ -26,7 +26,7 @@ val cacheDefinitionModule = module {
     single { InterfaceDecoder(get()) }
     single { ItemDecoder(get()) }
     single { NPCDecoder(get(), member = true) }
-    single { ObjectDecoder(get(), member = true, lowDetail = false) }
+    single { ObjectDecoder(get(), member = true, lowDetail = false, configReplace = true) }
     single { QuickChatOptionDecoder(get()) }
     single { SpriteDecoder(get()) }
     single { TextureDecoder(get()) }

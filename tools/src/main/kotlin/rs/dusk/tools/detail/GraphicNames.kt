@@ -73,7 +73,7 @@ object GraphicNames {
     }
 
     private fun addObjectModels(cache: Cache, models: MutableMap<Int, MutableList<String>>) {
-        val decoder = ObjectDecoder(cache, member = true, lowDetail = false)
+        val decoder = ObjectDecoder(cache, member = true, lowDetail = false, configReplace = false)
         repeat(decoder.size) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             def.modelIds?.forEach { array ->
