@@ -58,6 +58,8 @@ data class Container(
 
     fun isEmpty() = amounts.all { isFree(it) }
 
+    fun isFull() = amounts.none { isFree(it) }
+
     fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
 
     fun getItems(): IntArray = items.clone()

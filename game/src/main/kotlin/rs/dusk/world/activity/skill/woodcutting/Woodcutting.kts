@@ -41,11 +41,18 @@ ObjectOption where { option == "Chop down" || option == "Chop" } then {
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break
                 }
+
+                val ivy = tree == RegularTree.Ivy
+                if (!ivy && player.inventory.isFull()) {
+                    player.message("Your inventory is too full to hold any more logs.")
+                    break
+                }
+
                 val hatchet = Hatchet.get(player)
                 if (!Hatchet.hasRequirements(player, hatchet, true) || hatchet == null) {
                     break
                 }
-                val ivy = tree == RegularTree.Ivy
+
                 player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
                 if (first) {
                     player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
