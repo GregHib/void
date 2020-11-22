@@ -19,6 +19,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
 import rs.dusk.utility.Maths
 import rs.dusk.utility.inject
+import rs.dusk.world.activity.skill.woodcutting.tree.RegularTree
 import rs.dusk.world.activity.skill.woodcutting.tree.Tree
 import rs.dusk.world.interact.entity.obj.remove
 import rs.dusk.world.interact.entity.obj.replace
@@ -44,9 +45,10 @@ ObjectOption where { option == "Chop down" || option == "Chop" } then {
                 if (!Hatchet.hasRequirements(player, hatchet, true) || hatchet == null) {
                     break
                 }
-                player.setAnimation("${hatchet.id}_chop")
+                val ivy = tree == RegularTree.Ivy
+                player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
                 if (first) {
-                    player.message("You swing your hatchet at the tree.")
+                    player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
                     first = false
                 }
                 delay(4)
@@ -55,6 +57,10 @@ ObjectOption where { option == "Chop down" || option == "Chop" } then {
 
                     if (!addLog(player, tree) || deplete(tree, obj)) {
                         break
+                    }
+
+                    if (ivy) {
+                        player.message("You successfully chop away some ivy.")
                     }
                 }
             }
