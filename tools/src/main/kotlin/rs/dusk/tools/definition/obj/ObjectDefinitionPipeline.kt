@@ -12,6 +12,8 @@ import rs.dusk.tools.definition.item.ItemDefinitionPipeline
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
 import rs.dusk.tools.definition.item.pipe.page.UniqueIdentifiers
 import rs.dusk.tools.definition.obj.pipe.ObjectManualChanges
+import rs.dusk.tools.definition.obj.pipe.ObjectManualTreeChanges
+import rs.dusk.tools.definition.obj.pipe.RemoveNullEmptyExtras
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -30,14 +32,16 @@ private object ObjectDefinitionPipeline {
             val page = pages[def.id]
             if (page != null) {
                 val uid = page.uid
-                if (uid.isNotEmpty() && !uid.startsWith("null", true)) {
+                if (uid.isNotEmpty()) {
                     output[id] = page to mutableMapOf<String, Any>("id" to id)
                 }
             }
         }
         val postProcess = Pipeline<MutableMap<Int, Extras>>().apply {
-            add(UniqueIdentifiers())
             add(ObjectManualChanges())
+            add(ObjectManualTreeChanges())
+            add(RemoveNullEmptyExtras())
+            add(UniqueIdentifiers())
         }
         return postProcess.modify(output)
     }

@@ -31,11 +31,16 @@ class ObjectOptionMessageHandler : GameMessageHandler<ObjectOptionMessage>() {
         val player = sessions.get(session) ?: return
         val (objectId, x, y, run, option) = msg
         val tile = player.tile.copy(x = x, y = y)
-        val target = objects[tile, objectId] ?: return
+        val target = objects[tile, objectId]
+        if(target == null) {
+            logger.warn { "Invalid object $objectId $x $y" }
+            return
+        }
         val definition = target.def
         val options = definition.options
         val index = option - 1
         if (index !in options.indices) {
+            logger.warn { "Invalid object option $target $index" }
             //Invalid option
             return
         }

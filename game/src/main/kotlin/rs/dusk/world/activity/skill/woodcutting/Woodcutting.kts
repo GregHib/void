@@ -11,12 +11,12 @@ import rs.dusk.engine.entity.character.player.skill.Level.has
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.setAnimation
 import rs.dusk.engine.entity.definition.ItemDefinitions
-import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.engine.map.area.area
 import rs.dusk.utility.Maths
 import rs.dusk.utility.inject
 import rs.dusk.world.activity.skill.woodcutting.tree.Tree
@@ -24,15 +24,14 @@ import rs.dusk.world.interact.entity.obj.remove
 import rs.dusk.world.interact.entity.obj.replace
 import kotlin.random.Random
 
-val itemDefinitions: ItemDefinitions by inject()
-val objectDefinitions: ObjectDefinitions by inject()
+val definitions: ItemDefinitions by inject()
 val objects: Objects by inject()
 val players: Players by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
 
-ObjectOption where { option == "Chop down" } then {
+ObjectOption where { option == "Chop down" || option == "Chop" } then {
     player.action(ActionType.Woodcutting) {
         try {
             var first = true
@@ -74,7 +73,7 @@ fun success(level: Int, hatchet: Hatchet, tree: Tree): Boolean {
 
 fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log ?: return true
-    val item = itemDefinitions.get(log.id)
+    val item = definitions.get(log.id)
     val added = player.inventory.add(item.id)
     player.message(if (added) "You get some ${item.name.toLowerCase()}." else "You don't have enough inventory space.")
     return added
@@ -85,11 +84,12 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     if (!depleted) {
         return false
     }
-    val stumpId = obj.stringId.replace("_trunk", "_stump")
-    val stump = objectDefinitions.getOrNull(stumpId) ?: return false
-    val delay = getRegrowTickDelay(tree)
-    obj.replace(stump.id, ticks = delay)
-    removeCanopy(obj, delay)
+    val stumpId = obj.def["stump", -1]
+    if (stumpId != -1) {
+        val delay = getRegrowTickDelay(tree)
+        obj.replace(stumpId, ticks = delay)
+        removeCanopy(obj, delay)
+    }
     return true
 }
 
@@ -105,9 +105,13 @@ fun getRegrowTickDelay(tree: Tree): Int {
     }
 }
 
+/**
+ * Removes the tree canopy (if exists) on the tile above
+ */
 fun removeCanopy(obj: GameObject, delay: Int) {
-    val canopyId = obj.stringId.replace("_trunk", "_canopy")
-    objects[obj.tile.add(plane = 1).chunk]
-        .firstOrNull { it.stringId == canopyId && it.tile.within(obj.tile, 1, plane = false) }
+    val canopyTile = obj.tile.add(plane = 1)
+    val chunks = canopyTile.chunk.area(1)
+    chunks.flatMap { objects[it] }
+        .firstOrNull { it.tile.within(canopyTile, 1) }
         ?.remove(ticks = delay)
 }

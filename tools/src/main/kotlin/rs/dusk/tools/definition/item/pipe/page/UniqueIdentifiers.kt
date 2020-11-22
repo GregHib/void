@@ -6,7 +6,7 @@ import rs.dusk.tools.definition.item.Extras
 class UniqueIdentifiers : Pipeline.Modifier<MutableMap<Int, Extras>> {
 
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
-        val nameMap = mutableMapOf<String, Int>()
+        val nameMap = mutableSetOf<String>()
         // Identified id's take priority
         content.filter { it.value.first.rs3Idd || it.value.first.osrsIdd || it.value.first.rs2Idd }.forEach { (_, pair) ->
             val (builder, _) = pair
@@ -20,11 +20,14 @@ class UniqueIdentifiers : Pipeline.Modifier<MutableMap<Int, Extras>> {
         return content
     }
 
-    fun MutableMap<String, Int>.makeUniqueId(builder: PageCollector) {
-        val duplicate = containsKey(builder.uid)
-        this[builder.uid] = getOrDefault(builder.uid, 0) + 1
-        if (duplicate) {
-            builder.uid = "${builder.uid}_${this[builder.uid]}"
+    private fun MutableSet<String>.makeUniqueId(builder: PageCollector) {
+        var uid = builder.uid
+        var count = 2
+        while (contains(uid)) {
+            uid = "${builder.uid}_${count++}"
         }
+        builder.uid = uid
+        add(uid)
     }
+
 }

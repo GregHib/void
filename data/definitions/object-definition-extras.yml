@@ -585,6 +585,7 @@ column_3:
   id: 466
 ivy:
   id: 470
+  stump: 46319
 rockslide:
   id: 471
 rockslide_2:
@@ -825,12 +826,15 @@ pile_of_skulls_2:
   id: 668
 ivy_2:
   id: 670
+  stump: 46321
 catapult:
   id: 671
 ivy_3:
   id: 673
+  stump: 46323
 ivy_4:
   id: 675
+  stump: 46325
 burning_tree:
   id: 677
 tree:
@@ -1377,33 +1381,44 @@ door_13:
   id: 1240
 tree_2:
   id: 1276
+  stump: 1343
 tree_3:
   id: 1277
+  stump: 1343
 tree_4:
   id: 1278
+  stump: 7400
 tree_5:
   id: 1280
+  stump: 7400
 oak:
   id: 1281
   stump: 1356
 dead_tree:
   id: 1282
+  stump: 1347
 dead_tree_2:
   id: 1283
+  stump: 1347
 dead_tree_3:
   id: 1284
+  stump: 6212
 dead_tree_4:
   id: 1285
+  stump: 1347
 dead_tree_5:
   id: 1286
+  stump: 1351
 dead_tree_6:
   id: 1287
 dead_tree_7:
   id: 1288
 dead_tree_8:
   id: 1289
+  stump: 1353
 dead_tree_9:
   id: 1291
+  stump: 23054
 dramen_tree:
   id: 1292
 spirit_tree:
@@ -1432,12 +1447,15 @@ tree_9:
   id: 1305
 magic_tree:
   id: 1306
+  stump: 7401
 maple_tree:
   id: 1307
+  stump: 7400
 target_2:
   id: 1308
 yew:
   id: 1309
+  stump: 7402
 palm:
   id: 1311
 palm_2:
@@ -1446,14 +1464,18 @@ plant_2:
   id: 1314
 evergreen:
   id: 1315
+  stump: 1342
 evergreen_2:
   id: 1316
+  stump: 1355
 spirit_tree_4:
   id: 1317
 evergreen_3:
   id: 1318
+  stump: 1355
 evergreen_4:
   id: 1319
+  stump: 1355
 hollow_tree:
   id: 1322
 roots:
@@ -1472,10 +1494,13 @@ tropical_leaves:
   id: 1329
 tree_10:
   id: 1330
+  stump: 1355
 tree_11:
   id: 1331
+  stump: 1355
 tree_12:
   id: 1332
+  stump: 1355
 hollow_log_2:
   id: 1334
 hollow_log_3:
@@ -1504,13 +1529,13 @@ tree_stump_8:
   id: 1352
 tree_stump_9:
   id: 1353
-oak_dark_stump:
+oak_tree_dark_stump:
   id: 1355
-oak_stump:
+oak_tree_stump:
   id: 1356
-tree_stump_12:
+tree_stump_10:
   id: 1358
-tree_stump_13:
+tree_stump_11:
   id: 1359
 tropical_tree_4:
   id: 1360
@@ -1524,6 +1549,7 @@ roots_5:
   id: 1364
 dead_tree_10:
   id: 1365
+  stump: 1352
 roots_6:
   id: 1366
 roots_7:
@@ -1554,8 +1580,10 @@ roots_11:
   id: 1382
 dead_tree_11:
   id: 1383
+  stump: 1358
 dead_tree_12:
   id: 1384
+  stump: 1359
 jungle_plant_2:
   id: 1390
 plant_3:
@@ -2164,7 +2192,7 @@ counter_3:
   id: 2015
 counter_4:
   id: 2019
-dead_tree_13:
+dead_tree_climb:
   id: 2020
 desk:
   id: 2021
@@ -2172,6 +2200,7 @@ barrel_5:
   id: 2022
 achey_tree:
   id: 2023
+  stump: 3371
 bedroom_door:
   id: 2032
 bedroom_door_2:
@@ -2565,6 +2594,7 @@ obstacle_pipe_2:
   id: 2288
 hollow_tree_2:
   id: 2289
+  stump: 2310
 obstacle_pipe_3:
   id: 2290
 log_balance:
@@ -2593,7 +2623,7 @@ gate_46:
   id: 2308
 door_44:
   id: 2309
-tree_stump_14:
+tree_stump_12:
   id: 2310
 balancing_rope:
   id: 2312
@@ -2754,10 +2784,13 @@ ladder_26:
   id: 2408
 tree_13:
   id: 2409
+  stump: 40355
 tree_14:
   id: 2410
+  stump: 12004
 tree_15:
   id: 2411
+  stump: 7400
 gangplank_13:
   id: 2412
 gangplank_14:
@@ -3496,14 +3529,19 @@ open_cupboard_2:
   id: 2886
 jungle_tree:
   id: 2887
+  stump: 17493
 jungle_tree_2:
   id: 2889
+  stump: 4819
 jungle_tree_3:
   id: 2890
+  stump: 4821
 jungle_bush:
   id: 2892
+  stump: 2894
 jungle_bush_2:
   id: 2893
+  stump: 2894
 slashed_bush:
   id: 2894
 lamp_3:
@@ -3588,6 +3626,7 @@ dead_yommi_sapling:
   id: 2947
 adult_yommi_tree:
   id: 2948
+  stump: 2950
 dead_yommi:
   id: 2949
 felled_yommi_tree:
@@ -3758,13 +3797,15 @@ rocks_41:
   id: 3032
 tree_18:
   id: 3033
+  stump: 1342
 tree_19:
   id: 3034
+  stump: 7400
 crate_22:
   id: 3035
 tree_20:
   id: 3036
-oak_dark:
+oak_tree_dark:
   id: 3037
   stump: 1355
 rocks_42:
@@ -3985,10 +4026,11 @@ log_3:
   id: 3284
 log_4:
   id: 3285
-swamp_tree:
+swamp_tree_stump:
   id: 3287
-swamp_tree_2:
+swamp_tree_trunk:
   id: 3293
+  stump: 11865
 furnace_3:
   id: 3294
 stone_tablet:
@@ -4001,8 +4043,9 @@ stone_tablet_4:
   id: 3298
 stone_tablet_5:
   id: 3299
-swamp_tree_3:
+swamp_tree_trunk_2:
   id: 3300
+  stump: 11865
 portcullis:
   id: 3303
 rockpile:
@@ -4041,7 +4084,7 @@ cage_6:
   id: 3352
 tomb:
   id: 3353
-swamp_tree_4:
+swamp_tree:
   id: 3358
 well_3:
   id: 3359
@@ -4611,15 +4654,19 @@ yellow_tile:
   id: 3874
 tree_21:
   id: 3879
-tree_stump_15:
+  stump: 3884
+tree_stump_13:
   id: 3880
 tree_22:
   id: 3881
+  stump: 3884
 tree_23:
   id: 3882
+  stump: 3884
 tree_24:
   id: 3883
-tree_stump_16:
+  stump: 3880
+tree_stump_14:
   id: 3884
 tree_25:
   id: 3885
@@ -4859,7 +4906,8 @@ balancing_rope_4:
   id: 4059
 hollow_tree_3:
   id: 4060
-tree_stump_17:
+  stump: 4061
+hollow_tree_stump:
   id: 4061
 shelf_7:
   id: 4062
@@ -5185,9 +5233,9 @@ ice_block_2:
   id: 4323
 switch:
   id: 4324
-tree_stump_18:
+tree_stump_15:
   id: 4328
-tree_stump_19:
+tree_stump_16:
   id: 4329
 shell:
   id: 4348
@@ -5539,6 +5587,7 @@ throne_room_door:
   id: 4672
 maple_tree_2:
   id: 4674
+  stump: 7400
 harp:
   id: 4683
 barrel_22:
@@ -5703,13 +5752,15 @@ jungle_palm:
   id: 4817
 jungle_tree_5:
   id: 4818
+  stump: 4819
 jungle_tree_stump:
   id: 4819
 jungle_tree_6:
   id: 4820
+  stump: 4821
 jungle_tree_stump_2:
   id: 4821
-tree_stump_20:
+tree_stump_17:
   id: 4822
 jungle_flower_2:
   id: 4823
@@ -6371,7 +6422,7 @@ heather_9:
   id: 5549
 dock_leaf_plant:
   id: 5550
-tree_stump_21:
+tree_stump_18:
   id: 5554
 charms_2:
   id: 5559
@@ -7043,7 +7094,7 @@ lava-flow_miner:
   id: 6208
 table_41:
   id: 6211
-tree_stump_22:
+tree_stump_19:
   id: 6212
 barrel_24:
   id: 6213
@@ -7513,7 +7564,7 @@ ladder_93:
   id: 6754
 ladder_94:
   id: 6755
-dead_tree_14:
+dead_tree_13:
   id: 6756
 collapsed_statue:
   id: 6757
@@ -7905,6 +7956,7 @@ broken_rock:
   id: 7160
 tendrils:
   id: 7161
+  stump: 7163
 tendrils_2:
   id: 7162
 chopped_tendrils:
@@ -8149,13 +8201,13 @@ leafy_tree_2:
   id: 7397
 leafy_tree_3:
   id: 7398
-tree_stump_23:
+tree_stump_20:
   id: 7399
-tree_stump_24:
+maple_tree_stump:
   id: 7400
-tree_stump_25:
+tree_stump_21:
   id: 7401
-tree_stump_26:
+tree_stump_22:
   id: 7402
 apple_barrel:
   id: 7403
@@ -9123,6 +9175,7 @@ apple_tree_6:
   id: 7940
 apple_tree_7:
   id: 7941
+  stump: 7961
 apple_tree_8:
   id: 7942
 apple_tree_9:
@@ -9177,6 +9230,7 @@ pineapple_plant_13:
   id: 7971
 pineapple_plant_14:
   id: 7972
+  stump: 7992
 pineapple_plant_15:
   id: 7973
 pineapple_plant_16:
@@ -9233,6 +9287,7 @@ banana_tree_19:
   id: 7999
 banana_tree_20:
   id: 8000
+  stump: 8019
 banana_tree_21:
   id: 8001
 banana_tree_22:
@@ -9285,6 +9340,7 @@ curry_tree_6:
   id: 8025
 curry_tree_7:
   id: 8026
+  stump: 8046
 curry_tree_8:
   id: 8027
 curry_tree_9:
@@ -9347,6 +9403,7 @@ orange_tree_6:
   id: 8056
 orange_tree_7:
   id: 8057
+  stump: 8077
 orange_tree_8:
   id: 8058
 orange_tree_9:
@@ -9373,6 +9430,7 @@ diseased_orange_tree_5:
   id: 8069
 diseased_orange_tree_6:
   id: 8070
+  stump: 8077
 dead_orange_tree:
   id: 8071
 dead_orange_tree_2:
@@ -9401,6 +9459,7 @@ palm_tree_9:
   id: 8083
 palm_tree_10:
   id: 8084
+  stump: 8104
 palm_tree_11:
   id: 8085
 palm_tree_12:
@@ -9455,6 +9514,7 @@ papaya_tree_6:
   id: 8110
 papaya_tree_7:
   id: 8111
+  stump: 8131
 papaya_tree_8:
   id: 8112
 papaya_tree_9:
@@ -9979,34 +10039,35 @@ tree_patch_3:
   id: 8394
 tree_patch_4:
   id: 8395
-magic_tree_2:
+magic_tree_farming:
   id: 8396
-magic_tree_3:
+magic_tree_farming_2:
   id: 8397
-magic_tree_4:
+magic_tree_farming_3:
   id: 8398
-magic_tree_5:
+magic_tree_farming_4:
   id: 8399
-magic_tree_6:
+magic_tree_farming_5:
   id: 8400
-magic_tree_7:
+magic_tree_farming_6:
   id: 8401
-magic_tree_8:
+magic_tree_farming_7:
   id: 8402
-magic_tree_9:
+magic_tree_farming_8:
   id: 8403
-magic_tree_10:
+magic_tree_farming_9:
   id: 8404
-magic_tree_11:
+magic_tree_farming_10:
   id: 8405
-magic_tree_12:
+magic_tree_farming_11:
   id: 8406
-magic_tree_13:
+magic_tree_farming_12:
   id: 8407
-magic_tree_14:
+magic_tree_farming_13:
   id: 8408
-magic_tree_15:
+magic_tree_farming_14:
   id: 8409
+  stump: 8410
 magic_tree_stump:
   id: 8410
 diseased_magic_tree:
@@ -10057,27 +10118,29 @@ dead_magic_tree_11:
   id: 8433
 dead_magic_tree_12:
   id: 8434
-maple_tree_3:
+maple_tree_farming:
   id: 8435
-maple_tree_4:
+  stump: 7400
+maple_tree_farming_2:
   id: 8436
-maple_tree_5:
+maple_tree_farming_3:
   id: 8437
-maple_tree_6:
+maple_tree_farming_4:
   id: 8438
-maple_tree_7:
+maple_tree_farming_5:
   id: 8439
-maple_tree_8:
+maple_tree_farming_6:
   id: 8440
-maple_tree_9:
+maple_tree_farming_7:
   id: 8441
-maple_tree_10:
+maple_tree_farming_8:
   id: 8442
-maple_tree_11:
+maple_tree_farming_9:
   id: 8443
-maple_tree_12:
+maple_tree_farming_10:
   id: 8444
-maple_tree_stump:
+  stump: 8445
+maple_tree_stump_2:
   id: 8445
 diseased_maple:
   id: 8446
@@ -10111,19 +10174,20 @@ dead_maple_7:
   id: 8460
 dead_maple_8:
   id: 8461
-oak_farming:
+oak_tree_farming:
   id: 8462
-oak_farming_2:
+oak_tree_farming_2:
   id: 8463
-oak_farming_3:
+oak_tree_farming_3:
   id: 8464
-oak_farming_4:
+oak_tree_farming_4:
   id: 8465
-oak_farming_5:
+oak_tree_farming_5:
   id: 8466
-oak_farming_6:
+oak_tree_farming_6:
   id: 8467
-oak_tree_stump:
+  stump: 8468
+oak_tree_stump_2:
   id: 8468
 diseased_oak:
   id: 8473
@@ -10157,6 +10221,7 @@ willow_tree_farming_7:
   id: 8487
 willow_tree_farming_8:
   id: 8488
+  stump: 8489
 willow_tree_stump:
   id: 8489
 diseased_willow:
@@ -10185,28 +10250,29 @@ dead_willow_6:
   id: 8501
 yew_sapling:
   id: 8502
-yew_tree:
+yew_tree_farming:
   id: 8503
-yew_tree_2:
+yew_tree_farming_2:
   id: 8504
-yew_tree_3:
+yew_tree_farming_3:
   id: 8505
-yew_tree_4:
+yew_tree_farming_4:
   id: 8506
-yew_tree_5:
+yew_tree_farming_5:
   id: 8507
-yew_tree_6:
+yew_tree_farming_6:
   id: 8508
-yew_tree_7:
+yew_tree_farming_7:
   id: 8509
-yew_tree_8:
+yew_tree_farming_8:
   id: 8510
-yew_tree_9:
+yew_tree_farming_9:
   id: 8511
-yew_tree_10:
+yew_tree_farming_10:
   id: 8512
-yew_tree_11:
+yew_tree_farming_11:
   id: 8513
+  stump: 8514
 yew_tree_stump:
   id: 8514
 diseased_yew:
@@ -10933,13 +10999,15 @@ gem_rock_3:
   id: 9032
 gout_tuber_plant:
   id: 9033
-mahogany:
+mahogany_tree:
   id: 9034
-tree_stump_27:
+  stump: 9035
+mahogany_tree_stump:
   id: 9035
 teak:
   id: 9036
-tree_stump_28:
+  stump: 9037
+teak_tree_stump:
   id: 9037
 hardwood_grove_doors:
   id: 9038
@@ -11385,10 +11453,12 @@ wall_29:
   id: 9351
 wall_30:
   id: 9353
-swamp_tree_5:
+swamp_tree_trunk_3:
   id: 9354
-swamp_tree_6:
+  stump: 9389
+swamp_tree_trunk_4:
   id: 9355
+  stump: 11862
 cave_entrance_34:
   id: 9356
 cave_entrance_35:
@@ -11409,8 +11479,9 @@ wall_35:
   id: 9364
 wall_36:
   id: 9365
-swamp_tree_7:
+swamp_tree_trunk_5:
   id: 9366
+  stump: 11864
 hot_vent_door:
   id: 9368
 hot_vent_door_2:
@@ -11431,13 +11502,15 @@ crate_79:
   id: 9381
 crates_13:
   id: 9382
-swamp_tree_8:
+swamp_tree_2:
   id: 9385
-swamp_tree_9:
+swamp_tree_trunk_6:
   id: 9387
-swamp_tree_10:
+  stump: 10951
+swamp_tree_trunk_7:
   id: 9388
-tree_stump_29:
+  stump: 11855
+tree_stump_23:
   id: 9389
 lava_forge:
   id: 9390
@@ -11649,7 +11722,7 @@ plough_2:
   id: 9624
 wheelbarrow_3:
   id: 9625
-tree_stump_30:
+tree_stump_24:
   id: 9661
 spade:
   id: 9662
@@ -11989,7 +12062,7 @@ tree_51:
   id: 10081
 tree_52:
   id: 10082
-oak_construction:
+oak_tree_construction:
   id: 10083
 hay_bales_3:
   id: 10084
@@ -12951,7 +13024,7 @@ rocks_143:
   id: 10949
 sand_pile:
   id: 10950
-tree_stump_31:
+tree_stump_25:
   id: 10951
 hole_12:
   id: 10953
@@ -13133,7 +13206,7 @@ door_245:
   id: 11057
 door_246:
   id: 11058
-tree_stump_32:
+tree_stump_26:
   id: 11059
 pedestal_18:
   id: 11060
@@ -13179,7 +13252,7 @@ rock_35:
   id: 11097
 rock_36:
   id: 11098
-dead_tree_15:
+dead_tree_14:
   id: 11112
 bush_17:
   id: 11113
@@ -13477,26 +13550,37 @@ evil_root_8:
   id: 11433
 evil_tree:
   id: 11434
+  stump: 11435
 evil_tree_2:
   id: 11435
+  stump: 11436
 evil_tree_3:
   id: 11436
+  stump: 11925
 evil_oak_tree:
   id: 11437
+  stump: 11438
 evil_oak_tree_2:
   id: 11438
+  stump: 11439
 evil_oak_tree_3:
   id: 11439
+  stump: 11926
 evil_willow_tree:
   id: 11440
+  stump: 11441
 evil_willow_tree_2:
   id: 11441
+  stump: 11442
 evil_willow_tree_3:
   id: 11442
+  stump: 11927
 evil_maple_tree:
   id: 11443
+  stump: 11444
 evil_maple_tree_2:
   id: 11444
+  stump: 11915
 reward_tent:
   id: 11448
 rocks_165:
@@ -13931,20 +14015,21 @@ bow_cabinet_3:
   id: 11848
 table_72:
   id: 11849
-tree_stump_33:
+tree_stump_27:
   id: 11855
 standard_18:
   id: 11861
-tree_stump_34:
+tree_stump_28:
   id: 11862
 winch_6:
   id: 11863
-tree_stump_35:
+tree_stump_29:
   id: 11864
-swamp_tree_11:
+swamp_tree_stump_2:
   id: 11865
-dead_tree_16:
+dead_tree_15:
   id: 11866
+  stump: 9389
 roots_18:
   id: 11867
 dwarf_multicannon_4:
@@ -14007,24 +14092,34 @@ bush_21:
   id: 11914
 evil_maple_tree_3:
   id: 11915
+  stump: 11928
 evil_yew_tree:
   id: 11916
+  stump: 11917
 evil_yew_tree_2:
   id: 11917
+  stump: 11918
 evil_yew_tree_3:
   id: 11918
+  stump: 11929
 evil_magic_tree:
   id: 11919
+  stump: 11920
 evil_magic_tree_2:
   id: 11920
+  stump: 11921
 evil_magic_tree_3:
   id: 11921
+  stump: 12711
 elder_evil_tree:
   id: 11922
+  stump: 11923
 elder_evil_tree_2:
   id: 11923
+  stump: 11924
 elder_evil_tree_3:
   id: 11924
+  stump: 12712
 rocks_176:
   id: 11930
 rocks_177:
@@ -14099,18 +14194,19 @@ door_271:
   id: 11993
 door_272:
   id: 11994
-oak_pale:
+oak_tree_pale:
   id: 11999
   stump: 12007
 yew_2:
   id: 12000
-tree_stump_36:
+  stump: 12001
+yew_tree_stump_2:
   id: 12001
 fairy_ring:
   id: 12003
-tree_stump_37:
+tree_stump_30:
   id: 12004
-oak_pale_stump:
+oak_tree_pale_stump:
   id: 12007
 dairy_churn_3:
   id: 12011
@@ -14350,25 +14446,29 @@ open_trapdoor:
   id: 12268
 stove_4:
   id: 12269
-jade_root:
+jade_root_straight:
   id: 12272
-jade_root_2:
+  stump: 12277
+jade_root_straight_2:
   id: 12273
-jade_root_3:
+jade_root_curly:
   id: 12274
-jade_root_4:
+  stump: 12279
+jade_root_curly_2:
   id: 12276
-jade_root_cut:
+jade_root_straight_cut:
   id: 12277
-jade_root_cut_2:
+  stump: 12283
+jade_root_curly_cut:
   id: 12279
+  stump: 12283
 large_table_11:
   id: 12280
 small_table_3:
   id: 12281
 bookcase_50:
   id: 12282
-jade_root_5:
+jade_root_cut:
   id: 12283
 dry_patch:
   id: 12284
@@ -14428,11 +14528,11 @@ cave_exit_18:
   id: 12327
 hole_13:
   id: 12328
-jade_root_6:
+jade_root:
   id: 12329
 dwarf:
   id: 12330
-jade_root_7:
+jade_root_2:
   id: 12331
 general_bentnoze:
   id: 12332
@@ -14842,9 +14942,9 @@ grave_12:
   id: 12730
 mausoleum:
   id: 12731
-dead_tree_17:
+dead_tree_16:
   id: 12732
-tree_stump_39:
+tree_stump_31:
   id: 12733
 table_78:
   id: 12734
@@ -14996,7 +15096,7 @@ barrel_52:
   id: 12891
 small_table_4:
   id: 12892
-tree_stump_40:
+tree_stump_32:
   id: 12894
 tree_55:
   id: 12895
@@ -15730,7 +15830,7 @@ statue_67:
   id: 13408
 dungeon_entrance_3:
   id: 13409
-dead_tree_18:
+dead_tree_construction:
   id: 13411
 tree_56:
   id: 13412
@@ -15738,13 +15838,13 @@ oak_tree:
   id: 13413
 willow_tree_construction:
   id: 13414
-maple_tree_13:
+maple_tree_construction:
   id: 13415
-yew_tree_12:
+yew_tree_construction:
   id: 13416
-magic_tree_16:
+magic_tree_construction:
   id: 13417
-dead_tree_19:
+dead_tree_construction_2:
   id: 13418
 tree_57:
   id: 13419
@@ -15752,11 +15852,11 @@ oak_tree_2:
   id: 13420
 willow_tree_construction_2:
   id: 13421
-yew_tree_13:
+yew_tree_construction_2:
   id: 13422
-maple_tree_14:
+maple_tree_construction_2:
   id: 13423
-magic_tree_17:
+magic_tree_construction_2:
   id: 13424
 fern_4:
   id: 13425
@@ -16562,21 +16662,21 @@ row_boat_4:
   id: 13841
 ripples:
   id: 13842
-swamp_tree_12:
+swamp_tree_stump_3:
   id: 13843
-swamp_tree_13:
+swamp_tree_canopy:
   id: 13844
-swamp_tree_14:
+swamp_tree_branch_lasso:
   id: 13845
 vine_hanging_from_branch:
   id: 13846
-swamp_tree_15:
+swamp_tree_trim:
   id: 13847
-swamp_tree_16:
+swamp_tree_trim_2:
   id: 13848
-swamp_tree_17:
+swamp_tree_trim_3:
   id: 13849
-swamp_tree_18:
+swamp_tree_trim_4:
   id: 13850
 boat_2:
   id: 13864
@@ -16990,6 +17090,8 @@ blue_mage:
   id: 14208
 item_spawn:
   id: 14209
+key_2:
+  id: 14212
 hatchet:
   id: 14213
 pickaxe_2:
@@ -17108,8 +17210,10 @@ gangplank_28:
   id: 14307
 tree_58:
   id: 14308
+  stump: 1342
 tree_59:
   id: 14309
+  stump: 7400
 ladder_182:
   id: 14314
 gangplank_29:
@@ -17968,6 +18072,7 @@ loom_42:
   id: 15057
 teak_2:
   id: 15062
+  stump: 9037
 weedy_patch:
   id: 15063
 weedy_patch_2:
@@ -19228,21 +19333,24 @@ sweetgrub_mound_2:
   id: 15947
 jungle_tree_7:
   id: 15948
-jungle_tree_8:
+  stump: 15950
+jungle_tree_fire:
   id: 15949
-jungle_tree_9:
+jungle_tree_stump_3:
   id: 15950
-jungle_tree_10:
+jungle_tree_8:
   id: 15951
-jungle_tree_11:
+  stump: 15953
+jungle_tree_fire_2:
   id: 15952
-jungle_tree_12:
+jungle_tree_stump_4:
   id: 15953
-jungle_tree_13:
+jungle_tree_9:
   id: 15954
-jungle_tree_14:
+  stump: 15956
+jungle_tree_fire_3:
   id: 15955
-jungle_tree_15:
+jungle_tree_stump_5:
   id: 15956
 tropical_tree_31:
   id: 15957
@@ -19522,7 +19630,8 @@ stalagmite_9:
   id: 16263
 tree_66:
   id: 16265
-tree_stump_41:
+  stump: 9035
+tree_stump_33:
   id: 16266
 plant_26:
   id: 16267
@@ -19792,6 +19901,7 @@ note_2:
   id: 16602
 dream_tree:
   id: 16604
+  stump: 16605
 dream_tree_stump:
   id: 16605
 zero:
@@ -20500,32 +20610,44 @@ floor_14:
   id: 17368
 root_3:
   id: 17374
+  stump: 17626
 root_4:
   id: 17375
+  stump: 17631
 root_5:
   id: 17376
+  stump: 17632
 root_6:
   id: 17377
+  stump: 17633
 root_7:
   id: 17378
+  stump: 17634
 root_8:
   id: 17379
+  stump: 17638
 root_9:
   id: 17380
+  stump: 17657
 root_10:
   id: 17381
+  stump: 17659
 bookcase_72:
   id: 17382
 fighters_7:
   id: 17383
 root_11:
   id: 17384
+  stump: 17660
 root_12:
   id: 17385
+  stump: 17661
 root_13:
   id: 17386
+  stump: 17662
 root_14:
   id: 17387
+  stump: 17663
 rocks_284:
   id: 17388
 rocks_285:
@@ -20580,10 +20702,12 @@ drain_4:
   id: 17424
 root_15:
   id: 17428
+  stump: 17665
 rusty_key:
   id: 17429
 root_16:
   id: 17432
+  stump: 17675
 wardrobe_12:
   id: 17434
 stone_table:
@@ -20592,6 +20716,7 @@ stone_table_2:
   id: 17436
 root_17:
   id: 17437
+  stump: 17698
 stone_table_3:
   id: 17438
 stone_circle_wall:
@@ -20614,10 +20739,13 @@ chess_2:
   id: 17451
 root_18:
   id: 17458
+  stump: 17758
 root_19:
   id: 17459
+  stump: 17759
 root_20:
   id: 17460
+  stump: 17761
 chair_65:
   id: 17462
 chair_66:
@@ -20650,16 +20778,20 @@ dragons_head_13:
   id: 17486
 door_355:
   id: 17488
-tree_stump_42:
+tree_stump_34:
   id: 17493
 root_21:
   id: 17496
+  stump: 17765
 root_22:
   id: 17498
+  stump: 17779
 root_23:
   id: 17506
+  stump: 17810
 root_24:
   id: 17507
+  stump: 17847
 waste_pipes:
   id: 17508
 waste_pipes_2:
@@ -20670,14 +20802,19 @@ waste_pipes_4:
   id: 17511
 root_25:
   id: 17512
+  stump: 17848
 root_26:
   id: 17513
+  stump: 17849
 root_27:
   id: 17515
+  stump: 17850
 root_28:
   id: 17539
+  stump: 17851
 root_29:
   id: 17540
+  stump: 17852
 table_105:
   id: 17545
 table_106:
@@ -20704,6 +20841,7 @@ bucket_4:
   id: 17556
 root_30:
   id: 17557
+  stump: 17853
 bucket_5:
   id: 17558
 panning_tray:
@@ -20716,12 +20854,14 @@ pots_4:
   id: 17562
 root_31:
   id: 17563
+  stump: 17854
 door_356:
   id: 17600
 door_357:
   id: 17601
 root_32:
   id: 17625
+  stump: 17855
 chopped_root:
   id: 17626
 washing_line:
@@ -20956,10 +21096,12 @@ chopped_root_31:
   id: 17859
 root_33:
   id: 17860
+  stump: 17859
 chopped_root_32:
   id: 17862
 root_34:
   id: 17863
+  stump: 17862
 chopped_root_33:
   id: 17872
 rift_18:
@@ -20990,6 +21132,7 @@ experiment_booth:
   id: 17899
 root_35:
   id: 17903
+  stump: 17872
 barrel_80:
   id: 17904
 crate_175:
@@ -21006,16 +21149,19 @@ chopped_root_34:
   id: 17918
 root_36:
   id: 17919
+  stump: 17918
 chopped_root_35:
   id: 17921
 root_37:
   id: 17922
+  stump: 17921
 guard_5:
   id: 17927
 tree_68:
   id: 17928
 root_38:
   id: 17932
+  stump: 17970
 wall_94:
   id: 17934
 wall_95:
@@ -21090,6 +21236,7 @@ wall_103:
   id: 17980
 root_39:
   id: 17982
+  stump: 17972
 rug_11:
   id: 17983
 lumpy_rug:
@@ -21110,6 +21257,7 @@ bush_27:
   id: 17991
 root_40:
   id: 17996
+  stump: 17997
 chopped_root_38:
   id: 17997
 ladder_216:
@@ -21336,6 +21484,7 @@ dolls_and_balls:
   id: 18157
 root_41:
   id: 18167
+  stump: 18051
 door_367:
   id: 18168
 clay_oven_2:
@@ -21456,6 +21605,7 @@ crane_3:
   id: 18327
 root_42:
   id: 18329
+  stump: 18330
 chopped_root_40:
   id: 18330
 exit_15:
@@ -21478,6 +21628,7 @@ wreck_6:
   id: 18357
 root_43:
   id: 18358
+  stump: 18386
 bed_81:
   id: 18362
 childs_bed:
@@ -21554,6 +21705,7 @@ bench_12:
   id: 18488
 root_44:
   id: 18489
+  stump: 18472
 signpost_19:
   id: 18493
 viewing_orb_2:
@@ -21562,6 +21714,7 @@ chopped_root_43:
   id: 18499
 root_45:
   id: 18500
+  stump: 18499
 crane_4:
   id: 18501
 crate_179:
@@ -21606,6 +21759,7 @@ machinery_2:
   id: 18530
 root_46:
   id: 18558
+  stump: 18645
 machinery_3:
   id: 18587
 machinery_4:
@@ -21752,6 +21906,7 @@ cog_9:
   id: 18675
 root_47:
   id: 18676
+  stump: 18709
 extractor_hat:
   id: 18690
 extractor_hat-top:
@@ -21986,8 +22141,10 @@ chopped_root_46:
   id: 18857
 root_48:
   id: 18858
+  stump: 18857
 root_49:
   id: 18860
+  stump: 18861
 chopped_root_47:
   id: 18861
 tree_69:
@@ -22060,12 +22217,14 @@ crate_191:
   id: 18919
 root_50:
   id: 18922
+  stump: 19008
 cliff:
   id: 18923
 cliff_2:
   id: 18924
 root_51:
   id: 18935
+  stump: 19039
 cart_track_sign:
   id: 18938
 buffers_3:
@@ -22110,10 +22269,12 @@ door_384:
   id: 18971
 root_52:
   id: 18972
+  stump: 19048
 door_385:
   id: 18973
 root_53:
   id: 18974
+  stump: 19052
 dirty_plates:
   id: 18975
 hole_29:
@@ -22174,8 +22335,10 @@ rocks_310:
   id: 19005
 root_54:
   id: 19006
+  stump: 19055
 root_55:
   id: 19007
+  stump: 19060
 chopped_root_48:
   id: 19008
 rocks_311:
@@ -22668,10 +22831,12 @@ chopped_root_54:
   id: 19451
 root_56:
   id: 19461
+  stump: 19451
 chopped_root_55:
   id: 19479
 root_57:
   id: 19482
+  stump: 19479
 burrow_4:
   id: 19492
 burrow_5:
@@ -22680,10 +22845,12 @@ burrow_6:
   id: 19494
 root_58:
   id: 19530
+  stump: 19542
 chopped_root_56:
   id: 19542
 root_59:
   id: 19551
+  stump: 19567
 burrow_7:
   id: 19552
 burrow_8:
@@ -22698,6 +22865,7 @@ burrow_10:
   id: 19594
 root_60:
   id: 19626
+  stump: 19589
 hole_31:
   id: 19640
 hole_32:
@@ -22772,6 +22940,7 @@ steps_3:
   id: 19691
 root_61:
   id: 19694
+  stump: 19695
 chopped_root_59:
   id: 19695
 counter_58:
@@ -23674,9 +23843,9 @@ boulder_15:
   id: 20731
 boulder_16:
   id: 20733
-dead_tree_20:
+dead_tree_climb_through:
   id: 20750
-dead_tree_21:
+dead_tree_search:
   id: 20751
 crevice_11:
   id: 20752
@@ -24240,7 +24409,8 @@ funeral_pyre_17:
   id: 21272
 arctic_pine:
   id: 21273
-tree_stump_43:
+  stump: 21274
+arctic_pine_tree_stump:
   id: 21274
 rocks_338:
   id: 21275
@@ -24348,7 +24518,7 @@ large_geyser:
   id: 21355
 small_geyser:
   id: 21356
-swamp_tree_19:
+swamp_tree_3:
   id: 21357
 bank_table_7:
   id: 21358
@@ -25614,7 +25784,7 @@ fairy_ring_38:
   id: 23047
 doorway_17:
   id: 23052
-tree_stump_44:
+tree_stump_35:
   id: 23054
 broken_cart_3:
   id: 23055
@@ -25888,7 +26058,7 @@ door_437:
   id: 23378
 door_438:
   id: 23379
-dead_tree_22:
+dead_tree_17:
   id: 23381
 ladder_279:
   id: 23504
@@ -26306,6 +26476,7 @@ spear_wall_4:
   id: 24167
 dying_tree:
   id: 24168
+  stump: 24169
 dying_tree_stump:
   id: 24169
 washing_line_5:
@@ -27040,11 +27211,13 @@ beanstalk:
   id: 24732
 beanstalk_2:
   id: 24733
-beanstalk_3:
+  stump: 24734
+beanstalk_stump:
   id: 24734
-beanstalk_4:
+beanstalk_3:
   id: 24735
-beanstalk_5:
+  stump: 24736
+beanstalk_stump_2:
   id: 24736
 water_cooler:
   id: 24737
@@ -27102,7 +27275,7 @@ door_460:
   id: 24815
 door_461:
   id: 24816
-beanstalk_6:
+beanstalk_4:
   id: 24819
 anvil_18:
   id: 24820
@@ -27378,7 +27551,7 @@ tree_86:
   id: 25183
 tree_87:
   id: 25184
-tree_stump_45:
+tree_stump_36:
   id: 25186
 a_tropical_tree:
   id: 25191
@@ -28262,13 +28435,13 @@ furnace_18:
   id: 26198
 staircase_127:
   id: 26199
-tree_stump_46:
+tree_stump_37:
   id: 26200
 tree_88:
   id: 26201
 bush_37:
   id: 26202
-tree_stump_47:
+tree_stump_38:
   id: 26203
 tree_89:
   id: 26204
@@ -29154,7 +29327,7 @@ hollow_log_10:
   id: 27198
 hollow_log_11:
   id: 27199
-tree_stump_48:
+tree_stump_39:
   id: 27200
 ore_container_17:
   id: 27201
@@ -30614,10 +30787,13 @@ boulder_24:
   id: 28945
 eucalyptus_tree:
   id: 28951
+  stump: 28954
 eucalyptus_tree_2:
   id: 28952
+  stump: 28955
 eucalyptus_tree_3:
   id: 28953
+  stump: 28956
 eucalyptus_stump:
   id: 28954
 eucalyptus_stump_2:
@@ -30766,9 +30942,11 @@ hotel_bed_2:
   id: 29087
 achey_tree_2:
   id: 29088
+  stump: 3371
 achey_tree_3:
   id: 29089
-achey_tree_4:
+  stump: 3371
+achey_tree_roots:
   id: 29090
 spear_spit:
   id: 29091
@@ -32518,7 +32696,7 @@ parachuting_gnome:
   id: 31029
 door_527:
   id: 31030
-tree_stump_49:
+tree_stump_40:
   id: 31057
 rocks_408:
   id: 31059
@@ -33250,7 +33428,7 @@ suit_of_armour_16:
   id: 32292
 suit_of_armour_17:
   id: 32293
-dead_tree_23:
+dead_tree_18:
   id: 32294
 standard_26:
   id: 32295
@@ -35100,7 +35278,7 @@ kiln_52:
   id: 36489
 steps_11:
   id: 36495
-tree_stump_50:
+tree_stump_41:
   id: 36510
 bookcase_139:
   id: 36519
@@ -35480,7 +35658,7 @@ cart_15:
   id: 36889
 wheelbarrow_11:
   id: 36890
-tree_stump_51:
+tree_stump_42:
   id: 36891
 hay_bale_4:
   id: 36892
@@ -35950,7 +36128,7 @@ hanging_roots:
   id: 37321
 hanging_roots_2:
   id: 37322
-dead_tree_24:
+dead_tree_19:
   id: 37334
 flag_6:
   id: 37335
@@ -36076,20 +36254,25 @@ spinning_wheel_9:
   id: 37476
 tree_96:
   id: 37477
+  stump: 1342
 tree_97:
   id: 37478
-oak_2:
+  stump: 1342
+oak_tree_3:
   id: 37479
   stump: 1356
 willow_5:
   id: 37480
   stump: 1350
-dead_tree_25:
+dead_tree_20:
   id: 37481
-dead_tree_26:
+  stump: 1347
+dead_tree_21:
   id: 37482
-dead_tree_27:
+  stump: 1351
+dead_tree_22:
   id: 37483
+  stump: 1358
 trapdoor_96:
   id: 37484
 sign_34:
@@ -36228,7 +36411,8 @@ furnace_38:
   id: 37651
 tree_98:
   id: 37652
-tree_stump_52:
+  stump: 7400
+tree_stump_43:
   id: 37653
 rock_column:
   id: 37656
@@ -36318,7 +36502,7 @@ entrance_18:
   id: 37749
 entrance_19:
   id: 37750
-tree_stump_53:
+tree_stump_44:
   id: 37751
 disc:
   id: 37752
@@ -36458,11 +36642,13 @@ standing_torch_18:
   id: 37820
 cursed_magic_tree:
   id: 37821
-tree_stump_54:
+  stump: 37822
+cursed_magic_tree_stump:
   id: 37822
-magic_tree_18:
+magic_tree_2:
   id: 37823
-tree_stump_55:
+  stump: 37824
+magic_tree_stump_2:
   id: 37824
 barrel_149:
   id: 37825
@@ -36866,11 +37052,11 @@ tree_99:
   id: 38379
 tree_100:
   id: 38380
-oak_3:
+oak_tree_4:
   id: 38381
-dead_tree_28:
+dead_tree_23:
   id: 38382
-dead_tree_29:
+dead_tree_24:
   id: 38383
 pillar_148:
   id: 38420
@@ -37111,13 +37297,13 @@ the_audience_30:
 willow_6:
   id: 38616
   stump: 38725
-  canopy: 38717
 standing_torch_19:
   id: 38618
 bench_85:
   id: 38626
-willow_trunk:
+willow_tree_trunk:
   id: 38627
+  stump: 38725
 magic_equipment:
   id: 38631
 magic_equipment_2:
@@ -37208,67 +37394,74 @@ free-for-all_dangerous:
   id: 38699
 portal_97:
   id: 38700
-willow_canopy:
+willow_tree_canopy:
   id: 38717
-willow_canopy_2:
+willow_tree_canopy_2:
   id: 38718
 skeleton_78:
   id: 38724
-willow_stump:
+willow_tree_stump_2:
   id: 38725
-oak_trunk:
+oak_tree_trunk:
   id: 38731
   stump: 38741
-  canopy: 38736
-oak_trunk_2:
+oak_tree_trunk_2:
   id: 38732
   stump: 38754
-  canopy: 38739
-oak_canopy:
+oak_tree_canopy:
   id: 38736
-oak_canopy_2:
+oak_tree_canopy_2:
   id: 38739
-oak_stump_2:
+oak_tree_stump_3:
   id: 38741
-oak_stump_3:
+oak_tree_stump_4:
   id: 38754
-yew_3:
+yew_tree_trunk:
   id: 38755
-yew_4:
+  stump: 38759
+yew_tree_canopy:
   id: 38758
-yew_5:
+yew_tree_stump_3:
   id: 38759
 tree_101:
   id: 38760
+  stump: 40350
 ladder_398:
   id: 38761
 ladder_399:
   id: 38762
-tree_102:
+tree_canopy:
   id: 38782
-tree_103:
+  stump: 40351
+tree_102:
   id: 38783
-tree_104:
+  stump: 40352
+tree_103:
   id: 38784
-tree_105:
+  stump: 40353
+tree_104:
   id: 38785
-tree_106:
+  stump: 40354
+tree_105:
   id: 38786
-tree_107:
+  stump: 40355
+tree_106:
   id: 38787
-tree_108:
+  stump: 40356
+tree_107:
   id: 38788
-tree_109:
+  stump: 40357
+tree_canopy_2:
   id: 38789
-tree_110:
+tree_108:
   id: 38791
-tree_111:
+tree_canopy_3:
   id: 38792
-tree_112:
+tree_canopy_4:
   id: 38795
 door_655:
   id: 38799
-tree_113:
+tree_canopy_5:
   id: 38805
 brewing_vat_4:
   id: 38809
@@ -37320,7 +37513,7 @@ jail_door_9:
   id: 38836
 jail_door_10:
   id: 38837
-tree_114:
+tree_canopy_6:
   id: 38842
 portal_98:
   id: 38843
@@ -37354,73 +37547,73 @@ rock_110:
   id: 38865
 bush_51:
   id: 38866
-tree_stump_56:
+tree_stump_45:
   id: 38867
-tree_stump_57:
+tree_stump_46:
   id: 38868
-tree_stump_58:
+tree_stump_47:
   id: 38869
-tree_115:
+tree_109:
   id: 38870
-tree_stump_59:
+tree_stump_48:
   id: 38871
-tree_116:
+tree_110:
   id: 38872
 rock_111:
   id: 38873
-tree_117:
+tree_111:
   id: 38874
-tree_118:
+tree_112:
   id: 38875
 bush_52:
   id: 38876
-tree_stump_60:
+tree_stump_49:
   id: 38877
-tree_119:
+tree_113:
   id: 38878
-tree_stump_61:
+tree_stump_50:
   id: 38879
-tree_120:
+tree_114:
   id: 38880
-tree_121:
+tree_115:
   id: 38881
 bush_53:
   id: 38882
-tree_122:
+tree_116:
   id: 38883
-tree_123:
+tree_117:
   id: 38884
 rocks_481:
   id: 38885
-tree_124:
+tree_118:
   id: 38886
-tree_125:
+tree_119:
   id: 38887
-tree_126:
+tree_120:
   id: 38888
-tree_127:
+tree_121:
   id: 38889
 rock_112:
   id: 38890
 rock_113:
   id: 38891
-tree_128:
+tree_122:
   id: 38892
 bush_54:
   id: 38893
 bush_55:
   id: 38894
-tree_129:
+tree_123:
   id: 38895
-tree_130:
+tree_124:
   id: 38896
-tree_131:
+tree_125:
   id: 38897
-tree_132:
+tree_126:
   id: 38898
-tree_stump_62:
+tree_stump_51:
   id: 38899
-tree_133:
+tree_127:
   id: 38900
 mushroom_37:
   id: 38901
@@ -37438,17 +37631,17 @@ rocks_486:
   id: 38907
 mushroom_38:
   id: 38908
-tree_stump_63:
+tree_stump_52:
   id: 38909
-tree_134:
+tree_128:
   id: 38910
-tree_135:
+tree_129:
   id: 38911
-tree_136:
+tree_130:
   id: 38912
 bones_91:
   id: 38913
-tree_137:
+tree_131:
   id: 38914
 bench_86:
   id: 38995
@@ -37486,13 +37679,13 @@ gravestone_49:
   id: 39080
 crypt:
   id: 39081
-tree_138:
+tree_132:
   id: 39090
 bed_149:
   id: 39095
-tree_139:
+tree_canopy_7:
   id: 39097
-tree_140:
+tree_133:
   id: 39100
 broken_column:
   id: 39108
@@ -37508,21 +37701,21 @@ entrance_21:
   id: 39117
 rubble-filled_tunnel:
   id: 39118
-tree_141:
+tree_134:
   id: 39119
 rubble_entrance:
   id: 39120
-tree_142:
+tree_135:
   id: 39121
-tree_143:
+tree_136:
   id: 39136
-tree_144:
+tree_137:
   id: 39137
-tree_145:
+tree_138:
   id: 39138
-tree_146:
+tree_139:
   id: 39145
-tree_147:
+tree_140:
   id: 39154
 suit_of_armour_23:
   id: 39162
@@ -37532,9 +37725,9 @@ shield_5:
   id: 39164
 shield_6:
   id: 39165
-tree_148:
+tree_141:
   id: 39166
-tree_149:
+tree_canopy_8:
   id: 39168
 statue_of_a_king_4:
   id: 39169
@@ -37736,7 +37929,7 @@ barrel_153:
   id: 39326
 barrel_154:
   id: 39327
-tree_150:
+tree_142:
   id: 39328
 ladder_402:
   id: 39329
@@ -37852,7 +38045,7 @@ plant_93:
   id: 39428
 plant_94:
   id: 39429
-tree_151:
+tree_143:
   id: 39430
 large_rock_3:
   id: 39431
@@ -38588,7 +38781,7 @@ door_670:
   id: 40193
 fireplace_28:
   id: 40195
-tree_152:
+tree_144:
   id: 40196
 anvil_25:
   id: 40200
@@ -38654,39 +38847,39 @@ skull_nose_cavity_2:
   id: 40274
 skull_nose_cavity_3:
   id: 40275
-tree_153:
+tree_145:
   id: 40294
-tree_154:
+tree_146:
   id: 40295
-tree_155:
+tree_147:
   id: 40296
-tree_156:
+tree_canopy_9:
   id: 40297
-tree_157:
+tree_148:
   id: 40298
-tree_158:
+tree_149:
   id: 40299
-tree_159:
+tree_150:
   id: 40300
-tree_160:
+tree_151:
   id: 40301
-tree_161:
+tree_152:
   id: 40302
-tree_162:
+tree_canopy_10:
   id: 40303
-tree_163:
+tree_153:
   id: 40312
-tree_164:
+tree_canopy_11:
   id: 40313
 barricade_25:
   id: 40316
 barricade_26:
   id: 40317
-tree_165:
+tree_154:
   id: 40318
 barricade_27:
   id: 40319
-tree_166:
+tree_155:
   id: 40320
 barricade_28:
   id: 40321
@@ -38698,31 +38891,31 @@ barricade_31:
   id: 40324
 cavern_hole:
   id: 40344
-tree_167:
+tree_156:
   id: 40345
-tree_168:
+tree_157:
   id: 40346
-tree_169:
+tree_158:
   id: 40347
-tree_170:
+tree_159:
   id: 40348
-tree_171:
+tree_canopy_12:
   id: 40349
-tree_stump_64:
+tree_stump_53:
   id: 40350
-tree_stump_65:
+tree_stump_54:
   id: 40351
-tree_stump_66:
+tree_stump_55:
   id: 40352
-tree_stump_67:
+tree_stump_56:
   id: 40353
-tree_stump_68:
+tree_stump_57:
   id: 40354
-tree_stump_69:
+tree_stump_58:
   id: 40355
-tree_stump_70:
+tree_stump_59:
   id: 40356
-tree_stump_71:
+tree_stump_60:
   id: 40357
 ladder_406:
   id: 40359
@@ -39730,8 +39923,9 @@ iced_plant:
   id: 41709
 iced_plant_2:
   id: 41710
-dead_tree_30:
+dead_tree_25:
   id: 41713
+  stump: 23054
 empty_channel:
   id: 41715
 full_channel:
@@ -39800,7 +39994,7 @@ burning_tree_3:
   id: 41858
 burning_tree_4:
   id: 41859
-tree_172:
+tree_160:
   id: 41860
 cave_entrance_63:
   id: 41900
@@ -40448,7 +40642,7 @@ canoe_2:
   id: 42858
 cavern:
   id: 42859
-tree_stump_72:
+tree_stump_61:
   id: 42860
 rocks_498:
   id: 42862
@@ -40480,6 +40674,7 @@ cave_32:
   id: 42892
 dead_tree_covered_in_snow:
   id: 42893
+  stump: 42860
 decorations_4:
   id: 42909
 massive_stone_boat:
@@ -40976,7 +41171,7 @@ rope_swing_6:
   id: 43526
 balance_beam_4:
   id: 43527
-tree_173:
+tree_161:
   id: 43528
 pole_3:
   id: 43529
@@ -41000,15 +41195,15 @@ obstacle_pipe_23:
   id: 43544
 tree_top:
   id: 43547
-tree_174:
+tree_162:
   id: 43548
 tree_top_2:
   id: 43549
-tree_175:
+tree_163:
   id: 43550
-tree_176:
+tree_164:
   id: 43551
-tree_177:
+tree_165:
   id: 43552
 smithing_tools_3:
   id: 43554
@@ -43210,15 +43405,18 @@ crate_355:
   id: 46269
 crate_356:
   id: 46270
-mahogany_2:
+mahogany_tree_2:
   id: 46274
+  stump: 9035
 teak_3:
   id: 46275
-tree_178:
+  stump: 9037
+tree_166:
   id: 46276
-maple_tree_15:
+maple_tree_3:
   id: 46277
-yew_6:
+  stump: 7400
+yew_3:
   id: 46278
 gate_251:
   id: 46282
@@ -43270,21 +43468,25 @@ saw_crate:
   id: 46317
 ivy_5:
   id: 46318
+  stump: 46319
 ivy_stump:
   id: 46319
 ivy_6:
   id: 46320
+  stump: 46321
 ivy_stump_2:
   id: 46321
 ivy_7:
   id: 46322
+  stump: 46323
 ivy_stump_3:
   id: 46323
 ivy_8:
   id: 46324
+  stump: 46325
 ivy_stump_4:
   id: 46325
-tree_stump_73:
+tree_stump_62:
   id: 46326
 pile_of_logs_3:
   id: 46327
@@ -43580,21 +43782,21 @@ web_44:
   id: 46719
 web_ladder:
   id: 46731
-dead_tree_31:
+dead_tree_26:
   id: 46757
-dead_tree_32:
+dead_tree_27:
   id: 46758
-dead_tree_33:
+dead_tree_28:
   id: 46759
-dead_tree_34:
+dead_tree_29:
   id: 46760
-dead_tree_35:
+dead_tree_30:
   id: 46761
-dead_tree_36:
+dead_tree_31:
   id: 46762
-dead_tree_37:
+dead_tree_32:
   id: 46763
-dead_tree_38:
+dead_tree_33:
   id: 46764
 chair_154:
   id: 46771
@@ -44246,21 +44448,25 @@ ladder_430:
   id: 47574
 ladder_431:
   id: 47575
-dead_tree_39:
+dead_tree_34:
   id: 47594
-tree_stump_74:
+  stump: 47595
+tree_stump_63:
   id: 47595
-dead_tree_40:
+dead_tree_35:
   id: 47596
-tree_stump_75:
+  stump: 47597
+tree_stump_64:
   id: 47597
-dead_tree_41:
+dead_tree_36:
   id: 47598
-tree_stump_76:
+  stump: 47599
+tree_stump_65:
   id: 47599
-dead_tree_42:
+dead_tree_37:
   id: 47600
-tree_stump_77:
+  stump: 47601
+tree_stump_66:
   id: 47601
 meeting_room_door_11:
   id: 47610
@@ -44436,7 +44642,7 @@ fountain_23:
   id: 47747
 christmas_tree:
   id: 47748
-tree_179:
+tree_167:
   id: 47755
 plant_96:
   id: 47756
@@ -46012,64 +46218,94 @@ wall_212:
   id: 49704
 tangle_gum_tree:
   id: 49705
+  stump: 49706
 seeping_elm_tree:
   id: 49707
+  stump: 49708
 blood_spindle_tree:
   id: 49709
+  stump: 49710
 utuku_tree:
   id: 49711
+  stump: 49712
 spinebeam_tree:
   id: 49713
+  stump: 49714
 bovistrangler_tree:
   id: 49715
+  stump: 49716
 thigat_tree:
   id: 49717
+  stump: 49718
 corpsethorn_tree:
   id: 49719
+  stump: 49720
 entgallow_tree:
   id: 49721
+  stump: 49722
 grave_creeper_tree:
   id: 49723
+  stump: 49724
 tangle_gum_tree_2:
   id: 49725
+  stump: 49726
 seeping_elm_tree_2:
   id: 49727
+  stump: 49728
 blood_spindle_tree_2:
   id: 49729
+  stump: 49730
 utuku_tree_2:
   id: 49731
+  stump: 49732
 spinebeam_tree_2:
   id: 49733
+  stump: 49734
 bovistrangler_tree_2:
   id: 49735
+  stump: 49736
 thigat_tree_2:
   id: 49737
+  stump: 49738
 corpsethorn_tree_2:
   id: 49739
+  stump: 49740
 entgallow_tree_2:
   id: 49741
+  stump: 49742
 grave_creeper_tree_2:
   id: 49743
+  stump: 49744
 tangle_gum_tree_3:
   id: 49745
+  stump: 49746
 seeping_elm_tree_3:
   id: 49747
+  stump: 49748
 blood_spindle_tree_3:
   id: 49749
+  stump: 49750
 utuku_tree_3:
   id: 49751
+  stump: 49752
 spinebeam_tree_3:
   id: 49753
+  stump: 49754
 bovistrangler_tree_3:
   id: 49755
+  stump: 49756
 thigat_tree_3:
   id: 49757
+  stump: 49758
 corpsethorn_tree_3:
   id: 49759
+  stump: 49760
 entgallow_tree_3:
   id: 49761
+  stump: 49762
 grave_creeper_tree_3:
   id: 49763
+  stump: 49764
 novite_ore:
   id: 49766
 bathus_ore:
@@ -46214,7 +46450,7 @@ open_chest_36:
   id: 49896
 open_chest_37:
   id: 49897
-tree_180:
+tree_168:
   id: 49900
 sign_41:
   id: 49907
@@ -47602,7 +47838,7 @@ water_trough_86:
   id: 51607
 altar_102:
   id: 51609
-yew_7:
+yew_tree_canopy_2:
   id: 51645
 activated_lodestone_12:
   id: 51647
@@ -47624,11 +47860,11 @@ ornate_cuckoo_clock:
   id: 51661
 ornate_cuckoo_clock_2:
   id: 51662
-tree_181:
+tree_169:
   id: 51668
-oak_canopy_3:
+oak_tree_canopy_3:
   id: 51675
-willow_canopy_3:
+willow_tree_canopy_3:
   id: 51682
 ardougne_registry_sign:
   id: 51683
@@ -47650,10 +47886,11 @@ door_874:
   id: 51808
 registry_strongbox_2:
   id: 51824
-magic_tree_19:
+magic_tree_canopy:
   id: 51833
-maple_tree_16:
+maple_tree_trunk:
   id: 51843
+  stump: 54766
 path_8:
   id: 51902
 scrolls_8:
@@ -48056,7 +48293,7 @@ hedge_35:
   id: 52783
 hedge_36:
   id: 52784
-dead_tree_43:
+dead_tree_38:
   id: 52786
 fern_12:
   id: 52787
@@ -48230,9 +48467,9 @@ boat_11:
   id: 53037
 tomb_10:
   id: 53047
-swamp_tree_20:
+swamp_tree_4:
   id: 53055
-swamp_tree_21:
+swamp_tree_5:
   id: 53065
 backpack_2:
   id: 53079
@@ -48912,24 +49149,34 @@ wall_213:
   id: 53750
 tangle_gum_tree_4:
   id: 53751
+  stump: 53752
 seeping_elm_tree_4:
   id: 53753
+  stump: 53754
 blood_spindle_tree_4:
   id: 53755
+  stump: 53756
 utuku_tree_4:
   id: 53757
+  stump: 53758
 spinebeam_tree_4:
   id: 53759
+  stump: 53760
 bovistrangler_tree_4:
   id: 53761
+  stump: 53762
 thigat_tree_4:
   id: 53763
+  stump: 53764
 corpsethorn_tree_4:
   id: 53765
+  stump: 53766
 entgallow_tree_4:
   id: 53767
+  stump: 53768
 grave_creeper_tree_4:
   id: 53769
+  stump: 53770
 novite_ore_4:
   id: 53771
 bathus_ore_4:
@@ -50008,9 +50255,9 @@ cooking_pots_11:
   id: 54671
 dungeon_exit_11:
   id: 54675
-tree_182:
+maple_tree_canopy:
   id: 54755
-tree_stump_78:
+maple_tree_stump_3:
   id: 54766
 door_943:
   id: 54767
@@ -50020,17 +50267,19 @@ door_945:
   id: 54769
 door_946:
   id: 54770
-evergreen_5:
+evergreen_tree_trunk:
   id: 54778
-evergreen_6:
+  stump: 54783
+evergreen_tree_canopy:
   id: 54779
-tree_stump_79:
+evergreen_tree_stump:
   id: 54783
-evergreen_7:
+evergreen_tree_trunk_2:
   id: 54787
-evergreen_8:
+  stump: 57931
+evergreen_tree_canopy_2:
   id: 54795
-swamp_tree_22:
+swamp_tree_6:
   id: 54801
 water_trough_88:
   id: 54883
@@ -50344,24 +50593,34 @@ wall_215:
   id: 55485
 tangle_gum_tree_5:
   id: 55494
+  stump: 55495
 seeping_elm_tree_5:
   id: 55496
+  stump: 55497
 blood_spindle_tree_5:
   id: 55498
+  stump: 55498
 utuku_tree_5:
   id: 55500
+  stump: 55501
 spinebeam_tree_5:
   id: 55502
+  stump: 55503
 bovistrangler_tree_5:
   id: 55504
+  stump: 55505
 thigat_tree_5:
   id: 55506
+  stump: 55507
 corpsethorn_tree_5:
   id: 55508
+  stump: 55509
 entgallow_tree_5:
   id: 55510
+  stump: 55511
 grave_creeper_tree_5:
   id: 55512
+  stump: 55513
 novite_ore_5:
   id: 55514
 bathus_ore_5:
@@ -51506,7 +51765,7 @@ keyhole_2:
   id: 57146
 key_1:
   id: 57153
-key_2:
+key_2_2:
   id: 57154
 key_3:
   id: 57155
@@ -51770,32 +52029,34 @@ stairs_218:
   id: 57907
 stairs_219:
   id: 57909
-tree_stump_80:
+evergreen_tree_stump_2:
   id: 57931
-evergreen_9:
+evergreen_tree_trunk_3:
   id: 57932
-evergreen_10:
+  stump: 57931
+evergreen_tree_canopy_3:
   id: 57933
-evergreen_11:
+evergreen_tree_trunk_4:
   id: 57934
+  stump: 57931
 theatre_door_3:
   id: 57953
 stairs_220:
   id: 57961
 stairs_221:
   id: 57962
-evergreen_12:
+evergreen_tree_canopy_4:
   id: 57963
-evergreen_13:
+evergreen_tree_trunk_5:
   id: 57964
-evergreen_14:
+  stump: 54783
+evergreen_tree_canopy_5:
   id: 57980
 stairs_222:
   id: 58005
-willow_12:
+willow_7:
   id: 58006
   stump: 38725
-  canopy: 38717
 stairs_223:
   id: 58007
 roots_61:
@@ -51808,26 +52069,33 @@ roots_64:
   id: 58089
 roots_65:
   id: 58097
-swamp_tree_23:
+swamp_tree_trunk_8:
   id: 58108
-swamp_tree_24:
+  stump: 58134
+swamp_tree_trunk_9:
   id: 58109
-swamp_tree_25:
+  stump: 58134
+swamp_tree_trunk_10:
   id: 58121
-tree_stump_81:
+  stump: 58131
+tree_stump_67:
   id: 58131
-tree_stump_82:
+tree_stump_68:
   id: 58132
-tree_stump_83:
+tree_stump_69:
   id: 58134
-swamp_tree_26:
+swamp_tree_trunk_11:
   id: 58135
-swamp_tree_27:
+  stump: 58131
+swamp_tree_trunk_12:
   id: 58140
-swamp_tree_28:
+  stump: 58132
+swamp_tree_trunk_13:
   id: 58141
-swamp_tree_29:
+  stump: 58132
+swamp_tree_trunk_14:
   id: 58142
+  stump: 58132
 stairs_224:
   id: 58149
 stairs_225:
@@ -52248,25 +52516,25 @@ engraved_sarcophagus:
   id: 59796
 engraved_sarcophagus_2:
   id: 59797
-tree_183:
+tree_170:
   id: 59911
-tree_184:
+tree_171:
   id: 59912
-tree_185:
+tree_172:
   id: 59913
-tree_186:
+tree_173:
   id: 59914
-tree_187:
+tree_174:
   id: 59915
-tree_188:
+tree_175:
   id: 59916
-tree_189:
+tree_176:
   id: 59917
-tree_190:
+tree_177:
   id: 59918
 engraved_sarcophagus_3:
   id: 59919
-tree_191:
+tree_178:
   id: 59920
 cave_entrance_71:
   id: 59921
@@ -52664,6 +52932,18 @@ rocks_518:
   id: 61186
 sarcophagus_35:
   id: 61189
+tree_trunk_2:
+  id: 61190
+  stump: 40350
+tree_trunk_3:
+  id: 61191
+  stump: 40352
+tree_trunk_4:
+  id: 61192
+  stump: 40355
+tree_trunk_5:
+  id: 61193
+  stump: 40357
 ladder_460:
   id: 61197
 ladder_461:
@@ -52734,6 +53014,7 @@ blisterwood_tree_3:
   id: 61324
 blisterwood_tree_4:
   id: 61325
+  stump: 61324
 lever_80:
   id: 61326
 vanstroms_desk:
@@ -52754,11 +53035,12 @@ potters_wheel_8:
   id: 61335
 vampyric_altar:
   id: 61336
-tree_192:
+tree_179:
   id: 61379
 burnt_tree:
   id: 61410
-tree_stump_84:
+  stump: 61411
+tree_stump_70:
   id: 61411
 burnt_tree_2:
   id: 61464
@@ -52830,21 +53112,21 @@ soil_6:
   id: 61524
 hole_93:
   id: 61525
-tree_193:
+tree_180:
   id: 61527
-tree_194:
+tree_181:
   id: 61528
-tree_195:
+tree_182:
   id: 61532
-tree_196:
+tree_183:
   id: 61533
-tree_197:
+tree_184:
   id: 61537
-tree_198:
+tree_185:
   id: 61538
-tree_199:
+tree_186:
   id: 61542
-tree_200:
+tree_187:
   id: 61543
 rocks_519:
   id: 61548
@@ -52896,7 +53178,7 @@ energy_barrier_7:
   id: 61584
 bookcase_226:
   id: 61585
-tree_201:
+tree_188:
   id: 61588
 fallen_tree_19:
   id: 61634
@@ -52978,15 +53260,15 @@ rock_159:
   id: 61898
 rock_160:
   id: 61899
-tree_202:
+tree_189:
   id: 61900
-tree_203:
+tree_190:
   id: 61901
-tree_204:
+tree_191:
   id: 61902
-tree_205:
+tree_192:
   id: 61903
-tree_206:
+tree_193:
   id: 61904
 dragon_10:
   id: 61905

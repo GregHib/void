@@ -228,15 +228,19 @@ object ItemDefinitionPipeline {
      */
     fun convertToYaml(output: MutableMap<Int, Extras>): Map<String, Map<String, Any>> {
         val map = linkedMapOf<String, Map<String, Any>>()
-        map.putAll(
-            output
-                .mapNotNull { (id, pair) ->
-                    val (builder, extras) = pair
-                    extras["id"] = id
-                    builder.uid to beautify(extras)
+        output
+            .mapNotNull { (id, pair) ->
+                val (builder, extras) = pair
+                extras["id"] = id
+                builder.uid to beautify(extras)
+            }
+            .sortedBy { it.second["id"] as Int }
+            .forEach {
+                if (map.containsKey(it.first)) {
+                    println("Accidental override '${it.first}': ${it.second} - ${map[it.first]}")
                 }
-                .sortedBy { it.second["id"] as Int }
-        )
+                map[it.first] = it.second
+            }
         return map
 
     }
