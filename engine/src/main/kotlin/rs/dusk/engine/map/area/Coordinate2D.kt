@@ -8,6 +8,10 @@ interface Coordinate2D {
 
     fun add(x: Int, y: Int): Coordinate2D
 
+    fun distanceTo(other: Coordinate2D): Int {
+        return abs(x - other.x).coerceAtLeast(abs(y - other.y))
+    }
+
     fun within(other: Coordinate2D, radius: Int): Boolean {
         return abs(x - other.x) <= radius && abs(y - other.y) <= radius
     }

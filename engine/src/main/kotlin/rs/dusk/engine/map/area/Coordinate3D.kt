@@ -5,8 +5,15 @@ interface Coordinate3D : Coordinate2D {
 
     fun add(x: Int = 0, y: Int = 0, plane: Int = 0): Coordinate3D
 
-    fun within(other: Coordinate3D, radius: Int, plane: Boolean = true): Boolean {
-        return (!plane || this.plane == other.plane) && super.within(other, radius)
+    fun distanceTo(other: Coordinate3D): Int {
+        if (plane != other.plane) {
+            return -1
+        }
+        return super.distanceTo(other)
+    }
+
+    fun within(other: Coordinate3D, radius: Int): Boolean {
+        return plane == other.plane && super.within(other, radius)
     }
 }
 
