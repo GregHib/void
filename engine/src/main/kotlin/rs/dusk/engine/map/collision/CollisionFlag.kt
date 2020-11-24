@@ -99,7 +99,6 @@ object CollisionFlag {
     const val SKY_CLEAR_SOUTH_WEST = NORTH_AND_EAST shl 9 or SKY
     const val SKY_CLEAR_WEST = NOT_WEST shl 9 or SKY
 
-
     const val IGNORED_BLOCK_NORTH_WEST = NORTH_AND_WEST shl 22 or IGNORED
     const val IGNORED_BLOCK_NORTH = NORTH shl 22 or IGNORED
     const val IGNORED_BLOCK_NORTH_EAST = NORTH_AND_EAST shl 22 or IGNORED

@@ -21,6 +21,7 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.obj.objectFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
+import rs.dusk.engine.map.area.lineOfSightModule
 import rs.dusk.engine.map.chunk.batchedChunkModule
 import rs.dusk.engine.map.chunk.instanceModule
 import rs.dusk.engine.map.collision.collisionModule
@@ -107,12 +108,13 @@ object Dusk {
                 detailsModule,
                 databaseModule,
                 logoutModule,
-                objectFactoryModule
-            )
-            fileProperties("/game.properties")
-            fileProperties("/private.properties")
-        }
-        registerGameHandlers()
+                objectFactoryModule,
+				lineOfSightModule
+			)
+			fileProperties("/game.properties")
+			fileProperties("/private.properties")
+		}
+	registerGameHandlers()
         registerLoginHandlers()
     }
 
