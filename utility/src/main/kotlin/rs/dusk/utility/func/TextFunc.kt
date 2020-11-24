@@ -2,11 +2,14 @@ package rs.dusk.utility.func
 
 import org.jetbrains.kotlin.util.suffixIfNot
 
-fun String.plural(count: Int, plural: String = "s"): String {
-    return if (count == 1) this else suffixIfNot(plural)
+fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
+
+fun String.plural(count: Long, plural: String = "s"): String {
+    return if (count == 1L) this else suffixIfNot(plural)
 }
 
 fun Boolean?.toInt() = if (this == true) 1 else 0
+
 fun Int?.toBoolean() = this == 1
 
 fun Int.nearby(size: Int): IntRange {

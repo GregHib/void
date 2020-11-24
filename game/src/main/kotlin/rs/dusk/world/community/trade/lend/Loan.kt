@@ -10,9 +10,9 @@ import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.network.codec.game.encode.message
-import rs.dusk.utility.Time
 import rs.dusk.utility.func.plural
 import rs.dusk.utility.inject
+import rs.dusk.utility.toTicks
 import rs.dusk.world.activity.bank.bank
 import java.util.concurrent.TimeUnit
 
@@ -29,7 +29,7 @@ object Loan {
         if (remaining < 0) {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
-            val ticks = Time.minutesToTicks(remaining + 1)
+            val ticks = TimeUnit.MINUTES.toTicks(remaining + 1L)
             executor.delay(player, ticks) {
                 player.message("The item you lent has been returned to your collection box.")
             }
@@ -45,10 +45,10 @@ object Loan {
             player.message("The item you borrowed has been returned to its owner.")
             returnLoan(player)
         } else if (remaining > 0) {
-            val ticks = Time.minutesToTicks(remaining)
+            val ticks = TimeUnit.MINUTES.toTicks(remaining.toLong())
             executor.delay(player, ticks) {
                 player.message("The item you borrowed will be returned to its owner in a minute.")
-                executor.delay(player, Time.minutesToTicks(1)) {
+                executor.delay(player, TimeUnit.MINUTES.toTicks(1)) {
                     player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
                     returnLoan(player)
                 }
