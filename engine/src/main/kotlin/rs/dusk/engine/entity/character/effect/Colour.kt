@@ -21,7 +21,7 @@ data class Colour(val colour: Int, val delay: Int, val duration: Int) : Characte
 
     override fun onStart(character: Character) {
         super.onStart(character)
-        val ticks = (delay + duration) / 30
+        val ticks = (delay + duration) / 30L
         removeSelf(character, ticks)
     }
 

@@ -19,3 +19,6 @@ data class PlayerTask(val player: Player, val executionTick: Long, private val t
 
 fun TaskExecutor.delay(player: Player, ticks: Int = 0, task: PlayerTask.(Long) -> Unit)
         = PlayerTask(player, tick + ticks, task).apply { execute(this) }
+
+fun TaskExecutor.delay(player: Player, ticks: Long = 0L, task: PlayerTask.(Long) -> Unit)
+        = PlayerTask(player, tick + ticks, task).apply { execute(this) }

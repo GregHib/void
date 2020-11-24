@@ -9,7 +9,7 @@ abstract class Effect(val effectType: String) {
 
     private var task: Task? = null
 
-    fun removeSelf(character: Character, ticks: Int) {
+    fun removeSelf(character: Character, ticks: Long) {
         val executor: TaskExecutor = get()
         task = executor.delay(ticks) {
             character.effects.remove(this)

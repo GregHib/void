@@ -21,7 +21,7 @@ import rs.dusk.engine.entity.character.update.visual.setGraphic
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.network.codec.game.encode.message
-import rs.dusk.utility.Time.ticksToSeconds
+import rs.dusk.utility.TICKS
 import rs.dusk.utility.func.plural
 import rs.dusk.world.community.assist.Assistance.canAssist
 import rs.dusk.world.community.assist.Assistance.exceededMaximum
@@ -76,7 +76,7 @@ PlayerOption where { option == "Req Assist" } then {
 
 fun requestingTooQuickly(player: Player): Boolean {
     if (player.delayed(Delay.RequestAssist)) {
-        val time = ticksToSeconds(player.remaining(Delay.RequestAssist)).toInt()
+        val time = TICKS.toSeconds(player.remaining(Delay.RequestAssist))
         player.message("You have only just made an assistance request", ChatType.GameAssist)
         player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.GameAssist)
         return true
