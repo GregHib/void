@@ -26,7 +26,7 @@ interface TraversalStrategy {
         Direction.SOUTH_EAST -> CollisionFlag.SOUTH_AND_EAST
         Direction.SOUTH_WEST -> CollisionFlag.SOUTH_AND_WEST
         else -> flag()
-    } shl type.shift or CollisionFlag.BLOCKED or extra
+    } shl type.shift or type.block or extra
 
     /**
      * Blocked in any direction other than [this] and it's diagonals
@@ -41,6 +41,6 @@ interface TraversalStrategy {
         Direction.SOUTH_WEST -> CollisionFlag.NORTH_AND_EAST
         Direction.WEST -> CollisionFlag.NOT_WEST
         Direction.NONE -> 0
-    } shl type.shift or CollisionFlag.BLOCKED or extra
+    } shl type.shift or type.block or extra
 
 }
