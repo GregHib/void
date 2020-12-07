@@ -52,7 +52,7 @@ data class ObjectDefinition(
     var anInt2971: Int = 0,
     var anIntArray3036: IntArray? = null,
     var anInt3023: Int = -1,
-    var aBoolean2990: Boolean = false,
+    var hideMinimap: Boolean = false,
     var aBoolean2972: Boolean = true,
     var animateImmediately: Boolean = true,
     var isMembers: Boolean = false,
@@ -164,7 +164,7 @@ data class ObjectDefinition(
             if (!anIntArray3036!!.contentEquals(other.anIntArray3036!!)) return false
         } else if (other.anIntArray3036 != null) return false
         if (anInt3023 != other.anInt3023) return false
-        if (aBoolean2990 != other.aBoolean2990) return false
+        if (hideMinimap != other.hideMinimap) return false
         if (aBoolean2972 != other.aBoolean2972) return false
         if (animateImmediately != other.animateImmediately) return false
         if (isMembers != other.isMembers) return false
@@ -256,7 +256,7 @@ data class ObjectDefinition(
         result = 31 * result + anInt2971
         result = 31 * result + (anIntArray3036?.contentHashCode() ?: 0)
         result = 31 * result + anInt3023
-        result = 31 * result + aBoolean2990.hashCode()
+        result = 31 * result + hideMinimap.hashCode()
         result = 31 * result + aBoolean2972.hashCode()
         result = 31 * result + animateImmediately.hashCode()
         result = 31 * result + isMembers.hashCode()

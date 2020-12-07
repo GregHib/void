@@ -15,8 +15,8 @@ import rs.dusk.engine.map.region.obj.objectMapDecoderModule
 import rs.dusk.engine.map.region.obj.xteaModule
 import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.engine.map.region.tile.TileDecoder
-import rs.dusk.tools.map.render.raster.QuarterRasterImage
 import rs.dusk.tools.map.render.raster.Raster
+import rs.dusk.tools.map.render.raster.SingleRasterImage
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.IOException
@@ -155,12 +155,18 @@ object Render {
     val overlaySizes = intArrayOf(2, 1, 1, 1, 2, 2, 2, 1, 3, 3, 3, 2, 0, 4, 0)
 
     // TODO duplicate of
-    class RegionLoader(private val cache: Cache, private val objectDecoder: GameObjectMapDecoder, private val tileDecoder: TileDecoder, private val xteas: Xteas, val width: Int, val height: Int) {
-        val tiles = Array(4) { Array(64 * width + 1) { Array<TileData?>(64 * height + 1) { null } } }
+    class RegionLoader(
+        private val cache: Cache, private val objectDecoder: GameObjectMapDecoder, private val tileDecoder: TileDecoder, private val xteas: Xteas,
+        val width: Int,
+        val height: Int,
+        val regionX: Int,
+        val regionY: Int
+    ) {
+        val tiles = mutableMapOf<Int, Array<Array<Array<TileData?>>>>()
 
         fun loadAll() {
-            for(regionX in 0 until width) {
-                for(regionY in 0 until height) {
+            for (regionX in regionX until regionX + width) {
+                for (regionY in regionY until regionY + height) {
                     load(Region.getId(regionX, regionY))
                 }
             }
@@ -180,7 +186,7 @@ object Render {
 //                return
 //            }
 
-            tileDecoder.read(mapData, regionX, regionY, tiles)
+            tiles[regionId] = tileDecoder.read(mapData)
 //            val objects = objectDecoder.read(locationData, tiles)
 
         }
@@ -200,47 +206,75 @@ object Render {
         val overlayDefinitions: OverlayDecoder = koin.get()
         val underlayDefinitions: UnderlayDecoder = koin.get()
         val textureDefinitions: TextureDecoder = koin.get()
-        val horizontalRegions = 255
-        val verticalRegions = 255
-        val regionLoader = RegionLoader(cache, objDecoder, tileDecoder, xteas, horizontalRegions, verticalRegions)
 
-        var start = System.currentTimeMillis()
-        regionLoader.loadAll()
-        println("Loading all regions took ${System.currentTimeMillis() - start}ms")
-        start = System.currentTimeMillis()
-        val blend = 0//5 = true 0 = false
-        val width = horizontalRegions * 64 + blend
-        val height = verticalRegions * 64 + blend
-        val settings = MapTileSettings(width, height, 2, underlayDefinitions, overlayDefinitions, textureDefinitions, tiles = regionLoader.tiles)
+        val regions = mutableListOf<Region>()
 
-//        settings.loadTiles(Region(regionId).x, Region(regionId).y, regionLoader, 0, -blend)
-        val currentPlane = 0
-        val planes = settings.loadSettings()
-        println("Loading all settings took ${System.currentTimeMillis() - start}ms")
-        start = System.currentTimeMillis()
-        settings.loadUnderlays(null, planes)
-        println("Loading underlays took ${System.currentTimeMillis() - start}ms")
-        start = System.currentTimeMillis()
-        val img1 = BufferedImage(width * 2, height * 2, BufferedImage.TYPE_INT_ARGB)
-        val index = 2
-        val quad = QuarterRasterImage(img1, index)
-        val raster = Raster(quad)
+        for (regionX in 0 until 256) {
+            for (regionY in 0 until 256) {
+                cache.getFile(5, "m${regionX}_${regionY}") ?: continue
+                regions.add(Region(regionX, regionY))
+            }
+        }
+
+        File("./images/").mkdir()
+
+        val start = System.currentTimeMillis()
+
+        var count = 0
+        for (region in regions) {
+            val start = System.currentTimeMillis()
+            val regionX = region.x - 1
+            val regionY = region.y - 1
+
+            val regionLoader = RegionLoader(cache, objDecoder, tileDecoder, xteas, 3, 3, regionX, regionY)
+            regionLoader.loadAll()
+            val settings = MapTileSettings(width, height, 2, underlayDefinitions, overlayDefinitions, textureDefinitions, tiles = regionLoader.tiles, regionX = regionX, regionY = regionY)
+            val img = renderRegion(settings)
+            try {
+                val image = img.getSubimage(256, 257, 256, 256)
+                if (isNotBlank(image)) {
+                    ImageIO.write(image, "png", File("./images/${region.id}.png"))
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+            count++
+            println("Written ${region.id} in ${System.currentTimeMillis() - start}ms")
+        }
+        println("Dumped $count regions in ${System.currentTimeMillis() - start}ms")
+    }
+
+    private const val renderSize = 3// Load surrounding regions to blend edges
+    private const val width = renderSize * 64
+    private const val height = renderSize * 64
+    private const val scale = 4
+
+    private fun renderRegion(settings: MapTileSettings): BufferedImage {
+        val img = BufferedImage(width * scale, height * scale, BufferedImage.TYPE_INT_ARGB)
+        val imgRaster = SingleRasterImage(img)
+        val raster = Raster(imgRaster)
         val useUnderlay = Array(width) { BooleanArray(height) }
+        val currentPlane = 0
+        val planes = settings.load()
         for (plane in currentPlane until planes.size) {
             for (dx in 0 until width) {
                 for (dy in 0 until height) {
-                    useUnderlay[dx][dy] = settings.useUnderlay(dy, currentPlane, dx, plane)
+                    useUnderlay[dx][dy] = settings.useUnderlay(dx, dy, currentPlane, plane)
                 }
             }
             planes[plane].drawTiles(0, 0, width, height, useUnderlay, raster, IntArray(width), IntArray(height))//Tiles
         }
-        println("Generated in ${System.currentTimeMillis() - start}ms")
-        start = System.currentTimeMillis()
-        try {
-            ImageIO.write(img1, "png", File("./quad${index + 1}.png"))
-        } catch (e: IOException) {
-            e.printStackTrace()
+        return img
+    }
+
+    private fun isNotBlank(img: BufferedImage): Boolean {
+        loop@ for (x in 0 until img.width) {
+            for (y in 0 until img.height) {
+                if (img.getRGB(x, y) != 0) {
+                    return true
+                }
+            }
         }
-        println("Written in ${System.currentTimeMillis() - start}ms")
+        return false
     }
 }

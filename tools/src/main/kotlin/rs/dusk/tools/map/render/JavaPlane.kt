@@ -14,8 +14,9 @@ class JavaPlane(
     private val settings: Int,
     width: Int,
     height: Int,
-    tiles: Array<Array<TileData?>>
-) : Plane(width, height, tiles) {
+    plane: Int,
+    tiles: Map<Int, Array<Array<Array<TileData?>>>>
+) : Plane(width, height, plane, tiles) {
 
     private val tileBrightness = Array(width + 1) { ByteArray(height + 1) }
     private val tileShadows = Array(width + 1) { ByteArray(height + 1) }
@@ -45,8 +46,8 @@ class JavaPlane(
         for (y in 1 until height) {
             for (x in 1 until width) {
                 var intensity = brightness
-                val dx = (tiles[x + 1][y]?.height ?: 0) - (tiles[x - 1][y]?.height ?: 0)
-                val dy = (tiles[x][y + 1]?.height ?: 0) - (tiles[x][y - 1]?.height ?: 0)
+                val dx = tile(x + 1, y).height - tile(x - 1, y).height
+                val dy = tile(x, y + 1).height - tile(x, y - 1).height
                 val distance = sqrt((dx * dx + 262144 + dy * dy).toDouble()).toInt()
                 val lightX = (dx shl 8) / distance
                 val lightY = -262144 / distance
@@ -380,7 +381,7 @@ class JavaPlane(
                     tileColour.type = (tileColour.type.toInt() or 0x2).toByte()
                 }
             }
-            if (tiles[x][y] == tiles[x + 1][y] && tiles[x][y] == tiles[x + 1][y + 1] && tiles[x][y] == tiles[x][y + 1]) {
+            if (tile(x, y).height == tile(x + 1, y).height && tile(x, y).height == tile(x + 1, y + 1).height && tile(x, y).height == tile(x, y + 1).height) {
                 tileColour.type = (tileColour.type.toInt() or 0x1).toByte()
             }
             var textureMetrics: TextureDefinition? = null

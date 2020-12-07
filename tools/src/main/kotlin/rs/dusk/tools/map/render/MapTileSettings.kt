@@ -3,7 +3,9 @@ package rs.dusk.tools.map.render
 import rs.dusk.cache.config.decoder.OverlayDecoder
 import rs.dusk.cache.config.decoder.UnderlayDecoder
 import rs.dusk.cache.definition.decoder.TextureDecoder
+import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.tile.TileData
+import rs.dusk.tools.map.render.Plane.Companion.emptyTile
 import rs.dusk.tools.map.render.Render.TILE_TYPE_HEIGHT_OVERRIDE
 import rs.dusk.tools.map.render.Render.firstTileTypeVertices
 import rs.dusk.tools.map.render.Render.groundBlending
@@ -18,13 +20,15 @@ import rs.dusk.tools.map.render.Render.waterMovement
 class MapTileSettings(
     private val width: Int,
     private val height: Int,
-    val planeCount: Int,
+    private val planeCount: Int,
     private val underlayDecoder: UnderlayDecoder,
     private val overlayDecoder: OverlayDecoder,
     private val textureDecoder: TextureDecoder,
     private val samplingX: Int = 5,
     private val samplingY: Int = 5,
-    private val tiles: Array<Array<Array<TileData?>>>
+    private val tiles: Map<Int, Array<Array<Array<TileData?>>>>,
+    private val regionX: Int = 0,
+    private val regionY: Int = 0
 ) {
 
     var underlayLightness = IntArray(height)
@@ -33,10 +37,17 @@ class MapTileSettings(
     var underlayChroma = IntArray(height)
     var underlaySaturation = IntArray(height)
 
-    val emptyTile = TileData()
-
     fun tile(plane: Int, localX: Int, localY: Int): TileData {
-        return tiles[plane][localX][localY] ?: emptyTile
+        val regionX = this.regionX + (localX / 64)
+        val regionY = this.regionY + (localY / 64)
+        val regionId = Region.getId(regionX, regionY)
+        return tiles[regionId]?.get(plane)?.get(localX.rem(64))?.get(localY.rem(64)) ?: emptyTile
+    }
+
+    fun load(): List<JavaPlane> {
+        val planes = loadSettings()
+        loadUnderlays(null, planes)
+        return planes
     }
 
     fun loadSettings() = (0 until planeCount).map { plane ->
@@ -62,7 +73,7 @@ class MapTileSettings(
         if (!Render.aBoolean10563) {
             settings = settings or 0x20
         }
-        JavaPlane(textureDecoder, settings, width, height, tiles[plane])
+        JavaPlane(textureDecoder, settings, width, height, plane, tiles)
     }
 
     fun loadUnderlays(tilePlane: Plane?, planeList: List<JavaPlane>) {
@@ -146,7 +157,7 @@ class MapTileSettings(
     private fun loadTileVertices(plane: Int, parentColours: Array<IntArray>, abovePlane: Plane?, tilePlane: JavaPlane) {
         for (x in 0 until width) {
             for (y in 0 until height) {
-                if (groundBlending == -1 || useUnderlay(y, groundBlending, x, plane)) {
+                if (groundBlending == -1 || useUnderlay(x, y, groundBlending, plane)) {
                     val tile = tile(plane, x, y)
                     var tileType = tile.overlayPath.toByte()
                     val tileDirection = tile.overlayRotation
@@ -247,23 +258,21 @@ class MapTileSettings(
         }
     }
 
-    fun useUnderlay(y: Int, currentPlane: Int, x: Int, otherPlane: Int): Boolean {
-        if (BRIDGE_TILE and tile(0, x, y).settings.toInt() != 0) {
+    fun useUnderlay(x: Int, y: Int, currentPlane: Int, otherPlane: Int): Boolean {
+        if (tile(0, x, y).settings.toInt() and BRIDGE_TILE != 0) {
             return true
         }
-        return if (tile(otherPlane, x, y).settings.toInt() and 0x10 != 0) {
-            false
-        } else currentPlane == offsetPlane(y, x, otherPlane)
+        return if (tile(otherPlane, x, y).settings.toInt() and 0x10 != 0) false else currentPlane == offsetPlane(y, x, otherPlane)
     }
 
     fun offsetPlane(y: Int, x: Int, plane: Int): Int {
         if (tile(plane, x, y).settings.toInt() and 0x8 != 0) {
             return 0
         }
-        return if (plane > 0 && tile(1, x, y).settings.toInt() and BRIDGE_TILE != 0) {
-            plane - 1
-        } else plane
+        return if (plane > 0 && tile(1, x, y).settings.toInt() and BRIDGE_TILE != 0) plane - 1 else plane
     }
 
-    private val BRIDGE_TILE = 0x2
+    companion object {
+        private val BRIDGE_TILE = 0x2
+    }
 }

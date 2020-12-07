@@ -8,8 +8,9 @@ import rs.dusk.core.io.read.BufferReader
  */
 class TileDecoder {
 
-    fun read(data: ByteArray, regionX: Int, regionY: Int, tiles: Array<Array<Array<TileData?>>>) {
+    fun read(data: ByteArray): Array<Array<Array<TileData?>>> {
         val buffer = BufferReader(data)
+        val tiles = Array(4) { Array(64) { Array<TileData?>(64) { null } } }
         for (plane in 0 until 4) {
             for (localX in 0 until 64) {
                 for (localY in 0 until 64) {
@@ -36,10 +37,11 @@ class TileDecoder {
                     }
 
                     if (tile.modified()) {
-                        tiles[plane][(regionX * 64) + localX][(regionY * 64) + localY] = tile
+                        tiles[plane][localX][localY] = tile
                     }
                 }
             }
         }
+        return tiles
     }
 }

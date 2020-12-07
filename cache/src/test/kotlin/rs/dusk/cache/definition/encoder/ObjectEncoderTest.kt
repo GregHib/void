@@ -55,7 +55,7 @@ internal class ObjectEncoderTest {
             anInt2971 = 1,
             anIntArray3036 = intArrayOf(1, 2, 3),
             anInt3023 = 1,
-            aBoolean2990 = true,
+            hideMinimap = true,
             aBoolean2972 = false,
             animateImmediately = false,
             isMembers = true,

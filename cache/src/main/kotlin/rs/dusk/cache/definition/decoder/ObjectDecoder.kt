@@ -142,7 +142,7 @@ open class ObjectDecoder(cache: Cache, val member: Boolean, val lowDetail: Boole
                 contouredGround = 2.toByte()
                 anInt3023 = buffer.readUnsignedByte() * 256
             }
-            82 -> aBoolean2990 = true
+            82 -> hideMinimap = true
             88 -> aBoolean2972 = false
             89 -> animateImmediately = false
             91 -> isMembers = true
