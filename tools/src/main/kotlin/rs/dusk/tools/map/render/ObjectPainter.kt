@@ -20,18 +20,21 @@ class ObjectPainter(
     private val mapSceneDefinitions: MapSceneDecoder
 ) {
 
+    var offsetX = 0
+    var offsetY = 0
     val plane = 0
+
+    val drawWalls = true
+    val drawMapScenes = true
 
     fun getScale() = 4
 
-    fun getZoom() = 4
-
     fun canvasX(x: Int): Int {
-        return (x - regionX * 64) * 4
+        return (x) * 4
     }
 
     fun canvasY(y: Int): Int {
-        return (y - regionY * 64) * 4
+        return (y) * 4
     }
 
     private fun Graphics2D.drawLine(x: Int, y: Int, xOffset: Int, yOffset: Int, width: Int, height: Int, colour: Int) {
@@ -55,8 +58,6 @@ class ObjectPainter(
             fillRect(ceil(canvasX + pixelSize * size).toInt(), ceil(canvasY + (pixelSize * (if (flip) 3 - size else size))).toInt(), ceil(pixelSize).toInt(), ceil(pixelSize).toInt())
         }
     }
-
-    val drawWalls = true
 
     fun drawDiagonalCorner(g: Graphics2D, definition: ObjectDefinition, baseX: Int, baseY: Int, type: Int, rotation: Int) {
         if (definition.mapscene != -1) {
@@ -111,8 +112,6 @@ class ObjectPainter(
             method2343(definition, type, graphicstoolkit, baseX, baseY)
         }
     }
-
-    val drawMapScenes = true
 
     fun method2343(objectdefinition: ObjectDefinition, settings: Int, graphicstoolkit: Graphics2D, baseX: Int, baseY: Int) {
         if (!drawMapScenes) {
@@ -190,13 +189,15 @@ class ObjectPainter(
         if (obj.plane != plane) {//FIXME should render more than one plane at once
             return
         }
+        offsetX = obj.regionX - regionX
+        offsetY = obj.regionY - regionY
         val localX = obj.localX
         val localY = obj.localY
         val rotation = obj.rotation
         val type = obj.type
         val bool_65_ = definition.animations == null && definition.configObjectIds == null && !definition.aBoolean2998 && !definition.aBoolean2992
-        val baseX = (region.x * 64) + localX
-        val baseY = (region.y * 64) + localY
+        val baseX = (offsetX * 64) + localX
+        val baseY = (offsetY * 64) + localY
         if (type == 22) {
             if (definition.interactive != 0 || definition.solid == 1 || definition.blocksLand) {
                 //Map scene
@@ -221,10 +222,12 @@ class ObjectPainter(
         }
     }
 
-    fun paintObjects(g: Graphics2D, region: Region, objects: List<GameObjectLoc>?) {
-        objects?.forEach { obj ->
-            val definition = objectDefinitions.get(obj.id)
-            drawObject(g, region, obj, definition)
+    fun paintObjects(g: Graphics2D, region: Region, objects: Map<Int, List<GameObjectLoc>?>) {
+        objects.values.forEach { list ->
+            list?.forEach { obj ->
+                val definition = objectDefinitions.get(obj.id)
+                drawObject(g, region, obj, definition)
+            }
         }
     }
 

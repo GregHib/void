@@ -10,9 +10,17 @@ import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class Raster(
-    private val ri: RasterImage
-) {
+class Raster(private val bi: BufferedImage) {
+    val width: Int = bi.width
+    val height: Int = bi.height
+
+    fun get(x: Int, y: Int): Int {
+        return bi.getRGB(x, y)
+    }
+
+    fun set(x: Int, y: Int, value: Int) {
+        bi.setRGB(x, y, value)
+    }
 
     fun drawGouraudTriangle(
         y1: Float,
@@ -50,10 +58,10 @@ class Raster(
         for (y in minY until maxY) {
             for (x in minX until maxX) {
                 if (used[x - this.minX][y - this.minY]) {
-                    val leftColour = ri.get(x, y)
+                    val leftColour = get(x, y)
                     for (rx in maxX downTo minX) {
                         if (used[rx - this.minX][y - this.minY]) {
-                            bresenhamLine(used, x, y, rx, y, leftColour, ri.get(rx, y))
+                            bresenhamLine(used, x, y, rx, y, leftColour, get(rx, y))
                             break
                         }
                     }
@@ -123,10 +131,10 @@ class Raster(
             val b = (blue1 + bStep * i).toDouble()
 
             //Pixel writing
-            if (y0 > -1 && x0 > -1 && y0 < ri.biHeight && x0 < ri.biWidth) {
+            if (y0 > -1 && x0 > -1 && y0 < height && x0 < width) {
                 val pixel = (abs(r).toInt() shl 16 or (abs(g).toInt() shl 8) or abs(b).toInt())
                 if (pixel > 0)
-                    ri.set(x0, y0, -16777216 or pixel)
+                    set(x0, y0, -16777216 or pixel)
                 used[x0 - minX][y0 - minY] = true
             }
 
@@ -146,7 +154,7 @@ class Raster(
         @JvmStatic
         fun main(args: Array<String>) {
             val bi = BufferedImage(256, 256, BufferedImage.TYPE_INT_RGB)
-            val raster = Raster(SingleRasterImage(bi))
+            val raster = Raster(bi)
             val one = Point(0, 0)
             val two = Point(0, 100)
             val three = Point(100, 0)

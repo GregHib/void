@@ -14,8 +14,6 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectLoc
 import java.awt.Graphics
 import java.awt.image.BufferedImage
-import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentLinkedQueue
 
 class MinimapLoader(
     val objectDefinitions: ObjectDecoder,
@@ -26,10 +24,9 @@ class MinimapLoader(
 
     data class MapIcon(val x: Int, val y: Int, val plane: Int, val bi: BufferedImage)
 
-    val images = ConcurrentLinkedQueue<MapIcon>()
+    val images = mutableMapOf<Int, MapIcon>()
 
     val nameAreas = mutableMapOf<Int, MutableList<WorldMapInfoDefinition>>()
-    val backgrounds = ConcurrentHashMap<Int, List<BufferedImage>>()
 
     fun startup(cache: Cache) {
         images.clear()
@@ -37,7 +34,6 @@ class MinimapLoader(
 
         val archiveId = cache.getArchiveId(WORLD_MAP, stringId)
         var length = cache.archiveCount(WORLD_MAP, archiveId)
-        println("Length $length")
         val positions = IntArray(length)
         val ids = IntArray(length)
 
@@ -79,38 +75,37 @@ class MinimapLoader(
 
     fun hash(x: Int, y: Int, plane: Int) = y + (x shl 14) + (plane shl 28)
 
-    fun loadRegion(g: Graphics, region: Region, plane: Int, objects: List<GameObjectLoc>?) {
-        loadIcons(region.x, region.y, objects)
-
+    fun loadRegion(g: Graphics, region: Region, plane: Int, objects: Map<Int, List<GameObjectLoc>?>) {
         val iconScale = 2
-        images.forEach {
-            val width = it.bi.width * iconScale
-            val height = it.bi.height * iconScale
-            val regionX = region.x * 64
-            val regionY = region.y * 64
-            if (it.x in regionX..regionX + 64 && it.y in regionY..regionY + 64 && it.plane == plane) {
-                g.drawImage(it.bi, (it.x - regionX) * 4, (it.y - regionY) * 4, width, height, null)
+        for (regionX in region.x - 1..region.x + 1) {
+            for (regionY in region.y - 1..region.y + 1) {
+                val id = Region.getId(regionX, regionY)
+                val images = loadIcons(regionX, regionY, objects[id] ?: continue)
+                for (x in 0..64) {
+                    for (y in 0..64) {
+                        val it = images[hash(x, y, plane)] ?: continue
+                        val width = it.bi.width * iconScale
+                        val height = it.bi.height * iconScale
+                        val regionX = (region.x - 1) * 64
+                        val regionY = (region.y - 1) * 64
+                        g.drawImage(it.bi, (it.x - regionX) * 4 - width / 2, (it.y - regionY) * 4 + height / 2, width, -height, null)
+                    }
+                }
             }
         }
-//        backgrounds[region.regionId] =
-//            (0 until 4).map { plane -> Render.getRegionImage(region.regionId, plane).getSubimage(0, 1, 256, 256) }
     }
 
-    fun loadIcons(regionX: Int, regionY: Int, objects: List<GameObjectLoc>?) {
+    fun loadIcons(regionX: Int, regionY: Int, objects: List<GameObjectLoc>?): Map<Int, MapIcon> {
+        val images = mutableMapOf<Int, MapIcon>()
         objects?.forEach {
             val definition = objectDefinitions.getOrNull(it.id) ?: return@forEach
             if (definition.mapDefinitionId != -1) {
                 val mapInfo = worldMapInfoDefinitions.get(definition.mapDefinitionId)
                 val sprite = mapInfo.toSprite(false)
                 if (sprite != null) {
-                    images.add(
-                        MapIcon(
-                            regionX * 64 + it.localX,
-                            regionY * 64 + it.localY,
-                            it.plane,
-                            sprite.toBufferedImage()
-                        )
-                    )
+                    val x = regionX * 64 + it.localX
+                    val y = regionY * 64 + it.localY
+                    images[hash(it.localX, it.localY, it.plane)] = MapIcon(x, y, it.plane, sprite.toBufferedImage())
                 }
                 if (mapInfo.aBoolean1079) {
                     if (mapInfo.name != null) {
@@ -119,20 +114,22 @@ class MinimapLoader(
                 }
             }
         }
+        return images
     }
+
     fun WorldMapInfoDefinition.toSprite(bool: Boolean): IndexedSprite? {
         val i = if (!bool) anInt1062 else anInt1056
         return if (i > 0) spriteDefinitions.get(i).sprites?.firstOrNull() else null
     }
 
-    fun IndexedSprite.toBufferedImage() : BufferedImage {
+    fun IndexedSprite.toBufferedImage(): BufferedImage {
         val bi = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
         for (x in 0 until width) {
             for (y in 0 until height) {
                 val i = x + y * width
-                if(alpha == null) {
+                if (alpha == null) {
                     val colour = palette[raster[i].toInt() and 255]
-                    if(colour != 0)
+                    if (colour != 0)
                         bi.setRGB(x, y, -16777216 or colour)
                 } else {
                     bi.setRGB(x, y, palette[raster[i].toInt() and 255] or (alpha!![i].toInt() shl 24))

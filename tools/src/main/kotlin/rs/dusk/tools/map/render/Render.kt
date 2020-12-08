@@ -2,21 +2,23 @@ package rs.dusk.tools.map.render
 
 import org.koin.core.context.startKoin
 import rs.dusk.cache.Cache
+import rs.dusk.cache.config.decoder.MapSceneDecoder
 import rs.dusk.cache.config.decoder.OverlayDecoder
 import rs.dusk.cache.config.decoder.UnderlayDecoder
+import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
+import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.cache.definition.decoder.TextureDecoder
+import rs.dusk.cache.definition.decoder.WorldMapDecoder
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
-import rs.dusk.engine.map.region.obj.Xteas
-import rs.dusk.engine.map.region.obj.objectMapDecoderModule
-import rs.dusk.engine.map.region.obj.xteaModule
+import rs.dusk.engine.map.region.obj.*
 import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.engine.map.region.tile.TileDecoder
 import rs.dusk.tools.map.render.raster.Raster
-import rs.dusk.tools.map.render.raster.SingleRasterImage
+import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.File
 import java.io.IOException
@@ -202,10 +204,17 @@ object Render {
         val cache: Cache = koin.get()
         val xteas: Xteas = koin.get()
         val tileDecoder = TileDecoder()
-        val objDecoder: GameObjectMapDecoder = koin.get()
+        val objectDecoder: ObjectDecoder = koin.get()
+        val mapObjDecoder: GameObjectMapDecoder = koin.get()
         val overlayDefinitions: OverlayDecoder = koin.get()
         val underlayDefinitions: UnderlayDecoder = koin.get()
         val textureDefinitions: TextureDecoder = koin.get()
+        val worldMapDecoder: WorldMapDecoder = koin.get()
+        val worldMapInfoDecoder: WorldMapInfoDecoder = koin.get()
+        val spriteDecoder: SpriteDecoder = koin.get()
+        val mapSceneDecoder: MapSceneDecoder = koin.get()
+        val loader = MinimapLoader(objectDecoder, worldMapDecoder, worldMapInfoDecoder, spriteDecoder)
+        loader.startup(cache)
 
         val regions = mutableListOf<Region>()
 
@@ -226,10 +235,30 @@ object Render {
             val regionX = region.x - 1
             val regionY = region.y - 1
 
-            val regionLoader = RegionLoader(cache, objDecoder, tileDecoder, xteas, 3, 3, regionX, regionY)
+            val regionLoader = RegionLoader(cache, mapObjDecoder, tileDecoder, xteas, 3, 3, regionX, regionY)
             regionLoader.loadAll()
             val settings = MapTileSettings(width, height, 2, underlayDefinitions, overlayDefinitions, textureDefinitions, tiles = regionLoader.tiles, regionX = regionX, regionY = regionY)
             val img = renderRegion(settings)
+
+            val overlay = BufferedImage(3 * 64 * 4, 3 * 64 * 4, BufferedImage.TYPE_INT_ARGB)
+            val o = overlay.graphics as Graphics2D
+
+            val objects = mutableMapOf<Int, List<GameObjectLoc>?>()
+            for (regionX in region.x - 1..region.x + 1) {
+                for (regionY in region.y - 1..region.y + 1) {
+                    val region = Region(regionX, regionY)
+                    objects[region.id] = loadObjects(region, cache, xteas, tileDecoder, mapObjDecoder)
+                }
+            }
+
+            val painter = ObjectPainter(region.x - 1, region.y - 1, objectDecoder, spriteDecoder, mapSceneDecoder)
+            painter.paintObjects(o, Region(region.x, region.y), objects)
+
+
+            loader.loadRegion(o, region, 0, objects)
+            val g = img.graphics
+            g.drawImage(overlay, 0, 1 + overlay.height, overlay.width, -overlay.height, null)
+
             try {
                 val image = img.getSubimage(256, 257, 256, 256)
                 if (isNotBlank(image)) {
@@ -249,10 +278,24 @@ object Render {
     private const val height = renderSize * 64
     private const val scale = 4
 
+
+    fun loadObjects(region: Region, cache: Cache, xteas: Xteas, tileDecoder: TileDecoder, mapObjectDecoder: GameObjectMapDecoder): List<GameObjectLoc>? {
+        val mapData = cache.getFile(5, "m${region.x}_${region.y}") ?: return null
+        val xtea = xteas[region.id]
+        val locationData = cache.getFile(5, "l${region.x}_${region.y}", xtea)
+
+        if (locationData == null) {
+            println("Missing xteas for region $region.id [${xtea?.toList()}].")
+            return null
+        }
+
+        val tiles = tileDecoder.read(mapData)
+        return mapObjectDecoder.read(region.x, region.y, locationData, tiles)
+    }
+
     private fun renderRegion(settings: MapTileSettings): BufferedImage {
         val img = BufferedImage(width * scale, height * scale, BufferedImage.TYPE_INT_ARGB)
-        val imgRaster = SingleRasterImage(img)
-        val raster = Raster(imgRaster)
+        val raster = Raster(img)
         val useUnderlay = Array(width) { BooleanArray(height) }
         val currentPlane = 0
         val planes = settings.load()
@@ -267,7 +310,8 @@ object Render {
         return img
     }
 
-    private fun isNotBlank(img: BufferedImage): Boolean {
+
+    fun isNotBlank(img: BufferedImage): Boolean {
         loop@ for (x in 0 until img.width) {
             for (y in 0 until img.height) {
                 if (img.getRGB(x, y) != 0) {

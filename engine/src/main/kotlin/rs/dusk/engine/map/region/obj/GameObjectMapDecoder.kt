@@ -15,7 +15,7 @@ val objectMapDecoderModule = module {
  */
 class GameObjectMapDecoder {
 
-    fun read(data: ByteArray, settings: Array<Array<Array<TileData?>>>): List<GameObjectLoc>? {
+    fun read(regionX: Int, regionY: Int, data: ByteArray, settings: Array<Array<Array<TileData?>>>): List<GameObjectLoc>? {
         var objects: MutableList<GameObjectLoc>? = null
         val reader = BufferReader(data)
         var objectId = -1
@@ -60,7 +60,7 @@ class GameObjectMapDecoder {
                     objects = mutableListOf()
                 }
                 // Valid object
-                objects.add(GameObjectLoc(objectId, localX, localY, plane, type, rotation))
+                objects.add(GameObjectLoc(objectId, regionX, regionY, localX, localY, plane, type, rotation))
             }
         }
         return objects

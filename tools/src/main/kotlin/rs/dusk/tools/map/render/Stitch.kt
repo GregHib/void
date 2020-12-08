@@ -6,6 +6,9 @@ import java.io.File
 import java.io.IOException
 import javax.imageio.ImageIO
 
+/**
+ * Stitches individual map region images into one giant world map image
+ */
 object Stitch {
     @JvmStatic
     fun main(args: Array<String>) {

@@ -1,7 +1,9 @@
 package rs.dusk.engine.map.region.obj
 
-class GameObjectLoc(
+data class GameObjectLoc(
     val id: Int,
+    val regionX: Int,
+    val regionY: Int,
     val localX: Int,
     val localY: Int,
     val plane: Int,
