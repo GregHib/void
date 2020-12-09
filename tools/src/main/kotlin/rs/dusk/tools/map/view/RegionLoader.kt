@@ -34,7 +34,6 @@ class RegionLoader(private val grid: MapView, private val map: WorldMap) {
             // Example delay to mimic loading
             delay(Random.nextLong(500L, 1000L))
             val img = createRegion(regionX, regionY)
-            map.cleanView()// TODO remove
             mutex.withLock {
                 regions[regionId] = img
             }

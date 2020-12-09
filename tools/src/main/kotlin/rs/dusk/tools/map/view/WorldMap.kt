@@ -1,6 +1,8 @@
 package rs.dusk.tools.map.view
 
 import java.awt.Graphics
+import kotlin.math.max
+import kotlin.math.min
 
 class WorldMap(private val view: MapView) {
 
@@ -12,31 +14,30 @@ class WorldMap(private val view: MapView) {
     private var maxRegionY = 0
 
     /**
-     * Removes all the regions outside of the view
-     */
-    fun cleanView() {
-        // TODO improve by tracking the changes between [minRegionX] and [maxRegionY] on [updateView]
-        val width = minRegionX until maxRegionX
-        val bottom = mapRegionMinY until minRegionY
-        regions.remove(width, bottom)
-        val top = maxRegionY + 1 until mapRegionMaxY
-        regions.remove(width, top)
-
-        val height = minRegionY until maxRegionY
-        val left = mapRegionMinX until minRegionX
-        regions.remove(left, height)
-        val right = maxRegionX + 1 until mapRegionMaxX
-        regions.remove(right, height)
-    }
-
-    /**
-     * Updates the regions within view
+     * Updates the regions within view removing regions that have left the view
      */
     fun updateView() {
+        val minX = minRegionX
+        val minY = minRegionY
+        val maxX = maxRegionX
+        val maxY = maxRegionY
         minRegionX = view.viewToRegionX(view.minX).coerceAtLeast(mapRegionMinX)
         minRegionY = view.viewToRegionY(view.minY).coerceAtLeast(mapRegionMinY)
         maxRegionX = view.viewToRegionX(view.maxX).coerceAtMost(mapRegionMaxX)
         maxRegionY = view.viewToRegionY(view.maxY).coerceAtMost(mapRegionMaxY)
+
+        if (minRegionX > minX) {
+            regions.remove(minX until min(minRegionX, maxX), minY..maxY)
+        }
+        if (minRegionY > minY) {
+            regions.remove(minX..maxX, minY until min(minRegionY, maxY))
+        }
+        if (maxRegionX < maxX) {
+            regions.remove(max(maxRegionX + 1, minX)..maxX, minY..maxY)
+        }
+        if (maxRegionY < maxY) {
+            regions.remove(minX..maxX, max(maxRegionY + 1, minY)..maxY)
+        }
     }
 
     fun draw(g: Graphics) {
