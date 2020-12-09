@@ -42,7 +42,6 @@ class MapView : JPanel() {
         SwingUtilities.invokeLater {
             centreOn(3087, flipMapY(3500))
         }
-        println(width)
         addMouseListener(drag)
         addMouseMotionListener(drag)
         addMouseWheelListener(zoom)
@@ -56,8 +55,6 @@ class MapView : JPanel() {
             }
         })
     }
-
-
 
     fun getCentreX() = minX + viewWidth / 2
 
@@ -152,6 +149,8 @@ class MapView : JPanel() {
 
     override fun paintComponent(g: Graphics) {
         super.paintComponent(g)
+        g.color = Color.BLACK
+        g.fillRect(0, 0, width, height)
         map.draw(g)
         highlight.draw(g)
 
@@ -168,6 +167,6 @@ class MapView : JPanel() {
     }
 
     companion object {
-        private const val debugBorder = 128
+        private const val debugBorder = 0
     }
 }
