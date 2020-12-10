@@ -111,26 +111,8 @@ class MinimapIconPainter(
     }
 
     private fun WorldMapInfoDefinition.toSprite(bool: Boolean): IndexedSprite? {
-        val i = if (!bool) anInt1062 else anInt1056
+        val i = if (!bool) spriteId else highlightSpriteId
         return if (i > 0) spriteDefinitions.get(i).sprites?.firstOrNull() else null
-    }
-
-    private fun IndexedSprite.toBufferedImage(): BufferedImage {
-        val bi = BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
-        for (x in 0 until width) {
-            for (y in 0 until height) {
-                val i = x + y * width
-                if (alpha == null) {
-                    val colour = palette[raster[i].toInt() and 255]
-                    if (colour != 0) {
-                        bi.setRGB(x, y, -16777216 or colour)
-                    }
-                } else {
-                    bi.setRGB(x, y, palette[raster[i].toInt() and 255] or (alpha!![i].toInt() shl 24))
-                }
-            }
-        }
-        return bi
     }
 
 }

@@ -16,8 +16,8 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
 
     override fun WorldMapInfoDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> anInt1062 = buffer.readShort()
-            2 -> anInt1056 = buffer.readShort()
+            1 -> spriteId = buffer.readShort()
+            2 -> highlightSpriteId = buffer.readShort()
             3 -> name = buffer.readString()
             4 -> anInt1058 = buffer.readUnsignedMedium()
             5 -> anInt1054 = buffer.readUnsignedMedium()

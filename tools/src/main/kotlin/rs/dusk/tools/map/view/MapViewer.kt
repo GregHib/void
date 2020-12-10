@@ -20,7 +20,7 @@ class MapViewer {
             } catch (ex: UnsupportedLookAndFeelException) {
                 ex.printStackTrace()
             }
-            val frame = JFrame("Testing")
+            val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
             frame.add(MapView())
             frame.pack()

@@ -10,8 +10,8 @@ import rs.dusk.cache.definition.Parameterized
 @Suppress("ArrayInDataClass")
 data class WorldMapInfoDefinition(
     override var id: Int = -1,
-    var anInt1062: Int = -1,
-    var anInt1056: Int = -1,
+    var spriteId: Int = -1,
+    var highlightSpriteId: Int = -1,
     var name: String? = null,
     var anInt1058: Int = 0,
     var anInt1054: Int = -1,
