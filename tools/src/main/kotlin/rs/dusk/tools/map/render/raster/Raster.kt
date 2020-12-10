@@ -14,6 +14,9 @@ class Raster(private val bi: BufferedImage) {
     val width: Int = bi.width
     val height: Int = bi.height
 
+    private var minX = 0
+    private var minY = 0
+
     fun get(x: Int, y: Int): Int {
         return bi.getRGB(x, y)
     }
@@ -22,24 +25,11 @@ class Raster(private val bi: BufferedImage) {
         bi.setRGB(x, y, value)
     }
 
-    fun drawGouraudTriangle(
-        y1: Float,
-        y2: Float,
-        y3: Float,
-        x1: Float,
-        x2: Float,
-        x3: Float,
-        colour1: Float,
-        colour2: Float,
-        colour3: Float
-    ) {
-        drawGouraudTriangle(x1.toInt(), x2.toInt(), x3.toInt(), y1.toInt(), y2.toInt(), y3.toInt(), hsvColourPalette[colour1.toInt()], hsvColourPalette[colour2.toInt()], hsvColourPalette[colour3.toInt()])
+    fun drawGouraudTriangle(y1: Int, y2: Int, y3: Int, x1: Int, x2: Int, x3: Int, colour1: Int, colour2: Int, colour3: Int) {
+        drawGouraud(x1, x2, x3, y1, y2, y3, hsvColourPalette[colour1], hsvColourPalette[colour2], hsvColourPalette[colour3])
     }
 
-    private var minX = 0
-    private var minY = 0
-
-    fun drawGouraudTriangle(x1: Int, x2: Int, x3: Int, y1: Int, y2: Int, y3: Int, colour1: Int, colour2: Int, colour3: Int) {
+    private fun drawGouraud(x1: Int, x2: Int, x3: Int, y1: Int, y2: Int, y3: Int, colour1: Int, colour2: Int, colour3: Int) {
         val minX = min(x1, min(x2, x3))
         val maxX = max(x1, max(x2, x3))
         val minY = min(y1, min(y2, y3))

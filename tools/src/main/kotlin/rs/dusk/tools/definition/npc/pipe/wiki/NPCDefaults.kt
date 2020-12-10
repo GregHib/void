@@ -9,12 +9,12 @@ import rs.dusk.tools.definition.item.Extras
 class NPCDefaults : Pipeline.Modifier<MutableMap<Int, Extras>> {
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {
         content.forEach { (_, builder) ->
-            process(builder.second)
+            processExtras(builder.second)
         }
         return content
     }
 
-    private fun process(extras: MutableMap<String, Any>) {
+    private fun processExtras(extras: MutableMap<String, Any>) {
         extras.remove("members", false)
         extras.remove("aggressive", false)
         extras.remove("immune", false)

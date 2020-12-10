@@ -69,4 +69,22 @@ object ColourPalette {
             colour++
         }
     }
+
+    fun hslToPaletteIndex(luminance: Int, saturation: Int, hue: Int): Int {
+        var saturation = saturation
+        if (luminance <= 243) {
+            if (luminance <= 217) {
+                if (luminance > 192) {
+                    saturation = saturation shr 2
+                } else if (luminance > 179) {
+                    saturation = saturation shr 1
+                }
+            } else {
+                saturation = saturation shr 3
+            }
+        } else {
+            saturation = saturation shr 4
+        }
+        return (luminance shr 1) + (saturation shr 5 shl 7) + (0xff and hue shr 2 shl 10)
+    }
 }

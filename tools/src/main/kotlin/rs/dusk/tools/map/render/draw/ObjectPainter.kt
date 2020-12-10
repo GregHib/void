@@ -1,4 +1,4 @@
-package rs.dusk.tools.map.render
+package rs.dusk.tools.map.render.draw
 
 import rs.dusk.cache.config.data.MapSceneDefinition
 import rs.dusk.cache.config.decoder.MapSceneDecoder
@@ -13,8 +13,6 @@ import java.awt.Graphics2D
 import kotlin.math.ceil
 
 class ObjectPainter(
-    private val regionX: Int,
-    private val regionY: Int,
     private val objectDefinitions: ObjectDecoder,
     private val spriteDefinitions: SpriteDecoder,
     private val mapSceneDefinitions: MapSceneDecoder
@@ -189,8 +187,8 @@ class ObjectPainter(
         if (obj.plane != plane) {//FIXME should render more than one plane at once
             return
         }
-        offsetX = obj.regionX - regionX
-        offsetY = obj.regionY - regionY
+        offsetX = obj.regionX - region.x + 1
+        offsetY = obj.regionY - region.y + 1
         val localX = obj.localX
         val localY = obj.localY
         val rotation = obj.rotation
@@ -222,7 +220,7 @@ class ObjectPainter(
         }
     }
 
-    fun paintObjects(g: Graphics2D, region: Region, objects: Map<Int, List<GameObjectLoc>?>) {
+    fun paint(g: Graphics2D, region: Region, objects: Map<Int, List<GameObjectLoc>?>) {
         objects.values.forEach { list ->
             list?.forEach { obj ->
                 val definition = objectDefinitions.get(obj.id)

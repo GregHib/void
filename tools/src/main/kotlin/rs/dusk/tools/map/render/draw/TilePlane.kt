@@ -1,46 +1,45 @@
-package rs.dusk.tools.map.render
+package rs.dusk.tools.map.render.draw
 
 import rs.dusk.cache.definition.data.TextureDefinition
 import rs.dusk.cache.definition.decoder.TextureDecoder
+import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.tile.TileData
-import rs.dusk.tools.map.render.Render.size
+import rs.dusk.tools.map.render.load.MapConstants.size
+import rs.dusk.tools.map.render.load.MapTileSettings
+import rs.dusk.tools.map.render.model.TextureColours
+import rs.dusk.tools.map.render.model.TileColours
 import rs.dusk.tools.map.render.raster.Raster
-import world.gregs.hestia.map.model.render.TextureColours
-import world.gregs.hestia.map.model.render.TileColours
 import kotlin.math.sqrt
 
-class JavaPlane(
+class TilePlane(
     private val textureDefinitions: TextureDecoder,
-    private val settings: Int,
-    width: Int,
-    height: Int,
-    plane: Int,
-    tiles: Map<Int, Array<Array<Array<TileData?>>>>
-) : Plane(width, height, plane, tiles) {
+    private val width: Int,
+    private val height: Int,
+    val plane: Int,
+    private val tiles: Map<Int, Array<Array<Array<TileData?>>>>
+) {
 
     private val tileBrightness = Array(width + 1) { ByteArray(height + 1) }
     private val tileShadows = Array(width + 1) { ByteArray(height + 1) }
 
-    //Java toolkit stuff
+    // Java toolkit stuff
     private var tileColours: Array<Array<TileColours?>>? = null
     private var textureColours: Array<Array<TextureColours?>>? = null
-    var lightX: Int = 0
-    var lightY: Int = 0
-    var lightZ: Int = 0
+    private var lightX: Int = 0
+    private var lightY: Int = 0
+    private var lightZ: Int = 0
+    var settings: Int = 0
 
-    fun setBrightness(f_246_: Float, f_247_: Float, f_248_: Float) {
+    private fun setBrightness(f_246_: Float, f_247_: Float, f_248_: Float) {
         val f_249_ = sqrt((f_246_ * f_246_ + f_247_ * f_247_ + f_248_ * f_248_).toDouble()).toFloat()
         lightX = (f_246_ * 65535.0f / f_249_).toInt()// -36578
         lightY = (f_247_ * 65535.0f / f_249_).toInt()// -40235
         lightZ = (f_248_ * 65535.0f / f_249_).toInt()// -36578
     }
 
-
-    companion object {
-        const val brightness = 75518
-    }
-
-    init {
+    fun loadBrightness() {
+        tileColours = null
+        textureColours = null
         setBrightness(-200f, -220f, -200f)
         val brightness: Int = brightness shr 9
         for (y in 1 until height) {
@@ -63,18 +62,38 @@ class JavaPlane(
             }
         }
 
-        //Fixed for blurred edges
-        for(y in 0..height) {
+        // Fixed for blurred edges
+        for (y in 0..height) {
             tileBrightness[0][y] = 126.toByte()
             tileBrightness[width][y] = 126.toByte()
         }
-        for(x in 0..width) {
+        for (x in 0..width) {
             tileBrightness[x][0] = 126.toByte()
             tileBrightness[x][height] = 126.toByte()
         }
     }
 
-    fun hslToHsv(hsl: Int): Short {
+    fun tile(x: Int, y: Int): TileData {
+        val regionX = x / 64
+        val regionY = y / 64
+        val regionId = Region.getId(regionX, regionY)
+        return tiles[regionId]?.get(plane)?.get(x.rem(64))?.get(y.rem(64)) ?: emptyTile
+    }
+
+    fun averageHeight(worldY: Int, worldX: Int): Int {
+        val x = worldX shr tileScale
+        val y = worldY shr tileScale
+        if (x < 0 || y < 0 || x > width + -1 || -1 + height < y) {
+            return 0
+        }
+        val dx: Int = tileUnits - 1 and worldX
+        val dy: Int = tileUnits - 1 and worldY
+        val a = dx * tile(1 + x, y).height + (tileUnits - dx) * tile(x, y).height shr tileScale
+        val b = tile(x, y + 1).height * (tileUnits + -dx) + dx * tile(x + 1, y + 1).height shr tileScale
+        return (-dy + tileUnits) * a + dy * b shr tileScale
+    }
+
+    private fun hslToHsv(hsl: Int): Short {
         val hue = hsl shr 10 and 0x3f
         var saturation = hsl shr 3 and 0x70
         val light = hsl and 0x7f
@@ -88,7 +107,7 @@ class JavaPlane(
         return (sat shr 4 shl 7 or (hue shl 10) or value).toShort()
     }
 
-    fun isTypeFourEightNine(i: Int): Boolean {
+    private fun isTypeFourEightNine(i: Int): Boolean {
         if (settings and 0x8 == 0) {// not water
             return false
         }
@@ -100,11 +119,11 @@ class JavaPlane(
         } else i == 9
     }
 
-    fun textureColour(i: Int): Int {
+    private fun textureColour(i: Int): Int {
         return textureDefinitions.get(i).colour and 0xffff
     }
 
-    fun light(light: Int, colour: Int): Int {
+    private fun light(light: Int, colour: Int): Int {
         var lighting = light
         lighting = (colour and 0x7f) * lighting shr 7
         if (lighting >= 2) {
@@ -117,127 +136,94 @@ class JavaPlane(
         return lighting + (colour and 0xff80)
     }
 
-    fun drawTiles(startX: Int, startY: Int, endX: Int, endY: Int, useUnderlay: Array<BooleanArray>, raster: Raster, xOffsets: IntArray, yOffsets: IntArray) {
+    fun drawTiles(startX: Int, startY: Int, endX: Int, endY: Int, currentPlane: Int, useUnderlay: MapTileSettings, raster: Raster) {
         val actualWidth = (endY - startY) * 1024 / 256// width * 4
         var y = 0
         var x = actualWidth
+        var xOffsets: IntArray? = null
+        var yOffsets: IntArray? = null
         for (localX in startX until endX) {
             for (localY in startY until endY) {
-                if (useUnderlay[localX - startX][localY - startY]) {
+                if (useUnderlay.useUnderlay(localX - startX, localY - startY, currentPlane, plane)) {
                     if (tileColours?.get(localX)?.get(localY) != null) {
-                        val tileColours = tileColours!![localX][localY]!!
-                        if (tileColours.textureId.toInt() != -1 && tileColours.type.toInt() and 0x2 == 0 && tileColours.initialColourIndex == -1) {
-                            val textureColour = textureColour(tileColours.textureId.toInt())
+                        val colours = tileColours!![localX][localY]!!
+                        if (colours.textureId.toInt() != -1 && colours.type.toInt() and 0x2 == 0 && colours.initialColourIndex == -1) {
+                            val texture = textureColour(colours.textureId.toInt())
                             // water
-                            raster.drawGouraudTriangle(
-                                (x - size).toFloat(),
-                                (x - size).toFloat(),
-                                x.toFloat(),
-                                (y + size).toFloat(),
-                                y.toFloat(),
-                                (y + size).toFloat(),
-                                light(tileColours.northEastBrightness.toInt() and 0xffff, textureColour).toFloat(),
-                                light(tileColours.northColourIndex.toInt() and 0xffff, textureColour).toFloat(),
-                                light(tileColours.eastColourIndex.toInt() and 0xffff, textureColour).toFloat()
-                            )
-                            raster.drawGouraudTriangle(
-                                x.toFloat(),
-                                x.toFloat(),
-                                (x - size).toFloat(),
-                                y.toFloat(),
-                                (y + size).toFloat(),
-                                y.toFloat(),
-                                light(tileColours.middleColourIndex.toInt() and 0xffff, textureColour).toFloat(),
-                                light(tileColours.eastColourIndex.toInt() and 0xffff, textureColour).toFloat(),
-                                light(tileColours.northColourIndex.toInt() and 0xffff, textureColour).toFloat()
-                            )
-                        } else if (tileColours.initialColourIndex == -1) {
+                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, light(colours.northEastBrightness.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture))
+                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, light(colours.middleColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture))
+                        } else if (colours.initialColourIndex == -1) {
                             // normal tiles
-                            raster.drawGouraudTriangle(
-                                (x - size).toFloat(),
-                                (x - size).toFloat(),
-                                x.toFloat(),
-                                (y + size).toFloat(),
-                                y.toFloat(),
-                                (y + size).toFloat(),
-                                (tileColours.northEastBrightness.toInt() and 0xffff).toFloat(),
-                                (tileColours.northColourIndex.toInt() and 0xffff).toFloat(),
-                                (tileColours.eastColourIndex.toInt() and 0xffff).toFloat()
-                            )
-                            raster.drawGouraudTriangle(
-                                x.toFloat(),
-                                x.toFloat(),
-                                (x - size).toFloat(),
-                                y.toFloat(),
-                                (y + size).toFloat(),
-                                y.toFloat(),
-                                (tileColours.middleColourIndex.toInt() and 0xffff).toFloat(),
-                                (tileColours.eastColourIndex.toInt() and 0xffff).toFloat(),
-                                (tileColours.northColourIndex.toInt() and 0xffff).toFloat()
-                            )
+                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, colours.northEastBrightness.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff)
+                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, colours.middleColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff)
                         } else {
                             // overlay
-                            val brightness = tileColours.initialColourIndex
-                            raster.drawGouraudTriangle((x - size).toFloat(), (x - size).toFloat(), x.toFloat(), (y + size).toFloat(), y.toFloat(), (y + size).toFloat(), brightness.toFloat(), brightness.toFloat(), brightness.toFloat())
-                            raster.drawGouraudTriangle(x.toFloat(), x.toFloat(), (x - size).toFloat(), y.toFloat(), (y + size).toFloat(), y.toFloat(), brightness.toFloat(), brightness.toFloat(), brightness.toFloat())
+                            val brightness = colours.initialColourIndex
+                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, brightness, brightness, brightness)
+                            raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, brightness, brightness, brightness)
                         }
                     } else if (textureColours?.get(localX)?.get(localY) != null) {
-                        val textureColour = textureColours!![localX][localY]!!
-                        for (index in 0 until textureColour.size) {
-                            xOffsets[index] = y + textureColour.xOffsets!![index] * size / tileUnits
-                            yOffsets[index] = x - textureColour.yOffsets!![index] * size / tileUnits
+                        val colours = textureColours!![localX][localY]!!
+                        if (xOffsets == null || yOffsets == null) {
+                            xOffsets = IntArray(width)
+                            yOffsets = IntArray(height)
                         }
-                        for (index in 0 until textureColour.count) {
-                            val i1 = textureColour.vertexIndices1!![index]
-                            val i2 = textureColour.vertexIndices2!![index]
-                            val i3 = textureColour.vertexIndices3!![index]
-                            val xOffset1 = xOffsets[i1.toInt()]
-                            val xOffset2 = xOffsets[i2.toInt()]
-                            val xOffset3 = xOffsets[i3.toInt()]
-                            val yOffset1 = yOffsets[i1.toInt()]
-                            val yOffset2 = yOffsets[i2.toInt()]
-                            val yOffset3 = yOffsets[i3.toInt()]
-                            if (textureColour.hsvBlendColours != null && textureColour.hsvBlendColours!![index] != -1) {
+                        for (index in 0 until colours.size) {
+                            xOffsets[index] = y + colours.xOffsets!![index] * size / tileUnits
+                            yOffsets[index] = x - colours.yOffsets!![index] * size / tileUnits
+                        }
+                        for (index in 0 until colours.count) {
+                            val i1 = colours.vertexIndices1!![index].toInt()
+                            val i2 = colours.vertexIndices2!![index].toInt()
+                            val i3 = colours.vertexIndices3!![index].toInt()
+                            val xOffset1 = xOffsets[i1]
+                            val xOffset2 = xOffsets[i2]
+                            val xOffset3 = xOffsets[i3]
+                            val yOffset1 = yOffsets[i1]
+                            val yOffset2 = yOffsets[i2]
+                            val yOffset3 = yOffsets[i3]
+                            val brightness = colours.brightness!!
+                            if (colours.hsvBlendColours != null && colours.hsvBlendColours!![index] != -1) {
                                 // overlay corners
-                                val blend = textureColour.hsvBlendColours!![index]
+                                val blend = colours.hsvBlendColours!![index]
                                 raster.drawGouraudTriangle(
-                                    yOffset1.toFloat(),
-                                    yOffset2.toFloat(),
-                                    yOffset3.toFloat(),
-                                    xOffset1.toFloat(),
-                                    xOffset2.toFloat(),
-                                    xOffset3.toFloat(),
-                                    light(textureColour.brightness!![i1.toInt()].toInt(), blend).toFloat(),
-                                    light(textureColour.brightness!![i2.toInt()].toInt(), blend).toFloat(),
-                                    light(textureColour.brightness!![i3.toInt()].toInt(), blend).toFloat()
+                                    yOffset1,
+                                    yOffset2,
+                                    yOffset3,
+                                    xOffset1,
+                                    xOffset2,
+                                    xOffset3,
+                                    light(brightness[i1].toInt(), blend),
+                                    light(brightness[i2].toInt(), blend),
+                                    light(brightness[i3].toInt(), blend)
                                 )
-                            } else if (textureColour.textureIds == null || textureColour.textureIds!![index].toInt() == -1) {
+                            } else if (colours.textureIds == null || colours.textureIds!![index].toInt() == -1) {
                                 // corners
-                                val colour = textureColour.hsvColours!![index]
+                                val colour = colours.hsvColours!![index]
                                 raster.drawGouraudTriangle(
-                                    yOffset1.toFloat(),
-                                    yOffset2.toFloat(),
-                                    yOffset3.toFloat(),
-                                    xOffset1.toFloat(),
-                                    xOffset2.toFloat(),
-                                    xOffset3.toFloat(),
-                                    light(textureColour.brightness!![i1.toInt()].toInt(), colour).toFloat(),
-                                    light(textureColour.brightness!![i2.toInt()].toInt(), colour).toFloat(),
-                                    light(textureColour.brightness!![i3.toInt()].toInt(), colour).toFloat()
+                                    yOffset1,
+                                    yOffset2,
+                                    yOffset3,
+                                    xOffset1,
+                                    xOffset2,
+                                    xOffset3,
+                                    light(brightness[i1].toInt(), colour),
+                                    light(brightness[i2].toInt(), colour),
+                                    light(brightness[i3].toInt(), colour)
                                 )
                             } else {
                                 // water corners
-                                val texture = textureColour(textureColour.textureIds?.get(index)?.toInt() ?: continue)
+                                val texture = textureColour(colours.textureIds?.get(index)?.toInt() ?: continue)
                                 raster.drawGouraudTriangle(
-                                    yOffset1.toFloat(),
-                                    yOffset2.toFloat(),
-                                    yOffset3.toFloat(),
-                                    xOffset1.toFloat(),
-                                    xOffset2.toFloat(),
-                                    xOffset3.toFloat(),
-                                    light(textureColour.brightness!![i1.toInt()].toInt(), texture).toFloat(),
-                                    light(textureColour.brightness!![i2.toInt()].toInt(), texture).toFloat(),
-                                    light(textureColour.brightness!![i3.toInt()].toInt(), texture).toFloat()
+                                    yOffset1,
+                                    yOffset2,
+                                    yOffset3,
+                                    xOffset1,
+                                    xOffset2,
+                                    xOffset3,
+                                    light(brightness[i1].toInt(), texture),
+                                    light(brightness[i2].toInt(), texture),
+                                    light(brightness[i3].toInt(), texture)
                                 )
                             }
                         }
@@ -268,19 +254,19 @@ class JavaPlane(
             tileColours = Array(width) { arrayOfNulls<TileColours>(height) }
             textureColours = Array(width) { arrayOfNulls<TextureColours>(height) }
         }
-        var bool_325_ = false
+        var ignore = false
         if (colours.size == 2 && vertexIndices1.size == 2 && (colours[0] == colours[1] || textures[0] != -1 && textures[0] == textures[1])) {
-            bool_325_ = true
+            ignore = true
             for (i_326_ in 1..1) {
                 val xOffset = xOffsets[vertexIndices1[i_326_]]
                 val yOffset = yOffsets[vertexIndices1[i_326_]]
                 if (xOffset != 0 && xOffset != tileUnits || yOffset != 0 && yOffset != tileUnits) {
-                    bool_325_ = false
+                    ignore = false
                     break
                 }
             }
         }
-        if (!bool_325_) {
+        if (!ignore) {
             val textureColour = TextureColours()
             val s = xOffsets.size
             val colourSize = colours.size
@@ -407,5 +393,24 @@ class JavaPlane(
             }
             tileColours!![x][y] = tileColour
         }
+    }
+
+    companion object {
+        val emptyTile = TileData()
+        val tileUnits: Int
+        val tileScale: Int
+
+        init {
+            var scale = 0
+            var units = 512
+            while (units > 1) {
+                scale++
+                units = units shr 1
+            }
+            tileUnits = 1 shl scale
+            tileScale = scale
+        }
+
+        private const val brightness = 75518
     }
 }

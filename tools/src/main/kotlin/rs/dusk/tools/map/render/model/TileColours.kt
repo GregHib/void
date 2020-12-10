@@ -1,4 +1,4 @@
-package world.gregs.hestia.map.model.render
+package rs.dusk.tools.map.render.model
 
 class TileColours {
     var textureId: Short = 0

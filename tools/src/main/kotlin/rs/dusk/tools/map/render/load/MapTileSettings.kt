@@ -1,90 +1,95 @@
-package rs.dusk.tools.map.render
+package rs.dusk.tools.map.render.load
 
 import rs.dusk.cache.config.decoder.OverlayDecoder
 import rs.dusk.cache.config.decoder.UnderlayDecoder
 import rs.dusk.cache.definition.decoder.TextureDecoder
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.tile.TileData
-import rs.dusk.tools.map.render.Plane.Companion.emptyTile
-import rs.dusk.tools.map.render.Render.TILE_TYPE_HEIGHT_OVERRIDE
-import rs.dusk.tools.map.render.Render.firstTileTypeVertices
-import rs.dusk.tools.map.render.Render.groundBlending
-import rs.dusk.tools.map.render.Render.overlaySizes
-import rs.dusk.tools.map.render.Render.secondTileTypeVertices
-import rs.dusk.tools.map.render.Render.thirdTileTypeVertices
-import rs.dusk.tools.map.render.Render.tileXOffsets
-import rs.dusk.tools.map.render.Render.tileYOffsets
-import rs.dusk.tools.map.render.Render.underlaySizes
-import rs.dusk.tools.map.render.Render.waterMovement
+import rs.dusk.tools.map.render.draw.TilePlane
+import rs.dusk.tools.map.render.draw.TilePlane.Companion.emptyTile
+import rs.dusk.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
+import rs.dusk.tools.map.render.load.MapConstants.firstTileTypeVertices
+import rs.dusk.tools.map.render.load.MapConstants.groundBlending
+import rs.dusk.tools.map.render.load.MapConstants.overlaySizes
+import rs.dusk.tools.map.render.load.MapConstants.secondTileTypeVertices
+import rs.dusk.tools.map.render.load.MapConstants.thirdTileTypeVertices
+import rs.dusk.tools.map.render.load.MapConstants.tileXOffsets
+import rs.dusk.tools.map.render.load.MapConstants.tileYOffsets
+import rs.dusk.tools.map.render.load.MapConstants.underlaySizes
+import rs.dusk.tools.map.render.load.MapConstants.waterMovement
+import rs.dusk.tools.map.render.raster.ColourPalette
 
 class MapTileSettings(
-    private val width: Int,
-    private val height: Int,
     private val planeCount: Int,
     private val underlayDecoder: UnderlayDecoder,
     private val overlayDecoder: OverlayDecoder,
     private val textureDecoder: TextureDecoder,
     private val samplingX: Int = 5,
     private val samplingY: Int = 5,
-    private val tiles: Map<Int, Array<Array<Array<TileData?>>>>,
-    private val regionX: Int = 0,
-    private val regionY: Int = 0
+    private val manager: RegionManager
 ) {
+    private val width: Int = manager.width
+    private val height: Int = manager.height
 
-    var underlayLightness = IntArray(height)
-    var underlayChangeCount = IntArray(height)
-    var underlayHue = IntArray(height)
-    var underlayChroma = IntArray(height)
-    var underlaySaturation = IntArray(height)
+    private val underlayLightness = IntArray(height)
+    private val underlayChangeCount = IntArray(height)
+    private val underlayHue = IntArray(height)
+    private val underlayChroma = IntArray(height)
+    private val underlaySaturation = IntArray(height)
+
+    private var regionX: Int = 0
+    private var regionY: Int = 0
 
     fun tile(plane: Int, localX: Int, localY: Int): TileData {
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.getId(regionX, regionY)
-        return tiles[regionId]?.get(plane)?.get(localX.rem(64))?.get(localY.rem(64)) ?: emptyTile
+        return manager.tiles[regionId]?.get(plane)?.get(localX.rem(64))?.get(localY.rem(64)) ?: emptyTile
     }
 
-    fun load(): List<JavaPlane> {
-        val planes = loadSettings()
-        loadUnderlays(null, planes)
+    fun set(regionX: Int, regionY: Int) {
+        this.regionX = regionX
+        this.regionY = regionY
+    }
+
+    private val planes = (0 until planeCount).map { plane ->
+        TilePlane(textureDecoder, width, height, plane, manager.tiles)
+    }
+
+    fun load(): List<TilePlane> {
+        loadSettings()
+        loadUnderlays(null)
         return planes
     }
 
-    fun loadSettings() = (0 until planeCount).map { plane ->
+    fun loadSettings() = planes.forEach { plane ->
         var i_23_ = 0
         var settings = 0
         if (!waterMovement) {
-            if (Render.tileWater) {
+            if (MapConstants.tileWater) {
                 settings = settings or 0x8
             }
-            if (Render.tileLighting) {
+            if (MapConstants.tileLighting) {
                 i_23_ = i_23_ or 0x2
             }
-            if (Render.sceneryShadows != 0) {
+            if (MapConstants.sceneryShadows != 0) {
                 i_23_ = i_23_ or 0x1
-                if ((plane == 0) or Render.aBoolean8715) {
+                if ((plane.plane == 0) or MapConstants.aBoolean8715) {
                     settings = settings or 0x10
                 }
             }
         }
-        if (Render.tileLighting) {
+        if (MapConstants.tileLighting) {
             settings = settings or 0x7
         }
-        if (!Render.aBoolean10563) {
+        if (!MapConstants.aBoolean10563) {
             settings = settings or 0x20
         }
-        JavaPlane(textureDecoder, settings, width, height, plane, tiles)
+        plane.loadBrightness()
+        plane.settings = settings
     }
 
-    fun loadUnderlays(tilePlane: Plane?, planeList: List<JavaPlane>) {
-        if (height != underlayHue.size) {
-            underlayLightness = IntArray(height)
-            underlayChangeCount = IntArray(height)
-            underlayHue = IntArray(height)
-            underlayChroma = IntArray(height)
-            underlaySaturation = IntArray(height)
-        }
-
+    fun loadUnderlays(tilePlane: TilePlane?) {
         val colours = Array(width) { IntArray(height) }
         for (plane in 0 until planeCount) {
             for (y in 0 until height) {
@@ -145,16 +150,16 @@ class MapTileSettings(
                             saturation -= underlaySaturation[minY]
                         }
                         if (dy >= 0 && chroma > 0 && total > 0) {
-                            colours[dx][dy] = Render.hslToPaletteIndex(lightness / total, saturation / total, hue * 256 / chroma)
+                            colours[dx][dy] = ColourPalette.hslToPaletteIndex(lightness / total, saturation / total, hue * 256 / chroma)
                         }
                     }
                 }
             }
-            loadTileVertices(plane, colours, if (plane == 0) tilePlane else null, planeList[plane])
+            loadTileVertices(plane, colours, if (plane == 0) tilePlane else null, planes[plane])
         }
     }
 
-    private fun loadTileVertices(plane: Int, parentColours: Array<IntArray>, abovePlane: Plane?, tilePlane: JavaPlane) {
+    private fun loadTileVertices(plane: Int, parentColours: Array<IntArray>, abovePlane: TilePlane?, tilePlane: TilePlane) {
         for (x in 0 until width) {
             for (y in 0 until height) {
                 if (groundBlending == -1 || useUnderlay(x, y, groundBlending, plane)) {
@@ -227,20 +232,20 @@ class MapTileSettings(
                         for (index in 0 until offsetSize) {
                             val offsetX = tileXOffsets[index]
                             val offsetY = tileYOffsets[index]
-                            when {
-                                tileDirection == 0 -> {
+                            when (tileDirection) {
+                                0 -> {
                                     xOffsets[index] = offsetX
                                     yOffsets[index] = offsetY
                                 }
-                                tileDirection == 1 -> {
+                                1 -> {
                                     xOffsets[index] = offsetY
                                     yOffsets[index] = -offsetX + 512
                                 }
-                                tileDirection == 2 -> {
+                                2 -> {
                                     xOffsets[index] = 512 - offsetX
                                     yOffsets[index] = 512 - offsetY
                                 }
-                                tileDirection == 3 -> {
+                                3 -> {
                                     xOffsets[index] = 512 + -offsetY
                                     yOffsets[index] = offsetX
                                 }
@@ -265,7 +270,7 @@ class MapTileSettings(
         return if (tile(otherPlane, x, y).settings.toInt() and 0x10 != 0) false else currentPlane == offsetPlane(y, x, otherPlane)
     }
 
-    fun offsetPlane(y: Int, x: Int, plane: Int): Int {
+    private fun offsetPlane(y: Int, x: Int, plane: Int): Int {
         if (tile(plane, x, y).settings.toInt() and 0x8 != 0) {
             return 0
         }
@@ -273,6 +278,6 @@ class MapTileSettings(
     }
 
     companion object {
-        private val BRIDGE_TILE = 0x2
+        private const val BRIDGE_TILE = 0x2
     }
 }
