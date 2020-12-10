@@ -194,7 +194,7 @@ class MapTileSettings(
                         if (overlayDefinition == null) {
                             yIndex += overlaySize
                         } else {
-                            for (i_49_ in 0 until overlaySize) {
+                            repeat(overlaySize) {
                                 vertexIndices1[xIndex] = firstTileTypeVertices[tileType.toInt()][yIndex]
                                 vertexIndices2[xIndex] = secondTileTypeVertices[tileType.toInt()][yIndex]
                                 vertexIndices3[xIndex] = thirdTileTypeVertices[tileType.toInt()][yIndex]
@@ -209,8 +209,7 @@ class MapTileSettings(
                             }
                         }
                         if (underlayDefinition != null) {
-                            var count = 0
-                            while (underlaySize > count) {
+                            repeat(underlaySize) {
                                 vertexIndices1[xIndex] = firstTileTypeVertices[tileType.toInt()][yIndex]
                                 vertexIndices2[xIndex] = secondTileTypeVertices[tileType.toInt()][yIndex]
                                 vertexIndices3[xIndex] = thirdTileTypeVertices[tileType.toInt()][yIndex]
@@ -222,7 +221,6 @@ class MapTileSettings(
                                 }
                                 yIndex++
                                 xIndex++
-                                count++
                             }
                         }
                         val offsetSize = tileXOffsets.size

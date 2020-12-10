@@ -150,11 +150,11 @@ class TilePlane(
                         if (colours.textureId.toInt() != -1 && colours.type.toInt() and 0x2 == 0 && colours.initialColourIndex == -1) {
                             val texture = textureColour(colours.textureId.toInt())
                             // water
-                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, light(colours.northEastBrightness.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture))
+                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, light(colours.northEastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture))
                             raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, light(colours.middleColourIndex.toInt() and 0xffff, texture), light(colours.eastColourIndex.toInt() and 0xffff, texture), light(colours.northColourIndex.toInt() and 0xffff, texture))
                         } else if (colours.initialColourIndex == -1) {
                             // normal tiles
-                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, colours.northEastBrightness.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff)
+                            raster.drawGouraudTriangle(x - size, x - size, x, y + size, y, y + size, colours.northEastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff)
                             raster.drawGouraudTriangle(x, x, x - size, y, y + size, y, colours.middleColourIndex.toInt() and 0xffff, colours.eastColourIndex.toInt() and 0xffff, colours.northColourIndex.toInt() and 0xffff)
                         } else {
                             // overlay
@@ -377,18 +377,18 @@ class TilePlane(
             if (textureMetrics != null && tileColour.type.toInt() and 0x2 == 0 && !textureMetrics.useTextureColour) {
                 tileColour.middleColourIndex = (tileBrightness[x][y] - tileShadows[x][y]).toShort()
                 tileColour.eastColourIndex = (tileBrightness[x + 1][y] - tileShadows[x + 1][y]).toShort()
-                tileColour.northEastBrightness = (tileBrightness[x + 1][y + 1] - tileShadows[x + 1][y + 1]).toShort()
+                tileColour.northEastColourIndex = (tileBrightness[x + 1][y + 1] - tileShadows[x + 1][y + 1]).toShort()
                 tileColour.northColourIndex = (tileBrightness[x][y + 1] - tileShadows[x][y + 1]).toShort()
                 tileColour.textureId = texture.toShort()
                 if (isTypeFourEightNine(textureMetrics.type.toInt()) || textureMetrics.aByte1211.toInt() != 0 || textureMetrics.aByte1203.toInt() != 0) {
                     tileColour.type = (tileColour.type.toInt() or 0x4).toByte()
                 }
             } else {
-                val s = hslToHsv(colour)
-                tileColour.middleColourIndex = light(tileBrightness[x][y] - tileShadows[x][y], s.toInt()).toShort()
-                tileColour.eastColourIndex = light(tileBrightness[x + 1][y] - tileShadows[x + 1][y], s.toInt()).toShort()
-                tileColour.northEastBrightness = light(tileBrightness[x + 1][y + 1] - tileShadows[x + 1][y + 1], s.toInt()).toShort()
-                tileColour.northColourIndex = light(tileBrightness[x][y + 1] - tileShadows[x][y + 1], s.toInt()).toShort()
+                val hsl = hslToHsv(colour).toInt()
+                tileColour.middleColourIndex = light(tileBrightness[x][y] - tileShadows[x][y], hsl).toShort()
+                tileColour.eastColourIndex = light(tileBrightness[x + 1][y] - tileShadows[x + 1][y], hsl).toShort()
+                tileColour.northEastColourIndex = light(tileBrightness[x + 1][y + 1] - tileShadows[x + 1][y + 1], hsl).toShort()
+                tileColour.northColourIndex = light(tileBrightness[x][y + 1] - tileShadows[x][y + 1], hsl).toShort()
                 tileColour.textureId = (-1).toShort()
             }
             tileColours!![x][y] = tileColour
