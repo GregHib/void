@@ -66,7 +66,7 @@ class AnimationDecoder(cache: Cache) : DefinitionDecoder<AnimationDefinition>(ca
                     val size = buffer.readUnsignedByte()
                     if (size > 0) {
                         anIntArrayArray700!![count] = IntArray(size)
-                        anIntArrayArray700!![count]!![0] = buffer.readMedium()
+                        anIntArrayArray700!![count]!![0] = buffer.readUnsignedMedium()
                         for (index in 1 until size) {
                             anIntArrayArray700!![count]!![index] = buffer.readShort()
                         }

@@ -14,7 +14,7 @@ import rs.dusk.network.rs.codec.update.decode.message.UpdateConnectionMessage
 class UpdateConnectionMessageDecoder : UpdateMessageDecoder<UpdateConnectionMessage>() {
 
     override fun decode(packet: PacketReader): UpdateConnectionMessage {
-        val value = packet.readMedium()
+        val value = packet.readUnsignedMedium()
         return UpdateConnectionMessage(value)
     }
 

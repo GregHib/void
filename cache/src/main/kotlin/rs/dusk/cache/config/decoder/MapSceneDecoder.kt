@@ -17,7 +17,7 @@ class MapSceneDecoder(cache: Cache) : ConfigDecoder<MapSceneDefinition>(cache, M
     override fun MapSceneDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> sprite = buffer.readShort()
-            2 -> colour = buffer.readMedium()
+            2 -> colour = buffer.readUnsignedMedium()
             3 -> aBoolean1741 = true
             4 -> sprite = -1
         }

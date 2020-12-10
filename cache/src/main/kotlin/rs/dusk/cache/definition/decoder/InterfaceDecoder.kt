@@ -139,7 +139,7 @@ class InterfaceDecoder(cache: Cache) : DefinitionDecoder<InterfaceDefinition>(ca
             colour = buffer.readInt()
             lineMirrored = buffer.readUnsignedByte() == 1
         }
-        val setting = buffer.readMedium()
+        val setting = buffer.readUnsignedMedium()
         var i_21_ = buffer.readUnsignedByte()
         if (i_21_ != 0) {
             keyRepeat = ByteArray(11)

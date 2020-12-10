@@ -25,7 +25,7 @@ interface Parameterized {
         params = HashMap()
         repeat(length) {
             val string = buffer.readUnsignedBoolean()
-            val id = buffer.readMedium().toLong()
+            val id = buffer.readUnsignedMedium().toLong()
             params!![id] = if (string) buffer.readString() else buffer.readInt()
         }
     }

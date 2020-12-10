@@ -40,7 +40,7 @@ class GameLoginMessageDecoder : LoginMessageDecoder<GameLoginMessage>() {
         val isUnsigned = packet.readUnsignedByte()
         val heapSize = packet.readShort()
         val processorCount = packet.readUnsignedByte()
-        val totalMemory = packet.readMedium()
+        val totalMemory = packet.readUnsignedMedium()
         packet.readShort()
         packet.readUnsignedByte()
         packet.readUnsignedByte()

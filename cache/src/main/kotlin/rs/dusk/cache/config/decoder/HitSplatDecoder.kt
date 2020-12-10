@@ -17,7 +17,7 @@ class HitSplatDecoder(cache: Cache) : ConfigDecoder<HitSplatDefinition>(cache, H
     override fun HitSplatDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> font = buffer.readShort()
-            2 -> textColour = buffer.readMedium()
+            2 -> textColour = buffer.readUnsignedMedium()
             3 -> icon = buffer.readShort()
             4 -> left = buffer.readShort()
             5 -> middle = buffer.readShort()

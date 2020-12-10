@@ -14,7 +14,7 @@ import rs.dusk.network.rs.codec.update.decode.message.UpdateDisconnectionMessage
 class UpdateDisconnectionMessageDecoder : UpdateMessageDecoder<UpdateDisconnectionMessage>() {
 
     override fun decode(packet: PacketReader): UpdateDisconnectionMessage {
-        val value = packet.readMedium()
+        val value = packet.readUnsignedMedium()
         return UpdateDisconnectionMessage(value)
     }
 

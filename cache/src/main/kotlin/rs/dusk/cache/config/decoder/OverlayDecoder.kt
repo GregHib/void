@@ -16,7 +16,7 @@ class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLO
 
     override fun OverlayDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> colour = calculateHsl(buffer.readMedium())
+            1 -> colour = calculateHsl(buffer.readUnsignedMedium())
             2 -> texture = buffer.readUnsignedByte()
             3 -> {
                 texture = buffer.readShort()
@@ -25,13 +25,13 @@ class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLO
                 }
             }
             5 -> hideUnderlay = false
-            7 -> blendColour = calculateHsl(buffer.readMedium())
+            7 -> blendColour = calculateHsl(buffer.readUnsignedMedium())
             8 -> anInt961 = id
             9 -> scale = buffer.readShort() shl 2
             10 -> blockShadow = false
             11 -> anInt3633 = buffer.readUnsignedByte()
             12 -> underlayOverrides = true
-            13 -> waterColour = buffer.readMedium()
+            13 -> waterColour = buffer.readUnsignedMedium()
             14 -> waterScale = buffer.readUnsignedByte() shl 2
             16 -> waterIntensity = buffer.readUnsignedByte()
         }

@@ -15,7 +15,7 @@ import rs.dusk.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
 class UpdateLoginStatusMessageDecoder : UpdateMessageDecoder<UpdateLoginStatusMessage>() {
 
     override fun decode(packet: PacketReader): UpdateLoginStatusMessage {
-        val value = packet.readMedium()
+        val value = packet.readUnsignedMedium()
         return UpdateLoginStatusMessage(packet.opcode == STATUS_LOGGED_IN, value)
     }
 

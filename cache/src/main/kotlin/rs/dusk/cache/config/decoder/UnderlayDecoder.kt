@@ -17,7 +17,7 @@ class UnderlayDecoder(cache: Cache) : ConfigDecoder<UnderlayDefinition>(cache, F
     override fun UnderlayDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
             1 -> {
-                colour = buffer.readMedium()
+                colour = buffer.readUnsignedMedium()
                 computeHsl(colour)
             }
             2 -> {

@@ -53,7 +53,7 @@ class SpriteDecoder(cache: Cache) : DefinitionDecoder<SpriteDefinition>(cache, S
         buffer.buffer.position(buffer.buffer.array().size - 7 - size * 8 - (paletteSize - 1) * 3)
         val palette = IntArray(paletteSize)
         for (index in 1 until paletteSize) {
-            palette[index] = buffer.readMedium()
+            palette[index] = buffer.readUnsignedMedium()
             if (palette[index] == 0) {
                 palette[index] = 1
             }

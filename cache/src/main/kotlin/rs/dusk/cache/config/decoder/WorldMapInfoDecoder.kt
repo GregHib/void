@@ -19,8 +19,8 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             1 -> anInt1062 = buffer.readShort()
             2 -> anInt1056 = buffer.readShort()
             3 -> name = buffer.readString()
-            4 -> anInt1058 = buffer.readMedium()
-            5 -> anInt1054 = buffer.readMedium()
+            4 -> anInt1058 = buffer.readUnsignedMedium()
+            5 -> anInt1054 = buffer.readUnsignedMedium()
             6 -> fontSize = buffer.readUnsignedByte()
             7 -> {
                 val setting = buffer.readUnsignedByte()
