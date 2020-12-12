@@ -31,16 +31,22 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
 
     fun reset() {
         if (draw) {
-            val mapX = view.viewToMapX(linkX)
-            val mapY = view.flipMapY(view.viewToMapY(linkY))
-            val endX = view.viewToMapX(linkEndX)
-            val endY = view.flipMapY(view.viewToMapY(linkEndY))
+            if (view.bounds.contains(linkEndX, linkEndY)) {
+                val mapX = view.viewToMapX(linkX)
+                val mapY = view.flipMapY(view.viewToMapY(linkY))
+                val endX = view.viewToMapX(linkEndX)
+                val endY = view.flipMapY(view.viewToMapY(linkEndY))
 
-            val link = nav.getBiLinkOrNull(mapX, mapY, endX, endY)
-            if(link != null) {
-                nav.removeLink(link)
-            } else {
-                nav.addLink(mapX, mapY, endX, endY)
+                val link = nav.getBiLinkOrNull(mapX, mapY, endX, endY)
+                if (link != null) {
+                    nav.removeLink(link)
+                } else {
+                    if (chainMode) {
+                        nav.createLink(mapX, mapY, endX, endY)
+                    } else {
+                        nav.addLink(mapX, mapY, endX, endY)
+                    }
+                }
             }
             draw = false
             repaint()
@@ -52,5 +58,9 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
             g.color = Color.YELLOW
             g.drawLine(linkX, linkY, linkEndX, linkEndY)
         }
+    }
+
+    companion object {
+        const val chainMode = true
     }
 }

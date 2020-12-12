@@ -13,8 +13,7 @@ class HighlightedLink(private val view: MapView, private val nav: NavigationGrap
 
     private var mapX: Int = 0
     private var mapY: Int = 0
-    var highlighted: Link? = null
-        private set
+    val highlighted: MutableList<Link> = mutableListOf()
 
     private var startX: Int = 0
     private var startY: Int = 0
@@ -26,6 +25,8 @@ class HighlightedLink(private val view: MapView, private val nav: NavigationGrap
         mapX = view.viewToMapX(viewX)
         mapY = view.flipMapY(view.viewToMapY(viewY))
         draw = false
+        highlighted.clear()
+        repaint()
         for (link in nav.links) {
             if (!link.contains(mapX, mapY)) {
                 continue
@@ -39,15 +40,19 @@ class HighlightedLink(private val view: MapView, private val nav: NavigationGrap
 
             val dist = distance(viewX, viewY, x1, y1, x2, y2)
             if (dist <= halfX) {
-                highlighted = link
+                highlighted.add(0, link)
                 startX = x1
                 startY = y1
                 endX = x2
                 endY = y2
                 draw = true
-                break
+                continue
             }
         }
+        repaint()
+    }
+
+    private fun repaint() {
         view.repaint(min(startX, endX), min(startY, endY), max(startX, endX), max(startY, endY))
     }
 

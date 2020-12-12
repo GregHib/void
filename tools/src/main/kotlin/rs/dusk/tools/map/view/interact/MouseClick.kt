@@ -6,7 +6,6 @@ import rs.dusk.tools.map.view.draw.HighlightedLink
 import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
-import rs.dusk.tools.map.view.graph.Node
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -22,44 +21,54 @@ class MouseClick(
 ) : MouseAdapter() {
 
     override fun mouseClicked(e: MouseEvent) {
+        if (SwingUtilities.isRightMouseButton(e)) {
+            val popup = JPopupMenu()
+            popup.addNodeOptions(e)
+            if (link.highlighted.isNotEmpty()) {
+                popup.addLinkOptions(link.highlighted)
+            }
+            popup.show(e.component, e.x, e.y)
+        }
+    }
+
+    private fun JPopupMenu.addNodeOptions(e: MouseEvent) {
         val mapX = view.viewToMapX(e.x)
         val mapY = view.flipMapY(view.viewToMapY(e.y))
         val node = nav.getNodeOrNull(mapX, mapY)
-        if (SwingUtilities.isLeftMouseButton(e) && e.clickCount == 2) {
-            toggleNode(node, mapX, mapY)
-        } else if (SwingUtilities.isRightMouseButton(e) && node != null) {
-            openNodeOptions(node, e)
-        } else if (SwingUtilities.isRightMouseButton(e) && link.highlighted != null) {
-            openLinkOptions(link.highlighted!!, e)
-        }
-    }
-
-    private fun toggleNode(clicked: Node?, mapX: Int, mapY: Int) {
-        var node = clicked
         if (node != null) {
-            nav.removeNode(node)
-            node.links.forEach {
-                graph.repaint(it)
+            add(JMenuItem("Remove node")).addActionListener {
+                nav.removeNode(node)
+                node.links.forEach {
+                    graph.repaint(it)
+                }
+                link.update(e.x, e.y)
+                graph.repaint(node)
             }
         } else {
-            node = nav.addNode(mapX, mapY)
+            add(JMenuItem("Add node")).addActionListener {
+                graph.repaint(nav.addNode(mapX, mapY))
+            }
         }
-        graph.repaint(node)
     }
 
-    private fun openNodeOptions(node: Node, e: MouseEvent) {
-        val popup = JPopupMenu()
-        popup.add(JMenuItem("Edit node")).addActionListener {
+    /**
+     * Add options to edit and remove links under mouse
+     * Link index = counter clockwise from link highlighted
+     */
+    private fun JPopupMenu.addLinkOptions(links: List<Link>) {
+        val single = links.size == 1
+        for ((index, link) in links.withIndex()) {
+            val i = if (single) "" else " ${index + 1}"
+            add(JMenuItem("Edit link$i")).addActionListener {
+                showLinkSettings(link)
+            }
         }
-        popup.show(e.component, e.x, e.y)
-    }
-
-    private fun openLinkOptions(link: Link, e: MouseEvent) {
-        val popup = JPopupMenu()
-        popup.add(JMenuItem("Edit link")).addActionListener {
-            showLinkSettings(link)
+        for ((index, link) in links.withIndex()) {
+            val i = if (single) "" else " ${index + 1}"
+            add(JMenuItem("Remove link$i")).addActionListener {
+                showLinkSettings(link)
+            }
         }
-        popup.show(e.component, e.x, e.y)
     }
 
     private fun showLinkSettings(link: Link) {
@@ -69,6 +78,7 @@ class MouseClick(
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
         if (result == JOptionPane.OK_OPTION) {
             populate(link, settings)
+            nav.changed = true
         }
     }
 
@@ -83,8 +93,10 @@ class MouseClick(
 
     private fun populate(link: Link, settings: LinkSettings) {
         link.bidirectional = settings.bidirectional.isSelected
-        link.interaction = settings.interaction.text
-        link.requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
+        val interact = settings.interaction.text
+        link.interaction = if (interact.isNotBlank()) interact else null
+        val list = settings.requirementsList.toArray().filterIsInstance<String>().toList()
+        link.requirements = if (list.isNotEmpty()) list else null
     }
 
 }

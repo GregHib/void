@@ -64,8 +64,10 @@ class LinkSettings : JPanel() {
         val add = JButton("Add")
         add(add)
         add.addActionListener {
-            requirementsList.addElement(requirement.text)
-            requirement.text = ""
+            if (requirement.text.isNotBlank()) {
+                requirementsList.addElement(requirement.text)
+                requirement.text = ""
+            }
         }
         alignmentX = LEFT_ALIGNMENT
     }

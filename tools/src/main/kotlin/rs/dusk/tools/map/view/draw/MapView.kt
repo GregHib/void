@@ -1,6 +1,7 @@
 package rs.dusk.tools.map.view.draw
 
 import rs.dusk.tools.map.view.draw.WorldMap.Companion.flipRegionY
+import rs.dusk.tools.map.view.graph.GraphIO
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.interact.*
 import java.awt.Color
@@ -12,6 +13,7 @@ import javax.swing.SwingUtilities
 class MapView : JPanel() {
 
     private val nav = NavigationGraph()
+    private val io = GraphIO(nav)
     private val highlight = HighlightedTile(this)
     private val highlightLink = HighlightedLink(this, nav)
 
@@ -54,6 +56,8 @@ class MapView : JPanel() {
         addMouseWheelListener(zoom)
         addMouseMotionListener(hover)
         addComponentListener(resize)
+        io.start()
+        repaint()
     }
 
     fun updateZoom(x: Int, y: Int) {
