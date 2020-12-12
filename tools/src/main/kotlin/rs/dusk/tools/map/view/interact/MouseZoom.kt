@@ -1,5 +1,6 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.interact
 
+import rs.dusk.tools.map.view.draw.MapView
 import java.awt.event.MouseWheelEvent
 import java.awt.event.MouseWheelListener
 
@@ -20,7 +21,7 @@ class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWh
         val previous = this.scale
         this.scale = (this.scale - offset).coerceIn(1, 10)
         if (this.scale != previous) {
-            view.highlight.update(e.x, e.y)
+            view.updateZoom(e.x, e.y)
             when (type) {
                 ZoomType.Centre -> view.centreOn(mapX, mapY)
                 ZoomType.Mouse -> view.align(e.x, e.y, mapX, mapY)

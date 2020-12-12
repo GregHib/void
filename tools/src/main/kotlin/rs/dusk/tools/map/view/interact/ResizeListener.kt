@@ -1,5 +1,6 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.interact
 
+import rs.dusk.tools.map.view.draw.WorldMap
 import java.awt.event.ComponentEvent
 import java.awt.event.ComponentListener
 

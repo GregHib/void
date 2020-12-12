@@ -1,22 +1,28 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.draw
 
-import rs.dusk.tools.map.view.WorldMap.Companion.flipRegionY
+import rs.dusk.tools.map.view.draw.WorldMap.Companion.flipRegionY
+import rs.dusk.tools.map.view.graph.NavigationGraph
+import rs.dusk.tools.map.view.interact.*
 import java.awt.Color
 import java.awt.Dimension
 import java.awt.Graphics
-import java.awt.event.MouseAdapter
-import java.awt.event.MouseEvent
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
 class MapView : JPanel() {
 
+    private val nav = NavigationGraph()
+    private val highlight = HighlightedTile(this)
+    private val highlightLink = HighlightedLink(this, nav)
+
     private val drag = MouseDrag(this)
-    val highlight = HighlightedTile(this)
     private val zoom = MouseZoom(this, MouseZoom.ZoomType.Mouse)
-    private val hover = MouseHover(highlight)
+    private val hover = MouseHover(highlight, highlightLink)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
+    private val graph = GraphDrawer(this, nav)
+    private val click = MouseClick(this, nav, graph, highlightLink)
+    private val link = LinkConnector(this, nav)
 
     /*
         Offset from view 0, 0 to top left of world map
@@ -42,18 +48,17 @@ class MapView : JPanel() {
         SwingUtilities.invokeLater {
             centreOn(3087, flipMapY(3500))
         }
+        addMouseListener(click)
         addMouseListener(drag)
         addMouseMotionListener(drag)
         addMouseWheelListener(zoom)
         addMouseMotionListener(hover)
         addComponentListener(resize)
-        addMouseListener(object : MouseAdapter() {
-            override fun mouseClicked(e: MouseEvent) {
-                if (e.clickCount == 2) {
-                    centreOn(3087, flipMapY(3500))
-                }
-            }
-        })
+    }
+
+    fun updateZoom(x: Int, y: Int) {
+        highlight.update(x, y)
+        highlightLink.update(x, y)
     }
 
     fun getCentreX() = minX + viewWidth / 2
@@ -106,6 +111,21 @@ class MapView : JPanel() {
 
     fun flipMapY(mapY: Int) = regionToMapX(flipRegionY(mapToRegionY(mapY) - 1)) - (mapY % 64)
 
+    fun resetDrag() {
+        link.reset()
+    }
+
+    fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
+        val node = nav.getNodeOrNull(mapStartX, flipMapY(mapStartY))
+        if (node != null) {
+            link.update(mapStartX, mapStartY, mouseX, mouseY)
+        } else {
+            this.offsetX = offsetX
+            this.offsetY = offsetY
+            update(mouseX, mouseY)
+        }
+    }
+
     /**
      * Repaint a single region
      */
@@ -152,7 +172,10 @@ class MapView : JPanel() {
         g.color = Color.BLACK
         g.fillRect(0, 0, width, height)
         map.draw(g)
+        graph.draw(g)
         highlight.draw(g)
+        link.draw(g)
+        highlightLink.draw(g)
 
         if (debugBorder > 0) {
             g.color = Color.RED

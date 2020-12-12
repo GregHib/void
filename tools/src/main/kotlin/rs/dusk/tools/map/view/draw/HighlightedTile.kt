@@ -1,4 +1,4 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.draw
 
 import rs.dusk.engine.map.region.Region
 import java.awt.Color
@@ -42,7 +42,10 @@ class HighlightedTile(private val view: MapView) {
         }
     }
 
+    val colour = Color(0.0f, 0.0f, 0.0f, 0.5f)
+
     fun draw(g: Graphics) {
+        g.color = colour
         g.fillRect(squareX, squareY, squareW, squareH)
         g.font = font
         g.color = Color.BLACK

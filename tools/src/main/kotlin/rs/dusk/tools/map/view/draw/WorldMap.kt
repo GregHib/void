@@ -1,5 +1,6 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.draw
 
+import rs.dusk.tools.map.view.RegionLoader
 import java.awt.Graphics
 import kotlin.math.max
 import kotlin.math.min

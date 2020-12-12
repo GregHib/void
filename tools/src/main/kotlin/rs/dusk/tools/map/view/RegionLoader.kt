@@ -6,7 +6,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import rs.dusk.engine.map.region.Region
-import rs.dusk.tools.map.view.WorldMap.Companion.flipRegionY
+import rs.dusk.tools.map.view.draw.MapView
+import rs.dusk.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
