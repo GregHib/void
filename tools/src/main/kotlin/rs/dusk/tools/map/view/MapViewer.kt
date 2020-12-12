@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.view
 
+import rs.dusk.tools.map.view.draw.MapView
 import java.awt.EventQueue
 import javax.swing.JFrame
 import javax.swing.UIManager

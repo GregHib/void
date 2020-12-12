@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.view.interact
 
+import rs.dusk.tools.map.view.LinkSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedLink
 import rs.dusk.tools.map.view.draw.MapView
@@ -9,6 +10,7 @@ import rs.dusk.tools.map.view.graph.Node
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
+import javax.swing.JOptionPane
 import javax.swing.JPopupMenu
 import javax.swing.SwingUtilities
 
@@ -48,7 +50,6 @@ class MouseClick(
     private fun openNodeOptions(node: Node, e: MouseEvent) {
         val popup = JPopupMenu()
         popup.add(JMenuItem("Edit node")).addActionListener {
-            showNodeOptions()
         }
         popup.show(e.component, e.x, e.y)
     }
@@ -56,22 +57,34 @@ class MouseClick(
     private fun openLinkOptions(link: Link, e: MouseEvent) {
         val popup = JPopupMenu()
         popup.add(JMenuItem("Edit link")).addActionListener {
+            showLinkSettings(link)
         }
         popup.show(e.component, e.x, e.y)
     }
 
-    private fun showNodeOptions() {
+    private fun showLinkSettings(link: Link) {
+        val settings = LinkSettings()
+        populate(settings, link)
+        val result = JOptionPane.showConfirmDialog(null, settings, "Edit link",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        if (result == JOptionPane.OK_OPTION) {
+            populate(link, settings)
+        }
+    }
 
-//        val result = JOptionPane.showConfirmDialog(null, panel, "Test",
-//            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
-//        if (result == JOptionPane.OK_OPTION) {
-//            println("${bi.isEnabled} ${interaction.text} ${requirements.selectedValue}")
-//        } else {
-//            println("Cancelled")
-//        }
-//        val possibilities = arrayOf<Any>("ham", "spam", "yam")
-//        val s = JOptionPane.showInputDialog(frame, "Complete the sentence:Green eggs and...", "Node edit", JOptionPane.PLAIN_MESSAGE, null, possibilities, "ham") as? String
-//        println(s)
+    private fun populate(settings: LinkSettings, link: Link) {
+        settings.bidirectional.isSelected = link.bidirectional
+        settings.interaction.text = link.interaction ?: ""
+        val requirements = link.requirements
+        if (requirements != null) {
+            settings.requirementsList.addAll(requirements)
+        }
+    }
+
+    private fun populate(link: Link, settings: LinkSettings) {
+        link.bidirectional = settings.bidirectional.isSelected
+        link.interaction = settings.interaction.text
+        link.requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
     }
 
 }
