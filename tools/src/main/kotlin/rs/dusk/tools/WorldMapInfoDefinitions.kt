@@ -1,27 +1,22 @@
 package rs.dusk.tools
 
 import org.koin.core.context.startKoin
-import rs.dusk.cache.definition.decoder.InterfaceDecoder
+import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 
-object InterfaceDefinitions {
+object WorldMapInfoDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = InterfaceDecoder(koin.get())
+        val decoder = WorldMapInfoDecoder(koin.get())
         for (i in decoder.indices) {
-            if(i != 755) {
-                continue
-            }
             val def = decoder.getOrNull(i) ?: continue
-            for((id, comp) in def.components ?: continue) {
-//                if(comp.options?.contains("Scroll") == true) {
-                    println("${comp.id} $id ${comp.options?.toList()}")
-//                }
+            if(def.clientScript == 947) {
+                println(def.clientScript)
             }
         }
     }

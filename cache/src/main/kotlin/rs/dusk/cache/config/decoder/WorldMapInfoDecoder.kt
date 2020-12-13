@@ -65,7 +65,7 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             16 -> aBoolean1064 = false
             17 -> aString1045 = buffer.readString()
             18 -> anInt1093 = buffer.readShort()
-            19 -> anInt1067 = buffer.readShort()
+            19 -> clientScript = buffer.readShort()
             20 -> {
                 anInt1048 = buffer.readShort()
                 if (anInt1048 == 65535) {

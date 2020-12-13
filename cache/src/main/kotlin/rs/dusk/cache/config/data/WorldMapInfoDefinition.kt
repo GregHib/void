@@ -31,7 +31,7 @@ data class WorldMapInfoDefinition(
     var aBoolean1064: Boolean = true,
     var aString1045: String? = null,
     var anInt1093: Int = -1,
-    var anInt1067: Int = -1,
+    var clientScript: Int = -1,
     var anInt1048: Int = -1,
     var anInt1044: Int = -1,
     var anInt1078: Int = 0,
