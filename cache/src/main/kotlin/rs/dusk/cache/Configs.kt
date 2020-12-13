@@ -6,6 +6,7 @@ object Configs {
     const val FLOOR_OVERLAY = 4
     const val CONTAINERS = 5
     const val PARAMS = 11
+    const val SCRIPTS = 12
     const val VARC_STRINGS = 15
     const val VARP = 16
     const val VARC = 19
