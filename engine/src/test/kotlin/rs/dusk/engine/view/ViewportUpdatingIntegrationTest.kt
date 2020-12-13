@@ -6,7 +6,7 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.get
+import org.koin.test.get
 import org.koin.test.mock.declareMock
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule

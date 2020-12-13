@@ -5,6 +5,8 @@ import io.mockk.mockkClass
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.core.module.Module
+import org.koin.ext.setFloatProperty
+import org.koin.ext.setIntProperty
 import org.koin.test.KoinTest
 import rs.dusk.engine.script.koin.KoinTestExtension
 import rs.dusk.engine.script.koin.MockProviderExtension
@@ -16,7 +18,7 @@ import rs.dusk.engine.script.koin.MockProviderExtension
 abstract class KoinMock : KoinTest {
 
     open val modules: List<Module>? = null
-    open val properties: List<Pair<String, Any>>? = null
+    open val properties: List<Pair<String, String>>? = null
 
     @JvmField
     @RegisterExtension
@@ -39,7 +41,13 @@ abstract class KoinMock : KoinTest {
     fun loadModules(vararg modules: Module) =
         koinTestExtension.koin.loadModules(modules.toList())
 
-    fun setProperty(key: String, value: Any) =
+    fun setProperty(key: String, value: String) =
         koinTestExtension.koin.setProperty(key, value)
+
+    fun setProperty(key: String, value: Int) =
+        koinTestExtension.koin.setIntProperty(key, value)
+
+    fun setProperty(key: String, value: Float) =
+        koinTestExtension.koin.setFloatProperty(key, value)
 
 }

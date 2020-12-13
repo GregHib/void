@@ -21,9 +21,7 @@ import rs.dusk.core.network.model.session.setSession
 import rs.dusk.network.NetworkRegistry
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
-import rs.dusk.utility.get
-import rs.dusk.utility.getProperty
-import rs.dusk.utility.inject
+import rs.dusk.utility.*
 import java.util.concurrent.TimeUnit
 
 /**
@@ -43,7 +41,7 @@ class GameServer(
 	/**
 	 * The port to listen on
 	 */
-	private val port: Int = getProperty("port")
+	private val port: Int = getIntProperty("port")
 	
 	/**
 	 * The connection settings to use
@@ -98,8 +96,8 @@ class GameServer(
 		
 		logger.info {
 			val name: String = getProperty("name")
-			val major: Int = getProperty("buildMajor")
-			val minor: Float = getProperty("buildMinor")
+			val major: Int = getIntProperty("buildMajor")
+			val minor: Float = getFloatProperty("buildMinor")
 			
 			"$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms"
 		}

@@ -2,6 +2,8 @@ package rs.dusk.utility
 
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.qualifier.Qualifier
+import org.koin.ext.getFloatProperty
+import org.koin.ext.getIntProperty
 import org.koin.java.KoinJavaComponent.getKoin
 
 /**
@@ -9,21 +11,23 @@ import org.koin.java.KoinJavaComponent.getKoin
  * @since March 26, 2020
  */
 
-inline fun <reified T> get(
+inline fun <reified T : Any> get(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null
 ): T = getKoin().get(qualifier, parameters)
 
-fun <T> getPropertyOrNull(key: String): T? = getKoin().getProperty(key)
+fun getIntProperty(key: String): Int = getKoin().getIntProperty(key)!!
 
-fun <T> getProperty(key: String): T = getPropertyOrNull(key)!!
+fun getProperty(key: String): String = getKoin().getProperty(key)!!
 
-fun <T> getProperty(key: String, defaultValue: T): T = getKoin().getProperty(key, defaultValue)
+fun getFloatProperty(key: String): Float = getKoin().getFloatProperty(key)!!
 
-inline fun <reified T> inject(
+fun getIntProperty(key: String, defaultValue: Int): Int = getKoin().getIntProperty(key, defaultValue)
+
+inline fun <reified T : Any> inject(
     qualifier: Qualifier? = null,
     noinline parameters: ParametersDefinition? = null
-): Lazy<T> = getKoin().inject(qualifier, parameters)
+): Lazy<T> = getKoin().inject(qualifier, parameters = parameters)
 
 inline fun <reified S, reified P> bind(
     noinline parameters: ParametersDefinition? = null

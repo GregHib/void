@@ -12,7 +12,7 @@ plugins {
     kotlin("jvm") version "1.3.72"
 }
 
-val koinVersion = "2.1.5"
+val koinVersion = "2.2.1"
 val junitVersion = "5.6.2"
 val exposedVersion = "0.24.1"
 val jacksonVersion = "2.11.0"

@@ -14,7 +14,7 @@ import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.strat.FollowTargetStrategy
 import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
-import rs.dusk.utility.getProperty
+import rs.dusk.utility.getIntProperty
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -22,9 +22,9 @@ import rs.dusk.utility.getProperty
  */
 class PlayerLoader(private val bus: EventBus, private val interfaces: InterfaceDetails, private val collisions: Collisions, private val definitions: ContainerDefinitions, strategy: StorageStrategy<Player>) : DataLoader<Player>(strategy) {
 
-    private val x = getProperty("homeX", 0)
-    private val y = getProperty("homeY", 0)
-    private val plane = getProperty("homePlane", 0)
+    private val x = getIntProperty("homeX", 0)
+    private val y = getIntProperty("homeY", 0)
+    private val plane = getIntProperty("homePlane", 0)
     private val tile = Tile(x, y, plane)
 
 

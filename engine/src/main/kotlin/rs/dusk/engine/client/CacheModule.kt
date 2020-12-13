@@ -12,8 +12,8 @@ val cacheModule = module {
     single(createdAtStart = true) {
         CacheDelegate(
             getProperty("cachePath"),
-            getProperty<String>("fsRsaPrivate"),
-            getProperty<String>("fsRsaModulus")
+            getProperty("fsRsaPrivate"),
+            getProperty("fsRsaModulus")
         ) as Cache
     }
     single { Huffman(get()) }

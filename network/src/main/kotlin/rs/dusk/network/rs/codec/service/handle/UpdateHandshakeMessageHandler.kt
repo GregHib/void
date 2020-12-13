@@ -13,7 +13,7 @@ import rs.dusk.network.rs.codec.service.ServiceMessageHandler
 import rs.dusk.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
-import rs.dusk.utility.getProperty
+import rs.dusk.utility.getIntProperty
 import rs.dusk.utility.inject
 
 /**
@@ -22,7 +22,7 @@ import rs.dusk.utility.inject
  */
 class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessage>() {
 	
-	private val clientMajorBuild: Int = getProperty("clientBuild")
+	private val clientMajorBuild: Int = getIntProperty("clientBuild")
 	
 	private val repository : CodecRepository by inject()
 	

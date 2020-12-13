@@ -9,8 +9,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import org.koin.core.get
 import org.koin.dsl.module
+import org.koin.test.get
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.map.Tile

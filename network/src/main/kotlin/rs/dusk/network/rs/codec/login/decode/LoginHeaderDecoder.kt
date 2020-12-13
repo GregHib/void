@@ -6,6 +6,7 @@ import rs.dusk.cache.secure.Xtea
 import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.network.rs.codec.LoginResponseCode
+import rs.dusk.utility.getIntProperty
 import rs.dusk.utility.getProperty
 import java.math.BigInteger
 
@@ -16,7 +17,7 @@ import java.math.BigInteger
 object LoginHeaderDecoder {
 
     private val logger = InlineLogger()
-    private val clientMajorBuild: Int = getProperty("clientBuild")
+    private val clientMajorBuild: Int = getIntProperty("clientBuild")
     private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
     private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)
 
