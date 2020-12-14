@@ -5,8 +5,8 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.cache.Cache
-import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 
 internal class HuffmanTest {

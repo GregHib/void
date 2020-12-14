@@ -1,9 +1,9 @@
-package rs.dusk.core.io.write
+package rs.dusk.buffer.write
 
 import io.netty.buffer.ByteBuf
-import rs.dusk.core.io.DataType
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.DataType
+import rs.dusk.buffer.Endian
+import rs.dusk.buffer.Modifier
 
 /**
  * All functions relative to writing directly to a packet are done by this class

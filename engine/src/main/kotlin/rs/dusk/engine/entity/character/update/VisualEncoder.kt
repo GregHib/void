@@ -2,7 +2,7 @@ package rs.dusk.engine.entity.character.update
 
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.client.update.encode.*
 import rs.dusk.engine.client.update.encode.npc.*
 import rs.dusk.engine.client.update.encode.player.*

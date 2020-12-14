@@ -1,6 +1,6 @@
 package rs.dusk.engine.client.update.task.npc
 
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.CharacterTrackingSet

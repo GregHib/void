@@ -1,11 +1,11 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.WORLD_MAP
 import rs.dusk.cache.definition.data.WorldMapDefinition
 import rs.dusk.cache.definition.data.WorldMapSection
-import rs.dusk.core.io.read.Reader
 import java.util.*
 
 /**

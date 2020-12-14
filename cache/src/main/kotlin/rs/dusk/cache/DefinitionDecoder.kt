@@ -1,7 +1,7 @@
 package rs.dusk.cache
 
-import rs.dusk.core.io.read.BufferReader
-import rs.dusk.core.io.read.Reader
+import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.read.Reader
 import java.util.concurrent.ConcurrentHashMap
 
 /**

@@ -1,8 +1,8 @@
-package rs.dusk.core.io.read
+package rs.dusk.buffer.read
 
-import rs.dusk.core.io.DataType
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.DataType
+import rs.dusk.buffer.Endian
+import rs.dusk.buffer.Modifier
 import java.nio.ByteBuffer
 import kotlin.math.pow
 

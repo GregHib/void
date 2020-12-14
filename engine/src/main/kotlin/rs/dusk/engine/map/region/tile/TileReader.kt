@@ -1,6 +1,6 @@
 package rs.dusk.engine.map.region.tile
 
-import rs.dusk.core.io.read.BufferReader
+import rs.dusk.buffer.read.BufferReader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

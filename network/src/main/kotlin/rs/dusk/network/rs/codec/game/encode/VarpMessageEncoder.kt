@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.game.encode
 
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.Endian
+import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.CLIENT_VARP

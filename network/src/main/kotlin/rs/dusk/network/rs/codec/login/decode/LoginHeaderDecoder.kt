@@ -1,9 +1,9 @@
 package rs.dusk.network.rs.codec.login.decode
 
 import com.github.michaelbull.logging.InlineLogger
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.cache.secure.RSA
 import rs.dusk.cache.secure.Xtea
-import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.network.rs.codec.LoginResponseCode
 import rs.dusk.utility.getIntProperty

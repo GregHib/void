@@ -1,6 +1,6 @@
 package rs.dusk.network.rs.codec.game.encode
 
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.OBJECT_ADD

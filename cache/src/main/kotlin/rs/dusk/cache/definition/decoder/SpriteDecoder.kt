@@ -1,11 +1,11 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.SPRITES
 import rs.dusk.cache.definition.data.IndexedSprite
 import rs.dusk.cache.definition.data.SpriteDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

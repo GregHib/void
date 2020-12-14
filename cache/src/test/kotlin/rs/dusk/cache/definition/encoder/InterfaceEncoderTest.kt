@@ -4,12 +4,12 @@ import io.mockk.every
 import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Indices.INTERFACES
 import rs.dusk.cache.definition.data.InterfaceComponentDefinition
 import rs.dusk.cache.definition.data.InterfaceComponentSetting
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
-import rs.dusk.core.io.write.BufferWriter
 
 internal class InterfaceEncoderTest {
 

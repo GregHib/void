@@ -1,11 +1,11 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.TEXTURE_DEFINITIONS
 import rs.dusk.cache.definition.data.TextureDefinition
-import rs.dusk.core.io.read.BufferReader
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

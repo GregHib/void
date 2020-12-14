@@ -1,10 +1,10 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.HIT_SPLATS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.HitSplatDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

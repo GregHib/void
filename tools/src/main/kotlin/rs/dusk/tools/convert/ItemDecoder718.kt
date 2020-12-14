@@ -1,10 +1,10 @@
 package rs.dusk.tools.convert
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.ITEMS
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

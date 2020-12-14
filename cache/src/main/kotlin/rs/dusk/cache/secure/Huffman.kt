@@ -1,7 +1,7 @@
 package rs.dusk.cache.secure
 
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.cache.Cache
-import rs.dusk.core.io.read.BufferReader
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 
 class Huffman(cache: Cache) {

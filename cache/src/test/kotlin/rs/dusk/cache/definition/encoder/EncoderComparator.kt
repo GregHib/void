@@ -5,11 +5,11 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Test
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Indices.ITEMS
 import rs.dusk.cache.definition.data.ItemDefinition
 import rs.dusk.cache.definition.decoder.ItemDecoder
-import rs.dusk.core.io.write.BufferWriter
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

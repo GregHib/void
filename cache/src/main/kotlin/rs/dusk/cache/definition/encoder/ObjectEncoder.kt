@@ -1,8 +1,8 @@
 package rs.dusk.cache.definition.encoder
 
+import rs.dusk.buffer.write.Writer
 import rs.dusk.cache.DefinitionEncoder
 import rs.dusk.cache.definition.data.ObjectDefinition
-import rs.dusk.core.io.write.Writer
 import kotlin.math.roundToInt
 
 /**

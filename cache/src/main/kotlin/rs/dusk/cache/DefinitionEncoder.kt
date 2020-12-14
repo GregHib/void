@@ -1,6 +1,6 @@
 package rs.dusk.cache
 
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.write.Writer
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -4,8 +4,8 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
-import rs.dusk.core.io.read.BufferReader
-import rs.dusk.core.io.write.BufferWriter
+import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.engine.client.update.task.npc.NPCVisualsTask
 import rs.dusk.engine.entity.character.Character
 import rs.dusk.engine.entity.character.npc.NPC

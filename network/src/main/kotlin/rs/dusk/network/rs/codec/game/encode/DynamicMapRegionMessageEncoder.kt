@@ -1,14 +1,12 @@
 package rs.dusk.network.rs.codec.game.encode
 
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.Endian
+import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.DYNAMIC_REGION
-import rs.dusk.network.rs.codec.game.GameOpcodes.REGION
 import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
-import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

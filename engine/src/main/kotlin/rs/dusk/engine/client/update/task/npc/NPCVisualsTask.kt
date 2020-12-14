@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.update.task.npc
 
-import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.write.BufferWriter
+import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.update.Visual
 import rs.dusk.engine.entity.character.update.VisualEncoder

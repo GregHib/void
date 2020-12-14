@@ -1,6 +1,6 @@
 package rs.dusk.network.rs.codec.update.decode
 
-import rs.dusk.core.io.DataType
+import rs.dusk.buffer.DataType
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.update.FileServerOpcodes.FILE_REQUEST

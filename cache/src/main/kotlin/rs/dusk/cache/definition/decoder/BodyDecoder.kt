@@ -1,11 +1,11 @@
 package rs.dusk.cache.definition.decoder
 
 import com.github.michaelbull.logging.InlineLogger
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.DEFAULTS
 import rs.dusk.cache.definition.data.BodyDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -1,7 +1,7 @@
 package rs.dusk.engine.map.region.obj
 
-import rs.dusk.core.io.write.BufferWriter
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.write.BufferWriter
+import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 import java.util.*

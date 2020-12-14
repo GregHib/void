@@ -1,10 +1,10 @@
 package rs.dusk.cache.config.decoder
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Configs.STRUCTS
 import rs.dusk.cache.config.ConfigDecoder
 import rs.dusk.cache.config.data.StructDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

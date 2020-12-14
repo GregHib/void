@@ -1,9 +1,8 @@
-package rs.dusk.core.io.read
+package rs.dusk.buffer
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.Modifier
+import rs.dusk.buffer.read.BufferReader
 import java.nio.ByteBuffer
 
 internal class BufferReaderTest {

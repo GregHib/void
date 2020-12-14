@@ -1,4 +1,4 @@
-package rs.dusk.core.io
+package rs.dusk.buffer
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

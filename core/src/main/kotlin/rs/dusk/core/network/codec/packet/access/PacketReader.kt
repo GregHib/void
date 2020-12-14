@@ -1,6 +1,6 @@
 package rs.dusk.core.network.codec.packet.access
 
-import rs.dusk.core.io.read.BufferReader
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.core.network.model.packet.PacketType
 import java.nio.ByteBuffer
 

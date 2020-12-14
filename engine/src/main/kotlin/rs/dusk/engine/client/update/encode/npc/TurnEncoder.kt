@@ -1,7 +1,7 @@
 package rs.dusk.engine.client.update.encode.npc
 
-import rs.dusk.core.io.Endian
-import rs.dusk.core.io.write.Writer
+import rs.dusk.buffer.Endian
+import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.entity.character.update.VisualEncoder
 import rs.dusk.engine.entity.character.update.visual.npc.TURN_MASK
 import rs.dusk.engine.entity.character.update.visual.npc.Turn

@@ -1,7 +1,7 @@
 package rs.dusk.engine.map.region.obj
 
 import org.koin.dsl.module
-import rs.dusk.core.io.read.BufferReader
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.entity.obj.Objects

@@ -1,6 +1,6 @@
 package rs.dusk.network.rs.codec.game.encode.message
 
-import rs.dusk.core.io.write.BufferWriter
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.core.network.model.message.Message
 
 /**

@@ -1,6 +1,6 @@
 package rs.dusk.engine.map.region.tile
 
-import rs.dusk.core.io.write.BufferWriter
+import rs.dusk.buffer.write.BufferWriter
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

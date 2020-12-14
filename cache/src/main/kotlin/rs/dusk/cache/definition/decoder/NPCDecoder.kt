@@ -1,10 +1,10 @@
 package rs.dusk.cache.definition.decoder
 
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.DefinitionDecoder
 import rs.dusk.cache.Indices.NPCS
 import rs.dusk.cache.definition.data.NPCDefinition
-import rs.dusk.core.io.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

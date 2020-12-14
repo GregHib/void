@@ -2,8 +2,8 @@ package rs.dusk.cache.definition.encoder
 
 import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.cache.definition.data.ItemDefinition
-import rs.dusk.core.io.write.BufferWriter
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

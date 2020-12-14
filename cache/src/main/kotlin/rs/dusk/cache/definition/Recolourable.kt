@@ -1,6 +1,6 @@
 package rs.dusk.cache.definition
 
-import rs.dusk.core.io.read.Reader
+import rs.dusk.buffer.read.Reader
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
