@@ -4,7 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 
 data class Node(
     val x: Int,
-    val y: Int
+    val y: Int,
+    val z: Int
 ) {
     @JsonIgnore
     val links: MutableSet<Link> = mutableSetOf()

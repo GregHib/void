@@ -37,14 +37,14 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
 
-                val link = nav.getBiLinkOrNull(mapX, mapY, endX, endY)
+                val link = nav.getBiLinkOrNull(mapX, mapY, 0, endX, endY, 0)
                 if (link != null) {
                     nav.removeLink(link)
                 } else {
                     if (chainMode) {
-                        nav.createLink(mapX, mapY, endX, endY)
+                        nav.createLink(mapX, mapY, 0, endX, endY, 0)
                     } else {
-                        nav.addLink(mapX, mapY, endX, endY)
+                        nav.addLink(mapX, mapY, 0, endX, endY, 0)
                     }
                 }
             }

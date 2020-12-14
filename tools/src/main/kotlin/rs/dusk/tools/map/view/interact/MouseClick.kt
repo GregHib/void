@@ -34,7 +34,7 @@ class MouseClick(
     private fun JPopupMenu.addNodeOptions(e: MouseEvent) {
         val mapX = view.viewToMapX(e.x)
         val mapY = view.flipMapY(view.viewToMapY(e.y))
-        val node = nav.getNodeOrNull(mapX, mapY)
+        val node = nav.getNodeOrNull(mapX, mapY, 0)
         if (node != null) {
             add(JMenuItem("Remove node")).addActionListener {
                 nav.removeNode(node)
@@ -46,7 +46,7 @@ class MouseClick(
             }
         } else {
             add(JMenuItem("Add node")).addActionListener {
-                graph.repaint(nav.addNode(mapX, mapY))
+                graph.repaint(nav.addNode(mapX, mapY, 0))
             }
         }
     }
