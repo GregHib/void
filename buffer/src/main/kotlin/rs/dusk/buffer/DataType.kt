@@ -2,7 +2,6 @@ package rs.dusk.buffer
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
 enum class DataType(val byteCount: Int) {

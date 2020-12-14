@@ -10,7 +10,6 @@ import rs.dusk.core.network.model.packet.PacketType
  * All functions relative to writing directly to a packet are done by this class
  *
  * @author Greg Hibberd <greg@greghibberd.com>
- * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
 open class PacketWriter(

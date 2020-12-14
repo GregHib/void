@@ -6,7 +6,6 @@ import java.nio.ByteBuffer
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
 class PacketReader(val opcode: Int = -1, val type: PacketType = PacketType.RAW, buffer: ByteBuffer) : BufferReader(buffer) {
