@@ -28,12 +28,12 @@ class NavigationGraph {
     fun getNodeOrNull(x: Int, y: Int, z: Int) = nodes.firstOrNull { it.x == x && it.y == y && it.z == z }
 
     fun getLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull {
-        it.node.x == x && it.node.y == y && it.node.z == z && it.node2.x == x2 && it.node2.y == y2 && it.node2.z == z2
+        it.start.x == x && it.start.y == y && it.start.z == z && it.end.x == x2 && it.end.y == y2 && it.end.z == z2
     }
 
     fun getBiLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull {
-        (it.node.x == x && it.node.y == y && it.node.z == z && it.node2.x == x2 && it.node2.y == y2 && it.node2.z == z2)
-                || (it.node.x == x2 && it.node.y == y2 && it.node.z == z2 && it.node2.x == x && it.node2.y == y && it.node2.z == z)
+        (it.start.x == x && it.start.y == y && it.start.z == z && it.end.x == x2 && it.end.y == y2 && it.end.z == z2)
+                || (it.start.x == x2 && it.start.y == y2 && it.start.z == z2 && it.end.x == x && it.end.y == y && it.end.z == z)
     }
 
     fun addLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Boolean {
@@ -50,12 +50,12 @@ class NavigationGraph {
         return true
     }
 
-    private fun link(node: Node, node2: Node) {
-        val link = Link(getIndex(node), getIndex(node2), true)
-        link.node = node
-        link.node2 = node2
-        node.links.add(link)
-        node2.links.add(link)
+    private fun link(start: Node, end: Node) {
+        val link = Link(getIndex(start), getIndex(end), true)
+        link.start = start
+        link.end = end
+        start.links.add(link)
+        end.links.add(link)
         addLink(link)
     }
 
@@ -66,18 +66,18 @@ class NavigationGraph {
 
     private fun unlink(node: Node) {
         node.links.forEach { link ->
-            if (link.node != node) {
-                link.node.links.remove(link)
-            } else if (link.node2 != node) {
-                link.node2.links.remove(link)
+            if (link.start != node) {
+                link.start.links.remove(link)
+            } else if (link.end != node) {
+                link.end.links.remove(link)
             }
             links.remove(link)
         }
     }
 
     fun removeLink(link: Link) {
-        link.node.links.remove(link)
-        link.node2.links.remove(link)
+        link.start.links.remove(link)
+        link.end.links.remove(link)
         links.remove(link)
         changed = true
     }

@@ -60,6 +60,9 @@ class MapView : JPanel() {
         repaint()
     }
 
+    val scale: Int
+        get() = zoom.scale
+
     fun updateZoom(x: Int, y: Int) {
         highlight.update(x, y)
         highlightLink.update(x, y)
@@ -89,13 +92,13 @@ class MapView : JPanel() {
 
     fun regionToViewY(regionY: Int) = imageToViewY(regionToImageY(regionY))
 
-    fun imageToMapX(imageX: Int) = imageX / (4 * zoom.scale)
+    fun imageToMapX(imageX: Int) = imageX / scale
 
-    fun imageToMapY(imageY: Int) = imageY / (4 * zoom.scale)
+    fun imageToMapY(imageY: Int) = imageY / scale
 
-    fun mapToImageX(mapX: Int) = mapX * (4 * zoom.scale)
+    fun mapToImageX(mapX: Int) = mapX * scale
 
-    fun mapToImageY(mapY: Int) = mapY * (4 * zoom.scale)
+    fun mapToImageY(mapY: Int) = mapY * scale
 
     fun viewToImageX(viewX: Int) = viewX - offsetX
 

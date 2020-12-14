@@ -33,10 +33,10 @@ class HighlightedLink(private val view: MapView, private val nav: NavigationGrap
             }
             val halfX = view.mapToImageX(1) / 2
             val halfY = view.mapToImageY(1) / 2
-            val x1 = view.mapToViewX(link.node.x) + halfX
-            val x2 = view.mapToViewX(link.node2.x) + halfX
-            val y1 = view.mapToViewY(view.flipMapY(link.node.y)) + halfY
-            val y2 = view.mapToViewY(view.flipMapY(link.node2.y)) + halfY
+            val x1 = view.mapToViewX(link.start.x) + halfX
+            val x2 = view.mapToViewX(link.end.x) + halfX
+            val y1 = view.mapToViewY(view.flipMapY(link.start.y)) + halfY
+            val y2 = view.mapToViewY(view.flipMapY(link.end.y)) + halfY
 
             val dist = distance(viewX, viewY, x1, y1, x2, y2)
             if (dist <= halfX) {
@@ -68,10 +68,10 @@ class HighlightedLink(private val view: MapView, private val nav: NavigationGrap
     }
 
     private fun Link.contains(mapX: Int, mapY: Int): Boolean {
-        val minX = min(node.x, node2.x)
-        val minY = min(node.y, node2.y)
-        val maxX = max(node.x, node2.x)
-        val maxY = max(node.y, node2.y)
+        val minX = min(start.x, end.x)
+        val minY = min(start.y, end.y)
+        val maxX = max(start.x, end.x)
+        val maxY = max(start.y, end.y)
         return mapX in minX..maxX && mapY in minY..maxY
     }
 

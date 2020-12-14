@@ -5,7 +5,7 @@ import java.awt.event.MouseWheelEvent
 import java.awt.event.MouseWheelListener
 
 class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWheelListener {
-    var scale = 1
+    var scale = 4
         private set
 
     override fun mouseWheelMoved(e: MouseWheelEvent) {

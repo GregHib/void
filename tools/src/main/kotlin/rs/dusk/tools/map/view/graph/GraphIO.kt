@@ -33,10 +33,10 @@ class GraphIO(private val nav: NavigationGraph) {
         val links = (map["links"] as List<Map<String, Any>>).map { Link(it["index"] as Int, it["index2"] as Int, it["bidirectional"] as Boolean, it["interaction"] as? String, it["requirements"] as? List<String>) }
         nav.nodes.addAll(nodes)
         links.forEach {
-            it.node = nodes[it.index]
-            it.node.links.add(it)
-            it.node2 = nodes[it.index2]
-            it.node2.links.add(it)
+            it.start = nodes[it.index]
+            it.start.links.add(it)
+            it.end = nodes[it.index2]
+            it.end.links.add(it)
         }
         nav.links.addAll(links)
     }

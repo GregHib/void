@@ -18,10 +18,10 @@ class GraphDrawer(
     private val linkColour = Color(1.0f, 0.0f, 0.0f, 0.5f)
 
     fun repaint(link: Link) {
-        val linkX = view.mapToViewX(link.node.x)
-        val linkY = view.mapToViewY(view.flipMapY(link.node.y))
-        val linkEndX = view.mapToViewX(link.node2.x)
-        val linkEndY = view.mapToViewY(view.flipMapY(link.node2.y))
+        val linkX = view.mapToViewX(link.start.x)
+        val linkY = view.mapToViewY(view.flipMapY(link.start.y))
+        val linkEndX = view.mapToViewX(link.end.x)
+        val linkEndY = view.mapToViewY(view.flipMapY(link.end.y))
         view.repaint(min(linkX, linkEndX), min(linkY, linkEndY), max(linkX, linkEndX), max(linkY, linkEndY))
     }
 
@@ -40,10 +40,10 @@ class GraphDrawer(
         nav.links.forEach {
             val halfX = view.mapToImageX(1) / 2
             val halfY = view.mapToImageY(1) / 2
-            val startX = view.mapToViewX(it.node.x) + halfX
-            val startY = view.mapToViewY(view.flipMapY(it.node.y)) + halfY
-            val endX = view.mapToViewX(it.node2.x) + halfX
-            val endY = view.mapToViewY(view.flipMapY(it.node2.y)) + halfY
+            val startX = view.mapToViewX(it.start.x) + halfX
+            val startY = view.mapToViewY(view.flipMapY(it.start.y)) + halfY
+            val endX = view.mapToViewX(it.end.x) + halfX
+            val endY = view.mapToViewY(view.flipMapY(it.end.y)) + halfY
             g.drawLine(startX, startY, endX, endY)
             g.drawArrowHead(startX, startY, endX, endY, halfX * 3, halfY / 2)
             if(it.bidirectional) {

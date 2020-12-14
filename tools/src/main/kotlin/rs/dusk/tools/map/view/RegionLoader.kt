@@ -1,47 +1,77 @@
 package rs.dusk.tools.map.view
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.sync.Mutex
-import kotlinx.coroutines.sync.withLock
+import kotlinx.coroutines.*
 import rs.dusk.engine.map.region.Region
 import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.draw.WorldMap.Companion.flipRegionY
+import java.awt.geom.AffineTransform
+import java.awt.image.AffineTransformOp
 import java.awt.image.BufferedImage
 import java.io.File
+import java.util.*
+import java.util.concurrent.ConcurrentSkipListSet
 import javax.imageio.ImageIO
 import javax.swing.SwingUtilities
+import kotlin.collections.HashMap
 
 /**
- * Asynchronously loads region images
+ * Loads region images on a separate thread
  */
 class RegionLoader(private val grid: MapView) {
 
-    private val mutex = Mutex()
-    private val regions = mutableMapOf<Int, BufferedImage?>()
+    private data class Resolutions(val full: BufferedImage, val half: BufferedImage)
+
+    private val regions = HashMap<Int, Resolutions?>()
+    private var loadJob: Job? = null
+    private val loadQueue = ConcurrentSkipListSet<Int>()
+    private val op = AffineTransformOp(AffineTransform().apply {
+        scale(0.5, 0.5)
+    }, AffineTransformOp.TYPE_BILINEAR)
 
     fun getRegion(regionX: Int, regionY: Int): BufferedImage? {
         val regionId = Region.getId(regionX, regionY)
         val region = regions[regionId]
         if (region == null) {
-            loadRegion(regionX, regionY, regionId)
+            loadQueue.add(regionId)
+            load()
         }
-        return region
+        return if (grid.scale <= 2) region?.half else region?.full
     }
 
-    private fun loadRegion(regionX: Int, regionY: Int, regionId: Int) = GlobalScope.launch(Dispatchers.IO) {
-        val img = createRegion(regionX, regionY)
-        mutex.withLock {
-            regions[regionId] = img
+    private fun load() {
+        if (loadJob?.isCompleted == false) {
+            return
         }
+        this@RegionLoader.loadJob = GlobalScope.launch(Dispatchers.IO) {
+            val it = loadQueue.iterator()
+            while (it.hasNext()) {
+                val regionId = it.next()
+                if (regions.containsKey(regionId)) {
+                    continue
+                }
+                val regionX = Region.getX(regionId)
+                val regionY = Region.getY(regionId)
+                loadRegion(regionX, regionY, regionId)
+                it.remove()
+            }
+        }
+    }
+
+    private fun loadRegion(regionX: Int, regionY: Int, regionId: Int) {
+        val img = loadRegionImage(regionX, regionY)
+        if (img == null) {
+            regions[regionId] = null
+            return
+        }
+        val half = op.filter(img, BufferedImage(img.width / 2, img.height / 2, BufferedImage.TYPE_INT_ARGB))
+        val res = Resolutions(img, half)
+        regions[regionId] = res
         SwingUtilities.invokeLater {
             grid.repaintRegion(regionX, regionY)
         }
     }
 
-    // Placeholder images
-    private fun createRegion(regionX: Int, regionY: Int): BufferedImage? {
+    private fun loadRegionImage(regionX: Int, regionY: Int): BufferedImage? {
         val id = Region.getId(regionX, regionY)
         val file = File("./images/$id.png")
         return if (file.exists()) ImageIO.read(file) else null
@@ -55,6 +85,7 @@ class RegionLoader(private val grid: MapView) {
         for (regionX in rangeX) {
             for (regionY in rangeY) {
                 val id = Region.getId(regionX, flipRegionY(regionY))
+                loadQueue.remove(id)
                 if (regions[id] != null) {
                     regions.remove(id)
                 }

@@ -10,7 +10,7 @@ data class Link(
     var requirements: List<String>? = null
 ) {
     @JsonIgnore
-    lateinit var node: Node
+    lateinit var start: Node
     @JsonIgnore
-    lateinit var node2: Node
+    lateinit var end: Node
 }

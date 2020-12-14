@@ -10,7 +10,7 @@ import rs.dusk.engine.map.area.Coordinate2D
 data class Region(override val x: Int, override val y: Int) :
     Coordinate2D {
 
-    constructor(id: Int) : this(id shr 8, id and 0xff)
+    constructor(id: Int) : this(getX(id), getY(id))
 
     val id by lazy { getId(x, y) }
     val tile by lazy { Tile(x * 64, y * 64, 0) }
@@ -30,6 +30,8 @@ data class Region(override val x: Int, override val y: Int) :
         fun createSafe(x: Int, y: Int) =
             Region(x and 0xff, y and 0xff)
         fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
+        fun getX(id: Int) = id shr 8
+        fun getY(id: Int) = id and 0xff
         val EMPTY = Region(0, 0)
     }
 }
