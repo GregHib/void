@@ -3,6 +3,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":core"))
     implementation(project(":engine"))
     implementation(project(":cache"))
     implementation(project(":utility"))

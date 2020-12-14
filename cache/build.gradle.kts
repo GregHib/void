@@ -1,2 +1,3 @@
 dependencies {
+    implementation(project(":core"))
 }

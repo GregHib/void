@@ -37,10 +37,6 @@ allprojects {
     }
 
     dependencies {
-        //Main
-        implementation(group = "rs.dusk.core", name = "network", version = "0.1.2")
-        implementation(group = "rs.dusk.core", name = "utility", version = "0.1.2")
-
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")

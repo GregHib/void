@@ -2,10 +2,10 @@ package rs.dusk.network.rs.codec.login.encode
 
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.core.utility.NetworkUtility
 import rs.dusk.network.rs.codec.game.GameOpcodes.LOBBY_DETAILS
 import rs.dusk.network.rs.codec.login.LoginMessageEncoder
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
+import java.util.*
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -42,7 +42,7 @@ class LobbyConfigurationMessageEncoder : LoginMessageEncoder<LobbyConfigurationM
             writeShort(1)//recovery questions set
             writeShort(0)//Number of unread messages
             writeShort((sinceJag - sinceLog).toInt())// last logged in date
-            writeInt(NetworkUtility.convertIPToNumber(lastIp))//Resolve hostname - last login ip
+            writeInt(convertIPToNumber(lastIp))//Resolve hostname - last login ip
 
             writeByte(3)//Email registration: 0 - Unregistered, 1 - Pending Parental Confirm, 2 - Pending Confirm, 3 - Registered, 4 - No longer registered, 5 - Blank
             writeShort(0)//Credit card expiration time
@@ -57,6 +57,23 @@ class LobbyConfigurationMessageEncoder : LoginMessageEncoder<LobbyConfigurationM
             writeShort(0)//Server port offset id
 
             writePrefixedString("127.0.0.1")//Server ip address
+        }
+    }
+
+    companion object {
+        /**
+         * Converts an IP-Address as string to Integer.
+         *
+         * @return The Integer.
+         */
+        private fun convertIPToNumber(ipAddress : String?) : Int {
+            val st = StringTokenizer(ipAddress, ".")
+            val ip = IntArray(4)
+            var i = 0
+            while (st.hasMoreTokens()) {
+                ip[i++] = st.nextToken().toInt()
+            }
+            return ip[0] shl 24 or (ip[1] shl 16) or (ip[2] shl 8) or ip[3]
         }
     }
 
