@@ -55,8 +55,8 @@ class LadderProcessor(
             }
         }
         unknowns.forEach {
-            val node = graph.getNodeOrNull(it.x, it.y, it.plane)
-            if (node == null) {
+            val link = graph.getLinkOrNull(it.x, it.y, it.plane)
+            if (link == null) {
                 println("Unknown ${it.id} ${objectDecoder.get(it.id).name} ${it.x}, ${it.y}, ${it.plane}")
                 count++
             }

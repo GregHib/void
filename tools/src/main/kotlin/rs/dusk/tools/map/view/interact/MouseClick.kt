@@ -1,12 +1,12 @@
 package rs.dusk.tools.map.view.interact
 
-import rs.dusk.tools.map.view.NodeSettings
+import rs.dusk.tools.map.view.LinkSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedArea
 import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.graph.Area
+import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
-import rs.dusk.tools.map.view.graph.Node
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -24,12 +24,7 @@ class MouseClick(
     override fun mouseClicked(e: MouseEvent) {
         if (SwingUtilities.isRightMouseButton(e)) {
             val popup = JPopupMenu()
-            popup.addNodeOptions(e)
-            val mapX = view.viewToMapX(e.x)
-            val mapY = view.flipMapY(view.viewToMapY(e.y))
-            popup.add(JMenuItem("Add area")).addActionListener {
-                graph.repaint(nav.addArea(mapX, mapY, 0))
-            }
+            popup.addLinkOptions(e)
             if (area.highlighted.isNotEmpty()) {
                 popup.addAreaOptions(area.highlighted)
             }
@@ -37,23 +32,31 @@ class MouseClick(
         }
     }
 
-    private fun JPopupMenu.addNodeOptions(e: MouseEvent) {
+    private fun JPopupMenu.addLinkOptions(e: MouseEvent) {
         val mapX = view.viewToMapX(e.x)
         val mapY = view.flipMapY(view.viewToMapY(e.y))
-        val node = nav.getNodeOrNull(mapX, mapY, 0)
-        if (node != null) {
-            add(JMenuItem("Remove node")).addActionListener {
-                nav.removeNode(node)
+        val link = nav.getLinkOrNull(mapX, mapY, 0)
+        if (link != null) {
+            add(JMenuItem("Remove link")).addActionListener {
+                nav.removeLink(link)
                 area.update(e.x, e.y)
-                graph.repaint(node)
+                graph.repaint(link)
             }
-            add(JMenuItem("Edit node")).addActionListener {
-                showNodeSettings(node)
+            add(JMenuItem("Edit link")).addActionListener {
+                showLinkSettings(link)
             }
         } else {
-            add(JMenuItem("Add node")).addActionListener {
-                graph.repaint(nav.addNode(mapX, mapY, 0))
+            add(JMenuItem("Add link")).addActionListener {
+                graph.repaint(nav.addLink(mapX, mapY, 0))
             }
+        }
+    }
+
+    private fun JPopupMenu.addAreaOptions(e: MouseEvent) {
+        val mapX = view.viewToMapX(e.x)
+        val mapY = view.flipMapY(view.viewToMapY(e.y))
+        add(JMenuItem("Add area")).addActionListener {
+            graph.repaint(nav.addArea(mapX, mapY, 0))
         }
     }
 
@@ -67,46 +70,29 @@ class MouseClick(
         for ((index, area) in areas.withIndex()) {
             val i = if (single) "" else " ${index + 1}"
             add(JMenuItem("Remove area$i")).addActionListener {
+                nav.removeArea(area)
             }
         }
     }
 
-    private fun showNodeSettings(node: Node) {
-        val settings = NodeSettings()
-        populate(settings, node)
-        val result = JOptionPane.showConfirmDialog(null, settings, "Edit node",
-            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
-        if (result == JOptionPane.OK_OPTION) {
-            val newNode = populate(node, settings)
-            nav.updateNode(node, newNode)
-            graph.repaint(node)
-            graph.repaint(newNode)
-        }
-    }
-
-    private fun populate(settings: NodeSettings, node: Node) {
-        settings.xCoord.text = node.x.toString()
-        settings.yCoord.text = node.y.toString()
-        settings.zCoord.text = node.z.toString()
-    }
-
-    private fun populate(node: Node, settings: NodeSettings): Node {
-        return Node(settings.xCoord.text.toIntOrNull() ?: node.x, settings.yCoord.text.toIntOrNull() ?: node.y, settings.zCoord.text.toIntOrNull() ?: node.z)
-    }
-
-    /*private fun showLinkSettings(link: Link) {
+    private fun showLinkSettings(link: Link) {
         val settings = LinkSettings()
         populate(settings, link)
         val result = JOptionPane.showConfirmDialog(null, settings, "Edit link",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
         if (result == JOptionPane.OK_OPTION) {
-            populate(link, settings)
-            nav.changed = true
+            val newLink = populate(link, settings)
+            nav.updateLink(link, newLink)
+            graph.repaint(link)
+            graph.repaint(newLink)
         }
     }
 
     private fun populate(settings: LinkSettings, link: Link) {
-        val actions = link.requirements// FIXME
+        settings.xCoord.text = link.x.toString()
+        settings.yCoord.text = link.y.toString()
+        settings.zCoord.text = link.z.toString()
+        val actions = link.actions
         if (actions != null) {
             settings.actionsList.addAll(actions)
         }
@@ -116,11 +102,17 @@ class MouseClick(
         }
     }
 
-    private fun populate(link: Link, settings: LinkSettings) {
+    private fun populate(original: Link, settings: LinkSettings): Link {
+        val link = Link(
+            x = settings.xCoord.text.toIntOrNull() ?: original.x,
+            y = settings.yCoord.text.toIntOrNull() ?: original.y,
+            z = settings.zCoord.text.toIntOrNull() ?: original.z
+        )
         val actions = settings.actionsList.toArray().filterIsInstance<String>().toList()
-        link.requirements = if (actions.isNotEmpty()) actions else null// FIXME
+        link.actions = if (actions.isNotEmpty()) actions else null
         val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
         link.requirements = if (requirements.isNotEmpty()) requirements else null
-    }*/
+        return link
+    }
 
 }

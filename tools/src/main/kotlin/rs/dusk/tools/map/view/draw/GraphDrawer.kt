@@ -1,8 +1,8 @@
 package rs.dusk.tools.map.view.draw
 
 import rs.dusk.tools.map.view.graph.Area
+import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
-import rs.dusk.tools.map.view.graph.Node
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Polygon
@@ -13,11 +13,11 @@ class GraphDrawer(
     private val nav: NavigationGraph
 ) {
 
-    private val nodeColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
+    private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
     private val areaColour = Color(0.0f, 1.0f, 0.0f, 0.1f)
 
-    fun repaint(node: Node) {
-        view.repaint(view.mapToViewX(node.x), view.mapToViewY(view.flipMapY(node.y)), view.mapToImageX(1), view.mapToImageY(1))
+    fun repaint(link: Link) {
+        view.repaint(view.mapToViewX(link.x), view.mapToViewY(view.flipMapY(link.y)), view.mapToImageX(1), view.mapToImageY(1))
     }
 
     fun repaint(area: Area) {
@@ -25,16 +25,22 @@ class GraphDrawer(
     }
 
     fun draw(g: Graphics) {
-        g.color = nodeColour
-        nav.nodes.forEach {
-            val width = view.mapToImageX(1) / 2
-            val height = view.mapToImageY(1) / 2
-            g.fillOval(view.mapToViewX(it.x) + width / 2, view.mapToViewY(view.flipMapY(it.y)) + height / 2, width, height)
+        g.color = linkColour
+        nav.links.forEach {
+            if (it.z != 0) {
+                return@forEach
+            }
+            val width = view.mapToImageX(1)
+            val height = view.mapToImageY(1)
+            g.fillOval(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y)), width, height)
         }
         g.color = areaColour
         nav.areas.forEach {
+            if (it.plane != 0) {
+                return@forEach
+            }
             val shape = it.getShape(view) ?: return@forEach
-            when(shape) {
+            when (shape) {
                 is Polygon -> g.fillPolygon(shape)
                 is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
             }

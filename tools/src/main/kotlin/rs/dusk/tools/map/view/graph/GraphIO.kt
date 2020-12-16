@@ -29,10 +29,9 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
             return
         }
         val map = reader.readValue<Map<String, Any>>(file)
-        val nodes = (map["nodes"] as List<Map<String, Any>>).map { Node(it["x"] as Int, it["y"] as Int, it["z"] as Int) }
-//        val links = (map["links"] as List<Map<String, Any>>).map { Link(it["index"] as Int, it["index2"] as Int, it["bidirectional"] as? Boolean ?: false, it["interaction"] as? String, it["requirements"] as? List<String>) }
+        val links = (map["links"] as List<Map<String, Any>>).map { Link(it["x"] as Int, it["y"] as Int, it["z"] as Int, it["interaction"] as? List<String>, it["requirements"] as? List<String>) }
         val areas = (map["areas"] as? List<Map<String, Any>>)?.map { Area(it["name"] as? String, it["plane"] as Int, (it["points"] as List<Map<String, Any>>).map { p -> Point(p["x"] as Int, p["y"] as Int) }.toMutableList()) }
-        nav.nodes.addAll(nodes)
+        nav.links.addAll(links)
         if (areas != null) {
             nav.areas.addAll(areas)
         }
@@ -43,7 +42,7 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
             return
         }
         writer.writeValue(file, mapOf(
-            "nodes" to nav.nodes,
+            "links" to nav.links,
             "areas" to nav.areas
         ))
         nav.changed = false
