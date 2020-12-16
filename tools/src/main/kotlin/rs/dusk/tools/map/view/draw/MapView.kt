@@ -15,16 +15,16 @@ class MapView : JPanel() {
     private val nav = NavigationGraph()
     private val io = GraphIO(nav, "./ladders.json")
     private val highlight = HighlightedTile(this)
-    private val highlightLink = HighlightedArea(this, nav)
+    private val area = HighlightedArea(this, nav)
 
     private val drag = MouseDrag(this)
     private val zoom = MouseZoom(this, MouseZoom.ZoomType.Mouse)
-    private val hover = MouseHover(highlight, highlightLink)
+    private val hover = MouseHover(highlight, area)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
     private val graph = GraphDrawer(this, nav)
-    private val click = MouseClick(this, nav, graph, highlightLink)
-    private val link = AreaPointConnector(this, nav)
+    private val click = MouseClick(this, nav, graph, area)
+    private val connector = AreaPointConnector(this, nav)
 
     /*
         Offset from view 0, 0 to top left of world map
@@ -65,7 +65,7 @@ class MapView : JPanel() {
 
     fun updateZoom(x: Int, y: Int) {
         highlight.update(x, y)
-        highlightLink.update(x, y)
+        area.update(x, y)
     }
 
     fun getCentreX() = minX + viewWidth / 2
@@ -119,13 +119,14 @@ class MapView : JPanel() {
     fun flipMapY(mapY: Int) = regionToMapX(flipRegionY(mapToRegionY(mapY) - 1)) - (mapY % 64)
 
     fun resetDrag() {
-        link.reset()
+        connector.reset()
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
         val point = nav.getPointOrNull(mapStartX, flipMapY(mapStartY), 0)
         if (point != null) {
-            link.update(mapStartX, mapStartY, mouseX, mouseY)
+            connector.update(mapStartX, mapStartY, mouseX, mouseY)
+            highlight.update(mouseX, mouseY)
         } else {
             this.offsetX = offsetX
             this.offsetY = offsetY
@@ -181,8 +182,8 @@ class MapView : JPanel() {
         map.draw(g)
         graph.draw(g)
         highlight.draw(g)
-        link.draw(g)
-        highlightLink.draw(g)
+        connector.draw(g)
+        area.draw(g)
 
         if (debugBorder > 0) {
             g.color = Color.RED
