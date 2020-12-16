@@ -1,12 +1,10 @@
 package rs.dusk.tools.map.view.interact
 
-import rs.dusk.tools.map.view.LinkSettings
 import rs.dusk.tools.map.view.NodeSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedArea
 import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.graph.Area
-import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Node
 import java.awt.event.MouseAdapter
@@ -46,9 +44,6 @@ class MouseClick(
         if (node != null) {
             add(JMenuItem("Remove node")).addActionListener {
                 nav.removeNode(node)
-                node.links.forEach {
-                    graph.repaint(it)
-                }
                 area.update(e.x, e.y)
                 graph.repaint(node)
             }
@@ -99,7 +94,7 @@ class MouseClick(
         return Node(settings.xCoord.text.toIntOrNull() ?: node.x, settings.yCoord.text.toIntOrNull() ?: node.y, settings.zCoord.text.toIntOrNull() ?: node.z)
     }
 
-    private fun showLinkSettings(link: Link) {
+    /*private fun showLinkSettings(link: Link) {
         val settings = LinkSettings()
         populate(settings, link)
         val result = JOptionPane.showConfirmDialog(null, settings, "Edit link",
@@ -126,6 +121,6 @@ class MouseClick(
         link.requirements = if (actions.isNotEmpty()) actions else null// FIXME
         val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
         link.requirements = if (requirements.isNotEmpty()) requirements else null
-    }
+    }*/
 
 }

@@ -1,16 +1,12 @@
 package rs.dusk.tools.map.view.draw
 
 import rs.dusk.tools.map.view.graph.Area
-import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Node
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Polygon
 import java.awt.Rectangle
-import kotlin.math.max
-import kotlin.math.min
-import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
@@ -18,16 +14,7 @@ class GraphDrawer(
 ) {
 
     private val nodeColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
-    private val linkColour = Color(1.0f, 0.0f, 0.0f, 0.5f)
     private val areaColour = Color(0.0f, 1.0f, 0.0f, 0.1f)
-
-    fun repaint(link: Link) {
-        val linkX = view.mapToViewX(link.start.x)
-        val linkY = view.mapToViewY(view.flipMapY(link.start.y))
-        val linkEndX = view.mapToViewX(link.end.x)
-        val linkEndY = view.mapToViewY(view.flipMapY(link.end.y))
-        view.repaint(min(linkX, linkEndX), min(linkY, linkEndY), max(linkX, linkEndX), max(linkY, linkEndY))
-    }
 
     fun repaint(node: Node) {
         view.repaint(view.mapToViewX(node.x), view.mapToViewY(view.flipMapY(node.y)), view.mapToImageX(1), view.mapToImageY(1))
@@ -44,20 +31,6 @@ class GraphDrawer(
             val height = view.mapToImageY(1) / 2
             g.fillOval(view.mapToViewX(it.x) + width / 2, view.mapToViewY(view.flipMapY(it.y)) + height / 2, width, height)
         }
-        g.color = linkColour
-        nav.links.forEach {
-            val halfX = view.mapToImageX(1) / 2
-            val halfY = view.mapToImageY(1) / 2
-            val startX = view.mapToViewX(it.start.x) + halfX
-            val startY = view.mapToViewY(view.flipMapY(it.start.y)) + halfY
-            val endX = view.mapToViewX(it.end.x) + halfX
-            val endY = view.mapToViewY(view.flipMapY(it.end.y)) + halfY
-            g.drawLine(startX, startY, endX, endY)
-            g.drawArrowHead(startX, startY, endX, endY, halfX * 3, halfY / 2)
-            if(it.bidirectional) {
-                g.drawArrowHead(endX, endY, startX, startY, halfX * 3, halfY / 2)
-            }
-        }
         g.color = areaColour
         nav.areas.forEach {
             val shape = it.getShape(view) ?: return@forEach
@@ -66,27 +39,5 @@ class GraphDrawer(
                 is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
             }
         }
-    }
-
-    private fun Graphics.drawArrowHead(x1: Int, y1: Int, x2: Int, y2: Int, width: Int, height: Int) {
-        val dx = x2 - x1
-        val dy = y2 - y1
-        val d = sqrt((dx * dx + dy * dy).toDouble())
-        var xm = d - width
-        var xn = xm
-        var ym = height.toDouble()
-        var yn = -height.toDouble()
-        var x: Double
-        val sin = dy / d
-        val cos = dx / d
-        x = xm * cos - ym * sin + x1
-        ym = xm * sin + ym * cos + y1
-        xm = x
-        x = xn * cos - yn * sin + x1
-        yn = xn * sin + yn * cos + y1
-        xn = x
-        val pointsX = intArrayOf(x2, xm.toInt(), xn.toInt())
-        val pointsY = intArrayOf(y2, ym.toInt(), yn.toInt())
-        fillPolygon(pointsX, pointsY, 3)
     }
 }
