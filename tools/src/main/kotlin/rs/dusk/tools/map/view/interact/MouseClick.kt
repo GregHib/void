@@ -27,6 +27,11 @@ class MouseClick(
         if (SwingUtilities.isRightMouseButton(e)) {
             val popup = JPopupMenu()
             popup.addNodeOptions(e)
+            val mapX = view.viewToMapX(e.x)
+            val mapY = view.flipMapY(view.viewToMapY(e.y))
+            popup.add(JMenuItem("Add area")).addActionListener {
+                graph.repaint(nav.addArea(mapX, mapY, 0))
+            }
             if (area.highlighted.isNotEmpty()) {
                 popup.addAreaOptions(area.highlighted)
             }

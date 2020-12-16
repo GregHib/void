@@ -15,7 +15,7 @@ object WorldMapLinkDumper {
         val graph = NavigationGraph()
         regex.findAll(script.readText()).forEach {
             val vals = it.groupValues
-            graph.createLink(vals[1].toInt(), vals[2].toInt(), vals[3].toInt(), vals[4].toInt(), vals[5].toInt(), vals[6].toInt())
+//            graph.createLink(vals[1].toInt(), vals[2].toInt(), vals[3].toInt(), vals[4].toInt(), vals[5].toInt(), vals[6].toInt())
         }
         GraphIO(graph).save()
     }

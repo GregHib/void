@@ -48,7 +48,7 @@ class LadderProcessor(
                     else -> continue@objs
                 }
                 if (loc != null) {
-                    graph.createLink(tile.x, tile.y, tile.plane, loc.x, loc.y, loc.plane)
+//                    graph.createLink(tile.x, tile.y, tile.plane, loc.x, loc.y, loc.plane)
                 } else {
                     unknowns.add(obj)
                 }

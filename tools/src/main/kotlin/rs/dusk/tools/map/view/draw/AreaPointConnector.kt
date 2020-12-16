@@ -6,7 +6,7 @@ import java.awt.Graphics
 import kotlin.math.max
 import kotlin.math.min
 
-class LinkConnector(private val view: MapView, private val nav: NavigationGraph) {
+class AreaPointConnector(private val view: MapView, private val nav: NavigationGraph) {
     private var linkX = -1
     private var linkY = -1
     private var linkEndX = -1
@@ -37,15 +37,13 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
 
-                val link = nav.getBiLinkOrNull(mapX, mapY, 0, endX, endY, 0)
-                if (link != null) {
-                    nav.removeLink(link)
+                val area = nav.getAreaOrNull(mapX, mapY, 0)
+                if (area != null) {
+                    // TODO if area contains point at endX endY then remove
+//                    nav.removeLink(area)
+                    nav.addPoint(area, endX, endY)
                 } else {
-                    if (chainMode) {
-                        nav.createLink(mapX, mapY, 0, endX, endY, 0)
-                    } else {
-                        nav.addLink(mapX, mapY, 0, endX, endY, 0)
-                    }
+//                    nav.addArea(endX, endY, 0)
                 }
             }
             draw = false
@@ -58,9 +56,5 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
             g.color = Color.YELLOW
             g.drawLine(linkX, linkY, linkEndX, linkEndY)
         }
-    }
-
-    companion object {
-        const val chainMode = true
     }
 }

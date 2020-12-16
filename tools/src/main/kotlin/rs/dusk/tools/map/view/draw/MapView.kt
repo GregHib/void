@@ -24,7 +24,7 @@ class MapView : JPanel() {
     private val resize = ResizeListener(map)
     private val graph = GraphDrawer(this, nav)
     private val click = MouseClick(this, nav, graph, highlightLink)
-    private val link = LinkConnector(this, nav)
+    private val link = AreaPointConnector(this, nav)
 
     /*
         Offset from view 0, 0 to top left of world map
@@ -123,7 +123,7 @@ class MapView : JPanel() {
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
-        val node = nav.getNodeOrNull(mapStartX, flipMapY(mapStartY), 0)
+        val node = nav.getAreaOrNull(mapStartX, flipMapY(mapStartY), 0)
         if (node != null) {
             link.update(mapStartX, mapStartY, mouseX, mouseY)
         } else {

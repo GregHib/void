@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.view.draw
 
+import rs.dusk.tools.map.view.graph.Area
 import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Node
@@ -32,6 +33,10 @@ class GraphDrawer(
         view.repaint(view.mapToViewX(node.x), view.mapToViewY(view.flipMapY(node.y)), view.mapToImageX(1), view.mapToImageY(1))
     }
 
+    fun repaint(area: Area) {
+        view.repaint(view.mapToViewX(area.minX), view.mapToViewY(view.flipMapY(area.minY)), view.mapToImageX(area.maxX), view.mapToImageY(view.flipMapY(area.maxY)))
+    }
+
     fun draw(g: Graphics) {
         g.color = nodeColour
         nav.nodes.forEach {
@@ -57,8 +62,8 @@ class GraphDrawer(
         nav.areas.forEach {
             val shape = it.getShape(view) ?: return@forEach
             when(shape) {
-                is Polygon -> g.drawPolygon(shape)
-                is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
+                is Polygon -> g.fillPolygon(shape)
+                is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
             }
         }
     }

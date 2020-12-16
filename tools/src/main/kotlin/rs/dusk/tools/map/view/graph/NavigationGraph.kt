@@ -9,13 +9,6 @@ class NavigationGraph {
 
     fun getIndex(node: Node) = nodes.indexOf(node)
 
-    fun addArea(name: String?, plane: Int, vararg points: Pair<Int, Int>) = addArea(name, plane, points.map { Point(it.first, it.second) })
-
-    fun addArea(name: String?, plane: Int, points: List<Point>) {
-        areas.add(Area(name, plane, points))
-        changed = true
-    }
-
     fun addNode(x: Int, y: Int, z: Int): Node {
         val node = Node(x, y, z)
         addNode(node)
@@ -35,8 +28,12 @@ class NavigationGraph {
 
     fun getNodeOrNull(x: Int, y: Int, z: Int) = nodes.firstOrNull { it.x == x && it.y == y && it.z == z }
 
-    fun getLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull {
-        it.start.x == x && it.start.y == y && it.start.z == z && it.end.x == x2 && it.end.y == y2 && it.end.z == z2
+    fun getLinkOrNull(x: Int, y: Int, z: Int) = links.firstOrNull {
+        it.start.x == x && it.start.y == y && it.start.z == z
+    }
+
+    fun getAreaOrNull(x: Int, y: Int, z: Int) = areas.firstOrNull {
+        it.plane == z && it.points.any { it.x == x && it.y == y }
     }
 
     fun getBiLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull {
@@ -44,11 +41,18 @@ class NavigationGraph {
                 || (it.start.x == x2 && it.start.y == y2 && it.start.z == z2 && it.end.x == x && it.end.y == y && it.end.z == z)
     }
 
-    fun addLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Boolean {
-        val node = getNodeOrNull(x, y, z) ?: return false
-        val node2 = getNodeOrNull(x2, y2, z2) ?: return false
-        link(node, node2)
-        return true
+    fun addArea(x: Int, y: Int, z: Int): Area {
+        val area = Area(null, z, mutableListOf())
+        addPoint(area, x, y)
+        areas.add(area)
+        changed = true
+        return area
+    }
+
+    fun addPoint(area: Area, x: Int, y: Int) {
+        val point = Point(x, y)
+        area.points.add(point)
+        point.area = area
     }
 
     fun createLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Boolean {
