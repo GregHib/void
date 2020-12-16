@@ -1,4 +1,4 @@
-package rs.dusk.tools.map.view
+package rs.dusk.tools.map.view.ui
 
 import java.awt.Dimension
 import javax.swing.*

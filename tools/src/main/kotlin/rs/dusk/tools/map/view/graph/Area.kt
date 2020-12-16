@@ -13,12 +13,15 @@ data class Area(val name: String?, val plane: Int, var points: MutableList<Point
     @get:JsonIgnore
     val minX: Int
         get() = points.minBy { it.x }?.x ?: 0
+
     @get:JsonIgnore
     val minY: Int
         get() = points.minBy { it.y }?.y ?: 0
+
     @get:JsonIgnore
     val maxX: Int
         get() = points.maxBy { it.x }?.x ?: 1
+
     @get:JsonIgnore
     val maxY: Int
         get() = points.maxBy { it.y }?.y ?: 1
@@ -33,7 +36,7 @@ data class Area(val name: String?, val plane: Int, var points: MutableList<Point
             points.size == 2 -> {
                 val first = points.first()
                 val second = points.last()
-                Rectangle(first.x, first.y, second.x - first.x + 1, second.y - first.y + 1)
+                Rectangle(min(first.x, second.x), min(first.y, second.y), abs(second.x - first.x), abs(second.y - first.y))
             }
             points.isNotEmpty() -> {
                 val xPoints = points.map { p -> p.x }.toIntArray()

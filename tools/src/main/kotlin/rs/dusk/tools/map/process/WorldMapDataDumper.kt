@@ -48,7 +48,6 @@ object WorldMapDataDumper {
             pipeline.process(it)
         }
         processor.finish()
-        println("Found ${processor.links.size} unknown ${processor.count}")
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
 

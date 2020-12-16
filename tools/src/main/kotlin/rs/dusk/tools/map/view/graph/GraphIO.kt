@@ -29,8 +29,30 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
             return
         }
         val map = reader.readValue<Map<String, Any>>(file)
-        val links = (map["links"] as List<Map<String, Any>>).map { Link(it["x"] as Int, it["y"] as Int, it["z"] as Int, it["interaction"] as? List<String>, it["requirements"] as? List<String>) }
-        val areas = (map["areas"] as? List<Map<String, Any>>)?.map { Area(it["name"] as? String, it["plane"] as Int, (it["points"] as List<Map<String, Any>>).map { p -> Point(p["x"] as Int, p["y"] as Int) }.toMutableList()) }
+        val links = (map["links"] as List<Map<String, Any>>).map {
+            Link(
+                it["x"] as Int,
+                it["y"] as Int,
+                it["z"] as Int,
+                it["dx"] as? Int ?: 0,
+                it["dy"] as? Int ?: 0,
+                it["dz"] as? Int ?: 0,
+                it["interaction"] as? List<String>,
+                it["requirements"] as? List<String>
+            )
+        }
+        val areas = (map["areas"] as? List<Map<String, Any>>)?.map {
+            Area(
+                it["name"] as? String,
+                it["plane"] as Int,
+                (it["points"] as List<Map<String, Any>>).map { p ->
+                    Point(
+                        p["x"] as Int,
+                        p["y"] as Int
+                    )
+                }.toMutableList()
+            )
+        }
         nav.links.addAll(links)
         if (areas != null) {
             areas.forEach { area ->

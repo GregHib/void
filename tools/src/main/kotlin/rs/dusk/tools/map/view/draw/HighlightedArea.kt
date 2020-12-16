@@ -19,14 +19,9 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
             val shape = area.getShape() ?: continue
             val mapX = view.viewToMapX(viewX)
             val mapY = view.flipMapY(view.viewToMapY(viewY))
-            val contains = when(shape) {
-                is Polygon -> shape.intersects(mapX - 0.5, mapY - 0.5, 1.0, 1.0)
-                is Rectangle -> shape.contains(mapX, mapY)
-                else -> false
-            }
-            if(contains) {
+            if (shape.intersects(mapX - 0.5, mapY - 0.5, 1.0, 1.0)) {
                 this.shape = area.getShape(view)
-                highlighted.add(area)
+                highlighted.add(0, area)
                 draw = true
             }
         }
@@ -40,7 +35,7 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
     fun draw(g: Graphics) {
         if (draw) {
             g.color = Color.CYAN
-            when(val shape = shape) {
+            when (val shape = shape) {
                 is Polygon -> g.drawPolygon(shape)
                 is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
             }

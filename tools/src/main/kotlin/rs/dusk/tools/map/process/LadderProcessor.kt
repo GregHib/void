@@ -22,7 +22,6 @@ class LadderProcessor(
 ) : ObjectProcessor(tileDecoder, mapDecoder, xteas, cache) {
     var count = 0
     val map = mutableMapOf<Tile, MutableList<GameObjectLoc>>()
-    val links = mutableMapOf<GameObjectLoc, GameObjectLoc>()
 
     override fun process(region: Region, objects: List<GameObjectLoc>) {
         objects.forEach {
@@ -48,7 +47,10 @@ class LadderProcessor(
                     else -> continue@objs
                 }
                 if (loc != null) {
-//                    graph.createLink(tile.x, tile.y, tile.plane, loc.x, loc.y, loc.plane)
+                    val link = graph.addLink(tile.x, tile.y, tile.plane)
+                    link.dx = loc.x - tile.x
+                    link.dy = loc.y - tile.y
+                    link.dz = loc.plane - tile.plane
                 } else {
                     unknowns.add(obj)
                 }
@@ -62,6 +64,7 @@ class LadderProcessor(
             }
         }
         GraphIO(graph, "./ladders.json").save()
+        println("Found ${graph.links.size} unknown $count")
     }
 
     private fun checkForLink(tile: Tile, up: Boolean): GameObjectLoc? {
