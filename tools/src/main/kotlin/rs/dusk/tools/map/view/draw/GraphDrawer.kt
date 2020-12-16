@@ -5,6 +5,8 @@ import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Node
 import java.awt.Color
 import java.awt.Graphics
+import java.awt.Polygon
+import java.awt.Rectangle
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
@@ -53,28 +55,10 @@ class GraphDrawer(
         }
         g.color = areaColour
         nav.areas.forEach {
-            val points = it.points
-            when {
-                points.size == 1 -> {
-                    val point = points.first()
-                    val x = view.mapToViewX(point.x)
-                    val y = view.mapToViewY(view.flipMapY(point.y))
-                    g.fillRect(x, y, view.mapToViewX(1), view.mapToViewY(1))
-                }
-                points.size == 2 -> {
-                    val first = points.first()
-                    val second = points.last()
-                    val x = view.mapToViewX(first.x)
-                    val y = view.mapToViewY(view.flipMapY(first.y))
-                    val x2 = view.mapToViewX(second.x)
-                    val y2 = view.mapToViewY(view.flipMapY(second.y))
-                    g.fillRect(x, y, x2 - x, y2 - y)
-                }
-                points.isNotEmpty() -> {
-                    val xPoints = points.map { p -> view.mapToViewX(p.x) }.toIntArray()
-                    val yPoints = points.map { p -> view.mapToViewY(view.flipMapY(p.y)) }.toIntArray()
-                    g.fillPolygon(xPoints, yPoints, points.size)
-                }
+            val shape = it.getShape(view) ?: return@forEach
+            when(shape) {
+                is Polygon -> g.drawPolygon(shape)
+                is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
             }
         }
     }

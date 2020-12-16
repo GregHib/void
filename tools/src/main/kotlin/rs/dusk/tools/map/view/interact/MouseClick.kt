@@ -3,8 +3,9 @@ package rs.dusk.tools.map.view.interact
 import rs.dusk.tools.map.view.LinkSettings
 import rs.dusk.tools.map.view.NodeSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
-import rs.dusk.tools.map.view.draw.HighlightedLink
+import rs.dusk.tools.map.view.draw.HighlightedArea
 import rs.dusk.tools.map.view.draw.MapView
+import rs.dusk.tools.map.view.graph.Area
 import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Node
@@ -19,15 +20,15 @@ class MouseClick(
     private val view: MapView,
     private val nav: NavigationGraph,
     private val graph: GraphDrawer,
-    private val link: HighlightedLink
+    private val area: HighlightedArea
 ) : MouseAdapter() {
 
     override fun mouseClicked(e: MouseEvent) {
         if (SwingUtilities.isRightMouseButton(e)) {
             val popup = JPopupMenu()
             popup.addNodeOptions(e)
-            if (link.highlighted.isNotEmpty()) {
-                popup.addLinkOptions(link.highlighted)
+            if (area.highlighted.isNotEmpty()) {
+                popup.addAreaOptions(area.highlighted)
             }
             popup.show(e.component, e.x, e.y)
         }
@@ -43,7 +44,7 @@ class MouseClick(
                 node.links.forEach {
                     graph.repaint(it)
                 }
-                link.update(e.x, e.y)
+                area.update(e.x, e.y)
                 graph.repaint(node)
             }
             add(JMenuItem("Edit node")).addActionListener {
@@ -56,28 +57,16 @@ class MouseClick(
         }
     }
 
-    /**
-     * Add options to edit and remove links under mouse
-     * Link index = counter clockwise from link highlighted
-     */
-    private fun JPopupMenu.addLinkOptions(links: List<Link>) {
-        val single = links.size == 1
-        for ((index, link) in links.withIndex()) {
+    private fun JPopupMenu.addAreaOptions(areas: List<Area>) {
+        val single = areas.size == 1
+        for ((index, area) in areas.withIndex()) {
             val i = if (single) "" else " ${index + 1}"
-            add(JMenuItem("Edit link$i")).addActionListener {
-                showLinkSettings(link)
-            }
-            add(JMenuItem("Go to link$i start")).addActionListener {
-                view.centreOn(link.start.x, view.flipMapY(link.start.y))
-            }
-            add(JMenuItem("Go to link$i end")).addActionListener {
-                view.centreOn(link.end.x, view.flipMapY(link.end.y))
+            add(JMenuItem("Edit area$i")).addActionListener {
             }
         }
-        for ((index, link) in links.withIndex()) {
+        for ((index, area) in areas.withIndex()) {
             val i = if (single) "" else " ${index + 1}"
-            add(JMenuItem("Remove link$i")).addActionListener {
-                showLinkSettings(link)
+            add(JMenuItem("Remove area$i")).addActionListener {
             }
         }
     }
@@ -117,8 +106,10 @@ class MouseClick(
     }
 
     private fun populate(settings: LinkSettings, link: Link) {
-        settings.bidirectional.isSelected = link.bidirectional
-        settings.interaction.text = link.interaction ?: ""
+        val actions = link.requirements// FIXME
+        if (actions != null) {
+            settings.actionsList.addAll(actions)
+        }
         val requirements = link.requirements
         if (requirements != null) {
             settings.requirementsList.addAll(requirements)
@@ -126,11 +117,10 @@ class MouseClick(
     }
 
     private fun populate(link: Link, settings: LinkSettings) {
-        link.bidirectional = settings.bidirectional.isSelected
-        val interact = settings.interaction.text
-        link.interaction = if (interact.isNotBlank()) interact else null
-        val list = settings.requirementsList.toArray().filterIsInstance<String>().toList()
-        link.requirements = if (list.isNotEmpty()) list else null
+        val actions = settings.actionsList.toArray().filterIsInstance<String>().toList()
+        link.requirements = if (actions.isNotEmpty()) actions else null// FIXME
+        val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
+        link.requirements = if (requirements.isNotEmpty()) requirements else null
     }
 
 }

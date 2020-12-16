@@ -15,7 +15,7 @@ class MapView : JPanel() {
     private val nav = NavigationGraph()
     private val io = GraphIO(nav, "./ladders.json")
     private val highlight = HighlightedTile(this)
-    private val highlightLink = HighlightedLink(this, nav)
+    private val highlightLink = HighlightedArea(this, nav)
 
     private val drag = MouseDrag(this)
     private val zoom = MouseZoom(this, MouseZoom.ZoomType.Mouse)
