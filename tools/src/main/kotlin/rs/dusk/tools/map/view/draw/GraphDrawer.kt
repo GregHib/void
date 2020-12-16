@@ -44,6 +44,11 @@ class GraphDrawer(
                 is Polygon -> g.fillPolygon(shape)
                 is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
             }
+            val width = view.mapToImageX(1) / 2
+            val height = view.mapToImageY(1) / 2
+            it.points.forEach { point ->
+                g.fillOval(view.mapToViewX(point.x) + width / 2, view.mapToViewY(view.flipMapY(point.y)) + height / 2, width, height)
+            }
         }
     }
 }

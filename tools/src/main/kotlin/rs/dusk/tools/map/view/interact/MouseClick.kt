@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.view.interact
 
+import rs.dusk.tools.map.view.AreaPointSettings
 import rs.dusk.tools.map.view.LinkSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedArea
@@ -7,6 +8,7 @@ import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.graph.Area
 import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
+import rs.dusk.tools.map.view.graph.Point
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -25,9 +27,7 @@ class MouseClick(
         if (SwingUtilities.isRightMouseButton(e)) {
             val popup = JPopupMenu()
             popup.addLinkOptions(e)
-            if (area.highlighted.isNotEmpty()) {
-                popup.addAreaOptions(area.highlighted)
-            }
+            popup.addAreaOptions(e, area.highlighted)
             popup.show(e.component, e.x, e.y)
         }
     }
@@ -52,27 +52,56 @@ class MouseClick(
         }
     }
 
-    private fun JPopupMenu.addAreaOptions(e: MouseEvent) {
+    private fun JPopupMenu.addAreaOptions(e: MouseEvent, areas: List<Area>) {
         val mapX = view.viewToMapX(e.x)
         val mapY = view.flipMapY(view.viewToMapY(e.y))
-        add(JMenuItem("Add area")).addActionListener {
-            graph.repaint(nav.addArea(mapX, mapY, 0))
+        if (areas.isEmpty()) {
+            add(JMenuItem("Add area")).addActionListener {
+                graph.repaint(nav.addArea(mapX, mapY, 0))
+            }
+        }
+        for (area in areas) {
+            val point = area.points.firstOrNull { it.x == mapX && it.y == mapY } ?: continue
+            add(JMenuItem("Edit point")).addActionListener {
+                showAreaSettings(area, point)
+            }
+            add(JMenuItem("Remove point")).addActionListener {
+                nav.removePoint(area, point)
+                graph.repaint(area)
+            }
+            break
+        }
+        if (areas.isNotEmpty()) {
+            for ((index, area) in areas.withIndex()) {
+                add(JMenuItem("Remove area${if (index > 0) (index + 1).toString() else ""}")).addActionListener {
+                    println("Remove area $area")
+                    nav.removeArea(area)
+                    graph.repaint(area)
+                }
+            }
         }
     }
 
-    private fun JPopupMenu.addAreaOptions(areas: List<Area>) {
-        val single = areas.size == 1
-        for ((index, area) in areas.withIndex()) {
-            val i = if (single) "" else " ${index + 1}"
-            add(JMenuItem("Edit area$i")).addActionListener {
-            }
+    private fun showAreaSettings(area: Area, point: Point) {
+        val settings = AreaPointSettings()
+        populate(settings, point)
+        val result = JOptionPane.showConfirmDialog(null, settings, "Edit area point",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        if (result == JOptionPane.OK_OPTION) {
+            populate(point, settings)
+            nav.changed = true
+            graph.repaint(area)
         }
-        for ((index, area) in areas.withIndex()) {
-            val i = if (single) "" else " ${index + 1}"
-            add(JMenuItem("Remove area$i")).addActionListener {
-                nav.removeArea(area)
-            }
-        }
+    }
+
+    private fun populate(settings: AreaPointSettings, point: Point) {
+        settings.xCoord.text = point.x.toString()
+        settings.yCoord.text = point.y.toString()
+    }
+
+    private fun populate(point: Point, settings: AreaPointSettings) {
+        point.x = settings.xCoord.text.toIntOrNull() ?: point.x
+        point.y = settings.yCoord.text.toIntOrNull() ?: point.y
     }
 
     private fun showLinkSettings(link: Link) {

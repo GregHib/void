@@ -6,28 +6,26 @@ import java.awt.*
 
 class HighlightedArea(private val view: MapView, private val nav: NavigationGraph) {
 
-    private var mapX: Int = 0
-    private var mapY: Int = 0
     val highlighted: MutableList<Area> = mutableListOf()
 
     private var shape: Shape? = null
     private var draw = false
 
     fun update(viewX: Int, viewY: Int) {
-        mapX = view.viewToMapX(viewX)
-        mapY = view.flipMapY(view.viewToMapY(viewY))
         draw = false
         highlighted.clear()
         repaint()
         for (area in nav.areas) {
-            val shape = area.getShape(view) ?: continue
+            val shape = area.getShape() ?: continue
+            val mapX = view.viewToMapX(viewX)
+            val mapY = view.flipMapY(view.viewToMapY(viewY))
             val contains = when(shape) {
-                is Polygon -> shape.contains(viewX, viewY)
-                is Rectangle -> shape.contains(viewX, viewY)
+                is Polygon -> shape.intersects(mapX - 0.5, mapY - 0.5, 1.0, 1.0)
+                is Rectangle -> shape.contains(mapX, mapY)
                 else -> false
             }
             if(contains) {
-                this.shape = shape
+                this.shape = area.getShape(view)
                 highlighted.add(area)
                 draw = true
             }

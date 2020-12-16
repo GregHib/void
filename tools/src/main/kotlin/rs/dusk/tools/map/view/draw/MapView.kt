@@ -123,8 +123,8 @@ class MapView : JPanel() {
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
-        val node = nav.getAreaOrNull(mapStartX, flipMapY(mapStartY), 0)
-        if (node != null) {
+        val point = nav.getPointOrNull(mapStartX, flipMapY(mapStartY), 0)
+        if (point != null) {
             link.update(mapStartX, mapStartY, mouseX, mouseY)
         } else {
             this.offsetX = offsetX

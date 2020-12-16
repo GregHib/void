@@ -37,13 +37,12 @@ class AreaPointConnector(private val view: MapView, private val nav: NavigationG
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
 
-                val area = nav.getAreaOrNull(mapX, mapY, 0)
-                if (area != null) {
-                    // TODO if area contains point at endX endY then remove
-//                    nav.removeLink(area)
-                    nav.addPoint(area, endX, endY)
+                val start = nav.getPointOrNull(mapX, mapY, 0) ?: nav.addArea(mapX, mapY, 0).points.first()
+                val end = nav.getPointOrNull(endX, endY, 0)
+                if (end == null) {
+                    nav.addPoint(start, endX, endY)
                 } else {
-//                    nav.addArea(endX, endY, 0)
+                    nav.removePoint(start.area, end)
                 }
             }
             draw = false

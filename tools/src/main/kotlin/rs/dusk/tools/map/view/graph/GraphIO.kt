@@ -33,6 +33,11 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
         val areas = (map["areas"] as? List<Map<String, Any>>)?.map { Area(it["name"] as? String, it["plane"] as Int, (it["points"] as List<Map<String, Any>>).map { p -> Point(p["x"] as Int, p["y"] as Int) }.toMutableList()) }
         nav.links.addAll(links)
         if (areas != null) {
+            areas.forEach { area ->
+                area.points.forEach {
+                    it.area = area
+                }
+            }
             nav.areas.addAll(areas)
         }
     }

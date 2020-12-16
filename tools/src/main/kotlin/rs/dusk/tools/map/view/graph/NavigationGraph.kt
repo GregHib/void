@@ -24,8 +24,14 @@ class NavigationGraph {
 
     fun getLinkOrNull(x: Int, y: Int, z: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z }
 
-    fun getAreaOrNull(x: Int, y: Int, z: Int) = areas.firstOrNull {
-        it.plane == z && it.points.any { p -> p.x == x && p.y == y }
+    fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
+        for (area in areas) {
+            if (area.plane != z) {
+                continue
+            }
+            return area.points.firstOrNull { it.x == x && it.y == y } ?: continue
+        }
+        return null
     }
 
     fun addArea(x: Int, y: Int, z: Int): Area {
@@ -43,6 +49,15 @@ class NavigationGraph {
         changed = true
     }
 
+    fun addPoint(after: Point, x: Int, y: Int) {
+        val area = after.area
+        val index = area.points.indexOf(after) + 1
+        val point = Point(x, y)
+        area.points.add(index, point)
+        point.area = area
+        changed = true
+    }
+
     fun updateLink(original: Link, link: Link) {
         links[links.indexOf(original)] = link
         changed = true
@@ -50,6 +65,11 @@ class NavigationGraph {
 
     fun removeArea(area: Area) {
         areas.remove(area)
+        changed = true
+    }
+
+    fun removePoint(area: Area, point: Point) {
+        area.points.remove(point)
         changed = true
     }
 
