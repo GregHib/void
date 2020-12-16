@@ -19,7 +19,7 @@ class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWh
         }
         val offset = e.unitsToScroll.coerceIn(-1, 1)
         val previous = this.scale
-        this.scale = (this.scale - offset).coerceIn(1, 10)
+        this.scale = (this.scale - offset).coerceIn(ZOOM_MIN, ZOOM_MAX)
         if (this.scale != previous) {
             view.updateZoom(e.x, e.y)
             when (type) {
@@ -32,6 +32,11 @@ class MouseZoom(private val view: MapView, private val type: ZoomType) : MouseWh
     enum class ZoomType {
         Mouse,
         Centre
+    }
+
+    companion object {
+        private const val ZOOM_MIN = 1
+        private const val ZOOM_MAX = 50
     }
 
 }

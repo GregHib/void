@@ -1,11 +1,13 @@
 package rs.dusk.tools.map.view.interact
 
 import rs.dusk.tools.map.view.LinkSettings
+import rs.dusk.tools.map.view.NodeSettings
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedLink
 import rs.dusk.tools.map.view.draw.MapView
 import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
+import rs.dusk.tools.map.view.graph.Node
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -44,6 +46,9 @@ class MouseClick(
                 link.update(e.x, e.y)
                 graph.repaint(node)
             }
+            add(JMenuItem("Edit node")).addActionListener {
+                showNodeSettings(node)
+            }
         } else {
             add(JMenuItem("Add node")).addActionListener {
                 graph.repaint(nav.addNode(mapX, mapY, 0))
@@ -62,6 +67,12 @@ class MouseClick(
             add(JMenuItem("Edit link$i")).addActionListener {
                 showLinkSettings(link)
             }
+            add(JMenuItem("Go to link$i start")).addActionListener {
+                view.centreOn(link.start.x, view.flipMapY(link.start.y))
+            }
+            add(JMenuItem("Go to link$i end")).addActionListener {
+                view.centreOn(link.end.x, view.flipMapY(link.end.y))
+            }
         }
         for ((index, link) in links.withIndex()) {
             val i = if (single) "" else " ${index + 1}"
@@ -69,6 +80,29 @@ class MouseClick(
                 showLinkSettings(link)
             }
         }
+    }
+
+    private fun showNodeSettings(node: Node) {
+        val settings = NodeSettings()
+        populate(settings, node)
+        val result = JOptionPane.showConfirmDialog(null, settings, "Edit node",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        if (result == JOptionPane.OK_OPTION) {
+            val newNode = populate(node, settings)
+            nav.updateNode(node, newNode)
+            graph.repaint(node)
+            graph.repaint(newNode)
+        }
+    }
+
+    private fun populate(settings: NodeSettings, node: Node) {
+        settings.xCoord.text = node.x.toString()
+        settings.yCoord.text = node.y.toString()
+        settings.zCoord.text = node.z.toString()
+    }
+
+    private fun populate(node: Node, settings: NodeSettings): Node {
+        return Node(settings.xCoord.text.toIntOrNull() ?: node.x, settings.yCoord.text.toIntOrNull() ?: node.y, settings.zCoord.text.toIntOrNull() ?: node.z)
     }
 
     private fun showLinkSettings(link: Link) {

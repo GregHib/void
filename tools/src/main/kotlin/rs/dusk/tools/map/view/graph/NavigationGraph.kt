@@ -4,9 +4,17 @@ class NavigationGraph {
 
     val nodes = mutableListOf<Node>()
     val links = mutableSetOf<Link>()
+    val areas = mutableSetOf<Area>()
     var changed = false
 
     fun getIndex(node: Node) = nodes.indexOf(node)
+
+    fun addArea(name: String?, plane: Int, vararg points: Pair<Int, Int>) = addArea(name, plane, points.map { Point(it.first, it.second) })
+
+    fun addArea(name: String?, plane: Int, points: List<Point>) {
+        areas.add(Area(name, plane, points))
+        changed = true
+    }
 
     fun addNode(x: Int, y: Int, z: Int): Node {
         val node = Node(x, y, z)
@@ -79,6 +87,19 @@ class NavigationGraph {
         link.start.links.remove(link)
         link.end.links.remove(link)
         links.remove(link)
+        changed = true
+    }
+
+    fun updateNode(original: Node, node: Node) {
+        original.links.forEach { link ->
+            if (link.start == original) {
+                link.start = node
+            } else if (link.end == original) {
+                link.end = node
+            }
+        }
+        node.links.addAll(original.links)
+        nodes[getIndex(original)] = node
         changed = true
     }
 

@@ -13,7 +13,7 @@ import javax.swing.SwingUtilities
 class MapView : JPanel() {
 
     private val nav = NavigationGraph()
-    private val io = GraphIO(nav)
+    private val io = GraphIO(nav, "./ladders.json")
     private val highlight = HighlightedTile(this)
     private val highlightLink = HighlightedLink(this, nav)
 

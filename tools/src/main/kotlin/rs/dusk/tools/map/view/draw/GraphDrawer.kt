@@ -16,6 +16,7 @@ class GraphDrawer(
 
     private val nodeColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
     private val linkColour = Color(1.0f, 0.0f, 0.0f, 0.5f)
+    private val areaColour = Color(0.0f, 1.0f, 0.0f, 0.1f)
 
     fun repaint(link: Link) {
         val linkX = view.mapToViewX(link.start.x)
@@ -48,6 +49,32 @@ class GraphDrawer(
             g.drawArrowHead(startX, startY, endX, endY, halfX * 3, halfY / 2)
             if(it.bidirectional) {
                 g.drawArrowHead(endX, endY, startX, startY, halfX * 3, halfY / 2)
+            }
+        }
+        g.color = areaColour
+        nav.areas.forEach {
+            val points = it.points
+            when {
+                points.size == 1 -> {
+                    val point = points.first()
+                    val x = view.mapToViewX(point.x)
+                    val y = view.mapToViewY(view.flipMapY(point.y))
+                    g.fillRect(x, y, view.mapToViewX(1), view.mapToViewY(1))
+                }
+                points.size == 2 -> {
+                    val first = points.first()
+                    val second = points.last()
+                    val x = view.mapToViewX(first.x)
+                    val y = view.mapToViewY(view.flipMapY(first.y))
+                    val x2 = view.mapToViewX(second.x)
+                    val y2 = view.mapToViewY(view.flipMapY(second.y))
+                    g.fillRect(x, y, x2 - x, y2 - y)
+                }
+                points.isNotEmpty() -> {
+                    val xPoints = points.map { p -> view.mapToViewX(p.x) }.toIntArray()
+                    val yPoints = points.map { p -> view.mapToViewY(view.flipMapY(p.y)) }.toIntArray()
+                    g.fillPolygon(xPoints, yPoints, points.size)
+                }
             }
         }
     }

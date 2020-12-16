@@ -9,4 +9,7 @@ data class GameObjectLoc(
     val plane: Int,
     val type: Int,
     val rotation: Int
-)
+) {
+    val x = regionX * 64 + localX
+    val y = regionY * 64 + localY
+}
