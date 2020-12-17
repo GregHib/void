@@ -158,9 +158,9 @@ class LadderProcessor(
                 if (!def.climb(true) && !def.climb(false) && def.climb()) {
                     val loc = checkForClimb(obj, tile, width, height)
                     if (loc != null) {
-                        var link = graph.createLink(tile.x, tile.y, tile.plane, loc.tile.x, loc.tile.y, loc.tile.plane)
+                        var link = graph.createJointLink(tile.x, tile.y, tile.plane, loc.tile.x, loc.tile.y, loc.tile.plane)
                         link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption()}")
-                        link = graph.createLink(loc.tile.x, loc.tile.y, loc.tile.plane, tile.x, tile.y, tile.plane)
+                        link = graph.createJointLink(loc.tile.x, loc.tile.y, loc.tile.plane, tile.x, tile.y, tile.plane)
                         link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption()}")
                     } else {
                         unknowns.add(obj)
@@ -184,16 +184,15 @@ class LadderProcessor(
 
     private fun link(graph: NavigationGraph, obj: GameObject, loc: GameObject, up: Boolean) {
         // TODO use collision and canReach to determine proper offset
-        if(obj.id == 18107) {
-            val output = linking.deltaBetween(obj, loc)
-            if (output == null) {
-                println("Unknown $obj $loc")
-            }
+        val output = linking.deltaBetween(obj, loc)
+        if (output == null) {
+            println("Unknown $obj $loc")
+        } else {
+            var link = graph.createLink(obj.tile.x, obj.tile.y, obj.tile.plane, output.x, output.y, output.plane)
+            link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption(up)}")
+            link = graph.createLink(loc.tile.x, loc.tile.y, loc.tile.plane, -output.x, -output.y, -output.plane)
+            link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption(!up)}")
         }
-        var link = graph.createLink(obj.tile.x, obj.tile.y, obj.tile.plane, loc.tile.x, loc.tile.y, loc.tile.plane)
-        link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption(up)}")
-        link = graph.createLink(loc.tile.x, loc.tile.y, loc.tile.plane, obj.tile.x, obj.tile.y, obj.tile.plane)
-        link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption(!up)}")
     }
 
     private fun checkForLadder(tile: Tile, width: Int, height: Int, up: Boolean): GameObject? {

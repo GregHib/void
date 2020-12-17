@@ -22,8 +22,16 @@ class NavigationGraph {
 
     fun createLink(x: Int, y: Int, z: Int) = getLinkOrNull(x, y, z) ?: addLink(x, y, z)
 
-    fun createLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
-        val link = getLinkOrNull(x, y, z, x2, y2, z2) ?: addLink(x, y, z)
+    fun createLink(x: Int, y: Int, z: Int, dx: Int, dy: Int, dz: Int): Link {
+        val link = getLinkOrNull(x, y, z, dx, dy, dz) ?: addLink(x, y, z)
+        link.dx = dx
+        link.dy = dy
+        link.dz = dz
+        return link
+    }
+
+    fun createJointLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
+        val link = getJointLinkOrNull(x, y, z, x2, y2, z2) ?: addLink(x, y, z)
         link.dx = x2 - x
         link.dy = y2 - y
         link.dz = z2 - z
@@ -40,7 +48,9 @@ class NavigationGraph {
         changed = true
     }
 
-    fun getLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == x2 - x && it.dy == y2 - y && it.dz == z2 - z }
+    fun getLinkOrNull(x: Int, y: Int, z: Int, dx: Int, dy: Int, dz: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == dx && it.dy == dy && it.dz == dz }
+
+    fun getJointLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == x2 - x && it.dy == y2 - y && it.dz == z2 - z }
 
     fun getLinkOrNull(x: Int, y: Int, z: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z }
 

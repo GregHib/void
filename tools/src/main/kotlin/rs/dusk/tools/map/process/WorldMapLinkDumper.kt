@@ -21,8 +21,8 @@ object WorldMapLinkDumper {
             val x2 = vals[4].toInt()
             val y2 = vals[5].toInt()
             val z2 = vals[6].toInt()
-            graph.createLink(x, y, z, x2, y2, z2)
-            graph.createLink(x2, y2, z2, x, y, z)
+            graph.createJointLink(x, y, z, x2, y2, z2)
+            graph.createJointLink(x2, y2, z2, x, y, z)
         }
         GraphIO(graph, "./worldmaplinks.json").save()
     }
