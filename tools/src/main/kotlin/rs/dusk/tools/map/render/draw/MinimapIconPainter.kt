@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.render.draw
 
+import rs.dusk.buffer.read.BufferReader
 import rs.dusk.cache.Cache
 import rs.dusk.cache.Indices.DEFAULTS
 import rs.dusk.cache.Indices.WORLD_MAP
@@ -9,7 +10,6 @@ import rs.dusk.cache.definition.data.IndexedSprite
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.cache.definition.decoder.WorldMapDecoder
-import rs.dusk.core.io.read.BufferReader
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectLoc
