@@ -15,8 +15,15 @@ object WorldMapLinkDumper {
         val graph = NavigationGraph()
         regex.findAll(script.readText()).forEach {
             val vals = it.groupValues
-//            graph.createLink(vals[1].toInt(), vals[2].toInt(), vals[3].toInt(), vals[4].toInt(), vals[5].toInt(), vals[6].toInt())
+            val x = vals[1].toInt()
+            val y = vals[2].toInt()
+            val z = vals[3].toInt()
+            val x2 = vals[4].toInt()
+            val y2 = vals[5].toInt()
+            val z2 = vals[6].toInt()
+            graph.addLink(x, y, z, x2, y2, z2)
+            graph.addLink(x2, y2, z2, x, y, z)
         }
-        GraphIO(graph).save()
+        GraphIO(graph, "./worldmaplinks.json").save()
     }
 }

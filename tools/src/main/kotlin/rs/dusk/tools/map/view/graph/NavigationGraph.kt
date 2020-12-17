@@ -2,13 +2,31 @@ package rs.dusk.tools.map.view.graph
 
 class NavigationGraph {
 
-    val links = mutableListOf<Link>()
+    val links = mutableSetOf<Link>()
     val areas = mutableSetOf<Area>()
     var changed = false
 
     fun addLink(x: Int, y: Int, z: Int): Link {
         val link = Link(x, y, z)
         addLink(link)
+        return link
+    }
+
+    fun addLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
+        val link = addLink(x, y, z)
+        link.dx = x2 - x
+        link.dy = y2 - y
+        link.dz = z2 - z
+        return link
+    }
+
+    fun createLink(x: Int, y: Int, z: Int) = getLinkOrNull(x, y, z) ?: addLink(x, y, z)
+
+    fun createLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
+        val link = getLinkOrNull(x, y, z, x2, y2, z2) ?: addLink(x, y, z)
+        link.dx = x2 - x
+        link.dy = y2 - y
+        link.dz = z2 - z
         return link
     }
 
@@ -21,6 +39,8 @@ class NavigationGraph {
         links.remove(link)
         changed = true
     }
+
+    fun getLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == x2 - x && it.dy == y2 - y && it.dz == z2 - z }
 
     fun getLinkOrNull(x: Int, y: Int, z: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z }
 
@@ -59,7 +79,8 @@ class NavigationGraph {
     }
 
     fun updateLink(original: Link, link: Link) {
-        links[links.indexOf(original)] = link
+        links.remove(original)
+        links.add(link)
         changed = true
     }
 
