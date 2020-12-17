@@ -1,0 +1,14 @@
+<configuration>
+    <property name="ENCODER_PATTERN"
+              value="[%level] [%logger{0}:%line#%method] [%d{M.dd.yyyy hh:mm:ss.SSS}] [%thread] : %msg%n"/>
+    <statusListener class="ch.qos.logback.core.status.NopStatusListener"/>
+
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${ENCODER_PATTERN}</pattern>
+        </encoder>
+    </appender>
+    <root level="info">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>

@@ -1,6 +1,11 @@
 package rs.dusk.engine.map.collision
 
 import org.koin.dsl.module
+import rs.dusk.engine.entity.Registered
+import rs.dusk.engine.entity.Unregistered
+import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.event.priority
+import rs.dusk.engine.event.then
 import rs.dusk.engine.map.Tile
 
 /**
@@ -12,7 +17,16 @@ data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) :
 
 @Suppress("USELESS_CAST")
 val collisionModule = module {
-    single(createdAtStart = true) { GameObjectCollision(get()) }
+    single(createdAtStart = true) {
+        GameObjectCollision(get()).apply {
+            Registered priority 9 where { entity is GameObject } then {
+                modifyCollision(entity as GameObject, GameObjectCollision.ADD_MASK)
+            }
+            Unregistered priority 9 where { entity is GameObject } then {
+                modifyCollision(entity as GameObject, GameObjectCollision.REMOVE_MASK)
+            }
+        }
+    }
     single(createdAtStart = true) { CharacterCollision(get()) }
     single { Collisions() }
     single { CollisionReader(get()) }

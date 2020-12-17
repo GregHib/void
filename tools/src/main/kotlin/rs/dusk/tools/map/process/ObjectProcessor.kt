@@ -5,6 +5,7 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectLoc
 import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
 import rs.dusk.engine.map.region.obj.Xteas
+import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.engine.map.region.tile.TileDecoder
 import rs.dusk.tools.Pipeline
 
@@ -27,8 +28,8 @@ abstract class ObjectProcessor(
 
         val objects = mapDecoder.read(region.x, region.y, locationData, tiles)
         if(objects != null)
-        process(region, objects)
+        process(region, tiles, objects)
     }
 
-    abstract fun process(region: Region, objects: List<GameObjectLoc>)
+    abstract fun process(region: Region, tiles: Array<Array<Array<TileData?>>>, objects: List<GameObjectLoc>)
 }

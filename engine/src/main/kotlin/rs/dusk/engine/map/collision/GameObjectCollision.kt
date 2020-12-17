@@ -1,22 +1,9 @@
 package rs.dusk.engine.map.collision
 
 import rs.dusk.engine.entity.Direction
-import rs.dusk.engine.entity.Registered
-import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.event.priority
-import rs.dusk.engine.event.then
 
 class GameObjectCollision(val collisions: Collisions) {
-
-    init {
-        Registered priority 9 where { entity is GameObject } then {
-            modifyCollision(entity as GameObject, ADD_MASK)
-        }
-        Unregistered priority 9 where { entity is GameObject } then {
-            modifyCollision(entity as GameObject, REMOVE_MASK)
-        }
-    }
 
     fun modifyCollision(gameObject: GameObject, changeType: Int) {
         if (gameObject.def.solid == 0) {
@@ -142,8 +129,8 @@ class GameObjectCollision(val collisions: Collisions) {
     fun Direction.flag(motion: Int) = applyMotion(flag(), motion)
 
     companion object {
-        private const val ADD_MASK = 0
-        private const val REMOVE_MASK = 1
-        private const val SET_MASK = 2
+        const val ADD_MASK = 0
+        const val REMOVE_MASK = 1
+        const val SET_MASK = 2
     }
 }

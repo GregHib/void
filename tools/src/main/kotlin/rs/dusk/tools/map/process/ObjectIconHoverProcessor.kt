@@ -9,6 +9,7 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectLoc
 import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
 import rs.dusk.engine.map.region.obj.Xteas
+import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.engine.map.region.tile.TileDecoder
 
 class ObjectIconHoverProcessor(
@@ -21,7 +22,7 @@ class ObjectIconHoverProcessor(
     private val scriptDecoder: ClientScriptDecoder
 ) : ObjectProcessor(tileDecoder, mapDecoder, xteas, cache) {
     val data = mutableMapOf<GameObjectLoc, List<String>>()
-    override fun process(region: Region, objects: List<GameObjectLoc>) {
+    override fun process(region: Region, tiles: Array<Array<Array<TileData?>>>, objects: List<GameObjectLoc>) {
         objects.forEach { obj ->
             val def = objectDecoder.get(obj.id)
             val mapDefId = def.mapDefinitionId

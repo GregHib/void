@@ -1,6 +1,7 @@
 package rs.dusk.tools.map.process
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import rs.dusk.cache.Cache
 import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.decoder.ClientScriptDecoder
@@ -8,6 +9,7 @@ import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
+import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
 import rs.dusk.engine.map.region.obj.Xteas
@@ -22,13 +24,19 @@ object WorldMapDataDumper {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, objectMapDecoderModule)
+            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, objectMapDecoderModule,
+                module {
+                    single(override = true) { ObjectDecoder(get(), true, false, false) }
+                    single { ObjectDefinitions(get(), emptyMap(), emptyMap()) }
+                }
+            )
+
         }.koin
 
+        val objectDecoder: ObjectDecoder = koin.get()
         val cache: Cache = koin.get()
         val xteas: Xteas = koin.get()
         val tileDecoder = TileDecoder()
-        val objectDecoder: ObjectDecoder = ObjectDecoder(cache, true, false, false)
         val mapObjDecoder: GameObjectMapDecoder = koin.get()
         val mapInfoDecoder: WorldMapInfoDecoder = koin.get()
         val scriptDecoder: ClientScriptDecoder = ClientScriptDecoder(cache)
