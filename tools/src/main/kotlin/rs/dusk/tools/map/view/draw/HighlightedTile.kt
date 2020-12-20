@@ -1,26 +1,19 @@
 package rs.dusk.tools.map.view.draw
 
-import rs.dusk.engine.map.region.Region
+import rs.dusk.tools.map.view.ui.OptionsPane
 import java.awt.Color
-import java.awt.Font
 import java.awt.Graphics
-import java.awt.font.FontRenderContext
-import java.awt.geom.AffineTransform
 
 /**
  * Highlights tile under mouse
  */
-class HighlightedTile(private val view: MapView) {
+class HighlightedTile(private val view: MapView, private val options: OptionsPane) {
     private var squareX = 0
     private var squareY = 0
     private var squareW = 0
     private var squareH = 0
     private var mapX = 0
     private var mapY = 0
-    private val font = Font("default", Font.BOLD, 14)
-    private var coordinates = "Region: 0 X: 0 Y: 0"
-    private val transform = AffineTransform()
-    private val frc = FontRenderContext(transform, true, true)
 
     fun update(viewX: Int, viewY: Int) {
         val mapX = view.viewToMapX(viewX)
@@ -36,21 +29,18 @@ class HighlightedTile(private val view: MapView) {
             squareW = view.mapToImageX(1)
             squareH = view.mapToImageY(1)
             view.repaint(squareX, squareY, squareW, squareH)
-            coordinates = "Region: ${Region.getId(view.mapToRegionX(mapX), view.mapToRegionY(view.flipMapY(mapY)))} X: $mapX Y: ${view.flipMapY(mapY)}"
-            val bounds = font.getStringBounds(coordinates, frc)
-            view.repaint(10, 10, bounds.width.toInt(), bounds.height.toInt())
+            update()
         }
     }
 
-    val colour = Color(0.0f, 0.0f, 0.0f, 0.5f)
+    fun update() {
+        options.updatePosition(mapX, view.flipMapY(mapY), view.plane)
+    }
+
+    private val colour = Color(0.0f, 0.0f, 0.0f, 0.5f)
 
     fun draw(g: Graphics) {
         g.color = colour
         g.fillRect(squareX, squareY, squareW, squareH)
-        g.font = font
-        g.color = Color.BLACK
-        g.drawString(coordinates, 11, 21)
-        g.color = Color.YELLOW
-        g.drawString(coordinates, 10, 20)
     }
 }

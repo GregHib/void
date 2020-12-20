@@ -4,17 +4,20 @@ import rs.dusk.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import rs.dusk.tools.map.view.graph.GraphIO
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.interact.*
+import rs.dusk.tools.map.view.ui.OptionsPane
 import java.awt.Color
 import java.awt.Dimension
+import java.awt.FlowLayout
 import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
 class MapView : JPanel() {
 
+    private val options = OptionsPane(this)
     private val nav = NavigationGraph()
     private val io = GraphIO(nav, "./ladders.json")
-    private val highlight = HighlightedTile(this)
+    private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, nav)
 
     private val drag = MouseDrag(this)
@@ -31,6 +34,8 @@ class MapView : JPanel() {
      */
     var offsetX = 0
     var offsetY = 0
+    var plane = 0
+        private set
 
     /*
         View bounds
@@ -47,8 +52,10 @@ class MapView : JPanel() {
         get() = height - debugBorder * 2
 
     init {
+        layout = FlowLayout(FlowLayout.LEFT)
         SwingUtilities.invokeLater {
             centreOn(3087, flipMapY(3500))
+            options.updatePosition(3087, 3500, 0)
         }
         addMouseListener(click)
         addMouseListener(drag)
@@ -56,6 +63,7 @@ class MapView : JPanel() {
         addMouseWheelListener(zoom)
         addMouseMotionListener(hover)
         addComponentListener(resize)
+        add(options)
         io.start()
         repaint()
     }
@@ -66,6 +74,14 @@ class MapView : JPanel() {
     fun updateZoom(x: Int, y: Int) {
         highlight.update(x, y)
         area.update(x, y)
+    }
+
+    fun updatePlane(plane: Int) {
+        if (this.plane != plane) {
+            this.plane = plane
+            highlight.update()
+            repaint()
+        }
     }
 
     fun getCentreX() = minX + viewWidth / 2
@@ -147,14 +163,22 @@ class MapView : JPanel() {
      * Move [mapY], [mapY] to the center of the view
      * @param mapY Flipped y map coordinate
      */
-    fun centreOn(mapX: Int, mapY: Int) = align(width / 2, height / 2, mapX, mapY)
+    fun centreOn(mapX: Int, mapY: Int, plane: Int = this.plane) = align(width / 2, height / 2, mapX, mapY, plane)
 
     /**
      * Aligns the [mapX], [mapY] with a position in the view [viewX], [viewY]
      */
-    fun align(viewX: Int, viewY: Int, mapX: Int, mapY: Int) {
+    fun align(viewX: Int, viewY: Int, mapX: Int, mapY: Int, plane: Int = this.plane) {
         offsetX = viewX - mapToImageX(mapX)
         offsetY = viewY - mapToImageY(mapY)
+        this.plane = plane
+        update()
+    }
+
+    fun offset(mapX: Int, mapY: Int, plane: Int = 0) {
+        offsetX += mapToImageX(mapX)
+        offsetY += mapToImageY(mapY)
+        this.plane += plane
         update()
     }
 

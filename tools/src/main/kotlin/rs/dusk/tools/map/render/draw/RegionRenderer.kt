@@ -30,11 +30,6 @@ class RegionRenderer(
 
         manager.loadTiles(regionX, regionY)
         settings.set(regionX, regionY)
-        val img = manager.renderRegion(settings)
-
-        val overlay = BufferedImage(manager.width * manager.scale, manager.height * manager.scale, BufferedImage.TYPE_INT_ARGB)
-        val o = overlay.graphics as Graphics2D
-
         val objects = mutableMapOf<Int, List<GameObjectLoc>?>()
         for (rX in content.x - 1..content.x + 1) {
             for (rY in content.y - 1..content.y + 1) {
@@ -43,20 +38,28 @@ class RegionRenderer(
             }
         }
 
-        val painter = ObjectPainter(objectDecoder, spriteDecoder, mapSceneDecoder)
-        painter.paint(o, Region(content.x, content.y), objects)
+        for (plane in 0 until 4) {
+            val img = manager.renderRegion(settings, plane)
 
-        loader.paint(o, content, 0, objects)
-        val g = img.graphics
-        g.drawImage(overlay, 0, 1 + overlay.height, overlay.width, -overlay.height, null)
+            val overlay = BufferedImage(manager.width * manager.scale, manager.height * manager.scale, BufferedImage.TYPE_INT_ARGB)
+            val o = overlay.graphics as Graphics2D
 
-        try {
-            val image = img.getSubimage(256, 257, 256, 256)
-            if (isNotBlank(image)) {
-                ImageIO.write(image, "png", File("./images/${content.id}.png"))
+            val painter = ObjectPainter(objectDecoder, spriteDecoder, mapSceneDecoder)
+            painter.plane = plane
+            painter.paint(o, Region(content.x, content.y), objects)
+
+            loader.paint(o, content, plane, objects)
+            val g = img.graphics
+            g.drawImage(overlay, 0, 1 + overlay.height, overlay.width, -overlay.height, null)
+
+            try {
+                val image = img.getSubimage(256, 257, 256, 256)
+                if (isNotBlank(image)) {
+                    ImageIO.write(image, "png", File("./images/$plane/${content.id}.png"))
+                }
+            } catch (e: IOException) {
+                e.printStackTrace()
             }
-        } catch (e: IOException) {
-            e.printStackTrace()
         }
         println("Written ${content.id} in ${System.currentTimeMillis() - start}ms")
     }

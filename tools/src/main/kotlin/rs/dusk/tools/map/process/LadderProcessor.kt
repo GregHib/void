@@ -188,6 +188,7 @@ class LadderProcessor(
         if (output == null) {
             println("Unknown $obj $loc")
         } else {
+
             var link = graph.createLink(obj.tile.x, obj.tile.y, obj.tile.plane, output.x, output.y, output.plane)
             link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption(up)}")
             link = graph.createLink(loc.tile.x, loc.tile.y, loc.tile.plane, -output.x, -output.y, -output.plane)

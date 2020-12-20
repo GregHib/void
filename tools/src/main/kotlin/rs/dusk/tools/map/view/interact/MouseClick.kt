@@ -28,17 +28,17 @@ class MouseClick(
             val popup = JPopupMenu()
             val mapX = view.viewToMapX(e.x)
             val mapY = view.flipMapY(view.viewToMapY(e.y))
-            val link = nav.getLinkOrNull(mapX, mapY, 0)
+            val link = nav.getLinkOrNull(mapX, mapY, view.plane)
             val areas = area.highlighted
             val point = getPoint(areas, mapX, mapY)
             if (link == null) {
                 popup.add(JMenuItem("Add link")).addActionListener {
-                    graph.repaint(nav.addLink(mapX, mapY, 0))
+                    graph.repaint(nav.addLink(mapX, mapY, view.plane))
                 }
             }
             if (areas.isEmpty()) {
                 popup.add(JMenuItem("Add area")).addActionListener {
-                    graph.repaint(nav.addArea(mapX, mapY, 0))
+                    graph.repaint(nav.addArea(mapX, mapY, view.plane))
                 }
             }
             if (link != null) {
@@ -46,7 +46,7 @@ class MouseClick(
                     showLinkSettings(link)
                 }
                 popup.add(JMenuItem("Go to link target")).addActionListener {
-                    view.centreOn(link.x + link.dx, view.flipMapY(link.y + link.dy))
+                    view.offset(link.dx, link.dy, link.dz)
                 }
             }
             if (point != null) {

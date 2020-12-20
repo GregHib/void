@@ -52,11 +52,14 @@ object WorldMapDumper {
         val mapSceneDecoder: MapSceneDecoder = koin.get()
 
         File("./images/").mkdir()
+        for (i in 0 until 4) {
+            File("./images/$i/").mkdir()
+        }
 
         val loader = MinimapIconPainter(objectDecoder, worldMapDecoder, worldMapInfoDecoder, spriteDecoder)
         loader.startup(cache)
         val manager = RegionManager(cache, tileDecoder, xteas, mapObjDecoder, 3)
-        val settings = MapTileSettings(2, underlayDefinitions, overlayDefinitions, textureDefinitions, manager = manager)
+        val settings = MapTileSettings(4, underlayDefinitions, overlayDefinitions, textureDefinitions, manager = manager)
 
         val pipeline = Pipeline<Region>()
         pipeline.add(RegionRenderer(manager, objectDecoder, spriteDecoder, mapSceneDecoder, loader, settings))

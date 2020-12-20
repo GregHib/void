@@ -20,7 +20,7 @@ class ObjectPainter(
 
     var offsetX = 0
     var offsetY = 0
-    val plane = 0
+    var plane = 0
 
     val drawWalls = true
     val drawMapScenes = true
@@ -28,11 +28,11 @@ class ObjectPainter(
     fun getScale() = 4
 
     fun canvasX(x: Int): Int {
-        return (x) * 4
+        return x * getScale()
     }
 
     fun canvasY(y: Int): Int {
-        return (y) * 4
+        return y * getScale()
     }
 
     private fun Graphics2D.drawLine(x: Int, y: Int, xOffset: Int, yOffset: Int, width: Int, height: Int, colour: Int) {

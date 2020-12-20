@@ -27,7 +27,7 @@ class GraphDrawer(
     fun draw(g: Graphics) {
         g.color = linkColour
         nav.links.forEach {
-            if (it.z != 0) {
+            if (it.z != view.plane) {
                 return@forEach
             }
             val width = view.mapToImageX(1)
@@ -36,7 +36,7 @@ class GraphDrawer(
         }
         g.color = areaColour
         nav.areas.forEach {
-            if (it.plane != 0) {
+            if (it.plane != view.plane) {
                 return@forEach
             }
             val shape = it.getShape(view) ?: return@forEach
