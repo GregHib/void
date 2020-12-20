@@ -42,30 +42,34 @@ data class RectangleTargetStrategy(
         val destEndY = tile.y + this.size.height
         if (currentX == destEndX && blockFlag and EAST == 0) {
             for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
-                if (!collisions.check(destEndX - 1, y, plane, Direction.EAST.flag())) {
+                if (free(destEndX - 1, y, plane, Direction.EAST)) {
                     return true
                 }
             }
         } else if (tile.x == srcEndX && blockFlag and WEST == 0) {
             for (y in max(currentY, tile.y) until min(destEndY, srcEndY)) {
-                if (!collisions.check(tile.x, y, plane, Direction.WEST.flag())) {
+                if (free(tile.x, y, plane, Direction.WEST)) {
                     return true
                 }
             }
         } else if (currentY == destEndY && blockFlag and NORTH == 0) {
             for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
-                if (!collisions.check(x, destEndY - 1, plane, Direction.NORTH.flag())) {
+                if (free(x, destEndY - 1, plane, Direction.NORTH)) {
                     return true
                 }
             }
         } else if (tile.y == srcEndY && blockFlag and SOUTH == 0) {
             for (x in max(currentX, tile.x) until min(destEndX, srcEndX)) {
-                if (!collisions.check(x, tile.y, plane, Direction.SOUTH.flag())) {
+                if (free(x, tile.y, plane, Direction.SOUTH)) {
                     return true
                 }
             }
         }
         return false
+    }
+
+    private fun free(x: Int, y: Int, z: Int, direction: Direction): Boolean {
+        return !collisions.check(x, y, z, direction.flag())
     }
 
     companion object {
