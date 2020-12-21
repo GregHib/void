@@ -9,7 +9,7 @@ import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.data.IndexedSprite
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
-import rs.dusk.cache.definition.decoder.WorldMapDecoder
+import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.obj.GameObjectLoc
@@ -18,7 +18,7 @@ import java.awt.image.BufferedImage
 
 class MinimapIconPainter(
     private val objectDefinitions: ObjectDecoder,
-    private val worldMapDefinitions: WorldMapDecoder,
+    private val worldMapDefinitions: WorldMapDetailsDecoder,
     private val worldMapInfoDefinitions: WorldMapInfoDecoder,
     private val spriteDefinitions: SpriteDecoder
 ) {
@@ -43,8 +43,14 @@ class MinimapIconPainter(
             val buffer = BufferReader(file)
             val position = buffer.readInt()
             val id = buffer.readShort()
-            val type = buffer.readUnsignedByte()
-            if (aBoolean1313 && type == 1) {
+            val skip = buffer.readUnsignedByte()
+            if(skip == 1) {
+                val x = position shr 14 and 0x3fff
+                val y = position and 0x3fff
+                val plane = position shr 28 and 0x3
+//                println("Skip $x $y $plane")
+            }
+            if (aBoolean1313 && skip == 1) {
                 length--
             } else {
                 positions[counter] = position

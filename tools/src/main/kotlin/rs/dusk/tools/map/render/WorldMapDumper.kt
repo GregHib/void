@@ -9,7 +9,7 @@ import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.cache.definition.decoder.TextureDecoder
-import rs.dusk.cache.definition.decoder.WorldMapDecoder
+import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
@@ -46,7 +46,7 @@ object WorldMapDumper {
         val overlayDefinitions: OverlayDecoder = koin.get()
         val underlayDefinitions: UnderlayDecoder = koin.get()
         val textureDefinitions: TextureDecoder = koin.get()
-        val worldMapDecoder: WorldMapDecoder = koin.get()
+        val worldMapDecoder: WorldMapDetailsDecoder = koin.get()
         val worldMapInfoDecoder: WorldMapInfoDecoder = koin.get()
         val spriteDecoder: SpriteDecoder = koin.get()
         val mapSceneDecoder: MapSceneDecoder = koin.get()

@@ -1,7 +1,7 @@
 package rs.dusk.tools
 
 import org.koin.core.context.startKoin
-import rs.dusk.cache.definition.decoder.WorldMapDecoder
+import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 
@@ -12,7 +12,7 @@ object WorldMapDefinitions {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = WorldMapDecoder(koin.get())
+        val decoder = WorldMapDetailsDecoder(koin.get())
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)

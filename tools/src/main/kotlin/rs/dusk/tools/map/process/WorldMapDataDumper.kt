@@ -4,7 +4,10 @@ import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import rs.dusk.cache.Cache
 import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
+import rs.dusk.cache.definition.decoder.ClientScriptDecoder
 import rs.dusk.cache.definition.decoder.ObjectDecoder
+import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
+import rs.dusk.cache.definition.decoder.WorldMapIconDecoder
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
@@ -50,10 +53,13 @@ object WorldMapDataDumper {
         val tileDecoder = TileDecoder()
         val mapObjDecoder: GameObjectMapDecoder = koin.get()
         val mapInfoDecoder: WorldMapInfoDecoder = koin.get()
+        val scriptDecoder: ClientScriptDecoder = koin.get()
+        val mapIconDecoder: WorldMapIconDecoder = koin.get()
+        val mapDetailsDecoder: WorldMapDetailsDecoder = koin.get()
         val pipeline = Pipeline<Map<Tile, List<GameObject>>>()
         val collisions = Collisions()
         val graph = NavigationGraph()
-        pipeline.add(WorldMapLinks(graph, objectDecoder))
+        pipeline.add(WorldMapLinks(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache))
         pipeline.add(LadderProcessor(graph, objectDecoder, mapInfoDecoder, collisions))
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {

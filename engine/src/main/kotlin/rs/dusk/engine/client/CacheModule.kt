@@ -21,6 +21,7 @@ val cacheModule = module {
 val cacheDefinitionModule = module {
     single { AnimationDecoder(get()) }
     single { BodyDecoder(get()) }
+    single { ClientScriptDecoder(get()) }
     single { EnumDecoder(get()) }
     single { GraphicDecoder(get()) }
     single { InterfaceDecoder(get()) }
@@ -31,7 +32,8 @@ val cacheDefinitionModule = module {
     single { SpriteDecoder(get()) }
     single { TextureDecoder(get()) }
     single { VarBitDecoder(get()) }
-    single { WorldMapDecoder(get()) }
+    single { WorldMapDetailsDecoder(get()) }
+    single { WorldMapIconDecoder(get()) }
 }
 val cacheConfigModule = module {
     single { ClientVariableParameterDecoder(get()) }

@@ -12,7 +12,7 @@ import java.util.*
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 08, 2020
  */
-class WorldMapDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
+class WorldMapDetailsDecoder(cache: Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
 
     val archive = cache.getArchiveId(index, "details")
 
