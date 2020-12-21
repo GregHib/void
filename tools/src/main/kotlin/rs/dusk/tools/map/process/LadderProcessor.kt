@@ -1,131 +1,58 @@
 package rs.dusk.tools.map.process
 
-import rs.dusk.cache.Cache
+import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.update.task.viewport.Spiral
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.entity.obj.GameObjectFactory
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.*
-import rs.dusk.engine.map.collision.GameObjectCollision.Companion.ADD_MASK
-import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectLoc
-import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
-import rs.dusk.engine.map.region.obj.Xteas
 import rs.dusk.engine.map.region.tile.*
-import rs.dusk.tools.map.view.graph.GraphIO
+import rs.dusk.tools.Pipeline
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import kotlin.math.max
 
 class LadderProcessor(
-    tileDecoder: TileDecoder,
-    mapDecoder: GameObjectMapDecoder,
+    val graph: NavigationGraph,
     private val objectDecoder: ObjectDecoder,
-    xteas: Xteas,
-    cache: Cache
-) : ObjectProcessor(tileDecoder, mapDecoder, xteas, cache) {
+    private val mapDefinitions: WorldMapInfoDecoder,
+    collisions: Collisions
+) : Pipeline.Modifier<Map<Tile, List<GameObject>>> {
+
+    private lateinit var map: Map<Tile, List<GameObject>>
+    private val linking = LinkingObjects(collisions)
     var count = 0
-    val map = mutableMapOf<Tile, MutableList<GameObject>>()
-    val collisions = Collisions()
-    val objCollision = GameObjectCollision(collisions)
-    val factory = GameObjectFactory(collisions)
-
-    fun Array<Array<Array<TileData?>>>.isTile(plane: Int, localX: Int, localY: Int, flag: Int): Boolean {
-        return (this[plane][localX][localY]?.settings?.toInt() ?: return false) and flag == flag
-    }
-
-    override fun process(region: Region, tiles: Array<Array<Array<TileData?>>>, objects: List<GameObjectLoc>) {
-        objects.forEach { loc ->
-            val tile = Tile(loc.x, loc.y, loc.plane)
-            val obj = factory.spawn(loc.id, tile, loc.type, loc.rotation)
-            map.getOrPut(tile) {
-                mutableListOf()
-            }.add(obj)
-            objCollision.modifyCollision(obj, ADD_MASK)
-        }
-        // TODO Duplicate of CollisionReader
-        val x = region.tile.x
-        val y = region.tile.y
-        for (plane in tiles.indices) {
-            for (localX in tiles[plane].indices) {
-                for (localY in tiles[plane][localX].indices) {
-                    val blocked = tiles.isTile(plane, localX, localY, BLOCKED_TILE)
-                    val bridge = tiles.isTile(1, localX, localY, BRIDGE_TILE)
-                    if (blocked && !bridge) {
-                        collisions.add(x + localX, y + localY, plane, CollisionFlag.FLOOR)
-                    }
-                }
-            }
-        }
-    }
 
     var uncertainty = 0
 
-    val upPredicate: (GameObject) -> Boolean = {
+    private val upPredicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
         (def.climb(false) || def.isTrapdoor()) && linking.isReachable(it)
     }
-    val downPredicate: (GameObject) -> Boolean = {
+
+    private val downPredicate: (GameObject) -> Boolean = {
         objectDecoder.get(it.id).climb(true) && linking.isReachable(it)
     }
-    val predicate: (GameObject) -> Boolean = {
+
+    private val predicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
         def.climb() && linking.isReachable(it)
     }
 
-    fun collect(tile: Tile, radius: Int): List<GameObject> {
-        val list = mutableListOf<GameObject>()
-        Spiral.spiral(tile, radius) { t ->
-            list.addAll(map[t] ?: return@spiral)
-        }
-        return list
-    }
-
-    fun getFirstOption(id: Int): String? {
-        val def = objectDecoder.get(id)
-        var option = def.options.firstOrNull { it != null && it != "Examine" }
-        if (option == null) {
-            def.configObjectIds?.forEach { id ->
-                option = objectDecoder.get(id).options.firstOrNull { it != null && it != "Examine" }
-                if (option != null) {
-                    return option
-                }
-            }
-        }
-        return option
-    }
-
-    fun finish() {
-        //Found 1997 unknown 787
-        //Found 2119 unknown 665
-        //Found 2564 unknown 560
-        //Found 2590 unknown 546
-        //Found 2658 unknown 564
-        //Found 3595 unknown 760
-        val graph = NavigationGraph()
-        GraphIO(graph, "./worldmaplinks.json").load()
-        val interactable: (GameObject) -> Boolean = {
-            getFirstOption(it.id) != null
-        }
-        // TODO combine with MapLinkDumper
-        val it = graph.links.iterator()
-        while (it.hasNext()) {
-            val link = it.next()
-            val start = collect(Tile(link.x, link.y, link.z), 4).filter(interactable)
-            if (start.isNotEmpty()) {
-                val loc = start.first()
-                link.actions = mutableListOf("object ${loc.id} ${getFirstOption(loc.id)}")
-            } else {
-                it.remove()
-                println("Unknown $link")
-            }
-        }
-        graph.changed = true
+    override fun process(content: Map<Tile, List<GameObject>>) {
+        map = content
         val unknowns = mutableSetOf<GameObject>()
-        map.forEach { (tile, objs) ->
+        content.forEach { (tile, objs) ->
             objs@ for (obj in objs) {
                 val def = obj.def
+                if (def.mapDefinitionId != -1) {
+                    val mapDef = mapDefinitions.getOrNull(def.mapDefinitionId)
+                    if (mapDef != null) {
+                        if (mapDef.spriteId == 1772 || mapDef.spriteId == 1773) {
+                            println("Found $obj ${mapDef.clientScript}")
+                        }
+                    }
+                }
 
                 val width = obj.size.width
                 val height = obj.size.height
@@ -160,12 +87,8 @@ class LadderProcessor(
                 count++
             }
         }
-        graph.changed = true
-        GraphIO(graph, "./ladders.json").save()
         println("Found ${graph.links.size} unknown $count")
     }
-
-    val linking = LinkingObjects(collisions)
 
     private fun link(unknowns: MutableSet<GameObject>, graph: NavigationGraph, obj: GameObject, loc: GameObject?, type: Int) {
         if (loc == null) {
@@ -179,17 +102,21 @@ class LadderProcessor(
             val start = output.first
             val end = output.second
             var link = graph.addLink(start, end)
-            link.actions = mutableListOf("object ${obj.id} ${when(type) {
-                0 -> objectDecoder.get(obj.id).getOption(false)
-                1 -> objectDecoder.get(obj.id).getOption(true)
-                else -> objectDecoder.get(obj.id).getOption()
-            }}")
+            link.actions = mutableListOf("object ${obj.id} ${
+                when (type) {
+                    0 -> objectDecoder.get(obj.id).getOption(false)
+                    1 -> objectDecoder.get(obj.id).getOption(true)
+                    else -> objectDecoder.get(obj.id).getOption()
+                }
+            }")
             link = graph.addLink(end, start)
-            link.actions = mutableListOf("object ${loc.id} ${when(type) {
-                0 -> objectDecoder.get(loc.id).getOption(true)
-                1 -> objectDecoder.get(loc.id).getOption(false)
-                else -> objectDecoder.get(loc.id).getOption()
-            }}")
+            link.actions = mutableListOf("object ${loc.id} ${
+                when (type) {
+                    0 -> objectDecoder.get(loc.id).getOption(true)
+                    1 -> objectDecoder.get(loc.id).getOption(false)
+                    else -> objectDecoder.get(loc.id).getOption()
+                }
+            }")
         }
     }
 
@@ -242,15 +169,15 @@ class LadderProcessor(
         return null
     }
 
-    fun ObjectDefinition.isTrapdoor() = options[0].equals("open", true) && (name.contains("trap", true) || name.equals("manhole", true))
+    private fun ObjectDefinition.isTrapdoor() = options[0].equals("open", true) && (name.contains("trap", true) || name.equals("manhole", true))
 
-    fun ObjectDefinition.climb(up: Boolean) = getOption(up) != null
+    private fun ObjectDefinition.climb(up: Boolean) = getOption(up) != null
 
-    fun ObjectDefinition.climb() = getOption() != null
+    private fun ObjectDefinition.climb() = getOption() != null
 
-    fun ObjectDefinition.getOption(up: Boolean) = options.firstOrNull { it.equals("climb-${if (up) "up" else "down"}", true) || it.equals("climb ${if (up) "up" else "down"}", true) }
+    private fun ObjectDefinition.getOption(up: Boolean) = options.firstOrNull { it.equals("climb-${if (up) "up" else "down"}", true) || it.equals("climb ${if (up) "up" else "down"}", true) }
 
-    fun ObjectDefinition.getOption() = options.firstOrNull { it?.startsWith("climb", true) == true }
+    private fun ObjectDefinition.getOption() = options.firstOrNull { it?.startsWith("climb", true) == true }
 
     companion object {
         private const val dungeonOffset = 6400

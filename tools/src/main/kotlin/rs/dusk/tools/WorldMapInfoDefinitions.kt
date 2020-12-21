@@ -15,9 +15,7 @@ object WorldMapInfoDefinitions {
         val decoder = WorldMapInfoDecoder(koin.get())
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if(def.clientScript == 947) {
-                println(def.clientScript)
-            }
+            println(def)
         }
     }
 }
