@@ -1,75 +1,62 @@
 package rs.dusk.tools.map.view.graph
 
+import rs.dusk.engine.map.Tile
+
 class NavigationGraph {
 
-    val links = mutableSetOf<Link>()
+    val nodes = mutableSetOf<Int>()
+    val links = mutableListOf<Link>()
     val areas = mutableSetOf<Area>()
     var changed = false
 
-    fun addLink(x: Int, y: Int, z: Int): Link {
-        val link = Link(x, y, z)
-        addLink(link)
-        return link
-    }
+    fun addNode(x: Int, y: Int, z: Int): Int = getNodeOrNull(x, y, z) ?: createNode(x, y, z)
 
-    fun addLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
-        val link = addLink(x, y, z)
-        link.dx = x2 - x
-        link.dy = y2 - y
-        link.dz = z2 - z
-        return link
-    }
+    fun getNodeOrNull(x: Int, y: Int, z: Int) = getNodeOrNull(Tile.getId(x, y, z))
 
-    fun createLink(x: Int, y: Int, z: Int) = getLinkOrNull(x, y, z) ?: addLink(x, y, z)
+    fun getNodeOrNull(id: Int) = nodes.firstOrNull { it == id }
 
-    fun createLink(x: Int, y: Int, z: Int, dx: Int, dy: Int, dz: Int): Link {
-        val link = getLinkOrNull(x, y, z, dx, dy, dz) ?: addLink(x, y, z)
-        link.dx = dx
-        link.dy = dy
-        link.dz = dz
-        return link
-    }
+    fun contains(tile: Tile) = nodes.contains(tile.id)
 
-    fun createJointLink(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int): Link {
-        val link = getJointLinkOrNull(x, y, z, x2, y2, z2) ?: addLink(x, y, z)
-        link.dx = x2 - x
-        link.dy = y2 - y
-        link.dz = z2 - z
-        return link
-    }
-
-    private fun addLink(link: Link) {
-        links.add(link)
+    private fun createNode(x: Int, y: Int, z: Int): Int {
+        val node = Tile.getId(x, y, z)
+        nodes.add(node)
         changed = true
+        return node
+    }
+
+    fun removeNode(node: Int) {
+        if (nodes.remove(node)) {
+            changed = true
+        }
+    }
+
+    fun addLink(start: Int, end: Int): Link = getLinkOrNull(start, end) ?: createLink(start, end)
+
+    fun addLink(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Link = addLink(Tile.getId(x1, y1, z1), Tile.getId(x2, y2, z2))
+
+    fun addLink(start: Tile, end: Tile): Link = addLink(start.id, end.id)
+
+    fun getLinkOrNull(start: Int, end: Int): Link? = links.firstOrNull { it.start == start && it.end == end }
+
+    fun getLinkOrNull(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Link? = getLinkOrNull(Tile.getId(x1, y1, z1), Tile.getId(x2, y2, z2))
+
+    fun getLinks(node: Int): List<Link> = links.filter { it.start == node }
+
+    fun getLinked(node: Int): List<Link> = links.filter { it.end == node }
+
+    private fun createLink(start: Int, end: Int): Link {
+        val link = Link(start, end)
+        links.add(link)
+        nodes.add(link.start)
+        nodes.add(link.end)
+        changed = true
+        return link
     }
 
     fun removeLink(link: Link) {
-        links.remove(link)
-        changed = true
-    }
-
-    fun getLinkOrNull(x: Int, y: Int, z: Int, dx: Int, dy: Int, dz: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == dx && it.dy == dy && it.dz == dz }
-
-    fun getJointLinkOrNull(x: Int, y: Int, z: Int, x2: Int, y2: Int, z2: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z && it.dx == x2 - x && it.dy == y2 - y && it.dz == z2 - z }
-
-    fun getLinkOrNull(x: Int, y: Int, z: Int) = links.firstOrNull { it.x == x && it.y == y && it.z == z }
-
-    fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
-        for (area in areas) {
-            if (area.plane != z) {
-                continue
-            }
-            return area.points.firstOrNull { it.x == x && it.y == y } ?: continue
+        if (links.remove(link)) {
+            changed = true
         }
-        return null
-    }
-
-    fun addArea(x: Int, y: Int, z: Int): Area {
-        val area = Area(null, z, mutableListOf())
-        addPoint(area, x, y)
-        areas.add(area)
-        changed = true
-        return area
     }
 
     fun addPoint(area: Area, x: Int, y: Int) {
@@ -88,10 +75,27 @@ class NavigationGraph {
         changed = true
     }
 
-    fun updateLink(original: Link, link: Link) {
-        links.remove(original)
-        links.add(link)
+    fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
+        for (area in areas) {
+            if (area.plane != z) {
+                continue
+            }
+            return area.points.firstOrNull { it.x == x && it.y == y } ?: continue
+        }
+        return null
+    }
+
+    fun removePoint(area: Area, point: Point) {
+        area.points.remove(point)
         changed = true
+    }
+
+    fun addArea(x: Int, y: Int, z: Int): Area {
+        val area = Area(null, z, mutableListOf())
+        addPoint(area, x, y)
+        areas.add(area)
+        changed = true
+        return area
     }
 
     fun removeArea(area: Area) {
@@ -99,9 +103,21 @@ class NavigationGraph {
         changed = true
     }
 
-    fun removePoint(area: Area, point: Point) {
-        area.points.remove(point)
+    fun updateNode(original: Int, x: Int, y: Int, z: Int): Int {
+        val node = createNode(x, y, z)
+        if (node == original) {
+            return original
+        }
+        links.forEach {
+            if (it.start == original) {
+                it.start = node
+            } else if (it.end == original) {
+                it.end = node
+            }
+        }
+        removeNode(original)
         changed = true
+        return node
     }
 
 }

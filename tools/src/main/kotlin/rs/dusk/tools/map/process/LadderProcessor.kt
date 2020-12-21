@@ -154,13 +154,12 @@ class LadderProcessor(
                     }
                 }
 
-
                 if (!def.climb(true) && !def.climb(false) && def.climb()) {
                     val loc = checkForClimb(obj, tile, width, height)
                     if (loc != null) {
-                        var link = graph.createJointLink(tile.x, tile.y, tile.plane, loc.tile.x, loc.tile.y, loc.tile.plane)
+                        var link = graph.addLink(tile, loc.tile)
                         link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption()}")
-                        link = graph.createJointLink(loc.tile.x, loc.tile.y, loc.tile.plane, tile.x, tile.y, tile.plane)
+                        link = graph.addLink(loc.tile, tile)
                         link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption()}")
                     } else {
                         unknowns.add(obj)
@@ -169,8 +168,7 @@ class LadderProcessor(
             }
         }
         unknowns.forEach {
-            val link = graph.getLinkOrNull(it.tile.x, it.tile.y, it.tile.plane)
-            if (link == null) {
+            if (!graph.contains(it.tile)) {
 //                println("Unknown ${it.id} ${objectDecoder.get(it.id).name} ${it.x}, ${it.y}, ${it.plane}")
                 count++
             }
@@ -188,10 +186,10 @@ class LadderProcessor(
         if (output == null) {
             println("Unknown $obj $loc")
         } else {
-
-            var link = graph.createLink(obj.tile.x, obj.tile.y, obj.tile.plane, output.x, output.y, output.plane)
+            val end = obj.tile.add(output)
+            var link = graph.addLink(obj.tile, end)
             link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption(up)}")
-            link = graph.createLink(loc.tile.x, loc.tile.y, loc.tile.plane, -output.x, -output.y, -output.plane)
+            link = graph.addLink(end, obj.tile)
             link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption(!up)}")
         }
     }

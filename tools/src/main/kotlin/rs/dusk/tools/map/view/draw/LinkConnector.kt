@@ -6,7 +6,7 @@ import java.awt.Graphics
 import kotlin.math.max
 import kotlin.math.min
 
-class AreaPointConnector(private val view: MapView, private val nav: NavigationGraph) {
+class LinkConnector(private val view: MapView, private val nav: NavigationGraph) {
     private var linkX = -1
     private var linkY = -1
     private var linkEndX = -1
@@ -37,12 +37,12 @@ class AreaPointConnector(private val view: MapView, private val nav: NavigationG
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
                 val plane = view.plane
-                val start = nav.getPointOrNull(mapX, mapY, plane) ?: nav.addArea(mapX, mapY, plane).points.first()
-                val end = nav.getPointOrNull(endX, endY, plane)
-                if (end == null) {
-                    nav.addPoint(start, endX, endY)
+
+                val link = nav.getLinkOrNull(mapX, mapY, plane, endX, endY, plane)
+                if (link != null) {
+                    nav.removeLink(link)
                 } else {
-                    nav.removePoint(start.area, end)
+                    nav.addLink(mapX, mapY, plane, endX, endY, plane)
                 }
             }
             draw = false

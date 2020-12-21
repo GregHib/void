@@ -30,14 +30,9 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
         }
         val map = reader.readValue<Map<String, Any>>(file)
         val links = (map["links"] as List<Map<String, Any>>).map {
-            Link(
-                it["x"] as Int,
-                it["y"] as Int,
-                it["z"] as Int,
-                it["dx"] as? Int ?: 0,
-                it["dy"] as? Int ?: 0,
-                it["dz"] as? Int ?: 0,
-                it["interaction"] as? List<String>,
+            Link(it["start"] as Int,
+                it["end"] as Int,
+                it["actions"] as? List<String>,
                 it["requirements"] as? List<String>
             )
         }
@@ -53,6 +48,8 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
                 }.toMutableList()
             )
         }
+        nav.nodes.addAll(links.map { it.start })
+        nav.nodes.addAll(links.map { it.end })
         nav.links.addAll(links)
         if (areas != null) {
             areas.forEach { area ->

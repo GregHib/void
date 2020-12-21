@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.view.interact
 
+import rs.dusk.engine.map.Tile
 import rs.dusk.tools.map.view.draw.GraphDrawer
 import rs.dusk.tools.map.view.draw.HighlightedArea
 import rs.dusk.tools.map.view.draw.MapView
@@ -9,6 +10,7 @@ import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Point
 import rs.dusk.tools.map.view.ui.AreaPointSettings
 import rs.dusk.tools.map.view.ui.LinkSettings
+import rs.dusk.tools.map.view.ui.NodeSettings
 import java.awt.event.MouseAdapter
 import java.awt.event.MouseEvent
 import javax.swing.JMenuItem
@@ -28,12 +30,13 @@ class MouseClick(
             val popup = JPopupMenu()
             val mapX = view.viewToMapX(e.x)
             val mapY = view.flipMapY(view.viewToMapY(e.y))
-            val link = nav.getLinkOrNull(mapX, mapY, view.plane)
+            val node = nav.getNodeOrNull(mapX, mapY, view.plane)
+            val links = if (node != null) nav.getLinks(node) else null
             val areas = area.highlighted
             val point = getPoint(areas, mapX, mapY)
-            if (link == null) {
-                popup.add(JMenuItem("Add link")).addActionListener {
-                    graph.repaint(nav.addLink(mapX, mapY, view.plane))
+            if (node == null) {
+                popup.add(JMenuItem("Add node")).addActionListener {
+                    graph.repaint(nav.addNode(mapX, mapY, view.plane))
                 }
             }
             if (areas.isEmpty()) {
@@ -41,17 +44,28 @@ class MouseClick(
                     graph.repaint(nav.addArea(mapX, mapY, view.plane))
                 }
             }
-            if (link != null) {
-                popup.add(JMenuItem("Edit link")).addActionListener {
-                    showLinkSettings(link)
-                }
-                popup.add(JMenuItem("Go to link target")).addActionListener {
-                    view.offset(link.dx, link.dy, link.dz)
+            if (node != null && links != null) {
+                popup.add(JMenuItem("Edit node")).addActionListener {
+                    showNodeSettings(node, links)
                 }
             }
             if (point != null) {
                 popup.add(JMenuItem("Edit point")).addActionListener {
                     showAreaSettings(point.area, point)
+                }
+            }
+            links?.forEachIndexed { index, link ->
+                popup.add(JMenuItem("Edit link $index")).addActionListener {
+                    showLinkSettings(link)
+                }
+                popup.add(JMenuItem("Go to link $index target")).addActionListener {
+                    val dx = link.tx - link.x
+                    val dy = link.ty - link.y
+                    val dz = link.tz - link.z
+                    view.offset(-dx, dy, dz)
+                }
+                popup.add(JMenuItem("Remove link $index")).addActionListener {
+                    nav.removeLink(link)
                 }
             }
             if (point != null) {
@@ -60,17 +74,24 @@ class MouseClick(
                     graph.repaint(point.area)
                 }
             }
-            if (link != null) {
-                popup.add(JMenuItem("Remove link")).addActionListener {
-                    nav.removeLink(link)
+            if (node != null && links != null) {
+                popup.add(JMenuItem("Remove node")).addActionListener {
+                    nav.removeNode(node)
+                    links.forEach {
+                        nav.removeLink(it)
+                        graph.repaint(it)
+                    }
+                    nav.getLinked(node).forEach {
+                        nav.removeLink(it)
+                        graph.repaint(it)
+                    }
                     area.update(e.x, e.y)
-                    graph.repaint(link)
+                    graph.repaint(node)
                 }
             }
             if (areas.isNotEmpty()) {
                 for ((index, area) in areas.withIndex()) {
                     popup.add(JMenuItem("Remove area${if (index > 0) (index + 1).toString() else ""}")).addActionListener {
-                        println("Remove area $area")
                         nav.removeArea(area)
                         graph.repaint(area)
                     }
@@ -109,26 +130,56 @@ class MouseClick(
         point.y = settings.coords.yCoord.text.toIntOrNull() ?: point.y
     }
 
+    private fun showNodeSettings(node: Int, links: List<Link>) {
+        val settings = NodeSettings()
+        populate(settings, node)
+        val result = JOptionPane.showConfirmDialog(null, settings, "Edit node",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        if (result == JOptionPane.OK_OPTION) {
+            val newNode = populate(node, settings)
+            if(node != newNode) {
+                links.forEach {
+                    graph.repaint(it)
+                }
+                graph.repaint(node)
+                nav.getLinks(newNode).forEach {
+                    graph.repaint(it)
+                }
+                graph.repaint(newNode)
+            }
+        }
+    }
+
+    private fun populate(settings: NodeSettings, node: Int) {
+        settings.coords.xCoord.text = Tile.getX(node).toString()
+        settings.coords.yCoord.text = Tile.getY(node).toString()
+    }
+
+    private fun populate(node: Int, settings: NodeSettings): Int {
+        val newX = settings.coords.xCoord.text.toIntOrNull() ?: Tile.getX(node)
+        val newY = settings.coords.yCoord.text.toIntOrNull() ?: Tile.getY(node)
+        val newZ = settings.coords.zCoord.text.toIntOrNull() ?: Tile.getPlane(node)
+        return nav.updateNode(node, newX, newY, newZ)
+    }
+
     private fun showLinkSettings(link: Link) {
         val settings = LinkSettings()
         populate(settings, link)
         val result = JOptionPane.showConfirmDialog(null, settings, "Edit link",
             JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
         if (result == JOptionPane.OK_OPTION) {
-            val newLink = populate(link, settings)
-            nav.updateLink(link, newLink)
+            populate(link, settings)
             graph.repaint(link)
-            graph.repaint(newLink)
         }
     }
 
     private fun populate(settings: LinkSettings, link: Link) {
-        settings.coords.xCoord.text = link.x.toString()
-        settings.coords.yCoord.text = link.y.toString()
-        settings.coords.zCoord.text = link.z.toString()
-        settings.delta.xCoord.text = link.dx.toString()
-        settings.delta.yCoord.text = link.dy.toString()
-        settings.delta.zCoord.text = link.dz.toString()
+        settings.start.xCoord.text = link.x.toString()
+        settings.start.yCoord.text = link.y.toString()
+        settings.start.zCoord.text = link.z.toString()
+        settings.end.xCoord.text = link.tx.toString()
+        settings.end.yCoord.text = link.ty.toString()
+        settings.end.zCoord.text = link.tz.toString()
         val actions = link.actions
         if (actions != null) {
             settings.actionsList.addAll(actions)
@@ -139,20 +190,11 @@ class MouseClick(
         }
     }
 
-    private fun populate(original: Link, settings: LinkSettings): Link {
-        val link = Link(
-            x = settings.coords.xCoord.text.toIntOrNull() ?: original.x,
-            y = settings.coords.yCoord.text.toIntOrNull() ?: original.y,
-            z = settings.coords.zCoord.text.toIntOrNull() ?: original.z,
-            dx = settings.delta.xCoord.text.toIntOrNull() ?: original.dx,
-            dy = settings.delta.yCoord.text.toIntOrNull() ?: original.dy,
-            dz = settings.delta.zCoord.text.toIntOrNull() ?: original.dz
-        )
+    private fun populate(link: Link, settings: LinkSettings) {
         val actions = settings.actionsList.toArray().filterIsInstance<String>().toList()
         link.actions = if (actions.isNotEmpty()) actions else null
         val requirements = settings.requirementsList.toArray().filterIsInstance<String>().toList()
         link.requirements = if (requirements.isNotEmpty()) requirements else null
-        return link
     }
 
 }
