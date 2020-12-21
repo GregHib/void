@@ -75,4 +75,32 @@ data class Area(val name: String?, val plane: Int, var points: MutableList<Point
             else -> null
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Area
+
+        if (plane != other.plane) return false
+
+        if (points.size != other.points.size) {
+            return false
+        }
+
+        points.forEachIndexed { i, p ->
+            if (p != other.points[i]) {
+                return false
+            }
+        }
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = plane
+        result = 31 * result + points.hashCode()
+        return result
+    }
+
 }

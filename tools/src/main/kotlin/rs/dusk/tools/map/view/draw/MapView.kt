@@ -12,11 +12,11 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView : JPanel() {
+class MapView(file: String) : JPanel() {
 
     private val options = OptionsPane(this)
     private val nav = NavigationGraph()
-    private val io = GraphIO(nav, "./ladders.json")
+    private val io = GraphIO(nav, file)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, nav)
 

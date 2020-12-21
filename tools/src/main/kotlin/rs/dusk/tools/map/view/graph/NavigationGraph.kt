@@ -99,7 +99,7 @@ class NavigationGraph {
     }
 
     fun removeArea(area: Area) {
-        areas.remove(area)
+        areas.removeIf { it.plane == area.plane && it.minX == area.minX && it.minY == area.minY && it.maxX == area.maxX && it.maxY == area.maxY }
         changed = true
     }
 

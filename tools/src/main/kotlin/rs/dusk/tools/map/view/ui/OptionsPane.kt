@@ -14,13 +14,19 @@ class OptionsPane(private val view: MapView) : JPanel() {
         tileX.text = mapX.toString()
         tileY.text = mapY.toString()
         tilePlane.text = plane.toString()
-        region.text = Region.getId(mapX, mapY).toString()
+        region.text = Region.getId(mapX / 64, mapY / 64).toString()
     }
 
     init {
         layout = BoxLayout(this, BoxLayout.PAGE_AXIS)
         isOpaque = false
         alignmentX = LEFT_ALIGNMENT
+
+        val region = JPanel().apply {
+            layout = BoxLayout(this, BoxLayout.X_AXIS)
+            add(region)
+        }
+        add(region)
 
         val coordinates = JPanel().apply {
             layout = BoxLayout(this, BoxLayout.X_AXIS)
