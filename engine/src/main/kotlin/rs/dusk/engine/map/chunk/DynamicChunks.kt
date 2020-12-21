@@ -25,20 +25,21 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
         // Spawn objs from source in target
         sourceObjs?.forEach { gameObject ->
             val local = gameObject.tile.minus(gameObject.tile.chunk.tile)
-            val size = gameObject.size
+            val width = gameObject.def.sizeX
+            val height = gameObject.def.sizeY
             val rotatedX = rotateX(
                 local.x,
                 local.y,
-                size.width,
-                size.height,
+                width,
+                height,
                 gameObject.rotation,
                 rotation
             )
             val rotatedY = rotateY(
                 local.x,
                 local.y,
-                size.width,
-                size.height,
+                width,
+                height,
                 gameObject.rotation,
                 rotation
             )

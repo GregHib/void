@@ -128,13 +128,8 @@ class LadderProcessor(
             objs@ for (obj in objs) {
                 val def = obj.def
 
-                var width = def.sizeX
-                var height = def.sizeY
-
-                if (obj.rotation and 0x1 == 1) {
-                    width = def.sizeY
-                    height = def.sizeX
-                }
+                val width = obj.size.width
+                val height = obj.size.height
 
                 if (def.climb(true)) {
                     val loc = checkForLadder(tile, width, height, true)

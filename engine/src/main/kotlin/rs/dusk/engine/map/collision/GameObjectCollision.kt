@@ -37,13 +37,8 @@ class GameObjectCollision(val collisions: Collisions) {
             mask = mask or CollisionFlag.IGNORED
         }
 
-        var width = gameObject.size.width
-        var height = gameObject.size.height
-
-        if (gameObject.rotation and 0x1 == 1) {
-            width = gameObject.size.height
-            height = gameObject.size.width
-        }
+        val width = gameObject.size.width
+        val height = gameObject.size.height
 
         for (offsetX in 0 until width) {
             for (offsetY in 0 until height) {

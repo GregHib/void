@@ -29,7 +29,12 @@ data class GameObject(
         get() = get<ObjectDefinitions>().get(id)
     val stringId = get<ObjectDefinitions>().getName(id)
 
-    val size: Size by lazy { Size(def.sizeX, def.sizeY) }
+    val size: Size by lazy {
+        Size(
+            if (rotation and 0x1 == 1) def.sizeY else def.sizeX,
+            if (rotation and 0x1 == 1) def.sizeX else def.sizeY
+        )
+    }
 
     lateinit var interactTarget: TargetStrategy
 
