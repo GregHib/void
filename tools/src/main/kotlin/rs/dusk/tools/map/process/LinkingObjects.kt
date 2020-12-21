@@ -10,6 +10,11 @@ import rs.dusk.engine.map.collision.check
 
 class LinkingObjects(private val collisions: Collisions) {
     fun deltaBetween(one: GameObject, two: GameObject): Tile? {
+        val pair = linkedPoints(one, two) ?: return null
+        return pair.second.delta(pair.first)
+    }
+
+    fun linkedPoints(one: GameObject, two: GameObject): Pair<Tile, Tile>? {
         val ones = getAvailableTiles(one)
         if (ones.isEmpty()) {
             return null
@@ -19,48 +24,77 @@ class LinkingObjects(private val collisions: Collisions) {
             return null
         }
         if (ones.size == 1 && twos.size == 1) {
-            return twos.first().delta(ones.first())
+            return ones.first() to twos.first()
         }
         var shortest = Int.MAX_VALUE
-        var delta: Tile? = null
+        var pair: Pair<Tile, Tile>? = null
         for (first in ones) {
+            val firstDelta = one.tile.delta(first)
             for (second in twos) {
-                val dist = first.distanceTo(second)
+                val secondDelta = two.tile.delta(second)
+                val dist = firstDelta.distanceTo(secondDelta)
                 if (dist < shortest) {
                     shortest = dist
-                    delta = second.delta(first)
+                    pair = first to second
                 }
             }
         }
-        return delta
+        return pair
     }
 
-    private fun getAvailableTiles(one: GameObject): List<Tile> {
+    private fun getAvailableTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
         for (dir in Direction.values()) {
-            val tile = getSizedTile(one, dir)
+            val tile = getSizedTile(obj, dir)
 
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
-                    for (y in 0 until one.size.height) {
-                        if (one.reachableFrom(tile.add(y = y))) {
+                    for (y in 0 until obj.size.height) {
+                        if (obj.reachableFrom(tile.add(y = y))) {
                             list.add(tile.add(y = y))
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
-                    for (x in 0 until one.size.width) {
-                        if (one.reachableFrom(tile.add(x = x))) {
+                    for (x in 0 until obj.size.width) {
+                        if (obj.reachableFrom(tile.add(x = x))) {
                             list.add(tile.add(x = x))
                         }
                     }
                 }
-                else -> if (one.reachableFrom(tile)) {
+                else -> if (obj.reachableFrom(tile)) {
                     list.add(tile)
                 }
             }
         }
         return list
+    }
+
+    fun isReachable(obj: GameObject): Boolean {
+        for (dir in Direction.values()) {
+            val tile = getSizedTile(obj, dir)
+
+            when (dir) {
+                Direction.WEST, Direction.EAST -> {
+                    for (y in 0 until obj.size.height) {
+                        if (obj.reachableFrom(tile.add(y = y))) {
+                            return true
+                        }
+                    }
+                }
+                Direction.SOUTH, Direction.NORTH -> {
+                    for (x in 0 until obj.size.width) {
+                        if (obj.reachableFrom(tile.add(x = x))) {
+                            return true
+                        }
+                    }
+                }
+                else -> if (obj.reachableFrom(tile)) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 
     private fun GameObject.reachableFrom(tile: Tile): Boolean {

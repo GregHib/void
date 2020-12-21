@@ -31,7 +31,6 @@ class LadderProcessor(
     val objCollision = GameObjectCollision(collisions)
     val factory = GameObjectFactory(collisions)
 
-
     fun Array<Array<Array<TileData?>>>.isTile(plane: Int, localX: Int, localY: Int, flag: Int): Boolean {
         return (this[plane][localX][localY]?.settings?.toInt() ?: return false) and flag == flag
     }
@@ -65,14 +64,14 @@ class LadderProcessor(
 
     val upPredicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
-        def.climb(false) || def.isTrapdoor()
+        (def.climb(false) || def.isTrapdoor()) && linking.isReachable(it)
     }
     val downPredicate: (GameObject) -> Boolean = {
-        objectDecoder.get(it.id).climb(true)
+        objectDecoder.get(it.id).climb(true) && linking.isReachable(it)
     }
     val predicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
-        def.climb()
+        def.climb() && linking.isReachable(it)
     }
 
     fun collect(tile: Tile, radius: Int): List<GameObject> {
@@ -133,24 +132,17 @@ class LadderProcessor(
 
                 if (def.climb(true)) {
                     val loc = checkForLadder(tile, width, height, true)
-                    if (loc != null) {
-                        link(graph, obj, loc, true)
-                    } else {
-                        unknowns.add(obj)
-                    }
+                    link(unknowns, graph, obj, loc, 1)
                 }
 
                 if (def.climb(false)) {
                     val loc = checkForLadder(tile, width, height, false)
-                    if (loc != null) {
-                        link(graph, obj, loc, false)
-                    } else {
-                        unknowns.add(obj)
-                    }
+                    link(unknowns, graph, obj, loc, 0)
                 }
 
                 if (!def.climb(true) && !def.climb(false) && def.climb()) {
                     val loc = checkForClimb(obj, tile, width, height)
+                    link(unknowns, graph, obj, loc, 2)
                     if (loc != null) {
                         var link = graph.addLink(tile, loc.tile)
                         link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption()}")
@@ -164,7 +156,7 @@ class LadderProcessor(
         }
         unknowns.forEach {
             if (!graph.contains(it.tile)) {
-//                println("Unknown ${it.id} ${objectDecoder.get(it.id).name} ${it.x}, ${it.y}, ${it.plane}")
+                println("Unknown ${it.id} ${objectDecoder.get(it.id).name} ${it.tile}")
                 count++
             }
         }
@@ -175,17 +167,29 @@ class LadderProcessor(
 
     val linking = LinkingObjects(collisions)
 
-    private fun link(graph: NavigationGraph, obj: GameObject, loc: GameObject, up: Boolean) {
-        // TODO use collision and canReach to determine proper offset
-        val output = linking.deltaBetween(obj, loc)
+    private fun link(unknowns: MutableSet<GameObject>, graph: NavigationGraph, obj: GameObject, loc: GameObject?, type: Int) {
+        if (loc == null) {
+            unknowns.add(obj)
+            return
+        }
+        val output = linking.linkedPoints(obj, loc)
         if (output == null) {
-            println("Unknown $obj $loc")
+            unknowns.add(obj)
         } else {
-            val end = obj.tile.add(output)
-            var link = graph.addLink(obj.tile, end)
-            link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption(up)}")
-            link = graph.addLink(end, obj.tile)
-            link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption(!up)}")
+            val start = output.first
+            val end = output.second
+            var link = graph.addLink(start, end)
+            link.actions = mutableListOf("object ${obj.id} ${when(type) {
+                0 -> objectDecoder.get(obj.id).getOption(false)
+                1 -> objectDecoder.get(obj.id).getOption(true)
+                else -> objectDecoder.get(obj.id).getOption()
+            }}")
+            link = graph.addLink(end, start)
+            link.actions = mutableListOf("object ${loc.id} ${when(type) {
+                0 -> objectDecoder.get(loc.id).getOption(true)
+                1 -> objectDecoder.get(loc.id).getOption(false)
+                else -> objectDecoder.get(loc.id).getOption()
+            }}")
         }
     }
 
@@ -208,10 +212,9 @@ class LadderProcessor(
     private fun checkForClimb(obj: GameObject, tile: Tile, width: Int, height: Int): GameObject? {
         var tile = tile
         uncertainty = 0
-        var radius = 4//max(width, height)
+        val radius = 4
         if (radius > 1) {
             tile = tile.add(width / 2, height / 2)
-//            radius *= 2
         }
         var loc = checkArea(predicate, tile.plane + 1..3, tile, radius)
         if (loc == null) {
