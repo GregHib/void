@@ -9,6 +9,7 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
+import rs.dusk.engine.map.collision.get
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 import rs.dusk.utility.get
 import rs.dusk.world.command.Command
@@ -25,7 +26,9 @@ IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
     val collisions: Collisions = get()
+    println(get<Objects>()[player.tile, 26933]?.interactTarget?.reached(player.tile, player.size))
     println(collisions.check(player.tile.x, player.tile.y, player.tile.plane, CollisionFlag.BLOCKED))
+    println(collisions[player.tile.x, player.tile.y + 1, player.tile.plane])
 }
 
 Command where { prefix == "sendItems" } then {

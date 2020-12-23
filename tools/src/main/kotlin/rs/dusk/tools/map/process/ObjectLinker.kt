@@ -8,7 +8,7 @@ import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
 
-class LinkingObjects(private val collisions: Collisions) {
+class ObjectLinker(private val collisions: Collisions) {
     fun deltaBetween(one: GameObject, two: GameObject): Tile? {
         val pair = linkedPoints(one, two) ?: return null
         return pair.second.delta(pair.first)
@@ -42,7 +42,7 @@ class LinkingObjects(private val collisions: Collisions) {
         return pair
     }
 
-    private fun getAvailableTiles(obj: GameObject): List<Tile> {
+    fun getAvailableTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
         for (dir in Direction.values()) {
             val tile = getSizedTile(obj, dir)

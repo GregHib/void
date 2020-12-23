@@ -10,9 +10,9 @@ import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
 
-internal class LinkingObjectsTest {
+internal class ObjectLinkerTest {
 
-    lateinit var linking: LinkingObjects
+    lateinit var linking: ObjectLinker
     lateinit var interactOne: TargetStrategy
     lateinit var interactTwo: TargetStrategy
     lateinit var sizeOne: Size
@@ -22,7 +22,7 @@ internal class LinkingObjectsTest {
 
     @BeforeEach
     fun setup() {
-        linking = LinkingObjects(mockk())
+        linking = ObjectLinker(mockk())
         interactOne = mockk(relaxed = true)
         interactTwo = mockk(relaxed = true)
         sizeOne = mockk(relaxed = true)

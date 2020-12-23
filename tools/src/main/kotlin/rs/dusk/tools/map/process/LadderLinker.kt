@@ -1,6 +1,5 @@
 package rs.dusk.tools.map.process
 
-import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.engine.client.update.task.viewport.Spiral
@@ -12,47 +11,65 @@ import rs.dusk.tools.Pipeline
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import kotlin.math.max
 
-class LadderProcessor(
+class LadderLinker(
     val graph: NavigationGraph,
     private val objectDecoder: ObjectDecoder,
-    private val mapDefinitions: WorldMapInfoDecoder,
-    collisions: Collisions
+    private val linker: ObjectLinker
 ) : Pipeline.Modifier<Map<Tile, List<GameObject>>> {
 
     private lateinit var map: Map<Tile, List<GameObject>>
-    private val linking = LinkingObjects(collisions)
     var count = 0
 
     var uncertainty = 0
 
+
+    /*
+    TODO BETTER COMPARING SYSTEM
+        Valid objects should be interactive and Have to have a name
+        TODO compare names of matches
+            neither are null
+            equals ignore case
+            or both contains stair
+            or one contains ladder and the other trapdoor or manhole
+        TODO invalid object if surrounding area (radius 2) has all clipping as 0 (should remove stronghold + gwd rope issues)
+     */
+    /*
+        Is bidirectional linking even needed if filtering is functional?
+        Use models to compare too?
+
+        fun process(obj1) {
+            process all valid objects with same name category in correct places
+        }
+
+        fun process(obj1, targetTile) {
+            process all valid objects near targetTile
+        }
+
+        fun process(obj1, obj2) {
+            return tile1, tile2, obj1, obj1Option
+        }
+     */
     private val upPredicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
-        (def.climb(false) || def.isTrapdoor()) && linking.isReachable(it)
+        (def.climb(false) || def.isTrapdoor()) && linker.isReachable(it)
     }
 
     private val downPredicate: (GameObject) -> Boolean = {
-        objectDecoder.get(it.id).climb(true) && linking.isReachable(it)
+        objectDecoder.get(it.id).climb(true) && linker.isReachable(it)
     }
 
     private val predicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
-        def.climb() && linking.isReachable(it)
+        def.climb() && linker.isReachable(it)
     }
 
     override fun process(content: Map<Tile, List<GameObject>>) {
+        val start = graph.links.size
         map = content
         val unknowns = mutableSetOf<GameObject>()
         content.forEach { (tile, objs) ->
             objs@ for (obj in objs) {
                 val def = obj.def
-                if (def.mapDefinitionId != -1) {
-                    val mapDef = mapDefinitions.getOrNull(def.mapDefinitionId)
-                    if (mapDef != null) {
-                        if (mapDef.spriteId == 1772 || mapDef.spriteId == 1773) {
-                            println("Found $obj ${mapDef.clientScript}")
-                        }
-                    }
-                }
 
                 val width = obj.size.width
                 val height = obj.size.height
@@ -70,24 +87,26 @@ class LadderProcessor(
                 if (!def.climb(true) && !def.climb(false) && def.climb()) {
                     val loc = checkForClimb(obj, tile, width, height)
                     link(unknowns, graph, obj, loc, 2)
-                    if (loc != null) {
-                        var link = graph.addLink(tile, loc.tile)
-                        link.actions = mutableListOf("object ${obj.id} ${objectDecoder.get(obj.id).getOption()}")
-                        link = graph.addLink(loc.tile, tile)
-                        link.actions = mutableListOf("object ${loc.id} ${objectDecoder.get(loc.id).getOption()}")
-                    } else {
-                        unknowns.add(obj)
-                    }
                 }
             }
         }
-        unknowns.forEach {
-            if (!graph.contains(it.tile)) {
-                println("Unknown ${it.id} ${objectDecoder.get(it.id).name} ${it.tile}")
-                count++
-            }
+        unknowns.forEach { obj ->
+//            if (!graph.contains(obj.tile)) {
+                when {
+                    obj.def.name == "Dungeon exit" -> {
+                        val tile = linker.getAvailableTiles(obj).first()
+                        val link = graph.addLink(tile, Tile(3460, 3721, 1))
+                        link.actions = mutableListOf("object ${obj.id} ${obj.def.options.first()!!}")
+                        graph.track(obj, obj.def.options.first(), link)
+                    }
+                    else -> {
+                        println("Unknown ${obj.id} ${objectDecoder.get(obj.id).name} ${obj.tile}")
+                        count++
+                    }
+                }
+//            }
         }
-        println("Found ${graph.links.size} unknown $count")
+        println("Found ${graph.links.size - start} unknown $count")
     }
 
     private fun link(unknowns: MutableSet<GameObject>, graph: NavigationGraph, obj: GameObject, loc: GameObject?, type: Int) {
@@ -95,28 +114,31 @@ class LadderProcessor(
             unknowns.add(obj)
             return
         }
-        val output = linking.linkedPoints(obj, loc)
+        val output = linker.linkedPoints(obj, loc)
         if (output == null) {
             unknowns.add(obj)
         } else {
             val start = output.first
             val end = output.second
+            if(obj.def.name != loc.def.name) {
+                println("Name mismatch $obj ${obj.def.name} ${loc.def.name}")
+            }
             var link = graph.addLink(start, end)
-            link.actions = mutableListOf("object ${obj.id} ${
-                when (type) {
-                    0 -> objectDecoder.get(obj.id).getOption(false)
-                    1 -> objectDecoder.get(obj.id).getOption(true)
-                    else -> objectDecoder.get(obj.id).getOption()
-                }
-            }")
+            var option = when (type) {
+                0 -> objectDecoder.get(obj.id).getOption(false)
+                1 -> objectDecoder.get(obj.id).getOption(true)
+                else -> objectDecoder.get(obj.id).getOption()
+            }
+            link.actions = mutableListOf("object ${obj.id} $option")
+            graph.track(obj, option, link)
             link = graph.addLink(end, start)
-            link.actions = mutableListOf("object ${loc.id} ${
-                when (type) {
-                    0 -> objectDecoder.get(loc.id).getOption(true)
-                    1 -> objectDecoder.get(loc.id).getOption(false)
-                    else -> objectDecoder.get(loc.id).getOption()
-                }
-            }")
+            option = when (type) {
+                0 -> objectDecoder.get(loc.id).getOption(true)
+                1 -> objectDecoder.get(loc.id).getOption(false)
+                else -> objectDecoder.get(loc.id).getOption()
+            }
+            link.actions = mutableListOf("object ${loc.id} $option")
+            graph.track(loc, option, link)
         }
     }
 

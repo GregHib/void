@@ -34,6 +34,14 @@ import rs.dusk.tools.map.view.graph.NavigationGraph
 
 object WorldMapDataDumper {
 
+    private val exceptions = mutableSetOf(
+        // Stronghold of security chains
+        16147,
+        16079,
+        16113,
+        16174
+    )
+
     @JvmStatic
     fun main(args: Array<String>) {
         val koin = startKoin {
@@ -59,8 +67,9 @@ object WorldMapDataDumper {
         val pipeline = Pipeline<Map<Tile, List<GameObject>>>()
         val collisions = Collisions()
         val graph = NavigationGraph()
-        pipeline.add(WorldMapLinks(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache))
-        pipeline.add(LadderProcessor(graph, objectDecoder, mapInfoDecoder, collisions))
+        val linker = ObjectLinker(collisions)
+        pipeline.add(LadderLinker(graph, objectDecoder, linker))
+        pipeline.add(WorldMapLinker(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache, linker))
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -72,25 +81,26 @@ object WorldMapDataDumper {
         val objCollision = GameObjectCollision(collisions)
         val factory = GameObjectFactory(collisions)
         val map = mutableMapOf<Tile, MutableList<GameObject>>()
-        regions.forEach { region ->
+        for (region in regions) {
             // TODO also duplicate
-            val mapData = cache.getFile(5, "m${region.x}_${region.y}") ?: return@forEach
+            val mapData = cache.getFile(5, "m${region.x}_${region.y}") ?: continue
             val tiles = tileDecoder.read(mapData)
             val xtea = xteas[region.id]
             val locationData = cache.getFile(5, "l${region.x}_${region.y}", xtea)
 
             if (locationData == null) {
 //            println("Missing xteas for region ${region.id} [${xtea?.toList()}].")
-                return@forEach
+                continue
             }
 
             val objects = mapObjDecoder.read(region.x, region.y, locationData, tiles)
             objects?.forEach { loc ->
+                if (exceptions.contains(loc.id)) {
+                    return@forEach
+                }
                 val tile = Tile(loc.x, loc.y, loc.plane)
                 val obj = factory.spawn(loc.id, tile, loc.type, loc.rotation)
-                map.getOrPut(tile) {
-                    mutableListOf()
-                }.add(obj)
+                map.getOrPut(tile) { mutableListOf() }.add(obj)
                 objCollision.modifyCollision(obj, GameObjectCollision.ADD_MASK)
             }
             // TODO Duplicate of CollisionReader
@@ -109,6 +119,26 @@ object WorldMapDataDumper {
             }
         }
         pipeline.process(map)
+        println("${graph.links.size} total links found.")
+        // TODO add check for radius of 2 around an object isn't all 0 collision to predicates
+//        graph.links.forEach { link ->
+//            val action = link.actions?.firstOrNull() ?: return@forEach
+//            val similar = graph.links.filter { (it.start != link.start || it.end != link.end) && it.actions?.firstOrNull() == action && it.z == link.z && abs(it.x - link.x) <= 2 && abs(it.y - link.y) <= 2 && abs(it.tx - link.tx) <= 2 && abs(it.ty - link.ty) <= 2 }
+//            if (similar.isNotEmpty()) {
+//                println("Found ${link.x} ${link.y} ${link.z} ${link.actions?.firstOrNull()} ${similar.map { "${it.x} ${it.y} ${it.z} ${it.actions?.firstOrNull()}" }}")
+//            }
+//        }
+//        graph.nodes.forEach {
+//            val links = graph.getLinks(it)
+//            val linked = graph.getLinked(it)
+//            for (link in links) {
+//                for (linkd in linked) {
+//                    if (linkd.tz < linkd.z && link.tz < link.z && linkd.end == link.start && linkd.z != link.tz && linkd.actions?.firstOrNull() != null && linkd.actions?.firstOrNull() == link.actions?.firstOrNull()) {
+//                        println("Found ${Tile.getX(it)} ${Tile.getY(it)} ${Tile.getPlane(it)} ${linkd.actions!!.first()} ${link.actions!!.first()}")
+//                    }
+//                }
+//            }
+//        }
         GraphIO(graph, "./navgraph.json").save()
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
@@ -116,6 +146,5 @@ object WorldMapDataDumper {
     fun Array<Array<Array<TileData?>>>.isTile(plane: Int, localX: Int, localY: Int, flag: Int): Boolean {
         return (this[plane][localX][localY]?.settings?.toInt() ?: return false) and flag == flag
     }
-
 
 }

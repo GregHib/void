@@ -20,12 +20,8 @@ class CollisionReader(val collisions: Collisions) {
         for (plane in settings.indices) {
             for (localX in settings[plane].indices) {
                 for (localY in settings[plane][localX].indices) {
-                    val blocked = settings.isTile(plane, localX, localY,
-                        BLOCKED_TILE
-                    )
-                    val bridge = settings.isTile(1, localX, localY,
-                        BRIDGE_TILE
-                    )
+                    val blocked = settings.isTile(plane, localX, localY, BLOCKED_TILE)
+                    val bridge = settings.isTile(1, localX, localY, BRIDGE_TILE)
                     if (blocked && !bridge) {
                         collisions.add(x + localX, y + localY, plane, FLOOR)
                     }

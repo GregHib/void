@@ -1,9 +1,11 @@
 package rs.dusk.tools.map.view.graph
 
+import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 
 class NavigationGraph {
 
+    val tracker = mutableMapOf<String, Link>()
     val nodes = mutableSetOf<Int>()
     val links = mutableListOf<Link>()
     val areas = mutableSetOf<Area>()
@@ -119,5 +121,11 @@ class NavigationGraph {
         changed = true
         return node
     }
+
+    fun track(obj: GameObject, option: String?, link: Link) {
+        tracker["${obj.id}${obj.tile}$option"] = link
+    }
+
+    fun tracked(obj: GameObject, option: String?): Boolean = tracker.containsKey("${obj.id}${obj.tile}$option")
 
 }
