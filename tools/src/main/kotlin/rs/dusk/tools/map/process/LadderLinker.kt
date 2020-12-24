@@ -33,22 +33,6 @@ class LadderLinker(
             or one contains ladder and the other trapdoor or manhole
         TODO invalid object if surrounding area (radius 2) has all clipping as 0 (should remove stronghold + gwd rope issues)
      */
-    /*
-        Is bidirectional linking even needed if filtering is functional?
-        Use models to compare too?
-
-        fun process(obj1) {
-            process all valid objects with same name category in correct places
-        }
-
-        fun process(obj1, targetTile) {
-            process all valid objects near targetTile
-        }
-
-        fun process(obj1, obj2) {
-            return tile1, tile2, obj1, obj1Option
-        }
-     */
     private val upPredicate: (GameObject) -> Boolean = {
         val def = objectDecoder.get(it.id)
         (def.climb(false) || def.isTrapdoor()) && linker.isReachable(it)

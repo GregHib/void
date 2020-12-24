@@ -40,14 +40,16 @@ Command where { prefix == "obj" } then {
     if(content.isNotBlank()) {
         val parts = content.split(" ")
         val id = parts.getOrNull(0)?.toIntOrNull()
+        val type = 10
         if(id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile, 10, rotation, 10, null)
+            spawnObject(id, player.tile.add(y = 2), 10, rotation, 10, null)
+            spawnObject(id, player.tile.add(y = 2), 22, rotation, 10, null)
         } else {
             val definitions = get<ObjectDefinitions>()
             val id = definitions.getId(content)
             if (id >= 0) {
-                spawnObject(id, player.tile, 10, 0, 10, null)
+                spawnObject(id, player.tile, type, 0, 10, null)
             }
         }
     } else {

@@ -68,8 +68,10 @@ object WorldMapDataDumper {
         val collisions = Collisions()
         val graph = NavigationGraph()
         val linker = ObjectLinker(collisions)
-        pipeline.add(LadderLinker(graph, objectDecoder, linker))
-        pipeline.add(WorldMapLinker(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache, linker))
+        val options = ObjectOptions()
+//        pipeline.add(LadderLinker(graph, objectDecoder, linker))
+        pipeline.add(WorldMapDungeonLinker(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache, linker))
+//        pipeline.add(WorldMapLinker(graph, objectDecoder, scriptDecoder, mapDetailsDecoder, mapIconDecoder, cache, linker))
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
@@ -118,7 +120,12 @@ object WorldMapDataDumper {
                 }
             }
         }
-        pipeline.process(map)
+        val compare = ObjectCompare(linker)
+        compare.compare(map.values.flatten())
+//        map.values.forEach {
+//            options.loadAll(it)
+//        }
+//        pipeline.process(map)
         println("${graph.links.size} total links found.")
         // TODO add check for radius of 2 around an object isn't all 0 collision to predicates
 //        graph.links.forEach { link ->

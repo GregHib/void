@@ -42,6 +42,22 @@ class ObjectLinker(private val collisions: Collisions) {
         return pair
     }
 
+    /**
+     * Returns a walkable tile within radius of 1
+     */
+    fun getValidTile(tile: Tile): Tile? {
+        if (!collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
+            return tile
+        }
+        Direction.all.forEach {
+            val tile = tile.add(it.delta)
+            if (!collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.BLOCKED)) {
+                return tile
+            }
+        }
+        return null
+    }
+
     fun getAvailableTiles(obj: GameObject): List<Tile> {
         val list = mutableListOf<Tile>()
         for (dir in Direction.values()) {
