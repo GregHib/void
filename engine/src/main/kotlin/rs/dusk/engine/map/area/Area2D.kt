@@ -3,7 +3,7 @@ package rs.dusk.engine.map.area
 open class Area2D<T : Coordinate2D>(val coords: T, val width: Int, val height: Int) : Iterable<T> {
     fun contains(x: Int, y: Int) = within(x, coords.x, width) && within(y, coords.y, height)
 
-    open fun contains(chunk: T) = contains(chunk.x, chunk.y)
+    open fun contains(coordinates: T) = contains(coordinates.x, coordinates.y)
 
     override fun iterator(): Iterator<T> =
         AreaIterator(coords, width, height)
