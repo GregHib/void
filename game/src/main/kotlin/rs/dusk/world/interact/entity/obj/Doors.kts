@@ -1,5 +1,4 @@
 import com.github.michaelbull.logging.InlineLogger
-import rs.dusk.engine.data.file.FileLoader
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.character.clear
 import rs.dusk.engine.entity.character.inc
@@ -13,22 +12,17 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.utility.func.isDoor
-import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.replaceObject
 import rs.dusk.world.interact.entity.obj.replaceObjectPair
 
 val objects: Objects by inject()
-val loader: FileLoader by inject()
 val logger = InlineLogger()
 
 // Delay in ticks before a door closes itself
 val doorCloseDelay = 500
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
-
-val doors: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("doorsPath")).mapKeys { it.key.toInt() }
-val fences: Map<Int, Int> = loader.load<Map<String, Int>>(getProperty("fencesPath")).mapKeys { it.key.toInt() }
 
 ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     // Prevent players from trapping one another
@@ -57,11 +51,11 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
 ObjectOption where { obj.def.isDoor() && option == "Open" } then {
     val double = getDoubleDoor(obj, 0)
 
-    val replacement1 = doors[obj.id]
-    val replacement3 = fences[obj.id]
+    val replacement1 = obj.def.getOrNull("open") as? Int
+    val replacement3 = obj.def.getOrNull("open") as? Int
     if (double != null) {
-        val replacement2 = doors[double.id]
-        val replacement4 = fences[double.id]
+        val replacement2 = double.def.getOrNull("open") as? Int
+        val replacement4 = double.def.getOrNull("open") as? Int
 
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
@@ -84,11 +78,11 @@ ObjectOption where { obj.def.isDoor() && option == "Open" } then {
             val tile = getTile(first, 1)
             replaceObjectPair(
                 first,
-                fences.getValue(first.id),
+                first.def["open"],
                 tile,
                 getRotation(first, 3),
                 second,
-                fences.getValue(second.id),
+                second.def["open"],
                 getTile(tile, second.rotation, 1),
                 getRotation(second, 3),
                 doorCloseDelay

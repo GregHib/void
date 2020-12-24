@@ -5,6 +5,7 @@ cave_entrance:
   id: 2
 door:
   id: 3
+  open: 1531
 broken_multicannon:
   id: 5
 dwarf_multicannon:
@@ -33,6 +34,7 @@ railing_6:
   id: 20
 door_2:
   id: 22
+  open: 37019
 sacks:
   id: 23
 clock_spindle:
@@ -61,8 +63,10 @@ lever_4:
   id: 36
 gate:
   id: 37
+  open: 2061
 gate_2:
   id: 38
+  open: 1540
 gate_3:
   id: 39
 food_trough:
@@ -77,8 +81,10 @@ staircase_2:
   id: 46
 gate_4:
   id: 47
+  open: 49
 gate_5:
   id: 48
+  open: 50
 gate_6:
   id: 49
 gate_7:
@@ -101,6 +107,7 @@ vine:
   id: 58
 door_3:
   id: 59
+  open: 2070
 chaos_altar:
   id: 61
 crate_2:
@@ -119,52 +126,68 @@ gangplank_2:
   id: 70
 large_door:
   id: 71
+  open: 1517
 large_door_2:
   id: 72
+  open: 1520
 large_door_3:
   id: 73
+  open: 1517
 large_door_4:
   id: 74
+  open: 1520
 parasol:
   id: 76
 door_4:
   id: 77
 prison_door:
   id: 79
+  open: 43046
 prison_door_2:
   id: 80
+  open: 43046
 door_5:
   id: 81
+  open: 1531
 door_6:
   id: 82
+  open: 1531
 lever_bracket:
   id: 86
 lever_5:
   id: 87
 gate_10:
   id: 89
+  open: 2059
 gate_11:
   id: 90
+  open: 2061
 lever_6:
   id: 91
 door_7:
   id: 92
+  open: 1534
 door_8:
   id: 93
+  open: 1531
 gate_12:
   id: 94
+  open: 2061
 gate_13:
   id: 95
+  open: 2059
 stairs_5:
   id: 96
 door_9:
   id: 99
+  open: 1531
 trapdoor:
   id: 100
 ladder_2:
   id: 101
 door_10:
   id: 102
+  open: 11403
 trapdoor_2:
   id: 105
 trapdoor_3:
@@ -207,6 +230,7 @@ party_balloon_16:
   id: 130
 door_11:
   id: 131
+  open: 11445
 bar:
   id: 132
 ladder_3:
@@ -241,8 +265,10 @@ incinerator:
   id: 165
 gate_14:
   id: 166
+  open: 15588
 gate_15:
   id: 167
+  open: 15589
 closed_chest:
   id: 170
 open_chest:
@@ -881,10 +907,12 @@ large_bone_2:
   id: 703
 cosmic_door:
   id: 704
+  open: 707
 cosmic_door_2:
   id: 707
 cosmic_door_3:
   id: 708
+  open: 709
 cosmic_door_4:
   id: 709
 draining_machine:
@@ -941,6 +969,7 @@ cage:
   id: 777
 bamboo_door:
   id: 779
+  open: 780
 bank_booth:
   id: 782
 loom:
@@ -1039,6 +1068,7 @@ manhole_2:
   id: 882
 gate_17:
   id: 883
+  open: 7051
 well_2:
   id: 884
 bar_pumps:
@@ -1377,6 +1407,7 @@ vine_3:
   id: 1206
 door_12:
   id: 1239
+  open: 1240
 door_13:
   id: 1240
 tree_2:
@@ -1644,26 +1675,32 @@ chompybird_rack:
   id: 1495
 large_door_5:
   id: 1506
+  open: 1509
 large_door_6:
   id: 1507
 large_door_7:
   id: 1508
+  open: 1510
 large_door_8:
   id: 1511
 large_door_9:
   id: 1512
+  open: 1515
 large_door_10:
   id: 1513
+  open: 1514
 large_door_11:
   id: 1514
 large_door_12:
   id: 1515
 large_door_13:
   id: 1516
+  open: 41132
 large_door_14:
   id: 1517
 large_door_15:
   id: 1519
+  open: 41134
 large_door_16:
   id: 1520
 standard_11:
@@ -1674,42 +1711,52 @@ curtain_2:
   id: 1529
 door_14:
   id: 1530
+  open: 1531
 door_15:
   id: 1531
 door_16:
   id: 1533
+  open: 1534
 door_17:
   id: 1534
 door_18:
   id: 1536
+  open: 1537
 door_19:
   id: 1537
 door_20:
   id: 1539
+  open: 1540
 door_21:
   id: 1540
 door_22:
   id: 1542
+  open: 1541
 door_23:
   id: 1543
 door_24:
   id: 1544
+  open: 1545
 door_25:
   id: 1545
 standard_12:
   id: 1550
 gate_18:
   id: 1551
+  open: 1552
 gate_19:
   id: 1552
 gate_20:
   id: 1553
+  open: 1556
 gate_21:
   id: 1556
 gate_22:
   id: 1557
+  open: 1560
 gate_23:
   id: 1558
+  open: 1561
 gate_24:
   id: 1559
 gate_25:
@@ -1722,10 +1769,12 @@ trapdoor_6:
   id: 1570
 doors:
   id: 1573
+  open: 1574
 doors_2:
   id: 1574
 doors_3:
   id: 1575
+  open: 1576
 doors_4:
   id: 1576
 doorway:
@@ -1742,22 +1791,31 @@ wall_5:
   id: 1586
 gate_27:
   id: 1589
+  open: 1562
 gate_28:
   id: 1590
+  open: 1563
 door_26:
   id: 1591
+  open: 1532
 gate_29:
   id: 1596
+  open: 1562
 gate_30:
   id: 1597
+  open: 1563
 gate_31:
   id: 1598
+  open: 1555
 gate_32:
   id: 1599
+  open: 1554
 magic_guild_door:
   id: 1600
+  open: 1522
 magic_guild_door_2:
   id: 1601
+  open: 1523
 scaffold_3:
   id: 1610
 scaffold_4:
@@ -1972,8 +2030,10 @@ compost_bin_61:
   id: 1803
 door_27:
   id: 1804
+  open: 1240
 door_28:
   id: 1805
+  open: 2033
 compost_bin_62:
   id: 1806
 compost_bin_63:
@@ -2160,6 +2220,7 @@ crate_10:
   id: 1990
 gate_33:
   id: 1991
+  open: 1543
 glarials_tombstone:
   id: 1992
 rock_8:
@@ -2172,6 +2233,7 @@ crate_11:
   id: 1999
 door_29:
   id: 2002
+  open: 2003
 pillar_9:
   id: 2004
 statue_of_baxtorian:
@@ -2203,22 +2265,27 @@ achey_tree:
   stump: 3371
 bedroom_door:
   id: 2032
+  open: 2033
 bedroom_door_2:
   id: 2033
 door_30:
   id: 2034
+  open: 2035
 door_31:
   id: 2035
 door_32:
   id: 2036
+  open: 2035
 door_33:
   id: 2037
 dummy_2:
   id: 2038
 gate_34:
   id: 2039
+  open: 2040
 gate_35:
   id: 2041
+  open: 2042
 cauldron_2:
   id: 2043
 trough:
@@ -2235,18 +2302,23 @@ door_35:
   id: 2049
 gate_36:
   id: 2050
+  open: 2052
 gate_37:
   id: 2051
+  open: 2053
 door_36:
   id: 2054
+  open: 2055
 cupboard_4:
   id: 2056
 cupboard_5:
   id: 2057
 gate_38:
   id: 2058
+  open: 2059
 gate_39:
   id: 2060
+  open: 2061
 box:
   id: 2062
 box_2:
@@ -2261,6 +2333,7 @@ fence:
   id: 2068
 door_37:
   id: 2069
+  open: 2070
 crate_13:
   id: 2071
 crate_14:
@@ -2343,12 +2416,15 @@ pillar_12:
   id: 2111
 door_38:
   id: 2112
+  open: 3464
 ladder_21:
   id: 2113
 gate_40:
   id: 2115
+  open: 2040
 gate_41:
   id: 2116
+  open: 2042
 old_wall:
   id: 2117
 deposit_box_2:
@@ -2363,6 +2439,7 @@ locked_door_3:
   id: 2136
 unlocked_door:
   id: 2137
+  open: 2586
 locked_door_4:
   id: 2138
 locked_door_5:
@@ -2371,6 +2448,7 @@ locked_door_6:
   id: 2140
 unlocked_door_2:
   id: 2141
+  open: 2607
 cauldron_of_thunder:
   id: 2142
 coffin_9:
@@ -2389,8 +2467,10 @@ obelisk_of_fire:
   id: 2153
 gate_42:
   id: 2154
+  open: 2059
 gate_43:
   id: 2155
+  open: 2061
 magic_portal:
   id: 2156
 magic_portal_2:
@@ -2445,6 +2525,7 @@ closed_chest_6:
   id: 2183
 door_39:
   id: 2184
+  open: 31809
 loose_railing_2:
   id: 2186
 door_40:
@@ -2463,8 +2544,10 @@ chest_3:
   id: 2194
 kitchen_gate:
   id: 2199
+  open: 2042
 kitchen_gate_2:
   id: 2200
+  open: 2040
 flares_table:
   id: 2203
 flares_table_2:
@@ -2540,30 +2623,40 @@ tomb_doors_3:
   id: 2248
 tomb_doors_4:
   id: 2249
+  open: 2251
 tomb_doors_5:
   id: 2250
+  open: 2252
 ancient_metal_gate:
   id: 2255
+  open: 2059
 ancient_metal_gate_2:
   id: 2256
+  open: 2061
 rocks_26:
   id: 2257
 tomb_dolmen_2:
   id: 2258
 metal_gate:
   id: 2259
+  open: 2040
 metal_gate_2:
   id: 2260
+  open: 2042
 wooden_gate:
   id: 2261
+  open: 2263
 wooden_gate_2:
   id: 2262
+  open: 2264
 travel_cart_2:
   id: 2265
 blacksmiths_door:
   id: 2266
+  open: 2340
 blacksmiths_door_2:
   id: 2267
+  open: 2340
 ladder_23:
   id: 2268
 ladder_24:
@@ -2617,12 +2710,16 @@ spikes_2:
   id: 2305
 gate_44:
   id: 2306
+  open: 2313
 gate_45:
   id: 2307
+  open: 2040
 gate_46:
   id: 2308
+  open: 2042
 door_44:
   id: 2309
+  open: 1543
 tree_stump_12:
   id: 2310
 balancing_rope:
@@ -2643,6 +2740,7 @@ monkeybars:
   id: 2319
 gate_48:
   id: 2320
+  open: 2344
 monkeybars_2:
   id: 2321
 ropeswing_4:
@@ -2671,10 +2769,13 @@ hole:
   id: 2336
 sturdy_door:
   id: 2337
+  open: 2340
 door_45:
   id: 2338
+  open: 2340
 sturdy_door_2:
   id: 2339
+  open: 2340
 wall_6:
   id: 2341
 grill:
@@ -2750,20 +2851,26 @@ soil_5:
   id: 2383
 gate_50:
   id: 2391
+  open: 41504
 gate_51:
   id: 2392
+  open: 41505
 gnome_goal:
   id: 2393
 gate_52:
   id: 2394
+  open: 2395
 bed_18:
   id: 2396
 door_46:
   id: 2397
+  open: 24368
 door_47:
   id: 2398
+  open: 24368
 door_48:
   id: 2399
+  open: 15502
 cupboard_8:
   id: 2400
 cupboard_9:
@@ -2778,8 +2885,10 @@ ladder_25:
   id: 2405
 door_49:
   id: 2406
+  open: 10363
 magic_door:
   id: 2407
+  open: 31812
 ladder_26:
   id: 2408
 tree_13:
@@ -2801,6 +2910,7 @@ gangplank_16:
   id: 2415
 large_door_17:
   id: 2416
+  open: 2417
 large_door_18:
   id: 2417
 chest_9:
@@ -2819,18 +2929,25 @@ lever_17:
   id: 2426
 door_50:
   id: 2427
+  open: 20988
 door_51:
   id: 2428
+  open: 20988
 door_52:
   id: 2429
+  open: 20988
 door_53:
   id: 2430
+  open: 20988
 door_54:
   id: 2431
+  open: 20988
 gate_53:
   id: 2432
+  open: 2040
 gate_54:
   id: 2433
+  open: 2042
 cupboard_10:
   id: 2434
 cupboard_11:
@@ -2839,8 +2956,10 @@ closed_chest_7:
   id: 2436
 gate_55:
   id: 2438
+  open: 2263
 gate_56:
   id: 2439
+  open: 2264
 pillar_13:
   id: 2440
 pillar_14:
@@ -2909,6 +3028,7 @@ altar_12:
   id: 2488
 gate_57:
   id: 2489
+  open: 2499
 rune_essence:
   id: 2491
 compacted_snow:
@@ -2919,6 +3039,7 @@ pillar_18:
   id: 2494
 gate_58:
   id: 2495
+  open: 2502
 mysterious_stone:
   id: 2497
 mysterious_glow:
@@ -2953,6 +3074,7 @@ tower_ladder_2:
   id: 2512
 guild_door:
   id: 2514
+  open: 2529
 row_boat:
   id: 2515
 large_table:
@@ -2975,10 +3097,12 @@ wardrobe_5:
   id: 2525
 door_55:
   id: 2526
+  open: 2527
 door_56:
   id: 2527
 door_57:
   id: 2528
+  open: 2529
 door_58:
   id: 2529
 barrel_9:
@@ -2995,6 +3119,7 @@ staircase_20:
   id: 2536
 door_59:
   id: 2537
+  open: 2538
 door_60:
   id: 2538
 stairs_10:
@@ -3013,30 +3138,40 @@ manhole_cover:
   id: 2545
 door_61:
   id: 2546
+  open: 2547
 door_62:
   id: 2547
 door_63:
   id: 2548
+  open: 2549
 door_64:
   id: 2549
 rocks_28:
   id: 2551
 gate_61:
   id: 2552
+  open: 2059
 gate_62:
   id: 2553
+  open: 2061
 door_65:
   id: 2554
+  open: 2538
 door_66:
   id: 2555
+  open: 34233
 door_67:
   id: 2556
+  open: 2055
 door_68:
   id: 2557
+  open: 1543
 door_69:
   id: 2558
+  open: 2538
 door_70:
   id: 2559
+  open: 20988
 rocks_29:
   id: 2560
 rocks_30:
@@ -3103,20 +3238,28 @@ gangplank_18:
   id: 2594
 door_71:
   id: 2595
+  open: 2538
 red_door:
   id: 2596
+  open: 2538
 orange_door:
   id: 2597
+  open: 2538
 yellow_door:
   id: 2598
+  open: 2538
 blue_door:
   id: 2599
+  open: 9467
 magenta_door:
   id: 2600
+  open: 9467
 green_door:
   id: 2601
+  open: 9467
 exit_door:
   id: 2602
+  open: 9467
 chest_20:
   id: 2603
 chest_21:
@@ -3143,20 +3286,28 @@ crate_15:
   id: 2620
 door_72:
   id: 2621
+  open: 2538
 door_73:
   id: 2622
+  open: 2538
 gate_63:
   id: 2623
+  open: 31839
 door_74:
   id: 2624
+  open: 1522
 door_75:
   id: 2625
+  open: 1523
 door_76:
   id: 2626
+  open: 2538
 door_77:
   id: 2627
+  open: 2538
 door_78:
   id: 2628
+  open: 2538
 wall_8:
   id: 2629
 chair_15:
@@ -3191,6 +3342,7 @@ flax:
   id: 2646
 guild_door_2:
   id: 2647
+  open: 2538
 pillar_19:
   id: 2648
 pillar_20:
@@ -3241,12 +3393,16 @@ an_experimental_anvil:
   id: 2672
 gate_64:
   id: 2673
+  open: 2040
 gate_65:
   id: 2674
+  open: 2042
 mine_door_entrance:
   id: 2675
+  open: 1522
 mine_door_entrance_2:
   id: 2676
+  open: 1523
 chest_24:
   id: 2677
 bookcase_18:
@@ -3269,10 +3425,13 @@ gate_69:
   id: 2688
 prison_door_3:
   id: 2689
+  open: 1543
 mine_door_entrance_3:
   id: 2690
+  open: 1522
 mine_door_entrance_4:
   id: 2691
+  open: 1523
 bookcase_20:
   id: 2692
 shantay_chest:
@@ -3297,8 +3456,10 @@ rocks_35:
   id: 2704
 door_79:
   id: 2705
+  open: 34233
 door_80:
   id: 2706
+  open: 34233
 crate_16:
   id: 2707
 crate_17:
@@ -3311,6 +3472,7 @@ stairs_12:
   id: 2711
 door_81:
   id: 2712
+  open: 15502
 shelves_10:
   id: 2713
 shelves_11:
@@ -3355,12 +3517,16 @@ blacksmiths_tools:
   id: 2784
 city_gate:
   id: 2786
+  open: 20091
 city_gate_2:
   id: 2787
+  open: 20092
 city_gate_3:
   id: 2788
+  open: 20091
 city_gate_4:
   id: 2789
+  open: 20092
 chest_27:
   id: 2790
 counter_5:
@@ -3489,16 +3655,21 @@ hazeels_coffin:
   id: 2860
 door_82:
   id: 2861
+  open: 24685
 door_83:
   id: 2862
+  open: 24815
 door_84:
   id: 2863
+  open: 2538
 fountain_4:
   id: 2864
 gate_70:
   id: 2865
+  open: 26922
 gate_71:
   id: 2866
+  open: 2527
 potted_plant_3:
   id: 2867
 cupboard_15:
@@ -3548,8 +3719,10 @@ lamp_3:
   id: 2895
 legends_guild_door:
   id: 2896
+  open: 2898
 legends_guild_door_2:
   id: 2897
+  open: 2899
 bed_20:
   id: 2900
 sir_palomedes:
@@ -3572,8 +3745,10 @@ bookcase_26:
   id: 2911
 ancient_gate:
   id: 2912
+  open: 2914
 ancient_gate_2:
   id: 2913
+  open: 2915
 crevice:
   id: 2918
 boulder_3:
@@ -3584,8 +3759,10 @@ boulder_5:
   id: 2921
 ancient_gate_3:
   id: 2922
+  open: 2924
 ancient_gate_4:
   id: 2923
+  open: 2925
 ancient_gate_5:
   id: 2924
 ancient_gate_6:
@@ -3725,6 +3902,7 @@ closed_chest_9:
   id: 2996
 door_85:
   id: 2997
+  open: 2998
 door_86:
   id: 2998
 compost_bin_134:
@@ -3759,30 +3937,43 @@ compost_bin_147:
   id: 3013
 door_87:
   id: 3014
+  open: 3271
 gate_72:
   id: 3015
+  open: 42002
 gate_73:
   id: 3016
+  open: 42003
 door_88:
   id: 3017
+  open: 3271
 door_89:
   id: 3018
+  open: 3271
 door_90:
   id: 3019
+  open: 3271
 gate_74:
   id: 3020
+  open: 26922
 gate_75:
   id: 3021
+  open: 3269
 gate_76:
   id: 3022
+  open: 26922
 gate_77:
   id: 3023
+  open: 3269
 door_91:
   id: 3024
+  open: 3271
 door_92:
   id: 3025
+  open: 3271
 door_93:
   id: 3026
+  open: 3271
 rocks_40:
   id: 3027
 ladder_38:
@@ -4004,6 +4195,7 @@ cage_4:
   id: 3268
 door_96:
   id: 3270
+  open: 3271
 door_97:
   id: 3271
 chest_32:
@@ -4098,6 +4290,7 @@ onion:
   id: 3366
 prison_door_4:
   id: 3367
+  open: 5173
 achey_tree_stump:
   id: 3371
 ogre_spit-roast:
@@ -4162,10 +4355,12 @@ rocks_54:
   id: 3431
 door_102:
   id: 3434
+  open: 3435
 door_103:
   id: 3435
 cell_door:
   id: 3436
+  open: 3437
 cell_door_2:
   id: 3437
 stairs_14:
@@ -4174,12 +4369,15 @@ stairs_15:
   id: 3441
 cell_door_3:
   id: 3442
+  open: 3437
 holy_barrier:
   id: 3443
 gate_78:
   id: 3444
+  open: 3446
 gate_79:
   id: 3445
+  open: 3446
 manacles:
   id: 3447
 bed_24:
@@ -4200,6 +4398,7 @@ farming_patch_not-meat_fully_grown:
   id: 3462
 cell_door_4:
   id: 3463
+  open: 3464
 farming_patch_2:
   id: 3465
 hanging_meat:
@@ -4248,8 +4447,10 @@ church_organ_2:
   id: 3500
 gate_80:
   id: 3506
+  open: 2040
 gate_81:
   id: 3507
+  open: 2042
 rotting_log:
   id: 3508
 fungi_on_log:
@@ -4468,8 +4669,10 @@ door_104:
   id: 3724
 gate_82:
   id: 3725
+  open: 3727
 gate_83:
   id: 3726
+  open: 3728
 gate_84:
   id: 3727
 gate_85:
@@ -4484,10 +4687,13 @@ danger_sign_3:
   id: 3742
 large_door_21:
   id: 3743
+  open: 3744
 door_105:
   id: 3745
+  open: 3271
 door_106:
   id: 3747
+  open: 1535
 rocks_57:
   id: 3748
 mysterious_glow_4:
@@ -4504,6 +4710,7 @@ secret_entrance:
   id: 3762
 cell_door_5:
   id: 3763
+  open: 3764
 cell_door_6:
   id: 3764
 cell_door_7:
@@ -4522,6 +4729,7 @@ exit_2:
   id: 3774
 door_107:
   id: 3776
+  open: 3777
 door_108:
   id: 3777
 door_109:
@@ -4574,6 +4782,7 @@ ladder_48:
   id: 3808
 storeroom_door:
   id: 3810
+  open: 3811
 crate_31:
   id: 3813
 crates:
@@ -4832,6 +5041,7 @@ pendulum:
   id: 4013
 door_111:
   id: 4014
+  open: 49605
 door_112:
   id: 4015
 rocky_debris:
@@ -4995,12 +5205,16 @@ funeral_pyre_11:
   id: 4104
 solid_bronze_door:
   id: 4106
+  open: 4110
 solid_steel_door:
   id: 4107
+  open: 4110
 solid_black_door:
   id: 4108
+  open: 4110
 solid_silver_door:
   id: 4109
+  open: 4110
 bronze_chest:
   id: 4111
 bronze_chest_2:
@@ -5069,6 +5283,7 @@ cave_entrance_16:
   id: 4147
 door_113:
   id: 4148
+  open: 4248
 lallis_stew:
   id: 4149
 compost_bin_161:
@@ -5146,6 +5361,7 @@ chair_17:
   id: 4245
 door_116:
   id: 4247
+  open: 4248
 door_117:
   id: 4248
 door_118:
@@ -5218,8 +5434,10 @@ potters_wheel_3:
   id: 4310
 gate_88:
   id: 4311
+  open: 4313
 gate_89:
   id: 4312
+  open: 4314
 gate_90:
   id: 4313
 collection_of_swords:
@@ -5336,16 +5554,20 @@ gate_91:
   id: 4421
 large_door_22:
   id: 4423
+  open: 4425
 large_door_23:
   id: 4424
+  open: 4426
 large_door_24:
   id: 4425
 large_door_25:
   id: 4426
 large_door_26:
   id: 4427
+  open: 4425
 large_door_27:
   id: 4428
+  open: 4426
 large_door_28:
   id: 4429
 large_door_29:
@@ -5420,8 +5642,10 @@ iron_ladder_5:
   id: 4485
 door_125:
   id: 4487
+  open: 4491
 door_126:
   id: 4490
+  open: 4492
 door_127:
   id: 4491
 door_128:
@@ -5528,26 +5752,34 @@ stairs_21:
   id: 4627
 large_door_30:
   id: 4629
+  open: 2003
 large_door_31:
   id: 4630
 large_door_32:
   id: 4631
+  open: 2003
 large_door_33:
   id: 4632
+  open: 2003
 large_door_34:
   id: 4633
+  open: 2003
 large_door_35:
   id: 4634
 door_129:
   id: 4636
+  open: 2003
 door_130:
   id: 4637
+  open: 2003
 door_131:
   id: 4638
+  open: 2003
 door_132:
   id: 4639
 door_133:
   id: 4640
+  open: 2003
 stacked_barrels:
   id: 4641
 noticeboard_2:
@@ -5586,6 +5818,7 @@ bookcase_29:
   id: 4671
 throne_room_door:
   id: 4672
+  open: 4673
 maple_tree_2:
   id: 4674
   stump: 7400
@@ -5605,6 +5838,7 @@ flagpole_5:
   id: 4693
 door_134:
   id: 4696
+  open: 4697
 door_135:
   id: 4697
 door_136:
@@ -5625,6 +5859,7 @@ veg_stall_2:
   id: 4708
 doorway_7:
   id: 4710
+  open: 780
 trapdoor_15:
   id: 4712
 crate_39:
@@ -5739,6 +5974,7 @@ jail_door_2:
   id: 4800
 bamboo_door_2:
   id: 4807
+  open: 780
 jungle_grass:
   id: 4812
 jungle_grass_2:
@@ -5970,10 +6206,13 @@ lever_37:
   id: 4961
 door_137:
   id: 4962
+  open: 3271
 large_door_36:
   id: 4963
+  open: 1522
 large_door_37:
   id: 4964
+  open: 1523
 ladder_59:
   id: 4965
 ladder_60:
@@ -6146,6 +6385,7 @@ urns_3:
   id: 5125
 door_138:
   id: 5126
+  open: 5128
 danger_sign_4:
   id: 5127
 door_139:
@@ -6223,8 +6463,10 @@ entrance_6:
   id: 5170
 door_140:
   id: 5172
+  open: 5173
 door_141:
   id: 5174
+  open: 5175
 lightning_conductor:
   id: 5176
 lightning_conductor_2:
@@ -6235,8 +6477,10 @@ fireplace_surround_2:
   id: 5179
 door_142:
   id: 5183
+  open: 5187
 door_143:
   id: 5186
+  open: 5188
 door_144:
   id: 5187
 door_145:
@@ -6249,6 +6493,7 @@ staircase_32:
   id: 5207
 door_146:
   id: 5244
+  open: 5245
 door_147:
   id: 5245
 bed_31:
@@ -6405,6 +6650,7 @@ fire_8:
   id: 5499
 door_148:
   id: 5501
+  open: 31839
 bullrushes_2:
   id: 5539
 bullrushes_3:
@@ -6571,6 +6817,7 @@ hug:
   id: 5657
 large_door_38:
   id: 5667
+  open: 25803
 wreckage_24:
   id: 5690
 barrel_23:
@@ -6619,6 +6866,7 @@ coffin_13:
   id: 5729
 sturdy_door_3:
   id: 5730
+  open: 7223
 crate_59:
   id: 5746
 crates_10:
@@ -6959,34 +7207,42 @@ well_8:
   id: 6097
 door_149:
   id: 6100
+  open: 6101
 door_150:
   id: 6101
 door_151:
   id: 6102
+  open: 6101
 door_152:
   id: 6103
 door_153:
   id: 6104
+  open: 6103
 door_154:
   id: 6105
 door_155:
   id: 6106
+  open: 6107
 door_156:
   id: 6107
 door_157:
   id: 6108
+  open: 6109
 door_158:
   id: 6109
 door_159:
   id: 6110
+  open: 6111
 door_160:
   id: 6111
 door_161:
   id: 6112
+  open: 6980
 door_162:
   id: 6113
 door_163:
   id: 6114
+  open: 6113
 door_164:
   id: 6115
 bird_cage_stand:
@@ -7316,8 +7572,10 @@ ladder_81:
   id: 6450
 gate_92:
   id: 6451
+  open: 5731
 gate_93:
   id: 6452
+  open: 5732
 icy_rock:
   id: 6454
 ice_ledge:
@@ -7460,8 +7718,10 @@ rock_26:
   id: 6623
 door_172:
   id: 6624
+  open: 20338
 door_173:
   id: 6625
+  open: 20339
 chess:
   id: 6627
 wall_crusher:
@@ -7552,12 +7812,14 @@ door_174:
   id: 6713
 door_175:
   id: 6714
+  open: 6713
 door_176:
   id: 6715
 door_177:
   id: 6732
 door_178:
   id: 6733
+  open: 6732
 door_179:
   id: 6734
 ramp:
@@ -7656,8 +7918,10 @@ ogre_drums_2:
   id: 6868
 ogre_stone_door:
   id: 6871
+  open: 6873
 ogre_stone_door_2:
   id: 6872
+  open: 6874
 drawers_13:
   id: 6875
 cupboard_21:
@@ -7750,6 +8014,7 @@ swamp_boaty_2:
   id: 6970
 door_181:
   id: 6975
+  open: 6976
 door_182:
   id: 6976
 market_stall_6:
@@ -7834,8 +8099,10 @@ buffers:
   id: 7044
 gate_94:
   id: 7049
+  open: 7051
 gate_95:
   id: 7050
+  open: 7052
 gate_96:
   id: 7051
 gate_97:
@@ -8005,6 +8272,7 @@ ladder_95:
   id: 7221
 door_183:
   id: 7222
+  open: 7223
 door_184:
   id: 7223
 spinning_blades_3:
@@ -8059,6 +8327,7 @@ passageway_3:
   id: 7258
 door_188:
   id: 7259
+  open: 7260
 door_189:
   id: 7260
 chair_26:
@@ -8069,6 +8338,7 @@ portal_27:
   id: 7273
 door_190:
   id: 7274
+  open: 7503
 fox:
   id: 7277
 fox_2:
@@ -8089,6 +8359,7 @@ portal_29:
   id: 7289
 door_191:
   id: 7302
+  open: 7503
 statue_23:
   id: 7303
 statue_24:
@@ -8119,24 +8390,28 @@ portal_31:
   id: 7316
 door_192:
   id: 7317
+  open: 7503
 portal_32:
   id: 7318
 portal_33:
   id: 7319
 door_193:
   id: 7320
+  open: 7503
 portal_34:
   id: 7321
 portal_35:
   id: 7322
 door_194:
   id: 7323
+  open: 7503
 portal_36:
   id: 7324
 portal_37:
   id: 7325
 door_195:
   id: 7326
+  open: 7503
 old_bookshelf_13:
   id: 7327
 old_bookshelf_14:
@@ -8189,6 +8464,7 @@ portal_39:
   id: 7353
 door_196:
   id: 7354
+  open: 7503
 warning_sign_3:
   id: 7355
 chair_27:
@@ -10620,6 +10896,7 @@ milk_urns_2:
   id: 8691
 door_197:
   id: 8695
+  open: 8696
 door_198:
   id: 8696
 sink_5:
@@ -10724,12 +11001,16 @@ ladder_100:
   id: 8785
 door_199:
   id: 8786
+  open: 8790
 door_200:
   id: 8787
+  open: 8790
 door_201:
   id: 8788
+  open: 8792
 door_202:
   id: 8789
+  open: 8790
 door_203:
   id: 8790
 door_204:
@@ -10764,8 +11045,10 @@ rotten_apple_pile:
   id: 8809
 gate_98:
   id: 8810
+  open: 8812
 gate_99:
   id: 8811
+  open: 8813
 gate_100:
   id: 8812
 gate_101:
@@ -10906,10 +11189,13 @@ iron_ladder_6:
   id: 8956
 door_207:
   id: 8958
+  open: 8961
 door_208:
   id: 8959
+  open: 8961
 door_209:
   id: 8960
+  open: 8961
 door_210:
   id: 8961
 door_211:
@@ -11018,8 +11304,10 @@ teak_tree_stump:
   id: 9037
 hardwood_grove_doors:
   id: 9038
+  open: 9040
 hardwood_grove_doors_2:
   id: 9039
+  open: 9041
 goutweed:
   id: 9044
 goutweed_2:
@@ -11438,6 +11726,7 @@ an_empty_rack:
   id: 9329
 ardougne_wall_door:
   id: 9330
+  open: 9739
 rocks_106:
   id: 9331
 rocks_107:
@@ -11657,12 +11946,15 @@ broken_wall_13:
   id: 9561
 cell_door_9:
   id: 9562
+  open: 9564
 cell_door_10:
   id: 9563
+  open: 9564
 cell_door_11:
   id: 9564
 door_216:
   id: 9565
+  open: 9564
 bucket:
   id: 9567
 bucket_2:
@@ -11829,6 +12121,7 @@ broken_wall_22:
   id: 9737
 ardougne_wall_door_2:
   id: 9738
+  open: 9740
 ships_ladder_13:
   id: 9744
 ships_ladder_14:
@@ -12161,6 +12454,7 @@ pressure_barrel:
   id: 10171
 gate_104:
   id: 10172
+  open: 10173
 pirate_sign:
   id: 10174
 sink_8:
@@ -12273,14 +12567,17 @@ chair_35:
   id: 10259
 door_217:
   id: 10260
+  open: 10261
 door_218:
   id: 10261
 door_219:
   id: 10262
+  open: 10263
 door_220:
   id: 10263
 door_221:
   id: 10264
+  open: 10265
 door_222:
   id: 10265
 shield_display:
@@ -12361,6 +12658,7 @@ rat_barrel_6:
   id: 10317
 gates:
   id: 10318
+  open: 6557
 trellis_top:
   id: 10319
 hole_in_wall:
@@ -12375,6 +12673,7 @@ trellis_2:
   id: 10324
 door_223:
   id: 10325
+  open: 10326
 door_224:
   id: 10326
 door_225:
@@ -12485,20 +12784,28 @@ cave_exit_13:
   id: 10417
 door_227:
   id: 10419
+  open: 10422
 door_228:
   id: 10420
+  open: 10422
 door_229:
   id: 10421
+  open: 10422
 door_230:
   id: 10423
+  open: 10424
 door_231:
   id: 10425
+  open: 10426
 door_232:
   id: 10427
+  open: 10428
 door_233:
   id: 10429
+  open: 10430
 door_234:
   id: 10431
+  open: 10432
 fire_12:
   id: 10433
 rope_10:
@@ -12605,10 +12912,12 @@ staircase_56:
   id: 10526
 door_235:
   id: 10527
+  open: 10528
 door_236:
   id: 10528
 door_237:
   id: 10529
+  open: 10530
 door_238:
   id: 10530
 stepping_stone_6:
@@ -12654,12 +12963,16 @@ ladder_151:
   id: 10560
 gate_105:
   id: 10565
+  open: 35550
 gate_106:
   id: 10566
+  open: 35552
 gate_107:
   id: 10567
+  open: 35550
 gate_108:
   id: 10568
+  open: 35552
 wall_52:
   id: 10570
 rocks_126:
@@ -13200,18 +13513,22 @@ secret_entrance_2:
   id: 11050
 door_239:
   id: 11051
+  open: 11052
 door_240:
   id: 11052
 door_241:
   id: 11053
+  open: 11054
 door_242:
   id: 11054
 door_243:
   id: 11055
+  open: 11056
 door_244:
   id: 11056
 door_245:
   id: 11057
+  open: 11058
 door_246:
   id: 11058
 tree_stump_26:
@@ -13226,18 +13543,22 @@ pedestal_21:
   id: 11063
 door_247:
   id: 11064
+  open: 11065
 door_248:
   id: 11065
 door_249:
   id: 11066
+  open: 11067
 door_250:
   id: 11067
 door_251:
   id: 11068
+  open: 11069
 door_252:
   id: 11069
 door_253:
   id: 11070
+  open: 11071
 door_254:
   id: 11071
 ruins:
@@ -13266,8 +13587,10 @@ bush_17:
   id: 11113
 door_255:
   id: 11151
+  open: 11065
 door_256:
   id: 11152
+  open: 11069
 pedestal_22:
   id: 11153
 hopper_3:
@@ -13312,8 +13635,10 @@ rocks_160:
   id: 11195
 door_257:
   id: 11196
+  open: 10361
 door_258:
   id: 11197
+  open: 10361
 ladder_157:
   id: 11198
 ladder_158:
@@ -13597,12 +13922,14 @@ rocks_166:
   id: 11450
 door_259:
   id: 11458
+  open: 11459
 cracked_wall:
   id: 11461
 lantern_3:
   id: 11468
 door_260:
   id: 11470
+  open: 37019
 door_261:
   id: 11471
 barrel_42:
@@ -13679,10 +14006,12 @@ cave_exit_17:
   id: 11533
 gate_109:
   id: 11536
+  open: 11540
 gate_110:
   id: 11537
 gate_111:
   id: 11539
+  open: 11537
 gate_112:
   id: 11540
 lever_43:
@@ -13743,14 +14072,17 @@ standing_torch_16:
   id: 11606
 door_263:
   id: 11616
+  open: 11617
 door_264:
   id: 11617
 table_66:
   id: 11619
 long_hall_door:
   id: 11620
+  open: 11624
 long_hall_door_2:
   id: 11621
+  open: 11625
 long_hall_door_3:
   id: 11624
 long_hall_door_4:
@@ -13839,6 +14171,7 @@ security_door:
   id: 11706
 door_265:
   id: 11707
+  open: 11708
 door_266:
   id: 11708
 security_door_2:
@@ -13849,12 +14182,15 @@ door_267:
   id: 11712
 door_268:
   id: 11713
+  open: 11712
 door_269:
   id: 11714
+  open: 11715
 door_270:
   id: 11715
 castle_door:
   id: 11716
+  open: 11722
 castle_door_2:
   id: 11717
 castle_door_3:
@@ -13865,6 +14201,7 @@ castle_door_5:
   id: 11720
 castle_door_6:
   id: 11721
+  open: 11723
 castle_door_7:
   id: 11722
 castle_door_8:
@@ -14200,6 +14537,7 @@ rocks_208:
   id: 11964
 door_271:
   id: 11993
+  open: 11994
 door_272:
   id: 11994
 oak_tree_pale:
@@ -14250,6 +14588,7 @@ tall_mechanism_slider_3:
   id: 12044
 magic_door_2:
   id: 12045
+  open: 12046
 magic_door_3:
   id: 12046
 magic_door_4:
@@ -14394,6 +14733,7 @@ a_sinking_canoe_4:
   id: 12162
 chaos_door:
   id: 12172
+  open: 14443
 fishing_spot_3:
   id: 12201
 mole_hill:
@@ -14560,10 +14900,13 @@ awowogei_2:
   id: 12347
 door_273:
   id: 12348
+  open: 34233
 large_door_39:
   id: 12349
+  open: 34236
 large_door_40:
   id: 12350
+  open: 34233
 barrier:
   id: 12351
 barrier_2:
@@ -14634,14 +14977,17 @@ crate_104:
   id: 12443
 door_274:
   id: 12444
+  open: 12445
 door_275:
   id: 12445
 large_door_41:
   id: 12446
+  open: 12447
 large_door_42:
   id: 12447
 large_door_43:
   id: 12448
+  open: 12449
 large_door_44:
   id: 12449
 table_76:
@@ -14660,8 +15006,10 @@ underwater_cavern_entrance_4:
   id: 12463
 pen_door:
   id: 12467
+  open: 12469
 pen_door_2:
   id: 12468
+  open: 12470
 anchor_4:
   id: 12474
 anchor_5:
@@ -14983,6 +15331,7 @@ plaque_10:
   id: 12750
 door_276:
   id: 12761
+  open: 12856
 crumbled_wall:
   id: 12762
 ice_2:
@@ -15169,8 +15518,10 @@ sword_case_3:
   id: 12985
 gate_113:
   id: 12986
+  open: 12988
 gate_114:
   id: 12987
+  open: 12989
 gate_115:
   id: 12988
 gate_116:
@@ -15183,12 +15534,15 @@ blue_barrier_mining_2:
   id: 12992
 door_277:
   id: 13001
+  open: 13002
 door_278:
   id: 13002
 door_279:
   id: 13006
+  open: 13008
 door_280:
   id: 13007
+  open: 13009
 door_281:
   id: 13008
 door_282:
@@ -15201,8 +15555,10 @@ blue_barrier_strength:
   id: 13014
 door_283:
   id: 13015
+  open: 13017
 door_284:
   id: 13016
+  open: 13018
 door_285:
   id: 13017
 door_286:
@@ -15227,16 +15583,20 @@ blue_barrier_thieving_2:
   id: 13093
 large_door_45:
   id: 13094
+  open: 13095
 large_door_46:
   id: 13095
 large_door_47:
   id: 13096
+  open: 13097
 large_door_48:
   id: 13097
 door_287:
   id: 13100
+  open: 13102
 door_288:
   id: 13101
+  open: 13103
 door_289:
   id: 13102
 door_290:
@@ -15249,10 +15609,12 @@ glouphrie_statue_2:
   id: 13106
 door_291:
   id: 13107
+  open: 13108
 door_292:
   id: 13108
 door_293:
   id: 13109
+  open: 13110
 door_294:
   id: 13110
 ornament_2:
@@ -15261,8 +15623,10 @@ goblin_crowd:
   id: 13115
 door_295:
   id: 13118
+  open: 13120
 door_296:
   id: 13119
+  open: 13121
 door_297:
   id: 13120
 door_298:
@@ -15651,30 +16015,35 @@ cage_11:
   id: 13313
 door_299:
   id: 13314
+  open: 13315
 door_300:
   id: 13315
 cage_12:
   id: 13316
 door_301:
   id: 13317
+  open: 13318
 door_302:
   id: 13318
 cage_13:
   id: 13319
 door_303:
   id: 13320
+  open: 13321
 door_304:
   id: 13321
 cage_14:
   id: 13322
 door_305:
   id: 13323
+  open: 13324
 door_306:
   id: 13324
 cage_15:
   id: 13325
 door_307:
   id: 13326
+  open: 13327
 door_308:
   id: 13327
 ladder_178:
@@ -15711,16 +16080,22 @@ skull:
   id: 13343
 door_309:
   id: 13344
+  open: 13350
 door_310:
   id: 13345
+  open: 13351
 door_311:
   id: 13346
+  open: 13352
 door_312:
   id: 13347
+  open: 13353
 door_313:
   id: 13348
+  open: 13354
 door_314:
   id: 13349
+  open: 13355
 door_315:
   id: 13350
 door_316:
@@ -17139,34 +17514,42 @@ barricade_17:
   id: 14232
 gate_117:
   id: 14233
+  open: 14234
 gate_118:
   id: 14234
 gate_119:
   id: 14235
+  open: 14236
 gate_120:
   id: 14236
 gate_121:
   id: 14237
+  open: 14238
 gate_122:
   id: 14238
 gate_123:
   id: 14239
+  open: 14240
 gate_124:
   id: 14240
 gate_125:
   id: 14241
+  open: 14242
 gate_126:
   id: 14242
 gate_127:
   id: 14243
+  open: 14244
 gate_128:
   id: 14244
 gate_129:
   id: 14245
+  open: 14246
 gate_130:
   id: 14246
 gate_131:
   id: 14247
+  open: 14248
 gate_132:
   id: 14248
 item_spawn_2:
@@ -17183,6 +17566,7 @@ blue_flag_spawn:
   id: 14261
 red_door_2:
   id: 14265
+  open: 14279
 lander_boat:
   id: 14266
 lander_boat_2:
@@ -17195,16 +17579,19 @@ red_door_3:
   id: 14279
 blue_door_2:
   id: 14280
+  open: 14279
 blue_door_3:
   id: 14281
 banner_3:
   id: 14283
 red_door_4:
   id: 14284
+  open: 14285
 red_door_5:
   id: 14285
 blue_door_4:
   id: 14286
+  open: 14285
 blue_door_5:
   id: 14290
 ladder_181:
@@ -17325,6 +17712,7 @@ chaos_door_2:
   id: 14443
 chaos_door_3:
   id: 14444
+  open: 14445
 chaos_door_4:
   id: 14445
 lever_51:
@@ -17689,12 +18077,15 @@ ladder_187:
   id: 14748
 door_321:
   id: 14749
+  open: 14750
 door_322:
   id: 14750
 door_323:
   id: 14751
+  open: 14753
 door_324:
   id: 14752
+  open: 14754
 door_325:
   id: 14753
 door_326:
@@ -17927,12 +18318,15 @@ hole_17:
   id: 14922
 door_327:
   id: 14923
+  open: 14924
 door_328:
   id: 14924
 colony_gate:
   id: 14929
+  open: 14930
 colony_gate_2:
   id: 14931
+  open: 14932
 fishing_spot_5:
   id: 14938
 broken_wall_25:
@@ -17995,6 +18389,7 @@ control_panel_4:
   id: 14978
 door_329:
   id: 14982
+  open: 14983
 crates_36:
   id: 14985
 crate_128:
@@ -18262,6 +18657,7 @@ hole_19:
   id: 15202
 door_330:
   id: 15204
+  open: 15205
 door_331:
   id: 15205
 fire_remains_3:
@@ -18772,18 +19168,22 @@ wheat_4:
   id: 15508
 gate_133:
   id: 15510
+  open: 15511
 gate_134:
   id: 15511
 gate_135:
   id: 15512
+  open: 15513
 gate_136:
   id: 15513
 gate_137:
   id: 15514
+  open: 15515
 gate_138:
   id: 15515
 gate_139:
   id: 15516
+  open: 15517
 gate_140:
   id: 15517
 mouse_hole:
@@ -18802,6 +19202,7 @@ door_332:
   id: 15535
 door_333:
   id: 15536
+  open: 15535
 drain_2:
   id: 15537
 bookcase_64:
@@ -18872,8 +19273,10 @@ railing_9:
   id: 15603
 gate_141:
   id: 15604
+  open: 15607
 gate_142:
   id: 15605
+  open: 15606
 statue_of_a_warrior_3:
   id: 15608
 statue_of_a_warrior_4:
@@ -18934,28 +19337,35 @@ staircase_82:
   id: 15638
 door_334:
   id: 15641
+  open: 15643
 crates_42:
   id: 15642
 door_335:
   id: 15644
+  open: 15646
 portal_56:
   id: 15645
 door_336:
   id: 15647
+  open: 15649
 door_337:
   id: 15650
+  open: 15652
 snowman_accessories:
   id: 15651
 door_338:
   id: 15653
+  open: 15655
 information_scroll:
   id: 15656
 information_scroll_2:
   id: 15657
 heavy_door:
   id: 15658
+  open: 15659
 heavy_door_2:
   id: 15660
+  open: 15661
 keg_2:
   id: 15662
 keg_3:
@@ -19099,6 +19509,7 @@ large_door_50:
   id: 15758
 door_339:
   id: 15759
+  open: 14975
 sack_9:
   id: 15760
 sack_pile_3:
@@ -19398,6 +19809,7 @@ kettle:
   id: 15983
 waiting_room_door:
   id: 15984
+  open: 780
 deposit_box_3:
   id: 15985
 bitternut_sign:
@@ -19721,6 +20133,7 @@ bookcase_68:
   id: 16342
 door_340:
   id: 16343
+  open: 16344
 door_341:
   id: 16344
 slot:
@@ -20036,12 +20449,15 @@ stool_25:
   id: 16745
 door_342:
   id: 16774
+  open: 16777
 door_343:
   id: 16776
+  open: 16777
 door_344:
   id: 16777
 door_345:
   id: 16778
+  open: 16779
 door_346:
   id: 16779
 ceremonial_brazier:
@@ -20340,14 +20756,17 @@ machine_18:
   id: 17087
 large_door_51:
   id: 17089
+  open: 17090
 large_door_52:
   id: 17090
 large_door_53:
   id: 17091
+  open: 17092
 large_door_54:
   id: 17092
 large_door_55:
   id: 17093
+  open: 17094
 large_door_56:
   id: 17094
 shelf_39:
@@ -20366,6 +20785,7 @@ crate_167:
   id: 17101
 door_349:
   id: 17114
+  open: 17115
 door_350:
   id: 17115
 pool_of_slime:
@@ -20580,6 +21000,7 @@ hedge_26:
   id: 17315
 door_352:
   id: 17316
+  open: 17317
 door_353:
   id: 17317
 bookcase_70:
@@ -20666,6 +21087,7 @@ rocks_286:
   id: 17390
 door_354:
   id: 17391
+  open: 18979
 gangplank_30:
   id: 17392
 gangplank_31:
@@ -20867,8 +21289,10 @@ root_31:
   stump: 17854
 door_356:
   id: 17600
+  open: 18031
 door_357:
   id: 17601
+  open: 18032
 root_32:
   id: 17625
   stump: 17855
@@ -21230,6 +21654,7 @@ chopped_root_37:
   id: 17972
 door_358:
   id: 17973
+  open: 18031
 ladder_213:
   id: 17974
 ladder_214:
@@ -21344,6 +21769,7 @@ statue_with_key:
   id: 18046
 door_361:
   id: 18047
+  open: 18048
 door_362:
   id: 18048
 staircase_87:
@@ -21364,6 +21790,7 @@ rocky_surface:
   id: 18056
 door_363:
   id: 18057
+  open: 18058
 door_364:
   id: 18058
 table_108:
@@ -21428,8 +21855,10 @@ floorboards_6:
   id: 18090
 door_365:
   id: 18091
+  open: 18032
 door_366:
   id: 18092
+  open: 18032
 floorboards_7:
   id: 18093
 floorboards_8:
@@ -21497,6 +21926,7 @@ root_41:
   stump: 18051
 door_367:
   id: 18168
+  open: 17284
 clay_oven_2:
   id: 18170
 washbasin_2:
@@ -21931,10 +22361,12 @@ extractor_gun_4:
   id: 18696
 mind_door:
   id: 18698
+  open: 18699
 mind_door_2:
   id: 18699
 mind_door_3:
   id: 18700
+  open: 18701
 mind_door_4:
   id: 18701
 door_377:
@@ -22263,25 +22695,32 @@ barrel_86:
   id: 18962
 door_379:
   id: 18964
+  open: 18979
 door_380:
   id: 18965
+  open: 18979
 door_381:
   id: 18966
+  open: 18979
 door_382:
   id: 18967
+  open: 18979
 door_383:
   id: 18968
+  open: 18979
 noticeboard_7:
   id: 18969
 interrogation_notes:
   id: 18970
 door_384:
   id: 18971
+  open: 18979
 root_52:
   id: 18972
   stump: 19048
 door_385:
   id: 18973
+  open: 18979
 root_53:
   id: 18974
   stump: 19052
@@ -22293,6 +22732,7 @@ hole_30:
   id: 18977
 door_386:
   id: 18978
+  open: 18979
 door_387:
   id: 18979
 glyph:
@@ -23241,8 +23681,10 @@ machine_20:
   id: 20040
 gate_145:
   id: 20045
+  open: 20091
 gate_146:
   id: 20046
+  open: 20092
 obelisk_50:
   id: 20047
 obelisk_51:
@@ -23379,8 +23821,10 @@ ladder_233:
   id: 20194
 barbarian_door:
   id: 20195
+  open: 14753
 barbarian_door_2:
   id: 20196
+  open: 14754
 barbarian_door_3:
   id: 20197
 barbarian_door_4:
@@ -23607,6 +24051,7 @@ table_118:
   id: 20388
 gate_150:
   id: 20391
+  open: 20392
 obelisk_69:
   id: 20399
 obelisk_70:
@@ -23785,8 +24230,10 @@ air_vent_3:
   id: 20659
 secure_door:
   id: 20665
+  open: 26702
 secure_door_2:
   id: 20666
+  open: 26703
 prison_door_6:
   id: 20667
 prison_door_7:
@@ -23801,6 +24248,7 @@ stairs_79:
   id: 20685
 metal_door:
   id: 20686
+  open: 26561
 watcher:
   id: 20687
 watcher_2:
@@ -24235,6 +24683,7 @@ control_panel_5:
   id: 21055
 door_400:
   id: 21065
+  open: 21161
 door_401:
   id: 21066
 door_402:
@@ -24321,16 +24770,20 @@ herbs_23:
   id: 21159
 door_404:
   id: 21160
+  open: 21161
 door_405:
   id: 21161
 door_406:
   id: 21162
+  open: 21161
 door_407:
   id: 21164
+  open: 21163
 door_408:
   id: 21166
 door_409:
   id: 21167
+  open: 21168
 door_410:
   id: 21169
 door_411:
@@ -24339,6 +24792,7 @@ door_412:
   id: 21171
 gate_152:
   id: 21172
+  open: 21173
 boat_7:
   id: 21175
 boat_8:
@@ -24379,6 +24833,7 @@ herbs_28:
   id: 21230
 door_414:
   id: 21243
+  open: 21244
 snake_basket:
   id: 21249
 collector_converter:
@@ -24516,8 +24971,10 @@ roots_35:
   id: 21322
 door_415:
   id: 21340
+  open: 21342
 door_416:
   id: 21341
+  open: 21342
 door_417:
   id: 21342
 door_418:
@@ -24558,18 +25015,22 @@ bush_31:
   id: 21398
 large_door_57:
   id: 21399
+  open: 21401
 large_door_58:
   id: 21400
+  open: 21401
 large_door_59:
   id: 21401
 large_door_60:
   id: 21402
 gate_153:
   id: 21403
+  open: 21404
 gate_154:
   id: 21404
 gate_155:
   id: 21405
+  open: 21406
 gate_156:
   id: 21406
 bush_32:
@@ -24618,10 +25079,12 @@ swamp_mushroom_2:
   id: 21503
 door_419:
   id: 21505
+  open: 21506
 door_420:
   id: 21506
 door_421:
   id: 21507
+  open: 21508
 door_422:
   id: 21508
 rope_bridge_16:
@@ -24698,6 +25161,7 @@ cave_opening_3:
   id: 21599
 gate_157:
   id: 21600
+  open: 21601
 gate_158:
   id: 21601
 broken_barrel_2:
@@ -24772,6 +25236,7 @@ crate_208:
   id: 21806
 tower_door:
   id: 21814
+  open: 21815
 water_pipes:
   id: 21844
 water_pipes_2:
@@ -24883,6 +25348,7 @@ lighting_mechanism_4:
   id: 21945
 door_423:
   id: 22007
+  open: 21953
 wall_130:
   id: 22091
 wall_131:
@@ -25159,10 +25625,12 @@ ladder_267:
   id: 22434
 large_door_61:
   id: 22435
+  open: 21951
 mine:
   id: 22436
 large_door_62:
   id: 22437
+  open: 21952
 mine_2:
   id: 22438
 rock_wall_3:
@@ -25597,6 +26065,7 @@ gate_163:
   id: 22778
 gate_164:
   id: 22779
+  open: 22778
 toy_range:
   id: 22781
 toy_sink:
@@ -25741,10 +26210,12 @@ door_430:
   id: 22913
 door_431:
   id: 22914
+  open: 22913
 door_432:
   id: 22920
 door_433:
   id: 22921
+  open: 22920
 stairs_99:
   id: 22931
 stairs_100:
@@ -25801,6 +26272,7 @@ broken_cart_3:
   id: 23055
 door_434:
   id: 23056
+  open: 23637
 statue_74:
   id: 23057
 open_statue:
@@ -25917,6 +26389,7 @@ walkway_2:
   id: 23214
 gate_165:
   id: 23216
+  open: 23217
 gate_166:
   id: 23217
 wreck_12:
@@ -25977,6 +26450,7 @@ wilderness_ditch:
   id: 23271
 gate_167:
   id: 23274
+  open: 20269
 sign_21:
   id: 23275
 sign_22:
@@ -26047,10 +26521,13 @@ cave_gobins:
   id: 23319
 door_436:
   id: 23338
+  open: 25820
 large_door_63:
   id: 23340
+  open: 13097
 large_door_64:
   id: 23342
+  open: 13095
 wall_141:
   id: 23348
 wall_142:
@@ -26067,6 +26544,7 @@ ladder_278:
   id: 23377
 door_437:
   id: 23378
+  open: 25820
 door_438:
   id: 23379
 dead_tree_17:
@@ -26205,6 +26683,7 @@ floor_58:
   id: 23894
 gate_168:
   id: 23917
+  open: 23919
 gate_169:
   id: 23918
 gate_170:
@@ -26722,8 +27201,10 @@ door_442:
   id: 24368
 gate_171:
   id: 24369
+  open: 24373
 gate_172:
   id: 24370
+  open: 24374
 gate_173:
   id: 24373
 gate_174:
@@ -26732,20 +27213,24 @@ door_443:
   id: 24375
 door_444:
   id: 24376
+  open: 24375
 door_445:
   id: 24377
 door_446:
   id: 24378
+  open: 24377
 door_447:
   id: 24379
 door_448:
   id: 24381
+  open: 24380
 door_449:
   id: 24382
 door_450:
   id: 24383
 door_451:
   id: 24384
+  open: 24383
 door_452:
   id: 24389
 map_5:
@@ -26928,20 +27413,25 @@ dig_site_specimen_rocks:
   id: 24559
 gate_176:
   id: 24560
+  open: 15515
 gate_177:
   id: 24561
+  open: 15517
 gap_16:
   id: 24562
 doorway_21:
   id: 24563
 gate_178:
   id: 24564
+  open: 24562
 door_453:
   id: 24565
+  open: 24566
 door_454:
   id: 24566
 door_455:
   id: 24567
+  open: 24568
 door_456:
   id: 24568
 snake_7:
@@ -27144,6 +27634,7 @@ door_457:
   id: 24685
 door_458:
   id: 24686
+  open: 24685
 staircase_107:
   id: 24687
 broken_experiment_tube:
@@ -27240,6 +27731,7 @@ crumbling_wall_3:
   id: 24749
 door_459:
   id: 24759
+  open: 24760
 anvil_17:
   id: 24765
 window_3:
@@ -27286,6 +27778,7 @@ door_460:
   id: 24815
 door_461:
   id: 24816
+  open: 24815
 beanstalk_4:
   id: 24819
 anvil_18:
@@ -27400,16 +27893,19 @@ door_462:
   id: 24930
 door_463:
   id: 24931
+  open: 24930
 door_464:
   id: 24932
 door_465:
   id: 24933
+  open: 24932
 door_466:
   id: 24934
 door_467:
   id: 24935
 door_468:
   id: 24936
+  open: 24935
 clothes_equipment_3:
   id: 24976
 crop_circle:
@@ -27506,6 +28002,7 @@ shield_2:
   id: 25091
 magic_door_6:
   id: 25115
+  open: 25116
 magic_door_7:
   id: 25116
 candle_stand_2:
@@ -27744,6 +28241,7 @@ door_470:
   id: 25417
 door_471:
   id: 25418
+  open: 25417
 bluebells_3:
   id: 25419
 sunflower_3:
@@ -27828,8 +28326,10 @@ open_chest_23:
   id: 25593
 large_door_65:
   id: 25594
+  open: 41134
 large_door_66:
   id: 25595
+  open: 41132
 suit_of_armour_12:
   id: 25599
 barrel_104:
@@ -27896,14 +28396,17 @@ barricade_24:
   id: 25636
 large_door_67:
   id: 25638
+  open: 41132
 large_door_68:
   id: 25639
 large_door_69:
   id: 25640
+  open: 41134
 large_door_70:
   id: 25641
 door_474:
   id: 25642
+  open: 25643
 door_475:
   id: 25643
 crate_242:
@@ -28026,10 +28529,12 @@ drawers_45:
   id: 25715
 door_476:
   id: 25716
+  open: 25717
 door_477:
   id: 25717
 door_478:
   id: 25718
+  open: 25719
 door_479:
   id: 25719
 dairy_churn_4:
@@ -28076,8 +28581,10 @@ landscape_5:
   id: 25743
 large_door_71:
   id: 25748
+  open: 25749
 large_door_72:
   id: 25750
+  open: 25751
 kiln_31:
   id: 25752
 kiln_32:
@@ -28136,10 +28643,12 @@ staircase_114:
   id: 25787
 large_door_73:
   id: 25788
+  open: 41132
 large_door_74:
   id: 25789
 large_door_75:
   id: 25790
+  open: 41134
 large_door_76:
   id: 25791
 suit_of_armour_13:
@@ -28152,6 +28661,7 @@ cannon_12:
   id: 25798
 door_480:
   id: 25799
+  open: 25800
 door_481:
   id: 25800
 staircase_115:
@@ -28168,8 +28678,10 @@ closed_booth:
   id: 25809
 large_door_77:
   id: 25813
+  open: 25815
 large_door_78:
   id: 25814
+  open: 25816
 large_door_79:
   id: 25815
 large_door_80:
@@ -28180,6 +28692,7 @@ church_organ_3:
   id: 25818
 door_482:
   id: 25819
+  open: 25820
 door_483:
   id: 25820
 bow_cabinet_6:
@@ -28192,10 +28705,12 @@ spinning_wheel_7:
   id: 25824
 door_484:
   id: 25825
+  open: 25826
 door_485:
   id: 25826
 door_486:
   id: 25827
+  open: 25828
 door_487:
   id: 25828
 kiln_36:
@@ -28214,6 +28729,7 @@ woodchip_10:
   id: 25875
 metal_door_2:
   id: 25876
+  open: 29262
 vent:
   id: 25879
 vent_2:
@@ -28354,8 +28870,10 @@ kiln_47:
   id: 26079
 gate_180:
   id: 26081
+  open: 26083
 gate_181:
   id: 26082
+  open: 26084
 staircase_117:
   id: 26106
 ladder_308:
@@ -28394,8 +28912,10 @@ woodchip_13:
   id: 26125
 gate_182:
   id: 26130
+  open: 26132
 gate_183:
   id: 26131
+  open: 26133
 gate_184:
   id: 26132
 gate_185:
@@ -28432,6 +28952,7 @@ hatch_14:
   id: 26168
 locked_door_10:
   id: 26189
+  open: 26187
 cave_goblin_28:
   id: 26191
 chest_83:
@@ -28672,12 +29193,16 @@ waterfall_4:
   id: 26422
 big_door_4:
   id: 26425
+  open: 26851
 big_door_5:
   id: 26426
+  open: 26851
 big_door_6:
   id: 26427
+  open: 26851
 big_door_7:
   id: 26428
+  open: 26851
 ice_bridge:
   id: 26439
 crate_252:
@@ -28776,6 +29301,7 @@ ladder_312:
   id: 26519
 metal_door_3:
   id: 26560
+  open: 26561
 metal_door_4:
   id: 26561
 sewer_exit:
@@ -28822,6 +29348,7 @@ secure_door_4:
   id: 26703
 metal_door_5:
   id: 26706
+  open: 26707
 metal_door_6:
   id: 26707
 precious_ore_container_10:
@@ -28938,6 +29465,7 @@ smashed_chair_8:
   id: 26785
 door_489:
   id: 26787
+  open: 5502
 yewnocks_machine:
   id: 26788
 cogs_8:
@@ -28962,6 +29490,7 @@ neverberry_bush_ravaged:
   id: 26809
 door_490:
   id: 26810
+  open: 26811
 furnace_22:
   id: 26814
 workbench_27:
@@ -29026,24 +29555,29 @@ boxes_28:
   id: 26899
 large_door_82:
   id: 26906
+  open: 26907
 large_door_83:
   id: 26907
 large_door_84:
   id: 26908
+  open: 26909
 large_door_85:
   id: 26909
 large_door_86:
   id: 26910
+  open: 26911
 large_door_87:
   id: 26911
 large_door_88:
   id: 26913
+  open: 26914
 large_door_89:
   id: 26914
 door_493:
   id: 26916
 door_494:
   id: 26917
+  open: 27989
 rack_9:
   id: 26918
 boxes_29:
@@ -29711,6 +30245,7 @@ precious_ore_container_26:
   id: 27767
 door_497:
   id: 27776
+  open: 27777
 door_498:
   id: 27777
 precious_ore_container_27:
@@ -29731,10 +30266,12 @@ gate_187:
   id: 27845
 gate_188:
   id: 27846
+  open: 27845
 gate_189:
   id: 27847
 gate_190:
   id: 27848
+  open: 27847
 chair_99:
   id: 27849
 table_182:
@@ -29743,10 +30280,12 @@ gate_191:
   id: 27851
 gate_192:
   id: 27852
+  open: 27851
 gate_193:
   id: 27853
 gate_194:
   id: 27854
+  open: 27853
 water_trough_53:
   id: 27855
 water_trough_54:
@@ -29807,6 +30346,7 @@ plant_78:
   id: 27983
 door_499:
   id: 27988
+  open: 27989
 door_500:
   id: 27989
 ore_container_31:
@@ -30221,10 +30761,12 @@ exit_18:
   id: 28401
 door_501:
   id: 28407
+  open: 28408
 door_502:
   id: 28408
 door_503:
   id: 28409
+  open: 28408
 door_504:
   id: 28410
 monument_8:
@@ -30347,6 +30889,7 @@ low_wall_4:
   id: 28512
 gate_195:
   id: 28514
+  open: 28517
 fallen_pillar:
   id: 28515
 fallen_pillar_2:
@@ -30431,6 +30974,7 @@ door_505:
   id: 28588
 door_506:
   id: 28589
+  open: 28588
 door_507:
   id: 28590
 table_189:
@@ -30514,8 +31058,10 @@ trapdoor_84:
   id: 28676
 gate_197:
   id: 28690
+  open: 28692
 gate_198:
   id: 28691
+  open: 28693
 gate_199:
   id: 28692
 gate_200:
@@ -31196,6 +31742,7 @@ stewing_pot_6:
   id: 29260
 metal_door_7:
   id: 29261
+  open: 29262
 metal_door_8:
   id: 29262
 large_chopping_board_6:
@@ -31224,16 +31771,20 @@ rack_10:
   id: 29314
 metal_door_9:
   id: 29315
+  open: 29317
 metal_door_10:
   id: 29316
+  open: 29318
 metal_door_11:
   id: 29317
 metal_door_12:
   id: 29318
 metal_door_13:
   id: 29319
+  open: 29317
 metal_door_14:
   id: 29320
+  open: 29318
 metal_door_15:
   id: 29321
 metal_door_16:
@@ -31580,6 +32131,7 @@ an_old_lever_7:
   id: 29731
 door_514:
   id: 29732
+  open: 29733
 kennith:
   id: 29737
 ezekial_lovecraft:
@@ -32306,6 +32858,7 @@ floorboards_22:
   id: 30502
 door_519:
   id: 30503
+  open: 18031
 mass_of_debris:
   id: 30504
 mass_of_debris_2:
@@ -32426,6 +32979,7 @@ torch_16:
   id: 30569
 cell_door_12:
   id: 30570
+  open: 31030
 trapdoor_87:
   id: 30571
   open: 30572
@@ -32492,8 +33046,10 @@ bench_29:
   id: 30691
 large_door_90:
   id: 30707
+  open: 30709
 large_door_91:
   id: 30708
+  open: 30710
 grill_26:
   id: 30719
 barbecue_40:
@@ -32614,6 +33170,7 @@ ladder_334:
   id: 30863
 door_525:
   id: 30864
+  open: 30865
 door_526:
   id: 30865
 stewing_pot_23:
@@ -32723,6 +33280,7 @@ rocks_410:
   id: 31061
 meeting_room_door:
   id: 31081
+  open: 31082
 bench_31:
   id: 31099
 bench_32:
@@ -32955,10 +33513,12 @@ broken_door_12:
   id: 31339
 door_528:
   id: 31340
+  open: 31341
 door_529:
   id: 31341
 door_530:
   id: 31342
+  open: 31343
 door_531:
   id: 31343
 sarcophagus_21:
@@ -33165,18 +33725,22 @@ bed_119:
   id: 31804
 large_door_92:
   id: 31808
+  open: 31809
 large_door_93:
   id: 31809
 wardrobe_31:
   id: 31810
 large_door_94:
   id: 31811
+  open: 31812
 large_door_95:
   id: 31812
 large_door_96:
   id: 31814
+  open: 31816
 large_door_97:
   id: 31815
+  open: 31813
 large_door_98:
   id: 31816
 large_door_99:
@@ -33187,44 +33751,55 @@ towels:
   id: 31819
 large_door_100:
   id: 31820
+  open: 31821
 large_door_101:
   id: 31821
 large_door_102:
   id: 31822
+  open: 31823
 large_door_103:
   id: 31823
 door_539:
   id: 31824
 door_540:
   id: 31825
+  open: 31824
 door_541:
   id: 31826
 door_542:
   id: 31827
+  open: 31826
 large_door_104:
   id: 31828
 door_543:
   id: 31829
 door_544:
   id: 31830
+  open: 31829
 door_545:
   id: 31831
 door_546:
   id: 31832
+  open: 31831
 ancient_gate_7:
   id: 31833
+  open: 31835
 ancient_gate_8:
   id: 31834
+  open: 31836
 door_547:
   id: 31838
+  open: 31839
 door_548:
   id: 31839
 door_549:
   id: 31841
+  open: 31840
 bed_120:
   id: 31842
 door_550:
   id: 31844
+  open: 31840
 dark_portal_2:
   id: 31845
 stage:
@@ -33635,6 +34210,7 @@ door_555:
   id: 32953
 exit_door_2:
   id: 32968
+  open: 32969
 entrance_17:
   id: 33018
 closed_chest_28:
@@ -33659,6 +34235,7 @@ chair_127:
   id: 33058
 large_door_105:
   id: 33060
+  open: 31828
 mirror_14:
   id: 33061
 cabinet_27:
@@ -33683,8 +34260,10 @@ roots_42:
   id: 33082
 door_556:
   id: 33108
+  open: 6874
 door_557:
   id: 33109
+  open: 6874
 barrel_124:
   id: 33120
 barrel_125:
@@ -33985,14 +34564,17 @@ stairs_149:
   id: 34041
 door_563:
   id: 34042
+  open: 34043
 door_564:
   id: 34043
 door_565:
   id: 34044
+  open: 34045
 door_566:
   id: 34045
 door_567:
   id: 34046
+  open: 6979
 sink_21:
   id: 34082
 shelves_107:
@@ -34031,6 +34613,7 @@ crates_74:
   id: 34226
 door_568:
   id: 34234
+  open: 34236
 wardrobe_33:
   id: 34246
 wardrobe_34:
@@ -34081,6 +34664,7 @@ door_574:
   id: 34353
 door_575:
   id: 34354
+  open: 34353
 shelves_109:
   id: 34366
 shelves_110:
@@ -34403,8 +34987,10 @@ gate_203:
   id: 34778
 gate_204:
   id: 34779
+  open: 34777
 gate_205:
   id: 34780
+  open: 34778
 ladder_346:
   id: 34785
 ladder_347:
@@ -34419,36 +35005,45 @@ pottery_oven_6:
   id: 34802
 door_576:
   id: 34807
+  open: 34808
 door_577:
   id: 34808
 door_578:
   id: 34809
+  open: 34826
 door_579:
   id: 34810
 door_580:
   id: 34811
+  open: 34813
 door_581:
   id: 34812
+  open: 34813
 door_582:
   id: 34813
 door_583:
   id: 34816
+  open: 34818
 door_584:
   id: 34818
 door_585:
   id: 34819
+  open: 34820
 door_586:
   id: 34820
 door_587:
   id: 34822
+  open: 34823
 door_588:
   id: 34823
 wooden_door:
   id: 34825
+  open: 34826
 wooden_door_2:
   id: 34826
 wooden_door_3:
   id: 34827
+  open: 34828
 wooden_door_4:
   id: 34828
 ladder_348:
@@ -34553,6 +35148,7 @@ solid_bronze_door_2:
   id: 34947
 meeting_room_door_2:
   id: 34960
+  open: 34961
 cave_exit_24:
   id: 34963
 table_238:
@@ -34625,6 +35221,7 @@ flag_5:
   id: 35145
 door_590:
   id: 35146
+  open: 35147
 rat_barrel_7:
   id: 35150
 rat_barrel_8:
@@ -34717,6 +35314,7 @@ rocks_452:
   id: 35391
 jail_door_8:
   id: 35401
+  open: 35541
 cactus_31:
   id: 35416
 cactus_32:
@@ -34803,6 +35401,7 @@ staircase_162:
   id: 35534
 cell_door_14:
   id: 35540
+  open: 35541
 cell_door_15:
   id: 35541
 danger_sign_9:
@@ -34837,6 +35436,7 @@ strange_blue_plant_6:
   id: 35625
 door_593:
   id: 35630
+  open: 35631
 door_594:
   id: 35631
 shelf_82:
@@ -35039,8 +35639,10 @@ tree_branch_4:
   id: 35970
 meeting_room_door_3:
   id: 35972
+  open: 35974
 door_597:
   id: 35991
+  open: 35992
 door_598:
   id: 35992
 stepping_stone_28:
@@ -35061,6 +35663,7 @@ door_599:
   id: 36021
 door_600:
   id: 36022
+  open: 36021
 wall_165:
   id: 36024
 wall_166:
@@ -35081,18 +35684,22 @@ portal_88:
   id: 36086
 door_601:
   id: 36087
+  open: 49604
 door_602:
   id: 36088
 door_603:
   id: 36089
+  open: 49604
 door_604:
   id: 36090
 door_605:
   id: 36100
+  open: 49604
 door_606:
   id: 36101
 door_607:
   id: 36109
+  open: 36119
 door_608:
   id: 36119
 operating_table:
@@ -35171,18 +35778,22 @@ battlements_4:
   id: 36314
 door_609:
   id: 36315
+  open: 36316
 door_610:
   id: 36316
 door_611:
   id: 36317
+  open: 36318
 door_612:
   id: 36318
 door_613:
   id: 36319
 door_614:
   id: 36320
+  open: 36319
 door_615:
   id: 36321
+  open: 17284
 boxes_36:
   id: 36322
 crate_289:
@@ -35213,6 +35824,7 @@ door_617:
   id: 36343
 door_618:
   id: 36344
+  open: 36343
 ladder_356:
   id: 36347
 ships_ladder_21:
@@ -35233,6 +35845,7 @@ door_619:
   id: 36359
 door_620:
   id: 36360
+  open: 36359
 ladder_358:
   id: 36363
 ladder_359:
@@ -35339,8 +35952,10 @@ crates_77:
   id: 36587
 door_621:
   id: 36590
+  open: 36639
 door_622:
   id: 36625
+  open: 36649
 rock_102:
   id: 36626
 rock_103:
@@ -35605,12 +36220,15 @@ bed_138:
   id: 36841
 door_625:
   id: 36844
+  open: 36845
 door_626:
   id: 36845
 door_627:
   id: 36846
+  open: 36848
 door_628:
   id: 36847
+  open: 36848
 door_629:
   id: 36848
 kiln_57:
@@ -35629,8 +36247,10 @@ kiln_63:
   id: 36861
 door_630:
   id: 36862
+  open: 36864
 door_631:
   id: 36863
+  open: 36865
 door_632:
   id: 36864
 door_633:
@@ -35711,18 +36331,22 @@ gate_206:
   id: 36912
 gate_207:
   id: 36913
+  open: 36912
 gate_208:
   id: 36914
 gate_209:
   id: 36915
+  open: 36914
 gate_210:
   id: 36916
 gate_211:
   id: 36917
+  open: 36912
 gate_212:
   id: 36918
 gate_213:
   id: 36919
+  open: 36914
 trapdoor_94:
   id: 36920
 hanging_tapestry_3:
@@ -35845,10 +36469,12 @@ broken_chair_12:
   id: 36998
 church_door:
   id: 36999
+  open: 37000
 church_door_2:
   id: 37000
 church_door_3:
   id: 37002
+  open: 37003
 church_door_4:
   id: 37003
 gravestone_33:
@@ -35949,6 +36575,7 @@ broom_3:
   id: 37122
 door_634:
   id: 37123
+  open: 37121
 noticeboard_10:
   id: 37125
 noticeboard_11:
@@ -35957,6 +36584,7 @@ door_635:
   id: 37130
 door_636:
   id: 37133
+  open: 37161
 noticeboard_12:
   id: 37143
 noticeboard_13:
@@ -36003,6 +36631,7 @@ counter_69:
   id: 37169
 door_637:
   id: 37170
+  open: 37178
 shelves_129:
   id: 37171
 shelves_130:
@@ -36025,6 +36654,7 @@ shelves_137:
   id: 37180
 door_639:
   id: 37181
+  open: 37187
 door_640:
   id: 37187
 stalactite_2:
@@ -36035,6 +36665,7 @@ whirpool:
   id: 37196
 locked_door_11:
   id: 37197
+  open: 37198
 door_641:
   id: 37198
 door_642:
@@ -36171,10 +36802,12 @@ gate_214:
   id: 37351
 gate_215:
   id: 37352
+  open: 37351
 gate_216:
   id: 37353
 gate_217:
   id: 37354
+  open: 37353
 surgery_bed:
   id: 37363
 stones_3:
@@ -36320,6 +36953,7 @@ gate_219:
   id: 37506
 gate_220:
   id: 37507
+  open: 33850
 drinks_stall:
   id: 37531
 candle_10:
@@ -36817,6 +37451,7 @@ chaos_altar_5:
   id: 37990
 door_649:
   id: 37995
+  open: 15205
 door_650:
   id: 37996
 rift_34:
@@ -36939,6 +37574,7 @@ door_651:
   id: 38123
 door_652:
   id: 38124
+  open: 38123
 cooking_pot_6:
   id: 38125
 soil_mound:
@@ -36949,6 +37585,7 @@ cooking_pots_9:
   id: 38131
 door_653:
   id: 38141
+  open: 38142
 door_654:
   id: 38142
 barrier_8:
@@ -37791,8 +38428,10 @@ balcony_4:
   id: 39196
 door_656:
   id: 39198
+  open: 39197
 door_657:
   id: 39199
+  open: 39197
 churned-up_snow:
   id: 39202
 hole_56:
@@ -37893,6 +38532,7 @@ superior_pit_trap_2:
   id: 39271
 door_658:
   id: 39272
+  open: 39306
 ladder_401:
   id: 39273
 trapdoor_103:
@@ -37928,6 +38568,7 @@ branch_2:
   id: 39304
 door_659:
   id: 39305
+  open: 39307
 door_660:
   id: 39306
 door_661:
@@ -38081,6 +38722,7 @@ rough_hewn_steps_3:
   id: 39468
 large_door_106:
   id: 39469
+  open: 39470
 large_door_107:
   id: 39470
 corpse_45:
@@ -38583,12 +39225,14 @@ barrel_158:
   id: 39974
 church_door_5:
   id: 39975
+  open: 39976
 church_door_6:
   id: 39976
 mining_rock_2:
   id: 39977
 church_door_7:
   id: 39978
+  open: 39979
 church_door_8:
   id: 39979
 mining_rock_3:
@@ -38741,6 +39385,7 @@ pressure_plate_4:
   id: 40107
 door_668:
   id: 40108
+  open: 40109
 door_669:
   id: 40109
 range_15:
@@ -38787,10 +39432,12 @@ coffin_37:
   id: 40181
 cell_door_16:
   id: 40184
+  open: 40747
 cell_door_17:
   id: 40185
 cell_door_18:
   id: 40186
+  open: 40185
 bed_153:
   id: 40188
 bed_154:
@@ -38945,6 +39592,7 @@ large_doors:
   id: 40361
 large_doors_2:
   id: 40362
+  open: 40361
 rock_plinth:
   id: 40382
 sign_37:
@@ -39059,6 +39707,7 @@ crates_84:
   id: 40708
 gate_225:
   id: 40746
+  open: 40747
 gate_226:
   id: 40747
 noticeboard_14:
@@ -39083,6 +39732,7 @@ large_cauldron:
   id: 40769
 solid_black_door_2:
   id: 40796
+  open: 41275
 crate_320:
   id: 40801
 crate_321:
@@ -39227,6 +39877,7 @@ ladder_408:
   id: 40892
 door_671:
   id: 40893
+  open: 40894
 door_672:
   id: 40894
 broken_table_6:
@@ -39243,16 +39894,19 @@ stairs_170:
   id: 40901
 door_673:
   id: 40902
+  open: 40903
 door_674:
   id: 40903
 gate_227:
   id: 40904
+  open: 40905
 gate_228:
   id: 40905
 old_battered_door:
   id: 40906
 old_battered_door_2:
   id: 40907
+  open: 40903
 old_battered_door_3:
   id: 40909
 old_battered_door_4:
@@ -39297,6 +39951,7 @@ gate_229:
   id: 40929
 gate_230:
   id: 40930
+  open: 40931
 gate_231:
   id: 40931
 spiral_staircase:
@@ -39405,6 +40060,7 @@ display_dial_4:
   id: 40989
 cell_door_19:
   id: 40990
+  open: 40991
 poster_9:
   id: 40992
 wanted_poster:
@@ -39555,30 +40211,37 @@ staircase_190:
   id: 41122
 door_675:
   id: 41123
+  open: 23379
 door_676:
   id: 41124
 door_677:
   id: 41125
+  open: 41124
 door_678:
   id: 41126
 door_679:
   id: 41127
+  open: 41128
 door_680:
   id: 41128
 door_681:
   id: 41129
+  open: 41130
 door_682:
   id: 41130
 large_door_108:
   id: 41131
+  open: 41132
 large_door_109:
   id: 41132
 large_door_110:
   id: 41133
+  open: 41134
 large_door_111:
   id: 41134
 meeting_room_door_4:
   id: 41142
+  open: 41143
 mysterious_stone_2:
   id: 41160
 mysterious_stone_3:
@@ -39595,8 +40258,10 @@ unconscious_guardian:
   id: 41168
 large_door_112:
   id: 41174
+  open: 41178
 large_door_113:
   id: 41175
+  open: 41179
 large_door_114:
   id: 41178
 large_door_115:
@@ -39661,10 +40326,13 @@ key_rack_2:
   id: 41272
 solid_black_door_3:
   id: 41273
+  open: 41275
 solid_black_door_4:
   id: 41274
+  open: 41275
 cell_door_20:
   id: 41276
+  open: 41277
 cell_oor:
   id: 41277
 desk_26:
@@ -39753,6 +40421,7 @@ door_683:
   id: 41463
 door_684:
   id: 41464
+  open: 41463
 bow_cabinet_9:
   id: 41465
 sword_cabinet_8:
@@ -39793,6 +40462,7 @@ suit_of_armour_32:
   id: 41508
 door_685:
   id: 41509
+  open: 41510
 door_686:
   id: 41510
 novice_flag_2:
@@ -39803,14 +40473,17 @@ veteran_flag_2:
   id: 41521
 door_687:
   id: 41522
+  open: 41523
 door_688:
   id: 41523
 door_689:
   id: 41524
+  open: 41526
 door_690:
   id: 41526
 door_691:
   id: 41529
+  open: 41530
 door_692:
   id: 41530
 broken_pier:
@@ -39875,8 +40548,10 @@ pit_iron_dragon_2:
   id: 41608
 pit_door:
   id: 41609
+  open: 41622
 pit_door_2:
   id: 41610
+  open: 41618
 skeleton_80:
   id: 41624
 pipe_19:
@@ -40312,6 +40987,7 @@ stove_5:
   id: 42476
 door_693:
   id: 42480
+  open: 41530
 door_694:
   id: 42481
 ogre_statue:
@@ -40863,6 +41539,7 @@ dyed_fabric_9:
   id: 43043
 prison_door_9:
   id: 43045
+  open: 43046
 whetstone_4:
   id: 43047
 sacks_25:
@@ -40881,6 +41558,7 @@ stove_6:
   id: 43071
 meeting_room_door_5:
   id: 43072
+  open: 43073
 hanging_meat_7:
   id: 43075
 hanging_meat_8:
@@ -40931,14 +41609,17 @@ door_695:
   id: 43176
 door_696:
   id: 43177
+  open: 43176
 door_697:
   id: 43178
 door_698:
   id: 43179
+  open: 43178
 door_699:
   id: 43180
 door_700:
   id: 43181
+  open: 43180
 ladder_416:
   id: 43182
 ladder_417:
@@ -41079,6 +41760,7 @@ door_701:
   id: 43400
 door_702:
   id: 43401
+  open: 43402
 door_703:
   id: 43402
 penguin_holes:
@@ -41121,10 +41803,12 @@ ice_block_10:
   id: 43458
 door_704:
   id: 43459
+  open: 43460
 door_705:
   id: 43460
 door_706:
   id: 43461
+  open: 21165
 boulder_30:
   id: 43462
 boulder_31:
@@ -41703,14 +42387,18 @@ main_entrance_2:
   id: 44210
 door_708:
   id: 44211
+  open: 44213
 door_709:
   id: 44212
+  open: 44213
 tapestry_3:
   id: 44214
 metal_door_17:
   id: 44215
+  open: 44217
 metal_door_18:
   id: 44216
+  open: 44218
 keypad:
   id: 44219
 human_detection_spell:
@@ -41727,8 +42415,10 @@ pipe_27:
   id: 44225
 metal_door_19:
   id: 44227
+  open: 44226
 metal_door_20:
   id: 44228
+  open: 44226
 closed_chest_36:
   id: 44229
 open_chest_32:
@@ -41743,6 +42433,7 @@ table_292:
   id: 44234
 door_710:
   id: 44236
+  open: 44235
 pedestal_29:
   id: 44238
 pedestal_30:
@@ -42841,6 +43532,7 @@ painting_39:
   id: 44973
 meeting_room_door_6:
   id: 44974
+  open: 44975
 machine_45:
   id: 44979
 bridge_56:
@@ -42871,6 +43563,7 @@ bridge_lever:
   id: 45002
 door_715:
   id: 45003
+  open: 45004
 door_716:
   id: 45004
 stairs_185:
@@ -42885,6 +43578,7 @@ doorway_28:
   id: 45009
 door_717:
   id: 45018
+  open: 45019
 door_718:
   id: 45019
 track_19:
@@ -42893,6 +43587,7 @@ train_cart_7:
   id: 45021
 prison_door_10:
   id: 45024
+  open: 45025
 prison_door_11:
   id: 45025
 tunnel_60:
@@ -43013,18 +43708,22 @@ stile_10:
   id: 45205
 gate_235:
   id: 45206
+  open: 45207
 gate_236:
   id: 45207
 gate_237:
   id: 45208
+  open: 45209
 gate_238:
   id: 45209
 gate_239:
   id: 45210
+  open: 45211
 gate_240:
   id: 45211
 gate_241:
   id: 45212
+  open: 45213
 gate_242:
   id: 45213
 bed_169:
@@ -43189,6 +43888,7 @@ food_trough_8:
   id: 45325
 door_719:
   id: 45476
+  open: 45477
 door_720:
   id: 45477
 stairs_188:
@@ -43205,10 +43905,12 @@ leaflets_3:
   id: 45504
 door_721:
   id: 45537
+  open: 45538
 door_722:
   id: 45538
 door_723:
   id: 45539
+  open: 45540
 door_724:
   id: 45540
 leaflets_4:
@@ -43285,6 +43987,7 @@ barrel_188:
   id: 45655
 meeting_room_door_7:
   id: 45696
+  open: 45697
 sir_vants_bag:
   id: 45783
 ladder_420:
@@ -43299,6 +44002,7 @@ egg_shell:
   id: 45788
 cupboard_door:
   id: 45789
+  open: 45790
 cupboard_door_2:
   id: 45790
 signpost_33:
@@ -43313,6 +44017,7 @@ trapdoor_111:
   id: 45800
 door_725:
   id: 45801
+  open: 45478
 grim_reaper:
   id: 45802
 exit_portal_9:
@@ -43335,12 +44040,16 @@ drawers_87:
   id: 45826
 gate_243:
   id: 45845
+  open: 3835
 gate_244:
   id: 45846
+  open: 3836
 gate_245:
   id: 45847
+  open: 3835
 gate_246:
   id: 45848
+  open: 3836
 door_726:
   id: 45849
 door_727:
@@ -43349,12 +44058,16 @@ door_728:
   id: 45851
 gate_247:
   id: 45852
+  open: 24373
 gate_248:
   id: 45853
+  open: 24374
 gate_249:
   id: 45854
+  open: 24373
 gate_250:
   id: 45855
+  open: 24374
 border_guard:
   id: 45856
 border_guard_2:
@@ -43373,12 +44086,15 @@ border_guard_8:
   id: 45863
 meeting_room_door_8:
   id: 45943
+  open: 45944
 door_729:
   id: 45964
+  open: 45965
 door_730:
   id: 45965
 door_731:
   id: 45966
+  open: 45967
 door_732:
   id: 45967
 sails_4:
@@ -43397,6 +44113,7 @@ stone_47:
   id: 46034
 meeting_room_door_9:
   id: 46159
+  open: 46160
 boxes_40:
   id: 46236
 boxes_41:
@@ -43413,6 +44130,7 @@ drawers_88:
   id: 46250
 door_733:
   id: 46251
+  open: 46252
 door_734:
   id: 46252
 bed_173:
@@ -43468,8 +44186,10 @@ door_735:
   id: 46305
 door_736:
   id: 46306
+  open: 46305
 door_737:
   id: 46307
+  open: 46308
 plank_stack_empty:
   id: 46310
 planks:
@@ -43554,6 +44274,7 @@ fire_38:
   id: 46416
 door_738:
   id: 46417
+  open: 46418
 large_stone_door:
   id: 46420
 mushroom_41:
@@ -44318,6 +45039,7 @@ mast_9:
   id: 47342
 meeting_room_door_10:
   id: 47352
+  open: 47422
 obstruction:
   id: 47355
 tunnel_entrance_8:
@@ -44422,14 +45144,17 @@ large_door_117:
   id: 47423
 large_door_118:
   id: 47424
+  open: 47425
 large_door_119:
   id: 47425
 door_768:
   id: 47443
+  open: 47444
 door_769:
   id: 47444
 door_770:
   id: 47512
+  open: 47513
 door_771:
   id: 47513
 wall_202:
@@ -45264,24 +45989,29 @@ precious_ore_15:
   id: 48887
 door_772:
   id: 48938
+  open: 48939
 door_773:
   id: 48939
 door_774:
   id: 48940
+  open: 48941
 door_775:
   id: 48941
 door_776:
   id: 48942
+  open: 48943
 door_777:
   id: 48943
 door_778:
   id: 48944
+  open: 48945
 door_779:
   id: 48945
 precious_ore_16:
   id: 48952
 door_780:
   id: 48961
+  open: 48962
 door_781:
   id: 48962
 door_782:
@@ -45304,8 +46034,10 @@ crate_369:
   id: 48998
 gate_253:
   id: 49014
+  open: 49015
 gate_254:
   id: 49016
+  open: 49017
 bank_booth_33:
   id: 49018
 bank_booth_34:
@@ -46048,10 +46780,13 @@ food_barrel_3:
   id: 49599
 locked_door_13:
   id: 49600
+  open: 49603
 locked_door_14:
   id: 49601
+  open: 49604
 locked_door_15:
   id: 49602
+  open: 49605
 door_815:
   id: 49603
 door_816:
@@ -46214,6 +46949,7 @@ expelling_pipe_4:
   id: 49692
 door_833:
   id: 49693
+  open: 49605
 door_834:
   id: 49694
 strange_wall_12:
@@ -47720,6 +48456,7 @@ dungeon_exit_8:
   id: 50604
 door_863:
   id: 50706
+  open: 49604
 door_864:
   id: 50707
 door_865:
@@ -47806,6 +48543,7 @@ dungeon_exit_9:
   id: 51156
 door_867:
   id: 51256
+  open: 49603
 door_868:
   id: 51257
 door_869:
@@ -47898,6 +48636,7 @@ dungeon_exit_10:
   id: 51704
 door_871:
   id: 51805
+  open: 49605
 door_872:
   id: 51806
 door_873:
@@ -47963,12 +48702,15 @@ altar_103:
   id: 52154
 gate_255:
   id: 52176
+  open: 2040
 gate_256:
   id: 52183
+  open: 2042
 strange_reeds:
   id: 52190
 door_875:
   id: 52193
+  open: 45479
 boxes_51:
   id: 52194
 boxes_52:
@@ -47977,6 +48719,7 @@ ventilation_shaft:
   id: 52197
 vault_door:
   id: 52198
+  open: 52199
 door_876:
   id: 52199
 pressure_pad_5:
@@ -48033,8 +48776,10 @@ practice_chest_6:
   id: 52301
 door_877:
   id: 52302
+  open: 52303
 door_878:
   id: 52304
+  open: 52303
 wall_safe_3:
   id: 52306
 wall_safe_4:
@@ -48045,10 +48790,12 @@ trapdoor_120:
   id: 52309
 door_879:
   id: 52312
+  open: 52313
 door_880:
   id: 52313
 door_881:
   id: 52314
+  open: 52313
 door_882:
   id: 52315
 mark_1:
@@ -48059,8 +48806,10 @@ desk_37:
   id: 52380
 locked_door_18:
   id: 52381
+  open: 52315
 locked_door_19:
   id: 52382
+  open: 52315
 bridge_68:
   id: 52383
 bank_booth_35:
@@ -48097,6 +48846,7 @@ bed_186:
   id: 52427
 door_883:
   id: 52474
+  open: 52473
 door_884:
   id: 52475
 cow_wheel:
@@ -48301,8 +49051,10 @@ stool_92:
   id: 52777
 door_886:
   id: 52778
+  open: 52780
 door_887:
   id: 52779
+  open: 52781
 door_888:
   id: 52780
 door_889:
@@ -50553,6 +51305,7 @@ wardrobe_84:
   id: 55412
 door_952:
   id: 55444
+  open: 55445
 door_953:
   id: 55445
 ladder_456:
@@ -51653,6 +52406,7 @@ portal_110:
   id: 56898
 door_978:
   id: 56900
+  open: 49603
 door_979:
   id: 56901
 door_980:
@@ -51773,6 +52527,7 @@ table_404:
   id: 57135
 door_986:
   id: 57137
+  open: 57138
 door_987:
   id: 57138
 tunnel_82:
@@ -51893,6 +52648,7 @@ big_door_10:
   id: 57257
 big_door_11:
   id: 57258
+  open: 57257
 skeleton_96:
   id: 57259
 rope_39:
@@ -52564,10 +53320,12 @@ statue_143:
   id: 59956
 arboretum_door:
   id: 59958
+  open: 59959
 arboretum_door_2:
   id: 59959
 arboretum_door_3:
   id: 59961
+  open: 59962
 arboretum_door_4:
   id: 59962
 fountain_33:
@@ -52876,14 +53634,17 @@ wall_pattern_13:
   id: 60605
 door_1073:
   id: 60832
+  open: 60833
 door_1074:
   id: 60833
 door_1075:
   id: 60834
+  open: 60835
 door_1076:
   id: 60835
 door_1077:
   id: 60836
+  open: 60837
 door_1078:
   id: 60837
 tower:
@@ -52894,14 +53655,17 @@ slave_cart:
   id: 60935
 door_1079:
   id: 60936
+  open: 60937
 door_1080:
   id: 60937
 door_1081:
   id: 60938
+  open: 60939
 door_1082:
   id: 60939
 door_1083:
   id: 60940
+  open: 60941
 door_1084:
   id: 60941
 locked_jail_door:
@@ -52910,14 +53674,18 @@ jail_door_11:
   id: 61043
 jail_door_12:
   id: 61044
+  open: 61043
 jail_door_13:
   id: 61045
+  open: 61043
 metal_door_21:
   id: 61051
+  open: 61052
 metal_door_22:
   id: 61052
 metal_door_23:
   id: 61053
+  open: 61054
 metal_door_24:
   id: 61054
 rope_40:
@@ -52970,10 +53738,12 @@ ladder_461:
   id: 61198
 door_1085:
   id: 61205
+  open: 61206
 door_1086:
   id: 61206
 door_1087:
   id: 61207
+  open: 61208
 door_1088:
   id: 61208
 lookout_point:
@@ -53020,10 +53790,12 @@ vandalised_propaganda_poster_8:
   id: 61316
 door_1089:
   id: 61317
+  open: 61318
 door_1090:
   id: 61318
 door_1091:
   id: 61319
+  open: 61320
 door_1092:
   id: 61320
 blisterwood_tree:
@@ -53102,6 +53874,7 @@ door_1093:
   id: 61501
 door_1094:
   id: 61502
+  open: 61503
 indentation:
   id: 61504
 indentation_2:
@@ -53158,14 +53931,19 @@ snow-covered_tree:
   id: 61551
 storeroom_door_2:
   id: 61558
+  open: 61563
 storeroom_door_3:
   id: 61559
+  open: 61563
 reliquary_door:
   id: 61560
+  open: 61563
 reliquary_door_2:
   id: 61561
+  open: 61563
 door_1095:
   id: 61562
+  open: 61563
 door_1096:
   id: 61563
 crate_387:
@@ -53352,6 +54130,7 @@ waves_5:
   id: 61934
 door_1097:
   id: 61935
+  open: 61936
 door_1098:
   id: 61936
 door_frame:
@@ -53410,6 +54189,7 @@ curtains_9:
   id: 62006
 door_1100:
   id: 62007
+  open: 62008
 backdrop:
   id: 62016
 backdrop_2:
