@@ -6,5 +6,4 @@ package rs.dusk.ai
  */
 interface Context {
     var last: Decision?
-    val options: MutableSet<Option>
 }

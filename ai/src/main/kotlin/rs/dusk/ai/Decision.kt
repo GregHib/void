@@ -5,6 +5,6 @@ package rs.dusk.ai
  */
 data class Decision(
     val target: Any,
-    val option: Option,
+    val option: Option<*, *>,
     val score: Double
 )

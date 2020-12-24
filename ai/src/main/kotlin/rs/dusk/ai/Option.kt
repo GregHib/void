@@ -1,8 +1,8 @@
 package rs.dusk.ai
 
-interface Option {
-    val targets: Context.() -> List<Any>
-    val considerations: Set<Context.(Any) -> Double>
+interface Option<C : Context, T : Any> {
+    val targets: C.() -> List<T>
+    val considerations: Set<C.(T) -> Double>
     val momentum: Double
     val weight: Double
 
@@ -10,7 +10,7 @@ interface Option {
      * Combine [weight] with all considerations into one score
      * @return score 0..1 + [momentum]
      */
-    fun score(context: Context, target: Any): Double {
+    fun score(context: C, target: T): Double {
         val compensationFactor = 1.0 - (1.0 / considerations.size)
         var result = weight
         for (consideration in considerations) {
@@ -32,7 +32,7 @@ interface Option {
     /**
      * Selects the target with the highest score greater than [highestScore]
      */
-    fun getHighestTarget(context: Context, highestScore: Double): Decision? {
+    fun getHighestTarget(context: C, highestScore: Double): Decision? {
         var highest = highestScore
         var topChoice: Any? = null
         val targets = targets(context)

@@ -10,7 +10,7 @@ internal class OptionTest {
         val consideration1: Context.(Any) -> Double = { _ -> 0.5 }
         val consideration2: Context.(Any) -> Double = { _ -> 0.5 }
         val option = option(targets = { listOf("self") }, considerations = setOf(consideration1, consideration2))
-        val context = context(option)
+        val context = context()
         // When
         val choice = option.score(context, "self")
         // Then
@@ -22,7 +22,7 @@ internal class OptionTest {
         val consideration: Context.(Any) -> Double = { _ -> 0.4 }
         val option = option(targets = { listOf("self") }, considerations = setOf(consideration), momentum = 1.25)
         val last = Decision("self", option, 1.23)
-        val context = context(option, last = last)
+        val context = context(last = last)
         // When
         val choice = option.score(context, "self")
         // Then
@@ -34,7 +34,7 @@ internal class OptionTest {
         val consideration1: Context.(Any) -> Double = { _ -> 0.4 }
         val consideration2: Context.(Any) -> Double = { _ -> 0.0 }
         val option = option(targets = { listOf("self") }, considerations = setOf(consideration1, consideration2))
-        val context = context(option)
+        val context = context()
         // When
         val choice = option.score(context, "self")
         // Then
@@ -45,7 +45,7 @@ internal class OptionTest {
     fun `Highest scoring target selected`() {
         val consideration: Context.(Any) -> Double = { e -> if (e == "target2") 0.8 else 0.5 }
         val option = option(targets = { listOf("target1", "target2") }, considerations = setOf(consideration))
-        val context = context(option)
+        val context = context()
         // When
         val choice = option.getHighestTarget(context, 0.0)
         // Then
@@ -59,7 +59,7 @@ internal class OptionTest {
     fun `Target ignored if score isn't higher`() {
         val consideration: Context.(Any) -> Double = { _ -> 0.5 }
         val option = option(targets = { listOf("self") }, considerations = setOf(consideration))
-        val context = context(option)
+        val context = context()
         // When
         val choice = option.getHighestTarget(context, 0.6)
         // Then
@@ -70,16 +70,15 @@ internal class OptionTest {
     fun `Goal ignored if highest score is great than weight`() {
         val consideration: Context.(Any) -> Double = { _ -> 0.5 }
         val option = option(targets = { listOf("target") }, considerations = setOf(consideration), weight = 0.7)
-        val context = context(option)
+        val context = context()
         // When
         val choice = option.getHighestTarget(context, 0.8)
         // Then
         assertNull(choice)
     }
 
-    private fun context(vararg options: Option, last: Decision? = null): Context = object : Context {
+    private fun context(last: Decision? = null): Context = object : Context {
         override var last: Decision? = last
-        override val options = options.toMutableSet()
     }
 
     private fun option(
@@ -87,7 +86,7 @@ internal class OptionTest {
         considerations: Set<Context.(Any) -> Double>,
         weight: Double = 1.0,
         momentum: Double = 1.25
-    ) = object : Option {
+    ) = object : Option<Context, Any> {
         override val targets = targets
         override val considerations = considerations
         override val momentum = momentum

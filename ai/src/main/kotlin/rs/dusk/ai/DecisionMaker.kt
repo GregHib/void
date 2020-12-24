@@ -6,13 +6,14 @@ package rs.dusk.ai
  */
 class DecisionMaker {
 
-    fun decide(context: Context): Decision? {
-        context.last = select(context) ?: return null
-        return context.last
+    fun <C : Context> decide(context: C, options: Set<Option<C, *>>): Decision? {
+        val decision = select(context, options) ?: return null
+        context.last = decision
+        return decision
     }
 
-    private fun select(context: Context): Decision? {
-        return context.options.fold(null as Decision?) { highest, option -> option.getHighestTarget(context, highest?.score ?: 0.0) ?: highest }
+    private fun <C : Context> select(context: C, options: Set<Option<C, *>>): Decision? {
+        return options.fold(null as Decision?) { highest, option -> option.getHighestTarget(context, highest?.score ?: 0.0) ?: highest }
     }
 
 }
