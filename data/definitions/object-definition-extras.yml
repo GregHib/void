@@ -5109,6 +5109,7 @@ trapdoor_9:
   id: 4173
 trapdoor_10:
   id: 4174
+  open: 4173
 drain:
   id: 4175
 tap:
@@ -5844,6 +5845,7 @@ scimitar_stall:
   id: 4878
 trapdoor_16:
   id: 4879
+  open: 4880
 trapdoor_17:
   id: 4880
 climbing_rope_8:
@@ -6152,6 +6154,7 @@ ladder_66:
   id: 5130
 trapdoor_20:
   id: 5131
+  open: 5132
 trapdoor_21:
   id: 5132
 hurdle:
@@ -6284,6 +6287,7 @@ ships_ladder_8:
   id: 5266
 trapdoor_22:
   id: 5267
+  open: 5268
 trapdoor_23:
   id: 5268
 rock_19:
@@ -6386,6 +6390,7 @@ ballista_platform:
   id: 5463
 trapdoor_24:
   id: 5490
+  open: 5491
 trapdoor_25:
   id: 5491
 ladder_70:
@@ -7280,6 +7285,7 @@ mystical_mirror_6:
   id: 6433
 trapdoor_35:
   id: 6434
+  open: 6435
 trapdoor_36:
   id: 6435
 ladder_80:
@@ -8267,6 +8273,7 @@ ladder_96:
   id: 7433
 trapdoor_38:
   id: 7434
+  open: 7435
 trapdoor_39:
   id: 7435
 barrel_29:
@@ -12640,6 +12647,7 @@ champion_statue_2:
   id: 10557
 trapdoor_44:
   id: 10558
+  open: 10559
 trapdoor_45:
   id: 10559
 ladder_151:
@@ -14960,6 +14968,7 @@ short_block:
   id: 12741
 trapdoor_49:
   id: 12744
+  open: 12745
 trapdoor_50:
   id: 12745
 water_3:
@@ -19081,6 +19090,7 @@ rubble_15:
   id: 15754
 hidden_trapdoor:
   id: 15755
+  open: 15756
 trapdoor_60:
   id: 15756
 large_door_49:
@@ -24836,6 +24846,7 @@ spinning_pipe:
   id: 21920
 trapdoor_76:
   id: 21921
+  open: 21922
 trapdoor_77:
   id: 21922
 plant_67:
@@ -29047,6 +29058,7 @@ neverberry_bush_dying:
   id: 26932
 trapdoor_80:
   id: 26933
+  open: 26934
 trapdoor_81:
   id: 26934
 coffin_16:
@@ -30497,6 +30509,7 @@ mould_51:
   id: 28673
 trapdoor_83:
   id: 28675
+  open: 28676
 trapdoor_84:
   id: 28676
 gate_197:
@@ -30581,6 +30594,7 @@ ladder_324:
   id: 28740
 trapdoor_85:
   id: 28741
+  open: 28742
 trapdoor_86:
   id: 28742
 ladder_325:
@@ -32414,10 +32428,12 @@ cell_door_12:
   id: 30570
 trapdoor_87:
   id: 30571
+  open: 30572
 trapdoor_88:
   id: 30572
 trapdoor_89:
   id: 30573
+  open: 30572
 ladder_330:
   id: 30574
 ladder_331:
@@ -32662,6 +32678,7 @@ trapdoor_90:
   id: 31010
 trapdoor_91:
   id: 31011
+  open: 31010
 crate_282:
   id: 31013
 wrecked_tent:
@@ -37759,6 +37776,7 @@ clive:
   id: 39185
 trapdoor_101:
   id: 39188
+  open: 39189
 trapdoor_102:
   id: 39189
 ladder_400:
@@ -37879,6 +37897,7 @@ ladder_401:
   id: 39273
 trapdoor_103:
   id: 39274
+  open: 39275
 trapdoor_104:
   id: 39275
 chest_102:
@@ -37935,6 +37954,7 @@ ladder_402:
   id: 39329
 trapdoor_105:
   id: 39330
+  open: 39331
 trapdoor_106:
   id: 39331
 wrongly_labelled_crate_toads:
