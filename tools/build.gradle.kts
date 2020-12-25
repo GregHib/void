@@ -1,4 +1,5 @@
 dependencies {
+    implementation(project(":ai"))
     implementation(project(":buffer"))
     implementation(project(":core"))
     implementation(project(":cache"))

@@ -86,6 +86,34 @@ class ObjectLinker(private val collisions: Collisions) {
         return list
     }
 
+    fun getTiles(obj: GameObject): Set<Tile> {
+        val list = mutableSetOf<Tile>()
+        for (dir in Direction.values()) {
+            val tile = getSizedTile(obj, dir)
+
+            when (dir) {
+                Direction.WEST, Direction.EAST -> {
+                    for (y in 0 until obj.size.height) {
+                        if (obj.reachableFrom(tile.add(y = y))) {
+                            list.add(tile.add(y = y))
+                        }
+                    }
+                }
+                Direction.SOUTH, Direction.NORTH -> {
+                    for (x in 0 until obj.size.width) {
+                        if (obj.reachableFrom(tile.add(x = x))) {
+                            list.add(tile.add(x = x))
+                        }
+                    }
+                }
+                else -> if (obj.reachableFrom(tile)) {
+                    list.add(tile)
+                }
+            }
+        }
+        return list
+    }
+
     fun isReachable(obj: GameObject): Boolean {
         for (dir in Direction.values()) {
             val tile = getSizedTile(obj, dir)

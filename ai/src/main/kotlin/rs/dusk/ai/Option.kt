@@ -13,8 +13,10 @@ interface Option<C : Context, T : Any> {
     fun score(context: C, target: T): Double {
         val compensationFactor = 1.0 - (1.0 / considerations.size)
         var result = weight
+//        println("Score $target")
         for (consideration in considerations) {
             var finalScore = consideration(context, target)
+//            println(finalScore)
             val modification = (1.0 - finalScore) * compensationFactor
             finalScore += (modification * finalScore)
             result *= finalScore
@@ -26,6 +28,7 @@ interface Option<C : Context, T : Any> {
         if (this == context.last?.option) {
             result *= momentum
         }
+//        println("Result $result")
         return result
     }
 
@@ -49,4 +52,5 @@ interface Option<C : Context, T : Any> {
         }
         return if (topChoice != null) Decision(topChoice, this, highest) else null
     }
+
 }
