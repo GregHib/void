@@ -1,5 +1,6 @@
 package rs.dusk.engine.map
 
+import rs.dusk.engine.entity.Size
 import rs.dusk.engine.map.area.Coordinate2D
 import rs.dusk.engine.map.area.Coordinate3D
 import kotlin.math.abs
@@ -7,6 +8,26 @@ import kotlin.math.min
 import kotlin.math.sqrt
 
 object Distance {
+
+    /**
+     * Get nearest point for [tile] with [size] to [target]
+     */
+    fun getNearest(tile: Tile, size: Size, target: Tile) = tile.copy(
+        x = getNearest(tile.x, size.width, target.x),
+        y = getNearest(tile.y, size.height, target.y)
+    )
+
+    /**
+     * Get the nearest coordinate for axis [source] with [size] to [target]
+     */
+    fun getNearest(source: Int, size: Int, target: Int): Int {
+        val max = source + size - 1
+        return when {
+            target > max -> max
+            target < source -> source
+            else -> target
+        }
+    }
 
     /**
      * @return the distance between the two points [x1], [y1] - [x2], [y2] assuming diagonals are twice the cost of cardinal directions

@@ -1,49 +1,34 @@
 package rs.dusk.tools.map.obj
 
-import rs.dusk.ai.*
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.engine.entity.Direction
-import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.map.Distance
+import rs.dusk.engine.map.Distance.euclidean
 import rs.dusk.engine.map.Tile
-import rs.dusk.utility.get
-
-val ladderDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    Distance.euclidean(obj.tile, target.obj.tile).scale(0.0, 20.0).inverse().logistic()
-}
 
 val ladderOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    val targetOpt = getTargetOption(target)
-    ((opt == "climb down" && targetOpt == "climb up")
-            || (opt == "climb up" && targetOpt == "climb down")).toDouble()
-}
-
-private fun getTargetOption(target: GameObjectOption): String {
-    if (target.opt == "open") {
-        when (target.obj.def.name.toLowerCase()) {
-            "trapdoor" -> {
-                val def = resolveObject(target.obj)
-                return def.name.replace("-", " ").toLowerCase()
-            }
-            "manhole" -> return "climb down"
-        }
+    if (opt == "climb down" && target.opt == "climb up") {
+        1.0
+    } else if (opt == "climb up" && target.opt == "climb down") {
+        1.0
+    } else if (opt == "climb up" && target.obj.def.isTrapDoor()) {
+        0.6
+    } else {
+        0.0
     }
-    return target.opt
 }
 
-private fun resolveObject(obj: GameObject): ObjectDefinition {
-    return get<ObjectDefinitions>().get(obj.def.getOrNull("open") as? Int ?: return obj.def)
+private fun ObjectDefinition.isTrapDoor(): Boolean {
+    val name = name.replace(" ", "").toLowerCase()
+    return name == "trapdoor" || name == "manhole"
 }
 
-val interactionScore: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
+val interactTileDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
     when {
         hasOppositeTile(obj, availableTiles, target.obj, target.tiles) -> 1.0
         hasVerticalTile(obj, availableTiles, target.obj, target.tiles) -> 0.9
-        else -> getShortestDist(availableTiles, target.tiles)
-            .scale(0.0, 10.0)
-            .inverse()
-            .linear(slope = 1.3)
+        availableTiles.isNotEmpty() && target.tiles.isNotEmpty() -> 0.8
+        else -> 0.0
     }
 }
 
@@ -78,7 +63,7 @@ private fun getShortestDist(tiles1: Set<Tile>, tiles2: Set<Tile>): Double {
     var shortest = Double.MAX_VALUE
     tiles1.forEach { t1 ->
         tiles2.forEach { t2 ->
-            val dist = Distance.euclidean(t1, t2)
+            val dist = euclidean(t1, t2)
             if (dist < shortest) {
                 shortest = dist
             }

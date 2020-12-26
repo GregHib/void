@@ -3,6 +3,7 @@ package rs.dusk.tools.map.obj
 import rs.dusk.ai.DecisionMaker
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.entity.obj.Objects
+import rs.dusk.engine.map.Tile
 import rs.dusk.tools.map.process.ObjectLinker
 import rs.dusk.utility.get
 
@@ -32,12 +33,12 @@ class ObjectIdentifier(private val linker: ObjectLinker) {
                     linker.getAvailableTiles(it).isNotEmpty() &&
                     isReused(it)
         }
-        val interactiveOptions = interactiveObjects.flatMap { obj -> obj.getOptions() }
+        val interactiveOptions = interactiveObjects
+            .flatMap { obj -> obj.getOptions() }
+//            .filter { it.obj.id == 2446 && it.obj.tile.equals(2463, 3497) }
 
         /**
          *  TODO
-         *      Take size into consideration with distance checks; invalid matches like cw stairs shouldn't be getting as high as 0.875 (36481, tile=Tile(x=2417, y=3077, plane=0)
-         *      Add +6400 (if coords are correct take min of both calculations)
          *      Add cache links data
          *      Add non-plane-changing if two objects are touching
          *      Add non-plane-changing for single objects
@@ -50,8 +51,8 @@ class ObjectIdentifier(private val linker: ObjectLinker) {
                 setOf(
                     sizeDifference,
                     differenceBetweenNames,
-                    interactionScore,
-                    ladderDistance,
+                    interactTileDistance,
+                    objectDistance,
                     ladderOptionNameOpposition,
                     differenceBetweenIds
                 )
@@ -62,8 +63,8 @@ class ObjectIdentifier(private val linker: ObjectLinker) {
                 setOf(
                     sizeDifference,
                     differenceBetweenNames,
-                    interactionScore,
-                    stairDistance,
+                    interactTileDistance,
+                    objectDistance,
                     stairOptionNameOpposition,
                     differenceBetweenIds
                 )
@@ -72,7 +73,9 @@ class ObjectIdentifier(private val linker: ObjectLinker) {
 
         val climbables =
             interactiveObjects
-                .filter { it.def.options.firstOrNull()?.replace("-", " ").equals("climb up", true) }
+                .filter { it.def.options.firstOrNull()?.replace("-", " ").equals("climb up", true)
+//                        && it.id == 32015 && it.tile.equals(2463, 9897)
+                }
         climbables.forEach { obj ->
             for (opt in obj.getOptions()) {
                 val context = ObjectIdentificationContext(obj, opt.tiles, opt.option)
@@ -96,6 +99,15 @@ class ObjectIdentifier(private val linker: ObjectLinker) {
 
     private fun GameObject.getOptions(): List<GameObjectOption> {
         val tiles = linker.getTiles(this)
+        val openId = def.getOrNull("open") as? Int
+        if(openId != null) {
+            val openObj = GameObject(openId, tile, type, rotation, owner)
+            return openObj.options(tiles) + options(tiles)
+        }
+        return options(tiles)
+    }
+
+    private fun GameObject.options(tiles: Set<Tile>): List<GameObjectOption> {
         return def.options.filterNotNull().filterNot { it == "Examine" }.map { GameObjectOption(it, this, tiles) }
     }
 }

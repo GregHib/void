@@ -1,11 +1,14 @@
 package rs.dusk.tools.map.obj
 
-import rs.dusk.ai.cosine
-import rs.dusk.ai.inverse
-import rs.dusk.ai.linear
-import rs.dusk.ai.scale
+import rs.dusk.ai.*
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.obj.GameObject
+import rs.dusk.engine.map.Distance.euclidean
+import rs.dusk.engine.map.Distance.getNearest
 import rs.dusk.engine.map.Distance.levenshtein
+import rs.dusk.engine.map.Tile
 import kotlin.math.abs
+import kotlin.math.max
 
 /*
     Order of importance
@@ -42,4 +45,31 @@ val differenceBetweenIds: ObjectIdentificationContext.(GameObjectOption) -> Doub
         .scale(0.0, 10.0)
         .inverse()
         .linear(slope = 5.0, offset = -0.8)
+}
+
+/**
+ * Distance between objects taking size into account
+ */
+val objectDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
+    val dist = getDistance(obj.tile, obj.size, target.obj)
+    if (onSurface(obj.tile) && inDungeon(target.obj.tile)) {
+        max(dist, getDistance(obj.tile.add(y = dungeonDifference), obj.size, target.obj))
+    } else if (inDungeon(obj.tile) && onSurface(target.obj.tile)) {
+        max(dist, getDistance(obj.tile.minus(y = dungeonDifference), obj.size, target.obj))
+    } else {
+        dist
+    }
+}
+
+private val dungeonDifference = 6400
+private fun onSurface(tile: Tile) = tile.y < dungeonDifference
+private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
+
+private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
+    val nearest = getNearest(tile, size, target.tile)
+    val nearestTarget = getNearest(target.tile, target.size, tile)
+    return euclidean(nearest, nearestTarget)
+        .scale(0.0, 5.0)
+        .inverse()
+        .logistic(midpoint = -0.25)
 }
