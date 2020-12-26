@@ -13,10 +13,8 @@ interface Option<C : Context, T : Any> {
     fun score(context: C, target: T): Double {
         val compensationFactor = 1.0 - (1.0 / considerations.size)
         var result = weight
-//        println("Score $target")
         for (consideration in considerations) {
             var finalScore = consideration(context, target)
-//            println(finalScore)
             val modification = (1.0 - finalScore) * compensationFactor
             finalScore += (modification * finalScore)
             result *= finalScore
@@ -28,7 +26,6 @@ interface Option<C : Context, T : Any> {
         if (this == context.last?.option) {
             result *= momentum
         }
-//        println("Result $result")
         return result
     }
 
@@ -52,5 +49,15 @@ interface Option<C : Context, T : Any> {
         }
         return if (topChoice != null) Decision(topChoice, this, highest) else null
     }
+
+    /**
+     * For debugging against an individual [target]
+     */
+    fun getScores(context: C, target: T): List<Double> = considerations.map { it(context, target) }
+
+    /**
+     * For debugging
+     */
+    fun getScores(context: C): Map<Any, List<Double>> = targets(context).map { target -> target to getScores(context, target) }.toMap()
 
 }

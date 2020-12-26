@@ -29,6 +29,7 @@ import rs.dusk.engine.map.region.tile.TileDecoder
 import rs.dusk.tools.map.process.ObjectLinker
 import rs.dusk.tools.map.view.graph.GraphIO
 import rs.dusk.tools.map.view.graph.NavigationGraph
+import rs.dusk.utility.get
 
 object WorldMapLinkIdentifier {
 
@@ -41,6 +42,7 @@ object WorldMapLinkIdentifier {
                     single(override = true) { ObjectDecoder(get(), true, false, false) }
                     single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDefinitionsPath")) }
                     single { Objects() }
+                    single { Collisions() }
                 }
             )
 
@@ -50,7 +52,7 @@ object WorldMapLinkIdentifier {
         val xteas: Xteas = koin.get()
         val tileDecoder = TileDecoder()
         val mapObjDecoder: GameObjectMapDecoder = koin.get()
-        val collisions = Collisions()
+        val collisions: Collisions = koin.get()
         val graph = NavigationGraph()
         val linker = ObjectLinker(collisions)
         val regions = mutableListOf<Region>()
@@ -99,7 +101,12 @@ object WorldMapLinkIdentifier {
                 }
             }
         }
-        val compare = ObjectIdentifier(linker)
+        val cacheLinks = mutableListOf<Pair<Tile, Tile>>()
+        val dungeons = WorldMapDungeons(get(), get(), get(), get())
+        val mapLinks = WorldMapLinks(get())
+        cacheLinks.addAll(dungeons.getLinks())
+        cacheLinks.addAll(mapLinks.getLinks())
+        val compare = ObjectIdentifier(linker, cacheLinks, graph)
         compare.compare(list)
         println("${graph.links.size} total links found.")
         GraphIO(graph, "./navgraph.json").save()

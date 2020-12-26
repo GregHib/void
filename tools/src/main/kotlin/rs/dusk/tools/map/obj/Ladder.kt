@@ -3,14 +3,13 @@ package rs.dusk.tools.map.obj
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.map.Distance.euclidean
 import rs.dusk.engine.map.Tile
 
 val ladderOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
     if (opt == "climb down" && target.opt == "climb up") {
-        1.0
+        if (obj.tile.plane > target.obj.tile.plane) 1.0 else 0.8
     } else if (opt == "climb up" && target.opt == "climb down") {
-        1.0
+        if (target.obj.tile.plane > obj.tile.plane) 1.0 else 0.8
     } else if (opt == "climb up" && target.obj.def.isTrapDoor()) {
         0.6
     } else {
@@ -57,17 +56,4 @@ private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
         else -> obj.tile.add(dir.delta)
     }
     return tiles.contains(tile)
-}
-
-private fun getShortestDist(tiles1: Set<Tile>, tiles2: Set<Tile>): Double {
-    var shortest = Double.MAX_VALUE
-    tiles1.forEach { t1 ->
-        tiles2.forEach { t2 ->
-            val dist = euclidean(t1, t2)
-            if (dist < shortest) {
-                shortest = dist
-            }
-        }
-    }
-    return shortest
 }

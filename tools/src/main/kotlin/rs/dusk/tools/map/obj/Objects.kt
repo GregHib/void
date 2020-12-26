@@ -3,17 +3,12 @@ package rs.dusk.tools.map.obj
 import rs.dusk.ai.*
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.map.Distance.euclidean
+import rs.dusk.engine.map.Distance.euclideanModified
 import rs.dusk.engine.map.Distance.getNearest
 import rs.dusk.engine.map.Distance.levenshtein
 import rs.dusk.engine.map.Tile
 import kotlin.math.abs
 import kotlin.math.max
-
-/*
-    Order of importance
-    names > size > ids
- */
 
 /**
  * Names with over 20 difference between names still returns 0.6
@@ -68,7 +63,7 @@ private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
 private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
     val nearest = getNearest(tile, size, target.tile)
     val nearestTarget = getNearest(target.tile, target.size, tile)
-    return euclidean(nearest, nearestTarget)
+    return euclideanModified(nearest, nearestTarget, plane = nearest.x == nearestTarget.x && nearest.y == nearestTarget.y)
         .scale(0.0, 5.0)
         .inverse()
         .logistic(midpoint = -0.25)
