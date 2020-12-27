@@ -1,24 +1,46 @@
 package rs.dusk.tools.map.obj
 
-import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 
 val ladderOptionNameOpposition: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
-    if (opt == "climb down" && target.opt == "climb up") {
-        if (obj.tile.plane > target.obj.tile.plane) 1.0 else 0.8
-    } else if (opt == "climb up" && target.opt == "climb down") {
-        if (target.obj.tile.plane > obj.tile.plane) 1.0 else 0.8
-    } else if (opt == "climb up" && target.obj.def.isTrapDoor()) {
-        0.6
-    } else {
-        0.0
+    when(opt) {
+        "climb down" -> {
+            when(target.opt) {
+                "climb up" -> if (obj.tile.plane > target.obj.tile.plane) 1.0 else 0.8
+                "climb" -> 0.6
+                else -> 0.0
+            }
+        }
+        "climb up" -> {
+            when {
+                target.opt == "climb down" -> if (obj.tile.plane > target.obj.tile.plane) 1.0 else 0.8
+                target.obj.def.name.isTrapDoor() -> 0.7
+                target.opt == "climb" -> 0.6
+                else -> 0.0
+            }
+        }
+        else -> 0.0
     }
 }
 
-private fun ObjectDefinition.isTrapDoor(): Boolean {
-    val name = name.replace(" ", "").toLowerCase()
+val ladderType: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
+    val name = obj.def.name.toLowerCase()
+    val targetName = target.obj.def.name.toLowerCase()
+    if (name.isLadder() && targetName.isLadder()) {
+        1.0
+    } else if (name.isStair() || targetName.isStair()) {
+        0.0
+    } else {
+        0.8
+    }
+}
+
+fun String.isLadder() = contains("ladder") || contains("rope") || contains("chain") || contains("vine") || isTrapDoor()
+
+fun String.isTrapDoor(): Boolean {
+    val name = replace(" ", "").toLowerCase()
     return name == "trapdoor" || name == "manhole"
 }
 

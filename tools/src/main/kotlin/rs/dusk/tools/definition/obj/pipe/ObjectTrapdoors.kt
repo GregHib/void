@@ -11,14 +11,10 @@ class ObjectTrapdoors(private val decoder: ObjectDecoder) : Pipeline.Modifier<Mu
         if (!def.name.contains("trap", true)) {
             return false
         }
-        val option = def.options.first()
-        if (option == "Climb-down") {
-            return true
-        } else if (option == "Enter") {
-            return true
+        return when(def.options.first()) {
+            "Go-down", "Climb-down", "Enter" -> true
+            else -> false
         }
-
-        return false
     }
 
     override fun modify(content: MutableMap<Int, Extras>): MutableMap<Int, Extras> {

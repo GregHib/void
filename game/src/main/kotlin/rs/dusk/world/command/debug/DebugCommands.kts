@@ -26,7 +26,7 @@ IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
     val collisions: Collisions = get()
-    println(get<Objects>()[player.tile, 26933]?.interactTarget?.reached(player.tile, player.size))
+    println(get<Objects>().get(player.tile))
     println(collisions.check(player.tile.x, player.tile.y, player.tile.plane, CollisionFlag.BLOCKED))
     println(collisions[player.tile.x, player.tile.y + 1, player.tile.plane])
 }

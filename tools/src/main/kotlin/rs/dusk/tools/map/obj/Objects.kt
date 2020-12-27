@@ -3,7 +3,7 @@ package rs.dusk.tools.map.obj
 import rs.dusk.ai.*
 import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.obj.GameObject
-import rs.dusk.engine.map.Distance.euclideanModified
+import rs.dusk.engine.map.Distance.euclidean
 import rs.dusk.engine.map.Distance.getNearest
 import rs.dusk.engine.map.Distance.levenshtein
 import rs.dusk.engine.map.Tile
@@ -63,7 +63,7 @@ private fun inDungeon(tile: Tile) = tile.y > dungeonDifference
 private fun getDistance(tile: Tile, size: Size, target: GameObject): Double {
     val nearest = getNearest(tile, size, target.tile)
     val nearestTarget = getNearest(target.tile, target.size, tile)
-    return euclideanModified(nearest, nearestTarget, plane = nearest.x == nearestTarget.x && nearest.y == nearestTarget.y)
+    return euclidean(nearest, nearestTarget, plane = nearest.plane == 3 || nearest.x != nearestTarget.x || nearest.y != nearestTarget.y)
         .scale(0.0, 5.0)
         .inverse()
         .logistic(midpoint = -0.25)

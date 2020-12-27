@@ -74,17 +74,6 @@ object Distance {
         return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) + (z1 - z2) * (z1 - z2).toDouble())
     }
 
-    fun euclideanModified(first: Coordinate3D, second: Coordinate3D, plane: Boolean = true): Double {
-        if (!plane) {
-            return euclidean(first as Coordinate2D, second)
-        }
-        return euclideanModified(first.x, first.y, first.plane, second.x, second.y, second.plane)
-    }
-
-    fun euclideanModified(x1: Int, y1: Int, z1: Int, x2: Int, y2: Int, z2: Int): Double {
-        return sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2) - (z1 - z2) * (z1 - z2).toDouble())
-    }
-
     /**
      * @return number of characters difference between two strings of equal length
      */
