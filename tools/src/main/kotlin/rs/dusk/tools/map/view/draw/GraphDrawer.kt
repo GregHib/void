@@ -61,18 +61,21 @@ class GraphDrawer(
             }
         }
         g.color = areaColour
-        nav.areas.forEach {
-            if (it.plane != view.plane) {
+        nav.areas.forEach { area ->
+            if (view.plane !in area.planes) {
                 return@forEach
             }
-            val shape = it.getShape(view) ?: return@forEach
+            if (!area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {
+                return@forEach
+            }
+            val shape = area.getShape(view) ?: return@forEach
             when (shape) {
                 is Polygon -> g.fillPolygon(shape)
                 is Rectangle -> g.fillRect(shape.x, shape.y, shape.width, shape.height)
             }
             val width = view.mapToImageX(1) / 2
             val height = view.mapToImageY(1) / 2
-            it.points.forEach { point ->
+            area.points.forEach { point ->
                 g.fillOval(view.mapToViewX(point.x) + width / 2, view.mapToViewY(view.flipMapY(point.y)) + height / 2, width, height)
             }
         }

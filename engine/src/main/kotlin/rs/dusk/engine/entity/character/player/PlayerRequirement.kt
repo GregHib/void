@@ -12,3 +12,5 @@ fun Player.lacks(requirement: PlayerRequirement): Boolean {
     }
     return false
 }
+
+fun Player.meets(requirement: PlayerRequirement) = !lacks(requirement)

@@ -11,7 +11,6 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
 
     val highlighted: MutableList<Area> = mutableListOf()
 
-    private var area: Area? = null
     private var draw = false
 
     fun clear() {
@@ -27,7 +26,6 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
             val mapX = view.viewToMapX(viewX)
             val mapY = view.flipMapY(view.viewToMapY(viewY))
             if (shape.intersects(mapX - 0.5, mapY - 0.5, 1.0, 1.0)) {
-                this.area = area
                 highlighted.add(0, area)
                 draw = true
             }
@@ -36,15 +34,19 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
     }
 
     private fun repaint() {
-        view.repaint(area?.getShape(view)?.bounds ?: return)
+        view.repaint()
     }
 
     fun draw(g: Graphics) {
         if (draw) {
             g.color = Color.CYAN
-            when (val shape = area?.getShape(view)) {
-                is Polygon -> g.drawPolygon(shape)
-                is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
+            highlighted.forEach { area ->
+                if(area.points.all { view.contains(view.mapToViewX(it.x), view.mapToViewY(view.flipMapY(it.y))) }) {
+                    when (val shape = area.getShape(view)) {
+                        is Polygon -> g.drawPolygon(shape)
+                        is Rectangle -> g.drawRect(shape.x, shape.y, shape.width, shape.height)
+                    }
+                }
             }
         }
     }

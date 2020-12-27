@@ -79,7 +79,7 @@ class NavigationGraph {
 
     fun getPointOrNull(x: Int, y: Int, z: Int): Point? {
         for (area in areas) {
-            if (area.plane != z) {
+            if (z !in area.planes) {
                 continue
             }
             return area.points.firstOrNull { it.x == x && it.y == y } ?: continue
@@ -93,7 +93,7 @@ class NavigationGraph {
     }
 
     fun addArea(x: Int, y: Int, z: Int): Area {
-        val area = Area(null, z, mutableListOf())
+        val area = Area(null, z, 3, mutableListOf())
         addPoint(area, x, y)
         areas.add(area)
         changed = true
@@ -101,7 +101,7 @@ class NavigationGraph {
     }
 
     fun removeArea(area: Area) {
-        areas.removeIf { it.plane == area.plane && it.minX == area.minX && it.minY == area.minY && it.maxX == area.maxX && it.maxY == area.maxY }
+        areas.removeIf { it.planes == area.planes && it.minX == area.minX && it.minY == area.minY && it.maxX == area.maxX && it.maxY == area.maxY }
         changed = true
     }
 

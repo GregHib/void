@@ -9,6 +9,7 @@ import rs.dusk.tools.map.view.graph.Link
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.tools.map.view.graph.Point
 import rs.dusk.tools.map.view.ui.AreaPointSettings
+import rs.dusk.tools.map.view.ui.AreaSettings
 import rs.dusk.tools.map.view.ui.LinkSettings
 import rs.dusk.tools.map.view.ui.NodeSettings
 import java.awt.event.MouseAdapter
@@ -39,10 +40,8 @@ class MouseClick(
                     graph.repaint(nav.addNode(mapX, mapY, view.plane))
                 }
             }
-            if (areas.isEmpty()) {
-                popup.add(JMenuItem("Add area")).addActionListener {
-                    graph.repaint(nav.addArea(mapX, mapY, view.plane))
-                }
+            popup.add(JMenuItem("Add area")).addActionListener {
+                graph.repaint(nav.addArea(mapX, mapY, view.plane))
             }
             if (node != null && links != null) {
                 popup.add(JMenuItem("Edit node")).addActionListener {
@@ -51,7 +50,14 @@ class MouseClick(
             }
             if (point != null) {
                 popup.add(JMenuItem("Edit point")).addActionListener {
-                    showAreaSettings(point.area, point)
+                    showPointSettings(point.area, point)
+                }
+            }
+            if (areas.isNotEmpty()) {
+                for ((index, area) in areas.withIndex()) {
+                    popup.add(JMenuItem("Edit area${if (index > 0) (index + 1).toString() else ""}")).addActionListener {
+                        showAreaSettings(area)
+                    }
                 }
             }
             links?.forEachIndexed { index, link ->
@@ -108,7 +114,32 @@ class MouseClick(
         return null
     }
 
-    private fun showAreaSettings(area: Area, point: Point) {
+    private fun showAreaSettings(area: Area) {
+        val settings = AreaSettings()
+        populate(settings, area)
+        val result = JOptionPane.showConfirmDialog(null, settings, "Edit area",
+            JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE)
+        if (result == JOptionPane.OK_OPTION) {
+            populate(area, settings)
+            nav.changed = true
+            graph.repaint(area)
+        }
+    }
+
+    private fun populate(settings: AreaSettings, area: Area) {
+        settings.name.text = area.name ?: ""
+        val tags = area.tags
+        if (tags != null) {
+            settings.tagsList.addAll(tags)
+        }
+    }
+
+    private fun populate(area: Area, settings: AreaSettings) {
+        val tags = settings.tagsList.toArray().filterIsInstance<String>().toList()
+        area.tags = if (tags.isNotEmpty()) tags else null
+    }
+
+    private fun showPointSettings(area: Area, point: Point) {
         val settings = AreaPointSettings()
         populate(settings, point)
         val result = JOptionPane.showConfirmDialog(null, settings, "Edit area point",

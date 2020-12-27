@@ -39,7 +39,8 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
         val areas = (map["areas"] as? List<Map<String, Any>>)?.map {
             Area(
                 it["name"] as? String,
-                it["plane"] as Int,
+                it["planeMin"] as Int,
+                it["planeMax"] as Int,
                 (it["points"] as List<Map<String, Any>>).map { p ->
                     Point(
                         p["x"] as Int,
