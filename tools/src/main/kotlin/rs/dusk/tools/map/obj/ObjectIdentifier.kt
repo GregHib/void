@@ -4,7 +4,6 @@ import rs.dusk.ai.DecisionMaker
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.map.Tile
-import rs.dusk.tools.map.process.ObjectLinker
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.utility.get
 
@@ -37,11 +36,6 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
         val interactiveOptions = interactiveObjects
             .flatMap { obj -> obj.getOptions() }
 
-//        interactiveObjects.forEach {
-//            if(it.def.name.contains("ogre coffin", true)) {
-//                println(it)
-//            }
-//        }
         /**
          *  TODO
          *      Self-interactable

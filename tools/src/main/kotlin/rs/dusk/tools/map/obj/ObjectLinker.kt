@@ -1,4 +1,4 @@
-package rs.dusk.tools.map.process
+package rs.dusk.tools.map.obj
 
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.Size

@@ -26,11 +26,13 @@ import rs.dusk.engine.map.region.tile.BLOCKED_TILE
 import rs.dusk.engine.map.region.tile.BRIDGE_TILE
 import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.engine.map.region.tile.TileDecoder
-import rs.dusk.tools.map.process.ObjectLinker
 import rs.dusk.tools.map.view.graph.GraphIO
 import rs.dusk.tools.map.view.graph.NavigationGraph
 import rs.dusk.utility.get
 
+/**
+ * Finds links between objects e.g ladders, stairs, entrances, exits
+ */
 object WorldMapLinkIdentifier {
 
     @JvmStatic

@@ -9,6 +9,7 @@ import rs.dusk.engine.entity.Size
 import rs.dusk.engine.entity.obj.GameObject
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.tools.map.obj.ObjectLinker
 
 internal class ObjectLinkerTest {
 
