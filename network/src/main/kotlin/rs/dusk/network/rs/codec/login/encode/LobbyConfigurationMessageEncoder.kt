@@ -11,7 +11,7 @@ import java.util.*
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyConfigurationMessageEncoder : MessageEncoder<LobbyConfigurationMessage>() {
+class LobbyConfigurationMessageEncoder : MessageEncoder<LobbyConfigurationMessage> {
 
     override fun encode(builder: PacketWriter, msg: LobbyConfigurationMessage) {
         val (username, lastIpAddress, lastLogin) = msg

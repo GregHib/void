@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class GameLoginDetailsMessageEncoder : MessageEncoder<GameLoginDetails>() {
+class GameLoginDetailsMessageEncoder : MessageEncoder<GameLoginDetails> {
 
     override fun encode(builder: PacketWriter, msg: GameLoginDetails) {
         val (rights, clientIndex, displayName) = msg

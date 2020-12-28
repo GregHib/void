@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class ChunkUpdateMessageEncoder : MessageEncoder<ChunkUpdateMessage>() {
+class ChunkUpdateMessageEncoder : MessageEncoder<ChunkUpdateMessage> {
 
     override fun encode(builder: PacketWriter, msg: ChunkUpdateMessage) {
         val (x, y, plane) = msg

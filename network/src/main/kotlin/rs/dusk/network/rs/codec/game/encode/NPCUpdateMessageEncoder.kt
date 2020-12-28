@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class NPCUpdateMessageEncoder : MessageEncoder<NPCUpdateMessage>() {
+class NPCUpdateMessageEncoder : MessageEncoder<NPCUpdateMessage> {
 
     override fun encode(builder: PacketWriter, msg: NPCUpdateMessage) {
         val (changes, updates) = msg

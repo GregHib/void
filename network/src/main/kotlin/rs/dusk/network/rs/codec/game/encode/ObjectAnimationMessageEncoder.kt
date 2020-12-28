@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class ObjectAnimationMessageEncoder : MessageEncoder<ObjectAnimationMessage>() {
+class ObjectAnimationMessageEncoder : MessageEncoder<ObjectAnimationMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectAnimationMessage) {
         val (tile, animation, type, rotation) = msg

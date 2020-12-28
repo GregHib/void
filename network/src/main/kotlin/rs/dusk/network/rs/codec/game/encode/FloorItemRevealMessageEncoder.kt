@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class FloorItemRevealMessageEncoder : MessageEncoder<FloorItemRevealMessage>() {
+class FloorItemRevealMessageEncoder : MessageEncoder<FloorItemRevealMessage> {
 
     override fun encode(builder: PacketWriter, msg: FloorItemRevealMessage) {
         val (tile, id, amount, owner) = msg

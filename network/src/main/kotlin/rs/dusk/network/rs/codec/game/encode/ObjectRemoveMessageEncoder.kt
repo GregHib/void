@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class ObjectRemoveMessageEncoder : MessageEncoder<ObjectRemoveMessage>() {
+class ObjectRemoveMessageEncoder : MessageEncoder<ObjectRemoveMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectRemoveMessage) {
         val (tile, type, rotation) = msg

@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 04, 2020
  */
-class VarbitMessageEncoder : MessageEncoder<VarbitMessage>() {
+class VarbitMessageEncoder : MessageEncoder<VarbitMessage> {
 
     override fun encode(builder: PacketWriter, msg: VarbitMessage) {
         val (id, value, large) = msg

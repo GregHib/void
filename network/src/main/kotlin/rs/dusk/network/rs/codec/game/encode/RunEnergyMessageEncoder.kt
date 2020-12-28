@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.RunEnergyMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 27, 2020
  */
-class RunEnergyMessageEncoder : MessageEncoder<RunEnergyMessage>() {
+class RunEnergyMessageEncoder : MessageEncoder<RunEnergyMessage> {
 
     override fun encode(builder: PacketWriter, msg: RunEnergyMessage) {
         builder.writeOpcode(RUN_ENERGY)

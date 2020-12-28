@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class PlayerUpdateMessageEncoder : MessageEncoder<PlayerUpdateMessage>() {
+class PlayerUpdateMessageEncoder : MessageEncoder<PlayerUpdateMessage> {
 
     override fun encode(builder: PacketWriter, msg: PlayerUpdateMessage) {
         val (changes, updates) = msg

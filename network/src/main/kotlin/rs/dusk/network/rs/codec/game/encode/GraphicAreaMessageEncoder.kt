@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class GraphicAreaMessageEncoder : MessageEncoder<GraphicAreaMessage>() {
+class GraphicAreaMessageEncoder : MessageEncoder<GraphicAreaMessage> {
 
     override fun encode(builder: PacketWriter, msg: GraphicAreaMessage) {
         val (tile, id, height, delay, rotation) = msg

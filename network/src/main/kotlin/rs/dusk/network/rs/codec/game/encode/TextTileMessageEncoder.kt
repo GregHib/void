@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.TextTileMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class TextTileMessageEncoder : MessageEncoder<TextTileMessage>() {
+class TextTileMessageEncoder : MessageEncoder<TextTileMessage> {
 
     override fun encode(builder: PacketWriter, msg: TextTileMessage) {
         val (tile, duration, height, color, text) = msg

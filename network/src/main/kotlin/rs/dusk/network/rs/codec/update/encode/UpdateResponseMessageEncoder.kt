@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateResponseMessageEncoder : MessageEncoder<UpdateResponseMessage>() {
+class UpdateResponseMessageEncoder : MessageEncoder<UpdateResponseMessage> {
 
     @Suppress("DEPRECATED_IDENTITY_EQUALS")
     override fun encode(builder: PacketWriter, msg: UpdateResponseMessage) {

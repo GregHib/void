@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceItemMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceItemMessageEncoder : MessageEncoder<InterfaceItemMessage>() {
+class InterfaceItemMessageEncoder : MessageEncoder<InterfaceItemMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceItemMessage) {
         val (id, component, item, amount) = msg

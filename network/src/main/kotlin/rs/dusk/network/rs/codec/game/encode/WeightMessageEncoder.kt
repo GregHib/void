@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.WeightMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since September 13, 2020
  */
-class WeightMessageEncoder : MessageEncoder<WeightMessage>() {
+class WeightMessageEncoder : MessageEncoder<WeightMessage> {
 
     override fun encode(builder: PacketWriter, msg: WeightMessage) {
         builder.apply {

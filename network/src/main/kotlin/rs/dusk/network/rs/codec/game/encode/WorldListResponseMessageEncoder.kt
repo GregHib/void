@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.WorldListResponseMessage
  * @author Tyluur <contact@kiaira.tech>
  * @since February 22, 2020
  */
-class WorldListResponseMessageEncoder : MessageEncoder<WorldListResponseMessage>() {
+class WorldListResponseMessageEncoder : MessageEncoder<WorldListResponseMessage> {
 
     override fun encode(writer: PacketWriter, msg: WorldListResponseMessage) {
         val (full) = msg

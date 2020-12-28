@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceVisibilityMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceVisibilityMessageEncoder : MessageEncoder<InterfaceVisibilityMessage>() {
+class InterfaceVisibilityMessageEncoder : MessageEncoder<InterfaceVisibilityMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceVisibilityMessage) {
         val (id, component, visible) = msg

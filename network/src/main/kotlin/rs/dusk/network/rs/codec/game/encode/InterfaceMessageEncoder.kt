@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceAnimationMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 02, 2020
  */
-class InterfaceMessageEncoder : MessageEncoder<InterfaceAnimationMessage>() {
+class InterfaceMessageEncoder : MessageEncoder<InterfaceAnimationMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceAnimationMessage) {
         val (id, component, animation) = msg

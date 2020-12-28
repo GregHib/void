@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 27, 2020
  */
-class SkillLevelMessageEncoder : MessageEncoder<SkillLevelMessage>() {
+class SkillLevelMessageEncoder : MessageEncoder<SkillLevelMessage> {
 
     override fun encode(builder: PacketWriter, msg: SkillLevelMessage) {
         val (skill, level, experience) = msg

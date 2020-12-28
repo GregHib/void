@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class FloorItemRemoveMessageEncoder : MessageEncoder<FloorItemRemoveMessage>() {
+class FloorItemRemoveMessageEncoder : MessageEncoder<FloorItemRemoveMessage> {
 
     override fun encode(builder: PacketWriter, msg: FloorItemRemoveMessage) {
         val (tile, id) = msg

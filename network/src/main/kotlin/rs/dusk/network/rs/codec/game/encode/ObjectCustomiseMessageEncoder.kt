@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectCustomiseMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class ObjectCustomiseMessageEncoder : MessageEncoder<ObjectCustomiseMessage>() {
+class ObjectCustomiseMessageEncoder : MessageEncoder<ObjectCustomiseMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectCustomiseMessage) {
         val (tile, id, type, modelIds, colours, textureColours, clear) = msg

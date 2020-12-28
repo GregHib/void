@@ -23,10 +23,11 @@ object UpdateCodec : Codec() {
         registerDecoder(FileServerOpcodes.FILE_REQUEST, UpdateRequestMessageDecoder(false))
         registerDecoder(FileServerOpcodes.PRIORITY_FILE_REQUEST, UpdateRequestMessageDecoder(true))
 
-        registerHandler(UpdateConnectionMessageHandler())
-        registerHandler(UpdateDisconnectionMessageHandler())
-        registerHandler(UpdateLoginStatusHandler())
-        registerHandler(UpdateRequestMessageHandler())
+        registerHandler(FileServerOpcodes.CONNECTED, UpdateConnectionMessageHandler())
+        registerHandler(FileServerOpcodes.DISCONNECTED, UpdateDisconnectionMessageHandler())
+        registerHandler(FileServerOpcodes.STATUS_LOGGED_IN, UpdateLoginStatusHandler())
+        registerHandler(FileServerOpcodes.STATUS_LOGGED_OUT, UpdateLoginStatusHandler())
+        registerHandler(FileServerOpcodes.PRIORITY_FILE_REQUEST, UpdateRequestMessageHandler())
 
         registerEncoder(UpdateRegistryResponseMessageEncoder())
         registerEncoder(UpdateResponseMessageEncoder())

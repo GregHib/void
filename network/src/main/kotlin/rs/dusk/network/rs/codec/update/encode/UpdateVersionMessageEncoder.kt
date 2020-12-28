@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateVersionMessageEncoder : MessageEncoder<UpdateVersionMessage>() {
+class UpdateVersionMessageEncoder : MessageEncoder<UpdateVersionMessage> {
 
     override fun encode(builder: PacketWriter, msg: UpdateVersionMessage) {
         builder.writeByte(msg.opcode)

@@ -16,7 +16,6 @@ import kotlin.reflect.KClass
 abstract class Codec {
 
     val decoders = HashMap<Int, MessageDecoder<*>>()
-    val handlers = HashMap<KClass<*>, MessageHandler<*>>()
     val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
 
     abstract fun register()
@@ -35,24 +34,15 @@ abstract class Codec {
         encoders[T::class] = encoder
     }
 
-    inline fun <reified T : Message> registerHandler(handler: MessageHandler<T>) {
-        if (handlers.contains(T::class)) {
-            throw IllegalArgumentException("Cannot have duplicate handlers ${T::class} $handler")
+    fun <T : Message> registerHandler(opcode: Int, handler: MessageHandler<T>) {
+        val decoder = getDecoder(opcode) ?: throw IllegalArgumentException("Missing decoder $opcode $handler")
+        if (decoder.handler != null) {
+            throw IllegalArgumentException("Cannot have duplicate handlers $opcode $handler")
         }
-        handlers[T::class] = handler
     }
 
     fun getDecoder(opcode: Int): MessageDecoder<*>? {
         return decoders[opcode]
-    }
-
-    /**
-     * This message finders a [handler][MessageHandler] by class
-     * @return MessageHandler<M>?
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun <M : Message> getHandler(clazz: KClass<M>): MessageHandler<M>? {
-        return handlers[clazz] as? MessageHandler<M>
     }
 
     /**

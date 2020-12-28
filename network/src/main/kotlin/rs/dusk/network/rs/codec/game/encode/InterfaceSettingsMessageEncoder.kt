@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 26, 2020
  */
-class InterfaceSettingsMessageEncoder : MessageEncoder<InterfaceSettingsMessage>() {
+class InterfaceSettingsMessageEncoder : MessageEncoder<InterfaceSettingsMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceSettingsMessage) {
         val (id, component, fromSlot, toSlot, settings) = msg

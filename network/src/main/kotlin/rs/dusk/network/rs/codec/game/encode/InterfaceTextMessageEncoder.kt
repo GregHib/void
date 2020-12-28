@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceTextMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceTextMessageEncoder : MessageEncoder<InterfaceTextMessage>() {
+class InterfaceTextMessageEncoder : MessageEncoder<InterfaceTextMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceTextMessage) {
         val (id, component, text) = msg

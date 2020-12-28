@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceCloseMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 25, 2020
  */
-class InterfaceCloseMessageEncoder : MessageEncoder<InterfaceCloseMessage>() {
+class InterfaceCloseMessageEncoder : MessageEncoder<InterfaceCloseMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceCloseMessage) {
         val (id, component) = msg

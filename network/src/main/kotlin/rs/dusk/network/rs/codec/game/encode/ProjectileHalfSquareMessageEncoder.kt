@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ProjectileHalfSquareMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 2, 2020
  */
-class ProjectileHalfSquareMessageEncoder : MessageEncoder<ProjectileHalfSquareMessage>() {
+class ProjectileHalfSquareMessageEncoder : MessageEncoder<ProjectileHalfSquareMessage> {
 
     override fun encode(builder: PacketWriter, msg: ProjectileHalfSquareMessage) {
         val (offset, id, distanceX, distanceY, index, targetIndex, startHeight, endHeight, delay, duration, curve, size) = msg

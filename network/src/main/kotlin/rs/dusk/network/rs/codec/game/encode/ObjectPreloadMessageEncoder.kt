@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectPreloadMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 2, 2020
  */
-class ObjectPreloadMessageEncoder : MessageEncoder<ObjectPreloadMessage>() {
+class ObjectPreloadMessageEncoder : MessageEncoder<ObjectPreloadMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectPreloadMessage) {
         val (id, modelType) = msg

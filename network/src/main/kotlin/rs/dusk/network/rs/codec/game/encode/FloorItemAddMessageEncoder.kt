@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class FloorItemAddMessageEncoder : MessageEncoder<FloorItemAddMessage>() {
+class FloorItemAddMessageEncoder : MessageEncoder<FloorItemAddMessage> {
 
     override fun encode(builder: PacketWriter, msg: FloorItemAddMessage) {
         val (tile, id, amount) = msg

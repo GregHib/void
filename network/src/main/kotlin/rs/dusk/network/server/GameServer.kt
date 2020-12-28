@@ -2,7 +2,6 @@ package rs.dusk.network.server
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.core.network.NetworkServer
-import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
 import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
@@ -63,7 +62,6 @@ class GameServer(
 			
 			it.addLast("packet.decoder", SimplePacketDecoder())
 			it.addLast("message.decoder", OpcodeMessageDecoder())
-			it.addLast("message.reader", MessageReader())
 			it.addLast("message.encoder", GenericMessageEncoder())
 			it.addLast("channel.listener", ChannelEventListener(chain))
 

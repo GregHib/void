@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationSpecificMessa
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class ObjectAnimationSpecificMessageEncoder : MessageEncoder<ObjectAnimationSpecificMessage>() {
+class ObjectAnimationSpecificMessageEncoder : MessageEncoder<ObjectAnimationSpecificMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectAnimationSpecificMessage) {
         val (tile, animation, type, rotation) = msg

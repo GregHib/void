@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.LogoutMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 27, 2020
  */
-class LogoutMessageEncoder : MessageEncoder<LogoutMessage>() {
+class LogoutMessageEncoder : MessageEncoder<LogoutMessage> {
 
     override fun encode(builder: PacketWriter, msg: LogoutMessage) {
         val (lobby) = msg

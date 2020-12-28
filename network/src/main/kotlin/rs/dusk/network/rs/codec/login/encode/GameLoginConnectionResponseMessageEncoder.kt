@@ -13,7 +13,7 @@ import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponse
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class GameLoginConnectionResponseMessageEncoder : MessageEncoder<GameLoginConnectionResponseMessage>() {
+class GameLoginConnectionResponseMessageEncoder : MessageEncoder<GameLoginConnectionResponseMessage> {
 
     override fun encode(builder: PacketWriter, msg: GameLoginConnectionResponseMessage) {
         builder.writeOpcode(msg.opcode, PacketType.FIXED)

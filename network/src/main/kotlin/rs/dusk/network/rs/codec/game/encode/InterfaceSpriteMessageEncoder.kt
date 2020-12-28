@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceSpriteMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceSpriteMessageEncoder : MessageEncoder<InterfaceSpriteMessage>() {
+class InterfaceSpriteMessageEncoder : MessageEncoder<InterfaceSpriteMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceSpriteMessage) {
         val (id, component, sprite) = msg
