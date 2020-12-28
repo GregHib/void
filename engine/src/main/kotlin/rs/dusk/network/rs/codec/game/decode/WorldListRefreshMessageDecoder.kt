@@ -1,15 +1,16 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.WorldListRefreshMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 19, 2020
- */
-class WorldListRefreshMessageDecoder : MessageDecoder<WorldListRefreshMessage>(4) {
+class WorldListRefreshMessageDecoder : MessageDecoder(4) {
 
-    override fun decode(packet: PacketReader) = WorldListRefreshMessage(packet.readInt())
+    override fun decode(ctx: ChannelHandlerContext, packet: PacketReader) {
+        handler?.refreshWorldList(
+            context = ctx,
+            full = packet.readInt() == 0
+        )
+    }
 
 }

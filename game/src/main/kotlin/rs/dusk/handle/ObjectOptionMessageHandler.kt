@@ -12,24 +12,22 @@ import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
-import rs.dusk.network.rs.codec.game.decode.message.ObjectOptionMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 30, 2020
  */
-class ObjectOptionMessageHandler : MessageHandler<ObjectOptionMessage>() {
+class ObjectOptionMessageHandler : MessageHandler() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val objects: Objects by inject()
     val bus: EventBus by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: ObjectOptionMessage) {
-        val session = ctx.channel().getSession()
+    override fun objectOption(context: ChannelHandlerContext, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (objectId, x, y, run, option) = msg
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]
         if(target == null) {

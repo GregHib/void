@@ -1,21 +1,20 @@
 package rs.dusk.network.rs.codec.update.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.buffer.DataType
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.update.decode.message.UpdateRequestMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateRequestMessageDecoder(private val priority: Boolean) : MessageDecoder<UpdateRequestMessage>(3) {
+class UpdateRequestMessageDecoder(private val priority: Boolean) : MessageDecoder(3) {
 
-    override fun decode(packet: PacketReader): UpdateRequestMessage {
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
         val hash = packet.readUnsigned(DataType.MEDIUM)
-        val indexId = (hash shr 16).toInt()
-        val archiveId = (hash and 0xffff).toInt()
-        return UpdateRequestMessage(indexId, archiveId, priority)
+        handler?.updateRequest(
+            context = context,
+            indexId = (hash shr 16).toInt(),
+            archiveId = (hash and 0xffff).toInt(),
+            priority = priority
+        )
     }
 
 }

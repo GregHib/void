@@ -10,7 +10,6 @@ import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
 
@@ -18,7 +17,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 31, 2020
  */
-class InterfaceSwitchMessageHandler : MessageHandler<InterfaceSwitchComponentsMessage>() {
+class InterfaceSwitchMessageHandler : MessageHandler() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
@@ -27,10 +26,9 @@ class InterfaceSwitchMessageHandler : MessageHandler<InterfaceSwitchComponentsMe
     val lookup: InterfaceDetails by inject()
     private val logger = InlineLogger()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: InterfaceSwitchComponentsMessage) {
-        val session = ctx.channel().getSession()
+    override fun interfaceSwitch(context: ChannelHandlerContext, toType: Int, fromSlot: Int, fromType: Int, fromHash: Int, toSlot: Int, toHash: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (toType, fromSlot, fromType, fromHash, toSlot, toHash) = msg
 
         val fromId = fromHash shr 16
         if (!player.interfaces.contains(fromId)) {

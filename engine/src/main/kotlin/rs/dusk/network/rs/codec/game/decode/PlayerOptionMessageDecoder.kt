@@ -1,14 +1,18 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.PlayerOptionMessage
 
-class PlayerOptionMessageDecoder(private val index: Int) : MessageDecoder<PlayerOptionMessage>(3) {
+class PlayerOptionMessageDecoder(private val index: Int) : MessageDecoder(3) {
 
-    override fun decode(packet: PacketReader): PlayerOptionMessage {
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
         packet.readByte()//0
-        return PlayerOptionMessage(packet.readShort(), index + 1)
+        handler?.playerOption(
+            context,
+            index = packet.readShort(),
+            option = index + 1
+        )
     }
 
 }

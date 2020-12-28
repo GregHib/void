@@ -1,21 +1,21 @@
 package rs.dusk.network.rs.codec.login.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
-import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyLoginMessageDecoder : MessageDecoder<LobbyLoginMessage>(VARIABLE_LENGTH_SHORT) {
+class LobbyLoginMessageDecoder : MessageDecoder(VARIABLE_LENGTH_SHORT) {
 
     private val cache: Cache by inject()
 
-    override fun decode(packet: PacketReader): LobbyLoginMessage {
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
         val triple = LoginHeaderDecoder.decode(packet)
         val password = triple.second!!
         val isaacKeys = triple.third!!
@@ -33,6 +33,16 @@ class LobbyLoginMessageDecoder : MessageDecoder<LobbyLoginMessage>(VARIABLE_LENG
             val clientCrc = packet.readInt()
             crcMap[index] = Pair(indexCrc, clientCrc)
         }
-        return LobbyLoginMessage(username, password, highDefinition, resizeable, settings, affiliate, isaacKeys, crcMap)
+        handler?.loginLobby(
+            context = context,
+            username = username,
+            password = password,
+            hd = highDefinition,
+            resize = resizeable,
+            settings = settings,
+            affiliate = affiliate,
+            isaacSeed = isaacKeys,
+            crcMap = crcMap
+        )
     }
 }

@@ -56,7 +56,6 @@ object LoginHeaderDecoder {
         for (i in isaacKeys.indices) {
             isaacKeys[i] = rsaBuffer.readInt()
         }
-        println("isaacKeys=${isaacKeys.contentToString()}")
 
         val passBlock = rsaBuffer.readLong()
         if (passBlock != 0L) {//password should start here (marked by 0L)

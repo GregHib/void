@@ -10,7 +10,6 @@ import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.decode.message.DialogueContinueMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.dialogue.event.ContinueDialogue
 
@@ -18,7 +17,7 @@ import rs.dusk.world.interact.dialogue.event.ContinueDialogue
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 30, 2020
  */
-class DialogueContinueMessageHandler : MessageHandler<DialogueContinueMessage>() {
+class DialogueContinueMessageHandler : MessageHandler() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
@@ -27,10 +26,9 @@ class DialogueContinueMessageHandler : MessageHandler<DialogueContinueMessage>()
     val decoder: InterfaceDecoder by inject()
     val logger = InlineLogger()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: DialogueContinueMessage) {
-        val session = ctx.channel().getSession()
+    override fun continueDialogue(context: ChannelHandlerContext, hash: Int, button: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (hash, button) = msg
         val id = hash shr 16
         val componentId = hash and 0xffff
 

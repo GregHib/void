@@ -5,22 +5,16 @@ import com.google.common.primitives.Ints
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.network.rs.codec.update.decode.message.UpdateRequestMessage
 import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
 import rs.dusk.utility.inject
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateRequestMessageHandler : MessageHandler<UpdateRequestMessage>() {
+class UpdateRequestMessageHandler : MessageHandler() {
 
     private val logger = InlineLogger()
     private val cache: Cache by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: UpdateRequestMessage) {
-        val (indexId, archiveId, priority) = msg
-        val data = cache.getArchive(indexId, archiveId) ?: return logger.debug { "Request $this was invalid - did not exist in cache" }
+    override fun updateRequest(context: ChannelHandlerContext, indexId: Int, archiveId: Int, priority: Boolean) {
+        val data = cache.getArchive(indexId, archiveId) ?: return logger.debug { "Request $this was invalid - does not exist in cache" }
         val compression: Int = data[0].toInt() and 0xff
         val length = Ints.fromBytes(data[1], data[2], data[3], data[4])
         var attributes = compression
@@ -28,7 +22,7 @@ class UpdateRequestMessageHandler : MessageHandler<UpdateRequestMessage>() {
             attributes = attributes or 0x80
         }
 
-        ctx.pipeline().writeAndFlush(UpdateResponseMessage(indexId, archiveId, data, compression, length, attributes))
+        context.pipeline().writeAndFlush(UpdateResponseMessage(indexId, archiveId, data, compression, length, attributes))
     }
 
 }

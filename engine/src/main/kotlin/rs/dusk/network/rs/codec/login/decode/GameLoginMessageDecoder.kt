@@ -1,17 +1,17 @@
 package rs.dusk.network.rs.codec.login.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
-import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class GameLoginMessageDecoder : MessageDecoder<GameLoginMessage>(VARIABLE_LENGTH_SHORT) {
+class GameLoginMessageDecoder : MessageDecoder(VARIABLE_LENGTH_SHORT) {
 
-    override fun decode(packet: PacketReader): GameLoginMessage {
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
         val triple = LoginHeaderDecoder.decode(packet, true)
         val password = triple.second!!
         val isaacKeys = triple.third!!
@@ -61,28 +61,29 @@ class GameLoginMessageDecoder : MessageDecoder<GameLoginMessage>(VARIABLE_LENGTH
         val hasJagtheora = packet.readUnsignedBoolean()
         val js = packet.readUnsignedBoolean()
         val hc = packet.readUnsignedBoolean()
-        return GameLoginMessage(
-            username,
-            password,
-            isaacKeys,
-            displayMode,
-            screenWidth,
-            screenHeight,
-            antialiasLevel,
-            settings,
-            affiliateId,
-            sessionId,
-            os,
-            is64Bit,
-            versionType,
-            vendorType,
-            javaRelease,
-            javaVersion,
-            javaUpdate,
-            isUnsigned,
-            heapSize,
-            processorCount,
-            totalMemory
+        handler?.loginGame(
+            context = context,
+            username = username,
+            password = password,
+            isaacKeys = isaacKeys,
+            mode = displayMode,
+            width = screenWidth,
+            height = screenHeight,
+            antialias = antialiasLevel,
+            settings = settings,
+            affiliate = affiliateId,
+            session = sessionId,
+            os = os,
+            is64Bit = is64Bit,
+            versionType = versionType,
+            vendorType = vendorType,
+            javaRelease = javaRelease,
+            javaVersion = javaVersion,
+            javaUpdate = javaUpdate,
+            isUnsigned = isUnsigned,
+            heapSize = heapSize,
+            processorCount = processorCount,
+            totalMemory = totalMemory
         )
     }
 

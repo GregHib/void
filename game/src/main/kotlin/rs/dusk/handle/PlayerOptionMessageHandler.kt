@@ -14,24 +14,22 @@ import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
-import rs.dusk.network.rs.codec.game.decode.message.PlayerOptionMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 30, 2020
  */
-class PlayerOptionMessageHandler : MessageHandler<PlayerOptionMessage>() {
+class PlayerOptionMessageHandler : MessageHandler() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val players: Players by inject()
     val bus: EventBus by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: PlayerOptionMessage) {
-        val session = ctx.channel().getSession()
+    override fun playerOption(context: ChannelHandlerContext, index: Int, optionIndex: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (index, optionIndex) = msg
         val target = players.getAtIndex(index) ?: return
         val option = target.options.get(optionIndex)
         if (option == PlayerOptions.EMPTY_OPTION) {

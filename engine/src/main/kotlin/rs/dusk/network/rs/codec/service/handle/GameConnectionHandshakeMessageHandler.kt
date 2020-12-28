@@ -9,17 +9,12 @@ import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionResponseMessage
-import rs.dusk.network.rs.codec.service.decode.message.GameConnectionHandshakeMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class GameConnectionHandshakeMessageHandler : MessageHandler<GameConnectionHandshakeMessage>() {
-	
-	override fun handle(ctx : ChannelHandlerContext, msg : GameConnectionHandshakeMessage) {
-		val pipeline = ctx.pipeline()
-		val channel = ctx.channel()
+class GameConnectionHandshakeMessageHandler : MessageHandler() {
+
+	override fun gameHandshake(context: ChannelHandlerContext) {
+		val pipeline = context.pipeline()
+		val channel = context.channel()
 		
 		channel.setCodec(LoginCodec)
 		
@@ -28,7 +23,7 @@ class GameConnectionHandshakeMessageHandler : MessageHandler<GameConnectionHands
 			replace("message.decoder", OpcodeMessageDecoder())
 			replace("message.encoder", GenericMessageEncoder())
 		}
-		ctx.pipeline().writeAndFlush(LobbyLoginConnectionResponseMessage(0))
+		context.pipeline().writeAndFlush(LobbyLoginConnectionResponseMessage(0))
 	}
 	
 }
