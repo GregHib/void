@@ -1,15 +1,15 @@
 package rs.dusk.network.rs.codec.update.encode
 
 import io.netty.buffer.Unpooled
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.update.UpdateMessageEncoder
 import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateResponseMessageEncoder : UpdateMessageEncoder<UpdateResponseMessage>() {
+class UpdateResponseMessageEncoder : MessageEncoder<UpdateResponseMessage>() {
 
     @Suppress("DEPRECATED_IDENTITY_EQUALS")
     override fun encode(builder: PacketWriter, msg: UpdateResponseMessage) {

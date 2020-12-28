@@ -2,6 +2,7 @@ package rs.dusk.network.rs.codec.login.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.io.crypto.IsaacKeyPair
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -12,7 +13,6 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.LoginMessageHandler
 import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 
@@ -20,7 +20,7 @@ import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
+class LobbyLoginMessageHandler : MessageHandler<LobbyLoginMessage>() {
 	
 	override fun handle(ctx : ChannelHandlerContext, msg : LobbyLoginMessage) {
 		val pipeline = ctx.pipeline()

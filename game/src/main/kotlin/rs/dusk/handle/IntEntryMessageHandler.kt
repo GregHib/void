@@ -1,12 +1,12 @@
 package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.IntegerEntryMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.dialogue.event.IntEntered
@@ -15,7 +15,7 @@ import rs.dusk.world.interact.dialogue.event.IntEntered
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 04, 2020
  */
-class IntEntryMessageHandler : GameMessageHandler<IntegerEntryMessage>() {
+class IntEntryMessageHandler : MessageHandler<IntegerEntryMessage>() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()

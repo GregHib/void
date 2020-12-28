@@ -2,9 +2,9 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_WINDOW
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 
@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class InterfaceUpdateMessageEncoder : GameMessageEncoder<InterfaceUpdateMessage>() {
+class InterfaceUpdateMessageEncoder : MessageEncoder<InterfaceUpdateMessage>() {
 
     override fun encode(builder: PacketWriter, msg: InterfaceUpdateMessage) {
         val (id, type) = msg

@@ -1,15 +1,15 @@
 package rs.dusk.network.rs.codec.update.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.service.FileServerResponseCodes
-import rs.dusk.network.rs.codec.update.UpdateMessageEncoder
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateVersionMessageEncoder : UpdateMessageEncoder<UpdateVersionMessage>() {
+class UpdateVersionMessageEncoder : MessageEncoder<UpdateVersionMessage>() {
 
     override fun encode(builder: PacketWriter, msg: UpdateVersionMessage) {
         builder.writeByte(msg.opcode)

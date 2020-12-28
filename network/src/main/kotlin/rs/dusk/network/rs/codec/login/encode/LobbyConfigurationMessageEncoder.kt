@@ -1,9 +1,9 @@
 package rs.dusk.network.rs.codec.login.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.LOBBY_DETAILS
-import rs.dusk.network.rs.codec.login.LoginMessageEncoder
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 import java.util.*
 
@@ -11,7 +11,7 @@ import java.util.*
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyConfigurationMessageEncoder : LoginMessageEncoder<LobbyConfigurationMessage>() {
+class LobbyConfigurationMessageEncoder : MessageEncoder<LobbyConfigurationMessage>() {
 
     override fun encode(builder: PacketWriter, msg: LobbyConfigurationMessage) {
         val (username, lastIpAddress, lastLogin) = msg

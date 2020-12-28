@@ -2,14 +2,14 @@ package rs.dusk.network.rs.codec.update.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.network.rs.codec.update.UpdateMessageHandler
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.network.rs.codec.update.decode.message.UpdateDisconnectionMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateDisconnectionMessageHandler : UpdateMessageHandler<UpdateDisconnectionMessage>() {
+class UpdateDisconnectionMessageHandler : MessageHandler<UpdateDisconnectionMessage>() {
 
     private val logger = InlineLogger()
 

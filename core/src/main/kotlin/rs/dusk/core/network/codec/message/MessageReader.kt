@@ -24,10 +24,10 @@ open class MessageReader : SimpleChannelInboundHandler<Message>() {
 			val codec = ctx.channel().getCodec()
 				?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
 			
-			val handler : MessageHandler<Message>? = codec.handler(msg::class) as? MessageHandler<Message>
+			val handler : MessageHandler<Message>? = codec.getHandler(msg::class) as? MessageHandler<Message>
 			
 			if (handler == null) {
-//				logger.error { "Unable to find message handler - [msg=$msg], codec=${codec.javaClass.simpleName}" }
+				logger.debug { "Unable to find message handler - [msg=$msg], codec=${codec.javaClass.simpleName}" }
 				return
 			}
 			

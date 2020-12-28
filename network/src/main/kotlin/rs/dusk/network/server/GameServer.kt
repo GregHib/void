@@ -1,7 +1,6 @@
 package rs.dusk.network.server
 
 import com.github.michaelbull.logging.InlineLogger
-import com.google.common.base.Stopwatch
 import rs.dusk.core.network.NetworkServer
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
@@ -19,35 +18,24 @@ import rs.dusk.core.network.connection.event.type.ChannelExceptionEvent
 import rs.dusk.core.network.model.session.setSession
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
-import rs.dusk.utility.getFloatProperty
-import rs.dusk.utility.getIntProperty
-import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
-import java.util.concurrent.TimeUnit
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since April 13, 2020
  */
 class GameServer(
-	/**
-	 * The world this server represents
-	 */
-	private val world : World,
+	private val world : Int,
+	private val port: Int,
 	private val disconnectEvent: ChannelEvent
 ) : NetworkServer() {
 	
 	private val logger = InlineLogger()
 	
 	/**
-	 * The port to listen on
-	 */
-	private val port: Int = getIntProperty("port")
-	
-	/**
 	 * The connection settings to use
 	 */
-	override val settings = ConnectionSettings("localhost", port + world.id)
+	override val settings = ConnectionSettings("localhost", port + world)
 	
 	override fun onConnect() {
 		logger.info { "Connected!" }
@@ -58,16 +46,11 @@ class GameServer(
 	}
 	
 	/**
-	 * The stopwatch instance
-	 */
-	private val stopwatch = Stopwatch.createStarted()
-	
-	/**
 	 * If the game server is running
 	 */
 	var running = false
-	
-	private fun bind() {
+
+	fun run() {
 		val factory : GameServerFactory by inject()
 
 		val chain = ChannelEventChain().apply {
@@ -88,20 +71,6 @@ class GameServer(
 			channel.setSession(ServiceSession(channel))
 		}
 		factory.bind(this, chain, pipeline)
-	}
-	
-	fun run() {
-
-		bind()
-		
-		logger.info {
-			val name: String = getProperty("name")
-			val major: Int = getIntProperty("buildMajor")
-			val minor: Float = getFloatProperty("buildMinor")
-			
-			"$name v$major.$minor successfully booted world ${world.id} in ${stopwatch.elapsed(TimeUnit.MILLISECONDS)} ms"
-		}
 		running = true
 	}
-	
 }

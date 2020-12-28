@@ -1,9 +1,9 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_ITEMS
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 
@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 31, 2020
  */
-class ContainerItemsMessageEncoder : GameMessageEncoder<ContainerItemsMessage>() {
+class ContainerItemsMessageEncoder : MessageEncoder<ContainerItemsMessage>() {
 
     override fun encode(builder: PacketWriter, msg: ContainerItemsMessage) {
         val (key, items, amounts, primary) = msg

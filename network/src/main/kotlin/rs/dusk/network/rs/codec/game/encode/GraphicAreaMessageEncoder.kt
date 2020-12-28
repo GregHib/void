@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Modifier
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.GRAPHIC_AREA
 import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage
 
@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class GraphicAreaMessageEncoder : GameMessageEncoder<GraphicAreaMessage>() {
+class GraphicAreaMessageEncoder : MessageEncoder<GraphicAreaMessage>() {
 
     override fun encode(builder: PacketWriter, msg: GraphicAreaMessage) {
         val (tile, id, height, delay, rotation) = msg

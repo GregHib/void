@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Modifier
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.CLIENT_VARBIT
 import rs.dusk.network.rs.codec.game.GameOpcodes.CLIENT_VARBIT_LARGE
 import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 04, 2020
  */
-class VarbitMessageEncoder : GameMessageEncoder<VarbitMessage>() {
+class VarbitMessageEncoder : MessageEncoder<VarbitMessage>() {
 
     override fun encode(builder: PacketWriter, msg: VarbitMessage) {
         val (id, value, large) = msg

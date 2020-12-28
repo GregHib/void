@@ -30,7 +30,7 @@ class GenericMessageEncoder(
 		val codec = ctx.channel().getCodec()
 			?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
 		
-		val encoder = codec.encoder(msg::class) as? MessageEncoder<Message>
+		val encoder = codec.getEncoder(msg::class) as? MessageEncoder<Message>
 		if (encoder == null) {
 			logger.error { "Unable to find encoder! [msg=$msg, codec=${codec.javaClass.simpleName}]" }
 			return

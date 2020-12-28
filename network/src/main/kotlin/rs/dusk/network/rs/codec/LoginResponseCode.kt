@@ -2,7 +2,6 @@ package rs.dusk.network.rs.codec
 
 /**
  * @author Greg Hibb
- * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
 sealed class LoginResponseCode(val opcode: Int) {
@@ -15,7 +14,7 @@ sealed class LoginResponseCode(val opcode: Int) {
     object GameUpdated : LoginResponseCode(6)
     object WorldFull : LoginResponseCode(7)
     object LoginServerOffline : LoginResponseCode(8)
-    object LoginLimitExceeded : LoginResponseCode(9)//too many connections from your address
+    object LoginLimitExceeded : LoginResponseCode(9)//Too many connections from your address
     object BadSessionId : LoginResponseCode(10)
     object LoginServerRejectedSession : LoginResponseCode(11)//Extremely common insecure password
     object MembersAccountRequired : LoginResponseCode(12)
