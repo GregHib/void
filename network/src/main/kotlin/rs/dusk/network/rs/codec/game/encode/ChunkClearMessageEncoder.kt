@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ChunkClearMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 21, 2020
  */
-class ChunkClearMessageEncoder : MessageEncoder<ChunkClearMessage>() {
+class ChunkClearMessageEncoder : MessageEncoder<ChunkClearMessage> {
 
     override fun encode(builder: PacketWriter, msg: ChunkClearMessage) {
         val (x, y, plane) = msg

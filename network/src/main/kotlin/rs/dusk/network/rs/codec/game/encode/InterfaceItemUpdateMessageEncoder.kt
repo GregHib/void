@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ContainerItemUpdateMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 31, 2020
  */
-class InterfaceItemUpdateMessageEncoder : MessageEncoder<ContainerItemUpdateMessage>() {
+class InterfaceItemUpdateMessageEncoder : MessageEncoder<ContainerItemUpdateMessage> {
 
     override fun encode(builder: PacketWriter, msg: ContainerItemUpdateMessage) {
         val (key, updates, primary) = msg

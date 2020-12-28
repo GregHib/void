@@ -12,7 +12,7 @@ object ServiceCodec : Codec() {
         registerDecoder(ServiceOpcodes.GAME_CONNECTION, GameConnectionHandshakeMessageDecoder())
         registerDecoder(ServiceOpcodes.FILE_SERVICE, UpdateHandshakeMessageDecoder())
 
-        registerHandler(GameConnectionHandshakeMessageHandler())
-        registerHandler(UpdateHandshakeMessageHandler())
+        registerHandler(ServiceOpcodes.GAME_CONNECTION, GameConnectionHandshakeMessageHandler())
+        registerHandler(ServiceOpcodes.FILE_SERVICE, UpdateHandshakeMessageHandler())
     }
 }

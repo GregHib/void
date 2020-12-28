@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class ScriptMessageEncoder : MessageEncoder<ScriptMessage>() {
+class ScriptMessageEncoder : MessageEncoder<ScriptMessage> {
 
     override fun encode(builder: PacketWriter, msg: ScriptMessage) {
         val (id, params) = msg

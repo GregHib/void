@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceHeadPlayerMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceHeadPlayerMessageEncoder : MessageEncoder<InterfaceHeadPlayerMessage>() {
+class InterfaceHeadPlayerMessageEncoder : MessageEncoder<InterfaceHeadPlayerMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceHeadPlayerMessage) {
         val (id, component) = msg

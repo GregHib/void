@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.game.encode.message.InterfaceOpenMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 25, 2020
  */
-class InterfaceOpenMessageEncoder : MessageEncoder<InterfaceOpenMessage>() {
+class InterfaceOpenMessageEncoder : MessageEncoder<InterfaceOpenMessage> {
 
     override fun encode(builder: PacketWriter, msg: InterfaceOpenMessage) {
         val (permanent, parent, component, id) = msg

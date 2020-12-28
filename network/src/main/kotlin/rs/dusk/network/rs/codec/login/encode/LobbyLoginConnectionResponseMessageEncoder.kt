@@ -11,7 +11,7 @@ import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionRespons
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyLoginConnectionResponseMessageEncoder : MessageEncoder<LobbyLoginConnectionResponseMessage>() {
+class LobbyLoginConnectionResponseMessageEncoder : MessageEncoder<LobbyLoginConnectionResponseMessage> {
 
     override fun encode(builder: PacketWriter, msg: LobbyLoginConnectionResponseMessage) {
         builder.writeByte(msg.opcode)

@@ -17,7 +17,7 @@ object LoginCodec : Codec() {
         registerDecoder(GameOpcodes.GAME_LOGIN, GameLoginMessageDecoder())
         registerDecoder(ServiceOpcodes.LOBBY_LOGIN, LobbyLoginMessageDecoder())
 
-        registerHandler(LobbyLoginMessageHandler())
+        registerHandler(ServiceOpcodes.LOBBY_LOGIN, LobbyLoginMessageHandler())
 
         registerEncoder(GameLoginConnectionResponseMessageEncoder())
         registerEncoder(GameLoginDetailsMessageEncoder())

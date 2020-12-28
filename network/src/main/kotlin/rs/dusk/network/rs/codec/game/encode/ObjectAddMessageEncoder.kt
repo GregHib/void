@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class ObjectAddMessageEncoder : MessageEncoder<ObjectAddMessage>() {
+class ObjectAddMessageEncoder : MessageEncoder<ObjectAddMessage> {
 
     override fun encode(builder: PacketWriter, msg: ObjectAddMessage) {
         val (tile, id, type, rotation) = msg

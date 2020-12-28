@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.SoundAreaMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class SoundAreaMessageEncoder : MessageEncoder<SoundAreaMessage>() {
+class SoundAreaMessageEncoder : MessageEncoder<SoundAreaMessage> {
 
     override fun encode(builder: PacketWriter, msg: SoundAreaMessage) {
         val (tile, id, type, rotation, three, four, five) = msg

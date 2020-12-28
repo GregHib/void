@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ProjectileAddMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class ProjectileAddMessageEncoder : MessageEncoder<ProjectileAddMessage>() {
+class ProjectileAddMessageEncoder : MessageEncoder<ProjectileAddMessage> {
 
     override fun encode(builder: PacketWriter, msg: ProjectileAddMessage) {
         val (offset, id, distanceX, distanceY, targetIndex, startHeight, endHeight, delay, duration, curve, size) = msg

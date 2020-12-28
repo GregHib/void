@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.io.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketBuilder
@@ -57,7 +56,6 @@ class GameLoginMessageHandler : MessageHandler<GameLoginMessage>() {
                 with(pipeline) {
                     replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher))
                     replace("message.decoder", OpcodeMessageDecoder())
-                    replace("message.reader", MessageReader())
                     replace("message.encoder", GenericMessageEncoder(PacketBuilder(keyPair.outCipher)))
                 }
 

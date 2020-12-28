@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.VarcStrMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 04, 2020
  */
-class VarcStrMessageEncoder : MessageEncoder<VarcStrMessage>() {
+class VarcStrMessageEncoder : MessageEncoder<VarcStrMessage> {
 
     override fun encode(builder: PacketWriter, msg: VarcStrMessage) {
         val (id, value) = msg

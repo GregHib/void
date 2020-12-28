@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ContextMenuOptionMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 16, 2020
  */
-class ContextMenuOptionMessageEncoder : MessageEncoder<ContextMenuOptionMessage>() {
+class ContextMenuOptionMessageEncoder : MessageEncoder<ContextMenuOptionMessage> {
 
     override fun encode(builder: PacketWriter, msg: ContextMenuOptionMessage) {
         val (option, slot, top, cursor) = msg

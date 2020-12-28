@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class DynamicMapRegionMessageEncoder : MessageEncoder<DynamicMapRegionMessage>() {
+class DynamicMapRegionMessageEncoder : MessageEncoder<DynamicMapRegionMessage> {
 
     override fun encode(builder: PacketWriter, msg: DynamicMapRegionMessage) {
         val (chunkX, chunkY, forceRefresh, mapSize, chunks, xteas, clientIndex, clientTile, playerRegions) = msg
