@@ -1,13 +1,10 @@
 package rs.dusk.network.rs.codec.game.decode
 
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.game.GameMessageDecoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.SCREEN_CHANGE
 import rs.dusk.network.rs.codec.game.decode.message.ScreenChangeMessage
 
-@PacketMetaData(opcodes = [SCREEN_CHANGE], length = 6)
-class ScreenChangeMessageDecoder : GameMessageDecoder<ScreenChangeMessage>() {
+class ScreenChangeMessageDecoder : GameMessageDecoder<ScreenChangeMessage>(6) {
 
     override fun decode(packet: PacketReader) = ScreenChangeMessage(
         packet.readUnsignedByte(),

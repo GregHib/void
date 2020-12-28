@@ -1,25 +1,36 @@
 package rs.dusk.network.rs.codec.login
 
-import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.core.network.codec.Codec
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.model.message.Message
+import rs.dusk.network.rs.codec.game.GameOpcodes
+import rs.dusk.network.rs.codec.login.decode.GameLoginMessageDecoder
+import rs.dusk.network.rs.codec.login.decode.LobbyLoginMessageDecoder
+import rs.dusk.network.rs.codec.login.encode.GameLoginConnectionResponseMessageEncoder
+import rs.dusk.network.rs.codec.login.encode.GameLoginDetailsMessageEncoder
+import rs.dusk.network.rs.codec.login.encode.LobbyConfigurationMessageEncoder
+import rs.dusk.network.rs.codec.login.encode.LobbyLoginConnectionResponseMessageEncoder
+import rs.dusk.network.rs.codec.login.handle.LobbyLoginMessageHandler
+import rs.dusk.network.rs.codec.service.ServiceOpcodes
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LoginCodec : Codec() {
-
-    private val logger = InlineLogger()
+object LoginCodec : Codec() {
 
     override fun register() {
-        bindDecoders<LoginMessageDecoder<*>>()
-        bindHandlers<LoginMessageHandler<*>>()
-        bindEncoders<LoginMessageEncoder<*>>()
-//        report(logger)
+        decoders[GameOpcodes.GAME_LOGIN] = GameLoginMessageDecoder()
+        decoders[ServiceOpcodes.LOBBY_LOGIN] = LobbyLoginMessageDecoder()
+
+        registerHandler(LobbyLoginMessageHandler())
+
+        registerEncoder(GameLoginConnectionResponseMessageEncoder())
+        registerEncoder(GameLoginDetailsMessageEncoder())
+        registerEncoder(LobbyConfigurationMessageEncoder())
+        registerEncoder(LobbyLoginConnectionResponseMessageEncoder())
     }
 }
 
@@ -27,7 +38,7 @@ class LoginCodec : Codec() {
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-abstract class LoginMessageDecoder<M : Message> : MessageDecoder<M>()
+abstract class LoginMessageDecoder<M : Message>(override var length: Int) : MessageDecoder<M>()
 
 /**
  * @author Tyluur <contact@kiaira.tech>

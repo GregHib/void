@@ -2,19 +2,16 @@ package rs.dusk.network.rs.codec.login.decode
 
 import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
 import rs.dusk.network.rs.codec.login.LoginMessageDecoder
 import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
-import rs.dusk.network.rs.codec.service.ServiceOpcodes.LOBBY_LOGIN
 import rs.dusk.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-@PacketMetaData(opcodes = [LOBBY_LOGIN], length = VARIABLE_LENGTH_SHORT)
-class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>() {
+class LobbyLoginMessageDecoder : LoginMessageDecoder<LobbyLoginMessage>(VARIABLE_LENGTH_SHORT) {
 
     private val cache: Cache by inject()
 

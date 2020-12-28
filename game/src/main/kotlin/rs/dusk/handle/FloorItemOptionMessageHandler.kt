@@ -35,12 +35,11 @@ class FloorItemOptionMessageHandler : GameMessageHandler<FloorItemOptionMessage>
         val items = items[tile]
         val item = items.firstOrNull { it.id == id && it.tile == tile } ?: return
         val options = item.def.floorOptions
-        val index = option - 1
-        if (index !in options.indices) {
+        if (option !in options.indices) {
             //Invalid option
             return
         }
-        val selectedOption = options[index]
+        val selectedOption = options[option]
         player.walkTo(item) { result ->
             player.face(item)
             if (result is PathResult.Failure) {

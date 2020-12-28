@@ -3,7 +3,6 @@ package rs.dusk.network.server
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.base.Stopwatch
 import rs.dusk.core.network.NetworkServer
-import rs.dusk.core.network.codec.CodecRepository
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -18,10 +17,12 @@ import rs.dusk.core.network.connection.event.ChannelEventType.DEREGISTER
 import rs.dusk.core.network.connection.event.ChannelEventType.EXCEPTION
 import rs.dusk.core.network.connection.event.type.ChannelExceptionEvent
 import rs.dusk.core.network.model.session.setSession
-import rs.dusk.network.NetworkRegistry
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
-import rs.dusk.utility.*
+import rs.dusk.utility.getFloatProperty
+import rs.dusk.utility.getIntProperty
+import rs.dusk.utility.getProperty
+import rs.dusk.utility.inject
 import java.util.concurrent.TimeUnit
 
 /**
@@ -68,8 +69,7 @@ class GameServer(
 	
 	private fun bind() {
 		val factory : GameServerFactory by inject()
-		val repository : CodecRepository = get()
-		
+
 		val chain = ChannelEventChain().apply {
 			append(EXCEPTION, ChannelExceptionEvent())
 			append(DEREGISTER, disconnectEvent)
@@ -84,14 +84,14 @@ class GameServer(
 			it.addLast("message.encoder", GenericMessageEncoder())
 			it.addLast("channel.listener", ChannelEventListener(chain))
 
-			channel.setCodec(repository.get(ServiceCodec::class))
+			channel.setCodec(ServiceCodec)
 			channel.setSession(ServiceSession(channel))
 		}
 		factory.bind(this, chain, pipeline)
 	}
 	
 	fun run() {
-		NetworkRegistry().register()
+
 		bind()
 		
 		logger.info {

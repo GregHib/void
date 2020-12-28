@@ -2,7 +2,6 @@ package rs.dusk.network.rs.codec.login.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.io.crypto.IsaacKeyPair
-import rs.dusk.core.network.codec.CodecRepository
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -16,7 +15,6 @@ import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.LoginMessageHandler
 import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
-import rs.dusk.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -24,16 +22,12 @@ import rs.dusk.utility.inject
  */
 class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
 	
-	private val repository : CodecRepository by inject()
-	
 	override fun handle(ctx : ChannelHandlerContext, msg : LobbyLoginMessage) {
 		val pipeline = ctx.pipeline()
 		val keyPair = IsaacKeyPair(msg.isaacSeed)
-		val gameCodec = repository.get(GameCodec::class)
-		val loginCodec = repository.get(LoginCodec::class)
 		val channel = ctx.channel()
 		
-		channel.setCodec(loginCodec)
+		channel.setCodec(LoginCodec)
 		pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
 		
 		println("issac seed = ${msg.isaacSeed.contentToString()}")
@@ -45,7 +39,7 @@ class LobbyLoginMessageHandler : LoginMessageHandler<LobbyLoginMessage>() {
 				System.currentTimeMillis()
 			)
 		)
-		channel.setCodec(gameCodec)
+		channel.setCodec(GameCodec)
 		
 		with(pipeline) {
 			replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher))

@@ -3,13 +3,10 @@ package rs.dusk.network.rs.codec.game.decode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.game.GameMessageDecoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_ON_FLOOR_ITEM
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceOnFloorItemMessage
 
-@PacketMetaData(opcodes = [INTERFACE_ON_FLOOR_ITEM], length = 15)
-class InterfaceOnFloorItemMessageDecoder : GameMessageDecoder<InterfaceOnFloorItemMessage>() {
+class InterfaceOnFloorItemMessageDecoder : GameMessageDecoder<InterfaceOnFloorItemMessage>(15) {
 
     override fun decode(packet: PacketReader) = InterfaceOnFloorItemMessage(
         packet.readShort(),

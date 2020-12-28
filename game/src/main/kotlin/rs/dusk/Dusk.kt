@@ -3,6 +3,7 @@ package rs.dusk
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.engine.GameLoop
+import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
@@ -31,7 +32,11 @@ import rs.dusk.engine.storage.databaseModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
-import rs.dusk.network.codecRepositoryModule
+import rs.dusk.handle.*
+import rs.dusk.network.rs.codec.game.GameCodec
+import rs.dusk.network.rs.codec.login.LoginCodec
+import rs.dusk.network.rs.codec.service.ServiceCodec
+import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
@@ -63,7 +68,32 @@ object Dusk {
 		val service = Executors.newSingleThreadScheduledExecutor()
 		val start : SyncTask = get()
 		val engine = GameLoop(bus, executor, service)
-		
+
+		object : TimedLoader<Unit>("Game codec") {
+			override fun load(args: Array<out Any?>) {
+				GameCodec.register()
+				registerHandlers()
+				count = GameCodec.decoders.size + GameCodec.handlers.size + GameCodec.encoders.size
+			}
+		}.run()
+		object : TimedLoader<Unit>("Login codec") {
+			override fun load(args: Array<out Any?>) {
+				LoginCodec.register()
+				count = LoginCodec.decoders.size + LoginCodec.handlers.size + LoginCodec.encoders.size
+			}
+		}.run()
+		object : TimedLoader<Unit>("Service codec") {
+			override fun load(args: Array<out Any?>) {
+				ServiceCodec.register()
+				count = ServiceCodec.decoders.size + ServiceCodec.handlers.size + ServiceCodec.encoders.size
+			}
+		}.run()
+		object : TimedLoader<Unit>("Update codec") {
+			override fun load(args: Array<out Any?>) {
+				UpdateCodec.register()
+				count = UpdateCodec.decoders.size + UpdateCodec.handlers.size + UpdateCodec.encoders.size
+			}
+		}.run()
 		server.run()
 		engine.setup(start)
 		engine.start()
@@ -73,7 +103,6 @@ object Dusk {
 		startKoin {
 			slf4jLogger()
 			modules(
-				codecRepositoryModule,
 				eventModule,
 				cacheModule,
 				fileLoaderModule,
@@ -107,5 +136,24 @@ object Dusk {
 			fileProperties("/game.properties")
 			fileProperties("/private.properties")
 		}
+	}
+
+	private fun registerHandlers() {
+		GameCodec.registerHandler(ConsoleCommandMessageHandler())
+		GameCodec.registerHandler(DialogueContinueMessageHandler())
+		GameCodec.registerHandler(FloorItemOptionMessageHandler())
+		GameCodec.registerHandler(GameLoginMessageHandler())
+		GameCodec.registerHandler(IntEntryMessageHandler())
+		GameCodec.registerHandler(InterfaceClosedMessageHandler())
+		GameCodec.registerHandler(InterfaceOptionMessageHandler())
+		GameCodec.registerHandler(InterfaceSwitchMessageHandler())
+		GameCodec.registerHandler(NPCOptionMessageHandler())
+		GameCodec.registerHandler(ObjectOptionMessageHandler())
+		GameCodec.registerHandler(PlayerOptionMessageHandler())
+		GameCodec.registerHandler(RegionLoadedMessageHandler())
+		GameCodec.registerHandler(ScreenChangeMessageHandler())
+		GameCodec.registerHandler(StringEntryMessageHandler())
+		GameCodec.registerHandler(WalkMapMessageHandler())
+		GameCodec.registerHandler(WalkMiniMapMessageHandler())
 	}
 }
