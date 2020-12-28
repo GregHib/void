@@ -1,12 +1,17 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_BYTE
-import rs.dusk.network.rs.codec.game.decode.message.FriendChatJoinMessage
 
-class FriendChatJoinMessageDecoder : MessageDecoder<FriendChatJoinMessage>(VARIABLE_LENGTH_BYTE) {
+class FriendChatJoinMessageDecoder : MessageDecoder(VARIABLE_LENGTH_BYTE) {
 
-    override fun decode(packet: PacketReader) = FriendChatJoinMessage(packet.readString())
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.joinFriendsChat(
+            context,
+            packet.readString()
+        )
+    }
 
 }

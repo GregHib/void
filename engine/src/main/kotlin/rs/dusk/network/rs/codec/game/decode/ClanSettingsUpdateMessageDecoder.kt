@@ -1,12 +1,18 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_BYTE
-import rs.dusk.network.rs.codec.game.decode.message.ClanSettingsUpdateMessage
 
-class ClanSettingsUpdateMessageDecoder : MessageDecoder<ClanSettingsUpdateMessage>(VARIABLE_LENGTH_BYTE) {
+class ClanSettingsUpdateMessageDecoder : MessageDecoder(VARIABLE_LENGTH_BYTE) {
 
-    override fun decode(packet: PacketReader) = ClanSettingsUpdateMessage(packet.readShort(), packet.readString())
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.updateClanSettings(
+            context,
+            packet.readShort(),
+            packet.readString()
+        )
+    }
 
 }

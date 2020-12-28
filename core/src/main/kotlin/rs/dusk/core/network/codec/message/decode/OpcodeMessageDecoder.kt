@@ -27,7 +27,7 @@ class OpcodeMessageDecoder : MessageToMessageDecoder<PacketReader>() {
 			logger.error { "Unable to find message decoder [msg=$msg, codec=${codec.javaClass.simpleName}, codec=$codec]" }
 			return
 		}
-		val message = decoder.decode(msg)
+		val message = decoder.decode(ctx, msg)
 		out.add(message)
 		logger.debug { "Message decoding successful [decoder=${decoder.javaClass.simpleName}, codec=$codec]" }
 	}

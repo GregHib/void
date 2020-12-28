@@ -1,13 +1,16 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.UnknownMessage
 
-class UnknownMessageDecoder : MessageDecoder<UnknownMessage>(2) {
+class UnknownMessageDecoder : MessageDecoder(2) {
 
-    override fun decode(packet: PacketReader): UnknownMessage {
-        return UnknownMessage(packet.readShort())
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.unknown(
+            context = context,
+            value = packet.readShort()
+        )
     }
 
 }

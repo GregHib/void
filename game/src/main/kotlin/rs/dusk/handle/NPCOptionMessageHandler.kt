@@ -13,24 +13,22 @@ import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
-import rs.dusk.network.rs.codec.game.decode.message.NPCOptionMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 30, 2020
  */
-class NPCOptionMessageHandler : MessageHandler<NPCOptionMessage>() {
+class NPCOptionMessageHandler : MessageHandler() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val npcs: NPCs by inject()
     val bus: EventBus by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: NPCOptionMessage) {
-        val session = ctx.channel().getSession()
+    override fun npcOption(context: ChannelHandlerContext, run: Boolean, npcIndex: Int, option: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (run, npcIndex, option) = msg
         val npc = npcs.getAtIndex(npcIndex) ?: return
         val options = npc.def.options
         val index = option - 1

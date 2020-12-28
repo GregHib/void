@@ -1,4 +1,4 @@
-package rs.dusk.network.rs.codec.login.decode.message
+package rs.dusk.engine.entity.character.player
 
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.network.rs.codec.game.MessageCompanion
@@ -7,7 +7,7 @@ import rs.dusk.network.rs.codec.game.MessageCompanion
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-data class GameLoginMessage(
+data class GameLoginInfo(
     val username: String,
     val password: String,
     val isaacKeys: IntArray,
@@ -30,5 +30,5 @@ data class GameLoginMessage(
     val processorCount: Int,
     val totalMemory: Int
 ) : Message {
-    companion object : MessageCompanion<GameLoginMessage>()
+    companion object : MessageCompanion<GameLoginInfo>()
 }

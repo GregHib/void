@@ -6,20 +6,19 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.decode.message.InterfaceClosedMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 26, 2020
  */
-class InterfaceClosedMessageHandler : MessageHandler<InterfaceClosedMessage>() {
+class InterfaceClosedMessageHandler : MessageHandler() {
 
     val sessions: Sessions by inject()
     val executor: TaskExecutor by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: InterfaceClosedMessage) {
-        val session = ctx.channel().getSession()
+    override fun interfaceClosed(context: ChannelHandlerContext) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
         executor.sync {
             val id = player.interfaces.get("main_screen")

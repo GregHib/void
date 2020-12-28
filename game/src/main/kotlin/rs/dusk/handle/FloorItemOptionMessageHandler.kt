@@ -13,24 +13,22 @@ import rs.dusk.engine.entity.item.FloorItems
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.PathResult
-import rs.dusk.network.rs.codec.game.decode.message.FloorItemOptionMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 30, 2020
  */
-class FloorItemOptionMessageHandler : MessageHandler<FloorItemOptionMessage>() {
+class FloorItemOptionMessageHandler : MessageHandler() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val items: FloorItems by inject()
     val bus: EventBus by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: FloorItemOptionMessage) {
-        val session = ctx.channel().getSession()
+    override fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, option: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (id, run, y, x, option) = msg
         val tile = Tile(x, y, player.tile.plane)
         val items = items[tile]
         val item = items.firstOrNull { it.id == id && it.tile == tile } ?: return

@@ -1,16 +1,19 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.DialogueContinueMessage
 
-class DialogueContinueMessageDecoder : MessageDecoder<DialogueContinueMessage>(6) {
+class DialogueContinueMessageDecoder : MessageDecoder(6) {
 
-    override fun decode(packet: PacketReader) = DialogueContinueMessage(
-        packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
-        packet.readShort(Modifier.ADD, Endian.LITTLE)
-    )
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.continueDialogue(
+            context,
+            packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
+            packet.readShort(Modifier.ADD, Endian.LITTLE)
+        )
+    }
 
 }

@@ -1,11 +1,13 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.InterfaceClosedMessage
 
-class InterfaceClosedMessageDecoder : MessageDecoder<InterfaceClosedMessage>(0) {
+class InterfaceClosedMessageDecoder : MessageDecoder(0) {
 
-    override fun decode(packet: PacketReader) = InterfaceClosedMessage
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.interfaceClosed(context)
+    }
 
 }

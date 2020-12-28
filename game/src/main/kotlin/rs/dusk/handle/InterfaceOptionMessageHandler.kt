@@ -14,7 +14,6 @@ import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.decode.message.InterfaceOptionMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
@@ -22,7 +21,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceOption
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 26, 2020
  */
-class InterfaceOptionMessageHandler : MessageHandler<InterfaceOptionMessage>() {
+class InterfaceOptionMessageHandler : MessageHandler() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
@@ -33,10 +32,9 @@ class InterfaceOptionMessageHandler : MessageHandler<InterfaceOptionMessage>() {
     val itemDefinitions: ItemDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: InterfaceOptionMessage) {
-        val session = ctx.channel().getSession()
+    override fun interfaceOption(context: ChannelHandlerContext, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (hash, itemId, itemSlot, option) = msg
 
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {

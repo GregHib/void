@@ -12,29 +12,24 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.decode.message.LobbyLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class LobbyLoginMessageHandler : MessageHandler<LobbyLoginMessage>() {
-	
-	override fun handle(ctx : ChannelHandlerContext, msg : LobbyLoginMessage) {
-		val pipeline = ctx.pipeline()
-		val keyPair = IsaacKeyPair(msg.isaacSeed)
-		val channel = ctx.channel()
+class LobbyLoginMessageHandler : MessageHandler() {
+
+	override fun loginLobby(context: ChannelHandlerContext, username: String, password: String, hd: Boolean, resize: Boolean, settings: String, affiliate: Int, isaacSeed: IntArray, crcMap: MutableMap<Int, Pair<Int, Int>>) {
+		val pipeline = context.pipeline()
+		val keyPair = IsaacKeyPair(isaacSeed)
+		val channel = context.channel()
 		
 		channel.setCodec(LoginCodec)
 		pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
 		
-		println("issac seed = ${msg.isaacSeed.contentToString()}")
+		println("issac seed = ${isaacSeed.contentToString()}")
 		
 		pipeline.writeAndFlush(
 			LobbyConfigurationMessage(
-				msg.username,
-				ctx.channel().getSession().getIp(),
+				username,
+				context.channel().getSession().getIp(),
 				System.currentTimeMillis()
 			)
 		)

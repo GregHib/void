@@ -1,18 +1,17 @@
 package rs.dusk.network.rs.codec.update.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.update.decode.message.UpdateLoginStatusMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateLoginStatusMessageDecoder(private val online: Boolean) : MessageDecoder<UpdateLoginStatusMessage>(3) {
+class UpdateLoginStatusMessageDecoder(private val online: Boolean) : MessageDecoder(3) {
 
-    override fun decode(packet: PacketReader): UpdateLoginStatusMessage {
-        val value = packet.readUnsignedMedium()
-        return UpdateLoginStatusMessage(online, value)
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.updateLoginStatus(
+            context = context,
+            online = online,
+            value = packet.readUnsignedMedium()
+        )
     }
 
 }

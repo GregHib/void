@@ -1,11 +1,16 @@
 package rs.dusk.network.rs.codec.game.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.decode.message.ResumeObjDialogueMessage
 
-class ResumeObjDialogueMessageDecoder : MessageDecoder<ResumeObjDialogueMessage>(2) {
+class ResumeObjDialogueMessageDecoder : MessageDecoder(2) {
 
-    override fun decode(packet: PacketReader) = ResumeObjDialogueMessage(packet.readShort())
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.resumeObjectDialogue(
+            context = context,
+            value = packet.readShort()
+        )
+    }
 
 }

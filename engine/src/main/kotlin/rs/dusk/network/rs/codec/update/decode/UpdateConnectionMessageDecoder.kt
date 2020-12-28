@@ -1,18 +1,16 @@
 package rs.dusk.network.rs.codec.update.decode
 
+import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.update.decode.message.UpdateConnectionMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateConnectionMessageDecoder : MessageDecoder<UpdateConnectionMessage>(3) {
+class UpdateConnectionMessageDecoder : MessageDecoder(3) {
 
-    override fun decode(packet: PacketReader): UpdateConnectionMessage {
-        val value = packet.readUnsignedMedium()
-        return UpdateConnectionMessage(value)
+    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+        handler?.updateConnection(
+            context = context,
+            id = packet.readUnsignedMedium()
+        )
     }
 
 }

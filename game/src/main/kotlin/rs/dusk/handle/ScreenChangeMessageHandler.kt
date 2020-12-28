@@ -6,28 +6,26 @@ import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.isOpen
 import rs.dusk.engine.entity.character.player.setDisplayMode
-import rs.dusk.network.rs.codec.game.decode.message.ScreenChangeMessage
 import rs.dusk.utility.inject
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class ScreenChangeMessageHandler : MessageHandler<ScreenChangeMessage>() {
+class ScreenChangeMessageHandler : MessageHandler() {
 
     val sessions: Sessions by inject()
 
-    override fun handle(ctx: ChannelHandlerContext, msg: ScreenChangeMessage) {
-        val session = ctx.channel().getSession()
+    override fun changeScreen(context: ChannelHandlerContext, displayMode: Int, width: Int, height: Int, antialiasLevel: Int) {
+        val session = context.channel().getSession()
         val player = sessions.get(session) ?: return
-        val (mode, width, height, antialias) = msg
         player.gameFrame.width = width
         player.gameFrame.height = height
 
-        if(player.gameFrame.displayMode == mode || !player.isOpen("graphics_options")) {
+        if (player.gameFrame.displayMode == displayMode || !player.isOpen("graphics_options")) {
             return
         }
-        player.setDisplayMode(mode)
+        player.setDisplayMode(displayMode)
     }
 
 }

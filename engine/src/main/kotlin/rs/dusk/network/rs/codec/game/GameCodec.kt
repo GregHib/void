@@ -89,7 +89,7 @@ object GameCodec : Codec() {
         registerDecoder(GameOpcodes.RESUME_PLAYER_OBJ_DIALOGUE, ResumeObjDialogueMessageDecoder())
         registerDecoder(GameOpcodes.SCREEN_CHANGE, ScreenChangeMessageDecoder())
         registerDecoder(GameOpcodes.OTHER_TELEPORT, SecondaryTeleportMessageDecoder())
-        registerDecoder(GameOpcodes.COLOUR_ID, SkillcapeColourMessageDecoder())
+        registerDecoder(GameOpcodes.COLOUR_ID, SkillCapeColourMessageDecoder())
         registerDecoder(GameOpcodes.STRING_ENTRY, StringEntryMessageDecoder())
         registerDecoder(GameOpcodes.TOOLKIT_PREFERENCES, ToolkitPreferencesMessageDecoder())
         registerDecoder(GameOpcodes.UNKNOWN, UnknownMessageDecoder())
@@ -100,7 +100,7 @@ object GameCodec : Codec() {
         registerDecoder(GameOpcodes.TOGGLE_FOCUS, WindowFocusMessageDecoder())
         registerDecoder(GameOpcodes.IN_OUT_SCREEN, WindowHoveredMessageDecoder())
         registerDecoder(GameOpcodes.REFRESH_WORLDS, WorldListRefreshMessageDecoder())
-        registerDecoder(GameOpcodes.WORLD_MAP_CLICK, WorldMapOpenMessageDecoder())
+        registerDecoder(GameOpcodes.WORLD_MAP_CLICK, WorldMapCloseMessageDecoder())
 
         registerEncoder(ChatMessageEncoder())
         registerEncoder(ChunkClearMessageEncoder())
