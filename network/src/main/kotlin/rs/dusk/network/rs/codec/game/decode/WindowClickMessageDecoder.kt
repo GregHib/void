@@ -3,13 +3,10 @@ package rs.dusk.network.rs.codec.game.decode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.game.GameMessageDecoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.CLICK
 import rs.dusk.network.rs.codec.game.decode.message.WindowClickMessage
 
-@PacketMetaData(opcodes = [CLICK], length = 6)
-class WindowClickMessageDecoder : GameMessageDecoder<WindowClickMessage>() {
+class WindowClickMessageDecoder : GameMessageDecoder<WindowClickMessage>(6) {
 
     override fun decode(packet: PacketReader) =
         WindowClickMessage(

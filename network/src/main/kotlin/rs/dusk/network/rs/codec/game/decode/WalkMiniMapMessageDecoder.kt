@@ -3,13 +3,10 @@ package rs.dusk.network.rs.codec.game.decode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.game.GameMessageDecoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.MINI_MAP_WALK
 import rs.dusk.network.rs.codec.game.decode.message.WalkMiniMapMessage
 
-@PacketMetaData(opcodes = [MINI_MAP_WALK], length = 18)
-class WalkMiniMapMessageDecoder : GameMessageDecoder<WalkMiniMapMessage>() {
+class WalkMiniMapMessageDecoder : GameMessageDecoder<WalkMiniMapMessage>(18) {
 
     override fun decode(packet: PacketReader): WalkMiniMapMessage {
         val baseX = packet.readShort(Modifier.ADD, Endian.LITTLE)

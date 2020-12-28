@@ -1,7 +1,6 @@
 package rs.dusk.network.rs.codec.service.handle
 
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.network.codec.CodecRepository
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -14,7 +13,6 @@ import rs.dusk.network.rs.codec.service.decode.message.UpdateHandshakeMessage
 import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
 import rs.dusk.utility.getIntProperty
-import rs.dusk.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -23,8 +21,6 @@ import rs.dusk.utility.inject
 class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessage>() {
 	
 	private val clientMajorBuild: Int = getIntProperty("clientBuild")
-	
-	private val repository : CodecRepository by inject()
 	
 	override fun handle(ctx : ChannelHandlerContext, msg : UpdateHandshakeMessage) {
 		val major = msg.major
@@ -44,7 +40,7 @@ class UpdateHandshakeMessageHandler : ServiceMessageHandler<UpdateHandshakeMessa
 			replace("message.reader", MessageReader())
 			replace("message.encoder", GenericMessageEncoder())
 			
-			channel.setCodec(repository.get(UpdateCodec::class))
+			channel.setCodec(UpdateCodec)
 		}
 		pipeline.writeAndFlush(UpdateVersionMessage(response))
 	}

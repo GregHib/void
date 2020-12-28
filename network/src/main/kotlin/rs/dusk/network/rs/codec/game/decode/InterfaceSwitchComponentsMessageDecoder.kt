@@ -3,13 +3,10 @@ package rs.dusk.network.rs.codec.game.decode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketMetaData
 import rs.dusk.network.rs.codec.game.GameMessageDecoder
-import rs.dusk.network.rs.codec.game.GameOpcodes.SWITCH_INTERFACE_COMPONENTS
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 
-@PacketMetaData(opcodes = [SWITCH_INTERFACE_COMPONENTS], length = 16)
-class InterfaceSwitchComponentsMessageDecoder : GameMessageDecoder<InterfaceSwitchComponentsMessage>() {
+class InterfaceSwitchComponentsMessageDecoder : GameMessageDecoder<InterfaceSwitchComponentsMessage>(16) {
 
     override fun decode(packet: PacketReader) = InterfaceSwitchComponentsMessage(
         packet.readShort(),

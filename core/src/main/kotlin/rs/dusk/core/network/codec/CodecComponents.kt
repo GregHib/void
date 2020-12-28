@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.message.MessageHandler
+import rs.dusk.core.network.model.message.Message
 import rs.dusk.core.network.model.packet.PacketMetaData
 import kotlin.reflect.KClass
 
@@ -87,6 +88,14 @@ open class CodecComponents {
 	
 	fun generateStatistics() : String {
 		return "${javaClass.simpleName}[${decoders.size}, ${handlers.size}, ${encoders.size}]"
+	}
+
+	inline fun <reified T: Message> registerEncoder(encoder: MessageEncoder<T>) {
+		bindEncoder(T::class, encoder)
+	}
+
+	inline fun <reified T: Message> registerHandler(handler: MessageHandler<T>) {
+		bindHandler(T::class, handler)
 	}
 	
 }

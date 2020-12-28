@@ -3,7 +3,6 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.io.crypto.IsaacKeyPair
-import rs.dusk.core.network.codec.CodecRepository
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -38,7 +37,6 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
-    val repository: CodecRepository by inject()
     val executor: TaskExecutor by inject()
 
     override fun handle(ctx: ChannelHandlerContext, msg: GameLoginMessage) {
@@ -46,7 +44,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
         val pipeline = ctx.pipeline()
         val keyPair = IsaacKeyPair(msg.isaacKeys)
 
-        channel.setCodec(repository.get(LoginCodec::class))
+        channel.setCodec(LoginCodec)
         pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
 
         val session = ctx.channel().getSession()
@@ -64,7 +62,7 @@ class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
                 }
 
                 executor.sync {
-                    channel.setCodec(repository.get(GameCodec::class))
+                    channel.setCodec(GameCodec)
 
                     bus.emit(RegionLogin(player))
                     bus.emit(PlayerRegistered(player))

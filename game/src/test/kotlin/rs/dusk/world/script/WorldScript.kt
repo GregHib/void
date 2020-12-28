@@ -29,7 +29,6 @@ import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
-import rs.dusk.network.codecRepositoryModule
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
@@ -39,7 +38,7 @@ import java.util.concurrent.Executors
 
 abstract class WorldScript : KoinMock() {
 
-    override val modules = listOf(codecRepositoryModule,
+    override val modules = listOf(
         eventModule,
         cacheModule,
         fileLoaderModule,

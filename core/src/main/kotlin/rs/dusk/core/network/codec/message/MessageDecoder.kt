@@ -20,7 +20,7 @@ abstract class MessageDecoder<M : Message>(
     /**
      * The expected length of the packet that this decoder is used for
      */
-    var length: Int? = 0
+    open var length: Int = 0
 ) {
 
     /**
