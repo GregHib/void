@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.region.obj
+package rs.dusk.engine.map.region
 
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper

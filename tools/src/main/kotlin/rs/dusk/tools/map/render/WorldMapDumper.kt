@@ -1,24 +1,19 @@
 package rs.dusk.tools.map.render
 
 import org.koin.core.context.startKoin
+import org.koin.dsl.module
 import rs.dusk.cache.Cache
 import rs.dusk.cache.config.decoder.MapSceneDecoder
 import rs.dusk.cache.config.decoder.OverlayDecoder
 import rs.dusk.cache.config.decoder.UnderlayDecoder
 import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
-import rs.dusk.cache.definition.decoder.ObjectDecoder
-import rs.dusk.cache.definition.decoder.SpriteDecoder
-import rs.dusk.cache.definition.decoder.TextureDecoder
-import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
+import rs.dusk.cache.definition.decoder.*
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
 import rs.dusk.engine.client.cacheModule
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectMapDecoder
-import rs.dusk.engine.map.region.obj.Xteas
-import rs.dusk.engine.map.region.obj.objectMapDecoderModule
-import rs.dusk.engine.map.region.obj.xteaModule
-import rs.dusk.engine.map.region.tile.TileDecoder
+import rs.dusk.engine.map.region.Xteas
+import rs.dusk.engine.map.region.xteaModule
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.map.render.draw.MinimapIconPainter
 import rs.dusk.tools.map.render.draw.RegionRenderer
@@ -35,14 +30,15 @@ object WorldMapDumper {
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
-            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, objectMapDecoderModule)
+            modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule,
+            module {
+                single { MapDecoder(get(), get<Xteas>()) }
+            })
         }.koin
 
         val cache: Cache = koin.get()
-        val xteas: Xteas = koin.get()
-        val tileDecoder = TileDecoder()
+        val mapDecoder: MapDecoder = koin.get()
         val objectDecoder: ObjectDecoder = koin.get()
-        val mapObjDecoder: GameObjectMapDecoder = koin.get()
         val overlayDefinitions: OverlayDecoder = koin.get()
         val underlayDefinitions: UnderlayDecoder = koin.get()
         val textureDefinitions: TextureDecoder = koin.get()
@@ -58,7 +54,7 @@ object WorldMapDumper {
 
         val loader = MinimapIconPainter(objectDecoder, worldMapDecoder, worldMapInfoDecoder, spriteDecoder)
         loader.startup(cache)
-        val manager = RegionManager(cache, tileDecoder, xteas, mapObjDecoder, 3)
+        val manager = RegionManager(mapDecoder, 3)
         val settings = MapTileSettings(4, underlayDefinitions, overlayDefinitions, textureDefinitions, manager = manager)
 
         val pipeline = Pipeline<Region>()
@@ -72,6 +68,7 @@ object WorldMapDumper {
             }
         }
         val start = System.currentTimeMillis()
+
         regions.forEach {
             pipeline.process(it)
         }

@@ -7,12 +7,12 @@ import rs.dusk.cache.Indices.WORLD_MAP
 import rs.dusk.cache.config.data.WorldMapInfoDefinition
 import rs.dusk.cache.config.decoder.WorldMapInfoDecoder
 import rs.dusk.cache.definition.data.IndexedSprite
+import rs.dusk.cache.definition.data.MapObject
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.cache.definition.decoder.WorldMapDetailsDecoder
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectLoc
 import java.awt.Graphics
 import java.awt.image.BufferedImage
 
@@ -79,7 +79,7 @@ class MinimapIconPainter(
         }
     }
 
-    fun paint(g: Graphics, region: Region, plane: Int, objects: Map<Int, List<GameObjectLoc>?>) {
+    fun paint(g: Graphics, region: Region, plane: Int, objects: Map<Int, List<MapObject>?>) {
         val iconScale = 2
         for (regionX in region.x - 1..region.x + 1) {
             for (regionY in region.y - 1..region.y + 1) {
@@ -99,7 +99,7 @@ class MinimapIconPainter(
         }
     }
 
-    private fun loadIcons(regionX: Int, regionY: Int, objects: List<GameObjectLoc>?): Map<Int, MapIcon> {
+    private fun loadIcons(regionX: Int, regionY: Int, objects: List<MapObject>?): Map<Int, MapIcon> {
         val images = mutableMapOf<Int, MapIcon>()
         objects?.forEach {
             val definition = objectDefinitions.getOrNull(it.id) ?: return@forEach
@@ -107,9 +107,9 @@ class MinimapIconPainter(
                 val mapInfo = worldMapInfoDefinitions.get(definition.mapDefinitionId)
                 val sprite = mapInfo.toSprite(false)
                 if (sprite != null) {
-                    val x = regionX * 64 + it.localX
-                    val y = regionY * 64 + it.localY
-                    images[Tile.getId(it.localX, it.localY, it.plane)] = MapIcon(x, y, it.plane, sprite.toBufferedImage())
+                    val x = regionX * 64 + it.x
+                    val y = regionY * 64 + it.y
+                    images[Tile.getId(it.x, it.y, it.plane)] = MapIcon(x, y, it.plane, sprite.toBufferedImage())
                 }
             }
         }

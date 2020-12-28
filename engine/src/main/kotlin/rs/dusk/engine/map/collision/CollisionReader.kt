@@ -1,11 +1,8 @@
 package rs.dusk.engine.map.collision
 
+import rs.dusk.cache.definition.data.MapDefinition
 import rs.dusk.engine.map.collision.CollisionFlag.FLOOR
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.tile.BLOCKED_TILE
-import rs.dusk.engine.map.region.tile.BRIDGE_TILE
-import rs.dusk.engine.map.region.tile.TileSettings
-import rs.dusk.engine.map.region.tile.isTile
 
 /**
  * Adds collision for all blocked tiles except bridges
@@ -14,19 +11,24 @@ import rs.dusk.engine.map.region.tile.isTile
  */
 class CollisionReader(val collisions: Collisions) {
 
-    fun read(region: Region, settings: TileSettings) {
+    fun read(region: Region, map: MapDefinition) {
         val x = region.tile.x
         val y = region.tile.y
-        for (plane in settings.indices) {
-            for (localX in settings[plane].indices) {
-                for (localY in settings[plane][localX].indices) {
-                    val blocked = settings.isTile(plane, localX, localY, BLOCKED_TILE)
-                    val bridge = settings.isTile(1, localX, localY, BRIDGE_TILE)
+        for (plane in 0 until 4) {
+            for (localX in 0 until 64) {
+                for (localY in 0 until 64) {
+                    val blocked = map.getTile(localX, localY, plane).isTile(BLOCKED_TILE)
+                    val bridge = map.getTile(localX, localY, 1).isTile(BRIDGE_TILE)
                     if (blocked && !bridge) {
                         collisions.add(x + localX, y + localY, plane, FLOOR)
                     }
                 }
             }
         }
+    }
+
+    companion object {
+        const val BLOCKED_TILE = 0x1
+        const val BRIDGE_TILE = 0x2
     }
 }

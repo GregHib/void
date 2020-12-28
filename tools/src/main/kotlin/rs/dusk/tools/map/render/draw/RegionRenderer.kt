@@ -1,10 +1,10 @@
 package rs.dusk.tools.map.render.draw
 
 import rs.dusk.cache.config.decoder.MapSceneDecoder
+import rs.dusk.cache.definition.data.MapObject
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectLoc
 import rs.dusk.tools.Pipeline
 import rs.dusk.tools.map.render.load.MapTileSettings
 import rs.dusk.tools.map.render.load.RegionManager
@@ -30,7 +30,7 @@ class RegionRenderer(
 
         manager.loadTiles(regionX, regionY)
         settings.set(regionX, regionY)
-        val objects = mutableMapOf<Int, List<GameObjectLoc>?>()
+        val objects = mutableMapOf<Int, List<MapObject>?>()
         for (rX in content.x - 1..content.x + 1) {
             for (rY in content.y - 1..content.y + 1) {
                 val region = Region(rX, rY)

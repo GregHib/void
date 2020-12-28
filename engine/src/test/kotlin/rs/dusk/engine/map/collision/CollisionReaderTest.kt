@@ -3,12 +3,12 @@ package rs.dusk.engine.map.collision
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import rs.dusk.cache.definition.data.MapDefinition
+import rs.dusk.cache.definition.data.MapTile
 import rs.dusk.engine.map.collision.CollisionFlag.FLOOR
+import rs.dusk.engine.map.collision.CollisionReader.Companion.BLOCKED_TILE
+import rs.dusk.engine.map.collision.CollisionReader.Companion.BRIDGE_TILE
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.tile.BLOCKED_TILE
-import rs.dusk.engine.map.region.tile.BRIDGE_TILE
-import rs.dusk.engine.map.region.tile.TileSettings
-import rs.dusk.engine.map.region.tile.isTile
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -17,47 +17,26 @@ import rs.dusk.engine.map.region.tile.isTile
 internal class CollisionReaderTest {
     lateinit var collisions: Collisions
     lateinit var reader: CollisionReader
+    lateinit var map: MapDefinition
 
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
         reader = spyk(CollisionReader(collisions))
-    }
-
-    @Test
-    fun `Load by plane, x and y`() {
-        // Given
-        val region = Region(100, 100)
-        val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
-        mockkStatic("rs.dusk.engine.map.region.tile.TileSettingsKt")
-        // When
-        reader.read(region, settings)
-        // Then
-        verifyOrder {
-            for (plane in 0 until 2) {
-                for (x in 0 until 2) {
-                    for (y in 0 until 2) {
-                        settings.isTile(plane, x, y, any())
-                        settings.isTile(1, x, y, any())
-                    }
-                }
-            }
-        }
+        map = MapDefinition(id = 12345)
     }
 
     @Test
     fun `Load blocked`() {
         // Given
         val region = Region(1, 1)
-        val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
-        settings[0][1][1] = BLOCKED_TILE.toByte()
-        mockkStatic("rs.dusk.engine.map.region.tile.TileSettingsKt")
+        map.setTile(1, 1, 0, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
         // When
-        reader.read(region, settings)
+        reader.read(region, map)
         // Then
         verifyOrder {
-            settings.isTile(0, 1, 1, any())
-            settings.isTile(1, 1, 1, any())
+            map.getTile(1, 1, 0)
+            map.getTile(1, 1, 1)
             collisions.add(region.tile.x + 1, region.tile.y + 1, 0, FLOOR)
         }
     }
@@ -66,13 +45,11 @@ internal class CollisionReaderTest {
     fun `Ignore blocked bridge`() {
         // Given
         val region = Region(1, 1)
-        val settings: TileSettings = Array(2) { Array(2) { ByteArray(2) } }
-        settings[0][1][1] = BLOCKED_TILE.toByte()
-        settings[1][1][1] = BRIDGE_TILE.toByte()
-        mockkStatic("rs.dusk.engine.map.region.tile.TileSettingsKt")
+        map.setTile(1, 1, 0, MapTile(0, 0, 0, 0, 0, BLOCKED_TILE, 0))
+        map.setTile(1, 1, 1, MapTile(0, 0, 0, 0, 0, BRIDGE_TILE, 0))
         mockkStatic("rs.dusk.engine.map.collision.CollisionsKt")
         // When
-        reader.read(region, settings)
+        reader.read(region, map)
         // Then
         verify(exactly = 0) {
             collisions.add(any(), any(), any(), FLOOR)

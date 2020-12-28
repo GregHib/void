@@ -3,11 +3,11 @@ package rs.dusk.tools.map.render.draw
 import rs.dusk.cache.config.data.MapSceneDefinition
 import rs.dusk.cache.config.decoder.MapSceneDecoder
 import rs.dusk.cache.definition.data.IndexedSprite
+import rs.dusk.cache.definition.data.MapObject
 import rs.dusk.cache.definition.data.ObjectDefinition
 import rs.dusk.cache.definition.decoder.ObjectDecoder
 import rs.dusk.cache.definition.decoder.SpriteDecoder
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.obj.GameObjectLoc
 import java.awt.Color
 import java.awt.Graphics2D
 import kotlin.math.ceil
@@ -180,17 +180,17 @@ class ObjectPainter(
         return image
     }
 
-    fun drawObject(g: Graphics2D, region: Region, obj: GameObjectLoc, definition: ObjectDefinition) {
+    fun drawObject(g: Graphics2D, region: Region, regionId: Int, obj: MapObject, definition: ObjectDefinition) {
         if (definition.hideMinimap) {
             return
         }
         if (obj.plane != plane) {//FIXME should render more than one plane at once
             return
         }
-        offsetX = obj.regionX - region.x + 1
-        offsetY = obj.regionY - region.y + 1
-        val localX = obj.localX
-        val localY = obj.localY
+        offsetX = Region.getX(regionId) - region.x + 1
+        offsetY = Region.getY(regionId) - region.y + 1
+        val localX = obj.x
+        val localY = obj.y
         val rotation = obj.rotation
         val type = obj.type
         val bool_65_ = definition.animations == null && definition.configObjectIds == null && !definition.aBoolean2998 && !definition.aBoolean2992
@@ -220,11 +220,11 @@ class ObjectPainter(
         }
     }
 
-    fun paint(g: Graphics2D, region: Region, objects: Map<Int, List<GameObjectLoc>?>) {
-        objects.values.forEach { list ->
+    fun paint(g: Graphics2D, region: Region, objects: Map<Int, List<MapObject>?>) {
+        objects.forEach { (regionId, list) ->
             list?.forEach { obj ->
                 val definition = objectDefinitions.get(obj.id)
-                drawObject(g, region, obj, definition)
+                drawObject(g, region, regionId, obj, definition)
             }
         }
     }

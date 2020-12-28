@@ -2,11 +2,10 @@ package rs.dusk.tools.map.render.load
 
 import rs.dusk.cache.config.decoder.OverlayDecoder
 import rs.dusk.cache.config.decoder.UnderlayDecoder
+import rs.dusk.cache.definition.data.MapTile
 import rs.dusk.cache.definition.decoder.TextureDecoder
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.tools.map.render.draw.TilePlane
-import rs.dusk.tools.map.render.draw.TilePlane.Companion.emptyTile
 import rs.dusk.tools.map.render.load.MapConstants.TILE_TYPE_HEIGHT_OVERRIDE
 import rs.dusk.tools.map.render.load.MapConstants.firstTileTypeVertices
 import rs.dusk.tools.map.render.load.MapConstants.groundBlending
@@ -40,11 +39,11 @@ class MapTileSettings(
     private var regionX: Int = 0
     private var regionY: Int = 0
 
-    fun tile(plane: Int, localX: Int, localY: Int): TileData {
+    fun tile(plane: Int, localX: Int, localY: Int): MapTile {
         val regionX = this.regionX + (localX / 64)
         val regionY = this.regionY + (localY / 64)
         val regionId = Region.getId(regionX, regionY)
-        return manager.tiles[regionId]?.get(plane)?.get(localX.rem(64))?.get(localY.rem(64)) ?: emptyTile
+        return manager.tiles[regionId]?.getTile(localX.rem(64), localY.rem(64), plane) ?: MapTile.EMPTY
     }
 
     fun set(regionX: Int, regionY: Int) {
@@ -164,21 +163,21 @@ class MapTileSettings(
             for (y in 0 until height) {
                 if (groundBlending == -1 || useUnderlay(x, y, groundBlending, plane)) {
                     val tile = tile(plane, x, y)
-                    var tileType = tile.overlayPath.toByte()
+                    var tileType = tile.overlayPath
                     val tileDirection = tile.overlayRotation
-                    val overlay = tile.overlayId and 0xff
-                    val underlay = tile.underlayId and 0xff
+                    val overlay = tile.overlayId
+                    val underlay = tile.underlayId
                     var overlayDefinition = if (overlay != 0) overlayDecoder.get(overlay - 1) else null
-                    if (tileType.toInt() == 0 && overlayDefinition == null) {
-                        tileType = 12.toByte()
+                    if (tileType == 0 && overlayDefinition == null) {
+                        tileType = 12
                     }
                     val underlayDefinition = if (underlay != 0) underlayDecoder.get(underlay - 1) else null
                     if (overlayDefinition != null && overlayDefinition.colour == -1 && overlayDefinition.blendColour == -1) {
                         overlayDefinition = null
                     }
                     if (overlayDefinition != null || underlayDefinition != null) {
-                        val underlaySize = underlaySizes[tileType.toInt()]
-                        val overlaySize = overlaySizes[tileType.toInt()]
+                        val underlaySize = underlaySizes[tileType]
+                        val overlaySize = overlaySizes[tileType]
                         val size = (if (underlayDefinition == null) 0 else underlaySize) + if (overlayDefinition != null) overlaySize else 0
                         var xIndex = 0
                         var yIndex = 0
@@ -195,9 +194,9 @@ class MapTileSettings(
                             yIndex += overlaySize
                         } else {
                             repeat(overlaySize) {
-                                vertexIndices1[xIndex] = firstTileTypeVertices[tileType.toInt()][yIndex]
-                                vertexIndices2[xIndex] = secondTileTypeVertices[tileType.toInt()][yIndex]
-                                vertexIndices3[xIndex] = thirdTileTypeVertices[tileType.toInt()][yIndex]
+                                vertexIndices1[xIndex] = firstTileTypeVertices[tileType][yIndex]
+                                vertexIndices2[xIndex] = secondTileTypeVertices[tileType][yIndex]
+                                vertexIndices3[xIndex] = thirdTileTypeVertices[tileType][yIndex]
                                 textures[xIndex] = overlayTexture
                                 scales[xIndex] = overlayDefinition.scale
                                 colours[xIndex] = overlayDefinition.colour
@@ -210,9 +209,9 @@ class MapTileSettings(
                         }
                         if (underlayDefinition != null) {
                             repeat(underlaySize) {
-                                vertexIndices1[xIndex] = firstTileTypeVertices[tileType.toInt()][yIndex]
-                                vertexIndices2[xIndex] = secondTileTypeVertices[tileType.toInt()][yIndex]
-                                vertexIndices3[xIndex] = thirdTileTypeVertices[tileType.toInt()][yIndex]
+                                vertexIndices1[xIndex] = firstTileTypeVertices[tileType][yIndex]
+                                vertexIndices2[xIndex] = secondTileTypeVertices[tileType][yIndex]
+                                vertexIndices3[xIndex] = thirdTileTypeVertices[tileType][yIndex]
                                 textures[xIndex] = underlayTexture
                                 scales[xIndex] = underlayDefinition.scale
                                 colours[xIndex] = parentColours[x][y]
@@ -248,7 +247,7 @@ class MapTileSettings(
                                     yOffsets[index] = offsetX
                                 }
                             }
-                            if (heightOffsets != null && TILE_TYPE_HEIGHT_OVERRIDE[tileType.toInt()][index]) {
+                            if (heightOffsets != null && TILE_TYPE_HEIGHT_OVERRIDE[tileType][index]) {
                                 val dx = xOffsets[index] + (x shl 9)
                                 val dy = (y shl 9) + yOffsets[index]
                                 heightOffsets[index] = abovePlane!!.averageHeight(dy, dx) - tilePlane.averageHeight(dy, dx)
@@ -262,17 +261,17 @@ class MapTileSettings(
     }
 
     fun useUnderlay(x: Int, y: Int, currentPlane: Int, otherPlane: Int): Boolean {
-        if (tile(0, x, y).settings.toInt() and BRIDGE_TILE != 0) {
+        if (tile(0, x, y).settings and BRIDGE_TILE != 0) {
             return true
         }
-        return if (tile(otherPlane, x, y).settings.toInt() and 0x10 != 0) false else currentPlane == offsetPlane(y, x, otherPlane)
+        return if (tile(otherPlane, x, y).settings and 0x10 != 0) false else currentPlane == offsetPlane(y, x, otherPlane)
     }
 
     private fun offsetPlane(y: Int, x: Int, plane: Int): Int {
-        if (tile(plane, x, y).settings.toInt() and 0x8 != 0) {
+        if (tile(plane, x, y).settings and 0x8 != 0) {
             return 0
         }
-        return if (plane > 0 && tile(1, x, y).settings.toInt() and BRIDGE_TILE != 0) plane - 1 else plane
+        return if (plane > 0 && tile(1, x, y).settings and BRIDGE_TILE != 0) plane - 1 else plane
     }
 
     companion object {

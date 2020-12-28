@@ -1,9 +1,10 @@
 package rs.dusk.tools.map.render.draw
 
+import rs.dusk.cache.definition.data.MapDefinition
+import rs.dusk.cache.definition.data.MapTile
 import rs.dusk.cache.definition.data.TextureDefinition
 import rs.dusk.cache.definition.decoder.TextureDecoder
 import rs.dusk.engine.map.region.Region
-import rs.dusk.engine.map.region.tile.TileData
 import rs.dusk.tools.map.render.load.MapConstants.size
 import rs.dusk.tools.map.render.load.MapTileSettings
 import rs.dusk.tools.map.render.model.TextureColours
@@ -16,7 +17,7 @@ class TilePlane(
     private val width: Int,
     private val height: Int,
     val plane: Int,
-    private val tiles: Map<Int, Array<Array<Array<TileData?>>>>
+    private val tiles: Map<Int, MapDefinition?>
 ) {
 
     private val tileBrightness = Array(width + 1) { ByteArray(height + 1) }
@@ -73,11 +74,11 @@ class TilePlane(
         }
     }
 
-    fun tile(x: Int, y: Int): TileData {
+    fun tile(x: Int, y: Int): MapTile {
         val regionX = x / 64
         val regionY = y / 64
         val regionId = Region.getId(regionX, regionY)
-        return tiles[regionId]?.get(plane)?.get(x.rem(64))?.get(y.rem(64)) ?: emptyTile
+        return tiles[regionId]?.getTile(x.rem(64), y.rem(64), plane) ?: MapTile.EMPTY
     }
 
     fun averageHeight(worldY: Int, worldX: Int): Int {
@@ -396,7 +397,6 @@ class TilePlane(
     }
 
     companion object {
-        val emptyTile = TileData()
         val tileUnits: Int
         val tileScale: Int
 

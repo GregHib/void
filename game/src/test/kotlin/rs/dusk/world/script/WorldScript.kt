@@ -23,10 +23,8 @@ import rs.dusk.engine.map.chunk.batchedChunkModule
 import rs.dusk.engine.map.chunk.instanceModule
 import rs.dusk.engine.map.collision.collisionModule
 import rs.dusk.engine.map.instance.instancePoolModule
-import rs.dusk.engine.map.region.obj.objectMapModule
-import rs.dusk.engine.map.region.obj.xteaModule
 import rs.dusk.engine.map.region.regionModule
-import rs.dusk.engine.map.region.tile.tileModule
+import rs.dusk.engine.map.region.xteaModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
@@ -56,11 +54,9 @@ abstract class WorldScript : KoinMock() {
         updatingTasksModule,
         loginQueueModule,
         regionModule,
-        tileModule,
         collisionModule,
         cacheDefinitionModule,
         cacheConfigModule,
-        objectMapModule,
         pathFindModule,
         schedulerModule,
         batchedChunkModule,

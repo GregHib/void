@@ -1,7 +1,6 @@
-package rs.dusk.engine.map.region.obj
+package rs.dusk.engine.map.region
 
 import org.koin.dsl.module
-import rs.dusk.engine.map.region.Region
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

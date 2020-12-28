@@ -1,11 +1,10 @@
-package rs.dusk.engine.map.region.obj
+package rs.dusk.engine.map.region
 
 import com.fasterxml.jackson.databind.JsonMappingException
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import rs.dusk.engine.map.region.Region
 import java.io.DataOutputStream
 import java.io.File
 
