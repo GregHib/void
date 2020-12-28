@@ -2,9 +2,9 @@ package rs.dusk.network.rs.codec.update.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.network.rs.codec.LoginResponseCode
-import rs.dusk.network.rs.codec.update.UpdateMessageHandler
 import rs.dusk.network.rs.codec.update.decode.message.UpdateConnectionMessage
 import rs.dusk.network.rs.codec.update.encode.message.UpdateRegistryResponse
 
@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.update.encode.message.UpdateRegistryResponse
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateConnectionMessageHandler : UpdateMessageHandler<UpdateConnectionMessage>() {
+class UpdateConnectionMessageHandler : MessageHandler<UpdateConnectionMessage>() {
 
     private val logger = InlineLogger()
 

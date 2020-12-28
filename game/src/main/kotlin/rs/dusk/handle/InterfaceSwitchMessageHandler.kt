@@ -3,13 +3,13 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.GameMessageHandler
 import rs.dusk.network.rs.codec.game.decode.message.InterfaceSwitchComponentsMessage
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
@@ -18,7 +18,7 @@ import rs.dusk.world.interact.entity.player.display.InterfaceSwitch
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 31, 2020
  */
-class InterfaceSwitchMessageHandler : GameMessageHandler<InterfaceSwitchComponentsMessage>() {
+class InterfaceSwitchMessageHandler : MessageHandler<InterfaceSwitchComponentsMessage>() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()

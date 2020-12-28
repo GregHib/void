@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.SCRIPT
 import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
 
@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class ScriptMessageEncoder : GameMessageEncoder<ScriptMessage>() {
+class ScriptMessageEncoder : MessageEncoder<ScriptMessage>() {
 
     override fun encode(builder: PacketWriter, msg: ScriptMessage) {
         val (id, params) = msg

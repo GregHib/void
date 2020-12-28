@@ -24,7 +24,7 @@ open class SimplePacketDecoder : PacketDecoder() {
 		val codec = ctx.channel().getCodec()
 			?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
 		
-		val decoder = codec.decoder(opcode)
+		val decoder = codec.getDecoder(opcode)
 		if (decoder == null) {
 			logger.error { "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
 			return null

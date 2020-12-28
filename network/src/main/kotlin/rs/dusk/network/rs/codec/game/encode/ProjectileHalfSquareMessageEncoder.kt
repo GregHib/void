@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.game.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.PROJECTILE_DISPLACE
 import rs.dusk.network.rs.codec.game.encode.message.ProjectileHalfSquareMessage
 
@@ -9,7 +9,7 @@ import rs.dusk.network.rs.codec.game.encode.message.ProjectileHalfSquareMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 2, 2020
  */
-class ProjectileHalfSquareMessageEncoder : GameMessageEncoder<ProjectileHalfSquareMessage>() {
+class ProjectileHalfSquareMessageEncoder : MessageEncoder<ProjectileHalfSquareMessage>() {
 
     override fun encode(builder: PacketWriter, msg: ProjectileHalfSquareMessage) {
         val (offset, id, distanceX, distanceY, index, targetIndex, startHeight, endHeight, delay, duration, curve, size) = msg

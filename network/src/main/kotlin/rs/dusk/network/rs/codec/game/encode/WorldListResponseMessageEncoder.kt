@@ -1,15 +1,15 @@
 package rs.dusk.network.rs.codec.game.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.encode.message.WorldListResponseMessage
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 22, 2020
  */
-class WorldListResponseMessageEncoder : GameMessageEncoder<WorldListResponseMessage>() {
+class WorldListResponseMessageEncoder : MessageEncoder<WorldListResponseMessage>() {
 
     override fun encode(writer: PacketWriter, msg: WorldListResponseMessage) {
         val (full) = msg

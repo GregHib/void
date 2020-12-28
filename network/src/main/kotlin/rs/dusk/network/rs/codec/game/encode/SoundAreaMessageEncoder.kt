@@ -1,7 +1,7 @@
 package rs.dusk.network.rs.codec.game.encode
 
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.SOUND_AREA
 import rs.dusk.network.rs.codec.game.encode.message.SoundAreaMessage
 
@@ -10,7 +10,7 @@ import rs.dusk.network.rs.codec.game.encode.message.SoundAreaMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class SoundAreaMessageEncoder : GameMessageEncoder<SoundAreaMessage>() {
+class SoundAreaMessageEncoder : MessageEncoder<SoundAreaMessage>() {
 
     override fun encode(builder: PacketWriter, msg: SoundAreaMessage) {
         val (tile, id, type, rotation, three, four, five) = msg

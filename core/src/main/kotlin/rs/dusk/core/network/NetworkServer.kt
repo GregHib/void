@@ -12,7 +12,6 @@ import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
 import rs.dusk.core.network.connection.Connectable
 import rs.dusk.core.network.connection.ConnectionSettings
-import rs.dusk.core.network.security.SslServerInitializer
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -63,9 +62,8 @@ abstract class NetworkServer(
 	/**
 	 * The server is started by binding the server to the defined port
 	 */
-	fun bind(sslInitializer : SslServerInitializer? = null) : ChannelFuture = with(bootstrap) {
+	fun bind() : ChannelFuture = with(bootstrap) {
 		val future = bind(settings.port).syncUninterruptibly()
-		sslInitializer?.addSslHandler(future.channel())
 		logger.info { "Network bound successfully [settings=$settings]" }
 		return future
 	}

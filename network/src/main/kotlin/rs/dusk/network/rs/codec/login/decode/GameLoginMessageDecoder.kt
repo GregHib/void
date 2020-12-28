@@ -1,15 +1,15 @@
 package rs.dusk.network.rs.codec.login.decode
 
+import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
-import rs.dusk.network.rs.codec.login.LoginMessageDecoder
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class GameLoginMessageDecoder : LoginMessageDecoder<GameLoginMessage>(VARIABLE_LENGTH_SHORT) {
+class GameLoginMessageDecoder : MessageDecoder<GameLoginMessage>(VARIABLE_LENGTH_SHORT) {
 
     override fun decode(packet: PacketReader): GameLoginMessage {
         val triple = LoginHeaderDecoder.decode(packet, true)

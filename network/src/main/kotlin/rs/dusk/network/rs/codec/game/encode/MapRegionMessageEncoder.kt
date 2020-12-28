@@ -2,9 +2,9 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.core.network.model.packet.PacketType
-import rs.dusk.network.rs.codec.game.GameMessageEncoder
 import rs.dusk.network.rs.codec.game.GameOpcodes.REGION
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 
@@ -12,7 +12,7 @@ import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class MapRegionMessageEncoder : GameMessageEncoder<MapRegionMessage>() {
+class MapRegionMessageEncoder : MessageEncoder<MapRegionMessage>() {
 
     override fun encode(builder: PacketWriter, msg: MapRegionMessage) {
         val (chunkX, chunkY, forceRefresh, mapSize, xteas, clientIndex, clientTile, playerRegions) = msg

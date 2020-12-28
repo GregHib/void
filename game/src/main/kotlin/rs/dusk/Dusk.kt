@@ -38,10 +38,10 @@ import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.server.GameServer
-import rs.dusk.network.server.World
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
+import rs.dusk.utility.getIntProperty
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
 import rs.dusk.world.interact.entity.player.spawn.logout.DisconnectEvent
 import rs.dusk.world.interact.entity.player.spawn.logout.logoutModule
@@ -59,9 +59,8 @@ object Dusk {
 	fun main(args : Array<String>) {
 		preload()
 		
-		val world = World(1)
 		val disconnect = DisconnectEvent()
-		val server = GameServer(world, disconnect)
+		val server = GameServer(getIntProperty("world"), getIntProperty("port"), disconnect)
 		
 		val bus : EventBus = get()
 		val executor : TaskExecutor = get()
@@ -139,10 +138,11 @@ object Dusk {
 	}
 
 	private fun registerHandlers() {
+		LoginCodec.registerHandler(GameLoginMessageHandler())
+
 		GameCodec.registerHandler(ConsoleCommandMessageHandler())
 		GameCodec.registerHandler(DialogueContinueMessageHandler())
 		GameCodec.registerHandler(FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameLoginMessageHandler())
 		GameCodec.registerHandler(IntEntryMessageHandler())
 		GameCodec.registerHandler(InterfaceClosedMessageHandler())
 		GameCodec.registerHandler(InterfaceOptionMessageHandler())

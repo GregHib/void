@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import com.google.common.primitives.Ints
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.Cache
-import rs.dusk.network.rs.codec.update.UpdateMessageHandler
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.network.rs.codec.update.decode.message.UpdateRequestMessage
 import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
 import rs.dusk.utility.inject
@@ -13,7 +13,7 @@ import rs.dusk.utility.inject
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class UpdateRequestMessageHandler : UpdateMessageHandler<UpdateRequestMessage>() {
+class UpdateRequestMessageHandler : MessageHandler<UpdateRequestMessage>() {
 
     private val logger = InlineLogger()
     private val cache: Cache by inject()

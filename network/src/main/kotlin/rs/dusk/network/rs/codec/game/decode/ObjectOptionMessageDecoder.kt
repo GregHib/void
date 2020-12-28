@@ -3,11 +3,11 @@ package rs.dusk.network.rs.codec.game.decode
 import rs.dusk.buffer.DataType
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.network.rs.codec.game.GameMessageDecoder
 import rs.dusk.network.rs.codec.game.decode.message.ObjectOptionMessage
 
-class ObjectOptionMessageDecoder(private val index: Int) : GameMessageDecoder<ObjectOptionMessage>(7) {
+class ObjectOptionMessageDecoder(private val index: Int) : MessageDecoder<ObjectOptionMessage>(7) {
 
     override fun decode(packet: PacketReader): ObjectOptionMessage {
         val run = packet.readBoolean(Modifier.ADD)

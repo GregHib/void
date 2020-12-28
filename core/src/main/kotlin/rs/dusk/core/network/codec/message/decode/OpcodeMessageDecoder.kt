@@ -22,7 +22,7 @@ class OpcodeMessageDecoder : MessageToMessageDecoder<PacketReader>() {
 		val codec = ctx.channel().getCodec()
 			?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
 		
-		val decoder = codec.decoder(msg.opcode)
+		val decoder = codec.getDecoder(msg.opcode)
 		if (decoder == null) {
 			logger.error { "Unable to find message decoder [msg=$msg, codec=${codec.javaClass.simpleName}, codec=$codec]" }
 			return

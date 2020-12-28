@@ -3,6 +3,7 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.io.crypto.IsaacKeyPair
+import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.message.MessageReader
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -20,7 +21,6 @@ import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.LoginMessageHandler
 import rs.dusk.network.rs.codec.login.decode.message.GameLoginMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
@@ -32,7 +32,7 @@ import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class GameLoginMessageHandler : LoginMessageHandler<GameLoginMessage>() {
+class GameLoginMessageHandler : MessageHandler<GameLoginMessage>() {
 
     val logger = InlineLogger()
     val sessions: Sessions by inject()
