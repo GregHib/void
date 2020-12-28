@@ -17,7 +17,7 @@ import rs.dusk.engine.map.chunk.ReloadChunk
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLogin
 import rs.dusk.engine.map.region.RegionReader
-import rs.dusk.engine.map.region.obj.Xteas
+import rs.dusk.engine.map.region.Xteas
 import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 import rs.dusk.utility.inject

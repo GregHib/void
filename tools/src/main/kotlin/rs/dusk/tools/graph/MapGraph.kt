@@ -11,7 +11,7 @@ import rs.dusk.engine.map.area.area
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionReader
-import rs.dusk.engine.map.region.obj.Xteas
+import rs.dusk.engine.map.region.Xteas
 import rs.dusk.engine.path.TraversalStrategy
 import rs.dusk.engine.path.TraversalType
 import rs.dusk.engine.path.traverse.SmallTraversal
@@ -203,7 +203,7 @@ class MapGraph(
     fun getPortals(objects: Set<GameObject>): Set<Pair<Tile, Tile>> {
         val portals = mutableSetOf<Pair<Tile, Tile>>()
         for (gameObject in objects) {
-            if (gameObject.def.isDoor() && gameObject.def.options?.any { it?.contains("open", true) == true } == true) {
+            if (gameObject.def.isDoor() && gameObject.def.options.any { it?.contains("open", true) == true } == true) {
                 val dir = Direction.cardinal[(gameObject.rotation + 3) and 0x3]
                 portals.add(gameObject.tile to gameObject.tile.add(dir.delta))
             }

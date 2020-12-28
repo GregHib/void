@@ -6,8 +6,11 @@ import rs.dusk.engine.entity.definition.ObjectDefinitions
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.engine.map.collision.CollisionFlag
+import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.map.collision.check
+import rs.dusk.engine.map.collision.get
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceTextMessage
 import rs.dusk.utility.get
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.obj.spawn.spawnObject
@@ -22,22 +25,10 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
-    for(i in 0 until 55) {
-        player.send(InterfaceTextMessage(667, i, i.toString()))
-    }
-//    player.setVar("one", -1)
-//    player.setVar("two", 0)
-//    player.setVar("three", 0)
-//    player.setVar("four", 16750848)
-//    player.setVar("five", 15439903)
-//    player.setVar("six", -1)
-//    player.setVar("seven", -1)
-//    player.setVar("eight", 0)
-//    var parent = 752
-//    var index = 7
-//    player.send(InterfaceOpenMessage(false, parent, index, 389))
-//    player.send(ScriptMessage(570, "Gran Exchange Item Search"))
-//    player.interfaces.sendText("trade_confirm", "status", "Are you sure you want to make this trade?")
+    val collisions: Collisions = get()
+    println(get<Objects>().get(player.tile))
+    println(collisions.check(player.tile.x, player.tile.y, player.tile.plane, CollisionFlag.BLOCKED))
+    println(collisions[player.tile.x, player.tile.y + 1, player.tile.plane])
 }
 
 Command where { prefix == "sendItems" } then {
@@ -49,14 +40,16 @@ Command where { prefix == "obj" } then {
     if(content.isNotBlank()) {
         val parts = content.split(" ")
         val id = parts.getOrNull(0)?.toIntOrNull()
+        val type = 10
         if(id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile, 10, rotation, 10, null)
+            spawnObject(id, player.tile.add(y = 2), 10, rotation, 10, null)
+            spawnObject(id, player.tile.add(y = 2), 22, rotation, 10, null)
         } else {
             val definitions = get<ObjectDefinitions>()
             val id = definitions.getId(content)
             if (id >= 0) {
-                spawnObject(id, player.tile, 10, 0, 10, null)
+                spawnObject(id, player.tile, type, 0, 10, null)
             }
         }
     } else {

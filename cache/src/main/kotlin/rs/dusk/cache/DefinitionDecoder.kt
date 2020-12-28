@@ -29,7 +29,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
         return value
     }
 
-    fun get(id: Int) = getOrNull(id) ?: create()
+    open fun get(id: Int) = getOrNull(id) ?: create()
 
     protected abstract fun create(): T
 

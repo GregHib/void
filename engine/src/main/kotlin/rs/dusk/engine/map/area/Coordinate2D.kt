@@ -1,5 +1,6 @@
 package rs.dusk.engine.map.area
 
+import rs.dusk.engine.map.Distance.chebyshev
 import kotlin.math.abs
 
 interface Coordinate2D {
@@ -9,7 +10,7 @@ interface Coordinate2D {
     fun add(x: Int, y: Int): Coordinate2D
 
     fun distanceTo(other: Coordinate2D): Int {
-        return abs(x - other.x).coerceAtLeast(abs(y - other.y))
+        return chebyshev(x, y, other.x, other.y)
     }
 
     fun within(other: Coordinate2D, radius: Int): Boolean {

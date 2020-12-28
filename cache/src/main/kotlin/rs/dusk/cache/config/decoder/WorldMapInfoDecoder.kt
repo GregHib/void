@@ -16,8 +16,8 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
 
     override fun WorldMapInfoDefinition.read(opcode: Int, buffer: Reader) {
         when (opcode) {
-            1 -> anInt1062 = buffer.readShort()
-            2 -> anInt1056 = buffer.readShort()
+            1 -> spriteId = buffer.readShort()
+            2 -> highlightSpriteId = buffer.readShort()
             3 -> name = buffer.readString()
             4 -> anInt1058 = buffer.readUnsignedMedium()
             5 -> anInt1054 = buffer.readUnsignedMedium()
@@ -33,13 +33,13 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             }
             8 -> aBoolean1063 = buffer.readUnsignedByte() == 1
             9 -> {
-                anInt1069 = buffer.readShort()
-                if (anInt1069 == 65535) {
-                    anInt1069 = -1
+                varbit = buffer.readShort()
+                if (varbit == 65535) {
+                    varbit = -1
                 }
-                anInt1091 = buffer.readShort()
-                if (anInt1091 == 65535) {
-                    anInt1091 = -1
+                varp = buffer.readShort()
+                if (varp == 65535) {
+                    varp = -1
                 }
                 anInt1087 = buffer.readInt()
                 anInt1042 = buffer.readInt()
@@ -65,7 +65,7 @@ class WorldMapInfoDecoder(cache: Cache) : ConfigDecoder<WorldMapInfoDefinition>(
             16 -> aBoolean1064 = false
             17 -> aString1045 = buffer.readString()
             18 -> anInt1093 = buffer.readShort()
-            19 -> anInt1067 = buffer.readShort()
+            19 -> clientScript = buffer.readShort()
             20 -> {
                 anInt1048 = buffer.readShort()
                 if (anInt1048 == 65535) {

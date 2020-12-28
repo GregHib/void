@@ -10,11 +10,9 @@ import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.collisionModule
 import rs.dusk.engine.map.region.RegionReader
-import rs.dusk.engine.map.region.obj.Xteas
-import rs.dusk.engine.map.region.obj.objectMapModule
-import rs.dusk.engine.map.region.obj.xteaModule
+import rs.dusk.engine.map.region.Xteas
 import rs.dusk.engine.map.region.regionModule
-import rs.dusk.engine.map.region.tile.tileModule
+import rs.dusk.engine.map.region.xteaModule
 
 object MapGraphLoader {
 
@@ -27,9 +25,7 @@ object MapGraphLoader {
                 "fsRsaPrivate" to "1",
                 "fsRsaModulus" to "1"
             ))
-            modules(eventModule, collisionModule, objectMapModule, tileModule, xteaModule,
-                cacheModule,
-                cacheDefinitionModule, entityListModule, regionModule)
+            modules(eventModule, collisionModule, xteaModule, cacheModule, cacheDefinitionModule, entityListModule, regionModule)
         }.koin
         val reader: RegionReader = koin.get()
         val collisions: Collisions = koin.get()

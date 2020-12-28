@@ -11,9 +11,7 @@ import rs.dusk.tools.definition.item.Extras
 import rs.dusk.tools.definition.item.ItemDefinitionPipeline
 import rs.dusk.tools.definition.item.pipe.page.PageCollector
 import rs.dusk.tools.definition.item.pipe.page.UniqueIdentifiers
-import rs.dusk.tools.definition.obj.pipe.ObjectManualChanges
-import rs.dusk.tools.definition.obj.pipe.ObjectManualTreeChanges
-import rs.dusk.tools.definition.obj.pipe.RemoveNullEmptyExtras
+import rs.dusk.tools.definition.obj.pipe.*
 import java.io.File
 import java.util.concurrent.TimeUnit
 
@@ -38,6 +36,8 @@ private object ObjectDefinitionPipeline {
             }
         }
         val postProcess = Pipeline<MutableMap<Int, Extras>>().apply {
+            add(ObjectDoorsGates(decoder))
+            add(ObjectTrapdoors(decoder))
             add(ObjectManualChanges())
             add(ObjectManualTreeChanges())
             add(RemoveNullEmptyExtras())

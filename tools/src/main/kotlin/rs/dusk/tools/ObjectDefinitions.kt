@@ -14,14 +14,10 @@ object ObjectDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
-        println(decoder.get(470))
-        val def = decoder.get(16265)
-        decoder.forEach {
-            if (it.options.any { it?.contains("chop", true) == true }) {
-                println("Found ${it.id} ${it.name} ${it.options.toList()}")
-            }
-        }
-//        decoder.findMatchingModels(9035)
+
+        println(decoder.get(37745))
+        println(decoder.get(37746))
+        println(decoder.get(37747))
     }
 
     fun ObjectDecoder.findMatchingName(name: String) {

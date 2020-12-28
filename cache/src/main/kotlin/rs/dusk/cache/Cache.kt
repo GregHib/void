@@ -33,6 +33,8 @@ interface Cache {
 
     fun getArchiveId(index: Int, name: String): Int
 
+    fun getArchiveId(index: Int, archive: Int): Int
+
     fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray? = null)
 
     fun update(): Boolean

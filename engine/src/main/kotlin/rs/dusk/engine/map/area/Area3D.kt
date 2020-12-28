@@ -4,7 +4,7 @@ class Area3D<T : Coordinate3D>(coords: T, width: Int, height: Int, val planes: I
 
     fun contains(x: Int, y: Int, plane: Int) = super.contains(x, y) && within(plane, coords.plane, planes)
 
-    override fun contains(chunk: T) = contains(chunk.x, chunk.y, chunk.plane)
+    override fun contains(coordinates: T) = contains(coordinates.x, coordinates.y, coordinates.plane)
 
     override fun iterator(): Iterator<T> =
         AreaIterator(coords, width, height, planes)

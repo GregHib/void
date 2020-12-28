@@ -237,7 +237,7 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeByte(definition.anInt3023 / 256)
         }
 
-        if (definition.aBoolean2990) {
+        if (definition.hideMinimap) {
             writeByte(82)
         }
 

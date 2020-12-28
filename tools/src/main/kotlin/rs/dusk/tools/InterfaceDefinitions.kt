@@ -14,12 +14,14 @@ object InterfaceDefinitions {
         }.koin
         val decoder = InterfaceDecoder(koin.get())
         for (i in decoder.indices) {
-            if(i != 762) {
+            if(i != 755) {
                 continue
             }
             val def = decoder.getOrNull(i) ?: continue
             for((id, comp) in def.components ?: continue) {
-                println(comp.options?.toList())
+//                if(comp.options?.contains("Scroll") == true) {
+                    println("${comp.id} $id ${comp.options?.toList()}")
+//                }
             }
         }
     }

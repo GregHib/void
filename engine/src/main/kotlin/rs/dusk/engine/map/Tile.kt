@@ -9,10 +9,9 @@ import rs.dusk.engine.map.region.RegionPlane
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Tile(override val x: Int, override val y: Int, override val plane: Int = 0) :
-    Coordinate3D {
+data class Tile(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {
 
-    constructor(id: Int) : this(id shr 14 and 0x3fff, id and 0x3fff, id shr 28)
+    constructor(id: Int) : this(getX(id), getY(id), getPlane(id))
 
     val id by lazy { getId(x, y, plane) }
     val chunk by lazy { Chunk(x / 8, y / 8, plane) }
@@ -21,7 +20,7 @@ data class Tile(override val x: Int, override val y: Int, override val plane: In
 
     override fun add(x: Int, y: Int, plane: Int) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
     fun equals(x: Int = 0, y: Int = 0, plane: Int = 0) = this.x == x && this.y == y && this.plane == plane
-    fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, plane)
+    fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, -plane)
     fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = minus(x, y, plane)
 
     fun add(point: Tile) = add(point.x, point.y, point.plane)
@@ -35,6 +34,12 @@ data class Tile(override val x: Int, override val y: Int, override val plane: In
             Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)
 
         fun getId(x: Int, y: Int, plane: Int = 0) = (y and 0x3fff) + ((x and 0x3fff) shl 14) + ((plane and 0x3) shl 28)
+
+        fun getX(id: Int) = id shr 14 and 0x3fff
+
+        fun getY(id: Int) = id and 0x3fff
+
+        fun getPlane(id: Int) = id shr 28
 
         val EMPTY = Tile(0)
     }
