@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_TEXT
 import rs.dusk.network.rs.codec.game.encode.message.InterfaceTextMessage
 
@@ -15,7 +15,7 @@ class InterfaceTextMessageEncoder : MessageEncoder<InterfaceTextMessage> {
     override fun encode(builder: PacketWriter, msg: InterfaceTextMessage) {
         val (id, component, text) = msg
         builder.apply {
-            writeOpcode(INTERFACE_TEXT, PacketType.SHORT)
+            writeOpcode(INTERFACE_TEXT, PacketSize.SHORT)
             writeInt(id shl 16 or component)
             writeString(text)
         }

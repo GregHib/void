@@ -3,8 +3,8 @@ package rs.dusk.engine.client
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.collect.HashBiMap
 import org.koin.dsl.module
+import rs.dusk.core.network.connection.Session
 import rs.dusk.core.network.model.message.Message
-import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
 

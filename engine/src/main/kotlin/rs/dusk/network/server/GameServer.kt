@@ -7,16 +7,15 @@ import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
 import rs.dusk.core.network.codec.packet.decode.SimplePacketDecoder
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.connection.ConnectionPipeline
-import rs.dusk.core.network.connection.ConnectionSettings
+import rs.dusk.core.network.connection.Session
 import rs.dusk.core.network.connection.event.ChannelEvent
 import rs.dusk.core.network.connection.event.ChannelEventChain
 import rs.dusk.core.network.connection.event.ChannelEventListener
 import rs.dusk.core.network.connection.event.ChannelEventType.DEREGISTER
 import rs.dusk.core.network.connection.event.ChannelEventType.EXCEPTION
 import rs.dusk.core.network.connection.event.type.ChannelExceptionEvent
-import rs.dusk.core.network.model.session.setSession
+import rs.dusk.core.network.connection.setSession
 import rs.dusk.network.rs.codec.service.ServiceCodec
-import rs.dusk.network.rs.session.ServiceSession
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 
@@ -25,17 +24,11 @@ import rs.dusk.utility.inject
  * @since April 13, 2020
  */
 class GameServer(
-	private val world : Int,
-	private val port: Int,
+	override val port: Int,
 	private val disconnectEvent: ChannelEvent
 ) : NetworkServer() {
 	
 	private val logger = InlineLogger()
-	
-	/**
-	 * The connection settings to use
-	 */
-	override val settings = ConnectionSettings("localhost", port + world)
 	
 	override fun onConnect() {
 		logger.info { "Connected!" }
@@ -67,7 +60,7 @@ class GameServer(
 			it.addLast("channel.listener", ChannelEventListener(chain))
 
 			channel.setCodec(service)
-			channel.setSession(ServiceSession(channel))
+			channel.setSession(Session(channel))
 		}
 		factory.bind(this, chain, pipeline)
 		running = true

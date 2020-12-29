@@ -4,10 +4,10 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.secure.Huffman
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_BYTE
+import rs.dusk.core.network.codec.packet.access.PacketSize.BYTE
 import rs.dusk.utility.inject
 
-class PublicMessageDecoder : MessageDecoder(VARIABLE_LENGTH_BYTE) {
+class PublicMessageDecoder : MessageDecoder(BYTE) {
 
     private val huffman: Huffman by inject()
 

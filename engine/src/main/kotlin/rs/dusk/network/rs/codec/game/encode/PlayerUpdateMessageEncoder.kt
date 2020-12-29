@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.PLAYER_UPDATING
 import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 
@@ -15,7 +15,7 @@ class PlayerUpdateMessageEncoder : MessageEncoder<PlayerUpdateMessage> {
     override fun encode(builder: PacketWriter, msg: PlayerUpdateMessage) {
         val (changes, updates) = msg
         builder.apply {
-            writeOpcode(PLAYER_UPDATING, PacketType.SHORT)
+            writeOpcode(PLAYER_UPDATING, PacketSize.SHORT)
             writeBytes(changes.buffer)
             writeBytes(updates.buffer)
         }

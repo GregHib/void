@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.character.player
 
-import rs.dusk.core.network.model.session.Session
+import rs.dusk.core.network.connection.Session
 import rs.dusk.engine.event.Event
 import rs.dusk.engine.event.EventCompanion
 

@@ -3,13 +3,13 @@ package rs.dusk.network.rs.codec.login.decode
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
+import rs.dusk.core.network.codec.packet.access.PacketSize.SHORT
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class GameLoginMessageDecoder : MessageDecoder(VARIABLE_LENGTH_SHORT) {
+class GameLoginMessageDecoder : MessageDecoder(SHORT) {
 
     override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
         val triple = LoginHeaderDecoder.decode(packet, true)

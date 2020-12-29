@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.encode.message.WorldListResponseMessage
 
 /**
@@ -13,7 +13,7 @@ class WorldListResponseMessageEncoder : MessageEncoder<WorldListResponseMessage>
 
     override fun encode(writer: PacketWriter, msg: WorldListResponseMessage) {
         val (full) = msg
-        writer.writeOpcode(88, PacketType.SHORT)
+        writer.writeOpcode(88, PacketSize.SHORT)
         writer.writeByte(1)
         writer.writeByte(2)
         writer.writeByte(if (full) 1 else 0)

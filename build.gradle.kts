@@ -42,7 +42,6 @@ allprojects {
         implementation("io.netty:netty-all:4.1.44.Final")
         implementation(group = "com.displee", name = "rs-cache-library", version = "6.4")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.26")
-        implementation(group = "io.github.classgraph", name = "classgraph", version = "4.8.78")
         implementation(
             group = "com.michael-bull.kotlin-inline-logger",
             name = "kotlin-inline-logger-jvm",

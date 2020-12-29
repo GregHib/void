@@ -3,8 +3,8 @@ package rs.dusk.network.rs.codec.game.encode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.REGION
 import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
 
@@ -17,7 +17,7 @@ class MapRegionMessageEncoder : MessageEncoder<MapRegionMessage> {
     override fun encode(builder: PacketWriter, msg: MapRegionMessage) {
         val (chunkX, chunkY, forceRefresh, mapSize, xteas, clientIndex, clientTile, playerRegions) = msg
         builder.apply {
-            writeOpcode(REGION, PacketType.SHORT)
+            writeOpcode(REGION, PacketSize.SHORT)
             if (playerRegions != null && clientTile != null && clientIndex != null) {
                 startBitAccess()
                 writeBits(30, clientTile)

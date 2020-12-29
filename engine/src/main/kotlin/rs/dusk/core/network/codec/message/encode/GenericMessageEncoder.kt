@@ -34,7 +34,7 @@ object GenericMessageEncoder : MessageToByteEncoder<Message>() {
         }
 		val cipher = ctx.channel().getCipherOut()
 		val sized = ctx.channel().getSized()
-		val builder: PacketBuilder = PacketBuilder(cipher, cipher != null || sized)
+		val builder = PacketBuilder(cipher, cipher != null || sized)
         builder.build(out) {
             encoder.encode(it, msg)
         }

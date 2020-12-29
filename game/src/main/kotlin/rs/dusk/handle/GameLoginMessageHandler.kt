@@ -11,7 +11,7 @@ import rs.dusk.core.network.codec.setCipherIn
 import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.codec.setSized
-import rs.dusk.core.network.model.session.getSession
+import rs.dusk.core.network.connection.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.Registered

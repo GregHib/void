@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.TILE_TEXT
 import rs.dusk.network.rs.codec.game.encode.message.TextTileMessage
 
@@ -15,7 +15,7 @@ class TextTileMessageEncoder : MessageEncoder<TextTileMessage> {
     override fun encode(builder: PacketWriter, msg: TextTileMessage) {
         val (tile, duration, height, color, text) = msg
         builder.apply {
-            writeOpcode(TILE_TEXT, PacketType.BYTE)
+            writeOpcode(TILE_TEXT, PacketSize.BYTE)
             writeByte(0)
             writeByte(tile)
             writeShort(duration)

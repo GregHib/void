@@ -4,14 +4,14 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.packet.access.PacketReader
-import rs.dusk.core.network.model.packet.PacketType.Companion.VARIABLE_LENGTH_SHORT
+import rs.dusk.core.network.codec.packet.access.PacketSize.SHORT
 import rs.dusk.utility.inject
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-class LobbyLoginMessageDecoder : MessageDecoder(VARIABLE_LENGTH_SHORT) {
+class LobbyLoginMessageDecoder : MessageDecoder(SHORT) {
 
     private val cache: Cache by inject()
 

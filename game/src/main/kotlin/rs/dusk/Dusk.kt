@@ -62,7 +62,7 @@ object Dusk {
         preload()
 
         val disconnect = DisconnectEvent()
-        val server = GameServer(getIntProperty("world"), getIntProperty("port"), disconnect)
+        val server = GameServer(getIntProperty("port"), disconnect)
 
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
