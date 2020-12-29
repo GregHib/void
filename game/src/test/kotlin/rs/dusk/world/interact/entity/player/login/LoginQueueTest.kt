@@ -4,11 +4,11 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verifyOrder
+import io.netty.channel.Channel
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.data.PlayerLoader
 import rs.dusk.engine.entity.character.IndexAllocator
 import rs.dusk.engine.entity.character.player.Player
@@ -52,7 +52,7 @@ internal class LoginQueueTest : KoinMock() {
     @Test
     fun `Successful login`() = runBlocking {
         // Given
-        val session: Session = mockk(relaxed = true)
+        val channel: Channel = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { indexer.obtain() } returns 1
         every { loader.loadPlayer(any()) } returns player
@@ -60,7 +60,7 @@ internal class LoginQueueTest : KoinMock() {
         val callback = { response: LoginResponse ->
             result = response
         }
-        val login = Login("Test", session, callback)
+        val login = Login("Test", channel, callback)
         // When
         loginQueue.add(login)?.await()
         loginQueue.tick()

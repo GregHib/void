@@ -6,13 +6,9 @@ import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.Codec.Companion.CODEC_KEY
 import rs.dusk.core.network.codec.Codec.Companion.IN_CIPHER_KEY
 import rs.dusk.core.network.codec.Codec.Companion.OUT_CIPHER_KEY
-import rs.dusk.core.network.codec.Codec.Companion.SIZED_KEY
 import rs.dusk.core.network.codec.message.MessageDecoder
-import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.TimedLoader
-import kotlin.reflect.KClass
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -21,20 +17,12 @@ import kotlin.reflect.KClass
 abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
 
     val decoders = HashMap<Int, MessageDecoder>()
-    val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
 
     fun registerDecoder(opcode: Int, decoder: MessageDecoder) {
         if (decoders[opcode] != null) {
             throw IllegalArgumentException("Cannot have duplicate decoders $decoder $opcode")
         }
         decoders[opcode] = decoder
-    }
-
-    inline fun <reified T : Message> registerEncoder(encoder: MessageEncoder<T>) {
-        if (encoders.contains(T::class)) {
-            throw IllegalArgumentException("Cannot have duplicate encoders ${T::class} $encoder")
-        }
-        encoders[T::class] = encoder
     }
 
     fun registerHandler(opcode: Int, handler: MessageHandler) {
@@ -49,15 +37,6 @@ abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
         return decoders[opcode]
     }
 
-    /**
-     * Finds an [encoder][MessageEncoder] by class
-     * @return MessageEncoder<M>?
-     */
-    @Suppress("UNCHECKED_CAST")
-    fun <M : Message> getEncoder(clazz: KClass<M>): MessageEncoder<M>? {
-        return encoders[clazz] as? MessageEncoder<M>
-    }
-
     companion object {
         /**
          * The attribute in the [channel][Channel] that identifies the [codec][Codec]
@@ -65,7 +44,6 @@ abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
         val CODEC_KEY: AttributeKey<Codec> = AttributeKey.valueOf("codec.key")
         val IN_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.in.key")
         val OUT_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.out.key")
-        val SIZED_KEY: AttributeKey<Boolean> = AttributeKey.valueOf("sized.key")
     }
 }
 
@@ -86,13 +64,6 @@ fun Channel.setCipherIn(cipher: IsaacCipher?) {
     attr(IN_CIPHER_KEY).set(cipher)
 }
 
-fun Channel.getSized(): Boolean {
-    return attr(SIZED_KEY).get() ?: false
-}
-
-fun Channel.setSized(sized: Boolean) {
-    attr(SIZED_KEY).set(sized)
-}
 /**
  * Getting the codec of the channel
  * @receiver Channel

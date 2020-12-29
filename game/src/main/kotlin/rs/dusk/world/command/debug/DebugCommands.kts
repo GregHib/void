@@ -1,5 +1,4 @@
 import rs.dusk.engine.action.action
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.variable.IntVariable
 import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.entity.definition.ObjectDefinitions
@@ -10,7 +9,7 @@ import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
 import rs.dusk.engine.map.collision.get
-import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
+import rs.dusk.network.rs.codec.game.encode.sendContainerItems
 import rs.dusk.utility.get
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.obj.spawn.spawnObject
@@ -32,8 +31,8 @@ Command where { prefix == "test" } then {
 }
 
 Command where { prefix == "sendItems" } then {
-    player.send(ContainerItemsMessage(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false))
-    player.send(ContainerItemsMessage(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true))
+    player.sendContainerItems(90, IntArray(28) { 995 }, IntArray(28) { 1 }, false)
+    player.sendContainerItems(90, IntArray(28) { 11694 }, IntArray(28) { 1 }, true)
 }
 
 Command where { prefix == "obj" } then {

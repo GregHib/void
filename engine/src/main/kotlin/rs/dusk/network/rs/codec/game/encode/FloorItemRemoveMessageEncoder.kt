@@ -1,22 +1,25 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.FLOOR_ITEM_REMOVE
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 19, 2020
  */
-class FloorItemRemoveMessageEncoder : MessageEncoder<FloorItemRemoveMessage> {
+class FloorItemRemoveMessageEncoder : MessageEncoder(FLOOR_ITEM_REMOVE) {
 
-    override fun encode(builder: PacketWriter, msg: FloorItemRemoveMessage) {
-        val (tile, id) = msg
-        builder.apply {
-            writeOpcode(FLOOR_ITEM_REMOVE)
-            writeShort(id)
-            writeByte(tile)
-        }
+    /**
+     * @param tile The tile offset from the chunk update send
+     * @param id Item id
+     */
+    fun encode(
+        player: Player,
+        tile: Int,
+        id: Int
+    ) = player.send(3, flush = false) {
+        writeShort(id)
+        writeByte(tile)
     }
 }

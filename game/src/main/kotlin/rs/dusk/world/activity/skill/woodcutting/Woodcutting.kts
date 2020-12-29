@@ -5,7 +5,6 @@ import rs.dusk.engine.action.action
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.Players
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.skill.Level
 import rs.dusk.engine.entity.character.player.skill.Level.has
 import rs.dusk.engine.entity.character.player.skill.Skill
@@ -17,6 +16,7 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.Maths
 import rs.dusk.utility.inject
 import rs.dusk.world.activity.skill.woodcutting.tree.RegularTree

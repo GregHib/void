@@ -14,6 +14,6 @@ class ServiceCodec : Codec() {
 
         registerHandler(ServiceOpcodes.GAME_CONNECTION, GameConnectionHandshakeMessageHandler())
         registerHandler(ServiceOpcodes.FILE_SERVICE, UpdateHandshakeMessageHandler())
-        count = decoders.size + encoders.size
+        count = decoders.size
     }
 }

@@ -2,24 +2,24 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.write.writeByte
+import rs.dusk.buffer.write.writeShort
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketSize
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_WINDOW
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceUpdateMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class InterfaceUpdateMessageEncoder : MessageEncoder<InterfaceUpdateMessage> {
+class InterfaceUpdateMessageEncoder : MessageEncoder(INTERFACE_WINDOW) {
 
-    override fun encode(builder: PacketWriter, msg: InterfaceUpdateMessage) {
-        val (id, type) = msg
-        builder.apply {
-            writeOpcode(INTERFACE_WINDOW, PacketSize.FIXED)
-            writeShort(id, Modifier.ADD, Endian.LITTLE)
-            writeByte(type, Modifier.SUBTRACT)
-        }
+    fun encode(
+        player: Player,
+        id: Int,
+        type: Int
+    ) = player.send(3) {
+        writeShort(id, Modifier.ADD, Endian.LITTLE)
+        writeByte(type, Modifier.SUBTRACT)
     }
 }

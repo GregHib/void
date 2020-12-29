@@ -1,23 +1,27 @@
 package rs.dusk.engine.map.chunk
 
 import org.koin.dsl.module
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.send
+import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.tick.Tick
-import rs.dusk.network.rs.codec.game.encode.message.ChunkClearMessage
-import rs.dusk.network.rs.codec.game.encode.message.ChunkUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.ChunkClearMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ChunkUpdateMessageEncoder
+import rs.dusk.utility.get
+import rs.dusk.utility.inject
 
 /**
  * Groups messages by [Chunk] sends to all subscribers
  * Also manages initial batch generation (when a player is in view of a new chunk)
  */
 class ChunkBatcher {
-    val subscribers = mutableMapOf<Chunk, MutableSet<(Chunk, MutableList<Message>) -> Unit>>()
-    val subscriptions = mutableMapOf<Player, (Chunk, List<Message>) -> Unit>()
-    val initials = mutableSetOf<(Player, Chunk, MutableList<Message>) -> Unit>()
-    val batches = mutableMapOf<Chunk, MutableList<Message>>()
+    val sessions: Sessions by inject()
+    val subscribers = mutableMapOf<Chunk, MutableSet<(Chunk, MutableList<(Player) -> Unit>) -> Unit>>()
+    val subscriptions = mutableMapOf<Player, (Chunk, List<(Player) -> Unit>) -> Unit>()
+    val initials = mutableSetOf<(Player, Chunk, MutableList<(Player) -> Unit>) -> Unit>()
+    val batches = mutableMapOf<Chunk, MutableList<(Player) -> Unit>>()
+    private val chunkClearEncoder = get<ChunkClearMessageEncoder>()
+    private val chunkUpdateEncoder = get<ChunkUpdateMessageEncoder>()
 
     init {
         Tick.then {
@@ -37,9 +41,9 @@ class ChunkBatcher {
     /**
      * Sends [chunk] coordinates to start update to [player]
      */
-    fun sendChunk(player: Player, chunk: Chunk) {
+    fun sendChunk(player: Player, chunk: Chunk, flush: Boolean = true) {
         val chunkOffset = getChunkOffset(player, chunk)
-        player.send(ChunkUpdateMessage(chunkOffset.x, chunkOffset.y, chunk.plane))
+        chunkUpdateEncoder.encode(player, flush, chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
     /**
@@ -47,7 +51,7 @@ class ChunkBatcher {
      */
     fun sendChunkClear(player: Player, chunk: Chunk) {
         val chunkOffset = getChunkOffset(player, chunk)
-        player.send(ChunkClearMessage(chunkOffset.x, chunkOffset.y, chunk.plane))
+        chunkClearEncoder.encode(player, chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
     /**
@@ -74,7 +78,7 @@ class ChunkBatcher {
     fun sendInitial(player: Player, chunk: Chunk) {
         val subscription = getSubscription(player)
         sendChunkClear(player, chunk)
-        val messages = mutableListOf<Message>()
+        val messages = mutableListOf<(Player) -> Unit>()
         initials.forEach { init ->
             init(player, chunk, messages)
         }
@@ -84,7 +88,7 @@ class ChunkBatcher {
     /**
      * Adds [message] to the batch update for [chunk]
      */
-    fun update(chunk: Chunk, message: Message) {
+    fun update(chunk: Chunk, message: (Player) -> Unit) {
         val batch = getBatch(chunk)
         batch.add(message)
     }
@@ -92,7 +96,7 @@ class ChunkBatcher {
     /**
      * Adds initial messages for a player in a chunk
      */
-    fun addInitial(block: (Player, Chunk, MutableList<Message>) -> Unit) {
+    fun addInitial(block: (Player, Chunk, MutableList<(Player) -> Unit>) -> Unit) {
         initials.add(block)
     }
 
@@ -113,10 +117,14 @@ class ChunkBatcher {
     /**
      * Creates a reusable subscription which sends a batch of messages to a [player]
      */
-    fun createSubscription(player: Player): (Chunk, List<Message>) -> Unit = { chunk, messages ->
-        sendChunk(player, chunk)
-        messages.forEach { message ->
-            player.send(message)
+    fun createSubscription(player: Player): (Chunk, List<(Player) -> Unit>) -> Unit = { chunk, messages ->
+        val channel = sessions.get(player)
+        if (channel != null) {
+            sendChunk(player, chunk, flush = false)
+            messages.forEach { message ->
+                message.invoke(player)
+            }
+            channel.flush()
         }
     }
 

@@ -2,7 +2,6 @@ package rs.dusk.engine.client.update.task.npc
 
 import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.CharacterTrackingSet
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.teleporting
@@ -12,12 +11,17 @@ import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.visual.npc.getTurn
 import rs.dusk.engine.event.Priority.NPC_UPDATE
 import rs.dusk.engine.tick.task.EntityTask
+import rs.dusk.network.rs.codec.game.encode.NPCUpdateMessageEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since May 12, 2020
  */
-class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>(NPC_UPDATE) {
+class NPCUpdateTask(
+    override val entities: Players,
+    val sessions: Sessions,
+    private val npcUpdateEncoder: NPCUpdateMessageEncoder
+) : EntityTask<Player>(NPC_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
@@ -28,13 +32,13 @@ class NPCUpdateTask(override val entities: Players, val sessions: Sessions) : En
         val viewport = player.viewport
         val npcs = viewport.npcs
 
-        val message = viewport.npcMessage
-        val (writer, updates) = message
+        val writer = viewport.npcChanges
+        val updates = viewport.npcUpdates
 
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
 
-        player.send(message)
+        npcUpdateEncoder.encode(player, writer, updates)
     }
 
     fun processLocals(

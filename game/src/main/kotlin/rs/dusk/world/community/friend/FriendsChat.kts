@@ -2,9 +2,9 @@ package rs.dusk.world.community.friend
 
 import rs.dusk.engine.client.ui.hasOpen
 import rs.dusk.engine.client.ui.open
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.on
 import rs.dusk.engine.event.then
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 
 on(InterfaceOption) {

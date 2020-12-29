@@ -86,8 +86,6 @@ internal class TileTest {
         val tile = Tile(0, 10, 1)
         // When
         val result = tile.add(1, 1, 1)
-        println(result)
-        println(Tile(1, 11, 1))
         val x = result.x
         val y = result.y
         val plane = result.plane

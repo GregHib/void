@@ -4,11 +4,13 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerTrackingSet
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -17,7 +19,7 @@ import rs.dusk.engine.script.KoinMock
 internal class PlayerTrackingSetTest : KoinMock() {
     lateinit var set: PlayerTrackingSet
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(eventModule, module { single { mockk<ContextMenuOptionMessageEncoder>(relaxed = true) } })
 
     @BeforeEach
     fun setup() {

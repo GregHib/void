@@ -16,10 +16,10 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.strat.PointTargetStrategy
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemAddMessage
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemRemoveMessage
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemRevealMessage
-import rs.dusk.network.rs.codec.game.encode.message.FloorItemUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.FloorItemAddMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemRevealMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemUpdateMessageEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.item.spawn.Drop
 import rs.dusk.world.interact.entity.player.equip.ContainerAction
@@ -30,6 +30,10 @@ val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val logger = InlineLogger()
+val addEncoder: FloorItemAddMessageEncoder by inject()
+val updateEncoder: FloorItemUpdateMessageEncoder by inject()
+val removeEncoder: FloorItemRemoveMessageEncoder by inject()
+val revealEncoder: FloorItemRevealMessageEncoder by inject()
 
 ContainerAction where { container == "inventory" && option == "Drop" } then {
     val id = player.inventory.getItem(slot)
@@ -52,7 +56,7 @@ Drop then {
     val item = FloorItem(tile, id, amount, owner = owner?.name)
     item.interactTarget = PointTargetStrategy(item)
     items.add(item)
-    batcher.update(tile.chunk, FloorItemAddMessage(tile.offset(), id, amount))
+    batcher.update(tile.chunk) { player -> addEncoder.encode(player, tile.offset(), id, amount) }
     reveal(item, revealTicks, owner?.index ?: -1)
     disappear(item, disappearTicks)
     bus.emit(Registered(item))
@@ -76,10 +80,7 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
     }
     // Floor item is mutable because we need to keep the reveal timer from before
     existing.amount = combined
-    batcher.update(
-        existing.tile.chunk,
-        FloorItemUpdateMessage(existing.tile.offset(), existing.id, stack, combined)
-    )
+    batcher.update(existing.tile.chunk) { player -> updateEncoder.encode(player, existing.tile.offset(), existing.id, stack, combined) }
     existing.disappear?.cancel("Floor item disappear time extended.")
     disappear(existing, disappearTicks)
     return true
@@ -94,7 +95,7 @@ fun disappear(item: FloorItem, ticks: Int) {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Removed
-                batcher.update(item.tile.chunk, FloorItemRemoveMessage(item.tile.offset(), item.id))
+                batcher.update(item.tile.chunk) { player -> removeEncoder.encode(player, item.tile.offset(), item.id) }
                 items.remove(item)
             }
         }
@@ -110,10 +111,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public
-                batcher.update(
-                    item.tile.chunk,
-                    FloorItemRevealMessage(item.tile.offset(), item.id, item.amount, owner)
-                )
+                batcher.update(item.tile.chunk) { player -> revealEncoder.encode(player, item.tile.offset(), item.id, item.amount, owner) }
             }
         }
     }
@@ -122,7 +120,7 @@ fun reveal(item: FloorItem, ticks: Int, owner: Int) {
 batcher.addInitial { player, chunk, messages ->
     items[chunk].forEach {
         if (it.visible(player)) {
-            messages += FloorItemAddMessage(it.tile.offset(), it.id, it.amount)
+            messages += { player -> addEncoder.encode(player, it.tile.offset(), it.id, it.amount) }
         }
     }
 }

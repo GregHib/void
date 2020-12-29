@@ -1,35 +1,45 @@
 package rs.dusk.network.rs.codec.update.encode
 
-import io.netty.buffer.Unpooled
+import io.netty.channel.Channel
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateResponseMessageEncoder : MessageEncoder<UpdateResponseMessage> {
+class UpdateResponseMessageEncoder : MessageEncoder() {
 
-    @Suppress("DEPRECATED_IDENTITY_EQUALS")
-    override fun encode(builder: PacketWriter, msg: UpdateResponseMessage) {
-        val (indexId, archiveId, data, compression, length, attributes) = msg
-
-        val buffer = Unpooled.buffer()
-
-        buffer.writeByte(indexId)
-        buffer.writeShort(archiveId)
-        buffer.writeByte(attributes)
-        buffer.writeInt(length)
-
+    fun encode(
+        channel: Channel,
+        indexId: Int,
+        archiveId: Int,
+        data: ByteArray,
+        compression: Int,
+        length: Int,
+        attributes: Int
+    ) {
         val realLength = if (compression != 0) length + 4 else length
-        for (offset in 5 until realLength + 5) {
-            if (buffer.writerIndex() % 512 === 0) {
-                buffer.writeByte(255)
+        channel.send(getLength(realLength)) {
+
+            writeByte(indexId)
+            writeShort(archiveId)
+            writeByte(attributes)
+            writeInt(length)
+
+            for (offset in 5 until realLength + 5) {
+                if (writerIndex() % 512 == 0) {
+                    writeByte(255)
+                }
+                writeByte(data[offset].toInt())
             }
-            buffer.writeByte(data[offset].toInt())
         }
-        builder.writeBytes(buffer)
+    }
+
+    private fun getLength(length: Int): Int {
+        var count = 8
+        for (offset in 5 until length + 5) {
+            if (count % 512 == 0) {
+                count++
+            }
+            count++
+        }
+        return count
     }
 
 }

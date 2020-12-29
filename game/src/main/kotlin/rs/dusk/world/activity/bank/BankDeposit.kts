@@ -6,10 +6,10 @@ import rs.dusk.engine.client.ui.dialogue.dialogue
 import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.*
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.inject
 import rs.dusk.world.activity.bank.Bank.getIndexOfTab
 import rs.dusk.world.interact.dialogue.type.intEntry

@@ -1,30 +1,32 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
+import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.write.writeInt
 import rs.dusk.buffer.write.writeShort
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_NPC_HEAD
+import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_ANIMATION
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
- * @since August 2, 2020
+ * @since August 02, 2020
  */
-class InterfaceHeadNPCMessageEncoder : MessageEncoder(INTERFACE_NPC_HEAD) {
+class InterfaceAnimationMessageEncoder : MessageEncoder(INTERFACE_ANIMATION) {
 
     /**
-     * Sends npc who's head to display on a interface component
+     * Sends an animation to a interface component
      * @param id The id of the parent interface
      * @param component The index of the component
-     * @param npc The id of the npc
+     * @param animation The animation id
      */
     fun encode(
         player: Player,
         id: Int,
         component: Int,
-        npc: Int
+        animation: Int
     ) = player.send(6) {
-        writeInt(id shl 16 or component)
-        writeShort(npc, order = Endian.LITTLE)
+        writeShort(animation, Modifier.ADD, Endian.LITTLE)
+        writeInt(id shl 16 or component, order = Endian.MIDDLE)
     }
 }

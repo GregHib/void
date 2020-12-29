@@ -1,12 +1,10 @@
 package rs.dusk.engine.client
 
-import com.github.michaelbull.logging.InlineLogger
 import com.google.common.collect.HashBiMap
 import io.netty.channel.Channel
 import org.koin.dsl.module
-import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.utility.get
+import kotlin.collections.set
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -19,7 +17,6 @@ val clientSessionModule = module {
 }
 
 class Sessions {
-    private val logger = InlineLogger()
     val players = HashBiMap.create<Channel, Player>()
 
     /**
@@ -63,14 +60,4 @@ class Sessions {
     fun contains(player: Player): Boolean {
         return players.inverse().containsKey(player)
     }
-
-    /**
-     * Sends [message] to the session linked with [player]
-     */
-    fun <T : Message> send(player: Player, message: T) {
-        val session = get(player) ?: return// logger.debug { "Unable to find session for player $player." }
-        session.writeAndFlush(message)
-    }
 }
-
-fun <T : Message> Player.send(update: T) = get<Sessions>().send(this, update)

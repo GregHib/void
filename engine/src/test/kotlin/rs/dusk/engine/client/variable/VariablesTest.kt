@@ -5,14 +5,12 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerVariables
-import rs.dusk.network.rs.codec.game.encode.message.VarbitMessage
-import rs.dusk.network.rs.codec.game.encode.message.VarcMessage
-import rs.dusk.network.rs.codec.game.encode.message.VarcStrMessage
-import rs.dusk.network.rs.codec.game.encode.message.VarpMessage
+import rs.dusk.network.rs.codec.game.encode.sendVarbit
+import rs.dusk.network.rs.codec.game.encode.sendVarc
+import rs.dusk.network.rs.codec.game.encode.sendVarcStr
+import rs.dusk.network.rs.codec.game.encode.sendVarp
 
 internal class VariablesTest {
 
@@ -29,8 +27,14 @@ internal class VariablesTest {
         system = spyk(Variables())
         component = mutableMapOf()
         player = mockk(relaxed = true)
-        mockkStatic("rs.dusk.engine.client.SessionsKt")
-        every { player.send(any<Message>()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarpMessageEncoderKt")
+        every { player.sendVarp(any(), any()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarbitMessageEncoderKt")
+        every { player.sendVarbit(any(), any()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarcMessageEncoderKt")
+        every { player.sendVarc(any(), any()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarcStrMessageEncoderKt")
+        every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns component
         setVariable(key, variable)
     }
@@ -88,7 +92,7 @@ internal class VariablesTest {
         //When
         system.send(player, key)
         //Then
-        verify { player.send(VarpMessage(variable.id, 0)) }
+        verify { player.sendVarp(variable.id, 0) }
     }
 
     @Test
@@ -98,7 +102,7 @@ internal class VariablesTest {
         //When
         system.send(player, key)
         //Then
-        verify { player.send(VarbitMessage(variable.id, 0)) }
+        verify { player.sendVarbit(variable.id, 0) }
     }
 
     @Test
@@ -108,7 +112,7 @@ internal class VariablesTest {
         //When
         system.send(player, key)
         //Then
-        verify { player.send(VarcMessage(variable.id, 0)) }
+        verify { player.sendVarc(variable.id, 0) }
     }
 
     @Test
@@ -121,7 +125,7 @@ internal class VariablesTest {
         //When
         system.send(player, key)
         //Then
-        verify { player.send(VarcStrMessage(variable.id, "nothing")) }
+        verify { player.sendVarcStr(variable.id, "nothing") }
     }
 
     @Test

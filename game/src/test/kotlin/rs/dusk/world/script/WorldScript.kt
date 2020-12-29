@@ -29,7 +29,7 @@ import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
-import rs.dusk.network.server.networkCodecs
+import rs.dusk.network.rs.codec.game.gameCodec
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
@@ -46,7 +46,6 @@ abstract class WorldScript : KoinMock() {
         entityListModule,
         scriptModule,
         clientSessionModule,
-        networkCodecs,
         playerLoaderModule,
         xteaModule,
         visualUpdatingModule,
@@ -66,7 +65,9 @@ abstract class WorldScript : KoinMock() {
         instancePoolModule,
         detailsModule,
         logoutModule,
-        objectFactoryModule)
+        objectFactoryModule,
+        gameCodec
+    )
 
     override val propertyPaths = listOf("/game.properties", "/private.properties")
 

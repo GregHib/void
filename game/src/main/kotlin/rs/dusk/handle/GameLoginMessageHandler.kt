@@ -7,7 +7,6 @@ import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.setCipherIn
 import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
-import rs.dusk.core.network.codec.setSized
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.player.GameLoginInfo
@@ -18,8 +17,8 @@ import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
-import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
+import rs.dusk.network.rs.codec.login.encode.GameLoginDetailsMessageEncoder
+import rs.dusk.network.rs.codec.login.encode.LoginResponseEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.spawn.login.Login
 import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
@@ -36,6 +35,8 @@ class GameLoginMessageHandler : MessageHandler() {
     val executor: TaskExecutor by inject()
     private val login: LoginCodec by inject()
     private val game: GameCodec by inject()
+    private val responseEncoder = LoginResponseEncoder()
+    private val loginEncoder = GameLoginDetailsMessageEncoder()
 
     override fun loginGame(
         context: ChannelHandlerContext,
@@ -62,20 +63,17 @@ class GameLoginMessageHandler : MessageHandler() {
         totalMemory: Int
     ) {
         val channel = context.channel()
-        val pipeline = context.pipeline()
         val keyPair = IsaacKeyPair(isaacKeys)
 
         channel.setCodec(login)
-        channel.setSized(true)
 
         val callback: (LoginResponse) -> Unit = { response ->
             if (response is LoginResponse.Success) {
                 val player = response.player
-                pipeline.writeAndFlush(GameLoginDetails(2, player.index, username))
+                loginEncoder.encode(channel, 2, player.index, username)
 
                 executor.sync {
                     channel.setCodec(game)
-                    channel.setSized(false)
                     channel.setCipherIn(keyPair.inCipher)
                     channel.setCipherOut(keyPair.outCipher)
                     bus.emit(RegionLogin(player))
@@ -84,7 +82,7 @@ class GameLoginMessageHandler : MessageHandler() {
                     bus.emit(Registered(player))
                 }
             } else {
-                pipeline.writeAndFlush(GameLoginConnectionResponseMessage(response.code))
+                responseEncoder.encode(channel, response.code)
             }
         }
 

@@ -37,6 +37,7 @@ import rs.dusk.engine.task.executorModule
 import rs.dusk.handle.*
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.game.GameOpcodes
+import rs.dusk.network.rs.codec.game.gameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
@@ -85,6 +86,7 @@ object Dusk {
                 scriptModule,
                 clientSessionModule,
                 networkCodecs,
+                gameCodec,
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,

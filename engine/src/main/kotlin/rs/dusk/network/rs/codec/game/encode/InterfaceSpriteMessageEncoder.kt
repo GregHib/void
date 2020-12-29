@@ -1,23 +1,30 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
+import rs.dusk.buffer.write.writeShort
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_SPRITE
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSpriteMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since August 2, 2020
  */
-class InterfaceSpriteMessageEncoder : MessageEncoder<InterfaceSpriteMessage> {
+class InterfaceSpriteMessageEncoder : MessageEncoder(INTERFACE_SPRITE) {
 
-    override fun encode(builder: PacketWriter, msg: InterfaceSpriteMessage) {
-        val (id, component, sprite) = msg
-        builder.apply {
-            writeOpcode(INTERFACE_SPRITE)
-            writeShort(sprite, order = Endian.LITTLE)
-            writeInt(id shl 16 or component)
-        }
+    /**
+     * Sends a sprite to a interface component
+     * @param id The id of the parent interface
+     * @param component The index of the component
+     * @param sprite The sprite id
+     */
+    fun encode(
+        player: Player,
+        id: Int,
+        component: Int,
+        sprite: Int
+    ) = player.send(6) {
+        writeShort(sprite, order = Endian.LITTLE)
+        writeInt(id shl 16 or component)
     }
 }

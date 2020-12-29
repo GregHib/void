@@ -2,25 +2,48 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.write.writeInt
+import rs.dusk.buffer.write.writeShort
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_COMPONENT_SETTINGS
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
+import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 26, 2020
  */
-class InterfaceSettingsMessageEncoder : MessageEncoder<InterfaceSettingsMessage> {
+class InterfaceSettingsMessageEncoder : MessageEncoder(INTERFACE_COMPONENT_SETTINGS) {
 
-    override fun encode(builder: PacketWriter, msg: InterfaceSettingsMessage) {
-        val (id, component, fromSlot, toSlot, settings) = msg
-        builder.apply {
-            writeOpcode(INTERFACE_COMPONENT_SETTINGS)
-            writeShort(fromSlot, order = Endian.LITTLE)
-            writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
-            writeShort(toSlot, Modifier.ADD)
-            writeInt(settings, order = Endian.LITTLE)
-        }
+    /**
+     * Sends settings to a interface's component(s)
+     * @param id The id of the parent window
+     * @param component The index of the component
+     * @param fromSlot The start slot index
+     * @param toSlot The end slot index
+     * @param settings The settings hash
+     */
+    fun encode(
+        player: Player,
+        id: Int,
+        component: Int,
+        fromSlot: Int,
+        toSlot: Int,
+        settings: Int
+    ) = player.send(12) {
+        writeShort(fromSlot, order = Endian.LITTLE)
+        writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
+        writeShort(toSlot, Modifier.ADD)
+        writeInt(settings, order = Endian.LITTLE)
     }
+}
+
+fun Player.sendInterfaceSettings(
+    id: Int,
+    component: Int,
+    fromSlot: Int,
+    toSlot: Int,
+    settings: Int
+) {
+    get<InterfaceSettingsMessageEncoder>().encode(this, id, component, fromSlot, toSlot, settings)
 }

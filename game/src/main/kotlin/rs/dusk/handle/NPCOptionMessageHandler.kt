@@ -7,11 +7,11 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.npc.NPCOption
 import rs.dusk.engine.entity.character.npc.NPCs
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.inject
 
 /**

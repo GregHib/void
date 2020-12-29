@@ -19,6 +19,7 @@ import rs.dusk.engine.entity.character.update.Visuals
 import rs.dusk.engine.entity.character.update.visual.player.appearance
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.utility.get
 
 /**
  * A player controlled by client or bot
@@ -49,7 +50,7 @@ class Player(
     val requests: Requests = Requests(this)
 
     @Transient
-    val options = PlayerOptions(this)
+    val options = PlayerOptions(this, get())
 
     @Transient
     val gameFrame = PlayerGameFrame()

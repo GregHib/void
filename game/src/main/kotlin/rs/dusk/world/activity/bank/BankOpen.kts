@@ -2,7 +2,6 @@ package rs.dusk.world.activity.bank
 
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.action
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.awaitInterface
 import rs.dusk.engine.client.ui.close
 import rs.dusk.engine.client.ui.event.InterfaceOpened
@@ -11,7 +10,7 @@ import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
+import rs.dusk.network.rs.codec.game.encode.sendScript
 import rs.dusk.world.activity.bank.Bank.tabs
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
@@ -49,7 +48,7 @@ InterfaceOpened where { name == "bank" } then {
                 player.sendVar("bank_tab_$tab")
             }
             player.sendVar("last_bank_amount")
-            player.send(ScriptMessage(1465))
+            player.sendScript(1465)
             player.interfaceOptions.unlockAll("bank", "container", 0 until 516)
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
             awaitInterface(name)

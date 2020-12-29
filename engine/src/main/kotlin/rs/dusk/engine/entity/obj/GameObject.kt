@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.TargetStrategy
-import rs.dusk.network.rs.codec.game.encode.message.ObjectAnimationSpecificMessage
+import rs.dusk.network.rs.codec.game.encode.ObjectAnimationSpecificMessageEncoder
 import rs.dusk.utility.get
 
 /**
@@ -43,5 +43,6 @@ data class GameObject(
 }
 
 fun GameObject.animate(id: Int) {
-    get<ChunkBatcher>().update(tile.chunk, ObjectAnimationSpecificMessage(tile.offset(), id, type, rotation))
+    val encoder: ObjectAnimationSpecificMessageEncoder = get()
+    get<ChunkBatcher>().update(tile.chunk) { player -> encoder.encode(player, tile.offset(), id, type, rotation) }
 }

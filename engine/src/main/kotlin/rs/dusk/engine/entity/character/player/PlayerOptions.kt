@@ -1,9 +1,11 @@
 package rs.dusk.engine.entity.character.player
 
-import rs.dusk.engine.client.send
-import rs.dusk.network.rs.codec.game.encode.message.ContextMenuOptionMessage
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
 
-class PlayerOptions(private val player: Player) {
+class PlayerOptions(
+    private val player: Player,
+    private val optionEncoder: ContextMenuOptionMessageEncoder
+) {
 
     private val options: Array<String> = Array(OPTION_SIZE) {
         if (it == 0) "Walk here" else EMPTY_OPTION
@@ -35,7 +37,7 @@ class PlayerOptions(private val player: Player) {
     }
 
     private fun update(slot: Int, top: Boolean) {
-        player.send(ContextMenuOptionMessage(options[slot], slot, top))
+        optionEncoder.encode(player, options[slot], slot, top)
     }
 
     fun remove(option: String): Boolean {

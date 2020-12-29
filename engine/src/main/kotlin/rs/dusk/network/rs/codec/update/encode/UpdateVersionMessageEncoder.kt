@@ -1,30 +1,29 @@
 package rs.dusk.network.rs.codec.update.encode
 
+import io.netty.channel.Channel
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
 import rs.dusk.network.rs.codec.service.FileServerResponseCodes
-import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
-class UpdateVersionMessageEncoder : MessageEncoder<UpdateVersionMessage> {
+class UpdateVersionMessageEncoder : MessageEncoder() {
 
-    override fun encode(builder: PacketWriter, msg: UpdateVersionMessage) {
-        builder.writeByte(msg.opcode)
-        if (msg.opcode == FileServerResponseCodes.JS5_RESPONSE_OK) {
+    fun encode(
+        channel: Channel,
+        response: Int
+    ) = channel.send(getLength(response)) {
+        writeByte(response)
+        if (response == FileServerResponseCodes.JS5_RESPONSE_OK) {
             GRAB_SERVER_KEYS.forEach {
-                builder.writeInt(it)
+                writeInt(it)
             }
         }
     }
 
+    private fun getLength(response: Int): Int {
+        return if (response == FileServerResponseCodes.JS5_RESPONSE_OK) 1 + GRAB_SERVER_KEYS.size * 4 else 1
+    }
+
     companion object {
 
-        /**
-         * The keys sent during grab server decoding
-         */
         private val GRAB_SERVER_KEYS = intArrayOf(
             1362,
             77448,

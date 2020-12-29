@@ -2,7 +2,6 @@ import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.entity.Direction
 import rs.dusk.engine.entity.character.clear
 import rs.dusk.engine.entity.character.inc
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.delay.Delay
 import rs.dusk.engine.entity.character.player.delay.delayed
 import rs.dusk.engine.entity.obj.GameObject
@@ -11,6 +10,7 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.func.isDoor
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.replaceObject

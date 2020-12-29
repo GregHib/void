@@ -1,20 +1,22 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.PLAYER_WEIGHT
-import rs.dusk.network.rs.codec.game.encode.message.WeightMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since September 13, 2020
  */
-class WeightMessageEncoder : MessageEncoder<WeightMessage> {
+class WeightMessageEncoder : MessageEncoder(PLAYER_WEIGHT) {
 
-    override fun encode(builder: PacketWriter, msg: WeightMessage) {
-        builder.apply {
-            writeOpcode(PLAYER_WEIGHT)
-            writeShort(msg.weight)
-        }
+    /**
+     * Updates player weight for equipment screen
+     */
+    fun encode(
+        player: Player,
+        weight: Int
+    ) = player.send(2) {
+        writeShort(weight)
     }
 }

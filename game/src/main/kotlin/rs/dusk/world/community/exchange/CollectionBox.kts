@@ -7,9 +7,9 @@ import rs.dusk.engine.entity.character.contain.container
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.getOrNull
 import rs.dusk.engine.entity.character.has
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.world.community.trade.lend.Loan
 import rs.dusk.world.community.trade.lend.Loan.getTimeRemaining
 import rs.dusk.world.community.trade.lent

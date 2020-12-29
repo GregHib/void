@@ -1,30 +1,33 @@
 package rs.dusk.engine.entity.character.player
 
-import io.mockk.*
+import io.mockk.mockk
+import io.mockk.mockkStatic
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.send
-import rs.dusk.network.rs.codec.game.encode.message.ContextMenuOptionMessage
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
 
 internal class PlayerOptionsTest {
 
     lateinit var player: Player
     lateinit var options: PlayerOptions
+    lateinit var encoder: ContextMenuOptionMessageEncoder
 
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        options = PlayerOptions(player)
+        encoder = mockk(relaxed = true)
+        options = PlayerOptions(player, encoder)
         mockkStatic("rs.dusk.engine.client.SessionsKt")
-        every { player.send(any<Message>()) } just Runs
     }
 
     @Test
     fun `Set option`() {
         assertTrue(options.set(1, "Attack"))
-        verify { player.send(ContextMenuOptionMessage("Attack", 1, false, -1)) }
+        verify {
+            encoder.encode(player, "Attack", 1, false, -1)
+        }
     }
 
     @Test
@@ -75,7 +78,9 @@ internal class PlayerOptionsTest {
         assertTrue(options.has(2))
         options.remove(2)
         assertFalse(options.has(2))
-        verify { player.send(ContextMenuOptionMessage("null", 2, false, -1)) }
+        verify {
+            encoder.encode(player, "null", 2, false, -1)
+        }
     }
 
     @Test

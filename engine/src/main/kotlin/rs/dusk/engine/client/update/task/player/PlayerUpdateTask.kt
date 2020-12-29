@@ -2,7 +2,6 @@ package rs.dusk.engine.client.update.task.player
 
 import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerTrackingSet
 import rs.dusk.engine.entity.character.player.Players
@@ -13,12 +12,17 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.event.Priority.PLAYER_UPDATE
 import rs.dusk.engine.map.region.RegionPlane
 import rs.dusk.engine.tick.task.EntityTask
+import rs.dusk.network.rs.codec.game.encode.PlayerUpdateMessageEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 26, 2020
  */
-class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) : EntityTask<Player>(PLAYER_UPDATE) {
+class PlayerUpdateTask(
+    override val entities: Players,
+    val sessions: Sessions,
+    private val updateEncoder: PlayerUpdateMessageEncoder
+) : EntityTask<Player>(PLAYER_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
@@ -28,15 +32,15 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
         val viewport = player.viewport
         val players = viewport.players
 
-        val message = viewport.message
-        val (writer, updates) = message
+        val writer = viewport.playerChanges
+        val updates = viewport.playerUpdates
 
         processLocals(writer, updates, players, viewport, true)
         processLocals(writer, updates, players, viewport, false)
         processGlobals(writer, updates, players, viewport, true)
         processGlobals(writer, updates, players, viewport, false)
 
-        player.send(message)
+        updateEncoder.encode(player, writer, updates)
     }
 
     fun processLocals(
@@ -208,8 +212,8 @@ class PlayerUpdateTask(override val entities: Players, val sessions: Sessions) :
     }
 
     companion object {
-        private val REGION_X = intArrayOf(-1,  0,  1, -1,  1, -1, 0, 1)
-        private val REGION_Y = intArrayOf(-1, -1, -1,  0,  0,  1, 1, 1)
+        private val REGION_X = intArrayOf(-1, 0, 1, -1, 1, -1, 0, 1)
+        private val REGION_Y = intArrayOf(-1, -1, -1, 0, 0, 1, 1, 1)
 
         /**
          * Index of movement direction

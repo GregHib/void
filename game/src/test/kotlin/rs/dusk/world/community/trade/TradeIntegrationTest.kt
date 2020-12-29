@@ -1,28 +1,17 @@
 package rs.dusk.world.community.trade
 
-import io.mockk.*
+import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.core.module.Module
-import org.koin.test.mock.declare
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.*
-import rs.dusk.engine.client.variable.variablesModule
 import rs.dusk.engine.data.PlayerLoader
-import rs.dusk.engine.data.file.fileLoaderModule
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerOption
-import rs.dusk.engine.entity.definition.detailsModule
 import rs.dusk.engine.event.EventBus
-import rs.dusk.engine.event.eventModule
 import rs.dusk.utility.get
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
-import rs.dusk.world.script.ScriptMock
 import rs.dusk.world.script.WorldScript
-import java.io.File
-import kotlin.script.templates.standard.ScriptTemplateWithArgs
 
 internal class TradeIntegrationTest : WorldScript() {
 
@@ -33,15 +22,15 @@ internal class TradeIntegrationTest : WorldScript() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        mockkStatic("rs.dusk.engine.client.SessionsKt")
         val loader: PlayerLoader = get()
         player1 = spyk(loader.loadPlayer("1"))
         player1.start()
-        every { player1.send(any<Message>()) } just Runs
         player2 = spyk(loader.loadPlayer("2"))
         player2.start()
-        every { player2.send(any<Message>()) } just Runs
         bus = get()
+        setProperty("homeX", 100)
+        setProperty("homeY", 100)
+        setProperty("homePlane", 1)
     }
 
     @Test

@@ -1,4 +1,3 @@
-import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.Unregistered
 import rs.dusk.engine.entity.character.move.NPCMoved
@@ -18,8 +17,8 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLogin
 import rs.dusk.engine.map.region.RegionReader
 import rs.dusk.engine.map.region.Xteas
-import rs.dusk.network.rs.codec.game.encode.message.DynamicMapRegionMessage
-import rs.dusk.network.rs.codec.game.encode.message.MapRegionMessage
+import rs.dusk.network.rs.codec.game.encode.DynamicMapRegionMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.MapRegionMessageEncoder
 import rs.dusk.utility.inject
 import kotlin.math.abs
 
@@ -33,6 +32,8 @@ val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicChunks: DynamicChunks by inject()
+val dynamicRegionEncoder: DynamicMapRegionMessageEncoder by inject()
+val regionEncoder: MapRegionMessageEncoder by inject()
 
 val playerRegions = IntArray(MAX_PLAYERS - 1)
 
@@ -143,18 +144,17 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     }
 
     player.viewport.dynamic = false
-    player.send(
-        MapRegionMessage(
-            chunkX = chunkX,
-            chunkY = chunkY,
-            forceReload = force,
-            mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
-            xteas = xteaList.toTypedArray(),
-            clientIndex = if (initial) player.index - 1 else null,
-            playerRegions = if (initial) playerRegions else null,
-            clientTile = if (initial) player.tile.id else null
-        )
+    regionEncoder.encode(player,
+        chunkX = chunkX,
+        chunkY = chunkY,
+        forceRefresh = force,
+        mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
+        xteas = xteaList.toTypedArray(),
+        clientIndex = if (initial) player.index - 1 else null,
+        playerRegions = if (initial) playerRegions else null,
+        clientTile = if (initial) player.tile.id else null
     )
+
 }
 
 fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
@@ -166,7 +166,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     val chunks = mutableListOf<Int?>()
     val mapTileSize = calculateChunkRadius(player.viewport)
 
-    for(chunk in player.tile.chunk.copy(plane = 0).area(mapTileSize, 4)) {
+    for (chunk in player.tile.chunk.copy(plane = 0).area(mapTileSize, 4)) {
         val mapChunk = dynamicChunks.chunks[chunk.id]
         if (mapChunk != null) {
             chunks.add(mapChunk)
@@ -180,17 +180,15 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     }
 
     player.viewport.dynamic = true
-    player.send(
-        DynamicMapRegionMessage(
-            chunkX = chunkX,
-            chunkY = chunkY,
-            forceReload = force,
-            mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
-            chunks = chunks,
-            xteas = xteaList.toTypedArray(),
-            clientIndex = if (initial) player.index - 1 else null,
-            playerRegions = if (initial) playerRegions else null,
-            clientTile = if (initial) player.tile.id else null
-        )
+    dynamicRegionEncoder.encode(player,
+        chunkX = chunkX,
+        chunkY = chunkY,
+        forceRefresh = force,
+        mapSize = Viewport.VIEWPORT_SIZES.indexOf(player.viewport.tileSize),
+        chunks = chunks,
+        xteas = xteaList.toTypedArray(),
+        clientIndex = if (initial) player.index - 1 else null,
+        playerRegions = if (initial) playerRegions else null,
+        clientTile = if (initial) player.tile.id else null
     )
 }

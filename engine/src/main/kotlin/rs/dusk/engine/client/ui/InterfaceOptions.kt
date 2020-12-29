@@ -1,11 +1,10 @@
 package rs.dusk.engine.client.ui
 
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
+import rs.dusk.network.rs.codec.game.encode.sendInterfaceSettings
+import rs.dusk.network.rs.codec.game.encode.sendScript
 
 class InterfaceOptions(
     private val player: Player,
@@ -55,7 +54,7 @@ class InterfaceOptions(
         val options = get(name, component).slice(0 until 9).toTypedArray()
         val container = containerDefinitions.get(comp.container)
         if(container.id != -1) {
-            player.send(ScriptMessage(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options))
+            player.sendScript(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options)
         }
     }
 
@@ -68,7 +67,7 @@ class InterfaceOptions(
                 setting += (2 shl index)
             }
         }
-        player.send(InterfaceSettingsMessage(comp.parent, comp.id, slots.first, slots.last, setting))
+        player.sendInterfaceSettings(comp.parent, comp.id, slots.first, slots.last, setting)
     }
 
     fun unlock(name: String, component: String, slots: IntRange = -1..-1, vararg options: String) {
@@ -84,11 +83,11 @@ class InterfaceOptions(
                 setting += (2 shl index)
             }
         }
-        player.send(InterfaceSettingsMessage(comp.parent, comp.id, slots.first, slots.last, setting))
+        player.sendInterfaceSettings(comp.parent, comp.id, slots.first, slots.last, setting)
     }
 
     fun lockAll(name: String, component: String, range: IntRange = -1..-1) {
         val comp = details.getComponent(name, component)
-        player.send(InterfaceSettingsMessage(comp.parent, comp.id, range.first, range.last, 0))
+        player.sendInterfaceSettings(comp.parent, comp.id, range.first, range.last, 0)
     }
 }

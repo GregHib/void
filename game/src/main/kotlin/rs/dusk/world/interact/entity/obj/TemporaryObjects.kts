@@ -9,8 +9,8 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
-import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
+import rs.dusk.network.rs.codec.game.encode.ObjectAddMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectRemoveMessageEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.ReplaceObject
 import rs.dusk.world.interact.entity.obj.ReplaceObjectPair
@@ -20,6 +20,8 @@ val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val factory: GameObjectFactory by inject()
+val addEncoder: ObjectAddMessageEncoder by inject()
+val removeEncoder: ObjectRemoveMessageEncoder by inject()
 
 /**
  * Replaces two objects, linking them to the same job so both revert after timeout
@@ -65,15 +67,13 @@ ReplaceObject then {
 
 fun switch(original: GameObject, replacement: GameObject) {
     if (original.tile != replacement.tile) {
-        batcher.update(
-            original.tile.chunk,
-            ObjectRemoveMessage(original.tile.offset(), original.type, original.rotation)
-        )
+        batcher.update(original.tile.chunk) { player ->
+            removeEncoder.encode(player, original.tile.offset(), original.type, original.rotation)
+        }
     }
-    batcher.update(
-        replacement.tile.chunk,
-        ObjectAddMessage(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
-    )
+    batcher.update(replacement.tile.chunk) { player ->
+        addEncoder.encode(player, replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
+    }
     if (original.tile != replacement.tile) {
         objects.removeTemp(original)
     } else {
@@ -87,12 +87,16 @@ fun switch(original: GameObject, replacement: GameObject) {
 batcher.addInitial { player, chunk, messages ->
     objects.getAdded(chunk)?.forEach {
         if (it.visible(player)) {
-            messages += ObjectAddMessage(it.tile.offset(), it.id, it.type, it.rotation)
+            messages += { player ->
+                addEncoder.encode(player, it.tile.offset(), it.id, it.type, it.rotation)
+            }
         }
     }
     objects.getRemoved(chunk)?.forEach {
         if (it.visible(player)) {
-            messages += ObjectRemoveMessage(it.tile.offset(), it.type, it.rotation)
+            messages += { player ->
+                removeEncoder.encode(player, it.tile.offset(), it.type, it.rotation)
+            }
         }
     }
 }
