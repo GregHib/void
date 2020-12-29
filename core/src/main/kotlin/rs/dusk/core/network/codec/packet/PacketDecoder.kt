@@ -4,6 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
+import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.network.codec.getCipherIn
 import rs.dusk.core.network.codec.packet.DecoderState.*
 import rs.dusk.core.network.codec.packet.access.PacketReader
 import rs.dusk.core.network.model.packet.PacketType
@@ -40,7 +42,7 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
     /**
      * Handles reading the opcode from the buffer
      */
-    abstract fun readOpcode(buf: ByteBuf): Int
+    abstract fun readOpcode(buf: ByteBuf, cipher: IsaacCipher?): Int
 
     /**
      * Getting the expected length of a buffer by the opcode identified [opcode]. If th
@@ -53,7 +55,7 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
                 logger.error { "Unable to decode opcode from buffer - buffer is not readable." }
                 return
             }
-            opcode = readOpcode(buf)
+            opcode = readOpcode(buf, ctx.channel().getCipherIn())
             length = getExpectedLength(ctx, opcode) ?: buf.readableBytes()
             type = PacketType.byLength(length)
             state = if (length < 0) DECODE_LENGTH else DECODE_PAYLOAD

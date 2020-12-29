@@ -1,5 +1,6 @@
 package rs.dusk
 
+import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.engine.GameLoop
@@ -43,6 +44,7 @@ import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.utility.getIntProperty
+import rs.dusk.utility.getProperty
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
 import rs.dusk.world.interact.entity.player.spawn.logout.DisconnectEvent
 import rs.dusk.world.interact.entity.player.spawn.logout.logoutModule
@@ -53,143 +55,146 @@ import java.util.concurrent.Executors
  * @since April 18, 2020
  */
 object Dusk {
-	
-	const val name = "Dusk"
-	
-	@JvmStatic
-	fun main(args : Array<String>) {
-		preload()
-		
-		val disconnect = DisconnectEvent()
-		val server = GameServer(getIntProperty("world"), getIntProperty("port"), disconnect)
-		
-		val bus : EventBus = get()
-		val executor : TaskExecutor = get()
-		val service = Executors.newSingleThreadScheduledExecutor()
-		val start : SyncTask = get()
-		val engine = GameLoop(bus, executor, service)
 
-		object : TimedLoader<Unit>("Game codec") {
-			override fun load(args: Array<out Any?>) {
-				GameCodec.register()
-				registerGameHandlers()
-				count = GameCodec.decoders.size + GameCodec.encoders.size
-			}
-		}.run()
-		object : TimedLoader<Unit>("Login codec") {
-			override fun load(args: Array<out Any?>) {
-				LoginCodec.register()
-				registerLoginHandlers()
-				count = LoginCodec.decoders.size + LoginCodec.encoders.size
-			}
-		}.run()
-		object : TimedLoader<Unit>("Service codec") {
-			override fun load(args: Array<out Any?>) {
-				ServiceCodec.register()
-				count = ServiceCodec.decoders.size + ServiceCodec.encoders.size
-			}
-		}.run()
-		object : TimedLoader<Unit>("Update codec") {
-			override fun load(args: Array<out Any?>) {
-				UpdateCodec.register()
-				count = UpdateCodec.decoders.size + UpdateCodec.encoders.size
-			}
-		}.run()
-		server.run()
-		engine.setup(start)
-		engine.start()
-	}
-	
-	fun preload() {
-		startKoin {
-			slf4jLogger()
-			modules(
-				eventModule,
-				cacheModule,
-				fileLoaderModule,
-				ymlPlayerModule/*, sqlPlayerModule*/,
-				entityListModule,
-				scriptModule,
-				clientSessionModule,
-				gameServerFactory,
-				playerLoaderModule,
-				xteaModule,
-				visualUpdatingModule,
-				updatingTasksModule,
-				loginQueueModule,
-				regionModule,
-				collisionModule,
-				cacheDefinitionModule,
-				cacheConfigModule,
-				pathFindModule,
-				schedulerModule,
-				batchedChunkModule,
-				executorModule,
-				interfaceModule,
-				variablesModule,
-				instanceModule,
-				instancePoolModule,
-				detailsModule,
-				databaseModule,
-				logoutModule,
-				objectFactoryModule
-			)
-			fileProperties("/game.properties")
-			fileProperties("/private.properties")
-		}
-	}
+    const val name = "Dusk"
+    private val logger = InlineLogger()
 
-	private fun registerLoginHandlers() {
-		LoginCodec.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginMessageHandler())
-	}
+    @JvmStatic
+    fun main(args: Array<String>) {
+        val startTime = System.currentTimeMillis()
+        preload()
 
-	private fun registerGameHandlers() {
-		GameCodec.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_6, FloorItemOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.ENTER_INTEGER, IntEntryMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_1,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_2,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_3,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_4,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_5,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_6,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_7,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_8,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_9,InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_10, InterfaceOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.SWITCH_INTERFACE_COMPONENTS, InterfaceSwitchMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_1, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_2, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.NPC_OPTION_6, NPCOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_6, ObjectOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_4, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_5, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_9, PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_10,PlayerOptionMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.WALK, WalkMapMessageHandler())
-		GameCodec.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapMessageHandler())
-	}
+        val disconnect = DisconnectEvent()
+        val server = GameServer(getIntProperty("world"), getIntProperty("port"), disconnect)
+
+        val bus: EventBus = get()
+        val executor: TaskExecutor = get()
+        val service = Executors.newSingleThreadScheduledExecutor()
+        val start: SyncTask = get()
+        val engine = GameLoop(bus, executor, service)
+
+        object : TimedLoader<Unit>("Game codec") {
+            override fun load(args: Array<out Any?>) {
+                GameCodec.register()
+                registerGameHandlers()
+                count = GameCodec.decoders.size + GameCodec.encoders.size
+            }
+        }.run()
+        object : TimedLoader<Unit>("Login codec") {
+            override fun load(args: Array<out Any?>) {
+                LoginCodec.register()
+                registerLoginHandlers()
+                count = LoginCodec.decoders.size + LoginCodec.encoders.size
+            }
+        }.run()
+        object : TimedLoader<Unit>("Service codec") {
+            override fun load(args: Array<out Any?>) {
+                ServiceCodec.register()
+                count = ServiceCodec.decoders.size + ServiceCodec.encoders.size
+            }
+        }.run()
+        object : TimedLoader<Unit>("Update codec") {
+            override fun load(args: Array<out Any?>) {
+                UpdateCodec.register()
+                count = UpdateCodec.decoders.size + UpdateCodec.encoders.size
+            }
+        }.run()
+        server.run()
+        engine.setup(start)
+        engine.start()
+        logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
+    }
+
+    fun preload() {
+        startKoin {
+            slf4jLogger()
+            modules(
+                eventModule,
+                cacheModule,
+                fileLoaderModule,
+                ymlPlayerModule/*, sqlPlayerModule*/,
+                entityListModule,
+                scriptModule,
+                clientSessionModule,
+                gameServerFactory,
+                playerLoaderModule,
+                xteaModule,
+                visualUpdatingModule,
+                updatingTasksModule,
+                loginQueueModule,
+                regionModule,
+                collisionModule,
+                cacheDefinitionModule,
+                cacheConfigModule,
+                pathFindModule,
+                schedulerModule,
+                batchedChunkModule,
+                executorModule,
+                interfaceModule,
+                variablesModule,
+                instanceModule,
+                instancePoolModule,
+                detailsModule,
+                databaseModule,
+                logoutModule,
+                objectFactoryModule
+            )
+            fileProperties("/game.properties")
+            fileProperties("/private.properties")
+        }
+    }
+
+    private fun registerLoginHandlers() {
+        LoginCodec.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginMessageHandler())
+    }
+
+    private fun registerGameHandlers() {
+        GameCodec.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_6, FloorItemOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.ENTER_INTEGER, IntEntryMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_1, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_2, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_3, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_4, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_5, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_6, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_7, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_8, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_9, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_10, InterfaceOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.SWITCH_INTERFACE_COMPONENTS, InterfaceSwitchMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_1, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_2, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_6, NPCOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_6, ObjectOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_4, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_5, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_9, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_10, PlayerOptionMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.WALK, WalkMapMessageHandler())
+        GameCodec.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapMessageHandler())
+    }
 }

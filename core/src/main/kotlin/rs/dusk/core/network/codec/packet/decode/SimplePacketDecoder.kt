@@ -3,6 +3,7 @@ package rs.dusk.core.network.codec.packet.decode
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
+import rs.dusk.core.io.crypto.IsaacCipher
 import rs.dusk.core.network.codec.getCodec
 import rs.dusk.core.network.codec.packet.PacketDecoder
 
@@ -12,11 +13,11 @@ import rs.dusk.core.network.codec.packet.PacketDecoder
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-open class SimplePacketDecoder : PacketDecoder() {
+class SimplePacketDecoder : PacketDecoder() {
 	
 	private val logger = InlineLogger()
 	
-	override fun readOpcode(buf : ByteBuf) : Int {
+	override fun readOpcode(buf : ByteBuf, cipher: IsaacCipher?) : Int {
 		return buf.readUnsignedByte().toInt()
 	}
 	

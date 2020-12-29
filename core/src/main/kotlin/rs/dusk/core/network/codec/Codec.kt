@@ -2,7 +2,11 @@ package rs.dusk.core.network.codec
 
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
+import rs.dusk.core.io.crypto.IsaacCipher
 import rs.dusk.core.network.codec.Codec.Companion.CODEC_KEY
+import rs.dusk.core.network.codec.Codec.Companion.IN_CIPHER_KEY
+import rs.dusk.core.network.codec.Codec.Companion.OUT_CIPHER_KEY
+import rs.dusk.core.network.codec.Codec.Companion.SIZED_KEY
 import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.message.MessageHandler
@@ -60,9 +64,36 @@ abstract class Codec {
          * The attribute in the [channel][Channel] that identifies the [codec][Codec]
          */
         val CODEC_KEY: AttributeKey<Codec> = AttributeKey.valueOf("codec.key")
+        val IN_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.in.key")
+        val OUT_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.out.key")
+        val SIZED_KEY: AttributeKey<Boolean> = AttributeKey.valueOf("sized.key")
     }
 }
 
+
+fun Channel.getCipherOut(): IsaacCipher? {
+    return attr(OUT_CIPHER_KEY).get()
+}
+
+fun Channel.setCipherOut(cipher: IsaacCipher?) {
+    attr(OUT_CIPHER_KEY).set(cipher)
+}
+
+fun Channel.getCipherIn(): IsaacCipher? {
+    return attr(IN_CIPHER_KEY).get()
+}
+
+fun Channel.setCipherIn(cipher: IsaacCipher?) {
+    attr(IN_CIPHER_KEY).set(cipher)
+}
+
+fun Channel.getSized(): Boolean {
+    return attr(SIZED_KEY).get() ?: false
+}
+
+fun Channel.setSized(sized: Boolean) {
+    attr(SIZED_KEY).set(sized)
+}
 /**
  * Getting the codec of the channel
  * @receiver Channel
@@ -77,4 +108,6 @@ fun Channel.getCodec(): Codec? {
  */
 fun Channel.setCodec(codec: Codec) {
     attr(CODEC_KEY).set(codec)
+    setCipherIn(null)
+    setCipherOut(null)
 }
