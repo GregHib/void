@@ -1,5 +1,6 @@
 package rs.dusk.network.rs.codec.login.handle
 
+import io.netty.channel.Channel
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
@@ -10,12 +11,12 @@ import rs.dusk.core.network.codec.setCipherIn
 import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.codec.setSized
-import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 import rs.dusk.utility.inject
+import java.net.InetSocketAddress
 
 class LobbyLoginMessageHandler : MessageHandler() {
 
@@ -36,7 +37,7 @@ class LobbyLoginMessageHandler : MessageHandler() {
 		pipeline.writeAndFlush(
 			LobbyConfigurationMessage(
 				username,
-				context.channel().getSession().getIp(),
+				getIp(context.channel()),
 				System.currentTimeMillis()
 			)
 		)
@@ -44,10 +45,18 @@ class LobbyLoginMessageHandler : MessageHandler() {
 		channel.setSized(false)
 		channel.setCipherIn(keyPair.inCipher)
 		channel.setCipherOut(keyPair.outCipher)
+
 		with(pipeline) {
 			replace("packet.decoder", RS2PacketDecoder())
 			replace("message.decoder", OpcodeMessageDecoder)
 			replace("message.encoder", GenericMessageEncoder)
 		}
+	}
+
+	/**
+	 * The ip address of the channel that connected to the server
+	 */
+	private fun getIp(channel: Channel) : String {
+		return (channel.localAddress() as? InetSocketAddress)?.address?.hostAddress ?: "127.0.0.1"
 	}
 }

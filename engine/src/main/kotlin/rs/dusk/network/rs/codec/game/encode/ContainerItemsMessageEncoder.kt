@@ -2,8 +2,8 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.INTERFACE_ITEMS
 import rs.dusk.network.rs.codec.game.encode.message.ContainerItemsMessage
 
@@ -16,7 +16,7 @@ class ContainerItemsMessageEncoder : MessageEncoder<ContainerItemsMessage> {
     override fun encode(builder: PacketWriter, msg: ContainerItemsMessage) {
         val (key, items, amounts, primary) = msg
         builder.apply {
-            writeOpcode(INTERFACE_ITEMS, PacketType.SHORT)
+            writeOpcode(INTERFACE_ITEMS, PacketSize.SHORT)
             writeShort(key)
             writeByte(primary)
             writeShort(items.size)

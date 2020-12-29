@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.login.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.LOBBY_DETAILS
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
 import java.util.*
@@ -22,7 +22,7 @@ class LobbyConfigurationMessageEncoder : MessageEncoder<LobbyConfigurationMessag
         var lastIp: String = lastIpAddress
 
         builder.apply {
-            writeOpcode(LOBBY_DETAILS, PacketType.BYTE)
+            writeOpcode(LOBBY_DETAILS, PacketSize.BYTE)
             writeByte(0)//Black marks
             writeByte(0)//Muted
             writeByte(0)//3

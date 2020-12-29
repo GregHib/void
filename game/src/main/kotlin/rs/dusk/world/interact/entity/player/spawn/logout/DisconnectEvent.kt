@@ -2,7 +2,7 @@ package rs.dusk.world.interact.entity.player.spawn.logout
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.connection.event.ChannelEvent
-import rs.dusk.core.network.model.session.getSession
+import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.utility.inject
 

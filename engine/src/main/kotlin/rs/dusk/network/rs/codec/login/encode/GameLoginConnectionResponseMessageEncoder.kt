@@ -1,10 +1,9 @@
 package rs.dusk.network.rs.codec.login.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponseMessage
-
 
 /**
  * This class encodes the login response code to the client after a game connection request is received.
@@ -16,6 +15,6 @@ import rs.dusk.network.rs.codec.login.encode.message.GameLoginConnectionResponse
 class GameLoginConnectionResponseMessageEncoder : MessageEncoder<GameLoginConnectionResponseMessage> {
 
     override fun encode(builder: PacketWriter, msg: GameLoginConnectionResponseMessage) {
-        builder.writeOpcode(msg.opcode, PacketType.FIXED)
+        builder.writeOpcode(msg.opcode, PacketSize.FIXED)
     }
 }

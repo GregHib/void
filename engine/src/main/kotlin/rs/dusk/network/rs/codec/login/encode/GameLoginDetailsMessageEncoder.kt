@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.login.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.LOGIN_DETAILS
 import rs.dusk.network.rs.codec.login.encode.message.GameLoginDetails
 
@@ -15,7 +15,7 @@ class GameLoginDetailsMessageEncoder : MessageEncoder<GameLoginDetails> {
     override fun encode(builder: PacketWriter, msg: GameLoginDetails) {
         val (rights, clientIndex, displayName) = msg
         builder.apply {
-            writeOpcode(LOGIN_DETAILS, PacketType.BYTE)
+            writeOpcode(LOGIN_DETAILS, PacketSize.BYTE)
             writeByte(rights)
             writeByte(0)//Unknown - something to do with skipping chat messages
             writeByte(0)

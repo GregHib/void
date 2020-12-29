@@ -1,8 +1,8 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.CHAT
 import rs.dusk.network.rs.codec.game.encode.message.ChatMessage
 
@@ -22,7 +22,7 @@ class ChatMessageEncoder : MessageEncoder<ChatMessage> {
             }
         }
         builder.apply {
-            writeOpcode(CHAT, PacketType.BYTE)
+            writeOpcode(CHAT, PacketSize.BYTE)
             writeSmart(type)
             writeInt(tile)
             writeByte(mask)

@@ -3,8 +3,8 @@ package rs.dusk.network.rs.codec.game.encode
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.packet.access.PacketSize
 import rs.dusk.core.network.codec.packet.access.PacketWriter
-import rs.dusk.core.network.model.packet.PacketType
 import rs.dusk.network.rs.codec.game.GameOpcodes.OBJECT_CUSTOMISE
 import rs.dusk.network.rs.codec.game.encode.message.ObjectCustomiseMessage
 
@@ -17,7 +17,7 @@ class ObjectCustomiseMessageEncoder : MessageEncoder<ObjectCustomiseMessage> {
     override fun encode(builder: PacketWriter, msg: ObjectCustomiseMessage) {
         val (tile, id, type, modelIds, colours, textureColours, clear) = msg
         builder.apply {
-            writeOpcode(OBJECT_CUSTOMISE, PacketType.BYTE)
+            writeOpcode(OBJECT_CUSTOMISE, PacketSize.BYTE)
             writeByte(type, type = Modifier.ADD)
             var flag = 0
             if(clear) {

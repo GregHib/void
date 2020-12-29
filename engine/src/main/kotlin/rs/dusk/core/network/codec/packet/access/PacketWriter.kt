@@ -4,7 +4,6 @@ import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.core.crypto.IsaacCipher
-import rs.dusk.core.network.model.packet.PacketType
 
 /**
  * All functions relative to writing directly to a packet are done by this class
@@ -17,9 +16,9 @@ open class PacketWriter(
     protected open val cipher: IsaacCipher? = null
 ) : BufferWriter(buffer) {
     private var sizeIndex = 0
-    protected var type: PacketType = PacketType.FIXED
+    protected var type: Int = PacketSize.FIXED
 
-    fun writeOpcode(opcode: Int, type: PacketType = PacketType.FIXED) {
+    fun writeOpcode(opcode: Int, type: Int = PacketSize.FIXED) {
         this.type = type
         if (cipher != null) {
             if (opcode >= 128) {
@@ -36,10 +35,8 @@ open class PacketWriter(
         sizeIndex = buffer.writerIndex()
         //Write length placeholder
         when (type) {
-            PacketType.BYTE -> writeByte(0)
-            PacketType.SHORT -> writeShort(0)
-            else -> {
-            }
+            PacketSize.BYTE -> writeByte(0)
+            PacketSize.SHORT -> writeShort(0)
         }
     }
 
@@ -52,10 +49,8 @@ open class PacketWriter(
             buffer.writerIndex(sizeIndex)
             //Write the packet length (accounting for placeholder)
             when (type) {
-                PacketType.BYTE -> writeByte(size - 1)
-                PacketType.SHORT -> writeShort(size - 2)
-                else -> {
-                }
+                PacketSize.BYTE -> writeByte(size - 1)
+                PacketSize.SHORT -> writeShort(size - 2)
             }
             buffer.writerIndex(index)
         }
