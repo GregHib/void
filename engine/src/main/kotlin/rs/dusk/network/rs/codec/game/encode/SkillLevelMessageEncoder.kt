@@ -2,24 +2,32 @@ package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.write.writeByte
+import rs.dusk.buffer.write.writeInt
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.SKILL_LEVEL
-import rs.dusk.network.rs.codec.game.encode.message.SkillLevelMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 27, 2020
  */
-class SkillLevelMessageEncoder : MessageEncoder<SkillLevelMessage> {
+class SkillLevelMessageEncoder : MessageEncoder(SKILL_LEVEL) {
 
-    override fun encode(builder: PacketWriter, msg: SkillLevelMessage) {
-        val (skill, level, experience) = msg
-        builder.apply {
-            writeOpcode(SKILL_LEVEL)
-            writeByte(level, Modifier.SUBTRACT)
-            writeByte(skill, Modifier.ADD)
-            writeInt(experience, order = Endian.LITTLE)
-        }
+    /**
+     * Updates the players skill level & experience
+     * @param skill The skills id
+     * @param level The current players level
+     * @param experience The current players experience
+     */
+    fun encode(
+        player: Player,
+        skill: Int,
+        level: Int,
+        experience: Int
+    ) = player.send(6) {
+        writeByte(level, Modifier.SUBTRACT)
+        writeByte(skill, Modifier.ADD)
+        writeInt(experience, order = Endian.LITTLE)
     }
 }

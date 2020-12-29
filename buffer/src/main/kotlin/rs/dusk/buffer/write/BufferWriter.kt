@@ -13,7 +13,7 @@ import rs.dusk.buffer.Modifier
  * @since February 18, 2020
  */
 open class BufferWriter(
-        val buffer: ByteBuf = Unpooled.buffer()
+    val buffer: ByteBuf = Unpooled.buffer()
 ) : Writer {
     private var bitIndex = 0
 
@@ -127,7 +127,7 @@ open class BufferWriter(
     }
 
     companion object {
-        private val BIT_MASKS = IntArray(32)
+        val BIT_MASKS = IntArray(32)
 
         init {
             for (i in BIT_MASKS.indices) {

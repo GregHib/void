@@ -1,18 +1,28 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.RUN_ENERGY
-import rs.dusk.network.rs.codec.game.encode.message.RunEnergyMessage
+import rs.dusk.utility.get
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since July 27, 2020
  */
-class RunEnergyMessageEncoder : MessageEncoder<RunEnergyMessage> {
+class RunEnergyMessageEncoder : MessageEncoder(RUN_ENERGY) {
 
-    override fun encode(builder: PacketWriter, msg: RunEnergyMessage) {
-        builder.writeOpcode(RUN_ENERGY)
-        builder.writeByte(msg.energy)
+    /**
+     * Sends run energy
+     * @param energy The current energy value
+     */
+    fun encode(
+        player: Player,
+        energy: Int
+    ) = player.send(1) {
+        writeByte(energy)
     }
+}
+
+fun Player.sendRunEnergy(energy: Int) {
+    get<RunEnergyMessageEncoder>().encode(this, energy)
 }

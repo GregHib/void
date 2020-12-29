@@ -1,26 +1,36 @@
 package rs.dusk.network.rs.codec.game.encode
 
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.write.writeByte
 import rs.dusk.core.network.codec.message.MessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.GRAPHIC_AREA
-import rs.dusk.network.rs.codec.game.encode.message.GraphicAreaMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since June 27, 2020
  */
-class GraphicAreaMessageEncoder : MessageEncoder<GraphicAreaMessage> {
+class GraphicAreaMessageEncoder : MessageEncoder(GRAPHIC_AREA) {
 
-    override fun encode(builder: PacketWriter, msg: GraphicAreaMessage) {
-        val (tile, id, height, delay, rotation) = msg
-        builder.apply {
-            writeOpcode(GRAPHIC_AREA)
-            writeByte(tile, type = Modifier.ADD)
-            writeShort(id)
-            writeByte(height)
-            writeShort(delay)
-            writeByte(rotation)//0..7
-        }
+    /**
+     * @param tile The tile offset from the chunk update send
+     * @param id graphic id
+     * @param height 0..255 start height off the ground
+     * @param delay delay to start graphic 30 = 1 tick
+     * @param rotation 0..7
+     */
+    fun encode(
+        player: Player,
+        tile: Int,
+        id: Int,
+        height: Int,
+        delay: Int,
+        rotation: Int
+    ) = player.send(5, flush = false) {
+        writeByte(tile, type = Modifier.ADD)
+        writeShort(id)
+        writeByte(height)
+        writeShort(delay)
+        writeByte(rotation)
     }
 }

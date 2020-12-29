@@ -8,11 +8,11 @@ import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.player.PlayerOption
 import rs.dusk.engine.entity.character.player.PlayerOptions
 import rs.dusk.engine.entity.character.player.Players
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.character.update.visual.watch
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.inject
 
 /**

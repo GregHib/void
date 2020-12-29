@@ -1,5 +1,6 @@
 package rs.dusk.engine.entity.character.player
 
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_NPC_CAP
 import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.LOCAL_PLAYER_CAP
 import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.NPC_TICK_CAP
@@ -7,8 +8,6 @@ import rs.dusk.engine.client.update.task.viewport.ViewportUpdating.Companion.PLA
 import rs.dusk.engine.entity.character.npc.NPCTrackingSet
 import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.map.chunk.Chunk
-import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
-import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -34,8 +33,10 @@ data class Viewport(
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
 
-    val message = PlayerUpdateMessage()
-    val npcMessage = NPCUpdateMessage()
+    val playerChanges = BufferWriter()
+    val playerUpdates = BufferWriter()
+    val npcChanges = BufferWriter()
+    val npcUpdates = BufferWriter()
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 

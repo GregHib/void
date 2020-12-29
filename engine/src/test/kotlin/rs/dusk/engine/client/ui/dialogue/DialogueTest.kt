@@ -74,7 +74,6 @@ internal class DialogueTest {
         }
 
         runBlocking(Contexts.Game) {
-            println("Clear")
             manager.clear()
         }
         runBlocking(Contexts.Game) {

@@ -1,6 +1,5 @@
 package rs.dusk.world.interact.entity.player.equip
 
-import rs.dusk.engine.client.send
 import rs.dusk.engine.entity.character.contain.Container
 import rs.dusk.engine.entity.character.contain.ContainerModification
 import rs.dusk.engine.entity.character.contain.equipment
@@ -10,10 +9,11 @@ import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
-import rs.dusk.network.rs.codec.game.encode.message.WeightMessage
+import rs.dusk.network.rs.codec.game.encode.WeightMessageEncoder
 import rs.dusk.utility.inject
 
 val definitions: ItemDefinitions by inject()
+val weightEncoder: WeightMessageEncoder by inject()
 
 PlayerRegistered then {
     updateWeight(player)
@@ -41,5 +41,5 @@ fun updateWeight(player: Player) {
     weight += player.inventory.weight()
 
     player["weight", true] = weight
-    player.send(WeightMessage(weight.toInt()))
+    weightEncoder.encode(player, weight.toInt())
 }

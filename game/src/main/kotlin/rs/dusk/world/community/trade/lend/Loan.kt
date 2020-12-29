@@ -6,10 +6,10 @@ import rs.dusk.engine.entity.character.contain.beastOfBurden
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.Time
 import rs.dusk.utility.func.plural
 import rs.dusk.utility.inject

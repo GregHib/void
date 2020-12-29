@@ -1,8 +1,61 @@
 package rs.dusk.network.rs.codec.game
 
+import org.koin.dsl.module
 import rs.dusk.core.network.codec.Codec
 import rs.dusk.network.rs.codec.game.decode.*
 import rs.dusk.network.rs.codec.game.encode.*
+
+val gameCodec = module {
+    single { ChatMessageEncoder() }
+    single { ChunkClearMessageEncoder() }
+    single { ChunkUpdateMessageEncoder() }
+    single { ContainerItemsMessageEncoder() }
+    single { ContextMenuOptionMessageEncoder() }
+    single { DynamicMapRegionMessageEncoder() }
+    single { FloorItemAddMessageEncoder() }
+    single { FloorItemRemoveMessageEncoder() }
+    single { FloorItemRevealMessageEncoder() }
+    single { FloorItemUpdateMessageEncoder() }
+    single { GraphicAreaMessageEncoder() }
+    single { InterfaceCloseMessageEncoder() }
+    single { InterfaceHeadNPCMessageEncoder() }
+    single { InterfaceHeadPlayerMessageEncoder() }
+    single { InterfaceItemMessageEncoder() }
+    single { InterfaceItemUpdateMessageEncoder() }
+    single { InterfaceAnimationMessageEncoder() }
+    single { InterfaceOpenMessageEncoder() }
+    single { InterfaceSettingsMessageEncoder() }
+    single { InterfaceSpriteMessageEncoder() }
+    single { InterfaceTextMessageEncoder() }
+    single { InterfaceUpdateMessageEncoder() }
+    single { InterfaceVisibilityMessageEncoder() }
+    single { LogoutLobbyMessageEncoder() }
+    single { LogoutMessageEncoder() }
+    single { MapRegionMessageEncoder() }
+    single { NPCUpdateMessageEncoder() }
+    single { ObjectAddMessageEncoder() }
+    single { ObjectAnimationMessageEncoder() }
+    single { ObjectAnimationSpecificMessageEncoder() }
+    single { ObjectCustomiseMessageEncoder() }
+    single { ObjectPreloadMessageEncoder() }
+    single { ObjectRemoveMessageEncoder() }
+    single { PlayerUpdateMessageEncoder() }
+    single { ProjectileAddMessageEncoder() }
+    single { ProjectileHalfSquareMessageEncoder() }
+    single { RunEnergyMessageEncoder() }
+    single { ScriptMessageEncoder() }
+    single { SkillLevelMessageEncoder() }
+    single { SoundAreaMessageEncoder() }
+    single { TextTileMessageEncoder() }
+    single { VarbitLargeMessageEncoder() }
+    single { VarbitMessageEncoder() }
+    single { VarcLargeMessageEncoder() }
+    single { VarcMessageEncoder() }
+    single { VarcStrMessageEncoder() }
+    single { VarpLargeMessageEncoder() }
+    single { VarpMessageEncoder() }
+    single { WeightMessageEncoder() }
+}
 
 class GameCodec : Codec() {
 
@@ -101,53 +154,6 @@ class GameCodec : Codec() {
         registerDecoder(GameOpcodes.IN_OUT_SCREEN, WindowHoveredMessageDecoder())
         registerDecoder(GameOpcodes.REFRESH_WORLDS, WorldListRefreshMessageDecoder())
         registerDecoder(GameOpcodes.WORLD_MAP_CLICK, WorldMapCloseMessageDecoder())
-
-        registerEncoder(ChatMessageEncoder())
-        registerEncoder(ChunkClearMessageEncoder())
-        registerEncoder(ChunkUpdateMessageEncoder())
-        registerEncoder(ContainerItemsMessageEncoder())
-        registerEncoder(ContextMenuOptionMessageEncoder())
-        registerEncoder(DynamicMapRegionMessageEncoder())
-        registerEncoder(FloorItemAddMessageEncoder())
-        registerEncoder(FloorItemRemoveMessageEncoder())
-        registerEncoder(FloorItemRevealMessageEncoder())
-        registerEncoder(FloorItemUpdateMessageEncoder())
-        registerEncoder(GraphicAreaMessageEncoder())
-        registerEncoder(InterfaceCloseMessageEncoder())
-        registerEncoder(InterfaceHeadNPCMessageEncoder())
-        registerEncoder(InterfaceHeadPlayerMessageEncoder())
-        registerEncoder(InterfaceItemMessageEncoder())
-        registerEncoder(InterfaceItemUpdateMessageEncoder())
-        registerEncoder(InterfaceMessageEncoder())
-        registerEncoder(InterfaceOpenMessageEncoder())
-        registerEncoder(InterfaceSettingsMessageEncoder())
-        registerEncoder(InterfaceSpriteMessageEncoder())
-        registerEncoder(InterfaceTextMessageEncoder())
-        registerEncoder(InterfaceUpdateMessageEncoder())
-        registerEncoder(InterfaceVisibilityMessageEncoder())
-        registerEncoder(LogoutMessageEncoder())
-        registerEncoder(MapRegionMessageEncoder())
-        registerEncoder(NPCUpdateMessageEncoder())
-        registerEncoder(ObjectAddMessageEncoder())
-        registerEncoder(ObjectAnimationMessageEncoder())
-        registerEncoder(ObjectAnimationSpecificMessageEncoder())
-        registerEncoder(ObjectCustomiseMessageEncoder())
-        registerEncoder(ObjectPreloadMessageEncoder())
-        registerEncoder(ObjectRemoveMessageEncoder())
-        registerEncoder(PlayerUpdateMessageEncoder())
-        registerEncoder(ProjectileAddMessageEncoder())
-        registerEncoder(ProjectileHalfSquareMessageEncoder())
-        registerEncoder(RunEnergyMessageEncoder())
-        registerEncoder(ScriptMessageEncoder())
-        registerEncoder(SkillLevelMessageEncoder())
-        registerEncoder(SoundAreaMessageEncoder())
-        registerEncoder(TextTileMessageEncoder())
-        registerEncoder(VarbitMessageEncoder())
-        registerEncoder(VarcMessageEncoder())
-        registerEncoder(VarcStrMessageEncoder())
-        registerEncoder(VarpMessageEncoder())
-        registerEncoder(WeightMessageEncoder())
-        registerEncoder(WorldListResponseMessageEncoder())
-        count = decoders.size + encoders.size
+        count = decoders.size
     }
 }

@@ -10,9 +10,9 @@ import io.netty.channel.group.DefaultChannelGroup
 import io.netty.channel.nio.NioEventLoopGroup
 import io.netty.channel.socket.SocketChannel
 import io.netty.channel.socket.nio.NioServerSocketChannel
+import io.netty.handler.codec.bytes.ByteArrayEncoder
 import io.netty.util.concurrent.GlobalEventExecutor
 import org.koin.dsl.module
-import rs.dusk.core.network.codec.message.GenericMessageEncoder
 import rs.dusk.core.network.codec.message.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.packet.PacketDecoder
 import rs.dusk.core.network.codec.setCodec
@@ -48,12 +48,13 @@ class GameServer(
             option(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT)
             childOption(ChannelOption.TCP_NODELAY, true)
             childOption(ChannelOption.SO_KEEPALIVE, true)
+            val encoder = ByteArrayEncoder()
             childHandler(object : ChannelInitializer<SocketChannel>() {
                 override fun initChannel(ch: SocketChannel) {
                     val pipe = ch.pipeline()
                     pipe.addLast("packet.decoder", PacketDecoder())
                     pipe.addLast("message.decoder", OpcodeMessageDecoder)
-                    pipe.addLast("message.encoder", GenericMessageEncoder)
+                    pipe.addLast("message.encoder", encoder)
                     pipe.addLast("channel.listener", ChannelAdapter(channels, sessions, disconnections))
                     pipe.channel().setCodec(service)
                 }

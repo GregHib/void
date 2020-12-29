@@ -5,7 +5,7 @@ import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.network.rs.codec.service.FileServerResponseCodes
 import rs.dusk.network.rs.codec.update.UpdateCodec
-import rs.dusk.network.rs.codec.update.encode.message.UpdateVersionMessage
+import rs.dusk.network.rs.codec.update.encode.UpdateVersionMessageEncoder
 import rs.dusk.utility.getIntProperty
 import rs.dusk.utility.inject
 
@@ -13,6 +13,7 @@ class UpdateHandshakeMessageHandler : MessageHandler() {
 
     private val clientMajorBuild: Int = getIntProperty("clientBuild")
     private val update: UpdateCodec by inject()
+    private val versionEncoder = UpdateVersionMessageEncoder()
 
     override fun updateHandshake(context: ChannelHandlerContext, version: Int) {
         val response = if (version == clientMajorBuild) {
@@ -22,8 +23,7 @@ class UpdateHandshakeMessageHandler : MessageHandler() {
         }
 
         val channel = context.channel()
-        val pipeline = context.pipeline()
         channel.setCodec(update)
-        pipeline.writeAndFlush(UpdateVersionMessage(response))
+        versionEncoder.encode(channel, response)
     }
 }

@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource
 import rs.dusk.buffer.write.Writer
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.clientSessionModule
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.update.task.npc.NPCUpdateTask
 import rs.dusk.engine.entity.character.npc.NPC
 import rs.dusk.engine.entity.character.npc.NPCTrackingSet
@@ -20,7 +19,7 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.message.NPCUpdateMessage
+import rs.dusk.network.rs.codec.game.encode.NPCUpdateMessageEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -31,6 +30,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var task: NPCUpdateTask
     lateinit var players: Players
     lateinit var sessions: Sessions
+    lateinit var encoder: NPCUpdateMessageEncoder
     override val modules = listOf(
         eventModule,
         entityListModule,
@@ -41,7 +41,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
     fun setup() {
         players = mockk()
         sessions = mockk()
-        task = spyk(NPCUpdateTask(players, sessions))
+        encoder = mockk(relaxed = true)
+        task = spyk(NPCUpdateTask(players, sessions, encoder))
     }
 
     @Test
@@ -54,7 +55,6 @@ internal class NPCUpdateTaskTest : KoinMock() {
         }
         every { players.getAtIndex(any()).hint(Player::class) } returns null
         every { sessions.contains(player) } returns true
-        every { player.send(any<NPCUpdateMessage>()) } just Runs
         // When
         task.run()
         // Then

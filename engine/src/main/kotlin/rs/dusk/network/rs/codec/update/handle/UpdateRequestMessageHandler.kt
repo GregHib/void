@@ -5,13 +5,14 @@ import com.google.common.primitives.Ints
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.Cache
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.network.rs.codec.update.encode.message.UpdateResponseMessage
+import rs.dusk.network.rs.codec.update.encode.UpdateResponseMessageEncoder
 import rs.dusk.utility.inject
 
 class UpdateRequestMessageHandler : MessageHandler() {
 
     private val logger = InlineLogger()
     private val cache: Cache by inject()
+    private val responseEncoder = UpdateResponseMessageEncoder()
 
     override fun updateRequest(context: ChannelHandlerContext, indexId: Int, archiveId: Int, priority: Boolean) {
         val data = cache.getArchive(indexId, archiveId) ?: return logger.debug { "Request $this was invalid - does not exist in cache" }
@@ -22,7 +23,7 @@ class UpdateRequestMessageHandler : MessageHandler() {
             attributes = attributes or 0x80
         }
 
-        context.pipeline().writeAndFlush(UpdateResponseMessage(indexId, archiveId, data, compression, length, attributes))
+        responseEncoder.encode(context.channel(), indexId, archiveId, data, compression, length, attributes)
     }
 
 }

@@ -4,10 +4,10 @@ import rs.dusk.engine.entity.character.contain.contains
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.skill.Level.has
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.definition.ItemDefinitions
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.get
 
 @Suppress("EnumEntryName")

@@ -5,7 +5,6 @@ import kotlinx.coroutines.CancellationException
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.action.action
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.closeType
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.client.variable.*
@@ -17,14 +16,14 @@ import rs.dusk.engine.entity.character.get
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerOption
 import rs.dusk.engine.entity.character.player.chat.ChatType
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.character.update.visual.player.name
 import rs.dusk.engine.entity.definition.ContainerDefinitions
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
+import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.rs.codec.game.encode.sendScript
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 import rs.dusk.world.community.friend.hasFriend
@@ -226,7 +225,7 @@ fun Player.warn(name: String, component: String, slot: Int) {
     val comp = details.getComponent(name, component)
     val container = containerDefinitions.get(comp.container)
     println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
-    send(ScriptMessage(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
+    sendScript(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {

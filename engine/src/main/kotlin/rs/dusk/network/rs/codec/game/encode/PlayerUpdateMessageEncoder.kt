@@ -1,24 +1,25 @@
 package rs.dusk.network.rs.codec.game.encode
 
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketSize
-import rs.dusk.core.network.codec.packet.access.PacketWriter
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.rs.codec.game.GameOpcodes.PLAYER_UPDATING
-import rs.dusk.network.rs.codec.game.encode.message.PlayerUpdateMessage
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
  */
-class PlayerUpdateMessageEncoder : MessageEncoder<PlayerUpdateMessage> {
+class PlayerUpdateMessageEncoder : MessageEncoder(PLAYER_UPDATING, PacketSize.SHORT) {
 
-    override fun encode(builder: PacketWriter, msg: PlayerUpdateMessage) {
-        val (changes, updates) = msg
-        builder.apply {
-            writeOpcode(PLAYER_UPDATING, PacketSize.SHORT)
-            writeBytes(changes.buffer)
-            writeBytes(updates.buffer)
-        }
-        msg.release()
+    fun encode(
+        player: Player,
+        changes: BufferWriter,
+        updates: BufferWriter
+    ) = player.send(changes.position() + updates.position()) {
+        writeBytes(changes.buffer)
+        writeBytes(updates.buffer)
+        changes.buffer.clear()
+        updates.buffer.clear()
     }
 }

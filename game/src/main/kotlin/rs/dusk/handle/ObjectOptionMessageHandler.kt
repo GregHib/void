@@ -5,12 +5,12 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.update.visual.player.face
 import rs.dusk.engine.entity.obj.ObjectOption
 import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.path.PathResult
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.inject
 
 /**

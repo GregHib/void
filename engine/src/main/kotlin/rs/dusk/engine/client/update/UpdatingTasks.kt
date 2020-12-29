@@ -63,11 +63,13 @@ val updatingTasksModule = module {
     single(createdAtStart = true) {
         PlayerUpdateTask(
             get(),
+            get(),
             get()
         )
     }
     single(createdAtStart = true) {
         NPCUpdateTask(
+            get(),
             get(),
             get()
         )

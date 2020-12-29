@@ -5,7 +5,6 @@ import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.player.chat.ChatType
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.entity.character.player.effect.Hidden
 import rs.dusk.engine.entity.character.player.skill.Skill
 import rs.dusk.engine.entity.character.update.visual.player.tele
@@ -14,6 +13,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command

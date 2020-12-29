@@ -1,16 +1,18 @@
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.ChatType
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message.*
+import rs.dusk.network.rs.codec.game.encode.*
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 
 val details: InterfaceDetails by inject()
+val closeEncoder: InterfaceCloseMessageEncoder by inject()
+val openEncoder: InterfaceOpenMessageEncoder by inject()
+val visibleEncoder: InterfaceVisibilityMessageEncoder by inject()
+val settingsEncoder: InterfaceSettingsMessageEncoder by inject()
 
 Command where { prefix == "inter" } then {
     val id = content.toIntOrNull()
@@ -26,9 +28,9 @@ Command where { prefix == "inter" } then {
             index = inter.getIndex(player.gameFrame.resizable)
         }
         if (id == -1) {
-            player.send(InterfaceCloseMessage(parent, index))
+            closeEncoder.encode(player, parent, index)
         } else {
-            player.send(InterfaceOpenMessage(false, parent, index, id))
+            openEncoder.encode(player, false, parent, index, id)
         }
     }
 }
@@ -40,7 +42,7 @@ fun closeInterface(player: Player): Boolean {
 
 Command where { prefix == "show" } then {
     val parts = content.split(" ")
-    player.send(InterfaceVisibilityMessage(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean()))
+    visibleEncoder.encode(player, parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
 }
 
 Command where { prefix == "sendItem" } then {
@@ -52,20 +54,20 @@ Command where { prefix == "setting" } then {
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
-    player.send(InterfaceSettingsMessage(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder)))
+    settingsEncoder.encode(player, parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
 }
 
 Command where { prefix == "script" } then {
     val parts = content.split(" ")
     val remainder = parts.subList(1, parts.size).map { it.toIntOrNull() ?: it }.toTypedArray()
-    player.send(ScriptMessage(parts[0].toInt(), *remainder))
+    player.sendScript(parts[0].toInt(), *remainder)
 }
 
 Command where { prefix == "sendItems" } then {
     repeat(1200) {
-        player.send(ContainerItemsMessage(it, intArrayOf(), intArrayOf(), false))
+        player.sendContainerItems(it, intArrayOf(), intArrayOf(), false)
     }
-    for(it in 0 until 1200) {
-        player.send(ContainerItemsMessage(it, IntArray(1) { 995 }, IntArray(1) { 100 }, false))
+    for(container in 0 until 1200) {
+        player.sendContainerItems(container, IntArray(1) { 995 }, IntArray(1) { 100 }, false)
     }
 }

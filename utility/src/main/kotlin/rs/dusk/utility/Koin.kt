@@ -16,7 +16,7 @@ inline fun <reified T : Any> get(
     noinline parameters: ParametersDefinition? = null
 ): T = getKoin().get(qualifier, parameters)
 
-fun getIntProperty(key: String): Int = getKoin().getIntProperty(key)!!
+fun getIntProperty(key: String): Int = getKoin().getIntProperty(key)!!.toInt()
 
 fun getProperty(key: String): String = getKoin().getProperty(key)!!
 

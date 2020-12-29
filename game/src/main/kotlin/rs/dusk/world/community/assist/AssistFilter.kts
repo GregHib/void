@@ -3,9 +3,9 @@ import rs.dusk.engine.client.variable.getVar
 import rs.dusk.engine.entity.character.*
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.ChatType
-import rs.dusk.engine.entity.character.player.chat.message
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
+import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.func.plural
 import rs.dusk.world.community.assist.Assistance.getHoursRemaining
 import rs.dusk.world.community.assist.Assistance.hasEarnedMaximumExperience

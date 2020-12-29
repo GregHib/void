@@ -14,8 +14,8 @@ import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLoaded
 import rs.dusk.engine.tick.Startup
-import rs.dusk.network.rs.codec.game.encode.message.ObjectAddMessage
-import rs.dusk.network.rs.codec.game.encode.message.ObjectRemoveMessage
+import rs.dusk.network.rs.codec.game.encode.ObjectAddMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectRemoveMessageEncoder
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.RemoveObject
@@ -28,6 +28,8 @@ val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val factory: GameObjectFactory by inject()
 val logger = InlineLogger()
+val addEncoder: ObjectAddMessageEncoder by inject()
+val removeEncoder: ObjectRemoveMessageEncoder by inject()
 
 val spawns: MutableMap<Region, MutableList<GameObject>> = mutableMapOf()
 
@@ -83,10 +85,9 @@ RemoveObject then {
 }
 
 fun despawn(gameObject: GameObject) {
-    batcher.update(
-        gameObject.tile.chunk,
-        ObjectRemoveMessage(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
-    )
+    batcher.update(gameObject.tile.chunk) { player ->
+        removeEncoder.encode(player, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
+    }
     objects.removeTemp(gameObject)
     bus.emit(Unregistered(gameObject))
 }
@@ -94,7 +95,7 @@ fun despawn(gameObject: GameObject) {
 fun spawnCustom(gameObject: GameObject) {
     if (gameObject.id == -1) {
         val removal = objects[gameObject.tile].firstOrNull { it.tile == gameObject.tile && it.type == gameObject.type && it.rotation == gameObject.rotation }
-        if(removal == null) {
+        if (removal == null) {
             logger.debug { "Cannot find object to despawn $gameObject" }
         } else {
             despawn(removal)
@@ -105,10 +106,9 @@ fun spawnCustom(gameObject: GameObject) {
 }
 
 fun respawn(gameObject: GameObject) {
-    batcher.update(
-        gameObject.tile.chunk,
-        ObjectAddMessage(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
-    )
+    batcher.update(gameObject.tile.chunk) { player ->
+        addEncoder.encode(player, gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
+    }
     objects.addTemp(gameObject)
     bus.emit(Registered(gameObject))
 }

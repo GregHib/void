@@ -1,10 +1,10 @@
 package rs.dusk.engine.client.ui
 
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetail
 import rs.dusk.engine.client.ui.event.InterfaceClosed
@@ -13,22 +13,40 @@ import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerEvent
 import rs.dusk.engine.event.EventBus
-import rs.dusk.network.rs.codec.game.encode.message.*
+import rs.dusk.network.rs.codec.game.encode.*
 
 internal class InterfaceIOTest {
 
     private lateinit var io: InterfaceIO
     private lateinit var player: Player
     private lateinit var bus: EventBus
+    private lateinit var openEncoder: InterfaceOpenMessageEncoder
+    private lateinit var updateEncoder: InterfaceUpdateMessageEncoder
+    private lateinit var animationEncoder: InterfaceAnimationMessageEncoder
+    private lateinit var closeEncoder: InterfaceCloseMessageEncoder
+    private lateinit var playerHeadEncoder: InterfaceHeadPlayerMessageEncoder
+    private lateinit var npcHeadEncoder: InterfaceHeadNPCMessageEncoder
+    private lateinit var textEncoder: InterfaceTextMessageEncoder
+    private lateinit var visibleEncoder: InterfaceVisibilityMessageEncoder
+    private lateinit var spriteEncoder: InterfaceSpriteMessageEncoder
+    private lateinit var itemEncoder: InterfaceItemMessageEncoder
 
     @BeforeEach
     fun setup() {
         player = mockk()
-        mockkStatic("rs.dusk.engine.client.SessionsKt")
-        every { player.send(any<Message>()) } just Runs
         bus = mockk()
         every { bus.emit(any<PlayerEvent>(), any()) } returns mockk()
-        io = PlayerInterfaceIO(player, bus)
+        openEncoder = mockk(relaxed = true)
+        updateEncoder = mockk(relaxed = true)
+        animationEncoder = mockk(relaxed = true)
+        closeEncoder = mockk(relaxed = true)
+        playerHeadEncoder = mockk(relaxed = true)
+        npcHeadEncoder = mockk(relaxed = true)
+        textEncoder = mockk(relaxed = true)
+        visibleEncoder = mockk(relaxed = true)
+        spriteEncoder = mockk(relaxed = true)
+        itemEncoder = mockk(relaxed = true)
+        io = PlayerInterfaceIO(player, bus, openEncoder, updateEncoder, animationEncoder, closeEncoder, playerHeadEncoder, npcHeadEncoder, textEncoder, visibleEncoder, spriteEncoder, itemEncoder)
     }
 
     @Test
@@ -39,7 +57,7 @@ internal class InterfaceIOTest {
         every { inter.getParent(false) } returns -1
         io.sendOpen(inter)
         verify {
-            player.send(InterfaceUpdateMessage(1, 0))
+            updateEncoder.encode(player, 1, 0)
         }
     }
 
@@ -53,7 +71,7 @@ internal class InterfaceIOTest {
         every { inter.type } returns "main_screen"
         io.sendOpen(inter)
         verify {
-            player.send(InterfaceOpenMessage(false, 10, 1, 100))
+            openEncoder.encode(player, false, 10, 1, 100)
         }
     }
 
@@ -67,7 +85,7 @@ internal class InterfaceIOTest {
         every { inter.type } returns ""
         io.sendOpen(inter)
         verify {
-            player.send(InterfaceOpenMessage(true, 10, 1, 100))
+            openEncoder.encode(player, true, 10, 1, 100)
         }
     }
 
@@ -80,7 +98,7 @@ internal class InterfaceIOTest {
         every { inter.getParent(true) } returns 100
         io.sendClose(inter)
         verify {
-            player.send(InterfaceCloseMessage(100, 1))
+            closeEncoder.encode(player, 100, 1)
         }
     }
 
@@ -119,7 +137,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendPlayerHead(comp)
         verify {
-            player.send(InterfaceHeadPlayerMessage(10, 100))
+            playerHeadEncoder.encode(player, 10, 100)
         }
     }
 
@@ -131,7 +149,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendNPCHead(comp, 123)
         verify {
-            player.send(InterfaceHeadNPCMessage(100, 10, 123))
+            npcHeadEncoder.encode(player, 100, 10, 123)
         }
     }
 
@@ -143,7 +161,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendAnimation(comp, 123)
         verify {
-            player.send(InterfaceAnimationMessage(100, 10, 123))
+            animationEncoder.encode(player, 100, 10, 123)
         }
     }
 
@@ -155,7 +173,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendText(comp, "words")
         verify {
-            player.send(InterfaceTextMessage(100, 10, "words"))
+            textEncoder.encode(player, 100, 10, "words")
         }
     }
 
@@ -167,7 +185,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendVisibility(comp, visible = false)
         verify {
-            player.send(InterfaceVisibilityMessage(100, 10, hide = true))
+            visibleEncoder.encode(player, 100, 10, hide = true)
         }
     }
 
@@ -179,7 +197,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendSprite(comp, 123)
         verify {
-            player.send(InterfaceSpriteMessage(100, 10, 123))
+            spriteEncoder.encode(player, 100, 10, 123)
         }
     }
 
@@ -191,7 +209,7 @@ internal class InterfaceIOTest {
         comp.parent = inter.id
         io.sendItem(comp, 123, 4)
         verify {
-            player.send(InterfaceItemMessage(100, 10, 123, 4))
+            itemEncoder.encode(player, 100, 10, 123, 4)
         }
     }
 }

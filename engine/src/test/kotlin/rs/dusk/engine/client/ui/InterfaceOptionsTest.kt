@@ -5,15 +5,13 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.cache.config.data.ContainerDefinition
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.engine.client.send
 import rs.dusk.engine.client.ui.detail.InterfaceComponentDetail
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
-import rs.dusk.network.rs.codec.game.encode.message.InterfaceSettingsMessage
-import rs.dusk.network.rs.codec.game.encode.message.ScriptMessage
+import rs.dusk.network.rs.codec.game.encode.sendInterfaceSettings
+import rs.dusk.network.rs.codec.game.encode.sendScript
 
 internal class InterfaceOptionsTest {
 
@@ -39,8 +37,10 @@ internal class InterfaceOptionsTest {
         val component = InterfaceComponentDetail(0, comp, parent = 5, container = "container", primaryContainer = false, options = staticOptions)
         every { details.getComponent(name, any()) } returns InterfaceComponentDetail(-1, "")
         every { details.getComponent(name, comp) } returns component
-        mockkStatic("rs.dusk.engine.client.SessionsKt")
-        every { player.send(any<Message>()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.InterfaceSettingsMessageEncoderKt")
+        every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
+        mockkStatic("rs.dusk.network.rs.codec.game.encode.ScriptMessageEncoderKt")
+        every { player.sendScript(any(), *anyVararg()) } just Runs
     }
 
     @Test
@@ -78,7 +78,7 @@ internal class InterfaceOptionsTest {
         every { containerDefinitions.get(any<String>()) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.send(name, comp)
         verify {
-            player.send(ScriptMessage(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", ""))
+            player.sendScript(695, (5 shl 16) or 0, 10, 2, 3, 0, -1, "", "", "", "", "", "", "", "", "")
         }
     }
 
@@ -87,7 +87,7 @@ internal class InterfaceOptionsTest {
         every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.unlockAll(name, comp, 0..27)
         verify {
-            player.send(InterfaceSettingsMessage(5, 0, 0, 27, getHash(9)))
+            player.sendInterfaceSettings(5, 0, 0, 27, getHash(9))
         }
     }
 
@@ -97,7 +97,7 @@ internal class InterfaceOptionsTest {
         options.set(name, comp, arrayOf("one", "two", "three"))
         options.unlock(name, comp, 0..27, "two", "three")
         verify {
-            player.send(InterfaceSettingsMessage(5, 0, 0, 27, getHash(1, 2)))
+            player.sendInterfaceSettings(5, 0, 0, 27, getHash(1, 2))
         }
     }
 
@@ -106,7 +106,7 @@ internal class InterfaceOptionsTest {
         every { containerDefinitions.get(name) } returns ContainerDefinition(10, extras = mapOf("width" to 2, "height" to 3))
         options.lockAll(name, comp, 0..27)
         verify {
-            player.send(InterfaceSettingsMessage(5, 0, 0, 27, 0))
+            player.sendInterfaceSettings(5, 0, 0, 27, 0)
         }
     }
 }
