@@ -2,6 +2,8 @@ package rs.dusk.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.dsl.module
 import rs.dusk.utility.func.plural
 import kotlin.system.measureTimeMillis
@@ -16,7 +18,7 @@ val scriptModule = module {
     }
 }
 
-fun loadScripts(scriptModule: String) {
+fun loadScripts(scriptModule: String) = GlobalScope.launch {
     val logger = InlineLogger()
     var scripts = 0
     val time = measureTimeMillis {

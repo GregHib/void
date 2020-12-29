@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.isOpen
 import rs.dusk.engine.entity.character.player.setDisplayMode
@@ -17,7 +16,7 @@ class ScreenChangeMessageHandler : MessageHandler() {
     val sessions: Sessions by inject()
 
     override fun changeScreen(context: ChannelHandlerContext, displayMode: Int, width: Int, height: Int, antialiasLevel: Int) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         player.gameFrame.width = width
         player.gameFrame.height = height

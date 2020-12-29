@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
@@ -21,7 +20,7 @@ class StringEntryMessageHandler : MessageHandler() {
     val executor: TaskExecutor by inject()
 
     override fun stringEntered(context: ChannelHandlerContext, text: String) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         executor.sync {
             bus.emit(StringEntered(player, text))

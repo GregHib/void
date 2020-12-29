@@ -2,8 +2,8 @@ package rs.dusk.engine.client
 
 import com.github.michaelbull.logging.InlineLogger
 import com.google.common.collect.HashBiMap
+import io.netty.channel.Channel
 import org.koin.dsl.module
-import rs.dusk.core.network.connection.Session
 import rs.dusk.core.network.model.message.Message
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.utility.get
@@ -19,42 +19,41 @@ val clientSessionModule = module {
 }
 
 class Sessions {
-
     private val logger = InlineLogger()
-    val players = HashBiMap.create<Session, Player>()
+    val players = HashBiMap.create<Channel, Player>()
 
     /**
      * Links a client session with a player
      */
-    fun register(session: Session, player: Player) {
+    fun register(session: Channel, player: Player) {
         players[session] = player
     }
 
     /**
      * Removes the link between a player an client session.
      */
-    fun deregister(session: Session) {
+    fun deregister(session: Channel) {
         players.remove(session)
     }
 
     /**
      * Returns player for [session]
      */
-    fun get(session: Session): Player? {
+    fun get(session: Channel): Player? {
         return players[session]
     }
 
     /**
      * Returns session for [player]
      */
-    fun get(player: Player): Session? {
+    fun get(player: Player): Channel? {
         return players.inverse()[player]
     }
 
     /**
      * Checks if [session] is linked
      */
-    fun contains(session: Session): Boolean {
+    fun contains(session: Channel): Boolean {
         return players.containsKey(session)
     }
 
@@ -70,7 +69,7 @@ class Sessions {
      */
     fun <T : Message> send(player: Player, message: T) {
         val session = get(player) ?: return// logger.debug { "Unable to find session for player $player." }
-        session.send(message)
+        session.writeAndFlush(message)
     }
 }
 

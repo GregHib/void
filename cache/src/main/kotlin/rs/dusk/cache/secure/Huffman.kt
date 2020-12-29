@@ -1,8 +1,8 @@
 package rs.dusk.cache.secure
 
 import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.cache.Cache
-import rs.dusk.core.network.codec.packet.access.PacketWriter
 
 class Huffman(cache: Cache) {
 
@@ -134,7 +134,7 @@ class Huffman(cache: Cache) {
      * @param message The message to encode
      * @param builder The packet to write the compressed data too
      */
-    fun compress(message: String, builder: PacketWriter) {
+    fun compress(message: String, builder: BufferWriter) {
         try {
             //Format the message
             val messageData = formatMessage(message)
@@ -152,7 +152,7 @@ class Huffman(cache: Cache) {
      * @param message The message to compress, split by symbol into a byte array
      * @param builder The packet to write the compressed data too
      */
-    private fun compress(message: ByteArray, builder: PacketWriter) {
+    private fun compress(message: ByteArray, builder: BufferWriter) {
         try {
             if(masks == null) {
                 return

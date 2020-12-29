@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.task.TaskExecutor
@@ -21,8 +20,8 @@ class ConsoleCommandMessageHandler : MessageHandler() {
     val executor: TaskExecutor by inject()
 
     override fun consoleCommand(context: ChannelHandlerContext, command: String) {
-        val session = context.channel().getSession()
-        val player = sessions.get(session) ?: return
+        val channel = context.channel()
+        val player = sessions.get(channel) ?: return
         val parts = command.split(" ")
         val prefix = parts[0]
         executor.sync {

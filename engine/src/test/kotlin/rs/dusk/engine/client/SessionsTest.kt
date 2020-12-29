@@ -1,12 +1,12 @@
 package rs.dusk.engine.client
 
 import io.mockk.mockk
+import io.netty.channel.Channel
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.inject
-import rs.dusk.core.network.model.session.Session
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.script.KoinMock
 
@@ -27,35 +27,35 @@ internal class SessionsTest : KoinMock() {
     fun `Register player`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        val session: Session = mockk(relaxed = true)
+        val channel: Channel = mockk(relaxed = true)
         // When
-        sessions.register(session, player)
+        sessions.register(channel, player)
         // Then
-        assert(sessions.players.containsKey(session))
-        assertEquals(player, sessions.players[session])
+        assert(sessions.players.containsKey(channel))
+        assertEquals(player, sessions.players[channel])
     }
 
     @Test
     fun `Deregister player`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        val session: Session = mockk(relaxed = true)
-        sessions.players[session] = player
+        val channel: Channel = mockk(relaxed = true)
+        sessions.players[channel] = player
         // When
-        sessions.deregister(session)
+        sessions.deregister(channel)
         // Then
-        assertFalse(sessions.players.containsKey(session))
-        assertNull(sessions.players[session])
+        assertFalse(sessions.players.containsKey(channel))
+        assertNull(sessions.players[channel])
     }
 
     @Test
     fun `Get registered player`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        val session: Session = mockk(relaxed = true)
-        sessions.players[session] = player
+        val channel: Channel = mockk(relaxed = true)
+        sessions.players[channel] = player
         // When
-        val result = sessions.get(session)
+        val result = sessions.get(channel)
         // Then
         assertEquals(player, result)
     }
@@ -63,9 +63,9 @@ internal class SessionsTest : KoinMock() {
     @Test
     fun `Get unregistered player`() {
         // Given
-        val session: Session = mockk(relaxed = true)
+        val channel: Channel = mockk(relaxed = true)
         // When
-        val result = sessions.get(session)
+        val result = sessions.get(channel)
         // Then
         assertNull(result)
     }

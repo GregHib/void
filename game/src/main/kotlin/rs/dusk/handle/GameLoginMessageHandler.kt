@@ -4,15 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
-import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
-import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.codec.setCipherIn
 import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.codec.setSized
-import rs.dusk.core.network.connection.getSession
-import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.player.GameLoginInfo
@@ -72,26 +67,17 @@ class GameLoginMessageHandler : MessageHandler() {
 
         channel.setCodec(login)
         channel.setSized(true)
-        pipeline.replace("message.encoder", GenericMessageEncoder)
-
-        val playerSession = context.channel().getSession()
 
         val callback: (LoginResponse) -> Unit = { response ->
             if (response is LoginResponse.Success) {
                 val player = response.player
                 pipeline.writeAndFlush(GameLoginDetails(2, player.index, username))
 
-
                 executor.sync {
                     channel.setCodec(game)
                     channel.setSized(false)
                     channel.setCipherIn(keyPair.inCipher)
                     channel.setCipherOut(keyPair.outCipher)
-                    with(pipeline) {
-                        replace("packet.decoder", RS2PacketDecoder())
-                        replace("message.decoder", OpcodeMessageDecoder)
-                        replace("message.encoder", GenericMessageEncoder)
-                    }
                     bus.emit(RegionLogin(player))
                     bus.emit(PlayerRegistered(player))
                     player.start()
@@ -106,7 +92,7 @@ class GameLoginMessageHandler : MessageHandler() {
             bus.emit(
                 Login(
                     username,
-                    playerSession,
+                    channel,
                     callback,
                     GameLoginInfo(username, password, isaacKeys, mode, width, height, antialias, settings, affiliate, session, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
                 )
