@@ -28,8 +28,8 @@ class UpdateHandshakeMessageHandler : MessageHandler() {
 
         pipeline.apply {
             replace("packet.decoder", SimplePacketDecoder())
-            replace("message.decoder", OpcodeMessageDecoder())
-            replace("message.encoder", GenericMessageEncoder())
+            replace("message.decoder", OpcodeMessageDecoder)
+            replace("message.encoder", GenericMessageEncoder)
 
             channel.setCodec(UpdateCodec)
         }

@@ -14,7 +14,7 @@ import rs.dusk.core.network.codec.packet.access.PacketReader
  * @since February 18, 2020
  */
 @ChannelHandler.Sharable
-class OpcodeMessageDecoder : MessageToMessageDecoder<PacketReader>() {
+object OpcodeMessageDecoder : MessageToMessageDecoder<PacketReader>() {
 	
 	private val logger = InlineLogger()
 	

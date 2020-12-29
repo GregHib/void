@@ -6,7 +6,7 @@ import rs.dusk.engine.entity.character.contain.ContainerModification
 import rs.dusk.engine.entity.character.contain.equipment
 import rs.dusk.engine.entity.character.contain.inventory
 import rs.dusk.engine.entity.character.player.Player
-import rs.dusk.engine.entity.character.player.PlayerSpawn
+import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
@@ -15,7 +15,7 @@ import rs.dusk.utility.inject
 
 val definitions: ItemDefinitions by inject()
 
-PlayerSpawn then {
+PlayerRegistered then {
     updateWeight(player)
     val listener: (List<ContainerModification>) -> Unit = {
         updateWeight(player)

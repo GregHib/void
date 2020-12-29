@@ -6,9 +6,11 @@ import rs.dusk.core.io.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
-import rs.dusk.core.network.codec.packet.access.PacketBuilder
 import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
+import rs.dusk.core.network.codec.setCipherIn
+import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
+import rs.dusk.core.network.codec.setSized
 import rs.dusk.core.network.model.session.getSession
 import rs.dusk.core.utility.replace
 import rs.dusk.engine.client.Sessions
@@ -67,7 +69,8 @@ class GameLoginMessageHandler : MessageHandler() {
         val keyPair = IsaacKeyPair(isaacKeys)
 
         channel.setCodec(LoginCodec)
-        pipeline.replace("message.encoder", GenericMessageEncoder(PacketBuilder(sized = true)))
+        channel.setSized(true)
+        pipeline.replace("message.encoder", GenericMessageEncoder)
 
         val playerSession = context.channel().getSession()
 
@@ -76,15 +79,17 @@ class GameLoginMessageHandler : MessageHandler() {
                 val player = response.player
                 pipeline.writeAndFlush(GameLoginDetails(2, player.index, username))
 
-                with(pipeline) {
-                    replace("packet.decoder", RS2PacketDecoder(keyPair.inCipher))
-                    replace("message.decoder", OpcodeMessageDecoder())
-                    replace("message.encoder", GenericMessageEncoder(PacketBuilder(keyPair.outCipher)))
-                }
 
                 executor.sync {
                     channel.setCodec(GameCodec)
-
+                    channel.setSized(false)
+                    channel.setCipherIn(keyPair.inCipher)
+                    channel.setCipherOut(keyPair.outCipher)
+                    with(pipeline) {
+                        replace("packet.decoder", RS2PacketDecoder())
+                        replace("message.decoder", OpcodeMessageDecoder)
+                        replace("message.encoder", GenericMessageEncoder)
+                    }
                     bus.emit(RegionLogin(player))
                     bus.emit(PlayerRegistered(player))
                     player.start()

@@ -61,8 +61,8 @@ class GameServer(
 			val channel = it.channel()
 			
 			it.addLast("packet.decoder", SimplePacketDecoder())
-			it.addLast("message.decoder", OpcodeMessageDecoder())
-			it.addLast("message.encoder", GenericMessageEncoder())
+			it.addLast("message.decoder", OpcodeMessageDecoder)
+			it.addLast("message.encoder", GenericMessageEncoder)
 			it.addLast("channel.listener", ChannelEventListener(chain))
 
 			channel.setCodec(ServiceCodec)

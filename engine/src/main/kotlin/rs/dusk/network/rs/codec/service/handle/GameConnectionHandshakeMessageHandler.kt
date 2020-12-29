@@ -20,8 +20,8 @@ class GameConnectionHandshakeMessageHandler : MessageHandler() {
 		
 		pipeline.apply {
 			replace("packet.decoder", SimplePacketDecoder())
-			replace("message.decoder", OpcodeMessageDecoder())
-			replace("message.encoder", GenericMessageEncoder())
+			replace("message.decoder", OpcodeMessageDecoder)
+			replace("message.encoder", GenericMessageEncoder)
 		}
 		context.pipeline().writeAndFlush(LobbyLoginConnectionResponseMessage(0))
 	}
