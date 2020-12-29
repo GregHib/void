@@ -1,4 +1,4 @@
-package rs.dusk.core.io.crypto
+package rs.dusk.core.crypto
 
 /**
  *

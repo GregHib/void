@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import rs.dusk.engine.GameLoop
-import rs.dusk.engine.TimedLoader
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.cacheConfigModule
 import rs.dusk.engine.client.cacheDefinitionModule
@@ -37,8 +36,6 @@ import rs.dusk.handle.*
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.game.GameOpcodes
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.service.ServiceCodec
-import rs.dusk.network.rs.codec.update.UpdateCodec
 import rs.dusk.network.server.GameServer
 import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
@@ -73,32 +70,6 @@ object Dusk {
         val start: SyncTask = get()
         val engine = GameLoop(bus, executor, service)
 
-        object : TimedLoader<Unit>("Game codec") {
-            override fun load(args: Array<out Any?>) {
-                GameCodec.register()
-                registerGameHandlers()
-                count = GameCodec.decoders.size + GameCodec.encoders.size
-            }
-        }.run()
-        object : TimedLoader<Unit>("Login codec") {
-            override fun load(args: Array<out Any?>) {
-                LoginCodec.register()
-                registerLoginHandlers()
-                count = LoginCodec.decoders.size + LoginCodec.encoders.size
-            }
-        }.run()
-        object : TimedLoader<Unit>("Service codec") {
-            override fun load(args: Array<out Any?>) {
-                ServiceCodec.register()
-                count = ServiceCodec.decoders.size + ServiceCodec.encoders.size
-            }
-        }.run()
-        object : TimedLoader<Unit>("Update codec") {
-            override fun load(args: Array<out Any?>) {
-                UpdateCodec.register()
-                count = UpdateCodec.decoders.size + UpdateCodec.encoders.size
-            }
-        }.run()
         server.run()
         engine.setup(start)
         engine.start()
@@ -142,59 +113,63 @@ object Dusk {
             fileProperties("/game.properties")
             fileProperties("/private.properties")
         }
+        registerGameHandlers()
+        registerLoginHandlers()
     }
 
     private fun registerLoginHandlers() {
-        LoginCodec.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginMessageHandler())
+        val login: LoginCodec = get()
+        login.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginMessageHandler())
     }
 
     private fun registerGameHandlers() {
-        GameCodec.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_6, FloorItemOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.ENTER_INTEGER, IntEntryMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_1, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_2, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_3, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_4, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_5, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_6, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_7, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_8, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_9, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.INTERFACE_OPTION_10, InterfaceOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.SWITCH_INTERFACE_COMPONENTS, InterfaceSwitchMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_1, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_2, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.NPC_OPTION_6, NPCOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.OBJECT_OPTION_6, ObjectOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_4, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_5, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_9, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.PLAYER_OPTION_10, PlayerOptionMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.WALK, WalkMapMessageHandler())
-        GameCodec.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapMessageHandler())
+        val game: GameCodec = get()
+        game.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandMessageHandler())
+        game.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueMessageHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionMessageHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionMessageHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionMessageHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionMessageHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_6, FloorItemOptionMessageHandler())
+        game.registerHandler(GameOpcodes.ENTER_INTEGER, IntEntryMessageHandler())
+        game.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_1, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_2, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_3, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_4, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_5, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_6, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_7, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_8, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_9, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.INTERFACE_OPTION_10, InterfaceOptionMessageHandler())
+        game.registerHandler(GameOpcodes.SWITCH_INTERFACE_COMPONENTS, InterfaceSwitchMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_1, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_2, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.NPC_OPTION_6, NPCOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.OBJECT_OPTION_6, ObjectOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_4, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_5, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_9, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.PLAYER_OPTION_10, PlayerOptionMessageHandler())
+        game.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedMessageHandler())
+        game.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeMessageHandler())
+        game.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryMessageHandler())
+        game.registerHandler(GameOpcodes.WALK, WalkMapMessageHandler())
+        game.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapMessageHandler())
     }
 }

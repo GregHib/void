@@ -4,7 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
-import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.getCipherIn
 import rs.dusk.core.network.codec.packet.DecoderState.*
 import rs.dusk.core.network.codec.packet.access.PacketReader

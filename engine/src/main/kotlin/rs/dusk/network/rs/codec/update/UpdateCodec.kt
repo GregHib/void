@@ -13,9 +13,9 @@ import rs.dusk.network.rs.codec.update.handle.UpdateDisconnectionMessageHandler
 import rs.dusk.network.rs.codec.update.handle.UpdateLoginStatusHandler
 import rs.dusk.network.rs.codec.update.handle.UpdateRequestMessageHandler
 
-object UpdateCodec : Codec() {
+class UpdateCodec : Codec() {
 
-    override fun register() {
+    override fun load(args: Array<out Any?>) {
         registerDecoder(FileServerOpcodes.CONNECTED, UpdateConnectionMessageDecoder())
         registerDecoder(FileServerOpcodes.DISCONNECTED, UpdateDisconnectionMessageDecoder())
         registerDecoder(FileServerOpcodes.STATUS_LOGGED_IN, UpdateLoginStatusMessageDecoder(true))
@@ -32,6 +32,7 @@ object UpdateCodec : Codec() {
         registerEncoder(UpdateRegistryResponseMessageEncoder())
         registerEncoder(UpdateResponseMessageEncoder())
         registerEncoder(UpdateVersionMessageEncoder())
+        count = decoders.size + encoders.size
     }
 
 }
