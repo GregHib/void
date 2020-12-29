@@ -2,7 +2,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 dependencies {
     implementation(project(":buffer"))
-    implementation(project(":core"))
+    implementation(project(":engine"))
 }
 
 val compileKotlin: KotlinCompile by tasks

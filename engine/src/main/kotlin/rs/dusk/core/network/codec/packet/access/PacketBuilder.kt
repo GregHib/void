@@ -1,7 +1,7 @@
 package rs.dusk.core.network.codec.packet.access
 
 import io.netty.buffer.ByteBuf
-import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.crypto.IsaacCipher
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

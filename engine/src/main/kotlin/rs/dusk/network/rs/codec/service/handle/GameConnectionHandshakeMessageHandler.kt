@@ -9,14 +9,17 @@ import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.encode.message.LobbyLoginConnectionResponseMessage
+import rs.dusk.utility.inject
 
 class GameConnectionHandshakeMessageHandler : MessageHandler() {
+
+	private val login: LoginCodec by inject()
 
 	override fun gameHandshake(context: ChannelHandlerContext) {
 		val pipeline = context.pipeline()
 		val channel = context.channel()
 		
-		channel.setCodec(LoginCodec)
+		channel.setCodec(login)
 		
 		pipeline.apply {
 			replace("packet.decoder", SimplePacketDecoder())

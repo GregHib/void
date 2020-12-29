@@ -11,9 +11,9 @@ import rs.dusk.network.rs.codec.login.encode.LobbyLoginConnectionResponseMessage
 import rs.dusk.network.rs.codec.login.handle.LobbyLoginMessageHandler
 import rs.dusk.network.rs.codec.service.ServiceOpcodes
 
-object LoginCodec : Codec() {
+class LoginCodec : Codec() {
 
-    override fun register() {
+    override fun load(args: Array<out Any?>) {
         registerDecoder(GameOpcodes.GAME_LOGIN, GameLoginMessageDecoder())
         registerDecoder(ServiceOpcodes.LOBBY_LOGIN, LobbyLoginMessageDecoder())
 
@@ -23,5 +23,6 @@ object LoginCodec : Codec() {
         registerEncoder(GameLoginDetailsMessageEncoder())
         registerEncoder(LobbyConfigurationMessageEncoder())
         registerEncoder(LobbyLoginConnectionResponseMessageEncoder())
+        count = decoders.size + encoders.size
     }
 }

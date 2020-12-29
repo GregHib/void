@@ -3,7 +3,7 @@ package rs.dusk.core.network.codec.packet.access
 import io.netty.buffer.ByteBuf
 import io.netty.buffer.Unpooled
 import rs.dusk.buffer.write.BufferWriter
-import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.model.packet.PacketType
 
 /**

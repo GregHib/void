@@ -3,7 +3,7 @@ package rs.dusk.core.network.codec.packet.decode
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.getCodec
 import rs.dusk.core.network.codec.packet.PacketDecoder
 

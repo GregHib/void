@@ -2,7 +2,7 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.io.crypto.IsaacKeyPair
+import rs.dusk.core.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
 import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
@@ -39,6 +39,8 @@ class GameLoginMessageHandler : MessageHandler() {
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
     val executor: TaskExecutor by inject()
+    private val login: LoginCodec by inject()
+    private val game: GameCodec by inject()
 
     override fun loginGame(
         context: ChannelHandlerContext,
@@ -68,7 +70,7 @@ class GameLoginMessageHandler : MessageHandler() {
         val pipeline = context.pipeline()
         val keyPair = IsaacKeyPair(isaacKeys)
 
-        channel.setCodec(LoginCodec)
+        channel.setCodec(login)
         channel.setSized(true)
         pipeline.replace("message.encoder", GenericMessageEncoder)
 
@@ -81,7 +83,7 @@ class GameLoginMessageHandler : MessageHandler() {
 
 
                 executor.sync {
-                    channel.setCodec(GameCodec)
+                    channel.setCodec(game)
                     channel.setSized(false)
                     channel.setCipherIn(keyPair.inCipher)
                     channel.setCipherOut(keyPair.outCipher)

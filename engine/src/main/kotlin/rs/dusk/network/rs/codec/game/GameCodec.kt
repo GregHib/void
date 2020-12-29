@@ -4,9 +4,9 @@ import rs.dusk.core.network.codec.Codec
 import rs.dusk.network.rs.codec.game.decode.*
 import rs.dusk.network.rs.codec.game.encode.*
 
-object GameCodec : Codec() {
+class GameCodec : Codec() {
 
-    override fun register() {
+    override fun load(args: Array<out Any?>) {
         registerDecoder(GameOpcodes.AP_COORD_T, APCoordinateMessageDecoder())
         registerDecoder(GameOpcodes.CHAT_TYPE, ChatTypeMessageDecoder())
         registerDecoder(GameOpcodes.CLAN_CHAT_KICK, ClanChatKickMessageDecoder())
@@ -148,5 +148,6 @@ object GameCodec : Codec() {
         registerEncoder(VarpMessageEncoder())
         registerEncoder(WeightMessageEncoder())
         registerEncoder(WorldListResponseMessageEncoder())
+        count = decoders.size + encoders.size
     }
 }

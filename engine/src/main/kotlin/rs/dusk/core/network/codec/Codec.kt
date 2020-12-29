@@ -2,7 +2,7 @@ package rs.dusk.core.network.codec
 
 import io.netty.channel.Channel
 import io.netty.util.AttributeKey
-import rs.dusk.core.io.crypto.IsaacCipher
+import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.Codec.Companion.CODEC_KEY
 import rs.dusk.core.network.codec.Codec.Companion.IN_CIPHER_KEY
 import rs.dusk.core.network.codec.Codec.Companion.OUT_CIPHER_KEY
@@ -11,18 +11,17 @@ import rs.dusk.core.network.codec.message.MessageDecoder
 import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.message.MessageHandler
 import rs.dusk.core.network.model.message.Message
+import rs.dusk.engine.TimedLoader
 import kotlin.reflect.KClass
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-abstract class Codec {
+abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
 
     val decoders = HashMap<Int, MessageDecoder>()
     val encoders = HashMap<KClass<*>, MessageEncoder<*>>()
-
-    abstract fun register()
 
     fun registerDecoder(opcode: Int, decoder: MessageDecoder) {
         if (decoders[opcode] != null) {

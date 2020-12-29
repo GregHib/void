@@ -17,6 +17,7 @@ import rs.dusk.core.network.connection.event.type.ChannelExceptionEvent
 import rs.dusk.core.network.model.session.setSession
 import rs.dusk.network.rs.codec.service.ServiceCodec
 import rs.dusk.network.rs.session.ServiceSession
+import rs.dusk.utility.get
 import rs.dusk.utility.inject
 
 /**
@@ -56,7 +57,7 @@ class GameServer(
 			append(EXCEPTION, ChannelExceptionEvent())
 			append(DEREGISTER, disconnectEvent)
 		}
-		
+		val service: ServiceCodec = get()
 		val pipeline = ConnectionPipeline {
 			val channel = it.channel()
 			
@@ -65,7 +66,7 @@ class GameServer(
 			it.addLast("message.encoder", GenericMessageEncoder)
 			it.addLast("channel.listener", ChannelEventListener(chain))
 
-			channel.setCodec(ServiceCodec)
+			channel.setCodec(service)
 			channel.setSession(ServiceSession(channel))
 		}
 		factory.bind(this, chain, pipeline)
