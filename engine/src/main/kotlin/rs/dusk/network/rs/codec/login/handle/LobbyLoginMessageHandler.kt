@@ -4,14 +4,10 @@ import io.netty.channel.Channel
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.crypto.IsaacKeyPair
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.codec.message.decode.OpcodeMessageDecoder
-import rs.dusk.core.network.codec.message.encode.GenericMessageEncoder
-import rs.dusk.core.network.codec.packet.decode.RS2PacketDecoder
 import rs.dusk.core.network.codec.setCipherIn
 import rs.dusk.core.network.codec.setCipherOut
 import rs.dusk.core.network.codec.setCodec
 import rs.dusk.core.network.codec.setSized
-import rs.dusk.core.utility.replace
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.login.LoginCodec
 import rs.dusk.network.rs.codec.login.encode.message.LobbyConfigurationMessage
@@ -30,9 +26,6 @@ class LobbyLoginMessageHandler : MessageHandler() {
 		
 		channel.setCodec(login)
 		channel.setSized(true)
-		pipeline.replace("message.encoder", GenericMessageEncoder)
-		
-		println("issac seed = ${isaacSeed.contentToString()}")
 		
 		pipeline.writeAndFlush(
 			LobbyConfigurationMessage(
@@ -45,12 +38,6 @@ class LobbyLoginMessageHandler : MessageHandler() {
 		channel.setSized(false)
 		channel.setCipherIn(keyPair.inCipher)
 		channel.setCipherOut(keyPair.outCipher)
-
-		with(pipeline) {
-			replace("packet.decoder", RS2PacketDecoder())
-			replace("message.decoder", OpcodeMessageDecoder)
-			replace("message.encoder", GenericMessageEncoder)
-		}
 	}
 
 	/**

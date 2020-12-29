@@ -3,6 +3,8 @@ package rs.dusk
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
+import rs.dusk.core.network.GameServer
+import rs.dusk.core.network.networkCodecs
 import rs.dusk.engine.GameLoop
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.cacheConfigModule
@@ -36,14 +38,11 @@ import rs.dusk.handle.*
 import rs.dusk.network.rs.codec.game.GameCodec
 import rs.dusk.network.rs.codec.game.GameOpcodes
 import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.server.GameServer
-import rs.dusk.network.server.gameServerFactory
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.utility.getIntProperty
 import rs.dusk.utility.getProperty
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule
-import rs.dusk.world.interact.entity.player.spawn.logout.DisconnectEvent
 import rs.dusk.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
@@ -61,9 +60,7 @@ object Dusk {
         val startTime = System.currentTimeMillis()
         preload()
 
-        val disconnect = DisconnectEvent()
-        val server = GameServer(getIntProperty("port"), disconnect)
-
+        val server = GameServer(getIntProperty("port"))
         val bus: EventBus = get()
         val executor: TaskExecutor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
@@ -76,18 +73,18 @@ object Dusk {
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
     }
 
-    fun preload() {
+    private fun preload() {
         startKoin {
             slf4jLogger()
             modules(
                 eventModule,
                 cacheModule,
                 fileLoaderModule,
-                ymlPlayerModule/*, sqlPlayerModule*/,
+                ymlPlayerModule,
                 entityListModule,
                 scriptModule,
                 clientSessionModule,
-                gameServerFactory,
+                networkCodecs,
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,

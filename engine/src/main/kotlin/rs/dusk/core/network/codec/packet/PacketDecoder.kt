@@ -6,13 +6,14 @@ import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
 import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.getCipherIn
+import rs.dusk.core.network.codec.getCodec
 import rs.dusk.core.network.codec.packet.access.PacketReader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
  * @since February 18, 2020
  */
-abstract class PacketDecoder : ByteToMessageDecoder() {
+class PacketDecoder : ByteToMessageDecoder() {
 
     private val logger = InlineLogger()
 
@@ -45,12 +46,24 @@ abstract class PacketDecoder : ByteToMessageDecoder() {
     /**
      * Handles reading the opcode from the buffer
      */
-    abstract fun readOpcode(buf: ByteBuf, cipher: IsaacCipher?): Int
+    fun readOpcode(buf : ByteBuf, cipher: IsaacCipher?) : Int {
+        return (buf.readUnsignedByte().toInt() - (cipher?.nextInt() ?: 0)) and 0xff
+    }
 
     /**
      * Getting the expected length of a buffer by the opcode identified [opcode]. If th
      */
-    abstract fun getExpectedLength(ctx : ChannelHandlerContext, opcode : Int): Int?
+    fun getExpectedLength(ctx : ChannelHandlerContext, opcode : Int) : Int? {
+        val codec = ctx.channel().getCodec()
+            ?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
+
+        val decoder = codec.getDecoder(opcode)
+        if (decoder == null) {
+            logger.error { "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
+            return null
+        }
+        return decoder.length
+    }
 
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (state == State.Opcode) {

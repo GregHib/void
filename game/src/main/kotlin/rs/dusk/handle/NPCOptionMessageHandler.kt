@@ -3,7 +3,6 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.npc.NPCOption
@@ -27,7 +26,7 @@ class NPCOptionMessageHandler : MessageHandler() {
     val bus: EventBus by inject()
 
     override fun npcOption(context: ChannelHandlerContext, run: Boolean, npcIndex: Int, option: Int) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         val npc = npcs.getAtIndex(npcIndex) ?: return
         val options = npc.def.options

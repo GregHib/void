@@ -44,7 +44,7 @@ abstract class MessageHandler {
      */
     open fun consoleCommand(context: ChannelHandlerContext, command: String) {}
 
-    open fun cutsceneAction(ctx: ChannelHandlerContext) {}
+    open fun cutsceneAction(context: ChannelHandlerContext) {}
 
     /**
      * Notification that the "Click here to continue" button was pressed on a dialogue
@@ -127,7 +127,7 @@ abstract class MessageHandler {
     /**
      * Notification that the player clicked an X button on a screen interface
      */
-    open fun interfaceClosed(ctx: ChannelHandlerContext) {}
+    open fun interfaceClosed(context: ChannelHandlerContext) {}
 
     /**
      * Interface container action applied to a floor item
@@ -221,7 +221,7 @@ abstract class MessageHandler {
 
     open fun cameraMoved(context: ChannelHandlerContext, pitch: Int, yaw: Int) {}
 
-    open fun mouseMoved(ctx: ChannelHandlerContext) {}
+    open fun mouseMoved(context: ChannelHandlerContext) {}
 
     /**
      * An option selection on a npc
@@ -241,7 +241,7 @@ abstract class MessageHandler {
      */
     open fun objectOption(context: ChannelHandlerContext, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {}
 
-    open fun ping(ctx: ChannelHandlerContext) {}
+    open fun ping(context: ChannelHandlerContext) {}
 
     /**
      * The two values sent the client by packet 19

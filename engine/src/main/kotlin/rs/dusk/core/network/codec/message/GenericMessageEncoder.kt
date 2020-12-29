@@ -1,4 +1,4 @@
-package rs.dusk.core.network.codec.message.encode
+package rs.dusk.core.network.codec.message
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
@@ -8,7 +8,6 @@ import io.netty.handler.codec.MessageToByteEncoder
 import rs.dusk.core.network.codec.getCipherOut
 import rs.dusk.core.network.codec.getCodec
 import rs.dusk.core.network.codec.getSized
-import rs.dusk.core.network.codec.message.MessageEncoder
 import rs.dusk.core.network.codec.packet.access.PacketBuilder
 import rs.dusk.core.network.model.message.Message
 

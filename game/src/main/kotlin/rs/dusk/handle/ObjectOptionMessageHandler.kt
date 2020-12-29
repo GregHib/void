@@ -3,7 +3,6 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.player.chat.message
@@ -26,7 +25,7 @@ class ObjectOptionMessageHandler : MessageHandler() {
     val bus: EventBus by inject()
 
     override fun objectOption(context: ChannelHandlerContext, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]

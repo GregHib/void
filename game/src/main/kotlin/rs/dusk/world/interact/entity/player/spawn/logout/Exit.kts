@@ -1,5 +1,6 @@
 package rs.dusk.world.interact.entity.player.spawn.logout
 
+import rs.dusk.core.network.connection.DisconnectQueue
 import rs.dusk.engine.action.ActionType
 import rs.dusk.engine.action.Suspension
 import rs.dusk.engine.client.send
@@ -13,7 +14,7 @@ import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
 import rs.dusk.world.interact.entity.player.spawn.PlayerDespawn
 
-val logoutQueue: LogoutQueue by inject()
+val logoutQueue: DisconnectQueue by inject()
 val bus: EventBus by inject()
 
 on(InterfaceOption) {

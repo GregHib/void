@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.cache.definition.decoder.InterfaceDecoder
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.contain.container
@@ -33,7 +32,7 @@ class InterfaceOptionMessageHandler : MessageHandler() {
     val logger = InlineLogger()
 
     override fun interfaceOption(context: ChannelHandlerContext, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
 
         val id = hash shr 16

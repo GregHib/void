@@ -3,7 +3,6 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.utility.inject
 
@@ -17,7 +16,7 @@ class RegionLoadedMessageHandler : MessageHandler() {
     val sessions: Sessions by inject()
 
     override fun regionLoaded(context: ChannelHandlerContext) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         player.viewport.loaded = true
     }

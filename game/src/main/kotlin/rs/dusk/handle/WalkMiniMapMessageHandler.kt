@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.core.network.codec.message.MessageHandler
-import rs.dusk.core.network.connection.getSession
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.player.chat.message
@@ -18,7 +17,7 @@ class WalkMiniMapMessageHandler : MessageHandler() {
     val sessions: Sessions by inject()
 
     override fun minimapWalk(context: ChannelHandlerContext, x: Int, y: Int, running: Boolean) {
-        val session = context.channel().getSession()
+        val session = context.channel()
         val player = sessions.get(session) ?: return
         player.walkTo(player.tile.copy(x = x, y = y)) { result ->
             if (result is PathResult.Failure) {
