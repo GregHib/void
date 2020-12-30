@@ -4,12 +4,12 @@ import io.netty.channel.ChannelHandlerContext
 import rs.dusk.buffer.DataType
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.read.Reader
 import rs.dusk.network.codec.Decoder
-import rs.dusk.network.packet.PacketReader
 
 class InterfaceOnObjectDecoder : Decoder(15) {
 
-    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+    override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnObject(
             context,
             packet.readBoolean(Modifier.INVERSE),

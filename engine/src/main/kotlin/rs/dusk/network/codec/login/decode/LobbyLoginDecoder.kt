@@ -1,9 +1,9 @@
 package rs.dusk.network.codec.login.decode
 
 import io.netty.channel.ChannelHandlerContext
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
 import rs.dusk.network.codec.Decoder
-import rs.dusk.network.packet.PacketReader
 import rs.dusk.network.packet.PacketSize.SHORT
 import rs.dusk.utility.inject
 
@@ -15,7 +15,7 @@ class LobbyLoginDecoder : Decoder(SHORT) {
 
     private val cache: Cache by inject()
 
-    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+    override fun decode(context: ChannelHandlerContext, packet: Reader) {
         val triple = LoginHeaderDecoder.decode(packet)
         val password = triple.second!!
         val isaacKeys = triple.third!!

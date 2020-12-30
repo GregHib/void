@@ -4,13 +4,11 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
+import rs.dusk.buffer.read.BufferReader
+import rs.dusk.network.codec.Decoder
 import rs.dusk.network.codec.getCipherIn
 import rs.dusk.network.codec.getCodec
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
 class PacketDecoder : ByteToMessageDecoder() {
 
     private val logger = InlineLogger()
@@ -22,26 +20,10 @@ class PacketDecoder : ByteToMessageDecoder() {
     }
 
     private var state: State = State.Opcode
-
     private var opcode = -1
-
-    protected var length = -1
+    private var length = -1
     private var type = -3
-
-    /**
-     * Getting the expected length of a buffer by the opcode identified [opcode]. If th
-     */
-    fun getExpectedLength(ctx: ChannelHandlerContext, opcode: Int): Int? {
-        val codec = ctx.channel().getCodec()
-            ?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
-
-        val decoder = codec.getDecoder(opcode)
-        if (decoder == null) {
-            logger.error { "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
-            return null
-        }
-        return decoder.length
-    }
+    private lateinit var decoder: Decoder
 
     override fun decode(ctx: ChannelHandlerContext, buf: ByteBuf, out: MutableList<Any>) {
         if (state == State.Opcode) {
@@ -51,7 +33,15 @@ class PacketDecoder : ByteToMessageDecoder() {
             }
             val cipher = ctx.channel().getCipherIn()?.nextInt() ?: 0
             opcode = (buf.readUnsignedByte().toInt() - cipher) and 0xff
-            length = getExpectedLength(ctx, opcode) ?: return
+            val codec = ctx.channel().getCodec()
+                ?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
+            val decoder = codec.getDecoder(opcode)
+            if (decoder == null) {
+                logger.error { "Unable to identify length of packet [opcode=$opcode, codec=${codec.javaClass.simpleName}]" }
+                return
+            }
+            this.decoder = decoder
+            length = decoder.length
             type = length
             state = if (length < 0) State.Length else State.Payload
             logger.debug { "Identified opcode! [opcode=$opcode, expectedLength=$length, readable=${buf.readableBytes()}, nextState=$state]" }
@@ -81,13 +71,14 @@ class PacketDecoder : ByteToMessageDecoder() {
             buf.getBytes(buf.readerIndex(), payload, 0, length)
             buf.readerIndex(buf.readerIndex() + length)
 
-            //Handle data
-            out.add(PacketReader(opcode, payload))
-
             //Reset state
             state = State.Opcode
-
             logger.debug { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
+
+            //Handle data
+            decoder.decode(ctx, BufferReader(payload))
+
+            logger.debug { "Message decoded successful [decoder=${decoder.javaClass.simpleName}, codec=${ctx.channel().getCodec()}]" }
         }
     }
 
