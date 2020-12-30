@@ -3,8 +3,6 @@ package rs.dusk
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
-import rs.dusk.core.network.GameServer
-import rs.dusk.core.network.networkCodecs
 import rs.dusk.engine.GameLoop
 import rs.dusk.engine.action.schedulerModule
 import rs.dusk.engine.client.cacheConfigModule
@@ -35,10 +33,12 @@ import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
 import rs.dusk.handle.*
-import rs.dusk.network.rs.codec.game.GameCodec
-import rs.dusk.network.rs.codec.game.GameOpcodes
-import rs.dusk.network.rs.codec.game.gameCodec
-import rs.dusk.network.rs.codec.login.LoginCodec
+import rs.dusk.network.GameServer
+import rs.dusk.network.codec.game.GameCodec
+import rs.dusk.network.codec.game.GameOpcodes
+import rs.dusk.network.codec.game.gameCodec
+import rs.dusk.network.codec.login.LoginCodec
+import rs.dusk.network.networkCodecs
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.utility.getIntProperty

@@ -24,7 +24,7 @@ import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.RegionPlane
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.PlayerUpdateEncoder
+import rs.dusk.network.codec.game.encode.PlayerUpdateEncoder
 import rs.dusk.utility.func.toInt
 
 /**

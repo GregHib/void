@@ -16,10 +16,10 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.strat.PointTargetStrategy
-import rs.dusk.network.rs.codec.game.encode.FloorItemAddEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemRevealEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemUpdateEncoder
+import rs.dusk.network.codec.game.encode.FloorItemAddEncoder
+import rs.dusk.network.codec.game.encode.FloorItemRemoveEncoder
+import rs.dusk.network.codec.game.encode.FloorItemRevealEncoder
+import rs.dusk.network.codec.game.encode.FloorItemUpdateEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.item.spawn.Drop
 import rs.dusk.world.interact.entity.player.equip.ContainerAction

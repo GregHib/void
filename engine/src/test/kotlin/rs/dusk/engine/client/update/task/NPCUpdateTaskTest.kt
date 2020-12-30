@@ -19,7 +19,7 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.NPCUpdateEncoder
+import rs.dusk.network.codec.game.encode.NPCUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -7,7 +7,7 @@ import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.client.ui.event.InterfaceRefreshed
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.EventBus
-import rs.dusk.network.rs.codec.game.encode.*
+import rs.dusk.network.codec.game.encode.*
 
 /**
  * Instructions to external systems

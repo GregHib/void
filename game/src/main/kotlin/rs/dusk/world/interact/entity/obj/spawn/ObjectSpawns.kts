@@ -14,8 +14,8 @@ import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLoaded
 import rs.dusk.engine.tick.Startup
-import rs.dusk.network.rs.codec.game.encode.ObjectAddEncoder
-import rs.dusk.network.rs.codec.game.encode.ObjectRemoveEncoder
+import rs.dusk.network.codec.game.encode.ObjectAddEncoder
+import rs.dusk.network.codec.game.encode.ObjectRemoveEncoder
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.RemoveObject

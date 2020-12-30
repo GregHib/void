@@ -12,7 +12,7 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.event.Priority.PLAYER_UPDATE
 import rs.dusk.engine.map.region.RegionPlane
 import rs.dusk.engine.tick.task.EntityTask
-import rs.dusk.network.rs.codec.game.encode.PlayerUpdateEncoder
+import rs.dusk.network.codec.game.encode.PlayerUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

@@ -17,8 +17,8 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLogin
 import rs.dusk.engine.map.region.RegionReader
 import rs.dusk.engine.map.region.Xteas
-import rs.dusk.network.rs.codec.game.encode.DynamicMapRegionEncoder
-import rs.dusk.network.rs.codec.game.encode.MapRegionEncoder
+import rs.dusk.network.codec.game.encode.DynamicMapRegionEncoder
+import rs.dusk.network.codec.game.encode.MapRegionEncoder
 import rs.dusk.utility.inject
 import kotlin.math.abs
 

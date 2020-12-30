@@ -4,10 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerVariables
-import rs.dusk.network.rs.codec.game.encode.sendVarbit
-import rs.dusk.network.rs.codec.game.encode.sendVarc
-import rs.dusk.network.rs.codec.game.encode.sendVarcStr
-import rs.dusk.network.rs.codec.game.encode.sendVarp
+import rs.dusk.network.codec.game.encode.sendVarbit
+import rs.dusk.network.codec.game.encode.sendVarc
+import rs.dusk.network.codec.game.encode.sendVarcStr
+import rs.dusk.network.codec.game.encode.sendVarp
 import rs.dusk.utility.get
 
 val variablesModule = module {

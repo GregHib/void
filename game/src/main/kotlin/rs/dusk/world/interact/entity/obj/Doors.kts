@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.func.isDoor
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.replaceObject

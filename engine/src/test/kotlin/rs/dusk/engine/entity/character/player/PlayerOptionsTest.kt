@@ -6,7 +6,7 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
+import rs.dusk.network.codec.game.encode.ContextMenuOptionEncoder
 
 internal class PlayerOptionsTest {
 

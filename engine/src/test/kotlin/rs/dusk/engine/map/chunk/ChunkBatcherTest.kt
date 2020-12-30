@@ -10,8 +10,8 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.ChunkClearEncoder
-import rs.dusk.network.rs.codec.game.encode.ChunkUpdateEncoder
+import rs.dusk.network.codec.game.encode.ChunkClearEncoder
+import rs.dusk.network.codec.game.encode.ChunkUpdateEncoder
 
 internal class ChunkBatcherTest : KoinMock() {
 

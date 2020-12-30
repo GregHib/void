@@ -13,7 +13,7 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command

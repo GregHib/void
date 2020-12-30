@@ -5,7 +5,7 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.action.Contexts
-import rs.dusk.network.rs.codec.game.encode.sendScript
+import rs.dusk.network.codec.game.encode.sendScript
 import rs.dusk.world.interact.dialogue.type.intEntry
 
 internal class IntEntryTest : DialogueTest() {

@@ -3,8 +3,8 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.ObjectAddEncoder
-import rs.dusk.network.rs.codec.game.encode.ObjectRemoveEncoder
+import rs.dusk.network.codec.game.encode.ObjectAddEncoder
+import rs.dusk.network.codec.game.encode.ObjectRemoveEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 

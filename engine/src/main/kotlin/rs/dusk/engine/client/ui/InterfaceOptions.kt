@@ -3,8 +3,8 @@ package rs.dusk.engine.client.ui
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
-import rs.dusk.network.rs.codec.game.encode.sendInterfaceSettings
-import rs.dusk.network.rs.codec.game.encode.sendScript
+import rs.dusk.network.codec.game.encode.sendInterfaceSettings
+import rs.dusk.network.codec.game.encode.sendScript
 
 class InterfaceOptions(
     private val player: Player,

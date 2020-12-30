@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.character.player.PlayerTrackingSet
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
+import rs.dusk.network.codec.game.encode.ContextMenuOptionEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

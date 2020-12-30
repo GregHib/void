@@ -10,7 +10,7 @@ import rs.dusk.engine.client.variable.*
 import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.sendScript
+import rs.dusk.network.codec.game.encode.sendScript
 import rs.dusk.world.activity.bank.Bank.tabs
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.player.display.InterfaceOption
