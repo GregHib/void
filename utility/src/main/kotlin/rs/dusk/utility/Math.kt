@@ -1,6 +1,6 @@
 package rs.dusk.utility
 
-object Maths {
+object Math {
     /**
      * Interpolates between two known points
      * https://en.wikipedia.org/wiki/Linear_interpolation

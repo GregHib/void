@@ -17,7 +17,7 @@ import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.area.area
 import rs.dusk.network.codec.game.encode.message
-import rs.dusk.utility.Maths
+import rs.dusk.utility.Math
 import rs.dusk.utility.inject
 import rs.dusk.world.activity.skill.woodcutting.tree.RegularTree
 import rs.dusk.world.activity.skill.woodcutting.tree.Tree
@@ -114,7 +114,7 @@ fun getRegrowTickDelay(tree: Tree): Int {
     return if (tree.level == 1) {
         Random.nextInt(delay.first, delay.last)// Regular tree's
     } else {
-        Maths.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
+        Math.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
     }
 }
 

@@ -2,7 +2,7 @@ package rs.dusk.engine.entity.character.player.skill
 
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.codec.game.encode.message
-import rs.dusk.utility.Maths.interpolate
+import rs.dusk.utility.Math.interpolate
 import kotlin.random.Random
 
 object Level {
