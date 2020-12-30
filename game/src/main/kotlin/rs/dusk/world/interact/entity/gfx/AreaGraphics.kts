@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.GraphicAreaEncoder
+import rs.dusk.network.codec.game.encode.GraphicAreaEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.gfx.SpawnGraphic
 

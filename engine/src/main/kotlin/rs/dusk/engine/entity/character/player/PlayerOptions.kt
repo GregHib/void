@@ -1,6 +1,6 @@
 package rs.dusk.engine.entity.character.player
 
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
+import rs.dusk.network.codec.game.encode.ContextMenuOptionEncoder
 
 class PlayerOptions(
     private val player: Player,

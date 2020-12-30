@@ -9,7 +9,7 @@ import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
 import rs.dusk.engine.map.collision.get
-import rs.dusk.network.rs.codec.game.encode.sendContainerItems
+import rs.dusk.network.codec.game.encode.sendContainerItems
 import rs.dusk.utility.get
 import rs.dusk.world.command.Command
 import rs.dusk.world.interact.entity.obj.spawn.spawnObject

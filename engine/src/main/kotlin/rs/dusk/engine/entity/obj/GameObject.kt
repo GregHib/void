@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.TargetStrategy
-import rs.dusk.network.rs.codec.game.encode.ObjectAnimationSpecificEncoder
+import rs.dusk.network.codec.game.encode.ObjectAnimationSpecificEncoder
 import rs.dusk.utility.get
 
 /**

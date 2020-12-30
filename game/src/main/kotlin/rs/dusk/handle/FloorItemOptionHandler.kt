@@ -2,7 +2,6 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.network.codec.message.Handler
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.move.walkTo
 import rs.dusk.engine.entity.character.update.visual.player.face
@@ -11,7 +10,8 @@ import rs.dusk.engine.entity.item.FloorItems
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.PathResult
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.Handler
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.inject
 
 /**

@@ -2,7 +2,7 @@ package rs.dusk.world.interact.dialogue.type
 
 import rs.dusk.engine.client.ui.dialogue.DialogueContext
 import rs.dusk.engine.client.ui.open
-import rs.dusk.network.rs.codec.game.encode.sendScript
+import rs.dusk.network.codec.game.encode.sendScript
 
 private const val ITEM_INTERFACE_NAME = "obj_box"
 private const val ITEM_SCRIPT_ID = 3449

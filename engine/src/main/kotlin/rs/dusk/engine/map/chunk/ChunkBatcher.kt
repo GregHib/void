@@ -5,8 +5,8 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.tick.Tick
-import rs.dusk.network.rs.codec.game.encode.ChunkClearEncoder
-import rs.dusk.network.rs.codec.game.encode.ChunkUpdateEncoder
+import rs.dusk.network.codec.game.encode.ChunkClearEncoder
+import rs.dusk.network.codec.game.encode.ChunkUpdateEncoder
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 

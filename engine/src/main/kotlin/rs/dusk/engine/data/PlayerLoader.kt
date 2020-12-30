@@ -12,7 +12,7 @@ import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.strat.FollowTargetStrategy
 import rs.dusk.engine.path.strat.RectangleTargetStrategy
-import rs.dusk.network.rs.codec.game.encode.*
+import rs.dusk.network.codec.game.encode.*
 import rs.dusk.utility.getIntProperty
 
 /**

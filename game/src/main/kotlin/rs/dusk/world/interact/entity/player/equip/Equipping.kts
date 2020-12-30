@@ -13,7 +13,7 @@ import rs.dusk.engine.entity.item.EquipSlot
 import rs.dusk.engine.entity.item.EquipType
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.inject
 
 val itemDecoder: ItemDefinitions by inject()

@@ -10,8 +10,8 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveEncoder
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.game.encode.FloorItemRemoveEncoder
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.inject
 
 val items: FloorItems by inject()

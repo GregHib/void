@@ -11,7 +11,7 @@ import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.visual.npc.getTurn
 import rs.dusk.engine.event.Priority.NPC_UPDATE
 import rs.dusk.engine.tick.task.EntityTask
-import rs.dusk.network.rs.codec.game.encode.NPCUpdateEncoder
+import rs.dusk.network.codec.game.encode.NPCUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

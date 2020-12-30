@@ -13,7 +13,7 @@ import rs.dusk.engine.map.collision.collisionModule
 import rs.dusk.engine.path.strat.FollowTargetStrategy
 import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
+import rs.dusk.network.codec.game.encode.ContextMenuOptionEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>

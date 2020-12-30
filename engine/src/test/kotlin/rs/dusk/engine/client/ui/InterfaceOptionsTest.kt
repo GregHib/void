@@ -10,8 +10,8 @@ import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
-import rs.dusk.network.rs.codec.game.encode.sendInterfaceSettings
-import rs.dusk.network.rs.codec.game.encode.sendScript
+import rs.dusk.network.codec.game.encode.sendInterfaceSettings
+import rs.dusk.network.codec.game.encode.sendScript
 
 internal class InterfaceOptionsTest {
 

@@ -29,7 +29,7 @@ import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
-import rs.dusk.network.rs.codec.game.gameCodec
+import rs.dusk.network.codec.game.gameCodec
 import rs.dusk.script.scriptModule
 import rs.dusk.utility.get
 import rs.dusk.world.interact.entity.player.spawn.login.loginQueueModule

@@ -4,7 +4,7 @@ import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.chat.ChatType
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.*
+import rs.dusk.network.codec.game.encode.*
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 

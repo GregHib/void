@@ -7,8 +7,8 @@ import rs.dusk.engine.client.variable.Variable
 import rs.dusk.engine.client.variable.sendVar
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.sendRunEnergy
-import rs.dusk.network.rs.codec.game.encode.sendVarp
+import rs.dusk.network.codec.game.encode.sendRunEnergy
+import rs.dusk.network.codec.game.encode.sendVarp
 
 IntVariable(7198, Variable.Type.VARBIT, true, 990).register("life_points")
 BooleanVariable(102, Variable.Type.VARP).register("poisoned")

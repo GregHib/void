@@ -3,8 +3,8 @@ package rs.dusk.engine.entity.character.contain
 import rs.dusk.cache.config.data.ContainerDefinition
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.definition.ContainerDefinitions
-import rs.dusk.network.rs.codec.game.encode.sendContainerItems
-import rs.dusk.network.rs.codec.game.encode.sendInterfaceItemUpdate
+import rs.dusk.network.codec.game.encode.sendContainerItems
+import rs.dusk.network.codec.game.encode.sendInterfaceItemUpdate
 import rs.dusk.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {

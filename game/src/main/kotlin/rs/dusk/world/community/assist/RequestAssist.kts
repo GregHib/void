@@ -20,7 +20,7 @@ import rs.dusk.engine.entity.character.update.visual.setAnimation
 import rs.dusk.engine.entity.character.update.visual.setGraphic
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
-import rs.dusk.network.rs.codec.game.encode.message
+import rs.dusk.network.codec.game.encode.message
 import rs.dusk.utility.Time.ticksToSeconds
 import rs.dusk.utility.func.plural
 import rs.dusk.world.community.assist.Assistance.canAssist

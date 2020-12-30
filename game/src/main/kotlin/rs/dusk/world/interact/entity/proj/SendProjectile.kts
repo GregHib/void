@@ -9,7 +9,7 @@ import rs.dusk.engine.entity.proj.Projectiles
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.ProjectileAddEncoder
+import rs.dusk.network.codec.game.encode.ProjectileAddEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.proj.ShootProjectile
 

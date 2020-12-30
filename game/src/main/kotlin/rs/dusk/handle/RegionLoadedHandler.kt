@@ -2,8 +2,8 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.network.codec.message.Handler
 import rs.dusk.engine.client.Sessions
+import rs.dusk.network.codec.Handler
 import rs.dusk.utility.inject
 
 /**

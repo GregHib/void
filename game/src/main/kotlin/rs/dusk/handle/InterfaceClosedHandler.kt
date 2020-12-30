@@ -1,10 +1,10 @@
 package rs.dusk.handle
 
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.network.codec.message.Handler
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
+import rs.dusk.network.codec.Handler
 import rs.dusk.utility.inject
 
 /**

@@ -2,11 +2,6 @@ package rs.dusk.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
-import rs.dusk.core.crypto.IsaacKeyPair
-import rs.dusk.core.network.codec.message.Handler
-import rs.dusk.core.network.codec.setCipherIn
-import rs.dusk.core.network.codec.setCipherOut
-import rs.dusk.core.network.codec.setCodec
 import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.player.GameLoginInfo
@@ -15,10 +10,15 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.region.RegionLogin
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
-import rs.dusk.network.rs.codec.game.GameCodec
-import rs.dusk.network.rs.codec.login.LoginCodec
-import rs.dusk.network.rs.codec.login.encode.GameLoginDetailsEncoder
-import rs.dusk.network.rs.codec.login.encode.LoginResponseEncoder
+import rs.dusk.network.codec.Handler
+import rs.dusk.network.codec.game.GameCodec
+import rs.dusk.network.codec.login.LoginCodec
+import rs.dusk.network.codec.login.encode.GameLoginDetailsEncoder
+import rs.dusk.network.codec.login.encode.LoginResponseEncoder
+import rs.dusk.network.codec.setCipherIn
+import rs.dusk.network.codec.setCipherOut
+import rs.dusk.network.codec.setCodec
+import rs.dusk.network.crypto.IsaacKeyPair
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.player.spawn.login.Login
 import rs.dusk.world.interact.entity.player.spawn.login.LoginResponse
