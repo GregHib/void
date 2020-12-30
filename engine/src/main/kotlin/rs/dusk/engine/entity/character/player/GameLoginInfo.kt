@@ -1,8 +1,5 @@
 package rs.dusk.engine.entity.character.player
 
-import rs.dusk.core.network.model.message.Message
-import rs.dusk.network.rs.codec.game.MessageCompanion
-
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since April 18, 2020
@@ -29,6 +26,4 @@ data class GameLoginInfo(
     val heapSize: Int,
     val processorCount: Int,
     val totalMemory: Int
-) : Message {
-    companion object : MessageCompanion<GameLoginInfo>()
-}
+)

@@ -19,7 +19,7 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.NPCUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.NPCUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -30,7 +30,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     lateinit var task: NPCUpdateTask
     lateinit var players: Players
     lateinit var sessions: Sessions
-    lateinit var encoder: NPCUpdateMessageEncoder
+    lateinit var encoder: NPCUpdateEncoder
     override val modules = listOf(
         eventModule,
         entityListModule,

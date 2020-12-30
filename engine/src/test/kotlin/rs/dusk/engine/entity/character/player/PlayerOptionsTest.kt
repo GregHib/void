@@ -6,13 +6,13 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
 
 internal class PlayerOptionsTest {
 
     lateinit var player: Player
     lateinit var options: PlayerOptions
-    lateinit var encoder: ContextMenuOptionMessageEncoder
+    lateinit var encoder: ContextMenuOptionEncoder
 
     @BeforeEach
     fun setup() {

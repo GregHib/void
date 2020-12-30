@@ -5,7 +5,7 @@ import io.netty.channel.ChannelHandler
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.MessageToMessageDecoder
 import rs.dusk.core.network.codec.getCodec
-import rs.dusk.core.network.codec.packet.access.PacketReader
+import rs.dusk.core.network.codec.packet.PacketReader
 
 @ChannelHandler.Sharable
 object OpcodeMessageDecoder : MessageToMessageDecoder<PacketReader>() {

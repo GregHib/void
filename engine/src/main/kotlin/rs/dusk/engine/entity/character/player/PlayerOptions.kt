@@ -1,10 +1,10 @@
 package rs.dusk.engine.entity.character.player
 
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
 
 class PlayerOptions(
     private val player: Player,
-    private val optionEncoder: ContextMenuOptionMessageEncoder
+    private val optionEncoder: ContextMenuOptionEncoder
 ) {
 
     private val options: Array<String> = Array(OPTION_SIZE) {

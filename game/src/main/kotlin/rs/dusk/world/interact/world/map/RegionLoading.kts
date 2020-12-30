@@ -17,8 +17,8 @@ import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLogin
 import rs.dusk.engine.map.region.RegionReader
 import rs.dusk.engine.map.region.Xteas
-import rs.dusk.network.rs.codec.game.encode.DynamicMapRegionMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.MapRegionMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.DynamicMapRegionEncoder
+import rs.dusk.network.rs.codec.game.encode.MapRegionEncoder
 import rs.dusk.utility.inject
 import kotlin.math.abs
 
@@ -32,8 +32,8 @@ val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicChunks: DynamicChunks by inject()
-val dynamicRegionEncoder: DynamicMapRegionMessageEncoder by inject()
-val regionEncoder: MapRegionMessageEncoder by inject()
+val dynamicRegionEncoder: DynamicMapRegionEncoder by inject()
+val regionEncoder: MapRegionEncoder by inject()
 
 val playerRegions = IntArray(MAX_PLAYERS - 1)
 

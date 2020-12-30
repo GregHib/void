@@ -14,8 +14,8 @@ import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionLoaded
 import rs.dusk.engine.tick.Startup
-import rs.dusk.network.rs.codec.game.encode.ObjectAddMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.ObjectRemoveMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectAddEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectRemoveEncoder
 import rs.dusk.utility.getProperty
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.RemoveObject
@@ -28,8 +28,8 @@ val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val factory: GameObjectFactory by inject()
 val logger = InlineLogger()
-val addEncoder: ObjectAddMessageEncoder by inject()
-val removeEncoder: ObjectRemoveMessageEncoder by inject()
+val addEncoder: ObjectAddEncoder by inject()
+val removeEncoder: ObjectRemoveEncoder by inject()
 
 val spawns: MutableMap<Region, MutableList<GameObject>> = mutableMapOf()
 

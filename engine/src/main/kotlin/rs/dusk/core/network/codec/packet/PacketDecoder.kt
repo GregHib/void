@@ -4,10 +4,8 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
-import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.getCipherIn
 import rs.dusk.core.network.codec.getCodec
-import rs.dusk.core.network.codec.packet.access.PacketReader
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -23,37 +21,17 @@ class PacketDecoder : ByteToMessageDecoder() {
         Payload
     }
 
-    /**
-     * The current state of the decoder
-     */
     private var state: State = State.Opcode
 
-    /**
-     * The read opcode of the packet
-     */
     private var opcode = -1
 
-    /**
-     * The expected length of the packet
-     */
     protected var length = -1
-
-    /**
-     * The type of packet
-     */
     private var type = -3
-
-    /**
-     * Handles reading the opcode from the buffer
-     */
-    fun readOpcode(buf : ByteBuf, cipher: IsaacCipher?) : Int {
-        return (buf.readUnsignedByte().toInt() - (cipher?.nextInt() ?: 0)) and 0xff
-    }
 
     /**
      * Getting the expected length of a buffer by the opcode identified [opcode]. If th
      */
-    fun getExpectedLength(ctx : ChannelHandlerContext, opcode : Int) : Int? {
+    fun getExpectedLength(ctx: ChannelHandlerContext, opcode: Int): Int? {
         val codec = ctx.channel().getCodec()
             ?: throw IllegalStateException("Unable to extract codec from channel - undefined!")
 
@@ -71,7 +49,8 @@ class PacketDecoder : ByteToMessageDecoder() {
                 logger.error { "Unable to decode opcode from buffer - buffer is not readable." }
                 return
             }
-            opcode = readOpcode(buf, ctx.channel().getCipherIn())
+            val cipher = ctx.channel().getCipherIn()?.nextInt() ?: 0
+            opcode = (buf.readUnsignedByte().toInt() - cipher) and 0xff
             length = getExpectedLength(ctx, opcode) ?: return
             type = length
             state = if (length < 0) State.Length else State.Payload

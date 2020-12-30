@@ -16,10 +16,10 @@ import rs.dusk.engine.event.where
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.chunk.ChunkBatcher
 import rs.dusk.engine.path.strat.PointTargetStrategy
-import rs.dusk.network.rs.codec.game.encode.FloorItemAddMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemRevealMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.FloorItemUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemAddEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemRevealEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemUpdateEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.item.spawn.Drop
 import rs.dusk.world.interact.entity.player.equip.ContainerAction
@@ -30,10 +30,10 @@ val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val logger = InlineLogger()
-val addEncoder: FloorItemAddMessageEncoder by inject()
-val updateEncoder: FloorItemUpdateMessageEncoder by inject()
-val removeEncoder: FloorItemRemoveMessageEncoder by inject()
-val revealEncoder: FloorItemRevealMessageEncoder by inject()
+val addEncoder: FloorItemAddEncoder by inject()
+val updateEncoder: FloorItemUpdateEncoder by inject()
+val removeEncoder: FloorItemRemoveEncoder by inject()
+val revealEncoder: FloorItemRevealEncoder by inject()
 
 ContainerAction where { container == "inventory" && option == "Drop" } then {
     val id = player.inventory.getItem(slot)

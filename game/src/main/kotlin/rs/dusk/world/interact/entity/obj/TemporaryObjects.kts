@@ -9,8 +9,8 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.ObjectAddMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.ObjectRemoveMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectAddEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectRemoveEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.obj.ReplaceObject
 import rs.dusk.world.interact.entity.obj.ReplaceObjectPair
@@ -20,8 +20,8 @@ val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 val factory: GameObjectFactory by inject()
-val addEncoder: ObjectAddMessageEncoder by inject()
-val removeEncoder: ObjectRemoveMessageEncoder by inject()
+val addEncoder: ObjectAddEncoder by inject()
+val removeEncoder: ObjectRemoveEncoder by inject()
 
 /**
  * Replaces two objects, linking them to the same job so both revert after timeout

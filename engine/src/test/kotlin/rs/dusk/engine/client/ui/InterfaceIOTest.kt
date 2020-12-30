@@ -20,16 +20,16 @@ internal class InterfaceIOTest {
     private lateinit var io: InterfaceIO
     private lateinit var player: Player
     private lateinit var bus: EventBus
-    private lateinit var openEncoder: InterfaceOpenMessageEncoder
-    private lateinit var updateEncoder: InterfaceUpdateMessageEncoder
-    private lateinit var animationEncoder: InterfaceAnimationMessageEncoder
-    private lateinit var closeEncoder: InterfaceCloseMessageEncoder
-    private lateinit var playerHeadEncoder: InterfaceHeadPlayerMessageEncoder
-    private lateinit var npcHeadEncoder: InterfaceHeadNPCMessageEncoder
-    private lateinit var textEncoder: InterfaceTextMessageEncoder
-    private lateinit var visibleEncoder: InterfaceVisibilityMessageEncoder
-    private lateinit var spriteEncoder: InterfaceSpriteMessageEncoder
-    private lateinit var itemEncoder: InterfaceItemMessageEncoder
+    private lateinit var openEncoder: InterfaceOpenEncoder
+    private lateinit var updateEncoder: InterfaceUpdateEncoder
+    private lateinit var animationEncoder: InterfaceAnimationEncoder
+    private lateinit var closeEncoder: InterfaceCloseEncoder
+    private lateinit var playerHeadEncoder: InterfaceHeadPlayerEncoder
+    private lateinit var npcHeadEncoder: InterfaceHeadNPCEncoder
+    private lateinit var textEncoder: InterfaceTextEncoder
+    private lateinit var visibleEncoder: InterfaceVisibilityEncoder
+    private lateinit var spriteEncoder: InterfaceSpriteEncoder
+    private lateinit var itemEncoder: InterfaceItemEncoder
 
     @BeforeEach
     fun setup() {

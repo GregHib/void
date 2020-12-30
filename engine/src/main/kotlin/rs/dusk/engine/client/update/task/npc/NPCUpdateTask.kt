@@ -11,7 +11,7 @@ import rs.dusk.engine.entity.character.update.LocalChange
 import rs.dusk.engine.entity.character.update.visual.npc.getTurn
 import rs.dusk.engine.event.Priority.NPC_UPDATE
 import rs.dusk.engine.tick.task.EntityTask
-import rs.dusk.network.rs.codec.game.encode.NPCUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.NPCUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -20,7 +20,7 @@ import rs.dusk.network.rs.codec.game.encode.NPCUpdateMessageEncoder
 class NPCUpdateTask(
     override val entities: Players,
     val sessions: Sessions,
-    private val npcUpdateEncoder: NPCUpdateMessageEncoder
+    private val npcUpdateEncoder: NPCUpdateEncoder
 ) : EntityTask<Player>(NPC_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
