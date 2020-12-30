@@ -4,12 +4,12 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.3.72"))
+        classpath(kotlin("gradle-plugin", version = "1.4.20"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.3.72"
+    kotlin("jvm") version "1.4.20"
 }
 
 val koinVersion = "2.2.1"
@@ -25,7 +25,7 @@ allprojects {
     group = "rs.dusk"
     version = "0.0.2"
 
-    java.sourceCompatibility = JavaVersion.VERSION_14
+    java.sourceCompatibility = JavaVersion.VERSION_15
 
     repositories {
         mavenCentral()
@@ -49,7 +49,7 @@ allprojects {
         )
         implementation(group = "org.koin", name = "koin-core", version = koinVersion)
         implementation(group = "org.koin", name = "koin-logger-slf4j", version = koinVersion)
-        implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.3.7")
+        implementation(group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version = "1.4.2")
 
         //Logging
         implementation("org.slf4j:slf4j-api:1.7.30")

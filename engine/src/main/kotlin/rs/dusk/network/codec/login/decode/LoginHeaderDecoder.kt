@@ -2,10 +2,10 @@ package rs.dusk.network.codec.login.decode
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.secure.RSA
 import rs.dusk.cache.secure.Xtea
 import rs.dusk.network.codec.login.LoginResponseCode
-import rs.dusk.network.packet.PacketReader
 import rs.dusk.utility.getIntProperty
 import rs.dusk.utility.getProperty
 import java.math.BigInteger
@@ -27,7 +27,7 @@ object LoginHeaderDecoder {
      * @param extra Whether to read extra byte
      * @return Triple(password, server seed, client seed)
      */
-    fun decode(reader: PacketReader, extra: Boolean = false): Triple<LoginResponseCode, String?, IntArray?> {
+    fun decode(reader: Reader, extra: Boolean = false): Triple<LoginResponseCode, String?, IntArray?> {
         val version = reader.readInt()
         if (version != clientMajorBuild) {
             return Triple(LoginResponseCode.GameUpdated, null, null)

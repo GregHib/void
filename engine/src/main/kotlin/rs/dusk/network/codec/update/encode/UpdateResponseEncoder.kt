@@ -16,12 +16,10 @@ class UpdateResponseEncoder : Encoder() {
     ) {
         val realLength = if (compression != 0) length + 4 else length
         channel.send(getLength(realLength)) {
-
             writeByte(indexId)
             writeShort(archiveId)
             writeByte(attributes)
             writeInt(length)
-
             for (offset in 5 until realLength + 5) {
                 if (writerIndex() % 512 == 0) {
                     writeByte(255)

@@ -1,6 +1,6 @@
 package rs.dusk.cache.secure
 
-import rs.dusk.buffer.read.BufferReader
+import rs.dusk.buffer.read.Reader
 import rs.dusk.buffer.write.BufferWriter
 import rs.dusk.cache.Cache
 
@@ -90,7 +90,7 @@ class Huffman(cache: Cache) {
      * @param packet The packet containing the compressed data
      * @param characters The number of string characters to decompress
      */
-    fun decompress(packet: BufferReader, characters: Int): String {
+    fun decompress(packet: Reader, characters: Int): String {
         val textBuffer = ByteArray(packet.readableBytes())
         packet.readBytes(textBuffer)
         return decompress(textBuffer, characters) ?: ""
