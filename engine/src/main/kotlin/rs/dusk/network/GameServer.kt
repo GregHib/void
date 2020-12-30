@@ -21,7 +21,6 @@ import rs.dusk.network.codec.setCodec
 import rs.dusk.network.codec.update.UpdateCodec
 import rs.dusk.network.connection.ChannelAdapter
 import rs.dusk.network.connection.DisconnectQueue
-import rs.dusk.network.packet.OpcodePacketDecoder
 import rs.dusk.network.packet.PacketDecoder
 import rs.dusk.utility.get
 
@@ -53,8 +52,7 @@ class GameServer(
                 override fun initChannel(ch: SocketChannel) {
                     val pipe = ch.pipeline()
                     pipe.addLast("packet.decoder", PacketDecoder())
-                    pipe.addLast("message.decoder", OpcodePacketDecoder)
-                    pipe.addLast("message.encoder", encoder)
+                    pipe.addLast("packet.encoder", encoder)
                     pipe.addLast("channel.listener", ChannelAdapter(channels, sessions, disconnections))
                     pipe.channel().setCodec(service)
                 }

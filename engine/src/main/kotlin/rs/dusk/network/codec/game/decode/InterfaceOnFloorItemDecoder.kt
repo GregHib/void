@@ -3,12 +3,12 @@ package rs.dusk.network.codec.game.decode
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
+import rs.dusk.buffer.read.Reader
 import rs.dusk.network.codec.Decoder
-import rs.dusk.network.packet.PacketReader
 
 class InterfaceOnFloorItemDecoder : Decoder(15) {
 
-    override fun decode(context: ChannelHandlerContext, packet: PacketReader) {
+    override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnFloorItem(
             context,
             packet.readShort(),
