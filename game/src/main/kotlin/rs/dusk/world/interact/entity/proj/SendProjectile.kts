@@ -9,7 +9,7 @@ import rs.dusk.engine.entity.proj.Projectiles
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.ProjectileAddMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ProjectileAddEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.proj.ShootProjectile
 
@@ -17,7 +17,7 @@ val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
-val addEncoder: ProjectileAddMessageEncoder by inject()
+val addEncoder: ProjectileAddEncoder by inject()
 
 ShootProjectile then {
     var index = if (target != null) target.index + 1 else 0

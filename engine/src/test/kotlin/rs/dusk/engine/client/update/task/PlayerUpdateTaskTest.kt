@@ -24,7 +24,7 @@ import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.region.RegionPlane
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.PlayerUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.PlayerUpdateEncoder
 import rs.dusk.utility.func.toInt
 
 /**
@@ -36,7 +36,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
     lateinit var task: PlayerUpdateTask
     lateinit var players: Players
     lateinit var sessions: Sessions
-    lateinit var encoder: PlayerUpdateMessageEncoder
+    lateinit var encoder: PlayerUpdateEncoder
     override val modules = listOf(
         eventModule,
         entityListModule,

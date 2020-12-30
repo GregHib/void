@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.character.player.PlayerTrackingSet
 import rs.dusk.engine.event.eventModule
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.script.KoinMock
-import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -19,7 +19,7 @@ import rs.dusk.network.rs.codec.game.encode.ContextMenuOptionMessageEncoder
 internal class PlayerTrackingSetTest : KoinMock() {
     lateinit var set: PlayerTrackingSet
 
-    override val modules = listOf(eventModule, module { single { mockk<ContextMenuOptionMessageEncoder>(relaxed = true) } })
+    override val modules = listOf(eventModule, module { single { mockk<ContextMenuOptionEncoder>(relaxed = true) } })
 
     @BeforeEach
     fun setup() {

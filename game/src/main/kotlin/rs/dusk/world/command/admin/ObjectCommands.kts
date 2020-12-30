@@ -3,15 +3,15 @@ import rs.dusk.engine.entity.obj.Objects
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.ObjectAddMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.ObjectRemoveMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectAddEncoder
+import rs.dusk.network.rs.codec.game.encode.ObjectRemoveEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 
 val objects: Objects by inject()
 val batcher: ChunkBatcher by inject()
-val addEncoder: ObjectAddMessageEncoder by inject()
-val removeEncoder: ObjectRemoveMessageEncoder by inject()
+val addEncoder: ObjectAddEncoder by inject()
+val removeEncoder: ObjectRemoveEncoder by inject()
 
 Command where { prefix == "spawn" } then {
     batcher.sendChunk(player, player.tile.chunk)

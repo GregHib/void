@@ -6,8 +6,8 @@ import rs.dusk.core.crypto.IsaacCipher
 import rs.dusk.core.network.codec.Codec.Companion.CODEC_KEY
 import rs.dusk.core.network.codec.Codec.Companion.IN_CIPHER_KEY
 import rs.dusk.core.network.codec.Codec.Companion.OUT_CIPHER_KEY
-import rs.dusk.core.network.codec.message.MessageDecoder
-import rs.dusk.core.network.codec.message.MessageHandler
+import rs.dusk.core.network.codec.message.Decoder
+import rs.dusk.core.network.codec.message.Handler
 import rs.dusk.engine.TimedLoader
 
 /**
@@ -16,16 +16,16 @@ import rs.dusk.engine.TimedLoader
  */
 abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
 
-    val decoders = HashMap<Int, MessageDecoder>()
+    val decoders = HashMap<Int, Decoder>()
 
-    fun registerDecoder(opcode: Int, decoder: MessageDecoder) {
+    fun registerDecoder(opcode: Int, decoder: Decoder) {
         if (decoders[opcode] != null) {
             throw IllegalArgumentException("Cannot have duplicate decoders $decoder $opcode")
         }
         decoders[opcode] = decoder
     }
 
-    fun registerHandler(opcode: Int, handler: MessageHandler) {
+    fun registerHandler(opcode: Int, handler: Handler) {
         val decoder = getDecoder(opcode) ?: throw IllegalArgumentException("Missing decoder $opcode $handler")
         if (decoder.handler != null) {
             throw IllegalArgumentException("Cannot have duplicate handlers $opcode $handler")
@@ -33,7 +33,7 @@ abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
         decoder.handler = handler
     }
 
-    fun getDecoder(opcode: Int): MessageDecoder? {
+    fun getDecoder(opcode: Int): Decoder? {
         return decoders[opcode]
     }
 

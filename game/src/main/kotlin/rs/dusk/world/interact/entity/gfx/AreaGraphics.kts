@@ -10,7 +10,7 @@ import rs.dusk.engine.entity.item.offset
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.GraphicAreaMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.GraphicAreaEncoder
 import rs.dusk.utility.inject
 import rs.dusk.world.interact.entity.gfx.SpawnGraphic
 
@@ -18,7 +18,7 @@ val graphics: Graphics by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
-val encoder: GraphicAreaMessageEncoder by inject()
+val encoder: GraphicAreaEncoder by inject()
 
 SpawnGraphic then {
     val ag = AreaGraphic(tile, Graphic(id, delay, height, rotation, forceRefresh), owner)

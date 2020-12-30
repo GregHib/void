@@ -5,8 +5,8 @@ import rs.dusk.engine.client.Sessions
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.event.then
 import rs.dusk.engine.tick.Tick
-import rs.dusk.network.rs.codec.game.encode.ChunkClearMessageEncoder
-import rs.dusk.network.rs.codec.game.encode.ChunkUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.ChunkClearEncoder
+import rs.dusk.network.rs.codec.game.encode.ChunkUpdateEncoder
 import rs.dusk.utility.get
 import rs.dusk.utility.inject
 
@@ -20,8 +20,8 @@ class ChunkBatcher {
     val subscriptions = mutableMapOf<Player, (Chunk, List<(Player) -> Unit>) -> Unit>()
     val initials = mutableSetOf<(Player, Chunk, MutableList<(Player) -> Unit>) -> Unit>()
     val batches = mutableMapOf<Chunk, MutableList<(Player) -> Unit>>()
-    private val chunkClearEncoder = get<ChunkClearMessageEncoder>()
-    private val chunkUpdateEncoder = get<ChunkUpdateMessageEncoder>()
+    private val chunkClearEncoder = get<ChunkClearEncoder>()
+    private val chunkUpdateEncoder = get<ChunkUpdateEncoder>()
 
     init {
         Tick.then {

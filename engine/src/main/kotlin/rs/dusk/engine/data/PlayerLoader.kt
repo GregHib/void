@@ -25,17 +25,17 @@ class PlayerLoader(
     private val collisions: Collisions,
     private val definitions: ContainerDefinitions,
     strategy: StorageStrategy<Player>,
-    private val levelEncoder: SkillLevelMessageEncoder,
-    private val openEncoder: InterfaceOpenMessageEncoder,
-    private val updateEncoder: InterfaceUpdateMessageEncoder,
-    private val animationEncoder: InterfaceAnimationMessageEncoder,
-    private val closeEncoder: InterfaceCloseMessageEncoder,
-    private val playerHeadEncoder: InterfaceHeadPlayerMessageEncoder,
-    private val npcHeadEncoder: InterfaceHeadNPCMessageEncoder,
-    private val textEncoder: InterfaceTextMessageEncoder,
-    private val visibleEncoder: InterfaceVisibilityMessageEncoder,
-    private val spriteEncoder: InterfaceSpriteMessageEncoder,
-    private val itemEncoder: InterfaceItemMessageEncoder
+    private val levelEncoder: SkillLevelEncoder,
+    private val openEncoder: InterfaceOpenEncoder,
+    private val updateEncoder: InterfaceUpdateEncoder,
+    private val animationEncoder: InterfaceAnimationEncoder,
+    private val closeEncoder: InterfaceCloseEncoder,
+    private val playerHeadEncoder: InterfaceHeadPlayerEncoder,
+    private val npcHeadEncoder: InterfaceHeadNPCEncoder,
+    private val textEncoder: InterfaceTextEncoder,
+    private val visibleEncoder: InterfaceVisibilityEncoder,
+    private val spriteEncoder: InterfaceSpriteEncoder,
+    private val itemEncoder: InterfaceItemEncoder
 ) : DataLoader<Player>(strategy) {
 
     private val x = getIntProperty("homeX", 0)

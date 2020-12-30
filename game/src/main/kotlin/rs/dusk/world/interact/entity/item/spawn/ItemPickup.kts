@@ -10,14 +10,14 @@ import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
 import rs.dusk.engine.event.where
 import rs.dusk.engine.map.chunk.ChunkBatcher
-import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.FloorItemRemoveEncoder
 import rs.dusk.network.rs.codec.game.encode.message
 import rs.dusk.utility.inject
 
 val items: FloorItems by inject()
 val batcher: ChunkBatcher by inject()
 val bus: EventBus by inject()
-val removeEncoder: FloorItemRemoveMessageEncoder by inject()
+val removeEncoder: FloorItemRemoveEncoder by inject()
 
 FloorItemOption where { option == "Take" } then {
     val item = floorItem

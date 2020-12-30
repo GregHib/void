@@ -12,7 +12,7 @@ import rs.dusk.engine.entity.list.MAX_PLAYERS
 import rs.dusk.engine.event.Priority.PLAYER_UPDATE
 import rs.dusk.engine.map.region.RegionPlane
 import rs.dusk.engine.tick.task.EntityTask
-import rs.dusk.network.rs.codec.game.encode.PlayerUpdateMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.PlayerUpdateEncoder
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
@@ -21,7 +21,7 @@ import rs.dusk.network.rs.codec.game.encode.PlayerUpdateMessageEncoder
 class PlayerUpdateTask(
     override val entities: Players,
     val sessions: Sessions,
-    private val updateEncoder: PlayerUpdateMessageEncoder
+    private val updateEncoder: PlayerUpdateEncoder
 ) : EntityTask<Player>(PLAYER_UPDATE) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

@@ -1,12 +1,12 @@
 package rs.dusk.network.rs.codec.login.encode
 
 import io.netty.channel.Channel
-import rs.dusk.core.network.codec.message.MessageEncoder
+import rs.dusk.core.network.codec.message.Encoder
 
 /**
  * Client game or lobby login response code after a lobby connection request
  */
-class LoginResponseEncoder : MessageEncoder() {
+class LoginResponseEncoder : Encoder() {
 
     fun encode(
         channel: Channel,

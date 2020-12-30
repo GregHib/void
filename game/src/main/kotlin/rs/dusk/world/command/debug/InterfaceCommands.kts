@@ -9,10 +9,10 @@ import rs.dusk.utility.inject
 import rs.dusk.world.command.Command
 
 val details: InterfaceDetails by inject()
-val closeEncoder: InterfaceCloseMessageEncoder by inject()
-val openEncoder: InterfaceOpenMessageEncoder by inject()
-val visibleEncoder: InterfaceVisibilityMessageEncoder by inject()
-val settingsEncoder: InterfaceSettingsMessageEncoder by inject()
+val closeEncoder: InterfaceCloseEncoder by inject()
+val openEncoder: InterfaceOpenEncoder by inject()
+val visibleEncoder: InterfaceVisibilityEncoder by inject()
+val settingsEncoder: InterfaceSettingsEncoder by inject()
 
 Command where { prefix == "inter" } then {
     val id = content.toIntOrNull()

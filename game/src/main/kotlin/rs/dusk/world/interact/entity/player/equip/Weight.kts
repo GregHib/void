@@ -9,11 +9,11 @@ import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.entity.character.set
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.then
-import rs.dusk.network.rs.codec.game.encode.WeightMessageEncoder
+import rs.dusk.network.rs.codec.game.encode.WeightEncoder
 import rs.dusk.utility.inject
 
 val definitions: ItemDefinitions by inject()
-val weightEncoder: WeightMessageEncoder by inject()
+val weightEncoder: WeightEncoder by inject()
 
 PlayerRegistered then {
     updateWeight(player)
