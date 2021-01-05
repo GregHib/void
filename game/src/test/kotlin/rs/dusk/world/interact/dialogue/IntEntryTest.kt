@@ -12,7 +12,7 @@ internal class IntEntryTest : DialogueTest() {
 
     @Test
     fun `Send int entry`() {
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.ScriptMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             intEntry("text")

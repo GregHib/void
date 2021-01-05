@@ -37,9 +37,9 @@ internal class InterfaceOptionsTest {
         val component = InterfaceComponentDetail(0, comp, parent = 5, container = "container", primaryContainer = false, options = staticOptions)
         every { details.getComponent(name, any()) } returns InterfaceComponentDetail(-1, "")
         every { details.getComponent(name, comp) } returns component
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.InterfaceSettingsMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.InterfaceSettingsEncoderKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.ScriptMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
     }
 

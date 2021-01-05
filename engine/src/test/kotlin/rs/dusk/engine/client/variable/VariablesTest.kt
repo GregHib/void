@@ -27,13 +27,13 @@ internal class VariablesTest {
         system = spyk(Variables())
         component = mutableMapOf()
         player = mockk(relaxed = true)
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarpMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.VarpEncoderKt")
         every { player.sendVarp(any(), any()) } just Runs
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarbitMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.VarbitEncoderKt")
         every { player.sendVarbit(any(), any()) } just Runs
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarcMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.VarcEncoderKt")
         every { player.sendVarc(any(), any()) } just Runs
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.VarcStrMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.VarcStrEncoderKt")
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns component
         setVariable(key, variable)
