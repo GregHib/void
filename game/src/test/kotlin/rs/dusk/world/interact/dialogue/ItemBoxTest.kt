@@ -13,7 +13,7 @@ internal class ItemBoxTest : DialogueTest() {
 
     @Test
     fun `Send item box`() {
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.ScriptMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             item("""
@@ -34,7 +34,7 @@ internal class ItemBoxTest : DialogueTest() {
 
     @Test
     fun `Item box not sent if interface not opened`() {
-        mockkStatic("rs.dusk.network.rs.codec.game.encode.ScriptMessageEncoderKt")
+        mockkStatic("rs.dusk.network.codec.game.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false

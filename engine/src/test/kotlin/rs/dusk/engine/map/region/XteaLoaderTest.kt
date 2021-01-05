@@ -62,7 +62,7 @@ internal class XteaLoaderTest {
 
     @Test
     fun `Load wrong json throws exception`() {
-        assertThrows<TypeCastException> {
+        assertThrows<NullPointerException> {
             loader.loadJson("[\n\t{\n\t\t\"region\": 123,\n\t\t\"keys\": [1, 2, 99, 100]\n\t}\n]", "unknown", "keys")
         }
     }
