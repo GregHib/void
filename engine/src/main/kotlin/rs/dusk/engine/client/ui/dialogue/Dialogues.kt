@@ -22,7 +22,7 @@ class Dialogues {
         return suspensions.peek()?.suspensionType ?: ""
     }
 
-    fun resume() = resume(Unit.INSTANCE)
+    fun resume() = resume(Unit)
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> resume(value: T) {
@@ -40,7 +40,7 @@ class Dialogues {
 
     fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
         val coroutine = function.createCoroutine(context, DialogueContinuation)
-        coroutine.resume(Unit.INSTANCE)
+        coroutine.resume(Unit)
     }
 
     fun add(context: DialogueContext) {
