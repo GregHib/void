@@ -8,6 +8,7 @@ import rs.dusk.engine.path.PathAlgorithm
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
+import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 
@@ -19,6 +20,9 @@ import kotlin.math.min
  * @since May 20, 2020
  */
 class BreadthFirstSearch : PathAlgorithm {
+    val directions: Array<Array<Direction?>> = Array(GRAPH_SIZE) { Array<Direction?>(GRAPH_SIZE) { null } }
+    val distances: Array<IntArray> = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) { 99999999 } }
+    val calc: Queue<Tile> = LinkedList()
 
     override fun find(
         tile: Tile,
@@ -29,18 +33,18 @@ class BreadthFirstSearch : PathAlgorithm {
     ): PathResult {
         for (x in 0 until GRAPH_SIZE) {
             for (y in 0 until GRAPH_SIZE) {
-                movement.directions[x][y] = null
-                movement.distances[x][y] = 99999999
+                directions[x][y] = null
+                distances[x][y] = 99999999
             }
         }
         val graph = GRAPH_SIZE / 2
         val graphBaseX = tile.x - graph
         val graphBaseY = tile.y - graph
 
-        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, movement, strategy, traversal)
+        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, strategy, traversal)
 
         if (result is PathResult.Failure) {
-            result = calculatePartialPath(movement, strategy, graphBaseX, graphBaseY)
+            result = calculatePartialPath(strategy, graphBaseX, graphBaseY)
         }
 
         return when (result) {
@@ -54,16 +58,15 @@ class BreadthFirstSearch : PathAlgorithm {
         graphBaseY: Int,
         plane: Int,
         size: Size,
-        movement: Movement,
         target: TargetStrategy,
         traversal: TraversalStrategy
     ): PathResult {
         // Cache fields for jit compiler performance boost
-        val directions = movement.directions
-        val distances = movement.distances
+        val directions = directions
+        val distances = distances
         val all = all
 
-        val queue = movement.calc
+        val queue = calc
         queue.clear()
 
         // Set starting tile as visited
@@ -111,10 +114,10 @@ class BreadthFirstSearch : PathAlgorithm {
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(movement: Movement, target: TargetStrategy, graphBaseX: Int, graphBaseY: Int): PathResult {
+    fun calculatePartialPath(target: TargetStrategy, graphBaseX: Int, graphBaseY: Int): PathResult {
         var lowestCost = Integer.MAX_VALUE
         var lowestDistance = Integer.MAX_VALUE
-        val distances = movement.distances
+        val distances = distances
 
         val destX = target.tile.x - graphBaseX
         val destY = target.tile.y - graphBaseY
@@ -145,7 +148,7 @@ class BreadthFirstSearch : PathAlgorithm {
                 }
                 val cost = deltaX * deltaX + deltaY * deltaY
                 // Accept lower costs or shorter paths
-                if (cost < lowestCost || cost == lowestCost && distances[graphX][graphY] < lowestDistance) {
+                if (cost < lowestCost || (cost == lowestCost && distances[graphX][graphY] < lowestDistance)) {
                     lowestCost = cost
                     lowestDistance = distances[graphX][graphY]
                     endX = graphX
@@ -166,12 +169,12 @@ class BreadthFirstSearch : PathAlgorithm {
      */
     fun backtrace(movement: Movement, result: PathResult.Success, graphBaseX: Int, graphBaseY: Int): PathResult {
         var trace = result.last
-        var direction = movement.directions[trace.x][trace.y]
+        var direction = directions[trace.x][trace.y]
         val current = movement.steps.count()
         while (direction != null && direction != Direction.NONE && !trace.equals(graphBaseX, graphBaseY)) {
             movement.steps.add(current, direction)
             trace = trace.minus(direction.delta)
-            direction = movement.directions[trace.x][trace.y]
+            direction = directions[trace.x][trace.y]
         }
         return if(movement.steps.count() == current) {
             PathResult.Failure

@@ -12,7 +12,6 @@ import rs.dusk.engine.path.PathFinder.Companion.getStrategy
 import rs.dusk.engine.path.PathResult
 import rs.dusk.engine.path.TargetStrategy
 import rs.dusk.engine.path.TraversalStrategy
-import rs.dusk.engine.path.algorithm.BreadthFirstSearch
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.sync
 import rs.dusk.utility.get
@@ -32,13 +31,6 @@ data class Movement(
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
     val steps: LinkedList<Direction> = LinkedList(),
-    val directions: Array<Array<Direction?>> = Array(BreadthFirstSearch.GRAPH_SIZE) {
-        Array<Direction?>(
-            BreadthFirstSearch.GRAPH_SIZE
-        ) { null }
-    },
-    val distances: Array<IntArray> = Array(BreadthFirstSearch.GRAPH_SIZE) { IntArray(BreadthFirstSearch.GRAPH_SIZE) },
-    val calc: Queue<Tile> = LinkedList(),
     var frozen: Boolean = false,
     var running: Boolean = false
 ) {
