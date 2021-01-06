@@ -22,7 +22,7 @@ class Dialogues {
         return suspensions.peek()?.suspensionType ?: ""
     }
 
-    fun resume() = resume(Unit)
+    fun resume() = resume(Unit.INSTANCE)
 
     @Suppress("UNCHECKED_CAST")
     fun <T : Any> resume(value: T) {
@@ -40,7 +40,7 @@ class Dialogues {
 
     fun start(context: DialogueContext, function: suspend DialogueContext.() -> Unit) {
         val coroutine = function.createCoroutine(context, DialogueContinuation)
-        coroutine.resume(Unit)
+        coroutine.resume(Unit.INSTANCE)
     }
 
     fun add(context: DialogueContext) {
@@ -51,6 +51,7 @@ class Dialogues {
         val throwable = CancellationException("Dialogues cleared")
         suspensions.forEach {
             it.coroutine?.cancel(throwable)
+            it.close()
         }
         suspensions.clear()
     }

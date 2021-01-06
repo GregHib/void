@@ -58,6 +58,7 @@ data class Movement(
 }
 
 fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), action: (PathResult) -> Unit) = get<TaskExecutor>().sync {
+    dialogues.clear()
     action(ActionType.Movement) {
         try {
             val player = this@walkTo
