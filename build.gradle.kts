@@ -4,12 +4,12 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.4.20"))
+        classpath(kotlin("gradle-plugin", version = "1.4.21"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.4.20"
+    kotlin("jvm") version "1.4.21"
 }
 
 val koinVersion = "2.2.1"
