@@ -12,8 +12,8 @@ internal class MapObjectEncoderTest {
     fun `Write two objects with same id`() {
         // Given
         val map = MapDefinition(123)
-        map.objects.add(MapObject(12345, 0, 0, 0, 12, 2))
         map.objects.add(MapObject(12345, 63, 63, 3, 4, 1))
+        map.objects.add(MapObject(12345, 0, 0, 0, 12, 2))
         // When
         val encoder = MapObjectEncoder()
         val writer = BufferWriter()
