@@ -1,5 +1,6 @@
 package rs.dusk.engine.map
 
+import kotlinx.serialization.Serializable
 import rs.dusk.engine.map.area.Coordinate3D
 import rs.dusk.engine.map.chunk.Chunk
 import rs.dusk.engine.map.region.Region
@@ -12,7 +13,12 @@ import rs.dusk.utility.get
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
-data class Tile(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {
+@Serializable
+data class Tile(
+    override val x: Int,
+    override val y: Int,
+    override val plane: Int = 0
+) : Coordinate3D {
 
     constructor(id: Int) : this(getX(id), getY(id), getPlane(id))
 

@@ -1,10 +1,12 @@
 package rs.dusk.engine.entity.character
 
+import kotlinx.serialization.Serializable
 import rs.dusk.engine.task.Task
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.delay
 import rs.dusk.utility.get
 
+@Serializable
 abstract class Effect(val effectType: String) {
 
     private var task: Task? = null

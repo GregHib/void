@@ -1,7 +1,19 @@
 package rs.dusk.engine.entity.character
 
-class CharacterEffects(private val character: Character) {
-    private val effects = mutableMapOf<String, Effect>()
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
+
+@Serializable
+class CharacterEffects(
+    private val effects: MutableMap<String, Effect> = mutableMapOf()
+) {
+
+    @Transient
+    private lateinit var character: Character
+
+    fun link(character: Character) {
+        this.character = character
+    }
 
     fun toggle(effect: Effect): Boolean {
         if (!remove(effect)) {

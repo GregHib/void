@@ -1,23 +1,29 @@
 package rs.dusk.engine.entity.character.player.skill
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import rs.dusk.engine.entity.character.player.Player
 
+@Serializable
 class Experience(
-    private val experiences: DoubleArray = defaultExperience.clone(),
-    private val maximum: Double = MAXIMUM_EXPERIENCE,
-    private val blocked: MutableSet<Skill> = mutableSetOf()
+    val experience: DoubleArray = defaultExperience.clone(),
+    val blocked: MutableSet<Skill> = mutableSetOf(),
+    @Transient
+    private val maximum: Double = MAXIMUM_EXPERIENCE
 ) {
+    @Transient
     private val listeners: MutableList<(Skill, Double, Double) -> Unit> = mutableListOf()
+    @Transient
     private val blockedListeners: MutableList<(Skill, Double) -> Unit> = mutableListOf()
 
     fun get(skill: Skill): Double {
-        return experiences[skill.ordinal]
+        return experience[skill.ordinal]
     }
 
     fun set(skill: Skill, experience: Double) {
         if (experience > 0.0 && experience <= maximum && !blocked.contains(skill)) {
             val previous = get(skill)
-            experiences[skill.ordinal] = experience
+            this.experience[skill.ordinal] = experience
             update(skill, previous)
         }
     }

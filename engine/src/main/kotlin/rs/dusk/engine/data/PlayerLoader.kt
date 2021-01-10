@@ -6,6 +6,7 @@ import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.PlayerInterfaceIO
 import rs.dusk.engine.client.ui.detail.InterfaceDetails
 import rs.dusk.engine.entity.character.player.Player
+import rs.dusk.engine.entity.character.player.PlayerOptions
 import rs.dusk.engine.entity.definition.ContainerDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.map.Tile
@@ -13,6 +14,7 @@ import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.path.strat.FollowTargetStrategy
 import rs.dusk.engine.path.strat.RectangleTargetStrategy
 import rs.dusk.network.codec.game.encode.*
+import rs.dusk.utility.get
 import rs.dusk.utility.getIntProperty
 
 /**
@@ -54,6 +56,7 @@ class PlayerLoader(
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)
+        player.options = PlayerOptions(player, get())
         return player
     }
 }

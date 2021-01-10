@@ -1,5 +1,7 @@
 package rs.dusk.engine.entity.character.player
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import rs.dusk.engine.action.Action
 import rs.dusk.engine.client.ui.InterfaceOptions
 import rs.dusk.engine.client.ui.Interfaces
@@ -19,38 +21,55 @@ import rs.dusk.engine.entity.character.update.Visuals
 import rs.dusk.engine.entity.character.update.visual.player.appearance
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.path.TargetStrategy
-import rs.dusk.utility.get
 
 /**
  * A player controlled by client or bot
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since March 28, 2020
  */
+@Serializable
 class Player(
-    @Transient override var index: Int = -1,
+    @Transient
+    override var index: Int = -1,
+    @Transient
     override var id: Int = -1,
     override var tile: Tile = Tile.EMPTY,
-    @Transient override var size: Size = Size.TILE,
-    @Transient val viewport: Viewport = Viewport(),
-    @Transient override val visuals: Visuals = Visuals(),
-    @Transient override val movement: Movement = Movement(tile),
-    @Transient override val action: Action = Action(),
+    @Transient
+    override var size: Size = Size.TILE,
+    @Transient
+    val viewport: Viewport = Viewport(),
+    @Transient
+    override val visuals: Visuals = Visuals(),
+    @Transient
+    override val movement: Movement = Movement(),
+    @Transient
+    override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
+    @Transient// Temp
     val variables: MutableMap<Int, Any> = mutableMapOf(),
-    @Transient override val values: CharacterValues = CharacterValues(),
-    @Transient val delays: Delays = Delays(),
-    @Transient val dialogues: Dialogues = Dialogues(),
+    @Transient
+    override val values: CharacterValues = CharacterValues(),
+    @Transient
+    val delays: Delays = Delays(),
+    @Transient
+    val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
-    val levels: Levels = Levels(experience)
+    val levels: Levels = Levels()
 ) : Character {
 
-    override val effects = CharacterEffects(this)
+    override val effects = CharacterEffects()
+
+    init {
+        movement.previousTile = tile
+        levels.link(experience)
+        effects.link(this)
+    }
 
     @Transient
     val requests: Requests = Requests(this)
 
     @Transient
-    val options = PlayerOptions(this, get())
+    lateinit var options: PlayerOptions
 
     @Transient
     val gameFrame = PlayerGameFrame()
