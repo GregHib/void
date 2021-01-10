@@ -15,9 +15,12 @@ object ObjectDefinitions {
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
 
-        println(decoder.get(37745))
-        println(decoder.get(37746))
-        println(decoder.get(37747))
+        repeat(decoder.size) {
+            val def = decoder.getOrNull(it) ?: return@repeat
+            if(def.name.contains("tree", true)) {
+                println(def.blockFlag)
+            }
+        }
     }
 
     fun ObjectDecoder.findMatchingName(name: String) {

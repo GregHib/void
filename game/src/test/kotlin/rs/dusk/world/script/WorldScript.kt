@@ -11,7 +11,7 @@ import rs.dusk.engine.client.ui.detail.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.client.variable.variablesModule
 import rs.dusk.engine.data.file.fileLoaderModule
-import rs.dusk.engine.data.file.ymlPlayerModule
+import rs.dusk.engine.data.file.jsonPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.entity.definition.detailsModule
@@ -42,7 +42,7 @@ abstract class WorldScript : KoinMock() {
         eventModule,
         cacheModule,
         fileLoaderModule,
-        ymlPlayerModule,
+        jsonPlayerModule,
         entityListModule,
         scriptModule,
         clientSessionModule,

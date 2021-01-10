@@ -29,11 +29,13 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
 fun Player.container(detail: ContainerDefinition, secondary: Boolean = false): Container {
     return containers.getOrPut(if (secondary) -detail.id else detail.id) {
         Container(
-            definitions = get(),
+            id = detail.id,
             capacity = get<ContainerDefinitions>().get(detail.id).length,
             listeners = mutableListOf({ updates -> sendInterfaceItemUpdate(detail.id, updates.map { Triple(it.index, it.item, it.amount) }, secondary) }),
             stackMode = detail["stack", StackMode.Normal]
-        )
+        ).apply {
+            definitions = get()
+        }
     }
 }
 

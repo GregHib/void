@@ -29,7 +29,11 @@ data class NPC(
     override val values: CharacterValues = CharacterValues()
 ) : Character {
 
-    override val effects = CharacterEffects(this)
+    override val effects = CharacterEffects()
+
+    init {
+        effects.link(this)
+    }
 
     override var change: LocalChange? = null
     var walkDirection: Int = -1

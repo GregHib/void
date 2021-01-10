@@ -1,26 +1,35 @@
 package rs.dusk.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import java.util.*
 
+@Serializable
 data class Container(
-    private val definitions: ItemDefinitions,
+    val id: Int = -1,
+    @Transient
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
+    @Transient
     val stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
     private val amounts: IntArray,
+    @Transient
     val minimumStack: Int = 0
 ) {
 
+    @Transient
+    lateinit var definitions: ItemDefinitions
+
     constructor(
-        definitions: ItemDefinitions,
+        id: Int = -1,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
         listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
-        minimumStack: Int = 0
+        minimumStack: Int = 0,
     ) : this(
-        definitions,
+        id,
         listeners,
         stackMode,
         IntArray(capacity) { -1 },
@@ -28,15 +37,17 @@ data class Container(
         minimumStack
     )
 
+    @Transient
     private var updates = mutableListOf<ContainerModification>()
-    private val logger = InlineLogger()
 
+    @Transient
     var result: ContainerResult = ContainerResult.Success
         private set
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
      */
+    @Transient
     var predicate: ((Int, Int) -> Boolean)? = null
 
     private fun result(result: ContainerResult): Boolean {
@@ -561,5 +572,9 @@ data class Container(
         result = 31 * result + amounts.contentHashCode()
         result = 31 * result + minimumStack
         return result
+    }
+
+    companion object {
+        private val logger = InlineLogger()
     }
 }

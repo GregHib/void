@@ -2,6 +2,8 @@ package rs.dusk.world.interact.entity.player.spawn
 
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.Sessions
+import rs.dusk.engine.data.StorageStrategy
+import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.engine.entity.character.player.PlayerSpawn
 import rs.dusk.engine.entity.character.player.Players
 import rs.dusk.engine.entity.character.update.visual.player.name
@@ -19,6 +21,7 @@ val logger = InlineLogger()
 val sessions: Sessions by inject()
 val small = SmallTraversal(TraversalType.Land, false, get())
 val executor: TaskExecutor by inject()
+val storage: StorageStrategy<Player> by inject()
 
 PlayerSpawn then {
     player.movement.traversal = small
@@ -47,4 +50,5 @@ PlayerDespawn then {
         session.disconnect()
         sessions.deregister(session)
     }
+    storage.save(player.name, player)
 }

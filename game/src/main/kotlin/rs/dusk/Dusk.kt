@@ -13,7 +13,7 @@ import rs.dusk.engine.client.ui.detail.interfaceModule
 import rs.dusk.engine.client.update.updatingTasksModule
 import rs.dusk.engine.client.variable.variablesModule
 import rs.dusk.engine.data.file.fileLoaderModule
-import rs.dusk.engine.data.file.ymlPlayerModule
+import rs.dusk.engine.data.file.jsonPlayerModule
 import rs.dusk.engine.data.playerLoaderModule
 import rs.dusk.engine.entity.character.update.visualUpdatingModule
 import rs.dusk.engine.entity.definition.detailsModule
@@ -29,7 +29,6 @@ import rs.dusk.engine.map.region.regionModule
 import rs.dusk.engine.map.region.xteaModule
 import rs.dusk.engine.path.algorithm.lineOfSightModule
 import rs.dusk.engine.path.pathFindModule
-import rs.dusk.engine.storage.databaseModule
 import rs.dusk.engine.task.SyncTask
 import rs.dusk.engine.task.TaskExecutor
 import rs.dusk.engine.task.executorModule
@@ -82,7 +81,7 @@ object Dusk {
                 eventModule,
                 cacheModule,
                 fileLoaderModule,
-                ymlPlayerModule,
+                jsonPlayerModule,
                 entityListModule,
                 scriptModule,
                 clientSessionModule,
@@ -106,7 +105,6 @@ object Dusk {
                 instanceModule,
                 instancePoolModule,
                 detailsModule,
-                databaseModule,
                 logoutModule,
                 objectFactoryModule,
 				lineOfSightModule

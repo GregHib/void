@@ -14,7 +14,7 @@ import rs.dusk.engine.entity.character.player.Player
  * @since April 04, 2020
  */
 @ExtendWith(MockKExtension::class)
-internal class YMLPlayerStorageTest {
+internal class PlayerStorageTest {
 
     /*
         inline functions can't be mocked so we can only test negative here.
@@ -22,9 +22,8 @@ internal class YMLPlayerStorageTest {
     @Test
     fun load() {
         // Given
-        val loader = mockk<FileLoader>()
         mockkStatic(FileLoader::class)
-        val storage = YMLPlayerStorage("test", loader)
+        val storage = PlayerStorage("test")
         // When
         val result = storage.load("name")
         // Then
@@ -35,11 +34,11 @@ internal class YMLPlayerStorageTest {
     fun save() {
         // Given
         val loader = mockk<FileLoader>(relaxed = true)
-        val storage = YMLPlayerStorage("test", loader)
+        val storage = PlayerStorage("test")
         val player = mockk<Player>(relaxed = true)
         // When
         storage.save("name", player)
         // Then
-        verify { loader.save("test\\name.yml", player) }
+        verify { loader.save("test\\name.json", player) }
     }
 }

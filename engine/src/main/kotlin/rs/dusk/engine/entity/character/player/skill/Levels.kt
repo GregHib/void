@@ -1,15 +1,21 @@
 package rs.dusk.engine.entity.character.player.skill
 
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
+@Serializable
 class Levels(
-    private val experience: Experience,
     private val boosts: MutableMap<Skill, Int> = mutableMapOf()
 ) {
+    @Transient
+    lateinit var experience: Experience
+    @Transient
     private val listeners = mutableListOf<(Skill, Int, Int) -> Unit>()
+    @Transient
     private val levelListeners = mutableListOf<(Skill, Int, Int) -> Unit>()
 
     fun addBoostListener(listener: (Skill, Int, Int) -> Unit) {
@@ -20,7 +26,8 @@ class Levels(
         levelListeners.add(listener)
     }
 
-    init {
+    fun link(experience: Experience) {
+        this.experience = experience
         experience.addListener { skill, from, to ->
             val previousLevel = getLevel(from)
             val currentLevel = getLevel(to)
