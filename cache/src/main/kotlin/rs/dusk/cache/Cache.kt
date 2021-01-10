@@ -23,8 +23,6 @@ interface Cache {
 
     fun getIndexCrc(indexId: Int): Int
 
-    fun lastIndexId(indexId: Int): Int
-
     fun archiveCount(indexId: Int, archiveId: Int): Int
 
     fun lastFileId(indexId: Int, archive: Int): Int
@@ -34,6 +32,8 @@ interface Cache {
     fun getArchiveId(index: Int, name: String): Int
 
     fun getArchiveId(index: Int, archive: Int): Int
+
+    fun getArchives(index: Int): IntArray
 
     fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray? = null)
 

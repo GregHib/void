@@ -13,7 +13,7 @@ abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, int
     protected val dataCache = ConcurrentHashMap<Int, T>()
 
     open val size: Int
-        get() = cache.lastIndexId(index) * 256 + (cache.archiveCount(index, cache.lastIndexId(index)))
+        get() = cache.lastArchiveId(index) * 256 + (cache.archiveCount(index, cache.lastArchiveId(index)))
 
     val indices: IntRange
         get() = 0 until size

@@ -13,7 +13,7 @@ import rs.dusk.cache.definition.data.ClientScriptDefinition
 class ClientScriptDecoder(cache: Cache) : DefinitionDecoder<ClientScriptDefinition>(cache, SCRIPTS) {
 
     override val size: Int
-        get() = cache.lastIndexId(index)
+        get() = cache.lastArchiveId(index)
 
     override fun getFile(id: Int): Int {
         return 0

@@ -60,10 +60,6 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
         return delegate.index(indexId).crc
     }
 
-    override fun lastIndexId(indexId: Int): Int {
-        return delegate.index(indexId).last()?.id ?: 0
-    }
-
     override fun archiveCount(indexId: Int, archiveId: Int): Int {
         return delegate.index(indexId).archive(archiveId)?.fileIds()?.size ?: 0
     }
@@ -73,7 +69,7 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
     }
 
     override fun lastArchiveId(indexId: Int): Int {
-        return delegate.index(indexId).last()?.id ?: -1
+        return delegate.index(indexId).last()?.id ?: 0
     }
 
     override fun getArchiveId(index: Int, name: String): Int {
@@ -87,6 +83,10 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
             }
         }
         return -1
+    }
+
+    override fun getArchives(index: Int): IntArray {
+        return delegate.index(index).archiveIds()
     }
 
     override fun write(index: Int, archive: Int, file: Int, data: ByteArray, xteas: IntArray?) {
