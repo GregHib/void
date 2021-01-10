@@ -62,7 +62,7 @@ object RunescapeWikiPagesFullFilter {
         }
 
         fun parse(event: XMLEvent) {
-            var event = event
+            val event = event
             if (skipPage) {
                 if (event.eventType == XMLStreamConstants.END_ELEMENT && event.asEndElement().name.localPart == "page") {
                     skipPage = false
@@ -175,8 +175,8 @@ object RunescapeWikiPagesFullFilter {
                                 }
                                 eventWriter.add(pageClose)
                                 eventWriter.flush()
+                                pages++
                             }
-                            pages++
                             reset()
                         }
                         "mediawiki" -> eventWriter.add(event)
@@ -215,27 +215,29 @@ object RunescapeWikiPagesFullFilter {
                 "Transcript"
             )
             val directory = "${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\"
-            val parser550 = Parser(LocalDate.of(2009, 7, 7), directory, namespaces, false)
-            val parser634 = Parser(LocalDate.of(2011, 1, 13), directory, namespaces, false)
-            val parser667 = Parser(LocalDate.of(2011, 8, 14), directory, namespaces, true)
-            val parser718 = Parser(LocalDate.of(2012, 6, 13), directory, namespaces, false)
-            val parser742 = Parser(LocalDate.of(2012, 11, 19), directory, namespaces, false)
+            val dates = mapOf(
+                474 to LocalDate.of(2007, 11, 12),
+                530 to LocalDate.of(2009, 2, 9),
+                550 to LocalDate.of(2009, 7, 7),
+                562 to LocalDate.of(2009, 9, 18),
+                592 to LocalDate.of(2010, 3, 2),
+                614 to LocalDate.of(2010, 8, 24),
+                634 to LocalDate.of(2011, 1, 31),
+                667 to LocalDate.of(2011, 10, 16),
+                718 to LocalDate.of(2012, 6, 13),
+                742 to LocalDate.of(2012, 11, 19)
+            )
+            val parsers = dates.map { (revision, date) -> Parser(date, directory, namespaces, revision == 634) }
             val factory = XMLInputFactory.newInstance()
             val eventReader = factory.createXMLEventReader(FileReader("${directory}runescape_pages_full.xml"))
             val start = System.currentTimeMillis()
             while (eventReader.hasNext()) {
                 val event = eventReader.nextEvent()
-                parser550.parse(event)
-                parser634.parse(event)
-                parser667.parse(event)
-                parser718.parse(event)
-                parser742.parse(event)
+                parsers.forEach { it.parse(event) }
             }
-            parser550.finish()
-            parser634.finish()
-            parser667.finish()
-            parser718.finish()
-            parser742.finish()
+            parsers.forEach {
+                it.finish()
+            }
             println("Took ${TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - start)} mins")
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
