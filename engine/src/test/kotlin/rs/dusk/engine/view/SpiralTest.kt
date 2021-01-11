@@ -39,8 +39,8 @@ internal class SpiralTest {
     }
 
     private fun assertMap(expected: Array<IntArray>, actual: Array<IntArray>) {
-        val maxX = actual.maxBy { it[0] }!![0]
-        val maxY = actual.maxBy { it[1] }!![1]
+        val maxX = actual.maxByOrNull { it[0] }!![0]
+        val maxY = actual.maxByOrNull { it[1] }!![1]
 
         for ((index, step) in actual.withIndex()) {
             val (x, y) = step
@@ -50,10 +50,10 @@ internal class SpiralTest {
 
     @Suppress("unused")
     fun print(steps: Array<IntArray>) {
-        val maxX = steps.maxBy { it[0] }!![0]
-        val minX = steps.minBy { it[0] }!![0]
-        val maxY = steps.maxBy { it[1] }!![1]
-        val minY = steps.minBy { it[1] }!![1]
+        val maxX = steps.maxByOrNull { it[0] }!![0]
+        val minX = steps.minByOrNull { it[0] }!![0]
+        val maxY = steps.maxByOrNull { it[1] }!![1]
+        val minY = steps.minByOrNull { it[1] }!![1]
 
         for (y in maxY downTo minY) {
             for (x in minX..maxX) {

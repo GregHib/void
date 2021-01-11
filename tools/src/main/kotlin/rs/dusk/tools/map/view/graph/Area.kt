@@ -21,19 +21,19 @@ data class Area(
 
     @get:JsonIgnore
     val minX: Int
-        get() = points.minBy { it.x }?.x ?: 0
+        get() = points.minByOrNull { it.x }?.x ?: 0
 
     @get:JsonIgnore
     val minY: Int
-        get() = points.minBy { it.y }?.y ?: 0
+        get() = points.minByOrNull { it.y }?.y ?: 0
 
     @get:JsonIgnore
     val maxX: Int
-        get() = points.maxBy { it.x }?.x ?: 1
+        get() = points.maxByOrNull { it.x }?.x ?: 1
 
     @get:JsonIgnore
     val maxY: Int
-        get() = points.maxBy { it.y }?.y ?: 1
+        get() = points.maxByOrNull { it.y }?.y ?: 1
 
     @JsonIgnore
     fun getShape(): Shape? {

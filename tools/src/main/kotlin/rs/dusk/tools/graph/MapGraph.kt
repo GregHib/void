@@ -125,7 +125,7 @@ class MapGraph(
                 if (knots.size > 2) {
                     var center = centroid(knots)
 //                if (traversal.blocked(center, Direction.NONE)) {
-                    center = knots.minBy { euclidean(it, center) } ?: continue
+                    center = knots.minByOrNull { euclidean(it, center) } ?: continue
 //                }
                     visitedTiles.addAll(knots)
                     list.add(center)
