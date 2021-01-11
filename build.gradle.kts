@@ -41,7 +41,7 @@ allprojects {
         implementation(kotlin("stdlib-jdk8"))
         implementation(kotlin("reflect"))
         implementation("io.netty:netty-all:4.1.44.Final")
-        implementation(group = "com.displee", name = "rs-cache-library", version = "6.4")
+        implementation(group = "com.displee", name = "rs-cache-library", version = "6.7")
         implementation(group = "org.yaml", name = "snakeyaml", version = "1.26")
         implementation(
             group = "com.michael-bull.kotlin-inline-logger",

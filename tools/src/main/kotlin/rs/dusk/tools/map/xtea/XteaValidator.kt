@@ -1,5 +1,6 @@
 package rs.dusk.tools.map.xtea
 
+import kotlinx.coroutines.runBlocking
 import rs.dusk.cache.CacheDelegate
 import rs.dusk.cache.Indices
 import rs.dusk.engine.map.region.Region
@@ -7,15 +8,14 @@ import rs.dusk.engine.map.region.XteaLoader
 
 object XteaValidator {
     @JvmStatic
-    fun main(args: Array<String>) {
-        val cache = CacheDelegate("./cache/data/cache/", "1", "1")
-        val xteas = XteaLoader().run("./cache/data/xteas.dat")
+    fun main(args: Array<String>) = runBlocking {
+        val cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\", "1", "1")
+        val xteas = XteaLoader().run("./xteas/")//"${System.getProperty("user.home")}\\Downloads\\rs634_cache\\634\\")
 
         val archives = cache.getArchives(Indices.MAPS).toSet()
         var total = 0
         var valid = 0
         val invalid = mutableSetOf<Region>()
-        val useful = mutableSetOf<Region>()
         for (regionX in 0 until 256) {
             for (regionY in 0 until 256) {
                 val region = Region(regionX, regionY)
@@ -26,17 +26,20 @@ object XteaValidator {
                 total++
                 val data = cache.getFile(Indices.MAPS, archive, 0, xteas[region])
                 if (data == null) {
+                    if(xteas.containsKey(region.id)) {
+                        println("Failed key ${region.id} $archive ${xteas[region]?.toList()}")
+                    }
                     invalid.add(region)
-                    cache.getFile(Indices.MAPS, "m${regionX}_${regionY}") ?: continue
-                    useful.add(region)
                 } else {
                     valid++
                 }
+                kotlinx.coroutines.delay(10L)
             }
         }
         println("$total map files found.")
         println("${xteas.size} xtea key sets found.")
         println("$valid map files decrypted ${(valid / total.toDouble()) * 100}%")
-        println("${invalid.size} missing xtea keys, ${useful.size} potentially useful ${(useful.size / invalid.size.toDouble()) * 100}%.")
+        println("${invalid.size} missing xtea keys.")
+        println(invalid.map { it.id })
     }
 }
