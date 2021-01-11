@@ -72,7 +72,7 @@ enum class Hatchet(val index: Int) {
 
         fun get(player: Player): Hatchet? {
             val list = values().filter { hatchet -> hasRequirements(player, hatchet, false) && player.has(hatchet) }
-            return list.maxBy { hatchet -> hatchet.requiredLevel }
+            return list.maxByOrNull { hatchet -> hatchet.requiredLevel }
         }
 
         private fun Player.has(hatchet: Hatchet) = inventory.contains(hatchet.id) || equipment.contains(hatchet.id)

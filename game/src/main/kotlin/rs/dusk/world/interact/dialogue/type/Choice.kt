@@ -27,7 +27,7 @@ suspend fun DialogueContext.choice(text: String, title: String? = null, saySelec
     )
     if (player.open(name)) {
         if (question != null) {
-            val longestLine = question.split("<br>").maxBy { it.length }?.length ?: 0
+            val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
             val wide = longestLine > APPROXIMATE_WIDE_TITLE_LENGTH
             player.interfaces.sendVisibility(name, "wide_swords", wide)
             player.interfaces.sendVisibility(name, "thin_swords", !wide)

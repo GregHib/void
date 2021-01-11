@@ -18,10 +18,10 @@ object Stitch {
             val id = it.nameWithoutExtension.toInt()
             Region(id) to it
         } ?: return
-        val minX = regions.minBy { it.first.x }!!.first.x
-        val maxX = regions.maxBy { it.first.x }!!.first.x
-        val minY = regions.minBy { it.first.y }!!.first.y
-        val maxY = regions.maxBy { it.first.y }!!.first.y
+        val minX = regions.minByOrNull { it.first.x }!!.first.x
+        val maxX = regions.maxByOrNull { it.first.x }!!.first.x
+        val minY = regions.minByOrNull { it.first.y }!!.first.y
+        val maxY = regions.maxByOrNull { it.first.y }!!.first.y
 
         println("Stitching regions $minX, $minY $maxX, $maxY")
 

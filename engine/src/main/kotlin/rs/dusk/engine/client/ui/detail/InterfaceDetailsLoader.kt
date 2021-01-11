@@ -84,7 +84,7 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
     }
 
     private fun convert(map: Map<*, *>?): Array<String> {
-        val max = map?.maxBy { it.value as Int }?.value as? Int ?: -1
+        val max = map?.maxByOrNull { it.value as Int }?.value as? Int ?: -1
         val array = Array(max + 1) { "" }
         map?.forEach { (option, index) ->
             array[index as Int] = option as String

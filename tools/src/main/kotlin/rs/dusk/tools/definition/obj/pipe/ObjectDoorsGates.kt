@@ -60,7 +60,7 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
             val first = if (matches.size == 1) {
                 matches.first()
             } else {
-                matches.minBy { abs(it.id - def.id) }!!
+                matches.minByOrNull { abs(it.id - def.id) }!!
             }
             return first.id
         }
