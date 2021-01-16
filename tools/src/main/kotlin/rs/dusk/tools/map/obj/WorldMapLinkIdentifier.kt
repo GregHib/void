@@ -18,6 +18,7 @@ import rs.dusk.engine.map.collision.CollisionReader
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.GameObjectCollision
 import rs.dusk.engine.map.region.Region
+import rs.dusk.engine.map.region.Xteas
 import rs.dusk.engine.map.region.xteaModule
 import rs.dusk.tools.map.view.graph.GraphIO
 import rs.dusk.tools.map.view.graph.NavigationGraph
@@ -38,7 +39,7 @@ object WorldMapLinkIdentifier {
                     single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }
-                    single { MapDecoder(get(), get()) }
+                    single { MapDecoder(get(), get<Xteas>()) }
                 }
             )
 
