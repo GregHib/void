@@ -3,7 +3,6 @@ package rs.dusk.handle
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import rs.dusk.engine.client.Sessions
-import rs.dusk.engine.entity.Registered
 import rs.dusk.engine.entity.character.player.GameLoginInfo
 import rs.dusk.engine.entity.character.player.PlayerRegistered
 import rs.dusk.engine.event.EventBus
@@ -62,6 +61,7 @@ class GameLoginHandler : Handler() {
         processorCount: Int,
         totalMemory: Int
     ) {
+        println("Game login")
         val channel = context.channel()
         val keyPair = IsaacKeyPair(isaacKeys)
 
@@ -78,8 +78,8 @@ class GameLoginHandler : Handler() {
                     channel.setCipherOut(keyPair.outCipher)
                     bus.emit(RegionLogin(player))
                     bus.emit(PlayerRegistered(player))
-                    player.start()
-                    bus.emit(Registered(player))
+//                    player.start()
+//                    bus.emit(Registered(player))
                 }
             } else {
                 responseEncoder.encode(channel, response.code)

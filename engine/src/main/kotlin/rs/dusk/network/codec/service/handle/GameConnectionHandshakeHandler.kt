@@ -13,6 +13,7 @@ class GameConnectionHandshakeHandler : Handler() {
 	private val responseEncoder = LoginResponseEncoder()
 
 	override fun gameHandshake(context: ChannelHandlerContext) {
+		println("Game hanshake")
 		val channel = context.channel()
 		channel.setCodec(login)
 		responseEncoder.encode(channel, 0)

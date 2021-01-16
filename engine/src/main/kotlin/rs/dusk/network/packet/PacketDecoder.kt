@@ -44,7 +44,7 @@ class PacketDecoder : ByteToMessageDecoder() {
             length = decoder.length
             type = length
             state = if (length < 0) State.Length else State.Payload
-            logger.debug { "Identified opcode! [opcode=$opcode, expectedLength=$length, readable=${buf.readableBytes()}, nextState=$state]" }
+            logger.trace { "Identified opcode! [opcode=$opcode, codec=${codec.javaClass.simpleName}, expectedLength=$length, readable=${buf.readableBytes()}, nextState=$state]" }
         }
         if (state == State.Length) {
             if (buf.readableBytes() < if (length == -1) 1 else 2) {
@@ -57,7 +57,7 @@ class PacketDecoder : ByteToMessageDecoder() {
                 -2 -> buf.readUnsignedShort()
                 else -> throw IllegalStateException("Decoding length from packet #$opcode with type $type!")
             }
-            logger.debug { "Identified length! [opcode=$opcode, length=$length, type=$type]" }
+            logger.trace { "Identified length! [opcode=$opcode, length=$length, type=$type]" }
             state = State.Payload
         }
         if (state == State.Payload) {
@@ -73,12 +73,12 @@ class PacketDecoder : ByteToMessageDecoder() {
 
             //Reset state
             state = State.Opcode
-            logger.debug { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
+            logger.trace { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
 
             //Handle data
             decoder.decode(ctx, BufferReader(payload))
 
-            logger.debug { "Message decoded successful [decoder=${decoder.javaClass.simpleName}, codec=${ctx.channel().getCodec()}]" }
+            logger.debug { "Message decoded successfully [decoder=${decoder.javaClass.simpleName}, codec=${ctx.channel().getCodec()}]" }
         }
     }
 

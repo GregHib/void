@@ -18,7 +18,7 @@ object Indices {
     const val OBJECTS = 16// locations
     const val ENUMS = 17
     const val NPCS = 18
-    const val ITEMS = 19
+    const val ITEMS = 19// objects
     const val ANIMATIONS = 20// sequences
     const val GRAPHICS = 21// spot anims
     const val VAR_BIT = 22

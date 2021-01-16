@@ -17,7 +17,7 @@ import rs.dusk.utility.inject
 val batcher: ChunkBatcher by inject()
 
 PlayerRegistered then {
-    load(player)
+//    load(player)
 }
 
 PlayerUnregistered then {

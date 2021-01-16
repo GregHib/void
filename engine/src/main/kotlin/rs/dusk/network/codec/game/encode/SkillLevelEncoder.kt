@@ -1,6 +1,5 @@
 package rs.dusk.network.codec.game.encode
 
-import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.buffer.write.writeByte
 import rs.dusk.buffer.write.writeInt
@@ -27,7 +26,7 @@ class SkillLevelEncoder : Encoder(SKILL_LEVEL) {
         experience: Int
     ) = player.send(6) {
         writeByte(level, Modifier.SUBTRACT)
-        writeByte(skill, Modifier.ADD)
-        writeInt(experience, order = Endian.LITTLE)
+        writeByte(skill, Modifier.INVERSE)
+        writeInt(experience, Modifier.INVERSE)
     }
 }

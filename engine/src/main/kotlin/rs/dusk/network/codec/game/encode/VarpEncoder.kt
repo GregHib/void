@@ -1,7 +1,5 @@
 package rs.dusk.network.codec.game.encode
 
-import rs.dusk.buffer.Modifier
-import rs.dusk.buffer.write.writeByte
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.codec.Encoder
 import rs.dusk.network.codec.game.GameOpcodes.CLIENT_VARP
@@ -24,7 +22,7 @@ class VarpEncoder : Encoder(CLIENT_VARP) {
         value: Int
     ) = player.send(3) {
         writeShort(id)
-        writeByte(value, Modifier.ADD)
+        writeByte(value)
     }
 }
 

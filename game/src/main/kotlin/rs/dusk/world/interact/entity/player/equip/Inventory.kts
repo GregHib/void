@@ -3,7 +3,6 @@ package rs.dusk.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import rs.dusk.engine.client.ui.event.InterfaceOpened
 import rs.dusk.engine.entity.character.contain.inventory
-import rs.dusk.engine.entity.character.contain.sendContainer
 import rs.dusk.engine.entity.definition.ItemDefinitions
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.then
@@ -19,7 +18,7 @@ val bus: EventBus by inject()
 InterfaceOpened where { name == "inventory" } then {
     player.interfaceOptions.unlockAll(name, "container", 0 until 28)
     player.interfaceOptions.unlock(name, "container", 28 until 56, "Drag")
-    player.sendContainer(name)
+//    player.sendContainer(name)
 }
 
 InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {

@@ -16,6 +16,7 @@ class UpdateRequestHandler : Handler() {
 
     override fun updateRequest(context: ChannelHandlerContext, indexId: Int, archiveId: Int, priority: Boolean) {
         val data = cache.getArchive(indexId, archiveId) ?: return logger.debug { "Request $this was invalid - does not exist in cache" }
+
         val compression: Int = data[0].toInt() and 0xff
         val length = Ints.fromBytes(data[1], data[2], data[3], data[4])
         var attributes = compression

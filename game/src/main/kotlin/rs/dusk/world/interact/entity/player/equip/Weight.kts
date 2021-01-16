@@ -16,7 +16,7 @@ val definitions: ItemDefinitions by inject()
 val weightEncoder: WeightEncoder by inject()
 
 PlayerRegistered then {
-    updateWeight(player)
+//    updateWeight(player)
     val listener: (List<ContainerModification>) -> Unit = {
         updateWeight(player)
     }

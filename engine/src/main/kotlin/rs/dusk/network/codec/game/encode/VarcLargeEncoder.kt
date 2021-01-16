@@ -1,6 +1,7 @@
 package rs.dusk.network.codec.game.encode
 
 import rs.dusk.buffer.Endian
+import rs.dusk.buffer.write.writeInt
 import rs.dusk.buffer.write.writeShort
 import rs.dusk.engine.entity.character.player.Player
 import rs.dusk.network.codec.Encoder
@@ -22,7 +23,7 @@ class VarcLargeEncoder : Encoder(CLIENT_VARC_LARGE) {
         id: Int,
         value: Int
     ) = player.send(6) {
+        writeInt(value, order = Endian.LITTLE)
         writeShort(id, order = Endian.LITTLE)
-        writeInt(value)
     }
 }

@@ -1,5 +1,6 @@
 package rs.dusk.network.codec.game.encode
 
+import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.buffer.write.writeByte
 import rs.dusk.buffer.write.writeShort
@@ -24,8 +25,9 @@ class VarbitEncoder : Encoder(CLIENT_VARBIT) {
         id: Int,
         value: Int
     ) = player.send(3) {
+        println("Write cvarbit $id $value")
         writeByte(value, type = Modifier.SUBTRACT)
-        writeShort(id, type = Modifier.ADD)
+        writeShort(id, order = Endian.LITTLE)
     }
 }
 

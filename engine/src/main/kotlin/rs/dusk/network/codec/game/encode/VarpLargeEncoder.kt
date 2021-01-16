@@ -23,7 +23,8 @@ class VarpLargeEncoder : Encoder(CLIENT_VARP_LARGE) {
         player: Player,
         id: Int,
         value: Int
-    ) = player.send(5) {
+    ) = player.send(6) {
+        println("Send varp large $value $id")
         writeInt(value, Modifier.INVERSE, Endian.MIDDLE)
         writeShort(id, Modifier.ADD)
     }

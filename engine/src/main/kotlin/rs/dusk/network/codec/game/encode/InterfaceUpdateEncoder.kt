@@ -1,6 +1,5 @@
 package rs.dusk.network.codec.game.encode
 
-import rs.dusk.buffer.Endian
 import rs.dusk.buffer.Modifier
 import rs.dusk.buffer.write.writeByte
 import rs.dusk.buffer.write.writeShort
@@ -19,7 +18,7 @@ class InterfaceUpdateEncoder : Encoder(INTERFACE_WINDOW) {
         id: Int,
         type: Int
     ) = player.send(3) {
-        writeShort(id, Modifier.ADD, Endian.LITTLE)
-        writeByte(type, Modifier.SUBTRACT)
+        writeByte(type, Modifier.INVERSE)
+        writeShort(id, Modifier.ADD)
     }
 }

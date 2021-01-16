@@ -28,7 +28,7 @@ class LobbyLoginDecoder : Decoder(SHORT) {
         val affiliate = packet.readInt()
         val crcMap = mutableMapOf<Int, Pair<Int, Int>>()
 
-        for (index in 0..35) {
+        for (index in 0..34) {
             val indexCrc = cache.getIndexCrc(index)
             val clientCrc = packet.readInt()
             crcMap[index] = Pair(indexCrc, clientCrc)
