@@ -54,7 +54,7 @@ internal class DirectDiagonalSearchTest {
             // When
             val result = dd.find(tile, size, movement, strategy, traversal)
             // Then
-            result as PathResult.Success.Partial
+            result as PathResult.Partial
             verify {
                 steps.add(dir)
             }
@@ -84,7 +84,7 @@ internal class DirectDiagonalSearchTest {
             // When
             val result = dd.find(tile, size, movement, strategy, traversal)
             // Then
-            result as PathResult.Success.Partial
+            result as PathResult.Partial
             verify {
                 steps.add(dir)
             }
@@ -118,7 +118,7 @@ internal class DirectDiagonalSearchTest {
             // When
             val result = dd.find(tile, size, movement, strategy, traversal)
             // Then
-            result as PathResult.Success.Partial
+            result as PathResult.Partial
             verify {
                 steps.add(dir)
             }

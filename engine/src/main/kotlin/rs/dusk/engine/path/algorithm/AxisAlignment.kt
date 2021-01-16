@@ -53,8 +53,8 @@ class AxisAlignment : PathAlgorithm {
         }
 
         return when {
-            reached -> PathResult.Success.Complete(current)
-            current != tile -> PathResult.Success.Partial(current)
+            reached -> PathResult.Success(current)
+            current != tile -> PathResult.Partial(current)
             else -> PathResult.Failure
         }
     }

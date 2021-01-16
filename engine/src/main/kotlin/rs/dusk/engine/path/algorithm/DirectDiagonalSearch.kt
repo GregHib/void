@@ -55,9 +55,9 @@ class DirectDiagonalSearch : PathAlgorithm {
         }
         val last = tile.copy(x = x, y = y)
         return if (strategy.reached(last, size)) {
-            PathResult.Success.Complete(last)
+            PathResult.Success(last)
         } else {
-            PathResult.Success.Partial(last)
+            PathResult.Partial(last)
         }
     }
 

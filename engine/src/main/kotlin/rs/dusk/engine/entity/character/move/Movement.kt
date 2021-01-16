@@ -57,7 +57,7 @@ fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), a
             val path: PathFinder = get()
             retry@ while (true) {
                 if (strategy.reached(player.tile, size)) {
-                    action(PathResult.Success.Complete(tile))
+                    action(PathResult.Success(tile))
                     break
                 } else {
                     movement.clear()
@@ -77,7 +77,7 @@ fun Player.walkTo(target: Any, strategy: TargetStrategy = getStrategy(target), a
                         }
                     }
 
-                    if (result is PathResult.Success.Partial) {
+                    if (result is PathResult.Partial) {
                         action(result)
                         break
                     }

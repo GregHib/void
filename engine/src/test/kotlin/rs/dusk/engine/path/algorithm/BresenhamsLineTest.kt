@@ -1,4 +1,4 @@
-package rs.dusk.engine.map.area
+package rs.dusk.engine.path.algorithm
 
 import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertFalse
@@ -7,10 +7,11 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.Collisions
+import rs.dusk.engine.path.PathResult
 
-internal class LineOfSightTest {
+internal class BresenhamsLineTest {
 
-    lateinit var los: LineOfSight
+    lateinit var los: BresenhamsLine
     lateinit var data: MutableMap<Int, Int>
     lateinit var collisions: Collisions
 
@@ -18,7 +19,7 @@ internal class LineOfSightTest {
     fun setup() {
         data = spyk(mutableMapOf())
         collisions = spyk(Collisions(data))
-        los = LineOfSight(collisions)
+        los = BresenhamsLine(collisions)
     }
 
     @Test
@@ -26,7 +27,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(0, 0)
         // Then
-        assertTrue(los.withinSight(tile, other))
+        assertTrue(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -34,7 +35,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(0, 0, 1)
         // Then
-        assertFalse(los.withinSight(tile, other))
+        assertFalse(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -44,7 +45,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
-        assertTrue(los.withinSight(tile, other))
+        assertTrue(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -54,7 +55,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
-        assertFalse(los.withinSight(tile, other))
+        assertFalse(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -68,7 +69,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(5, 5)
         // Then
-        assertTrue(los.withinSight(tile, other))
+        assertTrue(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -80,7 +81,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
         // Then
-        assertTrue(los.withinSight(tile, other))
+        assertTrue(los.withinSight(tile, other) is PathResult.Success)
     }
 
     @Test
@@ -92,7 +93,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
         // Then
-        assertFalse(los.withinSight(tile, other))
+        assertFalse(los.withinSight(tile, other) is PathResult.Success)
     }
 
     /**
@@ -116,7 +117,7 @@ internal class LineOfSightTest {
         val tile = Tile(0, 3)
         val other = Tile(4, 0)
         // Then
-        assertFalse(los.withinSight(tile, other))
+        assertFalse(los.withinSight(tile, other) is PathResult.Success)
     }
 
     /**
@@ -141,7 +142,6 @@ internal class LineOfSightTest {
         val tile = Tile(0, 0)
         val other = Tile(3, 4)
         // Then
-        assertFalse(los.withinSight(tile, other))
+        assertFalse(los.withinSight(tile, other) is PathResult.Success)
     }
-
 }

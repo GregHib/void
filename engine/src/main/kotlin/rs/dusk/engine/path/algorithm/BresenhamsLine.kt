@@ -1,20 +1,30 @@
-package rs.dusk.engine.map.area
+package rs.dusk.engine.path.algorithm
 
 import org.koin.dsl.module
+import rs.dusk.engine.entity.Size
+import rs.dusk.engine.entity.character.move.Movement
 import rs.dusk.engine.map.Tile
 import rs.dusk.engine.map.collision.CollisionFlag
 import rs.dusk.engine.map.collision.Collisions
 import rs.dusk.engine.map.collision.check
+import rs.dusk.engine.path.PathAlgorithm
+import rs.dusk.engine.path.PathResult
+import rs.dusk.engine.path.TargetStrategy
+import rs.dusk.engine.path.TraversalStrategy
 import kotlin.math.abs
+
 
 @Suppress("USELESS_CAST")
 val lineOfSightModule = module {
-    single { LineOfSight(get()) }
+    single { BresenhamsLine(get()) }
 }
 
-class LineOfSight(
+/**
+ * Checks points along a line between source and target to see if blocked
+ */
+class BresenhamsLine(
     private val collisions: Collisions
-) {
+) : PathAlgorithm {
 
     private fun blocked(x: Int, y: Int, plane: Int, flip: Boolean, flag: Int): Boolean {
         return if (flip) {
@@ -24,11 +34,31 @@ class LineOfSight(
         }
     }
 
+    override fun find(
+        tile: Tile,
+        size: Size,
+        movement: Movement,
+        strategy: TargetStrategy,
+        traversal: TraversalStrategy
+    ): PathResult {
+        return withinSight(tile, strategy.tile)
+    }
+
     /**
      * Checks line of sight in both directions
      */
-    fun withinSight(tile: Tile, other: Tile): Boolean {
-        return canSee(tile, other) && canSee(other, tile)
+    fun withinSight(
+        tile: Tile,
+        other: Tile
+    ): PathResult {
+        val result = canSee(tile, other)
+        if (result is PathResult.Success) {
+            val reverse = canSee(other, tile)
+            if (reverse !is PathResult.Success) {
+                return reverse
+            }
+        }
+        return result
     }
 
     /**
@@ -36,12 +66,15 @@ class LineOfSight(
      * alternating axis until reaching a blockage or target [other]
      * @return whether there is nothing blocking between the two points
      */
-    private fun canSee(tile: Tile, other: Tile): Boolean {
+    private fun canSee(
+        tile: Tile,
+        other: Tile
+    ): PathResult {
         if (tile.plane != other.plane) {
-            return false
+            return PathResult.Failure
         }
         if (tile.x == other.x && tile.y == other.y) {
-            return true
+            return PathResult.Success(tile)
         }
 
         var dx = other.x - tile.x
@@ -81,17 +114,17 @@ class LineOfSight(
             position += direction
             val value = revert(shifted)
             if (blocked(position, value, plane, flip, horizontalFlag)) {
-                return false
+                return PathResult.Partial(Tile(position, value, plane))
             }
 
             shifted += slope
             val next = revert(shifted)
             if (next != value && blocked(position, next, plane, flip, verticalFlag)) {
-                return false
+                return PathResult.Partial(Tile(position, next, plane))
             }
         }
 
-        return true
+        return PathResult.Success(other)
     }
 
     /**

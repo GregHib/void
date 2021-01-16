@@ -49,7 +49,8 @@ class BreadthFirstSearch : PathAlgorithm {
 
         return when (result) {
             is PathResult.Failure -> result
-            is PathResult.Success -> backtrace(movement, result, graphBaseX, graphBaseY)
+            is PathResult.Partial -> backtrace(movement, result, result.last, graphBaseX, graphBaseY)
+            is PathResult.Success -> backtrace(movement, result, result.last, graphBaseX, graphBaseY)
         }
     }
 
@@ -79,7 +80,7 @@ class BreadthFirstSearch : PathAlgorithm {
             parent = queue.poll()
 
             if (target.reached(parent.x + graphBaseX, parent.y + graphBaseY, plane, size)) {
-                return PathResult.Success.Complete(parent)
+                return PathResult.Success(parent)
             }
 
             for (dir in all) {
@@ -161,14 +162,14 @@ class BreadthFirstSearch : PathAlgorithm {
             return PathResult.Failure// No partial path found
         }
 
-        return PathResult.Success.Partial(Tile(endX, endY))
+        return PathResult.Partial(Tile(endX, endY))
     }
 
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(movement: Movement, result: PathResult.Success, graphBaseX: Int, graphBaseY: Int): PathResult {
-        var trace = result.last
+    fun backtrace(movement: Movement, result: PathResult, last: Tile, graphBaseX: Int, graphBaseY: Int): PathResult {
+        var trace = last
         var direction = directions[trace.x][trace.y]
         val current = movement.steps.count()
         while (direction != null && direction != Direction.NONE && !trace.equals(graphBaseX, graphBaseY)) {

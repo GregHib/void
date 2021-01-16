@@ -21,13 +21,13 @@ import rs.dusk.engine.entity.list.entityListModule
 import rs.dusk.engine.entity.obj.objectFactoryModule
 import rs.dusk.engine.event.EventBus
 import rs.dusk.engine.event.eventModule
-import rs.dusk.engine.map.area.lineOfSightModule
 import rs.dusk.engine.map.chunk.batchedChunkModule
 import rs.dusk.engine.map.chunk.instanceModule
 import rs.dusk.engine.map.collision.collisionModule
 import rs.dusk.engine.map.instance.instancePoolModule
 import rs.dusk.engine.map.region.regionModule
 import rs.dusk.engine.map.region.xteaModule
+import rs.dusk.engine.path.algorithm.lineOfSightModule
 import rs.dusk.engine.path.pathFindModule
 import rs.dusk.engine.storage.databaseModule
 import rs.dusk.engine.task.SyncTask

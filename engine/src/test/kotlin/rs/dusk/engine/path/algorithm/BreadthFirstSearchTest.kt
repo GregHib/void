@@ -37,10 +37,10 @@ internal class BreadthFirstSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         bfs.directions.fill(Array(GRAPH_SIZE) { Direction.NONE })
-        every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success.Complete(
+        every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success(
             tile
         )
-        every { bfs.backtrace(any(), any(), 0, 0) } returns PathResult.Success.Complete(tile)
+        every { bfs.backtrace(any(), any(), any(), 0, 0) } returns PathResult.Success(tile)
         // When
         bfs.find(tile, size, movement, strategy, traversal)
         // Then
@@ -56,7 +56,7 @@ internal class BreadthFirstSearchTest {
         val movement: Movement = mockk(relaxed = true)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val response = PathResult.Success.Complete(Tile(0, 0))
+        val response = PathResult.Success(Tile(0, 0))
         every {
             bfs.calculate(
                 any(),
@@ -125,8 +125,8 @@ internal class BreadthFirstSearchTest {
         // When
         val result = bfs.calculatePartialPath(strategy, 10, 10)
         // Then
-        assert(result is PathResult.Success.Partial)
-        result as PathResult.Success.Partial
+        assert(result is PathResult.Partial)
+        result as PathResult.Partial
         assertEquals(Tile(3, 5), result.last)
     }
 
@@ -141,8 +141,8 @@ internal class BreadthFirstSearchTest {
         // When
         val result = bfs.calculatePartialPath(strategy, 10, 10)
         // Then
-        assert(result is PathResult.Success.Partial)
-        result as PathResult.Success.Partial
+        assert(result is PathResult.Partial)
+        result as PathResult.Partial
         assertEquals(Tile(5, 5), result.last)
     }
 
@@ -162,7 +162,7 @@ internal class BreadthFirstSearchTest {
         // Given
         val movement: Movement = mockk(relaxed = true)
         val tile = Tile(10, 10)
-        val result = PathResult.Success.Complete(tile)
+        val result = PathResult.Success(tile)
         bfs.directions[10][10] = Direction.NORTH
         bfs.directions[10][9] = Direction.EAST
         bfs.directions[9][9] = Direction.SOUTH
@@ -173,7 +173,7 @@ internal class BreadthFirstSearchTest {
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        bfs.backtrace(movement, result, 0, 0)
+        bfs.backtrace(movement, result, tile, 0, 0)
         // Then
         verifyOrder {
             steps.add(1, Direction.NORTH)
@@ -193,7 +193,7 @@ internal class BreadthFirstSearchTest {
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        val result = bfs.backtrace(movement, PathResult.Success.Complete(tile), 0, 0)
+        val result = bfs.backtrace(movement, PathResult.Success(tile), tile, 0, 0)
         // Then
         assert(result is PathResult.Failure)
     }

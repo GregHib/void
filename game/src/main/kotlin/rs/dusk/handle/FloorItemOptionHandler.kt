@@ -43,7 +43,7 @@ class FloorItemOptionHandler : Handler() {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Success.Partial
+            val partial = result is PathResult.Partial
             bus.emit(FloorItemOption(player, item, selectedOption, partial))
         }
     }

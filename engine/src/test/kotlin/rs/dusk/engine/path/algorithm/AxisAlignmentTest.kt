@@ -41,7 +41,7 @@ internal class AxisAlignmentTest {
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
         // Then
-        result as PathResult.Success.Complete
+        result as PathResult.Success
         assertEquals(target, result.last)
     }
 
@@ -80,7 +80,7 @@ internal class AxisAlignmentTest {
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
         // Then
-        result as PathResult.Success.Complete
+        result as PathResult.Success
         assertEquals(target, result.last)
         verify {
             traversal.blocked(tile, Direction.EAST)
@@ -105,7 +105,7 @@ internal class AxisAlignmentTest {
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
         // Then
-        result as PathResult.Success.Complete
+        result as PathResult.Success
         assertEquals(target, result.last)
         verify {
             traversal.blocked(tile, Direction.SOUTH)
@@ -157,7 +157,7 @@ internal class AxisAlignmentTest {
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
         // Then
-        result as PathResult.Success.Partial
+        result as PathResult.Partial
         assertEquals(blocked, result.last)
     }
 

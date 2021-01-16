@@ -46,7 +46,7 @@ class NPCOptionHandler : Handler() {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Success.Partial
+            val partial = result is PathResult.Partial
             bus.emit(NPCOption(player, npc, selectedOption, partial))
         }
     }

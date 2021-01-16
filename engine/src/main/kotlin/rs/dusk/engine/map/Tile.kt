@@ -1,10 +1,11 @@
 package rs.dusk.engine.map
 
 import rs.dusk.engine.map.area.Coordinate3D
-import rs.dusk.engine.map.area.LineOfSight
 import rs.dusk.engine.map.chunk.Chunk
 import rs.dusk.engine.map.region.Region
 import rs.dusk.engine.map.region.RegionPlane
+import rs.dusk.engine.path.PathResult
+import rs.dusk.engine.path.algorithm.BresenhamsLine
 import rs.dusk.utility.get
 
 /**
@@ -32,7 +33,7 @@ data class Tile(override val x: Int, override val y: Int, override val plane: In
     override fun add(x: Int, y: Int) = add(x, y, 0)
 
     fun withinSight(other: Tile): Boolean {
-        return get<LineOfSight>().withinSight(this, other)
+        return get<BresenhamsLine>().withinSight(this, other) is PathResult.Success
     }
 
     companion object {

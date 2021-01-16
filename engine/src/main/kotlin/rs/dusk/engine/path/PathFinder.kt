@@ -45,7 +45,7 @@ class PathFinder(
 
     fun find(source: Character, strategy: TargetStrategy, smart: Boolean = true): PathResult {
         if (strategy.reached(source.tile, source.size)) {
-            return PathResult.Success.Complete(source.tile)
+            return PathResult.Success(source.tile)
         }
         val algorithm = getAlgorithm(source, smart)
         return algorithm.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)

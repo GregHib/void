@@ -54,11 +54,11 @@ class DirectSearch : PathAlgorithm {
 
         val last = tile.copy(x = x)
         return if (strategy.reached(last, size)) {
-            PathResult.Success.Complete(last)
+            PathResult.Success(last)
         } else if (delta.y != 0 && !traversal.blocked(last, if (delta.y > 0) Direction.SOUTH else Direction.NORTH)) {
             addVertical(steps, last, size, strategy, traversal)
         } else {
-            PathResult.Success.Partial(last)
+            PathResult.Partial(last)
         }
     }
 
@@ -87,12 +87,12 @@ class DirectSearch : PathAlgorithm {
 
         val last = tile.copy(y = y)
         return if (strategy.reached(last, size)) {
-            PathResult.Success.Complete(last)
+            PathResult.Success(last)
         } else if (delta.x != 0 && !traversal.blocked(last, if (delta.x > 0) Direction.WEST else Direction.EAST)
         ) {
             addHorizontal(steps, last, size, strategy, traversal)
         } else {
-            PathResult.Success.Partial(last)
+            PathResult.Partial(last)
         }
     }
 }
