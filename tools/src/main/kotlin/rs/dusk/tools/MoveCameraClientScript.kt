@@ -1,19 +1,29 @@
 package rs.dusk.tools
 
 import com.displee.cache.CacheLibrary
+import rs.dusk.buffer.write.BufferWriter
+import rs.dusk.cache.CacheDelegate
 import rs.dusk.cache.Indices
+import rs.dusk.cache.definition.decoder.ClientScriptDecoder
+import rs.dusk.cache.definition.encoder.ClientScriptEncoder
 
 object MoveCameraClientScript {
+
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache667 = CacheLibrary("./cache/data/cache/")
-        val cache634 = CacheLibrary("./cache/data/634/")
+        val decoder = ClientScriptDecoder(CacheDelegate("./cache/data/cache/"))
+        val cache = CacheLibrary("./cache/data/634/")
+        val encoder = ClientScriptEncoder(true)
 
-        val index667 = cache667.index(Indices.CLIENT_SCRIPTS)
-        val index634 = cache634.index(Indices.CLIENT_SCRIPTS)
-
-        index634.add(index667.archive(4731))
-        cache634.update()
-        println("Done")
+        val definition = decoder.get(4731)
+        val writer = BufferWriter()
+        with(encoder) {
+            writer.encode(definition)
+        }
+        val data = writer.toArray()
+        cache.index(Indices.CLIENT_SCRIPTS).remove(4731)
+        cache.index(Indices.CLIENT_SCRIPTS).add(4731).add(data)
+        cache.update()
     }
+
 }

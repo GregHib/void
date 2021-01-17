@@ -17,16 +17,7 @@ object ClientScriptDefinitions {
 
         val cache: Cache = koin.get()
         val decoder: ClientScriptDecoder = koin.get()
-        val validContexts = arrayOf(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 73, 76)
-        for (i in decoder.indices) {
-            val def = decoder.getOrNull(i) ?: continue
-            if(def.stringOperands?.contains("Level 21 Agility") == true) {
-                println(def)
-            }
-        }
-
-        val id = getScriptId(cache, 503, 10)
-        println(id)
+        println(decoder.get(4731))
     }
 
     fun getScriptId(cache: Cache, id: Int, context: Int): Int {

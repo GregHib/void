@@ -28,8 +28,8 @@ class ClientScriptDecoder(cache: Cache) : DefinitionDecoder<ClientScriptDefiniti
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
         buffer.buffer.position(buffer.length - 2)
         val i = buffer.readShort()
-        val length: Int = buffer.length - (2 + i) - 16
-        buffer.buffer.position(length)
+        val position: Int = buffer.length - (2 + i) - 16
+        buffer.buffer.position(position)
         val instructionCount = buffer.readInt()
         intVariableCount = buffer.readShort()
         stringVariableCount = buffer.readShort()
@@ -54,7 +54,7 @@ class ClientScriptDecoder(cache: Cache) : DefinitionDecoder<ClientScriptDefiniti
         name = buffer.readString()
         instructions = IntArray(instructionCount)
         var index = 0
-        while (buffer.buffer.position() < length) {
+        while (buffer.buffer.position() < position) {
             val clientOpcode = buffer.readShort()
             if (clientOpcode == 3) {
                 if (stringOperands == null) {
