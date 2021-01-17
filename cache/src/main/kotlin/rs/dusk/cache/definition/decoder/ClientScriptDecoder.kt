@@ -2,15 +2,15 @@ package rs.dusk.cache.definition.decoder
 
 import rs.dusk.buffer.read.Reader
 import rs.dusk.cache.Cache
-import rs.dusk.cache.Configs.SCRIPTS
 import rs.dusk.cache.DefinitionDecoder
+import rs.dusk.cache.Indices
 import rs.dusk.cache.definition.data.ClientScriptDefinition
 
 /**
  * @author Greg Hibberd <greg@greghibberd.com>
  * @since December 12, 2020
  */
-class ClientScriptDecoder(cache: Cache) : DefinitionDecoder<ClientScriptDefinition>(cache, SCRIPTS) {
+class ClientScriptDecoder(cache: Cache) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
 
     override val size: Int
         get() = cache.lastArchiveId(index)
