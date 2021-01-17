@@ -30,15 +30,15 @@ object ClientScriptDefinitions {
     }
 
     fun getScriptId(cache: Cache, id: Int, context: Int): Int {
-        var scriptId = cache.getArchiveId(Configs.SCRIPTS, context or (id shl 10))
+        var scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, context or (id shl 10))
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Configs.SCRIPTS, (65536 + id shl 10) or context)
+        scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, (65536 + id shl 10) or context)
         if (scriptId != -1) {
             return scriptId
         }
-        scriptId = cache.getArchiveId(Configs.SCRIPTS, context or 0x3fffc00)
+        scriptId = cache.getArchiveId(Indices.CLIENT_SCRIPTS, context or 0x3fffc00)
         return scriptId
     }
 }
