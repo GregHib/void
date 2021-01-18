@@ -26,6 +26,7 @@ class UpdateCodec : Codec() {
         registerHandler(FileServerOpcodes.DISCONNECTED, UpdateDisconnectionHandler())
         registerHandler(FileServerOpcodes.STATUS_LOGGED_IN, UpdateLoginStatusHandler(responseEncoder))
         registerHandler(FileServerOpcodes.STATUS_LOGGED_OUT, UpdateLoginStatusHandler(responseEncoder))
+        registerHandler(FileServerOpcodes.FILE_REQUEST, UpdateRequestHandler())
         registerHandler(FileServerOpcodes.PRIORITY_FILE_REQUEST, UpdateRequestHandler())
 
         count = decoders.size
