@@ -13,7 +13,8 @@ internal class LevelsTest {
     @BeforeEach
     fun setup() {
         exp = Experience(maximum = 10000.0)
-        levels = Levels(exp)
+        levels = Levels()
+        levels.link(exp)
     }
 
     @Test

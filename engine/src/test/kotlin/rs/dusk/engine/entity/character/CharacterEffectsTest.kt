@@ -13,7 +13,8 @@ internal class CharacterEffectsTest {
     @BeforeEach
     fun setup() {
         character = mockk(relaxed = true)
-        effects = CharacterEffects(character)
+        effects = CharacterEffects()
+        effects.link(character)
     }
 
     @Test
