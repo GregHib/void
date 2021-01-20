@@ -23,7 +23,7 @@ allprojects {
     apply(plugin = "idea")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    group = "rs.dusk"
+    group = "world.gregs.void"
     version = "1.0.0"
 
     java.sourceCompatibility = JavaVersion.VERSION_15

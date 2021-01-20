@@ -1362,7 +1362,7 @@ book_on_baxtorian:
   id: 292
   tradeable: false
   weight: 0.51
-  examine: "A book on elven history in northern Dusk."
+  examine: "A book on elven history in northern Gielinor."
   kept: "Wilderness"
 a_key:
   id: 293
@@ -2563,7 +2563,7 @@ newcomer_map:
   price: 74
   limit: 100
   weight: 0.51
-  examine: "Issued by Dusk Council to all new citizens."
+  examine: "Issued by Gielinor Council to all new citizens."
 newcomer_map_noted:
   id: 551
 ghostspeak_amulet:
@@ -13968,7 +13968,7 @@ sextant:
   id: 2574
   tradeable: false
   weight: 0.2
-  examine: "Used by navigators to find their position in Dusk."
+  examine: "Used by navigators to find their position in Gielinor."
   kept: "Wilderness"
 watch:
   id: 2575
@@ -13980,7 +13980,7 @@ chart:
   id: 2576
   tradeable: false
   weight: 0.01
-  examine: "A navigator's chart of Dusk."
+  examine: "A navigator's chart of Gielinor."
   kept: "Wilderness"
 ranger_boots:
   id: 2577
@@ -17857,7 +17857,7 @@ bark_noted:
   id: 3240
 man:
   id: 3241
-  examine: "One of Dusk's many citizens."
+  examine: "One of Gielinor's many citizens."
 farmer:
   id: 3243
   examine: "He grows crops in the area."
@@ -42968,19 +42968,19 @@ small_map_item:
   id: 8004
   tradeable: false
   weight: 1.0
-  examine: "A small map of Dusk."
+  examine: "A small map of Gielinor."
   kept: "Reclaim"
 medium_map_item:
   id: 8005
   tradeable: false
   weight: 1.0
-  examine: "A medium map of Dusk."
+  examine: "A medium map of Gielinor."
   kept: "Reclaim"
 large_map_item:
   id: 8006
   tradeable: false
   weight: 1.0
-  examine: "A large map of Dusk."
+  examine: "A large map of Gielinor."
   kept: "Reclaim"
 varrock_teleport_item:
   id: 8007
@@ -43998,19 +43998,19 @@ small_map:
   id: 8294
   tradeable: false
   weight: 1.0
-  examine: "A small map of Dusk."
+  examine: "A small map of Gielinor."
   kept: "Reclaim"
 medium_map:
   id: 8295
   tradeable: false
   weight: 1.0
-  examine: "A medium map of Dusk."
+  examine: "A medium map of Gielinor."
   kept: "Reclaim"
 large_map:
   id: 8296
   tradeable: false
   weight: 1.0
-  examine: "A large map of Dusk."
+  examine: "A large map of Gielinor."
   kept: "Reclaim"
 oak_cage:
   id: 8297
@@ -76793,7 +76793,7 @@ wilderness_manual_pvp_worlds:
   id: 14056
   tradeable: false
   weight: 0.51
-  destroy: "You can get another copy by searching bookshelves around Dusk."
+  destroy: "You can get another copy by searching bookshelves around Gielinor."
   examine: "A book about the Wilderness."
   kept: "Vanish"
 broomstick:
@@ -81021,7 +81021,7 @@ wilderness_manual_bounty_worlds:
   id: 14795
   tradeable: false
   weight: 0.51
-  destroy: "You can get another copy by searching bookshelves around Dusk."
+  destroy: "You can get another copy by searching bookshelves around Gielinor."
   examine: "A book about the Wilderness."
   kept: "Vanish"
 scroll_of_the_dead:
@@ -86211,7 +86211,7 @@ delivery_map:
   tradeable: false
   weight: 0.01
   destroy: "You can replace this by speaking to the Easter Bunny."
-  examine: "A map of Dusk with three locations marked upon it."
+  examine: "A map of Gielinor with three locations marked upon it."
   kept: "Vanish"
   use: "Removed"
 clean_cog:
@@ -112435,7 +112435,7 @@ keldagrim_key_6:
   tradeable: false
   weight: 0.35
   destroy: "You can get another from Diango in Draynor Village."
-  examine: "Celebrating 10 years of Dusk."
+  examine: "Celebrating 10 years of Gielinor."
   kept: "Wilderness"
   use: "Limited"
 "10th_anniversary_candles":

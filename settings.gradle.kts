@@ -1,4 +1,4 @@
-rootProject.name = "dusk"
+rootProject.name = "void"
 
 include("game")
 include("cache")

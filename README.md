@@ -1,10 +1,3 @@
-# Dusk
+# Void
 
-A highly functioning runescape private server using the #667 client build. 
-
-### Development
-
-#### Contributors
-* Tyluur
-* Greg
-
+High performance single player 634 server focusing on knowledge representation and ai architecture.
