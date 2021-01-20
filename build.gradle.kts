@@ -24,7 +24,7 @@ allprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     group = "rs.dusk"
-    version = "0.0.2"
+    version = "1.0.0"
 
     java.sourceCompatibility = JavaVersion.VERSION_15
 
