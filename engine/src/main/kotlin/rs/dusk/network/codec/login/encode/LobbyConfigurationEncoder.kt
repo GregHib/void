@@ -14,7 +14,7 @@ class LobbyConfigurationEncoder : Encoder(LOBBY_DETAILS, PacketSize.BYTE) {
         username: String,
         lastIpAddress: String,
         lastLogin: Long
-    ) = channel.send(52 - 21 + string(username) + string("127.0.0.1") + 2) {
+    ) = channel.send(31 + string(username) + string("127.0.0.1") + 2) {
         val now = System.currentTimeMillis()
         val jag = 1014753880308L
         val sinceJag = (now - jag) / 1000 / 60 / 60 / 24
@@ -26,15 +26,6 @@ class LobbyConfigurationEncoder : Encoder(LOBBY_DETAILS, PacketSize.BYTE) {
         writeByte(0)//5
 
         writeShort(0)
-
-//        writeLong(lastLogin)//members subscription end
-//        writeByte(0)//0 not member & no recovery, 1 member & no rec, 2 not member & rec, 3 member & recovery
-//        writeInt(0)//recovery questions set date
-
-//        writeByte(2)// 0 - Not a member, 1 - Membership expires, 2 - Subscription active
-//        writeInt(0)
-//        writeByte(0)
-//        writeInt(0)
 
         writeShort(1)//recovery questions set
         writeShort(0)//Number of unread messages
@@ -50,7 +41,6 @@ class LobbyConfigurationEncoder : Encoder(LOBBY_DETAILS, PacketSize.BYTE) {
 
         writeByte(0)//Script 6911
         writeInt(1)//Script 6912
-//        writeByte(1)//Bool Script 4700
         writeShort(0)//Server port offset id
 
         writePrefixedString("127.0.0.1")//Server ip address
