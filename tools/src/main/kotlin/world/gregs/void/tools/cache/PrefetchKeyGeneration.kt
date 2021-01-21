@@ -7,7 +7,7 @@ object PrefetchKeyGeneration {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val cache = CacheLibrary("./cache/data/cache/")
+        val cache = CacheLibrary("./data/cache/")
         println(cache.archive(Indices.DEFAULTS))
         println(cache.native("jaclib"))
         println(cache.native("jaggl"))

@@ -14,7 +14,7 @@ object ContainerConverter {
     fun main(args: Array<String>) {
 
         val cache667 = module {
-            single { CacheDelegate("./cache/data/cache/", "1", "1") as Cache }
+            single { CacheDelegate("./data/cache/", "1", "1") as Cache }
         }
         val cache718 = module {
             single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") as Cache }
@@ -48,7 +48,7 @@ object ContainerConverter {
 
             if(cont.ids != null) {
                 counter++
-                println("$i ${cont.ids!!.mapIndexed { index, it -> "${itemDecoder.getOrNull(it).name} ${cont.amounts!![index]}" }.joinToString(separator = ", ")}")
+                println("$i ${cont.ids!!.mapIndexed { index, it -> "${itemDecoder.getOrNull(it)?.name} ${cont.amounts!![index]}" }.joinToString(separator = ", ")}")
             }
 //            println(def)
 //            println(cont)

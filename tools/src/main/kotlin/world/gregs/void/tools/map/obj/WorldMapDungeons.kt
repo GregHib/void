@@ -54,7 +54,7 @@ class WorldMapDungeons(
 
     companion object {
         private fun ClientScriptDefinition.hasInstruction(index: Int, type: Int) = instructions.getOrNull(index) == type
-        private fun ClientScriptDefinition.getIntOrNull(index: Int) = intOperands.getOrNull(index)
+        private fun ClientScriptDefinition.getIntOrNull(index: Int) = intOperands?.getOrNull(index)
         private fun ClientScriptDefinition.getInt(index: Int) = intOperands!![index]
         private const val LOCATION = 0
         private const val SCRIPT_ID = 40

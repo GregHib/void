@@ -15,7 +15,7 @@ object ItemDefinitionsParamConverter {
     fun main(args: Array<String>) {
 
         val cache667 = module {
-            single { CacheDelegate("./cache/data/cache/", "1", "1") }
+            single { CacheDelegate("./data/cache/", "1", "1") }
         }
         val cache718 = module {
             single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") }

@@ -20,8 +20,8 @@ object MapGraphLoader {
     fun main(args: Array<String>) {
         val koin = startKoin {
             properties(mapOf(
-                "cachePath" to "./cache/data/cache/",
-                "xteaPath" to "./cache/data/xteas.dat",
+                "cachePath" to "./data/cache/",
+                "xteaPath" to "./data/xteas.dat",
                 "fsRsaPrivate" to "1",
                 "fsRsaModulus" to "1"
             ))
