@@ -14,10 +14,10 @@ object ContainerConverter {
     fun main(args: Array<String>) {
 
         val cache667 = module {
-            single { CacheDelegate("./data/cache/", "1", "1") as Cache }
+            single { CacheDelegate("./data/cache/") as Cache }
         }
         val cache718 = module {
-            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") as Cache }
+            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") as Cache }
         }
         val koin = startKoin {
             modules(cacheDefinitionModule)
