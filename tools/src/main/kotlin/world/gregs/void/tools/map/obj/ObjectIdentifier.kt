@@ -123,10 +123,8 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
                     if (decision.score > 0.5) {
                         val target = decision.target
                         if (target is GameObjectOption) {
-                            if (obj.id == 57094 && obj.tile.equals(3097, 3433, 1)) {
-                                println("Assert ${target.obj.id == 1749 && target.obj.tile.equals(3097, 3433, 2)}")
-                            }
-                            graph.addLink(context.obj.tile, target.obj.tile)
+                            val link = graph.addLink(context.obj.tile, target.obj.tile)
+                            link.actions = listOf("${obj.id} ${opt.option}")
                         } else if (target is Pair<*, *>) {
                             graph.addLink(context.obj.tile, target.second as Tile)
                         }
