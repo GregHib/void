@@ -8,7 +8,7 @@ import world.gregs.void.cache.definition.data.WorldMapIcon
 import world.gregs.void.cache.definition.data.WorldMapIconDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since December 21, 2020
  */
 class WorldMapIconDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<WorldMapIconDefinition>(cache, WORLD_MAP) {

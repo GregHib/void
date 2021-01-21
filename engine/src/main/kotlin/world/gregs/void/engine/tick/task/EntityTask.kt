@@ -10,7 +10,7 @@ import world.gregs.void.engine.entity.list.PooledMapList
 import kotlin.system.measureTimeMillis
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 @Deprecated("Use scripts instead")

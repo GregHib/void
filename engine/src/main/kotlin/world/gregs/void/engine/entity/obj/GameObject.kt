@@ -15,7 +15,7 @@ import world.gregs.void.utility.get
 
 /**
  * Interactive Object
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 data class GameObject(

@@ -10,7 +10,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.OBJECT_CUSTOMISE
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class ObjectCustomiseEncoder : Encoder(OBJECT_CUSTOMISE, PacketSize.BYTE) {

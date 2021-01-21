@@ -9,7 +9,7 @@ import world.gregs.void.engine.event.then
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) :

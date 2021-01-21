@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.Hit
 import world.gregs.void.engine.entity.character.update.visual.Hits
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class HitsEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Hits>(mask) {

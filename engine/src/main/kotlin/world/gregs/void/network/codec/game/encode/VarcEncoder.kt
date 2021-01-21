@@ -10,7 +10,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.CLIENT_VARC
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 04, 2020
  */
 class VarcEncoder : Encoder(CLIENT_VARC) {

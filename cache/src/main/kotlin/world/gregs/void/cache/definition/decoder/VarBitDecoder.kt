@@ -6,7 +6,7 @@ import world.gregs.void.cache.Indices.VAR_BIT
 import world.gregs.void.cache.definition.data.VarBitDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class VarBitDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<VarBitDefinition>(cache, VAR_BIT) {

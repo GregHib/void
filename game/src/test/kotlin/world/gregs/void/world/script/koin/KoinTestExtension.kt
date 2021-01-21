@@ -9,7 +9,7 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.KoinAppDeclaration
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 class KoinTestExtension private constructor(private val appDeclaration: KoinAppDeclaration) : BeforeEachCallback, AfterEachCallback {

@@ -4,7 +4,7 @@ import world.gregs.void.cache.Definition
 
 /**
  * Equipment Slots Definition
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 @Suppress("ArrayInDataClass")

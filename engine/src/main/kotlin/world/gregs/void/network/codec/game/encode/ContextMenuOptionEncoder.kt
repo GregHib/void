@@ -11,7 +11,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.PLAYER_OPTION
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 16, 2020
  */
 class ContextMenuOptionEncoder : Encoder(PLAYER_OPTION, PacketSize.BYTE) {

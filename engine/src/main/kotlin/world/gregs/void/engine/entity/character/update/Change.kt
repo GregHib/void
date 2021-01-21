@@ -1,7 +1,7 @@
 package world.gregs.void.engine.entity.character.update
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 14, 2020
  */
 sealed class LocalChange(val id: Int) {

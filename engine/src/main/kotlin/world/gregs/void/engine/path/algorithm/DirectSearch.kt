@@ -14,7 +14,7 @@ import world.gregs.void.engine.path.TraversalStrategy
  * Moves horizontally and vertically until blocked by obstacle or reaches target
  * Used for combat.
  * @author Major
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
 class DirectSearch : PathAlgorithm {

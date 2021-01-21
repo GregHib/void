@@ -9,7 +9,7 @@ import world.gregs.void.engine.path.TargetStrategy
  * Checks if within reachable range of a tile
  * e.g floor item on a tile or table
  * Note: Doesn't check if blocked
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 data class PointTargetStrategy(

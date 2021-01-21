@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.MOVEMENT_TY
 import world.gregs.void.engine.entity.character.update.visual.player.MovementType
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class MovementTypeEncoder : VisualEncoder<MovementType>(MOVEMENT_TYPE_MASK) {

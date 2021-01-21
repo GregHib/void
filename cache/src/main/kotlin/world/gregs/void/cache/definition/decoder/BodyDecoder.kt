@@ -7,7 +7,7 @@ import world.gregs.void.cache.Indices.DEFAULTS
 import world.gregs.void.cache.definition.data.BodyDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class BodyDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {

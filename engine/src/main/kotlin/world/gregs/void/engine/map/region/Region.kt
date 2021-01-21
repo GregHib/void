@@ -4,7 +4,7 @@ import world.gregs.void.engine.map.Tile
 import world.gregs.void.engine.map.area.Coordinate2D
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 data class Region(override val x: Int, override val y: Int) :

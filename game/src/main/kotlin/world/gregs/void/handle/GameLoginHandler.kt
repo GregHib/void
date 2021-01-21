@@ -24,7 +24,7 @@ import world.gregs.void.world.interact.entity.player.spawn.login.Login
 import world.gregs.void.world.interact.entity.player.spawn.login.LoginResponse
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class GameLoginHandler : Handler() {

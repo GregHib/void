@@ -6,7 +6,7 @@ import world.gregs.void.buffer.write.BufferWriter
 import world.gregs.void.cache.definition.data.ObjectDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 13, 2020
  */
 internal class ObjectEncoderTest {

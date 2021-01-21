@@ -4,7 +4,7 @@ import world.gregs.void.engine.map.Tile
 
 /**
  * An identifiable object with a physical spatial location
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 interface Entity {

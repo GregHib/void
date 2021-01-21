@@ -1,7 +1,7 @@
 package world.gregs.void.engine.event
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
 data class EventHandlerBuilder<T : Any, E : Event<T>>(private var filter: (E.() -> Boolean)? = null, private var check: (E.() -> Boolean)? = null, var priority: Int = 0) {

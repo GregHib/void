@@ -12,7 +12,7 @@ import world.gregs.void.engine.path.TraversalStrategy
 /**
  * Moves in any direction towards the target until blocked by obstacle or reaches
  * Used for following and combat.
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
 class DirectDiagonalSearch : PathAlgorithm {

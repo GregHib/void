@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.npc.COMBAT_LEVEL_M
 import world.gregs.void.engine.entity.character.update.visual.npc.CombatLevel
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class CombatLevelEncoder : VisualEncoder<CombatLevel>(COMBAT_LEVEL_MASK) {

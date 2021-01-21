@@ -15,7 +15,7 @@ import world.gregs.void.engine.tick.task.EntityTask
 import world.gregs.void.network.codec.game.encode.PlayerUpdateEncoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 26, 2020
  */
 class PlayerUpdateTask(

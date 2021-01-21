@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.VisualEncoder
 import world.gregs.void.engine.entity.character.update.visual.ColourOverlay
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class ColourOverlayEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<ColourOverlay>(mask) {

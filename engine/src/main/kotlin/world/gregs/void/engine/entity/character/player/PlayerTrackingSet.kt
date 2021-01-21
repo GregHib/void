@@ -7,7 +7,7 @@ import java.util.*
 import kotlin.collections.LinkedHashSet
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 21, 2020
  */
 class PlayerTrackingSet(

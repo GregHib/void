@@ -6,7 +6,7 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.void.engine.client.update.task.viewport.Spiral
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 internal class SpiralTest {

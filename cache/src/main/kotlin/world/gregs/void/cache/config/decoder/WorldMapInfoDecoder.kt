@@ -6,7 +6,7 @@ import world.gregs.void.cache.config.ConfigDecoder
 import world.gregs.void.cache.config.data.WorldMapInfoDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class WorldMapInfoDecoder(cache: world.gregs.void.cache.Cache) : ConfigDecoder<WorldMapInfoDefinition>(cache, WORLD_MAP_INFO) {

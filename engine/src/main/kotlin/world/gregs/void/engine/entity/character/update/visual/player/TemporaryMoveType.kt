@@ -6,7 +6,7 @@ import world.gregs.void.engine.entity.character.player.PlayerMoveType
 import world.gregs.void.engine.entity.character.update.Visual
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class TemporaryMoveType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {

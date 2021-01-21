@@ -11,7 +11,7 @@ import world.gregs.void.engine.entity.character.player.Player
 import world.gregs.void.engine.script.KoinMock
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 09, 2020
  */
 internal class SessionsTest : KoinMock() {

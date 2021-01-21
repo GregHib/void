@@ -48,7 +48,7 @@ import world.gregs.void.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 object Main {

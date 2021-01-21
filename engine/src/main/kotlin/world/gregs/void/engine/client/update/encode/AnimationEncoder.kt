@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.VisualEncoder
 import world.gregs.void.engine.entity.character.update.visual.Animation
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class AnimationEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Animation>(mask) {

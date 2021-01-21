@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.APPEARANCE_
 import world.gregs.void.engine.entity.character.update.visual.player.Appearance
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {

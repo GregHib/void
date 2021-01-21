@@ -7,7 +7,7 @@ import world.gregs.void.cache.Indices.TEXTURE_DEFINITIONS
 import world.gregs.void.cache.definition.data.TextureDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class TextureDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {

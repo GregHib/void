@@ -1,7 +1,7 @@
 package world.gregs.void.engine.event
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 26, 2020
  */
 class EventHandler<T : Any, E : Event<T>> {

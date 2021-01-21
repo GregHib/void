@@ -12,7 +12,7 @@ val eventModule = module {
 /**
  * Handles the publication of [Event]s; [emit] to subscribers; [EventHandler].
  * Note: [EventHandler]'s are stored in a highest-first prioritised chain
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 26, 2020
  */
 @Suppress("UNCHECKED_CAST")

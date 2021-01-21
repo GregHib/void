@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.TEMPORARY_M
 import world.gregs.void.engine.entity.character.update.visual.player.TemporaryMoveType
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class TemporaryMoveTypeEncoder : VisualEncoder<TemporaryMoveType>(TEMPORARY_MOVE_TYPE_MASK) {

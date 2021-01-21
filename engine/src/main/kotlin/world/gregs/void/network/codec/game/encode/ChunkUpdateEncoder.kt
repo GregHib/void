@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.UPDATE_CHUNK
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 19, 2020
  */
 class ChunkUpdateEncoder : Encoder(UPDATE_CHUNK) {

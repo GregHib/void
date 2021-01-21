@@ -3,7 +3,7 @@ package world.gregs.void.cache.definition
 import world.gregs.void.buffer.read.Reader
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 @Suppress("UNCHECKED_CAST")

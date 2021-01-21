@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.TILE_TEXT
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class TextTileEncoder : Encoder(TILE_TEXT, PacketSize.BYTE) {

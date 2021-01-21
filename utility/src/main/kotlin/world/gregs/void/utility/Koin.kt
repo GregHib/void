@@ -7,7 +7,7 @@ import org.koin.ext.getIntProperty
 import org.koin.java.KoinJavaComponent.getKoin
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 26, 2020
  */
 

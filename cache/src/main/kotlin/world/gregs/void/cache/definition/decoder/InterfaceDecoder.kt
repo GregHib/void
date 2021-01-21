@@ -9,7 +9,7 @@ import world.gregs.void.cache.definition.data.InterfaceComponentSetting
 import world.gregs.void.cache.definition.data.InterfaceDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class InterfaceDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<InterfaceDefinition>(cache, INTERFACES) {

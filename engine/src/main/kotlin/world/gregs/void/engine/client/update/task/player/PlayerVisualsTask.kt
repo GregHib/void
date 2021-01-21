@@ -12,7 +12,7 @@ import world.gregs.void.engine.event.Priority.PLAYER_VISUALS
 import world.gregs.void.engine.tick.task.EntityTask
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class PlayerVisualsTask(

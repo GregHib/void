@@ -7,7 +7,7 @@ import world.gregs.void.engine.map.Tile
 import world.gregs.void.engine.map.chunk.Chunk
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class Objects(

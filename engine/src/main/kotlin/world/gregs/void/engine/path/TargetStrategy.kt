@@ -4,7 +4,7 @@ import world.gregs.void.engine.entity.Size
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 interface TargetStrategy {

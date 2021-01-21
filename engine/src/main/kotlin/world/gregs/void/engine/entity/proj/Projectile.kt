@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.name
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 data class Projectile(

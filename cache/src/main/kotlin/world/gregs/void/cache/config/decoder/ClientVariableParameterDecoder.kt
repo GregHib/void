@@ -7,7 +7,7 @@ import world.gregs.void.cache.config.ConfigDecoder
 import world.gregs.void.cache.config.data.ClientVariableParameterDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class ClientVariableParameterDecoder(cache: Cache) : ConfigDecoder<ClientVariableParameterDefinition>(cache, VARC) {

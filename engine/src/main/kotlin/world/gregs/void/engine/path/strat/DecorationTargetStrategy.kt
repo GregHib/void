@@ -11,7 +11,7 @@ import world.gregs.void.engine.path.TargetStrategy
 
 /**
  * Checks if within interact range of a targeted decoration
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 data class DecorationTargetStrategy(

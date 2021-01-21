@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.CLIENT_VARC_LARGE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 04, 2020
  */
 class VarcLargeEncoder : Encoder(CLIENT_VARC_LARGE) {

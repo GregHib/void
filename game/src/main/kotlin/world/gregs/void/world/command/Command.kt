@@ -5,7 +5,7 @@ import world.gregs.void.engine.entity.character.player.PlayerEvent
 import world.gregs.void.engine.event.EventCompanion
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 01, 2020
  */
 data class Command(override val player: Player, val prefix: String, val content: String) : PlayerEvent() {

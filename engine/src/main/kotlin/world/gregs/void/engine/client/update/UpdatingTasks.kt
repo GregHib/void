@@ -17,7 +17,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.MOVEMENT_TY
 import world.gregs.void.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 val updatingTasksModule = module {

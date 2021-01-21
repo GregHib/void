@@ -10,7 +10,7 @@ import world.gregs.void.engine.entity.definition.AnimationDefinitions
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class Animation(

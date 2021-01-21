@@ -1,7 +1,7 @@
 package world.gregs.void.engine.data
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 03, 2020
  */
 interface StorageStrategy<T : Any> {

@@ -12,7 +12,7 @@ import world.gregs.void.cache.definition.data.ItemDefinition
 import world.gregs.void.cache.definition.decoder.ItemDecoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 23, 2020
  */
 class EncoderComparator {

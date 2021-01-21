@@ -24,7 +24,7 @@ import world.gregs.void.engine.path.TargetStrategy
 
 /**
  * A player controlled by client or bot
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 @Serializable

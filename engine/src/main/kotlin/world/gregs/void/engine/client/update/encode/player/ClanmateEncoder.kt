@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.CLANMATE_MA
 import world.gregs.void.engine.entity.character.update.visual.player.Clanmate
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class ClanmateEncoder : VisualEncoder<Clanmate>(CLANMATE_MASK) {

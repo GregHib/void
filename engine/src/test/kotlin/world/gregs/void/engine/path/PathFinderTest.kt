@@ -18,7 +18,7 @@ import world.gregs.void.engine.path.algorithm.DirectSearch
 import world.gregs.void.engine.path.strat.TileTargetStrategy
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 21, 2020
  */
 internal class PathFinderTest {

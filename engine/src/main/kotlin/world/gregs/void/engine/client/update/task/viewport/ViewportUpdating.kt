@@ -16,7 +16,7 @@ import world.gregs.void.engine.tick.task.EngineTask
 import world.gregs.void.utility.inject
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 17, 2020
  */
 class ViewportUpdating : EngineTask(VIEWPORT) {

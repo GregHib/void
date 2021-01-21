@@ -21,7 +21,7 @@ import world.gregs.void.engine.script.KoinMock
 import java.util.*
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 29, 2020
  */
 internal class PlayerMovementTaskTest : KoinMock() {

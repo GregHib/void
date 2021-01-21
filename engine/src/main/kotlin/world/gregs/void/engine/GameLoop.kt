@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 class GameLoop(

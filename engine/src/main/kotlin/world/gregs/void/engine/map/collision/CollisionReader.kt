@@ -6,7 +6,7 @@ import world.gregs.void.engine.map.region.Region
 
 /**
  * Adds collision for all blocked tiles except bridges
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 class CollisionReader(val collisions: Collisions) {

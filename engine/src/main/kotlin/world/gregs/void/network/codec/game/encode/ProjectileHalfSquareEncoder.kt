@@ -5,7 +5,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.PROJECTILE_DISPLACE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 2, 2020
  */
 class ProjectileHalfSquareEncoder : Encoder(PROJECTILE_DISPLACE) {

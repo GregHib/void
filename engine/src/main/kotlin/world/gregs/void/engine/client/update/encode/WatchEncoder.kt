@@ -7,7 +7,7 @@ import world.gregs.void.buffer.Modifier
 import world.gregs.void.buffer.write.Writer
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class WatchEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Watch>(mask) {

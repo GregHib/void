@@ -6,7 +6,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.RUN_ENERGY
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 27, 2020
  */
 class RunEnergyEncoder : Encoder(RUN_ENERGY) {

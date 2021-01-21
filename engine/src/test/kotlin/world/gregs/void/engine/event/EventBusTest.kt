@@ -13,7 +13,7 @@ import world.gregs.void.engine.script.KoinMock
 import kotlin.reflect.KClass
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 27, 2020
  */
 @ExtendWith(MockKExtension::class)

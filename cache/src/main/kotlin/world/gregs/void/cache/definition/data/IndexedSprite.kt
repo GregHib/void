@@ -3,7 +3,7 @@ package world.gregs.void.cache.definition.data
 import java.awt.image.BufferedImage
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 @Suppress("ArrayInDataClass")

@@ -6,7 +6,7 @@ import com.github.michaelbull.logging.InlineLogger
 import java.math.BigInteger
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since January 01, 2020
  */
 class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger) : Cache {

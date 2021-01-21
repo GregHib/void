@@ -13,7 +13,7 @@ import world.gregs.void.utility.inject
 import world.gregs.void.world.interact.dialogue.event.ContinueDialogue
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 30, 2020
  */
 class DialogueContinueHandler : Handler() {

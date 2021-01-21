@@ -6,7 +6,7 @@ import world.gregs.void.engine.map.collision.CollisionFlag
 import world.gregs.void.engine.map.collision.flag
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 interface TraversalStrategy {

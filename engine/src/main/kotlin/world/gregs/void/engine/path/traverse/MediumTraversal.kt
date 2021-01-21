@@ -10,7 +10,7 @@ import world.gregs.void.engine.path.TraversalType
 
 /**
  * Checks for collision in the direction of movement for entities of size 2x2
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 class MediumTraversal(override val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TraversalStrategy {

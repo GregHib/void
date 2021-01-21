@@ -9,7 +9,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.REGION
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class MapRegionEncoder : Encoder(REGION, PacketSize.SHORT) {

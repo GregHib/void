@@ -1,7 +1,7 @@
 package world.gregs.void.engine.entity.character.player
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 data class GameLoginInfo(

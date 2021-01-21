@@ -13,7 +13,7 @@ import world.gregs.void.engine.map.collision.set
 import world.gregs.void.engine.path.TraversalType
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 internal class TraversalIntegrationTest {

@@ -13,7 +13,7 @@ import world.gregs.void.engine.script.KoinMock
 import world.gregs.void.network.codec.game.encode.ContextMenuOptionEncoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 24, 2020
  */
 internal class PlayerTrackingSetTest : KoinMock() {

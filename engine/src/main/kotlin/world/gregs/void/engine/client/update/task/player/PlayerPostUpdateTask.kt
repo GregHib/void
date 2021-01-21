@@ -7,7 +7,7 @@ import world.gregs.void.engine.tick.task.EntityTask
 
 /**
  * Resets non-persistent changes
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(PLAYER_UPDATE_FINISHED) {

@@ -10,7 +10,7 @@ import world.gregs.void.cache.definition.data.MapObject
 import world.gregs.void.cache.definition.data.MapTile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since December 28, 2020
  */
 class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(cache, MAPS) {

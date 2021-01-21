@@ -15,7 +15,7 @@ import world.gregs.void.utility.getIntProperty
 import java.util.*
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
 val loginQueueModule = module {

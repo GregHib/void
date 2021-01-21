@@ -9,7 +9,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.DYNAMIC_REGION
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class DynamicMapRegionEncoder : Encoder(DYNAMIC_REGION, PacketSize.SHORT) {

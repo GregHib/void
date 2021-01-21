@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import world.gregs.void.engine.entity.character.IndexAllocator
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
 internal class IndexAllocatorTest {

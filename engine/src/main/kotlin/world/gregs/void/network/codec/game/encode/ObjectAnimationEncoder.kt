@@ -11,7 +11,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.OBJECT_ANIMATION
 
 /**
  * Show animation of an object for a single client
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class ObjectAnimationEncoder : Encoder(OBJECT_ANIMATION) {

@@ -6,7 +6,7 @@ import world.gregs.void.engine.path.TargetStrategy
 
 /**
  * Checks if within distance of a target
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since September 9, 2020
  */
 data class DistanceTargetStrategy(

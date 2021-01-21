@@ -1,7 +1,7 @@
 package world.gregs.void.engine.entity.character.update.visual
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class Hit(

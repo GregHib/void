@@ -3,7 +3,7 @@ package world.gregs.void.world.interact.entity.player.spawn.login
 import world.gregs.void.engine.entity.character.player.Player
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 09, 2020
  */
 sealed class LoginResponse(val code: Int) {

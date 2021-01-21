@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.npc.TURN_MASK
 import world.gregs.void.engine.entity.character.update.visual.npc.Turn
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class TurnEncoder : VisualEncoder<Turn>(TURN_MASK) {

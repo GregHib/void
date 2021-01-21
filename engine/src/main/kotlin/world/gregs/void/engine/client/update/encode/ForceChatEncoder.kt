@@ -5,7 +5,7 @@ import world.gregs.void.engine.entity.character.update.VisualEncoder
 import world.gregs.void.engine.entity.character.update.visual.ForceChat
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class ForceChatEncoder(mask: Int) : VisualEncoder<ForceChat>(mask) {

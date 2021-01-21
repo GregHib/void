@@ -16,7 +16,7 @@ import world.gregs.void.engine.path.TraversalStrategy
 import world.gregs.void.engine.path.algorithm.BreadthFirstSearch.Companion.GRAPH_SIZE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
 internal class BreadthFirstSearchTest {

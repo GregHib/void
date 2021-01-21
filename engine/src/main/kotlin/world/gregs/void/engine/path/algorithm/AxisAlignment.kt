@@ -12,7 +12,7 @@ import world.gregs.void.engine.path.TraversalStrategy
 /**
  * Moves diagonally until aligned with target or blocked by obstacle then moves cardinally
  * Used by NPCs
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 31, 2020
  */
 class AxisAlignment : PathAlgorithm {

@@ -8,7 +8,7 @@ import world.gregs.void.engine.entity.character.update.visual.npc.MODEL_CHANGE_M
 import world.gregs.void.engine.entity.character.update.visual.npc.ModelChange
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class ModelChangeEncoder : VisualEncoder<ModelChange>(MODEL_CHANGE_MASK) {

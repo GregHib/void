@@ -4,7 +4,7 @@ import world.gregs.void.engine.entity.character.npc.NPC
 import world.gregs.void.engine.entity.character.update.Visual
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class CombatLevel(var level: Int = 1) : Visual

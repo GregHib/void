@@ -1,7 +1,7 @@
 package world.gregs.void.cache
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 06, 2020
  */
 interface Definition {

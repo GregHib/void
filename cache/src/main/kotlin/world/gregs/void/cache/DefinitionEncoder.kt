@@ -3,7 +3,7 @@ package world.gregs.void.cache
 import world.gregs.void.buffer.write.Writer
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 13, 2020
  */
 interface DefinitionEncoder<T : Definition> {

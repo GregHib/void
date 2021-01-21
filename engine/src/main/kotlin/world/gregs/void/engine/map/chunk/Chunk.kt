@@ -6,7 +6,7 @@ import world.gregs.void.engine.map.region.Region
 import world.gregs.void.engine.map.region.RegionPlane
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 20, 2020
  */
 data class Chunk(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {

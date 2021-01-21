@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.OBJECT_REMOVE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class ObjectRemoveEncoder : Encoder(OBJECT_REMOVE) {

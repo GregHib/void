@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.INTERFACE_TEXT
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 2, 2020
  */
 class InterfaceTextEncoder : Encoder(INTERFACE_TEXT, PacketSize.SHORT) {

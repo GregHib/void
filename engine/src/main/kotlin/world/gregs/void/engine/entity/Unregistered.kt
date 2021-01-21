@@ -4,7 +4,7 @@ import world.gregs.void.engine.event.Event
 import world.gregs.void.engine.event.EventCompanion
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 data class Unregistered(val entity: Entity) : Event<Unit>() {

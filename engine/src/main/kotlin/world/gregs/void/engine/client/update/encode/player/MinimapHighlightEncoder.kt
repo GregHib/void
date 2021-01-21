@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.MINIMAP_HIG
 import world.gregs.void.engine.entity.character.update.visual.player.MinimapHighlight
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class MinimapHighlightEncoder : VisualEncoder<MinimapHighlight>(MINIMAP_HIGHLIGHT_MASK) {

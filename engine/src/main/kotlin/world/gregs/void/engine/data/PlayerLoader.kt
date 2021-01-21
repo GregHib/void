@@ -18,7 +18,7 @@ import world.gregs.void.utility.get
 import world.gregs.void.utility.getIntProperty
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 03, 2020
  */
 class PlayerLoader(

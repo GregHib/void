@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.INTERFACE_SPRITE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 2, 2020
  */
 class InterfaceSpriteEncoder : Encoder(INTERFACE_SPRITE) {

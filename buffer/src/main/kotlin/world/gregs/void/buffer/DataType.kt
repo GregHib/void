@@ -1,7 +1,7 @@
 package world.gregs.void.buffer
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since February 18, 2020
  */
 enum class DataType(val byteCount: Int) {

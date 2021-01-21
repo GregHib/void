@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.CHUNK_CLEAR
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 21, 2020
  */
 class ChunkClearEncoder : Encoder(CHUNK_CLEAR) {

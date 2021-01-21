@@ -9,7 +9,7 @@ import world.gregs.void.engine.entity.character.player.Player
 import java.io.File
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 03, 2020
  */
 class PlayerStorage(private val path: String) : StorageStrategy<Player> {

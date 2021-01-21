@@ -9,7 +9,7 @@ import world.gregs.void.engine.path.TargetStrategy
 
 /**
  * Checks if on an exact tile
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 data class EntityTileTargetStrategy(

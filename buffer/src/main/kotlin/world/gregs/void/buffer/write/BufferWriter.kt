@@ -9,7 +9,7 @@ import world.gregs.void.buffer.Modifier
 /**
  * All functions relative to writing directly to a packet are done by this class
  *
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since February 18, 2020
  */
 open class BufferWriter(

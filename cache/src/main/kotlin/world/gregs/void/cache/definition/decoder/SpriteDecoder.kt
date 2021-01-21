@@ -7,7 +7,7 @@ import world.gregs.void.cache.definition.data.IndexedSprite
 import world.gregs.void.cache.definition.data.SpriteDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class SpriteDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {

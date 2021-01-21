@@ -17,7 +17,7 @@ import world.gregs.void.engine.path.TargetStrategy
 import world.gregs.void.engine.path.TraversalStrategy
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 17, 2020
  */
 internal class DirectDiagonalSearchTest {

@@ -11,7 +11,7 @@ import world.gregs.void.engine.event.Priority.NPC_VISUALS
 import world.gregs.void.engine.tick.task.EntityTask
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class NPCVisualsTask(

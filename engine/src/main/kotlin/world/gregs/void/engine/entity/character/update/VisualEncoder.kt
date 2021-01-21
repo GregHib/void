@@ -9,7 +9,7 @@ import world.gregs.void.engine.client.update.encode.player.*
 import world.gregs.void.engine.entity.character.update.visual.*
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 abstract class VisualEncoder<V : Visual>(val mask: Int) {

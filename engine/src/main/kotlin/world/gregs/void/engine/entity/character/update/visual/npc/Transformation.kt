@@ -5,7 +5,7 @@ import world.gregs.void.engine.entity.character.update.Visual
 
 /**
  * Changes the characteristics to match NPC with [id]
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class Transformation(

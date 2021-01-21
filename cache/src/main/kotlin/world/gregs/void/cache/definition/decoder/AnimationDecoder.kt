@@ -6,7 +6,7 @@ import world.gregs.void.cache.Indices.ANIMATIONS
 import world.gregs.void.cache.definition.data.AnimationDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class AnimationDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {

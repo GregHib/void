@@ -6,7 +6,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.SOUND_AREA
 
 /**
  * Incomplete
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since June 27, 2020
  */
 class SoundAreaEncoder : Encoder(SOUND_AREA) {

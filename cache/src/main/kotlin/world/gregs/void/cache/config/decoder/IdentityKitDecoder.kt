@@ -7,7 +7,7 @@ import world.gregs.void.cache.config.ConfigDecoder
 import world.gregs.void.cache.config.data.IdentityKitDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class IdentityKitDecoder(cache: Cache) : ConfigDecoder<IdentityKitDefinition>(cache, IDENTITY_KIT) {

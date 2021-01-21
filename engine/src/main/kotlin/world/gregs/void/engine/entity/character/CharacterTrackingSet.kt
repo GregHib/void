@@ -3,7 +3,7 @@ package world.gregs.void.engine.entity.character
 import kotlin.math.abs
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 21, 2020
  */
 interface CharacterTrackingSet<T : Character> {

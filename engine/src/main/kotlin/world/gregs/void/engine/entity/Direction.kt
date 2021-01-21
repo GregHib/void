@@ -3,7 +3,7 @@ package world.gregs.void.engine.entity
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 enum class Direction(deltaX: Int, deltaY: Int) {

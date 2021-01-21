@@ -9,7 +9,7 @@ import world.gregs.void.network.codec.game.encode.message
 import world.gregs.void.utility.inject
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 30, 2020
  */
 class WalkMiniMapHandler : Handler() {

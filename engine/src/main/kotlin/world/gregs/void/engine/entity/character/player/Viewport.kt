@@ -10,7 +10,7 @@ import world.gregs.void.engine.entity.list.MAX_PLAYERS
 import world.gregs.void.engine.map.chunk.Chunk
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 21, 2020
  */
 @Suppress("ArrayInDataClass")

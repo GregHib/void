@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.NPC_UPDATING
 import world.gregs.void.network.packet.PacketSize
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class NPCUpdateEncoder : Encoder(NPC_UPDATING, PacketSize.SHORT) {

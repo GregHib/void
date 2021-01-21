@@ -13,7 +13,7 @@ import world.gregs.void.utility.inject
 import world.gregs.void.world.interact.entity.player.display.InterfaceSwitch
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 31, 2020
  */
 class InterfaceSwitchHandler : Handler() {

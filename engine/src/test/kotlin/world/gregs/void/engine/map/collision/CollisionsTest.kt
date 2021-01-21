@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 17, 2020
  */
 internal class CollisionsTest {

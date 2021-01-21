@@ -5,7 +5,7 @@ import world.gregs.void.buffer.read.Reader
 import world.gregs.void.network.codec.Decoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class PingDecoder : Decoder(0) {

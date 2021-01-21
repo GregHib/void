@@ -6,7 +6,7 @@ import world.gregs.void.engine.map.chunk.Chunk
 import world.gregs.void.engine.map.region.Region
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 05, 2020
  */
 data class Instance(override val x: Int, override val y: Int) :

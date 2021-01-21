@@ -12,7 +12,7 @@ import world.gregs.void.engine.tick.task.EngineTask
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : EngineTask(NPC_MOVEMENT) {

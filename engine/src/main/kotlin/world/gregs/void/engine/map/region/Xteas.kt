@@ -3,7 +3,7 @@ package world.gregs.void.engine.map.region
 import org.koin.dsl.module
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 data class Xteas(val delegate: Map<Int, IntArray>) : Map<Int, IntArray> by delegate {

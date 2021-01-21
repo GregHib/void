@@ -1,7 +1,7 @@
 package world.gregs.void.cache.definition.data
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 data class InterfaceComponentSetting(var setting: Int, var anInt7413: Int) {

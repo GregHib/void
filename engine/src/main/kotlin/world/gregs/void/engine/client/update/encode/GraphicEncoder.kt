@@ -8,7 +8,7 @@ import world.gregs.void.engine.entity.character.update.visual.Graphic
 import world.gregs.void.utility.func.toInt
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class GraphicEncoder(private val npc: Boolean, private val index: Int, mask: Int) : VisualEncoder<Graphic>(mask) {

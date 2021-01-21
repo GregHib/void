@@ -8,7 +8,7 @@ import world.gregs.void.network.codec.game.GameOpcodes.CLIENT_VARP
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 04, 2020
  */
 class VarpEncoder : Encoder(CLIENT_VARP) {

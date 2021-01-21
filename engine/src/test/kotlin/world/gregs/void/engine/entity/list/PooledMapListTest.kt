@@ -12,7 +12,7 @@ import world.gregs.void.engine.map.Tile
 import java.util.*
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 internal class PooledMapListTest {

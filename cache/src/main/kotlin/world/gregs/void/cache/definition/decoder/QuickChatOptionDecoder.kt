@@ -7,7 +7,7 @@ import world.gregs.void.cache.Indices.QUICK_CHAT_MESSAGES
 import world.gregs.void.cache.definition.data.QuickChatOptionDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class QuickChatOptionDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<QuickChatOptionDefinition>(cache, QUICK_CHAT_MESSAGES) {

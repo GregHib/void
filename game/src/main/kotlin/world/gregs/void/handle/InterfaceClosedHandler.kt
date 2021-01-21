@@ -8,7 +8,7 @@ import world.gregs.void.network.codec.Handler
 import world.gregs.void.utility.inject
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 26, 2020
  */
 class InterfaceClosedHandler : Handler() {

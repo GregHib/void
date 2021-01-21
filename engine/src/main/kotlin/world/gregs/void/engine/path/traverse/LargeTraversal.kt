@@ -12,7 +12,7 @@ import world.gregs.void.engine.path.traverse.MediumTraversal.Companion.getSouthC
 
 /**
  * Checks for collision in the direction of movement for entities with any size
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TraversalStrategy {

@@ -5,7 +5,7 @@ import world.gregs.void.buffer.read.Reader
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 06, 2020
  */
 abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {

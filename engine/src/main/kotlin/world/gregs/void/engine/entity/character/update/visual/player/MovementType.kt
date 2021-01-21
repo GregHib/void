@@ -8,7 +8,7 @@ import world.gregs.void.engine.entity.character.update.Visual
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {

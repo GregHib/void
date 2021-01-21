@@ -3,7 +3,7 @@ package world.gregs.void.engine.entity.character
 import java.util.*
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
 class IndexAllocator(private val max: Int) {

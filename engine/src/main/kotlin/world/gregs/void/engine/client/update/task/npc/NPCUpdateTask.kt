@@ -14,7 +14,7 @@ import world.gregs.void.engine.tick.task.EntityTask
 import world.gregs.void.network.codec.game.encode.NPCUpdateEncoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 12, 2020
  */
 class NPCUpdateTask(

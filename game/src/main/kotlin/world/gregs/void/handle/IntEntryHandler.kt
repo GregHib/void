@@ -10,7 +10,7 @@ import world.gregs.void.utility.inject
 import world.gregs.void.world.interact.dialogue.event.IntEntered
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 04, 2020
  */
 class IntEntryHandler : Handler() {

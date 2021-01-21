@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.TimeBar
 import world.gregs.void.utility.func.toInt
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class TimeBarEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<TimeBar>(mask) {

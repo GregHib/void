@@ -7,7 +7,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.INTERFACE_CLOSE
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since July 25, 2020
  */
 class InterfaceCloseEncoder : Encoder(INTERFACE_CLOSE) {

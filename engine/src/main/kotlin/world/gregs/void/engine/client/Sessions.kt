@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.player.Player
 import kotlin.collections.set
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
 

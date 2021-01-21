@@ -2,7 +2,7 @@ package world.gregs.void.buffer
 
 /**
  * Byte Encode Modification
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since February 18, 2020
  */
 enum class Modifier {

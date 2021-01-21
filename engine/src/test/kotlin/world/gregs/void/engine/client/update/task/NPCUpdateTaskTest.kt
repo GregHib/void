@@ -22,7 +22,7 @@ import world.gregs.void.engine.script.KoinMock
 import world.gregs.void.network.codec.game.encode.NPCUpdateEncoder
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 16, 2020
  */
 internal class NPCUpdateTaskTest : KoinMock() {

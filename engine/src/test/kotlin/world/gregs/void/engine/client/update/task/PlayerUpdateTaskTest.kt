@@ -28,7 +28,7 @@ import world.gregs.void.network.codec.game.encode.PlayerUpdateEncoder
 import world.gregs.void.utility.func.toInt
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 02, 2020
  */
 internal class PlayerUpdateTaskTest : KoinMock() {

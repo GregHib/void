@@ -7,7 +7,7 @@ import world.gregs.void.engine.entity.character.update.visual.player.Face
 import kotlin.math.atan2
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class FaceEncoder : VisualEncoder<Face>(FACE_DIRECTION_MASK) {

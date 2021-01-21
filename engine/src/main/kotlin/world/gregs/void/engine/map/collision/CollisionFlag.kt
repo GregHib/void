@@ -3,7 +3,7 @@ package world.gregs.void.engine.map.collision
 import world.gregs.void.engine.entity.Direction
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 object CollisionFlag {

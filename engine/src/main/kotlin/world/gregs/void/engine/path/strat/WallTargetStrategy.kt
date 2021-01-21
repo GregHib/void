@@ -13,7 +13,7 @@ import world.gregs.void.engine.path.TargetStrategy
 /**
  * Checks if within interact range of a wall
  * e.g On the correct side to view a painting on a wall
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 data class WallTargetStrategy(

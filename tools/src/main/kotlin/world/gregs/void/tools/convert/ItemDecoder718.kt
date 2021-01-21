@@ -7,7 +7,7 @@ import world.gregs.void.cache.Indices.ITEMS
 import world.gregs.void.cache.definition.data.ItemDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {

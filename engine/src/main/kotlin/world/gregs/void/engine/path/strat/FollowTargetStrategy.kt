@@ -7,7 +7,7 @@ import world.gregs.void.engine.path.TargetStrategy
 
 /**
  * Checks if on the tile behind a player
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 22, 2020
  */
 data class FollowTargetStrategy(

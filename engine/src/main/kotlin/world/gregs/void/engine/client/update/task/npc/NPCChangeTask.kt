@@ -9,7 +9,7 @@ import world.gregs.void.engine.event.Priority.NPC_CHANGE
 import world.gregs.void.engine.tick.task.EntityTask
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 15, 2020
  */
 class NPCChangeTask(override val entities: NPCs) : EntityTask<NPC>(NPC_CHANGE) {

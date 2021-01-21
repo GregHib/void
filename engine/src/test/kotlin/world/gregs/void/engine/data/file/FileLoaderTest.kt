@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import java.io.File
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 04, 2020
  */
 internal class FileLoaderTest {

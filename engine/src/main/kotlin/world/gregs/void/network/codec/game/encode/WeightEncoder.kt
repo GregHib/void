@@ -5,7 +5,7 @@ import world.gregs.void.network.codec.Encoder
 import world.gregs.void.network.codec.game.GameOpcodes.PLAYER_WEIGHT
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since September 13, 2020
  */
 class WeightEncoder : Encoder(PLAYER_WEIGHT) {

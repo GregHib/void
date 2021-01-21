@@ -6,7 +6,7 @@ import world.gregs.void.cache.Indices.NPCS
 import world.gregs.void.cache.definition.data.NPCDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class NPCDecoder(cache: world.gregs.void.cache.Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {

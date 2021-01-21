@@ -24,7 +24,7 @@ val pathFindModule = module {
 
 /**
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 21, 2020
  */
 class PathFinder(

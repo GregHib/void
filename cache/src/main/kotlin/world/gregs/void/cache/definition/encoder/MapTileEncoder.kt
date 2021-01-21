@@ -5,7 +5,7 @@ import world.gregs.void.cache.DefinitionEncoder
 import world.gregs.void.cache.definition.data.MapDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since December 28, 2020
  */
 class MapTileEncoder : DefinitionEncoder<MapDefinition> {

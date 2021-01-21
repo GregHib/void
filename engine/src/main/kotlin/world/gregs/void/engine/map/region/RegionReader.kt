@@ -19,7 +19,7 @@ val regionModule = module {
 }
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 class RegionReader(

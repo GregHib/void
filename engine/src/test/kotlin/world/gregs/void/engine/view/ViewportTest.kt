@@ -9,7 +9,7 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.void.engine.entity.character.player.Viewport
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 internal class ViewportTest {

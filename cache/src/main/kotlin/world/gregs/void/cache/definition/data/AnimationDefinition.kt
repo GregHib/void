@@ -4,7 +4,7 @@ import world.gregs.void.cache.Definition
 import world.gregs.void.cache.definition.Extra
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 data class AnimationDefinition(

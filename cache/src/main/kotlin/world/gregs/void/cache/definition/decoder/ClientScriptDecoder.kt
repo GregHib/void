@@ -6,7 +6,7 @@ import world.gregs.void.cache.DefinitionDecoder
 import world.gregs.void.cache.definition.data.ClientScriptDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since December 12, 2020
  */
 class ClientScriptDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<ClientScriptDefinition>(cache, SCRIPTS) {

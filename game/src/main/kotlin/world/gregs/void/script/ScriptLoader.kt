@@ -9,7 +9,7 @@ import world.gregs.void.utility.func.plural
 import kotlin.system.measureTimeMillis
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 val scriptModule = module {

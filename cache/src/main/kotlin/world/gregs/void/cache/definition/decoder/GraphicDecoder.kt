@@ -6,7 +6,7 @@ import world.gregs.void.cache.Indices.GRAPHICS
 import world.gregs.void.cache.definition.data.GraphicDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 08, 2020
  */
 class GraphicDecoder(cache: world.gregs.void.cache.Cache) : DefinitionDecoder<GraphicDefinition>(cache, GRAPHICS) {

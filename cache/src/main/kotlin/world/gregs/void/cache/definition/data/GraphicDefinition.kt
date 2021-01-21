@@ -5,7 +5,7 @@ import world.gregs.void.cache.definition.Extra
 import world.gregs.void.cache.definition.Recolourable
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 data class GraphicDefinition(

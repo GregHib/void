@@ -21,7 +21,7 @@ import world.gregs.void.engine.map.Tile
 import world.gregs.void.engine.script.KoinMock
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 22, 2020
  */
 internal class ViewportUpdatingIntegrationTest : KoinMock() {

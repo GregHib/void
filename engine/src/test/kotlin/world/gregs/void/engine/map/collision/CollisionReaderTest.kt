@@ -11,7 +11,7 @@ import world.gregs.void.engine.map.collision.CollisionReader.Companion.BRIDGE_TI
 import world.gregs.void.engine.map.region.Region
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 17, 2020
  */
 internal class CollisionReaderTest {

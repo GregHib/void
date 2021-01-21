@@ -6,7 +6,7 @@ import world.gregs.void.network.codec.Decoder
 import world.gregs.void.network.packet.PacketSize.SHORT
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 18, 2020
  */
 class GameLoginDecoder : Decoder(SHORT) {

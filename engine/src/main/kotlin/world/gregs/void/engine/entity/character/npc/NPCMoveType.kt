@@ -1,7 +1,7 @@
 package world.gregs.void.engine.entity.character.npc
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 15, 2020
  */
 sealed class NPCMoveType {

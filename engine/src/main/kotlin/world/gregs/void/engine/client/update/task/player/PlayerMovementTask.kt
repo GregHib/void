@@ -13,7 +13,7 @@ import world.gregs.void.engine.tick.task.EngineTask
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class PlayerMovementTask(private val players: Players, private val bus: EventBus) : EngineTask(PLAYER_MOVEMENT) {

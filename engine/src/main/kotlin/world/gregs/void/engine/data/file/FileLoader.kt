@@ -9,7 +9,7 @@ import org.koin.dsl.module
 import java.io.File
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 03, 2020
  */
 class FileLoader(private val quotes: Boolean = false) {

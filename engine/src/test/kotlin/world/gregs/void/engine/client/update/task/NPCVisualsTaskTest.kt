@@ -20,7 +20,7 @@ import world.gregs.void.engine.script.KoinMock
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 26, 2020
  */
 internal class NPCVisualsTaskTest : KoinMock() {

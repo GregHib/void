@@ -5,7 +5,7 @@ import world.gregs.void.engine.entity.Direction
 import world.gregs.void.engine.entity.character.CharacterTrackingSet
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 21, 2020
  */
 class NPCTrackingSet(

@@ -5,7 +5,7 @@ import world.gregs.void.engine.map.area.Coordinate3D
 import world.gregs.void.engine.map.chunk.Chunk
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
 data class RegionPlane(override val x: Int, override val y: Int, override val plane: Int) :

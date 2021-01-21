@@ -5,7 +5,7 @@ import world.gregs.void.cache.DefinitionEncoder
 import world.gregs.void.cache.definition.data.InterfaceComponentDefinition
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since September 04, 2020
  */
 class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {

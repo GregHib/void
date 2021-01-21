@@ -10,7 +10,7 @@ import world.gregs.void.engine.path.algorithm.BresenhamsLine
 import world.gregs.void.utility.get
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
 @Serializable

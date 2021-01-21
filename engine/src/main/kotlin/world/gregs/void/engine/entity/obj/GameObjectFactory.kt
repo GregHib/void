@@ -9,7 +9,7 @@ import world.gregs.void.engine.path.strat.RectangleTargetStrategy
 import world.gregs.void.engine.path.strat.WallTargetStrategy
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since August 22, 2020
  */
 class GameObjectFactory(private val collisions: Collisions) {

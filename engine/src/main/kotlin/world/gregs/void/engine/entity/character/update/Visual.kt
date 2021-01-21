@@ -3,7 +3,7 @@ package world.gregs.void.engine.entity.character.update
 import world.gregs.void.engine.entity.character.Character
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 interface Visual {

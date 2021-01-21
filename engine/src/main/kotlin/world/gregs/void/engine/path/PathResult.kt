@@ -3,7 +3,7 @@ package world.gregs.void.engine.path
 import world.gregs.void.engine.map.Tile
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
 sealed class PathResult {

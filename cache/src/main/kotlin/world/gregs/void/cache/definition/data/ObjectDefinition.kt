@@ -7,7 +7,7 @@ import world.gregs.void.cache.definition.Parameterized
 import world.gregs.void.cache.definition.Recolourable
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
 data class ObjectDefinition(

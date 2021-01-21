@@ -11,7 +11,7 @@ import world.gregs.void.engine.tick.task.EntityTask
 import kotlin.math.abs
 
 /**
- * @author Greg Hibberd <greg@greghibberd.com>
+ * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
 class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(PLAYER_CHANGE) {
