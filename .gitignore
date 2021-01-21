@@ -44,3 +44,4 @@ gradlew
 gradlew.bat
 *.lock
 /data/dump/
+/data/saves/
