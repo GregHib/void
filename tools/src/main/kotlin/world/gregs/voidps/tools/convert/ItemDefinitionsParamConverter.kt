@@ -15,10 +15,10 @@ object ItemDefinitionsParamConverter {
     fun main(args: Array<String>) {
 
         val cache667 = module {
-            single { CacheDelegate("./data/cache/") }
+            single { CacheDelegate("./data/cache/", "1", "1") }
         }
         val cache718 = module {
-            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\") }
+            single { CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1") }
         }
 
         val koin = startKoin {

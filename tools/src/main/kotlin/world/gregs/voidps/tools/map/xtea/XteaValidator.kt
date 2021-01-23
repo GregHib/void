@@ -9,7 +9,7 @@ import world.gregs.voidps.cache.Indices
 object XteaValidator {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
-        val cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\")
+        val cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\", "1", "1")
         val xteas = XteaLoader().run("./xteas/")//"${System.getProperty("user.home")}\\Downloads\\rs634_cache\\634\\")
 
         val archives = cache.getArchives(Indices.MAPS).toSet()

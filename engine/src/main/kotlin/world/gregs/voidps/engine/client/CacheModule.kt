@@ -10,7 +10,11 @@ import world.gregs.voidps.cache.secure.Huffman
 @Suppress("USELESS_CAST", "RemoveExplicitTypeArguments")
 val cacheModule = module {
     single(createdAtStart = true) {
-        CacheDelegate(getProperty("cachePath")) as Cache
+        CacheDelegate(
+            getProperty("cachePath"),
+            getProperty("fsRsaPrivate"),
+            getProperty("fsRsaModulus")
+        ) as Cache
     }
     single { Huffman(get()) }
 }
