@@ -3,6 +3,7 @@ package world.gregs.voidps.tools
 import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.cache.Configs
+import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule

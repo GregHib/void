@@ -21,9 +21,7 @@ object MapGraphLoader {
         val koin = startKoin {
             properties(mapOf(
                 "cachePath" to "./data/cache/",
-                "xteaPath" to "./data/xteas.dat",
-                "fsRsaPrivate" to "1",
-                "fsRsaModulus" to "1"
+                "xteaPath" to "./data/xteas.dat"
             ))
             modules(eventModule, collisionModule, xteaModule, cacheModule, cacheDefinitionModule, entityListModule, regionModule)
         }.koin
