@@ -12,7 +12,7 @@ import world.gregs.voidps.network.packet.PacketSize.SHORT
 class GameLoginDecoder : Decoder(SHORT) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
-        val triple = LoginHeaderDecoder.decode(packet, true)
+        val triple = LoginHeaderDecoder.decode(packet)
         val password = triple.second!!
         val isaacKeys = triple.third!!
         val username = packet.readString()

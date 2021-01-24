@@ -19,7 +19,7 @@ class InterfaceUpdateEncoder : Encoder(INTERFACE_WINDOW) {
         id: Int,
         type: Int
     ) = player.send(3) {
-        writeShort(id, Modifier.ADD, Endian.LITTLE)
-        writeByte(type, Modifier.SUBTRACT)
+        writeByte(type, Modifier.INVERSE)
+        writeShort(id, Modifier.ADD)
     }
 }

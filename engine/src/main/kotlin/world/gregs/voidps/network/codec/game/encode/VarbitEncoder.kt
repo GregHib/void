@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.codec.game.encode
 
+import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeShort
@@ -25,7 +26,7 @@ class VarbitEncoder : Encoder(CLIENT_VARBIT) {
         value: Int
     ) = player.send(3) {
         writeByte(value, type = Modifier.SUBTRACT)
-        writeShort(id, type = Modifier.ADD)
+        writeShort(id, order = Endian.LITTLE)
     }
 }
 

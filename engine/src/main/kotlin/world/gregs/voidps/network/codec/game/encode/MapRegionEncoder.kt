@@ -35,10 +35,10 @@ class MapRegionEncoder : Encoder(REGION, PacketSize.SHORT) {
             }
             finishBitAccess(bitIndex)
         }
-        writeByte(mapSize, Modifier.INVERSE)
-        writeByte(forceRefresh)
+        writeByte(mapSize, Modifier.SUBTRACT)
+        writeShort(chunkY, type = Modifier.ADD, order = Endian.LITTLE)
         writeShort(chunkX, order = Endian.LITTLE)
-        writeShort(chunkY)
+        writeByte(forceRefresh, Modifier.INVERSE)
         xteas.forEach {
             it.forEach { key ->
                 writeInt(key)

@@ -17,7 +17,7 @@ import world.gregs.voidps.utility.inject
 val batcher: ChunkBatcher by inject()
 
 PlayerRegistered then {
-    load(player)
+//    load(player)
 }
 
 PlayerUnregistered then {

@@ -25,8 +25,8 @@ class VarcEncoder : Encoder(CLIENT_VARC) {
         id: Int,
         value: Int
     ) = player.send(3) {
+        writeByte(value)
         writeShort(id, Modifier.ADD, Endian.LITTLE)
-        writeByte(value, Modifier.SUBTRACT)
     }
 }
 

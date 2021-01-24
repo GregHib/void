@@ -12,31 +12,31 @@ import world.gregs.voidps.engine.event.where
 
 ListVariable(168, Variable.Type.VARC, values = Tab.values().toList(), defaultValue = Tab.Inventory).register("tab")
 
-val list = listOf(
-    "chat_box",
-    "chat_background",
-    "filter_buttons",
-    "private_chat",
-    "health_orb",
-    "prayer_orb",
-    "energy_orb",
-    "summoning_orb",
-    "combat_styles",
-    "task_system",
-    "stats",
-    "quest_journals",
-    "inventory",
-    "worn_equipment",
-    "prayer_list",
-    "modern_spellbook",
-    "friends_list",
-    "friends_chat",
-    "clan_chat",
-    "options",
-    "emotes",
-    "music_player",
-    "notes",
-    "area_status_icon"
+val list = listOf<String>(
+//    "chat_box",
+//    "chat_background",
+//    "filter_buttons",
+//    "private_chat",
+//    "health_orb",
+//    "prayer_orb",
+//    "energy_orb",
+//    "summoning_orb",
+//    "combat_styles",
+//    "task_system",
+//    "stats",
+//    "quest_journals",
+//    "inventory",
+//    "worn_equipment",
+//    "prayer_list",
+//    "modern_spellbook",
+//    "friends_list",
+//    "friends_chat",
+//    "clan_chat",
+//    "options",
+//    "emotes",
+//    "music_player",
+//    "notes",
+//    "area_status_icon"
 )
 
 PlayerRegistered then {

@@ -24,7 +24,7 @@ class VarpEncoder : Encoder(CLIENT_VARP) {
         value: Int
     ) = player.send(3) {
         writeShort(id)
-        writeByte(value, Modifier.ADD)
+        writeByte(value)
     }
 }
 
