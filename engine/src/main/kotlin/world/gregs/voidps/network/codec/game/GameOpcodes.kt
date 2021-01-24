@@ -113,7 +113,7 @@ object GameOpcodes {
     const val INTERFACE_ITEM = 9 // TODO
     const val OBJECT_PRE_FETCH = 11 // TODO
     const val FRIENDS_CHAT_UPDATE = 12 // TODO
-    const val RUN_ENERGY = 13 // TODO
+    const val RUN_ENERGY = 4
     const val CLIENT_VARBIT = 73
     const val FLOOR_ITEM_REMOVE = 16 // TODO
     const val INTERFACE_PLAYER_BODY = 18 // TODO
@@ -125,7 +125,7 @@ object GameOpcodes {
     const val OBJECT_ADD = 28 // TODO
     const val TILE_TEXT = 32 // TODO
     const val INTERFACE_TEXT = 33 // TODO
-    const val INTERFACE_ITEMS = 37 // TODO
+    const val INTERFACE_ITEMS = 20
     const val CLIENT_VARP_LARGE = 44
     const val FRIENDS_CHAT_MESSAGE = 40 // TODO
     const val GRAPHIC_AREA = 41 // TODO
@@ -146,7 +146,7 @@ object GameOpcodes {
     const val PROJECTILE_ADD = 62// TODO
     const val MINI_SOUND = 65// TODO
     const val INTERFACE_WINDOW = 102
-    const val PLAYER_UPDATING = 69// TODO
+    const val PLAYER_UPDATING = 105
     const val INTERFACE_CLOSE = 73// TODO
     const val PRIVATE_CHAT_TO = 77// TODO
     const val INTERFACE_ITEMS_UPDATE = 80// TODO
@@ -162,7 +162,7 @@ object GameOpcodes {
     const val INTERFACE_NPC_HEAD = 98// TODO
     const val OBJECT_CUSTOMISE = 99// TODO
     const val CLIENT_VARP = 7
-    const val PLAYER_WEIGHT = 103// TODO
+    const val PLAYER_WEIGHT = 91
     const val CHAT = 102// TODO
     const val INTERFACE_COMPONENT_POSITION = 104// TODO
     const val IGNORE_LIST_UPDATE = 105// TODO

@@ -52,7 +52,7 @@ class PlayerLoader(
         player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)
         player.experience.addListener { skill, _, experience ->
             val level = player.levels.get(skill)
-//            levelEncoder.encode(player, skill.ordinal, level, experience.toInt())
+            levelEncoder.encode(player, skill.ordinal, level, experience.toInt())
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)

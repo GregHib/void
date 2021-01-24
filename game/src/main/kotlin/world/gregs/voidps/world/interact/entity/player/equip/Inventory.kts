@@ -19,7 +19,7 @@ val bus: EventBus by inject()
 InterfaceOpened where { name == "inventory" } then {
     player.interfaceOptions.unlockAll(name, "container", 0 until 28)
     player.interfaceOptions.unlock(name, "container", 28 until 56, "Drag")
-//    player.sendContainer(name)
+    player.sendContainer(name)
 }
 
 InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {

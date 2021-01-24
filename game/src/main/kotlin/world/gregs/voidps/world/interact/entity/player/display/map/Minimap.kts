@@ -10,19 +10,18 @@ import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.network.codec.game.encode.sendRunEnergy
 import world.gregs.voidps.network.codec.game.encode.sendVarp
 
-IntVariable(7198, Variable.Type.VARBIT, true, 990).register("life_points")
+IntVariable(1240, Variable.Type.VARP, true, 1980).register("life_points")
 BooleanVariable(102, Variable.Type.VARP).register("poisoned")
 
 InterfaceOpened where { name == "health_orb" } then {
-//    player.sendVar("life_points")
-//    player.sendVar("poisoned")
+    player.sendVar("life_points")
+    player.sendVar("poisoned")
 }
 
 InterfaceOpened where { name == "energy_orb" } then {
-//    player.sendVar("energy_orb")
-//    player.sendRunEnergy(100)
+    player.sendRunEnergy(100)
 }
 
 InterfaceOpened where { name == "summoning_orb" } then {
-//    player.sendVarp(1160, -1)
+    player.sendVarp(1160, -1)
 }
