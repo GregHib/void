@@ -777,6 +777,19 @@ multi3_off_centre:
   id: 458
   type: dialogue_box
 
+emotes:
+  id: 464
+  type: emotes_tab
+  components:
+    emotes:
+      id: 1
+      options:
+        Select: 0
+        Option2: 1
+        Option3: 4
+        Option4: 5
+        Option6: 10
+
 skill_guide:
   id: 499
   type: main_screen
@@ -810,45 +823,60 @@ toplevel:
     compass: 178
     world_map: 180
     xp_orb: 0
-    combat_styles: 129
-    task_system: 130
-    stats: 131
-    quest_journals: 132
-    inventory: 133
-    worn_equipment: 134
-    prayer_list: 135
-    magic_spellbook: 136
-    friends_list: 100
+    combat_styles: 128
+    task_system: 129
+    stats: 130
+    quest_journals: 131
+    inventory: 132
+    worn_equipment: 133
+    prayer_list: 134
+    magic_spellbook: 135
+    follower_details: 98
+    friends_list: 99
+    ignores_list: 100
     friends_chat: 101
-    clan_chat: 102
-    options: 103
-    emotes: 104
-    music_player: 105
-    notes: 106
+    options: 102
+    emotes: 103
+    music_player: 104
+    notes: 105
 
 friends_list:
   id: 550
   type: friends_list_tab
   components:
-    friends_list: 47
-    ignores_list: 49
+    add: 7
+    delete: 8
+
+ignores_list:
+  id: 551
+  type: ignores_list_tab
+  components:
+    add: 4
+    delete: 5
 
 multi2_mes:
   id: 557
   type: dialogue_box
 
-emotes:
-  id: 590
-  type: emotes_tab
+friends_chat:
+  id: 589
+  type: friends_chat_tab
   components:
-    emotes:
-      id: 8
-      options:
-        Select: 0
-        Option2: 1
-        Option3: 4
-        Option4: 5
-        Option6: 10
+    toggle_chat: 6
+    settings: 7
+    toggle_loot: 0
+
+friends_chat_setup:
+  id: 590
+  type: main_screen
+  components:
+    chat_name: 22
+    enter: 23
+    talk: 24
+    kick: 25
+    share: 26
+    coinshare: 33
+
 unknown_side1:
   id: 602
 
@@ -983,26 +1011,27 @@ toplevel_full:
   id: 746
   type: full_screen
   components:
-    logout: 176
-    adviser: 175
-    compass: 174
-    world_map: 182
-    xp_orb: 229
-    combat_styles: 39
-    task_system: 40
-    stats: 41
-    quest_journals: 42
-    inventory: 43
-    worn_equipment: 44
-    prayer_list: 45
-    magic_spellbook: 46
-    friends_list: 48
-    friends_chat: 49
-    clan_chat: 50
-    options: 51
-    emotes: 52
-    music_player: 53
-    notes: 54
+    logout: 172
+    adviser: 171
+    compass: 170
+    world_map: 177
+    xp_orb: 224
+    combat_styles: 35
+    task_system: 36
+    stats: 37
+    quest_journals: 38
+    inventory: 39
+    worn_equipment: 40
+    prayer_list: 41
+    magic_spellbook: 42
+    familiar_details: 43
+    friends_list: 44
+    ignores_list: 45
+    friends_chat: 46
+    options: 47
+    emotes: 48
+    music_player: 49
+    notes: 50
 
 summoning_orb:
   id: 747
@@ -1026,15 +1055,14 @@ filter_buttons:
   id: 751
   type: chat_settings
   components:
-    all: 34
-    game: 31
-    public: 28
-    private: 25
-    friends: 8
-    clan: 22
-    trade: 19
-    assist: 16
-    report: 13
+    all: 30
+    game: 27
+    public: 24
+    private: 21
+    clan: 18
+    trade: 15
+    assist: 12
+    report: 10
 
 chat_box:
   id: 752
@@ -1229,55 +1257,3 @@ task_system:
     dont_show: 172
     close_hint: 174
     hints: 36
-
-friends_chat_setup:
-  id: 1108
-  type: main_screen
-  components:
-    chat_name: 22
-    enter: 23
-    talk: 24
-    kick: 25
-    share: 26
-    coinshare: 33
-
-friends_chat:
-  id: 1109
-  type: friends_chat_tab
-  components:
-    toggle_chat: 27
-    settings: 33
-    toggle_loot: 19
-    kick: 21
-
-clan_chat:
-  id: 1110
-  type: clan_chat_tab
-  components:
-    join_own: 85
-    details: 76
-    settings: 80
-    invite: 80
-    leave: 115
-    join_other: 95
-    clan_chat: 56
-    guest_clan: 58
-    ignore_clan: 54
-    add_ban: 100
-    remove_ban: 105
-
-double_chat3:
-  id: 1145
-  type: dialogue_box
-
-double_chat2:
-  id: 1146
-  type: dialogue_box
-
-double_chat1:
-  id: 1147
-  type: dialogue_box
-
-double_chat4:
-  id: 1148
-  type: dialogue_box
