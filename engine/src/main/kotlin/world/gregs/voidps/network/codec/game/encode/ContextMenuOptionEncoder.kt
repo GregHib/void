@@ -30,9 +30,9 @@ class ContextMenuOptionEncoder : Encoder(PLAYER_OPTION, PacketSize.BYTE) {
         top: Boolean,
         cursor: Int = -1
     ) = player.send(4 + string(option)) {
-        writeByte(top, Modifier.ADD)
-        writeShort(cursor, order = Endian.LITTLE)
+        writeShort(cursor, Modifier.ADD, Endian.LITTLE)
         writeString(option)
-        writeByte(slot, Modifier.INVERSE)
+        writeByte(slot, Modifier.SUBTRACT)
+        writeByte(top, Modifier.ADD)
     }
 }

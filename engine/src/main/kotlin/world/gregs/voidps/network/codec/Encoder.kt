@@ -57,6 +57,7 @@ abstract class Encoder(
             sizeIndex = 0
             return buffer
         }
+        println("Encode packet $opcode")
         // Write opcode
         if (cipher != null) {
             if (opcode >= 128) {

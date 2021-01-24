@@ -23,8 +23,8 @@ class ChunkClearEncoder : Encoder(CHUNK_CLEAR) {
         yOffset: Int,
         plane: Int
     ) = player.send(3) {
-        writeByte(xOffset)
-        writeByte(yOffset, Modifier.SUBTRACT)
-        writeByte(plane)
+        writeByte(plane, Modifier.ADD)
+        writeByte(yOffset, Modifier.INVERSE)
+        writeByte(xOffset, Modifier.INVERSE)
     }
 }

@@ -101,14 +101,14 @@ object GameOpcodes {
 
     /* Encode */
 
-    const val PLAYER_OPTION = 1 // TODO
-    const val INTERFACE_SPRITE = 2 // TODO
+    const val PLAYER_OPTION = 0
+    const val INTERFACE_SPRITE = 32
     const val LOGIN_DETAILS = 2 // TODO
     const val LOBBY_DETAILS = 2 // TODO
     const val INTERFACE_COMPONENT_SETTINGS = 34
     const val INTERFACE_REFRESH = 4 // TODO
     const val INTERFACE_OPEN = 37
-    const val NPC_UPDATING = 6 // TODO
+    const val NPC_UPDATING = 118
     const val INTERFACE_SCROLL_VERTICAL = 8 // TODO
     const val INTERFACE_ITEM = 9 // TODO
     const val OBJECT_PRE_FETCH = 11 // TODO
@@ -118,7 +118,7 @@ object GameOpcodes {
     const val FLOOR_ITEM_REMOVE = 16 // TODO
     const val INTERFACE_PLAYER_BODY = 18 // TODO
     const val FRIENDS_QUICK_CHAT_MESSAGE = 20 // TODO
-    const val CHUNK_CLEAR = 26 // TODO
+    const val CHUNK_CLEAR = 33
     const val INTERFACE_ANIMATION = 23 // TODO
     const val FRIEND_LIST_APPEND = 24 // TODO
     const val CLIENT_PING = 25 // TODO
@@ -130,14 +130,14 @@ object GameOpcodes {
     const val FRIENDS_CHAT_MESSAGE = 40 // TODO
     const val GRAPHIC_AREA = 41 // TODO
     const val PRIVATE_QUICK_CHAT_FROM = 42 // TODO
-    const val REGION = 43 // TODO
+    const val REGION = 19
     const val INTERFACE_CUSTOM_HEAD = 44 // TODO
     const val OBJECT_REMOVE = 45 // TODO
-    const val UPDATE_CHUNK = 46 // TODO
+    const val UPDATE_CHUNK = 41
     const val OBJECT_ANIMATION_SPECIFIC = 47 // TODO
-    const val FLOOR_ITEM_ADD = 48 // TODO
+    const val FLOOR_ITEM_ADD = 63
     const val SCRIPT = 50 // TODO
-    const val LOGOUT = 51 // TODO
+    const val LOGOUT = 55
     const val CLIENT_VARC_STR = 54 // TODO
     const val IGNORE_LIST = 57// TODO
     const val INTERFACE_MODEL = 58// TODO
