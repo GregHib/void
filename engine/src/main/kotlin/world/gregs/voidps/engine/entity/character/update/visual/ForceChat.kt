@@ -17,7 +17,7 @@ data class ForceChat(var text: String = "") : Visual {
     }
 }
 
-const val PLAYER_FORCE_CHAT_MASK = 0x4000
+const val PLAYER_FORCE_CHAT_MASK = 0x1000
 
 const val NPC_FORCE_CHAT_MASK = 0x2
 

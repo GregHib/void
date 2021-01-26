@@ -38,7 +38,7 @@ class NPCUpdateTask(
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
 
-        npcUpdateEncoder.encode(player, writer, updates)
+//        npcUpdateEncoder.encode(player, writer, updates)
     }
 
     fun processLocals(

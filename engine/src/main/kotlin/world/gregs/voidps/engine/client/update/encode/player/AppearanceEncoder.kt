@@ -36,7 +36,6 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
             soundDistance) = visual
         writer.apply {
             val start = position()
-            writeByte(0)// Save space for size later
             var flag = 0
 //            flag = flag or 0x1// Gender
 //            flag = flag or 0x2// Display name
@@ -56,7 +55,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 writeShort(transform)
                 writeByte(0)
             } else {
-                for(index in 0 until 13) {
+                for(index in 0 until 12) {
                     val part = body.get(index)
                     if(part == 0) {
                         writeByte(part)
@@ -64,7 +63,6 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                         writeShort(part)
                     }
                 }
-                writeShort(0)
             }
             colours.forEach { colour ->
                 writeByte(colour)
@@ -88,9 +86,7 @@ class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
                 writeByte(soundDistance)
             }
             val end = position()
-            position(start)
-            writeByte(end - start - 1, Modifier.SUBTRACT)
-            position(end)
+            writeByte(end - start)
         }
     }
 }

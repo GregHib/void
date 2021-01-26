@@ -10,7 +10,7 @@ class BodyParts(
     private val definitions: ItemDefinitions,
     val looks: IntArray
 ) {
-    private val parts = IntArray(13)
+    private val parts = IntArray(12)
 
     fun get(index: Int) = parts.getOrNull(index) ?: -1
 

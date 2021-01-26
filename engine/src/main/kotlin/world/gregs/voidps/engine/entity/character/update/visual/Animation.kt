@@ -29,7 +29,7 @@ data class Animation(
     }
 }
 
-const val PLAYER_ANIMATION_MASK = 0x40
+const val PLAYER_ANIMATION_MASK = 0x8
 
 const val NPC_ANIMATION_MASK = 0x10
 

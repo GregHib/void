@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.Clanmate
 class ClanmateEncoder : VisualEncoder<Clanmate>(CLANMATE_MASK) {
 
     override fun encode(writer: Writer, visual: Clanmate) {
-        writer.writeByte(visual.clanmate, Modifier.INVERSE)
+        writer.writeByte(visual.clanmate, Modifier.ADD)
     }
 
 }

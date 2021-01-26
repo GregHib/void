@@ -15,11 +15,7 @@ class HitsEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Hits>(mas
     override fun encode(writer: Writer, visual: Hits) {
         val (damage, player, other) = visual
         writer.apply {
-            if (npc) {
-                writeByte(damage.size, Modifier.INVERSE)
-            } else {
-                writeByte(damage.size)
-            }
+            writeByte(damage.size, Modifier.INVERSE)
             damage.forEach { hit ->
                 if (hit.amount == 0 && !interactingWith(player, other, hit.source)) {
                     writeSmart(32766)
@@ -44,7 +40,7 @@ class HitsEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Hits>(mas
                 if (npc) {
                     writeByte(hit.percentage)
                 } else {
-                    writeByte(hit.percentage, Modifier.INVERSE)
+                    writeByte(hit.percentage, Modifier.ADD)
                 }
             }
         }

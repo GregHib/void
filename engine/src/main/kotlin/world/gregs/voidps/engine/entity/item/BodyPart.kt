@@ -12,8 +12,7 @@ enum class BodyPart(val slot: EquipSlot = EquipSlot.None, val index: Int = -1) {
     Hair(EquipSlot.Hat, index = 0),
     Bracelet(EquipSlot.Hands, index = 4),
     Feet(EquipSlot.Feet, index = 6),
-    Beard(EquipSlot.Hat, index = 1),
-    Aura(EquipSlot.Aura);
+    Beard(EquipSlot.Hat, index = 1);
 
     companion object {
         val all = values()

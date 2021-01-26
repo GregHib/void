@@ -21,23 +21,20 @@ abstract class VisualEncoder<V : Visual>(val mask: Int) {
 val visualUpdatingModule = module {
     single(named("playerVisualEncoders")) {
         arrayOf(
-            AnimationEncoder(false, PLAYER_ANIMATION_MASK),
-            GraphicEncoder(false, 2, PLAYER_GRAPHIC_2_MASK),
-            ColourOverlayEncoder(false, PLAYER_COLOUR_OVERLAY_MASK),
-            MovementTypeEncoder(),
-            TimeBarEncoder(false, PLAYER_TIME_BAR_MASK),
-            GraphicEncoder(false, 3, PLAYER_GRAPHIC_3_MASK),
-            ClanmateEncoder(),
-            HitsEncoder(false, PLAYER_HITS_MASK),
-            AppearanceEncoder(),
-            ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
-            MinimapHighlightEncoder(),
-            TemporaryMoveTypeEncoder(),
             WatchEncoder(false, PLAYER_WATCH_MASK),
-            ForceMovementEncoder(false, PLAYER_FORCE_MOVEMENT_MASK),
+            TimeBarEncoder(false, PLAYER_TIME_BAR_MASK),
+            ForceChatEncoder(PLAYER_FORCE_CHAT_MASK),
+            HitsEncoder(false, PLAYER_HITS_MASK),
             FaceEncoder(),
+            ClanmateEncoder(),
+            ForceMovementEncoder(false, PLAYER_FORCE_MOVEMENT_MASK),
+            GraphicEncoder(false, 1, PLAYER_GRAPHIC_1_MASK),
+            ColourOverlayEncoder(false, PLAYER_COLOUR_OVERLAY_MASK),
+            TemporaryMoveTypeEncoder(),
             GraphicEncoder(false, 0, PLAYER_GRAPHIC_0_MASK),
-            GraphicEncoder(false, 1, PLAYER_GRAPHIC_1_MASK)
+            AnimationEncoder(false, PLAYER_ANIMATION_MASK),
+            AppearanceEncoder(),
+            MovementTypeEncoder(),
         )
     }
     single(named("npcVisualEncoders")) {

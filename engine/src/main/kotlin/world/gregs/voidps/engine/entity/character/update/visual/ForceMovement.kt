@@ -18,7 +18,7 @@ data class ForceMovement(
     var direction: Direction = Direction.NONE
 ) : Visual
 
-const val PLAYER_FORCE_MOVEMENT_MASK = 0x1000
+const val PLAYER_FORCE_MOVEMENT_MASK = 0x2000
 
 const val NPC_FORCE_MOVEMENT_MASK = 0x400
 

@@ -16,7 +16,7 @@ data class TemporaryMoveType(var type: PlayerMoveType = PlayerMoveType.None) : V
     }
 }
 
-const val TEMPORARY_MOVE_TYPE_MASK = 0x1
+const val TEMPORARY_MOVE_TYPE_MASK = 0x80
 
 fun Player.flagTemporaryMoveType() = visuals.flag(TEMPORARY_MOVE_TYPE_MASK)
 

@@ -14,7 +14,7 @@ data class ColourOverlay(
     var colour: Int = 0
 ) : Visual
 
-const val PLAYER_COLOUR_OVERLAY_MASK = 0x20000
+const val PLAYER_COLOUR_OVERLAY_MASK = 0x40000
 
 const val NPC_COLOUR_OVERLAY_MASK = 0x200
 

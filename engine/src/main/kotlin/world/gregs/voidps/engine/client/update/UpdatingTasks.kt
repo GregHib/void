@@ -39,10 +39,10 @@ val updatingTasksModule = module {
             get<Players>(),
             get(named("playerVisualEncoders")),
             intArrayOf(
-                MOVEMENT_TYPE_MASK,
-                APPEARANCE_MASK,
+                FACE_DIRECTION_MASK,
                 TEMPORARY_MOVE_TYPE_MASK,
-                FACE_DIRECTION_MASK
+                APPEARANCE_MASK,
+                MOVEMENT_TYPE_MASK,
             )
         )
     }

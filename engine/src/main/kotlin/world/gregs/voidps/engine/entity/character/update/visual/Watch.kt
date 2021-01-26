@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.Visual
  */
 data class Watch(var index: Int = -1) : Visual
 
-const val PLAYER_WATCH_MASK = 0x10
+const val PLAYER_WATCH_MASK = 0x1
 
 const val NPC_WATCH_MASK = 0x1
 

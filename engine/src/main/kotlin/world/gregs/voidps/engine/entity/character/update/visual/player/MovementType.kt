@@ -18,7 +18,7 @@ data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual
     }
 }
 
-const val MOVEMENT_TYPE_MASK = 0x200
+const val MOVEMENT_TYPE_MASK = 0x800
 
 fun Player.flagMovementType() = visuals.flag(MOVEMENT_TYPE_MASK)
 

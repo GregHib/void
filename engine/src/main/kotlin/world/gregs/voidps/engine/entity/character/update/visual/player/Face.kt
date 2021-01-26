@@ -19,7 +19,7 @@ data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual {
     }
 }
 
-const val FACE_DIRECTION_MASK = 0x20
+const val FACE_DIRECTION_MASK = 0x2
 
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 

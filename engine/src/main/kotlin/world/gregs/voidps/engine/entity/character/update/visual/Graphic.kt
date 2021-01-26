@@ -28,8 +28,8 @@ data class Graphic(
     }
 }
 
-const val PLAYER_GRAPHIC_0_MASK = 0x2
-const val PLAYER_GRAPHIC_1_MASK = 0x100
+const val PLAYER_GRAPHIC_0_MASK = 0x20
+const val PLAYER_GRAPHIC_1_MASK = 0x200
 const val PLAYER_GRAPHIC_2_MASK = 0x40000
 const val PLAYER_GRAPHIC_3_MASK = 0x80000
 

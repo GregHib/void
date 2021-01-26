@@ -15,11 +15,7 @@ class AnimationEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Anim
     override fun encode(writer: Writer, visual: Animation) {
         val (first, second, third, fourth, speed) = visual
         writer.apply {
-            val order = if (npc) Endian.BIG else Endian.LITTLE
-            writeShort(first, order = order)
-            writeShort(second, order = order)
-            writeShort(third, order = order)
-            writeShort(fourth, order = order)
+            writeShort(first, Modifier.ADD)
             writeByte(speed, if (npc) Modifier.NONE else Modifier.ADD)
         }
     }

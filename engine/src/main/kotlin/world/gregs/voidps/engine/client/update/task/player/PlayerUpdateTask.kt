@@ -82,7 +82,6 @@ class PlayerUpdateTask(
                 encodeRegion(sync, set, player)
                 continue
             }
-
             when (updateType) {
                 LocalChange.Walk, LocalChange.Run ->
                     sync.writeBits(updateType.id + 2, player.changeValue)
@@ -95,8 +94,8 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
+            println(player.visuals.update.contentToString())
             updates.writeBytes(player.visuals.update ?: continue)
-
         }
 
         if (skip > -1) {
@@ -204,9 +203,7 @@ class PlayerUpdateTask(
 
     fun calculateRegionValue(change: RegionChange, delta: RegionPlane) = when (change) {
         RegionChange.Height -> delta.plane
-        RegionChange.Local -> (getMovementIndex(
-            delta
-        ) and 0x7) or (delta.plane shl 3)
+        RegionChange.Local -> (getMovementIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
         else -> -1
     }

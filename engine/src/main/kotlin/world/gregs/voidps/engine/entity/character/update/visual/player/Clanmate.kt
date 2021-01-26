@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.update.Visual
  */
 data class Clanmate(var clanmate: Boolean = false) : Visual
 
-const val CLANMATE_MASK = 0x100000
+const val CLANMATE_MASK = 0x8000
 
 fun Player.flagClanmate() = visuals.flag(CLANMATE_MASK)
 
