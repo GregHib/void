@@ -168,7 +168,7 @@ object Main {
 //        game.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedHandler())
         game.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeHandler())
 //        game.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryHandler())
-//        game.registerHandler(GameOpcodes.WALK, WalkMapHandler())
+        game.registerHandler(GameOpcodes.WALK, WalkMapHandler())
 //        game.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapHandler())
     }
 }

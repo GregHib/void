@@ -16,7 +16,7 @@ object GameOpcodes {
     const val NPC_OPTION_1 = 9 // TODO
     const val INTERFACE_OPTION_8 = 10 // TODO
     const val OBJECT_OPTION_1 = 11 // TODO
-    const val WALK = 12 // TODO
+    const val WALK = 35
     const val RESUME_PLAYER_OBJ_DIALOGUE = 13 // TODO
     const val PLAYER_OPTION_1 = 14 // TODO
     const val RECEIVE_COUNT = 15 // TODO
@@ -27,7 +27,7 @@ object GameOpcodes {
     const val INTERFACE_OPTION_9 = 20 // TODO
     const val INTERFACE_ON_FLOOR_ITEM = 21 // TODO
     const val COLOUR_ID = 22 // TODO
-    const val CHAT_TYPE = 23 // TODO
+    const val CHAT_TYPE = 31
     const val FLOOR_ITEM_OPTION_3 = 24 // TODO
     const val INTERFACE_OPTION_10 = 25 // TODO
     const val SWITCH_INTERFACE_COMPONENTS = 26 // TODO
@@ -43,7 +43,7 @@ object GameOpcodes {
     const val PUBLIC_MESSAGE = 36 // TODO
     const val TOOLKIT_PREFERENCES = 37 // TODO
     const val REMOVE_IGNORE = 38 // TODO
-    const val AP_COORD_T = 39 // TODO
+    const val AP_COORD_T = 22
     const val INTERFACE_ON_PLAYER = 40 // TODO
     const val RANK_FRIEND_CHAT = 41 // TODO
     const val ITEM_ON_OBJECT = 42 // TODO
@@ -87,8 +87,8 @@ object GameOpcodes {
     const val REPORT_ABUSE = 80 // TODO
     const val INTERFACE_OPTION_5 = 81 // TODO
     const val PLAYER_OPTION_6 = 82 // TODO
-    const val MINI_MAP_WALK = 83 // TODO
-    const val CLICK = 84 // TODO
+    const val MINI_MAP_WALK = 35
+    const val CLICK = 49
     const val PING_LATENCY = 85 // TODO
     const val FLOOR_ITEM_OPTION_4 = 86 // TODO
     const val SCREEN_CHANGE = 7

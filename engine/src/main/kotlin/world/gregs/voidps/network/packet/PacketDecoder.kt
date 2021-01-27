@@ -57,6 +57,7 @@ class PacketDecoder : ByteToMessageDecoder() {
                 -2 -> buf.readUnsignedShort()
                 else -> throw IllegalStateException("Decoding length from packet #$opcode with type $type!")
             }
+            println("Read packet $opcode $length")
             logger.debug { "Identified length! [opcode=$opcode, length=$length, type=$type]" }
             state = State.Payload
         }

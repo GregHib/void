@@ -12,7 +12,7 @@ class WalkMapDecoder : Decoder(5) {
         handler?.walk(
             context = context,
             x = packet.readShort(Modifier.ADD, Endian.LITTLE),
-            y = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            y = packet.readShort(),
             running = packet.readBoolean()
         )
     }
