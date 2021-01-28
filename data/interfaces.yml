@@ -6,15 +6,17 @@ root:
 bank_pin:
   id: 13
 
-items_kept_on_death:
-  id: 102
-  type: main_screen
-  components:
-    enter_wild: 28
+bank_deposit_box:
+  id: 11
 
-text_box_model_sprite:
-  id: 26
-  type: dialogue_box
+bank_pin_settings:
+  id: 14
+
+barrows_brothers_slain:
+  id: 24
+
+blast_furance_bar_stock:
+  id: 28
 
 notes:
   id: 34
@@ -135,6 +137,12 @@ chat_np4:
     line4: 7
     continue: 8
 
+summoning_trade_in:
+  id: 78
+
+summoning_creation:
+  id: 79
+
 # Un-contained
 npc_chat_np4u:
   id: 90
@@ -162,6 +170,15 @@ confirm_destroy:
     item_name: 8
     item_slot: 9
 
+charter_ship_map:
+  id: 95
+
+items_kept_on_death:
+  id: 102
+  type: main_screen
+  components:
+    enter_wild: 28
+
 stock_side:
   id: 107
 
@@ -187,6 +204,9 @@ garden_quiz:
   id: 133
   type: dialogue_box
 
+skill_stat_advance:
+  id: 134
+
 chat_both:
   id: 136
   type: dialogue_box
@@ -198,6 +218,9 @@ chat_background:
   help_quick_chat: 5
   close_quick_chat: 4
 
+glider_map:
+  id: 138
+
 select2_models:
   id: 140
   type: dialogue_box
@@ -205,6 +228,41 @@ select2_models:
 text_box_model:
   id: 148
   type: dialogue_box
+
+inventory:
+  id: 149
+  type: inventory_tab
+  components:
+    container:
+      id: 0
+      container: inventory
+      options:
+        Option1: 0
+        Equip: 1
+        Option3: 2
+        Option4: 6
+        Drop: 7
+        Examine: 9
+        Option7: 10
+        Option8: 11
+        Option9: 12
+        Option10: 13
+        Option11: 15
+        Option12: 17
+        Drag: 20
+        Option13: 21
+
+slayer_rewards_assignment:
+  id: 161
+
+slayer_rewards_learn_old:
+  id: 163
+
+slayer_rewards:
+  id: 164
+
+chat1_double_model:
+  id: 173
 
 logout:
   id: 182
@@ -346,6 +404,9 @@ message_np5:
     line3: 3
     line4: 4
     line5: 5
+
+items_needed_list:
+  id: 227
 
 # Choice
 multi2:
@@ -553,6 +614,12 @@ npc_chat_np4:
     line3: 6
     line4: 7
 
+barbarian_assault_team:
+  id: 256
+
+achievements:
+  id: 259
+
 options:
   id: 261
   type: options_tab
@@ -566,6 +633,9 @@ options:
     aid: 7
     house: 8
     log: 18
+
+pest_control_rewards:
+  id: 267
 
 prayer_list:
   id: 271
@@ -582,6 +652,18 @@ prayer_list:
         Activate: 0
     confirm: 43
 
+quest_scroll:
+  id: 275
+
+soul_wars_rewards:
+  id: 276
+
+quest_complete:
+  id: 277
+
+smithing:
+  id: 300
+
 assist_xp:
   id: 301
   type: main_screen
@@ -597,6 +679,18 @@ assist_xp:
     smithing: 80
     cooking: 81
     herblore: 82
+
+hairdressers_salon:
+  id: 309
+
+spells_blast:
+  id: 310
+
+chat3_models:
+  id: 314
+
+spells_elements:
+  id: 319
 
 stats:
   id: 320
@@ -627,6 +721,18 @@ stats:
     mining: 186
     constitution: 193
     attack: 200
+
+hide_tanning:
+  id: 320
+
+teleport_other:
+  id: 326
+
+warning_cold:
+  id: 327
+
+battlestaff_enchant:
+  id: 332
 
 trade_confirm:
   id: 334
@@ -718,6 +824,15 @@ tutorial_text:
   id: 372
   type: dialogue_box
 
+slayer_rewards_learn:
+  id: 378
+
+quest_complete_wide:
+  id: 380
+
+warning_wilderness:
+  id: 382
+
 worn_equipment:
   id: 387
   type: worn_equipment_tab
@@ -738,6 +853,9 @@ worn_equipment:
     arrows: 38
     aura: 50
 
+spells_ancient_elements:
+  id: 389
+
 obj_dialog:
   id: 389
   type: dialogue_box
@@ -745,6 +863,12 @@ obj_dialog:
 poh_hangman:
   id: 393
   type: dialogue_box
+
+pest_control_waiting:
+  id: 407
+
+pest_control_playing:
+  id: 408
 
 # 12 lines
 tutorial_text2:
@@ -755,9 +879,15 @@ lunar_spellbook:
   id: 430
   type: spellbook_tab
 
+enchant_crossbow_bolts:
+  id: 432
+
 open_url:
   id: 445
   type: dialogue_box
+
+item_info:
+  id: 449
 
 multi_var3:
   id: 451
@@ -773,6 +903,9 @@ multi3_off_centre:
   id: 458
   type: dialogue_box
 
+reward_scroll:
+  id: 463
+
 emotes:
   id: 464
   type: emotes_tab
@@ -785,6 +918,27 @@ emotes:
         Option3: 4
         Option4: 5
         Option6: 10
+
+barbarian_assult_rewards:
+  id: 473
+
+barbarian_assult_horn:
+  id: 484
+
+barbarian_assult_attacker:
+  id: 485
+
+barbarian_assult_collector:
+  id: 486
+
+barbarian_assult_defenderr:
+  id: 487
+
+barbarian_assult_healer:
+  id: 488
+
+barbarian_assult_waiting:
+  id: 489
 
 skill_guide:
   id: 499
@@ -809,6 +963,12 @@ obj_box:
     line1: 1
     continue: 2
     sprite: 3
+
+monster_stat_spy:
+  id: 522
+
+player_stat_spy:
+  id: 523
 
 toplevel:
   id: 548
@@ -836,6 +996,9 @@ toplevel:
     music_player: 104
     notes: 105
 
+photo_booth:
+  id: 549
+
 friends_list:
   id: 550
   type: friends_list_tab
@@ -850,9 +1013,87 @@ ignores_list:
     add: 4
     delete: 5
 
+chat4_model:
+  id: 554
+  type: dialogue_box
+
+chat6_model:
+  id: 555
+  type: dialogue_box
+
+chat7_model:
+  id: 556
+  type: dialogue_box
+
 multi2_mes:
   id: 557
   type: dialogue_box
+
+warning_spiders:
+  id: 560
+
+warning_kalphite_queen:
+  id: 561
+
+warning_dark:
+  id: 562
+
+warning_building_mode:
+  id: 563
+
+warning_archers:
+  id: 564
+
+warning_desert:
+  id: 565
+
+warning_collect_items:
+  id: 566
+
+warning_light_source:
+  id: 567
+
+warning_dark_regardless:
+  id: 568
+
+warning_light_source2:
+  id: 569
+
+warning_dark_scared:
+  id: 570
+
+warning_dark_tunnel:
+  id: 571
+
+warning_tinderbox:
+  id: 572
+
+warning_run_past:
+  id: 573
+
+warning_dangerous_area:
+  id: 574
+
+warning_one_way_wilderness:
+  id: 576
+
+warning_light_source_3:
+  id: 577
+
+warning_dark_fairy_ring:
+  id: 578
+
+warning_climb_down:
+  id: 579
+
+warning_mort_myre:
+  id: 580
+
+warning_death_plateau:
+  id: 580
+
+warning_messages:
+  id: 583
 
 friends_chat:
   id: 589
@@ -873,19 +1114,70 @@ friends_chat_setup:
     share: 26
     coinshare: 33
 
+bounty_hunter_target:
+  id: 591
+
+report_abuse_name:
+  id: 593
+
+report_abuse_select:
+  id: 594
+
+warning_wilderness2:
+  id: 600
+
+godwars_killcount:
+  id: 598
+
 unknown_side1:
   id: 602
+
+shop:
+  id: 620
 
 shop_template_side:
   id: 621
 
+stake_confirm:
+  id: 626
+
+warning_duel:
+  id: 627
+
 duel2_side:
   id: 628
+
+stake:
+  id: 631
+
+duel_victory:
+  id: 633
+
+stake_victory:
+  id: 634
+
+duel_confirm:
+  id: 637
+
+duel_rules_confirm:
+  id: 639
+
+duel_request:
+  id: 640
+
+exchange_history:
+  id: 643
 
 exchange_sets_side:
   id: 644
 
-unknown_side2:
+exchange_item_sets:
+  id: 645
+
+party_room_dropping:
+  id: 647
+
+party_room_side:
   id: 648
 
 bounty_overlay_waiting:
@@ -893,6 +1185,18 @@ bounty_overlay_waiting:
 
 lore_bank_side:
   id: 665
+
+pet_details:
+  id: 662
+
+pet_hunger_details:
+  id: 663
+
+attack_style:
+  id: 664
+
+summoning_scroll_creation:
+  id: 666
 
 equipment_bonuses:
   id: 667
@@ -943,32 +1247,51 @@ equipment_side:
         Stats: 2
         Examine: 9
 
-inventory:
-  id: 149
-  type: inventory_tab
-  components:
-    container:
-      id: 0
-      container: inventory
-      options:
-        Option1: 0
-        Equip: 1
-        Option3: 2
-        Option4: 6
-        Drop: 7
-        Examine: 9
-        Option7: 10
-        Option8: 11
-        Option9: 12
-        Option10: 13
-        Option11: 15
-        Option12: 17
-        Drag: 20
-        Option13: 21
+beast_of_burden:
+  id: 671
+
+summoning_pouch_creation:
+  id: 672
+
+make_mould:
+  id: 675
+
+warning_death:
+  id: 676
+
+warning_death2:
+  id: 677
+
+warning_death3:
+  id: 678
 
 multi_var2_wide:
   id: 718
   type: dialogue_box
+
+smithing_emporium:
+  id: 725
+
+scroll:
+  id: 726
+
+thessalias_makeovers:
+  id: 729
+
+fist_of_guthix:
+  id: 730
+
+fist_of_guthix_waiting:
+  id: 731
+
+fist_of_guthix_rewards:
+  id: 732
+
+fairy_ring:
+  id: 734
+
+travel_log:
+  id: 735
 
 pick_a_kitten:
   id: 737
@@ -1074,6 +1397,12 @@ world_map:
   components:
     close: 44
 
+chat_model_text:
+  id: 757
+
+vants_requests:
+  id: 761
+
 bank:
   id: 762
   components:
@@ -1124,21 +1453,81 @@ bank_side:
         Deposit-All: 5
         Examine: 9
 
-unknown_side4:
+bank_help:
+  id: 767
+
+loan_return_side:
   id: 771
+
+loan_returned:
+  id: 772
 
 rc_guild_side:
   id: 778
 
-crcs_side:
+rc_guild_rewards:
+  id: 779
+
+circus_side:
   id: 784
 
-sc_item_transfer_side:
+circus_rewards:
+  id: 785
+
+shooting_star:
+  id: 785
+
+clan_wars:
+  id: 789
+
+clan_wars_defeat:
+  id: 790
+
+clan_wars_request:
+  id: 791
+
+clan_wars_overview:
+  id: 792
+
+clan_wars_respawn:
+  id: 793
+
+spells_ancient:
+  id: 797
+
+warning_lots_of_items:
+  id: 798
+
+stealing_creation:
+  id: 804
+
+stealing_creation_trade:
+  id: 805
+
+stealing_creation_trade_side:
   id: 807
+
+stealing_creation_victory:
+  id: 810
+
+stealing_creation_rewards:
+  id: 811
+
+stealing_creation_kiln:
+  id: 813
+
+soul_wars_demo:
+  id: 834
 
 text_box_continue:
   id: 835
   type: dialogue_box
+
+soul_wars:
+  id: 836
+
+soul_wars_waiting:
+  id: 837
 
 soul_wars_side1:
   id: 839
@@ -1154,8 +1543,23 @@ mobilising_armies1:
   id: 856
   type: dialogue_box
 
+spirit_tree:
+  id: 864
+
+prefixes:
+  id: 865
+
+quest_list:
+  id: 868
+
+quest_scroll2:
+  id: 877
+
 unknown_side5:
   id: 878
+
+familiar_options:
+  id: 880
 
 unknown_side6:
   id: 881
@@ -1182,6 +1586,15 @@ combat_styles:
         Select: 0
     retaliate: 15
     special_attack_bar: 4
+
+character_rename:
+  id: 890
+
+warning_death4:
+  id: 892
+
+skin_colour:
+  id: 900
 
 skill_creation:
   id: 905
@@ -1226,6 +1639,33 @@ make_amount:
   id: 944
   type: dialogue_box
 
+dungeon_complete:
+  id: 933
+
+dungeoneering_smithing:
+  id: 934
+
+teammate_stats:
+  id: 936
+
+dungeon_complexity:
+  id: 938
+
+dungeoneering_party:
+  id: 939
+
+dungeoneering_rewards:
+  id: 940
+
+dungeoneering_smelt:
+  id: 941
+
+dungeon_floor:
+  id: 947
+
+dungeon_party_invite:
+  id: 949
+
 dungeoneering_spellbook:
   id: 950
   type: spellbook_tab
@@ -1237,6 +1677,26 @@ text_box_chat:
 text_box_continue2:
   id: 1020
   type: dialogue_box
+
+herbicide:
+  id: 1006
+
+conquest:
+  id: 1010
+
+conquest_rewards:
+  id: 1011
+
+chat_layered_model:
+  id: 1018
+  type: dialogue_box
+
+chat_large:
+  id: 1020
+  type: dialogue_box
+
+conquest_commands:
+  id: 1024
 
 task_system:
   id: 1056
@@ -1253,3 +1713,6 @@ task_system:
     dont_show: 172
     close_hint: 174
     hints: 36
+
+warriors_guild:
+  id: 1057
