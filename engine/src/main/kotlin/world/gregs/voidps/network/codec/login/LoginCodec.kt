@@ -12,7 +12,7 @@ class LoginCodec : Codec() {
     override fun load(args: Array<out Any?>) {
         registerDecoder(GameOpcodes.GAME_LOGIN, GameLoginDecoder())
         registerDecoder(ServiceOpcodes.LOBBY_LOGIN, LobbyLoginDecoder())
-
+        registerEmptyDecoder(18, -2) // TODO reconnect
         registerHandler(ServiceOpcodes.LOBBY_LOGIN, LobbyLoginHandler())
         count = decoders.size
     }

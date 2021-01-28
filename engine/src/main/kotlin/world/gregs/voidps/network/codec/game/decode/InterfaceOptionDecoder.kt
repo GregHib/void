@@ -11,8 +11,8 @@ class InterfaceOptionDecoder(private val index: Int) : Decoder(8) {
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOption(
             context,
-            packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
-            packet.readShort(Modifier.ADD, Endian.LITTLE),
+            packet.readInt(),
+            packet.readShort(),
             packet.readShort(),
             index
         )

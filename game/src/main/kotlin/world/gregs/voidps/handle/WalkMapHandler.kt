@@ -19,13 +19,12 @@ class WalkMapHandler : Handler() {
     override fun walk(context: ChannelHandlerContext, x: Int, y: Int, running: Boolean) {
         val session = context.channel()
         val player = sessions.get(session) ?: return
-        println("Walk $x $y")
-//        player.walkTo(player.tile.copy(x = x, y = y)) { result ->
-//            if (result is PathResult.Failure) {
-//                player.message("You can't reach that.")
-//                return@walkTo
-//            }
-//        }
+        player.walkTo(player.tile.copy(x = x, y = y)) { result ->
+            if (result is PathResult.Failure) {
+                player.message("You can't reach that.")
+                return@walkTo
+            }
+        }
     }
 
 }

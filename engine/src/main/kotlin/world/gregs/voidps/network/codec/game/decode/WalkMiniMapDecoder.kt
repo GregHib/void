@@ -11,9 +11,9 @@ class WalkMiniMapDecoder : Decoder(18) {
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.minimapWalk(
             context = context,
-            x = packet.readShort(Modifier.ADD, Endian.LITTLE),
-            y = packet.readShort(Modifier.ADD, Endian.LITTLE),
-            running = packet.readBoolean()
+            y = packet.readShort(order = Endian.LITTLE),
+            running = packet.readBoolean(Modifier.ADD),
+            x = packet.readShort(Modifier.ADD)
         )
         packet.readByte()//-1
         packet.readByte()//-1

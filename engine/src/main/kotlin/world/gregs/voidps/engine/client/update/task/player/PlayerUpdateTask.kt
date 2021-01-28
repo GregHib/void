@@ -94,7 +94,6 @@ class PlayerUpdateTask(
                 else -> {
                 }
             }
-            println(player.visuals.update.contentToString())
             updates.writeBytes(player.visuals.update ?: continue)
         }
 

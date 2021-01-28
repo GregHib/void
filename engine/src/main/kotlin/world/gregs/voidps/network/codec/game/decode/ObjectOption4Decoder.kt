@@ -7,16 +7,16 @@ import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.network.codec.Decoder
 
-class ObjectOptionDecoder(private val index: Int) : Decoder(7) {
+class ObjectOption4Decoder : Decoder(7) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.objectOption(
             context = context,
             run = packet.readBoolean(Modifier.ADD),
+            objectId = packet.readShort(Modifier.ADD),
             x = packet.readShort(Modifier.ADD),
-            objectId = packet.readUnsigned(DataType.SHORT, Modifier.ADD, Endian.LITTLE).toInt(),
             y = packet.readShort(order = Endian.LITTLE),
-            option = index + 1
+            option = 4
         )
     }
 
