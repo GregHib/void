@@ -15,7 +15,7 @@ data class Watch(var index: Int = -1) : Visual
 
 const val PLAYER_WATCH_MASK = 0x1
 
-const val NPC_WATCH_MASK = 0x1
+const val NPC_WATCH_MASK = 0x80
 
 fun Player.flagWatch() = visuals.flag(PLAYER_WATCH_MASK)
 

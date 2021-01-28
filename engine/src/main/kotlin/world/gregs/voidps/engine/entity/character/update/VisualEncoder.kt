@@ -39,22 +39,23 @@ val visualUpdatingModule = module {
     }
     single(named("npcVisualEncoders")) {
         arrayOf(
-            GraphicEncoder(true, 2, NPC_GRAPHIC_2_MASK),
-            WatchEncoder(true, NPC_WATCH_MASK),
-            GraphicEncoder(true, 3, NPC_GRAPHIC_3_MASK),
-            HitsEncoder(true, NPC_HITS_MASK),
-            TimeBarEncoder(true, NPC_TIME_BAR_MASK),
-            NameEncoder(),
             TransformEncoder(),
-            ForceChatEncoder(NPC_FORCE_CHAT_MASK),
-            TurnEncoder(),
-            CombatLevelEncoder(),
-            ForceMovementEncoder(true, NPC_FORCE_MOVEMENT_MASK),
             AnimationEncoder(true, NPC_ANIMATION_MASK),
-            ModelChangeEncoder(),
-            GraphicEncoder(true, 1, NPC_GRAPHIC_1_MASK),
             GraphicEncoder(true, 0, NPC_GRAPHIC_0_MASK),
-            ColourOverlayEncoder(true, NPC_COLOUR_OVERLAY_MASK)
+            TurnEncoder(),
+            ForceMovementEncoder(true, NPC_FORCE_MOVEMENT_MASK),
+            ColourOverlayEncoder(true, NPC_COLOUR_OVERLAY_MASK),
+            HitsEncoder(true, NPC_HITS_MASK),
+            WatchEncoder(true, NPC_WATCH_MASK),
+            ForceChatEncoder(NPC_FORCE_CHAT_MASK),
+            TimeBarEncoder(true, NPC_TIME_BAR_MASK),
+            GraphicEncoder(true, 1, NPC_GRAPHIC_1_MASK)
+
+//            GraphicEncoder(true, 2, NPC_GRAPHIC_2_MASK),
+//            GraphicEncoder(true, 3, NPC_GRAPHIC_3_MASK),
+//            NameEncoder(),
+//            CombatLevelEncoder(),
+//            ModelChangeEncoder(),
         )
     }
 }

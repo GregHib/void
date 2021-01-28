@@ -12,7 +12,7 @@ data class Transformation(
     var id: Int = -1
 ) : Visual
 
-const val TRANSFORM_MASK = 0x20
+const val TRANSFORM_MASK = 0x2
 
 fun NPC.flagTransform() = visuals.flag(TRANSFORM_MASK)
 

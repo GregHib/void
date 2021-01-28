@@ -31,7 +31,7 @@ data class Animation(
 
 const val PLAYER_ANIMATION_MASK = 0x8
 
-const val NPC_ANIMATION_MASK = 0x10
+const val NPC_ANIMATION_MASK = 0x8
 
 fun Player.flagAnimation() = visuals.flag(PLAYER_ANIMATION_MASK)
 

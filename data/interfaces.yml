@@ -7,14 +7,10 @@ bank_pin:
   id: 13
 
 items_kept_on_death:
-  id: 17
+  id: 102
   type: main_screen
   components:
     enter_wild: 28
-
-multi4_offscreen:
-  id: 23
-  type: dialogue_box
 
 text_box_model_sprite:
   id: 26
@@ -948,7 +944,7 @@ equipment_side:
         Examine: 9
 
 inventory:
-  id: 679
+  id: 149
   type: inventory_tab
   components:
     container:

@@ -16,7 +16,7 @@ data class ColourOverlay(
 
 const val PLAYER_COLOUR_OVERLAY_MASK = 0x40000
 
-const val NPC_COLOUR_OVERLAY_MASK = 0x200
+const val NPC_COLOUR_OVERLAY_MASK = 0x2000
 
 fun Player.flagColourOverlay() = visuals.flag(PLAYER_COLOUR_OVERLAY_MASK)
 

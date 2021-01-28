@@ -51,8 +51,8 @@ val updatingTasksModule = module {
             get<NPCs>(),
             get(named("npcVisualEncoders")),
             intArrayOf(
-                NAME_MASK,
-                COMBAT_LEVEL_MASK,
+//                NAME_MASK,
+//                COMBAT_LEVEL_MASK,
                 TRANSFORM_MASK,
                 TURN_MASK
             )

@@ -40,8 +40,8 @@ private fun getPlayerMask(index: Int) = when (index) {
     else -> PLAYER_GRAPHIC_0_MASK
 }
 
-const val NPC_GRAPHIC_0_MASK = 0x4
-const val NPC_GRAPHIC_1_MASK = 0x1000
+const val NPC_GRAPHIC_0_MASK = 0x20
+const val NPC_GRAPHIC_1_MASK = 0x400
 const val NPC_GRAPHIC_2_MASK = 0x100000
 const val NPC_GRAPHIC_3_MASK = 0x20000
 

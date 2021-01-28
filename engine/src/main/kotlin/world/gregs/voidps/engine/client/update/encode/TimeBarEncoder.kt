@@ -16,9 +16,9 @@ class TimeBarEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<TimeBa
     override fun encode(writer: Writer, visual: TimeBar) {
         val (full, exponentialDelay, delay, increment) = visual
         writer.apply {
-            writeShort((full.toInt() * 0x8000) or (exponentialDelay and 0x7fff), order = Endian.LITTLE)
-            writeByte(delay, if (npc) Modifier.INVERSE else Modifier.SUBTRACT)
-            writeByte(increment, Modifier.INVERSE)
+            writeShort((full.toInt() * 0x8000) or (exponentialDelay and 0x7fff), order = if (npc) Endian.BIG else Endian.LITTLE)
+            writeByte(delay, Modifier.SUBTRACT)
+            writeByte(increment, if (npc) Modifier.SUBTRACT else Modifier.INVERSE)
         }
     }
 

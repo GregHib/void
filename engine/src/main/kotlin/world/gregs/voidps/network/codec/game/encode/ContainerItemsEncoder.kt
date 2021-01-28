@@ -36,9 +36,9 @@ class ContainerItemsEncoder : Encoder(INTERFACE_ITEMS, PacketSize.SHORT) {
         writeShort(items.size)
         for ((index, item) in items.withIndex()) {
             val amount = amounts[index]
-            writeByte(if (amount >= 255) 255 else amount)
+            writeByte(if (amount >= 255) 255 else amount, Modifier.ADD)
             if (amount >= 255) {
-                writeInt(amount, Modifier.INVERSE)
+                writeInt(amount, order = Endian.MIDDLE)
             }
             writeShort(item + 1, Modifier.ADD)
         }

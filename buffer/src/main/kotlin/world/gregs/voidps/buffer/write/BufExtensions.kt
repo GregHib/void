@@ -1,9 +1,11 @@
 package world.gregs.voidps.buffer.write
 
 import io.netty.buffer.ByteBuf
+import io.netty.buffer.Unpooled
 import world.gregs.voidps.buffer.DataType
 import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter.Companion.BIT_MASKS
 
 /**

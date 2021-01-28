@@ -13,11 +13,7 @@ import world.gregs.voidps.buffer.write.Writer
 class WatchEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<Watch>(mask) {
 
     override fun encode(writer: Writer, visual: Watch) {
-        writer.writeShort(
-            visual.index,
-            if (npc) Modifier.NONE else Modifier.ADD,
-            if (npc) Endian.LITTLE else Endian.BIG
-        )
+        writer.writeShort(visual.index, if (npc) Modifier.NONE else Modifier.ADD)
     }
 
 }

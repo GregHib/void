@@ -20,7 +20,7 @@ data class ForceMovement(
 
 const val PLAYER_FORCE_MOVEMENT_MASK = 0x2000
 
-const val NPC_FORCE_MOVEMENT_MASK = 0x400
+const val NPC_FORCE_MOVEMENT_MASK = 0x1000
 
 fun Player.flagForceMovement() = visuals.flag(PLAYER_FORCE_MOVEMENT_MASK)
 

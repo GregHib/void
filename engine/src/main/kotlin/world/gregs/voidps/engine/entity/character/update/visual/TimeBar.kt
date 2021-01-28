@@ -25,7 +25,7 @@ data class TimeBar(
 
 const val PLAYER_TIME_BAR_MASK = 0x400
 
-const val NPC_TIME_BAR_MASK = 0x100
+const val NPC_TIME_BAR_MASK = 0x800
 
 fun Player.flagTimeBar() = visuals.flag(PLAYER_TIME_BAR_MASK)
 

@@ -148,7 +148,7 @@ object GameOpcodes {
     const val PLAYER_UPDATING = 105
     const val INTERFACE_CLOSE = 73// TODO
     const val PRIVATE_CHAT_TO = 77// TODO
-    const val INTERFACE_ITEMS_UPDATE = 80// TODO
+    const val INTERFACE_ITEMS_UPDATE = 28
     const val FLOOR_ITEM_UPDATE = 83// TODO
     const val CLIENT_VARBIT_LARGE = 68
     const val FRIEND_LIST = 85// TODO

@@ -19,12 +19,12 @@ class ColourOverlayEncoder(private val npc: Boolean, mask: Int) : VisualEncoder<
             val saturation = colour shr 8 and 0xFF
             val luminance = colour shr 16 and 0xFF
             val multiplier = colour shr 24 and 0xFF
-            writeByte(hue, if (npc) Modifier.ADD else Modifier.INVERSE)
-            writeByte(saturation)
-            writeByte(luminance)
+            writeByte(hue, Modifier.INVERSE)
+            writeByte(saturation, if (npc) Modifier.SUBTRACT else Modifier.NONE)
+            writeByte(luminance, if (npc) Modifier.INVERSE else Modifier.NONE)
             writeByte(multiplier)
-            writeShort(delay, if (npc) Modifier.NONE else Modifier.ADD, Endian.LITTLE)
-            writeShort(duration, Modifier.ADD)
+            writeShort(delay, if (npc) Modifier.NONE else Modifier.ADD, if (npc) Endian.BIG else  Endian.LITTLE)
+            writeShort(duration, if (npc) Modifier.NONE else Modifier.ADD)
         }
     }
 

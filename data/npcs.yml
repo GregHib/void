@@ -90,25 +90,25 @@
     x: 3240
     y: 3272
     plane: 0
-- id: 553
+- id: 45
   tile:
     x: 3096
     y: 3493
     plane: 0
   direction: WEST
-- id: 553
+- id: 44
   tile:
     x: 3096
     y: 3491
     plane: 0
   direction: WEST
-- id: 553
+- id: 44
   tile:
     x: 3096
     y: 3489
     plane: 0
   direction: WEST
-- id: 553
+- id: 45
   tile:
     x: 3097
     y: 3494
