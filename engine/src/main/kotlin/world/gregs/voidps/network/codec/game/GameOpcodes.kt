@@ -30,7 +30,7 @@ object GameOpcodes {
     const val CHAT_TYPE = 31
     const val FLOOR_ITEM_OPTION_3 = 24 // TODO
     const val INTERFACE_OPTION_10 = 42
-    const val SWITCH_INTERFACE_COMPONENTS = 26 // TODO
+    const val SWITCH_INTERFACE_COMPONENTS = 78
     const val FLOOR_ITEM_OPTION_6 = 27 // TODO
     const val NPC_OPTION_5 = 65
     const val MOVE_MOUSE = 83
@@ -43,13 +43,13 @@ object GameOpcodes {
     const val PUBLIC_MESSAGE = 36 // TODO
     const val TOOLKIT_PREFERENCES = 37 // TODO
     const val REMOVE_IGNORE = 38 // TODO
-    const val AP_COORD_T = 22
-    const val INTERFACE_ON_PLAYER = 40 // TODO
+    const val AP_COORD_T = 39 // TODO
+    const val INTERFACE_ON_PLAYER = 48
     const val RANK_FRIEND_CHAT = 41 // TODO
-    const val ITEM_ON_OBJECT = 42 // TODO
+    const val ITEM_ON_OBJECT = 54
     const val PLAYER_OPTION_9 = 43 // TODO
     const val CLAN_SETTINGS_UPDATE = 44 // TODO
-    const val FLOOR_ITEM_OPTION_1 = 45 // TODO
+    const val FLOOR_ITEM_OPTION_1 = 22
     const val PLAYER_OPTION_4 = 46 // TODO
     const val CUTSCENE_ACTION = 48 // TODO
     const val PLAYER_OPTION_7 = 49 // TODO
@@ -68,7 +68,7 @@ object GameOpcodes {
     const val PLAYER_OPTION_8 = 62 // TODO
     const val OTHER_TELEPORT = 63 // TODO
     const val INTERFACE_OPTION_2 = 59
-    const val INTERFACE_ON_NPC = 65 // TODO
+    const val INTERFACE_ON_NPC = 61
     const val NPC_OPTION_2 = 29
     const val NPC_OPTION_4 = 62
     const val KEY_TYPED = 69
@@ -76,7 +76,7 @@ object GameOpcodes {
     const val CONSOLE_COMMAND = 53
     const val REGION_LOADING = 47
     const val PRIVATE_MESSAGE = 72 // TODO
-    const val ITEM_ON_ITEM = 73 // TODO
+    const val ITEM_ON_ITEM = 72
     const val CLAN_FORUM_THREAD = 74 // TODO
     const val IN_OUT_SCREEN = 75 // TODO
     const val OBJECT_OPTION_3 = 80

@@ -11,14 +11,14 @@ class InterfaceOnObjectDecoder : Decoder(15) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnObject(
-            context,
-            packet.readBoolean(Modifier.INVERSE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readInt(order = Endian.LITTLE),
-            packet.readShort(Modifier.ADD, Endian.LITTLE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readUnsigned(DataType.SHORT, Modifier.ADD).toInt()
+            context = context,
+            y = packet.readShort(Modifier.ADD),
+            slot = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            hash = packet.readInt(order = Endian.LITTLE),
+            type = packet.readShort(Modifier.ADD),
+            run = packet.readBoolean(Modifier.SUBTRACT),
+            x = packet.readShort(order = Endian.LITTLE),
+            id = packet.readUnsigned(DataType.SHORT, order = Endian.LITTLE).toInt()
         )
     }
 

@@ -10,13 +10,13 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceSwitch(
-            context,
-            packet.readShort(),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readShort(Modifier.ADD),
-            packet.readInt(order = Endian.MIDDLE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readInt(Modifier.INVERSE, Endian.MIDDLE)
+            context = context,
+            fromHash = packet.readInt(),
+            toType = packet.readShort(order = Endian.LITTLE),
+            toHash = packet.readInt(order = Endian.MIDDLE),
+            fromSlot = packet.readShort(),
+            fromType = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            toSlot = packet.readShort(Modifier.ADD, Endian.LITTLE)
         )
     }
 
