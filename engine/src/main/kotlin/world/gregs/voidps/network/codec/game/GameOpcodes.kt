@@ -13,7 +13,7 @@ object GameOpcodes {
     const val PING_REPLY = 6 // TODO
     const val CLAN_NAME = 7 // TODO
     const val REMOVE_FRIEND = 8 // TODO
-    const val NPC_OPTION_1 = 9 // TODO
+    const val NPC_OPTION_1 = 63
     const val INTERFACE_OPTION_8 = 60
     const val OBJECT_OPTION_1 = 27
     const val WALK = 35
@@ -32,10 +32,10 @@ object GameOpcodes {
     const val INTERFACE_OPTION_10 = 42
     const val SWITCH_INTERFACE_COMPONENTS = 26 // TODO
     const val FLOOR_ITEM_OPTION_6 = 27 // TODO
-    const val NPC_OPTION_5 = 28 // TODO
+    const val NPC_OPTION_5 = 65
     const val MOVE_MOUSE = 83
     const val QUICK_PUBLIC_MESSAGE = 30 // TODO
-    const val NPC_OPTION_3 = 31 // TODO
+    const val NPC_OPTION_3 = 5
     const val KICK_FRIEND_CHAT = 32 // TODO
     const val DONE_LOADING_REGION = 4
     const val REFRESH_WORLDS = 34 // TODO
@@ -57,7 +57,7 @@ object GameOpcodes {
     const val ADD_FRIEND = 51 // TODO
     const val INTERFACE_OPTION_4 = 15
     const val PLAYER_OPTION_2 = 53 // TODO
-    const val DIALOGUE_CONTINUE = 54 // TODO
+    const val DIALOGUE_CONTINUE = 2
     const val FLOOR_ITEM_OPTION_2 = 55 // TODO
     const val SCREEN_CLOSE = 70
     const val ONLINE_STATUS = 57 // TODO
@@ -69,8 +69,8 @@ object GameOpcodes {
     const val OTHER_TELEPORT = 63 // TODO
     const val INTERFACE_OPTION_2 = 59
     const val INTERFACE_ON_NPC = 65 // TODO
-    const val NPC_OPTION_2 = 66 // TODO
-    const val NPC_OPTION_4 = 67 // TODO
+    const val NPC_OPTION_2 = 29
+    const val NPC_OPTION_4 = 62
     const val KEY_TYPED = 69
     const val OBJECT_OPTION_5 = 38
     const val CONSOLE_COMMAND = 53
@@ -95,7 +95,6 @@ object GameOpcodes {
     const val WORLD_MAP_CLICK = 89 // TODO
     const val SCRIPT_4701 = 90 // TODO
     const val INTERFACE_OPTION_6 = 39
-    const val NPC_OPTION_6 = 92 // TODO
     const val TOGGLE_FOCUS = 8
 
     /* Encode */
@@ -158,7 +157,7 @@ object GameOpcodes {
     const val SKILL_LEVEL = 47
     const val OBJECT_ANIMATION = 96// TODO
     const val PRIVATE_QUICK_CHAT_TO = 97// TODO
-    const val INTERFACE_NPC_HEAD = 98// TODO
+    const val INTERFACE_NPC_HEAD = 86
     const val OBJECT_CUSTOMISE = 99// TODO
     const val CLIENT_VARP = 7
     const val PLAYER_WEIGHT = 91
@@ -168,7 +167,7 @@ object GameOpcodes {
     const val INTERFACE_PLAYER_OTHER_BODY = 109// TODO
     const val CLIENT_VARC = 3
     const val CLIENT_VARC_LARGE = 16
-    const val INTERFACE_PLAYER_HEAD = 114// TODO
+    const val INTERFACE_PLAYER_HEAD = 77
     const val INTERFACE_COMPONENT_VISIBILITY = 108
     const val SOUND_AREA = 119// TODO
     const val PRIVATE_CHAT_FROM = 120// TODO

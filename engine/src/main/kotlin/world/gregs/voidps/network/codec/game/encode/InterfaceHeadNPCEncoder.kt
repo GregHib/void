@@ -1,6 +1,8 @@
 package world.gregs.voidps.network.codec.game.encode
 
 import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.Modifier
+import world.gregs.voidps.buffer.write.writeInt
 import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -24,7 +26,7 @@ class InterfaceHeadNPCEncoder : Encoder(INTERFACE_NPC_HEAD) {
         component: Int,
         npc: Int
     ) = player.send(6) {
-        writeInt(id shl 16 or component)
-        writeShort(npc, order = Endian.LITTLE)
+        writeInt(id shl 16 or component, order = Endian.LITTLE)
+        writeShort(npc, Modifier.ADD)
     }
 }

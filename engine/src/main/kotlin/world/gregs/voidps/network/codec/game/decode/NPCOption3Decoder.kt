@@ -6,13 +6,14 @@ import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.network.codec.Decoder
 
-class DialogueContinueDecoder : Decoder(6) {
+class NPCOption3Decoder : Decoder(3) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
-        handler?.continueDialogue(
+        handler?.npcOption(
             context,
-            button = packet.readShort(Modifier.ADD),
-            hash = packet.readInt(order = Endian.MIDDLE)
+            npcIndex = packet.readShort(),
+            run = packet.readBoolean(),
+            option = 3
         )
     }
 
