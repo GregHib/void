@@ -851,7 +851,6 @@ worn_equipment:
     feet: 32
     ring: 35
     arrows: 38
-    aura: 50
 
 spells_ancient_elements:
   id: 389

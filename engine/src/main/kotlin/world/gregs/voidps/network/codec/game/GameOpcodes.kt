@@ -109,7 +109,7 @@ object GameOpcodes {
     const val INTERFACE_OPEN = 37
     const val NPC_UPDATING = 118
     const val INTERFACE_SCROLL_VERTICAL = 8 // TODO
-    const val INTERFACE_ITEM = 9 // TODO
+    const val INTERFACE_ITEM = 90
     const val OBJECT_PRE_FETCH = 11 // TODO
     const val FRIENDS_CHAT_UPDATE = 12 // TODO
     const val RUN_ENERGY = 4
@@ -118,16 +118,16 @@ object GameOpcodes {
     const val INTERFACE_PLAYER_BODY = 18 // TODO
     const val FRIENDS_QUICK_CHAT_MESSAGE = 20 // TODO
     const val CHUNK_CLEAR = 33
-    const val INTERFACE_ANIMATION = 23 // TODO
+    const val INTERFACE_ANIMATION = 24
     const val FRIEND_LIST_APPEND = 24 // TODO
     const val CLIENT_PING = 25 // TODO
     const val OBJECT_ADD = 28 // TODO
     const val TILE_TEXT = 32 // TODO
-    const val INTERFACE_TEXT = 33 // TODO
+    const val INTERFACE_TEXT = 10
     const val INTERFACE_ITEMS = 20
     const val CLIENT_VARP_LARGE = 44
     const val FRIENDS_CHAT_MESSAGE = 40 // TODO
-    const val GRAPHIC_AREA = 41 // TODO
+    const val GRAPHIC_AREA = 84
     const val PRIVATE_QUICK_CHAT_FROM = 42 // TODO
     const val REGION = 19
     const val INTERFACE_CUSTOM_HEAD = 44 // TODO
@@ -135,7 +135,7 @@ object GameOpcodes {
     const val UPDATE_CHUNK = 41
     const val OBJECT_ANIMATION_SPECIFIC = 47 // TODO
     const val FLOOR_ITEM_ADD = 63
-    const val SCRIPT = 50 // TODO
+    const val SCRIPT = 8
     const val LOGOUT = 55
     const val CLIENT_VARC_STR = 54 // TODO
     const val IGNORE_LIST = 57// TODO
@@ -146,7 +146,7 @@ object GameOpcodes {
     const val MINI_SOUND = 65// TODO
     const val INTERFACE_WINDOW = 102
     const val PLAYER_UPDATING = 105
-    const val INTERFACE_CLOSE = 73// TODO
+    const val INTERFACE_CLOSE = 112
     const val PRIVATE_CHAT_TO = 77// TODO
     const val INTERFACE_ITEMS_UPDATE = 28
     const val FLOOR_ITEM_UPDATE = 83// TODO
@@ -169,7 +169,7 @@ object GameOpcodes {
     const val CLIENT_VARC = 3
     const val CLIENT_VARC_LARGE = 16
     const val INTERFACE_PLAYER_HEAD = 114// TODO
-    const val INTERFACE_COMPONENT_VISIBILITY = 117// TODO
+    const val INTERFACE_COMPONENT_VISIBILITY = 108
     const val SOUND_AREA = 119// TODO
     const val PRIVATE_CHAT_FROM = 120// TODO
     const val INTERFACE_COMPONENT_ORIENTATION = 122// TODO

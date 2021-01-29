@@ -29,7 +29,7 @@ class InterfaceItemEncoder : Encoder(INTERFACE_ITEM) {
         amount: Int
     ) = player.send(10) {
         writeShort(item, order = Endian.LITTLE)
-        writeInt(amount)
         writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
+        writeInt(amount)
     }
 }

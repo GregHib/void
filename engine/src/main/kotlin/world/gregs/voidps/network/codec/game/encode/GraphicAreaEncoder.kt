@@ -27,7 +27,7 @@ class GraphicAreaEncoder : Encoder(GRAPHIC_AREA) {
         delay: Int,
         rotation: Int
     ) = player.send(5, flush = false) {
-        writeByte(tile, type = Modifier.ADD)
+        writeByte(tile)
         writeShort(id)
         writeByte(height)
         writeShort(delay)

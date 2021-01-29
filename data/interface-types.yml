@@ -111,16 +111,14 @@ dialogue_box_small:
   index: 12
 
 area_status:
-  fixedIndex: 14
-  resizeIndex: 11
+  fixedIndex: 13
+  resizeIndex: 7
 
 overlay:
-  fixedIndex: 9
-  resizeIndex: 12
+  index: 8
 
 main_screen:
-  fixedIndex: 9
-  resizeIndex: 12
+  index: 8
 
 full_screen:
   parent: root

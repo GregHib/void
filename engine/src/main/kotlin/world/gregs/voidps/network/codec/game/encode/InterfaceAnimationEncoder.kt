@@ -26,7 +26,7 @@ class InterfaceAnimationEncoder : Encoder(INTERFACE_ANIMATION) {
         component: Int,
         animation: Int
     ) = player.send(6) {
-        writeShort(animation, Modifier.ADD, Endian.LITTLE)
+        writeShort(animation)
         writeInt(id shl 16 or component, order = Endian.MIDDLE)
     }
 }
