@@ -1,6 +1,11 @@
 package world.gregs.voidps.cache.definition.data
 
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Polymorphic
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.Transient
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.Flatten
 import world.gregs.voidps.cache.definition.ColourPalette
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
@@ -10,6 +15,7 @@ import world.gregs.voidps.cache.definition.Recolourable
  * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
+@Serializable
 data class ItemDefinition(
     override var id: Int = -1,
     var modelId: Int = 0,
@@ -73,8 +79,8 @@ data class ItemDefinition(
     var pickSizeShift: Int = 0,
     var singleNoteId: Int = -1,
     var singleNoteTemplateId: Int = -1,
-    override var params: HashMap<Long, Any>? = null,
-    override var extras: Map<String, Any> = emptyMap()
+    override var params: HashMap<Long, @Contextual Any>? = null,
+    override var extras: Map<String, @Contextual Any> = emptyMap()
 ) : Definition, Recolourable, ColourPalette, Parameterized, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
