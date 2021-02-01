@@ -21,17 +21,12 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
         when (opcode) {
             1 -> {
                 val length = buffer.readShort()
-                durations = IntArray(length)
+                durations = IntArray(length) { buffer.readShort() }
+                val frames = IntArray(length) { buffer.readShort() }
                 repeat(length) { count ->
-                    durations!![count] = buffer.readShort()
+                    frames[count] = (buffer.readShort() shl 16) + frames[count]
                 }
-                primaryFrames = IntArray(length)
-                repeat(length) { count ->
-                    primaryFrames!![count] = buffer.readShort()
-                }
-                repeat(length) { count ->
-                    primaryFrames!![count] = (buffer.readShort() shl 16) + primaryFrames!![count]
-                }
+                primaryFrames = frames
             }
             2 -> loopOffset = buffer.readShort()
             3 -> {
@@ -50,10 +45,7 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
             11 -> replayMode = buffer.readUnsignedByte()
             12 -> {
                 val length = buffer.readUnsignedByte()
-                secondaryFrames = IntArray(length)
-                repeat(length) { count ->
-                    secondaryFrames!![count] = buffer.readShort()
-                }
+                secondaryFrames = IntArray(length) { buffer.readShort() }
                 repeat(length) { count ->
                     secondaryFrames!![count] = (buffer.readShort() shl 16) + secondaryFrames!![count]
                 }
@@ -77,21 +69,14 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
             18 -> aBoolean699 = true
             19 -> {
                 if (anIntArray701 == null) {
-                    anIntArray701 = IntArray(anIntArrayArray700!!.size)
-                    for (index in anIntArrayArray700!!.indices) {
-                        anIntArray701!![index] = 255
-                    }
+                    anIntArray701 = IntArray(anIntArrayArray700!!.size) { 255 }
                 }
                 anIntArray701!![buffer.readUnsignedByte()] = buffer.readUnsignedByte()
             }
             20 -> {
                 if (anIntArray690 == null || anIntArray692 == null) {
-                    anIntArray690 = IntArray(anIntArrayArray700!!.size)
-                    anIntArray692 = IntArray(anIntArrayArray700!!.size)
-                    for (index in anIntArrayArray700!!.indices) {
-                        anIntArray690!![index] = 256
-                        anIntArray692!![index] = 256
-                    }
+                    anIntArray690 = IntArray(anIntArrayArray700!!.size) { 256 }
+                    anIntArray692 = IntArray(anIntArrayArray700!!.size) { 256 }
                 }
                 val length = buffer.readUnsignedByte()
                 anIntArray690!![length] = buffer.readShort()

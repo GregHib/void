@@ -92,13 +92,7 @@ class ItemDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<Ite
                 secondaryInterfaceCursorOpcode = buffer.readUnsignedByte()
                 secondaryInterfaceCursor = buffer.readShort()
             }
-            132 -> {
-                val length = buffer.readUnsignedByte()
-                campaigns = IntArray(length)
-                repeat(length) { count ->
-                    campaigns!![count] = buffer.readShort()
-                }
-            }
+            132 -> campaigns = IntArray(buffer.readUnsignedByte()) { buffer.readShort() }
             134 -> pickSizeShift = buffer.readUnsignedByte()
             139 -> singleNoteId = buffer.readShort()
             140 -> singleNoteTemplateId = buffer.readShort()
