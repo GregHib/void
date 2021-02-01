@@ -13,13 +13,13 @@ sealed class Definition(
 ) : BinaryFormat {
 
     override fun <T> encodeToByteArray(serializer: SerializationStrategy<T>, value: T): ByteArray {
-        val m = DefinitionEncoder(this, encodeDefaults)
+        val m = DefinitionEncoder(encodeDefaults, serializer.descriptor)
         m.encodeSerializableValue(serializer, value)
         return m.toByteArray()
     }
 
     override fun <T> decodeFromByteArray(deserializer: DeserializationStrategy<T>, bytes: ByteArray): T {
-        val m = DefinitionDecoder(this, bytes, deserializer.descriptor)
+        val m = DefinitionDecoder(bytes, deserializer.descriptor)
         return m.decodeSerializableValue(deserializer)
     }
 

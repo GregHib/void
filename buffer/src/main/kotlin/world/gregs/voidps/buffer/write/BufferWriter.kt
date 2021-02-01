@@ -5,6 +5,7 @@ import io.netty.buffer.Unpooled
 import world.gregs.voidps.buffer.DataType
 import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
+import world.gregs.voidps.buffer.read.BufferReader
 
 /**
  * All functions relative to writing directly to a packet are done by this class
