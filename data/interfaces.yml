@@ -721,9 +721,6 @@ stats:
     constitution: 193
     attack: 200
 
-hide_tanning:
-  id: 320
-
 teleport_other:
   id: 326
 
