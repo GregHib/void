@@ -268,8 +268,8 @@ logout:
   id: 182
   type: logout_tab
   components:
-    lobby: 6
-    login: 13
+    lobby: 5
+    login: 10
 
 music_player:
   id: 187
