@@ -624,15 +624,14 @@ options:
   id: 261
   type: options_tab
   components:
-    graphics: 14
-    audio: 16
+    graphics: 16
+    audio: 18
+    run: 3
     mouse: 6
-    profanity: 3
     effects: 4
     chat: 5
     aid: 7
     house: 8
-    log: 18
 
 pest_control_rewards:
   id: 267
