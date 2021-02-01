@@ -38,6 +38,7 @@ import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.game.GameOpcodes
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
+import world.gregs.voidps.network.codec.service.ServiceOpcodes
 import world.gregs.voidps.network.networkCodecs
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
@@ -118,7 +119,8 @@ object Main {
 
     private fun registerLoginHandlers() {
         val login: LoginCodec = get()
-        login.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginHandler())
+        login.registerHandler(ServiceOpcodes.GAME_LOGIN, GameLoginHandler())
+        login.registerHandler(ServiceOpcodes.GAME_RECONNECT, GameLoginHandler())
     }
 
     private fun registerGameHandlers() {

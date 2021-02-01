@@ -175,9 +175,4 @@ object GameOpcodes {
     const val DYNAMIC_REGION = 128// TODO
     const val PRIVATE_STATUS = 134// TODO
     const val FRIEND_LIST_DISCONNECT = 135// TODO
-
-    /* Handshake */
-    const val LOGIN_HANDSHAKE = 14
-    const val GAME_LOGIN = 16
-    const val LOBBY_LOGIN = 19
 }

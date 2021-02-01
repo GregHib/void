@@ -8,6 +8,7 @@ object ServiceOpcodes {
     const val GAME_CONNECTION = 14
     const val FILE_SERVICE = 15
     const val GAME_LOGIN = 16
+    const val GAME_RECONNECT = 18
     const val LOBBY_LOGIN = 19
     const val WORLDLIST_REQUEST = 23
     const val CHECK_WORLD_SUITABILITY = 24
