@@ -101,8 +101,8 @@ object GameOpcodes {
 
     const val PLAYER_OPTION = 0
     const val INTERFACE_SPRITE = 32
+    const val INTERFACE_COLOUR = 82 // TODO
     const val LOGIN_DETAILS = 2 // TODO
-    const val LOBBY_DETAILS = 2 // TODO
     const val INTERFACE_COMPONENT_SETTINGS = 34
     const val INTERFACE_REFRESH = 4 // TODO
     const val INTERFACE_OPEN = 37
