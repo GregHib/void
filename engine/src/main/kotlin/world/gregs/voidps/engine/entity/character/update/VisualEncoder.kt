@@ -32,7 +32,7 @@ val visualUpdatingModule = module {
             ColourOverlayEncoder(false, PLAYER_COLOUR_OVERLAY_MASK),
             TemporaryMoveTypeEncoder(),
             GraphicEncoder(false, 0, PLAYER_GRAPHIC_0_MASK),
-            AnimationEncoder(false, PLAYER_ANIMATION_MASK),
+            PlayerAnimationEncoder(),
             AppearanceEncoder(),
             MovementTypeEncoder(),
         )

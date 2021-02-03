@@ -13,6 +13,7 @@ object ItemDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
+        println(decoder.size)
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
             if(def.name.contains("chameleon", true)) {

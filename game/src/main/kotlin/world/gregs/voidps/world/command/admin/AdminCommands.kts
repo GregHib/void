@@ -61,6 +61,7 @@ Command where { prefix == "bot" } then {
                 val bot = response.player
                 bus.emit(PlayerRegistered(bot))
                 bus.emit(Registered(bot))
+                bot.start()
                 bot.viewport.loaded = true
                 scheduler.add {
                     delay(1)

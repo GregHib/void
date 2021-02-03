@@ -11,7 +11,7 @@ class PlayerOption2Decoder : Decoder(3) {
         handler?.playerOption(
             context,
             index = packet.readShort(),
-            option = 1
+            optionIndex = 2
         )
     }
 

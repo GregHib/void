@@ -14,21 +14,22 @@ object InterfaceDefinitions {
         }.koin
         val decoder = InterfaceDecoder(koin.get())
         println(decoder.size)
-        var max = 0
+        var maxId = 0
+        var maxIndex = 0
         for (i in decoder.indices) {
-            if(i != 755) {
-                continue
-            }
             val def = decoder.getOrNull(i) ?: continue
-            if(def.components?.keys?.maxOrNull() ?: 0 > max) {
-                max = def.components!!.keys.maxOrNull()!!
-            }
-            for((id, comp) in def.components ?: continue) {
-//                if(comp.options?.contains("Scroll") == true) {
+            var index = 0
+            for ((id, comp) in def.components ?: continue) {
+                if (id > maxId) {
                     println("${comp.id} $id ${comp.options?.toList()}")
-//                }
+                    maxId = id
+                }
+                if(index > maxIndex) {
+                    maxIndex = index
+                }
+                index++
             }
         }
-        println("Max component id $max")
+        println("Max component id $maxId index: $maxIndex")
     }
 }

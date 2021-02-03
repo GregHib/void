@@ -251,9 +251,9 @@ abstract class Handler {
     /**
      * An option selection on another player
      * @param index The selected player's index
-     * @param option The option id - 3 = Trade, 4 = Attack
+     * @param optionIndex The option id - 3 = Trade, 4 = Attack
      */
-    open fun playerOption(context: ChannelHandlerContext, index: Int, option: Int) {}
+    open fun playerOption(context: ChannelHandlerContext, index: Int, optionIndex: Int) {}
 
     /**
      * Private message sent to another player

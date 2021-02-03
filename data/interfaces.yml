@@ -734,11 +734,11 @@ trade_confirm:
   id: 334
   type: main_screen
   components:
-    close: 6
-    accept: 21
-    decline: 22
-    status: 34
-    modified: 55
+    close: 8
+    accept: 20
+    decline: 21
+    status: 33
+    modified: 47
 
 trade_main:
   id: 335
@@ -751,7 +751,7 @@ trade_main:
     slots: 21
     name: 22
     offer_options:
-      id: 30
+      id: 31
       container: trade_offer
       options:
         Remove: 0
@@ -762,41 +762,41 @@ trade_main:
         Value: 5
         Examine: 9
     offer_warning:
-      id: 31
+      id: 32
       container: trade_offer
-    other_items: 32
+    other_items: 33
     other_options:
-      id: 33
+      id: 34
       container: trade_offer
       primary: false
       options:
         Value<col=FF9040>: 0
         Examine<col=FF9040>: 8
     other_warning:
-      id: 34
+      id: 35
       container: trade_offer
       primary: false
-    status: 37
-    modified: 39
-    other_modified: 40
-    loan: 55
+    status: 38
+    modified: 40
+    other_modified: 41
+    loan: 88
     loan_item:
-      id: 56
+      id: 89
       container: item_loan
       options:
         Remove: 0
         Examine: 9
     loan_time:
-      id: 57
+      id: 90
       container: item_loan
       options:
         "‘Until Logout‘": 0
         Specify: 1
     other_loan_item:
-      id: 52
+      id: 85
       container: item_loan
       primary: false
-    other_loan_time: 53
+    other_loan_time: 86
 
 trade_side:
   id: 336
