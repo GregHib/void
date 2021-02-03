@@ -33,7 +33,7 @@ fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.
 
 fun Player.face(entity: Entity) {
     val delta = entity.tile.delta(tile)
-    if(delta != Tile.EMPTY) {
+    if (delta != Tile.EMPTY) {
         face(delta.x, delta.y)
     }
 }

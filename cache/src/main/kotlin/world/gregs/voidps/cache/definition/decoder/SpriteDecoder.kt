@@ -11,6 +11,10 @@ import world.gregs.voidps.cache.definition.data.SpriteDefinition
  * @since April 08, 2020
  */
 class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
+
+    override val size: Int
+        get() = cache.lastArchiveId(index)
+
     override fun create() = SpriteDefinition()
 
     override fun getFile(id: Int) = 0

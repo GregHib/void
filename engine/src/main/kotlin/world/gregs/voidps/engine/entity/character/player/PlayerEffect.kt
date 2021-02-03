@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import kotlinx.serialization.Serializable
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Effect
 

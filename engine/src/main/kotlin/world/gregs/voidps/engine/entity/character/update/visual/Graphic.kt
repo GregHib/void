@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
+import world.gregs.voidps.utility.func.toInt
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -17,8 +18,14 @@ data class Graphic(
     var delay: Int = 0,
     var height: Int = 0,
     var rotation: Int = 0,
-    var forceRefresh: Boolean = false
+    var forceRefresh: Boolean = false,
+    var slot: Int = 0
 ) : Visual {
+
+    val packedDelayHeight: Int
+        get() = (delay and 0xffff) or (height shl 16)
+    val packedRotationRefresh: Int
+        get() = (rotation and 0x7) or (slot shl 3) or (forceRefresh.toInt() shl 7)
     override fun reset(character: Character) {
         id = -1
         delay = 0
