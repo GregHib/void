@@ -18,9 +18,7 @@ class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(
         player.viewport.players.update()
         player.viewport.npcs.update()
         player.movement.reset()
-        player.visuals.aspects.forEach { (_, visual) ->
-            visual.reset(player)
-        }
+        player.visuals.reset(player)
     }
 
 }
