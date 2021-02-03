@@ -232,13 +232,13 @@ internal class NPCUpdateTaskTest : KoinMock() {
         // Then
         verifyOrder {
             sync.writeBits(15, index)
+            sync.writeBits(2, 1)
+            sync.writeBits(1, false)
+            sync.writeBits(5, 35)
+            sync.writeBits(5, 37)
             sync.writeBits(3, 2)
             sync.writeBits(1, update)
-            sync.writeBits(5, 35)
-            sync.writeBits(2, 1)
-            sync.writeBits(15, id)
-            sync.writeBits(5, 37)
-            sync.writeBits(1, false)
+            sync.writeBits(14, id)
             if (update) {
                 updates.writeBytes(npc.visuals.addition!!)
             }

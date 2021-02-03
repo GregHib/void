@@ -40,6 +40,7 @@ data class NPC(
     var runDirection: Int = -1
 
     var movementType: NPCMoveType = NPCMoveType.None
+    var crawling: Boolean = false
 
     @Transient
     override lateinit var interactTarget: TargetStrategy

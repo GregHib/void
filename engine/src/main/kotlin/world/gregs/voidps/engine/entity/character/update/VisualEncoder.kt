@@ -39,16 +39,16 @@ val visualUpdatingModule = module {
     single(named("npcVisualEncoders")) {
         arrayOf(
             TransformEncoder(),
-            AnimationEncoder(true, NPC_ANIMATION_MASK),
-            GraphicEncoder(true, 0, NPC_GRAPHIC_0_MASK),
+            NPCAnimationEncoder(),
+            NPCPrimaryGraphicEncoder(),
             TurnEncoder(),
-            ForceMovementEncoder(true, NPC_FORCE_MOVEMENT_MASK),
-            ColourOverlayEncoder(true, NPC_COLOUR_OVERLAY_MASK),
-            HitsEncoder(true, NPC_HITS_MASK),
+            NPCForceMovementEncoder(),
+            NPCColourOverlayEncoder(),
+            NPCHitsEncoder(),
             WatchEncoder(NPC_WATCH_MASK),
             ForceChatEncoder(NPC_FORCE_CHAT_MASK),
-            TimeBarEncoder(true, NPC_TIME_BAR_MASK),
-            GraphicEncoder(true, 1, NPC_GRAPHIC_1_MASK)
+            NPCTimeBarEncoder(),
+            NPCSecondaryGraphicEncoder()
         )
     }
 }

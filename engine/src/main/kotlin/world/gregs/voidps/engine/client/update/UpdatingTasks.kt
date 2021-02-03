@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.client.update.task.player.*
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.visual.npc.COMBAT_LEVEL_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.NAME_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TRANSFORM_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
