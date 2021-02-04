@@ -27,10 +27,9 @@ object GameOpcodes {
     const val INTERFACE_ON_FLOOR_ITEM = 21 // TODO
     const val COLOUR_ID = 22 // TODO
     const val CHAT_TYPE = 31
-    const val FLOOR_ITEM_OPTION_3 = 24 // TODO
+    const val FLOOR_ITEM_OPTION_3 = 45
     const val INTERFACE_OPTION_10 = 42
     const val SWITCH_INTERFACE_COMPONENTS = 78
-    const val FLOOR_ITEM_OPTION_6 = 27 // TODO
     const val NPC_OPTION_5 = 65
     const val MOVE_MOUSE = 83
     const val QUICK_PUBLIC_MESSAGE = 30 // TODO
@@ -38,7 +37,7 @@ object GameOpcodes {
     const val KICK_FRIEND_CHAT = 32 // TODO
     const val DONE_LOADING_REGION = 4
     const val REFRESH_WORLDS = 34 // TODO
-    const val FLOOR_ITEM_OPTION_5 = 35 // TODO
+    const val FLOOR_ITEM_OPTION_5 = 26
     const val PUBLIC_MESSAGE = 36 // TODO
     const val TOOLKIT_PREFERENCES = 37 // TODO
     const val REMOVE_IGNORE = 38 // TODO
@@ -56,7 +55,7 @@ object GameOpcodes {
     const val INTERFACE_OPTION_4 = 15
     const val PLAYER_OPTION_2 = 12
     const val DIALOGUE_CONTINUE = 2
-    const val FLOOR_ITEM_OPTION_2 = 55 // TODO
+    const val FLOOR_ITEM_OPTION_2 = 16
     const val SCREEN_CLOSE = 70
     const val ONLINE_STATUS = 57 // TODO
     const val UNKNOWN = 58 // TODO
@@ -87,7 +86,7 @@ object GameOpcodes {
     const val MINI_MAP_WALK = 82
     const val CLICK = 49
     const val PING_LATENCY = 21
-    const val FLOOR_ITEM_OPTION_4 = 86 // TODO
+    const val FLOOR_ITEM_OPTION_4 = 24
     const val SCREEN_CHANGE = 7
     const val HYPERLINK_TEXT = 88 // TODO
     const val WORLD_MAP_CLICK = 89 // TODO
@@ -111,7 +110,7 @@ object GameOpcodes {
     const val FRIENDS_CHAT_UPDATE = 12 // TODO
     const val RUN_ENERGY = 4
     const val CLIENT_VARBIT = 73
-    const val FLOOR_ITEM_REMOVE = 16 // TODO
+    const val FLOOR_ITEM_REMOVE = 27
     const val INTERFACE_PLAYER_BODY = 18 // TODO
     const val FRIENDS_QUICK_CHAT_MESSAGE = 20 // TODO
     const val CHUNK_CLEAR = 33

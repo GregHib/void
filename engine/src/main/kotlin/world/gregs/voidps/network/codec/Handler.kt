@@ -61,9 +61,9 @@ abstract class Handler {
      * @param run Whether the player should force run
      * @param y The items y coordinate
      * @param x The items x coordinate
-     * @param option The option id - 3 = Take
+     * @param optionIndex The option id - 3 = Take
      */
-    open fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, option: Int) {}
+    open fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {}
 
     /**
      * Player wants to join a friends chat
