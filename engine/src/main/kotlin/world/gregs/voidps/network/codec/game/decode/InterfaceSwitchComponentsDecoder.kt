@@ -12,11 +12,11 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
         handler?.interfaceSwitch(
             context = context,
             fromHash = packet.readInt(),
-            toType = packet.readShort(order = Endian.LITTLE),
+            toSlot = packet.readShort(order = Endian.LITTLE),
             toHash = packet.readInt(order = Endian.MIDDLE),
-            fromSlot = packet.readShort(),
-            fromType = packet.readShort(Modifier.ADD, Endian.LITTLE),
-            toSlot = packet.readShort(Modifier.ADD, Endian.LITTLE)
+            fromType = packet.readShort(),
+            fromSlot = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            toType = packet.readShort(Modifier.ADD, Endian.LITTLE)
         )
     }
 

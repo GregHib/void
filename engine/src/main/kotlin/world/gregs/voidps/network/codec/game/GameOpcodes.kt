@@ -7,7 +7,7 @@ object GameOpcodes {
     const val OBJECT_OPTION_4 = 56
     const val JOIN_FRIEND_CHAT = 1 // TODO
     const val OBJECT_OPTION_2 = 36
-    const val ENTER_INTEGER = 3 // TODO
+    const val INTEGER_ENTRY = 32
     const val INTERFACE_OPTION_3 = 9
     const val MOVE_CAMERA = 55
     const val PING_REPLY = 6 // TODO
@@ -59,7 +59,7 @@ object GameOpcodes {
     const val SCREEN_CLOSE = 70
     const val ONLINE_STATUS = 57 // TODO
     const val UNKNOWN = 58 // TODO
-    const val STRING_ENTRY = 59 // TODO 1?
+    const val STRING_ENTRY = 1
     const val CLAN_CHAT_KICK = 60 // TODO
     const val INTERFACE_OPTION_1 = 23
     const val PLAYER_OPTION_8 = 18
