@@ -20,6 +20,7 @@ import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.obj.RemoveObject
 import world.gregs.voidps.world.interact.entity.obj.spawn.SpawnObject
+import world.gregs.voidps.world.interact.entity.obj.spawn.spawnObject
 
 val files: FileLoader by inject()
 val objects: Objects by inject()
@@ -44,8 +45,7 @@ Startup then {
 RegionLoaded then {
     val spawns = spawns[region] ?: return@then
     spawns.forEach { gameObject ->
-        objects.add(gameObject)
-        bus.emit(Registered(gameObject))
+        spawnObject(gameObject.id, gameObject.tile, gameObject.type, gameObject.rotation)
     }
 }
 

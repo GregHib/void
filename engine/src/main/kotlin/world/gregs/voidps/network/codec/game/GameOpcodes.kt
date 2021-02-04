@@ -99,7 +99,6 @@ object GameOpcodes {
     const val PLAYER_OPTION = 0
     const val INTERFACE_SPRITE = 32
     const val INTERFACE_COLOUR = 82 // TODO
-    const val LOGIN_DETAILS = 2 // TODO
     const val INTERFACE_COMPONENT_SETTINGS = 34
     const val INTERFACE_REFRESH = 4 // TODO
     const val INTERFACE_OPEN = 37
@@ -117,7 +116,7 @@ object GameOpcodes {
     const val INTERFACE_ANIMATION = 24
     const val FRIEND_LIST_APPEND = 24 // TODO
     const val CLIENT_PING = 25 // TODO
-    const val OBJECT_ADD = 28 // TODO
+    const val OBJECT_ADD = 82
     const val TILE_TEXT = 32 // TODO
     const val INTERFACE_TEXT = 10
     const val INTERFACE_ITEMS = 20
@@ -127,7 +126,7 @@ object GameOpcodes {
     const val PRIVATE_QUICK_CHAT_FROM = 42 // TODO
     const val REGION = 19
     const val INTERFACE_CUSTOM_HEAD = 44 // TODO
-    const val OBJECT_REMOVE = 45 // TODO
+    const val OBJECT_REMOVE = 58
     const val UPDATE_CHUNK = 41
     const val OBJECT_ANIMATION_SPECIFIC = 47 // TODO
     const val FLOOR_ITEM_ADD = 63

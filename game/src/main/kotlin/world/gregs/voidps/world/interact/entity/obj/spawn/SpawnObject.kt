@@ -26,7 +26,7 @@ fun spawnObject(
     tile: Tile,
     type: Int,
     rotation: Int,
-    ticks: Int,
+    ticks: Int = -1,
     owner: String? = null
 ) = get<EventBus>().emit(
     SpawnObject(

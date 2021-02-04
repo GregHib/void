@@ -23,7 +23,7 @@ class ObjectRemoveEncoder : Encoder(OBJECT_REMOVE) {
         type: Int,
         rotation: Int
     ) = player.send(2, flush = false) {
-        writeByte(tile, type = Modifier.INVERSE)
-        writeByte((type shl 2) or rotation)
+        writeByte((type shl 2) or rotation, Modifier.ADD)
+        writeByte(tile)
     }
 }

@@ -1,10 +1,7 @@
 package world.gregs.voidps.network.codec.service
 
-/**
- * @author Tyluur <contact@kiaira.tech>
- * @since February 18, 2020
- */
 object ServiceOpcodes {
+    const val LOGIN_DETAILS = 2
     const val GAME_CONNECTION = 14
     const val FILE_SERVICE = 15
     const val GAME_LOGIN = 16
