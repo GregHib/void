@@ -27,9 +27,9 @@ class FloorItemRevealEncoder : Encoder(FLOOR_ITEM_REVEAL) {
         amount: Int,
         owner: Int
     ) = player.send(7, flush = false) {
-        writeShort(owner, type = Modifier.ADD)
-        writeByte(tile, type = Modifier.ADD)
-        writeShort(id, order = Endian.LITTLE)
-        writeShort(amount)
+        writeShort(amount, order = Endian.LITTLE)
+        writeByte(tile)
+        writeShort(id, Modifier.ADD)
+        writeShort(owner, Modifier.ADD)
     }
 }

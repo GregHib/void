@@ -98,14 +98,14 @@ object GameOpcodes {
 
     const val PLAYER_OPTION = 0
     const val INTERFACE_SPRITE = 32
-    const val INTERFACE_COLOUR = 82 // TODO
+    const val INTERFACE_COLOUR = 82 // TODO 75/2?
     const val INTERFACE_COMPONENT_SETTINGS = 34
     const val INTERFACE_REFRESH = 4 // TODO
     const val INTERFACE_OPEN = 37
     const val NPC_UPDATING = 118
     const val INTERFACE_SCROLL_VERTICAL = 8 // TODO
     const val INTERFACE_ITEM = 90
-    const val OBJECT_PRE_FETCH = 11 // TODO
+    const val OBJECT_PRE_FETCH = 79
     const val FRIENDS_CHAT_UPDATE = 12 // TODO
     const val RUN_ENERGY = 4
     const val CLIENT_VARBIT = 73
@@ -128,7 +128,7 @@ object GameOpcodes {
     const val INTERFACE_CUSTOM_HEAD = 44 // TODO
     const val OBJECT_REMOVE = 58
     const val UPDATE_CHUNK = 41
-    const val OBJECT_ANIMATION_SPECIFIC = 47 // TODO
+    const val OBJECT_ANIMATION_SPECIFIC = 17
     const val FLOOR_ITEM_ADD = 63
     const val SCRIPT = 8
     const val LOGOUT = 55
@@ -136,22 +136,22 @@ object GameOpcodes {
     const val IGNORE_LIST = 57// TODO
     const val INTERFACE_MODEL = 58// TODO
     const val LOGOUT_LOBBY = 59// TODO
-    const val FLOOR_ITEM_REVEAL = 60// TODO
-    const val PROJECTILE_ADD = 62// TODO
+    const val FLOOR_ITEM_REVEAL = 109
+    const val PROJECTILE_ADD = 15
     const val MINI_SOUND = 65// TODO
     const val INTERFACE_WINDOW = 102
     const val PLAYER_UPDATING = 105
     const val INTERFACE_CLOSE = 112
     const val PRIVATE_CHAT_TO = 77// TODO
     const val INTERFACE_ITEMS_UPDATE = 28
-    const val FLOOR_ITEM_UPDATE = 83// TODO
+    const val FLOOR_ITEM_UPDATE = 71
     const val CLIENT_VARBIT_LARGE = 68
     const val FRIEND_LIST = 85// TODO
     const val WORLD_LIST = 88// TODO
-    const val PROJECTILE_DISPLACE = 90// TODO
+    const val PROJECTILE_DISPLACE = 51
     const val PUBLIC_CHAT = 91// TODO
     const val SKILL_LEVEL = 47
-    const val OBJECT_ANIMATION = 96// TODO
+    const val OBJECT_ANIMATION = 29
     const val PRIVATE_QUICK_CHAT_TO = 97// TODO
     const val INTERFACE_NPC_HEAD = 86
     const val OBJECT_CUSTOMISE = 99// TODO
@@ -168,7 +168,7 @@ object GameOpcodes {
     const val SOUND_AREA = 119// TODO
     const val PRIVATE_CHAT_FROM = 120// TODO
     const val INTERFACE_COMPONENT_ORIENTATION = 122// TODO
-    const val DYNAMIC_REGION = 128// TODO
+    const val DYNAMIC_REGION = 70
     const val PRIVATE_STATUS = 134// TODO
     const val FRIEND_LIST_DISCONNECT = 135// TODO
 }

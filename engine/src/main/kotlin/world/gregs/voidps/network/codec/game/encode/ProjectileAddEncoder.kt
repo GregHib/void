@@ -37,6 +37,7 @@ class ProjectileAddEncoder : Encoder(PROJECTILE_ADD) {
         curve: Int,
         startOffset: Int
     ) = player.send(16, flush = false) {
+        println("Encode projectile $offset $distanceX $distanceY $targetIndex $id $startHeight $endHeight $delay $duration $curve $startOffset")
         writeByte(offset)
         writeByte(distanceX)
         writeByte(distanceY)

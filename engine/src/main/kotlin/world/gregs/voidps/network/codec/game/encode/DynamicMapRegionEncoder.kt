@@ -36,11 +36,11 @@ class DynamicMapRegionEncoder : Encoder(DYNAMIC_REGION, PacketSize.SHORT) {
             }
             finishBitAccess(bitIndex)
         }
-        writeShort(chunkY)
         writeByte(mapSize)
-        writeByte(forceRefresh, Modifier.SUBTRACT)
-        writeByte(3, Modifier.SUBTRACT)// Was at dynamic region? 5 or 3 TODO test
-        writeShort(chunkX, order = Endian.LITTLE)
+        writeShort(chunkY, Modifier.ADD, Endian.LITTLE)
+        writeByte(forceRefresh)
+        writeShort(chunkX, Modifier.ADD)
+        writeByte(3, Modifier.ADD)// Was at dynamic region? 5 or 3 TODO test
         var bitIndex = startBitAccess()
         chunks.forEach { data ->
             bitIndex += writeBits(bitIndex, 1, data != null)

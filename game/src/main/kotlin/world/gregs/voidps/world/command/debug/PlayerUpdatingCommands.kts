@@ -17,6 +17,7 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
+import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 val login: LoginQueue by inject()
@@ -92,6 +93,10 @@ Command where { prefix == "watch" } then {
     if (bot != null) {
         player.watch(bot)
     }
+}
+
+Command where { prefix == "shoot" } then {
+    player.shoot(15, player.tile.add(y = 10))
 }
 
 Command where { prefix == "face" } then {

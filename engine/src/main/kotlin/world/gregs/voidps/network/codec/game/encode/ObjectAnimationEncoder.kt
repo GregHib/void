@@ -29,8 +29,8 @@ class ObjectAnimationEncoder : Encoder(OBJECT_ANIMATION) {
         type: Int,
         rotation: Int
     ) = player.send(7) {
-        writeInt(tile, order = Endian.MIDDLE, type = Modifier.INVERSE)
-        writeShort(animation, type = Modifier.ADD)
-        writeByte((type shl 2) or rotation, type = Modifier.SUBTRACT)
+        writeShort(animation, Modifier.ADD, Endian.LITTLE)
+        writeByte((type shl 2) or rotation, Modifier.ADD)
+        writeInt(tile, Modifier.INVERSE, Endian.MIDDLE)
     }
 }
