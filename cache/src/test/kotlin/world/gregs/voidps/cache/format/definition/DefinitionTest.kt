@@ -1,11 +1,9 @@
 package world.gregs.voidps.cache.format.definition
 
 import kotlinx.serialization.*
+import kotlinx.serialization.modules.SerializersModule
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.buffer.DataType
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 
 @ExperimentalSerializationApi
 internal class DefinitionTest {
@@ -43,10 +41,11 @@ internal class DefinitionTest {
     )
 
     @Serializable
-    data class UnsignedData(
-        @MetaData(DataType.BYTE, false, Modifier.NONE, Endian.BIG)
+    data class CustomData(
         @Operation(1)
-        val value: Byte = 0,
+        val value: UByte = 0u,
+        @Operation(2)
+        val medium: Medium = Medium(0)
     )
 
     @Serializable
@@ -85,10 +84,10 @@ internal class DefinitionTest {
     }
 
     @Test
-    fun `Decode unsigned`() {
-        val data = byteArrayOf(1, -100)
-        val def: UnsignedData = Definition.decodeFromByteArray(data)
-        assertEquals(UnsignedData(156.toByte()), def)
+    fun `Decode custom types`() {
+        val data = byteArrayOf(1, -100, 2, 15, 255.toByte(), 255.toByte())
+        val def: CustomData = Definition.decodeFromByteArray(data)
+        assertEquals(CustomData(156u, Medium(0xfffff)), def)
     }
 
     @Test
@@ -105,12 +104,12 @@ internal class DefinitionTest {
         assertEquals(DuplicateData(42, 32), def)
     }
 
-    @Test
-    fun `Decode int array`() {
-        val data = byteArrayOf(1, 2, 3, 4)
-        val def: IntArrayData = Definition.decodeFromByteArray(data)
-        assertEquals(IntArrayData(intArrayOf(3, 4)), def)
-    }
+//    @Test
+//    fun `Decode int array`() {
+//        val data = byteArrayOf(1, 2, 3, 4)
+//        val def: IntArrayData = Definition.decodeFromByteArray(data)
+//        assertEquals(IntArrayData(intArrayOf(3, 4)), def)
+//    }
 
     @Test
     fun `Encode ignores default values`() {

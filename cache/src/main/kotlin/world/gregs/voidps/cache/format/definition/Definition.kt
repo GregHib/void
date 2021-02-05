@@ -5,6 +5,7 @@ import kotlinx.serialization.modules.EmptySerializersModule
 import kotlinx.serialization.modules.SerializersModule
 import world.gregs.voidps.cache.format.definition.internal.DefinitionDecoder
 import world.gregs.voidps.cache.format.definition.internal.DefinitionEncoder
+import world.gregs.voidps.cache.format.definition.internal.MediumSerializer
 
 @ExperimentalSerializationApi
 sealed class Definition(

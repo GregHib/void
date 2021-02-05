@@ -11,8 +11,6 @@ import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.cache.format.definition.Definition
-import world.gregs.voidps.cache.format.definition.MetaData
 
 internal open class DefinitionEncoder(
     private val encodeDefaults: Boolean,
@@ -22,7 +20,6 @@ internal open class DefinitionEncoder(
     private val writer: Writer = BufferWriter()
     private lateinit var indexCache: Map<Int, IntArray>
     private lateinit var setterCache: Map<Int, Long>
-    private lateinit var metaCache: Map<Int, MetaData>
 
     init {
         populateCache(descriptor)
@@ -32,7 +29,6 @@ internal open class DefinitionEncoder(
         val elements = descriptor.elementsCount
         val indices = mutableMapOf<Int, MutableList<Int>>()
         val setters = mutableMapOf<Int, Long>()
-        val types = mutableMapOf<Int, MetaData>()
         for (index in 0 until elements) {
             val code = descriptor.getOperationOrNull(index) ?: -1
             if (code != -1) {
@@ -42,14 +38,9 @@ internal open class DefinitionEncoder(
             if (value != -1L) {
                 setters[index] = value
             }
-            val dataType = descriptor.getDataOrNull(index)
-            if (dataType != null) {
-                types[index] = dataType
-            }
         }
         indexCache = indices.mapValues { (_, value) -> value.reversed().toIntArray() }
         setterCache = setters
-        metaCache = types
     }
 
     override fun shouldEncodeElementDefault(descriptor: SerialDescriptor, index: Int) = encodeDefaults
@@ -65,20 +56,19 @@ internal open class DefinitionEncoder(
         }
     }
 
-    private fun writeType(index: Int, type: DataType, value: Number) {
-        val data = metaCache[index]
-        writer.write(data?.type ?: type, value, data?.modifier ?: Modifier.NONE, data?.endian ?: Endian.BIG)
+    private fun writeType(type: DataType, value: Number) {
+        writer.write(type, value)
     }
 
     override fun encodeTaggedBoolean(tag: Int, value: Boolean) = encodeTaggedByte(tag, if (value) 1 else 0)
 
-    override fun encodeTaggedByte(tag: Int, value: Byte) = encodeOperation(tag) { writeType(tag, DataType.BYTE, value) }
+    override fun encodeTaggedByte(tag: Int, value: Byte) = encodeOperation(tag) { writeType(DataType.BYTE, value) }
 
-    override fun encodeTaggedShort(tag: Int, value: Short) = encodeOperation(tag) { writeType(tag, DataType.SHORT, value) }
+    override fun encodeTaggedShort(tag: Int, value: Short) = encodeOperation(tag) { writeType(DataType.SHORT, value) }
 
-    override fun encodeTaggedInt(tag: Int, value: Int) = encodeOperation(tag) { writeType(tag, DataType.INT, value) }
+    override fun encodeTaggedInt(tag: Int, value: Int) = encodeOperation(tag) { writeType(DataType.INT, value) }
 
-    override fun encodeTaggedLong(tag: Int, value: Long) = encodeOperation(tag) { writeType(tag, DataType.LONG, value) }
+    override fun encodeTaggedLong(tag: Int, value: Long) = encodeOperation(tag) { writeType(DataType.LONG, value) }
 
     override fun encodeTaggedString(tag: Int, value: String) = encodeOperation(tag) { writer.writeString(value) }
 

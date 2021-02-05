@@ -15,8 +15,7 @@ import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.cache.format.definition.Definition
-import world.gregs.voidps.cache.format.definition.MetaData
+import world.gregs.voidps.cache.format.definition.Medium
 
 @OptIn(InternalSerializationApi::class)
 internal class DefinitionDecoder(
@@ -26,7 +25,6 @@ internal class DefinitionDecoder(
 
     private lateinit var indexCache: Map<Int, IntArray>
     private lateinit var setterCache: Map<Int, Long>
-    private lateinit var metaCache: Map<Int, MetaData>
     val reader: Reader = BufferReader(bytes)
 
     var opcode = 0
@@ -40,7 +38,6 @@ internal class DefinitionDecoder(
         val elements = descriptor.elementsCount
         val indices = mutableMapOf<Int, MutableList<Int>>()
         val setters = mutableMapOf<Int, Long>()
-        val types = mutableMapOf<Int, MetaData>()
         for (index in 0 until elements) {
             val tag = descriptor.getOperationOrNull(index) ?: -1
             if (tag != -1) {
@@ -50,14 +47,9 @@ internal class DefinitionDecoder(
             if (value != -1L) {
                 setters[index] = value
             }
-            val dataType = descriptor.getDataOrNull(index)
-            if (dataType != null) {
-                types[index] = dataType
-            }
         }
         indexCache = indices.mapValues { (_, value) -> value.reversed().toIntArray() }
         setterCache = setters
-        metaCache = types
     }
 
     private fun getIndexByTag(tag: Int, index: Int): Int {
@@ -68,13 +60,8 @@ internal class DefinitionDecoder(
         return setterCache[index]
     }
 
-    private fun readType(index: Int, type: DataType): Long {
-        val data = metaCache[index]
-        return if (data == null || data.signed) {
-            reader.readSigned(data?.type ?: type, data?.modifier ?: Modifier.NONE, data?.endian ?: Endian.BIG)
-        } else {
-            reader.readUnsigned(data.type, data.modifier, data.endian)
-        }
+    private fun readType(type: DataType): Long {
+        return reader.readSigned(type, Modifier.NONE, Endian.BIG)
     }
 
     private fun getIndicesByTag(tag: Int): Int {
@@ -106,11 +93,14 @@ internal class DefinitionDecoder(
     }
 
     override fun decodeTaggedBoolean(tag: Int): Boolean = decodeTaggedByte(tag).toInt() == 1
-    override fun decodeTaggedByte(tag: Int): Byte = getSetter(tag)?.toByte() ?: readType(tag, DataType.BYTE).toByte()
-    override fun decodeTaggedShort(tag: Int): Short = getSetter(tag)?.toShort() ?: readType(tag, DataType.SHORT).toShort()
-    override fun decodeTaggedInt(tag: Int): Int = getSetter(tag)?.toInt() ?: readType(tag, DataType.INT).toInt()
-    override fun decodeTaggedLong(tag: Int): Long = getSetter(tag) ?: readType(tag, DataType.LONG)
+    override fun decodeTaggedByte(tag: Int): Byte = getSetter(tag)?.toByte() ?: readType(DataType.BYTE).toByte()
+    override fun decodeTaggedShort(tag: Int): Short = getSetter(tag)?.toShort() ?: readType(DataType.SHORT).toShort()
+    override fun decodeTaggedInt(tag: Int): Int = getSetter(tag)?.toInt() ?: readType(DataType.INT).toInt()
+    override fun decodeTaggedLong(tag: Int): Long = getSetter(tag) ?: readType(DataType.LONG)
     override fun decodeTaggedString(tag: Int): String = reader.readString()
+
+    fun decodeTaggedMedium(tag: Int): Medium = Medium((getSetter(tag) ?: readType(DataType.MEDIUM)).toInt())
+    fun decodeMedium(): Medium = decodeTaggedMedium(popTag())
 
     override fun decodeElementIndex(descriptor: SerialDescriptor): Int {
         if (index <= 0) {
