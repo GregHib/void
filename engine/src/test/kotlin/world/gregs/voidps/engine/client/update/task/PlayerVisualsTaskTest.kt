@@ -199,7 +199,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         updateTask.writeFlag(writer, 0x100)
         // Then
         val reader = BufferReader(writer.buffer.array())
-        assertEquals(0x80, reader.readUnsignedByte())
+        assertEquals(0x40, reader.readUnsignedByte())
         assertEquals(0x1, reader.readUnsignedByte())
     }
 
@@ -212,8 +212,8 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         updateTask.writeFlag(writer, 0x10000)
         // Then
         val reader = BufferReader(writer.buffer.array())
-        assertEquals(0x80, reader.readUnsignedByte())
-        assertEquals(0x8, reader.readUnsignedByte())
+        assertEquals(0x40, reader.readUnsignedByte())
+        assertEquals(0x40, reader.readUnsignedByte())
         assertEquals(0x1, reader.readUnsignedByte())
     }
 }
