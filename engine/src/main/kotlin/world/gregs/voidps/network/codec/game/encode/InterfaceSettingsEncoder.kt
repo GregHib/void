@@ -31,7 +31,6 @@ class InterfaceSettingsEncoder : Encoder(INTERFACE_COMPONENT_SETTINGS) {
         toSlot: Int,
         settings: Int
     ) = player.send(12) {
-        println("Encode settings $fromSlot $toSlot $id $component $settings")
         writeShort(toSlot, type = Modifier.ADD)
         writeShort(fromSlot, order = Endian.LITTLE)
         writeInt(id shl 16 or component)

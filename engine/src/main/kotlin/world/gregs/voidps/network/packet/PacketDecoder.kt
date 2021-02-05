@@ -76,7 +76,6 @@ class PacketDecoder : ByteToMessageDecoder() {
             logger.debug { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
 
             //Handle data
-            println("Read packet $opcode $length")
             decoder.decode(ctx, BufferReader(payload))
 
             logger.debug { "Message decoded successful [decoder=${decoder.javaClass.simpleName}, codec=${ctx.channel().getCodec()}]" }

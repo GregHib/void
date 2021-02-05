@@ -110,6 +110,8 @@ fun Player.isOpen(interfaceName: String) = interfaces.contains(interfaceName)
 
 fun Player.hasOpen(interfaceType: String) = interfaces.get(interfaceType) != null
 
+fun Player.hasScreenOpen() = hasOpen("main_screen") || hasOpen("underlay")
+
 fun Player.close(interfaceName: String) = interfaces.close(interfaceName)
 
 fun Player.closeType(interfaceType: String): Boolean {
