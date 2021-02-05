@@ -40,13 +40,18 @@ PlayerRegistered then {
     player.equipment.listeners.add { list ->
         for ((index, _, _) in list) {
             if (index == EquipSlot.Weapon.index) {
-                val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
-                val def = itemDecoder.get(weapon)
-                val anim = def.getParam(644, 1426)
-                player.emote = anim
+                updateWeaponEmote(player)
             }
         }
     }
+    updateWeaponEmote(player)
+}
+
+fun updateWeaponEmote(player: Player) {
+    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val def = itemDecoder.get(weapon)
+    val anim = def.getParam(644, 1426)
+    player.emote = anim
 }
 
 fun failedToRemoveOtherHand(player: Player, item: ItemDefinition): Boolean {

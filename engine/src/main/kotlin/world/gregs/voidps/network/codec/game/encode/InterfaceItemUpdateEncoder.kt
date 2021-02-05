@@ -26,7 +26,6 @@ class InterfaceItemUpdateEncoder : Encoder(INTERFACE_ITEMS_UPDATE, PacketSize.SH
         updates: List<Triple<Int, Int, Int>>,
         primary: Boolean
     ) = player.send(getLength(updates)) {
-        println("Send item update $updates")
         writeShort(key)
         writeByte(primary)
         for ((index, item, amount) in updates) {
