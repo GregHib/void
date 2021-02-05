@@ -18,6 +18,7 @@ val gameCodec = module {
     single { FloorItemUpdateEncoder() }
     single { GraphicAreaEncoder() }
     single { InterfaceCloseEncoder() }
+    single { InterfaceColourEncoder() }
     single { InterfaceHeadNPCEncoder() }
     single { InterfaceHeadPlayerEncoder() }
     single { InterfaceItemEncoder() }
@@ -29,14 +30,12 @@ val gameCodec = module {
     single { InterfaceTextEncoder() }
     single { InterfaceUpdateEncoder() }
     single { InterfaceVisibilityEncoder() }
-    single { LogoutLobbyEncoder() }
     single { LogoutEncoder() }
     single { MapRegionEncoder() }
     single { NPCUpdateEncoder() }
     single { ObjectAddEncoder() }
     single { ObjectAnimationEncoder() }
     single { ObjectAnimationSpecificEncoder() }
-    single { ObjectCustomiseEncoder() }
     single { ObjectPreloadEncoder() }
     single { ObjectRemoveEncoder() }
     single { PlayerUpdateEncoder() }

@@ -20,7 +20,7 @@ class InterfaceClosedHandler : Handler() {
         val session = context.channel()
         val player = sessions.get(session) ?: return
         executor.sync {
-            val id = player.interfaces.get("main_screen")
+            val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay")
             if(id != null) {
                 player.interfaces.close(id)
             }

@@ -114,6 +114,9 @@ area_status:
   fixedIndex: 13
   resizeIndex: 7
 
+underlay:
+  index: 7
+
 overlay:
   index: 8
 

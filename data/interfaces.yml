@@ -937,7 +937,7 @@ barbarian_assult_waiting:
 
 skill_guide:
   id: 499
-  type: main_screen
+  type: underlay
 
 poh_hangman_german:
   id: 507

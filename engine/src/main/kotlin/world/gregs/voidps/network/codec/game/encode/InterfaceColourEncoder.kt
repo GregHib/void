@@ -7,7 +7,6 @@ import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.INTERFACE_COLOUR
-import world.gregs.voidps.network.codec.game.GameOpcodes.INTERFACE_SPRITE
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -19,17 +18,16 @@ class InterfaceColourEncoder : Encoder(INTERFACE_COLOUR) {
      * Sends a sprite to a interface component
      * @param id The id of the parent interface
      * @param component The index of the component
-     * @param sprite The sprite id
      */
     fun encode(
         player: Player,
         id: Int,
-        component: Int
+        component: Int,
+        red: Int,
+        green: Int,
+        blue: Int
     ) = player.send(6) {
-        writeInt(id shl 16 or component)
-        val r = 255
-        val g = 0
-        val b = 0
-        writeShort((r shl 10) + (g shl 5) + b, Modifier.ADD)
+        writeShort((red shl 10) + (green shl 5) + blue, Modifier.ADD)
+        writeInt(id shl 16 or component, order = Endian.LITTLE)
     }
 }

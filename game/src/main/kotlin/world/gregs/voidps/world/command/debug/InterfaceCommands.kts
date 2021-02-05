@@ -36,7 +36,7 @@ Command where { prefix == "inter" } then {
 }
 
 fun closeInterface(player: Player): Boolean {
-    val id = player.interfaces.get("main_screen") ?: return false
+    val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay") ?: return false
     return player.interfaces.close(id)
 }
 

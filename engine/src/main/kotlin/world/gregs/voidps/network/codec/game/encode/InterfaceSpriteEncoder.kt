@@ -27,6 +27,6 @@ class InterfaceSpriteEncoder : Encoder(INTERFACE_SPRITE) {
         sprite: Int
     ) = player.send(6) {
         writeShort(sprite, Modifier.ADD)
-        writeInt(id shl 16 or component, order = Endian.LITTLE)
+        writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
     }
 }

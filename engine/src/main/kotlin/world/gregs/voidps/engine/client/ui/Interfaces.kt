@@ -122,7 +122,7 @@ fun Player.closeChildren(interfaceName: String) = interfaces.closeChildren(inter
 suspend fun Action.awaitInterface(name: String) = await<Unit>(Suspension.Interface(name))
 
 suspend fun Player.awaitInterfaces(): Boolean {
-    val id = interfaces.get("main_screen") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
+    val id = interfaces.get("main_screen") ?: interfaces.get("underlay") ?: interfaces.get("dialogue_box") ?: interfaces.get("dialogue_box_small")
     if (id != null) {
         action.await<Unit>(Suspension.Interface(id))
     }
