@@ -1,6 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
 import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.write.writeInt
 import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -22,7 +23,7 @@ class VarcLargeEncoder : Encoder(CLIENT_VARC_LARGE) {
         id: Int,
         value: Int
     ) = player.send(6) {
+        writeInt(value, order = Endian.LITTLE)
         writeShort(id, order = Endian.LITTLE)
-        writeInt(value)
     }
 }

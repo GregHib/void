@@ -207,7 +207,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
     }
 
     @Test
-    fun `Write medium flag`() {
+    fun `Write large flag`() {
         // Given
         val updateTask: NPCVisualsTask = get()
         val writer = BufferWriter()
@@ -215,21 +215,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         updateTask.writeFlag(writer, 0x100)
         // Then
         val reader = BufferReader(writer.buffer.array())
-        assertEquals(0x80, reader.readUnsignedByte())
-        assertEquals(0x1, reader.readUnsignedByte())
-    }
-
-    @Test
-    fun `Write large flag`() {
-        // Given
-        val updateTask: NPCVisualsTask = get()
-        val writer = BufferWriter()
-        // When
-        updateTask.writeFlag(writer, 0x10000)
-        // Then
-        val reader = BufferReader(writer.buffer.array())
-        assertEquals(0x80, reader.readUnsignedByte())
-        assertEquals(0x80, reader.readUnsignedByte())
+        assertEquals(0x10, reader.readUnsignedByte())
         assertEquals(0x1, reader.readUnsignedByte())
     }
 }

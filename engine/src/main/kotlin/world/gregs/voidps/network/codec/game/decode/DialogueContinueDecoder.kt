@@ -11,8 +11,8 @@ class DialogueContinueDecoder : Decoder(6) {
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.continueDialogue(
             context,
-            packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
-            packet.readShort(Modifier.ADD, Endian.LITTLE)
+            button = packet.readShort(Modifier.ADD),
+            hash = packet.readInt(order = Endian.MIDDLE)
         )
     }
 

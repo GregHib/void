@@ -10,12 +10,12 @@ class InterfaceOnPlayerDecoder : Decoder(1) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnPlayer(
-            context,
-            packet.readShort(order = Endian.LITTLE),
-            packet.readInt(order = Endian.LITTLE),
-            packet.readShort(),
-            packet.readBoolean(Modifier.SUBTRACT),
-            packet.readShort(Modifier.ADD, Endian.LITTLE)
+            context = context,
+            player = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            type = packet.readShort(order = Endian.LITTLE),
+            slot = packet.readShort(order = Endian.LITTLE),
+            hash = packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
+            run = packet.readBoolean(Modifier.INVERSE)
         )
     }
 

@@ -19,7 +19,7 @@ data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual {
     }
 }
 
-const val FACE_DIRECTION_MASK = 0x20
+const val FACE_DIRECTION_MASK = 0x2
 
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 
@@ -33,7 +33,7 @@ fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.
 
 fun Player.face(entity: Entity) {
     val delta = entity.tile.delta(tile)
-    if(delta != Tile.EMPTY) {
+    if (delta != Tile.EMPTY) {
         face(delta.x, delta.y)
     }
 }

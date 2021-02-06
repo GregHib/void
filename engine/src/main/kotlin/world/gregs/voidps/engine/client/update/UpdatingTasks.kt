@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.client.update.task.player.*
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.update.visual.npc.COMBAT_LEVEL_MASK
-import world.gregs.voidps.engine.entity.character.update.visual.npc.NAME_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TRANSFORM_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
@@ -39,10 +37,10 @@ val updatingTasksModule = module {
             get<Players>(),
             get(named("playerVisualEncoders")),
             intArrayOf(
-                MOVEMENT_TYPE_MASK,
-                APPEARANCE_MASK,
+                FACE_DIRECTION_MASK,
                 TEMPORARY_MOVE_TYPE_MASK,
-                FACE_DIRECTION_MASK
+                APPEARANCE_MASK,
+                MOVEMENT_TYPE_MASK,
             )
         )
     }
@@ -51,8 +49,8 @@ val updatingTasksModule = module {
             get<NPCs>(),
             get(named("npcVisualEncoders")),
             intArrayOf(
-                NAME_MASK,
-                COMBAT_LEVEL_MASK,
+//                NAME_MASK,
+//                COMBAT_LEVEL_MASK,
                 TRANSFORM_MASK,
                 TURN_MASK
             )

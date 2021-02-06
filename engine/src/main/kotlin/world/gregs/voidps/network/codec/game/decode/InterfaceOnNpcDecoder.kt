@@ -10,12 +10,12 @@ class InterfaceOnNpcDecoder : Decoder(11) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnNPC(
-            context,
-            packet.readShort(Modifier.ADD, Endian.LITTLE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readShort(order = Endian.LITTLE),
-            packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
-            packet.readBoolean()
+            context = context,
+            slot = packet.readShort(Modifier.ADD, Endian.LITTLE),
+            hash = packet.readInt(),
+            type = packet.readShort(order = Endian.LITTLE),
+            run = packet.readBoolean(Modifier.ADD),
+            npc = packet.readShort(Modifier.ADD)
         )
     }
 

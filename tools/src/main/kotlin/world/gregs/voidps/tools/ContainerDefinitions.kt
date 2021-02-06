@@ -14,9 +14,15 @@ object ContainerDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ContainerDecoder(koin.get())
+        println(decoder.size)
+        var max = 0
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)
+            if (def.length > max) {
+                max = def.length
+            }
         }
+        println("Max length $max")
     }
 }

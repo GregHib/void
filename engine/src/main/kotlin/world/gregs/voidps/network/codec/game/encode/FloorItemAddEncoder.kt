@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.codec.game.encode
 
+import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeShort
@@ -24,8 +25,8 @@ class FloorItemAddEncoder : Encoder(FLOOR_ITEM_ADD) {
         id: Int,
         amount: Int
     ) = player.send(5, flush = false) {
-        writeByte(tile, type = Modifier.INVERSE)
-        writeShort(id, type = Modifier.ADD)
-        writeShort(amount)
+        writeShort(amount, order = Endian.LITTLE)
+        writeShort(id, order = Endian.LITTLE)
+        writeByte(tile)
     }
 }

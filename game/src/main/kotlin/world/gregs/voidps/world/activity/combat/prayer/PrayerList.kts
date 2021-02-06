@@ -27,7 +27,7 @@ InterfaceOpened where { name == "prayer_orb" } then {
 
 InterfaceOpened where { name == "prayer_list" } then {
     player.sendVar(PRAYERS)
-    player.sendVar(PRAYER_POINTS)
+//    player.sendVar(PRAYER_POINTS)
     val quickPrayers = player.getVar(SELECTING_QUICK_PRAYERS, false)
     if(quickPrayers) {
         player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)

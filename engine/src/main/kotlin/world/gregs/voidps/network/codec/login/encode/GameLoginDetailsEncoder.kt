@@ -4,10 +4,11 @@ import io.netty.channel.Channel
 import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.network.codec.Encoder
-import world.gregs.voidps.network.codec.game.GameOpcodes.LOGIN_DETAILS
+import world.gregs.voidps.network.codec.service.ServiceCodec
+import world.gregs.voidps.network.codec.service.ServiceOpcodes
 import world.gregs.voidps.network.packet.PacketSize
 
-class GameLoginDetailsEncoder : Encoder(LOGIN_DETAILS, PacketSize.BYTE) {
+class GameLoginDetailsEncoder : Encoder(ServiceOpcodes.LOGIN_DETAILS, PacketSize.BYTE) {
 
     fun encode(
         channel: Channel,

@@ -92,19 +92,21 @@ class PlayerVisualsTask(
         val size = writer.buffer.writerIndex() - start
         val data = ByteArray(size)
         System.arraycopy(writer.buffer.array(), start, data, 0, size)
-        return data
+        val reversed = data.reversedArray()
+        writer.position(start)
+        writer.writeBytes(reversed)
+        return reversed
     }
 
     fun writeFlag(writer: Writer, dataFlag: Int) {
         var flag = dataFlag
 
         if (flag >= 0x100) {
-            flag = flag or 0x80
+            flag = flag or 0x40
         }
         if (flag >= 0x10000) {
-            flag = flag or 0x800
+            flag = flag or 0x4000
         }
-
         writer.writeByte(flag)
 
         if (flag >= 0x100) {

@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.display.tab
 
 import world.gregs.voidps.engine.client.ui.hasOpen
+import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.event.then
@@ -12,7 +13,7 @@ on(InterfaceOption) {
         name == "options" && component == "graphics" && option == "Graphics Settings"
     }
     then {
-        if(player.hasOpen("main_screen")) {
+        if(player.hasScreenOpen()) {
             player.message("Please close the interface you have open before setting your graphics options.")
             return@then
         }
@@ -25,7 +26,7 @@ on(InterfaceOption) {
         name == "options" && component == "audio" && option == "Audio Settings"
     }
     then {
-        if(player.hasOpen("main_screen")) {
+        if(player.hasScreenOpen()) {
             player.message("Please close the interface you have open before setting your audio options.")
             return@then
         }

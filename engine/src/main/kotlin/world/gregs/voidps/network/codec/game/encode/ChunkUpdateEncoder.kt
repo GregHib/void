@@ -24,8 +24,8 @@ class ChunkUpdateEncoder : Encoder(UPDATE_CHUNK) {
         yOffset: Int,
         plane: Int
     ) = player.send(3, flush = flush) {
+        writeByte(yOffset, Modifier.INVERSE)
+        writeByte(plane, Modifier.ADD)
         writeByte(xOffset, Modifier.ADD)
-        writeByte(yOffset)
-        writeByte(plane, type = Modifier.SUBTRACT)
     }
 }

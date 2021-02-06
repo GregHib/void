@@ -75,20 +75,20 @@ internal class BodyPartsTest {
     fun `Update missing item and look sets to zero`() {
         // Given
         every { equipment.getItem(-1) } returns -1
-        every { equipment.getItem(14) } returns 123
+        every { equipment.getItem(10) } returns 123
         val detail: ItemDefinition = mockk()
         every { definitions.get(123) } returns detail
         every { detail["equip", -1] } returns 0
-        body.update(BodyPart.Aura)
-        every { equipment.getItem(14) } returns -1
+        body.update(BodyPart.Feet)
+        every { equipment.getItem(10) } returns -1
         val otherDetail: ItemDefinition = mockk()
         every { definitions.get(-1) } returns otherDetail
         every { otherDetail["type", EquipType.None] } returns EquipType.None
         // When
-        val result = body.update(BodyPart.Aura)
+        val result = body.update(BodyPart.Feet)
         // Then
         assertTrue(result)
-        assertEquals(0, body.get(12))
+        assertEquals(0, body.get(6))
     }
 
     @Test

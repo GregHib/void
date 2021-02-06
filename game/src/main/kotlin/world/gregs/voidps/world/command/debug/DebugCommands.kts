@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
+import world.gregs.voidps.network.codec.game.encode.InterfaceColourEncoder
+import world.gregs.voidps.network.codec.game.encode.InterfaceVisibilityEncoder
 import world.gregs.voidps.network.codec.game.encode.sendContainerItems
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.command.Command
@@ -24,10 +26,11 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
-    val collisions: Collisions = get()
-    println(get<Objects>().get(player.tile))
-    println(collisions.check(player.tile.x, player.tile.y, player.tile.plane, CollisionFlag.BLOCKED))
-    println(collisions[player.tile.x, player.tile.y + 1, player.tile.plane])
+    val encoder: InterfaceColourEncoder = get()
+    encoder.encode(player, 746, 226, 255, 0, 0)
+    val encoder2: InterfaceVisibilityEncoder = get()
+    encoder2.encode(player, 746, 226, true)
+    println("Sent")
 }
 
 Command where { prefix == "sendItems" } then {

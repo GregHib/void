@@ -10,13 +10,13 @@ class InterfaceOnInterfaceDecoder : Decoder(16) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.interfaceOnInterface(
-            context,
-            packet.readInt(order = Endian.MIDDLE),
-            packet.readShort(Modifier.ADD),
-            packet.readShort(Modifier.ADD, Endian.LITTLE),
-            packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
-            packet.readShort(Modifier.ADD),
-            packet.readShort(order = Endian.LITTLE)
+            context = context,
+            fromHash = packet.readInt(),
+            toHash = packet.readInt(Modifier.INVERSE, Endian.MIDDLE),
+            fromItem = packet.readShort(Modifier.ADD),
+            from = packet.readShort(),
+            toItem = packet.readShort(Modifier.ADD),
+            to = packet.readShort()
         )
     }
 

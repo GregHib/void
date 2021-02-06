@@ -24,7 +24,7 @@ data class Appearance(
     var hidden: Boolean = false,
     var transform: Int = -1,
     val body: BodyParts,
-    val colours: IntArray = IntArray(10),
+    val colours: IntArray = IntArray(5),
     var emote: Int = 1426,
     var displayName: String = "",
     var combatLevel: Int = 3,
@@ -92,13 +92,13 @@ data class Appearance(
     }
 }
 
-const val APPEARANCE_MASK = 0x8
+const val APPEARANCE_MASK = 0x10
 
 fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
 val Player.appearance: Appearance
     get() = visuals.getOrPut(APPEARANCE_MASK) {
-        val bodyParts = BodyParts(equipment, get(), intArrayOf(1, 11, 18, 26, 33, 36, 42))
+        val bodyParts = BodyParts(equipment, get(), intArrayOf(3, 14, 18, 26, 34, 38, 42))
         BodyPart.all.forEach {
             bodyParts.updateConnected(it)
         }

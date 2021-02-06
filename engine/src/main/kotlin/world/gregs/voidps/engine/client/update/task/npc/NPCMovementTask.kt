@@ -38,7 +38,7 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Engin
             if (!movement.traversal.blocked(npc.tile, step)) {
                 movement.walkStep = step
                 movement.delta = step.delta
-                npc.movementType = NPCMoveType.Walk
+                npc.movementType = if (npc.crawling) NPCMoveType.Crawl else NPCMoveType.Walk
                 if (movement.running) {
                     if (steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
@@ -49,7 +49,7 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Engin
                             npc.movementType = NPCMoveType.Run
                         }
                     } else {
-                        npc.movementType = NPCMoveType.Walk
+                        npc.movementType = if (npc.crawling) NPCMoveType.Crawl else NPCMoveType.Walk
                     }
                 }
             }

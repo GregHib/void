@@ -29,8 +29,8 @@ class InterfaceOpenEncoder : Encoder(INTERFACE_OPEN) {
         component: Int,
         id: Int
     ) = player.send(7) {
-        writeShort(id, Modifier.ADD, Endian.LITTLE)
+        writeShort(id, order = Endian.LITTLE)
         writeInt(parent shl 16 or component, order = Endian.LITTLE)
-        writeByte(permanent)
+        writeByte(permanent, Modifier.ADD)
     }
 }

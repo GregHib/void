@@ -38,6 +38,7 @@ import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.game.GameOpcodes
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
+import world.gregs.voidps.network.codec.service.ServiceOpcodes
 import world.gregs.voidps.network.networkCodecs
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
@@ -118,7 +119,8 @@ object Main {
 
     private fun registerLoginHandlers() {
         val login: LoginCodec = get()
-        login.registerHandler(GameOpcodes.GAME_LOGIN, GameLoginHandler())
+        login.registerHandler(ServiceOpcodes.GAME_LOGIN, GameLoginHandler())
+        login.registerHandler(ServiceOpcodes.GAME_RECONNECT, GameLoginHandler())
     }
 
     private fun registerGameHandlers() {
@@ -127,10 +129,10 @@ object Main {
         game.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueHandler())
         game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionHandler())
         game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionHandler())
+        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_3, FloorItemOptionHandler())
         game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionHandler())
         game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_6, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.ENTER_INTEGER, IntEntryHandler())
+        game.registerHandler(GameOpcodes.INTEGER_ENTRY, IntEntryHandler())
         game.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedHandler())
         game.registerHandler(GameOpcodes.INTERFACE_OPTION_1, InterfaceOptionHandler())
         game.registerHandler(GameOpcodes.INTERFACE_OPTION_2, InterfaceOptionHandler())
@@ -148,13 +150,11 @@ object Main {
         game.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionHandler())
         game.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionHandler())
         game.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_6, NPCOptionHandler())
         game.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionHandler())
         game.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionHandler())
         game.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionHandler())
         game.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionHandler())
         game.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_6, ObjectOptionHandler())
         game.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionHandler())
         game.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionHandler())
         game.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionHandler())
@@ -163,8 +163,6 @@ object Main {
         game.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionHandler())
         game.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionHandler())
         game.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_9, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_10, PlayerOptionHandler())
         game.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedHandler())
         game.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeHandler())
         game.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryHandler())

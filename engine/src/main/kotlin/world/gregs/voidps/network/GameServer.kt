@@ -18,7 +18,6 @@ import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
 import world.gregs.voidps.network.codec.service.ServiceCodec
 import world.gregs.voidps.network.codec.setCodec
-import world.gregs.voidps.network.codec.update.UpdateCodec
 import world.gregs.voidps.network.connection.ChannelAdapter
 import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.network.packet.PacketDecoder
@@ -78,5 +77,4 @@ val networkCodecs = module {
     single(createdAtStart = true) { GameCodec().apply { run() } }
     single(createdAtStart = true) { LoginCodec().apply { run() } }
     single(createdAtStart = true) { ServiceCodec().apply { run() } }
-    single(createdAtStart = true) { UpdateCodec().apply { run() } }
 }

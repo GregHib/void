@@ -1,7 +1,9 @@
 package world.gregs.voidps.network.codec.game.encode
 
 import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeInt
 import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -34,11 +36,11 @@ class ContainerItemsEncoder : Encoder(INTERFACE_ITEMS, PacketSize.SHORT) {
         writeShort(items.size)
         for ((index, item) in items.withIndex()) {
             val amount = amounts[index]
-            writeByte(if (amount >= 255) 255 else amount)
+            writeByte(if (amount >= 255) 255 else amount, Modifier.ADD)
             if (amount >= 255) {
-                writeInt(amount)
+                writeInt(amount, order = Endian.MIDDLE)
             }
-            writeShort(item + 1, order = Endian.LITTLE)
+            writeShort(item + 1, Modifier.ADD)
         }
     }
 

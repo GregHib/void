@@ -16,6 +16,7 @@ object NPCDefinitions {
 
         val list = mutableListOf<NPCDefinition>()
         val decoder = NPCDecoder(koin.get(), false)
+        println(decoder.size)
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.startsWith("saradomin owl", true)) {

@@ -27,8 +27,8 @@ class ObjectAnimationSpecificEncoder : Encoder(OBJECT_ANIMATION_SPECIFIC) {
         type: Int,
         rotation: Int
     ) = player.send(4, flush = false) {
-        writeShort(animation, type = Modifier.ADD, order = Endian.LITTLE)
-        writeByte(tile, type = Modifier.ADD)
-        writeByte((type shl 2) or rotation)
+        writeShort(animation, order = Endian.LITTLE)
+        writeByte(tile, Modifier.SUBTRACT)
+        writeByte((type shl 2) or rotation, Modifier.INVERSE)
     }
 }

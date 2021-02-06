@@ -73,19 +73,13 @@ class NPCVisualsTask(
         var flag = dataFlag
 
         if (flag >= 0x100) {
-            flag = flag or 0x80
-        }
-        if (flag >= 0x10000) {
-            flag = flag or 0x8000
+            flag = flag or 0x10
         }
 
         writer.writeByte(flag)
 
         if (flag >= 0x100) {
             writer.writeByte(flag shr 8)
-        }
-        if (flag >= 0x10000) {
-            writer.writeByte(flag shr 16)
         }
     }
 

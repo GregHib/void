@@ -26,7 +26,7 @@ class InterfaceVisibilityEncoder : Encoder(INTERFACE_COMPONENT_VISIBILITY) {
         component: Int,
         hide: Boolean
     ) = player.send(5) {
-        writeInt(id shl 16 or component, order = Endian.MIDDLE)
         writeByte(hide, Modifier.ADD)
+        writeInt(id shl 16 or component, order = Endian.LITTLE)
     }
 }

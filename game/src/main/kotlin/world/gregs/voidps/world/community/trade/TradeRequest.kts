@@ -96,6 +96,7 @@ fun startTrade(player: Player, other: Player) {
             player.inventory.listeners.remove(inventoryListener)
             reset(player, other)
             player.closeType("main_screen")
+            player.closeType("underlay")
             player.interfaces.close("trade_side")
             player.interfaces.open("inventory")
         }

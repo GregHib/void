@@ -62,7 +62,7 @@ class PacketDecoder : ByteToMessageDecoder() {
         }
         if (state == State.Payload) {
             if (buf.readableBytes() < length) {
-                logger.error { "Unable to decode payload from buffer - length=$length, readable=${buf.readableBytes()}." }
+                logger.error { "Unable to decode payload from buffer - opcode=${opcode}, length=$length, readable=${buf.readableBytes()}." }
                 return
             }
 

@@ -1,7 +1,9 @@
 package world.gregs.voidps.network.codec
 
 import io.netty.channel.Channel
+import io.netty.channel.ChannelHandlerContext
 import io.netty.util.AttributeKey
+import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.engine.TimedLoader
 import world.gregs.voidps.network.codec.Codec.Companion.CODEC_KEY
 import world.gregs.voidps.network.codec.Codec.Companion.IN_CIPHER_KEY
@@ -21,6 +23,10 @@ abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
             throw IllegalArgumentException("Cannot have duplicate decoders $decoder $opcode")
         }
         decoders[opcode] = decoder
+    }
+
+    fun registerEmptyDecoder(opcode: Int, length: Int) {
+        registerDecoder(opcode, object : Decoder(length) {})
     }
 
     fun registerHandler(opcode: Int, handler: Handler) {

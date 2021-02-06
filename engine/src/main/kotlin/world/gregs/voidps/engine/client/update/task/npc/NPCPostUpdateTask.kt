@@ -15,9 +15,7 @@ class NPCPostUpdateTask(override val entities: NPCs) : EntityTask<NPC>(NPC_UPDAT
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(npc: NPC) {
         npc.movement.reset()
-        npc.visuals.aspects.forEach { (_, visual) ->
-            visual.reset(npc)
-        }
+        npc.visuals.reset(npc)
     }
 
 }

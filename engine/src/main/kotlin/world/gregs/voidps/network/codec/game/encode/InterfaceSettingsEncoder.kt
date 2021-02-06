@@ -31,10 +31,10 @@ class InterfaceSettingsEncoder : Encoder(INTERFACE_COMPONENT_SETTINGS) {
         toSlot: Int,
         settings: Int
     ) = player.send(12) {
+        writeShort(toSlot, type = Modifier.ADD)
         writeShort(fromSlot, order = Endian.LITTLE)
-        writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
-        writeShort(toSlot, Modifier.ADD)
-        writeInt(settings, order = Endian.LITTLE)
+        writeInt(id shl 16 or component)
+        writeInt(settings, type = Modifier.INVERSE, order = Endian.MIDDLE)
     }
 }
 

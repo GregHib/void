@@ -1,5 +1,7 @@
 package world.gregs.voidps.engine.entity.character.update
 
+import world.gregs.voidps.engine.entity.character.Character
+
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
@@ -23,6 +25,13 @@ data class Visuals(
 
     fun flagged(mask: Int): Boolean {
         return flag and mask != 0
+    }
+
+    fun reset(character: Character) {
+        flag = 0
+        aspects.forEach { (_, visual) ->
+            visual.reset(character)
+        }
     }
 
     fun clear() {

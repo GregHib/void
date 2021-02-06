@@ -25,18 +25,22 @@ class FloorItemOptionHandler : Handler() {
     val items: FloorItems by inject()
     val bus: EventBus by inject()
 
-    override fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, option: Int) {
+    override fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
         val session = context.channel()
         val player = sessions.get(session) ?: return
         val tile = Tile(x, y, player.tile.plane)
         val items = items[tile]
-        val item = items.firstOrNull { it.id == id && it.tile == tile } ?: return
-        val options = item.def.floorOptions
-        if (option !in options.indices) {
-            //Invalid option
+        val item = items.firstOrNull { it.id == id && it.tile == tile }
+        if (item == null) {
+            logger.warn { "Invalid floor item $id $tile" }
             return
         }
-        val selectedOption = options[option]
+        val options = item.def.floorOptions
+        if (optionIndex !in options.indices) {
+            logger.warn { "Invalid floor item option $optionIndex ${options.contentToString()}" }
+            return
+        }
+        val selectedOption = options[optionIndex]
         player.walkTo(item) { result ->
             player.face(item)
             if (result is PathResult.Failure) {

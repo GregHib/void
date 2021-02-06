@@ -22,6 +22,6 @@ class InterfaceCloseEncoder : Encoder(INTERFACE_CLOSE) {
         id: Int,
         component: Int
     ) = player.send(4) {
-        writeInt(id shl 16 or component, order = Endian.LITTLE)
+        writeInt(id shl 16 or component)
     }
 }

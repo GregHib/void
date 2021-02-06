@@ -9,15 +9,11 @@ import java.math.BigInteger
  * @author GregHib <greg@gregs.world>
  * @since January 01, 2020
  */
-class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger) : Cache {
+class CacheDelegate(directory: String) : Cache {
 
     private val delegate = CacheLibrary(directory)
 
-    constructor(directory: String, exponent: String, modulus: String) : this(directory, BigInteger(exponent, 16), BigInteger(modulus, 16))
-
     private val logger = InlineLogger()
-
-    private val versionTable = generateVersionTable(exponent, modulus)
 
     init {
         logger.info { "Cache read from $directory" }
@@ -36,9 +32,6 @@ class CacheDelegate(directory: String, exponent: BigInteger, modulus: BigInteger
     override fun getFile(index: Int, name: String, xtea: IntArray?) = delegate.data(index, name, xtea)
 
     override fun getArchive(indexId: Int, archiveId: Int): ByteArray? {
-        if (indexId == 255 && archiveId == 255) {
-            return versionTable
-        }
         val index = if (indexId == 255) index255 else delegate.index(indexId)
         if (index == null) {
             logger.debug { "Unable to find valid index for file request [indexId=$indexId, archiveId=$archiveId]}" }

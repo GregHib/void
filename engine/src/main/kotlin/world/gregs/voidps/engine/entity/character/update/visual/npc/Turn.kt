@@ -18,7 +18,7 @@ data class Turn(
     var direction: Int = 0
 ) : Visual
 
-const val TURN_MASK = 0x8
+const val TURN_MASK = 0x4
 
 fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
 

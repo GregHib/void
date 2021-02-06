@@ -6,9 +6,7 @@ import world.gregs.voidps.engine.entity.character.effect.Colour
 import world.gregs.voidps.engine.entity.character.effect.Transform
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.*
-import world.gregs.voidps.engine.entity.character.update.visual.player.clanmate
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.player.minimapHighlight
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
@@ -19,6 +17,7 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
+import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 val login: LoginQueue by inject()
@@ -82,13 +81,7 @@ Command where { prefix == "move" } then {
 }
 
 Command where { prefix == "hit" } then {
-    player.addHit(
-        Hit(
-            10,
-            Hit.Mark.Healed,
-            255
-        )
-    )
+    player.addHit(Hit(10, Hit.Mark.Healed, 255))
 }
 
 Command where { prefix == "time" } then {
@@ -102,18 +95,13 @@ Command where { prefix == "watch" } then {
     }
 }
 
-Command where { prefix == "mate" } then {
-    val bot = players.indexed.firstOrNull { it != null && it.name.startsWith("Bot") }
-    bot?.clanmate = true
+Command where { prefix == "shoot" } then {
+    player.shoot(15, player.tile.add(y = 10))
 }
 
 Command where { prefix == "face" } then {
     val parts = content.split(" ")
     player.face(parts[0].toInt(), parts[1].toInt())
-}
-
-Command where { prefix == "highlight" } then {
-    player.minimapHighlight = !player.minimapHighlight
 }
 
 Command where { prefix == "chunk" } then {

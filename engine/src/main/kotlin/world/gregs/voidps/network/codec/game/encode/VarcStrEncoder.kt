@@ -14,7 +14,7 @@ import world.gregs.voidps.utility.get
  * @author GregHib <greg@gregs.world>
  * @since July 04, 2020
  */
-class VarcStrEncoder : Encoder(CLIENT_VARC_STR, PacketSize.BYTE) {
+class VarcStrEncoder : Encoder(CLIENT_VARC_STR, PacketSize.SHORT) {
 
     /**
      * Client variable; also known as "GlobalString"

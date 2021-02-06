@@ -49,7 +49,7 @@ object ItemDefinitionPipeline {
     fun main(args: Array<String>) {
 
         val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescapewiki-latest-pages-articles-2011-08-14.xml")
-        val cache718 = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\", "1", "1")
+        val cache718 = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
         val revisionDate = LocalDate.of(2011, Month.OCTOBER, 4)// 667
 
         val start = System.currentTimeMillis()

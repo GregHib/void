@@ -33,7 +33,7 @@ class PlayerInterfaceIO(
             updateEncoder.encode(player, inter.id, 0)
         } else {
             val index = inter.getIndex(player.gameFrame.resizable)
-            val permanent = inter.type != "main_screen" && inter.type != "dialogue_box"
+            val permanent = inter.type != "main_screen" && inter.type != "underlay" && inter.type != "dialogue_box"
             openEncoder.encode(player, permanent, parent, index, inter.id)
         }
     }

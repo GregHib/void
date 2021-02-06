@@ -31,10 +31,15 @@ fun Player.container(detail: ContainerDefinition, secondary: Boolean = false): C
         Container(
             id = detail.id,
             capacity = get<ContainerDefinitions>().get(detail.id).length,
-            listeners = mutableListOf({ updates -> sendInterfaceItemUpdate(detail.id, updates.map { Triple(it.index, it.item, it.amount) }, secondary) }),
+            listeners = mutableListOf(),
             stackMode = detail["stack", StackMode.Normal]
-        ).apply {
+        )
+    }.apply {
+        if (listeners.isEmpty()) {
             definitions = get()
+            listeners.add { updates ->
+                sendInterfaceItemUpdate(detail.id, updates.map { Triple(it.index, it.item, it.amount) }, secondary)
+            }
         }
     }
 }

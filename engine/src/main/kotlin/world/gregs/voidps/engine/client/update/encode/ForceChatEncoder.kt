@@ -11,10 +11,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.ForceChat
 class ForceChatEncoder(mask: Int) : VisualEncoder<ForceChat>(mask) {
 
     override fun encode(writer: Writer, visual: ForceChat) {
-        val (text) = visual
-        writer.apply {
-            writeString(text)
-        }
+        writer.writeString(visual.text)
     }
 
 }

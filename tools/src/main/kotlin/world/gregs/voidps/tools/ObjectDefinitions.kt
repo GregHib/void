@@ -14,7 +14,7 @@ object ObjectDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ObjectDecoder(koin.get(), member = false, lowDetail = false, configReplace = false)
-
+        println(decoder.size)
         repeat(decoder.size) {
             val def = decoder.getOrNull(it) ?: return@repeat
             if(def.name.contains("tree", true)) {

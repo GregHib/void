@@ -27,14 +27,10 @@ object LoginHeaderDecoder {
      * @param extra Whether to read extra byte
      * @return Triple(password, server seed, client seed)
      */
-    fun decode(reader: Reader, extra: Boolean = false): Triple<LoginResponseCode, String?, IntArray?> {
+    fun decode(reader: Reader): Triple<LoginResponseCode, String?, IntArray?> {
         val version = reader.readInt()
         if (version != clientMajorBuild) {
             return Triple(LoginResponseCode.GameUpdated, null, null)
-        }
-
-        if (extra) {
-            reader.readUnsignedByte()
         }
 
         val rsaBlockSize = reader.readUnsignedShort()//RSA block size
