@@ -5,6 +5,7 @@ interface Option<C : Context, T : Any> {
     val considerations: Set<C.(T) -> Double>
     val momentum: Double
     val weight: Double
+    val action: (C.(T) -> Unit)?
 
     /**
      * Combine [weight] with all considerations into one score
@@ -32,9 +33,9 @@ interface Option<C : Context, T : Any> {
     /**
      * Selects the target with the highest score greater than [highestScore]
      */
-    fun getHighestTarget(context: C, highestScore: Double): Decision? {
+    fun getHighestTarget(context: C, highestScore: Double): Decision<C, T>? {
         var highest = highestScore
-        var topChoice: Any? = null
+        var topChoice: T? = null
         val targets = targets(context)
         for (target in targets) {
             if (highest > weight) {
@@ -47,7 +48,7 @@ interface Option<C : Context, T : Any> {
                 topChoice = target
             }
         }
-        return if (topChoice != null) Decision(topChoice, this, highest) else null
+        return if (topChoice != null) Decision(context, topChoice, this, highest) else null
     }
 
     /**

@@ -5,5 +5,5 @@ package world.gregs.voidps.ai
  * Note: Should include the acting entity where applicable
  */
 interface Context {
-    var last: Decision?
+    var last: Decision<*, *>?
 }

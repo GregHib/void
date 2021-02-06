@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.action
 import kotlinx.coroutines.CancellationException
 
 sealed class ActionType : CancellationException() {
+    object None : ActionType()
     object Follow : ActionType()
     object Teleport : ActionType()
     object Combat : ActionType()

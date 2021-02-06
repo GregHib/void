@@ -21,8 +21,9 @@ internal class OptionTest {
     fun `Score gains momentum if agent has same last goal`() {
         val consideration: Context.(Any) -> Double = { _ -> 0.4 }
         val option = option(targets = { listOf("self") }, considerations = setOf(consideration), momentum = 1.25)
-        val last = Decision("self", option, 1.23)
-        val context = context(last = last)
+        val context = context()
+        val last = Decision(context, "self", option, 1.23)
+        context.last = last
         // When
         val choice = option.score(context, "self")
         // Then
@@ -77,19 +78,21 @@ internal class OptionTest {
         assertNull(choice)
     }
 
-    private fun context(last: Decision? = null): Context = object : Context {
-        override var last: Decision? = last
+    private fun context(last: Decision<*, *>? = null): Context = object : Context {
+        override var last: Decision<*, *>? = last
     }
 
     private fun option(
         targets: Context.() -> List<Any>,
         considerations: Set<Context.(Any) -> Double>,
         weight: Double = 1.0,
-        momentum: Double = 1.25
+        momentum: Double = 1.25,
+        action: (Context.(Any) -> Unit)? = null
     ) = object : Option<Context, Any> {
         override val targets = targets
         override val considerations = considerations
         override val momentum = momentum
         override val weight = weight
+        override val action = action
     }
 }
