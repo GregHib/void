@@ -2,19 +2,22 @@
 
 package world.gregs.voidps.cache.format.definition.internal
 
-import com.fasterxml.jackson.databind.ser.std.StdArraySerializers
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.builtins.ByteArraySerializer
 import kotlinx.serialization.builtins.IntArraySerializer
+import kotlinx.serialization.builtins.ShortArraySerializer
 import kotlinx.serialization.descriptors.*
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
+import kotlinx.serialization.serializer
 import world.gregs.voidps.buffer.DataType
 import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.cache.definition.data.ItemDefinition2
 import world.gregs.voidps.cache.format.definition.Medium
 
 @OptIn(InternalSerializationApi::class)
@@ -23,7 +26,9 @@ internal class DefinitionDecoder(
     descriptor: SerialDescriptor
 ) : TaggedDecoder<Int>() {
 
-    private lateinit var indexedOperationsCache: Map<Int, Pair<Int, Int>>
+    private data class IndexedArray(val index: Int, val size: Int)
+
+    private lateinit var indexedArraysCache: Map<Int, IndexedArray>
     private lateinit var indexCache: Map<Int, IntArray>
     private lateinit var setterCache: Map<Int, Long>
     val reader: Reader = BufferReader(bytes)
@@ -39,28 +44,30 @@ internal class DefinitionDecoder(
         val elements = descriptor.elementsCount
         val indices = mutableMapOf<Int, MutableList<Int>>()
         val setters = mutableMapOf<Int, Long>()
-        val indexedMap = mutableMapOf<Int, Pair<Int, Int>>()
+        val indexedMap = mutableMapOf<Int, IndexedArray>()
         for (index in 0 until elements) {
             val opcode = descriptor.getOperationOrNull(index)
             if (opcode != null) {
                 indices.getOrPut(opcode) { mutableListOf() }.add(index)
-            }
-            val value = descriptor.getSetterOrNull(index)
-            if (value != null) {
-                setters[index] = value
-            }
-            val indexed = descriptor.getIndexedOrNull(index)
-            if (indexed != null) {
-                val size = indexed.operations.size
-                indexed.operations.forEachIndexed { i, code ->
-                    indices.getOrPut(code) { mutableListOf() }.add(index)
-                    indexedMap[code] = i to size
+
+                val value = descriptor.getSetterOrNull(index)
+                if (value != null) {
+                    setters[index] = value
+                }
+            } else {
+                val indexed = descriptor.getIndexedOrNull(index)
+                if (indexed != null) {
+                    val size = indexed.operations.size
+                    indexed.operations.forEachIndexed { i, code ->
+                        indices.getOrPut(code) { mutableListOf() }.add(index)
+                        indexedMap[code] = IndexedArray(i, size)
+                    }
                 }
             }
         }
         indexCache = indices.mapValues { (_, value) -> value.reversed().toIntArray() }
         setterCache = setters
-        indexedOperationsCache = indexedMap
+        indexedArraysCache = indexedMap
     }
 
     private fun getIndexByCode(opcode: Int, index: Int): Int {
@@ -68,37 +75,45 @@ internal class DefinitionDecoder(
     }
 
     private fun getSetter(index: Int): Long? {
-        return setterCache[index]
+        return if (index < 0) null else setterCache[index]
     }
 
     private fun readType(type: DataType): Long {
-        return reader.readSigned(type, Modifier.NONE, Endian.BIG)
+        return reader.readSigned(type).apply {
+        }
     }
 
     private fun getIndicesByTag(tag: Int): Int {
         return indexCache[tag]?.size ?: 0
     }
-
+    private val byteArraySerializer = serializer<ByteArray>()
+    private val shortArraySerializer = serializer<ByteArray>()
     @Suppress("UNCHECKED_CAST")
     override fun <T> decodeSerializableValue(deserializer: DeserializationStrategy<T>, previousValue: T?): T {
-        val operations = indexedOperationsCache[opcode]
+        val operations = indexedArraysCache[opcode]
         if (operations != null) {
             return decodeIndexedArray(deserializer.descriptor, previousValue, operations) as T
+        }
+        if (deserializer === byteArraySerializer) {
+            return ByteArray(reader.readByte()) { reader.readByte().toByte() } as T
+        }
+        if (deserializer === shortArraySerializer) {
+            return ShortArray(reader.readByte()) { reader.readShort().toShort() } as T
         }
         return super.decodeSerializableValue(deserializer, previousValue)
     }
 
-    private fun decodeIndexedArray(descriptor: SerialDescriptor, previousValue: Any?, operations: Pair<Int, Int>): Any {
+    private fun decodeIndexedArray(descriptor: SerialDescriptor, previousValue: Any?, array: IndexedArray): Any {
         return when (val name = descriptor.serialName) {
-            "kotlin.ByteArray" -> (previousValue as? ByteArray ?: ByteArray(operations.second)).apply { this[operations.first] = reader.readByte().toByte() }
-            "kotlin.UByteArray" -> (previousValue as? UByteArray ?: UByteArray(operations.second)).apply { this[operations.first] = reader.readByte().toUByte() }
-            "kotlin.ShortArray" -> (previousValue as? ShortArray ?: ShortArray(operations.second)).apply { this[operations.first] = reader.readShort().toShort() }
-            "kotlin.UShortArray" -> (previousValue as? UShortArray ?: UShortArray(operations.second)).apply { this[operations.first] = reader.readShort().toUShort() }
-            "kotlin.IntArray" -> (previousValue as? IntArray ?: IntArray(operations.second)).apply { this[operations.first] = reader.readInt() }
-            "kotlin.UIntArray" -> (previousValue as? UIntArray ?: UIntArray(operations.second)).apply { this[operations.first] = reader.readInt().toUInt() }
-            "kotlin.LongArray" -> (previousValue as? LongArray ?: LongArray(operations.second)).apply { this[operations.first] = reader.readLong() }
-            "kotlin.ULongArray" -> (previousValue as? ULongArray ?: ULongArray(operations.second)).apply { this[operations.first] = reader.readLong().toULong() }
-            "kotlin.Array" -> (previousValue as? Array<String?> ?: arrayOfNulls<String?>(operations.second)).apply { this[operations.first] = reader.readString() }
+            "kotlin.ByteArray" -> (previousValue as? ByteArray ?: ByteArray(array.size)).apply { this[array.index] = reader.readByte().toByte() }
+            "kotlin.UByteArray" -> (previousValue as? UByteArray ?: UByteArray(array.size)).apply { this[array.index] = reader.readByte().toUByte() }
+            "kotlin.ShortArray" -> (previousValue as? ShortArray ?: ShortArray(array.size)).apply { this[array.index] = reader.readShort().toShort() }
+            "kotlin.UShortArray" -> (previousValue as? UShortArray ?: UShortArray(array.size)).apply { this[array.index] = reader.readShort().toUShort() }
+            "kotlin.IntArray" -> (previousValue as? IntArray ?: IntArray(array.size)).apply { this[array.index] = reader.readInt() }
+            "kotlin.UIntArray" -> (previousValue as? UIntArray ?: UIntArray(array.size)).apply { this[array.index] = reader.readInt().toUInt() }
+            "kotlin.LongArray" -> (previousValue as? LongArray ?: LongArray(array.size)).apply { this[array.index] = reader.readLong() }
+            "kotlin.ULongArray" -> (previousValue as? ULongArray ?: ULongArray(array.size)).apply { this[array.index] = reader.readLong().toULong() }
+            "kotlin.Array" -> (previousValue as? Array<String?> ?: arrayOfNulls<String?>(array.size)).apply { this[array.index] = reader.readString() }
             else -> throw UnsupportedOperationException("Unknown indexed array type $name")
         }
     }
@@ -121,7 +136,7 @@ internal class DefinitionDecoder(
             if (!reader.buffer.hasRemaining()) {
                 return CompositeDecoder.DECODE_DONE
             }
-            opcode = reader.readByte()
+            opcode = reader.readUnsignedByte()
             if (opcode == 0) {
                 return CompositeDecoder.DECODE_DONE
             }
@@ -129,7 +144,7 @@ internal class DefinitionDecoder(
         }
         val index = getIndexByCode(opcode, --index)
         if (index == -1) {
-            println("Unable to find tag for $opcode ${indexCache[opcode]?.contentToString()}")
+            println("Unknown field $opcode $index")
             return CompositeDecoder.UNKNOWN_NAME
         }
         return index

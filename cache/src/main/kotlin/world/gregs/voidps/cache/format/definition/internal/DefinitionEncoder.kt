@@ -17,7 +17,7 @@ internal open class DefinitionEncoder(
     private val descriptor: SerialDescriptor
 ) : TaggedEncoder<Int>() {
 
-    private val writer: Writer = BufferWriter()
+    val writer: Writer = BufferWriter()
     private lateinit var indexCache: Map<Int, IntArray>
     private lateinit var setterCache: Map<Int, Long>
 
@@ -73,6 +73,11 @@ internal open class DefinitionEncoder(
     override fun encodeTaggedString(tag: Int, value: String) = encodeOperation(tag) { writer.writeString(value) }
 
     internal fun toByteArray(): ByteArray = writer.toArray()
+
+    fun encodeMedium(value: Int) = writer.writeMedium(value)
+
+    override fun encodeNull() {
+    }
 
     override fun SerialDescriptor.getTag(index: Int): Int = index
 }
