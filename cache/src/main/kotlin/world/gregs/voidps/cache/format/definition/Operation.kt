@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.format.definition
 
+import kotlinx.serialization.Contextual
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialInfo
 import world.gregs.voidps.buffer.DataType
@@ -16,16 +17,7 @@ annotation class Operation(val code: Int)
 @Target(AnnotationTarget.PROPERTY)
 annotation class Setter(val value: Long)
 
-/**
- * Temporary solution until inline classes and kotlin's experimental unsigned types are added.
- * Would ideally have default values for annotations too.
- */
 @SerialInfo
 @ExperimentalSerializationApi
 @Target(AnnotationTarget.PROPERTY)
-annotation class MetaData(
-    val type: DataType,
-    val signed: Boolean,
-    val modifier: Modifier,
-    val endian: Endian
-)
+annotation class Indexed(val operations: IntArray)

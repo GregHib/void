@@ -2,14 +2,14 @@
 
 package world.gregs.voidps.cache.format.definition.internal
 
+import com.fasterxml.jackson.databind.ser.std.StdArraySerializers
+import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
+import kotlinx.serialization.builtins.IntArraySerializer
 import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.AbstractDecoder
 import kotlinx.serialization.encoding.CompositeDecoder
 import kotlinx.serialization.internal.TaggedDecoder
-import kotlinx.serialization.modules.EmptySerializersModule
-import kotlinx.serialization.modules.SerializersModule
 import world.gregs.voidps.buffer.DataType
 import world.gregs.voidps.buffer.Endian
 import world.gregs.voidps.buffer.Modifier
@@ -23,6 +23,7 @@ internal class DefinitionDecoder(
     descriptor: SerialDescriptor
 ) : TaggedDecoder<Int>() {
 
+    private lateinit var indexedOperationsCache: Map<Int, Pair<Int, Int>>
     private lateinit var indexCache: Map<Int, IntArray>
     private lateinit var setterCache: Map<Int, Long>
     val reader: Reader = BufferReader(bytes)
@@ -38,22 +39,32 @@ internal class DefinitionDecoder(
         val elements = descriptor.elementsCount
         val indices = mutableMapOf<Int, MutableList<Int>>()
         val setters = mutableMapOf<Int, Long>()
+        val indexedMap = mutableMapOf<Int, Pair<Int, Int>>()
         for (index in 0 until elements) {
-            val tag = descriptor.getOperationOrNull(index) ?: -1
-            if (tag != -1) {
-                indices.getOrPut(tag) { mutableListOf() }.add(index)
+            val opcode = descriptor.getOperationOrNull(index)
+            if (opcode != null) {
+                indices.getOrPut(opcode) { mutableListOf() }.add(index)
             }
-            val value = descriptor.getSetterOrNull(index) ?: -1
-            if (value != -1L) {
+            val value = descriptor.getSetterOrNull(index)
+            if (value != null) {
                 setters[index] = value
+            }
+            val indexed = descriptor.getIndexedOrNull(index)
+            if (indexed != null) {
+                val size = indexed.operations.size
+                indexed.operations.forEachIndexed { i, code ->
+                    indices.getOrPut(code) { mutableListOf() }.add(index)
+                    indexedMap[code] = i to size
+                }
             }
         }
         indexCache = indices.mapValues { (_, value) -> value.reversed().toIntArray() }
         setterCache = setters
+        indexedOperationsCache = indexedMap
     }
 
-    private fun getIndexByTag(tag: Int, index: Int): Int {
-        return indexCache[tag]?.getOrNull(index) ?: -1
+    private fun getIndexByCode(opcode: Int, index: Int): Int {
+        return indexCache[opcode]?.getOrNull(index) ?: -1
     }
 
     private fun getSetter(index: Int): Long? {
@@ -68,28 +79,31 @@ internal class DefinitionDecoder(
         return indexCache[tag]?.size ?: 0
     }
 
+    @Suppress("UNCHECKED_CAST")
+    override fun <T> decodeSerializableValue(deserializer: DeserializationStrategy<T>, previousValue: T?): T {
+        val operations = indexedOperationsCache[opcode]
+        if (operations != null) {
+            return decodeIndexedArray(deserializer.descriptor, previousValue, operations) as T
+        }
+        return super.decodeSerializableValue(deserializer, previousValue)
+    }
 
-    override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder {
-        return when(descriptor.kind) {
-            StructureKind.LIST -> {
-                println("List structure ${descriptor.getElementAnnotations(0)} ${descriptor.getElementDescriptor(0).annotations}")
-                ListDecoder(reader, popTag())
-            }
-            else -> this
+    private fun decodeIndexedArray(descriptor: SerialDescriptor, previousValue: Any?, operations: Pair<Int, Int>): Any {
+        return when (val name = descriptor.serialName) {
+            "kotlin.ByteArray" -> (previousValue as? ByteArray ?: ByteArray(operations.second)).apply { this[operations.first] = reader.readByte().toByte() }
+            "kotlin.UByteArray" -> (previousValue as? UByteArray ?: UByteArray(operations.second)).apply { this[operations.first] = reader.readByte().toUByte() }
+            "kotlin.ShortArray" -> (previousValue as? ShortArray ?: ShortArray(operations.second)).apply { this[operations.first] = reader.readShort().toShort() }
+            "kotlin.UShortArray" -> (previousValue as? UShortArray ?: UShortArray(operations.second)).apply { this[operations.first] = reader.readShort().toUShort() }
+            "kotlin.IntArray" -> (previousValue as? IntArray ?: IntArray(operations.second)).apply { this[operations.first] = reader.readInt() }
+            "kotlin.UIntArray" -> (previousValue as? UIntArray ?: UIntArray(operations.second)).apply { this[operations.first] = reader.readInt().toUInt() }
+            "kotlin.LongArray" -> (previousValue as? LongArray ?: LongArray(operations.second)).apply { this[operations.first] = reader.readLong() }
+            "kotlin.ULongArray" -> (previousValue as? ULongArray ?: ULongArray(operations.second)).apply { this[operations.first] = reader.readLong().toULong() }
+            "kotlin.Array" -> (previousValue as? Array<String?> ?: arrayOfNulls<String?>(operations.second)).apply { this[operations.first] = reader.readString() }
+            else -> throw UnsupportedOperationException("Unknown indexed array type $name")
         }
     }
 
     override fun endStructure(descriptor: SerialDescriptor) {
-    }
-
-    override fun decodeTaggedValue(tag: Int): Any {
-        println("Decode value $tag")
-        return super.decodeTaggedValue(tag)
-    }
-
-    override fun decodeCollectionSize(descriptor: SerialDescriptor): Int {
-        println("Decode collection size")
-        return super.decodeCollectionSize(descriptor)
     }
 
     override fun decodeTaggedBoolean(tag: Int): Boolean = decodeTaggedByte(tag).toInt() == 1
@@ -112,9 +126,8 @@ internal class DefinitionDecoder(
                 return CompositeDecoder.DECODE_DONE
             }
             index = getIndicesByTag(opcode)
-            println("Decode element index $opcode $index")
         }
-        val index = getIndexByTag(opcode, --index)
+        val index = getIndexByCode(opcode, --index)
         if (index == -1) {
             println("Unable to find tag for $opcode ${indexCache[opcode]?.contentToString()}")
             return CompositeDecoder.UNKNOWN_NAME
@@ -124,27 +137,4 @@ internal class DefinitionDecoder(
 
     override fun SerialDescriptor.getTag(index: Int): Int = index
 
-}
-
-class ListDecoder(val reader: Reader, val index: Int, var elementsCount: Int = 0) : AbstractDecoder() {
-    private var elementIndex = 0
-
-    override val serializersModule: SerializersModule = EmptySerializersModule
-
-    override fun decodeValue(): Any = reader.readInt()
-
-    override fun decodeElementIndex(descriptor: SerialDescriptor): Int {
-        if (elementIndex == elementsCount) return CompositeDecoder.DECODE_DONE
-        return elementIndex++
-    }
-
-    override fun beginStructure(descriptor: SerialDescriptor): CompositeDecoder =
-        ListDecoder(reader, descriptor.elementsCount)
-
-    override fun decodeSequentially(): Boolean = true
-
-    override fun decodeCollectionSize(descriptor: SerialDescriptor): Int {
-        println("Decode collection size $index ${descriptor.getElementAnnotations(0)} ${descriptor.annotations}")
-        return decodeByte().toInt().also { elementsCount = it }
-    }
 }

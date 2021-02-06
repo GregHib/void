@@ -1,7 +1,6 @@
 package world.gregs.voidps.cache.format.definition
 
 import kotlinx.serialization.*
-import kotlinx.serialization.modules.SerializersModule
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
@@ -49,15 +48,36 @@ internal class DefinitionTest {
     )
 
     @Serializable
-    data class IntArrayData(
+    data class ArrayData(
         @Operation(1)
+        val data: ByteArray? = null,
+    ) {
+        override fun equals(other: Any?): Boolean {
+            if (this === other) return true
+            if (javaClass != other?.javaClass) return false
+
+            other as ArrayData
+
+            if (!data.contentEquals(other.data)) return false
+
+            return true
+        }
+
+        override fun hashCode(): Int {
+            return data.contentHashCode()
+        }
+    }
+
+    @Serializable
+    data class IndexedArrayData(
+        @Indexed(operations = [2, 1])
         val data: IntArray? = null,
     ) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
             if (javaClass != other?.javaClass) return false
 
-            other as IntArrayData
+            other as IndexedArrayData
 
             if (!data.contentEquals(other.data)) return false
 
@@ -104,12 +124,19 @@ internal class DefinitionTest {
         assertEquals(DuplicateData(42, 32), def)
     }
 
-//    @Test
-//    fun `Decode int array`() {
-//        val data = byteArrayOf(1, 2, 3, 4)
-//        val def: IntArrayData = Definition.decodeFromByteArray(data)
-//        assertEquals(IntArrayData(intArrayOf(3, 4)), def)
-//    }
+    @Test
+    fun `Decode array`() {
+        val data = byteArrayOf(1, 0, 0, 0, 2, 3, 4)
+        val def: ArrayData = Definition.decodeFromByteArray(data)
+        assertEquals(ArrayData(byteArrayOf(3, 4)), def)
+    }
+
+    @Test
+    fun `Decode indexed array`() {
+        val data = byteArrayOf(1, 0, 0, 0, 32, 2, 0, 0, 0, 64)
+        val def: IndexedArrayData = Definition.decodeFromByteArray(data)
+        assertEquals(IndexedArrayData(intArrayOf(64, 32)), def)
+    }
 
     @Test
     fun `Encode ignores default values`() {
