@@ -22,7 +22,7 @@ class Action {
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
-    var type: ActionType = ActionType.Misc
+    var type: ActionType = ActionType.None
 
     /**
      * Whether there is currently an action which is paused

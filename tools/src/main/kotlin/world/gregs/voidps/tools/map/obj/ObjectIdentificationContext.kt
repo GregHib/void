@@ -11,5 +11,5 @@ class ObjectIdentificationContext(
     val option: String
 ) : Context {
     val opt = option.replace("-", " ").toLowerCase()
-    override var last: Decision? = null
+    override var last: Decision<*, *>? = null
 }

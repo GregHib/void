@@ -151,7 +151,6 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
         playerRegions = if (initial) playerRegions else null,
         clientTile = if (initial) player.tile.id else null
     )
-
 }
 
 fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
