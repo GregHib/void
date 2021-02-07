@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()

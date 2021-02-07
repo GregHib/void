@@ -1,11 +1,9 @@
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.move.NPCMoved
 import world.gregs.voidps.engine.entity.character.move.PlayerMoved
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.Viewport
+import world.gregs.voidps.engine.entity.character.player.*
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
@@ -69,8 +67,7 @@ PlayerRegistered then {
     playerRegions[player.index - 1] = player.tile.regionPlane.id
 }
 
-Unregistered where { entity is Player } then {
-    val player = entity as Player
+PlayerUnregistered then {
     playerRegions[player.index - 1] = 0
 }
 /*

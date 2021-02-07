@@ -5,7 +5,8 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.priority
@@ -27,8 +28,7 @@ PlayerRegistered then {
     startBorrowTimer(player)
 }
 
-Unregistered priority Priority.HIGH where { entity is Player } then {
-    val player = entity as Player
+PlayerUnregistered then {
     if (!player.has("borrow_timeout") && player.has("borrowed_item")) {
         returnLoan(player)
         val partner: Player? = player.getOrNull("borrowed_from")

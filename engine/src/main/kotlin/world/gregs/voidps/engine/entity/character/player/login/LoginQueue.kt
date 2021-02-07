@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.spawn.login
+package world.gregs.voidps.engine.entity.character.player.login
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
@@ -8,7 +8,6 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerSpawn
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.utility.getIntProperty

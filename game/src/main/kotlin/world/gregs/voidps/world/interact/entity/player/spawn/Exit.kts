@@ -1,12 +1,12 @@
-package world.gregs.voidps.world.interact.entity.player.spawn.logout
+package world.gregs.voidps.world.interact.entity.player.spawn
 
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
 import world.gregs.voidps.engine.event.*
-import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
-val logoutQueue: DisconnectQueue by inject()
+val logoutQueue: LogoutQueue by inject()
 
 on(InterfaceOption) {
     where {

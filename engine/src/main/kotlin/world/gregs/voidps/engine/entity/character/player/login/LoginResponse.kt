@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.spawn.login
+package world.gregs.voidps.engine.entity.character.player.login
 
 import world.gregs.voidps.engine.entity.character.player.Player
 

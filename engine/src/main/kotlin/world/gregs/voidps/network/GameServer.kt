@@ -14,12 +14,12 @@ import io.netty.handler.codec.bytes.ByteArrayEncoder
 import io.netty.util.concurrent.GlobalEventExecutor
 import org.koin.dsl.module
 import world.gregs.voidps.engine.client.Sessions
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
 import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
 import world.gregs.voidps.network.codec.service.ServiceCodec
 import world.gregs.voidps.network.codec.setCodec
 import world.gregs.voidps.network.connection.ChannelAdapter
-import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.network.packet.PacketDecoder
 import world.gregs.voidps.utility.get
 
@@ -37,7 +37,7 @@ class GameServer(
     fun run() {
         val service: ServiceCodec = get()
         val sessions: Sessions = get()
-        val disconnections: DisconnectQueue = get()
+        val logoutQueue: LogoutQueue = get()
 
         bootstrap.apply {
             channel(NioServerSocketChannel::class.java)
@@ -52,7 +52,7 @@ class GameServer(
                     val pipe = ch.pipeline()
                     pipe.addLast("packet.decoder", PacketDecoder())
                     pipe.addLast("packet.encoder", encoder)
-                    pipe.addLast("channel.listener", ChannelAdapter(channels, sessions, disconnections))
+                    pipe.addLast("channel.listener", ChannelAdapter(channels, sessions, logoutQueue))
                     pipe.channel().setCodec(service)
                 }
             })

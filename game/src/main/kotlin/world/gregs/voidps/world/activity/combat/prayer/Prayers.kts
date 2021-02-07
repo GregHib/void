@@ -4,13 +4,11 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
-import world.gregs.voidps.engine.event.Priority
-import world.gregs.voidps.engine.event.priority
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.utility.inject
@@ -152,8 +150,8 @@ InterfaceOption where { name == "prayer_list" && component == "confirm" && optio
     player.saveQuickPrayers()
 }
 
-Unregistered priority Priority.HIGH where { entity is Player && (entity as Player).has(TEMP_QUICK_PRAYERS) } then {
-    (entity as Player).cancelQuickPrayers()
+PlayerUnregistered where { player.has(TEMP_QUICK_PRAYERS) } then {
+    player.cancelQuickPrayers()
 }
 
 fun Player.saveQuickPrayers() {

@@ -4,13 +4,14 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerSpawn
+import world.gregs.voidps.engine.entity.character.player.login.PlayerSpawn
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 
@@ -37,7 +38,7 @@ PlayerSpawn then {
     result = player
 }
 
-PlayerDespawn then {
+PlayerUnregistered then {
     players.remove(player.tile, player)
     players.remove(player.tile.chunk, player)
     delay(1) {
