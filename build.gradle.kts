@@ -73,6 +73,7 @@ allprojects {
         testImplementation("org.junit.jupiter:junit-jupiter-params:$junitVersion")
         testImplementation(group = "org.koin", name = "koin-test", version = koinVersion)
         testImplementation(group = "io.mockk", name = "mockk", version = "1.10.0")
+        testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.2")
     }
 
     tasks {

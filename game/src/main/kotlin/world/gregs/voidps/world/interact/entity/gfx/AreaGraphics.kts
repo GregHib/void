@@ -32,7 +32,7 @@ SpawnGraphic then {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(ag: AreaGraphic) {
-    scheduler.add {
+    scheduler.launch {
         try {
             repeat(ag.graphic.delay / 30) {
                 delay(1)

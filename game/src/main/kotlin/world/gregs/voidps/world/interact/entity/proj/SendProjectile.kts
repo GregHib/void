@@ -35,7 +35,7 @@ ShootProjectile then {
  * Reduces timers to keep approx in sync for players starting to view mid-way through
  */
 fun decay(projectile: Projectile) {
-    projectile.job = scheduler.add {
+    projectile.job = scheduler.launch {
         repeat(projectile.delay / 30) {
             delay(1)
             projectile.delay -= 30

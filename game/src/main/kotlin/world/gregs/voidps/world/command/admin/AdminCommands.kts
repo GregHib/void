@@ -63,7 +63,7 @@ Command where { prefix == "bot" } then {
                 bus.emit(Registered(bot))
                 bot.start()
                 bot.viewport.loaded = true
-                scheduler.add {
+                scheduler.launch {
                     delay(1)
                     bot.tele(tile.x, tile.y, tile.plane)
                 }

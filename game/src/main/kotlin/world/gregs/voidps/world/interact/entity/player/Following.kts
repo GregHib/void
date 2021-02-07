@@ -15,7 +15,7 @@ val path: PathFinder by inject()
 PlayerOption where { option == "Follow" } then {
     val follower = player
     follower.watch(target)
-    follower.action(ActionType.Movement) {
+    follower.action(ActionType.Follow) {
         try {
             while (!disengageTarget(target)) {
                 if (!player.reached(target)) {

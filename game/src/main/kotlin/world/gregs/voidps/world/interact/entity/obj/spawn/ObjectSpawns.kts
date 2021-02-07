@@ -57,7 +57,7 @@ SpawnObject then {
     spawnCustom(gameObject)
     // Revert
     if (ticks >= 0) {
-        objects.setTimer(gameObject, scheduler.add {
+        objects.setTimer(gameObject, scheduler.launch {
             try {
                 delay(ticks)
             } finally {
@@ -74,7 +74,7 @@ RemoveObject then {
     despawn(gameObject)
     // Revert
     if (ticks >= 0) {
-        objects.setTimer(gameObject, scheduler.add {
+        objects.setTimer(gameObject, scheduler.launch {
             try {
                 delay(ticks)
             } finally {

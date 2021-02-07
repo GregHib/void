@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.engine.event.Priority.PLAYER_UPDATE
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
@@ -22,7 +21,7 @@ class PlayerUpdateTask(
     override val entities: Players,
     val sessions: Sessions,
     private val updateEncoder: PlayerUpdateEncoder
-) : EntityTask<Player>(PLAYER_UPDATE) {
+) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

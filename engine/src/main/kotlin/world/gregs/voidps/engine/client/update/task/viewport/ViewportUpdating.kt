@@ -10,16 +10,14 @@ import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.event.Priority.VIEWPORT
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.task.EngineTask
 import world.gregs.voidps.utility.inject
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since May 17, 2020
  */
-class ViewportUpdating : EngineTask(VIEWPORT) {
+class ViewportUpdating : Runnable {
 
     val players: Players by inject()
     val npcs: NPCs by inject()

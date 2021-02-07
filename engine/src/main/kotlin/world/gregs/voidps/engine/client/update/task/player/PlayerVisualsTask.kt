@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.event.Priority.PLAYER_VISUALS
 import world.gregs.voidps.engine.tick.task.EntityTask
 
 /**
@@ -19,7 +18,7 @@ class PlayerVisualsTask(
     override val entities: PooledMapList<Player>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : EntityTask<Player>(PLAYER_VISUALS) {
+) : EntityTask<Player>() {
 
     private val addFlag = addMasks.sum()
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }

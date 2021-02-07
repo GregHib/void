@@ -4,17 +4,27 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
+import world.gregs.voidps.engine.GameLoop.Companion.flow
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.ui.detail.interfaceModule
+import world.gregs.voidps.engine.client.update.task.npc.*
+import world.gregs.voidps.engine.client.update.task.player.*
+import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.client.update.updatingTasksModule
 import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -27,11 +37,11 @@ import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.map.instance.instancePoolModule
 import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
+import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
-import world.gregs.voidps.engine.task.SyncTask
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.executorModule
+import world.gregs.voidps.engine.tick.Startup
+import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.handle.*
 import world.gregs.voidps.network.GameServer
 import world.gregs.voidps.network.codec.game.GameCodec
@@ -39,12 +49,16 @@ import world.gregs.voidps.network.codec.game.GameOpcodes
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
 import world.gregs.voidps.network.codec.service.ServiceOpcodes
+import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.network.networkCodecs
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.world.interact.entity.player.spawn.PlayerDespawn
+import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.player.spawn.login.loginQueueModule
+import world.gregs.voidps.world.interact.entity.player.spawn.logout.Logout
 import world.gregs.voidps.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
@@ -64,15 +78,86 @@ object Main {
 
         val server = GameServer(getIntProperty("port"))
         val bus: EventBus = get()
-        val executor: TaskExecutor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
-        val start: SyncTask = get()
-        val engine = GameLoop(bus, executor, service)
+
+        val tickStages = getTickStages()
+        val engine = GameLoop(service, tickStages)
 
         server.run()
-        engine.setup(start)
+        bus.emit(Startup)
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
+    }
+
+    private fun getTickStages(): List<Runnable> {
+        val loginQueue: LoginQueue = get()
+        val logoutQueue: DisconnectQueue = get()
+        val bus: EventBus = get()
+        fun disconnect(player: Player) {
+            player.action.run(ActionType.Logout) {
+                await<Unit>(Suspension.Infinite)
+            }
+            bus.emit(Logout(player))
+            bus.emit(Unregistered(player))
+            bus.emit(PlayerDespawn(player))
+        }
+
+        val playerMovement: PlayerMovementTask = get()
+        val npcMovement: NPCMovementTask = get()
+        val viewport: ViewportUpdating = get()
+        val playerVisuals: PlayerVisualsTask = get()
+        val npcVisuals: NPCVisualsTask = get()
+        val playerChange: PlayerChangeTask = get()
+        val npcChange: NPCChangeTask = get()
+        val playerUpdate: PlayerUpdateTask = get()
+        val npcUpdate: NPCUpdateTask = get()
+        val playerPostUpdate: PlayerPostUpdateTask = get()
+        val npcPostUpdate: NPCPostUpdateTask = get()
+        val players: Players = get()
+        return listOf(
+            // Connections/Tick Input
+            Runnable { loginQueue.tick() },
+            Runnable {
+                var player = logoutQueue.poll()
+                while (player != null) {
+                    disconnect(player)
+                    player = logoutQueue.poll()
+                }
+            },
+            // Tick
+            Runnable {
+                flow.tryEmit(GameLoop.tick)
+            },
+            Runnable {
+                bus.emit(Tick(GameLoop.tick))
+            },
+            Runnable {
+                players.forEach { player ->
+                    val (_, strategy, callback) = player.movement.target ?: return@forEach
+                    player.movement.target = null
+                    player.dialogues.clear()
+                    player.movement.clear()
+                    player.action.cancel()
+                    val finder: PathFinder = get()
+                    val result = finder.find(player, strategy)
+                    player.movement.callback = {
+                        callback.invoke(result)
+                    }
+                }
+            },
+            playerMovement,
+            npcMovement,
+            // Update
+            viewport,
+            playerVisuals,
+            npcVisuals,
+            playerChange,
+            npcChange,
+            playerUpdate,
+            npcUpdate,
+            playerPostUpdate,
+            npcPostUpdate
+        )
     }
 
     private fun preload() {
@@ -100,7 +185,6 @@ object Main {
                 pathFindModule,
                 schedulerModule,
                 batchedChunkModule,
-                executorModule,
                 interfaceModule,
                 variablesModule,
                 instanceModule,
@@ -108,11 +192,11 @@ object Main {
                 detailsModule,
                 logoutModule,
                 objectFactoryModule,
-				lineOfSightModule
-			)
-			fileProperties("/game.properties")
-			fileProperties("/private.properties")
-		}
+                lineOfSightModule
+            )
+            fileProperties("/game.properties")
+            fileProperties("/private.properties")
+        }
         registerGameHandlers()
         registerLoginHandlers()
     }

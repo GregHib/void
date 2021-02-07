@@ -33,7 +33,7 @@ ReplaceObjectPair then {
     switch(secondOriginal, secondReplacement)
     // Revert
     if (ticks >= 0) {
-        val job = scheduler.add {
+        val job = scheduler.launch {
             try {
                 delay(ticks)
             } finally {
@@ -55,7 +55,7 @@ ReplaceObject then {
     switch(gameObject, replacement)
     // Revert
     if (ticks >= 0) {
-        objects.setTimer(replacement, scheduler.add {
+        objects.setTimer(replacement, scheduler.launch {
             try {
                 delay(ticks)
             } finally {

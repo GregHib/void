@@ -6,16 +6,14 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.Priority.NPC_MOVEMENT
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.tick.task.EngineTask
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : EngineTask(NPC_MOVEMENT) {
+class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Runnable {
 
     override fun run() = runBlocking {
         npcs.forEach { npc ->

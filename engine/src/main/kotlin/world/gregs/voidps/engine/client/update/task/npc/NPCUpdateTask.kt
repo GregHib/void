@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
-import world.gregs.voidps.engine.event.Priority.NPC_UPDATE
 import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
 
@@ -21,7 +20,7 @@ class NPCUpdateTask(
     override val entities: Players,
     val sessions: Sessions,
     private val npcUpdateEncoder: NPCUpdateEncoder
-) : EntityTask<Player>(NPC_UPDATE) {
+) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

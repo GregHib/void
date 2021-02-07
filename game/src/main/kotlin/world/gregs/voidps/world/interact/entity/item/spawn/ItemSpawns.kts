@@ -56,7 +56,7 @@ RegionLoaded then {
 Unregistered where { entity is FloorItem && links.containsKey(entity as FloorItem) } then {
     val item = entity as FloorItem
     val spawn = links.remove(item)!!
-    scheduler.add {
+    scheduler.launch {
         delay(ticks = spawn.delay)
         spawn.drop()
     }

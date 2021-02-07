@@ -6,8 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.sync
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceSwitch
@@ -20,7 +19,6 @@ class InterfaceSwitchHandler : Handler() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
-    val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val lookup: InterfaceDetails by inject()
     private val logger = InlineLogger()
@@ -66,7 +64,7 @@ class InterfaceSwitchHandler : Handler() {
         val toComponentName = toInter.getComponentName(toComponentId)
 
 
-        executor.sync {
+        sync {
             bus.emit(
                 InterfaceSwitch(
                     player,

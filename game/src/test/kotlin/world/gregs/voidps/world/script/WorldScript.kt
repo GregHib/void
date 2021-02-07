@@ -26,9 +26,7 @@ import world.gregs.voidps.engine.map.instance.instancePoolModule
 import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.pathFindModule
-import world.gregs.voidps.engine.task.SyncTask
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.executorModule
+import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
@@ -58,7 +56,6 @@ abstract class WorldScript : KoinMock() {
         pathFindModule,
         schedulerModule,
         batchedChunkModule,
-        executorModule,
         interfaceModule,
         variablesModule,
         instanceModule,
@@ -71,10 +68,10 @@ abstract class WorldScript : KoinMock() {
 
     override val propertyPaths = listOf("/game.properties", "/private.properties")
 
-    private lateinit var executor: TaskExecutor
+    private lateinit var engine: GameLoop
 
     fun tick() {
-        executor.run()
+        engine.run()
     }
 
     @Suppress("UNCHECKED_CAST")
@@ -89,11 +86,8 @@ abstract class WorldScript : KoinMock() {
     @BeforeEach
     open fun setup() {
         val bus: EventBus = get()
-        executor = get()
         val service = Executors.newSingleThreadScheduledExecutor()
-        val start: SyncTask = get()
-        val engine = GameLoop(bus, executor, service)
-
-        engine.setup(start)
+        engine = GameLoop(service, listOf())
+        bus.emit(Startup)
     }
 }

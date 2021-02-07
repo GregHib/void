@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.event.Priority.NPC_VISUALS
 import world.gregs.voidps.engine.tick.task.EntityTask
 
 /**
@@ -18,7 +17,7 @@ class NPCVisualsTask(
     override val entities: PooledMapList<NPC>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : EntityTask<NPC>(NPC_VISUALS) {
+) : EntityTask<NPC>() {
 
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }
 

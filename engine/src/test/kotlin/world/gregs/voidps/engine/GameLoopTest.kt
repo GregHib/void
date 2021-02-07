@@ -2,21 +2,11 @@ package world.gregs.voidps.engine
 
 import io.mockk.impl.annotations.RelaxedMockK
 import io.mockk.junit5.MockKExtension
-import io.mockk.mockk
-import io.mockk.spyk
 import io.mockk.verify
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.task.DelayTask
-import world.gregs.voidps.engine.task.RepeatTask
-import world.gregs.voidps.engine.task.SyncTask
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.engine.tick.TickInput
-import world.gregs.voidps.engine.tick.TickUpdate
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 
@@ -24,16 +14,16 @@ import java.util.concurrent.TimeUnit
 internal class GameLoopTest {
 
     private lateinit var loop: GameLoop
-    private lateinit var executor: TaskExecutor
-    @RelaxedMockK
-    private lateinit var bus: EventBus
     @RelaxedMockK
     private lateinit var service: ScheduledExecutorService
+    @RelaxedMockK
+    private lateinit var stage: Runnable
+    @RelaxedMockK
+    private lateinit var stage2: Runnable
 
     @BeforeEach
     fun setup() {
-        executor = spyk(TaskExecutor())
-        loop = GameLoop(bus, executor, service)
+        loop = GameLoop(service, listOf(stage, stage2))
     }
 
     @Test
@@ -42,35 +32,17 @@ internal class GameLoopTest {
         loop.start()
         // Then
         verify {
-            service.scheduleAtFixedRate(executor, 0, 600L, TimeUnit.MILLISECONDS)
-        }
-    }
-
-    @Test
-    fun `Setup game loop`() {
-        // Given
-        val start = SyncTask()
-        // When
-        loop.setup(start)
-        // Then
-        verifyOrder {
-            executor.execute(any<DelayTask>())
-            executor.execute(start)
-            executor.execute(any<RepeatTask>())
+            service.scheduleAtFixedRate(loop, 0, 600L, TimeUnit.MILLISECONDS)
         }
     }
 
     @Test
     fun `Game loop`() {
-        loop.setup(mockk(relaxed = true))
-        loop.start()
-        // When
-        executor.run()
+        loop.run()
         // Then
-        verify {
-            bus.emit(TickInput)
-            bus.emit(Tick(0))
-            bus.emit(TickUpdate)
+        verifyOrder {
+            stage.run()
+            stage2.run()
         }
     }
 
@@ -80,7 +52,6 @@ internal class GameLoopTest {
         loop.stop()
         // Then
         verify {
-            executor.clear()
             service.shutdown()
         }
     }
