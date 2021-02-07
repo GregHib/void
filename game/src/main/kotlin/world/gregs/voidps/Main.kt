@@ -55,10 +55,8 @@ import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
-import world.gregs.voidps.world.interact.entity.player.spawn.PlayerDespawn
 import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.player.spawn.login.loginQueueModule
-import world.gregs.voidps.world.interact.entity.player.spawn.logout.Logout
 import world.gregs.voidps.world.interact.entity.player.spawn.logout.logoutModule
 import java.util.concurrent.Executors
 
@@ -92,16 +90,6 @@ object Main {
     private fun getTickStages(): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val logoutQueue: DisconnectQueue = get()
-        val bus: EventBus = get()
-        fun disconnect(player: Player) {
-            player.action.run(ActionType.Logout) {
-                await<Unit>(Suspension.Infinite)
-            }
-            bus.emit(Logout(player))
-            bus.emit(Unregistered(player))
-            bus.emit(PlayerDespawn(player))
-        }
-
         val playerMovement: PlayerMovementTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()
@@ -114,16 +102,11 @@ object Main {
         val playerPostUpdate: PlayerPostUpdateTask = get()
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
+        val bus: EventBus = get()
         return listOf(
             // Connections/Tick Input
-            Runnable { loginQueue.tick() },
-            Runnable {
-                var player = logoutQueue.poll()
-                while (player != null) {
-                    disconnect(player)
-                    player = logoutQueue.poll()
-                }
-            },
+            loginQueue,
+            logoutQueue,
             // Tick
             Runnable {
                 flow.tryEmit(GameLoop.tick)

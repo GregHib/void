@@ -19,6 +19,7 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.npc.spawn.NPCSpawn
 import world.gregs.voidps.world.interact.entity.player.spawn.login.Login
+import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginResponse
 import java.util.concurrent.atomic.AtomicInteger
 
@@ -54,6 +55,8 @@ Command where { prefix == "npc" } then {
 
 val botCounter = AtomicInteger(0)
 
+val loginQueue: LoginQueue by inject()
+
 Command where { prefix == "bot" } then {
     player.tile.area(4).forEach { tile ->
         val callback = { response: LoginResponse ->
@@ -69,12 +72,10 @@ Command where { prefix == "bot" } then {
                 }
             }
         }
-        bus.emit(
-            Login(
-                "Bot ${botCounter.getAndIncrement()}",
-                callback = callback
-            )
-        )
+        loginQueue.add(Login(
+            "Bot ${botCounter.getAndIncrement()}",
+            callback = callback
+        ))
     }
 }
 
