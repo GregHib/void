@@ -2,13 +2,11 @@ package world.gregs.voidps.world.interact.entity.player.spawn.logout
 
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.*
-import world.gregs.voidps.network.codec.game.encode.LogoutEncoder
 import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 val logoutQueue: DisconnectQueue by inject()
-val logoutEncode: LogoutEncoder by inject()
 
 on(InterfaceOption) {
     where {
@@ -26,9 +24,4 @@ on(InterfaceOption) {
     then {
         logoutQueue.add(player)
     }
-}
-
-// TODO move into engine
-Logout then {
-    logoutEncode.encode(player)
 }

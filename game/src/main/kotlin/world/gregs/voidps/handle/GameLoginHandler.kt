@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
 import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.sync
@@ -20,6 +21,7 @@ import world.gregs.voidps.network.codec.setCodec
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.spawn.login.Login
+import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginResponse
 
 /**
@@ -33,6 +35,7 @@ class GameLoginHandler : Handler() {
     val bus: EventBus by inject()
     private val login: LoginCodec by inject()
     private val game: GameCodec by inject()
+    private val loginQueue: LoginQueue by inject()
     private val responseEncoder = LoginResponseEncoder()
     private val loginEncoder = GameLoginDetailsEncoder()
 
@@ -82,14 +85,12 @@ class GameLoginHandler : Handler() {
         }
 
         sync {
-            bus.emit(
-                Login(
-                    username,
-                    channel,
-                    callback,
-                    GameLoginInfo(username, password, isaacKeys, mode, width, height, antialias, settings, affiliate, session, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
-                )
-            )
+            loginQueue.add(Login(
+                username,
+                channel,
+                callback,
+                GameLoginInfo(username, password, isaacKeys, mode, width, height, antialias, settings, affiliate, session, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
+            ))
         }
     }
 }

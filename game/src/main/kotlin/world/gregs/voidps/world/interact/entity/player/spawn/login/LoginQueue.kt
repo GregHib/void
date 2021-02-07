@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerSpawn
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.utility.getIntProperty
+import java.lang.Runnable
 import java.util.*
 
 /**
@@ -40,7 +41,7 @@ class LoginQueue(
     private val attempts: MutableSet<String> = mutableSetOf(),
     private val loginQueue: Queue<Pair<Player, Login>> = LinkedList(),
     private val indexer: IndexAllocator = IndexAllocator(MAX_PLAYERS)
-) {
+) : Runnable {
 
     private val load = Mutex()
     private val login = Mutex()
@@ -49,7 +50,7 @@ class LoginQueue(
      * Calls login for first loginPerTickCap loaded players
      */
 
-    fun tick() = runBlocking {
+    override fun run() = runBlocking {
         login.withLock {
             var count = 0
             var next = loginQueue.poll()
