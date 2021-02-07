@@ -35,6 +35,9 @@ var Player.movementType: PlayerMoveType
 
 fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
     action.run(ActionType.Teleport) {
+        movement.target = null
+        movement.callback = null
+        movement.clear()
         movement.delta = Tile(x - tile.x, y - tile.y, plane - tile.plane)
         if (movement.delta != Tile.EMPTY) {
             movementType = PlayerMoveType.Teleport

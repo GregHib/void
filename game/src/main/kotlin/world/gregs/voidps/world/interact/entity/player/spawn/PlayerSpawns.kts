@@ -10,8 +10,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.delay
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 
@@ -20,7 +19,6 @@ val players: Players by inject()
 val logger = InlineLogger()
 val sessions: Sessions by inject()
 val small = SmallTraversal(TraversalType.Land, false, get())
-val executor: TaskExecutor by inject()
 val storage: StorageStrategy<Player> by inject()
 
 PlayerSpawn then {
@@ -42,7 +40,7 @@ PlayerSpawn then {
 PlayerDespawn then {
     players.remove(player.tile, player)
     players.remove(player.tile.chunk, player)
-    executor.delay(1) {
+    delay(1) {
         players.removeAtIndex(player.index)
     }
     val session = sessions.get(player)

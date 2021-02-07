@@ -10,8 +10,7 @@ import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.sync
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
@@ -24,7 +23,6 @@ class InterfaceOptionHandler : Handler() {
 
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
-    val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()
     val containerDefinitions: ContainerDefinitions by inject()
@@ -101,7 +99,7 @@ class InterfaceOptionHandler : Handler() {
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
-        executor.sync {
+        sync {
             bus.emit(
                 InterfaceOption(
                     player,

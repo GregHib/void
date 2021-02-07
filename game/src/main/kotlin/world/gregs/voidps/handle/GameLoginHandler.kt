@@ -8,8 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
 import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.sync
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
@@ -32,7 +31,6 @@ class GameLoginHandler : Handler() {
     val logger = InlineLogger()
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
-    val executor: TaskExecutor by inject()
     private val login: LoginCodec by inject()
     private val game: GameCodec by inject()
     private val responseEncoder = LoginResponseEncoder()
@@ -71,22 +69,19 @@ class GameLoginHandler : Handler() {
             if (response is LoginResponse.Success) {
                 val player = response.player
                 loginEncoder.encode(channel, 2, player.index, username)
-
-                executor.sync {
-                    channel.setCodec(game)
-                    channel.setCipherIn(keyPair.inCipher)
-                    channel.setCipherOut(keyPair.outCipher)
-                    bus.emit(RegionLogin(player))
-                    bus.emit(PlayerRegistered(player))
-                    player.start()
-                    bus.emit(Registered(player))
-                }
+                channel.setCodec(game)
+                channel.setCipherIn(keyPair.inCipher)
+                channel.setCipherOut(keyPair.outCipher)
+                bus.emit(RegionLogin(player))
+                bus.emit(PlayerRegistered(player))
+                player.start()
+                bus.emit(Registered(player))
             } else {
                 responseEncoder.encode(channel, response.code)
             }
         }
 
-        executor.sync {
+        sync {
             bus.emit(
                 Login(
                     username,

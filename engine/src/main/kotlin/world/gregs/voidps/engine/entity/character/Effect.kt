@@ -1,19 +1,16 @@
 package world.gregs.voidps.engine.entity.character
 
+import kotlinx.coroutines.Job
 import kotlinx.serialization.Serializable
-import world.gregs.voidps.engine.task.Task
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.delay
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.delay
 
 @Serializable
 abstract class Effect(val effectType: String) {
 
-    private var task: Task? = null
+    private var task: Job? = null
 
-    fun removeSelf(character: Character, ticks: Long) {
-        val executor: TaskExecutor = get()
-        task = executor.delay(ticks) {
+    fun removeSelf(character: Character, ticks: Int) {
+        task = delay(ticks) {
             character.effects.remove(this)
         }
     }

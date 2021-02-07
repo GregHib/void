@@ -14,6 +14,6 @@ class TickTime {
 
 val TICKS = TickTime()
 
-fun TimeUnit.toTicks(duration: Long): Long {
-    return toMillis(duration) / 600L
+fun TimeUnit.toTicks(duration: Long): Int {
+    return (toMillis(duration) / 600L).toInt()
 }

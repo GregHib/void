@@ -1,20 +1,15 @@
 package world.gregs.voidps.engine.action
 
 import io.mockk.*
-import kotlinx.coroutines.CancellableContinuation
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.singleOrNull
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.test.mock.declareMock
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.task.DelayTask
-import world.gregs.voidps.engine.task.Task
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.executorModule
 import kotlin.coroutines.Continuation
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
@@ -22,21 +17,12 @@ import kotlin.coroutines.resumeWithException
 
 internal class ActionTest : KoinMock() {
     lateinit var action: Action
-    lateinit var executor: TaskExecutor
 
-    override val modules = listOf(eventModule, executorModule)
+    override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {
         action = spyk(Action())
-        executor = declareMock {
-            every { execute(any()) } answers {
-                val task: Task = arg(0)
-                task.run(0)
-                task.cancel()
-            }
-            every { tick } returns 0
-        }
     }
 
     @Test
@@ -145,7 +131,7 @@ internal class ActionTest : KoinMock() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         action.continuation = continuation
-        action.type = ActionType.Movement
+        action.type = ActionType.Follow
         // When
         action.cancel(ActionType.Teleport)
         // Then
@@ -159,7 +145,7 @@ internal class ActionTest : KoinMock() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         val block: suspend Action.() -> Unit = mockk(relaxed = true)
-        val type = ActionType.Movement
+        val type = ActionType.Follow
         val coroutine: Continuation<Unit> = mockk(relaxed = true)
         mockkStatic("kotlin.coroutines.ContinuationKt")
         action.continuation = continuation
@@ -172,7 +158,6 @@ internal class ActionTest : KoinMock() {
         coVerifyOrder {
             action.cancel(type)
             block.createCoroutine(action, ActionContinuation)
-            action.delay(0)
         }
     }
 
@@ -196,17 +181,17 @@ internal class ActionTest : KoinMock() {
     @Test
     fun `Delay awaits by number of ticks`() = runBlocking {
         // Given
-        val value = 4L
-        every { executor.execute(any()) } answers {
-            val task: DelayTask = arg(0)
-            assertEquals(value, task.executionTick)
-            task.run(value)
-        }
+        val ticks = 4
+        mockkStatic("kotlinx.coroutines.flow.FlowKt")
+        val flow: MutableStateFlow<Long> = mockk(relaxed = true)
+        coEvery { flow.singleOrNull() } returns null
+        GameLoop.setTestFlow(flow)
         // When
-        action.delay(value.toInt())
+        action.delay(ticks)
         // Then
-        verify {
-            executor.execute(any<DelayTask>())
+        assertEquals(Suspension.Tick, action.suspension)
+        coVerify(exactly = ticks) {
+            flow.singleOrNull()
         }
     }
 }

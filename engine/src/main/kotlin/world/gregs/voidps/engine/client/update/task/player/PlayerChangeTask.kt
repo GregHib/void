@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
-import world.gregs.voidps.engine.event.Priority.PLAYER_CHANGE
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.tick.task.EntityTask
 import kotlin.math.abs
@@ -14,7 +13,7 @@ import kotlin.math.abs
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(PLAYER_CHANGE) {
+class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

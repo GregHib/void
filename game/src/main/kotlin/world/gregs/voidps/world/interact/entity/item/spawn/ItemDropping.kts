@@ -91,7 +91,7 @@ fun combinedStacks(existing: FloorItem, amount: Int, disappearTicks: Int): Boole
  */
 fun disappear(item: FloorItem, ticks: Int) {
     if (ticks >= 0) {
-        item.disappear = scheduler.add {
+        item.disappear = scheduler.launch {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Removed
@@ -107,7 +107,7 @@ fun disappear(item: FloorItem, ticks: Int) {
  */
 fun reveal(item: FloorItem, ticks: Int, owner: Int) {
     if (ticks >= 0 && owner != -1) {
-        scheduler.add {
+        scheduler.launch {
             delay(ticks)
             if (item.state != FloorItemState.Removed) {
                 item.state = FloorItemState.Public

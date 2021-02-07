@@ -1,12 +1,11 @@
 package world.gregs.voidps.engine.action
 
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.singleOrNull
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.delay
-import world.gregs.voidps.utility.get
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -48,7 +47,7 @@ class Action {
     }
 
     fun cancel(expected: ActionType) {
-        if(type == expected) {
+        if (type == expected) {
             cancel()
         }
     }
@@ -72,10 +71,7 @@ class Action {
         this.type = type
         this@Action.cancel(type)
         val coroutine = action.createCoroutine(this@Action, ActionContinuation)
-        scope.launch {
-            this@Action.delay(0)
-            coroutine.resume(Unit)
-        }
+        coroutine.resume(Unit)
     }
 
     /**
@@ -93,21 +89,11 @@ class Action {
      * @return always true
      */
     suspend fun delay(ticks: Int = 1): Boolean {
-        val executor: TaskExecutor = get()
-        suspendCancellableCoroutine<Unit> { continuation ->
+        repeat(ticks) {
             suspension = Suspension.Tick
-            this.continuation = continuation
-            executor.delay(ticks) {
-                if(suspension == Suspension.Tick) {
-                    resume()
-                }
-            }
+            GameLoop.flow.singleOrNull()
         }
         return true
-    }
-
-    companion object {
-        private val scope = CoroutineScope(Contexts.Game)
     }
 }
 

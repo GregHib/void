@@ -4,9 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.delay
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.engine.delay
 import kotlin.coroutines.resume
 
 /**
@@ -16,16 +14,14 @@ class Scheduler : CoroutineScope {
 
     override val coroutineContext = Contexts.Game
 
-
-    fun add(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
+    fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
 
 }
 
 @Suppress("unused")
 suspend fun CoroutineScope.delay(ticks: Int) {
-    val executor: TaskExecutor = get()
     suspendCancellableCoroutine<Unit> { continuation ->
-        executor.delay(ticks) {
+        delay(ticks) {
             continuation.resume(Unit)
         }
     }

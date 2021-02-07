@@ -12,7 +12,7 @@ data class Skull(val minutes: Int, val type: Int = 0) : PlayerEffect("skull") {
     override fun onStart(player: Player) {
         player.appearance.skull = 0
         player.flagAppearance()
-        removeSelf(player, TimeUnit.MINUTES.toTicks(minutes.toLong()))
+        removeSelf(player, TimeUnit.MINUTES.toTicks(minutes.toLong()).toInt())
     }
 
     override fun onFinish(player: Player) {

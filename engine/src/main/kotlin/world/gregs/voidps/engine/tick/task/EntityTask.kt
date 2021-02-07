@@ -14,7 +14,7 @@ import kotlin.system.measureTimeMillis
  * @since April 25, 2020
  */
 @Deprecated("Use scripts instead")
-abstract class EntityTask<T : Character>(priority: Int) : EngineTask(priority) {
+abstract class EntityTask<T : Character> : Runnable {
     private val logger = InlineLogger()
 
     abstract val entities: PooledMapList<T>

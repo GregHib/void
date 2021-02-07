@@ -7,8 +7,7 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.delay
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.inject
@@ -18,7 +17,6 @@ import java.util.concurrent.TimeUnit
 
 object Loan {
     private val definitions: ItemDefinitions by inject()
-    private val executor: TaskExecutor by inject()
     private val logger = InlineLogger()
 
     fun startLendTimer(player: Player) {
@@ -30,7 +28,7 @@ object Loan {
             player.message("The item you lent has been returned to your collection box.")
         } else if (remaining > 0) {
             val ticks = TimeUnit.MINUTES.toTicks(remaining + 1L)
-            executor.delay(player, ticks) {
+            delay(player, ticks) {
                 player.message("The item you lent has been returned to your collection box.")
             }
         }
@@ -46,9 +44,9 @@ object Loan {
             returnLoan(player)
         } else if (remaining > 0) {
             val ticks = TimeUnit.MINUTES.toTicks(remaining.toLong())
-            executor.delay(player, ticks) {
+            delay(player, ticks) {
                 player.message("The item you borrowed will be returned to its owner in a minute.")
-                executor.delay(player, TimeUnit.MINUTES.toTicks(1)) {
+                delay(player, TimeUnit.MINUTES.toTicks(1)) {
                     player.message("Your loan has expired; the item you borrowed will now be returned to its owner.")
                     returnLoan(player)
                 }

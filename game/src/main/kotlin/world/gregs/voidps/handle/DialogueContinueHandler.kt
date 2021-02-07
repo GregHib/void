@@ -6,8 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.task.TaskExecutor
-import world.gregs.voidps.engine.task.sync
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.event.ContinueDialogue
@@ -21,7 +20,6 @@ class DialogueContinueHandler : Handler() {
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
     val lookup: InterfaceDetails by inject()
-    val executor: TaskExecutor by inject()
     val decoder: InterfaceDecoder by inject()
     val logger = InlineLogger()
 
@@ -53,7 +51,7 @@ class DialogueContinueHandler : Handler() {
         val name = inter.name
         val componentName = inter.getComponentName(componentId)
 
-        executor.sync {
+        sync {
             bus.emit(
                 ContinueDialogue(
                     player,
