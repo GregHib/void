@@ -5,8 +5,6 @@ import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.GameLoop.Companion.flow
-import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
@@ -21,9 +19,6 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
-import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
@@ -49,15 +44,15 @@ import world.gregs.voidps.network.codec.game.GameOpcodes
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
 import world.gregs.voidps.network.codec.service.ServiceOpcodes
-import world.gregs.voidps.network.connection.DisconnectQueue
 import world.gregs.voidps.network.networkCodecs
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
-import world.gregs.voidps.world.interact.entity.player.spawn.login.loginQueueModule
-import world.gregs.voidps.world.interact.entity.player.spawn.logout.logoutModule
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
+import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import java.util.concurrent.Executors
 
 /**
@@ -89,7 +84,7 @@ object Main {
 
     private fun getTickStages(): List<Runnable> {
         val loginQueue: LoginQueue = get()
-        val logoutQueue: DisconnectQueue = get()
+        val logoutQueue: LogoutQueue = get()
         val playerMovement: PlayerMovementTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()

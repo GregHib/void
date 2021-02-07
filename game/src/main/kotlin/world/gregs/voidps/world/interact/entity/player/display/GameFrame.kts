@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.ListVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 

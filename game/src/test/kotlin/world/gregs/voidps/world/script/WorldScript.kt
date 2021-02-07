@@ -30,8 +30,8 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.interact.entity.player.spawn.login.loginQueueModule
-import world.gregs.voidps.world.interact.entity.player.spawn.logout.logoutModule
+import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
+import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import java.util.concurrent.Executors
 
 abstract class WorldScript : KoinMock() {

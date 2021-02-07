@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCRegistered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.event.priority
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.Tile

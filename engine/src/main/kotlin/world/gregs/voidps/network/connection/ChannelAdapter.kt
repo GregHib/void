@@ -5,11 +5,12 @@ import io.netty.channel.Channel
 import io.netty.channel.ChannelHandlerContext
 import io.netty.channel.ChannelInboundHandlerAdapter
 import world.gregs.voidps.engine.client.Sessions
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
 
 class ChannelAdapter(
     private val collection: MutableCollection<Channel>,
     private val sessions: Sessions,
-    private val disconnections: DisconnectQueue
+    private val logoutQueue: LogoutQueue
 ) : ChannelInboundHandlerAdapter() {
     private val logger = InlineLogger()
 
@@ -19,7 +20,7 @@ class ChannelAdapter(
     override fun channelUnregistered(ctx: ChannelHandlerContext) {
         val session = ctx.channel()
         val player = sessions.get(session) ?: return
-        disconnections.add(player)
+        logoutQueue.add(player)
     }
 
     override fun channelActive(ctx: ChannelHandlerContext) {

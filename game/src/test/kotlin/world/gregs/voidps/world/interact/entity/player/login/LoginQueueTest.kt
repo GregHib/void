@@ -14,10 +14,10 @@ import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.world.interact.entity.player.spawn.login.Login
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginResponse
-import world.gregs.voidps.world.interact.entity.player.spawn.login.loginQueueModule
+import world.gregs.voidps.engine.entity.character.player.login.Login
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.world.script.KoinMock
 import java.util.*
 

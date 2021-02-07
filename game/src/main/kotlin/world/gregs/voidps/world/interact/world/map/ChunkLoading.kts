@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.PlayerUnregistered
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile

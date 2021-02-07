@@ -5,8 +5,7 @@ import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.sync
@@ -20,9 +19,9 @@ import world.gregs.voidps.network.codec.setCipherOut
 import world.gregs.voidps.network.codec.setCodec
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.spawn.login.Login
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginQueue
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.player.login.Login
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
 
 /**
  * @author GregHib <greg@gregs.world>
