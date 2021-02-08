@@ -7,7 +7,6 @@ import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.list.PooledMapList
-import kotlin.system.measureTimeMillis
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -22,17 +21,12 @@ abstract class EntityTask<T : Character> : Runnable {
     abstract fun runAsync(entity: T)
 
     override fun run() = runBlocking {
-        val took = measureTimeMillis {
-            coroutineScope {
-                entities.forEach {
-                    launch(Contexts.Updating) {
-                        runAsync(it)
-                    }
+        coroutineScope {
+            entities.forEach {
+                launch(Contexts.Updating) {
+                    runAsync(it)
                 }
             }
-        }
-        if (took >= 5) {
-            logger.info { "${this@EntityTask::class.simpleName} took ${took}ms" }
         }
     }
 }

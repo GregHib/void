@@ -98,6 +98,7 @@ object Main {
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
         val bus: EventBus = get()
+        val playerPath = PlayerPathTask(players, get())
         return listOf(
             // Connections/Tick Input
             loginQueue,
@@ -109,20 +110,7 @@ object Main {
             Runnable {
                 bus.emit(Tick(GameLoop.tick))
             },
-            Runnable {
-                players.forEach { player ->
-                    val (_, strategy, callback) = player.movement.target ?: return@forEach
-                    player.movement.target = null
-                    player.dialogues.clear()
-                    player.movement.clear()
-                    player.action.cancel()
-                    val finder: PathFinder = get()
-                    val result = finder.find(player, strategy)
-                    player.movement.callback = {
-                        callback.invoke(result)
-                    }
-                }
-            },
+            playerPath,
             playerMovement,
             npcMovement,
             // Update

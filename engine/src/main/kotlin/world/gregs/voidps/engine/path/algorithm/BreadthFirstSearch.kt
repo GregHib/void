@@ -13,6 +13,20 @@ import java.util.*
 import kotlin.math.max
 import kotlin.math.min
 
+class Frontier(
+    val directions: Array<Array<Direction?>> = Array(BreadthFirstSearch.GRAPH_SIZE) { Array<Direction?>(BreadthFirstSearch.GRAPH_SIZE) { null } },
+    val distances: Array<IntArray> = Array(BreadthFirstSearch.GRAPH_SIZE) { IntArray(BreadthFirstSearch.GRAPH_SIZE) { 99999999 } },
+    val calc: Queue<Tile> = LinkedList()
+) {
+    fun reset() {
+        for (x in 0 until BreadthFirstSearch.GRAPH_SIZE) {
+            for (y in 0 until BreadthFirstSearch.GRAPH_SIZE) {
+                directions[x][y] = null
+                distances[x][y] = 99999999
+            }
+        }
+    }
+}
 /**
  * Searches every tile breadth-first to find the target
  * Closest reachable tile to target is returned if target is unreachable
@@ -21,10 +35,6 @@ import kotlin.math.min
  * @since May 20, 2020
  */
 class BreadthFirstSearch : PathAlgorithm {
-    val directions: Array<Array<Direction?>> = Array(GRAPH_SIZE) { Array<Direction?>(GRAPH_SIZE) { null } }
-    val distances: Array<IntArray> = Array(GRAPH_SIZE) { IntArray(GRAPH_SIZE) { 99999999 } }
-    val calc: Queue<Tile> = LinkedList()
-
     override fun find(
         tile: Tile,
         size: Size,
@@ -32,26 +42,22 @@ class BreadthFirstSearch : PathAlgorithm {
         strategy: TargetStrategy,
         traversal: TraversalStrategy
     ): PathResult {
-        for (x in 0 until GRAPH_SIZE) {
-            for (y in 0 until GRAPH_SIZE) {
-                directions[x][y] = null
-                distances[x][y] = 99999999
-            }
-        }
+        val frontier = movement.frontier
+        frontier.reset()
         val graph = GRAPH_SIZE / 2
         val graphBaseX = tile.x - graph
         val graphBaseY = tile.y - graph
 
-        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, strategy, traversal)
+        var result = calculate(graphBaseX, graphBaseY, tile.plane, size, strategy, traversal, frontier)
 
         if (result is PathResult.Failure) {
-            result = calculatePartialPath(strategy, graphBaseX, graphBaseY)
+            result = calculatePartialPath(strategy, graphBaseX, graphBaseY, frontier)
         }
 
         return when (result) {
             is PathResult.Failure -> result
-            is PathResult.Partial -> backtrace(movement, result, result.last, graphBaseX, graphBaseY)
-            is PathResult.Success -> backtrace(movement, result, result.last, graphBaseX, graphBaseY)
+            is PathResult.Partial -> backtrace(movement, frontier, result, result.last, graphBaseX, graphBaseY)
+            is PathResult.Success -> backtrace(movement, frontier, result, result.last, graphBaseX, graphBaseY)
         }
     }
 
@@ -61,14 +67,15 @@ class BreadthFirstSearch : PathAlgorithm {
         plane: Int,
         size: Size,
         target: TargetStrategy,
-        traversal: TraversalStrategy
+        traversal: TraversalStrategy,
+        frontier: Frontier
     ): PathResult {
         // Cache fields for jit compiler performance boost
-        val directions = directions
-        val distances = distances
+        val directions = frontier.directions
+        val distances = frontier.distances
         val all = all
 
-        val queue = calc
+        val queue = frontier.calc
         queue.clear()
 
         // Set starting tile as visited
@@ -116,10 +123,10 @@ class BreadthFirstSearch : PathAlgorithm {
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(target: TargetStrategy, graphBaseX: Int, graphBaseY: Int): PathResult {
+    fun calculatePartialPath(target: TargetStrategy, graphBaseX: Int, graphBaseY: Int, frontier: Frontier): PathResult {
         var lowestCost = Integer.MAX_VALUE
         var lowestDistance = Integer.MAX_VALUE
-        val distances = distances
+        val distances = frontier.distances
 
         val destX = target.tile.x - graphBaseX
         val destY = target.tile.y - graphBaseY
@@ -169,14 +176,14 @@ class BreadthFirstSearch : PathAlgorithm {
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(movement: Movement, result: PathResult, last: Tile, graphBaseX: Int, graphBaseY: Int): PathResult {
+    fun backtrace(movement: Movement, frontier: Frontier, result: PathResult, last: Tile, graphBaseX: Int, graphBaseY: Int): PathResult {
         var trace = last
-        var direction = directions[trace.x][trace.y]
+        var direction = frontier.directions[trace.x][trace.y]
         val current = movement.steps.count()
         while (direction != null && direction != Direction.NONE && !trace.equals(graphBaseX, graphBaseY)) {
             movement.steps.add(current, direction)
             trace = trace.minus(direction.delta)
-            direction = directions[trace.x][trace.y]
+            direction = frontier.directions[trace.x][trace.y]
         }
         return if(movement.steps.count() == current) {
             PathResult.Failure
