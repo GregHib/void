@@ -1,14 +1,18 @@
 package world.gregs.voidps.world.interact.entity.bot
 
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.event.EventBus
@@ -20,9 +24,11 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
-import world.gregs.voidps.world.interact.entity.player.spawn.login.Login
-import world.gregs.voidps.world.interact.entity.player.spawn.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.player.login.Login
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
 import kotlin.system.measureNanoTime
+import kotlin.system.measureTimeMillis
 
 val bus: EventBus by inject()
 val scheduler: Scheduler by inject()
@@ -51,7 +57,6 @@ val randomWalk = SimpleBotOption(
     ),
     weight = 0.1,
     action = { target ->
-        println("${bot} walk to $target")
         bot.walkTo(target) {
             bot.action.type = ActionType.None
             bot["walkTarget"] = targets.random()
@@ -75,8 +80,10 @@ val targets = setOf(
 
 val bots = mutableListOf<Player>()
 
+val loginQueue: LoginQueue by inject()
+
 Command where { prefix == "bots" } then {
-    spawnBots(10)
+    spawnBots(650)
 }
 var counter = 0
 
@@ -90,16 +97,17 @@ fun spawnBots(count: Int) {
                 bot.start()
                 bot["walkTarget"] = targets.random()
                 bot["context"] = BotContext(bot)
-                scheduler.add {
+                scheduler.launch {
                     delay(1)
                     bot.tele(3212, 3428, 0)
                     bot.viewport.loaded = true
                     delay(2)
+                    bot.action.type = ActionType.None
                     bots.add(bot)
                 }
             }
         }
-        bus.emit(
+        loginQueue.add(
             Login(
                 "Bot ${++counter}",
                 callback = callback
@@ -109,21 +117,30 @@ fun spawnBots(count: Int) {
 }
 
 Tick then {
-    bots.forEach { bot ->
-        if (bot.action.type != ActionType.Movement) {
-            bot.viewport.loaded = true
-            calculateNewAction(bot)
+    println("Bot decisions took ${measureTimeMillis {
+        runBlocking {
+            coroutineScope {
+                bots.forEach { bot ->
+                    if (bot.action.type == ActionType.None) {
+                        launch(Contexts.Updating) {
+                            bot.viewport.loaded = true
+                            calculateNewAction(bot)
+                        }
+                    }
+                }
+            }
         }
     }
+    }ms")
 }
 
 fun calculateNewAction(player: Player) {
     val context: BotContext = player["context"]
     val took = measureNanoTime {
         val decision = decisionMaker.decide(context, options)
-        println(decision)
+//        println(decision)
         decision?.invoke()
         context.last = decision
     }
-    println("Decision made in ${took}ns")
+//    println("Decision made in ${took}ns")
 }

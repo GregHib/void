@@ -1,5 +1,7 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.file.PlayerStorage
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -21,6 +23,7 @@ import world.gregs.voidps.world.interact.entity.npc.spawn.NPCSpawn
 import world.gregs.voidps.engine.entity.character.player.login.Login
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import java.util.concurrent.atomic.AtomicInteger
 
 val bus: EventBus by inject()
@@ -56,6 +59,11 @@ Command where { prefix == "npc" } then {
 val botCounter = AtomicInteger(0)
 
 val loginQueue: LoginQueue by inject()
+val playerStorage: PlayerStorage by inject()
+
+Command where { prefix == "save" } then {
+    playerStorage.save(player.name, player)
+}
 
 Command where { prefix == "bot" } then {
     player.tile.area(4).forEach { tile ->
