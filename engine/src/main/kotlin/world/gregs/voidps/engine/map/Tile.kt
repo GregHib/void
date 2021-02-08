@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.map
 
-import kotlinx.serialization.Serializable
 import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
@@ -13,7 +12,6 @@ import world.gregs.voidps.utility.get
  * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
-@Serializable
 data class Tile(
     override val x: Int,
     override val y: Int,

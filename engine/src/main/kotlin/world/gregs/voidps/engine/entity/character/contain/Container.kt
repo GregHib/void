@@ -1,12 +1,9 @@
 package world.gregs.voidps.engine.entity.character.contain
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import java.util.*
 
-@Serializable
 data class Container(
     val id: Int = -1,
     @Transient

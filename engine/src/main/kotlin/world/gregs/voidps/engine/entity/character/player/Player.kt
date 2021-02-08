@@ -1,11 +1,12 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterEffects
@@ -27,12 +28,13 @@ import world.gregs.voidps.engine.path.TargetStrategy
  * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
-@Serializable
+@JsonDeserialize(builder = PlayerBuilder::class)
 class Player(
     @Transient
     override var index: Int = -1,
     @Transient
     override var id: Int = -1,
+    @get:JsonProperty("tile")
     override var tile: Tile = Tile.EMPTY,
     @Transient
     override var size: Size = Size.TILE,
@@ -54,10 +56,9 @@ class Player(
     @Transient
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
-    val levels: Levels = Levels()
+    val levels: Levels = Levels(),
+    override val effects: CharacterEffects = CharacterEffects(),
 ) : Character {
-
-    override val effects = CharacterEffects()
 
     init {
         movement.previousTile = tile
