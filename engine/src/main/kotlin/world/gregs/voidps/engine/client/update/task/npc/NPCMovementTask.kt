@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -59,7 +60,7 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Runna
      */
     fun move(npc: NPC) {
         val movement = npc.movement
-        if (movement.delta != Tile.EMPTY) {
+        if (movement.delta != Delta.EMPTY) {
             val from = npc.tile
             npc.tile = npc.tile.add(movement.delta)
             bus.emit(NPCMoved(npc, from, npc.tile))

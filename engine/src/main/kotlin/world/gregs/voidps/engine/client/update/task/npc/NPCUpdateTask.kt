@@ -93,12 +93,12 @@ class NPCUpdateTask(
         set: CharacterTrackingSet<NPC>
     ) {
         for (npc in set.add) {
-            val delta = npc.tile.delta(client.tile)
+            val (x, y) = npc.tile.delta(client.tile)
             sync.writeBits(15, npc.index)
             sync.writeBits(2, npc.tile.plane)
             sync.writeBits(1, npc.teleporting)
-            sync.writeBits(5, delta.y + if (delta.y < 15) 32 else 0)
-            sync.writeBits(5, delta.x + if (delta.x < 15) 32 else 0)
+            sync.writeBits(5, y + if (y < 15) 32 else 0)
+            sync.writeBits(5, x + if (x < 15) 32 else 0)
             sync.writeBits(3, (npc.getTurn().direction shr 11) - 4)
             sync.writeBits(1, npc.visuals.addition != null)
             sync.writeBits(14, npc.id)

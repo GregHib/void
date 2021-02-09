@@ -15,18 +15,16 @@ import world.gregs.voidps.utility.get
  * @since March 28, 2020
  */
 @JsonSerialize(using = TileSerializer::class)
-inline class Tile(val packed: Int) : Coordinate3D {
+inline class Tile(val id: Int) : Coordinate3D {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 
-    val id: Int
-        get() = packed// TODO support negative numbers
     override val x: Int
-        get() = getX(packed)
+        get() = getX(id)
     override val y: Int
-        get() = getY(packed)
+        get() = getY(id)
     override val plane: Int
-        get() = getPlane(packed)
+        get() = getPlane(id)
 
     val chunk: Chunk
         get() = Chunk(x / 8, y / 8, plane)
@@ -43,11 +41,15 @@ inline class Tile(val packed: Int) : Coordinate3D {
     fun addPlane(value: Int) = add(0, 0, value)
 
     fun minus(x: Int = 0, y: Int = 0, plane: Int = 0) = add(-x, -y, -plane)
-    fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = minus(x, y, plane)
+    fun delta(x: Int = 0, y: Int = 0, plane: Int = 0) = Delta(this.x - x, this.y - y, this.plane - plane)
 
     fun add(point: Tile) = add(point.x, point.y, point.plane)
     fun minus(point: Tile) = minus(point.x, point.y, point.plane)
     fun delta(point: Tile) = delta(point.x, point.y, point.plane)
+
+    fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
+    fun minus(delta: Delta) = minus(delta.x, delta.y, delta.plane)
+    fun delta(delta: Delta) = delta(delta.x, delta.y, delta.plane)
 
     override fun add(x: Int, y: Int) = add(x, y, 0)
 

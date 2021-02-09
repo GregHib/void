@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.tick.task.EntityTask
@@ -21,7 +22,7 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
         val movement = player.movement
         val delta = movement.delta
 
-        if (delta.id != 0) {
+        if (delta != Delta.EMPTY) {
             if (movement.walkStep != Direction.NONE) {
                 var value = -1
                 var move = movement.walkStep.delta
@@ -60,7 +61,7 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
 
     companion object {
 
-        private fun withinView(delta: Tile): Boolean {
+        private fun withinView(delta: Delta): Boolean {
             return abs(delta.x) <= VIEW_RADIUS && abs(delta.y) <= VIEW_RADIUS
         }
 
@@ -75,7 +76,7 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
          * |05|  |  |  |06|
          * |00|01|02|03|04|
          */
-        fun getRunIndex(delta: Tile): Int {
+        fun getRunIndex(delta: Delta): Int {
             for (i in RUN_X.indices) {
                 if (delta.equals(RUN_X[i], RUN_Y[i])) {
                     return i
@@ -93,7 +94,7 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
          * |03|PP|04|
          * |00|01|02|
          */
-        fun getWalkIndex(delta: Tile): Int {
+        fun getWalkIndex(delta: Delta): Int {
             for (i in WALK_X.indices) {
                 if (delta.equals(WALK_X[i], WALK_Y[i])) {
                     return i

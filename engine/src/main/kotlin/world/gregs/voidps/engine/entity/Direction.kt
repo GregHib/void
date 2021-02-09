@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 
@@ -18,7 +19,7 @@ enum class Direction(deltaX: Int, deltaY: Int) {
     WEST(-1, 0),
     NONE(0, 0);
 
-    val delta = Tile(deltaX, deltaY)
+    val delta = Delta(deltaX, deltaY)
 
     fun isDiagonal() = isHorizontal() && isVertical()
 

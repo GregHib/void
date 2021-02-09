@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.path.algorithm
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
@@ -59,7 +60,7 @@ class AxisAlignment : PathAlgorithm {
         }
     }
 
-    fun toDirection(delta: Tile) = when {
+    fun toDirection(delta: Delta) = when {
         delta.x > 0 -> when {
             delta.y > 0 -> Direction.NORTH_EAST
             delta.y < 0 -> Direction.SOUTH_EAST

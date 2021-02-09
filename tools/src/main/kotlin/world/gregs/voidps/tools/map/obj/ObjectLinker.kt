@@ -3,13 +3,14 @@ package world.gregs.voidps.tools.map.obj
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 
 class ObjectLinker(private val collisions: Collisions) {
-    fun deltaBetween(one: GameObject, two: GameObject): Tile? {
+    fun deltaBetween(one: GameObject, two: GameObject): Delta? {
         val pair = linkedPoints(one, two) ?: return null
         return pair.second.delta(pair.first)
     }
@@ -66,15 +67,15 @@ class ObjectLinker(private val collisions: Collisions) {
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
                     for (y in 0 until obj.size.height) {
-                        if (obj.reachableFrom(tile.add(y = y))) {
-                            list.add(tile.add(y = y))
+                        if (obj.reachableFrom(tile.addY(y))) {
+                            list.add(tile.addY(y))
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
                     for (x in 0 until obj.size.width) {
-                        if (obj.reachableFrom(tile.add(x = x))) {
-                            list.add(tile.add(x = x))
+                        if (obj.reachableFrom(tile.addX(x))) {
+                            list.add(tile.addX(x))
                         }
                     }
                 }
@@ -94,15 +95,15 @@ class ObjectLinker(private val collisions: Collisions) {
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
                     for (y in 0 until obj.size.height) {
-                        if (obj.reachableFrom(tile.add(y = y))) {
-                            list.add(tile.add(y = y))
+                        if (obj.reachableFrom(tile.addY(y))) {
+                            list.add(tile.addY(y))
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
                     for (x in 0 until obj.size.width) {
-                        if (obj.reachableFrom(tile.add(x = x))) {
-                            list.add(tile.add(x = x))
+                        if (obj.reachableFrom(tile.addX(x))) {
+                            list.add(tile.addX(x))
                         }
                     }
                 }
@@ -123,15 +124,15 @@ class ObjectLinker(private val collisions: Collisions) {
                 when (dir) {
                     Direction.WEST, Direction.EAST -> {
                         for (y in 0 until obj.size.height) {
-                            if (obj.reachableFrom(tile.add(y = y))) {
-                                list.add(tile.add(y = y))
+                            if (obj.reachableFrom(tile.addY(y))) {
+                                list.add(tile.addY(y))
                             }
                         }
                     }
                     Direction.SOUTH, Direction.NORTH -> {
                         for (x in 0 until obj.size.width) {
-                            if (obj.reachableFrom(tile.add(x = x))) {
-                                list.add(tile.add(x = x))
+                            if (obj.reachableFrom(tile.addX(x))) {
+                                list.add(tile.addX(x))
                             }
                         }
                     }
@@ -151,14 +152,14 @@ class ObjectLinker(private val collisions: Collisions) {
             when (dir) {
                 Direction.WEST, Direction.EAST -> {
                     for (y in 0 until obj.size.height) {
-                        if (obj.reachableFrom(tile.add(y = y))) {
+                        if (obj.reachableFrom(tile.addY(y))) {
                             return true
                         }
                     }
                 }
                 Direction.SOUTH, Direction.NORTH -> {
                     for (x in 0 until obj.size.width) {
-                        if (obj.reachableFrom(tile.add(x = x))) {
+                        if (obj.reachableFrom(tile.addX(x))) {
                             return true
                         }
                     }
@@ -178,10 +179,10 @@ class ObjectLinker(private val collisions: Collisions) {
     private fun getSizedTile(obj: GameObject, dir: Direction): Tile {
         var tile = obj.tile.add(dir.delta)
         if (dir.horizontal() == Direction.EAST) {
-            tile = tile.add(x = obj.size.width - 1)
+            tile = tile.addX(obj.size.width - 1)
         }
         if (dir.vertical() == Direction.NORTH) {
-            tile = tile.add(y = obj.size.height - 1)
+            tile = tile.addY(obj.size.height - 1)
         }
         return tile
     }

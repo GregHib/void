@@ -4,6 +4,7 @@ import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -13,7 +14,7 @@ import world.gregs.voidps.engine.map.Tile
 data class Projectile(
     override val id: Int,
     override var tile: Tile,
-    val direction: Tile,
+    val direction: Delta,
     val index: Int,
     var delay: Int,
     var flightTime: Int,

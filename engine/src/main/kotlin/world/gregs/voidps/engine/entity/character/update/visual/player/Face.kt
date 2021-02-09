@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -33,7 +34,7 @@ fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.
 
 fun Player.face(entity: Entity) {
     val delta = entity.tile.delta(tile)
-    if (delta != Tile.EMPTY) {
+    if (delta != Delta.EMPTY) {
         face(delta.x, delta.y)
     }
 }
