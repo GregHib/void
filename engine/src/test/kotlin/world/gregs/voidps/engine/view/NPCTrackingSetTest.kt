@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 
@@ -165,7 +166,7 @@ internal class NPCTrackingSetTest : KoinMock() {
         val npc = mockk<NPC>(relaxed = true)
         every { npc.index } returns 1
         every { npc.tile } returns Tile(15, 15, 0)
-        every { npc.movement.delta } returns Tile(1)
+        every { npc.movement.delta } returns Delta(1, 0)
         every { npc.movement.walkStep } returns Direction.NONE
         every { npc.movement.runStep } returns Direction.NONE
         set.remove.add(npc)

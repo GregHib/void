@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.path.strat
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.path.TargetStrategy
 
 /**

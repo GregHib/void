@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.value
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -56,7 +57,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
                 every { player.compareTo(any()) } answers {
                     player.index.compareTo(arg<Character>(0).index)
                 }
-                every { player.tile } returns Tile(x, y, 0)
+                every { player.tile } returns value(Tile(x, y, 0))
                 players.add(player)
             }
         }
@@ -94,7 +95,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
                 every { player.compareTo(any()) } answers {
                     player.index.compareTo(arg<Character>(0).index)
                 }
-                every { player.tile } returns Tile(x, y, 0)
+                every { player.tile } returns value(Tile(x, y, 0))
                 players.add(player)
             }
         }

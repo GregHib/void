@@ -1,3 +1,4 @@
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileLoader
@@ -18,6 +19,17 @@ val files: FileLoader by inject()
 val bus: EventBus by inject()
 val scheduler: Scheduler by inject()
 
+data class ItemSpawnBuilder(
+    val id: Int,
+    val amount: Int = 1,
+    val delay: Int = 100,
+    val tile: ItemTile,
+) {
+    data class ItemTile(val x: Int, val y: Int, val plane: Int = 0)
+    fun build() = ItemSpawn(id, amount, delay, Tile(tile.x, tile.y, tile.plane))
+}
+
+@JsonDeserialize(builder = ItemSpawnBuilder::class)
 data class ItemSpawn(val id: Int, val amount: Int = 1, val delay: Int = 100, val tile: Tile)
 
 val spawns: MutableMap<Region, MutableList<ItemSpawn>> = mutableMapOf()

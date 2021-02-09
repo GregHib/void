@@ -4,13 +4,14 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.EventCompanion
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.utility.get
 
 data class ShootProjectile(
     val id: Int,
     val tile: Tile,
-    val direction: Tile,
+    val direction: Delta,
     val target: Character? = null,
     val delay: Int = DEFAULT_DELAY,
     val flightTime: Int = DEFAULT_FLIGHT,

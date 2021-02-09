@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.map.area
 interface Coordinate3D : Coordinate2D {
     val plane: Int
 
-    fun add(x: Int = 0, y: Int = 0, plane: Int = 0): Coordinate3D
+    fun add(x: Int, y: Int, plane: Int): Coordinate3D
 
     fun distanceTo(other: Coordinate3D): Int {
         if (plane != other.plane) {

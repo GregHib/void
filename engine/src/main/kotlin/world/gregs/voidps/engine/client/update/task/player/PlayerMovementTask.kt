@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -77,7 +78,7 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
     fun move(player: Player) {
         val movement = player.movement
         movement.trailingTile = player.tile
-        if (movement.delta != Tile.EMPTY) {
+        if (movement.delta != Delta.EMPTY) {
             movement.previousTile = player.tile
             val from = player.tile
             player.tile = player.tile.add(movement.delta)

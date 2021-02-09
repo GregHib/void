@@ -63,7 +63,7 @@ internal class LoginQueueTest : KoinMock() {
         val login = Login("Test", channel, callback)
         // When
         loginQueue.add(login)?.await()
-        loginQueue.tick()
+        loginQueue.run()
         // Then
         assertEquals(LoginResponse.Success(player), result)
     }
@@ -79,7 +79,7 @@ internal class LoginQueueTest : KoinMock() {
         val login = Login("Test", callback = callback)
         // When
         loginQueue.add(login)?.await()
-        loginQueue.tick()
+        loginQueue.run()
         // Then
         assertEquals(LoginResponse.WorldFull, result)
     }
@@ -98,7 +98,7 @@ internal class LoginQueueTest : KoinMock() {
         val login = Login("Test", callback = callback)
         // When
         loginQueue.add(login)?.await()
-        loginQueue.tick()
+        loginQueue.run()
         // Then
         assertEquals(LoginResponse.CouldNotCompleteLogin, result)
     }
@@ -136,7 +136,7 @@ internal class LoginQueueTest : KoinMock() {
         val d2 = loginQueue.add(login1)
         d1?.await()
         d2?.await()
-        loginQueue.tick()
+        loginQueue.run()
         // Then
         verifyOrder {
             loader.loadPlayer("Test2")

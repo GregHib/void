@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -14,6 +15,7 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch.Companion.GRAPH_SIZE
+import world.gregs.voidps.engine.value
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -37,10 +39,8 @@ internal class BreadthFirstSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         bfs.directions.fill(Array(GRAPH_SIZE) { Direction.NONE })
-        every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success(
-            tile
-        )
-        every { bfs.backtrace(any(), any(), any(), 0, 0) } returns PathResult.Success(tile)
+        every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success(tile)
+        every { bfs.backtrace(any(), any(), anyValue(), 0, 0) } returns PathResult.Success(tile)
         // When
         bfs.find(tile, size, movement, strategy, traversal)
         // Then
@@ -121,7 +121,7 @@ internal class BreadthFirstSearchTest {
         bfs.distances[5][5] = 2
         bfs.distances[4][5] = 3
         bfs.distances[3][5] = 4
-        every { strategy.tile } returns Tile(10, 10)
+        every { strategy.tile } returns value(Tile(10, 10))
         // When
         val result = bfs.calculatePartialPath(strategy, 10, 10)
         // Then
@@ -137,7 +137,7 @@ internal class BreadthFirstSearchTest {
         bfs.distances[5][5] = 2
         bfs.distances[6][6] = 2
         bfs.distances[7][7] = 2
-        every { strategy.tile } returns Tile(10, 10)
+        every { strategy.tile } returns value(Tile(10, 10))
         // When
         val result = bfs.calculatePartialPath(strategy, 10, 10)
         // Then
@@ -150,7 +150,7 @@ internal class BreadthFirstSearchTest {
     fun `Partial calculation returns failure if no values`() {
         // Given
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns Tile(10, 10)
+        every { strategy.tile } returns value(Tile(10, 10))
         // When
         val result = bfs.calculatePartialPath(strategy, 10, 10)
         // Then

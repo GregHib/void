@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.entity.character
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
-
-@Serializable
 class CharacterEffects(
     private val effects: MutableMap<String, Effect> = mutableMapOf()
 ) {

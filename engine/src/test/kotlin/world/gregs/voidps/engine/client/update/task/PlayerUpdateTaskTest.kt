@@ -9,6 +9,7 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.write.Writer
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
@@ -21,9 +22,11 @@ import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
 import world.gregs.voidps.utility.func.toInt
 
@@ -338,7 +341,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         // Given
         val player = mockk<Player>(relaxed = true)
         val viewport = mockk<Viewport>(relaxed = true)
-        val entities = mockk<PlayerTrackingSet>(relaxed = true)
+        val entities = PlayerTrackingSet(100, 100)
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val index = 1
@@ -349,11 +352,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         } answers {
             if (arg<Int>(0) == index) player else null
         }
-        every { player.tile.x } returns 81
-        every { player.tile.y } returns 14
+        entities.track(player, null)
+        entities.lastSeen[player] = Tile(64, 0)
+        every { player.tile } returns value(Tile(81, 14))
         every { player.index } returns index
-        every { entities.add.contains(player) } returns true
-        every { entities.lastSeen[any()] } returns null
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -433,10 +435,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             val value = 10
             val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
-            every { player.tile } returns Tile(0)
+            every { player.tile } returns value(Tile(0))
             every { set.lastSeen[player] } returns null
-            every { task.calculateRegionUpdate(any()) } returns updateType
-            every { task.calculateRegionValue(any(), any()) } returns value
+            every { task.calculateRegionUpdate(anyValue()) } returns updateType
+            every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When
             task.encodeRegion(writer, set, player)
             // Then
@@ -458,20 +460,20 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @TestFactory
     fun `Region update types`() = arrayOf(
-        RegionChange.Update to RegionPlane(0, 0, 0),
-        RegionChange.Height to RegionPlane(0, 0, 1),
-        RegionChange.Local to RegionPlane(1, 1, 0),
-        RegionChange.Local to RegionPlane(0, 1, 0),
-        RegionChange.Local to RegionPlane(1, 0, 0),
-        RegionChange.Local to RegionPlane(-1, -1, 2),
-        RegionChange.Local to RegionPlane(0, -1, 0),
-        RegionChange.Local to RegionPlane(-1, 0, 0),
-        RegionChange.Global to RegionPlane(2, 2, 3),
-        RegionChange.Global to RegionPlane(0, 2, 0),
-        RegionChange.Global to RegionPlane(2, 0, 0),
-        RegionChange.Global to RegionPlane(-2, -2, 0),
-        RegionChange.Global to RegionPlane(0, -2, 0),
-        RegionChange.Global to RegionPlane(-2, 0, 0)
+        RegionChange.Update to Delta(0, 0, 0),
+        RegionChange.Height to Delta(0, 0, 1),
+        RegionChange.Local to Delta(1, 1, 0),
+        RegionChange.Local to Delta(0, 1, 0),
+        RegionChange.Local to Delta(1, 0, 0),
+        RegionChange.Local to Delta(-1, -1, 2),
+        RegionChange.Local to Delta(0, -1, 0),
+        RegionChange.Local to Delta(-1, 0, 0),
+        RegionChange.Global to Delta(2, 2, 3),
+        RegionChange.Global to Delta(0, 2, 0),
+        RegionChange.Global to Delta(2, 0, 0),
+        RegionChange.Global to Delta(-2, -2, 0),
+        RegionChange.Global to Delta(0, -2, 0),
+        RegionChange.Global to Delta(-2, 0, 0)
     ).map { (expected, delta) ->
         dynamicTest("Region update for movement $delta") {
             // When
@@ -483,20 +485,20 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     @TestFactory
     fun `Region update values`() = arrayOf(
-        Triple(RegionChange.Update, RegionPlane(0, 0, 0), -1),
-        Triple(RegionChange.Height, RegionPlane(0, 0, 1), 1),
-        Triple(RegionChange.Height, RegionPlane(0, 0, -3), -3),
-        Triple(RegionChange.Local, RegionPlane(-1, 1, 0), 5),
-        Triple(RegionChange.Local, RegionPlane(0, 1, 1), 14),
-        Triple(RegionChange.Local, RegionPlane(1, 1, 2), 23),
-        Triple(RegionChange.Local, RegionPlane(1, 0, 3), 28),
-        Triple(RegionChange.Local, RegionPlane(1, -1, 0), 2),
-        Triple(RegionChange.Local, RegionPlane(0, -1, 1), 9),
-        Triple(RegionChange.Local, RegionPlane(-1, -1, 2), 16),
-        Triple(RegionChange.Local, RegionPlane(-1, 0, 3), 27),
-        Triple(RegionChange.Global, RegionPlane(2, 2, 0), 514),
-        Triple(RegionChange.Global, RegionPlane(-2, -2, 1), 130814),
-        Triple(RegionChange.Global, RegionPlane(12, -16, 2), 134384)
+        Triple(RegionChange.Update, Delta(0, 0, 0), -1),
+        Triple(RegionChange.Height, Delta(0, 0, 1), 1),
+        Triple(RegionChange.Height, Delta(0, 0, -3), -3),
+        Triple(RegionChange.Local, Delta(-1, 1, 0), 5),
+        Triple(RegionChange.Local, Delta(0, 1, 1), 14),
+        Triple(RegionChange.Local, Delta(1, 1, 2), 23),
+        Triple(RegionChange.Local, Delta(1, 0, 3), 28),
+        Triple(RegionChange.Local, Delta(1, -1, 0), 2),
+        Triple(RegionChange.Local, Delta(0, -1, 1), 9),
+        Triple(RegionChange.Local, Delta(-1, -1, 2), 16),
+        Triple(RegionChange.Local, Delta(-1, 0, 3), 27),
+        Triple(RegionChange.Global, Delta(2, 2, 0), 514),
+        Triple(RegionChange.Global, Delta(-2, -2, 1), 130814),
+        Triple(RegionChange.Global, Delta(12, -16, 2), 134384)
     ).map { (updateType, delta, expected) ->
         dynamicTest("Region value for movement $delta") {
             // When

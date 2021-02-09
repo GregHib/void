@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.list
 import io.mockk.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.map.Tile
 
@@ -49,7 +50,7 @@ internal class EntityListTest {
         list[10, 20, 1]
         // Then
         verifyOrder {
-            list[any<Tile>()]
+            list[anyValue<Tile>()]
             list[hash]
         }
     }
@@ -68,7 +69,7 @@ internal class EntityListTest {
         list.add(10, 20, 1, entity)
         // Then
         verifyOrder {
-            list.add(any<Tile>(), entity)
+            list.add(anyValue<Tile>(), entity)
             list.add(hash, entity)
         }
     }
@@ -113,7 +114,7 @@ internal class EntityListTest {
         list.remove(10, 20, 1, entity)
         // Then
         verifyOrder {
-            list.remove(any<Tile>(), entity)
+            list.remove(anyValue<Tile>(), entity)
             list.remove(hash, entity)
         }
     }

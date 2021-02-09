@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -38,8 +39,8 @@ fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
         movement.target = null
         movement.callback = null
         movement.clear()
-        movement.delta = Tile(x - tile.x, y - tile.y, plane - tile.plane)
-        if (movement.delta != Tile.EMPTY) {
+        movement.delta = Delta(x - tile.x, y - tile.y, plane - tile.plane)
+        if (movement.delta != Delta.EMPTY) {
             movementType = PlayerMoveType.Teleport
         }
     }

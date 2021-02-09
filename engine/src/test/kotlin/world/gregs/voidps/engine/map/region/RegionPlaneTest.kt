@@ -25,20 +25,6 @@ internal class RegionPlaneTest {
     }
 
     @Test
-    fun `Negative values`() {
-        // Given
-        val region = RegionPlane(-10, -50, -2)
-        // When
-        val x = region.x
-        val y = region.y
-        val plane = region.plane
-        // Then
-        assertEquals(-10, x)
-        assertEquals(-50, y)
-        assertEquals(-2, plane)
-    }
-
-    @Test
     fun `Negative values safe`() {
         // Given
         val region = RegionPlane.createSafe(-10, -50, -2)

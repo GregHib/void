@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.value
 
 internal class AxisAlignmentIntegrationTest {
 
@@ -57,7 +58,7 @@ internal class AxisAlignmentIntegrationTest {
                 val traversal: TraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
                 every { movement.steps } returns steps
-                every { strategy.tile } returns target
+                every { strategy.tile } returns value(target)
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When
@@ -87,12 +88,12 @@ internal class AxisAlignmentIntegrationTest {
                 val traversal: TraversalStrategy = mockk(relaxed = true)
                 val movement: Movement = mockk(relaxed = true)
                 every { movement.steps } returns steps
-                every { strategy.tile } returns target
+                every { strategy.tile } returns value(target)
                 val block = target.add(block)
-                every { traversal.blocked(block.add(x = -1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.add(x = -1), EAST) } returns true
-                every { traversal.blocked(block.add(y = 1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.add(y = 1), SOUTH) } returns true
+                every { traversal.blocked(block.addX(-1), SOUTH_EAST) } returns true
+                every { traversal.blocked(block.addX(-1), EAST) } returns true
+                every { traversal.blocked(block.addY(1), SOUTH_EAST) } returns true
+                every { traversal.blocked(block.addY(1), SOUTH) } returns true
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When

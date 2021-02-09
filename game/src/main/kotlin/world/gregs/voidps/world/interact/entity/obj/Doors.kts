@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.func.isDoor
 import world.gregs.voidps.utility.inject

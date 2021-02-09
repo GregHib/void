@@ -50,13 +50,14 @@ class PlayerLoader(
         val interfaceIO = PlayerInterfaceIO(player, bus, openEncoder, updateEncoder, animationEncoder, closeEncoder, playerHeadEncoder, npcHeadEncoder, textEncoder, visibleEncoder, spriteEncoder, itemEncoder)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)
+        player.options = PlayerOptions(player, get())
+        player.start()
         player.experience.addListener { skill, _, experience ->
             val level = player.levels.get(skill)
             levelEncoder.encode(player, skill.ordinal, level, experience.toInt())
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)
-        player.options = PlayerOptions(player, get())
         return player
     }
 }

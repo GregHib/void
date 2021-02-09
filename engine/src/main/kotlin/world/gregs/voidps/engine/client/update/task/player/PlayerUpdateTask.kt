@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.RegionChange
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
@@ -192,14 +193,14 @@ class PlayerUpdateTask(
         }
     }
 
-    fun calculateRegionUpdate(delta: RegionPlane) = when {
+    fun calculateRegionUpdate(delta: Delta) = when {
         delta.x == 0 && delta.y == 0 && delta.plane == 0 -> RegionChange.Update
         delta.x == 0 && delta.y == 0 && delta.plane != 0 -> RegionChange.Height
         delta.x == -1 || delta.y == -1 || delta.x == 1 || delta.y == 1 -> RegionChange.Local
         else -> RegionChange.Global
     }
 
-    fun calculateRegionValue(change: RegionChange, delta: RegionPlane) = when (change) {
+    fun calculateRegionValue(change: RegionChange, delta: Delta) = when (change) {
         RegionChange.Height -> delta.plane
         RegionChange.Local -> (getMovementIndex(delta) and 0x7) or (delta.plane shl 3)
         RegionChange.Global -> (delta.y and 0xff) or (delta.x and 0xff shl 8) or (delta.plane shl 16)
@@ -216,7 +217,7 @@ class PlayerUpdateTask(
          * |03|PP|04|
          * |00|01|02|
          */
-        fun getMovementIndex(delta: RegionPlane): Int {
+        fun getMovementIndex(delta: Delta): Int {
             for (i in REGION_X.indices) {
                 if (REGION_X[i] == delta.x && REGION_Y[i] == delta.y) {
                     return i

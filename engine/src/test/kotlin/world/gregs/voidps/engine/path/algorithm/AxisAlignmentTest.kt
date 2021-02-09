@@ -11,10 +11,12 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Steps
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.value
 
 internal class AxisAlignmentTest {
 
@@ -36,7 +38,7 @@ internal class AxisAlignmentTest {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns true
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
@@ -55,7 +57,7 @@ internal class AxisAlignmentTest {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns false
         every { aa.toDirection(any()) } returns Direction.NONE
         // When
@@ -164,7 +166,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Direction from delta`() {
         Direction.values().forEach {
-            val delta = Tile(it.delta.x * 10, it.delta.y * 10)
+            val delta = Delta(it.delta.x * 10, it.delta.y * 10)
             val direction = aa.toDirection(delta)
             assertEquals(it, direction)
         }

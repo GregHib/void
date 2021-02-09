@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import world.gregs.voidps.engine.entity.character.player.Player
 
-@Serializable
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),

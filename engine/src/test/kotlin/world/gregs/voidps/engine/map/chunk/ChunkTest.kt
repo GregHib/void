@@ -25,20 +25,6 @@ internal class ChunkTest {
     }
 
     @Test
-    fun `Negative values`() {
-        // Given
-        val chunk = Chunk(-10, -50, -1)
-        // When
-        val x = chunk.x
-        val y = chunk.y
-        val plane = chunk.plane
-        // Then
-        assertEquals(-10, x)
-        assertEquals(-50, y)
-        assertEquals(-1, plane)
-    }
-
-    @Test
     fun `Negative values safe`() {
         // Given
         val chunk = Chunk.createSafe(-10, -50, -1)

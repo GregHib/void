@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.move
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
@@ -20,7 +21,7 @@ typealias Steps = LinkedList<Direction>
 data class Movement(
     var previousTile: Tile = Tile.EMPTY,
     var trailingTile: Tile = Tile.EMPTY,
-    var delta: Tile = Tile.EMPTY,
+    var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
     val steps: LinkedList<Direction> = LinkedList(),
@@ -38,7 +39,7 @@ data class Movement(
     }
 
     fun reset() {
-        delta = Tile.EMPTY
+        delta = Delta.EMPTY
         walkStep = Direction.NONE
         runStep = Direction.NONE
     }

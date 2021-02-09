@@ -25,20 +25,6 @@ internal class TileTest {
     }
 
     @Test
-    fun `Negative values`() {
-        // Given
-        val tile = Tile(-10, -50, -2)
-        // When
-        val x = tile.x
-        val y = tile.y
-        val plane = tile.plane
-        // Then
-        assertEquals(-10, x)
-        assertEquals(-50, y)
-        assertEquals(-2, plane)
-    }
-
-    @Test
     fun `Negative values safe`() {
         // Given
         val tile = Tile.createSafe(-10, -50, -2)

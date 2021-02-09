@@ -1,13 +1,10 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.Transient
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
-@Serializable
 class Levels(
     private val boosts: MutableMap<Skill, Int> = mutableMapOf()
 ) {

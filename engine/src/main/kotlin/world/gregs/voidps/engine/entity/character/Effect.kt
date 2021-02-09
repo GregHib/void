@@ -1,10 +1,8 @@
 package world.gregs.voidps.engine.entity.character
 
 import kotlinx.coroutines.Job
-import kotlinx.serialization.Serializable
 import world.gregs.voidps.engine.delay
 
-@Serializable
 abstract class Effect(val effectType: String) {
 
     private var task: Job? = null

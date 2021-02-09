@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.region
 
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Coordinate2D
 
@@ -7,18 +8,23 @@ import world.gregs.voidps.engine.map.area.Coordinate2D
  * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
-data class Region(override val x: Int, override val y: Int) :
-    Coordinate2D {
+inline class Region(val id: Int) : Coordinate2D {
 
-    constructor(id: Int) : this(getX(id), getY(id))
+    constructor(x: Int, y: Int) : this(getId(x, y))
 
-    val id by lazy { getId(x, y) }
-    val tile by lazy { Tile(x * 64, y * 64, 0) }
+    override val x: Int
+        get() = getX(id)
 
+    override val y: Int
+        get() = getY(id)
+
+    val tile: Tile
+        get() = Tile(x * 64, y * 64, 0)
+
+    fun copy(x: Int = this.x, y: Int = this.y) = Region(x, y)
     override fun add(x: Int, y: Int) = copy(x = this.x + x, y = this.y + y)
     fun minus(x: Int = 0, y: Int = 0) = add(-x, -y)
-    fun delta(x: Int = 0, y: Int = 0) = minus(x, y)
-    fun equals(x: Int, y: Int) = this.x == x && this.y == y
+    fun delta(x: Int = 0, y: Int = 0) = Delta(this.x - x, this.y - y)
 
     fun add(point: Region) = add(point.x, point.y)
     fun minus(point: Region) = minus(point.x, point.y)
@@ -27,11 +33,12 @@ data class Region(override val x: Int, override val y: Int) :
     fun toPlane(plane: Int) = RegionPlane(x, y, plane)
 
     companion object {
-        fun createSafe(x: Int, y: Int) =
-            Region(x and 0xff, y and 0xff)
+        fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)
         fun getId(x: Int, y: Int) = (y and 0xff) + ((x and 0xff) shl 8)
         fun getX(id: Int) = id shr 8
         fun getY(id: Int) = id and 0xff
         val EMPTY = Region(0, 0)
     }
 }
+
+fun Region.equals(x: Int, y: Int) = this.x == x && this.y == y

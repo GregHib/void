@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.npc
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
+import world.gregs.voidps.engine.map.Delta
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -68,4 +69,4 @@ class NPCTrackingSet(
 }
 
 val NPC.teleporting: Boolean
-    get() = movement.delta.id != 0 && movement.walkStep == Direction.NONE && movement.runStep == Direction.NONE
+    get() = movement.delta != Delta.EMPTY && movement.walkStep == Direction.NONE && movement.runStep == Direction.NONE

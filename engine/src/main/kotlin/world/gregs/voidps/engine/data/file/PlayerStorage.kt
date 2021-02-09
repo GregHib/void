@@ -1,8 +1,9 @@
 package world.gregs.voidps.engine.data.file
 
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
+import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,12 +15,19 @@ import java.io.File
  */
 class PlayerStorage(private val path: String) : StorageStrategy<Player> {
 
+    val mapper = ObjectMapper(JsonFactory()).registerKotlinModule()
+    val writer = mapper.writerWithDefaultPrettyPrinter()
+
     private fun path(name: String) = "$path\\$name.json"
 
     override fun load(name: String): Player? {
         val file = File(path(name))
         if (file.exists()) {
-            return Json.decodeFromString<Player>(file.readText())
+            try {
+                return mapper.readValue(file)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
         }
         return null
     }
@@ -29,7 +37,7 @@ class PlayerStorage(private val path: String) : StorageStrategy<Player> {
         if (!file.exists()) {
             file.createNewFile()
         }
-        file.writeText(Json.encodeToString(data))
+        writer.writeValue(file, data)
     }
 }
 
