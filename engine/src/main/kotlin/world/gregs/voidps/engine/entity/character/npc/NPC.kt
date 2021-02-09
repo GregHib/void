@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.npc
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
@@ -42,7 +43,6 @@ data class NPC(
     var movementType: NPCMoveType = NPCMoveType.None
     var crawling: Boolean = false
 
-    @Transient
     override lateinit var interactTarget: TargetStrategy
 
     val def: NPCDefinition

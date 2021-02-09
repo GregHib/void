@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.entity.character
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 class CharacterEffects(
     private val effects: MutableMap<String, Effect> = mutableMapOf()
 ) {
 
-    @Transient
+    @JsonIgnore
     private lateinit var character: Character
 
     fun link(character: Character) {

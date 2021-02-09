@@ -1,22 +1,23 @@
 package world.gregs.voidps.engine.entity.character.contain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import java.util.*
 
 data class Container(
     val id: Int = -1,
-    @Transient
+    @JsonIgnore
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
-    @Transient
+    @JsonIgnore
     val stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
     private val amounts: IntArray,
-    @Transient
+    @JsonIgnore
     val minimumStack: Int = 0
 ) {
 
-    @Transient
+    @JsonIgnore
     lateinit var definitions: ItemDefinitions
 
     constructor(
@@ -34,17 +35,17 @@ data class Container(
         minimumStack
     )
 
-    @Transient
+    @JsonIgnore
     private var updates = mutableListOf<ContainerModification>()
 
-    @Transient
+    @JsonIgnore
     var result: ContainerResult = ContainerResult.Success
         private set
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
      */
-    @Transient
+    @JsonIgnore
     var predicate: ((Int, Int) -> Boolean)? = null
 
     private fun result(result: ContainerResult): Boolean {

@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.engine.action.Action
@@ -30,61 +31,61 @@ import world.gregs.voidps.engine.path.TargetStrategy
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
 class Player(
-    @Transient
+    @JsonIgnore
     override var index: Int = -1,
-    @Transient
+    @JsonIgnore
     override var id: Int = -1,
     @get:JsonProperty("tile")
     override var tile: Tile = Tile.EMPTY,
-    @Transient
+    @JsonIgnore
     override var size: Size = Size.TILE,
-    @Transient
+    @JsonIgnore
     val viewport: Viewport = Viewport(),
-    @Transient
+    @JsonIgnore
     override val visuals: Visuals = Visuals(),
-    @Transient
+    @JsonIgnore
     override val movement: Movement = Movement(),
-    @Transient
+    @JsonIgnore
     override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
-    @Transient// Temp
+    @JsonIgnore// Temp
     val variables: MutableMap<Int, Any> = mutableMapOf(),
-    @Transient
+    @JsonIgnore
     override val values: CharacterValues = CharacterValues(),
-    @Transient
+    @JsonIgnore
     val delays: Delays = Delays(),
-    @Transient
+    @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
     val levels: Levels = Levels(),
     override val effects: CharacterEffects = CharacterEffects(),
 ) : Character {
 
-    @Transient
+    @JsonIgnore
     val requests: Requests = Requests(this)
 
-    @Transient
+    @JsonIgnore
     lateinit var options: PlayerOptions
 
-    @Transient
+    @JsonIgnore
     val gameFrame = PlayerGameFrame()
 
-    @Transient
+    @JsonIgnore
     lateinit var interfaces: Interfaces
 
-    @Transient
+    @JsonIgnore
     lateinit var interfaceOptions: InterfaceOptions
 
-    @Transient
+    @JsonIgnore
     override lateinit var interactTarget: TargetStrategy
 
-    @Transient
+    @JsonIgnore
     lateinit var followTarget: TargetStrategy
 
-    @Transient
+    @JsonIgnore
     override var change: LocalChange? = null
 
-    @Transient
+    @JsonIgnore
     var changeValue: Int = -1
 
     fun start() {

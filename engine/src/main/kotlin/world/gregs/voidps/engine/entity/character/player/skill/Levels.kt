@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
@@ -8,11 +9,11 @@ import kotlin.math.pow
 class Levels(
     private val boosts: MutableMap<Skill, Int> = mutableMapOf()
 ) {
-    @Transient
+    @JsonIgnore
     lateinit var experience: Experience
-    @Transient
+    @JsonIgnore
     private val listeners = mutableListOf<(Skill, Int, Int) -> Unit>()
-    @Transient
+    @JsonIgnore
     private val levelListeners = mutableListOf<(Skill, Int, Int) -> Unit>()
 
     fun addBoostListener(listener: (Skill, Int, Int) -> Unit) {

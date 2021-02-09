@@ -1,16 +1,17 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.engine.entity.character.player.Player
 
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
     val blocked: MutableSet<Skill> = mutableSetOf(),
-    @Transient
+    @JsonIgnore
     private val maximum: Double = MAXIMUM_EXPERIENCE
 ) {
-    @Transient
+    @JsonIgnore
     private val listeners: MutableList<(Skill, Double, Double) -> Unit> = mutableListOf()
-    @Transient
+    @JsonIgnore
     private val blockedListeners: MutableList<(Skill, Double) -> Unit> = mutableListOf()
 
     fun get(skill: Skill): Double {
