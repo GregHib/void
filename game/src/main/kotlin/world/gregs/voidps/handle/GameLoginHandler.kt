@@ -76,6 +76,7 @@ class GameLoginHandler : Handler() {
                 channel.setCipherOut(keyPair.outCipher)
                 bus.emit(RegionLogin(player))
                 bus.emit(PlayerRegistered(player))
+                player.setup()
                 bus.emit(Registered(player))
             } else {
                 responseEncoder.encode(channel, response.code)

@@ -91,6 +91,9 @@ class Player(
         movement.previousTile = tile
         levels.link(experience)
         effects.link(this)
+    }
+
+    fun setup() {
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
