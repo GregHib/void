@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.contain
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -59,14 +60,18 @@ data class Container(
         StackMode.Normal -> definitions.get(id).stackable == 1
     }
 
+    @get:JsonIgnore
     val count: Int
         get() = amounts.count { !isFree(it) }
 
+    @get:JsonIgnore
     val spaces: Int
         get() = amounts.count { isFree(it) }
 
+    @JsonIgnore
     fun isEmpty() = amounts.all { isFree(it) }
 
+    @JsonIgnore
     fun isFull() = amounts.none { isFree(it) }
 
     fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
