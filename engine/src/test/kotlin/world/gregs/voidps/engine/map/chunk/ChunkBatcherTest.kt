@@ -6,10 +6,13 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import org.koin.test.get
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.inlineValue
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.codec.game.encode.ChunkClearEncoder
 import world.gregs.voidps.network.codec.game.encode.ChunkUpdateEncoder
 
@@ -58,7 +61,7 @@ internal class ChunkBatcherTest : KoinMock() {
         val chunk = Chunk(11, 11)
         val lastChunk = Chunk(10, 10)
         val player: Player = mockk(relaxed = true)
-        every { player.viewport.lastLoadChunk } returns lastChunk
+        every { player.viewport.lastLoadChunk } returns value(lastChunk)
         every { player.viewport.tileSize } returns size
         // When
         val offset = batcher.getChunkOffset(player, chunk)
@@ -72,7 +75,7 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)
+        every { batcher.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
         // When
         batcher.sendChunk(player, chunk)
         // Then
@@ -87,7 +90,7 @@ internal class ChunkBatcherTest : KoinMock() {
         mockkStatic("world.gregs.voidps.engine.client.SessionsKt")
         val player: Player = mockk(relaxed = true)
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns Chunk(7, 7)
+        every { batcher.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
         // When
         batcher.sendChunkClear(player, chunk)
         // Then
@@ -193,7 +196,7 @@ internal class ChunkBatcherTest : KoinMock() {
         val subscription: (Chunk, List<(Player) -> Unit>) -> Unit = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         batcher.initials.add(block)
-        every { batcher.sendChunkClear(any(), any()) } just Runs
+        every { batcher.sendChunkClear(any(), anyValue()) } just Runs
         every { batcher.getSubscription(player) } returns subscription
         val chunk = Chunk(10, 10, 1)
         // When

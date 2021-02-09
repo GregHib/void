@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.npc.NPCMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -17,6 +18,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.value
 import java.util.*
 
 /**
@@ -68,7 +70,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         // When
         task.run()
@@ -90,7 +92,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), Direction.NORTH) } returns true
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { movement.running } returns false
         // When
@@ -112,10 +114,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), Direction.NORTH) } returns true
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
         every { movement.running } returns true
-        every { movement.delta } returns Direction.NORTH.delta
+        every { movement.delta } returns value(Direction.NORTH.delta)
         // When
         task.run()
         // Then
@@ -137,10 +139,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         every { movement.running } returns true
-        every { movement.delta } returns Direction.NORTH.delta
+        every { movement.delta } returns value(Direction.NORTH.delta)
         every { movement.delta = any() } just Runs
         // When
         task.run()
@@ -167,10 +169,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         every { movement.running } returns true
-        every { movement.delta } returns Direction.NORTH.delta
+        every { movement.delta } returns value(Direction.NORTH.delta)
         every { movement.delta = any() } just Runs
         // When
         task.run()

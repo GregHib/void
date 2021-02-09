@@ -109,6 +109,7 @@ internal class NPCChangeTaskTest : KoinMock() {
         val npc: NPC = mockk(relaxed = true)
         every { npc.change } returns LocalChange.Update
         every { npc.movementType } returns NPCMoveType.None
+        every { npc.movement.delta } returns Delta.EMPTY
         // When
         task.runAsync(npc)
         // Then

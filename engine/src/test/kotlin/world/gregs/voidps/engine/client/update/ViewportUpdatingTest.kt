@@ -63,8 +63,8 @@ internal class ViewportUpdatingTest : KoinMock() {
         task.run()
         // Then
         verify(exactly = if (session) -1 else 0) {
-            task.update(any(), any<Players>(), any(), any(), any())
-            task.update(any(), any<NPCs>(), any(), any(), any())
+            task.update(anyValue(), any<Players>(), any(), any(), any())
+            task.update(anyValue(), any<NPCs>(), any(), any(), any())
         }
     }
 
@@ -124,24 +124,24 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[anyValue<Tile>()] } answers {
             val tile = Tile(arg(0))
             when {
-                tile.equals(0, 0) -> setOf(same)
-                tile.equals(-1, 0) -> setOf(west)
-                tile.equals(-1, 1) -> setOf(northWest)
-                tile.equals(0, 1) -> setOf(north)
+                tile.equals(10, 10) -> setOf(same)
+                tile.equals(9, 10) -> setOf(west)
+                tile.equals(9, 11) -> setOf(northWest)
+                tile.equals(10, 11) -> setOf(north)
                 else -> null
             }
         }
         // When
-        task.gatherByTile(Tile(0), players, set, null)
+        task.gatherByTile(Tile(10, 10), players, set, null)
         // Then
         verifyOrder {
-            players[Tile(0, 0, 0)]
+            players[Tile(10, 10, 0)]
             set.track(setOf(same), null)
-            players[Tile(-1, 0, 0)]
+            players[Tile(9, 10, 0)]
             set.track(setOf(west), null)
-            players[Tile(-1, 1, 0)]
+            players[Tile(9, 11, 0)]
             set.track(setOf(northWest), null)
-            players[Tile(0, 1, 0)]
+            players[Tile(10, 11, 0)]
             set.track(setOf(north), null)
         }
     }
@@ -162,25 +162,25 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[anyValue<Chunk>()] } answers {
             val chunk = Chunk(arg(0))
             when {
-                chunk.equals(0, 0, 0) -> setOf(same)
-                chunk.equals(-1, 0, 0) -> setOf(west)
-                chunk.equals(-1, 1, 0) -> setOf(northWest)
-                chunk.equals(0, 1, 0) -> setOf(north)
+                chunk.equals(10, 10, 0) -> setOf(same)
+                chunk.equals(9, 10, 0) -> setOf(west)
+                chunk.equals(9, 11, 0) -> setOf(northWest)
+                chunk.equals(10, 11, 0) -> setOf(north)
                 else -> null
             }
         }
         // When
-        task.gatherByChunk(Tile(0), players, set, null)
+        task.gatherByChunk(Tile(80, 80), players, set, null)
         // Then
         verifyOrder {
-            players[Chunk(0, 0)]
-            set.track(setOf(same), null, 0, 0)
-            players[Chunk(-1, 0)]
-            set.track(setOf(west), null, 0, 0)
-            players[Chunk(-1, 1)]
-            set.track(setOf(northWest), null, 0, 0)
-            players[Chunk(0, 1)]
-            set.track(setOf(north), null, 0, 0)
+            players[Chunk(10, 10)]
+            set.track(setOf(same), null, 80, 80)
+            players[Chunk(9, 10)]
+            set.track(setOf(west), null, 80, 80)
+            players[Chunk(9, 11)]
+            set.track(setOf(northWest), null, 80, 80)
+            players[Chunk(10, 11)]
+            set.track(setOf(north), null, 80, 80)
         }
     }
 
@@ -191,16 +191,16 @@ internal class ViewportUpdatingTest : KoinMock() {
         every { players[anyValue<Chunk>()] } answers {
             val chunk = Chunk(arg(0))
             when {
-                chunk.equals(0, 0, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
-                chunk.equals(-1, 0, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(-1, 1, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(0, 1, 0) -> setOf(mockk(relaxed = true))
-                chunk.equals(0, 0, 1) -> setOf(mockk(relaxed = true))
+                chunk.equals(10, 10, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
+                chunk.equals(9, 10, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(9, 11, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(10, 11, 0) -> setOf(mockk(relaxed = true))
+                chunk.equals(10, 10, 1) -> setOf(mockk(relaxed = true))
                 else -> null
             }
         }
         // When
-        val total = task.nearbyEntityCount(players, Tile(0))
+        val total = task.nearbyEntityCount(players, Tile(80, 80))
         // Then
         assertEquals(5, total)
     }

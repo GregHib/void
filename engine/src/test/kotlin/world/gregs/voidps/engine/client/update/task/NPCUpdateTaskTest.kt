@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
+import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
 
 /**
@@ -220,8 +221,8 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val index = 1
         val direction = 12345
         val id = 20
-        every { client.tile } returns Tile(0, 0)
-        every { npc.tile } returns Tile(5, 3, 1)
+        every { client.tile } returns value(Tile(0, 0))
+        every { npc.tile } returns value(Tile(5, 3, 1))
         every { npc.index } returns index
         every { npc.id } returns id
         every { npc.getTurn().direction } returns direction

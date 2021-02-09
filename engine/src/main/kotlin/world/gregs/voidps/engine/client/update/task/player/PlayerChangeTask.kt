@@ -21,7 +21,6 @@ class PlayerChangeTask(override val entities: Players) : EntityTask<Player>() {
     override fun runAsync(player: Player) {
         val movement = player.movement
         val delta = movement.delta
-
         if (delta != Delta.EMPTY) {
             if (movement.walkStep != Direction.NONE) {
                 var value = -1

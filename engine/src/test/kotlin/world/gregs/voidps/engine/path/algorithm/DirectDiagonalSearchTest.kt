@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.value
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -50,7 +51,7 @@ internal class DirectDiagonalSearchTest {
             val traversal: TraversalStrategy = mockk(relaxed = true)
             val movement: Movement = mockk(relaxed = true)
             every { movement.steps } returns steps
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             // When
             val result = dd.find(tile, size, movement, strategy, traversal)
             // Then
@@ -76,7 +77,7 @@ internal class DirectDiagonalSearchTest {
             val traversal: TraversalStrategy = mockk(relaxed = true)
             val movement: Movement = mockk(relaxed = true)
             every { movement.steps } returns steps
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { traversal.blocked(11, 11, tile.plane, Direction.SOUTH_WEST) } returns true
             every { traversal.blocked(9, 9, tile.plane, Direction.NORTH_EAST) } returns true
             every { traversal.blocked(9, 11, tile.plane, Direction.SOUTH_EAST) } returns true
@@ -106,7 +107,7 @@ internal class DirectDiagonalSearchTest {
             val traversal: TraversalStrategy = mockk(relaxed = true)
             val movement: Movement = mockk(relaxed = true)
             every { movement.steps } returns steps
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { traversal.blocked(11, 11, tile.plane, Direction.SOUTH_WEST) } returns true
             every { traversal.blocked(11, 11, tile.plane, Direction.WEST) } returns true
             every { traversal.blocked(9, 9, tile.plane, Direction.NORTH_EAST) } returns true

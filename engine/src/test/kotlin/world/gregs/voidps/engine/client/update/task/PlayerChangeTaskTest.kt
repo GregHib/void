@@ -116,6 +116,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.change } returns LocalChange.Update
         every { player.movementType } returns PlayerMoveType.None
+        every { player.movement.delta } returns Delta.EMPTY
         // When
         task.runAsync(player)
         // Then

@@ -23,18 +23,6 @@ internal class RegionTest {
     }
 
     @Test
-    fun `Negative values`() {
-        // Given
-        val region = Region(-10, -50)
-        // When
-        val x = region.x
-        val y = region.y
-        // Then
-        assertEquals(-10, x)
-        assertEquals(-50, y)
-    }
-
-    @Test
     fun `Negative values safe`() {
         // Given
         val region = Region.createSafe(-10, -50)

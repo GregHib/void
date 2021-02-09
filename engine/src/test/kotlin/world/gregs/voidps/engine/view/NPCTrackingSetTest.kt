@@ -166,8 +166,6 @@ internal class NPCTrackingSetTest : KoinMock() {
         val npc = mockk<NPC>(relaxed = true)
         every { npc.index } returns 1
         every { npc.tile } returns Tile(15, 15, 0)
-        println(Tile(1).x)
-        println(Tile(1).y)
         every { npc.movement.delta } returns Delta(1, 0)
         every { npc.movement.walkStep } returns Direction.NONE
         every { npc.movement.runStep } returns Direction.NONE

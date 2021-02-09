@@ -4,6 +4,7 @@ import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -94,7 +95,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         // When
@@ -119,7 +120,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns true
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns false
@@ -145,7 +146,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns true
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true
@@ -175,7 +176,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true
@@ -209,7 +210,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
-        every { traversal.blocked(any(), Direction.NORTH) } returns false
+        every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { player.movementType = any() } just Runs
         every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true

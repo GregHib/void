@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.map.region
 
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Coordinate2D
 
@@ -23,7 +24,7 @@ inline class Region(val id: Int) : Coordinate2D {
     fun copy(x: Int = this.x, y: Int = this.y) = Region(x, y)
     override fun add(x: Int, y: Int) = copy(x = this.x + x, y = this.y + y)
     fun minus(x: Int = 0, y: Int = 0) = add(-x, -y)
-    fun delta(x: Int = 0, y: Int = 0) = minus(x, y)
+    fun delta(x: Int = 0, y: Int = 0) = Delta(this.x - x, this.y - y)
 
     fun add(point: Region) = add(point.x, point.y)
     fun minus(point: Region) = minus(point.x, point.y)

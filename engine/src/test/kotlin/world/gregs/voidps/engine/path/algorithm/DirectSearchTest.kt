@@ -9,6 +9,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Steps
@@ -16,6 +17,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.value
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -43,7 +45,7 @@ internal class DirectSearchTest {
             val target = Tile(10, 10)
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { strategy.reached(target, size) } returns true
             // When
             val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
@@ -67,7 +69,7 @@ internal class DirectSearchTest {
             val target = Tile(10, 10)
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { traversal.blocked(tile.x, tile.y, tile.plane, dir) } returns true
             // When
             val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
@@ -87,7 +89,7 @@ internal class DirectSearchTest {
         val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns true
         // When
         val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
@@ -108,7 +110,7 @@ internal class DirectSearchTest {
         val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { traversal.blocked(tile, any()) } returns true
         // When
         val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
@@ -129,15 +131,15 @@ internal class DirectSearchTest {
         val target = Tile(10, 11)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
-        every { ds.addVertical(steps, any(), size, strategy, traversal) } returns PathResult.Success(tile)
+        every { strategy.tile } returns value(target)
+        every { ds.addVertical(steps, anyValue(), size, strategy, traversal) } returns PathResult.Success(tile)
         // When
         val result = ds.addHorizontal(steps, tile, size, strategy, traversal)
         // Then
         result as PathResult.Success
         assertEquals(tile, result.last)
         verify {
-            ds.addVertical(steps, any(), size, strategy, traversal)
+            ds.addVertical(steps, anyValue(), size, strategy, traversal)
         }
     }
 
@@ -152,7 +154,7 @@ internal class DirectSearchTest {
             val target = Tile(10, 10)
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { strategy.reached(target, size) } returns true
             // When
             val result = ds.addVertical(steps, tile, size, strategy, traversal)
@@ -176,7 +178,7 @@ internal class DirectSearchTest {
             val target = Tile(10, 10)
             val strategy: TargetStrategy = mockk(relaxed = true)
             val traversal: TraversalStrategy = mockk(relaxed = true)
-            every { strategy.tile } returns target
+            every { strategy.tile } returns value(target)
             every { traversal.blocked(tile.x, tile.y, tile.plane, dir) } returns true
             // When
             val result = ds.addVertical(steps, tile, size, strategy, traversal)
@@ -197,7 +199,7 @@ internal class DirectSearchTest {
         val target = Tile(11, 10)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns true
         // When
         val result = ds.addVertical(steps, tile, size, strategy, traversal)
@@ -218,7 +220,7 @@ internal class DirectSearchTest {
         val target = Tile(11, 10)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
+        every { strategy.tile } returns value(target)
         every { traversal.blocked(tile, any()) } returns true
         // When
         val result = ds.addVertical(steps, tile, size, strategy, traversal)
@@ -239,15 +241,15 @@ internal class DirectSearchTest {
         val target = Tile(11, 10)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns target
-        every { ds.addHorizontal(steps, any(), size, strategy, traversal) } returns PathResult.Success(tile)
+        every { strategy.tile } returns value(target)
+        every { ds.addHorizontal(steps, anyValue(), size, strategy, traversal) } returns PathResult.Success(tile)
         // When
         val result = ds.addVertical(steps, tile, size, strategy, traversal)
         // Then
         result as PathResult.Success
         assertEquals(tile, result.last)
         verify {
-            ds.addHorizontal(steps, any(), size, strategy, traversal)
+            ds.addHorizontal(steps, anyValue(), size, strategy, traversal)
         }
     }
 }
