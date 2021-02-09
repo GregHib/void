@@ -89,10 +89,10 @@ internal class AxisAlignmentIntegrationTest {
                 every { movement.steps } returns steps
                 every { strategy.tile } returns target
                 val block = target.add(block)
-                every { traversal.blocked(block.add(x = -1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.add(x = -1), EAST) } returns true
-                every { traversal.blocked(block.add(y = 1), SOUTH_EAST) } returns true
-                every { traversal.blocked(block.add(y = 1), SOUTH) } returns true
+                every { traversal.blocked(block.addX(-1), SOUTH_EAST) } returns true
+                every { traversal.blocked(block.addX(-1), EAST) } returns true
+                every { traversal.blocked(block.addY(1), SOUTH_EAST) } returns true
+                every { traversal.blocked(block.addY(1), SOUTH) } returns true
                 every { strategy.reached(target, size) } returns true
                 val tile = target.add(offset)
                 // When

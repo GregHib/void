@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.movementT
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
@@ -154,7 +155,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         // Then
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
             player.movementType = PlayerMoveType.Run
             player.temporaryMoveType = PlayerMoveType.Run
         }
@@ -189,7 +190,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
             player.movementType = PlayerMoveType.Walk
             player.temporaryMoveType = PlayerMoveType.Walk
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
             player.movementType = PlayerMoveType.Run
             player.temporaryMoveType = PlayerMoveType.Run
         }
@@ -227,7 +228,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         }
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
         }
     }
 

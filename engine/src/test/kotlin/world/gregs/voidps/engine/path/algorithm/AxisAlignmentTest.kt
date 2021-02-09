@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Steps
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
@@ -164,7 +165,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Direction from delta`() {
         Direction.values().forEach {
-            val delta = Tile(it.delta.x * 10, it.delta.y * 10)
+            val delta = Delta(it.delta.x * 10, it.delta.y * 10)
             val direction = aa.toDirection(delta)
             assertEquals(it, direction)
         }

@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
@@ -120,7 +121,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         // Then
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
             npc.movementType = NPCMoveType.Run
         }
     }
@@ -149,7 +150,7 @@ internal class NPCMovementTaskTest : KoinMock() {
             movement.delta = Direction.NORTH.delta
             npc.movementType = NPCMoveType.Walk
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
             npc.movementType = NPCMoveType.Run
         }
         assertEquals(1, steps.size)
@@ -182,7 +183,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         }
         verify(exactly = 0) {
             movement.runStep = Direction.NORTH
-            movement.delta = Tile(0, 2, 0)
+            movement.delta = Delta(0, 2, 0)
         }
     }
 

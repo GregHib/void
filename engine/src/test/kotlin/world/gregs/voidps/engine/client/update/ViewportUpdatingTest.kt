@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
+import world.gregs.voidps.engine.anyInlineValue
+import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
@@ -17,8 +19,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.inlineValue
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.chunk.equals
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.script.KoinMock
 
 /**
@@ -49,7 +54,7 @@ internal class ViewportUpdatingTest : KoinMock() {
             every { forEach(any()) } answers {
                 arg<(Player) -> Unit>(0).invoke(player)
             }
-            every { get(any<Chunk>()) } returns null
+            every { get(anyValue<Chunk>()) } returns null
         }
         declareMock<Sessions> {
             every { contains(player) } returns session
@@ -116,8 +121,8 @@ internal class ViewportUpdatingTest : KoinMock() {
             val players: Set<Player> = arg(0)
             players.first() != north
         }
-        every { players[any<Tile>()] } answers {
-            val tile: Tile = arg(0)
+        every { players[anyValue<Tile>()] } answers {
+            val tile = Tile(arg(0))
             when {
                 tile.equals(0, 0) -> setOf(same)
                 tile.equals(-1, 0) -> setOf(west)
@@ -154,8 +159,8 @@ internal class ViewportUpdatingTest : KoinMock() {
             val players: Set<Player> = arg(0)
             players.firstOrNull() != north
         }
-        every { players[any<Chunk>()] } answers {
-            val chunk: Chunk = arg(0)
+        every { players[anyValue<Chunk>()] } answers {
+            val chunk = Chunk(arg(0))
             when {
                 chunk.equals(0, 0, 0) -> setOf(same)
                 chunk.equals(-1, 0, 0) -> setOf(west)
@@ -183,8 +188,8 @@ internal class ViewportUpdatingTest : KoinMock() {
     fun `Nearby entity count`() {
         // Given
         val players: Players = mockk(relaxed = true)
-        every { players[any<Chunk>()] } answers {
-            val chunk: Chunk = arg(0)
+        every { players[anyValue<Chunk>()] } answers {
+            val chunk = Chunk(arg(0))
             when {
                 chunk.equals(0, 0, 0) -> setOf(mockk(relaxed = true), mockk(relaxed = true))
                 chunk.equals(-1, 0, 0) -> setOf(mockk(relaxed = true))

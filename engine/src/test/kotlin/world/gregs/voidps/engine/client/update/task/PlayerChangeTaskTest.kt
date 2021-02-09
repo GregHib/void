@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import java.util.*
@@ -39,7 +40,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.EAST
         every { player.movement.runStep } returns Direction.NONE
-        every { player.movement.delta } returns Tile(1, 0)
+        every { player.movement.delta } returns Delta(1, 0)
         every { player.movementType } returns PlayerMoveType.Walk
         every { player.change } returns LocalChange.Walk
         // When
@@ -58,7 +59,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NORTH
         every { player.movement.runStep } returns Direction.NORTH
-        every { player.movement.delta } returns Tile(0, 2)
+        every { player.movement.delta } returns Delta(0, 2)
         every { player.movementType } returns PlayerMoveType.Run
         every { player.change } returns LocalChange.Run
         // When
@@ -77,7 +78,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
-        every { player.movement.delta } returns Tile(12, -11, 1)
+        every { player.movement.delta } returns Delta(12, -11, 1)
         every { player.movementType } returns PlayerMoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
@@ -96,7 +97,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.steps } returns LinkedList()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
-        every { player.movement.delta } returns Tile(247, -365, 1)
+        every { player.movement.delta } returns Delta(247, -365, 1)
         every { player.movementType } returns PlayerMoveType.Teleport
         every { player.change } returns LocalChange.Tele
         // When
@@ -133,7 +134,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         every { player.movement.runStep } returns Direction.NONE
         every { player.movementType } returns PlayerMoveType.Teleport
         every { player.visuals.update } returns null
-        every { player.movement.delta } returns Tile(0)
+        every { player.movement.delta } returns Delta(0, 0, 0)
         every { player.change } returns null
         // When
         task.runAsync(player)
