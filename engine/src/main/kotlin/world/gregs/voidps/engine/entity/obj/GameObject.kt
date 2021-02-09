@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.entity.obj
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import world.gregs.voidps.engine.data.serializer.GameObjectBuilder
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -18,6 +20,7 @@ import world.gregs.voidps.utility.get
  * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
+@JsonDeserialize(builder = GameObjectBuilder::class)
 data class GameObject(
     override val id: Int,
     override var tile: Tile,

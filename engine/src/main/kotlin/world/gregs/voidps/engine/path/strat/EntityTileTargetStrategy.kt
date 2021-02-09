@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.path.TargetStrategy
 
 /**

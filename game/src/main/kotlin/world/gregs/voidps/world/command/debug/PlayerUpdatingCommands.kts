@@ -96,7 +96,7 @@ Command where { prefix == "watch" } then {
 }
 
 Command where { prefix == "shoot" } then {
-    player.shoot(15, player.tile.add(y = 10))
+    player.shoot(15, player.tile.addY(10))
 }
 
 Command where { prefix == "face" } then {

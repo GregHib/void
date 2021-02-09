@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.equals
 
 /**
  * @author GregHib <greg@gregs.world>

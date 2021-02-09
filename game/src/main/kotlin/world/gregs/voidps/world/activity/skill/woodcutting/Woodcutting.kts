@@ -122,7 +122,7 @@ fun getRegrowTickDelay(tree: Tree): Int {
  * Removes the tree canopy (if exists) on the tile above
  */
 fun removeCanopy(obj: GameObject, delay: Int) {
-    val canopyTile = obj.tile.add(plane = 1)
+    val canopyTile = obj.tile.addPlane(1)
     val chunks = canopyTile.chunk.area(1)
     chunks.flatMap { objects[it] }
         .firstOrNull { it.tile.within(canopyTile, 1) }

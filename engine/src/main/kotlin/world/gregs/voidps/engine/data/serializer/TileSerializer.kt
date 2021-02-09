@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
 import world.gregs.voidps.engine.map.Tile
 
-class TileSerializer : StdSerializer<Tile>(Tile::class.java) {
+internal class TileSerializer : StdSerializer<Tile>(Tile::class.java) {
     override fun serialize(value: Tile, gen: JsonGenerator, provider: SerializerProvider) {
         gen.writeStartObject()
         gen.writeNumberField("x", value.x)

@@ -4,17 +4,17 @@ buildscript {
     }
 
     dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.4.21"))
+        classpath(kotlin("gradle-plugin", version = "1.4.30"))
     }
 }
 
 plugins {
-    kotlin("jvm") version "1.4.21"
+    kotlin("jvm") version "1.4.30"
 }
 
 val koinVersion = "2.2.1"
 val junitVersion = "5.6.2"
-val jacksonVersion = "2.11.0"
+val jacksonVersion = "2.12.1"
 
 allprojects {
     apply(plugin = "kotlin")
@@ -73,9 +73,11 @@ allprojects {
     tasks {
         compileKotlin {
             kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
         }
         compileTestKotlin {
             kotlinOptions.jvmTarget = "1.8"
+            kotlinOptions.freeCompilerArgs = listOf("-Xinline-classes")
         }
     }
 

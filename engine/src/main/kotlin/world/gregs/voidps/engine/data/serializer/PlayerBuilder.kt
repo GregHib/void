@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.map.Tile
 
-data class PlayerBuilder(
+internal data class PlayerBuilder(
     var tile: WorldTile,
     val containers: MutableMap<Int, Container>,
     val experience: Experience,
