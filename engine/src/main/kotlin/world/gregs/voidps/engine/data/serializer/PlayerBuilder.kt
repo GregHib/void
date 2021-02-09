@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.map.Tile
 
 internal data class PlayerBuilder(
-    var tile: WorldTile,
+    var tile: Int,
     val containers: MutableMap<Int, Container>,
     val experience: Experience,
     val levels: Levels,
@@ -17,7 +17,7 @@ internal data class PlayerBuilder(
     data class WorldTile(val x: Int, val y: Int, val plane: Int = 0)
 
     fun build() = Player(
-        tile = Tile(tile.x, tile.y, tile.plane),
+        tile = Tile(tile),
         containers = containers,
         experience = experience,
         levels = levels,

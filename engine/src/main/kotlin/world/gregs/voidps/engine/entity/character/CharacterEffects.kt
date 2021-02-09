@@ -65,6 +65,7 @@ class CharacterEffects(
         effect.onFinish(character)
     }
 
+    @JsonIgnore
     fun getAll(): Map<String, Effect> {
         return effects
     }
