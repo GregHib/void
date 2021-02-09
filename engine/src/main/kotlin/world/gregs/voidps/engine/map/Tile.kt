@@ -35,7 +35,7 @@ inline class Tile(val packed: Int) : Coordinate3D {
     val regionPlane: RegionPlane
         get() = RegionPlane(x / 64, y / 64, plane)
 
-    fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Tile(getId(x, y, plane))
+    fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Tile(x, y, plane)
     override fun add(x: Int, y: Int, plane: Int) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
 
     fun addX(value: Int) = add(value, 0, 0)

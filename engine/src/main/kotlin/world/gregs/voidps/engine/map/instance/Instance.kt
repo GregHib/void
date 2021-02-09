@@ -9,8 +9,7 @@ import world.gregs.voidps.engine.map.region.Region
  * @author GregHib <greg@gregs.world>
  * @since July 05, 2020
  */
-data class Instance(override val x: Int, override val y: Int) :
-    Coordinate2D {
+data class Instance(override val x: Int, override val y: Int) : Coordinate2D {
 
     constructor(id: Int) : this(id shr 8, id and 0xff)
 
