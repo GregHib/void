@@ -60,12 +60,6 @@ class Player(
     override val effects: CharacterEffects = CharacterEffects(),
 ) : Character {
 
-    init {
-        movement.previousTile = tile
-        levels.link(experience)
-        effects.link(this)
-    }
-
     @Transient
     val requests: Requests = Requests(this)
 
@@ -94,6 +88,9 @@ class Player(
     var changeValue: Int = -1
 
     fun start() {
+        movement.previousTile = tile
+        levels.link(experience)
+        effects.link(this)
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
