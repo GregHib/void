@@ -83,7 +83,7 @@ val bots = mutableListOf<Player>()
 val loginQueue: LoginQueue by inject()
 
 Command where { prefix == "bots" } then {
-    spawnBots(650)
+    spawnBots(1000)
 }
 var counter = 0
 
