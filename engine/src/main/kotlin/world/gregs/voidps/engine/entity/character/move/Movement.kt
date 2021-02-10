@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
-import world.gregs.voidps.engine.path.algorithm.Frontier
+import world.gregs.voidps.engine.path.algorithm.Discovery
 import world.gregs.voidps.engine.sync
 import java.util.*
 
@@ -30,7 +30,7 @@ data class Movement(
     var running: Boolean = false
 ) {
 
-    val frontier = Frontier()
+    val discovery = Discovery()
     var callback: (() -> Unit)? = null
     var target: Triple<Any, TargetStrategy, (PathResult) -> Unit>? = null
     lateinit var traversal: TraversalStrategy

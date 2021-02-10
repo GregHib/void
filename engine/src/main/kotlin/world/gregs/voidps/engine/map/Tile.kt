@@ -57,6 +57,10 @@ inline class Tile(val id: Int) : Coordinate3D {
         return get<BresenhamsLine>().withinSight(this, other) is PathResult.Success
     }
 
+    override fun toString(): String {
+        return "Tile($x, $y, $plane)"
+    }
+
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int = 0) =
             Tile(x and 0x3fff, y and 0x3fff, plane and 0x3)
