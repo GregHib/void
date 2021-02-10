@@ -10,24 +10,20 @@ import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.algorithm.Discovery
 import world.gregs.voidps.engine.sync
-import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 26, 2020
  */
-
-typealias Steps = LinkedList<Direction>
-
 data class Movement(
     var previousTile: Tile = Tile.EMPTY,
     var trailingTile: Tile = Tile.EMPTY,
     var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
-    val steps: LinkedList<Direction> = LinkedList(),
+    val steps: Steps = Steps(),
     var frozen: Boolean = false,
-    var running: Boolean = false
+    var running: Boolean = false,
 ) {
 
     val discovery = Discovery()

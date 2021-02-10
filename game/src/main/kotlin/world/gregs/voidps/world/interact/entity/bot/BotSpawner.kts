@@ -12,6 +12,9 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.login.Login
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
@@ -20,13 +23,9 @@ import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.area
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
-import world.gregs.voidps.engine.entity.character.player.login.Login
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
 import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
@@ -83,7 +82,7 @@ val bots = mutableListOf<Player>()
 val loginQueue: LoginQueue by inject()
 
 Command where { prefix == "bots" } then {
-    spawnBots(1000)
+    spawnBots(2000)
 }
 var counter = 0
 
@@ -121,7 +120,7 @@ Tick then {
         runBlocking {
             coroutineScope {
                 bots.forEach { bot ->
-                    if (bot.action.type == ActionType.None) {
+                    if (bot.movement.target == null) {
                         launch(Contexts.Updating) {
                             bot.viewport.loaded = true
                             calculateNewAction(bot)
@@ -137,10 +136,8 @@ Tick then {
 fun calculateNewAction(player: Player) {
     val context: BotContext = player["context"]
     val took = measureNanoTime {
-        val decision = decisionMaker.decide(context, options)
-//        println(decision)
-        decision?.invoke()
-        context.last = decision
+        val decision = decisionMaker.invoke(context, options)
+        decision
     }
 //    println("Decision made in ${took}ns")
 }

@@ -13,18 +13,30 @@ import world.gregs.voidps.engine.entity.list.PooledMapList
  * @since April 25, 2020
  */
 @Deprecated("Use scripts instead")
-abstract class EntityTask<T : Character> : Runnable {
+abstract class EntityTask<T : Character>(val sequential: Boolean = false) : Runnable {
     private val logger = InlineLogger()
 
     abstract val entities: PooledMapList<T>
 
+    open fun predicate(entity: T): Boolean = true
+
     abstract fun runAsync(entity: T)
 
     override fun run() = runBlocking {
-        coroutineScope {
+        if (sequential) {
             entities.forEach {
-                launch(Contexts.Updating) {
+                if (predicate(it)) {
                     runAsync(it)
+                }
+            }
+        } else {
+            coroutineScope {
+                entities.forEach {
+                    if (predicate(it)) {
+                        launch(Contexts.Updating) {
+                            runAsync(it)
+                        }
+                    }
                 }
             }
         }

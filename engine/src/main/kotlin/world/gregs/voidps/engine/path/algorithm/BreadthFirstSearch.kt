@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
@@ -50,7 +49,7 @@ class Discovery(val mapSize: Int = 128) {
 
     fun direction(tile: Tile) = direction(tile.x, tile.y)
 
-    fun direction(x: Int, y: Int): Int = getDir(get(x, y))
+    fun direction(x: Int, y: Int): Direction = Direction.values[getDir(get(x, y))]
 
     private fun get(x: Int, y: Int) = discovered[index(x, y)]
 
@@ -198,18 +197,16 @@ class BreadthFirstSearch : PathAlgorithm {
      */
     fun backtrace(movement: Movement, discovery: Discovery, result: PathResult, last: Tile, tile: Tile): PathResult {
         var trace = last
-        var direction = Direction.values[discovery.direction(trace)]
-        val current = movement.steps.count()
-        while (trace != tile) {
-            movement.steps.add(current, direction)
+        var direction = discovery.direction(trace)
+        movement.steps.clear()
+        movement.steps.writeIndex(discovery.cost(last))
+        while (trace != tile && discovery.visited(trace, false)) {
+            movement.steps.addFirst(direction)
             trace = trace.minus(direction.delta)
-            direction = Direction.values[discovery.direction(trace)]
+            direction = discovery.direction(trace)
         }
-        return if (movement.steps.count() == current) {
-            PathResult.Failure
-        } else {
-            result
-        }
+        movement.steps.writeIndex(discovery.cost(last))
+        return result
     }
 
     companion object {

@@ -22,12 +22,12 @@ class NPCUpdateTask(
     private val npcUpdateEncoder: NPCUpdateEncoder
 ) : EntityTask<Player>() {
 
+    override fun predicate(entity: Player): Boolean {
+        return sessions.contains(entity)
+    }
+
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
-        if (!sessions.contains(player)) {
-            return
-        }
-
         val viewport = player.viewport
         val npcs = viewport.npcs
 

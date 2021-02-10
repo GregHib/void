@@ -22,13 +22,14 @@ class PlayerUpdateTask(
     override val entities: Players,
     val sessions: Sessions,
     private val updateEncoder: PlayerUpdateEncoder
-) : EntityTask<Player>() {
+) : EntityTask<Player>(true) {
+
+    override fun predicate(entity: Player): Boolean {
+        return sessions.contains(entity)
+    }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {
-        if (!sessions.contains(player)) {
-            return
-        }
         val viewport = player.viewport
         val players = viewport.players
 
