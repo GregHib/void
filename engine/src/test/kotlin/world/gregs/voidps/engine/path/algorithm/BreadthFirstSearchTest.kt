@@ -40,7 +40,7 @@ internal class BreadthFirstSearchTest {
         val traversal: TraversalStrategy = mockk(relaxed = true)
         bfs.directions.fill(Array(GRAPH_SIZE) { Direction.NONE })
         every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success(tile)
-        every { bfs.backtrace(any(), any(), anyValue(), 0) } returns PathResult.Success(tile)
+        every { bfs.backtrace(any(), any(), anyValue(), 0, tile) } returns PathResult.Success(tile)
         // When
         bfs.find(tile, size, movement, strategy, traversal)
         // Then
@@ -173,7 +173,7 @@ internal class BreadthFirstSearchTest {
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        bfs.backtrace(movement, result, tile, 0)
+        bfs.backtrace(movement, result, tile, 0, tile)
         // Then
         verifyOrder {
             steps.add(1, Direction.NORTH)
@@ -193,7 +193,7 @@ internal class BreadthFirstSearchTest {
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        val result = bfs.backtrace(movement, PathResult.Success(tile), tile, 0)
+        val result = bfs.backtrace(movement, PathResult.Success(tile), tile, 0, tile)
         // Then
         assert(result is PathResult.Failure)
     }
