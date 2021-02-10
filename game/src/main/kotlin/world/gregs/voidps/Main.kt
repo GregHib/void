@@ -20,6 +20,10 @@ import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
+import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -32,7 +36,6 @@ import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.map.instance.instancePoolModule
 import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
-import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
@@ -49,10 +52,6 @@ import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
-import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
-import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import java.util.concurrent.Executors
 
 /**
@@ -98,7 +97,6 @@ object Main {
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
         val bus: EventBus = get()
-        val playerPath = PlayerPathTask(players, get())
         return listOf(
             // Connections/Tick Input
             loginQueue,
@@ -110,7 +108,7 @@ object Main {
             Runnable {
                 bus.emit(Tick(GameLoop.tick))
             },
-            playerPath,
+            PlayerPathTask(players, get()),
             playerMovement,
             npcMovement,
             // Update

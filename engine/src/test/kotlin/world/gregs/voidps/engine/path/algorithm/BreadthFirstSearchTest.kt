@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.path.algorithm
 
 import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.anyValue
@@ -14,7 +13,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
-import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch.Companion.GRAPH_SIZE
 import world.gregs.voidps.engine.value
 
 /**
@@ -31,24 +29,6 @@ internal class BreadthFirstSearchTest {
     }
 
     @Test
-    fun `Movement reset`() {
-        // Given
-        val tile = Tile(0, 0)
-        val size = Size(1, 1)
-        val movement: Movement = mockk(relaxed = true)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
-        bfs.directions.fill(Array(GRAPH_SIZE) { Direction.NONE })
-        every { bfs.calculate(any(), any(), any(), any(), any(), any()) } returns PathResult.Success(tile)
-        every { bfs.backtrace(any(), any(), anyValue(), 0, tile) } returns PathResult.Success(tile)
-        // When
-        bfs.find(tile, size, movement, strategy, traversal)
-        // Then
-        assertEquals(null, bfs.directions[1][2])
-        assertEquals(99999999, bfs.distances[3][4])
-    }
-
-    @Test
     fun `Partial path calculated if no complete path found`() {
         // Given
         val tile = Tile(0, 0)
@@ -57,21 +37,12 @@ internal class BreadthFirstSearchTest {
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
         val response = PathResult.Success(Tile(0, 0))
-        every {
-            bfs.calculate(
-                any(),
-                any(),
-                tile.plane,
-                size,
-                strategy,
-                traversal
-            )
-        } returns PathResult.Failure
-        every { bfs.calculatePartialPath(strategy, any(), any()) } returns response
+        every { bfs.calculate(any(), size, strategy, traversal) } returns PathResult.Failure
+        every { bfs.calculatePartialPath(any(), tile, strategy) } returns response
         // When
         bfs.find(tile, size, movement, strategy, traversal)
         // Then
-        verify { bfs.calculatePartialPath(strategy, any(), any()) }
+        verify { bfs.calculatePartialPath(any(), tile, strategy) }
     }
 
     @Test
@@ -80,23 +51,23 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
+        val discovery = Discovery()
+        discovery.start(Tile(74, 74, 1))
         every { strategy.reached(72, 74, 1, size) } returns true
         // When
-        val result = bfs.calculate(10, 10, 1, size, strategy, traversal)
+        bfs.calculate(discovery, size, strategy, traversal)
         // Then
         verifyOrder {
-            strategy.reached(74, 74, 1, size)
-            strategy.reached(73, 74, 1, size)// West
-            strategy.reached(75, 74, 1, size)// East
-            strategy.reached(74, 73, 1, size)// South
-            strategy.reached(74, 75, 1, size)// North
-            strategy.reached(73, 73, 1, size)// South west
-            strategy.reached(75, 73, 1, size)// South east
-            strategy.reached(73, 75, 1, size)// North west
-            strategy.reached(75, 75, 1, size)// North east
+            strategy.reached(Tile(74, 74, 1), size)
+            strategy.reached(Tile(73, 74, 1), size)// West
+            strategy.reached(Tile(75, 74, 1), size)// East
+            strategy.reached(Tile(74, 73, 1), size)// South
+            strategy.reached(Tile(74, 75, 1), size)// North
+            strategy.reached(Tile(73, 73, 1), size)// South west
+            strategy.reached(Tile(75, 73, 1), size)// South east
+            strategy.reached(Tile(73, 75, 1), size)// North west
+            strategy.reached(Tile(75, 75, 1), size)// North east
         }
-        assertEquals(0, bfs.distances[64][64])
-        assertEquals(Direction.NONE, bfs.directions[64][64])
     }
 
     @Test
@@ -105,54 +76,70 @@ internal class BreadthFirstSearchTest {
         val size = Size(1, 1)
         val strategy: TargetStrategy = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        every { strategy.reached(73, 74, 1, size) } returns true
-        every { traversal.blocked(73, 74, 1, Direction.WEST) } returns true
+        val discovery = Discovery()
+        discovery.start(Tile(74, 74, 1))
+        every { strategy.reached(Tile(73, 74, 1), size) } returns true
+        every { traversal.blocked(Tile(73, 74, 1), Direction.WEST) } returns true
         // When
-        val result = bfs.calculate(10, 10, 1, size, strategy, traversal)
+        bfs.calculate(discovery, size, strategy, traversal)
         // Then
-        assertFalse(bfs.calc.contains(Tile(73, 74, 1)))
-        assert(bfs.calc.contains(Tile(65, 64)))
+        verify { strategy.reached(Tile(73, 74, 1), size) }
+        verify(exactly = 0) { strategy.reached(Tile(75, 74), size) }
     }
 
     @Test
     fun `Partial calculation takes lowest cost`() {
         // Given
         val strategy: TargetStrategy = mockk(relaxed = true)
-        bfs.distances[5][5] = 2
-        bfs.distances[4][5] = 3
-        bfs.distances[3][5] = 4
-        every { strategy.tile } returns value(Tile(10, 10))
+        val discovery: Discovery = mockk(relaxed = true)
+        every { discovery.mapSize } returns 128
+        every { discovery.visited(any<Int>(), any()) } returns false
+        every { discovery.visited(69, 69) } returns true
+        every { discovery.visited(68, 69) } returns true
+        every { discovery.visited(67, 69) } returns true
+        every { discovery.cost(69, 69) } returns 2
+        every { discovery.cost(68, 69) } returns 3
+        every { discovery.cost(67, 69) } returns 4
+        every { strategy.tile } returns value(Tile(64, 64))
         // When
-        val result = bfs.calculatePartialPath(strategy, 10, 10)
+        val result = bfs.calculatePartialPath(discovery, Tile(64, 64), strategy)
         // Then
         assert(result is PathResult.Partial)
         result as PathResult.Partial
-        assertEquals(Tile(3, 5), result.last)
+        assertEquals(Tile(67, 69), result.last)
     }
 
     @Test
     fun `Partial calculation takes lowest distance`() {
         // Given
         val strategy: TargetStrategy = mockk(relaxed = true)
-        bfs.distances[5][5] = 2
-        bfs.distances[6][6] = 2
-        bfs.distances[7][7] = 2
-        every { strategy.tile } returns value(Tile(10, 10))
+        val discovery: Discovery = mockk(relaxed = true)
+        every { discovery.mapSize } returns 128
+        every { discovery.visited(any<Int>(), any()) } returns false
+        every { discovery.visited(69, 69) } returns true
+        every { discovery.visited(68, 69) } returns true
+        every { discovery.visited(67, 69) } returns true
+        every { discovery.cost(69, 69) } returns 2
+        every { discovery.cost(68, 69) } returns 2
+        every { discovery.cost(67, 69) } returns 2
+        every { strategy.tile } returns value(Tile(64, 64))
         // When
-        val result = bfs.calculatePartialPath(strategy, 10, 10)
+        val result = bfs.calculatePartialPath(discovery, Tile(64, 64), strategy)
         // Then
         assert(result is PathResult.Partial)
         result as PathResult.Partial
-        assertEquals(Tile(5, 5), result.last)
+        assertEquals(Tile(67, 69), result.last)
     }
 
     @Test
     fun `Partial calculation returns failure if no values`() {
         // Given
         val strategy: TargetStrategy = mockk(relaxed = true)
-        every { strategy.tile } returns value(Tile(10, 10))
+        every { strategy.tile } returns value(Tile(74, 74))
+        val discovery: Discovery = mockk(relaxed = true)
+        every { discovery.mapSize } returns 128
         // When
-        val result = bfs.calculatePartialPath(strategy, 10, 10)
+        val result = bfs.calculatePartialPath(discovery, Tile(74, 74), strategy)
         // Then
         assert(result is PathResult.Failure)
     }
@@ -161,40 +148,51 @@ internal class BreadthFirstSearchTest {
     fun `Backtrace steps`() {
         // Given
         val movement: Movement = mockk(relaxed = true)
-        val tile = Tile(10, 10)
+        val tile = Tile(74, 74)
         val result = PathResult.Success(tile)
-        bfs.directions[10][10] = Direction.NORTH
-        bfs.directions[10][9] = Direction.EAST
-        bfs.directions[9][9] = Direction.SOUTH
-        bfs.directions[9][10] = Direction.SOUTH
-        bfs.directions[9][11] = Direction.WEST
-        bfs.directions[10][11] = Direction.NONE
+        val discovery: Discovery = mockk(relaxed = true)
+        every { discovery.mapSize } returns 128
+        every { discovery.cost(69, 69) } returns 2
+        every { discovery.visited(anyValue<Tile>(), any()) } returns false
+        every { discovery.visited(Tile(74, 74), any()) } returns true
+        every { discovery.visited(Tile(74, 73), any()) } returns true
+        every { discovery.visited(Tile(73, 73), any()) } returns true
+        every { discovery.visited(Tile(73, 74), any()) } returns true
+        every { discovery.visited(Tile(73, 75), any()) } returns true
+        every { discovery.visited(Tile(74, 75), any()) } returns true
+        every { discovery.direction(anyValue()) } returns Direction.NONE
+        every { discovery.direction(Tile(74, 74)) } returns Direction.NORTH
+        every { discovery.direction(Tile(74, 73)) } returns Direction.EAST
+        every { discovery.direction(Tile(73, 73)) } returns Direction.SOUTH
+        every { discovery.direction(Tile(73, 74)) } returns Direction.SOUTH
+        every { discovery.direction(Tile(73, 75)) } returns Direction.WEST
         val steps: Steps = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        bfs.backtrace(movement, result, tile, 0, tile)
+        bfs.backtrace(movement, discovery, result, Tile(74, 74), Tile(74, 75))
         // Then
         verifyOrder {
-            steps.add(1, Direction.NORTH)
-            steps.add(1, Direction.EAST)
-            steps.add(1, Direction.SOUTH)
-            steps.add(1, Direction.SOUTH)
-            steps.add(1, Direction.WEST)
+            steps.addFirst(Direction.NORTH)
+            steps.addFirst(Direction.EAST)
+            steps.addFirst(Direction.SOUTH)
+            steps.addFirst(Direction.SOUTH)
+            steps.addFirst(Direction.WEST)
         }
     }
 
     @Test
-    fun `Backtrace returns failure if no movement`() {
+    fun `Backtrace returns result even if no movement`() {
         // Given
         val movement: Movement = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val steps: Steps = mockk(relaxed = true)
+        val discovery: Discovery = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { steps.count() } returns 1
         // When
-        val result = bfs.backtrace(movement, PathResult.Success(tile), tile, 0, tile)
+        val result = bfs.backtrace(movement, discovery, PathResult.Success(tile), tile, tile)
         // Then
-        assert(result is PathResult.Failure)
+        assert(result is PathResult.Success)
     }
 }

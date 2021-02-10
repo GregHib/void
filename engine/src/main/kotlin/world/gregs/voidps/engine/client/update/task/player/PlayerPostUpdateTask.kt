@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.tick.task.EntityTask
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>() {
+class PlayerPostUpdateTask(override val entities: Players) : EntityTask<Player>(true) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
     override fun runAsync(player: Player) {

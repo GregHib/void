@@ -18,7 +18,7 @@ class PlayerVisualsTask(
     override val entities: PooledMapList<Player>,
     private val encoders: Array<VisualEncoder<Visual>>,
     addMasks: IntArray // Order of these is important
-) : EntityTask<Player>() {
+) : EntityTask<Player>(true) {
 
     private val addFlag = addMasks.sum()
     private val addEncoders = addMasks.map { mask -> encoders.first { it.mask == mask } }

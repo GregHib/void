@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.npc.NPCMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -15,11 +16,9 @@ import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -49,7 +48,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
         every { movement.steps } returns steps
@@ -57,14 +56,14 @@ internal class NPCMovementTaskTest : KoinMock() {
         // When
         task.run()
         // Then
-        assertEquals(1, steps.size)
+        assertEquals(1, steps.count())
     }
 
     @Test
     fun `Walk step`() {
         // Given
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
@@ -80,14 +79,14 @@ internal class NPCMovementTaskTest : KoinMock() {
             movement.delta = Direction.NORTH.delta
             npc.movementType = NPCMoveType.Walk
         }
-        assertEquals(1, steps.size)
+        assertEquals(1, steps.count())
     }
 
     @Test
     fun `Walk ignored if blocked`() {
         // Given
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
         every { movement.steps } returns steps
@@ -108,7 +107,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     fun `Run ignored if blocked`() {
         // Given
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
@@ -132,7 +131,7 @@ internal class NPCMovementTaskTest : KoinMock() {
     fun `Run step`() {
         // Given
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
@@ -155,7 +154,7 @@ internal class NPCMovementTaskTest : KoinMock() {
             movement.delta = Delta(0, 2, 0)
             npc.movementType = NPCMoveType.Run
         }
-        assertEquals(1, steps.size)
+        assertEquals(1, steps.count())
     }
 
     @Test
@@ -163,7 +162,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         // Given
         val viewport: Viewport = mockk(relaxed = true)
         val traversal: TraversalStrategy = mockk(relaxed = true)
-        val steps = LinkedList<Direction>()
+        val steps = Steps()
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
         every { movement.steps } returns steps

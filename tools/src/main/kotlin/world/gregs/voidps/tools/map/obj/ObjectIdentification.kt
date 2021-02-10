@@ -8,4 +8,6 @@ open class ObjectIdentification<T: Any>(
     override val considerations: Set<ObjectIdentificationContext.(T) -> Double>,
     override val momentum: Double = 1.0,
     override val weight: Double = 1.0
-) : Option<ObjectIdentificationContext, T>
+) : Option<ObjectIdentificationContext, T> {
+    override val action: (ObjectIdentificationContext.(T) -> Unit)? = null
+}

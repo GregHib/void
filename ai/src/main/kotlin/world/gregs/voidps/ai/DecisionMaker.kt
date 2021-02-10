@@ -6,6 +6,11 @@ package world.gregs.voidps.ai
  */
 class DecisionMaker {
 
+    fun <C : Context> invoke(context: C, options: Set<Option<C, *>>): Boolean {
+        context.last = decide(context, options)?.apply { invoke() } ?: return false
+        return true
+    }
+
     fun <C : Context> decide(context: C, options: Set<Option<C, *>>): Decision<*, *>? {
         val decision = select(context, options) ?: return null
         context.last = decision
