@@ -4,6 +4,7 @@ import world.gregs.voidps.ai.DecisionMaker
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.tools.map.view.graph.NavigationGraph
 import world.gregs.voidps.utility.get
 
@@ -17,7 +18,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
      */
     private fun isReused(obj: GameObject): Boolean {
         if (obj.tile.plane > 0) {
-            if (objs[obj.tile.add(plane = 1)].any { it.id == obj.id }) {
+            if (objs[obj.tile.addPlane(1)].any { it.id == obj.id }) {
                 return false
             }
             if (objs[obj.tile.minus(plane = 1)].any { it.id == obj.id }) {

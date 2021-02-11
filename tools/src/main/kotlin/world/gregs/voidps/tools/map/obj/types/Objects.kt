@@ -48,7 +48,7 @@ val differenceBetweenIds: ObjectIdentificationContext.(GameObjectOption) -> Doub
 val objectDistance: ObjectIdentificationContext.(GameObjectOption) -> Double = { target ->
     val dist = getDistance(obj.tile, obj.size, target.obj)
     if (onSurface(obj.tile) && inDungeon(target.obj.tile)) {
-        max(dist, getDistance(obj.tile.add(y = dungeonDifference), obj.size, target.obj))
+        max(dist, getDistance(obj.tile.addY(dungeonDifference), obj.size, target.obj))
     } else if (inDungeon(obj.tile) && onSurface(target.obj.tile)) {
         max(dist, getDistance(obj.tile.minus(y = dungeonDifference), obj.size, target.obj))
     } else {

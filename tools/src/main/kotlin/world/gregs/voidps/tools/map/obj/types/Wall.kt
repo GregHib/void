@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.map.obj
 
+import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -10,7 +11,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.ai.toDouble
 
 val wallOptions: ObjectIdentificationContext.(Tile) -> Double = { _ ->
     if (opt == "climb down" || opt == "climb up") {
@@ -57,8 +57,8 @@ private fun hasVerticalTile(obj1: GameObject, tiles1: Set<Tile>, target: Tile): 
 
 private fun check(obj: GameObject, tiles: Set<Tile>, dir: Direction): Boolean {
     val tile = when (dir) {
-        Direction.NORTH -> obj.tile.add(y = obj.size.height)
-        Direction.EAST -> obj.tile.add(x = obj.size.width)
+        Direction.NORTH -> obj.tile.addY(obj.size.height)
+        Direction.EAST -> obj.tile.addX(obj.size.width)
         else -> obj.tile.add(dir.delta)
     }
     return tiles.contains(tile)
