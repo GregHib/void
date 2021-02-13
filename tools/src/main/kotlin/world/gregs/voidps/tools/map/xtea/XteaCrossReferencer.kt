@@ -2,11 +2,11 @@ package world.gregs.voidps.tools.map.xtea
 
 import com.displee.cache.CacheLibrary
 import io.netty.buffer.ByteBuf
+import world.gregs.voidps.cache.Indices
+import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.cache.Indices
-import world.gregs.voidps.cache.secure.Xtea
 import java.io.File
 import java.io.RandomAccessFile
 
@@ -35,17 +35,18 @@ object XteaCrossReferencer {
 
     fun more(map: MutableMap<Int, Xteas>) {
         var extra = 0
-        File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\").listFiles()?.forEach {
-            if (it.isDirectory) {
-                map[extra++] = XteaLoader().run(it.absolutePath)
-            }
-        }
+//        File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\").listFiles()?.forEach {
+//            if (it.isDirectory) {
+//                map[extra++] = XteaLoader().run(it.absolutePath)
+//            }
+//        }
+        map[extra++] = XteaLoader().run(File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\633\\").absolutePath)
     }
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val library = CacheLibrary("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\")
-        val xteas = XteaLoader().run("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\634\\")
+        val library = CacheLibrary("./data/cache/")
+        val xteas = XteaLoader().run("./data/xteas.dat")
 
         val xteasList = all("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\xteas.dat")
         more(xteasList)
@@ -76,6 +77,7 @@ object XteaCrossReferencer {
                 if (decrypted.containsKey(region.id)) {
                     continue
                 }
+                println("Checking map ${region.id} $regionX $regionY")
                 var found = false
                 for (keys in allXteas) {
                     if (isReal(library, archiveId, keys)) {
