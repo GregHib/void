@@ -2,15 +2,15 @@ package world.gregs.voidps.tools.map.xtea
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.cache.CacheDelegate
+import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
-import world.gregs.voidps.cache.Indices
 
 object XteaValidator {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
-        val cache = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\")
-        val xteas = XteaLoader().run("./xteas/")//"${System.getProperty("user.home")}\\Downloads\\rs634_cache\\634\\")
+        val cache = CacheDelegate("./data/cache/")
+        val xteas = XteaLoader().run("./xteas/")
 
         val archives = cache.getArchives(Indices.MAPS).toSet()
         var total = 0
