@@ -3,6 +3,7 @@ package world.gregs.voidps.tools.map.view.draw
 import world.gregs.voidps.tools.map.view.graph.NavigationGraph
 import java.awt.Color
 import java.awt.Graphics
+import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
@@ -27,6 +28,7 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
 
     private fun repaint() {
         view.repaint(min(linkX, linkEndX), min(linkY, linkEndY), max(linkX, linkEndX), max(linkY, linkEndY))
+        view.repaint(linkX + (linkEndX - linkX) / 2, linkY + (linkEndY - linkY) / 2, 30, 30)
     }
 
     fun reset() {
@@ -54,6 +56,12 @@ class LinkConnector(private val view: MapView, private val nav: NavigationGraph)
         if (draw) {
             g.color = Color.YELLOW
             g.drawLine(linkX, linkY, linkEndX, linkEndY)
+            g.color = Color.WHITE
+            g.drawString(chebyshev(view.viewToMapX(linkX), view.viewToMapY(linkY), view.viewToMapX(linkEndX), view.viewToMapY(linkEndY)).toString(), linkX + (linkEndX - linkX) / 2, linkY + (linkEndY - linkY) / 2)
         }
+    }
+
+    private fun chebyshev(x1: Int, y1: Int, x2: Int, y2: Int): Int {
+        return abs(x1 - x2).coerceAtLeast(abs(y1 - y2))
     }
 }
