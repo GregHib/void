@@ -81,7 +81,7 @@ object WorldMapLinkIdentifier {
         cacheLinks.addAll(mapLinks.getLinks())
         val compare = ObjectIdentifier(linker, cacheLinks, graph)
         compare.compare(list)
-        println("${graph.links.size} total links found.")
+        println("${graph.adjacencyList.values.sumBy { it.size }} total links found.")
         GraphIO(graph, AreaSet(), "./navgraph.json").save()
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
