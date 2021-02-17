@@ -33,7 +33,7 @@ class GraphDrawer(
 
     fun draw(g: Graphics) {
         g.color = linkColour
-        nav.nodes.forEach { node ->
+        nav.adjacencyList.keys.forEach { node ->
             if (node.plane != view.plane) {
                 return@forEach
             }

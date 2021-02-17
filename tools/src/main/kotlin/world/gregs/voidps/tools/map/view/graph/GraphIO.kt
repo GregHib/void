@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.map.Tile
 
 class GraphIO(private val nav: NavigationGraph, private val area: AreaSet, path: String = "./navgraph.json") {
     private val file = java.io.File(path)
     private val reader = ObjectMapper(JsonFactory())
-        .setSerializationInclusion(JsonInclude.Include.NON_NULL)
+        .registerKotlinModule()
+        .setSerializationInclusion(JsonInclude.Include.NON_DEFAULT)
 
     private val writer = reader.writerWithDefaultPrettyPrinter()
 
@@ -30,12 +32,14 @@ class GraphIO(private val nav: NavigationGraph, private val area: AreaSet, path:
             return
         }
         val map = reader.readValue<Map<String, Any>>(file)
-        val links = (map["links"] as List<Map<String, Any>>).map {
-            Link(Tile(it["start"] as Int),
-                Tile(it["end"] as Int),
-                it["actions"] as? List<String>,
-                it["requirements"] as? List<String>
-            )
+        (map["links"] as Map<String, ArrayList<Map<String, Any>>>).forEach { (key, list) ->
+            nav.adjacencyList[Tile(key.toInt())] = list.map {
+                Link(Tile(it["start"] as Int),
+                    Tile(it["end"] as Int),
+                    it["actions"] as? List<String>,
+                    it["requirements"] as? List<String>
+                )
+            }.toMutableList()
         }
         val areas = (map["areas"] as? List<Map<String, Any>>)?.map {
             Area(
@@ -50,9 +54,6 @@ class GraphIO(private val nav: NavigationGraph, private val area: AreaSet, path:
                 }.toMutableList()
             )
         }
-        nav.nodes.addAll(links.map { it.start })
-        nav.nodes.addAll(links.map { it.end })
-        nav.links.addAll(links)
         if (areas != null) {
             areas.forEach { area ->
                 area.points.forEach {
@@ -68,7 +69,7 @@ class GraphIO(private val nav: NavigationGraph, private val area: AreaSet, path:
             return
         }
         writer.writeValue(file, mapOf(
-            "links" to nav.links,
+            "links" to nav.adjacencyList.mapKeys { it.key.id },
             "areas" to area.areas
         ))
         nav.changed = false
