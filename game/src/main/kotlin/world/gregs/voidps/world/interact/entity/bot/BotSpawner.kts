@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.Login
@@ -23,10 +25,10 @@ import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
-import kotlin.system.measureNanoTime
 import kotlin.system.measureTimeMillis
 
 val bus: EventBus by inject()
@@ -46,25 +48,38 @@ open class SimpleBotOption<T : Any>(
     override val action: BotContext.(T) -> Unit
 ) : Option<BotContext, T>
 
-val randomWalk = SimpleBotOption(
+val decideTarget = SimpleBotOption(
+    name = "choose target",
+    targets = { listOf(this) },
+    considerations = setOf(
+        { (!bot.has("walkTarget")).toDouble() }
+    ),
+    weight = 0.2,
+    action = {
+        bot["walkTarget"] = targets.random()
+    }
+)
+val walkToTarget = SimpleBotOption(
     "target walk",
     targets = {
         bot.tile.area(15).toList()
     },
     considerations = setOf(
+        { bot.has("walkTarget").toDouble() },
         { tile -> tile.distanceTo(bot.get<Tile>("walkTarget")).toDouble().scale(1.0, 100.0).inverse() }
     ),
     weight = 0.1,
     action = { target ->
         bot.walkTo(target) {
             bot.action.type = ActionType.None
-            bot["walkTarget"] = targets.random()
+            bot.clear("walkTarget")
         }
     }
 )
 
 val options = setOf(
-    randomWalk
+    walkToTarget,
+    decideTarget
 )
 
 val targets = setOf(
@@ -81,6 +96,9 @@ val bots = mutableListOf<Player>()
 
 val loginQueue: LoginQueue by inject()
 
+Startup then {
+
+}
 Command where { prefix == "bots" } then {
     spawnBots(2000)
 }
@@ -94,7 +112,6 @@ fun spawnBots(count: Int) {
                 bus.emit(PlayerRegistered(bot))
                 bus.emit(Registered(bot))
                 bot.start()
-                bot["walkTarget"] = targets.random()
                 bot["context"] = BotContext(bot)
                 scheduler.launch {
                     delay(1)
@@ -135,9 +152,6 @@ Tick then {
 
 fun calculateNewAction(player: Player) {
     val context: BotContext = player["context"]
-    val took = measureNanoTime {
-        val decision = decisionMaker.invoke(context, options)
-        decision
-    }
+    decisionMaker.invoke(context, options)
 //    println("Decision made in ${took}ns")
 }

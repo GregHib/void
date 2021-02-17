@@ -38,7 +38,6 @@ class Steps {
 
     fun writeIndex(index: Int) {
         if (index <= 64) {
-            println("Write index $index")
             write = index
         }
     }
