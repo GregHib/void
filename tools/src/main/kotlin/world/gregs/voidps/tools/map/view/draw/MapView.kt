@@ -1,6 +1,7 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
+import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.GraphIO
 import world.gregs.voidps.tools.map.view.graph.NavigationGraph
 import world.gregs.voidps.tools.map.view.interact.*
@@ -16,18 +17,19 @@ class MapView(file: String) : JPanel() {
 
     private val options = OptionsPane(this)
     private val nav = NavigationGraph()
-    private val io = GraphIO(nav, file)
+    private val areaSet = AreaSet()
+    private val io = GraphIO(nav, areaSet, file)
     private val highlight = HighlightedTile(this, options)
-    private val area = HighlightedArea(this, nav)
+    private val area = HighlightedArea(this, areaSet)
 
     private val drag = MouseDrag(this)
     private val zoom = MouseZoom(this, MouseZoom.ZoomType.Mouse)
     private val hover = MouseHover(highlight, area)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
-    private val graph = GraphDrawer(this, nav)
-    private val click = MouseClick(this, nav, graph, area)
-    private val apc = AreaPointConnector(this, nav)
+    private val graph = GraphDrawer(this, nav, areaSet)
+    private val click = MouseClick(this, nav, graph, area, areaSet)
+    private val apc = AreaPointConnector(this, areaSet)
     private val lc = LinkConnector(this, nav)
 
     /*
@@ -141,7 +143,7 @@ class MapView(file: String) : JPanel() {
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
-        val point = nav.getPointOrNull(mapStartX, flipMapY(mapStartY), plane)
+        val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), plane)
         val node = nav.getNodeOrNull(mapStartX, flipMapY(mapStartY), plane)
         when {
             node != null -> {

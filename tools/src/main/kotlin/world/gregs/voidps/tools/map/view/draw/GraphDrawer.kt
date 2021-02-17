@@ -2,6 +2,7 @@ package world.gregs.voidps.tools.map.view.draw
 
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.view.graph.Area
+import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
 import world.gregs.voidps.tools.map.view.graph.NavigationGraph
 import java.awt.*
@@ -9,7 +10,8 @@ import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private val nav: NavigationGraph
+    private val nav: NavigationGraph,
+    private val area: AreaSet,
 ) {
 
     private val linkColour = Color(0.0f, 0.0f, 1.0f, 0.5f)
@@ -25,18 +27,18 @@ class GraphDrawer(
         view.repaint(view.mapToViewX(area.minX), view.mapToViewY(view.flipMapY(area.minY)), view.mapToImageX(area.maxX), view.mapToImageY(view.flipMapY(area.maxY)))
     }
 
-    fun repaint(node: Int) {
-        view.repaint(view.mapToViewX(Tile.getX(node)), view.mapToViewY(view.flipMapY(Tile.getY(node))), view.mapToImageX(1), view.mapToImageY(1))
+    fun repaint(node: Tile) {
+        view.repaint(view.mapToViewX(node.x), view.mapToViewY(view.flipMapY(node.y)), view.mapToImageX(1), view.mapToImageY(1))
     }
 
     fun draw(g: Graphics) {
         g.color = linkColour
         nav.nodes.forEach { node ->
-            if (Tile.getPlane(node) != view.plane) {
+            if (node.plane != view.plane) {
                 return@forEach
             }
-            val viewX = view.mapToViewX(Tile.getX(node))
-            val viewY = view.mapToViewY(view.flipMapY(Tile.getY(node)))
+            val viewX = view.mapToViewX(node.x)
+            val viewY = view.mapToViewY(view.flipMapY(node.y))
             if (!view.contains(viewX, viewY)) {
                 return@forEach
             }
@@ -46,11 +48,11 @@ class GraphDrawer(
 
             val links = nav.getLinks(node)
             links.forEachIndexed { index, link ->
-                if (link.z != view.plane || link.tz != view.plane) {
+                if (link.start.plane != view.plane || link.end.plane != view.plane) {
                     return@forEachIndexed
                 }
-                val endX = view.mapToViewX(link.tx) + width / 2
-                val endY = view.mapToViewY(view.flipMapY(link.ty)) + height / 2
+                val endX = view.mapToViewX(link.end.x) + width / 2
+                val endY = view.mapToViewY(view.flipMapY(link.end.y)) + height / 2
                 val offset = width / 4
                 if (view.scale > 10) {
                     g.drawArrowHead(viewX + width / 2, viewY + height / 2, endX, endY, offset * 3, width / 2, index.toString())
@@ -61,7 +63,7 @@ class GraphDrawer(
             }
         }
         g.color = areaColour
-        nav.areas.forEach { area ->
+        area.areas.forEach { area ->
             if (view.plane !in area.planes) {
                 return@forEach
             }

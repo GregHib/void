@@ -4,10 +4,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.view.draw.GraphDrawer
 import world.gregs.voidps.tools.map.view.draw.HighlightedArea
 import world.gregs.voidps.tools.map.view.draw.MapView
-import world.gregs.voidps.tools.map.view.graph.Area
-import world.gregs.voidps.tools.map.view.graph.Link
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
-import world.gregs.voidps.tools.map.view.graph.Point
+import world.gregs.voidps.tools.map.view.graph.*
 import world.gregs.voidps.tools.map.view.ui.AreaPointSettings
 import world.gregs.voidps.tools.map.view.ui.AreaSettings
 import world.gregs.voidps.tools.map.view.ui.LinkSettings
@@ -23,7 +20,8 @@ class MouseClick(
     private val view: MapView,
     private val nav: NavigationGraph,
     private val graph: GraphDrawer,
-    private val area: HighlightedArea
+    private val area: HighlightedArea,
+    private val areaSet: AreaSet,
 ) : MouseAdapter() {
 
     override fun mouseClicked(e: MouseEvent) {
@@ -41,7 +39,7 @@ class MouseClick(
                 }
             }
             popup.add(JMenuItem("Add area")).addActionListener {
-                graph.repaint(nav.addArea(mapX, mapY, view.plane))
+                graph.repaint(areaSet.addArea(mapX, mapY, view.plane))
             }
             if (node != null && links != null) {
                 popup.add(JMenuItem("Edit node")).addActionListener {
@@ -65,18 +63,18 @@ class MouseClick(
                     showLinkSettings(link)
                 }
                 popup.add(JMenuItem("Go to link $index target")).addActionListener {
-                    val dx = link.tx - link.x
-                    val dy = link.ty - link.y
-                    val dz = link.tz - link.z
+                    val dx = link.end.x - link.start.x
+                    val dy = link.end.y - link.start.y
+                    val dz = link.end.plane - link.start.plane
                     view.offset(-dx, dy, dz)
                 }
-                popup.add(JMenuItem("Remove link $index")).addActionListener {
-                    nav.removeLink(link)
-                }
+//                popup.add(JMenuItem("Remove link $index")).addActionListener {
+//                    nav.removeLink(link)
+//                }
             }
             if (point != null) {
                 popup.add(JMenuItem("Remove point")).addActionListener {
-                    nav.removePoint(point.area, point)
+                    areaSet.removePoint(point.area, point)
                     graph.repaint(point.area)
                 }
             }
@@ -98,7 +96,7 @@ class MouseClick(
             if (areas.isNotEmpty()) {
                 for ((index, area) in areas.withIndex()) {
                     popup.add(JMenuItem("Remove area${if (index > 0) (index + 1).toString() else ""}")).addActionListener {
-                        nav.removeArea(area)
+                        areaSet.removeArea(area)
                         graph.repaint(area)
                     }
                 }
@@ -161,7 +159,7 @@ class MouseClick(
         point.y = settings.coords.yCoord.text.toIntOrNull() ?: point.y
     }
 
-    private fun showNodeSettings(node: Int, links: List<Link>) {
+    private fun showNodeSettings(node: Tile, links: List<Link>) {
         val settings = NodeSettings()
         populate(settings, node)
         val result = JOptionPane.showConfirmDialog(null, settings, "Edit node",
@@ -181,15 +179,15 @@ class MouseClick(
         }
     }
 
-    private fun populate(settings: NodeSettings, node: Int) {
-        settings.coords.xCoord.text = Tile.getX(node).toString()
-        settings.coords.yCoord.text = Tile.getY(node).toString()
+    private fun populate(settings: NodeSettings, node: Tile) {
+        settings.coords.xCoord.text = node.x.toString()
+        settings.coords.yCoord.text = node.y.toString()
     }
 
-    private fun populate(node: Int, settings: NodeSettings): Int {
-        val newX = settings.coords.xCoord.text.toIntOrNull() ?: Tile.getX(node)
-        val newY = settings.coords.yCoord.text.toIntOrNull() ?: Tile.getY(node)
-        val newZ = settings.coords.zCoord.text.toIntOrNull() ?: Tile.getPlane(node)
+    private fun populate(node: Tile, settings: NodeSettings): Tile {
+        val newX = settings.coords.xCoord.text.toIntOrNull() ?: node.x
+        val newY = settings.coords.yCoord.text.toIntOrNull() ?: node.y
+        val newZ = settings.coords.zCoord.text.toIntOrNull() ?: node.plane
         return nav.updateNode(node, newX, newY, newZ)
     }
 
@@ -205,12 +203,12 @@ class MouseClick(
     }
 
     private fun populate(settings: LinkSettings, link: Link) {
-        settings.start.xCoord.text = link.x.toString()
-        settings.start.yCoord.text = link.y.toString()
-        settings.start.zCoord.text = link.z.toString()
-        settings.end.xCoord.text = link.tx.toString()
-        settings.end.yCoord.text = link.ty.toString()
-        settings.end.zCoord.text = link.tz.toString()
+        settings.start.xCoord.text = link.start.x.toString()
+        settings.start.yCoord.text = link.start.y.toString()
+        settings.start.zCoord.text = link.start.plane.toString()
+        settings.end.xCoord.text = link.end.x.toString()
+        settings.end.yCoord.text = link.end.y.toString()
+        settings.end.zCoord.text = link.end.plane.toString()
         val actions = link.actions
         if (actions != null) {
             settings.actionsList.addAll(actions)
