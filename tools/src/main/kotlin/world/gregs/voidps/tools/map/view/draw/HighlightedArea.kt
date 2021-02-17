@@ -1,13 +1,13 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import world.gregs.voidps.tools.map.view.graph.Area
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.AreaSet
 import java.awt.Color
 import java.awt.Graphics
 import java.awt.Polygon
 import java.awt.Rectangle
 
-class HighlightedArea(private val view: MapView, private val nav: NavigationGraph) {
+class HighlightedArea(private val view: MapView, private val area: AreaSet) {
 
     val highlighted: MutableList<Area> = mutableListOf()
 
@@ -21,7 +21,7 @@ class HighlightedArea(private val view: MapView, private val nav: NavigationGrap
 
     fun update(viewX: Int, viewY: Int) {
         clear()
-        for (area in nav.areas) {
+        for (area in area.areas) {
             val shape = area.getShape() ?: continue
             val mapX = view.viewToMapX(viewX)
             val mapY = view.flipMapY(view.viewToMapY(viewY))

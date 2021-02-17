@@ -5,8 +5,9 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.map.Tile
 
-class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json") {
+class GraphIO(private val nav: NavigationGraph, private val area: AreaSet, path: String = "./navgraph.json") {
     private val file = java.io.File(path)
     private val reader = ObjectMapper(JsonFactory())
         .setSerializationInclusion(JsonInclude.Include.NON_NULL)
@@ -30,8 +31,8 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
         }
         val map = reader.readValue<Map<String, Any>>(file)
         val links = (map["links"] as List<Map<String, Any>>).map {
-            Link(it["start"] as Int,
-                it["end"] as Int,
+            Link(Tile(it["start"] as Int),
+                Tile(it["end"] as Int),
                 it["actions"] as? List<String>,
                 it["requirements"] as? List<String>
             )
@@ -58,7 +59,7 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
                     it.area = area
                 }
             }
-            nav.areas.addAll(areas)
+            area.areas.addAll(areas)
         }
     }
 
@@ -68,7 +69,7 @@ class GraphIO(private val nav: NavigationGraph, path: String = "./navgraph.json"
         }
         writer.writeValue(file, mapOf(
             "links" to nav.links,
-            "areas" to nav.areas
+            "areas" to area.areas
         ))
         nav.changed = false
     }

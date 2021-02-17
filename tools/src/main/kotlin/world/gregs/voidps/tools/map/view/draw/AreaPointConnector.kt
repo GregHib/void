@@ -1,12 +1,12 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.AreaSet
 import java.awt.Color
 import java.awt.Graphics
 import kotlin.math.max
 import kotlin.math.min
 
-class AreaPointConnector(private val view: MapView, private val nav: NavigationGraph) {
+class AreaPointConnector(private val view: MapView, private val area: AreaSet) {
     private var linkX = -1
     private var linkY = -1
     private var linkEndX = -1
@@ -37,12 +37,12 @@ class AreaPointConnector(private val view: MapView, private val nav: NavigationG
                 val endX = view.viewToMapX(linkEndX)
                 val endY = view.flipMapY(view.viewToMapY(linkEndY))
                 val plane = view.plane
-                val start = nav.getPointOrNull(mapX, mapY, plane) ?: nav.addArea(mapX, mapY, plane).points.first()
-                val end = nav.getPointOrNull(endX, endY, plane)
+                val start = area.getPointOrNull(mapX, mapY, plane) ?: area.addArea(mapX, mapY, plane).points.first()
+                val end = area.getPointOrNull(endX, endY, plane)
                 if (end == null) {
-                    nav.addPoint(start, endX, endY)
+                    area.addPoint(start, endX, endY)
                 } else {
-                    nav.removePoint(start.area, end)
+                    area.removePoint(start.area, end)
                 }
             }
             draw = false

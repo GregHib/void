@@ -3,6 +3,8 @@ package world.gregs.voidps.tools.map.obj
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.definition.decoder.MapDecoder
+import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
@@ -18,11 +20,10 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.xteaModule
+import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.GraphIO
 import world.gregs.voidps.tools.map.view.graph.NavigationGraph
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.cache.definition.decoder.MapDecoder
-import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 
 /**
  * Finds links between objects e.g ladders, stairs, entrances, exits
@@ -81,7 +82,7 @@ object WorldMapLinkIdentifier {
         val compare = ObjectIdentifier(linker, cacheLinks, graph)
         compare.compare(list)
         println("${graph.links.size} total links found.")
-        GraphIO(graph, "./navgraph.json").save()
+        GraphIO(graph, AreaSet(), "./navgraph.json").save()
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
 
