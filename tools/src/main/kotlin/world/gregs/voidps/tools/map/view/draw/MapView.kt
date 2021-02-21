@@ -1,9 +1,9 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import kotlinx.coroutines.*
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
-import world.gregs.voidps.tools.map.view.graph.GraphIO
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.tools.map.view.interact.*
 import world.gregs.voidps.tools.map.view.ui.OptionsPane
 import java.awt.Color
@@ -13,12 +13,11 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(file: String) : JPanel() {
+class MapView(private val file: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val nav = NavigationGraph()
+    private val nav = MutableNavigationGraph.load(file)
     private val areaSet = AreaSet()
-    private val io = GraphIO(nav, areaSet, file)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
 
@@ -67,7 +66,12 @@ class MapView(file: String) : JPanel() {
         addMouseMotionListener(hover)
         addComponentListener(resize)
         add(options)
-        io.start()
+        GlobalScope.launch(Dispatchers.IO) {
+            while (isActive) {
+                delay(10000)
+                MutableNavigationGraph.save(nav, file)
+            }
+        }
         repaint()
     }
 

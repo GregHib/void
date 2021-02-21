@@ -1,13 +1,13 @@
 package world.gregs.voidps.tools.map.view.draw
 
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import java.awt.Color
 import java.awt.Graphics
 import kotlin.math.abs
 import kotlin.math.max
 import kotlin.math.min
 
-class LinkConnector(private val view: MapView, private val nav: NavigationGraph) {
+class LinkConnector(private val view: MapView, private val nav: MutableNavigationGraph) {
     private var linkX = -1
     private var linkY = -1
     private var linkEndX = -1
