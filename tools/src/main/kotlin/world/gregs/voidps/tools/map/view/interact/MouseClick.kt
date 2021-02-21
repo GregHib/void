@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities
 
 class MouseClick(
     private val view: MapView,
-    private val nav: NavigationGraph,
+    private val nav: MutableNavigationGraph,
     private val graph: GraphDrawer,
     private val area: HighlightedArea,
     private val areaSet: AreaSet,

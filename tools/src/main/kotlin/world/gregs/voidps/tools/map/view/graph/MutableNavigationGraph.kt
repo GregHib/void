@@ -1,8 +1,14 @@
 package world.gregs.voidps.tools.map.view.graph
 
+import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.core.JsonFactory
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.readValue
+import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import world.gregs.voidps.engine.map.Tile
+import java.io.File
 
-class NavigationGraph {
+class MutableNavigationGraph {
 
     val adjacencyList = mutableMapOf<Tile, MutableList<Link>>()
     var changed = false
@@ -75,5 +81,36 @@ class NavigationGraph {
         removeNode(original)
         changed = true
         return node
+    }
+
+    companion object {
+
+        private val reader = ObjectMapper(JsonFactory())
+            .registerKotlinModule()
+            .setSerializationInclusion(JsonInclude.Include.NON_DEFAULT)
+        private val writer = reader.writerWithDefaultPrettyPrinter()
+
+
+        fun save(graph: MutableNavigationGraph, path: String = "./navgraph.json") {
+            val file = File(path)
+            writer.writeValue(file, graph.adjacencyList.mapKeys { it.key.id })
+        }
+        fun load(path: String = "./navgraph.json"): MutableNavigationGraph {
+            val graph = MutableNavigationGraph()
+            val file = File(path)
+            val list: ArrayList<Map<String, Any>> = reader.readValue(file)
+            list.forEach { map ->
+                map.forEach { (key, it) ->
+                    graph.adjacencyList[Tile(key.toInt())] = list.map {
+                        Link(Tile(it["start"] as Int),
+                            Tile(it["end"] as Int),
+                            it["actions"] as? List<String>,
+                            it["requirements"] as? List<String>
+                        )
+                    }.toMutableList()
+                }
+            }
+            return graph
+        }
     }
 }

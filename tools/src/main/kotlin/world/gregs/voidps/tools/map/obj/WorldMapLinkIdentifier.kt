@@ -20,9 +20,7 @@ import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.engine.map.region.xteaModule
-import world.gregs.voidps.tools.map.view.graph.AreaSet
-import world.gregs.voidps.tools.map.view.graph.GraphIO
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import world.gregs.voidps.utility.get
 
 /**
@@ -50,7 +48,7 @@ object WorldMapLinkIdentifier {
         val collisionReader = CollisionReader(koin.get())
         val mapDecoder: MapDecoder = koin.get()
         val collisions: Collisions = koin.get()
-        val graph = NavigationGraph()
+        val graph = MutableNavigationGraph()
         val linker = ObjectLinker(collisions)
         val regions = mutableListOf<Region>()
         for (regionX in 0 until 256) {
@@ -82,7 +80,7 @@ object WorldMapLinkIdentifier {
         val compare = ObjectIdentifier(linker, cacheLinks, graph)
         compare.compare(list)
         println("${graph.adjacencyList.values.sumBy { it.size }} total links found.")
-        GraphIO(graph, AreaSet(), "./navgraph.json").save()
+        MutableNavigationGraph.save(graph, "./navgraph.json")
         println("${regions.size} regions loaded in ${System.currentTimeMillis() - start}ms")
     }
 

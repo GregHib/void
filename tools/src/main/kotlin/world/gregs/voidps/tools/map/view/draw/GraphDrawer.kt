@@ -4,13 +4,13 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
-import world.gregs.voidps.tools.map.view.graph.NavigationGraph
+import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import java.awt.*
 import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private val nav: NavigationGraph,
+    private val nav: MutableNavigationGraph,
     private val area: AreaSet,
 ) {
 
