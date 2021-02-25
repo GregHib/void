@@ -1,20 +1,26 @@
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.update.task.viewport.Spiral
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.engine.map.collision.CollisionFlag
-import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.map.collision.get
-import world.gregs.voidps.network.codec.game.encode.InterfaceColourEncoder
-import world.gregs.voidps.network.codec.game.encode.InterfaceVisibilityEncoder
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area2D
+import world.gregs.voidps.engine.map.nav.NavigationGraph
+import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.TraversalType
+import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.network.codec.game.encode.sendContainerItems
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.obj.spawn.spawnObject
+import kotlin.system.measureNanoTime
 
 IntVariable(1109, Variable.Type.VARBIT).register("one")
 IntVariable(1112, Variable.Type.VARBIT).register("two")
@@ -26,11 +32,46 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
-    val encoder: InterfaceColourEncoder = get()
-    encoder.encode(player, 746, 226, 255, 0, 0)
-    val encoder2: InterfaceVisibilityEncoder = get()
-    encoder2.encode(player, 746, 226, true)
-    println("Sent")
+    val graph: NavigationGraph = get()
+    var nearest: Tile? = null
+    Spiral.spiral(player.tile, 15) {
+        if (nearest == null && graph[it].isNotEmpty()) {
+            nearest = it
+        }
+    }
+    val east = Area2D(Tile(3179, 3433), 15, 14)
+    val west = Area2D(Tile(3250, 3417), 7, 8)
+    val target = Tile(3254, 3480)
+    val dijkstra: Dijkstra = get()
+    val strategy: TargetStrategy = object : TargetStrategy {
+        override val tile: Tile
+            get() = target
+        override val size: Size
+            get() = Size.TILE
+
+        override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
+            return east.contains(currentX, currentY) || west.contains(currentX, currentY)
+        }
+    }
+    val traversal: TraversalStrategy = object : TraversalStrategy {
+        override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+            return false
+        }
+        override val type: TraversalType
+            get() = TraversalType.Land
+        override val extra: Int
+            get() = 0
+    }
+    println("Path took ${measureNanoTime {
+        dijkstra.find(nearest!!, player.size, player.movement, strategy, traversal)
+    }}ns")
+    player.action {
+        while(player.movement.waypoints.isNotEmpty()) {
+            val next = player.movement.waypoints.poll()
+            delay(1)
+            player.tele(next.end)
+        }
+    }
 }
 
 Command where { prefix == "sendItems" } then {
@@ -39,11 +80,11 @@ Command where { prefix == "sendItems" } then {
 }
 
 Command where { prefix == "obj" } then {
-    if(content.isNotBlank()) {
+    if (content.isNotBlank()) {
         val parts = content.split(" ")
         val id = parts.getOrNull(0)?.toIntOrNull()
         val type = 10
-        if(id != null) {
+        if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
             spawnObject(id, player.tile.addY(2), 10, rotation, 10, null)
             spawnObject(id, player.tile.addY(2), 22, rotation, 10, null)
