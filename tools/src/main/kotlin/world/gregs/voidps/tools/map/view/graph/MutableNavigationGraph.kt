@@ -95,20 +95,19 @@ class MutableNavigationGraph {
             val file = File(path)
             writer.writeValue(file, graph.adjacencyList.mapKeys { it.key.id })
         }
+
         fun load(path: String = "./navgraph.json"): MutableNavigationGraph {
             val graph = MutableNavigationGraph()
             val file = File(path)
-            val list: ArrayList<Map<String, Any>> = reader.readValue(file)
-            list.forEach { map ->
-                map.forEach { (key, it) ->
-                    graph.adjacencyList[Tile(key.toInt())] = list.map {
-                        Link(Tile(it["start"] as Int),
-                            Tile(it["end"] as Int),
-                            it["actions"] as? List<String>,
-                            it["requirements"] as? List<String>
-                        )
-                    }.toMutableList()
-                }
+            val map: Map<String, ArrayList<Map<String, Any>>> = reader.readValue(file)
+            map.forEach { (key, list) ->
+                graph.adjacencyList[Tile(key.toInt())] = list.map {
+                    Link(Tile(it["start"] as Int),
+                        Tile(it["end"] as Int),
+                        it["actions"] as? List<String>,
+                        it["requirements"] as? List<String>
+                    )
+                }.toMutableList()
             }
             return graph
         }

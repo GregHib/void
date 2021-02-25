@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
@@ -21,6 +22,7 @@ data class Movement(
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
     val steps: Steps = Steps(),
+    val waypoints: MutableList<Edge> = mutableListOf(),
     var frozen: Boolean = false,
     var running: Boolean = false,
 ) {
