@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.path.algorithm
 
+import kotlinx.io.pool.ObjectPool
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
@@ -11,63 +12,6 @@ import world.gregs.voidps.engine.path.TraversalStrategy
 import kotlin.math.max
 import kotlin.math.min
 
-class Discovery(val mapSize: Int = 128) {
-
-    private val discovered: IntArray = IntArray(mapSize * mapSize)
-    private val queue: IntArray = IntArray(mapSize * mapSize)
-    private var visit: Int = 0
-    var writeIndex: Int = 0
-    var start = Tile.EMPTY
-
-    fun start(tile: Tile) {
-        reset()
-        start = tile.minus(mapSize / 2, mapSize / 2)
-        visit(tile, 0, 0)
-    }
-
-    fun queue(tile: Tile) {
-        queue[writeIndex++] = tile.id
-    }
-
-    fun poll(index: Int): Tile = Tile(queue[index])
-
-    fun visit(tile: Tile, cost: Int, dir: Int) {
-        queue(tile)
-        discovered[index(tile.x, tile.y)] = pack(cost, visit, dir)
-    }
-
-    fun cost(tile: Tile) = cost(tile.x, tile.y)
-
-    fun cost(x: Int, y: Int): Int = getCost(get(x, y))
-
-    fun visited(tile: Tile, default: Boolean): Boolean {
-        val value = discovered.getOrNull(index(tile.x, tile.y)) ?: return default
-        return getVisit(value) == visit
-    }
-
-    fun visited(x: Int, y: Int): Boolean = getVisit(get(x, y)) == visit
-
-    fun direction(tile: Tile) = direction(tile.x, tile.y)
-
-    fun direction(x: Int, y: Int): Direction = Direction.values[getDir(get(x, y))]
-
-    private fun get(x: Int, y: Int) = discovered[index(x, y)]
-
-    fun index(x: Int, y: Int) = (x - start.x) + ((y - start.y) * mapSize)
-
-    fun reset() {
-        visit = visit + 1 and 0x3fff
-        writeIndex = 0
-    }
-
-    companion object {
-        fun getDir(value: Int) = value shr 28
-        fun getCost(value: Int) = value shr 14 and 0x3fff
-        fun getVisit(value: Int) = value and 0x3fff
-        fun pack(cost: Int, visit: Int, dir: Int) = visit or (cost shl 14) or (dir shl 28)
-    }
-}
-
 /**
  * Searches every tile breadth-first to find the target
  * Closest reachable tile to target is returned if target is unreachable
@@ -75,7 +19,10 @@ class Discovery(val mapSize: Int = 128) {
  * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
-class BreadthFirstSearch : PathAlgorithm {
+class BreadthFirstSearch(
+    private val pool: ObjectPool<BreadthFirstSearchFrontier>,
+) : PathAlgorithm {
+
     override fun find(
         tile: Tile,
         size: Size,
@@ -83,65 +30,66 @@ class BreadthFirstSearch : PathAlgorithm {
         strategy: TargetStrategy,
         traversal: TraversalStrategy,
     ): PathResult {
-        val discovery = movement.discovery
-        discovery.start(tile)
+        val frontier = pool.borrow()
+        frontier.start(tile)
 
-        var result = calculate(discovery, size, strategy, traversal)
+        var result = calculate(frontier, size, strategy, traversal)
 
         if (result is PathResult.Failure) {
-            result = calculatePartialPath(discovery, tile, strategy)
+            result = calculatePartialPath(frontier, tile, strategy)
         }
 
-        return when (result) {
+        result = when (result) {
             is PathResult.Failure -> result
-            is PathResult.Partial -> backtrace(movement, discovery, result, result.last, tile)
-            is PathResult.Success -> backtrace(movement, discovery, result, result.last, tile)
+            is PathResult.Partial -> backtrace(movement, frontier, result, result.last, tile)
+            is PathResult.Success -> backtrace(movement, frontier, result, result.last, tile)
         }
+        pool.recycle(frontier)
+        return result
     }
 
     fun calculate(
-        discovery: Discovery,
+        frontier: BreadthFirstSearchFrontier,
         size: Size,
         target: TargetStrategy,
         traversal: TraversalStrategy,
     ): PathResult {
-        var readIndex = 0
-        while (readIndex < discovery.writeIndex) {
-            val parent = discovery.poll(readIndex++)
+        while (frontier.isNotEmpty()) {
+            val parent = frontier.poll()
 
             if (target.reached(parent, size)) {
                 return PathResult.Success(parent)
             }
 
-            if (discovery.cost(parent) >= MAX_PATH_COST) {
+            if (frontier.cost(parent) >= MAX_PATH_COST) {
                 break
             }
 
-            check(discovery, traversal, parent, Direction.WEST)
-            check(discovery, traversal, parent, Direction.EAST)
-            check(discovery, traversal, parent, Direction.SOUTH)
-            check(discovery, traversal, parent, Direction.NORTH)
-            check(discovery, traversal, parent, Direction.SOUTH_WEST)
-            check(discovery, traversal, parent, Direction.SOUTH_EAST)
-            check(discovery, traversal, parent, Direction.NORTH_WEST)
-            check(discovery, traversal, parent, Direction.NORTH_EAST)
+            check(frontier, traversal, parent, Direction.WEST)
+            check(frontier, traversal, parent, Direction.EAST)
+            check(frontier, traversal, parent, Direction.SOUTH)
+            check(frontier, traversal, parent, Direction.NORTH)
+            check(frontier, traversal, parent, Direction.SOUTH_WEST)
+            check(frontier, traversal, parent, Direction.SOUTH_EAST)
+            check(frontier, traversal, parent, Direction.NORTH_WEST)
+            check(frontier, traversal, parent, Direction.NORTH_EAST)
         }
         return PathResult.Failure
     }
 
-    private fun check(discovery: Discovery, traversal: TraversalStrategy, parent: Tile, dir: Direction) {
+    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TraversalStrategy, parent: Tile, dir: Direction) {
         val tile = parent.add(dir.delta)
-        if (discovery.visited(tile, true) || traversal.blocked(parent, dir)) {
+        if (frontier.visited(tile, true) || traversal.blocked(parent, dir)) {
             return
         }
-        discovery.visit(tile, discovery.cost(parent) + 1, dir.ordinal and 0x7)
+        frontier.visit(tile, frontier.cost(parent) + 1, dir.ordinal and 0x7)
     }
 
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(discovery: Discovery, tile: Tile, target: TargetStrategy): PathResult {
-        val graph = discovery.mapSize / 2
+    fun calculatePartialPath(frontier: BreadthFirstSearchFrontier, tile: Tile, target: TargetStrategy): PathResult {
+        val graph = frontier.mapSize / 2
         val graphBaseX = tile.x - graph
         val graphBaseY = tile.y - graph
         var lowestDist = Integer.MAX_VALUE
@@ -155,12 +103,12 @@ class BreadthFirstSearch : PathAlgorithm {
         val height = target.size.height
 
         val minX = max(0, destX - PARTIAL_PATH_RANGE)
-        val maxX = min(discovery.mapSize, destX + PARTIAL_PATH_RANGE)
+        val maxX = min(frontier.mapSize, destX + PARTIAL_PATH_RANGE)
         val minY = max(0, destY - PARTIAL_PATH_RANGE)
-        val maxY = min(discovery.mapSize, destY + PARTIAL_PATH_RANGE)
+        val maxY = min(frontier.mapSize, destY + PARTIAL_PATH_RANGE)
         for (graphX in minX..maxX) {
             for (graphY in minY..maxY) {
-                if (!discovery.visited(graphBaseX + graphX, graphBaseY + graphY)) {
+                if (!frontier.visited(graphBaseX + graphX, graphBaseY + graphY)) {
                     continue
                 }
 
@@ -176,9 +124,9 @@ class BreadthFirstSearch : PathAlgorithm {
                 }
                 val distance = deltaX * deltaX + deltaY * deltaY// Euclidean
                 // Accept lower costs or shorter paths
-                if (distance < lowestDist || (distance == lowestDist && discovery.cost(graphBaseX + graphX, graphBaseY + graphY) < lowestCost)) {
+                if (distance < lowestDist || (distance == lowestDist && frontier.cost(graphBaseX + graphX, graphBaseY + graphY) < lowestCost)) {
                     lowestDist = distance
-                    lowestCost = discovery.cost(graphBaseX + graphX, graphBaseY + graphY)
+                    lowestCost = frontier.cost(graphBaseX + graphX, graphBaseY + graphY)
                     endX = graphBaseX + graphX
                     endY = graphBaseY + graphY
                 }
@@ -195,17 +143,17 @@ class BreadthFirstSearch : PathAlgorithm {
     /**
      *  Traces the path back to find individual steps taken to reach the target
      */
-    fun backtrace(movement: Movement, discovery: Discovery, result: PathResult, last: Tile, tile: Tile): PathResult {
+    fun backtrace(movement: Movement, frontier: BreadthFirstSearchFrontier, result: PathResult, last: Tile, tile: Tile): PathResult {
         var trace = last
-        var direction = discovery.direction(trace)
+        var direction = frontier.direction(trace)
         movement.steps.clear()
-        movement.steps.writeIndex(discovery.cost(last))
-        while (trace != tile && discovery.visited(trace, false)) {
+        movement.steps.writeIndex(frontier.cost(last))
+        while (trace != tile && frontier.visited(trace, false)) {
             movement.steps.addFirst(direction)
             trace = trace.minus(direction.delta)
-            direction = discovery.direction(trace)
+            direction = frontier.direction(trace)
         }
-        movement.steps.writeIndex(discovery.cost(last))
+        movement.steps.writeIndex(frontier.cost(last))
         return result
     }
 
