@@ -7,7 +7,7 @@ import java.util.*
  */
 class DijkstraFrontier(size: Int) {
     private val queue = PriorityQueue<Weight>()
-    private val visited = IntArray(size)
+    private val visited = IntArray(size + 1)
 
     fun isNotEmpty() = queue.isNotEmpty()
 
@@ -19,18 +19,24 @@ class DijkstraFrontier(size: Int) {
 
     fun visit(index: Int, parentIndex: Int, cost: Int) {
         add(index, cost)
-        visited[index] = Weight.pack(parentIndex, cost)
+        visited[index + 1] = Weight.pack(parentIndex, cost)
     }
 
-    fun cost(index: Int) = Weight.getCost(visited[index])
+    fun cost(index: Int): Int {
+        val visit = visited.getOrNull(index + 1) ?: return MAX_COST
+        return Weight.getCost(visit)
+    }
 
-    fun parent(index: Int) = Weight.getParentIndex(visited[index])
+    fun parent(index: Int): Int {
+        val visit = visited.getOrNull(index + 1) ?: return -1
+        return Weight.getParentIndex(visit)
+    }
 
-    fun reset(index: Int) {
+    fun reset() {
         queue.clear()
         visited.fill(Weight.pack(0, MAX_COST))
-        visited[index] = Weight.pack(index, 0)
-        queue.add(Weight(index, 0))
+        visited[0] = Weight.pack(0, 0)
+        queue.add(Weight(0, 0))
     }
 
     private inline class Weight(val value: Int) : Comparable<Weight> {

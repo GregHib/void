@@ -5,8 +5,13 @@ import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import org.koin.dsl.module
 import world.gregs.voidps.engine.map.Tile
 import java.io.File
+
+val navModule = module {
+    single(createdAtStart = true) { NavigationGraph.load("./navgraph.json") }
+}
 
 class NavigationGraph(
     private val adjacencyList: Map<Tile, IntArray>,

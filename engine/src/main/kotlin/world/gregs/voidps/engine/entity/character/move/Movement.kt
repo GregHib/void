@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.sync
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -22,7 +23,7 @@ data class Movement(
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
     val steps: Steps = Steps(),
-    val waypoints: MutableList<Edge> = mutableListOf(),
+    val waypoints: LinkedList<Edge> = LinkedList(),
     var frozen: Boolean = false,
     var running: Boolean = false,
 ) {

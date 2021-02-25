@@ -34,6 +34,7 @@ import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
 import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.map.instance.instancePoolModule
+import world.gregs.voidps.engine.map.nav.navModule
 import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
@@ -156,7 +157,8 @@ object Main {
                 detailsModule,
                 logoutModule,
                 objectFactoryModule,
-                lineOfSightModule
+                lineOfSightModule,
+                navModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.map.Tile
  * @since May 18, 2020
  */
 interface PathAlgorithm {
+
     /**
      * Calculates a route from [tile] to [strategy.target]
      * taking into account movement allowed by [traversal]
