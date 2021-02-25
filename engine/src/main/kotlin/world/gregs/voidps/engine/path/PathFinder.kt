@@ -8,9 +8,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.utility.get
 
 val pathFindModule = module {
     single { DirectSearch() }
@@ -20,6 +22,15 @@ val pathFindModule = module {
         BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(10) {
             override fun produceInstance() = BreadthFirstSearchFrontier()
         })
+    }
+    single {
+        val size = get<NavigationGraph>().size
+        Dijkstra(
+            get(),
+            object : DefaultPool<DijkstraFrontier>(10) {
+                override fun produceInstance() = DijkstraFrontier(size)
+            }
+        )
     }
     single { PathFinder(get(), get(), get(), get()) }
 }
@@ -33,7 +44,7 @@ class PathFinder(
     private val aa: AxisAlignment,
     private val ds: DirectSearch,
     private val dd: DirectDiagonalSearch,
-    private val bfs: BreadthFirstSearch
+    private val bfs: BreadthFirstSearch,
 ) {
 
     fun find(source: Character, tile: Tile, smart: Boolean = true): PathResult {
