@@ -55,6 +55,7 @@ allprojects {
         implementation("ch.qos.logback:logback-classic:1.2.3")
 
         //Utilities
+        implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:0.1.16")
         implementation("com.google.guava:guava:29.0-jre")
         implementation("org.apache.commons:commons-lang3:3.10")
         implementation("com.fasterxml.jackson.core:jackson-core:$jacksonVersion")

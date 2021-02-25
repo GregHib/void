@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.path
 
+import kotlinx.io.pool.DefaultPool
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.Character
@@ -7,10 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.algorithm.AxisAlignment
-import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
-import world.gregs.voidps.engine.path.algorithm.DirectDiagonalSearch
-import world.gregs.voidps.engine.path.algorithm.DirectSearch
+import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
@@ -18,7 +16,11 @@ val pathFindModule = module {
     single { DirectSearch() }
     single { DirectDiagonalSearch() }
     single { AxisAlignment() }
-    single { BreadthFirstSearch() }
+    single {
+        BreadthFirstSearch(object : DefaultPool<BreadthFirstSearchFrontier>(10) {
+            override fun produceInstance() = BreadthFirstSearchFrontier()
+        })
+    }
     single { PathFinder(get(), get(), get(), get()) }
 }
 
