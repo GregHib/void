@@ -11,15 +11,16 @@ import world.gregs.voidps.engine.tick.task.EntityTask
 class PlayerPathTask(override val entities: Players, val finder: PathFinder) : EntityTask<Player>() {
 
     override fun predicate(entity: Player): Boolean {
-        return entity.movement.target != null
+        return entity.movement.target
     }
 
     override fun runAsync(player: Player) {
-        val (_, strategy, callback) = player.movement.target!!
-        player.movement.target = null
+        val strategy = player.movement.strategy!!
+        val callback = player.movement.completable!!
+        player.movement.target = false
         val result = finder.find(player, strategy)
         player.movement.callback = {
-            callback.invoke(result)
+            callback.complete(result)
         }
     }
 

@@ -38,7 +38,7 @@ fun Player.tele(tile: Tile) = tele(tile.x, tile.y, tile.plane)
 
 fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
     action.run(ActionType.Teleport) {
-        movement.target = null
+        movement.target = false
         movement.callback = null
         movement.clear()
         movement.delta = Delta(x - tile.x, y - tile.y, plane - tile.plane)

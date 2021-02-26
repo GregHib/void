@@ -42,7 +42,7 @@ class PlayerOptionHandler : Handler() {
         val under = player.tile == target.tile
         val follow = option == "Follow"
         val strategy = if (follow && under) target.followTarget else target.interactTarget
-        player.walkTo(target, strategy) { result ->
+        player.walkTo(strategy) { result ->
             player.watch(null)
             player.face(target)
             if (result is PathResult.Failure) {

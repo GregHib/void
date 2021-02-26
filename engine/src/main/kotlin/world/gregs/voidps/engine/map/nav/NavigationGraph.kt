@@ -20,6 +20,8 @@ class NavigationGraph(
 
     val size = edges.size
 
+    fun contains(tile: Tile) = adjacencyList.contains(tile)
+
     operator fun get(tile: Tile): IntArray {
         return adjacencyList[tile] ?: emptyArray
     }
