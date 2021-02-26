@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.clear
+import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.get
-import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.Login
@@ -24,7 +24,12 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.engine.map.nav.NavigationGraph
+import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.TraversalType
+import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
@@ -33,6 +38,8 @@ import kotlin.system.measureTimeMillis
 
 val bus: EventBus by inject()
 val scheduler: Scheduler by inject()
+val graph: NavigationGraph by inject()
+val dijkstra: Dijkstra by inject()
 val decisionMaker = DecisionMaker()
 
 class BotContext(val bot: Player) : Context {
@@ -52,27 +59,48 @@ val decideTarget = SimpleBotOption(
     name = "choose target",
     targets = { listOf(this) },
     considerations = setOf(
-        { (!bot.has("walkTarget")).toDouble() }
+        { bot.movement.waypoints.isEmpty().toDouble() }
     ),
     weight = 0.2,
     action = {
-        bot["walkTarget"] = targets.random()
+        val target = graph[(0 until graph.size).random()]!!.start
+        val strategy: TargetStrategy = object : TargetStrategy {
+            override val tile: Tile
+                get() = target
+            override val size: Size
+                get() = Size.TILE
+
+            override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
+                return target.equals(currentX, currentY, plane)
+            }
+        }
+        val traversal: TraversalStrategy = object : TraversalStrategy {
+            override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+                return false
+            }
+
+            override val type: TraversalType
+                get() = TraversalType.Land
+            override val extra: Int
+                get() = 0
+        }
+        dijkstra.find(bot.movement.nearestWaypoint, bot.size, bot.movement, strategy, traversal)
     }
 )
 val walkToTarget = SimpleBotOption(
     "target walk",
     targets = {
-        bot.tile.area(15).toList()
+        listOf(this)
     },
     considerations = setOf(
-        { bot.has("walkTarget").toDouble() },
-        { tile -> tile.distanceTo(bot.get<Tile>("walkTarget")).toDouble().scale(1.0, 100.0).inverse() }
+        { bot.movement.waypoints.isNotEmpty().toDouble() },
+        { (bot.movement.completable?.isCompleted ?: true).toDouble() }
     ),
     weight = 0.1,
-    action = { target ->
-        bot.walkTo(target) {
+    action = {
+        val next = bot.movement.waypoints.poll()
+        bot.walkTo(next.end) {
             bot.action.type = ActionType.None
-            bot.clear("walkTarget")
         }
     }
 )
@@ -80,16 +108,6 @@ val walkToTarget = SimpleBotOption(
 val options = setOf(
     walkToTarget,
     decideTarget
-)
-
-val targets = setOf(
-    Tile(3217, 3415, 0),
-    Tile(3204, 3416, 0),
-    Tile(3205, 3397, 0),
-    Tile(3223, 3399, 0),
-    Tile(3203, 3424, 0),
-    Tile(3202, 3435, 0),
-    Tile(3229, 3438, 0),
 )
 
 val bots = mutableListOf<Player>()
@@ -112,6 +130,7 @@ fun spawnBots(count: Int) {
                 bus.emit(PlayerRegistered(bot))
                 bus.emit(Registered(bot))
                 bot.start()
+                bot.setup()
                 bot["context"] = BotContext(bot)
                 scheduler.launch {
                     delay(1)
@@ -137,7 +156,7 @@ Tick then {
         runBlocking {
             coroutineScope {
                 bots.forEach { bot ->
-                    if (bot.movement.target == null) {
+                    if (!bot.movement.target) {
                         launch(Contexts.Updating) {
                             bot.viewport.loaded = true
                             calculateNewAction(bot)

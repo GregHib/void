@@ -1,17 +1,15 @@
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.update.task.viewport.Spiral
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.update.visual.player.tele
+import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area2D
-import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.TraversalType
@@ -20,6 +18,8 @@ import world.gregs.voidps.network.codec.game.encode.sendContainerItems
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.obj.spawn.spawnObject
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
 
 IntVariable(1109, Variable.Type.VARBIT).register("one")
@@ -32,13 +32,8 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
-    val graph: NavigationGraph = get()
-    var nearest: Tile? = null
-    Spiral.spiral(player.tile, 15) {
-        if (nearest == null && graph[it].isNotEmpty()) {
-            nearest = it
-        }
-    }
+    val nearest = player.movement.nearestWaypoint
+    println("Nearest $nearest")
     val east = Area2D(Tile(3179, 3433), 15, 14)
     val west = Area2D(Tile(3250, 3417), 7, 8)
     val target = Tile(3254, 3480)
@@ -57,19 +52,32 @@ Command where { prefix == "test" } then {
         override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
             return false
         }
+
         override val type: TraversalType
             get() = TraversalType.Land
         override val extra: Int
             get() = 0
     }
-    println("Path took ${measureNanoTime {
-        dijkstra.find(nearest!!, player.size, player.movement, strategy, traversal)
-    }}ns")
+    println("Path took ${
+        measureNanoTime {
+            dijkstra.find(nearest, player.size, player.movement, strategy, traversal)
+        }
+    }ns")
     player.action {
-        while(player.movement.waypoints.isNotEmpty()) {
+        var first = true
+        while (player.movement.waypoints.isNotEmpty()) {
             val next = player.movement.waypoints.poll()
-            delay(1)
-            player.tele(next.end)
+            suspendCoroutine<Unit> { cont ->
+                val tile = if(first && !player.tile.within(next.end, 20)) {
+                    next.start
+                } else {
+                    next.end
+                }
+                first = false
+                player.walkTo(tile) {
+                    cont.resume(Unit)
+                }
+            }
         }
     }
 }

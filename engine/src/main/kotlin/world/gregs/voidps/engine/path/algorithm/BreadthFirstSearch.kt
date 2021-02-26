@@ -106,8 +106,8 @@ class BreadthFirstSearch(
         val maxX = min(frontier.mapSize, destX + PARTIAL_PATH_RANGE)
         val minY = max(0, destY - PARTIAL_PATH_RANGE)
         val maxY = min(frontier.mapSize, destY + PARTIAL_PATH_RANGE)
-        for (graphX in minX..maxX) {
-            for (graphY in minY..maxY) {
+        for (graphX in minX until maxX) {
+            for (graphY in minY until maxY) {
                 if (!frontier.visited(graphBaseX + graphX, graphBaseY + graphY)) {
                     continue
                 }
