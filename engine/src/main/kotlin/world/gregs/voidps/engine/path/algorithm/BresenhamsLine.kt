@@ -7,10 +7,9 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import kotlin.math.abs
 
 
@@ -24,7 +23,7 @@ val lineOfSightModule = module {
  */
 class BresenhamsLine(
     private val collisions: Collisions
-) : PathAlgorithm {
+) : TilePathAlgorithm {
 
     private fun blocked(x: Int, y: Int, plane: Int, flip: Boolean, flag: Int): Boolean {
         return if (flip) {
@@ -38,8 +37,8 @@ class BresenhamsLine(
         tile: Tile,
         size: Size,
         movement: Movement,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         return withinSight(tile, strategy.tile)
     }

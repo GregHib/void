@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.TraversalType
 
 /**
@@ -13,9 +12,9 @@ import world.gregs.voidps.engine.path.TraversalType
  * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
-class MediumTraversal(override val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TraversalStrategy {
+class MediumTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 
-    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    private val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val delta = direction.delta
@@ -24,28 +23,28 @@ class MediumTraversal(override val type: TraversalType, collidesWithEntities: Bo
         var offsetY = if (delta.y == 1) size.height else delta.y
         if (inverse.isCardinal()) {
             // Start
-            if (collisions.check(x + offsetX, y + offsetY, plane, getNorthCorner(inverse).block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, getNorthCorner(inverse).block(type, extra))) {
                 return true
             }
             // End
             offsetX = if (delta.x == 0) 1 else if (delta.x == 1) size.width else -1
             offsetY = if (delta.y == 0) 1 else if (delta.y == 1) size.height else -1
-            if (collisions.check(x + offsetX, y + offsetY, plane, getSouthCorner(inverse).block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, getSouthCorner(inverse).block(type, extra))) {
                 return true
             }
         } else {
             // Diagonal
-            if (collisions.check(x + offsetX, y + offsetY, plane, inverse.block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, inverse.block(type, extra))) {
                 return true
             }
             // Vertical
             val dx = if (delta.x == -1) 0 else delta.x
-            if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not())) {
+            if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not(type, extra))) {
                 return true
             }
             // Horizontal
             val dy = if (delta.y == -1) 0 else delta.y
-            if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not())) {
+            if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not(type, extra))) {
                 return true
             }
         }

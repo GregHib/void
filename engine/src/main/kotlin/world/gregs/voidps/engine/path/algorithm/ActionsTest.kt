@@ -7,6 +7,7 @@ import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerRequirement
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.obj.GameObject
@@ -62,6 +63,10 @@ object ActionsTest {
 
         }
     }
+
+    class Option<T : Entity>(val requirements: Set<PlayerRequirement>, val action: (Player, T) -> Unit)
+
+    class UseOption<T : Entity>(val requirements: Set<PlayerRequirement>, val action: (Player, Container, Int, T) -> Unit)
 
     class ActionBuilder {
 

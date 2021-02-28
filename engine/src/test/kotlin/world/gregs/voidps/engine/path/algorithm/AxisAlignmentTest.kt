@@ -14,8 +14,8 @@ import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
 
 internal class AxisAlignmentTest {
@@ -34,8 +34,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(0, 0)
         val target = Tile(0, 0)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.tile } returns value(target)
@@ -53,8 +53,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 10)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.tile } returns value(target)
@@ -72,8 +72,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 10)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
@@ -96,8 +96,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 9)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
@@ -121,8 +121,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 9)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
@@ -145,8 +145,8 @@ internal class AxisAlignmentTest {
         val steps: Steps = mockk(relaxed = true)
         val tile = Tile(9, 11)
         val target = Tile(11, 9)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true

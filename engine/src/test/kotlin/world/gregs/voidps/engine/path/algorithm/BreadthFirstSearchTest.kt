@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
 
 /**
@@ -38,8 +38,8 @@ internal class BreadthFirstSearchTest {
         val tile = Tile(64, 64)
         val size = Size(1, 1)
         val movement: Movement = mockk(relaxed = true)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val response = PathResult.Success(Tile(64, 64))
         every { bfs.calculate(any(), size, strategy, traversal) } returns PathResult.Failure
         every { bfs.calculatePartialPath(any(), tile, strategy) } returns response
@@ -53,8 +53,8 @@ internal class BreadthFirstSearchTest {
     fun `Finds route to target`() {
         // Given
         val size = Size(1, 1)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val discovery = BreadthFirstSearchFrontier()
         discovery.start(Tile(74, 74, 1))
         every { strategy.reached(72, 74, 1, size) } returns true
@@ -78,8 +78,8 @@ internal class BreadthFirstSearchTest {
     fun `Obstructions are ignored`() {
         // Given
         val size = Size(1, 1)
-        val strategy: TargetStrategy = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val discovery = BreadthFirstSearchFrontier()
         discovery.start(Tile(74, 74, 1))
         every { strategy.reached(Tile(73, 74, 1), size) } returns true
@@ -94,7 +94,7 @@ internal class BreadthFirstSearchTest {
     @Test
     fun `Partial calculation takes lowest cost`() {
         // Given
-        val strategy: TargetStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
         val frontier: BreadthFirstSearchFrontier = mockk(relaxed = true)
         every { frontier.mapSize } returns 128
         every { frontier.visited(any<Int>(), any()) } returns false
@@ -116,7 +116,7 @@ internal class BreadthFirstSearchTest {
     @Test
     fun `Partial calculation takes lowest distance`() {
         // Given
-        val strategy: TargetStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
         val frontier: BreadthFirstSearchFrontier = mockk(relaxed = true)
         every { frontier.mapSize } returns 128
         every { frontier.visited(any<Int>(), any()) } returns false
@@ -138,7 +138,7 @@ internal class BreadthFirstSearchTest {
     @Test
     fun `Partial calculation returns failure if no values`() {
         // Given
-        val strategy: TargetStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
         every { strategy.tile } returns value(Tile(74, 74))
         val frontier: BreadthFirstSearchFrontier = mockk(relaxed = true)
         every { frontier.mapSize } returns 128

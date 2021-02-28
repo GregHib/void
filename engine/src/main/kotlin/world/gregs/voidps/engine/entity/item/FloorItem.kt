@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.get
 
 /**
@@ -35,5 +35,5 @@ data class FloorItem(
 
     var disappear: Job? = null
 
-    lateinit var interactTarget: TargetStrategy
+    lateinit var interactTarget: TileTargetStrategy
 }

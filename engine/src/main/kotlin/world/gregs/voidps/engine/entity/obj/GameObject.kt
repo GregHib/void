@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.codec.game.encode.ObjectAnimationSpecificEncoder
 import world.gregs.voidps.utility.get
 
@@ -40,7 +40,7 @@ data class GameObject(
         )
     }
 
-    lateinit var interactTarget: TargetStrategy
+    lateinit var interactTarget: TileTargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name
 }

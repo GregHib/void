@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.sync
 import java.util.*
 
@@ -33,13 +33,13 @@ data class Movement(
 ) {
 
     var completable: CompletableDeferred<PathResult>? = null
-    var strategy: TargetStrategy? = null
+    var strategy: TileTargetStrategy? = null
     var target: Boolean = false
 
     var callback: (() -> Unit)? = null
-    lateinit var traversal: TraversalStrategy
+    lateinit var traversal: TileTraversalStrategy
 
-    var nearestWaypoint: Tile = Tile.EMPTY
+    var nearestWaypoint: Edge? = null
 
     fun clear() {
         steps.clear()
@@ -57,7 +57,7 @@ fun Player.walkTo(target: Any, action: (PathResult) -> Unit) {
     walkTo(getStrategy(target), action)
 }
 
-fun Player.walkTo(strategy: TargetStrategy, action: (PathResult) -> Unit) {
+fun Player.walkTo(strategy: TileTargetStrategy, action: (PathResult) -> Unit) {
     sync {
         dialogues.clear()
         movement.clear()

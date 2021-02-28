@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
 import world.gregs.voidps.engine.path.algorithm.DirectDiagonalSearch
 import world.gregs.voidps.engine.path.algorithm.DirectSearch
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -42,7 +43,7 @@ internal class PathFinderTest {
         // Given
         val source: Character = mockk(relaxed = true)
         val target = Tile(1, 1)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
         every { pf.getAlgorithm(any(), any()) } returns bfs
         // When
@@ -58,8 +59,8 @@ internal class PathFinderTest {
         // Given
         val source: Character = mockk(relaxed = true)
         val target: Character = mockk(relaxed = true)
-        val traversal: TraversalStrategy = mockk(relaxed = true)
-        val strategy: TargetStrategy = mockk(relaxed = true)
+        val traversal: TileTraversalStrategy = mockk(relaxed = true)
+        val strategy: TileTargetStrategy = mockk(relaxed = true)
         every { source.movement.traversal } returns traversal
         every { target.interactTarget } returns strategy
         every { pf.getAlgorithm(any(), any()) } returns bfs

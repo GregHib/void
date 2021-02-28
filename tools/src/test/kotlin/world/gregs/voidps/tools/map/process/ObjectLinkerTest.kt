@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.tools.map.obj.ObjectLinker
 
 internal class ObjectLinkerTest {
 
     lateinit var linking: ObjectLinker
-    lateinit var interactOne: TargetStrategy
-    lateinit var interactTwo: TargetStrategy
+    lateinit var interactOne: TileTargetStrategy
+    lateinit var interactTwo: TileTargetStrategy
     lateinit var sizeOne: Size
     lateinit var sizeTwo: Size
     lateinit var one: GameObject

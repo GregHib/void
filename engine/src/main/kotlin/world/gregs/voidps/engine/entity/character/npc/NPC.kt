@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.entity.character.npc
 
-import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
@@ -12,7 +11,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.get
 
 /**
@@ -43,7 +42,7 @@ data class NPC(
     var movementType: NPCMoveType = NPCMoveType.None
     var crawling: Boolean = false
 
-    override lateinit var interactTarget: TargetStrategy
+    override lateinit var interactTarget: TileTargetStrategy
 
     val def: NPCDefinition
         get() = get<NPCDefinitions>().get(id)

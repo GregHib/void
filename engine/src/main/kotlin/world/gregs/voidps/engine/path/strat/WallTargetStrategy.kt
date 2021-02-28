@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.flag
-import world.gregs.voidps.engine.path.TargetStrategy
 
 /**
  * Checks if within interact range of a wall
@@ -19,7 +18,7 @@ import world.gregs.voidps.engine.path.TargetStrategy
 data class WallTargetStrategy(
     private val collisions: Collisions,
     private val gameObject: GameObject
-) : TargetStrategy {
+) : TileTargetStrategy {
 
     override val tile: Tile
         get() = gameObject.tile

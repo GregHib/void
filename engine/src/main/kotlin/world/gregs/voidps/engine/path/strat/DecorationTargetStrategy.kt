@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.flag
-import world.gregs.voidps.engine.path.TargetStrategy
 
 /**
  * Checks if within interact range of a targeted decoration
@@ -17,7 +16,7 @@ import world.gregs.voidps.engine.path.TargetStrategy
 data class DecorationTargetStrategy(
     private val collisions: Collisions,
     private val gameObject: GameObject
-) : TargetStrategy {
+) : TileTargetStrategy {
 
     override val tile: Tile
         get() = gameObject.tile

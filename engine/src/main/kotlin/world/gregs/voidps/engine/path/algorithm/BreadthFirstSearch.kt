@@ -5,10 +5,9 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import kotlin.math.max
 import kotlin.math.min
 
@@ -21,14 +20,14 @@ import kotlin.math.min
  */
 class BreadthFirstSearch(
     private val pool: ObjectPool<BreadthFirstSearchFrontier>,
-) : PathAlgorithm {
+) : TilePathAlgorithm {
 
     override fun find(
         tile: Tile,
         size: Size,
         movement: Movement,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy,
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy,
     ): PathResult {
         val frontier = pool.borrow()
         frontier.start(tile)
@@ -51,8 +50,8 @@ class BreadthFirstSearch(
     fun calculate(
         frontier: BreadthFirstSearchFrontier,
         size: Size,
-        target: TargetStrategy,
-        traversal: TraversalStrategy,
+        target: TileTargetStrategy,
+        traversal: TileTraversalStrategy,
     ): PathResult {
         while (frontier.isNotEmpty()) {
             val parent = frontier.poll()
@@ -77,7 +76,7 @@ class BreadthFirstSearch(
         return PathResult.Failure
     }
 
-    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TraversalStrategy, parent: Tile, dir: Direction) {
+    private fun check(frontier: BreadthFirstSearchFrontier, traversal: TileTraversalStrategy, parent: Tile, dir: Direction) {
         val tile = parent.add(dir.delta)
         if (frontier.visited(tile, true) || traversal.blocked(parent, dir)) {
             return
@@ -88,7 +87,7 @@ class BreadthFirstSearch(
     /**
      *  Checks for a tile closest to the target which is reachable
      */
-    fun calculatePartialPath(frontier: BreadthFirstSearchFrontier, tile: Tile, target: TargetStrategy): PathResult {
+    fun calculatePartialPath(frontier: BreadthFirstSearchFrontier, tile: Tile, target: TileTargetStrategy): PathResult {
         val graph = frontier.mapSize / 2
         val graphBaseX = tile.x - graph
         val graphBaseY = tile.y - graph

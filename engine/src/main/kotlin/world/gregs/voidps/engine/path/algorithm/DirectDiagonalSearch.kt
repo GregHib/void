@@ -4,10 +4,9 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
  * Moves in any direction towards the target until blocked by obstacle or reaches
@@ -15,14 +14,14 @@ import world.gregs.voidps.engine.path.TraversalStrategy
  * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
-class DirectDiagonalSearch : PathAlgorithm {
+class DirectDiagonalSearch : TilePathAlgorithm {
 
     override fun find(
         tile: Tile,
         size: Size,
         movement: Movement,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         val steps = movement.steps
         val delta = tile.delta(strategy.tile)

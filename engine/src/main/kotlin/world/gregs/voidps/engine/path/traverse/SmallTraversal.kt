@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.TraversalType
 
 /**
@@ -14,9 +13,9 @@ import world.gregs.voidps.engine.path.TraversalType
  * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
-class SmallTraversal(override val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TraversalStrategy {
+class SmallTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 
-    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    private val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
 
     // Motion (land, sky, ignored), entities y/n
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
@@ -25,7 +24,7 @@ class SmallTraversal(override val type: TraversalType, collidesWithEntities: Boo
                 x + direction.delta.x,
                 y + direction.delta.y,
                 plane,
-                inverse.block()
+                inverse.block(type, extra)
             )
         ) {
             return true
@@ -34,11 +33,11 @@ class SmallTraversal(override val type: TraversalType, collidesWithEntities: Boo
             return false
         }
         // Horizontal
-        if (collisions.check(x + direction.delta.x, y, plane, inverse.horizontal().block())) {
+        if (collisions.check(x + direction.delta.x, y, plane, inverse.horizontal().block(type, extra))) {
             return true
         }
         // Vertical
-        if (collisions.check(x, y + direction.delta.y, plane, inverse.vertical().block())) {
+        if (collisions.check(x, y + direction.delta.y, plane, inverse.vertical().block(type, extra))) {
             return true
         }
         return false

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -21,7 +21,7 @@ interface Character : Entity, Comparable<Character> {
     val action: Action
     val values: CharacterValues
     val effects: CharacterEffects
-    var interactTarget: TargetStrategy
+    var interactTarget: TileTargetStrategy
 
     override fun compareTo(other: Character): Int {
         return index.compareTo(other.index)
