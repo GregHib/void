@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
-import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getNorthCorner
 import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getSouthCorner
@@ -15,9 +14,9 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getSout
  * @author GregHib <greg@gregs.world>
  * @since May 18, 2020
  */
-class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TraversalStrategy {
+class LargeTraversal(private val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TileTraversalStrategy {
 
-    override val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    private val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         val delta = direction.delta
@@ -26,13 +25,13 @@ class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boo
         var offsetY = if (delta.y == 1) size.height else delta.y
         if (inverse.isCardinal()) {
             // Start
-            if (collisions.check(x + offsetX, y + offsetY, plane, getNorthCorner(inverse).block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, getNorthCorner(inverse).block(type, extra))) {
                 return true
             }
             // End
             offsetX = if (delta.x == -1) -1 else size.width + (delta.x - 1)
             offsetY = if (delta.y == -1) -1 else size.height + (delta.y - 1)
-            if (collisions.check(x + offsetX, y + offsetY, plane, getSouthCorner(inverse).block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, getSouthCorner(inverse).block(type, extra))) {
                 return true
             }
             // In between
@@ -40,26 +39,26 @@ class LargeTraversal(override val type: TraversalType, collidesWithEntities: Boo
             for (offset in 1 until s - 1) {
                 offsetX = if (delta.x == 1) size.width else if (delta.x == -1) -1 else offset
                 offsetY = if (delta.y == 1) size.height else if (delta.y == -1) -1 else offset
-                if (collisions.check(x + offsetX, y + offsetY, plane, direction.not())) {
+                if (collisions.check(x + offsetX, y + offsetY, plane, direction.not(type, extra))) {
                     return true
                 }
             }
         } else {
             // Diagonal
-            if (collisions.check(x + offsetX, y + offsetY, plane, inverse.block())) {
+            if (collisions.check(x + offsetX, y + offsetY, plane, inverse.block(type, extra))) {
                 return true
             }
             // Vertical
             for (offset in 1 until size.width) {
                 val dx = offset - if (delta.x == 1) 0 else 1
-                if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not())) {
+                if (collisions.check(x + dx, y + offsetY, plane, direction.vertical().not(type, extra))) {
                     return true
                 }
             }
             // Horizontal
             for (offset in 1 until size.height) {
                 val dy = offset - if (delta.y == 1) 0 else 1
-                if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not())) {
+                if (collisions.check(x + offsetX, y + dy, plane, direction.horizontal().not(type, extra))) {
                     return true
                 }
             }

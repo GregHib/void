@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.flag
-import world.gregs.voidps.engine.path.TargetStrategy
 import kotlin.math.max
 import kotlin.math.min
 
@@ -23,7 +22,7 @@ data class RectangleTargetStrategy(
     private val collisions: Collisions,
     private val entity: Entity,
     val blockFlag: Int = 0
-) : TargetStrategy {
+) : TileTargetStrategy {
 
     override val tile: Tile
         get() = entity.tile

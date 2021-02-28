@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.area
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 internal class MapGraphTest {
 
-    private lateinit var strategy: TraversalStrategy
+    private lateinit var strategy: TileTraversalStrategy
     private lateinit var graph: MapGraph
 
     @BeforeEach

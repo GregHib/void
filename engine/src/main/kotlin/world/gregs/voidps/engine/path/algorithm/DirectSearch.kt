@@ -5,10 +5,9 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
  * Moves horizontally and vertically until blocked by obstacle or reaches target
@@ -17,14 +16,14 @@ import world.gregs.voidps.engine.path.TraversalStrategy
  * @author GregHib <greg@gregs.world>
  * @since May 20, 2020
  */
-class DirectSearch : PathAlgorithm {
+class DirectSearch : TilePathAlgorithm {
 
     override fun find(
         tile: Tile,
         size: Size,
         movement: Movement,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         return addHorizontal(movement.steps, tile, size, strategy, traversal)
     }
@@ -33,8 +32,8 @@ class DirectSearch : PathAlgorithm {
         steps: Steps,
         tile: Tile,
         size: Size,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         val delta = tile.delta(strategy.tile)
         var dx = delta.x
@@ -66,8 +65,8 @@ class DirectSearch : PathAlgorithm {
         steps: Steps,
         tile: Tile,
         size: Size,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         val delta = tile.delta(strategy.tile)
         var dy = delta.y

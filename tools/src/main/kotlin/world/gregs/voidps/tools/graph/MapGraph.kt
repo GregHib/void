@@ -12,16 +12,16 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.engine.path.TraversalStrategy
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.utility.func.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*
 import kotlin.math.abs
 import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
-import world.gregs.voidps.utility.func.isDoor
 
 class MapGraph(
     private val reader: RegionReader,
@@ -81,7 +81,7 @@ class MapGraph(
     }
 
     fun getFloodedTiles(
-        traversal: TraversalStrategy,
+        traversal: TileTraversalStrategy,
         start: Tile,
         area: Area3D<Tile>
     ): Map<Tile, Int> {
@@ -116,7 +116,7 @@ class MapGraph(
         return Tile(x / tiles.size, y / tiles.size)
     }
 
-    fun getCenterPoints(traversal: TraversalStrategy, area: Area3D<Tile>): List<Tile> {
+    fun getCenterPoints(traversal: TileTraversalStrategy, area: Area3D<Tile>): List<Tile> {
         val list = mutableListOf<Tile>()
         val visitedTiles = mutableSetOf<Tile>()
         for (tile in area) {
@@ -136,7 +136,7 @@ class MapGraph(
     }
 
     fun getStaticLinks(
-        traversal: TraversalStrategy,
+        traversal: TileTraversalStrategy,
         points: Set<Tile>,
         clusterSize: Int
     ): Set<Triple<Tile, Tile, Int>> {

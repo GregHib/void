@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
-import world.gregs.voidps.engine.path.TargetStrategy
 
 /**
  * Checks if on an exact tile
@@ -15,7 +14,7 @@ import world.gregs.voidps.engine.path.TargetStrategy
  */
 data class EntityTileTargetStrategy(
     val entity: Entity
-) : TargetStrategy {
+) : TileTargetStrategy {
 
     override val tile: Tile
         get() = entity.tile

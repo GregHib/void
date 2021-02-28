@@ -1,64 +1,49 @@
 package world.gregs.voidps.engine.path.algorithm
 
+import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
+import world.gregs.voidps.engine.map.nav.Edge
 import java.util.*
 
 /**
  * All of the graph nodes visited or to be visited by the [Dijkstra] algorithm
  */
 class DijkstraFrontier(size: Int) {
-    private val queue = PriorityQueue<Weight>()
-    private val visited = IntArray(size + 1)
+    private val queue = PriorityQueue<Weighted>()
+    private val visited = Object2ObjectOpenHashMap<Edge, Pair<Edge?, Int>>(size + 1)
 
     fun isNotEmpty() = queue.isNotEmpty()
 
-    fun add(index: Int, cost: Int) {
-        queue.add(Weight(index, cost))
+    fun add(node: Any, edge: Edge, cost: Int) {
+        queue.add(Weighted(node, edge, cost))
     }
 
-    fun poll(): Pair<Int, Int> = queue.poll().let { it.index to it.cost }
+    fun poll(): Triple<Any, Edge?, Int> = queue.poll().let { Triple(it.node, it.edge, it.cost) }
 
-    fun visit(index: Int, parentIndex: Int, cost: Int) {
-        add(index, cost)
-        visited[index + 1] = Weight.pack(parentIndex, cost)
+    fun visit(node: Any, edge: Edge, parent: Edge?, cost: Int) {
+        add(node, edge, cost)
+        visited[edge] = Pair(parent, cost)
     }
 
-    fun cost(index: Int): Int {
-        val visit = visited.getOrNull(index + 1) ?: return MAX_COST
-        return Weight.getCost(visit)
+    fun cost(edge: Edge): Int {
+        return visited[edge]?.second ?: return MAX_COST
     }
 
-    fun parent(index: Int): Int {
-        val visit = visited.getOrNull(index + 1) ?: return -1
-        return Weight.getParentIndex(visit)
+    fun parent(edge: Edge): Edge? {
+        return visited[edge]?.first
     }
 
-    fun reset() {
+    fun reset(node: Any) {
         queue.clear()
-        visited.fill(Weight.pack(0, MAX_COST))
-        visited[0] = Weight.pack(0, 0)
-        queue.add(Weight(0, 0))
+        visited.clear()
+        queue.add(Weighted(node, null, 0))
     }
 
-    private inline class Weight(val value: Int) : Comparable<Weight> {
+    private class Weighted(val node: Any, val edge: Edge?, val cost: Int) : Comparable<Weighted> {
 
-        constructor(index: Int, cost: Int) : this(DijkstraTest.pack(index, cost))
-
-        val index: Int
-            get() = getParentIndex(value)
-        val cost: Int
-            get() = getCost(value)
-
-        override fun compareTo(other: Weight): Int {
+        override fun compareTo(other: Weighted): Int {
             return cost.compareTo(other.cost)
         }
 
-        companion object {
-            fun pack(index: Int, cost: Int) = cost or (index shl 16)
-
-            fun getCost(value: Int) = value and 0xffff
-
-            fun getParentIndex(value: Int) = value shr 16
-        }
     }
 
     companion object {

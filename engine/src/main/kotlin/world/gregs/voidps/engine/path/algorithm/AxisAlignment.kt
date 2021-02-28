@@ -5,10 +5,9 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.PathAlgorithm
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 /**
  * Moves diagonally until aligned with target or blocked by obstacle then moves cardinally
@@ -16,14 +15,14 @@ import world.gregs.voidps.engine.path.TraversalStrategy
  * @author GregHib <greg@gregs.world>
  * @since May 31, 2020
  */
-class AxisAlignment : PathAlgorithm {
+class AxisAlignment : TilePathAlgorithm {
 
     override fun find(
         tile: Tile,
         size: Size,
         movement: Movement,
-        strategy: TargetStrategy,
-        traversal: TraversalStrategy
+        strategy: TileTargetStrategy,
+        traversal: TileTraversalStrategy
     ): PathResult {
         var delta = strategy.tile.delta(tile)
         var current = tile

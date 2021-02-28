@@ -8,9 +8,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -24,12 +22,11 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.equals
+import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
+import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
+import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
@@ -63,35 +60,18 @@ val decideTarget = SimpleBotOption(
     ),
     weight = 0.2,
     action = {
-        val target = graph[(0 until graph.size).random()]!!.start
-        val strategy: TargetStrategy = object : TargetStrategy {
-            override val tile: Tile
-                get() = target
-            override val size: Size
-                get() = Size.TILE
-
-            override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
-                return target.equals(currentX, currentY, plane)
+        val target = graph.tiles.keys.random()
+        val strategy = object : NodeTargetStrategy() {
+            override fun reached(node: Any): Boolean {
+                return node == target
             }
         }
-        val traversal: TraversalStrategy = object : TraversalStrategy {
-            override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-                return false
-            }
-
-            override val type: TraversalType
-                get() = TraversalType.Land
-            override val extra: Int
-                get() = 0
-        }
-        dijkstra.find(bot.movement.nearestWaypoint, bot.size, bot.movement, strategy, traversal)
+        dijkstra.find(bot, strategy, EdgeTraversal())
     }
 )
 val walkToTarget = SimpleBotOption(
     "target walk",
-    targets = {
-        listOf(this)
-    },
+    targets = { listOf(this) },
     considerations = setOf(
         { bot.movement.waypoints.isNotEmpty().toDouble() },
         { (bot.movement.completable?.isCompleted ?: true).toDouble() }
@@ -99,7 +79,8 @@ val walkToTarget = SimpleBotOption(
     weight = 0.1,
     action = {
         val next = bot.movement.waypoints.poll()
-        bot.walkTo(next.end) {
+        val random = (next.end as Tile).area(1).toList().random()
+        bot.walkTo(random) {
             bot.action.type = ActionType.None
         }
     }

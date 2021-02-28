@@ -11,8 +11,8 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.*
 import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
+import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.utility.get
 
 val pathFindModule = module {
     single { DirectSearch() }
@@ -56,7 +56,7 @@ class PathFinder(
         return find(source, getEntityStrategy(target), smart)
     }
 
-    fun find(source: Character, strategy: TargetStrategy, smart: Boolean = true): PathResult {
+    fun find(source: Character, strategy: TileTargetStrategy, smart: Boolean = true): PathResult {
         if (strategy.reached(source.tile, source.size)) {
             return PathResult.Success(source.tile)
         }
@@ -64,7 +64,7 @@ class PathFinder(
         return algorithm.find(source.tile, source.size, source.movement, strategy, source.movement.traversal)
     }
 
-    fun getAlgorithm(source: Character, smart: Boolean): PathAlgorithm {
+    fun getAlgorithm(source: Character, smart: Boolean): TilePathAlgorithm {
         return if (source is Player) {
             if (smart) bfs else dd
         } else {
@@ -74,15 +74,15 @@ class PathFinder(
 
     companion object {
         @Throws(IllegalArgumentException::class)
-        fun getStrategy(any: Any): TargetStrategy {
+        fun getStrategy(any: Any): TileTargetStrategy {
             return when (any) {
-                is Tile -> TileTargetStrategy(any)
+                is Tile -> SingleTileTargetStrategy(any)
                 is Entity -> getEntityStrategy(any)
                 else -> throw IllegalArgumentException("No target strategy found for $any")
             }
         }
 
-        fun getEntityStrategy(entity: Entity): TargetStrategy {
+        fun getEntityStrategy(entity: Entity): TileTargetStrategy {
             return when (entity) {
                 is Character -> entity.interactTarget
                 is GameObject -> entity.interactTarget

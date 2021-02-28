@@ -1,15 +1,18 @@
 package world.gregs.voidps.world.interact.entity.bot
 
+import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.engine.path.TargetStrategy
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.inject
 
 val graph: NavigationGraph by inject()
@@ -19,23 +22,30 @@ PlayerRegistered then {
     findNearest(player)
 }
 
+PlayerUnregistered then {
+    graph.remove(player)
+}
+
 PlayerMoved then {
     if (from.distanceTo(to) > 2) {
         findNearest(player)
     } else {
-        var nearest = player.movement.nearestWaypoint
-        for (index in graph[nearest]) {
-            val node = graph[index] ?: continue
-            if (player.tile.distanceTo(node.start) < player.tile.distanceTo(nearest)) {
-                nearest = node.start
+        val old = player.movement.nearestWaypoint ?: return@then
+        var nearest = old
+        val tile = nearest.end as Tile
+        for (edge in graph.getAdjacent(tile)) {
+            if (player.tile.distanceTo(edge.start as Tile) < player.tile.distanceTo(tile)) {
+                nearest = edge
             }
         }
-        player.movement.nearestWaypoint = nearest
+        if (old != nearest) {
+            updateGraph(player, old, nearest)
+        }
     }
 }
 
 fun findNearest(player: Player) {
-    val result = bfs.find(player.tile, player.size, player.movement, object : TargetStrategy {
+    val result = bfs.find(player.tile, player.size, player.movement, object : TileTargetStrategy {
         override val tile: Tile
             get() = player.tile
         override val size: Size
@@ -47,8 +57,17 @@ fun findNearest(player: Player) {
     }, player.movement.traversal)
     if (result is PathResult.Success) {
         player.movement.steps.clear()
-        player.movement.nearestWaypoint = result.last
+        val last = player.movement.nearestWaypoint
+        val edge = Edge(player, result.last, player.tile.distanceTo(result.last))
+        updateGraph(player, last, edge)
     } else {
         println("Couldn't find nearby waypoint $player")
     }
+}
+
+fun updateGraph(player: Player, old: Edge?, new: Edge) {
+    val set = graph.get(player) ?: ObjectOpenHashSet()
+    set.remove(old)
+    set.add(new)
+    player.movement.nearestWaypoint = new
 }

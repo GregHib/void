@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.path.strat
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.TargetStrategy
 
 /**
  * Checks if within reachable range of a tile
@@ -14,7 +13,7 @@ import world.gregs.voidps.engine.path.TargetStrategy
  */
 data class PointTargetStrategy(
     private val floorItem: FloorItem
-) : TargetStrategy {
+) : TileTargetStrategy {
 
     override val tile: Tile
         get() = floorItem.tile

@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.TargetStrategy
+import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
 /**
  * A player controlled by client or bot
@@ -77,10 +77,10 @@ class Player(
     lateinit var interfaceOptions: InterfaceOptions
 
     @JsonIgnore
-    override lateinit var interactTarget: TargetStrategy
+    override lateinit var interactTarget: TileTargetStrategy
 
     @JsonIgnore
-    lateinit var followTarget: TargetStrategy
+    lateinit var followTarget: TileTargetStrategy
 
     @JsonIgnore
     override var change: LocalChange? = null

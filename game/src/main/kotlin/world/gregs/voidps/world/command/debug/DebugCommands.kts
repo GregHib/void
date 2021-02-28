@@ -1,8 +1,6 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -10,10 +8,9 @@ import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area2D
-import world.gregs.voidps.engine.path.TargetStrategy
-import world.gregs.voidps.engine.path.TraversalStrategy
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
+import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
+import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.network.codec.game.encode.sendContainerItems
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.command.Command
@@ -32,35 +29,17 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 Command where { prefix == "test" } then {
-    val nearest = player.movement.nearestWaypoint
-    println("Nearest $nearest")
     val east = Area2D(Tile(3179, 3433), 15, 14)
     val west = Area2D(Tile(3250, 3417), 7, 8)
-    val target = Tile(3254, 3480)
     val dijkstra: Dijkstra = get()
-    val strategy: TargetStrategy = object : TargetStrategy {
-        override val tile: Tile
-            get() = target
-        override val size: Size
-            get() = Size.TILE
-
-        override fun reached(currentX: Int, currentY: Int, plane: Int, size: Size): Boolean {
-            return east.contains(currentX, currentY) || west.contains(currentX, currentY)
+    val strategy = object : NodeTargetStrategy() {
+        override fun reached(node: Any): Boolean {
+            return if (node is Tile) east.contains(node) || west.contains(node) else false
         }
-    }
-    val traversal: TraversalStrategy = object : TraversalStrategy {
-        override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-            return false
-        }
-
-        override val type: TraversalType
-            get() = TraversalType.Land
-        override val extra: Int
-            get() = 0
     }
     println("Path took ${
         measureNanoTime {
-            dijkstra.find(nearest, player.size, player.movement, strategy, traversal)
+            dijkstra.find(player, strategy, EdgeTraversal())
         }
     }ns")
     player.action {
@@ -68,11 +47,11 @@ Command where { prefix == "test" } then {
         while (player.movement.waypoints.isNotEmpty()) {
             val next = player.movement.waypoints.poll()
             suspendCoroutine<Unit> { cont ->
-                val tile = if(first && !player.tile.within(next.end, 20)) {
+                val tile = if(first && !player.tile.within(next.end as Tile, 20)) {
                     next.start
                 } else {
                     next.end
-                }
+                } as Tile
                 first = false
                 player.walkTo(tile) {
                     cont.resume(Unit)
