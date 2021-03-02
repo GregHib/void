@@ -41,8 +41,3 @@ inline infix fun <T : Any, E : Event<T>, reified C : EventCompanion<E>> C.where(
  * Create an [EventHandler] with a pre-check
  */
 inline infix fun <T : Any, E : Event<T>, reified C : EventCompanion<E>> C.check(noinline check: E.() -> Boolean) = EventHandlerBuilder(check = check)
-
-/**
- * Create an [EventHandler] with nested syntax
- */
-fun <E : Event<T>, T : Any> on(event: EventCompanion<E>, block: EventHandlerBuilder<T, E>.() -> Unit) = block.invoke(EventHandlerBuilder())
