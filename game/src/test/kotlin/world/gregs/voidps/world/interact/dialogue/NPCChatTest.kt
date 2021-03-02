@@ -23,6 +23,7 @@ internal class NPCChatTest : DialogueTest() {
     override fun setup() {
         super.setup()
         npc = mockk(relaxed = true)
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns ""
         every { npc.def.name } returns "John"
         every { context.npcId } returns 123

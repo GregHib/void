@@ -95,9 +95,10 @@ internal class NPCUpdateTaskTest : KoinMock() {
         val sync: Writer = mockk(relaxed = true)
         val updates: Writer = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
-        every { entities.remove.contains(npc) } returns true
+        every { entities.remove } returns mutableSetOf(npc)
         every { entities.current } returns linkedSetOf(npc)
         every { npc.change } returns LocalChange.Update
+        every { npc.visuals } returns mockk(relaxed = true)
         every { npc.visuals.update } returns byteArrayOf()
         // When
         task.processLocals(sync, updates, entities)
@@ -213,6 +214,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
     @ValueSource(booleans = [true, false])
     fun `NPC Additions`(update: Boolean) {
         // Given
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.npc.TurnKt")
         val client: Player = mockk(relaxed = true)
         val entities = mockk<NPCTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
@@ -225,6 +227,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
         every { npc.tile } returns value(Tile(5, 3, 1))
         every { npc.index } returns index
         every { npc.id } returns id
+        every { npc.getTurn() } returns mockk(relaxed = true)
         every { npc.getTurn().direction } returns direction
         every { entities.add } returns linkedSetOf(npc)
         every { npc.visuals.addition } returns if (update) byteArrayOf() else null

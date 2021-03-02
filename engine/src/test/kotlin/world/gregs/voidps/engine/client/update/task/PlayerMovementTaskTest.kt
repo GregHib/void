@@ -95,8 +95,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
-        every { player.movementType = any() } just Runs
-        every { player.temporaryMoveType = any() } just Runs
         // When
         task.run()
         // Then
@@ -120,8 +118,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
-        every { player.movementType = any() } just Runs
-        every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns false
         // When
         task.run()
@@ -146,8 +142,6 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
-        every { player.movementType = any() } just Runs
-        every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
@@ -176,11 +170,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
-        every { player.movementType = any() } just Runs
-        every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
-        every { movement.delta = any() } just Runs
         // When
         task.run()
         // Then
@@ -210,11 +201,8 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
-        every { player.movementType = any() } just Runs
-        every { player.temporaryMoveType = any() } just Runs
         every { movement.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
-        every { movement.delta = any() } just Runs
         // When
         task.run()
         // Then

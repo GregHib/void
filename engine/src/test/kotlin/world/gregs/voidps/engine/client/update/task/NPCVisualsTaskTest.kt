@@ -129,7 +129,9 @@ internal class NPCVisualsTaskTest : KoinMock() {
         val mask = 0x8
         every { visuals.flag } returns mask
         every { visuals.flagged(mask) } returns true
-        every { visuals.aspects[any()] } returns mockk(relaxed = true)
+        val map: MutableMap<Int, Visual> = mockk(relaxed = true)
+        every { visuals.aspects } returns map
+        every { map[any()] } returns mockk(relaxed = true)
         // When
         updateTask.encodeUpdate(visuals)
         // Then
@@ -166,7 +168,9 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: NPCVisualsTask = get()
         val visuals: Visuals = mockk(relaxed = true)
-        every { visuals.aspects[any()] } returns mockk(relaxed = true)
+        val map: MutableMap<Int, Visual> = mockk(relaxed = true)
+        every { visuals.aspects } returns map
+        every { map[any()] } returns mockk(relaxed = true)
         // When
         updateTask.encodeAddition(visuals)
         // Then
@@ -182,7 +186,9 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Given
         val updateTask: NPCVisualsTask = get()
         val visuals: Visuals = mockk(relaxed = true)
-        every { visuals.aspects[any()] } returns mockk(relaxed = true)
+        val map: MutableMap<Int, Visual> = mockk(relaxed = true)
+        every { visuals.aspects } returns map
+        every { map[any()] } returns mockk(relaxed = true)
         every { visuals.flagged(any()) } returns true
         // When
         updateTask.encodeAddition(visuals)
