@@ -4,9 +4,7 @@ import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.inc
 import world.gregs.voidps.engine.entity.character.player.delay.Delay
 import world.gregs.voidps.engine.entity.character.player.delay.delayed
-import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
@@ -14,8 +12,6 @@ import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.func.isDoor
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.obj.replaceObject
-import world.gregs.voidps.world.interact.entity.obj.replaceObjectPair
 
 val objects: Objects by inject()
 val logger = InlineLogger()
@@ -90,8 +86,7 @@ ObjectOption where { obj.def.isDoor() && option == "Open" } then {
             )
         }
     } else if (replacement1 != null) {// Single Doors
-        replaceObject(
-            obj,
+        obj.replace(
             replacement1,
             getTile(obj, 1),
             obj.type,

@@ -27,6 +27,7 @@ import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
+import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.eventModule
@@ -158,7 +159,8 @@ object Main {
                 logoutModule,
                 objectFactoryModule,
                 lineOfSightModule,
-                navModule
+                navModule,
+                customObjectModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

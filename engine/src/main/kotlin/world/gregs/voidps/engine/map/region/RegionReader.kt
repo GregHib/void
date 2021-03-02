@@ -6,6 +6,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.decoder.MapDecoder
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
@@ -14,7 +15,7 @@ import world.gregs.voidps.engine.map.collision.CollisionReader
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader(get(), get(), get(), get(), get()) }
+    single { RegionReader(get(), get(), get(), get(), get(), get()) }
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
@@ -26,6 +27,7 @@ class RegionReader(
     private val bus: EventBus,
     private val collisions: CollisionReader,
     private val objects: Objects,
+    private val customs: CustomObjects,
     private val objectFactory: GameObjectFactory,
     private val decoder: MapDecoder
 ) {
@@ -47,6 +49,7 @@ class RegionReader(
             col.await()
             loc.await()
             bus.emit(RegionLoaded(region))
+            customs.load(region)
         }
         logger.info { "Region ${region.id} loaded in ${time}ms" }
         true
