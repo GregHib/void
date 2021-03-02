@@ -9,7 +9,6 @@ dependencies {
 
     implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
-    implementation("com.google.guava:guava:${findProperty("guavaVersion")}")
 
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")

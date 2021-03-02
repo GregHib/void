@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client
 
-import com.google.common.collect.HashBiMap
 import io.netty.channel.Channel
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -17,7 +16,8 @@ val clientSessionModule = module {
 }
 
 class Sessions {
-    val players = HashBiMap.create<Channel, Player>()
+    val players = mutableMapOf<Channel, Player>()
+    val channels = mutableMapOf<Player, Channel>()
 
     /**
      * Links a client session with a player
@@ -45,7 +45,7 @@ class Sessions {
      * Returns session for [player]
      */
     fun get(player: Player): Channel? {
-        return players.inverse()[player]
+        return channels[player]
     }
 
     /**
@@ -59,6 +59,6 @@ class Sessions {
      * Checks if [player] is linked
      */
     fun contains(player: Player): Boolean {
-        return players.inverse().containsKey(player)
+        return channels.containsKey(player)
     }
 }
