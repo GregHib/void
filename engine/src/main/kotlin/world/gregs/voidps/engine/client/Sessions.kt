@@ -24,13 +24,14 @@ class Sessions {
      */
     fun register(session: Channel, player: Player) {
         players[session] = player
+        channels[player] = session
     }
 
     /**
      * Removes the link between a player an client session.
      */
     fun deregister(session: Channel) {
-        players.remove(session)
+        channels.remove(players.remove(session))
     }
 
     /**
