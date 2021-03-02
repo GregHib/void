@@ -27,11 +27,9 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
-import kotlin.system.measureTimeMillis
 
 val bus: EventBus by inject()
 val scheduler: Scheduler by inject()
@@ -95,9 +93,6 @@ val bots = mutableListOf<Player>()
 
 val loginQueue: LoginQueue by inject()
 
-Startup then {
-
-}
 Command where { prefix == "bots" } then {
     spawnBots(2000)
 }
@@ -133,25 +128,21 @@ fun spawnBots(count: Int) {
 }
 
 Tick then {
-    println("Bot decisions took ${measureTimeMillis {
-        runBlocking {
-            coroutineScope {
-                bots.forEach { bot ->
-                    if (!bot.movement.target) {
-                        launch(Contexts.Updating) {
-                            bot.viewport.loaded = true
-                            calculateNewAction(bot)
-                        }
+    runBlocking {
+        coroutineScope {
+            bots.forEach { bot ->
+                if (!bot.movement.target) {
+                    launch(Contexts.Updating) {
+                        bot.viewport.loaded = true
+                        calculateNewAction(bot)
                     }
                 }
             }
         }
     }
-    }ms")
 }
 
 fun calculateNewAction(player: Player) {
     val context: BotContext = player["context"]
     decisionMaker.invoke(context, options)
-//    println("Decision made in ${took}ns")
 }
