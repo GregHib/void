@@ -5,8 +5,6 @@ import io.mockk.mockkClass
 import org.junit.jupiter.api.extension.ExtendWith
 import org.junit.jupiter.api.extension.RegisterExtension
 import org.koin.core.module.Module
-import org.koin.ext.setFloatProperty
-import org.koin.ext.setIntProperty
 import org.koin.test.KoinTest
 import world.gregs.voidps.world.script.koin.KoinTestExtension
 import world.gregs.voidps.world.script.koin.MockProviderExtension
@@ -49,9 +47,9 @@ abstract class KoinMock : KoinTest {
         koinTestExtension.koin.setProperty(key, value)
 
     fun setProperty(key: String, value: Int) =
-        koinTestExtension.koin.setIntProperty(key, value)
+        koinTestExtension.koin.setProperty(key, value.toString())
 
     fun setProperty(key: String, value: Float) =
-        koinTestExtension.koin.setFloatProperty(key, value)
+        koinTestExtension.koin.setProperty(key, value.toString())
 
 }
