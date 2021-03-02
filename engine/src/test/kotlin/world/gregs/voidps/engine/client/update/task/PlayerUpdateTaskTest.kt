@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
@@ -148,9 +147,9 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         val sync: Writer = mockk(relaxed = true)
 
-        every { entities.remove.contains(player) } returns true
+        every { entities.remove } returns mutableSetOf(player)
         every { entities.current } returns mutableSetOf(player)
-        every { entities.lastSeen[player] } returns null
+        every { entities.lastSeen } returns mutableMapOf()
         // When
         task.processLocals(sync, mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -326,7 +325,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             if (arg<Int>(0) == index) player else null
         }
         every { player.index } returns index
-        every { entities.local.contains(player) } returns true
+        every { entities.local } returns mutableSetOf(player)
         // When
         task.processGlobals(mockk(relaxed = true), mockk(relaxed = true), entities, viewport, true)
         // Then
@@ -387,8 +386,8 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         } answers {
             if (arg<Int>(0) == MAX_PLAYERS - 2) player else null
         }
-        every { entities.add.contains(player) } returns true
-        every { entities.lastSeen[any()] } returns null
+        every { entities.add } returns LinkedHashSet<Player>().apply { add(player) }
+        every { entities.lastSeen } returns mutableMapOf()
         // When
         task.processGlobals(sync, updates, entities, viewport, true)
         // Then
@@ -436,7 +435,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             val set: PlayerTrackingSet = mockk(relaxed = true)
             val player: Player = mockk(relaxed = true)
             every { player.tile } returns value(Tile(0))
-            every { set.lastSeen[player] } returns null
+            every { set.lastSeen } returns mutableMapOf()
             every { task.calculateRegionUpdate(anyValue()) } returns updateType
             every { task.calculateRegionValue(any(), anyValue()) } returns value
             // When

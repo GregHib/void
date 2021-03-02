@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task
 
 import io.mockk.every
 import io.mockk.mockk
+import io.mockk.mockkStatic
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -73,6 +74,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     @Test
     fun `Local update tele`() {
         // Given
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         val player: Player = mockk(relaxed = true)
         every { player.movement.steps } returns Steps()
         every { player.movement.walkStep } returns Direction.NONE
