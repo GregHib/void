@@ -18,8 +18,8 @@ dependencies {
     implementation("org.koin:koin-core:${findProperty("koinVersion")}")
 
     implementation("org.koin:koin-logger-slf4j:${findProperty("koinVersion")}")
-    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
+    implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
 
     testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")

@@ -1,7 +1,3 @@
-repositories {
-    maven(url = "https://dl.bintray.com/michaelbull/maven")
-}
-
 dependencies {
     implementation(project(":buffer"))
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
