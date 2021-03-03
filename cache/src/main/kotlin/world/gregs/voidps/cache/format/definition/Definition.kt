@@ -1,4 +1,5 @@
 package world.gregs.voidps.cache.format.definition
+/*
 
 import kotlinx.serialization.*
 import kotlinx.serialization.modules.EmptySerializersModule
@@ -34,4 +35,4 @@ inline fun <reified T> Definition.encodeToByteArray(value: T): ByteArray =
 
 @ExperimentalSerializationApi
 inline fun <reified T> Definition.decodeFromByteArray(array: ByteArray): T =
-    decodeFromByteArray(serializersModule.serializer(), array)
+    decodeFromByteArray(serializersModule.serializer(), array)*/

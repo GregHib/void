@@ -1,10 +1,9 @@
 package world.gregs.voidps.cache.format.definition
 
-import kotlinx.serialization.Serializable
-import world.gregs.voidps.cache.format.definition.internal.ColourSerializer
-import world.gregs.voidps.cache.format.definition.internal.MediumSerializer
+//import world.gregs.voidps.cache.format.definition.internal.ColourSerializer
+//import world.gregs.voidps.cache.format.definition.internal.MediumSerializer
 
-@Serializable(with = ColourSerializer::class)
+//@Serializable(with = ColourSerializer::class)
 data class Colours(var original: ShortArray, var modified: ShortArray) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

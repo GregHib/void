@@ -7,6 +7,7 @@ buildscript {
 
     dependencies {
         classpath(kotlin("gradle-plugin", version = "1.4.30"))
+        classpath(kotlin("serialization", version = "1.4.30"))
     }
 }
 

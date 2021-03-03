@@ -1,6 +1,6 @@
-@file:OptIn(ExperimentalSerializationApi::class)
-
 package world.gregs.voidps.cache.format.definition.internal
+
+/*@file:OptIn(ExperimentalSerializationApi::class)
 
 import kotlinx.serialization.DeserializationStrategy
 import kotlinx.serialization.ExperimentalSerializationApi
@@ -19,6 +19,7 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.definition.data.ItemDefinition2
 import world.gregs.voidps.cache.format.definition.Medium
+
 
 @OptIn(InternalSerializationApi::class)
 internal class DefinitionDecoder(
@@ -152,4 +153,4 @@ internal class DefinitionDecoder(
 
     override fun SerialDescriptor.getTag(index: Int): Int = index
 
-}
+}*/

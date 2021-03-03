@@ -1,13 +1,17 @@
+apply(plugin = "kotlin-kapt")
+
 dependencies {
     implementation(project(":ai"))
     implementation(project(":buffer"))
     implementation(project(":cache"))
     implementation(project(":engine"))
     implementation(project(":utility"))
+    implementation(kotlin("reflect"))
 
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
+    implementation("com.squareup:kotlinpoet:1.7.2")
     implementation("org.jsoup:jsoup:1.13.1")
     implementation("org.sweble.wikitext:swc-engine:2.0.0")
     implementation("com.github.weisj:darklaf-core:2.5.3")

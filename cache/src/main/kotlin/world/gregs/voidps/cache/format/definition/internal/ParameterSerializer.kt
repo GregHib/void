@@ -1,12 +1,6 @@
 package world.gregs.voidps.cache.format.definition.internal
 
-import kotlinx.serialization.*
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import world.gregs.voidps.cache.format.definition.Colours
-import kotlin.reflect.full.defaultType
+/*
 
 @PublishedApi
 @ExperimentalSerializationApi
@@ -41,3 +35,4 @@ internal object ParameterSerializer : KSerializer<Map<Int, Any>> {
         return map
     }
 }
+*/

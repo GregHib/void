@@ -1,25 +1,26 @@
 package world.gregs.voidps.cache.definition.data
 
-import kotlinx.serialization.*
+
+import kotlinx.serialization.Contextual
+import kotlinx.serialization.Transient
 import world.gregs.voidps.cache.Definition
-import world.gregs.voidps.cache.Flatten
-import world.gregs.voidps.cache.definition.ColourPalette
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.cache.definition.Parameterized
-import world.gregs.voidps.cache.definition.Recolourable
 import world.gregs.voidps.cache.format.definition.Colours
 import world.gregs.voidps.cache.format.definition.Indexed
 import world.gregs.voidps.cache.format.definition.Operation
 import world.gregs.voidps.cache.format.definition.Setter
-import world.gregs.voidps.cache.format.definition.internal.ColourSerializer
-import world.gregs.voidps.cache.format.definition.internal.ParameterSerializer
+
+//import world.gregs.voidps.cache.format.definition.internal.ColourSerializer
+//import world.gregs.voidps.cache.format.definition.internal.ParameterSerializer
+
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 07, 2020
  */
-@Serializable
-@OptIn(ExperimentalSerializationApi::class, ExperimentalUnsignedTypes::class)
+
+//@Serializable
+//@OptIn(ExperimentalSerializationApi::class, ExperimentalUnsignedTypes::class)
 data class ItemDefinition2(
     @Transient
     override var id: Int = -1,
@@ -143,7 +144,7 @@ data class ItemDefinition2(
     @Operation(140)
     var singleNoteTemplateId: Short = -1,
     @Operation(249)
-    @Serializable(with = ParameterSerializer::class)
+//    @Serializable(with = ParameterSerializer::class)
     var params: Map<Int, @Contextual Any>? = null,
     @Transient
     override var extras: Map<String, Any> = emptyMap()

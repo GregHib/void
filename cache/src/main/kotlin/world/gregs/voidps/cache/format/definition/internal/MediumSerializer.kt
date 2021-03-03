@@ -1,5 +1,6 @@
 package world.gregs.voidps.cache.format.definition.internal
 
+/*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializer
@@ -28,4 +29,4 @@ internal object MediumSerializer : KSerializer<Medium> {
     override fun deserialize(decoder: Decoder): Medium {
         return (decoder.decodeInline(descriptor) as DefinitionDecoder).decodeMedium()
     }
-}
+}*/

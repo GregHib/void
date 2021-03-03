@@ -4,13 +4,8 @@ package world.gregs.voidps.cache.format.definition.internal
 
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.descriptors.SerialDescriptor
-import kotlinx.serialization.internal.TaggedEncoder
-import world.gregs.voidps.buffer.DataType
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.buffer.write.Writer
+
+/*
 
 internal open class DefinitionEncoder(
     private val encodeDefaults: Boolean,
@@ -80,4 +75,4 @@ internal open class DefinitionEncoder(
     }
 
     override fun SerialDescriptor.getTag(index: Int): Int = index
-}
+}*/

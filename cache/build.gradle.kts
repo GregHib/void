@@ -8,7 +8,7 @@ dependencies {
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
     implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("org.koin:koin-core:${findProperty("koinVersion")}")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.1.0")
 
     implementation("com.michael-bull.kotlin-inline-logger:kotlin-inline-logger-jvm:${findProperty("inlineLoggingVersion")}")
 

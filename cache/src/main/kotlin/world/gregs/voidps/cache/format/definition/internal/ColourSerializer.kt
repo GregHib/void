@@ -1,13 +1,6 @@
 package world.gregs.voidps.cache.format.definition.internal
 
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.KSerializer
-import kotlinx.serialization.Serializer
-import kotlinx.serialization.builtins.serializer
-import kotlinx.serialization.descriptors.*
-import kotlinx.serialization.encoding.Decoder
-import kotlinx.serialization.encoding.Encoder
-import world.gregs.voidps.cache.format.definition.Colours
+/*import world.gregs.voidps.cache.format.definition.Colours
 
 @PublishedApi
 @ExperimentalSerializationApi
@@ -35,4 +28,4 @@ internal object ColourSerializer : KSerializer<Colours> {
         }
         return Colours(original, modified)
     }
-}
+}*/

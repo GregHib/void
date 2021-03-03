@@ -1,19 +1,19 @@
 package world.gregs.voidps.cache
 
 import com.displee.cache.CacheLibrary
-import kotlinx.serialization.*
+import kotlinx.serialization.KSerializer
 import kotlinx.serialization.builtins.serializer
 import kotlinx.serialization.descriptors.SerialDescriptor
 import kotlinx.serialization.descriptors.buildClassSerialDescriptor
-import kotlinx.serialization.descriptors.element
+import kotlinx.serialization.encodeToString
 import kotlinx.serialization.encoding.Decoder
 import kotlinx.serialization.encoding.Encoder
-import kotlinx.serialization.encoding.decodeStructure
-import kotlinx.serialization.encoding.encodeStructure
-import kotlinx.serialization.json.*
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.json.JsonDecoder
+import kotlinx.serialization.json.int
+import kotlinx.serialization.json.jsonPrimitive
 import kotlinx.serialization.modules.SerializersModule
 import kotlinx.serialization.modules.contextual
-import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import java.io.File
 
@@ -63,7 +63,7 @@ object Flatten {
         val path = "./data/cache/"
         val cache = CacheLibrary(path)
 
-        val decoder = ItemDecoder(CacheDelegate(path, "1", "1"))
+        val decoder = ItemDecoder(CacheDelegate(path))
 
         val dir = File(path, "flat/")
         if (dir.exists()) {
