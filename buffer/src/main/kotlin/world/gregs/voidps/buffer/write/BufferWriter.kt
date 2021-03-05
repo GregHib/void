@@ -1,9 +1,6 @@
 package world.gregs.voidps.buffer.write
 
 import io.netty.buffer.ByteBuf
-import world.gregs.voidps.buffer.DataType
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
 
 /**
@@ -12,14 +9,123 @@ import java.nio.ByteBuffer
  * @author GregHib <greg@gregs.world>
  * @since February 18, 2020
  */
-open class BufferWriter(
+class BufferWriter(
     capacity: Int = 64,
-    val buffer: ByteBuffer = ByteBuffer.allocate(capacity)
+    private val buffer: ByteBuffer = ByteBuffer.allocate(capacity)
 ) : Writer {
+
     private var bitIndex = 0
+
+    override fun writeByte(value: Int): Writer {
+        buffer.put(value.toByte())
+        return this
+    }
+
+    override fun writeByteAdd(value: Int): Writer {
+        return writeByte(value + 128)
+    }
+
+    override fun writeByteInverse(value: Int): Writer {
+        return writeByte(-value)
+    }
+
+    override fun writeByteSubtract(value: Int): Writer {
+        return writeByte(-value + 128)
+    }
 
     override fun setByte(index: Int, value: Int): Writer {
         buffer.put(index, value.toByte())
+        return this
+    }
+
+    override fun writeShort(value: Int): Writer {
+        writeByte(value shr 8)
+        writeByte(value)
+        return this
+    }
+
+    override fun writeShortAdd(value: Int): Writer {
+        writeByte(value shr 8)
+        writeByteAdd(value)
+        return this
+    }
+
+    override fun writeShortLittle(value: Int): Writer {
+        writeByte(value)
+        writeByte(value shr 8)
+        return this
+    }
+
+    override fun writeShortAddLittle(value: Int): Writer {
+        writeByteAdd(value)
+        writeByte(value shr 8)
+        return this
+    }
+
+    override fun writeMedium(value: Int): Writer {
+        writeByte(value shr 16)
+        writeByte(value shr 8)
+        writeByte(value)
+        return this
+    }
+
+    override fun writeInt(value: Int): Writer {
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+        writeByte(value shr 8)
+        writeByte(value)
+        return this
+    }
+
+    override fun writeIntMiddle(value: Int): Writer {
+        writeByte(value shr 8)
+        writeByte(value)
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+        return this
+    }
+
+    override fun writeIntInverse(value: Int): Writer {
+        writeByte(value shr 8)
+        writeByte(value shr 24)
+        writeByte(value shr 16)
+        writeByteInverse(value)
+        return this
+    }
+
+    override fun writeIntInverseMiddle(value: Int): Writer {
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+        writeByte(value)
+        writeByte(value shr 8)
+        return this
+    }
+
+    override fun writeIntLittle(value: Int): Writer {
+        writeByte(value)
+        writeByte(value shr 8)
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+        return this
+    }
+
+    override fun writeIntInverseLittle(value: Int): Writer {
+        writeByteInverse(value)
+        writeByte(value shr 8)
+        writeByte(value shr 16)
+        writeByte(value shr 24)
+        return this
+    }
+
+    override fun writeLong(value: Long): Writer {
+        writeByte((value shr 56).toInt())
+        writeByte((value shr 48).toInt())
+        writeByte((value shr 40).toInt())
+        writeByte((value shr 32).toInt())
+        writeByte((value shr 24).toInt())
+        writeByte((value shr 16).toInt())
+        writeByte((value shr 8).toInt())
+        writeByte(value.toInt())
         return this
     }
 
@@ -29,8 +135,7 @@ open class BufferWriter(
     }
 
     override fun writeBytes(value: ByteBuf): BufferWriter {
-        buffer.put(value.array(), value.readerIndex(), value.readableBytes())
-        return this
+        return writeBytes(value.array(), value.readerIndex(), value.readableBytes())
     }
 
     override fun writeBytes(data: ByteArray, offset: Int, length: Int): BufferWriter {
@@ -39,10 +144,8 @@ open class BufferWriter(
     }
 
     override fun writeBytes(data: ByteBuf, offset: Int, length: Int): BufferWriter {
-        buffer.put(data.array(), offset, length)
-        return this
+        return writeBytes(data.array(), offset, length)
     }
-
 
     override fun startBitAccess(): BufferWriter {
         bitIndex = buffer.position() * 8
@@ -103,27 +206,6 @@ open class BufferWriter(
 
     override fun position(index: Int) {
         buffer.position(index)
-    }
-
-    override fun write(type: DataType, value: Number, modifier: Modifier, order: Endian) {
-        if (order == Endian.MIDDLE) {
-            check(modifier == Modifier.NONE || modifier == Modifier.INVERSE) {
-                "Middle endian doesn't support variable modifier $modifier"
-            }
-            check(type == DataType.INT) {
-                "Middle endian can only be used with an integer"
-            }
-        }
-
-        for (index in order.getRange(modifier, type.byteCount)) {
-            val modifiedValue = when (if (index == 0 && order != Endian.MIDDLE) modifier else Modifier.NONE) {
-                Modifier.ADD -> value.toInt() + 128
-                Modifier.INVERSE -> -value.toInt()
-                Modifier.SUBTRACT -> 128 - value.toInt()
-                else -> (value.toLong() shr index * 8).toInt()
-            }
-            buffer.put(modifiedValue.toByte())
-        }
     }
 
     override fun toArray(): ByteArray {

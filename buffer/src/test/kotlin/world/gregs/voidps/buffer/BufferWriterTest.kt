@@ -136,6 +136,15 @@ internal class BufferWriterTest {
     }
 
     @Test
+    fun `Write int inverse`() {
+        // When
+        buffer.writeIntInverse(2)
+        buffer.writeIntInverse(-2)
+        // Then
+        assertBytes(0, 0, 0, -2, -1, -1, -1, 2)
+    }
+
+    @Test
     fun `Write int middle endian inverse`() {
         // When
         buffer.writeIntInverseMiddle(2)
