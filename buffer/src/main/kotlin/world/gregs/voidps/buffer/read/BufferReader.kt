@@ -6,7 +6,9 @@ import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
 import kotlin.math.pow
 
-open class BufferReader(override val buffer: ByteBuffer) : Reader {
+open class BufferReader(
+    override val buffer: ByteBuffer
+) : Reader {
 
     constructor(array: ByteArray) : this(buffer = ByteBuffer.wrap(array))
 
@@ -18,23 +20,17 @@ open class BufferReader(override val buffer: ByteBuffer) : Reader {
         return if (peek < 128) {
             peek and 0xFF
         } else {
-            buffer.position(buffer.position() - 1)
-            readUnsignedShort() - 32768
+            (peek shl 8 or readUnsignedByte()) - 32768
         }
     }
 
     override fun readBigSmart(): Int {
-        val peek = buffer.get().toInt()
-        buffer.position(buffer.position() - 1)
-        return if (peek < -2) {
-            readInt() and 0x7fffffff
+        val peek = readByte()
+        return if (peek < 0) {
+            ((peek shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()) and 0x7fffffff
         } else {
-            val value = readShort()
-            if (value == 32767) {
-                -1
-            } else {
-                value
-            }
+            val value = (peek shl 8) or readUnsignedByte()
+            if (value == 32767)  -1 else value
         }
     }
 
@@ -127,7 +123,7 @@ open class BufferReader(override val buffer: ByteBuffer) : Reader {
         var read: Int
         for (index in order.getRange(modifier, type.byteCount)) {
             read = buffer.get().toInt()
-            read = when (if(index == 0 && order != Endian.MIDDLE) modifier else Modifier.NONE) {
+            read = when (if (index == 0 && order != Endian.MIDDLE) modifier else Modifier.NONE) {
                 Modifier.ADD -> read - 128 and 0xff
                 Modifier.INVERSE -> -read and 0xff
                 Modifier.SUBTRACT -> 128 - read and 0xff
