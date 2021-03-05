@@ -62,7 +62,7 @@ object LoginHeaderDecoder {
         val password: String = rsaBuffer.readString()
         val serverSeed = rsaBuffer.readLong()
         val clientSeed = rsaBuffer.readLong()
-        Xtea.decipher(reader.buffer, isaacKeys)
+        Xtea.decipher((reader as BufferReader).buffer, isaacKeys)
         return Triple(LoginResponseCode.Successful, password, isaacKeys)
     }
 

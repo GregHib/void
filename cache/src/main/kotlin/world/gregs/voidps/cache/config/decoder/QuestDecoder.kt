@@ -102,23 +102,18 @@ class QuestDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<QuestD
 
     companion object {
         private fun Reader.readPrefixedString(): String {
-            val head: Byte = buffer.get()
-            check(head.toInt() == 0) { "Bad version number in gjstr2" }
-            val i: Int = buffer.position()
-            while (buffer.get() != 0.toByte()) {
-                /* empty */
-            }
-            val start: Int = buffer.position() + -i + -1
-            return if (start == 0) {
-                ""
-            } else {
-                val cs = CharArray(start)
-                var index = 0
-                repeat(start) { count ->
-                    cs[index++] = byteToChar(buffer.get(count + i))
+            val head = readByte()
+            check(head == 0) { "Bad version number in gjstr2" }
+            val sb = StringBuilder()
+            var b: Int
+            while (readableBytes() > 0) {
+                b = readByte()
+                if (b == 0) {
+                    break
                 }
-                return String(cs, 0, index)
+                sb.append(byteToChar(b.toByte()))
             }
+            return sb.toString()
         }
     }
 }

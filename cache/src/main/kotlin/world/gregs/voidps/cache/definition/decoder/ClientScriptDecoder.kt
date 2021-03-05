@@ -25,10 +25,10 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
     }
 
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
-        buffer.buffer.position(buffer.length - 2)
+        buffer.position(buffer.length - 2)
         val i = buffer.readShort()
         val length: Int = buffer.length - (2 + i) - 16
-        buffer.buffer.position(length)
+        buffer.position(length)
         val instructionCount = buffer.readInt()
         intVariableCount = buffer.readShort()
         stringVariableCount = buffer.readShort()
@@ -49,11 +49,11 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
             }
             aHashTableArray9503 = list.toTypedArray()
         }
-        buffer.buffer.position(0)
+        buffer.position(0)
         name = buffer.readString()
         instructions = IntArray(instructionCount)
         var index = 0
-        while (buffer.buffer.position() < length) {
+        while (buffer.position() < length) {
             val clientOpcode = buffer.readShort()
             if (clientOpcode == 3) {
                 if (stringOperands == null) {
