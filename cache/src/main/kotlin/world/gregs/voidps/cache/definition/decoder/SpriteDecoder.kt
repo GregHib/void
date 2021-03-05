@@ -24,9 +24,9 @@ class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<S
     }
 
     override fun SpriteDefinition.read(opcode: Int, buffer: Reader) {
-        buffer.buffer.position(buffer.buffer.array().size - 2)
+        buffer.position(buffer.array().size - 2)
         val size: Int = buffer.readShort()
-        buffer.buffer.position(buffer.buffer.array().size - 7 - size * 8)
+        buffer.position(buffer.array().size - 7 - size * 8)
 
         val offsetX: Int = buffer.readShort()
         val offsetY: Int = buffer.readShort()
@@ -53,7 +53,7 @@ class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<S
             sprite.deltaHeight = offsetY - sprite.height - sprite.offsetY
         }
 
-        buffer.buffer.position(buffer.buffer.array().size - 7 - size * 8 - (paletteSize - 1) * 3)
+        buffer.position(buffer.array().size - 7 - size * 8 - (paletteSize - 1) * 3)
         val palette = IntArray(paletteSize)
         for (index in 1 until paletteSize) {
             palette[index] = buffer.readUnsignedMedium()
@@ -65,7 +65,7 @@ class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<S
             sprites[index].palette = palette
         }
 
-        buffer.buffer.position(0)
+        buffer.position(0)
         repeat(size) { index ->
             val sprite = sprites[index]
             val area = sprite.width * sprite.height

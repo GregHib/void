@@ -1,16 +1,6 @@
 package world.gregs.voidps.buffer.read
 
-import java.nio.ByteBuffer
-
-/**
- * A unit of byte data
- */
 interface Reader {
-
-    /**
-     * Packet buffer
-     */
-    val buffer: ByteBuffer
 
     /**
      * Starting length of the packet
@@ -92,6 +82,12 @@ interface Reader {
      * @param amount Number of bytes to skip
      */
     fun skip(amount: Int)
+
+    fun position(): Int
+
+    fun array(): ByteArray
+
+    fun position(index: Int)
 
     /**
      * Returns the remaining number of readable bytes.

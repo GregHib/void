@@ -9,7 +9,7 @@ class KeysPressedDecoder : Decoder(BYTE) {
 
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         val keys = ArrayList<Pair<Int, Int>>()
-        while (packet.buffer.hasRemaining()) {
+        while (packet.readableBytes() > 0) {
             keys.add(packet.readUnsignedByte() to packet.readUnsignedShort())
         }
         handler?.keysPressed(context, keys)

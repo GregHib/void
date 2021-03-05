@@ -3,7 +3,7 @@ package world.gregs.voidps.buffer.read
 import java.nio.ByteBuffer
 
 class BufferReader(
-    override val buffer: ByteBuffer
+    val buffer: ByteBuffer
 ) : Reader {
 
     constructor(array: ByteArray) : this(buffer = ByteBuffer.wrap(array))
@@ -141,6 +141,18 @@ class BufferReader(
 
     override fun skip(amount: Int) {
         buffer.position(buffer.position() + amount)
+    }
+
+    override fun position(): Int {
+        return buffer.position()
+    }
+
+    override fun position(index: Int) {
+        buffer.position(index)
+    }
+
+    override fun array(): ByteArray {
+        return buffer.array()
     }
 
     override fun readableBytes(): Int {
