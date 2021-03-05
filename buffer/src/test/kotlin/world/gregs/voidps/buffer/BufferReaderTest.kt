@@ -86,6 +86,24 @@ internal class BufferReaderTest {
     }
 
     @Test
+    fun `Read unsigned short`() {
+        //Given
+        packet(0, 2, -1, -2)
+        //Then
+        assertEquals(2, buffer.readUnsignedShort())
+        assertEquals(65534, buffer.readUnsignedShort())
+    }
+
+    @Test
+    fun `Read unsigned short little`() {
+        //Given
+        packet(2, 0, -2, -1)
+        //Then
+        assertEquals(2, buffer.readUnsignedShortLittle())
+        assertEquals(65534, buffer.readUnsignedShortLittle())
+    }
+
+    @Test
     fun `Read int`() {
         //Given
         packet(0, 0, 0, 2, -1, -1, -1, -2)
@@ -113,12 +131,14 @@ internal class BufferReaderTest {
     }
 
     @Test
-    fun `Read int inverse middle endian`() {
+    fun `Read unsigned int middle endian`() {
         //Given
-        packet(0, 2, 0, 0, -1, -2, -1, -1)
+        packet(0, 2, 0, 0, 0, 0, 2, 0, -2, -1, -1, -1, -1, -1, -1, -2)
         //Then
-        assertEquals(2, buffer.readIntMiddle())
-        assertEquals(-2, buffer.readIntMiddle())
+        assertEquals(2, buffer.readUnsignedIntMiddle())
+        assertEquals(33554432, buffer.readUnsignedIntMiddle())
+        assertEquals(-257, buffer.readUnsignedIntMiddle())
+        assertEquals(-65537, buffer.readUnsignedIntMiddle())
     }
 
     @Test

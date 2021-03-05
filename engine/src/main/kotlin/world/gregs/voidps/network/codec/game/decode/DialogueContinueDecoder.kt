@@ -10,7 +10,7 @@ class DialogueContinueDecoder : Decoder(6) {
         handler?.continueDialogue(
             context,
             button = packet.readShortAdd(),
-            hash = packet.readIntMiddle()
+            hash = packet.readUnsignedIntMiddle()
         )
     }
 

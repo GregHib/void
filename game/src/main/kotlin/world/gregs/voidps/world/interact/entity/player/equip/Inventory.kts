@@ -23,7 +23,6 @@ InterfaceOpened where { name == "inventory" } then {
 }
 
 InterfaceSwitch where { name == "inventory" && toName == "inventory" } then {
-    println("Switch item $this")
     val container = player.inventory
     var fromItemId = fromItemId
 
