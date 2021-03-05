@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.update.encode.npc
 
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.Animation
@@ -19,7 +18,7 @@ class NPCAnimationEncoder : VisualEncoder<Animation>(NPC_ANIMATION_MASK) {
             writeShort(second)
             writeShort(third)
             writeShort(fourth)
-            writeByte(speed, Modifier.SUBTRACT)
+            writeByteSubtract(speed)
         }
     }
 }

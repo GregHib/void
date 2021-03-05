@@ -6,7 +6,7 @@ import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
 import kotlin.math.pow
 
-open class BufferReader(
+class BufferReader(
     override val buffer: ByteBuffer
 ) : Reader {
 

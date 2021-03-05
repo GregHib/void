@@ -18,8 +18,8 @@ internal class BufferReaderTest {
         //Given
         packet(2, -2)
         //Then
-        assertByte(2)
-        assertByte(-2)
+        assertEquals(2, buffer.readByte())
+        assertEquals(-2, buffer.readByte())
     }
 
     @Test
@@ -27,8 +27,8 @@ internal class BufferReaderTest {
         //Given
         packet(-126, 126)
         //Then
-        assertByte(2, Modifier.ADD)
-        assertByte(-2, Modifier.ADD)
+        assertEquals(2, buffer.readByteAdd())
+        assertEquals(-2, buffer.readByteAdd())
     }
 
     @Test
@@ -36,8 +36,8 @@ internal class BufferReaderTest {
         //Given
         packet(-2, 2)
         //Then
-        assertByte(2, Modifier.INVERSE)
-        assertByte(-2, Modifier.INVERSE)
+        assertEquals(2, buffer.readByteInverse())
+        assertEquals(-2, buffer.readByteInverse())
     }
 
     @Test
@@ -45,8 +45,8 @@ internal class BufferReaderTest {
         //Given
         packet(126, -126)
         //Then
-        assertByte(2, Modifier.SUBTRACT)
-        assertByte(-2, Modifier.SUBTRACT)
+        assertEquals(2, buffer.readByteSubtract())
+        assertEquals(-2, buffer.readByteSubtract())
     }
 
     @Test
@@ -54,8 +54,8 @@ internal class BufferReaderTest {
         //Given
         packet(0, 2, -1, -2)
         //Then
-        assertShort(2)
-        assertShort(-2)
+        assertEquals(2, buffer.readShort())
+        assertEquals(-2, buffer.readShort())
     }
 
     @Test
@@ -63,8 +63,8 @@ internal class BufferReaderTest {
         //Given
         packet(0, -126, -1, 126)
         //Then
-        assertShort(2, Modifier.ADD)
-        assertShort(-2, Modifier.ADD)
+        assertEquals(2, buffer.readShortAdd())
+        assertEquals(-2, buffer.readShortAdd())
     }
 
     @Test
@@ -72,8 +72,8 @@ internal class BufferReaderTest {
         //Given
         packet(2, 0, -2, -1)
         //Then
-        assertShort(2, endian = Endian.LITTLE)
-        assertShort(-2, endian = Endian.LITTLE)
+        assertEquals(2, buffer.readShortLittle())
+        assertEquals(-2, buffer.readShortLittle())
     }
 
     @Test
@@ -81,8 +81,8 @@ internal class BufferReaderTest {
         //Given
         packet(-126, 0, 126, -1)
         //Then
-        assertShort(2, Modifier.ADD, Endian.LITTLE)
-        assertShort(-2, Modifier.ADD, Endian.LITTLE)
+        assertEquals(2, buffer.readShortAddLittle())
+        assertEquals(-2, buffer.readShortAddLittle())
     }
 
     @Test
@@ -90,8 +90,8 @@ internal class BufferReaderTest {
         //Given
         packet(0, 0, 0, 2, -1, -1, -1, -2)
         //Then
-        assertInt(2)
-        assertInt(-2)
+        assertEquals(2, buffer.readInt())
+        assertEquals(-2, buffer.readInt())
     }
 
     @Test
@@ -99,8 +99,8 @@ internal class BufferReaderTest {
         //Given
         packet(0, 0, 2, 0, -1, -1, -2, -1)
         //Then
-        assertInt(2, Modifier.INVERSE, Endian.MIDDLE)
-        assertInt(-2, Modifier.INVERSE, Endian.MIDDLE)
+        assertEquals(2, buffer.readIntInverseMiddle())
+        assertEquals(-2, buffer.readIntInverseMiddle())
     }
 
     @Test
@@ -108,8 +108,8 @@ internal class BufferReaderTest {
         //Given
         packet(2, 0, 0, 0, -2, -1, -1, -1)
         //Then
-        assertInt(2, endian = Endian.LITTLE)
-        assertInt(-2, endian = Endian.LITTLE)
+        assertEquals(2, buffer.readIntLittle())
+        assertEquals(-2, buffer.readIntLittle())
     }
 
     @Test
@@ -117,8 +117,8 @@ internal class BufferReaderTest {
         //Given
         packet(0, 2, 0, 0, -1, -2, -1, -1)
         //Then
-        assertInt(2, endian = Endian.MIDDLE)
-        assertInt(-2, endian = Endian.MIDDLE)
+        assertEquals(2, buffer.readIntMiddle())
+        assertEquals(-2, buffer.readIntMiddle())
     }
 
     @Test
@@ -194,17 +194,5 @@ internal class BufferReaderTest {
         //Then
         buffer.startBitAccess()
         assertEquals(511, buffer.readBits(9))
-    }
-
-    private fun assertByte(value: Int, type: Modifier = Modifier.NONE) {
-        assertEquals(value, buffer.readByte(type))
-    }
-
-    private fun assertShort(value: Int, type: Modifier = Modifier.NONE, endian: Endian = Endian.BIG) {
-        assertEquals(value, buffer.readShort(type, endian))
-    }
-
-    private fun assertInt(value: Int, type: Modifier = Modifier.NONE, endian: Endian = Endian.BIG) {
-        assertEquals(value, buffer.readInt(type, endian))
     }
 }

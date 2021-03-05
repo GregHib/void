@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.client.update.encode.player
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_TIME_BAR_MASK
@@ -17,9 +15,9 @@ class PlayerTimeBarEncoder : VisualEncoder<TimeBar>(PLAYER_TIME_BAR_MASK) {
     override fun encode(writer: Writer, visual: TimeBar) {
         val (full, exponentialDelay, delay, increment) = visual
         writer.apply {
-            writeShort((full.toInt() * 0x8000) or (exponentialDelay and 0x7fff), order = Endian.LITTLE)
-            writeByte(delay, Modifier.SUBTRACT)
-            writeByte(increment, Modifier.INVERSE)
+            writeShortLittle((full.toInt() * 0x8000) or (exponentialDelay and 0x7fff))
+            writeByteSubtract(delay)
+            writeByteInverse(increment)
         }
     }
 

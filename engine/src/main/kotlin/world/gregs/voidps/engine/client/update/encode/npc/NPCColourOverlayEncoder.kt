@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.update.encode.npc
 
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.ColourOverlay
@@ -19,9 +18,9 @@ class NPCColourOverlayEncoder : VisualEncoder<ColourOverlay>(NPC_COLOUR_OVERLAY_
             val saturation = colour shr 8 and 0xFF
             val luminance = colour shr 16 and 0xFF
             val multiplier = colour shr 24 and 0xFF
-            writeByte(hue, Modifier.INVERSE)
-            writeByte(saturation, Modifier.SUBTRACT)
-            writeByte(luminance, Modifier.INVERSE)
+            writeByteInverse(hue)
+            writeByteSubtract(saturation)
+            writeByteInverse(luminance)
             writeByte(multiplier)
             writeShort(delay)
             writeShort(duration)
