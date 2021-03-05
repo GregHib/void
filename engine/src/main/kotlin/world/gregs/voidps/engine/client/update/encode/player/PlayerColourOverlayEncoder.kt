@@ -1,7 +1,5 @@
 package world.gregs.voidps.engine.client.update.encode.player
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.ColourOverlay
@@ -20,12 +18,12 @@ class PlayerColourOverlayEncoder : VisualEncoder<ColourOverlay>(PLAYER_COLOUR_OV
             val saturation = colour shr 8 and 0xFF
             val luminance = colour shr 16 and 0xFF
             val multiplier = colour shr 24 and 0xFF
-            writeByte(hue, Modifier.INVERSE)
+            writeByteInverse(hue)
             writeByte(saturation)
             writeByte(luminance)
             writeByte(multiplier)
-            writeShort(delay, Modifier.ADD, Endian.LITTLE)
-            writeShort(duration, Modifier.ADD)
+            writeShortAddLittle(delay)
+            writeShortAdd(duration)
         }
     }
 

@@ -1,8 +1,6 @@
 package world.gregs.voidps.network.codec.game.decode
 
 import io.netty.channel.ChannelHandlerContext
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.network.codec.Decoder
 
@@ -11,9 +9,9 @@ class WalkMapDecoder : Decoder(5) {
     override fun decode(context: ChannelHandlerContext, packet: Reader) {
         handler?.walk(
             context = context,
-            y = packet.readShort(order = Endian.LITTLE),
-            running = packet.readBoolean(Modifier.ADD),
-            x = packet.readShort(Modifier.ADD)
+            y = packet.readShortLittle(),
+            running = packet.readBooleanAdd(),
+            x = packet.readShortAdd()
         )
     }
 

@@ -20,8 +20,8 @@ internal class BufferWriterTest {
     @Test
     fun skip() {
         // When
-        skip(4)
-        byte(1)
+        buffer.skip(4)
+        buffer.writeByte(1)
         // Then
         for(i in 0 until 4) {
             assertByte(0)
@@ -32,7 +32,7 @@ internal class BufferWriterTest {
     @Test
     fun `Write bytes position`() {
         // When
-        bytes(byteArrayOf(3, 2, 1), 2, 1)
+        buffer.writeBytes(byteArrayOf(3, 2, 1), 2, 1)
         // Then
         assertByte(1)
     }
@@ -40,7 +40,7 @@ internal class BufferWriterTest {
     @Test
     fun `Correct position`() {
         // When
-        skip(5)
+        buffer.skip(5)
         // Then
         assertEquals(5, buffer.position())
     }
@@ -48,8 +48,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write byte`() {
         // When
-        byte(2)
-        byte(-2)
+        buffer.writeByte(2)
+        buffer.writeByte(-2)
         // Then
         assertBytes(2, -2)
     }
@@ -57,8 +57,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write byte add`() {
         // When
-        byte(2, Modifier.ADD)
-        byte(-2, Modifier.ADD)
+        buffer.writeByteAdd(2)
+        buffer.writeByteAdd(-2)
         // Then
         assertBytes(-126, 126)
     }
@@ -66,8 +66,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write byte inverse`() {
         // When
-        byte(2, Modifier.INVERSE)
-        byte(-2, Modifier.INVERSE)
+        buffer.writeByteInverse(2)
+        buffer.writeByteInverse(-2)
         // Then
         assertBytes(-2, 2)
     }
@@ -75,8 +75,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write byte subtract`() {
         // When
-        byte(2, Modifier.SUBTRACT)
-        byte(-2, Modifier.SUBTRACT)
+        buffer.writeByteSubtract(2)
+        buffer.writeByteSubtract(-2)
         // Then
         assertBytes(126, -126)
     }
@@ -84,8 +84,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write short`() {
         // When
-        short(2)
-        short(-2)
+        buffer.writeShort(2)
+        buffer.writeShort(-2)
         // Then
         assertBytes(0, 2, -1, -2)
     }
@@ -93,8 +93,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write short add`() {
         // When
-        short(2, Modifier.ADD)
-        short(-2, Modifier.ADD)
+        buffer.writeShortAdd(2)
+        buffer.writeShortAdd(-2)
         // Then
         assertBytes(0, -126, -1, 126)
     }
@@ -102,8 +102,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write short little endian`() {
         // When
-        short(2, endian = Endian.LITTLE)
-        short(-2, endian = Endian.LITTLE)
+        buffer.writeShortLittle(2)
+        buffer.writeShortLittle(-2)
         // Then
         assertBytes(2, 0, -2, -1)
     }
@@ -111,8 +111,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write short little endian add`() {
         // When
-        short(2, Modifier.ADD, Endian.LITTLE)
-        short(-2, Modifier.ADD, Endian.LITTLE)
+        buffer.writeShortAddLittle(2)
+        buffer.writeShortAddLittle(-2)
         // Then
         assertBytes(-126, 0, 126, -1)
     }
@@ -120,8 +120,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write int`() {
         // When
-        int(2)
-        int(-2)
+        buffer.writeInt(2)
+        buffer.writeInt(-2)
         // Then
         assertBytes(0, 0, 0, 2, -1, -1, -1, -2)
     }
@@ -129,8 +129,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write int middle endian`() {
         // When
-        int(2, endian = Endian.MIDDLE)
-        int(-2, endian = Endian.MIDDLE)
+        buffer.writeIntMiddle(2)
+        buffer.writeIntMiddle(-2)
         // Then
         assertBytes(0, 2, 0, 0, -1, -2, -1, -1)
     }
@@ -138,8 +138,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write int middle endian inverse`() {
         // When
-        int(2, Modifier.INVERSE, Endian.MIDDLE)
-        int(-2, Modifier.INVERSE, Endian.MIDDLE)
+        buffer.writeIntInverseMiddle(2)
+        buffer.writeIntInverseMiddle(-2)
         // Then
         assertBytes(0, 0, 2, 0, -1, -1, -2, -1)
     }
@@ -147,8 +147,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write int little endian`() {
         // When
-        int(2, endian = Endian.LITTLE)
-        int(-2, endian = Endian.LITTLE)
+        buffer.writeIntLittle(2)
+        buffer.writeIntLittle(-2)
         // Then
         assertBytes(2, 0, 0, 0, -2, -1, -1, -1)
     }
@@ -156,8 +156,8 @@ internal class BufferWriterTest {
     @Test
     fun `Write int little endian inverse`() {
         // When
-        buffer.writeInt(2, Modifier.INVERSE, Endian.LITTLE)
-        buffer.writeInt(-2, Modifier.INVERSE, Endian.LITTLE)
+        buffer.writeIntInverseLittle(2)
+        buffer.writeIntInverseLittle(-2)
         // Then
         assertBytes(-2, 0, 0, 0, 2, -1, -1, -1)
     }
@@ -200,11 +200,11 @@ internal class BufferWriterTest {
     @Test
     fun `Write bit access`() {
         // When
-        start()
-        bits(1, 1)
-        bits(1, 1)
-        bits(2, 0)
-        finish()
+        buffer.startBitAccess()
+        buffer.writeBits(1, 1)
+        buffer.writeBits(1, 1)
+        buffer.writeBits(2, 0)
+        buffer.finishBitAccess()
 
         // Then
         assertByte(-64)
@@ -213,9 +213,9 @@ internal class BufferWriterTest {
     @Test
     fun `Write exactly one byte bit access`() {
         // When
-        start()
-        bits(8, 255)
-        finish()
+        buffer.startBitAccess()
+        buffer.writeBits(8, 255)
+        buffer.finishBitAccess()
         // Then
         assertByte(-1)
     }
@@ -223,52 +223,12 @@ internal class BufferWriterTest {
     @Test
     fun `Write offset bit access`() {
         // When
-        start()
-        bits(9, 511)
-        finish()
+        buffer.startBitAccess()
+        buffer.writeBits(9, 511)
+        buffer.finishBitAccess()
         // Then
         assertByte(-1)
         assertByte(-128)
-    }
-
-    private fun start() {
-        buffer.startBitAccess()
-    }
-
-    private fun finish() {
-        buffer.finishBitAccess()
-    }
-
-    private fun skip(count: Int) {
-        buffer.skip(count)
-    }
-
-    private fun bits(count: Int, value: Int) {
-        buffer.writeBits(count, value)
-    }
-
-    private fun bytes(array: ByteArray, offset: Int, length: Int) {
-        buffer.writeBytes(array, offset, length)
-    }
-
-    private fun byte(value: Int, type: Modifier = Modifier.NONE) {
-        buffer.writeByte(value, type)
-    }
-
-    private fun byte(value: Int) {
-        buffer.writeByte(value)
-    }
-
-    private fun short(value: Int, type: Modifier = Modifier.NONE, endian: Endian = Endian.BIG) {
-        buffer.writeShort(value, type, endian)
-    }
-
-    private fun int(value: Int, type: Modifier = Modifier.NONE, endian: Endian = Endian.BIG) {
-        buffer.writeInt(value, type, endian)
-    }
-
-    private fun short(value: Int) {
-        buffer.writeShort(value)
     }
 
     private fun assertByte(value: Int) {

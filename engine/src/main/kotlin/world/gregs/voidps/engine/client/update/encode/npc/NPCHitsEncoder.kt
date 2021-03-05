@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.update.encode.npc
 
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.Hit
@@ -16,7 +15,7 @@ class NPCHitsEncoder : VisualEncoder<Hits>(NPC_HITS_MASK) {
     override fun encode(writer: Writer, visual: Hits) {
         val (damage, player, other) = visual
         writer.apply {
-            writeByte(damage.size, Modifier.SUBTRACT)
+            writeByteSubtract(damage.size)
             damage.forEach { hit ->
                 if (hit.amount == 0 && !interactingWith(player, other, hit.source)) {
                     writeSmart(32766)

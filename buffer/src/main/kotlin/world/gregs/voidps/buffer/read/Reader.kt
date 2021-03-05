@@ -22,10 +22,15 @@ interface Reader {
 
     /**
      * Reads a boolean.
-     * @param type The variable read type
      * @return [Boolean]
      */
-    fun readBoolean(type: Modifier = Modifier.NONE) = readByte(type) == 1
+    fun readBoolean() = readByte() == 1
+
+    fun readBooleanAdd() = readByteAdd() == 1
+
+    fun readBooleanInverse() = readByteInverse() == 1
+
+    fun readBooleanSubtract() = readByteSubtract() == 1
 
     /**
      * Reads a boolean.
@@ -35,10 +40,15 @@ interface Reader {
 
     /**
      * Reads a byte.
-     * @param type The variable read type
      * @return [Byte]
      */
-    fun readByte(type: Modifier = Modifier.NONE) = readSigned(DataType.BYTE, type).toInt()
+    fun readByte() = readSigned(DataType.BYTE, Modifier.NONE).toInt()
+
+    fun readByteAdd() = readSigned(DataType.BYTE, Modifier.ADD).toInt()
+
+    fun readByteInverse() = readSigned(DataType.BYTE, Modifier.INVERSE).toInt()
+
+    fun readByteSubtract() = readSigned(DataType.BYTE, Modifier.SUBTRACT).toInt()
 
     /**
      * Reads an unsigned byte.
@@ -48,18 +58,23 @@ interface Reader {
 
     /**
      * Reads a short.
-     * @param type The variable read type
-     * @param order The read order
      * @return [Short]
      */
-    fun readShort(type: Modifier = Modifier.NONE, order: Endian = Endian.BIG) =
-            readSigned(DataType.SHORT, type, order).toInt()
+    fun readShort() = readSigned(DataType.SHORT, Modifier.NONE, Endian.BIG).toInt()
+
+    fun readShortAdd() = readSigned(DataType.SHORT, Modifier.ADD, Endian.BIG).toInt()
+
+    fun readShortLittle() = readSigned(DataType.SHORT, Modifier.NONE, Endian.LITTLE).toInt()
+
+    fun readShortAddLittle() = readSigned(DataType.SHORT, Modifier.ADD, Endian.LITTLE).toInt()
 
     /**
      * Reads an unsigned short.
      * @return [Int]
      */
     fun readUnsignedShort() = readUnsigned(DataType.SHORT).toInt()
+
+    fun readUnsignedShortLittle() = readUnsigned(DataType.SHORT, order = Endian.LITTLE).toInt()
 
     /**
      * Reads a 3-byte integer.
@@ -75,12 +90,15 @@ interface Reader {
 
     /**
      * Reads a integer.
-     * @param type The variable read type
-     * @param order The read order
      * @return [Int]
      */
-    fun readInt(type: Modifier = Modifier.NONE, order: Endian = Endian.BIG) =
-            readSigned(DataType.INT, type, order).toInt()
+    fun readInt() = readSigned(DataType.INT, Modifier.NONE, Endian.BIG).toInt()
+
+    fun readIntInverseMiddle() = readSigned(DataType.INT, Modifier.INVERSE, Endian.MIDDLE).toInt()
+
+    fun readIntLittle() = readSigned(DataType.INT, Modifier.NONE, Endian.LITTLE).toInt()
+
+    fun readIntMiddle() = readSigned(DataType.INT, Modifier.NONE, Endian.MIDDLE).toInt()
 
     /**
      * Reads a smart
