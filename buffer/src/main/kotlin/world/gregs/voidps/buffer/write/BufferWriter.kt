@@ -16,108 +16,95 @@ class BufferWriter(
 
     private var bitIndex = 0
 
-    override fun writeByte(value: Int): Writer {
+    override fun writeByte(value: Int) {
         buffer.put(value.toByte())
-        return this
     }
 
-    override fun writeByteAdd(value: Int): Writer {
-        return writeByte(value + 128)
+    override fun writeByteAdd(value: Int) {
+        writeByte(value + 128)
     }
 
-    override fun writeByteInverse(value: Int): Writer {
-        return writeByte(-value)
+    override fun writeByteInverse(value: Int) {
+        writeByte(-value)
     }
 
-    override fun writeByteSubtract(value: Int): Writer {
-        return writeByte(-value + 128)
+    override fun writeByteSubtract(value: Int) {
+        writeByte(-value + 128)
     }
 
-    override fun setByte(index: Int, value: Int): Writer {
+    override fun setByte(index: Int, value: Int) {
         buffer.put(index, value.toByte())
-        return this
     }
 
-    override fun writeShort(value: Int): Writer {
+    override fun writeShort(value: Int) {
         writeByte(value shr 8)
         writeByte(value)
-        return this
     }
 
-    override fun writeShortAdd(value: Int): Writer {
+    override fun writeShortAdd(value: Int) {
         writeByte(value shr 8)
         writeByteAdd(value)
-        return this
     }
 
-    override fun writeShortLittle(value: Int): Writer {
+    override fun writeShortLittle(value: Int) {
         writeByte(value)
         writeByte(value shr 8)
-        return this
     }
 
-    override fun writeShortAddLittle(value: Int): Writer {
+    override fun writeShortAddLittle(value: Int) {
         writeByteAdd(value)
         writeByte(value shr 8)
-        return this
     }
 
-    override fun writeMedium(value: Int): Writer {
+    override fun writeMedium(value: Int) {
         writeByte(value shr 16)
         writeByte(value shr 8)
         writeByte(value)
-        return this
     }
 
-    override fun writeInt(value: Int): Writer {
+    override fun writeInt(value: Int) {
         writeByte(value shr 24)
         writeByte(value shr 16)
         writeByte(value shr 8)
         writeByte(value)
-        return this
     }
 
-    override fun writeIntMiddle(value: Int): Writer {
+    override fun writeIntMiddle(value: Int) {
         writeByte(value shr 8)
         writeByte(value)
         writeByte(value shr 24)
         writeByte(value shr 16)
-        return this
     }
 
-    override fun writeIntInverse(value: Int): Writer {
+    override fun writeIntInverse(value: Int) {
         writeByte(value shr 8)
         writeByte(value shr 24)
         writeByte(value shr 16)
         writeByteInverse(value)
-        return this
     }
 
-    override fun writeIntInverseMiddle(value: Int): Writer {
+    override fun writeIntInverseMiddle(value: Int) {
         writeByte(value shr 16)
         writeByte(value shr 24)
         writeByte(value)
         writeByte(value shr 8)
-        return this
     }
 
-    override fun writeIntLittle(value: Int): Writer {
+    override fun writeIntLittle(value: Int) {
         writeByte(value)
         writeByte(value shr 8)
         writeByte(value shr 16)
         writeByte(value shr 24)
-        return this
     }
 
-    override fun writeIntInverseLittle(value: Int): Writer {
+    override fun writeIntInverseLittle(value: Int) {
         writeByteInverse(value)
         writeByte(value shr 8)
         writeByte(value shr 16)
         writeByte(value shr 24)
-        return this
     }
 
-    override fun writeLong(value: Long): Writer {
+    override fun writeLong(value: Long) {
         writeByte((value shr 56).toInt())
         writeByte((value shr 48).toInt())
         writeByte((value shr 40).toInt())
@@ -126,42 +113,37 @@ class BufferWriter(
         writeByte((value shr 16).toInt())
         writeByte((value shr 8).toInt())
         writeByte(value.toInt())
-        return this
     }
 
-    override fun writeBytes(value: ByteArray): BufferWriter {
+    override fun writeBytes(value: ByteArray) {
         buffer.put(value)
-        return this
     }
 
-    override fun writeBytes(value: ByteBuf): BufferWriter {
-        return writeBytes(value.array(), value.readerIndex(), value.readableBytes())
+    override fun writeBytes(value: ByteBuf) {
+        writeBytes(value.array(), value.readerIndex(), value.readableBytes())
     }
 
-    override fun writeBytes(data: ByteArray, offset: Int, length: Int): BufferWriter {
+    override fun writeBytes(data: ByteArray, offset: Int, length: Int) {
         buffer.put(data, offset, length)
-        return this
     }
 
-    override fun writeBytes(data: ByteBuf, offset: Int, length: Int): BufferWriter {
-        return writeBytes(data.array(), offset, length)
+    override fun writeBytes(data: ByteBuf, offset: Int, length: Int) {
+        writeBytes(data.array(), offset, length)
     }
 
-    override fun startBitAccess(): BufferWriter {
+    override fun startBitAccess() {
         bitIndex = buffer.position() * 8
-        return this
     }
 
-    override fun finishBitAccess(): BufferWriter {
+    override fun finishBitAccess() {
         buffer.position((bitIndex + 7) / 8)
-        return this
     }
 
-    override fun writeBits(bitCount: Int, value: Boolean): BufferWriter {
-        return writeBits(bitCount, if (value) 1 else 0)
+    override fun writeBits(bitCount: Int, value: Boolean) {
+        writeBits(bitCount, if (value) 1 else 0)
     }
 
-    override fun writeBits(bitCount: Int, value: Int): BufferWriter {
+    override fun writeBits(bitCount: Int, value: Int) {
         var numBits = bitCount
 
         var byteIndex = bitIndex shr 3
@@ -190,14 +172,6 @@ class BufferWriter(
             tmp = tmp or (value and max shl bitOffset - numBits)
         }
         buffer.put(byteIndex, tmp.toByte())
-        return this
-    }
-
-    override fun skip(position: Int): BufferWriter {
-        for (i in 0 until position) {
-            writeByte(0)
-        }
-        return this
     }
 
     override fun position(): Int {
