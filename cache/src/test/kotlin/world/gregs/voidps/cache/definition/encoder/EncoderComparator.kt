@@ -26,7 +26,7 @@ class EncoderComparator {
             writer.encode(definition)
         }
 
-        val data = writer.buffer.array()
+        val data = writer.array()
 
         val cache = mockk<Cache>(relaxed = true)
         startKoin {

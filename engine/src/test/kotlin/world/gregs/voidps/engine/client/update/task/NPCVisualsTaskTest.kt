@@ -208,7 +208,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // When
         updateTask.writeFlag(writer, 0x10)
         // Then
-        val reader = BufferReader(writer.buffer.array())
+        val reader = BufferReader(writer.array())
         assertEquals(0x10, reader.readByte())
     }
 
@@ -220,7 +220,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // When
         updateTask.writeFlag(writer, 0x100)
         // Then
-        val reader = BufferReader(writer.buffer.array())
+        val reader = BufferReader(writer.array())
         assertEquals(0x10, reader.readUnsignedByte())
         assertEquals(0x1, reader.readUnsignedByte())
     }

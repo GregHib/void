@@ -171,17 +171,17 @@ class Huffman(cache: world.gregs.voidps.cache.Cache) {
                 val byteSize = (bitOffset + size - 1 shr 3) + offset
                 bitOffset += 24
                 key += min.ushr(bitOffset)
-                builder.buffer.setByte(offset, key)
+                builder.setByte(offset, key)
 
                 while (offset < byteSize) {
                     bitOffset -= 8
                     key = min.ushr(bitOffset)
-                    builder.buffer.setByte(++offset, key)
+                    builder.setByte(++offset, key)
                 }
             }
 
             //Set the packet position to the correct place
-            builder.buffer.writerIndex(7 + position shr 3)
+            builder.position(7 + position shr 3)
         } catch (e: Exception) {
             e.printStackTrace()
         }

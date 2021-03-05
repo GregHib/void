@@ -100,7 +100,7 @@ internal class ObjectEncoderTest {
             writer.encode(definition)
         }
 
-        val data = writer.buffer.array()
+        val data = writer.array()
 //        val file = File("object-definition.dat")
 //        file.writeBytes(data)
         val stream = ObjectEncoderTest::class.java.getResourceAsStream("object-definition.dat")

@@ -86,11 +86,11 @@ class PlayerVisualsTask(
      * Returns byte array of encoded [appearance] and writes it to [writer]
      */
     fun encodeAppearance(writer: BufferWriter, encoder: VisualEncoder<Visual>, appearance: Appearance): ByteArray {
-        val start = writer.buffer.writerIndex()
+        val start = writer.position()
         encoder.encode(writer, appearance)
-        val size = writer.buffer.writerIndex() - start
+        val size = writer.position() - start
         val data = ByteArray(size)
-        System.arraycopy(writer.buffer.array(), start, data, 0, size)
+        System.arraycopy(writer.array(), start, data, 0, size)
         val reversed = data.reversedArray()
         writer.position(start)
         writer.writeBytes(reversed)

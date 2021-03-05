@@ -85,7 +85,7 @@ internal class ItemEncoderTest {
             writer.encode(definition)
         }
 
-        val data = writer.buffer.array()
+        val data = writer.array()
 
 //        val file = File("item-definition.dat")
 //        file.writeBytes(data)

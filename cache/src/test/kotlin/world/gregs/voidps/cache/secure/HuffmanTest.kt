@@ -89,7 +89,7 @@ internal class HuffmanTest {
     }
 
     private fun assertCompressedSize(size: Int) {
-        assertEquals(size, builder.buffer.readableBytes() - 1)
+        assertEquals(size, builder.remaining() - 1)
     }
 
     private fun assertDecompressed(offset: Int = 0) {

@@ -13,6 +13,8 @@ import world.gregs.voidps.buffer.Modifier
  */
 interface Writer {
 
+    fun setByte(index: Int, value: Int): Writer
+
     /**
      * Writes a byte to [buffer].
      * @param value [Int]
@@ -120,6 +122,12 @@ interface Writer {
     fun position(index: Int)
 
     fun toArray(): ByteArray
+
+    fun array(): ByteArray
+
+    fun clear()
+
+    fun remaining(): Int
 
     @Throws(IllegalArgumentException::class)
     fun write(type: DataType, value: Number, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG)
