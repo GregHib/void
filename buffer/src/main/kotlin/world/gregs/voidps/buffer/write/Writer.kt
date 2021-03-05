@@ -10,92 +10,87 @@ import io.netty.buffer.ByteBuf
  */
 interface Writer {
 
-    fun setByte(index: Int, value: Int): Writer
+    fun setByte(index: Int, value: Int)
 
-    fun writeByte(value: Int): Writer
+    fun writeByte(value: Int)
 
-    fun writeByteAdd(value: Int): Writer
+    fun writeByteAdd(value: Int)
 
-    fun writeByteInverse(value: Int): Writer
+    fun writeByteInverse(value: Int)
 
-    fun writeByteSubtract(value: Int): Writer
+    fun writeByteSubtract(value: Int)
 
-    fun writeByte(value: Boolean): Writer {
+    fun writeByte(value: Boolean) {
         writeByte(if (value) 1 else 0)
-        return this
     }
 
-    fun writeShort(value: Int): Writer
+    fun writeShort(value: Int)
 
-    fun writeShortAdd(value: Int): Writer
+    fun writeShortAdd(value: Int)
 
-    fun writeShortLittle(value: Int): Writer
+    fun writeShortLittle(value: Int)
 
-    fun writeShortAddLittle(value: Int): Writer
+    fun writeShortAddLittle(value: Int)
 
-    fun writeMedium(value: Int): Writer
+    fun writeMedium(value: Int)
 
-    fun writeInt(value: Int): Writer
+    fun writeInt(value: Int)
 
-    fun writeIntMiddle(value: Int): Writer
+    fun writeIntMiddle(value: Int)
 
-    fun writeIntInverse(value: Int): Writer
+    fun writeIntInverse(value: Int)
 
-    fun writeIntInverseMiddle(value: Int): Writer
+    fun writeIntInverseMiddle(value: Int)
 
-    fun writeIntLittle(value: Int): Writer
+    fun writeIntLittle(value: Int)
 
-    fun writeIntInverseLittle(value: Int): Writer
+    fun writeIntInverseLittle(value: Int)
 
-    fun writeLong(value: Long): Writer
+    fun writeLong(value: Long)
 
-    fun writeSmart(value: Int): Writer {
+    fun writeSmart(value: Int) {
         if (value >= 128) {
             writeShort(value + 32768)
         } else {
             writeByte(value)
         }
-        return this
     }
 
-    fun writeString(value: String?): Writer {
+    fun writeString(value: String?) {
         if (value != null) {
             writeBytes(value.toByteArray())
         }
         writeByte(0)
-        return this
     }
 
-    fun writePrefixedString(value: String): Writer {
+    fun writePrefixedString(value: String) {
         writeByte(0)
         writeBytes(value.toByteArray())
         writeByte(0)
-        return this
     }
 
-    fun writeBytes(value: ByteArray): Writer
+    fun writeBytes(value: ByteArray)
 
-    fun writeBytes(value: ByteBuf): Writer
+    fun writeBytes(value: ByteBuf)
 
-    fun writeBytes(data: ByteArray, offset: Int, length: Int): Writer
+    fun writeBytes(data: ByteArray, offset: Int, length: Int)
 
-    fun writeBytes(data: ByteBuf, offset: Int, length: Int): Writer
+    fun writeBytes(data: ByteBuf, offset: Int, length: Int)
 
-    fun startBitAccess(): Writer
+    fun startBitAccess()
 
-    fun finishBitAccess(): Writer
+    fun finishBitAccess()
 
-    fun writeBits(bitCount: Int, value: Boolean): Writer {
-        return writeBits(bitCount, if (value) 1 else 0)
+    fun writeBits(bitCount: Int, value: Boolean) {
+        writeBits(bitCount, if (value) 1 else 0)
     }
 
-    fun writeBits(bitCount: Int, value: Int): Writer
+    fun writeBits(bitCount: Int, value: Int)
 
-    fun skip(position: Int): Writer {
+    fun skip(position: Int) {
         for (i in 0 until position) {
             writeByte(0)
         }
-        return this
     }
 
     fun position(): Int
