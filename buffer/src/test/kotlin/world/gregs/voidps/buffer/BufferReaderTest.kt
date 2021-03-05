@@ -157,6 +157,16 @@ internal class BufferReaderTest {
     }
 
     @Test
+    fun `Read big smart`() {
+        //Given
+        packet(-3, -1, -1, -1, 127, -1, 48, 57, 0, -68, 97, 78)
+        //Then
+        assertEquals(2113929215, buffer.readBigSmart())
+        assertEquals(-1, buffer.readBigSmart())
+        assertEquals(12345, buffer.readBigSmart())
+    }
+
+    @Test
     fun `Read long`() {
         //Given
         packet(0, 0, 0, 0, 0, 0, 0, 2, -1, -1, -1, -1, -1, -1, -1, -2)
