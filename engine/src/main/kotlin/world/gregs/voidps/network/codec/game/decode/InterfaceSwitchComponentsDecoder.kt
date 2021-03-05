@@ -11,7 +11,7 @@ class InterfaceSwitchComponentsDecoder : Decoder(16) {
             context = context,
             fromHash = packet.readInt(),
             toSlot = packet.readShortLittle(),
-            toHash = packet.readIntMiddle(),
+            toHash = packet.readUnsignedIntMiddle(),
             fromType = packet.readShort(),
             fromSlot = packet.readShortAddLittle(),
             toType = packet.readShortAddLittle()

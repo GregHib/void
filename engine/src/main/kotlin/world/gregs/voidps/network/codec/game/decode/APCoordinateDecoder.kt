@@ -11,7 +11,7 @@ class APCoordinateDecoder : Decoder(12) {
             context,
             packet.readShortAdd(),
             packet.readShortLittle(),
-            packet.readIntMiddle(),
+            packet.readUnsignedIntMiddle(),
             packet.readShortAdd(),
             packet.readShort()
         )

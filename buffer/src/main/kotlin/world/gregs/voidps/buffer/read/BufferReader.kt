@@ -1,10 +1,6 @@
 package world.gregs.voidps.buffer.read
 
-import world.gregs.voidps.buffer.DataType
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
-import kotlin.math.pow
 
 class BufferReader(
     override val buffer: ByteBuffer
@@ -14,6 +10,78 @@ class BufferReader(
 
     override val length: Int = buffer.remaining()
     private var bitIndex = 0
+
+    override fun readByte(): Int {
+        return buffer.get().toInt()
+    }
+
+    override fun readByteAdd(): Int {
+        return (readByte() - 128).toByte().toInt()
+    }
+
+    override fun readByteInverse(): Int {
+        return -readByte()
+    }
+
+    override fun readByteSubtract(): Int {
+        return (readByteInverse() + 128).toByte().toInt()
+    }
+
+    override fun readUnsignedByte(): Int {
+        return readByte() and 0xff
+    }
+
+    override fun readShort(): Int {
+        return (readByte() shl 8) or readUnsignedByte()
+    }
+
+    override fun readShortAdd(): Int {
+        return (readByte() shl 8) or readUnsignedByteAdd()
+    }
+
+    override fun readShortLittle(): Int {
+        return readUnsignedByte() or (readByte() shl 8)
+    }
+
+    override fun readShortAddLittle(): Int {
+        return readUnsignedByteAdd() or (readByte() shl 8)
+    }
+
+    override fun readUnsignedByteAdd(): Int {
+        return (readUnsignedByte() - 128).toByte().toInt()
+    }
+
+    override fun readUnsignedShort(): Int {
+        return (readUnsignedByte() shl 8) or readUnsignedByte()
+    }
+
+    override fun readUnsignedShortLittle(): Int {
+        return readUnsignedByte() or (readUnsignedByte() shl 8)
+    }
+
+    override fun readMedium(): Int {
+        return (readByte() shl 16) or (readByte() shl 8) or readUnsignedByte()
+    }
+
+    override fun readUnsignedMedium(): Int {
+        return (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
+    }
+
+    override fun readInt(): Int {
+        return (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()
+    }
+
+    override fun readIntInverseMiddle(): Int {
+        return (readByte() shl 16) or (readByte() shl 24) or readUnsignedByte() or (readByte() shl 8)
+    }
+
+    override fun readIntLittle(): Int {
+        return readUnsignedByte() or (readByte() shl 8) or (readByte() shl 16) or (readByte() shl 24)
+    }
+
+    override fun readUnsignedIntMiddle(): Int {
+        return (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
+    }
 
     override fun readSmart(): Int {
         val peek = readUnsignedByte()
@@ -30,7 +98,7 @@ class BufferReader(
             ((peek shl 24) or (readUnsignedByte() shl 16) or (readUnsignedByte() shl 8) or readUnsignedByte()) and 0x7fffffff
         } else {
             val value = (peek shl 8) or readUnsignedByte()
-            if (value == 32767)  -1 else value
+            if (value == 32767) -1 else value
         }
     }
 
@@ -77,61 +145,6 @@ class BufferReader(
 
     override fun readableBytes(): Int {
         return buffer.remaining()
-    }
-
-    override fun readSigned(type: DataType, modifier: Modifier, order: Endian): Long {
-        var longValue = read(type, modifier, order)
-        if (type != DataType.LONG) {
-            val max = 2.0.pow(type.byteCount * 8.0 - 1).toInt()
-            if (longValue > max - 1) {
-                longValue -= max * 2L
-            }
-        }
-        return longValue
-    }
-
-    override fun readUnsigned(type: DataType, modifier: Modifier, order: Endian): Long {
-        if (type == DataType.LONG) {
-            throw IllegalArgumentException("Longs must be signed")
-        }
-        val longValue = read(type, modifier, order)
-        return longValue and -0x1L
-    }
-
-    /**
-     * Reads [type] number of bytes with [modifier] and [order]
-     * @param type The byte type to read
-     * @param modifier The first byte read modifier
-     * @param order The endianness
-     * @return The read value
-     */
-    private fun read(type: DataType, modifier: Modifier, order: Endian): Long {
-        check(buffer.remaining() >= type.byteCount) {
-            "Not enough allocated buffer remaining $type."
-        }
-
-        if (order == Endian.MIDDLE) {
-            check(modifier == Modifier.NONE || modifier == Modifier.INVERSE) {
-                "Middle endian doesn't support variable modifier $modifier"
-            }
-            check(type == DataType.INT) {
-                "Middle endian can only be used with an integer"
-            }
-        }
-
-        var longValue: Long = 0
-        var read: Int
-        for (index in order.getRange(modifier, type.byteCount)) {
-            read = buffer.get().toInt()
-            read = when (if (index == 0 && order != Endian.MIDDLE) modifier else Modifier.NONE) {
-                Modifier.ADD -> read - 128 and 0xff
-                Modifier.INVERSE -> -read and 0xff
-                Modifier.SUBTRACT -> 128 - read and 0xff
-                else -> read and 0xff shl index * 8
-            }
-            longValue = longValue or read.toLong()
-        }
-        return longValue
     }
 
     override fun startBitAccess(): Reader {

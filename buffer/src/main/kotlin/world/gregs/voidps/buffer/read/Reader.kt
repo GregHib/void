@@ -1,8 +1,5 @@
 package world.gregs.voidps.buffer.read
 
-import world.gregs.voidps.buffer.DataType
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
 
 /**
@@ -20,10 +17,6 @@ interface Reader {
      */
     val length: Int
 
-    /**
-     * Reads a boolean.
-     * @return [Boolean]
-     */
     fun readBoolean() = readByte() == 1
 
     fun readBooleanAdd() = readByteAdd() == 1
@@ -32,102 +25,52 @@ interface Reader {
 
     fun readBooleanSubtract() = readByteSubtract() == 1
 
-    /**
-     * Reads a boolean.
-     * @return [Boolean]
-     */
     fun readUnsignedBoolean() = readUnsignedByte() == 1
 
-    /**
-     * Reads a byte.
-     * @return [Byte]
-     */
-    fun readByte() = readSigned(DataType.BYTE, Modifier.NONE).toInt()
+    fun readByte(): Int
 
-    fun readByteAdd() = readSigned(DataType.BYTE, Modifier.ADD).toInt()
+    fun readByteAdd(): Int
 
-    fun readByteInverse() = readSigned(DataType.BYTE, Modifier.INVERSE).toInt()
+    fun readByteInverse(): Int
 
-    fun readByteSubtract() = readSigned(DataType.BYTE, Modifier.SUBTRACT).toInt()
+    fun readByteSubtract(): Int
 
-    /**
-     * Reads an unsigned byte.
-     * @return [Short]
-     */
-    fun readUnsignedByte() = readUnsigned(DataType.BYTE).toInt()
+    fun readUnsignedByte(): Int
 
-    /**
-     * Reads a short.
-     * @return [Short]
-     */
-    fun readShort() = readSigned(DataType.SHORT, Modifier.NONE, Endian.BIG).toInt()
+    fun readUnsignedByteAdd(): Int
 
-    fun readShortAdd() = readSigned(DataType.SHORT, Modifier.ADD, Endian.BIG).toInt()
+    fun readShort(): Int
 
-    fun readShortLittle() = readSigned(DataType.SHORT, Modifier.NONE, Endian.LITTLE).toInt()
+    fun readShortAdd(): Int
 
-    fun readShortAddLittle() = readSigned(DataType.SHORT, Modifier.ADD, Endian.LITTLE).toInt()
+    fun readShortLittle(): Int
 
-    /**
-     * Reads an unsigned short.
-     * @return [Int]
-     */
-    fun readUnsignedShort() = readUnsigned(DataType.SHORT).toInt()
+    fun readShortAddLittle(): Int
 
-    fun readUnsignedShortLittle() = readUnsigned(DataType.SHORT, order = Endian.LITTLE).toInt()
+    fun readUnsignedShort(): Int
 
-    /**
-     * Reads a 3-byte integer.
-     * @return [Int]
-     */
-    fun readMedium() = readSigned(DataType.MEDIUM).toInt()
+    fun readUnsignedShortLittle(): Int
 
-    /**
-     * Reads a 3-byte integer.
-     * @return [Int]
-     */
-    fun readUnsignedMedium() = readUnsigned(DataType.MEDIUM).toInt()
+    fun readMedium(): Int
 
-    /**
-     * Reads a integer.
-     * @return [Int]
-     */
-    fun readInt() = readSigned(DataType.INT, Modifier.NONE, Endian.BIG).toInt()
+    fun readUnsignedMedium(): Int
 
-    fun readIntInverseMiddle() = readSigned(DataType.INT, Modifier.INVERSE, Endian.MIDDLE).toInt()
+    fun readInt(): Int
 
-    fun readIntLittle() = readSigned(DataType.INT, Modifier.NONE, Endian.LITTLE).toInt()
+    fun readIntInverseMiddle(): Int
 
-    fun readIntMiddle() = readSigned(DataType.INT, Modifier.NONE, Endian.MIDDLE).toInt()
+    fun readIntLittle(): Int
 
-    /**
-     * Reads a smart
-     * @return [Int]
-     */
+    fun readUnsignedIntMiddle(): Int
+
     fun readSmart(): Int
 
-    /**
-     * Reads a smart
-     * @return [Int]
-     */
     fun readBigSmart(): Int
 
-    /**
-     * Reads a smart
-     * @return [Int]
-     */
     fun readLargeSmart(): Int
 
-    /**
-     * Reads a long.
-     * @return [Long]
-     */
     fun readLong(): Long
 
-    /**
-     * Reads a string.
-     * @return [String]
-     */
     fun readString(): String
 
     /**
@@ -155,24 +98,6 @@ interface Reader {
      * @return [Int]
      */
     fun readableBytes(): Int
-
-    /**
-     * Reads [length] number of bytes with [type] and [order]
-     * @param type The byte type to read
-     * @param modifier The first byte read modifier
-     * @param order The endianness
-     * @return The positive or negative read value
-     */
-    fun readSigned(type: DataType, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG): Long
-
-    /**
-     * Reads [length] number of bytes with [type] and [order]
-     * @param type The byte type to read
-     * @param modifier The first byte read modifier
-     * @param order The endianness
-     * @return The positive read value
-     */
-    fun readUnsigned(type: DataType, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG): Long
 
     /**
      * Enables individual decoded byte writing aka 'bit access'
