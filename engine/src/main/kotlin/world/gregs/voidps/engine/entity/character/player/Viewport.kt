@@ -33,10 +33,10 @@ data class Viewport(
     val tileSize: Int
         get() = VIEWPORT_SIZES[size]
 
-    val playerChanges = BufferWriter()
-    val playerUpdates = BufferWriter()
-    val npcChanges = BufferWriter()
-    val npcUpdates = BufferWriter()
+    val playerChanges = BufferWriter(4096)
+    val playerUpdates = BufferWriter(4096)
+    val npcChanges = BufferWriter(4096)
+    val npcUpdates = BufferWriter(4096)
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 

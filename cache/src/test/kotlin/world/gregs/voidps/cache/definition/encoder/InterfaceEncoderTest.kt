@@ -55,7 +55,7 @@ internal class InterfaceEncoderTest {
             writer.encode(definition)
         }
 
-        val data = writer.buffer.array().copyOf(writer.position())
+        val data = writer.toArray()
 
         val cache: Cache = mockk(relaxed = true)
         every { cache.getFile(INTERFACES, any(), any<Int>()) } returns data

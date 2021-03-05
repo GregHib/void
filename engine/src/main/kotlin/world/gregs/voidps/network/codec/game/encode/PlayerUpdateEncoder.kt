@@ -17,9 +17,9 @@ class PlayerUpdateEncoder : Encoder(PLAYER_UPDATING, PacketSize.SHORT) {
         changes: BufferWriter,
         updates: BufferWriter
     ) = player.send(changes.position() + updates.position()) {
-        writeBytes(changes.buffer)
-        writeBytes(updates.buffer)
-        changes.buffer.clear()
-        updates.buffer.clear()
+        writeBytes(changes.toArray())
+        writeBytes(updates.toArray())
+        changes.clear()
+        updates.clear()
     }
 }

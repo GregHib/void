@@ -4,11 +4,13 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.BufferWriter
 
 internal class BufferWriterTest {
 
     private lateinit var buffer: BufferWriter
+    private var reader: BufferReader? = null
 
     @BeforeEach
     fun setup() {
@@ -270,7 +272,10 @@ internal class BufferWriterTest {
     }
 
     private fun assertByte(value: Int) {
-        assertEquals(value, buffer.buffer.readByte().toInt())
+        if(reader == null) {
+            reader = BufferReader(buffer.toArray())
+        }
+        assertEquals(value, reader!!.readByte())
     }
 
     private fun assertBytes(vararg bytes: Int) {
