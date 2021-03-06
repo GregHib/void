@@ -2,8 +2,7 @@ package world.gregs.voidps.network.codec
 
 import io.ktor.utils.io.*
 import io.netty.buffer.ByteBuf
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.buffer.write.writeSmart
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,10 +44,16 @@ abstract class Encoder(
      * Applies [block] and send [ByteBuf] with fixed [size]
      */
     internal fun ClientSession.send(size: Int, flush: Boolean = true, block: suspend ByteWriteChannel.() -> Unit) {
-        scope.launch(Dispatchers.IO) {
+        runBlocking {
+
             write.header(size, cipherOut)
             block.invoke(write)
+            if(flush) {
+                write.flush()
+            }
         }
+//        scope.launch {
+//        }
     }
 
     /**

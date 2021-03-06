@@ -10,11 +10,20 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.Login
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
+import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.network.codec.game.GameCodec
+import world.gregs.voidps.network.codec.login.encode.GameLoginDetailsEncoder
+import world.gregs.voidps.network.codec.login.encode.LoginResponseEncoder
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
@@ -31,6 +40,12 @@ class Network {
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
     private val loginQueue: LoginQueue by inject()
+    private val logoutQueue: LogoutQueue by inject()
+
+    private val game: GameCodec by inject()
+    private val bus: EventBus by inject()
+    private val responseEncoder = LoginResponseEncoder()
+    private val loginEncoder = GameLoginDetailsEncoder()
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
@@ -83,10 +98,12 @@ class Network {
         val size = read.readShort().toInt()
         val packet = read.readPacket(size)
 
-        read(packet, write)
+        val session = read(packet, write) { player, session ->
+            readPackets(session, read, player)
+        }
     }
 
-    suspend fun read(read: ByteReadPacket, write: ByteWriteChannel) {
+    suspend fun read(read: ByteReadPacket, write: ByteWriteChannel, start: suspend (Player, ClientSession) -> Unit) {
         var read = read
         val version = read.readInt()
         if (version != 634) {
@@ -186,22 +203,27 @@ class Network {
         // TODO pass isaac keys to session to use for encoding.
 
         val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
+        // TODO on disconnect add to logout queue
 
         val callback: (LoginResponse) -> Unit = { response ->
             println("Callback $response")
-//            if (response is LoginResponse.Success) {
-//                val player = response.player
-//                loginEncoder.encode(channel, 2, player.index, username)
-//                channel.setCodec(game)
-//                channel.setCipherIn(keyPair.inCipher)
-//                channel.setCipherOut(keyPair.outCipher)
-//                bus.emit(RegionLogin(player))
-//                bus.emit(PlayerRegistered(player))
-//                player.setup()
-//                bus.emit(Registered(player))
-//            } else {
-//                responseEncoder.encode(channel, response.code)
-//            }
+            if (response is LoginResponse.Success) {
+                val player = response.player
+                loginEncoder.encode(session, 2, player.index, username)
+                bus.emit(RegionLogin(player))
+                bus.emit(PlayerRegistered(player))
+                player.setup()
+                bus.emit(Registered(player))
+                runBlocking {
+                    coroutineScope {
+                        launch {
+                            start.invoke(player, session)
+                        }
+                    }
+                }
+            } else {
+                responseEncoder.encode(session, response.code)
+            }
         }
         sync {
             loginQueue.add(
@@ -214,6 +236,32 @@ class Network {
             )
         }
     }
+
+    suspend fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player) {
+        try {
+            while (true) {
+                val cipher = session.cipherIn.nextInt()
+                val opcode = (read.readUByte() - cipher) and 0xff
+                val decoder = game.getDecoder(opcode)
+                if (decoder == null) {
+                    logger.error { "Unable to identify length of packet $opcode" }
+                    return
+                }
+                val size = when (decoder.length) {
+                    -1 -> read.readUByte()
+                    -2 -> (read.readUByte() shl 8) or read.readUByte()
+                    else -> decoder.length
+                }
+
+                val packet = read.readPacket(size = size)
+                decoder.decode(session, BufferReader(packet.readBytes()))
+            }
+        } finally {
+            logoutQueue.add(player)
+        }
+    }
+
+    private suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff
 
     fun ByteReadPacket.readString(): String {
         val sb = StringBuilder()

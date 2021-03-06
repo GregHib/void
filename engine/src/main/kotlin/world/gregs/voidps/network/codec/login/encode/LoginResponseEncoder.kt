@@ -1,6 +1,7 @@
 package world.gregs.voidps.network.codec.login.encode
 
-import io.netty.channel.Channel
+import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Encoder
 
 /**
@@ -9,9 +10,9 @@ import world.gregs.voidps.network.codec.Encoder
 class LoginResponseEncoder : Encoder() {
 
     fun encode(
-        channel: Channel,
+        session: ClientSession,
         opcode: Int
-    ) = channel.send(1) {
+    ) = session.send(1) {
         writeByte(opcode)
     }
 }

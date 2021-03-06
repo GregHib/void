@@ -1,6 +1,7 @@
 package world.gregs.voidps.network.codec.login.decode
 
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.packet.PacketSize.SHORT
 
@@ -61,7 +62,7 @@ class GameLoginDecoder : Decoder(SHORT) {
         val js = packet.readUnsignedBoolean()
         val hc = packet.readUnsignedBoolean()
         handler?.loginGame(
-            context = context,
+            session = session,
             username = username,
             password = password,
             isaacKeys = isaacKeys,
@@ -71,7 +72,7 @@ class GameLoginDecoder : Decoder(SHORT) {
             antialias = antialiasLevel,
             settings = settings,
             affiliate = affiliateId,
-            session = sessionId,
+            sessionId = sessionId,
             os = os,
             is64Bit = is64Bit,
             versionType = versionType,

@@ -1,9 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeInt
-import world.gregs.voidps.buffer.write.writeShort
+import world.gregs.voidps.buffer.write.writeIntInverseMiddle
+import world.gregs.voidps.buffer.write.writeShortLittle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.INTERFACE_ITEM
@@ -28,8 +26,8 @@ class InterfaceItemEncoder : Encoder(INTERFACE_ITEM) {
         item: Int,
         amount: Int
     ) = player.send(10) {
-        writeShort(item, order = Endian.LITTLE)
-        writeInt(id shl 16 or component, Modifier.INVERSE, Endian.MIDDLE)
+        writeShortLittle(item)
+        writeIntInverseMiddle(id shl 16 or component)
         writeInt(amount)
     }
 }

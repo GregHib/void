@@ -1,7 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeByteAdd
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.OBJECT_REMOVE
@@ -23,7 +23,7 @@ class ObjectRemoveEncoder : Encoder(OBJECT_REMOVE) {
         type: Int,
         rotation: Int
     ) = player.send(2, flush = false) {
-        writeByte((type shl 2) or rotation, Modifier.ADD)
+        writeByteAdd((type shl 2) or rotation)
         writeByte(tile)
     }
 }

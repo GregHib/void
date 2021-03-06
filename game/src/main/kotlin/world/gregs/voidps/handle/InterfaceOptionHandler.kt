@@ -1,7 +1,6 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
@@ -11,6 +10,7 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
@@ -29,8 +29,7 @@ class InterfaceOptionHandler : Handler() {
     val itemDefinitions: ItemDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun interfaceOption(context: ChannelHandlerContext, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
-        val session = context.channel()
+    override fun interfaceOption(session: ClientSession, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
         val player = sessions.get(session) ?: return
 
         val id = hash shr 16

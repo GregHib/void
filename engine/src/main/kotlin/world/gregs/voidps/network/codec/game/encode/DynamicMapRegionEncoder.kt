@@ -1,7 +1,5 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -27,28 +25,28 @@ class DynamicMapRegionEncoder : Encoder(DYNAMIC_REGION, PacketSize.SHORT) {
         playerRegions: IntArray? = null
     ) = player.send(getLength(clientTile, playerRegions, clientIndex, chunks, xteas)) {
         if (clientTile != null && playerRegions != null && clientIndex != null) {
-            var bitIndex = startBitAccess()
-            bitIndex += writeBits(bitIndex, 30, clientTile)
-            playerRegions.forEachIndexed { index, region ->
-                if (index != clientIndex) {
-                    bitIndex += writeBits(bitIndex, 18, region)
+            bitAccess {
+                writeBits(30, clientTile)
+                playerRegions.forEachIndexed { index, region ->
+                    if (index != clientIndex) {
+                        writeBits(18, region)
+                    }
                 }
             }
-            finishBitAccess(bitIndex)
         }
         writeByte(mapSize)
-        writeShort(chunkY, Modifier.ADD, Endian.LITTLE)
+        writeShortAddLittle(chunkY)
         writeByte(forceRefresh)
-        writeShort(chunkX, Modifier.ADD)
-        writeByte(3, Modifier.ADD)// Was at dynamic region? 5 or 3 TODO test
-        var bitIndex = startBitAccess()
-        chunks.forEach { data ->
-            bitIndex += writeBits(bitIndex, 1, data != null)
-            if (data != null) {
-                bitIndex += writeBits(bitIndex, 26, data)
+        writeShortAdd(chunkX)
+        writeByteAdd(3)// Was at dynamic region? 5 or 3 TODO test
+        bitAccess {
+            chunks.forEach { data ->
+                writeBit(data != null)
+                if (data != null) {
+                    writeBits(26, data)
+                }
             }
         }
-        finishBitAccess(bitIndex)
         xteas.forEach {
             it.forEach { key ->
                 writeInt(key)

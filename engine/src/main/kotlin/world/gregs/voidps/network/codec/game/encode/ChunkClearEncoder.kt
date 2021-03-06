@@ -1,7 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeByteAdd
+import world.gregs.voidps.buffer.write.writeByteInverse
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.CHUNK_CLEAR
@@ -23,8 +23,8 @@ class ChunkClearEncoder : Encoder(CHUNK_CLEAR) {
         yOffset: Int,
         plane: Int
     ) = player.send(3) {
-        writeByte(plane, Modifier.ADD)
-        writeByte(yOffset, Modifier.INVERSE)
-        writeByte(xOffset, Modifier.INVERSE)
+        writeByteAdd(plane)
+        writeByteInverse(yOffset)
+        writeByteInverse(xOffset)
     }
 }

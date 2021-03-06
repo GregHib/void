@@ -1,8 +1,8 @@
 package world.gregs.voidps.handle
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 
@@ -14,8 +14,7 @@ class InterfaceClosedHandler : Handler() {
 
     val sessions: Sessions by inject()
 
-    override fun interfaceClosed(context: ChannelHandlerContext) {
-        val session = context.channel()
+    override fun interfaceClosed(session: ClientSession) {
         val player = sessions.get(session) ?: return
         sync {
             val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay")

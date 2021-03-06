@@ -77,10 +77,10 @@ object Main {
         val tickStages = getTickStages()
         val engine = GameLoop(service, tickStages)
 
-        server.start(getIntProperty("port"))
         bus.emit(Startup)
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
+        server.start(getIntProperty("port"))
     }
 
     private fun getTickStages(): List<Runnable> {

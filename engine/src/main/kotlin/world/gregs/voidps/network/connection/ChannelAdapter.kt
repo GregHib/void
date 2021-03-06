@@ -18,9 +18,9 @@ class ChannelAdapter(
     }
 
     override fun channelUnregistered(ctx: ChannelHandlerContext) {
-        val session = ctx.channel()
-        val player = sessions.get(session) ?: return
-        logoutQueue.add(player)
+//        val session = ctx.channel()
+//        val player = sessions.get(session) ?: return
+//        logoutQueue.add(player)
     }
 
     override fun channelActive(ctx: ChannelHandlerContext) {

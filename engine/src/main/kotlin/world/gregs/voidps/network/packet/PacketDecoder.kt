@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import io.netty.buffer.ByteBuf
 import io.netty.channel.ChannelHandlerContext
 import io.netty.handler.codec.ByteToMessageDecoder
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.codec.getCipherIn
 import world.gregs.voidps.network.codec.getCodec
@@ -75,7 +74,7 @@ class PacketDecoder : ByteToMessageDecoder() {
             logger.debug { "Finished and pushed. remaining readable = ${buf.readableBytes()} [opcode=$opcode] " }
 
             //Handle data
-            decoder.decode(ctx, BufferReader(payload))
+//            decoder.decode(ctx, BufferReader(payload))
 
             logger.debug { "Message decoded successful [decoder=${decoder.javaClass.simpleName}, codec=${ctx.channel().getCodec()}]" }
         }

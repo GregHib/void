@@ -1,7 +1,6 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -10,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.inject
@@ -25,8 +25,7 @@ class NPCOptionHandler : Handler() {
     val npcs: NPCs by inject()
     val bus: EventBus by inject()
 
-    override fun npcOption(context: ChannelHandlerContext, run: Boolean, npcIndex: Int, option: Int) {
-        val session = context.channel()
+    override fun npcOption(session: ClientSession, run: Boolean, npcIndex: Int, option: Int) {
         val player = sessions.get(session) ?: return
         val npc = npcs.getAtIndex(npcIndex) ?: return
         val options = npc.def.options

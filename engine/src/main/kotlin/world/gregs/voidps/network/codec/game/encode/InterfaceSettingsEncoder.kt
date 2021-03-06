@@ -1,9 +1,8 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeInt
-import world.gregs.voidps.buffer.write.writeShort
+import world.gregs.voidps.buffer.write.writeIntInverseMiddle
+import world.gregs.voidps.buffer.write.writeShortAdd
+import world.gregs.voidps.buffer.write.writeShortLittle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.INTERFACE_COMPONENT_SETTINGS
@@ -31,10 +30,10 @@ class InterfaceSettingsEncoder : Encoder(INTERFACE_COMPONENT_SETTINGS) {
         toSlot: Int,
         settings: Int
     ) = player.send(12) {
-        writeShort(toSlot, type = Modifier.ADD)
-        writeShort(fromSlot, order = Endian.LITTLE)
+        writeShortAdd(toSlot)
+        writeShortLittle(fromSlot)
         writeInt(id shl 16 or component)
-        writeInt(settings, type = Modifier.INVERSE, order = Endian.MIDDLE)
+        writeIntInverseMiddle(settings)
     }
 }
 

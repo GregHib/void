@@ -1,9 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeInt
-import world.gregs.voidps.buffer.write.writeShort
+import world.gregs.voidps.buffer.write.writeIntInverseMiddle
+import world.gregs.voidps.buffer.write.writeShortAdd
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.CLIENT_VARP_LARGE
@@ -24,7 +22,7 @@ class VarpLargeEncoder : Encoder(CLIENT_VARP_LARGE) {
         id: Int,
         value: Int
     ) = player.send(6) {
-        writeInt(value, Modifier.INVERSE, Endian.MIDDLE)
-        writeShort(id, Modifier.ADD)
+        writeIntInverseMiddle(value)
+        writeShortAdd(id)
     }
 }

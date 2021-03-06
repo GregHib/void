@@ -25,8 +25,8 @@ class FloorItemOptionHandler : Handler() {
     val items: FloorItems by inject()
     val bus: EventBus by inject()
 
-    override fun floorItemOption(context: ClientSession, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
-        val player = sessions.get(context) ?: return
+    override fun floorItemOption(session: ClientSession, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
+        val player = sessions.get(session) ?: return
         val tile = Tile(x, y, player.tile.plane)
         val items = items[tile]
         val item = items.firstOrNull { it.id == id && it.tile == tile }

@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.codec.game.encode
 
+import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.OBJECT_PRE_FETCH

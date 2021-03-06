@@ -1,27 +1,17 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.sync
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.login.LoginCodec
 import world.gregs.voidps.network.codec.login.encode.GameLoginDetailsEncoder
 import world.gregs.voidps.network.codec.login.encode.LoginResponseEncoder
-import world.gregs.voidps.network.codec.setCipherIn
-import world.gregs.voidps.network.codec.setCipherOut
-import world.gregs.voidps.network.codec.setCodec
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.engine.entity.character.player.login.Login
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -39,7 +29,7 @@ class GameLoginHandler : Handler() {
     private val loginEncoder = GameLoginDetailsEncoder()
 
     override fun loginGame(
-        context: ChannelHandlerContext,
+        session: ClientSession,
         username: String,
         password: String,
         isaacKeys: IntArray,
@@ -49,7 +39,7 @@ class GameLoginHandler : Handler() {
         antialias: Int,
         settings: String,
         affiliate: Int,
-        session: Int,
+        sessionId: Int,
         os: Int,
         is64Bit: Int,
         versionType: Int,
@@ -62,34 +52,33 @@ class GameLoginHandler : Handler() {
         processorCount: Int,
         totalMemory: Int
     ) {
-        val channel = context.channel()
         val keyPair = IsaacKeyPair(isaacKeys)
 
-        channel.setCodec(login)
-
-        val callback: (LoginResponse) -> Unit = { response ->
-            if (response is LoginResponse.Success) {
-                val player = response.player
-                loginEncoder.encode(channel, 2, player.index, username)
-                channel.setCodec(game)
-                channel.setCipherIn(keyPair.inCipher)
-                channel.setCipherOut(keyPair.outCipher)
-                bus.emit(RegionLogin(player))
-                bus.emit(PlayerRegistered(player))
-                player.setup()
-                bus.emit(Registered(player))
-            } else {
-                responseEncoder.encode(channel, response.code)
-            }
-        }
-
-        sync {
-            loginQueue.add(Login(
-                username,
-                channel,
-                callback,
-                GameLoginInfo(username, password, isaacKeys, mode, width, height, antialias, settings, affiliate, session, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
-            ))
-        }
+//        channel.setCodec(login)
+//
+//        val callback: (LoginResponse) -> Unit = { response ->
+//            if (response is LoginResponse.Success) {
+//                val player = response.player
+//                loginEncoder.encode(channel, 2, player.index, username)
+//                channel.setCodec(game)
+//                channel.setCipherIn(keyPair.inCipher)
+//                channel.setCipherOut(keyPair.outCipher)
+//                bus.emit(RegionLogin(player))
+//                bus.emit(PlayerRegistered(player))
+//                player.setup()
+//                bus.emit(Registered(player))
+//            } else {
+//                responseEncoder.encode(channel, response.code)
+//            }
+//        }
+//
+//        sync {
+//            loginQueue.add(Login(
+//                username,
+//                channel,
+//                callback,
+//                GameLoginInfo(username, password, isaacKeys, mode, width, height, antialias, settings, affiliate, sessionId, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
+//            ))
+//        }
     }
 }

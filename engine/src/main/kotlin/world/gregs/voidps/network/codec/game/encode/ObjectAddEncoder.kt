@@ -1,7 +1,7 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeByteAdd
+import world.gregs.voidps.buffer.write.writeByteSubtract
 import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -26,8 +26,8 @@ class ObjectAddEncoder : Encoder(OBJECT_ADD) {
         type: Int,
         rotation: Int
     ) = player.send(4, flush = false) {
-        writeByte((type shl 2) or rotation, Modifier.SUBTRACT)
+        writeByteSubtract((type shl 2) or rotation)
         writeShort(id)
-        writeByte(tile, Modifier.ADD)
+        writeByteAdd(tile)
     }
 }

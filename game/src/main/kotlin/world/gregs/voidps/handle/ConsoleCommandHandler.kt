@@ -1,9 +1,9 @@
 package world.gregs.voidps.handle
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.sync
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
@@ -17,9 +17,8 @@ class ConsoleCommandHandler : Handler() {
     val sessions: Sessions by inject()
     val bus: EventBus by inject()
 
-    override fun consoleCommand(context: ChannelHandlerContext, command: String) {
-        val channel = context.channel()
-        val player = sessions.get(channel) ?: return
+    override fun consoleCommand(session: ClientSession, command: String) {
+        val player = sessions.get(session) ?: return
         val parts = command.split(" ")
         val prefix = parts[0]
         sync {

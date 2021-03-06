@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.write.writeInt
+import world.gregs.voidps.buffer.write.writeIntLittle
 import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -26,7 +25,7 @@ class InterfaceTextEncoder : Encoder(INTERFACE_TEXT, PacketSize.SHORT) {
         component: Int,
         text: String
     ) = player.send(4 + string(text)) {
-        writeInt(id shl 16 or component, order = Endian.LITTLE)
+        writeIntLittle(id shl 16 or component)
         writeString(text)
     }
 }

@@ -1,7 +1,5 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
 import world.gregs.voidps.buffer.write.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
@@ -26,19 +24,19 @@ class MapRegionEncoder : Encoder(REGION, PacketSize.SHORT) {
         playerRegions: IntArray? = null
     ) = player.send(getLength(clientTile, playerRegions, clientIndex, xteas)) {
         if (clientTile != null && playerRegions != null && clientIndex != null) {
-            var bitIndex = startBitAccess()
-            bitIndex += writeBits(bitIndex, 30, clientTile)
-            playerRegions.forEachIndexed { index, region ->
-                if (index != clientIndex) {
-                    bitIndex += writeBits(bitIndex, 18, region)
+            bitAccess {
+                writeBits(30, clientTile)
+                playerRegions.forEachIndexed { index, region ->
+                    if (index != clientIndex) {
+                        writeBits(18, region)
+                    }
                 }
             }
-            finishBitAccess(bitIndex)
         }
-        writeByte(mapSize, Modifier.SUBTRACT)
-        writeShort(chunkY, type = Modifier.ADD, order = Endian.LITTLE)
-        writeShort(chunkX, order = Endian.LITTLE)
-        writeByte(forceRefresh, Modifier.INVERSE)
+        writeByteSubtract(mapSize)
+        writeShortAddLittle(chunkY)
+        writeShortLittle(chunkX)
+        writeByteInverse(forceRefresh)
         xteas.forEach {
             it.forEach { key ->
                 writeInt(key)

@@ -1,9 +1,8 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.Modifier
-import world.gregs.voidps.buffer.write.writeByte
-import world.gregs.voidps.buffer.write.writeInt
+import world.gregs.voidps.buffer.write.writeByteInverse
+import world.gregs.voidps.buffer.write.writeByteSubtract
+import world.gregs.voidps.buffer.write.writeIntMiddle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.SKILL_LEVEL
@@ -26,8 +25,8 @@ class SkillLevelEncoder : Encoder(SKILL_LEVEL) {
         level: Int,
         experience: Int
     ) = player.send(6) {
-        writeByte(level, Modifier.SUBTRACT)
-        writeByte(skill, Modifier.INVERSE)
-        writeInt(experience, order = Endian.MIDDLE)
+        writeByteSubtract(level)
+        writeByteInverse(skill)
+        writeIntMiddle(experience)
     }
 }
