@@ -43,7 +43,7 @@ import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.handle.*
-import world.gregs.voidps.network.GameServer
+import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.codec.game.GameOpcodes
 import world.gregs.voidps.network.codec.game.gameCodec
@@ -70,14 +70,14 @@ object Main {
         val startTime = System.currentTimeMillis()
         preload()
 
-        val server = GameServer(getIntProperty("port"))
+        val server = Network()
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
         val tickStages = getTickStages()
         val engine = GameLoop(service, tickStages)
 
-        server.run()
+        server.start(getIntProperty("port"))
         bus.emit(Startup)
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }

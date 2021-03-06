@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.secure.RSA
-import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.network.codec.login.LoginResponseCode
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
@@ -62,7 +61,7 @@ object LoginHeaderDecoder {
         val password: String = rsaBuffer.readString()
         val serverSeed = rsaBuffer.readLong()
         val clientSeed = rsaBuffer.readLong()
-        Xtea.decipher((reader as BufferReader).buffer, isaacKeys)
+//        Xtea.decipher((reader as BufferReader).buffer, isaacKeys)
         return Triple(LoginResponseCode.Successful, password, isaacKeys)
     }
 

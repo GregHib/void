@@ -7,6 +7,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
+    implementation("io.ktor:ktor-server-core:${findProperty("ktorVersion")}")
+    implementation("io.ktor:ktor-network:${findProperty("ktorVersion")}")
     implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
 
