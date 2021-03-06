@@ -1,15 +1,15 @@
 package world.gregs.voidps.network.codec.game.decode
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.packet.PacketSize.BYTE
 
 class ClanChatKickDecoder : Decoder(BYTE) {
 
-    override fun decode(context: ChannelHandlerContext, packet: Reader) {
+    override fun decode(session: ClientSession, packet: Reader) {
         handler?.kickClanMember(
-            context,
+            session,
             packet.readBoolean(),
             packet.readShort(),
             packet.readString()

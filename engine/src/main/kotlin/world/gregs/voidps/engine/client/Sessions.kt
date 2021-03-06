@@ -1,8 +1,8 @@
 package world.gregs.voidps.engine.client
 
-import io.netty.channel.Channel
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.network.ClientSession
 import kotlin.collections.set
 
 /**
@@ -16,13 +16,13 @@ val clientSessionModule = module {
 }
 
 class Sessions {
-    val players = mutableMapOf<Channel, Player>()
-    val channels = mutableMapOf<Player, Channel>()
+    val players = mutableMapOf<ClientSession, Player>()
+    val channels = mutableMapOf<Player, ClientSession>()
 
     /**
      * Links a client session with a player
      */
-    fun register(session: Channel, player: Player) {
+    fun register(session: ClientSession, player: Player) {
         players[session] = player
         channels[player] = session
     }
@@ -30,28 +30,28 @@ class Sessions {
     /**
      * Removes the link between a player an client session.
      */
-    fun deregister(session: Channel) {
+    fun deregister(session: ClientSession) {
         channels.remove(players.remove(session))
     }
 
     /**
      * Returns player for [session]
      */
-    fun get(session: Channel): Player? {
+    fun get(session: ClientSession): Player? {
         return players[session]
     }
 
     /**
      * Returns session for [player]
      */
-    fun get(player: Player): Channel? {
+    fun get(player: Player): ClientSession? {
         return channels[player]
     }
 
     /**
      * Checks if [session] is linked
      */
-    fun contains(session: Channel): Boolean {
+    fun contains(session: ClientSession): Boolean {
         return players.containsKey(session)
     }
 

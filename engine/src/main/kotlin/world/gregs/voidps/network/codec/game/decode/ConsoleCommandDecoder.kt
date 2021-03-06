@@ -1,17 +1,17 @@
 package world.gregs.voidps.network.codec.game.decode
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.packet.PacketSize.BYTE
 
 class ConsoleCommandDecoder : Decoder(BYTE) {
 
-    override fun decode(context: ChannelHandlerContext, packet: Reader) {
+    override fun decode(session: ClientSession, packet: Reader) {
         packet.readUnsignedByte()
         packet.readUnsignedByte()
         handler?.consoleCommand(
-            context,
+            session,
             packet.readString()
         )
     }

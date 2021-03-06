@@ -1,6 +1,5 @@
 package world.gregs.voidps.network.codec.login.decode
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.packet.PacketSize.SHORT
@@ -11,7 +10,7 @@ import world.gregs.voidps.network.packet.PacketSize.SHORT
  */
 class GameLoginDecoder : Decoder(SHORT) {
 
-    override fun decode(context: ChannelHandlerContext, packet: Reader) {
+    override fun decode(session: ClientSession, packet: Reader) {
         val triple = LoginHeaderDecoder.decode(packet)
         val password = triple.second!!
         val isaacKeys = triple.third!!

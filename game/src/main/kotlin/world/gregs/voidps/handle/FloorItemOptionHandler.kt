@@ -1,7 +1,6 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
@@ -10,6 +9,7 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.inject
@@ -25,9 +25,8 @@ class FloorItemOptionHandler : Handler() {
     val items: FloorItems by inject()
     val bus: EventBus by inject()
 
-    override fun floorItemOption(context: ChannelHandlerContext, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
-        val session = context.channel()
-        val player = sessions.get(session) ?: return
+    override fun floorItemOption(context: ClientSession, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
+        val player = sessions.get(context) ?: return
         val tile = Tile(x, y, player.tile.plane)
         val items = items[tile]
         val item = items.firstOrNull { it.id == id && it.tile == tile }

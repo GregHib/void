@@ -21,6 +21,7 @@ import world.gregs.voidps.utility.inject
 import java.math.BigInteger
 import java.util.concurrent.Executors
 
+@ExperimentalUnsignedTypes
 class Network {
 
     private val logger = InlineLogger()
@@ -132,10 +133,9 @@ class Network {
         read.readFully(remaining)
         Xtea.decipher(remaining, isaacKeys)
 
-        val keyPair = IsaacKeyPair(isaacKeys)
+        val isaacPair = IsaacKeyPair(isaacKeys)
         read = ByteReadPacket(remaining)
         val username = read.readString()
-        println("Username $username")
         read.readUByte()// social login
         val displayMode = read.readUByte().toInt()
         val screenWidth = read.readUShort().toInt()
@@ -185,6 +185,8 @@ class Network {
 
         // TODO pass isaac keys to session to use for encoding.
 
+        val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
+
         val callback: (LoginResponse) -> Unit = { response ->
             println("Callback $response")
 //            if (response is LoginResponse.Success) {
@@ -205,7 +207,7 @@ class Network {
             loginQueue.add(
                 Login(
                     username,
-                    null,
+                    session,
                     callback,
                     GameLoginInfo(username, password, isaacKeys, displayMode, screenWidth, screenHeight, antialiasLevel, settings, affiliateId, sessionId2, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
                 )

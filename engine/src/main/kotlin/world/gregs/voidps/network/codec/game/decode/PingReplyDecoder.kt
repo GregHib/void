@@ -1,14 +1,14 @@
 package world.gregs.voidps.network.codec.game.decode
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Decoder
 
 class PingReplyDecoder : Decoder(8) {
 
-    override fun decode(context: ChannelHandlerContext, packet: Reader) {
+    override fun decode(session: ClientSession, packet: Reader) {
         handler?.pingReply(
-            context,
+            session,
             packet.readInt(),
             packet.readInt()
         )

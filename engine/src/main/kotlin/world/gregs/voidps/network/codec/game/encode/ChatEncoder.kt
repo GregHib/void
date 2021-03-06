@@ -1,5 +1,6 @@
 package world.gregs.voidps.network.codec.game.encode
 
+import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeSmart
 import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.engine.entity.character.player.Player
