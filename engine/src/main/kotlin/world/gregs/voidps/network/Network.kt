@@ -60,17 +60,17 @@ class Network {
             while (running) {
                 val socket = server.accept()
                 logger.trace { "New connection accepted $socket" }
+                val read = socket.openReadChannel()
+                val write = socket.openWriteChannel(autoFlush = true)
                 launch(Dispatchers.IO) {
-                    connect(socket)
+                    connect(read, write)
                 }
             }
         }
         running = true
     }
 
-    suspend fun connect(socket: Socket) {
-        val read = socket.openReadChannel()
-        val write = socket.openWriteChannel(autoFlush = true)
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel) {
         synchronise(read, write)
         login(read, write)
     }
@@ -98,7 +98,7 @@ class Network {
         val size = read.readShort().toInt()
         val packet = read.readPacket(size)
 
-        val session = read(packet, write) { player, session ->
+        read(packet, write) { player, session ->
             readPackets(session, read, player)
         }
     }
@@ -206,7 +206,6 @@ class Network {
         // TODO on disconnect add to logout queue
 
         val callback: (LoginResponse) -> Unit = { response ->
-            println("Callback $response")
             if (response is LoginResponse.Success) {
                 val player = response.player
                 loginEncoder.encode(session, 2, player.index, username)
@@ -238,26 +237,28 @@ class Network {
     }
 
     suspend fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player) {
-        try {
-            while (true) {
-                val cipher = session.cipherIn.nextInt()
-                val opcode = (read.readUByte() - cipher) and 0xff
-                val decoder = game.getDecoder(opcode)
-                if (decoder == null) {
-                    logger.error { "Unable to identify length of packet $opcode" }
-                    return
-                }
-                val size = when (decoder.length) {
-                    -1 -> read.readUByte()
-                    -2 -> (read.readUByte() shl 8) or read.readUByte()
-                    else -> decoder.length
-                }
+        GlobalScope.launch(Dispatchers.IO) {
+            try {
+                while (true) {
+                    val cipher = session.cipherIn.nextInt()
+                    val opcode = (read.readUByte() - cipher) and 0xff
+                    val decoder = game.getDecoder(opcode)
+                    if (decoder == null) {
+                        logger.error { "Unable to identify length of packet $opcode" }
+                        return@launch
+                    }
+                    val size = when (decoder.length) {
+                        -1 -> read.readUByte()
+                        -2 -> (read.readUByte() shl 8) or read.readUByte()
+                        else -> decoder.length
+                    }
 
-                val packet = read.readPacket(size = size)
-                decoder.decode(session, BufferReader(packet.readBytes()))
+                    val packet = read.readPacket(size = size)
+                    decoder.decode(session, BufferReader(packet.readBytes()))
+                }
+            } finally {
+                logoutQueue.add(player)
             }
-        } finally {
-            logoutQueue.add(player)
         }
     }
 

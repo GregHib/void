@@ -1,8 +1,9 @@
 package world.gregs.voidps.network
 
 import io.ktor.utils.io.*
-import kotlinx.coroutines.CoroutineScope
-import world.gregs.voidps.engine.action.Contexts
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import world.gregs.voidps.network.crypto.IsaacCipher
 
 data class ClientSession(
@@ -11,10 +12,10 @@ data class ClientSession(
     val cipherOut: IsaacCipher?
 ) {
 
-    val scope = CoroutineScope(Contexts.Game)
-
     fun disconnect() {
-        write.close()
+        GlobalScope.launch(Dispatchers.IO) {
+            write.close()
+        }
     }
 
     fun flush() {
