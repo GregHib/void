@@ -67,7 +67,27 @@ Command where { prefix == "sendItems" } then {
     repeat(1200) {
         player.sendContainerItems(it, intArrayOf(), intArrayOf(), false)
     }
-    for(container in 0 until 1200) {
+    for (container in 0 until 1200) {
         player.sendContainerItems(container, IntArray(1) { 995 }, IntArray(1) { 100 }, false)
     }
+}
+
+Command where { prefix == "varp" } then {
+    val parts = content.split(" ")
+    player.sendVarp(parts.first().toInt(), parts.last().toInt())
+}
+
+Command where { prefix == "varbit" } then {
+    val parts = content.split(" ")
+    player.sendVarbit(parts.first().toInt(), parts.last().toInt())
+}
+
+Command where { prefix == "varc" } then {
+    val parts = content.split(" ")
+    player.sendVarc(parts.first().toInt(), parts.last().toInt())
+}
+
+Command where { prefix == "varcstr" } then {
+    val parts = content.split(" ")
+    player.sendVarcStr(parts.first().toInt(), content.removePrefix("${parts.first()} "))
 }

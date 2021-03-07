@@ -1,16 +1,19 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
-import world.gregs.voidps.engine.data.file.PlayerStorage
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.effect.Hidden
+import world.gregs.voidps.engine.entity.character.player.login.Login
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventBus
@@ -22,10 +25,6 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.interact.entity.npc.spawn.NPCSpawn
-import world.gregs.voidps.engine.entity.character.player.login.Login
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import java.util.concurrent.atomic.AtomicInteger
 
 val bus: EventBus by inject()
@@ -122,6 +121,7 @@ Command where { prefix == "clear" } then {
 }
 
 Command where { prefix == "master" } then {
+    player.setVar("life_points", 990)
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
     }

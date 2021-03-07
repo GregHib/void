@@ -28,6 +28,6 @@ class SkillLevelEncoder : Encoder(SKILL_LEVEL) {
     ) = player.send(6) {
         writeByte(level, Modifier.SUBTRACT)
         writeByte(skill, Modifier.INVERSE)
-        writeInt(experience, Modifier.INVERSE)
+        writeInt(experience, order = Endian.MIDDLE)
     }
 }

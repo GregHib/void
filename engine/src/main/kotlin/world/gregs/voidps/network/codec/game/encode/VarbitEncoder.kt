@@ -25,7 +25,7 @@ class VarbitEncoder : Encoder(CLIENT_VARBIT) {
         id: Int,
         value: Int
     ) = player.send(3) {
-        writeByte(value, type = Modifier.SUBTRACT)
+        writeByte(value, Modifier.ADD)
         writeShort(id, order = Endian.LITTLE)
     }
 }
