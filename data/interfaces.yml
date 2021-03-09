@@ -990,6 +990,7 @@ toplevel:
     emotes: 103
     music_player: 104
     notes: 105
+    wilderness_level: 9
 
 photo_booth:
   id: 549
@@ -1346,6 +1347,7 @@ toplevel_full:
     emotes: 48
     music_player: 49
     notes: 50
+    wilderness_level: 13
 
 summoning_orb:
   id: 747
