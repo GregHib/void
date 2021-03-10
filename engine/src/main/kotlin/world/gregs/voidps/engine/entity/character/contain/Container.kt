@@ -1,12 +1,12 @@
 package world.gregs.voidps.engine.entity.character.contain
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import java.util.*
 
 data class Container(
+    @JsonIgnore
     val id: Int = -1,
     @JsonIgnore
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
