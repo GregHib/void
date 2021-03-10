@@ -10,24 +10,28 @@ import world.gregs.voidps.utility.get
 fun Player.sendContainer(name: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()
     val containerId = definitions.getId(name)
-    val container = container(definitions.get(name), secondary)
+    val container = container(name, definitions.get(name), secondary)
     sendContainerItems(containerId, container.getItems(), container.getAmounts(), secondary)
 }
 
 fun Player.hasContainer(name: String): Boolean {
+    return containers.containsKey(name)
+}
+
+fun Player.container(definition: ContainerDefinition, secondary: Boolean = false): Container {
     val definitions: ContainerDefinitions = get()
-    val id = definitions.getId(name)
-    return containers.containsKey(id)
+    val name = definitions.getName(definition.id)
+    return container(name, definition, secondary)
 }
 
 fun Player.container(name: String, secondary: Boolean = false): Container {
     val definitions: ContainerDefinitions = get()
     val container = definitions.get(name)
-    return container(container, secondary)
+    return container(name, container, secondary)
 }
 
-fun Player.container(detail: ContainerDefinition, secondary: Boolean = false): Container {
-    return containers.getOrPut(if (secondary) -detail.id else detail.id) {
+fun Player.container(name: String, detail: ContainerDefinition, secondary: Boolean = false): Container {
+    return containers.getOrPut(if (secondary) "_$name" else name) {
         Container(
             id = detail.id,
             capacity = get<ContainerDefinitions>().get(detail.id).length,
