@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.Tile
 import java.io.File
 
 val navModule = module {
-    single(createdAtStart = true) { NavigationGraph.load("./navgraph.json") }
+    single(createdAtStart = true) { NavigationGraph.load(getProperty("navGraph")) }
 }
 
 class NavigationGraph(
