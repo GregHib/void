@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.map.Tile
 
 internal data class PlayerBuilder(
     var tile: Int,
-    val containers: MutableMap<Int, Container>,
+    val containers: MutableMap<String, Container>,
     val experience: Experience,
     val variables: MutableMap<String, Any>,
     val levels: Levels,
