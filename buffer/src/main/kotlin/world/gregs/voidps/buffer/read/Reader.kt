@@ -1,5 +1,9 @@
 package world.gregs.voidps.buffer.read
 
+import world.gregs.voidps.buffer.DataType
+import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.Modifier
+
 interface Reader {
 
     /**
@@ -19,39 +23,41 @@ interface Reader {
 
     fun readByte(): Int
 
-    fun readByteAdd(): Int
+    fun readByteAdd(): Int = readSigned(DataType.BYTE, Modifier.ADD).toInt()
 
-    fun readByteInverse(): Int
+    fun readByteInverse(): Int = readSigned(DataType.BYTE, Modifier.INVERSE).toInt()
 
-    fun readByteSubtract(): Int
+    fun readByteSubtract(): Int = readSigned(DataType.BYTE, Modifier.SUBTRACT).toInt()
 
-    fun readUnsignedByte(): Int
+    fun readUnsignedByte(): Int = readUnsigned(DataType.BYTE).toInt()
 
-    fun readUnsignedByteAdd(): Int
+    fun readUnsignedByteAdd(): Int = readUnsigned(DataType.BYTE, Modifier.ADD).toInt()
 
-    fun readShort(): Int
+    fun readShort(): Int = readSigned(DataType.SHORT).toInt()
 
-    fun readShortAdd(): Int
+    fun readShortAdd(): Int = readSigned(DataType.SHORT, Modifier.ADD).toInt()
 
-    fun readShortLittle(): Int
+    fun readUnsignedShortAdd(): Int = readUnsigned(DataType.SHORT, Modifier.ADD).toInt()
 
-    fun readShortAddLittle(): Int
+    fun readShortLittle(): Int = readSigned(DataType.SHORT, Modifier.NONE, Endian.LITTLE).toInt()
 
-    fun readUnsignedShort(): Int
+    fun readShortAddLittle(): Int = readSigned(DataType.SHORT, Modifier.ADD, Endian.LITTLE).toInt()
 
-    fun readUnsignedShortLittle(): Int
+    fun readUnsignedShort(): Int = readUnsigned(DataType.SHORT).toInt()
 
-    fun readMedium(): Int
+    fun readUnsignedShortLittle(): Int = readUnsigned(DataType.SHORT, Modifier.NONE, Endian.LITTLE).toInt()
 
-    fun readUnsignedMedium(): Int
+    fun readMedium(): Int = readSigned(DataType.MEDIUM).toInt()
 
-    fun readInt(): Int
+    fun readUnsignedMedium(): Int = readUnsigned(DataType.MEDIUM).toInt()
 
-    fun readIntInverseMiddle(): Int
+    fun readInt(): Int = readSigned(DataType.INT).toInt()
 
-    fun readIntLittle(): Int
+    fun readIntInverseMiddle(): Int = readSigned(DataType.INT, Modifier.INVERSE, Endian.MIDDLE).toInt()
 
-    fun readUnsignedIntMiddle(): Int
+    fun readIntLittle(): Int = readSigned(DataType.INT, Modifier.NONE, Endian.LITTLE).toInt()
+
+    fun readUnsignedIntMiddle(): Int = readUnsigned(DataType.INT, Modifier.NONE, Endian.MIDDLE).toInt()
 
     fun readSmart(): Int
 
@@ -104,6 +110,24 @@ interface Reader {
      * Disables 'bit access'
      */
     fun finishBitAccess(): Reader
+
+    /**
+     * Reads [length] number of bytes with [type] and [order]
+     * @param type The byte type to read
+     * @param modifier The first byte read modifier
+     * @param order The endianness
+     * @return The positive or negative read value
+     */
+    fun readSigned(type: DataType, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG): Long
+
+    /**
+     * Reads [length] number of bytes with [type] and [order]
+     * @param type The byte type to read
+     * @param modifier The first byte read modifier
+     * @param order The endianness
+     * @return The positive read value
+     */
+    fun readUnsigned(type: DataType, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG): Long
 
     /**
      * Writes a bit during 'bit access'
