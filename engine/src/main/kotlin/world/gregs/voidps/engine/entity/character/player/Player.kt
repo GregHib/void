@@ -63,8 +63,9 @@ class Player(
     @JsonIgnore
     override val action: Action = Action(),
     val containers: MutableMap<Int, Container> = mutableMapOf(),
-    @JsonIgnore// Temp
-    val variables: MutableMap<Int, Any> = mutableMapOf(),
+    val variables: MutableMap<String, Any> = mutableMapOf(),
+    @JsonIgnore
+    val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
     override val values: CharacterValues = CharacterValues(),
     @JsonIgnore

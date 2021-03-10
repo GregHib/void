@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.variable
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerVariables
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc
 import world.gregs.voidps.network.encode.sendVarcStr
@@ -16,54 +15,44 @@ val variablesModule = module {
 
 @Suppress("UNCHECKED_CAST")
 class Variables {
-    val names = mutableMapOf<String, Int>()
-    val variables = mutableMapOf<Int, Variable<*>>()
-
-    fun removed(player: Player) {
-        player.variables.forEach { (hash, value) ->
-            val variable = variables[hash]!!
-            if (variable.persistent) {
-                println("Save ${names.entries.firstOrNull { it.value == hash }} $value")
-            }
-        }
-    }
+    private val variables = mutableMapOf<String, Variable<*>>()
 
     fun <T : Any> set(player: Player, key: String, value: T, refresh: Boolean) {
-        val store = player.variables
         val variable = variables[key] as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
-        store.set(variable, value)
+        val store = player.store(variable)
+        store.set(key, variable, value)
         if (refresh) {
             send(player, key)
         }
     }
 
     fun send(player: Player, key: String) {
-        val store = player.variables
         val variable = variables[key] ?: return logger.debug { "Cannot find variable for key '$key'" }
-        variable.send(player, store)
+        val store = player.store(variable)
+        variable.send(player, store, key)
     }
 
     fun <T : Any> get(player: Player, key: String): T {
-        val store = player.variables
         val variable = variables[key] as? Variable<T> ?: throw IllegalArgumentException("Unknown variable '$key'")
-        return store.get(variable)
+        val store = player.store(variable)
+        return store.get(key, variable)
     }
 
     fun <T : Any> get(player: Player, key: String, default: T): T {
-        val store = player.variables
         val variable = variables[key] as? Variable<T> ?: return default
-        return store.get(variable)
+        val store = player.store(variable)
+        return store.get(key, variable)
     }
 
     fun <T : Any> add(player: Player, key: String, id: T, refresh: Boolean) {
-        val store = player.variables
         val variable = variables[key] as? BitwiseVar<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val store = player.store(variable)
 
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = store.get(variable)
+        val value = store.get(key, variable)
 
         if (!value.has(power)) {//If isn't already added
-            store.set(variable, value + power)//Add
+            store.set(key, variable, value + power)//Add
             if (refresh) {
                 send(player, key)
             }
@@ -71,14 +60,14 @@ class Variables {
     }
 
     fun <T : Any> remove(player: Player, key: String, id: T, refresh: Boolean) {
-        val store = player.variables
         val variable = variables[key] as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val store = player.store(variable)
 
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = store.get(variable)
+        val value = store.get(key, variable)
 
         if (value.has(power)) {//If is added
-            store.set(variable, value - power)//Remove
+            store.set(key, variable, value - power)//Remove
             if (refresh) {
                 send(player, key)
             }
@@ -86,17 +75,17 @@ class Variables {
     }
 
     fun <T : Any> has(player: Player, key: String, id: T): Boolean {
-        val store = player.variables
         val variable = variables[key] as? BitwiseVariable<T> ?: return false
+        val store = player.store(variable)
 
         val power = variable.getValue(id) ?: return false
-        val value = store.get(variable)
+        val value = store.get(key, variable)
 
         return value.has(power)
     }
 
-    internal fun <T : Any> Variable<T>.send(player: Player, store: PlayerVariables) {
-        val value = store.get(this)
+    internal fun <T : Any> Variable<T>.send(player: Player, store: MutableMap<String, Any>, key: String) {
+        val value = store.get(key, this)
         when (type) {
             Variable.Type.VARP -> player.sendVarp(id, toInt(value))
             Variable.Type.VARBIT -> player.sendVarbit(id, toInt(value))
@@ -105,15 +94,18 @@ class Variables {
         }
     }
 
-    /**
-     * Extension for [variables] to get using [names]
-     */
-    private operator fun <T : Any> Map<Int, T>.get(key: String): T? {
-        return get(names[key])
+    fun register(name: String, variable: Variable<*>) {
+        variables[name] = variable
+    }
+
+    fun clear() {
+        variables.clear()
     }
 
     companion object {
         private val logger = InlineLogger()
+
+        private fun Player.store(variable: Variable<*>): MutableMap<String, Any> = if (variable.persistent) variables else temporaryVariables
 
         /**
          * Checks if value [this] contains value [power]
@@ -121,20 +113,20 @@ class Variables {
         private fun Int.has(power: Int) = (this and power) != 0
 
         /**
-         * Gets [PlayerVariables]'s current value or [variable] default
+         * Gets Player variables current value or [variable] default
          */
-        private fun <T : Any> PlayerVariables.get(variable: Variable<T>): T {
-            return this[variable.hash] as? T ?: variable.defaultValue
+        private fun <T : Any> MutableMap<String, Any>.get(key: String, variable: Variable<T>): T {
+            return this[key] as? T ?: variable.defaultValue
         }
 
         /**
-         * Sets [PlayerVariables] value, removes if [variable] default
+         * Sets Player variables value, removes if [variable] default
          */
-        private fun <T : Any> PlayerVariables.set(variable: Variable<T>, value: T) {
+        private fun <T : Any> MutableMap<String, Any>.set(key: String, variable: Variable<T>, value: T) {
             if (value == variable.defaultValue) {
-                remove(variable.hash)
+                remove(key)
             } else {
-                this[variable.hash] = value
+                this[key] = value
             }
         }
     }
