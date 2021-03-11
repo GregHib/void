@@ -30,7 +30,7 @@ class ObjectOptionHandler : Handler() {
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]
         if(target == null) {
-            logger.warn { "Invalid object $objectId $x $y" }
+            logger.warn { "Invalid object $objectId $tile" }
             return
         }
         val definition = target.def

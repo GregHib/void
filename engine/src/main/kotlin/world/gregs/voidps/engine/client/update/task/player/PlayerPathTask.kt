@@ -20,7 +20,7 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
         player.movement.target = false
         val result = finder.find(player, strategy)
         player.movement.callback = {
-            callback.complete(result)
+            callback.invoke(result)
         }
     }
 

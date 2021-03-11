@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.entity.character.move
 
-import kotlinx.coroutines.CompletableDeferred
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Delta
@@ -32,7 +30,7 @@ data class Movement(
     var running: Boolean = false,
 ) {
 
-    var completable: CompletableDeferred<PathResult>? = null
+    var completable: ((PathResult) -> Unit)? = null
     var strategy: TileTargetStrategy? = null
     var target: Boolean = false
 
@@ -59,15 +57,14 @@ fun Player.walkTo(target: Any, action: (PathResult) -> Unit) {
 
 fun Player.walkTo(strategy: TileTargetStrategy, action: (PathResult) -> Unit) {
     sync {
-        dialogues.clear()
-        movement.clear()
-        this.action.cancel()
-        movement.target = true
-        movement.strategy = strategy
-        GlobalScope.launch(Contexts.Game) {
-            val completable = CompletableDeferred<PathResult>()
-            movement.completable = completable
-            action.invoke(completable.await())
+        action(ActionType.Movement) {
+            dialogues.clear()
+            movement.clear()
+            movement.target = true
+            movement.strategy = strategy
+            movement.completable = {
+                action.invoke(it)
+            }
         }
     }
 }

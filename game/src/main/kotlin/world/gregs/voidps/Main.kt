@@ -87,6 +87,7 @@ object Main {
         val loginQueue: LoginQueue = get()
         val logoutQueue: LogoutQueue = get()
         val playerMovement: PlayerMovementTask = get()
+        val movementCallback: PlayerMovementCallbackTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()
         val playerVisuals: PlayerVisualsTask = get()
@@ -111,6 +112,7 @@ object Main {
                 bus.emit(Tick(GameLoop.tick))
             },
             PlayerPathTask(players, get()),
+            movementCallback,
             playerMovement,
             npcMovement,
             // Update
