@@ -27,6 +27,11 @@ val updatingTasksModule = module {
         )
     }
     single(createdAtStart = true) {
+        PlayerMovementCallbackTask(
+            get()
+        )
+    }
+    single(createdAtStart = true) {
         NPCMovementTask(
             get(),
             get()

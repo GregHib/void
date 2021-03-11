@@ -66,7 +66,7 @@ val walkToTarget = SimpleBotOption(
     targets = { listOf(this) },
     considerations = setOf(
         { bot.movement.waypoints.isNotEmpty().toDouble() },
-        { (bot.movement.completable?.isCompleted ?: true).toDouble() }
+        { (bot.movement.completable != null).toDouble() }
     ),
     weight = 0.1,
     action = {

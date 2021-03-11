@@ -34,16 +34,22 @@ var Player.movementType: PlayerMoveType
         }
     }
 
-fun Player.tele(tile: Tile) = tele(tile.x, tile.y, tile.plane)
+fun Player.tele(tile: Tile) = tele(this.tile.delta(tile))
 
-fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) {
+fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
+
+fun Player.tele(delta: Delta) {
     action.run(ActionType.Teleport) {
-        movement.target = false
-        movement.callback = null
-        movement.clear()
-        movement.delta = Delta(x - tile.x, y - tile.y, plane - tile.plane)
-        if (movement.delta != Delta.EMPTY) {
-            movementType = PlayerMoveType.Teleport
-        }
+        move(delta)
+    }
+}
+
+fun Player.move(delta: Delta) {
+    movement.target = false
+    movement.callback = null
+    movement.clear()
+    movement.delta = delta
+    if (movement.delta != Delta.EMPTY) {
+        movementType = PlayerMoveType.Teleport
     }
 }
