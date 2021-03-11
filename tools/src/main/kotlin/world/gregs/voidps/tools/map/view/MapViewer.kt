@@ -13,7 +13,7 @@ class MapViewer {
             LafManager.install(LafManager.themeForPreferredStyle(getPreferredThemeStyle()))
             val frame = JFrame("Map viewer")
             frame.defaultCloseOperation = JFrame.EXIT_ON_CLOSE
-            frame.add(MapView("./navgraph.json"))
+            frame.add(MapView("./data/nav-graph.json"))
             frame.pack()
             frame.setLocationRelativeTo(null)
             frame.isVisible = true

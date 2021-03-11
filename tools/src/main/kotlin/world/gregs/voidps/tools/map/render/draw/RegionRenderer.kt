@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.cache.definition.decoder.SpriteDecoder
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.tools.Pipeline
+import world.gregs.voidps.tools.map.render.WorldMapDumper
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.load.RegionManager
 import java.awt.Graphics2D
@@ -48,7 +49,9 @@ class RegionRenderer(
             painter.plane = plane
             painter.paint(o, Region(content.x, content.y), objects)
 
-            loader.paint(o, content, plane, objects)
+            if (WorldMapDumper.minimapIcons) {
+                loader.paint(o, content, plane, objects)
+            }
             val g = img.graphics
             g.drawImage(overlay, 0, 1 + overlay.height, overlay.width, -overlay.height, null)
 
