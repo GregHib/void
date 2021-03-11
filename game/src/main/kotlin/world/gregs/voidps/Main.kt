@@ -87,6 +87,7 @@ object Main {
     private fun getTickStages(protocol: Map<Int, Decoder>): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val playerMovement: PlayerMovementTask = get()
+        val movementCallback: PlayerMovementCallbackTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()
         val playerVisuals: PlayerVisualsTask = get()
@@ -112,6 +113,7 @@ object Main {
                 bus.emit(Tick(GameLoop.tick))
             },
             PlayerPathTask(players, get()),
+            movementCallback,
             playerMovement,
             npcMovement,
             // Update
