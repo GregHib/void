@@ -11,20 +11,21 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.isDoor
+import world.gregs.voidps.utility.func.isGate
 import world.gregs.voidps.utility.inject
 
 val objects: Objects by inject()
 val logger = InlineLogger()
 
 // Delay in ticks before a door closes itself
-val doorCloseDelay = 500
+val doorResetDelay = 500
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
 ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     // Prevent players from trapping one another
-    if(player.delayed(Delay.DoorSlam)) {
-        if(player.inc("doorSlamCount") > doorStuckCount) {
+    if (player.delayed(Delay.DoorSlam)) {
+        if (player.inc("doorSlamCount") > doorStuckCount) {
             player.message("The door seems to be stuck.")
             return@then
         }
@@ -32,44 +33,75 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
         player.clear("doorSlamCount")
     }
 
-    // Close door
     val double = getDoubleDoor(obj, 1)
-    if (double == null) {
-        if (!objects.cancelTimer(obj)) {
-            logger.debug { "Unknown door ${option?.toLowerCase()} $obj" }
-        }
-    } else {
-        if (!objects.cancelTimer(obj) || !objects.cancelTimer(double)) {
-            logger.debug { "Unknown fence/double door ${option?.toLowerCase()} $obj" }
-        }
+
+    if (resetExisting(obj, double)) {
+        return@then
     }
+
+    val replacement1 = obj.def.getOrNull("close") as? Int
+
+    if (double == null && replacement1 != null) {
+        obj.replace(
+            replacement1,
+            getTile(obj, 0),
+            obj.type,
+            getRotation(obj, 3),
+            doorResetDelay
+        )
+        return@then
+    }
+
+    val replacement2 = double?.def?.getOrNull("close") as? Int
+    if (double != null && replacement1 != null && replacement2 != null) {
+        if (obj.def.isGate()) {
+            TODO("Not yet implemented.")
+        } else {
+            val delta = obj.tile.delta(double.tile)
+            val dir = Direction.cardinal[obj.rotation]
+            val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
+            replaceObjectPair(
+                obj,
+                replacement1,
+                getTile(obj, 0),
+                getRotation(obj, if (flip) 1 else 3),
+                double,
+                replacement2,
+                getTile(double, 2),
+                getRotation(double, if (flip) 3 else 1),
+                10
+            )
+        }
+        return@then
+    }
+    player.message("The ${obj.def.name.toLowerCase()} won't budge.")
 }
 
 ObjectOption where { obj.def.isDoor() && option == "Open" } then {
     val double = getDoubleDoor(obj, 0)
 
-    val replacement1 = obj.def.getOrNull("open") as? Int
-    val replacement3 = obj.def.getOrNull("open") as? Int
-    if (double != null) {
-        val replacement2 = double.def.getOrNull("open") as? Int
-        val replacement4 = double.def.getOrNull("open") as? Int
+    if (resetExisting(obj, double)) {
+        return@then
+    }
 
+    val replacement1 = obj.def.getOrNull("open") as? Int
+    val replacement2 = double?.def?.getOrNull("open") as? Int
+
+    if (double == null && replacement1 != null) {// Single Doors
+        obj.replace(
+            replacement1,
+            getTile(obj, 1),
+            obj.type,
+            getRotation(obj, 1),
+            doorResetDelay
+        )
+        return@then
+    }
+    if (double != null && replacement1 != null && replacement2 != null) {
         val delta = obj.tile.delta(double.tile)
         val dir = Direction.cardinal[obj.rotation]
         val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (replacement1 != null && replacement2 != null) {// Double doors
-            replaceObjectPair(
-                obj,
-                replacement1,
-                getTile(obj, 1),
-                getRotation(obj, if (flip) 1 else 3),
-                double,
-                replacement2,
-                getTile(double, 1),
-                getRotation(double, if (flip) 3 else 1),
-                doorCloseDelay
-            )
-        } else if (replacement3 != null && replacement4 != null) {// Fences
+        if (obj.def.isGate()) {
             val first = if (flip) double else obj
             val second = if (flip) obj else double
             val tile = getTile(first, 1)
@@ -82,18 +114,35 @@ ObjectOption where { obj.def.isDoor() && option == "Open" } then {
                 second.def["open"],
                 getTile(tile, second.rotation, 1),
                 getRotation(second, 3),
-                doorCloseDelay
+                doorResetDelay
+            )
+        } else {// Double doors
+            replaceObjectPair(
+                obj,
+                replacement1,
+                getTile(obj, 1),
+                getRotation(obj, if (flip) 1 else 3),
+                double,
+                replacement2,
+                getTile(double, 1),
+                getRotation(double, if (flip) 3 else 1),
+                doorResetDelay
             )
         }
-    } else if (replacement1 != null) {// Single Doors
-        obj.replace(
-            replacement1,
-            getTile(obj, 1),
-            obj.type,
-            getRotation(obj, 1),
-            doorCloseDelay
-        )
+        return@then
     }
+    player.message("The ${obj.def.name.toLowerCase()} won't budge.")
+}
+
+fun resetExisting(obj: GameObject, double: GameObject?): Boolean {
+    if (double == null && objects.cancelTimer(obj)) {
+        return true
+    }
+
+    if (double != null && objects.cancelTimer(obj) && objects.cancelTimer(double)) {
+        return true
+    }
+    return false
 }
 
 fun getTile(gameObject: GameObject, anticlockwise: Int) = getTile(gameObject.tile, gameObject.rotation, anticlockwise)
