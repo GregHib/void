@@ -12,7 +12,7 @@ class ObjectOption5Decoder : Decoder(7) {
             y = packet.readShortLittle(),
             run = packet.readBooleanAdd(),
             x = packet.readShortAddLittle(),
-            objectId = packet.readShortAdd(),
+            objectId = packet.readUnsignedShortAdd(),
             option = 4
         )
     }

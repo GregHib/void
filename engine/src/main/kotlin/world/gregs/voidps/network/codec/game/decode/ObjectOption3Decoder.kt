@@ -10,7 +10,7 @@ class ObjectOption3Decoder : Decoder(7) {
         handler?.objectOption(
             context = context,
             y = packet.readShortAdd(),
-            objectId = packet.readShortAddLittle(),
+            objectId = packet.readUnsignedShortAddLittle(),
             x = packet.readShortLittle(),
             run = packet.readBooleanAdd(),
             option = 3

@@ -43,6 +43,13 @@ data class GameObject(
     lateinit var interactTarget: TileTargetStrategy
 
     fun visible(player: Player) = owner == null || owner == player.name
+
+    override fun equals(other: Any?): Boolean {
+        if (other !is GameObject) {
+            return false
+        }
+        return id == other.id && tile == other.tile
+    }
 }
 
 fun GameObject.animate(id: Int) {

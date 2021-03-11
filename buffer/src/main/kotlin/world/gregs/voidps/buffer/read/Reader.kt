@@ -47,6 +47,8 @@ interface Reader {
 
     fun readUnsignedShortLittle(): Int = readUnsigned(DataType.SHORT, Modifier.NONE, Endian.LITTLE).toInt()
 
+    fun readUnsignedShortAddLittle(): Int = readUnsigned(DataType.SHORT, Modifier.ADD, Endian.LITTLE).toInt()
+
     fun readMedium(): Int = readSigned(DataType.MEDIUM).toInt()
 
     fun readUnsignedMedium(): Int = readUnsigned(DataType.MEDIUM).toInt()

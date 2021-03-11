@@ -1,0 +1,94 @@
+- id: 36773
+  option: Climb-up
+  tile:
+    x: 3204
+    y: 3207
+  delta:
+    plane: 1
+- id: 36774
+  option: Climb-up
+  tile:
+    x: 3204
+    y: 3207
+    plane: 1
+  delta:
+    plane: 1
+- id: 36774
+  option: Climb-down
+  tile:
+    x: 3204
+    y: 3207
+    plane: 1
+  delta:
+    plane: -1
+- id: 36775
+  option: Climb-down
+  tile:
+    x: 3204
+    y: 3207
+    plane: 2
+  delta:
+    plane: -1
+- id: 36771
+  option: Climb-up
+  tile:
+    x: 3207
+    y: 3223
+    plane: 2
+  delta:
+    y: -2
+    plane: 1
+- id: 36772
+  option: Climb-down
+  tile:
+    x: 3207
+    y: 3223
+    plane: 3
+  delta:
+    y: 2
+    plane: -1
+- id: 36778
+  option: Climb-down
+  tile:
+    x: 3204
+    y: 3229
+    plane: 2
+  delta:
+    plane: -1
+- id: 36777
+  option: Climb-up
+  tile:
+    x: 3204
+    y: 3229
+    plane: 1
+  delta:
+    plane: 1
+- id: 36777
+  option: Climb-down
+  tile:
+    x: 3204
+    y: 3229
+    plane: 1
+  delta:
+    plane: -1
+- id: 36776
+  option: Climb-up
+  tile:
+    x: 3204
+    y: 3229
+  delta:
+    plane: 1
+- id: 36687
+  option: Climb-down
+  tile:
+    x: 3209
+    y: 3216
+  delta:
+    y: 6400
+- id: 29355
+  option: Climb-up
+  tile:
+    x: 3209
+    y: 9616
+  delta:
+    y: -6400
