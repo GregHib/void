@@ -36472,11 +36472,13 @@ church_door:
   open: 37000
 church_door_2:
   id: 37000
+  close: 36999
 church_door_3:
   id: 37002
   open: 37003
 church_door_4:
   id: 37003
+  close: 37002
 gravestone_33:
   id: 37005
 gravestone_34:
@@ -43891,6 +43893,7 @@ door_719:
   open: 45477
 door_720:
   id: 45477
+  close: 45476
 stairs_188:
   id: 45481
 stairs_189:
