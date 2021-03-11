@@ -19,6 +19,8 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.character.npc.npcLoaderModule
+import world.gregs.voidps.engine.entity.character.npc.npcSpawnModule
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
@@ -159,7 +161,9 @@ object Main {
                 objectFactoryModule,
                 lineOfSightModule,
                 navModule,
-                customObjectModule
+                customObjectModule,
+                npcLoaderModule,
+                npcSpawnModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
