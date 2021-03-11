@@ -3,6 +3,11 @@ package world.gregs.voidps.tools.map.render
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
 import world.gregs.voidps.cache.Cache
+import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
+import world.gregs.voidps.cache.config.decoder.OverlayDecoder
+import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
+import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
+import world.gregs.voidps.cache.definition.decoder.*
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
@@ -14,17 +19,14 @@ import world.gregs.voidps.tools.map.render.draw.MinimapIconPainter
 import world.gregs.voidps.tools.map.render.draw.RegionRenderer
 import world.gregs.voidps.tools.map.render.load.MapTileSettings
 import world.gregs.voidps.tools.map.render.load.RegionManager
-import world.gregs.voidps.cache.config.decoder.MapSceneDecoder
-import world.gregs.voidps.cache.config.decoder.OverlayDecoder
-import world.gregs.voidps.cache.config.decoder.UnderlayDecoder
-import world.gregs.voidps.cache.config.decoder.WorldMapInfoDecoder
-import world.gregs.voidps.cache.definition.decoder.*
 import java.io.File
 
 /**
  * Renders and saves all regions to individual pngs
  */
 object WorldMapDumper {
+
+    var minimapIcons = false
 
     @JvmStatic
     fun main(args: Array<String>) {
