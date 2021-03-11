@@ -146,13 +146,14 @@ class BreadthFirstSearch(
         var trace = last
         var direction = frontier.direction(trace)
         movement.steps.clear()
-        movement.steps.writeIndex(frontier.cost(last))
+        if (trace.plane != tile.plane) {
+            return PathResult.Failure
+        }
         while (trace != tile && frontier.visited(trace, false)) {
             movement.steps.addFirst(direction)
             trace = trace.minus(direction.delta)
             direction = frontier.direction(trace)
         }
-        movement.steps.writeIndex(frontier.cost(last))
         return result
     }
 
