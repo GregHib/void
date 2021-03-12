@@ -1,6 +1,9 @@
 package world.gregs.voidps.buffer.write
 
 import io.netty.buffer.ByteBuf
+import world.gregs.voidps.buffer.DataType
+import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.Modifier
 import java.nio.ByteBuffer
 
 /**
@@ -20,88 +23,8 @@ class BufferWriter(
         buffer.put(value.toByte())
     }
 
-    override fun writeByteAdd(value: Int) {
-        writeByte(value + 128)
-    }
-
-    override fun writeByteInverse(value: Int) {
-        writeByte(-value)
-    }
-
-    override fun writeByteSubtract(value: Int) {
-        writeByte(-value + 128)
-    }
-
     override fun setByte(index: Int, value: Int) {
         buffer.put(index, value.toByte())
-    }
-
-    override fun writeShort(value: Int) {
-        writeByte(value shr 8)
-        writeByte(value)
-    }
-
-    override fun writeShortAdd(value: Int) {
-        writeByte(value shr 8)
-        writeByteAdd(value)
-    }
-
-    override fun writeShortLittle(value: Int) {
-        writeByte(value)
-        writeByte(value shr 8)
-    }
-
-    override fun writeShortAddLittle(value: Int) {
-        writeByteAdd(value)
-        writeByte(value shr 8)
-    }
-
-    override fun writeMedium(value: Int) {
-        writeByte(value shr 16)
-        writeByte(value shr 8)
-        writeByte(value)
-    }
-
-    override fun writeInt(value: Int) {
-        writeByte(value shr 24)
-        writeByte(value shr 16)
-        writeByte(value shr 8)
-        writeByte(value)
-    }
-
-    override fun writeIntMiddle(value: Int) {
-        writeByte(value shr 8)
-        writeByte(value)
-        writeByte(value shr 24)
-        writeByte(value shr 16)
-    }
-
-    override fun writeIntInverse(value: Int) {
-        writeByte(value shr 8)
-        writeByte(value shr 24)
-        writeByte(value shr 16)
-        writeByteInverse(value)
-    }
-
-    override fun writeIntInverseMiddle(value: Int) {
-        writeByte(value shr 16)
-        writeByte(value shr 24)
-        writeByte(value)
-        writeByte(value shr 8)
-    }
-
-    override fun writeIntLittle(value: Int) {
-        writeByte(value)
-        writeByte(value shr 8)
-        writeByte(value shr 16)
-        writeByte(value shr 24)
-    }
-
-    override fun writeIntInverseLittle(value: Int) {
-        writeByteInverse(value)
-        writeByte(value shr 8)
-        writeByte(value shr 16)
-        writeByte(value shr 24)
     }
 
     override fun writeLong(value: Long) {
@@ -186,6 +109,27 @@ class BufferWriter(
         val data = ByteArray(position())
         System.arraycopy(buffer.array(), 0, data, 0, data.size)
         return data
+    }
+
+    override fun write(type: DataType, value: Number, modifier: Modifier, order: Endian) {
+        if (order == Endian.MIDDLE) {
+            check(modifier == Modifier.NONE || modifier == Modifier.INVERSE) {
+                "Middle endian doesn't support variable modifier $modifier"
+            }
+            check(type == DataType.INT) {
+                "Middle endian can only be used with an integer"
+            }
+        }
+
+        for (index in order.getRange(modifier, type.byteCount)) {
+            val modifiedValue = when (if (index == 0 && order != Endian.MIDDLE) modifier else Modifier.NONE) {
+                Modifier.ADD -> value.toInt() + 128
+                Modifier.INVERSE -> -value.toInt()
+                Modifier.SUBTRACT -> 128 - value.toInt()
+                else -> (value.toLong() shr index * 8).toInt()
+            }
+            buffer.put(modifiedValue.toByte())
+        }
     }
 
     override fun array(): ByteArray {

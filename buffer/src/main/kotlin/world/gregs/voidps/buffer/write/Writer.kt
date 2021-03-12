@@ -1,6 +1,9 @@
 package world.gregs.voidps.buffer.write
 
 import io.netty.buffer.ByteBuf
+import world.gregs.voidps.buffer.DataType
+import world.gregs.voidps.buffer.Endian
+import world.gregs.voidps.buffer.Modifier
 
 /**
  * All functions relative to writing directly to a packet are done by this class
@@ -14,37 +17,35 @@ interface Writer {
 
     fun writeByte(value: Int)
 
-    fun writeByteAdd(value: Int)
+    fun writeByteAdd(value: Int) = write(DataType.BYTE, value, Modifier.ADD)
 
-    fun writeByteInverse(value: Int)
+    fun writeByteInverse(value: Int) = write(DataType.BYTE, value, Modifier.INVERSE)
 
-    fun writeByteSubtract(value: Int)
+    fun writeByteSubtract(value: Int) = write(DataType.BYTE, value, Modifier.SUBTRACT)
 
-    fun writeByte(value: Boolean) {
-        writeByte(if (value) 1 else 0)
-    }
+    fun writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
 
-    fun writeShort(value: Int)
+    fun writeShort(value: Int) = write(DataType.SHORT, value)
 
-    fun writeShortAdd(value: Int)
+    fun writeShortAdd(value: Int) = write(DataType.SHORT, value, Modifier.ADD)
 
-    fun writeShortLittle(value: Int)
+    fun writeShortLittle(value: Int) = write(DataType.SHORT, value, Modifier.NONE, Endian.LITTLE)
 
-    fun writeShortAddLittle(value: Int)
+    fun writeShortAddLittle(value: Int) = write(DataType.SHORT, value, Modifier.ADD, Endian.LITTLE)
 
-    fun writeMedium(value: Int)
+    fun writeMedium(value: Int) = write(DataType.MEDIUM, value)
 
-    fun writeInt(value: Int)
+    fun writeInt(value: Int) = write(DataType.INT, value)
 
-    fun writeIntMiddle(value: Int)
+    fun writeIntMiddle(value: Int) = write(DataType.INT, value, Modifier.NONE, Endian.MIDDLE)
 
-    fun writeIntInverse(value: Int)
+    fun writeIntInverse(value: Int) = write(DataType.INT, value, Modifier.INVERSE)
 
-    fun writeIntInverseMiddle(value: Int)
+    fun writeIntInverseMiddle(value: Int) = write(DataType.INT, value, Modifier.INVERSE, Endian.MIDDLE)
 
-    fun writeIntLittle(value: Int)
+    fun writeIntLittle(value: Int) = write(DataType.INT, value, Modifier.NONE, Endian.LITTLE)
 
-    fun writeIntInverseLittle(value: Int)
+    fun writeIntInverseLittle(value: Int) = write(DataType.INT, value, Modifier.INVERSE, Endian.LITTLE)
 
     fun writeLong(value: Long)
 
@@ -104,5 +105,8 @@ interface Writer {
     fun clear()
 
     fun remaining(): Int
+
+    @Throws(IllegalArgumentException::class)
+    fun write(type: DataType, value: Number, modifier: Modifier = Modifier.NONE, order: Endian = Endian.BIG)
 
 }
