@@ -16,9 +16,19 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getSout
  */
 class LargeTraversal(private val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TileTraversalStrategy {
 
-    private val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    private val extra = if (collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        if (direction == Direction.NONE) {
+            for (w in 0 until size.width) {
+                for (h in 0 until size.height) {
+                    if (collisions.check(x + w, y + h, plane, direction.block(type, extra))) {
+                        return true
+                    }
+                }
+            }
+            return false
+        }
         val delta = direction.delta
         val inverse = direction.inverse()
         var offsetX = if (delta.x == 1) size.width else delta.x

@@ -1,116 +1,63 @@
-# Cows
-- id: 81
-  tile:
-    x: 3256
-    y: 3264
-    plane: 0
-- id: 397
-  tile:
-    x: 3255
-    y: 3258
-    plane: 0
-- id: 81
-  tile:
-    x: 3254
-    y: 3256
-    plane: 0
-- id: 81
-  tile:
-    x: 3260
-    y: 3260
-    plane: 0
-- id: 81
-  tile:
-    x: 3263
-    y: 3258
-    plane: 0
-- id: 397
-  tile:
-    x: 3254
-    y: 3263
-    plane: 0
-- id: 1767
-  tile:
-    x: 3259
-    y: 3268
-    plane: 0
-- id: 2310
-  tile:
-    x: 3261
-    y: 3267
-    plane: 0
-# Golbins
-- id: 4262
-  tile:
-    x: 3259
-    y: 3249
-    plane: 0
-- id: 4263
-  tile:
-    x: 3252
-    y: 3246
-    plane: 0
-- id: 4264
-  tile:
-    x: 3253
-    y: 3241
-    plane: 0
-- id: 4265
-  tile:
-    x: 3246
-    y: 3239
-    plane: 0
-- id: 4266
-  tile:
-    x: 3247
-    y: 3236
-    plane: 0
-- id: 4267
-  tile:
-    x: 3254
-    y: 3238
-    plane: 0
-- id: 4268
-  tile:
-    x: 3262
-    y: 3238
-    plane: 0
-- id: 4269
-  tile:
-    x: 3262
-    y: 3245
-    plane: 0
-- id: 4270
-  tile:
-    x: 3248
-    y: 3255
-    plane: 0
-- id: 4271
-  tile:
-    x: 3240
-    y: 3272
-    plane: 0
-- id: 45
-  tile:
-    x: 3096
-    y: 3493
-    plane: 0
-  direction: WEST
-- id: 44
-  tile:
-    x: 3096
-    y: 3491
-    plane: 0
-  direction: WEST
-- id: 44
-  tile:
-    x: 3096
-    y: 3489
-    plane: 0
-  direction: WEST
-- id: 45
-  tile:
-    x: 3097
-    y: 3494
-    plane: 0
-  direction: NORTH
+- name: Lumbridge east cow field
+  area:
+    x: [ 3253, 3253, 3251, 3251, 3249, 3246, 3244, 3244, 3240, 3240, 3242, 3242, 3240, 3240, 3241, 3256, 3257, 3260, 3261, 3263, 3265, 3265, 3266, 3266, 3265, 3265, 3266, 3266, 3265, 3265, 3264 ]
+    y: [ 3255, 3272, 3274, 3276, 3278, 3278, 3280, 3281, 3285, 3286, 3288, 3294, 3296, 3297, 3298, 3298, 3299, 3299, 3298, 3298, 3296, 3293, 3292, 3286, 3285, 3276, 3275, 3272, 3271, 3256, 3255 ]
+  spawns:
+    - name: cow
+      weight: 10
+      limit: 5
+    - name: cow_brown
+      weight: 10
+      limit: 5
+    - name: cow_light
+      weight: 10
+      limit: 5
+    - name: cow_calf
+      weight: 5
+      limit: 4
+  delay: 60
+- name: Lumbridge east golbin settlement
+  area:
+    x: [ 3262, 3259, 3253, 3251, 3251, 3249, 3245, 3242, 3242, 3240, 3240, 3239, 3239, 3252, 3252, 3264, 3264, 3265, 3265, 3266, 3266, 3267, 3267, 3266, 3266 ]
+    y: [ 3215, 3218, 3222, 3223, 3227, 3228, 3232, 3235, 3239, 3241, 3249, 3251, 3256, 3256, 3254, 3254, 3247, 3246, 3238, 3237, 3226, 3225, 3220, 3219, 3215 ]
+  spawns:
+    - name: goblin_mohawk_blue
+      limit: 2
+    - name: goblin_mohawk_grey
+      limit: 2
+    - name: goblin_bald_green
+      limit: 2
+    - name: goblin_ponytail_brown
+      limit: 2
+    - name: goblin_bald_grey
+      limit: 2
+    - name: goblin_hat_grey
+      limit: 2
+    - name: goblin_spiked_green
+      limit: 2
+    - name: goblin_spiked_grey
+      limit: 2
+    - name: goblin_metal_hat_brown
+      limit: 2
+    - name: goblin_mohawk_dark
+      limit: 2
+    - name: giant_spider
+      limit: 3
+  delay: 60
+- name: Lumbridge chicken pen
+  area:
+    x: [ 3231, 3231, 3225, 3225, 3236, 3236 ]
+    y: [ 3287, 3295, 3295, 3301, 3301, 3287 ]
+  spawns:
+    - name: chicken
+      limit: 10
+  delay: 60
+- name: Lumbridge castle courtyard
+  area:
+    x: [ 3218, 3224, 3224, 3218 ]
+    y: [ 3208, 3208, 3229, 3229 ]
+  spawns:
+    - name: hans
+    - name: rat
+      limit: 2
+
