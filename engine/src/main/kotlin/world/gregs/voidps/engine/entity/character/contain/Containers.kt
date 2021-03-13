@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.character.contain
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.utility.get
@@ -56,3 +57,11 @@ val Player.equipment: Container
 
 val Player.beastOfBurden: Container
     get() = container("beast_of_burden")
+
+fun Player.purchase(amount: Int): Boolean {
+    if (inventory.remove(995, amount)) {
+        return true
+    }
+    message("You don't have enough coins.")
+    return false
+}

@@ -15,6 +15,7 @@ open class Polygon(
     val bounds = Rectangle(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane)
 
     override val area: Double = area()
+    override val region = Tile(xPoints.first(), yPoints.first()).region
 
     override fun contains(tile: Tile): Boolean {
         val pointCount = xPoints.size
