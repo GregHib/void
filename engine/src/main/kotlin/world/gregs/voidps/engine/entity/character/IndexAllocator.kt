@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character
 
 import java.util.*
+import java.util.concurrent.ConcurrentLinkedDeque
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -8,7 +9,7 @@ import java.util.*
  */
 class IndexAllocator(private val max: Int) {
     var cap = 1
-    val free: Deque<Int> = LinkedList()
+    val free: Deque<Int> = ConcurrentLinkedDeque()
 
     fun release(index: Int) {
         if (index > cap) {

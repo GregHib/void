@@ -22,8 +22,6 @@ import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
-import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
-import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -83,7 +81,6 @@ object Main {
 
     private fun getTickStages(): List<Runnable> {
         val loginQueue: LoginQueue = get()
-        val logoutQueue: LogoutQueue = get()
         val playerMovement: PlayerMovementTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()
@@ -100,7 +97,6 @@ object Main {
         return listOf(
             // Connections/Tick Input
             loginQueue,
-            logoutQueue,
             // Tick
             Runnable {
                 flow.tryEmit(GameLoop.tick)
@@ -154,7 +150,6 @@ object Main {
                 instanceModule,
                 instancePoolModule,
                 detailsModule,
-                logoutModule,
                 objectFactoryModule,
                 lineOfSightModule,
                 navModule,

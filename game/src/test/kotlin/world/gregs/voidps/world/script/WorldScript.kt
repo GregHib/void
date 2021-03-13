@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -30,8 +31,6 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.codec.game.gameCodec
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
-import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import java.util.concurrent.Executors
 
 abstract class WorldScript : KoinMock() {
@@ -61,7 +60,6 @@ abstract class WorldScript : KoinMock() {
         instanceModule,
         instancePoolModule,
         detailsModule,
-        logoutModule,
         objectFactoryModule,
         gameCodec
     )

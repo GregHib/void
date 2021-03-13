@@ -8,22 +8,17 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.*
 import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeMedium
 import world.gregs.voidps.buffer.write.writeShort
+import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.player.GameLoginInfo
+import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.client.Sessions
+import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.Login
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.LogoutQueue
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.map.region.RegionLogin
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.game.GameCodec
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.getProperty
@@ -41,10 +36,9 @@ class Network {
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
     private val loginQueue: LoginQueue by inject()
-    private val logoutQueue: LogoutQueue by inject()
+    private val loader: PlayerLoader by inject()
 
     private val game: GameCodec by inject()
-    private val bus: EventBus by inject()
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
@@ -97,29 +91,27 @@ class Network {
         val size = read.readShort().toInt()
         val packet = read.readPacket(size)
 
-        read(packet, write) { player, session ->
-            readPackets(session, read, player)
-        }
+        read(read, packet, write)
     }
 
-    suspend fun read(read: ByteReadPacket, write: ByteWriteChannel, start: (Player, ClientSession) -> Unit) {
-        var read = read
-        val version = read.readInt()
+    suspend fun read(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
+        var packet = packet
+        val version = packet.readInt()
         if (version != 634) {
             write.writeByte(UPDATED)
             write.close()
             return
         }
 
-        val rsaBlockSize = read.readShort().toInt() and 0xffff
-        if (rsaBlockSize > read.remaining) {
-            logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${read.remaining}" }
+        val rsaBlockSize = packet.readShort().toInt() and 0xffff
+        if (rsaBlockSize > packet.remaining) {
+            logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${packet.remaining}" }
             write.writeByte(BAD_SESSION)
             write.close()
             return
         }
         val data = ByteArray(rsaBlockSize)
-        read.readFully(data)
+        packet.readFully(data)
         val rsa = RSA.crypt(data, loginRSAModulus, loginRSAPrivate)
         val rsaBuffer = BufferReader(rsa)
         val sessionId = rsaBuffer.readUnsignedByte()
@@ -145,130 +137,134 @@ class Network {
         val password: String = rsaBuffer.readString()
         val serverSeed = rsaBuffer.readLong()
         val clientSeed = rsaBuffer.readLong()
-        val remaining = ByteArray(read.remaining.toInt())
-        read.readFully(remaining)
+        val remaining = ByteArray(packet.remaining.toInt())
+        packet.readFully(remaining)
         Xtea.decipher(remaining, isaacKeys)
 
         val isaacPair = IsaacKeyPair(isaacKeys)
-        read = ByteReadPacket(remaining)
-        val username = read.readString()
-        read.readUByte()// social login
-        val displayMode = read.readUByte().toInt()
-        val screenWidth = read.readUShort().toInt()
-        val screenHeight = read.readUShort().toInt()
-        val antialiasLevel = read.readUByte().toInt()
-        read.skip(24)// graphics preferences
-        val settings = read.readString()
-        val affiliateId = read.readInt()
-        read.skip(read.readUByte().toInt())// useless settings
-        val sessionId2 = read.readUByte().toInt()
+        packet = ByteReadPacket(remaining)
+        val username = packet.readString()
+        packet.readUByte()// social login
+        val displayMode = packet.readUByte().toInt()
+        val screenWidth = packet.readUShort().toInt()
+        val screenHeight = packet.readUShort().toInt()
+        val antialiasLevel = packet.readUByte().toInt()
+        packet.skip(24)// graphics preferences
+        val settings = packet.readString()
+        val affiliateId = packet.readInt()
+        packet.skip(packet.readUByte().toInt())// useless settings
+        val sessionId2 = packet.readUByte().toInt()
 
-        val os = read.readUByte().toInt()
-        val is64Bit = read.readUByte().toInt()
-        val versionType = read.readUByte().toInt()
-        val vendorType = read.readUByte().toInt()
-        val javaRelease = read.readUByte().toInt()
-        val javaVersion = read.readUByte().toInt()
-        val javaUpdate = read.readUByte().toInt()
-        val isUnsigned = read.readUByte().toInt()
-        val heapSize = read.readShort().toInt()
-        val processorCount = read.readUByte().toInt()
-        val totalMemory = read.readUMedium()
-        read.readShort()
-        read.readUByte()
-        read.readUByte()
-        read.readUByte()
-        read.readByte()
-        read.readString()
-        read.readByte()
-        read.readString()
-        read.readByte()
-        read.readString()
-        read.readByte()
-        read.readString()
-        read.readUByte()
-        read.readShort()
-        val unknown3 = read.readInt()
-        val userFlow = read.readLong()
-        val hasAdditionalInformation = read.readUByte().toInt() == 0
+        val os = packet.readUByte().toInt()
+        val is64Bit = packet.readUByte().toInt()
+        val versionType = packet.readUByte().toInt()
+        val vendorType = packet.readUByte().toInt()
+        val javaRelease = packet.readUByte().toInt()
+        val javaVersion = packet.readUByte().toInt()
+        val javaUpdate = packet.readUByte().toInt()
+        val isUnsigned = packet.readUByte().toInt()
+        val heapSize = packet.readShort().toInt()
+        val processorCount = packet.readUByte().toInt()
+        val totalMemory = packet.readUMedium()
+        packet.readShort()
+        packet.readUByte()
+        packet.readUByte()
+        packet.readUByte()
+        packet.readByte()
+        packet.readString()
+        packet.readByte()
+        packet.readString()
+        packet.readByte()
+        packet.readString()
+        packet.readByte()
+        packet.readString()
+        packet.readUByte()
+        packet.readShort()
+        val unknown3 = packet.readInt()
+        val userFlow = packet.readLong()
+        val hasAdditionalInformation = packet.readUByte().toInt() == 0
         if (hasAdditionalInformation) {
-            val additionalInformation = read.readString()
+            val additionalInformation = packet.readString()
         }
-        val hasJagtheora = read.readUByte().toInt() == 0
-        val js = read.readUByte().toInt() == 0
-        val hc = read.readUByte().toInt() == 0
+        val hasJagtheora = packet.readUByte().toInt() == 0
+        val js = packet.readUByte().toInt() == 0
+        val hc = packet.readUByte().toInt() == 0
 
         val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
         // TODO on disconnect add to logout queue
 
-        val callback: (LoginResponse) -> Unit = { response ->
-            runBlocking {
-                write.apply {
-                    writeByte(response.code)
-                }
-                if (response is LoginResponse.Success) {
-                    val player = response.player
-                    write.apply {
-                        val rights = 2
-                        writeByte(14 + username.length)
-                        writeByte(rights)
-                        writeByte(0)// Unknown - something to do with skipping chat messages
-                        writeByte(0)
-                        writeByte(0)
-                        writeByte(0)
-                        writeByte(0)// Moves chat box position
-                        writeShort(player.index)
-                        writeByte(true)
-                        writeMedium(0)
-                        writeByte(true)
-                        writeString(username)
-                    }
-                    bus.emit(RegionLogin(player))
-                    bus.emit(PlayerRegistered(player))
-                    player.setup()
-                    bus.emit(Registered(player))
-                    start.invoke(player, session)
-                } else {
-                    write.close()
-                }
-            }
+        if (loginQueue.isOnline(username)) {
+            write.writeByte(ACCOUNT_ONLINE)
+            write.close()
+            return
+        }
 
+        val index = loginQueue.login(username)
+        if (index == null) {
+            write.writeByte(WORLD_FULL)
+            loginQueue.logout(username, index)
+            write.close()
+            return
         }
-        sync {
-            loginQueue.add(
-                Login(
-                    username,
-                    session,
-                    callback,
-                    GameLoginInfo(username, password, isaacKeys, displayMode, screenWidth, screenHeight, antialiasLevel, settings, affiliateId, sessionId2, os, is64Bit, versionType, vendorType, javaRelease, javaVersion, javaUpdate, isUnsigned, heapSize, processorCount, totalMemory)
-                )
-            )
+        val player = try {
+            val account = loader.loadPlayer(username, index)
+            logger.info { "Player $username loaded and queued for login." }
+            loginQueue.await()
+            account
+        } catch (e: IllegalStateException) {
+            write.writeByte(COULD_NOT_COMPLETE_LOGIN)
+            loginQueue.logout(username, index)
+            write.close()
+            return
         }
+
+        write.apply {
+            writeByte(SUCCESS)
+            val rights = 2
+            writeByte(14 + username.length)
+            writeByte(rights)
+            writeByte(0)// Unknown - something to do with skipping chat messages
+            writeByte(0)
+            writeByte(0)
+            writeByte(0)
+            writeByte(0)// Moves chat box position
+            writeShort(index)
+            writeByte(true)
+            writeMedium(0)
+            writeByte(true)
+            writeString(username)
+        }
+        withContext(Contexts.Game) {
+            sessions.register(session, player)
+            player.gameFrame.width = screenWidth
+            player.gameFrame.height = screenHeight
+            player.gameFrame.displayMode = displayMode
+            logger.info { "Player spawned $username index $index." }
+            player.login(session)
+        }
+        readPackets(session, read, player, username, index)
     }
 
-    fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player) {
-        GlobalScope.launch(Dispatchers.IO) {
-            try {
-                while (true) {
-                    val cipher = session.cipherIn.nextInt()
-                    val opcode = (read.readUByte() - cipher) and 0xff
-                    val decoder = game.getDecoder(opcode)
-                    if (decoder == null) {
-                        logger.error { "Unable to identify length of packet $opcode" }
-                        return@launch
-                    }
-                    val size = when (decoder.length) {
-                        -1 -> read.readUByte()
-                        -2 -> (read.readUByte() shl 8) or read.readUByte()
-                        else -> decoder.length
-                    }
 
-                    val packet = read.readPacket(size = size)
-                    decoder.decode(session, BufferReader(packet.readBytes()))
-                }
-            } finally {
-                logoutQueue.add(player)
+    val sessions: Sessions by inject()
+
+    suspend fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player, username: String, index: Int) {
+        while (true) {
+            val cipher = session.cipherIn.nextInt()
+            val opcode = (read.readUByte() - cipher) and 0xff
+            val decoder = game.getDecoder(opcode)
+            if (decoder == null) {
+                logger.error { "Unable to identify length of packet $opcode" }
+                return
             }
+            val size = when (decoder.length) {
+                -1 -> read.readUByte()
+                -2 -> (read.readUByte() shl 8) or read.readUByte()
+                else -> decoder.length
+            }
+
+            val packet = read.readPacket(size = size)
+            decoder.decode(session, BufferReader(packet.readBytes()))//TODO change session to player?
         }
     }
 
@@ -311,5 +307,9 @@ class Network {
 
         private const val ACCEPT_SESSION = 0
         private const val REJECT_SESSION = 0// Wrong?
+
+        private const val ACCOUNT_ONLINE = 5
+        private const val COULD_NOT_COMPLETE_LOGIN = 13
+        private const val WORLD_FULL = 7
     }
 }

@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.bot
 
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -8,14 +9,11 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.Login
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.LoginResponse
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.event.EventBus
@@ -92,38 +90,33 @@ val options = setOf(
 val bots = mutableListOf<Player>()
 
 val loginQueue: LoginQueue by inject()
+val loader: PlayerLoader by inject()
 
 Command where { prefix == "bots" } then {
     spawnBots(2000)
 }
+
 var counter = 0
 
 fun spawnBots(count: Int) {
-    repeat(count) { i ->
-        val callback = { response: LoginResponse ->
-            if (response is LoginResponse.Success) {
-                val bot = response.player
-                bus.emit(PlayerRegistered(bot))
-                bus.emit(Registered(bot))
-                bot.start()
-                bot.setup()
-                bot["context"] = BotContext(bot)
-                scheduler.launch {
-                    delay(1)
-                    bot.tele(3212, 3428, 0)
-                    bot.viewport.loaded = true
-                    delay(2)
-                    bot.action.type = ActionType.None
-                    bots.add(bot)
-                }
+    repeat(count) {
+        GlobalScope.launch {
+            val name = "Bot ${++counter}"
+            val index = loginQueue.login(name)!!
+            val bot = loader.loadPlayer(name, index)
+            loginQueue.await()
+            bot.login()
+
+            bot["context"] = BotContext(bot)
+            scheduler.launch {
+                delay(1)
+                bot.tele(3212, 3428, 0)
+                bot.viewport.loaded = true
+                delay(2)
+                bot.action.type = ActionType.None
+                bots.add(bot)
             }
         }
-        loginQueue.add(
-            Login(
-                "Bot ${++counter}",
-                callback = callback
-            )
-        )
     }
 }
 

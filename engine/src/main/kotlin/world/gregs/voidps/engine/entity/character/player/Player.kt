@@ -4,25 +4,38 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import world.gregs.voidps.engine.action.Action
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterEffects
 import world.gregs.voidps.engine.entity.character.CharacterValues
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.delay.Delays
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
+import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.network.ClientSession
+import world.gregs.voidps.network.codec.game.encode.LogoutEncoder
+import world.gregs.voidps.utility.get
 
 /**
  * A player controlled by client or bot
@@ -98,6 +111,29 @@ class Player(
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
+    }
+
+    fun login(session: ClientSession? = null) {
+        val bus: EventBus = get()// Temp until player has it's own event bus
+        if (session != null) {
+            bus.emit(RegionLogin(this))
+        }
+        bus.emit(PlayerRegistered(this))
+        setup()
+        bus.emit(Registered(this))
+    }
+
+    fun logout() {
+        action.run(ActionType.Logout) {
+            await<Unit>(Suspension.Infinite)
+        }
+        val bus: EventBus = get()// Temp until player has it's own event bus
+        val logoutEncode: LogoutEncoder = get()
+        val loginQueue: LoginQueue = get()
+        logoutEncode.encode(this)
+        loginQueue.logout(name, index)
+        bus.emit(Unregistered(this))
+        bus.emit(PlayerUnregistered(this))
     }
 
     override fun equals(other: Any?): Boolean {
