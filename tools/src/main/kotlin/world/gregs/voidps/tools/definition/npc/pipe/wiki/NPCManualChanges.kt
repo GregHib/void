@@ -16,10 +16,14 @@ class NPCManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             val suffix = getSuffixNumber(uid, 1)
             content.select(suffix)
 
-            if(extras.containsKey("examine")) {
+            if (extras.containsKey("examine")) {
                 extras["examine"] = (extras["examine"] as String).removePrefix("Female - ").removePrefix("Male - ")
             }
+            if (uid.contains("farm_teaser")) {
+                builder.rs3Idd = false
+            }
         }
+
         // Manual changes go here
         return content
     }
@@ -40,7 +44,7 @@ class NPCManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
                 continue
             }
             it.remove()
-            if(suffix == index) {
+            if (suffix == index) {
                 list.add(key.removeSuffix(suffix.toString()) to value)
             }
         }

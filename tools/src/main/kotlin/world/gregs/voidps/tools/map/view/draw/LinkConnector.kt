@@ -44,6 +44,7 @@ class LinkConnector(private val view: MapView, private val nav: MutableNavigatio
                 if (link != null) {
                     nav.removeLink(link)
                 } else {
+                    nav.addNode(endX, endY, plane)
                     nav.addLink(mapX, mapY, plane, endX, endY, plane)
                 }
             }

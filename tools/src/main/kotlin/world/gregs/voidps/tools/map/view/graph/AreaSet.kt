@@ -21,7 +21,6 @@ class AreaSet {
         return null
     }
 
-
     fun addPoint(area: Area, x: Int, y: Int) {
         val point = Point(x, y)
         area.points.add(point)
@@ -69,12 +68,13 @@ class AreaSet {
 
         fun load(path: String = "./areas.json"): AreaSet {
             val set = AreaSet()
-            val map = reader.readValue<List<Map<String, Any>>>(path)
+            val file = File(path)
+            val map = reader.readValue<List<Map<String, Any>>>(file)
             val areas = map.map {
                 Area(
                     it["name"] as? String,
-                    it["planeMin"] as Int,
-                    it["planeMax"] as Int,
+                    it["planeMin"] as? Int ?: 0,
+                    it["planeMax"] as? Int ?: 0,
                     (it["points"] as List<Map<String, Any>>).map { p ->
                         Point(
                             p["x"] as Int,

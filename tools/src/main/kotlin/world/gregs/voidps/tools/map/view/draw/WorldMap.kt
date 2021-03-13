@@ -45,7 +45,7 @@ class WorldMap(private val view: MapView) {
         for (regionX in minRegionX..maxRegionX) {
             for (regionY in minRegionY..maxRegionY) {
                 val viewX = view.regionToViewX(regionX)
-                val viewY = view.regionToViewY(regionY)
+                val viewY = view.imageToViewY(view.mapToImageY(view.regionToMapY(regionY) + 1))
                 val region = regions.getRegion(regionX, flipRegionY(regionY), view.plane)
                 g.drawImage(region, viewX, viewY, view.regionToImageX(1), view.regionToImageY(1), null)
             }

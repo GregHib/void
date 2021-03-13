@@ -13,11 +13,11 @@ import java.awt.Graphics
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class MapView(private val file: String) : JPanel() {
+class MapView(private val graphFile: String, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val nav = MutableNavigationGraph.load(file)
-    private val areaSet = AreaSet()
+    private val nav = MutableNavigationGraph.load(graphFile)
+    private val areaSet = AreaSet.load(areaFile)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
 
@@ -69,7 +69,8 @@ class MapView(private val file: String) : JPanel() {
         GlobalScope.launch(Dispatchers.IO) {
             while (isActive) {
                 delay(10000)
-                MutableNavigationGraph.save(nav, file)
+                MutableNavigationGraph.save(nav, graphFile)
+                AreaSet.save(areaSet, areaFile)
             }
         }
         repaint()

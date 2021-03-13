@@ -27,7 +27,7 @@ object NPCDefinitionPipeline {
 
     @JvmStatic
     fun main(args: Array<String>) {
-        val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescapewiki-latest-pages-articles-2011-08-14.xml")
+        val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val start = System.currentTimeMillis()
         val koin = startKoin {
             fileProperties("/tool.properties")
