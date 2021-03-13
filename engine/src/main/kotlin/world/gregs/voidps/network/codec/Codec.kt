@@ -1,14 +1,6 @@
 package world.gregs.voidps.network.codec
 
-import io.netty.channel.Channel
-import io.netty.channel.ChannelHandlerContext
-import io.netty.util.AttributeKey
-import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.network.codec.Codec.Companion.CODEC_KEY
-import world.gregs.voidps.network.codec.Codec.Companion.IN_CIPHER_KEY
-import world.gregs.voidps.network.codec.Codec.Companion.OUT_CIPHER_KEY
-import world.gregs.voidps.network.crypto.IsaacCipher
 
 /**
  * @author Tyluur <contact@kiaira.tech>
@@ -40,48 +32,4 @@ abstract class Codec : TimedLoader<Unit>(this::class.java.simpleName){
     fun getDecoder(opcode: Int): Decoder? {
         return decoders[opcode]
     }
-
-    companion object {
-        /**
-         * The attribute in the [channel][Channel] that identifies the [codec][Codec]
-         */
-        val CODEC_KEY: AttributeKey<Codec> = AttributeKey.valueOf("codec.key")
-        val IN_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.in.key")
-        val OUT_CIPHER_KEY: AttributeKey<IsaacCipher> = AttributeKey.valueOf("cipher.out.key")
-    }
-}
-
-
-fun Channel.getCipherOut(): IsaacCipher? {
-    return attr(OUT_CIPHER_KEY).get()
-}
-
-fun Channel.setCipherOut(cipher: IsaacCipher?) {
-    attr(OUT_CIPHER_KEY).set(cipher)
-}
-
-fun Channel.getCipherIn(): IsaacCipher? {
-    return attr(IN_CIPHER_KEY).get()
-}
-
-fun Channel.setCipherIn(cipher: IsaacCipher?) {
-    attr(IN_CIPHER_KEY).set(cipher)
-}
-
-/**
- * Getting the codec of the channel
- * @receiver Channel
- */
-fun Channel.getCodec(): Codec? {
-    return attr(CODEC_KEY).get()
-}
-
-/**
- * Setting the codec of the channel
- * @receiver Channel
- */
-fun Channel.setCodec(codec: Codec) {
-    attr(CODEC_KEY).set(codec)
-    setCipherIn(null)
-    setCipherOut(null)
 }

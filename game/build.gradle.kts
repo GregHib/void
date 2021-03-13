@@ -9,7 +9,6 @@ dependencies {
     implementation(project(":ai"))
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("io.github.classgraph:classgraph:${findProperty("classgraphVersion")}")
-    implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")
 
     implementation(kotlin("script-runtime"))

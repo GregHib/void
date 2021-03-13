@@ -197,7 +197,6 @@ class Network {
         val hasJagtheora = read.readUByte().toInt() == 0
         val js = read.readUByte().toInt() == 0
         val hc = read.readUByte().toInt() == 0
-//        write.writeByte(SUCCESS)
 
         val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
         // TODO on disconnect add to logout queue

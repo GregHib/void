@@ -1,7 +1,6 @@
 package world.gregs.voidps.network.codec
 
 import io.ktor.utils.io.*
-import io.netty.buffer.ByteBuf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.buffer.write.writeSmart

@@ -9,7 +9,6 @@ dependencies {
 
     implementation("io.ktor:ktor-server-core:${findProperty("ktorVersion")}")
     implementation("io.ktor:ktor-network:${findProperty("ktorVersion")}")
-    implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
 
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
