@@ -13,7 +13,6 @@ dependencies {
     implementation("com.github.weisj:darklaf-core:2.5.3")
     implementation("org.koin:koin-core:${findProperty("koinVersion")}")
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
-    implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")
 

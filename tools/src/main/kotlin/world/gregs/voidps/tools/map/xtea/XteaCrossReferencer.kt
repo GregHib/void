@@ -1,9 +1,7 @@
 package world.gregs.voidps.tools.map.xtea
 
 import com.displee.cache.CacheLibrary
-import io.netty.buffer.ByteBuf
 import world.gregs.voidps.cache.Indices
-import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
 import world.gregs.voidps.engine.map.region.Xteas
@@ -112,7 +110,7 @@ object XteaCrossReferencer {
         return library.data(Indices.MAPS, archiveId, 0, keys) != null
     }
 
-    fun isValid(buffer: ByteBuf, sector: ByteArray, keys: IntArray): Boolean {
+    /*fun isValid(buffer: ByteBuf, sector: ByteArray, keys: IntArray): Boolean {
         buffer.readerIndex(0)
         buffer.writerIndex(0)
         buffer.writeBytes(sector)
@@ -124,7 +122,7 @@ object XteaCrossReferencer {
             GZIP -> buffer.getByte(9).toInt() == 31 && buffer.getByte(10).toInt() == -117
             else -> false
         }
-    }
+    }*/
 
     private const val NONE = 0
     private const val BZIP2 = 1

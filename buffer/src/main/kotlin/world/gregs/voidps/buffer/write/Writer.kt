@@ -1,6 +1,5 @@
 package world.gregs.voidps.buffer.write
 
-import io.netty.buffer.ByteBuf
 
 /**
  * All functions relative to writing directly to a packet are done by this class
@@ -71,11 +70,7 @@ interface Writer {
 
     fun writeBytes(value: ByteArray)
 
-    fun writeBytes(value: ByteBuf)
-
     fun writeBytes(data: ByteArray, offset: Int, length: Int)
-
-    fun writeBytes(data: ByteBuf, offset: Int, length: Int)
 
     fun startBitAccess()
 

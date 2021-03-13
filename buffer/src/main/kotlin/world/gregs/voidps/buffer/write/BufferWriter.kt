@@ -1,6 +1,5 @@
 package world.gregs.voidps.buffer.write
 
-import io.netty.buffer.ByteBuf
 import java.nio.ByteBuffer
 
 /**
@@ -119,16 +118,8 @@ class BufferWriter(
         buffer.put(value)
     }
 
-    override fun writeBytes(value: ByteBuf) {
-        writeBytes(value.array(), value.readerIndex(), value.readableBytes())
-    }
-
     override fun writeBytes(data: ByteArray, offset: Int, length: Int) {
         buffer.put(data, offset, length)
-    }
-
-    override fun writeBytes(data: ByteBuf, offset: Int, length: Int) {
-        writeBytes(data.array(), offset, length)
     }
 
     override fun startBitAccess() {

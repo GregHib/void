@@ -1,7 +1,5 @@
 package world.gregs.voidps.network.codec.game.encode
 
-import world.gregs.voidps.buffer.Endian
-import world.gregs.voidps.buffer.write.writeInt
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Encoder
 import world.gregs.voidps.network.codec.game.GameOpcodes.INTERFACE_CLOSE

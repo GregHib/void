@@ -2,7 +2,6 @@
 
 package world.gregs.voidps.cache.secure
 
-import io.netty.buffer.ByteBuf
 import java.nio.ByteBuffer
 
 object Xtea {
@@ -32,74 +31,49 @@ object Xtea {
         val numQuads = buffer.size / 8
         for (i in 0 until numQuads) {
             var sum = GOLDEN_RATIO * ROUNDS
-            var v0 = (buffer[start + i * 8].toInt() and 0xff shl 24) or (buffer[start + i * 8 + 1].toInt() and 0xff shl 16) or (buffer[start + i * 8 + 2].toInt() and 0xff shl 8) or (buffer[start + i * 8 + 3].toInt() and 0xff)
-            var v1 = (buffer[start + i * 8 + 4].toInt() and 0xff shl 24) or (buffer[start + i * 8 + 5].toInt() and 0xff shl 16) or (buffer[start + i * 8 + 6].toInt() and 0xff shl 8) or (buffer[start + i * 8 + 7].toInt() and 0xff)
+            var v0 = getInt(buffer, start + i * 8)
+            var v1 = getInt(buffer, start + i * 8 + 4)
             for (j in 0 until ROUNDS) {
                 v1 -= (v0 shl 4 xor v0.ushr(5)) + v0 xor sum + key[sum.ushr(11) and 3]
                 sum -= GOLDEN_RATIO
                 v0 -= (v1 shl 4 xor v1.ushr(5)) + v1 xor sum + key[sum and 3]
             }
-            buffer[start + i * 8] = (v0 shr 24).toByte()
-            buffer[start + i * 8 + 1] = (v0 shr 16).toByte()
-            buffer[start + i * 8 + 2] = (v0 shr 8).toByte()
-            buffer[start + i * 8 + 3] = v0.toByte()
-            buffer[start + i * 8 + 4] = (v1 shr 24).toByte()
-            buffer[start + i * 8 + 5] = (v1 shr 16).toByte()
-            buffer[start + i * 8 + 6] = (v1 shr 8).toByte()
-            buffer[start + i * 8 + 7] = v1.toByte()
+            putInt(buffer, start + i * 8, v0)
+            putInt(buffer, start + i * 8 + 4, v1)
         }
     }
 
     /**
-     * Deciphers the specified [ByteBuf] with the given key.
+     * Enciphers the specified [ByteArray] with the given key.
      * @param buffer The buffer.
      * @param key The key.
      * @throws IllegalArgumentException if the key is not exactly 4 elements
      * long.
      */
-    fun decipher(buffer: ByteBuf, key: IntArray, start: Int = buffer.readerIndex(), end: Int = buffer.readableBytes()) {
-        if (key.size != 4) {
-            throw IllegalArgumentException()
-        }
-
-        val numQuads = (end - start) / 8
-        for (i in 0 until numQuads) {
-            var sum = GOLDEN_RATIO * ROUNDS
-            var v0 = buffer.getInt(start + i * 8)
-            var v1 = buffer.getInt(start + i * 8 + 4)
-            for (j in 0 until ROUNDS) {
-                v1 -= (v0 shl 4 xor v0.ushr(5)) + v0 xor sum + key[sum.ushr(11) and 3]
-                sum -= GOLDEN_RATIO
-                v0 -= (v1 shl 4 xor v1.ushr(5)) + v1 xor sum + key[sum and 3]
-            }
-            buffer.setInt(start + i * 8, v0)
-            buffer.setInt(start + i * 8 + 4, v1)
-        }
-    }
-
-    /**
-     * Enciphers the specified [ByteBuf] with the given key.
-     * @param buffer The buffer.
-     * @param key The key.
-     * @throws IllegalArgumentException if the key is not exactly 4 elements
-     * long.
-     */
-    fun encipher(buffer: ByteBuf, start: Int, end: Int, key: IntArray) {
+    fun encipher(buffer: ByteArray, start: Int, end: Int, key: IntArray) {
         if (key.size != 4)
             throw IllegalArgumentException()
 
         val numQuads = (end - start) / 8
         for (i in 0 until numQuads) {
             var sum = 0
-            var v0 = buffer.getInt(start + i * 8)
-            var v1 = buffer.getInt(start + i * 8 + 4)
+            var v0 = getInt(buffer, start + i * 8)
+            var v1 = getInt(buffer, start + i * 8 + 4)
             for (j in 0 until ROUNDS) {
                 v0 += (v1 shl 4 xor v1.ushr(5)) + v1 xor sum + key[sum and 3]
                 sum += GOLDEN_RATIO
                 v1 += (v0 shl 4 xor v0.ushr(5)) + v0 xor sum + key[sum.ushr(11) and 3]
             }
-            buffer.setInt(start + i * 8, v0)
-            buffer.setInt(start + i * 8 + 4, v1)
+            putInt(buffer, start + i * 8, v0)
+            putInt(buffer, start + i * 8 + 4, v1)
         }
+    }
+
+    private fun getInt(buffer: ByteArray, index: Int) = (buffer[index].toInt() and 0xff shl 24) or (buffer[index + 1].toInt() and 0xff shl 16) or (buffer[index + 2].toInt() and 0xff shl 8) or (buffer[index + 3].toInt() and 0xff)
+    private fun putInt(buffer: ByteArray, index: Int, value: Int) {
+        buffer[index] = (value shr 24).toByte()
+        buffer[index + 1] = (value shr 16).toByte()
+        buffer[index + 2] = (value shr 8).toByte()
+        buffer[index + 3] = value.toByte()
     }
 }
