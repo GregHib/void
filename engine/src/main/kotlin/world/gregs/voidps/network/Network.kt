@@ -25,8 +25,6 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.codec.game.GameCodec
-import world.gregs.voidps.network.codec.login.encode.GameLoginDetailsEncoder
-import world.gregs.voidps.network.codec.login.encode.LoginResponseEncoder
 import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
@@ -47,8 +45,6 @@ class Network {
 
     private val game: GameCodec by inject()
     private val bus: EventBus by inject()
-    private val responseEncoder = LoginResponseEncoder()
-    private val loginEncoder = GameLoginDetailsEncoder()
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
@@ -106,7 +102,7 @@ class Network {
         }
     }
 
-    suspend fun read(read: ByteReadPacket, write: ByteWriteChannel, start: suspend (Player, ClientSession) -> Unit) {
+    suspend fun read(read: ByteReadPacket, write: ByteWriteChannel, start: (Player, ClientSession) -> Unit) {
         var read = read
         val version = read.readInt()
         if (version != 634) {
@@ -201,20 +197,22 @@ class Network {
         val hasJagtheora = read.readUByte().toInt() == 0
         val js = read.readUByte().toInt() == 0
         val hc = read.readUByte().toInt() == 0
-        write.writeByte(SUCCESS)
-
-        // TODO pass isaac keys to session to use for encoding.
+//        write.writeByte(SUCCESS)
 
         val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
         // TODO on disconnect add to logout queue
 
         val callback: (LoginResponse) -> Unit = { response ->
-            if (response is LoginResponse.Success) {
-                val player = response.player
-                runBlocking {
+            runBlocking {
+                write.apply {
+                    writeByte(response.code)
+                }
+                if (response is LoginResponse.Success) {
+                    val player = response.player
                     write.apply {
+                        val rights = 2
                         writeByte(14 + username.length)
-                        writeByte(2)
+                        writeByte(rights)
                         writeByte(0)// Unknown - something to do with skipping chat messages
                         writeByte(0)
                         writeByte(0)
@@ -226,21 +224,16 @@ class Network {
                         writeByte(true)
                         writeString(username)
                     }
+                    bus.emit(RegionLogin(player))
+                    bus.emit(PlayerRegistered(player))
+                    player.setup()
+                    bus.emit(Registered(player))
+                    start.invoke(player, session)
+                } else {
+                    write.close()
                 }
-                bus.emit(RegionLogin(player))
-                bus.emit(PlayerRegistered(player))
-                player.setup()
-                bus.emit(Registered(player))
-                runBlocking {
-                    coroutineScope {
-                        launch {
-                            start.invoke(player, session)
-                        }
-                    }
-                }
-            } else {
-                responseEncoder.encode(session, response.code)
             }
+
         }
         sync {
             loginQueue.add(
@@ -254,7 +247,7 @@ class Network {
         }
     }
 
-    suspend fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player) {
+    fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player) {
         GlobalScope.launch(Dispatchers.IO) {
             try {
                 while (true) {
@@ -299,9 +292,6 @@ class Network {
     fun ByteReadPacket.skip(count: Int) = readBytes(count)
 
     fun ByteReadPacket.readUMedium() = (readUByte().toInt() shl 16) or (readUByte().toInt() shl 8) or readUByte().toInt()
-
-    suspend fun readMore(read: ByteReadPacket, write: ByteWriteChannel, keyPair: IsaacKeyPair) {
-    }
 
     private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
     private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)

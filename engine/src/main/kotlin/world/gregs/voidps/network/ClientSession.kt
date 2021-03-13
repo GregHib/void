@@ -1,9 +1,6 @@
 package world.gregs.voidps.network
 
 import io.ktor.utils.io.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import world.gregs.voidps.network.crypto.IsaacCipher
 
 data class ClientSession(
@@ -13,9 +10,7 @@ data class ClientSession(
 ) {
 
     fun disconnect() {
-        GlobalScope.launch(Dispatchers.IO) {
-            write.close()
-        }
+        write.close()
     }
 
     fun flush() {
