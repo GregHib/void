@@ -97,8 +97,6 @@ class BitAccessor {
         var bitOffset = 8 - (bitIndex and 7)
         bitIndex += numBits
 
-//        buffer.ensureWritable((byteIndex - buffer.writerIndex() + 1) + (numBits + 7) / 8)
-
         var tmp: Int
         var max: Int
         while (numBits > bitOffset) {
