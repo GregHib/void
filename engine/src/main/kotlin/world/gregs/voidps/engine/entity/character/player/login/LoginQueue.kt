@@ -75,7 +75,6 @@ class LoginQueue(
      */
     fun add(login: Login): Deferred<Unit>? = runBlocking {
         load.withLock {
-            println("Tried? ${attempts.contains(login.name)}")
             if (attempts.contains(login.name)) {
                 login.respond(LoginResponse.AccountOnline)
                 return@runBlocking null

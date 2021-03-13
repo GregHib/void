@@ -8,6 +8,9 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
+import world.gregs.voidps.buffer.write.*
+import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.entity.Registered
@@ -208,7 +211,22 @@ class Network {
         val callback: (LoginResponse) -> Unit = { response ->
             if (response is LoginResponse.Success) {
                 val player = response.player
-                loginEncoder.encode(session, 2, player.index, username)
+                runBlocking {
+                    write.apply {
+                        writeByte(14 + username.length)
+                        writeByte(2)
+                        writeByte(0)// Unknown - something to do with skipping chat messages
+                        writeByte(0)
+                        writeByte(0)
+                        writeByte(0)
+                        writeByte(0)// Moves chat box position
+                        writeShort(player.index)
+                        writeByte(true)
+                        writeMedium(0)
+                        writeByte(true)
+                        writeString(username)
+                    }
+                }
                 bus.emit(RegionLogin(player))
                 bus.emit(PlayerRegistered(player))
                 player.setup()
