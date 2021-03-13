@@ -23,9 +23,9 @@ internal class TradeIntegrationTest : WorldScript() {
     override fun setup() {
         super.setup()
         val loader: PlayerLoader = get()
-        player1 = spyk(loader.loadPlayer("1"))
+        player1 = spyk(loader.loadPlayer("1", 0))
         player1.start()
-        player2 = spyk(loader.loadPlayer("2"))
+        player2 = spyk(loader.loadPlayer("2", 0))
         player2.start()
         bus = get()
         setProperty("homeX", 100)

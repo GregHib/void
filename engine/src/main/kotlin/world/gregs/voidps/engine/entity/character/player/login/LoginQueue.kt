@@ -33,7 +33,6 @@ class LoginQueue(
     private val indices = ConcurrentLinkedDeque((1 until MAX_PLAYERS).toList())
     private val waiting = ConcurrentHashMap.newKeySet<CancellableContinuation<Unit>>()
 
-
     fun isOnline(name: String) = online.contains(name)
 
     fun login(name: String): Int? {

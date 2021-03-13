@@ -24,7 +24,7 @@ PlayerUnregistered then {
     val session = sessions.get(player)
     if (session != null) {
         session.disconnect()
-        sessions.deregister(session)
+        sessions.deregister(player)
     }
     storage.save(player.name, player)
 }

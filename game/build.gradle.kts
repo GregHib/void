@@ -24,6 +24,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
     testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.3")
 
 }
 tasks.withType<Test> {

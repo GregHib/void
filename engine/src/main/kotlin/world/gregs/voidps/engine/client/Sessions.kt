@@ -16,49 +16,33 @@ val clientSessionModule = module {
 }
 
 class Sessions {
-    val players = mutableMapOf<ClientSession, Player>()
-    val channels = mutableMapOf<Player, ClientSession>()
+    val sessions = mutableMapOf<Player, ClientSession>()
 
     /**
      * Links a client session with a player
      */
     fun register(session: ClientSession, player: Player) {
-        players[session] = player
-        channels[player] = session
+        sessions[player] = session
     }
 
     /**
      * Removes the link between a player an client session.
      */
-    fun deregister(session: ClientSession) {
-        channels.remove(players.remove(session))
-    }
-
-    /**
-     * Returns player for [session]
-     */
-    fun get(session: ClientSession): Player? {
-        return players[session]
+    fun deregister(player: Player) {
+        sessions.remove(player)
     }
 
     /**
      * Returns session for [player]
      */
     fun get(player: Player): ClientSession? {
-        return channels[player]
-    }
-
-    /**
-     * Checks if [session] is linked
-     */
-    fun contains(session: ClientSession): Boolean {
-        return players.containsKey(session)
+        return sessions[player]
     }
 
     /**
      * Checks if [player] is linked
      */
     fun contains(player: Player): Boolean {
-        return channels.containsKey(player)
+        return sessions.containsKey(player)
     }
 }

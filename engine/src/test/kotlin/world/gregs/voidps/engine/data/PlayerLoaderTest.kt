@@ -1,13 +1,12 @@
 package world.gregs.voidps.engine.data
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.verify
-import io.mockk.verifyOrder
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
@@ -24,6 +23,12 @@ internal class PlayerLoaderTest : KoinMock() {
     override val modules = listOf(eventModule, collisionModule, module { single { mockk<ContextMenuOptionEncoder>(relaxed = true) } })
 
 
+    @BeforeEach
+    fun setup() {
+        mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
+        every { any<Player>().name = any() } just Runs
+    }
+
     @Test
     fun `load strategy`() {
         // Given
@@ -31,7 +36,7 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns mockk(relaxed = true)
         val loader = PlayerLoader(mockk(), mockk(), mockk(), mockk(), strategy, mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk())
         // When
-        loader.loadPlayer("test")
+        loader.loadPlayer("test", 0)
         // Then
         verify { strategy.load("test") }
     }
@@ -43,10 +48,10 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns null
         val loader = PlayerLoader(mockk(), mockk(), mockk(), mockk(), strategy, mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk())
         // When
-        val result = loader.loadPlayer("test")
+        val result = loader.loadPlayer("test", 0)
         // Then
         assertEquals(-1, result.id)
-        assertEquals(-1, result.index)
+        assertEquals(0, result.index)
         assertEquals(0, result.tile.x)
         assertEquals(0, result.tile.y)
         assertEquals(0, result.tile.plane)
@@ -65,10 +70,10 @@ internal class PlayerLoaderTest : KoinMock() {
         every { strategy.load("test") } returns null
         val loader = PlayerLoader(mockk(), mockk(), mockk(), mockk(), strategy, mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk(), mockk())
         // When
-        val result = loader.loadPlayer("test")
+        val result = loader.loadPlayer("test", 0)
         // Then
         assertEquals(-1, result.id)
-        assertEquals(-1, result.index)
+        assertEquals(0, result.index)
         assertEquals(100, result.tile.x)
         assertEquals(100, result.tile.y)
         assertEquals(1, result.tile.plane)
