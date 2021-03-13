@@ -2,9 +2,6 @@ package world.gregs.voidps.network.codec
 
 import io.ktor.utils.io.*
 import io.netty.buffer.ByteBuf
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.buffer.write.writeSmart
 import world.gregs.voidps.engine.client.Sessions
@@ -47,15 +44,11 @@ abstract class Encoder(
      * Applies [block] and send [ByteBuf] with fixed [size]
      */
     internal fun ClientSession.send(size: Int, flush: Boolean = true, block: suspend ByteWriteChannel.() -> Unit) {
-        GlobalScope.launch(Dispatchers.IO) {
-
-            write.header(size, cipherOut)
-            block.invoke(write)
-//            if(flush) {
-//                write.flush()
-//            }
-        }
         runBlocking {
+            val channel = ByteChannel()
+            channel.header(size, cipherOut)
+            block.invoke(channel)
+            out.emit(channel)
         }
     }
 

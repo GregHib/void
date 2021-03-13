@@ -1,14 +1,14 @@
 package world.gregs.voidps.network.codec.game.decode
 
-import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.buffer.read.Reader
+import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Decoder
 
 class NPCOption5Decoder : Decoder(3) {
 
-    override fun decode(context: ChannelHandlerContext, packet: Reader) {
+    override fun decode(session: ClientSession, packet: Reader) {
         handler?.npcOption(
-            context,
+            session = session,
             npcIndex = packet.readShortLittle(),
             run = packet.readBooleanAdd(),
             option = 5

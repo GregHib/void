@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.map.nav
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
@@ -45,21 +44,21 @@ class NavigationGraph(
 
         fun load(path: String = "./navgraph.json"): NavigationGraph {
             val file = File(path)
-            val map: Map<String, ArrayList<Map<String, Any>>> = reader.readValue(file)
+//            val map: Map<String, ArrayList<Map<String, Any>>> = reader.readValue(file)
             val adjacencyList = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
-            map.forEach { (key, list) ->
-
-                val set = ObjectOpenHashSet<Edge>()
-                list.forEach {
-                    set.add(Edge(Tile(it["start"] as Int),
-                        Tile(it["end"] as Int),
-                        it["cost"] as? Int ?: -1,
-                        it["actions"] as? List<String> ?: emptyList(),
-                        it["requirements"] as? List<String> ?: emptyList()
-                    ))
-                }
-                adjacencyList[Tile(key.toInt())] = set
-            }
+//            map.forEach { (key, list) ->
+//
+//                val set = ObjectOpenHashSet<Edge>()
+//                list.forEach {
+//                    set.add(Edge(Tile(it["start"] as Int),
+//                        Tile(it["end"] as Int),
+//                        it["cost"] as? Int ?: -1,
+//                        it["actions"] as? List<String> ?: emptyList(),
+//                        it["requirements"] as? List<String> ?: emptyList()
+//                    ))
+//                }
+//                adjacencyList[Tile(key.toInt())] = set
+//            }
             return NavigationGraph(adjacencyList)
         }
     }
