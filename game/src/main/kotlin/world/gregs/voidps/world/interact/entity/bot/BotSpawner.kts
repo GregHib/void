@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
@@ -94,9 +95,11 @@ val bots = mutableListOf<Player>()
 val loginQueue: LoginQueue by inject()
 
 Command where { prefix == "bots" } then {
-    spawnBots(2000)
+    spawnBots(1)
 }
 var counter = 0
+val varrock = Tile(3212, 3428)
+val lumbridge = Rectangle(3221, 3217, 3222, 3220)
 
 fun spawnBots(count: Int) {
     repeat(count) { i ->
@@ -110,7 +113,7 @@ fun spawnBots(count: Int) {
                 bot["context"] = BotContext(bot)
                 scheduler.launch {
                     delay(1)
-                    bot.tele(3212, 3428, 0)
+                    bot.tele(lumbridge)
                     bot.viewport.loaded = true
                     delay(2)
                     bot.action.type = ActionType.None

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -37,6 +38,8 @@ var Player.movementType: PlayerMoveType
 fun Player.tele(tile: Tile) = tele(this.tile.delta(tile))
 
 fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
+
+fun Player.tele(area: Area) = tele(area.random())
 
 fun Player.tele(delta: Delta) {
     action.run(ActionType.Teleport) {
