@@ -4,9 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.sync
-import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceSwitch
@@ -23,9 +23,7 @@ class InterfaceSwitchHandler : Handler() {
     val lookup: InterfaceDetails by inject()
     private val logger = InlineLogger()
 
-    override fun interfaceSwitch(session: ClientSession, toType: Int, fromSlot: Int, fromType: Int, fromHash: Int, toSlot: Int, toHash: Int) {
-        val player = sessions.get(session) ?: return
-
+    override fun interfaceSwitch(player: Player, toType: Int, fromSlot: Int, fromType: Int, fromHash: Int, toSlot: Int, toHash: Int) {
         val fromId = fromHash shr 16
         if (!player.interfaces.contains(fromId)) {
             logger.debug { "Interface $fromId not found for player $player" }

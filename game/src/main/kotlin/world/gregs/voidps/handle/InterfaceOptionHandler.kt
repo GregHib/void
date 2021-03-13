@@ -6,11 +6,11 @@ import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.sync
-import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
@@ -29,9 +29,7 @@ class InterfaceOptionHandler : Handler() {
     val itemDefinitions: ItemDefinitions by inject()
     val logger = InlineLogger()
 
-    override fun interfaceOption(session: ClientSession, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
-        val player = sessions.get(session) ?: return
-
+    override fun interfaceOption(player: Player, hash: Int, itemId: Int, itemSlot: Int, option: Int) {
         val id = hash shr 16
         if (!player.interfaces.contains(id)) {
             logger.info { "Interface $id not found for player $player" }

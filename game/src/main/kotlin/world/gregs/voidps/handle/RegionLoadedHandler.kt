@@ -2,7 +2,7 @@ package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.network.ClientSession
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 
@@ -15,8 +15,7 @@ class RegionLoadedHandler : Handler() {
     val logger = InlineLogger()
     val sessions: Sessions by inject()
 
-    override fun regionLoaded(session: ClientSession) {
-        val player = sessions.get(session) ?: return
+    override fun regionLoaded(player: Player) {
         player.viewport.loaded = true
     }
 

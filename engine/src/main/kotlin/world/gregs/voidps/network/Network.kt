@@ -264,7 +264,7 @@ class Network {
             }
 
             val packet = read.readPacket(size = size)
-            decoder.decode(session, BufferReader(packet.readBytes()))//TODO change session to player?
+            decoder.decode(player, BufferReader(packet.readBytes()))
         }
     }
 

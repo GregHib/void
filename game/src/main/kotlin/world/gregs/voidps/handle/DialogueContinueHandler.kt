@@ -4,9 +4,9 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.sync
-import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.event.ContinueDialogue
@@ -23,8 +23,7 @@ class DialogueContinueHandler : Handler() {
     val decoder: InterfaceDecoder by inject()
     val logger = InlineLogger()
 
-    override fun continueDialogue(session: ClientSession, hash: Int, button: Int) {
-        val player = sessions.get(session) ?: return
+    override fun continueDialogue(player: Player, hash: Int, button: Int) {
         val id = hash shr 16
         val componentId = hash and 0xffff
 

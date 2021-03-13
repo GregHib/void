@@ -1,15 +1,15 @@
 package world.gregs.voidps.network.codec.game.decode
 
 import world.gregs.voidps.buffer.read.Reader
-import world.gregs.voidps.network.ClientSession
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.codec.Decoder
 import world.gregs.voidps.network.packet.PacketSize.BYTE
 
 class FriendChatJoinDecoder : Decoder(BYTE) {
 
-    override fun decode(session: ClientSession, packet: Reader) {
+    override fun decode(player: Player, packet: Reader) {
         handler?.joinFriendsChat(
-            session,
+            player = player,
             packet.readString()
         )
     }

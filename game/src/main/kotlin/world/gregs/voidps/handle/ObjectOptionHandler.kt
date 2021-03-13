@@ -3,12 +3,12 @@ package world.gregs.voidps.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.network.ClientSession
 import world.gregs.voidps.network.codec.Handler
 import world.gregs.voidps.network.codec.game.encode.message
 import world.gregs.voidps.utility.inject
@@ -24,8 +24,7 @@ class ObjectOptionHandler : Handler() {
     val objects: Objects by inject()
     val bus: EventBus by inject()
 
-    override fun objectOption(session: ClientSession, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
-        val player = sessions.get(session) ?: return
+    override fun objectOption(player: Player, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]
         if(target == null) {
