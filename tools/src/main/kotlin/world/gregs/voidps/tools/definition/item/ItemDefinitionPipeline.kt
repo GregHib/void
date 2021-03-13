@@ -48,7 +48,7 @@ object ItemDefinitionPipeline {
     @JvmStatic
     fun main(args: Array<String>) {
 
-        val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescapewiki-latest-pages-articles-2011-08-14.xml")
+        val rs2Wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescape_pages_full\\runescapewiki-latest-pages-articles-2011-01-31.xml")
         val cache718 = CacheDelegate("${System.getProperty("user.home")}\\Downloads\\rs718_cache\\")
         val revisionDate = LocalDate.of(2011, Month.OCTOBER, 4)// 667
 

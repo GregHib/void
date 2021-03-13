@@ -11,7 +11,17 @@ class NPCDefinitionLoader(private val loader: FileLoader, private val decoder: N
         val path = args[0] as String
         val data: Map<String, Map<String, Any>> = loader.load(path)
         val names = data.map { it.value["id"] as Int to it.key }.toMap()
+        val changed = data.mapValues {
+            val copy = data[it.value["copy"]]
+            if (copy != null) {
+                val mut = copy.toMutableMap()
+                mut["id"] = it.value["id"] as Int
+                mut
+            } else {
+                it.value
+            }
+        }
         count = names.size
-        return NPCDefinitions(decoder, data, names)
+        return NPCDefinitions(decoder, changed, names)
     }
 }
