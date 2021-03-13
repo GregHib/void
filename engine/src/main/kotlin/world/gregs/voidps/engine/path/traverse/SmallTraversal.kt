@@ -15,10 +15,13 @@ import world.gregs.voidps.engine.path.TraversalType
  */
 class SmallTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 
-    val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    val extra = if (collidesWithEntities) CollisionFlag.ENTITY else 0
 
     // Motion (land, sky, ignored), entities y/n
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        if (direction == Direction.NONE) {
+            return collisions.check(x, y, plane, direction.block(type, extra))
+        }
         val inverse = direction.inverse()
         if (collisions.check(
                 x + direction.delta.x,
