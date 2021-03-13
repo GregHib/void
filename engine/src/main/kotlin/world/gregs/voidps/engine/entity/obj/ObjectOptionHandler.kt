@@ -1,12 +1,10 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.engine.entity.obj
 
 import com.github.michaelbull.logging.InlineLogger
 import io.netty.channel.ChannelHandlerContext
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.obj.ObjectOption
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.codec.Handler
@@ -23,13 +21,14 @@ class ObjectOptionHandler : Handler() {
     val sessions: Sessions by inject()
     val objects: Objects by inject()
     val bus: EventBus by inject()
+    val stairs: Stairs by inject()
 
     override fun objectOption(context: ChannelHandlerContext, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
         val session = context.channel()
         val player = sessions.get(session) ?: return
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]
-        if(target == null) {
+        if (target == null) {
             logger.warn { "Invalid object $objectId $tile" }
             return
         }
@@ -51,6 +50,7 @@ class ObjectOptionHandler : Handler() {
                 return@walkTo
             }
             val partial = result is PathResult.Partial
+            stairs.option(player, target, selectedOption)
             bus.emit(ObjectOption(player, target, selectedOption, partial))
         }
     }

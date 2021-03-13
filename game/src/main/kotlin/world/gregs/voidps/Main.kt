@@ -29,8 +29,10 @@ import world.gregs.voidps.engine.entity.character.player.logout.logoutModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
+import world.gregs.voidps.engine.entity.obj.ObjectOptionHandler
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
+import world.gregs.voidps.engine.entity.obj.stairsModule
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
@@ -166,7 +168,8 @@ object Main {
                 navModule,
                 customObjectModule,
                 npcLoaderModule,
-                npcSpawnModule
+                npcSpawnModule,
+                stairsModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")
