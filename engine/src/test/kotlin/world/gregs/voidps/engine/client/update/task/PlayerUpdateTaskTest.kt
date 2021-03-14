@@ -26,7 +26,7 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
+import world.gregs.voidps.network.encode.PlayerUpdateEncoder
 import world.gregs.voidps.utility.func.toInt
 
 /**

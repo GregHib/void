@@ -10,11 +10,10 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.inlineValue
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.codec.game.encode.ChunkClearEncoder
-import world.gregs.voidps.network.codec.game.encode.ChunkUpdateEncoder
+import world.gregs.voidps.network.encode.ChunkClearEncoder
+import world.gregs.voidps.network.encode.ChunkUpdateEncoder
 
 internal class ChunkBatcherTest : KoinMock() {
 

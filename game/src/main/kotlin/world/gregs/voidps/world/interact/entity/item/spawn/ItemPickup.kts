@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.codec.game.encode.FloorItemRemoveEncoder
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.FloorItemRemoveEncoder
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 
 val items: FloorItems by inject()

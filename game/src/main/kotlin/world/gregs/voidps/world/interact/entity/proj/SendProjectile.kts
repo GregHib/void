@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.codec.game.encode.ProjectileAddEncoder
+import world.gregs.voidps.network.encode.ProjectileAddEncoder
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 

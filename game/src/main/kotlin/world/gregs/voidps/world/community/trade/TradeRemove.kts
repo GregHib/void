@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry

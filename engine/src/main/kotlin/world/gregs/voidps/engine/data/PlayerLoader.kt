@@ -16,7 +16,7 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.codec.game.encode.*
+import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 

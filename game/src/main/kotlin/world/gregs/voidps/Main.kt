@@ -41,11 +41,7 @@ import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.handle.*
-import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.codec.game.GameCodec
-import world.gregs.voidps.network.codec.game.GameOpcodes
-import world.gregs.voidps.network.codec.game.gameCodec
-import world.gregs.voidps.network.networkCodecs
+import world.gregs.voidps.network.*
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty

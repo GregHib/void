@@ -22,8 +22,8 @@ import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 import world.gregs.voidps.world.community.friend.hasFriend

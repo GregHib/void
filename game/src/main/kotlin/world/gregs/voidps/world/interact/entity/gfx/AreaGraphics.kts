@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.codec.game.encode.GraphicAreaEncoder
+import world.gregs.voidps.network.encode.GraphicAreaEncoder
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 

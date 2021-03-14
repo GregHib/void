@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.TICKS
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.world.community.assist.Assistance.canAssist

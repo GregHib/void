@@ -16,10 +16,10 @@ import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
-import world.gregs.voidps.network.codec.game.encode.FloorItemAddEncoder
-import world.gregs.voidps.network.codec.game.encode.FloorItemRemoveEncoder
-import world.gregs.voidps.network.codec.game.encode.FloorItemRevealEncoder
-import world.gregs.voidps.network.codec.game.encode.FloorItemUpdateEncoder
+import world.gregs.voidps.network.encode.FloorItemAddEncoder
+import world.gregs.voidps.network.encode.FloorItemRemoveEncoder
+import world.gregs.voidps.network.encode.FloorItemRevealEncoder
+import world.gregs.voidps.network.encode.FloorItemUpdateEncoder
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.item.spawn.Drop
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerAction

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.tick.task.EntityTask
-import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
+import world.gregs.voidps.network.encode.NPCUpdateEncoder
 
 /**
  * @author GregHib <greg@gregs.world>

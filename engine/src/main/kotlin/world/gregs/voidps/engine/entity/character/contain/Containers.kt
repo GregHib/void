@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.entity.character.contain
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.network.codec.game.encode.sendContainerItems
-import world.gregs.voidps.network.codec.game.encode.sendInterfaceItemUpdate
+import world.gregs.voidps.network.encode.sendContainerItems
+import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {

@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
-import world.gregs.voidps.network.codec.Handler
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 
 /**

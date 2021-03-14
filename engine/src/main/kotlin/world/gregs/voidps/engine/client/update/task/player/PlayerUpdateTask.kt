@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.tick.task.EntityTask
-import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
+import world.gregs.voidps.network.encode.PlayerUpdateEncoder
 
 /**
  * @author GregHib <greg@gregs.world>

@@ -1,6 +1,5 @@
 package world.gregs.voidps.network
 
-
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
@@ -19,8 +18,6 @@ import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.network.codec.game.GameCodec
-import world.gregs.voidps.network.crypto.IsaacKeyPair
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
 import java.math.BigInteger
@@ -141,7 +138,11 @@ class Network {
         packet.readFully(remaining)
         Xtea.decipher(remaining, isaacKeys)
 
-        val isaacPair = IsaacKeyPair(isaacKeys)
+        val inCipher = IsaacCipher(isaacKeys)
+        for (i in isaacKeys.indices) {
+            isaacKeys[i] += 50
+        }
+        val outCipher = IsaacCipher(isaacKeys)
         packet = ByteReadPacket(remaining)
         val username = packet.readString()
         packet.readUByte()// social login
@@ -190,7 +191,7 @@ class Network {
         val js = packet.readUByte().toInt() == 0
         val hc = packet.readUByte().toInt() == 0
 
-        val session = ClientSession(write, isaacPair.inCipher, isaacPair.outCipher)
+        val session = ClientSession(write, inCipher, outCipher)
         // TODO on disconnect add to logout queue
 
         if (loginQueue.isOnline(username)) {

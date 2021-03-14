@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
+import world.gregs.voidps.network.encode.ContextMenuOptionEncoder
 
 /**
  * @author GregHib <greg@gregs.world>

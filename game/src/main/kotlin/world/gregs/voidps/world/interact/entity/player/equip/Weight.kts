@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.network.codec.game.encode.WeightEncoder
+import world.gregs.voidps.network.encode.WeightEncoder
 import world.gregs.voidps.utility.inject
 
 val definitions: ItemDefinitions by inject()

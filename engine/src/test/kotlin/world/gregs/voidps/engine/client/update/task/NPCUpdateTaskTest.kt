@@ -20,7 +20,7 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
+import world.gregs.voidps.network.encode.NPCUpdateEncoder
 
 /**
  * @author GregHib <greg@gregs.world>

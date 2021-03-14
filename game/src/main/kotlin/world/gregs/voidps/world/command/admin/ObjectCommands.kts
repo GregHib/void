@@ -3,8 +3,8 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.codec.game.encode.ObjectAddEncoder
-import world.gregs.voidps.network.codec.game.encode.ObjectRemoveEncoder
+import world.gregs.voidps.network.encode.ObjectAddEncoder
+import world.gregs.voidps.network.encode.ObjectRemoveEncoder
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 

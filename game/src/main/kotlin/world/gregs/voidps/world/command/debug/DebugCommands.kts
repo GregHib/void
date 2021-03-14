@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.area.Area2D
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.network.codec.game.encode.sendContainerItems
+import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.command.Command
 import kotlin.coroutines.resume

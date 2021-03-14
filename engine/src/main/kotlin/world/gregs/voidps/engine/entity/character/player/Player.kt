@@ -34,7 +34,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.ClientSession
-import world.gregs.voidps.network.codec.game.encode.LogoutEncoder
+import world.gregs.voidps.network.encode.LogoutEncoder
 import world.gregs.voidps.utility.get
 
 /**

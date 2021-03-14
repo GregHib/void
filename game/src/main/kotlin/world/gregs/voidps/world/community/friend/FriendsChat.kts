@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.hasScreenOpen
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 InterfaceOption where { name == "friends_chat" && component == "settings" && option == "Open Settings" } then {

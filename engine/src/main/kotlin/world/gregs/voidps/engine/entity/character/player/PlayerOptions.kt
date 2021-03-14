@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
+import world.gregs.voidps.network.encode.ContextMenuOptionEncoder
 
 class PlayerOptions(
     private val player: Player,

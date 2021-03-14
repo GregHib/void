@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.network.codec.game.encode.DynamicMapRegionEncoder
-import world.gregs.voidps.network.codec.game.encode.MapRegionEncoder
+import world.gregs.voidps.network.encode.DynamicMapRegionEncoder
+import world.gregs.voidps.network.encode.MapRegionEncoder
 import world.gregs.voidps.utility.inject
 import kotlin.math.abs
 

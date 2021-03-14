@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.network.codec.game.encode.ChunkClearEncoder
-import world.gregs.voidps.network.codec.game.encode.ChunkUpdateEncoder
+import world.gregs.voidps.network.encode.ChunkClearEncoder
+import world.gregs.voidps.network.encode.ChunkUpdateEncoder
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 

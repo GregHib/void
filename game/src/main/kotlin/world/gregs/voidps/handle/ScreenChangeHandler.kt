@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.client.ui.isOpen
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.setDisplayMode
-import world.gregs.voidps.network.codec.Handler
+import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
 
 /**

@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.network.codec.game.encode.ObjectAddEncoder
-import world.gregs.voidps.network.codec.game.encode.ObjectRemoveEncoder
+import world.gregs.voidps.network.encode.ObjectAddEncoder
+import world.gregs.voidps.network.encode.ObjectRemoveEncoder
 import world.gregs.voidps.utility.get
 
 val customObjectModule = module {

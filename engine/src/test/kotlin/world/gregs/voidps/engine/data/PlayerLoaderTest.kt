@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.collision.collisionModule
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
+import world.gregs.voidps.network.encode.ContextMenuOptionEncoder
 
 /**
  * @author GregHib <greg@gregs.world>

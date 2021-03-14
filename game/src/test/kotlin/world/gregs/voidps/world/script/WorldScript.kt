@@ -28,7 +28,7 @@ import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
-import world.gregs.voidps.network.codec.game.gameCodec
+import world.gregs.voidps.network.gameCodec
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import java.util.concurrent.Executors

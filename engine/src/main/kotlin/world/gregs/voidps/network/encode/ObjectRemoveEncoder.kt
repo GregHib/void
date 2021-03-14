@@ -1,0 +1,29 @@
+package world.gregs.voidps.network.encode
+
+import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeByteAdd
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.network.Encoder
+import world.gregs.voidps.network.GameOpcodes.OBJECT_REMOVE
+
+/**
+ * @author GregHib <greg@gregs.world>
+ * @since June 27, 2020
+ */
+class ObjectRemoveEncoder : Encoder(OBJECT_REMOVE) {
+
+    /**
+     * @param tile The tile offset from the chunk update send
+     * @param type Object type
+     * @param rotation Object rotation
+     */
+    fun encode(
+        player: Player,
+        tile: Int,
+        type: Int,
+        rotation: Int
+    ) = player.send(2, flush = false) {
+        writeByteAdd((type shl 2) or rotation)
+        writeByte(tile)
+    }
+}
