@@ -33,8 +33,8 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
-import world.gregs.voidps.network.ClientSession
-import world.gregs.voidps.network.encode.LogoutEncoder
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.utility.get
 
 /**
@@ -72,6 +72,8 @@ class Player(
     val experience: Experience = Experience(),
     val levels: Levels = Levels(),
     override val effects: CharacterEffects = CharacterEffects(),
+    @JsonIgnore
+    var client: Client? = null,
 ) : Character {
 
     @JsonIgnore
@@ -113,9 +115,9 @@ class Player(
         options.set(7, "Req Assist")
     }
 
-    fun login(session: ClientSession? = null) {
+    fun login() {
         val bus: EventBus = get()// Temp until player has it's own event bus
-        if (session != null) {
+        if (client != null) {
             bus.emit(RegionLogin(this))
         }
         bus.emit(PlayerRegistered(this))
@@ -128,9 +130,9 @@ class Player(
             await<Unit>(Suspension.Infinite)
         }
         val bus: EventBus = get()// Temp until player has it's own event bus
-        val logoutEncode: LogoutEncoder = get()
         val loginQueue: LoginQueue = get()
-        logoutEncode.encode(this)
+        client?.logout()
+        client?.disconnect()
         loginQueue.logout(name, index)
         bus.emit(Unregistered(this))
         bus.emit(PlayerUnregistered(this))

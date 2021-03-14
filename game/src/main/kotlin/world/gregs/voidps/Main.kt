@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.ui.detail.interfaceModule
 import world.gregs.voidps.engine.client.update.task.npc.*
 import world.gregs.voidps.engine.client.update.task.player.*
@@ -41,7 +40,10 @@ import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.handle.*
-import world.gregs.voidps.network.*
+import world.gregs.voidps.network.GameCodec
+import world.gregs.voidps.network.GameOpcodes
+import world.gregs.voidps.network.Network
+import world.gregs.voidps.network.networkCodecs
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
@@ -126,9 +128,7 @@ object Main {
                 jsonPlayerModule,
                 entityListModule,
                 scriptModule,
-                clientSessionModule,
                 networkCodecs,
-                gameCodec,
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,

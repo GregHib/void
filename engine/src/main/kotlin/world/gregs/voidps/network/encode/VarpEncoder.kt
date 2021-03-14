@@ -1,37 +1,27 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeByte
-import world.gregs.voidps.buffer.write.writeShort
+import io.ktor.utils.io.*
+import world.gregs.voidps.buffer.write.writeIntInverseMiddle
+import world.gregs.voidps.buffer.write.writeShortAdd
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Encoder
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARP
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.network.GameOpcodes.CLIENT_VARP_LARGE
 
 /**
- * @author GregHib <greg@gregs.world>
- * @since July 04, 2020
+ * A variable player config; also known as "Config", known in the client as "clientvarp"
+ * @param id The config id
+ * @param value The value to pass to the config
  */
-class VarpEncoder : Encoder(CLIENT_VARP) {
-
-    /**
-     * A variable player config; also known as "Config", known in the client as "clientvarp"
-     * @param id The config id
-     * @param value The value to pass to the config
-     */
-    fun encode(
-        player: Player,
-        id: Int,
-        value: Int
-    ) = player.send(3) {
-        writeShort(id)
-        writeByte(value)
-    }
-}
-
 fun Player.sendVarp(id: Int, value: Int) {
-    if(value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
-        get<VarpEncoder>().encode(this, id, value)
+    if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
+        client?.send(CLIENT_VARP, 3) {
+            writeShort(id)
+            writeByte(value)
+        }
     } else {
-        get<VarpLargeEncoder>().encode(this, id, value)
+        client?.send(CLIENT_VARP_LARGE, 6) {
+            writeIntInverseMiddle(value)
+            writeShortAdd(id)
+        }
     }
 }

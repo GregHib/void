@@ -14,34 +14,24 @@ import world.gregs.voidps.network.encode.*
  */
 class PlayerInterfaceIO(
     val player: Player,
-    val bus: EventBus,
-    private val openEncoder: InterfaceOpenEncoder,
-    private val updateEncoder: InterfaceUpdateEncoder,
-    private val animationEncoder: InterfaceAnimationEncoder,
-    private val closeEncoder: InterfaceCloseEncoder,
-    private val playerHeadEncoder: InterfaceHeadPlayerEncoder,
-    private val npcHeadEncoder: InterfaceHeadNPCEncoder,
-    private val textEncoder: InterfaceTextEncoder,
-    private val visibleEncoder: InterfaceVisibilityEncoder,
-    private val spriteEncoder: InterfaceSpriteEncoder,
-    private val itemEncoder: InterfaceItemEncoder
+    val bus: EventBus
 ) : InterfaceIO {
 
     override fun sendOpen(inter: InterfaceDetail) {
         val parent = inter.getParent(player.gameFrame.resizable)
         if (parent == -1) {
-            updateEncoder.encode(player, inter.id, 0)
+            player.client?.updateInterface(inter.id, 0)
         } else {
             val index = inter.getIndex(player.gameFrame.resizable)
             val permanent = inter.type != "main_screen" && inter.type != "underlay" && inter.type != "dialogue_box"
-            openEncoder.encode(player, permanent, parent, index, inter.id)
+            player.client?.openInterface(permanent, parent, index, inter.id)
         }
     }
 
     override fun sendClose(inter: InterfaceDetail) {
         val index = inter.getIndex(player.gameFrame.resizable)
         val parent = inter.getParent(player.gameFrame.resizable)
-        closeEncoder.encode(player, parent, index)
+        player.client?.closeInterface(parent, index)
     }
 
     override fun notifyClosed(inter: InterfaceDetail) {
@@ -57,30 +47,30 @@ class PlayerInterfaceIO(
     }
 
     override fun sendPlayerHead(component: InterfaceComponentDetail) {
-        playerHeadEncoder.encode(player, component.parent, component.id)
+        player.client?.playerDialogueHead(component.parent, component.id)
     }
 
     override fun sendAnimation(component: InterfaceComponentDetail, animation: Int) {
-        animationEncoder.encode(player, component.parent, component.id, animation)
+        player.client?.animateInterface(component.parent, component.id, animation)
     }
 
     override fun sendNPCHead(component: InterfaceComponentDetail, npc: Int) {
-        npcHeadEncoder.encode(player, component.parent, component.id, npc)
+        player.client?.npcDialogueHead(component.parent, component.id, npc)
     }
 
     override fun sendText(component: InterfaceComponentDetail, text: String) {
-        textEncoder.encode(player, component.parent, component.id, text)
+        player.client?.interfaceText(component.parent, component.id, text)
     }
 
     override fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean) {
-        visibleEncoder.encode(player, component.parent, component.id, !visible)
+        player.client?.interfaceVisibility(component.parent, component.id, !visible)
     }
 
     override fun sendSprite(component: InterfaceComponentDetail, sprite: Int) {
-        spriteEncoder.encode(player, component.parent, component.id, sprite)
+        player.client?.interfaceSprite(component.parent, component.id, sprite)
     }
 
     override fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int) {
-        itemEncoder.encode(player, component.parent, component.id, item, amount)
+        player.client?.interfaceItem(component.parent, component.id, item, amount)
     }
 }

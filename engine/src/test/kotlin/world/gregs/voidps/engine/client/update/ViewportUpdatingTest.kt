@@ -8,10 +8,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.koin.test.mock.declareMock
-import world.gregs.voidps.engine.anyInlineValue
 import world.gregs.voidps.engine.anyValue
-import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -19,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
-import world.gregs.voidps.engine.inlineValue
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.equals
@@ -34,8 +30,7 @@ internal class ViewportUpdatingTest : KoinMock() {
 
     override val modules = listOf(
         eventModule,
-        entityListModule,
-        clientSessionModule
+        entityListModule
     )
 
     lateinit var task: ViewportUpdating
@@ -56,8 +51,8 @@ internal class ViewportUpdatingTest : KoinMock() {
             }
             every { get(anyValue<Chunk>()) } returns null
         }
-        declareMock<Sessions> {
-            every { contains(player) } returns session
+        every { player.client } answers {
+            if (session) mockk() else null
         }
         // When
         task.run()

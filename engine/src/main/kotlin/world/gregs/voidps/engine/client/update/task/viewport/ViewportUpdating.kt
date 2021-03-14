@@ -4,7 +4,6 @@ import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -21,12 +20,11 @@ class ViewportUpdating : Runnable {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
-    val sessions: Sessions by inject()
 
     override fun run() = runBlocking {
         coroutineScope {
             players.forEach { player ->
-                if (!sessions.contains(player)) {
+                if (player.client == null) {
                     return@forEach
                 }
                 launch(Contexts.Updating) {

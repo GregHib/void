@@ -2,11 +2,7 @@ package world.gregs.voidps.buffer.write
 
 import io.ktor.utils.io.*
 
-suspend fun ByteWriteChannel.writeByte(value: Int) = writeByte(value.toByte())
-
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
-
-suspend fun ByteWriteChannel.writeShort(value: Int) = writeShort(value.toShort())
 
 suspend fun ByteWriteChannel.writeShortAdd(value: Int) {
     writeByte(value shr 8)

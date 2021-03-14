@@ -16,7 +16,8 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.skillLevel
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 
@@ -29,18 +30,7 @@ class PlayerLoader(
     private val interfaces: InterfaceDetails,
     private val collisions: Collisions,
     private val definitions: ContainerDefinitions,
-    strategy: StorageStrategy<Player>,
-    private val levelEncoder: SkillLevelEncoder,
-    private val openEncoder: InterfaceOpenEncoder,
-    private val updateEncoder: InterfaceUpdateEncoder,
-    private val animationEncoder: InterfaceAnimationEncoder,
-    private val closeEncoder: InterfaceCloseEncoder,
-    private val playerHeadEncoder: InterfaceHeadPlayerEncoder,
-    private val npcHeadEncoder: InterfaceHeadNPCEncoder,
-    private val textEncoder: InterfaceTextEncoder,
-    private val visibleEncoder: InterfaceVisibilityEncoder,
-    private val spriteEncoder: InterfaceSpriteEncoder,
-    private val itemEncoder: InterfaceItemEncoder
+    strategy: StorageStrategy<Player>
 ) : DataLoader<Player>(strategy) {
 
     private val x = getIntProperty("homeX", 0)
@@ -49,18 +39,19 @@ class PlayerLoader(
     private val tile = Tile(x, y, plane)
     private val small = SmallTraversal(TraversalType.Land, false, get())
 
-    fun loadPlayer(name: String, index: Int): Player {
+    fun loadPlayer(name: String, index: Int, client: Client? = null): Player {
         val player = super.load(name) ?: Player(id = -1, tile = tile)
         player.index = index
-        val interfaceIO = PlayerInterfaceIO(player, bus, openEncoder, updateEncoder, animationEncoder, closeEncoder, playerHeadEncoder, npcHeadEncoder, textEncoder, visibleEncoder, spriteEncoder, itemEncoder)
+        player.client = client
+        val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)
-        player.options = PlayerOptions(player, get())
+        player.options = PlayerOptions(player)
         player.name = name
         player.start()
         player.experience.addListener { skill, _, experience ->
             val level = player.levels.get(skill)
-            levelEncoder.encode(player, skill.ordinal, level, experience.toInt())
+            player.client?.skillLevel(skill.ordinal, level, experience.toInt())
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)
@@ -70,5 +61,5 @@ class PlayerLoader(
 }
 
 val playerLoaderModule = module {
-    single { PlayerLoader(get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get(), get()) }
+    single { PlayerLoader(get(), get(), get(), get(), get()) }
 }

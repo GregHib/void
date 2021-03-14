@@ -9,12 +9,10 @@ import kotlinx.coroutines.*
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeMedium
-import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
@@ -27,8 +25,11 @@ import java.util.concurrent.Executors
 class Network {
 
     private val logger = InlineLogger()
-    private val exceptionHandler = CoroutineExceptionHandler { context, throwable ->
-        logger.warn { "${throwable.message} $context" }
+    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+        if (throwable.message?.startsWith("EOF") == true) {
+            return@CoroutineExceptionHandler
+        }
+        logger.warn { throwable.message }
     }
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
@@ -95,7 +96,7 @@ class Network {
         var packet = packet
         val version = packet.readInt()
         if (version != 634) {
-            write.writeByte(UPDATED)
+            write.writeByte(GameUpdate)
             write.close()
             return
         }
@@ -103,7 +104,7 @@ class Network {
         val rsaBlockSize = packet.readShort().toInt() and 0xffff
         if (rsaBlockSize > packet.remaining) {
             logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${packet.remaining}" }
-            write.writeByte(BAD_SESSION)
+            write.writeByte(BadSessionId)
             write.close()
             return
         }
@@ -114,7 +115,7 @@ class Network {
         val sessionId = rsaBuffer.readUnsignedByte()
         if (sessionId != 10) {//rsa block start check
             logger.debug { "Bad session id received ($sessionId)" }
-            write.writeByte(BAD_SESSION)
+            write.writeByte(BadSessionId)
             write.close()
             return
         }
@@ -127,7 +128,7 @@ class Network {
         val passBlock = rsaBuffer.readLong()
         if (passBlock != 0L) {//password should start here (marked by 0L)
             logger.info { "Rsa start marked by 0L was not true ($passBlock)" }
-            write.writeByte(BAD_SESSION)
+            write.writeByte(BadSessionId)
             write.close()
             return
         }
@@ -191,38 +192,38 @@ class Network {
         val js = packet.readUByte().toInt() == 0
         val hc = packet.readUByte().toInt() == 0
 
-        val session = ClientSession(write, inCipher, outCipher)
+        val client = Client(write, inCipher, outCipher)
         // TODO on disconnect add to logout queue
 
         if (loginQueue.isOnline(username)) {
-            write.writeByte(ACCOUNT_ONLINE)
+            write.writeByte(AccountOnline)
             write.close()
             return
         }
 
         val index = loginQueue.login(username)
         if (index == null) {
-            write.writeByte(WORLD_FULL)
+            write.writeByte(WorldFull)
             loginQueue.logout(username, index)
             write.close()
             return
         }
         val player = try {
-            val account = loader.loadPlayer(username, index)
+            val account = loader.loadPlayer(username, index, client)
             logger.info { "Player $username loaded and queued for login." }
             loginQueue.await()
             account
         } catch (e: IllegalStateException) {
-            write.writeByte(COULD_NOT_COMPLETE_LOGIN)
+            write.writeByte(CouldNotCompleteLogin)
             loginQueue.logout(username, index)
             write.close()
             return
         }
 
         write.apply {
-            writeByte(SUCCESS)
+            writeByte(Success)
             val rights = 2
-            writeByte(14 + username.length)
+            writeByte(13 + string(username))
             writeByte(rights)
             writeByte(0)// Unknown - something to do with skipping chat messages
             writeByte(0)
@@ -236,22 +237,18 @@ class Network {
             writeString(username)
         }
         withContext(Contexts.Game) {
-            sessions.register(session, player)
             player.gameFrame.width = screenWidth
             player.gameFrame.height = screenHeight
             player.gameFrame.displayMode = displayMode
             logger.info { "Player spawned $username index $index." }
-            player.login(session)
+            player.login()
         }
-        readPackets(session, read, player, username, index)
+        readPackets(client, read, player)
     }
 
-
-    val sessions: Sessions by inject()
-
-    suspend fun readPackets(session: ClientSession, read: ByteReadChannel, player: Player, username: String, index: Int) {
+    suspend fun readPackets(client: Client, read: ByteReadChannel, player: Player) {
         while (true) {
-            val cipher = session.cipherIn.nextInt()
+            val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
             val decoder = game.getDecoder(opcode)
             if (decoder == null) {
@@ -302,15 +299,30 @@ class Network {
         private const val LOGIN = 16
         private const val RECONNECT = 18
 
-        private const val UPDATED = 6
-        private const val BAD_SESSION = 10
-        private const val SUCCESS = 2
-
         private const val ACCEPT_SESSION = 0
         private const val REJECT_SESSION = 0// Wrong?
 
-        private const val ACCOUNT_ONLINE = 5
-        private const val COULD_NOT_COMPLETE_LOGIN = 13
-        private const val WORLD_FULL = 7
+
+        // Login responses
+        private const val DataChange = 0
+        private const val VideoAd = 1
+        private const val Success = 2
+        private const val InvalidCredentials = 3
+        private const val AccountDisabled = 4
+        private const val AccountOnline = 5
+        private const val GameUpdate = 6
+        private const val WorldFull = 7
+        private const val LoginServerOffline = 8
+        private const val LoginLimitExceeded = 9
+        private const val BadSessionId = 10
+        private const val LoginServerRejectedSession = 11
+        private const val MembersAccountRequired = 12
+        private const val CouldNotCompleteLogin = 13
+        private const val ServerBeingUpdated = 14
+        private const val Reconnecting = 15
+        private const val LoginAttemptsExceeded = 16
+        private const val MembersOnlyArea = 17
+        private const val InvalidLoginServer = 20
+        private const val TransferringProfile = 21
     }
 }

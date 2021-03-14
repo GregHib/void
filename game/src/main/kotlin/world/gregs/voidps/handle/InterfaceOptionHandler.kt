@@ -2,7 +2,6 @@ package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
@@ -21,7 +20,6 @@ import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
  */
 class InterfaceOptionHandler : Handler() {
 
-    val sessions: Sessions by inject()
     val bus: EventBus by inject()
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()

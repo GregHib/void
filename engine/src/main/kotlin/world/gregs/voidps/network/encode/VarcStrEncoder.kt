@@ -3,32 +3,18 @@ package world.gregs.voidps.network.encode
 import world.gregs.voidps.buffer.write.writeShortAddLittle
 import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Encoder
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARC_STR
 import world.gregs.voidps.network.PacketSize
-import world.gregs.voidps.utility.get
+import world.gregs.voidps.network.string
 
 /**
- * @author GregHib <greg@gregs.world>
- * @since July 04, 2020
+ * Client variable; also known as "GlobalString"
+ * @param id The config id
+ * @param value The value to pass to the config
  */
-class VarcStrEncoder : Encoder(CLIENT_VARC_STR, PacketSize.SHORT) {
-
-    /**
-     * Client variable; also known as "GlobalString"
-     * @param id The config id
-     * @param value The value to pass to the config
-     */
-    fun encode(
-        player: Player,
-        id: Int,
-        value: String
-    ) = player.send(2 + string(value)) {
+fun Player.sendVarcStr(id: Int, value: String) {
+    client?.send(CLIENT_VARC_STR, 2 + string(value), PacketSize.SHORT) {
         writeShortAddLittle(id)
         writeString(value)
     }
-}
-
-fun Player.sendVarcStr(id: Int, value: String) {
-    get<VarcStrEncoder>().encode(this, id, value)
 }

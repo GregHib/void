@@ -9,10 +9,6 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.command.Command
 
 val details: InterfaceDetails by inject()
-val closeEncoder: InterfaceCloseEncoder by inject()
-val openEncoder: InterfaceOpenEncoder by inject()
-val visibleEncoder: InterfaceVisibilityEncoder by inject()
-val settingsEncoder: InterfaceSettingsEncoder by inject()
 
 Command where { prefix == "inter" } then {
     val id = content.toIntOrNull()
@@ -28,9 +24,9 @@ Command where { prefix == "inter" } then {
             index = inter.getIndex(player.gameFrame.resizable)
         }
         if (id == -1) {
-            closeEncoder.encode(player, parent, index)
+            player.client?.closeInterface(parent, index)
         } else {
-            openEncoder.encode(player, false, parent, index, id)
+            player.client?.openInterface(false, parent, index, id)
         }
     }
 }
@@ -42,7 +38,7 @@ fun closeInterface(player: Player): Boolean {
 
 Command where { prefix == "show" } then {
     val parts = content.split(" ")
-    visibleEncoder.encode(player, parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
+    player.client?.interfaceVisibility(parts[0].toInt(), parts[1].toInt(), !parts[2].toBoolean())
 }
 
 Command where { prefix == "sendItem" } then {
@@ -54,7 +50,7 @@ Command where { prefix == "setting" } then {
     val parts = content.split(" ")
     val remainder = parts.subList(4, parts.size).map { it.toIntOrNull() }.requireNoNulls().toIntArray()
     player.message("Settings sent ${remainder.toList()}", ChatType.Console)
-    settingsEncoder.encode(player, parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
+    player.sendInterfaceSettings(parts[0].toInt(), parts[1].toInt(), parts[2].toInt(), parts[3].toInt(), getHash(*remainder))
 }
 
 Command where { prefix == "script" } then {

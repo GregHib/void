@@ -7,13 +7,8 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.network.encode.WeightEncoder
-import world.gregs.voidps.utility.inject
-
-val definitions: ItemDefinitions by inject()
-val weightEncoder: WeightEncoder by inject()
+import world.gregs.voidps.network.encode.weight
 
 PlayerRegistered then {
     updateWeight(player)
@@ -41,5 +36,5 @@ fun updateWeight(player: Player) {
     weight += player.inventory.weight()
 
     player["weight", true] = weight
-    weightEncoder.encode(player, weight.toInt())
+    player.client?.weight(weight.toInt())
 }

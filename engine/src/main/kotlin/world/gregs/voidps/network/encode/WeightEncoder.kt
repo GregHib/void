@@ -1,23 +1,14 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeShort
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Encoder
+import io.ktor.utils.io.*
+import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.GameOpcodes.PLAYER_WEIGHT
 
 /**
- * @author GregHib <greg@gregs.world>
- * @since September 13, 2020
+ * Updates player weight for equipment screen
  */
-class WeightEncoder : Encoder(PLAYER_WEIGHT) {
-
-    /**
-     * Updates player weight for equipment screen
-     */
-    fun encode(
-        player: Player,
-        weight: Int
-    ) = player.send(2) {
-        writeShort(weight)
-    }
+fun Client.weight(
+    weight: Int
+) = send(PLAYER_WEIGHT, 2) {
+    writeShort(weight)
 }

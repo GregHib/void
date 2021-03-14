@@ -1,7 +1,6 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -22,7 +21,6 @@ import world.gregs.voidps.utility.inject
 class PlayerOptionHandler : Handler() {
 
     val logger = InlineLogger()
-    val sessions: Sessions by inject()
     val players: Players by inject()
     val bus: EventBus by inject()
 

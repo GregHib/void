@@ -1,33 +1,24 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeByte
+import io.ktor.utils.io.*
 import world.gregs.voidps.buffer.write.writeMedium
-import world.gregs.voidps.buffer.write.writeShort
 import world.gregs.voidps.buffer.write.writeString
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Encoder
+import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.GameOpcodes.TILE_TEXT
 import world.gregs.voidps.network.PacketSize
+import world.gregs.voidps.network.string
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since June 27, 2020
- */
-class TextTileEncoder : Encoder(TILE_TEXT, PacketSize.BYTE) {
-
-    fun encode(
-        player: Player,
-        tile: Int,
-        duration: Int,
-        height: Int,
-        color: Int,
-        text: String
-    ) = player.send(8 + string(text)) {
-        writeByte(0)
-        writeByte(tile)
-        writeShort(duration)
-        writeByte(height)
-        writeMedium(color)
-        writeString(text)
-    }
+fun Client.tileText(
+    tile: Int,
+    duration: Int,
+    height: Int,
+    color: Int,
+    text: String
+) = send(TILE_TEXT, 8 + string(text), PacketSize.BYTE) {
+    writeByte(0)
+    writeByte(tile)
+    writeShort(duration)
+    writeByte(height)
+    writeMedium(color)
+    writeString(text)
 }

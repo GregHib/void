@@ -1,29 +1,13 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeByte
+import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Encoder
 import world.gregs.voidps.network.GameOpcodes.RUN_ENERGY
-import world.gregs.voidps.utility.get
 
 /**
- * @author GregHib <greg@gregs.world>
- * @since July 27, 2020
+ * Sends run energy
+ * @param energy The current energy value
  */
-class RunEnergyEncoder : Encoder(RUN_ENERGY) {
-
-    /**
-     * Sends run energy
-     * @param energy The current energy value
-     */
-    fun encode(
-        player: Player,
-        energy: Int
-    ) = player.send(1) {
-        writeByte(energy)
-    }
-}
-
-fun Player.sendRunEnergy(energy: Int) {
-    get<RunEnergyEncoder>().encode(this, energy)
+fun Player.sendRunEnergy(energy: Int) = client?.send(RUN_ENERGY, 1) {
+    writeByte(energy)
 }

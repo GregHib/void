@@ -2,7 +2,6 @@ package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
@@ -17,7 +16,6 @@ import world.gregs.voidps.world.interact.dialogue.event.ContinueDialogue
  */
 class DialogueContinueHandler : Handler() {
 
-    val sessions: Sessions by inject()
     val bus: EventBus by inject()
     val lookup: InterfaceDetails by inject()
     val decoder: InterfaceDecoder by inject()

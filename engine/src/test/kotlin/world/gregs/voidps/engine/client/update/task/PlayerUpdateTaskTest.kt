@@ -10,8 +10,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.engine.anyValue
-import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.player.PlayerUpdateTask
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
@@ -26,7 +24,8 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.encode.PlayerUpdateEncoder
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.utility.func.toInt
 
 /**
@@ -37,20 +36,15 @@ internal class PlayerUpdateTaskTest : KoinMock() {
 
     lateinit var task: PlayerUpdateTask
     lateinit var players: Players
-    lateinit var sessions: Sessions
-    lateinit var encoder: PlayerUpdateEncoder
     override val modules = listOf(
         eventModule,
-        entityListModule,
-        clientSessionModule
+        entityListModule
     )
 
     @BeforeEach
     fun setup() {
         players = mockk()
-        sessions = mockk()
-        encoder = mockk(relaxed = true)
-        task = spyk(PlayerUpdateTask(players, sessions, encoder))
+        task = spyk(PlayerUpdateTask(players))
     }
 
     @Test
@@ -62,12 +56,16 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             block.invoke(player)
         }
         every { players.getAtIndex(any()).hint(Player::class) } returns null
-        every { sessions.contains(player) } returns true
+        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        every { client.updatePlayers(any(), any()) } just Runs
         // When
         task.run()
         // Then
         coVerify {
             task.runAsync(player)
+            client.updatePlayers(any(), any())
         }
     }
 
@@ -83,7 +81,7 @@ internal class PlayerUpdateTaskTest : KoinMock() {
             hint(Player::class)
             players.getAtIndex(any())
         } returns null
-        every { sessions.contains(player) } returns false
+        every { player.client } returns null
         // When
         task.run()
         // Then
@@ -100,7 +98,10 @@ internal class PlayerUpdateTaskTest : KoinMock() {
         val entities = mockk<PlayerTrackingSet>(relaxed = true)
         every { player.viewport } returns viewport
         every { viewport.players } returns entities
-        every { sessions.contains(player) } returns true
+        mockkStatic("world.gregs.voidps.network.encode.PlayerUpdateEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        every { client.updatePlayers(any(), any()) } just Runs
         every { task.processLocals(any(), any(), any(), any(), any()) } just Runs
         every { task.processGlobals(any(), any(), any(), any(), any()) } just Runs
         // When

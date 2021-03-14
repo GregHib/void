@@ -1,7 +1,6 @@
 package world.gregs.voidps.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -21,7 +20,6 @@ import world.gregs.voidps.utility.inject
 class NPCOptionHandler : Handler() {
 
     val logger = InlineLogger()
-    val sessions: Sessions by inject()
     val npcs: NPCs by inject()
     val bus: EventBus by inject()
 

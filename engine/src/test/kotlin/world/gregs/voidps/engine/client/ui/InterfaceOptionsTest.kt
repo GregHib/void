@@ -37,7 +37,7 @@ internal class InterfaceOptionsTest {
         val component = InterfaceComponentDetail(0, comp, parent = 5, container = "container", primaryContainer = false, options = staticOptions)
         every { details.getComponent(name, any()) } returns InterfaceComponentDetail(-1, "")
         every { details.getComponent(name, comp) } returns component
-        mockkStatic("world.gregs.voidps.network.encode.InterfaceSettingsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
         mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs

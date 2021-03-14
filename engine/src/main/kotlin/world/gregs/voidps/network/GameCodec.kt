@@ -1,59 +1,6 @@
 package world.gregs.voidps.network
 
-import org.koin.dsl.module
 import world.gregs.voidps.network.decode.*
-import world.gregs.voidps.network.encode.*
-
-val gameCodec = module {
-    single { ChatEncoder() }
-    single { ChunkClearEncoder() }
-    single { ChunkUpdateEncoder() }
-    single { ContainerItemsEncoder() }
-    single { ContextMenuOptionEncoder() }
-    single { DynamicMapRegionEncoder() }
-    single { FloorItemAddEncoder() }
-    single { FloorItemRemoveEncoder() }
-    single { FloorItemRevealEncoder() }
-    single { FloorItemUpdateEncoder() }
-    single { GraphicAreaEncoder() }
-    single { InterfaceCloseEncoder() }
-    single { InterfaceColourEncoder() }
-    single { InterfaceHeadNPCEncoder() }
-    single { InterfaceHeadPlayerEncoder() }
-    single { InterfaceItemEncoder() }
-    single { InterfaceItemUpdateEncoder() }
-    single { InterfaceAnimationEncoder() }
-    single { InterfaceOpenEncoder() }
-    single { InterfaceSettingsEncoder() }
-    single { InterfaceSpriteEncoder() }
-    single { InterfaceTextEncoder() }
-    single { InterfaceUpdateEncoder() }
-    single { InterfaceVisibilityEncoder() }
-    single { LogoutEncoder() }
-    single { MapRegionEncoder() }
-    single { NPCUpdateEncoder() }
-    single { ObjectAddEncoder() }
-    single { ObjectAnimationEncoder() }
-    single { ObjectAnimationSpecificEncoder() }
-    single { ObjectPreloadEncoder() }
-    single { ObjectRemoveEncoder() }
-    single { PlayerUpdateEncoder() }
-    single { ProjectileAddEncoder() }
-    single { ProjectileHalfSquareEncoder() }
-    single { RunEnergyEncoder() }
-    single { ScriptEncoder() }
-    single { SkillLevelEncoder() }
-    single { SoundAreaEncoder() }
-    single { TextTileEncoder() }
-    single { VarbitLargeEncoder() }
-    single { VarbitEncoder() }
-    single { VarcLargeEncoder() }
-    single { VarcEncoder() }
-    single { VarcStrEncoder() }
-    single { VarpLargeEncoder() }
-    single { VarpEncoder() }
-    single { WeightEncoder() }
-}
 
 class GameCodec {
 

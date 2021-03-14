@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.encode.GraphicAreaEncoder
+import world.gregs.voidps.network.encode.addAreaGraphic
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
@@ -18,7 +18,6 @@ val graphics: Graphics by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
-val encoder: GraphicAreaEncoder by inject()
 
 SpawnGraphic then {
     val ag = AreaGraphic(tile, Graphic(id, delay, height, rotation, forceRefresh), owner)
@@ -47,7 +46,7 @@ fun decay(ag: AreaGraphic) {
     }
 }
 
-fun AreaGraphic.toMessage(): (Player) -> Unit = { player -> encoder.encode(player, tile.offset(), graphic.id, graphic.height, graphic.delay, graphic.rotation) }
+fun AreaGraphic.toMessage(): (Player) -> Unit = { player -> player.client?.addAreaGraphic(tile.offset(), graphic.id, graphic.height, graphic.delay, graphic.rotation) }
 
 batcher.addInitial { player, chunk, messages ->
     graphics[chunk].forEach {

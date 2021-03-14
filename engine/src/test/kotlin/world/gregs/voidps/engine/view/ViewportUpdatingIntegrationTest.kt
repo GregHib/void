@@ -7,9 +7,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.koin.test.get
-import org.koin.test.mock.declareMock
-import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -29,8 +26,7 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     override val modules = listOf(
         eventModule,
-        entityListModule,
-        clientSessionModule
+        entityListModule
     )
 
     lateinit var task: ViewportUpdating
@@ -59,11 +55,6 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
                 }
                 every { player.tile } returns value(Tile(x, y, 0))
                 players.add(player)
-            }
-        }
-        declareMock<Sessions> {
-            every { contains(any<Player>()) } answers {
-                arg<Player>(0) == client
             }
         }
         // When
@@ -97,11 +88,6 @@ internal class ViewportUpdatingIntegrationTest : KoinMock() {
                 }
                 every { player.tile } returns value(Tile(x, y, 0))
                 players.add(player)
-            }
-        }
-        declareMock<Sessions> {
-            every { contains(any<Player>()) } answers {
-                arg<Player>(0) == client
             }
         }
         // When
