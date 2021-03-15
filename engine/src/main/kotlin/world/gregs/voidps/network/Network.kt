@@ -24,7 +24,8 @@ import java.util.concurrent.Executors
 
 @ExperimentalUnsignedTypes
 class Network(
-    private val codec: NetworkCodec
+    private val codec: NetworkCodec,
+    private val revision: Int
 ) {
 
     private val logger = InlineLogger()
@@ -68,9 +69,7 @@ class Network(
         val opcode = read.readByte().toInt()
         if (opcode != SYNCHRONISE) {
             logger.trace { "Invalid sync session id: $opcode" }
-            write.writeByte(REJECT_SESSION)
-            write.flush()
-            write.close()
+            write.finish(REJECT_SESSION)
             return
         }
 
@@ -82,129 +81,118 @@ class Network(
         val opcode = read.readByte().toInt()
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
-            write.writeByte(REJECT_SESSION)
-            write.flush()
-            write.close()
+            write.finish(REJECT_SESSION)
             return
         }
         val size = read.readShort().toInt()
-        val packet = read.readPacket(size)
-
-        read(read, packet, write)
+        val array = ByteArray(size)
+        val packet = ByteReadPacket(array)
+        validateClient(read, packet, write)
     }
 
-    suspend fun read(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
+    suspend fun validateClient(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
         val version = packet.readInt()
-        if (version != 634) {
-            write.writeByte(GameUpdate)
-            write.flush()
-            write.close()
+        if (version != revision) {
+            write.finish(GameUpdate)
             return
         }
 
+        val rsa = decryptRSA(packet)
+        validateSession(read, rsa, packet, write)
+    }
+
+    private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
         val rsaBlockSize = packet.readShort().toInt() and 0xffff
-        if (rsaBlockSize > packet.remaining) {
-            logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${packet.remaining}" }
-            write.writeByte(BadSessionId)
-            write.flush()
-            write.close()
-            return
-        }
-        val data = ByteArray(rsaBlockSize)
-        packet.readFully(data)
+        val data = packet.readBytes(rsaBlockSize)
         val rsa = RSA.crypt(data, loginRSAModulus, loginRSAPrivate)
-        val rsaBuffer = BufferReader(rsa)
-        val sessionId = rsaBuffer.readUnsignedByte()
-        if (sessionId != 10) {//rsa block start check
-            logger.debug { "Bad session id received ($sessionId)" }
-            write.writeByte(BadSessionId)
-            write.flush()
-            write.close()
+        return ByteReadPacket(rsa)
+    }
+
+    suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel) {
+        val sessionId = rsa.readUByte().toInt()
+        if (sessionId != 10) {
+            logger.debug { "Bad session id $sessionId" }
+            write.finish(BadSessionId)
             return
         }
 
         val isaacKeys = IntArray(4)
         for (i in isaacKeys.indices) {
-            isaacKeys[i] = rsaBuffer.readInt()
+            isaacKeys[i] = rsa.readInt()
         }
 
-        val passBlock = rsaBuffer.readLong()
-        if (passBlock != 0L) {//password should start here (marked by 0L)
-            logger.info { "Rsa start marked by 0L was not true ($passBlock)" }
-            write.writeByte(BadSessionId)
-            write.flush()
-            write.close()
+        val passwordMarker = rsa.readLong()
+        if (passwordMarker != 0L) {
+            logger.info { "Incorrect password marker $passwordMarker" }
+            write.finish(BadSessionId)
             return
         }
-        val password: String = rsaBuffer.readString()
-        val serverSeed = rsaBuffer.readLong()
-        val clientSeed = rsaBuffer.readLong()
-        val remaining = ByteArray(packet.remaining.toInt())
-        packet.readFully(remaining)
-        Xtea.decipher(remaining, isaacKeys)
+        val password: String = rsa.readString()
+        val xtea = decryptXtea(packet, isaacKeys)
 
+        val username = xtea.readString()
+        xtea.readUByte()// social login
+        val displayMode = xtea.readUByte().toInt()
+        val client = createClient(write, isaacKeys)
+        login(read, write, client, username, password, displayMode)
+    }
+
+    private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray): Client {
         val inCipher = IsaacCipher(isaacKeys)
         for (i in isaacKeys.indices) {
             isaacKeys[i] += 50
         }
         val outCipher = IsaacCipher(isaacKeys)
-        val login = ByteReadPacket(remaining)
-        val username = login.readString()
-        login.readUByte()// social login
-        val displayMode = login.readUByte().toInt()
-        val screenWidth = login.readUShort().toInt()
-        val screenHeight = login.readUShort().toInt()
-
-        val client = Client(write, inCipher, outCipher)
-        connect(read, write, client, username, password, 0, 0, displayMode)
+        return Client(write, inCipher, outCipher)
     }
 
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, password: String, screenWidth: Int, screenHeight: Int, displayMode: Int) {
+    private fun decryptXtea(packet: ByteReadPacket, isaacKeys: IntArray): ByteReadPacket {
+        val remaining = packet.readBytes(packet.remaining.toInt())
+        Xtea.decipher(remaining, isaacKeys)
+        return ByteReadPacket(remaining)
+    }
+
+    suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, password: String, displayMode: Int) {
         if (loginQueue.isOnline(username)) {
-            write.writeByte(AccountOnline)
-            write.flush()
-            write.close()
+            write.finish(AccountOnline)
             return
         }
         val index = loginQueue.login(username)
         if (index == null) {
             loginQueue.logout(username, index)
-            write.writeByte(WorldFull)
-            write.flush()
-            write.close()
+            write.finish(WorldFull)
             return
         }
+
         val player = loadPlayer(write, username, password, index) ?: return
-        write.apply {
-            writeByte(Success)
-            val rights = 2
-            writeByte(13 + string(username))
-            writeByte(rights)
-            writeByte(0)// Unknown - something to do with skipping chat messages
-            writeByte(0)
-            writeByte(0)
-            writeByte(0)
-            writeByte(0)// Moves chat box position
-            writeShort(index)
-            writeByte(true)
-            writeMedium(0)
-            writeByte(true)
-            writeString(username)
-            flush()
-        }
+        write.sendLoginDetails(username, index, 2)
         withContext(Contexts.Game) {
-            player.gameFrame.width = screenWidth
-            player.gameFrame.height = screenHeight
             player.gameFrame.displayMode = displayMode
-            logger.info { "Player spawned $username index $index." }
+            logger.info { "Player logged in $username index $index." }
             player.login(client)
         }
-
         try {
             readPackets(client, read, player)
         } finally {
             client.exit()
         }
+    }
+
+    private suspend fun ByteWriteChannel.sendLoginDetails(username: String, index: Int, rights: Int) {
+        writeByte(Success)
+        writeByte(13 + string(username))
+        writeByte(rights)
+        writeByte(0)// Unknown - something to do with skipping chat messages
+        writeByte(0)
+        writeByte(0)
+        writeByte(0)
+        writeByte(0)// Moves chat box position
+        writeShort(index)
+        writeByte(true)
+        writeMedium(0)
+        writeByte(true)
+        writeString(username)
+        flush()
     }
 
     suspend fun loadPlayer(write: ByteWriteChannel, username: String, password: String, index: Int): Player? {
@@ -214,9 +202,7 @@ class Network(
                 account = createNewAccount(username, password)
             } else if (account.passwordHash.isBlank() || !BCrypt.checkpw(password, account.passwordHash)) {
                 loginQueue.logout(username, index)
-                write.writeByte(InvalidCredentials)
-                write.flush()
-                write.close()
+                write.finish(InvalidCredentials)
                 return null
             }
             loader.initPlayer(account, index)
@@ -225,9 +211,7 @@ class Network(
             return account
         } catch (e: IllegalStateException) {
             loginQueue.logout(username, index)
-            write.writeByte(CouldNotCompleteLogin)
-            write.flush()
-            write.close()
+            write.finish(CouldNotCompleteLogin)
             return null
         }
     }
@@ -269,6 +253,12 @@ class Network(
     fun shutdown() {
         running = false
         dispatcher.close()
+    }
+
+    private suspend fun ByteWriteChannel.finish(value: Int) {
+        writeByte(value)
+        flush()
+        close()
     }
 
     companion object {

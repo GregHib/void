@@ -14,9 +14,6 @@ class ScreenChangeHandler : Handler() {
 
     override fun changeScreen(player: Player, displayMode: Int, width: Int, height: Int, antialiasLevel: Int) {
         delay {
-            player.gameFrame.width = width
-            player.gameFrame.height = height
-
             if (player.gameFrame.displayMode == displayMode || !player.isOpen("graphics_options")) {
                 return@delay
             }
