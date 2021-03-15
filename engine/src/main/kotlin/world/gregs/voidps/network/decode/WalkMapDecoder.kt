@@ -11,7 +11,7 @@ class WalkMapDecoder : Decoder(5) {
             player = player,
             y = packet.readShortLittle(),
             running = packet.readBooleanAdd(),
-            x = packet.readShortAdd()
+            x = packet.readUnsignedShortAdd()
         )
     }
 

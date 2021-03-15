@@ -11,7 +11,7 @@ class WalkMiniMapDecoder : Decoder(18) {
             player = player,
             y = packet.readShortLittle(),
             running = packet.readBooleanAdd(),
-            x = packet.readShortAdd()
+            x = packet.readUnsignedShortAdd()
         )
         packet.readByte()//-1
         packet.readByte()//-1

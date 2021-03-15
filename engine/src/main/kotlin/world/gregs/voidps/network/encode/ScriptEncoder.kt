@@ -14,6 +14,11 @@ import world.gregs.voidps.network.string
 fun Player.sendScript(
     id: Int,
     vararg params: Any
+) = sendScript(id, params.toList())
+
+fun Player.sendScript(
+    id: Int,
+    params: List<Any>
 ) {
     client?.send(SCRIPT, getLength(params), PacketSize.SHORT) {
         val types = StringBuilder()
@@ -32,7 +37,7 @@ fun Player.sendScript(
     }
 }
 
-private fun getLength(vararg params: Any): Int {
+private fun getLength(params: List<Any>): Int {
     var count = 4
     count += params.size + 1
     count += params.sumBy { if (it is String) string(it) else if (it is Int) 4 else 0 }

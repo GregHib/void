@@ -1,14 +1,17 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.*
+import world.gregs.voidps.buffer.write.writeByte
+import world.gregs.voidps.buffer.write.writeByteAdd
+import world.gregs.voidps.buffer.write.writeIntMiddle
+import world.gregs.voidps.buffer.write.writeShortAdd
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.GameOpcodes.INTERFACE_ITEMS
 import world.gregs.voidps.network.PacketSize.SHORT
 
 /**
  * Sends a list of items to display on a interface item group component
- * @param key The id of the container
+ * @param container The id of the container
  * @param items List of the item ids to display
  * @param amounts List of the item amounts to display
  * @param primary Optional to send to the primary or secondary container

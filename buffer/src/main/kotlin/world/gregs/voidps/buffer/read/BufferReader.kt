@@ -39,6 +39,10 @@ class BufferReader(
         return (readByte() shl 8) or readUnsignedByteAdd()
     }
 
+    override fun readUnsignedShortAdd(): Int {
+        return (readByte() shl 8) or ((readByte() - 128) and 0xff)
+    }
+
     override fun readShortLittle(): Int {
         return readUnsignedByte() or (readByte() shl 8)
     }
@@ -48,7 +52,7 @@ class BufferReader(
     }
 
     override fun readUnsignedByteAdd(): Int {
-        return (readUnsignedByte() - 128).toByte().toInt()
+        return (readByte() - 128).toByte().toInt()
     }
 
     override fun readUnsignedShort(): Int {

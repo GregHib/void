@@ -37,8 +37,8 @@ Command where { prefix == "bank" } then {
         player.bank.add(995, 1000)
         player.bank.add(4151, 1)
         player.bank.add(11694, 1)
-        player.sendContainer("bank")
     }
+    player.sendContainer("bank")
 }
 
 InterfaceOpened where { name == "bank" } then {
