@@ -26,9 +26,6 @@ class Network {
 
     private val logger = InlineLogger()
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        if (throwable.message?.startsWith("EOF") == true) {
-            return@CoroutineExceptionHandler
-        }
         logger.warn { throwable.message }
     }
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
@@ -52,7 +49,7 @@ class Network {
                 val socket = server.accept()
                 logger.trace { "New connection accepted $socket" }
                 val read = socket.openReadChannel()
-                val write = socket.openWriteChannel(autoFlush = true)
+                val write = socket.openWriteChannel(autoFlush = false)
                 launch(Dispatchers.IO) {
                     connect(read, write)
                 }
@@ -71,11 +68,13 @@ class Network {
         if (opcode != SYNCHRONISE) {
             logger.trace { "Invalid sync session id: $opcode" }
             write.writeByte(REJECT_SESSION)
+            write.flush()
             write.close()
             return
         }
 
         write.writeByte(ACCEPT_SESSION)
+        write.flush()
     }
 
     suspend fun login(read: ByteReadChannel, write: ByteWriteChannel) {
@@ -83,6 +82,7 @@ class Network {
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
             write.writeByte(REJECT_SESSION)
+            write.flush()
             write.close()
             return
         }
@@ -97,6 +97,7 @@ class Network {
         val version = packet.readInt()
         if (version != 634) {
             write.writeByte(GameUpdate)
+            write.flush()
             write.close()
             return
         }
@@ -105,6 +106,7 @@ class Network {
         if (rsaBlockSize > packet.remaining) {
             logger.debug { "Received bad rsa block size [size=$rsaBlockSize, readable=${packet.remaining}" }
             write.writeByte(BadSessionId)
+            write.flush()
             write.close()
             return
         }
@@ -116,6 +118,7 @@ class Network {
         if (sessionId != 10) {//rsa block start check
             logger.debug { "Bad session id received ($sessionId)" }
             write.writeByte(BadSessionId)
+            write.flush()
             write.close()
             return
         }
@@ -129,6 +132,7 @@ class Network {
         if (passBlock != 0L) {//password should start here (marked by 0L)
             logger.info { "Rsa start marked by 0L was not true ($passBlock)" }
             write.writeByte(BadSessionId)
+            write.flush()
             write.close()
             return
         }
@@ -193,29 +197,34 @@ class Network {
         val hc = packet.readUByte().toInt() == 0
 
         val client = Client(write, inCipher, outCipher)
-        // TODO on disconnect add to logout queue
+        connect(read, write, client, username, screenWidth, screenHeight, displayMode)
+    }
 
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, screenWidth: Int, screenHeight: Int, displayMode: Int) {
         if (loginQueue.isOnline(username)) {
             write.writeByte(AccountOnline)
+            write.flush()
             write.close()
             return
         }
 
         val index = loginQueue.login(username)
         if (index == null) {
-            write.writeByte(WorldFull)
             loginQueue.logout(username, index)
+            write.writeByte(WorldFull)
+            write.flush()
             write.close()
             return
         }
         val player = try {
-            val account = loader.loadPlayer(username, index, client)
+            val account = loader.loadPlayer(username, index)
             logger.info { "Player $username loaded and queued for login." }
             loginQueue.await()
             account
         } catch (e: IllegalStateException) {
-            write.writeByte(CouldNotCompleteLogin)
             loginQueue.logout(username, index)
+            write.writeByte(CouldNotCompleteLogin)
+            write.flush()
             write.close()
             return
         }
@@ -235,15 +244,21 @@ class Network {
             writeMedium(0)
             writeByte(true)
             writeString(username)
+            flush()
         }
         withContext(Contexts.Game) {
             player.gameFrame.width = screenWidth
             player.gameFrame.height = screenHeight
             player.gameFrame.displayMode = displayMode
             logger.info { "Player spawned $username index $index." }
-            player.login()
+            player.login(client)
         }
-        readPackets(client, read, player)
+
+        try {
+            readPackets(client, read, player)
+        } finally {
+            client.exit()
+        }
     }
 
     suspend fun readPackets(client: Client, read: ByteReadChannel, player: Player) {

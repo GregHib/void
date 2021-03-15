@@ -1,32 +1,51 @@
 package world.gregs.voidps.network
 
+import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.buffer.write.writeSmart
 
 data class Client(
-    val write: ByteWriteChannel,
+    private val write: ByteWriteChannel,
     val cipherIn: IsaacCipher,
-    val cipherOut: IsaacCipher?
+    private val cipherOut: IsaacCipher?
 ) {
 
+    var exit: (() -> Unit)? = null
     private var connected = true
+    private val logger = InlineLogger()
+    val handler = CoroutineExceptionHandler { _, throwable ->
+        logger.warn { throwable.message }
+        disconnect()
+    }
 
     fun disconnect() {
+        if (!connected) {
+            return
+        }
+        write.flush()
         write.close()
         connected = false
     }
 
-    fun flush() {
+    fun exit() {
+        exit?.invoke() ?: disconnect()
+    }
 
+    fun flush() {
+        if (!connected) {
+            return
+        }
+        write.flush()
     }
 
     fun send(opcode: Int, size: Int, type: Int = PacketSize.FIXED, block: suspend ByteWriteChannel.() -> Unit) {
         if (!connected) {
             return
         }
-        runBlocking(Dispatchers.IO) {
+        runBlocking(Dispatchers.IO + handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)
         }

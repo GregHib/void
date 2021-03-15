@@ -115,8 +115,12 @@ class Player(
         options.set(7, "Req Assist")
     }
 
-    fun login() {
+    fun login(client: Client? = null) {
         val bus: EventBus = get()// Temp until player has it's own event bus
+        this.client = client
+        client?.exit = {
+            logout(false)
+        }
         if (client != null) {
             bus.emit(RegionLogin(this))
         }
@@ -125,13 +129,15 @@ class Player(
         bus.emit(Registered(this))
     }
 
-    fun logout() {
+    fun logout(safely: Boolean) {
         action.run(ActionType.Logout) {
             await<Unit>(Suspension.Infinite)
         }
         val bus: EventBus = get()// Temp until player has it's own event bus
         val loginQueue: LoginQueue = get()
-        client?.logout()
+        if (safely) {
+            client?.logout()
+        }
         client?.disconnect()
         loginQueue.logout(name, index)
         bus.emit(Unregistered(this))

@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.FollowTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.skillLevel
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
@@ -39,10 +38,9 @@ class PlayerLoader(
     private val tile = Tile(x, y, plane)
     private val small = SmallTraversal(TraversalType.Land, false, get())
 
-    fun loadPlayer(name: String, index: Int, client: Client? = null): Player {
+    fun loadPlayer(name: String, index: Int): Player {
         val player = super.load(name) ?: Player(id = -1, tile = tile)
         player.index = index
-        player.client = client
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)

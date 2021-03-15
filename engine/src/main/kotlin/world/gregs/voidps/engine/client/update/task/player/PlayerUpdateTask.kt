@@ -39,6 +39,7 @@ class PlayerUpdateTask(
         processGlobals(writer, updates, players, viewport, false)
 
         player.client?.updatePlayers(writer, updates)
+        player.client?.flush()
     }
 
     fun processLocals(

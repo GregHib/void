@@ -10,5 +10,5 @@ InterfaceOption where { name == player.gameFrame.name && component == "logout" &
 }
 
 InterfaceOption where { name == "logout" && (component == "lobby" || component == "login") && option == "*" } then {
-    player.logout()
+    player.logout(true)
 }
