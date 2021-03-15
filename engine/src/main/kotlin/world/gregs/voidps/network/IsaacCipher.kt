@@ -1,132 +1,112 @@
 package world.gregs.voidps.network
 
 /**
+ * An implementation of an ISAAC cipher. See
+ * [http://en.wikipedia.org/wiki/ISAAC_(cipher)](http://en.wikipedia.org/wiki/ISAAC_(cipher)) for more information.
  *
- *  An implementation of an ISAAC cipher. See [
- * http://en.wikipedia.org/wiki/ISAAC_(cipher)](http://en.wikipedia.org/wiki/ISAAC_(cipher)) for more information.
- *
- *  This implementation is based on the one written by Bob Jenkins, which is
- * available at [
- * http://www.burtleburtle.net/bob/java/rand/Rand.java](http://www.burtleburtle.net/bob/java/rand/Rand.java).
- * @author Graham Edgecombe
+ * This implementation is based on the one written by Bob Jenkins, which is
+ * available at [http://www.burtleburtle.net/bob/java/rand/Rand.java](http://www.burtleburtle.net/bob/java/rand/Rand.java).
+ * @author Graham
  */
-
 class IsaacCipher(seed : IntArray) {
-	/**
-	 * The count through the results.
-	 */
-	private var count = 0
-	
-	/**
-	 * The results.
-	 */
+	private var resultCount = 0
 	private val results = IntArray(SIZE)
 	
 	/**
 	 * The internal memory state.
 	 */
 	private val memory = IntArray(SIZE)
-	
-	/**
-	 * The accumulator.
-	 */
-	private var a = 0
-	
-	/**
-	 * The last result.
-	 */
-	private var b = 0
-	
-	/**
-	 * The counter.
-	 */
-	private var c = 0
-	
-	val seed : IntArray
-	
-	/**
-	 * Gets the next value.
-	 * @return The next value.
-	 */
-	fun nextInt() : Int {
-		if (count-- == 0) {
-			isaac()
-			count = SIZE - 1
+
+	private var accumulator = 0
+	private var lastResult = 0
+	private var counter = 0
+	private val seed : IntArray
+
+	init {
+		for (i in seed.indices) {
+			results[i] = seed[i]
 		}
-		return results[count]
+		init(true)
+		this.seed = seed
+	}
+
+	fun nextInt() : Int {
+		if (resultCount-- == 0) {
+			isaac()
+			resultCount = SIZE - 1
+		}
+		return results[resultCount]
 	}
 	
 	/**
 	 * Generates 256 results.
 	 */
 	fun isaac() {
-		var i : Int
-		var j : Int
 		var x : Int
 		var y : Int
-		b += ++c
-		i = 0
-		j = SIZE / 2
+		lastResult += ++counter
+		var i = 0
+		var j = SIZE / 2
 		while (i < SIZE / 2) {
 			x = memory[i]
-			a = a xor (a shl 13)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator shl 13)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a ushr 6)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator ushr 6)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a shl 2)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator shl 2)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a ushr 16)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator ushr 16)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 		}
 		j = 0
 		while (j < SIZE / 2) {
 			x = memory[i]
-			a = a xor (a shl 13)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator shl 13)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a ushr 6)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator ushr 6)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a shl 2)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator shl 2)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 			x = memory[i]
-			a = a xor (a ushr 16)
-			a += memory[j++]
-			y = memory[x and MASK shr 2] + a + b
+			accumulator = accumulator xor (accumulator ushr 16)
+			accumulator += memory[j++]
+			y = memory[x and MASK shr 2] + accumulator + lastResult
 			memory[i] = y
-			b = memory[y shr SIZE_LOG and MASK shr 2] + x
-			results[i++] = b
+			lastResult = memory[y shr SIZE_LOG and MASK shr 2] + x
+			results[i++] = lastResult
 		}
 	}
 	
@@ -144,7 +124,7 @@ class IsaacCipher(seed : IntArray) {
 		var f : Int
 		var g : Int
 		var h : Int
-		h = RATIO
+		h = GOLDEN_RATIO
 		g = h
 		f = g
 		e = f
@@ -273,14 +253,11 @@ class IsaacCipher(seed : IntArray) {
 			}
 		}
 		isaac()
-		count = SIZE
+		resultCount = SIZE
 	}
 	
 	companion object {
-		/**
-		 * The golden ratio.
-		 */
-		const val RATIO = -0x61c88647
+		const val GOLDEN_RATIO = -0x61c88647
 		
 		/**
 		 * The log of the size of the results and memory arrays.
@@ -296,17 +273,5 @@ class IsaacCipher(seed : IntArray) {
 		 * For pseudorandom lookup.
 		 */
 		const val MASK = SIZE - 1 shl 2
-	}
-	
-	/**
-	 * Creates the ISAAC cipher.
-	 * @param seed The seed.
-	 */
-	init {
-		for (i in seed.indices) {
-			results[i] = seed[i]
-		}
-		init(true)
-		this.seed = seed
 	}
 }
