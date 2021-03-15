@@ -1,12 +1,8 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.writeMedium
-import world.gregs.voidps.buffer.write.writeString
-import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.*
 import world.gregs.voidps.network.GameOpcodes.TILE_TEXT
-import world.gregs.voidps.network.PacketSize
-import world.gregs.voidps.network.string
 
 fun Client.tileText(
     tile: Int,

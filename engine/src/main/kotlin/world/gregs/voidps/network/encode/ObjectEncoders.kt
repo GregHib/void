@@ -1,12 +1,10 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.*
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes
+import world.gregs.voidps.network.*
 import world.gregs.voidps.network.GameOpcodes.OBJECT_ADD
 import world.gregs.voidps.utility.get
 

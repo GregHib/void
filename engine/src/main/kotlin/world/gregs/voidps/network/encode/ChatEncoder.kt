@@ -1,14 +1,14 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.writeSmart
-import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.network.GameOpcodes.CHAT
 import world.gregs.voidps.network.PacketSize.BYTE
 import world.gregs.voidps.network.smart
 import world.gregs.voidps.network.string
+import world.gregs.voidps.network.writeSmart
+import world.gregs.voidps.network.writeString
 
 /**
  * A chat box message to display

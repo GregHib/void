@@ -1,12 +1,12 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeByteAdd
-import world.gregs.voidps.buffer.write.writeIntInverseMiddle
-import world.gregs.voidps.buffer.write.writeShortAdd
-import world.gregs.voidps.buffer.write.writeShortLittle
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARBIT
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARBIT_LARGE
+import world.gregs.voidps.network.writeByteAdd
+import world.gregs.voidps.network.writeIntInverseMiddle
+import world.gregs.voidps.network.writeShortAdd
+import world.gregs.voidps.network.writeShortLittle
 
 /**
  * A variable bit; also known as "ConfigFile", known in the client as "clientvarpbit"

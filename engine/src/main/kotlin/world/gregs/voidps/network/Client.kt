@@ -5,7 +5,6 @@ import io.ktor.utils.io.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.buffer.write.writeSmart
 
 data class Client(
     private val write: ByteWriteChannel,

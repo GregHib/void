@@ -1,6 +1,9 @@
-package world.gregs.voidps.buffer.write
+package world.gregs.voidps.network
 
 import io.ktor.utils.io.*
+import io.ktor.utils.io.core.*
+import world.gregs.voidps.buffer.write.BufferWriter
+import kotlin.text.toByteArray
 
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
 
@@ -124,4 +127,17 @@ suspend fun ByteWriteChannel.bitAccess(block: BitAccessor.() -> Unit) {
     val accessor = BitAccessor()
     block.invoke(accessor)
     accessor.write(this)
+}
+
+fun ByteReadPacket.readString(): String {
+    val sb = StringBuilder()
+    var b: Int
+    while (remaining > 0) {
+        b = readByte().toInt()
+        if (b == 0) {
+            break
+        }
+        sb.append(b.toChar())
+    }
+    return sb.toString()
 }

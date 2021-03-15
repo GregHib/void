@@ -1,13 +1,9 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.*
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes
+import world.gregs.voidps.network.*
 import world.gregs.voidps.network.GameOpcodes.REGION
-import world.gregs.voidps.network.PacketSize
 import world.gregs.voidps.network.PacketSize.SHORT
-import world.gregs.voidps.network.bits
 
 fun Client.mapRegion(
     chunkX: Int,

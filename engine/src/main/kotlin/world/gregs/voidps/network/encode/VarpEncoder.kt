@@ -1,11 +1,11 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.writeIntInverseMiddle
-import world.gregs.voidps.buffer.write.writeShortAdd
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARP
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARP_LARGE
+import world.gregs.voidps.network.writeIntInverseMiddle
+import world.gregs.voidps.network.writeShortAdd
 
 /**
  * A variable player config; also known as "Config", known in the client as "clientvarp"

@@ -8,9 +8,6 @@ import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.buffer.read.BufferReader
-import world.gregs.voidps.buffer.write.writeByte
-import world.gregs.voidps.buffer.write.writeMedium
-import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.action.Contexts
@@ -96,7 +93,6 @@ class Network {
     }
 
     suspend fun read(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
-        var packet = packet
         val version = packet.readInt()
         if (version != 634) {
             write.writeByte(GameUpdate)
@@ -151,56 +147,15 @@ class Network {
             isaacKeys[i] += 50
         }
         val outCipher = IsaacCipher(isaacKeys)
-        packet = ByteReadPacket(remaining)
-        val username = packet.readString()
-        packet.readUByte()// social login
-        val displayMode = packet.readUByte().toInt()
-        val screenWidth = packet.readUShort().toInt()
-        val screenHeight = packet.readUShort().toInt()
-        val antialiasLevel = packet.readUByte().toInt()
-        packet.skip(24)// graphics preferences
-        val settings = packet.readString()
-        val affiliateId = packet.readInt()
-        packet.skip(packet.readUByte().toInt())// useless settings
-        val sessionId2 = packet.readUByte().toInt()
-
-        val os = packet.readUByte().toInt()
-        val is64Bit = packet.readUByte().toInt()
-        val versionType = packet.readUByte().toInt()
-        val vendorType = packet.readUByte().toInt()
-        val javaRelease = packet.readUByte().toInt()
-        val javaVersion = packet.readUByte().toInt()
-        val javaUpdate = packet.readUByte().toInt()
-        val isUnsigned = packet.readUByte().toInt()
-        val heapSize = packet.readShort().toInt()
-        val processorCount = packet.readUByte().toInt()
-        val totalMemory = packet.readUMedium()
-        packet.readShort()
-        packet.readUByte()
-        packet.readUByte()
-        packet.readUByte()
-        packet.readByte()
-        packet.readString()
-        packet.readByte()
-        packet.readString()
-        packet.readByte()
-        packet.readString()
-        packet.readByte()
-        packet.readString()
-        packet.readUByte()
-        packet.readShort()
-        val unknown3 = packet.readInt()
-        val userFlow = packet.readLong()
-        val hasAdditionalInformation = packet.readUByte().toInt() == 0
-        if (hasAdditionalInformation) {
-            val additionalInformation = packet.readString()
-        }
-        val hasJagtheora = packet.readUByte().toInt() == 0
-        val js = packet.readUByte().toInt() == 0
-        val hc = packet.readUByte().toInt() == 0
+        val login = ByteReadPacket(remaining)
+        val username = login.readString()
+        login.readUByte()// social login
+        val displayMode = login.readUByte().toInt()
+        val screenWidth = login.readUShort().toInt()
+        val screenHeight = login.readUShort().toInt()
 
         val client = Client(write, inCipher, outCipher)
-        connect(read, write, client, username, password, screenWidth, screenHeight, displayMode)
+        connect(read, write, client, username, password, 0, 0, displayMode)
     }
 
     suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, password: String, screenWidth: Int, screenHeight: Int, displayMode: Int) {
@@ -306,24 +261,6 @@ class Network {
     }
 
     private suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff
-
-    fun ByteReadPacket.readString(): String {
-        val sb = StringBuilder()
-        var b: Int
-        while (remaining > 0) {
-            b = readByte().toInt()
-            if (b == 0) {
-                break
-            }
-            sb.append(b.toChar())
-        }
-        return sb.toString()
-//        readUTF8UntilDelimiter(0.toChar().toString())
-    }
-
-    fun ByteReadPacket.skip(count: Int) = readBytes(count)
-
-    fun ByteReadPacket.readUMedium() = (readUByte().toInt() shl 16) or (readUByte().toInt() shl 8) or readUByte().toInt()
 
     private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
     private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)

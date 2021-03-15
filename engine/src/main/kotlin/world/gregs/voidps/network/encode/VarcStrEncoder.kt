@@ -1,11 +1,11 @@
 package world.gregs.voidps.network.encode
 
-import world.gregs.voidps.buffer.write.writeShortAddLittle
-import world.gregs.voidps.buffer.write.writeString
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.GameOpcodes.CLIENT_VARC_STR
 import world.gregs.voidps.network.PacketSize
 import world.gregs.voidps.network.string
+import world.gregs.voidps.network.writeShortAddLittle
+import world.gregs.voidps.network.writeString
 
 /**
  * Client variable; also known as "GlobalString"

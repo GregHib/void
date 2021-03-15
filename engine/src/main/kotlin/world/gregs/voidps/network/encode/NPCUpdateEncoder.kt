@@ -1,10 +1,10 @@
 package world.gregs.voidps.network.encode
 
 import world.gregs.voidps.buffer.write.BufferWriter
-import world.gregs.voidps.buffer.write.writeBytes
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.GameOpcodes.NPC_UPDATING
 import world.gregs.voidps.network.PacketSize
+import world.gregs.voidps.network.writeBytes
 
 fun Client.updateNPCs(
     changes: BufferWriter,
