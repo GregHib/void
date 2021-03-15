@@ -13,6 +13,8 @@ internal data class PlayerBuilder(
     val experience: Experience,
     val levels: Levels,
     val effects: CharacterEffects,
+    val name: String,
+    val passwordHash: String,
 ) {
     data class WorldTile(val x: Int, val y: Int, val plane: Int = 0)
 
@@ -21,6 +23,8 @@ internal data class PlayerBuilder(
         containers = containers,
         experience = experience,
         levels = levels,
-        effects = effects
+        effects = effects,
+        name = name,
+        passwordHash = passwordHash
     )
 }

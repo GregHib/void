@@ -6,6 +6,7 @@ import io.ktor.network.sockets.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
+import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.write.writeByte
 import world.gregs.voidps.buffer.write.writeMedium
@@ -16,6 +17,8 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
 import java.math.BigInteger
@@ -197,17 +200,16 @@ class Network {
         val hc = packet.readUByte().toInt() == 0
 
         val client = Client(write, inCipher, outCipher)
-        connect(read, write, client, username, screenWidth, screenHeight, displayMode)
+        connect(read, write, client, username, password, screenWidth, screenHeight, displayMode)
     }
 
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, screenWidth: Int, screenHeight: Int, displayMode: Int) {
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, client: Client, username: String, password: String, screenWidth: Int, screenHeight: Int, displayMode: Int) {
         if (loginQueue.isOnline(username)) {
             write.writeByte(AccountOnline)
             write.flush()
             write.close()
             return
         }
-
         val index = loginQueue.login(username)
         if (index == null) {
             loginQueue.logout(username, index)
@@ -216,19 +218,7 @@ class Network {
             write.close()
             return
         }
-        val player = try {
-            val account = loader.loadPlayer(username, index)
-            logger.info { "Player $username loaded and queued for login." }
-            loginQueue.await()
-            account
-        } catch (e: IllegalStateException) {
-            loginQueue.logout(username, index)
-            write.writeByte(CouldNotCompleteLogin)
-            write.flush()
-            write.close()
-            return
-        }
-
+        val player = loadPlayer(write, username, password, index) ?: return
         write.apply {
             writeByte(Success)
             val rights = 2
@@ -259,6 +249,40 @@ class Network {
         } finally {
             client.exit()
         }
+    }
+
+    suspend fun loadPlayer(write: ByteWriteChannel, username: String, password: String, index: Int): Player? {
+        try {
+            var account = loader.load(username)
+            if (account == null) {
+                account = createNewAccount(username, password)
+            } else if (account.passwordHash.isBlank() || !BCrypt.checkpw(password, account.passwordHash)) {
+                loginQueue.logout(username, index)
+                write.writeByte(InvalidCredentials)
+                write.flush()
+                write.close()
+                return null
+            }
+            loader.initPlayer(account, index)
+            logger.info { "Player $username loaded and queued for login." }
+            loginQueue.await()
+            return account
+        } catch (e: IllegalStateException) {
+            loginQueue.logout(username, index)
+            write.writeByte(CouldNotCompleteLogin)
+            write.flush()
+            write.close()
+            return null
+        }
+    }
+
+    fun createNewAccount(username: String, password: String): Player {
+        val hash = BCrypt.hashpw(password, BCrypt.gensalt())
+        val x = getIntProperty("homeX", 0)
+        val y = getIntProperty("homeY", 0)
+        val plane = getIntProperty("homePlane", 0)
+        val tile = Tile(x, y, plane)
+        return Player(id = -1, tile = tile, name = username, passwordHash = hash)
     }
 
     suspend fun readPackets(client: Client, read: ByteReadChannel, player: Player) {

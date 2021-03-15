@@ -17,6 +17,7 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jacksonVersion")}")
 
     implementation("org.koin:koin-core:${findProperty("koinVersion")}")
+    implementation("org.mindrot:jbcrypt:${findProperty("jbcryptVersion")}")
 
     implementation("org.koin:koin-logger-slf4j:${findProperty("koinVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")

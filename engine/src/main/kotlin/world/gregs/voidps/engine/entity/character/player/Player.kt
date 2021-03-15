@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.RegionLogin
@@ -74,6 +73,8 @@ class Player(
     override val effects: CharacterEffects = CharacterEffects(),
     @JsonIgnore
     var client: Client? = null,
+    var name: String = "",
+    var passwordHash: String = ""
 ) : Character {
 
     @JsonIgnore

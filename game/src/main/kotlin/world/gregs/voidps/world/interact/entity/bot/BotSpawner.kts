@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.interact.entity.bot
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
@@ -15,7 +12,6 @@ import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
@@ -56,7 +52,7 @@ val decideTarget = SimpleBotOption(
     ),
     weight = 0.2,
     action = {
-        val target = graph.tiles.keys.random()
+        val target = graph.tiles.keys.randomOrNull() ?: return@SimpleBotOption
         val strategy = object : NodeTargetStrategy() {
             override fun reached(node: Any): Boolean {
                 return node == target
@@ -99,25 +95,32 @@ Command where { prefix == "bots" } then {
 var counter = 0
 
 fun spawnBots(count: Int) {
-    repeat(count) {
-        GlobalScope.launch {
-            val name = "Bot ${++counter}"
-            val index = loginQueue.login(name)!!
-            val bot = loader.loadPlayer(name, index)
-            loginQueue.await()
-            bot.login()
+    GlobalScope.launch {
+        for (i in 0 until count step 20) {
+            repeat(20) {
+                GlobalScope.launch {
+                    val name = "Bot ${++counter}"
+                    val index = loginQueue.login(name)!!
+                    val bot = Player(index = index, tile = Tile(3212, 3428, 0), name = name)
+                    loader.initPlayer(bot, index)
+                    loginQueue.await()
+                    bot.login()
 
-            bot["context"] = BotContext(bot)
-            scheduler.launch {
-                delay(1)
-                bot.tele(3212, 3428, 0)
-                bot.viewport.loaded = true
-                delay(2)
-                bot.action.type = ActionType.None
-                bots.add(bot)
+                    bot["context"] = BotContext(bot)
+                    scheduler.launch {
+                        delay(1)
+//                bot.tele(3212, 3428, 0)
+                        bot.viewport.loaded = true
+                        delay(2)
+                        bot.action.type = ActionType.None
+                        bots.add(bot)
+                    }
+                }
             }
+            delay(1)
         }
     }
+
 }
 
 Tick then {
