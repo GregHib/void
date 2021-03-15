@@ -133,3 +133,5 @@ fun ByteReadPacket.readString(): String {
     }
     return sb.toString()
 }
+
+suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff

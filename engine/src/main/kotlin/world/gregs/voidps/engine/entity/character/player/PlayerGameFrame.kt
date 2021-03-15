@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player
 
 data class PlayerGameFrame(
-    var displayMode: Int = 0,
-    var width: Int = 0,
-    var height: Int = 0
+    var displayMode: Int = 0
 ) {
     var resizable: Boolean
         get() = displayMode == RESIZABLE_SCREEN || displayMode == FULL_SCREEN

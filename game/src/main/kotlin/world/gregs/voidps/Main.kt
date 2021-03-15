@@ -63,7 +63,7 @@ object Main {
         val startTime = System.currentTimeMillis()
         preload()
         val codec = registerGameHandlers()
-        val server = Network(codec)
+        val server = Network(codec, 634)
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 

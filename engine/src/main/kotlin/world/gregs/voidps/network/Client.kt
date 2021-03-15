@@ -15,7 +15,7 @@ data class Client(
     var exit: (() -> Unit)? = null
     private var connected = true
     private val logger = InlineLogger()
-    val handler = CoroutineExceptionHandler { _, throwable ->
+    private val handler = CoroutineExceptionHandler { _, throwable ->
         logger.warn { throwable.message }
         disconnect()
     }
@@ -82,8 +82,6 @@ data class Client(
 
         fun string(value: String?) = (value?.length ?: 0) + 1
 
-        fun bits(bitCount: Int): Int {
-            return (bitCount + 7) / 8
-        }
+        fun bits(bitCount: Int) = (bitCount + 7) / 8
     }
 }
