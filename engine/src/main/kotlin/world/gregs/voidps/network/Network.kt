@@ -22,7 +22,9 @@ import java.math.BigInteger
 import java.util.concurrent.Executors
 
 @ExperimentalUnsignedTypes
-class Network {
+class Network(
+    private val codec: NetworkCodec
+) {
 
     private val logger = InlineLogger()
     private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
@@ -32,8 +34,6 @@ class Network {
     private var running = false
     private val loginQueue: LoginQueue by inject()
     private val loader: PlayerLoader by inject()
-
-    private val game: GameCodec by inject()
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
@@ -244,7 +244,7 @@ class Network {
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
-            val decoder = game.getDecoder(opcode)
+            val decoder = codec.getDecoder(opcode)
             if (decoder == null) {
                 logger.error { "Unable to identify length of packet $opcode" }
                 return

@@ -44,6 +44,7 @@ data class Client(
         if (!connected) {
             return
         }
+
         runBlocking(Dispatchers.IO + handler) {
             write.header(opcode, type, size, cipherOut)
             block.invoke(write)

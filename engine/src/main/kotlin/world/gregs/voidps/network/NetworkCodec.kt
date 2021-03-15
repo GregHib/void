@@ -2,7 +2,7 @@ package world.gregs.voidps.network
 
 import world.gregs.voidps.network.decode.*
 
-class GameCodec {
+class NetworkCodec {
 
     val decoders: Map<Int, Decoder> = mapOf(
         13 to emptyDecoder(2),
@@ -128,11 +128,11 @@ class GameCodec {
         decoder.handler = handler
     }
 
-    companion object {
-        private fun emptyDecoder(length: Int) = object : Decoder(length) {}
-    }
-
     fun getDecoder(opcode: Int): Decoder? {
         return decoders[opcode]
+    }
+
+    companion object {
+        private fun emptyDecoder(length: Int) = object : Decoder(length) {}
     }
 }

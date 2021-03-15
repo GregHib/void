@@ -40,10 +40,9 @@ import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.handle.*
-import world.gregs.voidps.network.GameCodec
 import world.gregs.voidps.network.GameOpcodes
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.networkCodecs
+import world.gregs.voidps.network.NetworkCodec
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
@@ -63,8 +62,8 @@ object Main {
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
         preload()
-
-        val server = Network()
+        val codec = registerGameHandlers()
+        val server = Network(codec)
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
@@ -128,7 +127,6 @@ object Main {
                 jsonPlayerModule,
                 entityListModule,
                 scriptModule,
-                networkCodecs,
                 playerLoaderModule,
                 xteaModule,
                 visualUpdatingModule,
@@ -154,11 +152,10 @@ object Main {
             fileProperties("/game.properties")
             fileProperties("/private.properties")
         }
-        registerGameHandlers()
     }
 
-    private fun registerGameHandlers() {
-        val game: GameCodec = get()
+    private fun registerGameHandlers(): NetworkCodec {
+        val game = NetworkCodec()
         game.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandHandler())
         game.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueHandler())
         game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionHandler())
@@ -202,5 +199,6 @@ object Main {
         game.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryHandler())
         game.registerHandler(GameOpcodes.WALK, WalkMapHandler())
         game.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapHandler())
+        return game
     }
 }

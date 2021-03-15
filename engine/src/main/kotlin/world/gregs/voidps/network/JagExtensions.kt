@@ -7,15 +7,24 @@ import kotlin.text.toByteArray
 
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
 
+suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
+
+suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (value) 1 else 0)
+
+suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
+
+suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
+
+suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByte(if (value) 1 else 0)
+
+suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 128)
+
 suspend fun ByteWriteChannel.writeShortAdd(value: Int) {
     writeByte(value shr 8)
     writeByteAdd(value)
 }
 
-suspend fun ByteWriteChannel.writeShortLittle(value: Int) {
-    writeByte(value)
-    writeByte(value shr 8)
-}
+suspend fun ByteWriteChannel.writeShortLittle(value: Int) = writeShort(value.toShort(), ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeShortAddLittle(value: Int) {
     writeByteAdd(value)
@@ -36,12 +45,7 @@ suspend fun ByteWriteChannel.writeIntInverseMiddle(value: Int) {
     writeByte(value shr 8)
 }
 
-suspend fun ByteWriteChannel.writeIntLittle(value: Int) {
-    writeByte(value)
-    writeByte(value shr 8)
-    writeByte(value shr 16)
-    writeByte(value shr 24)
-}
+suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value, ByteOrder.LITTLE_ENDIAN)
 
 suspend fun ByteWriteChannel.writeIntInverse(value: Int) {
     writeByte(value shr 8)
@@ -63,18 +67,6 @@ suspend fun ByteWriteChannel.writeSmart(value: Int) {
         writeByte(value)
     }
 }
-
-suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
-
-suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (value) 1 else 0)
-
-suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
-
-suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
-
-suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByte(if (value) 1 else 0)
-
-suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 128)
 
 suspend fun ByteWriteChannel.writeString(value: String?) {
     if (value != null) {
