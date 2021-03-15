@@ -3,10 +3,10 @@ package world.gregs.voidps.network.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.network.Client.Companion.BYTE
+import world.gregs.voidps.network.Client.Companion.smart
+import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.GameOpcodes.CHAT
-import world.gregs.voidps.network.PacketSize.BYTE
-import world.gregs.voidps.network.smart
-import world.gregs.voidps.network.string
 import world.gregs.voidps.network.writeSmart
 import world.gregs.voidps.network.writeString
 

@@ -2,8 +2,8 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.network.Client.Companion.SHORT
 import world.gregs.voidps.network.GameOpcodes.INTERFACE_ITEMS
-import world.gregs.voidps.network.PacketSize.SHORT
 import world.gregs.voidps.network.writeByte
 import world.gregs.voidps.network.writeByteAdd
 import world.gregs.voidps.network.writeIntMiddle

@@ -2,8 +2,9 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Client.Companion.SHORT
+import world.gregs.voidps.network.Client.Companion.bits
 import world.gregs.voidps.network.GameOpcodes.REGION
-import world.gregs.voidps.network.PacketSize.SHORT
 
 fun Client.mapRegion(
     chunkX: Int,
@@ -57,7 +58,7 @@ fun Client.dynamicMapRegion(
     clientIndex: Int? = null,
     clientTile: Int? = null,
     playerRegions: IntArray? = null
-) = send(GameOpcodes.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, chunks, xteas), PacketSize.SHORT) {
+) = send(GameOpcodes.DYNAMIC_REGION, getLength(clientTile, playerRegions, clientIndex, chunks, xteas), SHORT) {
     mapInit(clientTile, playerRegions, clientIndex)
     writeByte(mapSize)
     writeShortAddLittle(chunkY)

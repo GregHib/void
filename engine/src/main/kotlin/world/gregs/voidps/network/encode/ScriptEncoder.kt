@@ -1,9 +1,9 @@
 package world.gregs.voidps.network.encode
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.network.Client.Companion.SHORT
+import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.GameOpcodes.SCRIPT
-import world.gregs.voidps.network.PacketSize
-import world.gregs.voidps.network.string
 import world.gregs.voidps.network.writeString
 
 /**
@@ -20,7 +20,7 @@ fun Player.sendScript(
     id: Int,
     params: List<Any>
 ) {
-    client?.send(SCRIPT, getLength(params), PacketSize.SHORT) {
+    client?.send(SCRIPT, getLength(params), SHORT) {
         val types = StringBuilder()
         for (param in params) {
             types.append(if (param is String) "s" else "i")

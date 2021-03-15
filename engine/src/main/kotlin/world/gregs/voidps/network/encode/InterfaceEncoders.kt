@@ -1,9 +1,11 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.buffer.write.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Client.Companion.SHORT
+import world.gregs.voidps.network.Client.Companion.smart
+import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.GameOpcodes.INTERFACE_ANIMATION
 
 /**
@@ -104,7 +106,7 @@ fun Player.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
     primary: Boolean
-) = client?.send(GameOpcodes.INTERFACE_ITEMS_UPDATE, getLength(updates), PacketSize.SHORT) {
+) = client?.send(GameOpcodes.INTERFACE_ITEMS_UPDATE, getLength(updates), SHORT) {
     writeShort(key)
     writeByte(primary)
     for ((index, item, amount) in updates) {
@@ -189,7 +191,7 @@ fun Client.interfaceText(
     id: Int,
     component: Int,
     text: String
-) = send(GameOpcodes.INTERFACE_TEXT, 4 + string(text), PacketSize.SHORT) {
+) = send(GameOpcodes.INTERFACE_TEXT, 4 + string(text), SHORT) {
     writeIntLittle(id shl 16 or component)
     writeString(text)
 }

@@ -1,8 +1,9 @@
 package world.gregs.voidps.network.encode
 
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Client.Companion.BYTE
+import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.GameOpcodes.PLAYER_OPTION
-import world.gregs.voidps.network.PacketSize.BYTE
 
 /**
  * Sends a player right click option

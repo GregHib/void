@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject

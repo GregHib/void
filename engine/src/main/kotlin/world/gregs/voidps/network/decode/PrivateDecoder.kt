@@ -4,7 +4,6 @@ import world.gregs.voidps.buffer.read.Reader
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.PacketSize.SHORT
 import world.gregs.voidps.utility.inject
 
 class PrivateDecoder : Decoder(SHORT) {

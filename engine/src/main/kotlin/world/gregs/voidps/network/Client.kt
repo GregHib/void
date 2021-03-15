@@ -40,7 +40,7 @@ data class Client(
         write.flush()
     }
 
-    fun send(opcode: Int, size: Int, type: Int = PacketSize.FIXED, block: suspend ByteWriteChannel.() -> Unit) {
+    fun send(opcode: Int, size: Int, type: Int = FIXED, block: suspend ByteWriteChannel.() -> Unit) {
         if (!connected) {
             return
         }
@@ -68,16 +68,22 @@ data class Client(
         }
         // Length
         when (type) {
-            PacketSize.BYTE -> writeByte(size)
-            PacketSize.SHORT -> writeShort(size)
+            BYTE -> writeByte(size)
+            SHORT -> writeShort(size)
         }
     }
-}
 
-fun smart(value: Int) = if (value >= 128) 2 else 1
+    companion object {
+        const val FIXED = 0
+        const val BYTE = -1
+        const val SHORT = -2
 
-fun string(value: String?) = (value?.length ?: 0) + 1
+        fun smart(value: Int) = if (value >= 128) 2 else 1
 
-fun bits(bitCount: Int): Int {
-    return (bitCount + 7) / 8
+        fun string(value: String?) = (value?.length ?: 0) + 1
+
+        fun bits(bitCount: Int): Int {
+            return (bitCount + 7) / 8
+        }
+    }
 }
