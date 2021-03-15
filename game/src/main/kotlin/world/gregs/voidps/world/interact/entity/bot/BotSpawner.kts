@@ -95,29 +95,23 @@ Command where { prefix == "bots" } then {
 var counter = 0
 
 fun spawnBots(count: Int) {
-    GlobalScope.launch {
-        for (i in 0 until count step 20) {
-            repeat(20) {
-                GlobalScope.launch {
-                    val name = "Bot ${++counter}"
-                    val index = loginQueue.login(name)!!
-                    val bot = Player(index = index, tile = Tile(3212, 3428, 0), name = name)
-                    loader.initPlayer(bot, index)
-                    loginQueue.await()
-                    bot.login()
+    repeat(count) {
+        GlobalScope.launch(Contexts.Game) {
+            val name = "Bot ${++counter}"
+            val index = loginQueue.login(name)!!
+            val bot = Player(index = index, tile = Tile(3212, 3428, 0), name = name)
+            loader.initPlayer(bot, index)
+            loginQueue.await()
+            bot.login()
 
-                    bot["context"] = BotContext(bot)
-                    scheduler.launch {
-                        delay(1)
-//                bot.tele(3212, 3428, 0)
-                        bot.viewport.loaded = true
-                        delay(2)
-                        bot.action.type = ActionType.None
-                        bots.add(bot)
-                    }
-                }
+            bot["context"] = BotContext(bot)
+            scheduler.launch {
+                delay(1)
+                bot.viewport.loaded = true
+                delay(2)
+                bot.action.type = ActionType.None
+                bots.add(bot)
             }
-            delay(1)
         }
     }
 

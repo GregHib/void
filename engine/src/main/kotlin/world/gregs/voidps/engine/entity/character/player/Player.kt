@@ -3,8 +3,11 @@ package world.gregs.voidps.engine.entity.character.player
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
@@ -131,18 +134,21 @@ class Player(
     }
 
     fun logout(safely: Boolean) {
-        action.run(ActionType.Logout) {
-            await<Unit>(Suspension.Infinite)
-        }
-        val bus: EventBus = get()// Temp until player has it's own event bus
         val loginQueue: LoginQueue = get()
-        if (safely) {
-            client?.logout()
+        GlobalScope.launch(Contexts.Game) {
+            loginQueue.await()
+            action.run(ActionType.Logout) {
+                await<Unit>(Suspension.Infinite)
+            }
+            val bus: EventBus = get()// Temp until player has it's own event bus
+            if (safely) {
+                client?.logout()
+            }
+            client?.disconnect()
+            loginQueue.logout(name, index)
+            bus.emit(Unregistered(this@Player))
+            bus.emit(PlayerUnregistered(this@Player))
         }
-        client?.disconnect()
-        loginQueue.logout(name, index)
-        bus.emit(Unregistered(this))
-        bus.emit(PlayerUnregistered(this))
     }
 
     override fun equals(other: Any?): Boolean {
