@@ -1,19 +1,17 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
 
 class PublicQuickChatDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.publicQuickChat(
             player = player,
-            script = packet.readByte(),
-            file = packet.readUnsignedShort(),
-            data = ByteArray(packet.readableBytes()).apply {
-                packet.readBytes(this)
-            }
+            script = packet.readByte().toInt(),
+            file = packet.readUShort().toInt(),
+            data = packet.readBytes(packet.remaining.toInt())
         )
     }
 

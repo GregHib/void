@@ -7,7 +7,6 @@ import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
 import org.mindrot.jbcrypt.BCrypt
-import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
 import world.gregs.voidps.engine.action.Contexts
@@ -15,6 +14,8 @@ import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.network.Client.Companion.string
+import world.gregs.voidps.network.Decoder.Companion.BYTE
+import world.gregs.voidps.network.Decoder.Companion.SHORT
 import world.gregs.voidps.utility.inject
 import java.math.BigInteger
 import java.util.concurrent.Executors
@@ -83,14 +84,14 @@ class Network(
             return
         }
         val size = read.readShort().toInt()
-        val array = ByteArray(size)
-        val packet = ByteReadPacket(array)
+        val packet = read.readPacket(size)
         validateClient(read, packet, write)
     }
 
     suspend fun validateClient(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
         val version = packet.readInt()
         if (version != revision) {
+            logger.trace { "Invalid revision: $version" }
             write.finish(GAME_UPDATE)
             return
         }
@@ -170,7 +171,7 @@ class Network(
             player.login(client)
         }
         try {
-            readPackets(client, read, player)
+            readPackets(client, read)
         } finally {
             client.exit()
         }
@@ -214,23 +215,22 @@ class Network(
         }
     }
 
-    suspend fun readPackets(client: Client, read: ByteReadChannel, player: Player) {
+    suspend fun readPackets(client: Client, read: ByteReadChannel) {
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
             val decoder = codec.getDecoder(opcode)
             if (decoder == null) {
-                logger.error { "Unable to identify length of packet $opcode" }
+                logger.error { "No decoder for message opcode $opcode" }
                 return
             }
             val size = when (decoder.length) {
-                -1 -> read.readUByte()
-                -2 -> (read.readUByte() shl 8) or read.readUByte()
+                BYTE -> read.readUByte()
+                SHORT -> (read.readUByte() shl 8) or read.readUByte()
                 else -> decoder.length
             }
 
-            val packet = read.readPacket(size = size)
-            decoder.decode(player, BufferReader(packet.readBytes()))
+            client.packets.emit(Client.Packet(opcode, read.readPacket(size = size)))
         }
     }
 

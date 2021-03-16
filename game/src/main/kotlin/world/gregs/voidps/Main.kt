@@ -43,6 +43,7 @@ import world.gregs.voidps.handle.*
 import world.gregs.voidps.network.GameOpcodes
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.NetworkCodec
+import world.gregs.voidps.network.NetworkTask
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
@@ -72,7 +73,7 @@ object Main {
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
-        val tickStages = getTickStages()
+        val tickStages = getTickStages(codec)
         val engine = GameLoop(service, tickStages)
 
         bus.emit(Startup)
@@ -81,7 +82,7 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun getTickStages(): List<Runnable> {
+    private fun getTickStages(codec: NetworkCodec): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val playerMovement: PlayerMovementTask = get()
         val npcMovement: NPCMovementTask = get()
@@ -96,7 +97,9 @@ object Main {
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
         val bus: EventBus = get()
+        val net = NetworkTask(players, codec)
         return listOf(
+            net,
             // Connections/Tick Input
             loginQueue,
             // Tick

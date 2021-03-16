@@ -1,17 +1,19 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.readBoolean
+import world.gregs.voidps.network.readString
 
 class ClanChatKickDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.kickClanMember(
             player = player,
-            packet.readBoolean(),
-            packet.readShort(),
-            packet.readString()
+            owner = packet.readBoolean(),
+            equals = packet.readShort().toInt(),
+            member = packet.readString()
         )
     }
 

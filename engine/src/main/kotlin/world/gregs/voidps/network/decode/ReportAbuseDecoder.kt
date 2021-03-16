@@ -1,17 +1,18 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.readString
 
 class ReportAbuseDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.reportAbuse(
             player = player,
             name = packet.readString(),
-            type = packet.readByte(),
-            integer = packet.readByte(),
+            type = packet.readByte().toInt(),
+            integer = packet.readByte().toInt(),
             string = packet.readString()
         )
     }

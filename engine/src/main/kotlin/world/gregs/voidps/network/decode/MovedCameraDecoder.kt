@@ -1,16 +1,16 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
 
 class MovedCameraDecoder : Decoder(4) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.cameraMoved(
             player = player,
-            packet.readUnsignedShort(),
-            packet.readUnsignedShort()
+            pitch = packet.readUShort().toInt(),
+            yaw = packet.readUShort().toInt()
         )
     }
 

@@ -1,17 +1,18 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.readString
 
 class HyperlinkDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.hyperlink(
             player = player,
-            packet.readString(),
-            packet.readString(),
-            packet.readByte()
+            name = packet.readString(),
+            script = packet.readString(),
+            third = packet.readByte().toInt()
         )
     }
 

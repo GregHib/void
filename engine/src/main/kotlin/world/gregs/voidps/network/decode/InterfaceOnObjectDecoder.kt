@@ -1,20 +1,20 @@
 package world.gregs.voidps.network.decode
 
-import world.gregs.voidps.buffer.read.Reader
+import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.*
 
 class InterfaceOnObjectDecoder : Decoder(15) {
 
-    override fun decode(player: Player, packet: Reader) {
+    override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.interfaceOnObject(
             player = player,
             y = packet.readShortAdd(),
             slot = packet.readShortAddLittle(),
-            hash = packet.readIntLittle(),
+            hash = packet.readIntLittleEndian(),
             type = packet.readShortAdd(),
             run = packet.readBooleanSubtract(),
-            x = packet.readShortLittle(),
+            x = packet.readShortLittleEndian().toInt(),
             id = packet.readUnsignedShortLittle()
         )
     }

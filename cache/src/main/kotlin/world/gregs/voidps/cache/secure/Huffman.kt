@@ -95,7 +95,7 @@ class Huffman(cache: world.gregs.voidps.cache.Cache) {
         return decompress(textBuffer, characters) ?: ""
     }
 
-    private fun decompress(message: ByteArray, length: Int): String? {
+    fun decompress(message: ByteArray, length: Int): String? {
         return try {
             if(masks == null) {
                 return null
