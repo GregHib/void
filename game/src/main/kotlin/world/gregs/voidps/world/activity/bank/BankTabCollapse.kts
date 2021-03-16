@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.activity.bank
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -8,7 +9,6 @@ import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.world.activity.bank.Bank.firstTab
 import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
 import world.gregs.voidps.world.activity.bank.Bank.tabCount
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 InterfaceOption where { name == "bank" && component.startsWith("tab_") && option == "Collapse" } then {
     val tab = component.removePrefix("tab_").toInt() - 1

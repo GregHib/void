@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.then
@@ -6,7 +7,6 @@ import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.command.Command
 
 val objects: Objects by inject()
 val batcher: ChunkBatcher by inject()

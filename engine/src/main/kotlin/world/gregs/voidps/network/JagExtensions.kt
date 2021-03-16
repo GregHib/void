@@ -165,6 +165,8 @@ fun ByteReadPacket.readBooleanAdd() = readByteAdd() == 1
 
 fun ByteReadPacket.readShortAddLittle(): Int = readUnsignedByteAdd() or (readByte().toInt() shl 8)
 
+fun ByteReadPacket.readUnsignedShortAddLittle(): Int = (readByte() - 128 and 0xff) + (readByte().toInt() shl 8 and 0xff00)
+
 fun ByteReadPacket.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUnsignedByte() or (readByte().toInt() shl 8)
 
 fun ByteReadPacket.readUnsignedShortLittle(): Int = readUnsignedByte() or (readUnsignedByte() shl 8)

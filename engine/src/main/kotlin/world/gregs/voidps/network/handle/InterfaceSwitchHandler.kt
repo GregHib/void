@@ -1,14 +1,13 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceSwitch
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -58,26 +57,23 @@ class InterfaceSwitchHandler : Handler() {
         val toName = toInter.name
         val toComponentName = toInter.getComponentName(toComponentId)
 
-
-        sync {
-            bus.emit(
-                InterfaceSwitch(
-                    player,
-                    fromId,
-                    fromName,
-                    fromComponentId,
-                    fromComponentName,
-                    fromType,
-                    fromSlot,
-                    toId,
-                    toName,
-                    toComponentId,
-                    toComponentName,
-                    toType,
-                    toSlot
-                )
+        bus.emit(
+            InterfaceSwitch(
+                player,
+                fromId,
+                fromName,
+                fromComponentId,
+                fromComponentName,
+                fromType,
+                fromSlot,
+                toId,
+                toName,
+                toComponentId,
+                toComponentName,
+                toType,
+                toSlot
             )
-        }
+        )
     }
 
 }

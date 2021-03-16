@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.community.trade
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.has
@@ -14,7 +15,6 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.trade.Trade.getPartner
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 /**
  * Offering an item to trade or loan

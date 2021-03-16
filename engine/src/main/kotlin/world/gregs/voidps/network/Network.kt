@@ -257,7 +257,6 @@ class Network(
         private const val ACCEPT_SESSION = 0
         private const val REJECT_SESSION = 0// Wrong?
 
-
         // Login responses
         private const val DATA_CHANGE = 0
         private const val VIDEO_AD = 1

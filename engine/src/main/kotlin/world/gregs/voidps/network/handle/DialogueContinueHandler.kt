@@ -1,14 +1,13 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.dialogue.event.ContinueDialogue
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -38,7 +37,7 @@ class DialogueContinueHandler : Handler() {
         }
 
         val type = player.dialogues.currentType()
-        if(type.isBlank()) {
+        if (type.isBlank()) {
             logger.debug { "Missing dialogue $id component $componentId option $componentId for player $player" }
             return
         }
@@ -47,19 +46,17 @@ class DialogueContinueHandler : Handler() {
         val name = inter.name
         val componentName = inter.getComponentName(componentId)
 
-        sync {
-            bus.emit(
-                ContinueDialogue(
-                    player,
-                    id,
-                    name,
-                    componentId,
-                    componentName,
-                    type,
-                    button
-                )
+        bus.emit(
+            ContinueDialogue(
+                player,
+                id,
+                name,
+                componentId,
+                componentName,
+                type,
+                button
             )
-        }
+        )
     }
 
 }

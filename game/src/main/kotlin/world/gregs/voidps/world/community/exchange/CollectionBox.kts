@@ -1,4 +1,5 @@
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
@@ -13,7 +14,6 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.community.trade.lent
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 val logger = InlineLogger()
 

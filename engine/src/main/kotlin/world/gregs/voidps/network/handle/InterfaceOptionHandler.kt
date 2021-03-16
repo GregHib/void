@@ -1,7 +1,8 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
@@ -9,10 +10,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -84,7 +83,7 @@ class InterfaceOptionHandler : Handler() {
                 return
             }
         }
-        if(options == null) {
+        if (options == null) {
             options = player.interfaceOptions.get(name, componentName)
         }
 
@@ -94,22 +93,20 @@ class InterfaceOptionHandler : Handler() {
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
-        sync {
-            bus.emit(
-                InterfaceOption(
-                    player,
-                    id,
-                    name,
-                    componentId,
-                    componentName,
-                    option,
-                    selectedOption,
-                    item,
-                    itemId,
-                    itemSlot
-                )
+        bus.emit(
+            InterfaceOption(
+                player,
+                id,
+                name,
+                componentId,
+                componentName,
+                option,
+                selectedOption,
+                item,
+                itemId,
+                itemSlot
             )
-        }
+        )
     }
 
 }

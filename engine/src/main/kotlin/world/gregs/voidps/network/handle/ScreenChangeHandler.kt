@@ -1,7 +1,6 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import world.gregs.voidps.engine.client.ui.isOpen
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.setDisplayMode
 import world.gregs.voidps.network.Handler
@@ -13,12 +12,10 @@ import world.gregs.voidps.network.Handler
 class ScreenChangeHandler : Handler() {
 
     override fun changeScreen(player: Player, displayMode: Int, width: Int, height: Int, antialiasLevel: Int) {
-        delay {
-            if (player.gameFrame.displayMode == displayMode || !player.isOpen("graphics_options")) {
-                return@delay
-            }
-            player.setDisplayMode(displayMode)
+        if (player.gameFrame.displayMode == displayMode || !player.isOpen("graphics_options")) {
+            return
         }
+        player.setDisplayMode(displayMode)
     }
 
 }

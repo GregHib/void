@@ -8,12 +8,14 @@ class NetworkTask(
 ) : Runnable {
 
     override fun run() {
-        players.forEach {
-            for (packet in it.client?.packets?.replayCache ?: return@forEach) {
-                val decoder = codec.getDecoder(packet.opcode)
-                decoder?.decode(it, packet.packet)
+        players.forEach { player ->
+            player.client?.packets?.let { packets ->
+                for (packet in packets.replayCache) {
+                    val decoder = codec.getDecoder(packet.opcode)
+                    decoder?.decode(player, packet.packet)
+                }
+                packets.resetReplayCache()
             }
-            it.client?.packets?.resetReplayCache()
         }
     }
 }

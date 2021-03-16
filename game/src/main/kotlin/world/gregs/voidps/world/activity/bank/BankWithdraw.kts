@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 BooleanVariable(115, Variable.Type.VARP, persistent = true).register("bank_notes")
 

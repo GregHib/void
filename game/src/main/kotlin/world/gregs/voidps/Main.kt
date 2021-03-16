@@ -39,11 +39,11 @@ import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.handle.*
 import world.gregs.voidps.network.GameOpcodes
 import world.gregs.voidps.network.Network
 import world.gregs.voidps.network.NetworkCodec
 import world.gregs.voidps.network.NetworkTask
+import world.gregs.voidps.network.handle.*
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty

@@ -1,17 +1,14 @@
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.effect.Colour
 import world.gregs.voidps.engine.entity.character.effect.Transform
-import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.command.Command
 
 val npcs: NPCs by inject()
 val pf: PathFinder by inject()

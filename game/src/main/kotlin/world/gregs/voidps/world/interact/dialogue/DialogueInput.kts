@@ -1,12 +1,12 @@
 package world.gregs.voidps.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
+import world.gregs.voidps.engine.client.ui.dialogue.IntEntered
+import world.gregs.voidps.engine.client.ui.dialogue.StringEntered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.world.interact.dialogue.event.ContinueDialogue
-import world.gregs.voidps.world.interact.dialogue.event.IntEntered
-import world.gregs.voidps.world.interact.dialogue.event.StringEntered
 
 val logger = InlineLogger()
 

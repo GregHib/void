@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.EventBus
@@ -23,7 +24,6 @@ import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.command.Command
 
 val bus: EventBus by inject()
 val scheduler: Scheduler by inject()

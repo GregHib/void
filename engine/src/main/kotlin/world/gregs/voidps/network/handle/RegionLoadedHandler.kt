@@ -1,4 +1,4 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.player.Player

@@ -1,9 +1,9 @@
 package world.gregs.voidps.world.interact.dialogue.type
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(8094, Variable.Type.VARBIT, false, 1).register("skill_creation_maximum")
 IntVariable(8095, Variable.Type.VARBIT, true, 1).register("skill_creation_amount")

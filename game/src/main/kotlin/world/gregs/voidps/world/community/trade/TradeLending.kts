@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.community.trade
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
@@ -9,7 +10,6 @@ import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.world.community.trade.Trade.getPartner
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 /**
  * Item lending duration modifying

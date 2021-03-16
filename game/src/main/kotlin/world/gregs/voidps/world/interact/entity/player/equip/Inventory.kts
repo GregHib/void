@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
@@ -9,8 +11,6 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceSwitch
 
 val logger = InlineLogger()
 val decoder: ItemDefinitions by inject()

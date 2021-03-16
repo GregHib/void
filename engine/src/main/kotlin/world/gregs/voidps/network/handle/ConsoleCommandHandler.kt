@@ -1,11 +1,10 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.command.Command
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -18,9 +17,7 @@ class ConsoleCommandHandler : Handler() {
     override fun consoleCommand(player: Player, command: String) {
         val parts = command.split(" ")
         val prefix = parts[0]
-        sync {
-            bus.emit(Command(player, prefix, command.removePrefix("$prefix ")))
-        }
+        bus.emit(Command(player, prefix, command.removePrefix("$prefix ")))
     }
 
 }

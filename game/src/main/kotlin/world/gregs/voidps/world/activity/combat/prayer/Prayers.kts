@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.combat.prayer
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -20,7 +21,6 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_PRAYE
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 import world.gregs.voidps.world.interact.entity.player.display.Tab
 
 /**

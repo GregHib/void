@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.readBooleanAdd
 import world.gregs.voidps.network.readShortAdd
-import world.gregs.voidps.network.readShortAddLittle
+import world.gregs.voidps.network.readUnsignedShortAddLittle
 
 class ObjectOption3Decoder : Decoder(7) {
 
@@ -13,7 +13,7 @@ class ObjectOption3Decoder : Decoder(7) {
         handler?.objectOption(
             player = player,
             y = packet.readShortAdd(),
-            objectId = packet.readShortAddLittle(),
+            objectId = packet.readUnsignedShortAddLittle(),
             x = packet.readShortLittleEndian().toInt(),
             run = packet.readBooleanAdd(),
             option = 3

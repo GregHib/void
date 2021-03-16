@@ -1,7 +1,6 @@
-package world.gregs.voidps.handle
+package world.gregs.voidps.network.handle
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 
 /**
@@ -11,11 +10,9 @@ import world.gregs.voidps.network.Handler
 class InterfaceClosedHandler : Handler() {
 
     override fun interfaceClosed(player: Player) {
-        sync {
-            val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay")
-            if(id != null) {
-                player.interfaces.close(id)
-            }
+        val id = player.interfaces.get("main_screen") ?: player.interfaces.get("underlay")
+        if (id != null) {
+            player.interfaces.close(id)
         }
     }
 

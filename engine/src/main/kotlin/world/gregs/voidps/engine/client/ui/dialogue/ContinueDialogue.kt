@@ -1,20 +1,17 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package world.gregs.voidps.engine.client.ui.dialogue
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.event.EventCompanion
 
-data class InterfaceOption(
+data class ContinueDialogue(
     override val player: Player,
     val id: Int,
     val name: String,
     val componentId: Int,
     val component: String,
-    val optionId: Int,
-    val option: String,
-    val item: String,
-    val itemId: Int,
-    val itemIndex: Int
+    val type: String,
+    val option: Int
 ) : PlayerEvent() {
-    companion object : EventCompanion<InterfaceOption>
+    companion object : EventCompanion<ContinueDialogue>
 }

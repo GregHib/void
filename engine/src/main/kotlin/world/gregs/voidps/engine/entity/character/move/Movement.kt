@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.path.PathFinder.Companion.getStrategy
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.engine.sync
 import java.util.*
 
 /**
@@ -58,16 +57,14 @@ fun Player.walkTo(target: Any, action: (PathResult) -> Unit) {
 }
 
 fun Player.walkTo(strategy: TileTargetStrategy, action: (PathResult) -> Unit) {
-    sync {
-        dialogues.clear()
-        movement.clear()
-        this.action.cancel()
-        movement.target = true
-        movement.strategy = strategy
-        GlobalScope.launch(Contexts.Game) {
-            val completable = CompletableDeferred<PathResult>()
-            movement.completable = completable
-            action.invoke(completable.await())
-        }
+    dialogues.clear()
+    movement.clear()
+    this.action.cancel()
+    movement.target = true
+    movement.strategy = strategy
+    GlobalScope.launch(Contexts.Game) {
+        val completable = CompletableDeferred<PathResult>()
+        movement.completable = completable
+        action.invoke(completable.await())
     }
 }

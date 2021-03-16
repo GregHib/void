@@ -4,13 +4,13 @@ import io.mockk.spyk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 import world.gregs.voidps.world.script.WorldScript
 
 internal class TradeIntegrationTest : WorldScript() {

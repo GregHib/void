@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.display
+package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
