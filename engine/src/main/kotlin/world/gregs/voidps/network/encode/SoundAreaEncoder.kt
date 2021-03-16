@@ -2,7 +2,7 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes.SOUND_AREA
+import world.gregs.voidps.network.Protocol.SOUND_AREA
 
 fun Client.areaSound(
     tile: Int,

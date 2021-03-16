@@ -4,7 +4,7 @@ import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.*
 
-class InterfaceOnObjectDecoder : Decoder(15) {
+class InterfaceOnObjectDecoder(handler: Handler? = null) : Decoder(15, handler) {
 
     override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.interfaceOnObject(

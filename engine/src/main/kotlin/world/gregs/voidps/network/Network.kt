@@ -22,7 +22,7 @@ import java.util.concurrent.Executors
 
 @ExperimentalUnsignedTypes
 class Network(
-    private val codec: NetworkCodec,
+    private val protocol: Map<Int, Decoder>,
     private val revision: Int,
     private val modulus: BigInteger,
     private val private: BigInteger
@@ -219,7 +219,7 @@ class Network(
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
-            val decoder = codec.getDecoder(opcode)
+            val decoder = protocol[opcode]
             if (decoder == null) {
                 logger.error { "No decoder for message opcode $opcode" }
                 return

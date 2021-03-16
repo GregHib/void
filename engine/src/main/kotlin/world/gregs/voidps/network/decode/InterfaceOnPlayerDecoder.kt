@@ -2,12 +2,9 @@ package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.readBooleanInverse
-import world.gregs.voidps.network.readIntInverseMiddle
-import world.gregs.voidps.network.readShortAddLittle
+import world.gregs.voidps.network.*
 
-class InterfaceOnPlayerDecoder : Decoder(1) {
+class InterfaceOnPlayerDecoder(handler: Handler? = null) : Decoder(1, handler) {
 
     override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.interfaceOnPlayer(

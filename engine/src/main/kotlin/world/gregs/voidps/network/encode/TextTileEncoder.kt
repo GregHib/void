@@ -4,7 +4,7 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Client.Companion.BYTE
 import world.gregs.voidps.network.Client.Companion.string
-import world.gregs.voidps.network.GameOpcodes.TILE_TEXT
+import world.gregs.voidps.network.Protocol.TILE_TEXT
 import world.gregs.voidps.network.writeMedium
 import world.gregs.voidps.network.writeString
 

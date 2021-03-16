@@ -39,11 +39,10 @@ import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.network.GameOpcodes
+import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.NetworkCodec
 import world.gregs.voidps.network.NetworkTask
-import world.gregs.voidps.network.handle.*
+import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
@@ -57,23 +56,24 @@ import java.util.concurrent.Executors
  */
 object Main {
 
-    const val name = "Void"
+    lateinit var name: String
     private val logger = InlineLogger()
 
     @JvmStatic
     fun main(args: Array<String>) {
         val startTime = System.currentTimeMillis()
         preload()
-        val codec = registerGameHandlers()
 
+        name = getProperty("name")
         val revision = getProperty("clientBuild").toInt()
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
-        val server = Network(codec, revision, modulus, private)
+
+        val server = Network(protocol, revision, modulus, private)
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
-        val tickStages = getTickStages(codec)
+        val tickStages = getTickStages(protocol)
         val engine = GameLoop(service, tickStages)
 
         bus.emit(Startup)
@@ -82,7 +82,7 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun getTickStages(codec: NetworkCodec): List<Runnable> {
+    private fun getTickStages(protocol: Map<Int, Decoder>): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val playerMovement: PlayerMovementTask = get()
         val npcMovement: NPCMovementTask = get()
@@ -97,7 +97,7 @@ object Main {
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
         val bus: EventBus = get()
-        val net = NetworkTask(players, codec)
+        val net = NetworkTask(players, protocol)
         return listOf(
             net,
             // Connections/Tick Input
@@ -160,53 +160,5 @@ object Main {
             fileProperties("/game.properties")
             fileProperties("/private.properties")
         }
-    }
-
-    private fun registerGameHandlers(): NetworkCodec {
-        val game = NetworkCodec()
-        game.registerHandler(GameOpcodes.CONSOLE_COMMAND, ConsoleCommandHandler())
-        game.registerHandler(GameOpcodes.DIALOGUE_CONTINUE, DialogueContinueHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_1, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_2, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_3, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_4, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.FLOOR_ITEM_OPTION_5, FloorItemOptionHandler())
-        game.registerHandler(GameOpcodes.INTEGER_ENTRY, IntEntryHandler())
-        game.registerHandler(GameOpcodes.SCREEN_CLOSE, InterfaceClosedHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_1, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_2, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_3, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_4, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_5, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_6, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_7, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_8, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_9, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.INTERFACE_OPTION_10, InterfaceOptionHandler())
-        game.registerHandler(GameOpcodes.SWITCH_INTERFACE_COMPONENTS, InterfaceSwitchHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_1, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_2, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_3, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_4, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.NPC_OPTION_5, NPCOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_1, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_2, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_3, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_4, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.OBJECT_OPTION_5, ObjectOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_1, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_2, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_3, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_4, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_5, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_6, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_7, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.PLAYER_OPTION_8, PlayerOptionHandler())
-        game.registerHandler(GameOpcodes.DONE_LOADING_REGION, RegionLoadedHandler())
-        game.registerHandler(GameOpcodes.SCREEN_CHANGE, ScreenChangeHandler())
-        game.registerHandler(GameOpcodes.STRING_ENTRY, StringEntryHandler())
-        game.registerHandler(GameOpcodes.WALK, WalkMapHandler())
-        game.registerHandler(GameOpcodes.MINI_MAP_WALK, WalkMiniMapHandler())
-        return game
     }
 }

@@ -2,8 +2,8 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.GameOpcodes.CLIENT_VARC
-import world.gregs.voidps.network.GameOpcodes.CLIENT_VARC_LARGE
+import world.gregs.voidps.network.Protocol.CLIENT_VARC
+import world.gregs.voidps.network.Protocol.CLIENT_VARC_LARGE
 import world.gregs.voidps.network.writeIntLittle
 import world.gregs.voidps.network.writeShortAddLittle
 import world.gregs.voidps.network.writeShortLittle

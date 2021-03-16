@@ -1,8 +1,8 @@
 package world.gregs.voidps.network.encode
 
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes
-import world.gregs.voidps.network.GameOpcodes.CHUNK_CLEAR
+import world.gregs.voidps.network.Protocol
+import world.gregs.voidps.network.Protocol.CHUNK_CLEAR
 import world.gregs.voidps.network.writeByteAdd
 import world.gregs.voidps.network.writeByteInverse
 
@@ -30,7 +30,7 @@ fun Client.updateChunk(
     xOffset: Int,
     yOffset: Int,
     plane: Int
-) = send(GameOpcodes.UPDATE_CHUNK, 3) {
+) = send(Protocol.UPDATE_CHUNK, 3) {
     writeByteInverse(yOffset)
     writeByteAdd(plane)
     writeByteAdd(xOffset)

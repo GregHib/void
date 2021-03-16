@@ -2,7 +2,7 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.GameOpcodes.FLOOR_ITEM_ADD
+import world.gregs.voidps.network.Protocol.FLOOR_ITEM_ADD
 
 /**
  * @param tile The tile offset from the chunk update send
@@ -26,7 +26,7 @@ fun Client.addFloorItem(
 fun Client.removeFloorItem(
     tile: Int,
     id: Int
-) = send(GameOpcodes.FLOOR_ITEM_REMOVE, 3) {
+) = send(Protocol.FLOOR_ITEM_REMOVE, 3) {
     writeShortAddLittle(id)
     writeByteSubtract(tile)
 }
@@ -42,7 +42,7 @@ fun Client.revealFloorItem(
     id: Int,
     amount: Int,
     owner: Int
-) = send(GameOpcodes.FLOOR_ITEM_REVEAL, 7) {
+) = send(Protocol.FLOOR_ITEM_REVEAL, 7) {
     writeShortLittle(amount)
     writeByte(tile)
     writeShortAdd(id)
@@ -62,7 +62,7 @@ fun Client.updateFloorItem(
     id: Int,
     oldAmount: Int,
     newAmount: Int
-) = send(GameOpcodes.FLOOR_ITEM_UPDATE, 7) {
+) = send(Protocol.FLOOR_ITEM_UPDATE, 7) {
     writeByte(tile)
     writeShort(id)
     writeShort(oldAmount)

@@ -2,7 +2,7 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes.GRAPHIC_AREA
+import world.gregs.voidps.network.Protocol.GRAPHIC_AREA
 
 /**
  * @param tile The tile offset from the chunk update send

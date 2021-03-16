@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.GameOpcodes.OBJECT_ADD
+import world.gregs.voidps.network.Protocol.OBJECT_ADD
 import world.gregs.voidps.utility.get
 
 /**
@@ -37,7 +37,7 @@ fun Client.animateObject(
     animation: Int,
     type: Int,
     rotation: Int
-) = send(GameOpcodes.OBJECT_ANIMATION, 7) {
+) = send(Protocol.OBJECT_ANIMATION, 7) {
     writeShortAddLittle(animation)
     writeByteAdd((type shl 2) or rotation)
     writeIntInverseMiddle(tile)
@@ -54,7 +54,7 @@ fun Client.animateSpecificObject(
     animation: Int,
     type: Int,
     rotation: Int
-) = send(GameOpcodes.OBJECT_ANIMATION_SPECIFIC, 4) {
+) = send(Protocol.OBJECT_ANIMATION_SPECIFIC, 4) {
     writeShortLittle(animation)
     writeByteSubtract(tile)
     writeByteInverse((type shl 2) or rotation)
@@ -69,7 +69,7 @@ fun GameObject.animate(id: Int) = get<ChunkBatcher>()
 fun Client.preloadObject(
     id: Int,
     modelType: Int
-) = send(GameOpcodes.OBJECT_PRE_FETCH, 3) {
+) = send(Protocol.OBJECT_PRE_FETCH, 3) {
     writeShort(id)
     writeByte(modelType)
 }
@@ -83,7 +83,7 @@ fun Client.removeObject(
     tile: Int,
     type: Int,
     rotation: Int
-) = send(GameOpcodes.OBJECT_REMOVE, 2) {
+) = send(Protocol.OBJECT_REMOVE, 2) {
     writeByteAdd((type shl 2) or rotation)
     writeByte(tile)
 }

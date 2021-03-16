@@ -2,8 +2,8 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.GameOpcodes
-import world.gregs.voidps.network.GameOpcodes.PROJECTILE_ADD
+import world.gregs.voidps.network.Protocol
+import world.gregs.voidps.network.Protocol.PROJECTILE_ADD
 
 /**
  * @param offset The tile offset from the chunk update send (encoded with 3 rather than the usual 4)
@@ -70,7 +70,7 @@ fun Client.addProjectileHalfTile(
     duration: Int,
     curve: Int,
     startOffset: Int
-) = send(GameOpcodes.PROJECTILE_DISPLACE, 19) {
+) = send(Protocol.PROJECTILE_DISPLACE, 19) {
     writeByte(offset)
     val flag = 0
     // Inverse height 0x1

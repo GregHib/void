@@ -6,7 +6,7 @@ import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Client.Companion.SHORT
 import world.gregs.voidps.network.Client.Companion.smart
 import world.gregs.voidps.network.Client.Companion.string
-import world.gregs.voidps.network.GameOpcodes.INTERFACE_ANIMATION
+import world.gregs.voidps.network.Protocol.INTERFACE_ANIMATION
 
 /**
  * Sends an animation to a interface component
@@ -31,7 +31,7 @@ fun Client.animateInterface(
 fun Client.closeInterface(
     id: Int,
     component: Int
-) = send(GameOpcodes.INTERFACE_CLOSE, 4) {
+) = send(Protocol.INTERFACE_CLOSE, 4) {
     writeInt(id shl 16 or component)
 }
 
@@ -46,7 +46,7 @@ fun Client.colourInterface(
     red: Int,
     green: Int,
     blue: Int
-) = send(GameOpcodes.INTERFACE_COLOUR, 6) {
+) = send(Protocol.INTERFACE_COLOUR, 6) {
     writeShortAdd((red shl 10) + (green shl 5) + blue)
     writeIntLittle(id shl 16 or component)
 }
@@ -61,7 +61,7 @@ fun Client.npcDialogueHead(
     id: Int,
     component: Int,
     npc: Int
-) = send(GameOpcodes.INTERFACE_NPC_HEAD, 6) {
+) = send(Protocol.INTERFACE_NPC_HEAD, 6) {
     writeIntLittle(id shl 16 or component)
     writeShortAdd(npc)
 }
@@ -74,7 +74,7 @@ fun Client.npcDialogueHead(
 fun Client.playerDialogueHead(
     id: Int,
     component: Int
-) = send(GameOpcodes.INTERFACE_PLAYER_HEAD, 4) {
+) = send(Protocol.INTERFACE_PLAYER_HEAD, 4) {
     writeIntMiddle(id shl 16 or component)
 }
 
@@ -90,7 +90,7 @@ fun Client.interfaceItem(
     component: Int,
     item: Int,
     amount: Int
-) = send(GameOpcodes.INTERFACE_ITEM, 10) {
+) = send(Protocol.INTERFACE_ITEM, 10) {
     writeShortLittle(item)
     writeIntInverseMiddle(id shl 16 or component)
     writeInt(amount)
@@ -106,7 +106,7 @@ fun Player.sendInterfaceItemUpdate(
     key: Int,
     updates: List<Triple<Int, Int, Int>>,
     primary: Boolean
-) = client?.send(GameOpcodes.INTERFACE_ITEMS_UPDATE, getLength(updates), SHORT) {
+) = client?.send(Protocol.INTERFACE_ITEMS_UPDATE, getLength(updates), SHORT) {
     writeShort(key)
     writeByte(primary)
     for ((index, item, amount) in updates) {
@@ -137,7 +137,7 @@ fun Client.openInterface(
     parent: Int,
     component: Int,
     id: Int
-) = send(GameOpcodes.INTERFACE_OPEN, 7) {
+) = send(Protocol.INTERFACE_OPEN, 7) {
     writeShortLittle(id)
     writeIntLittle(parent shl 16 or component)
     writeByteAdd(permanent)
@@ -158,7 +158,7 @@ fun Player.sendInterfaceSettings(
     toSlot: Int,
     settings: Int
 ) {
-    client?.send(GameOpcodes.INTERFACE_COMPONENT_SETTINGS, 12) {
+    client?.send(Protocol.INTERFACE_COMPONENT_SETTINGS, 12) {
         writeShortAdd(toSlot)
         writeShortLittle(fromSlot)
         writeInt(id shl 16 or component)
@@ -176,7 +176,7 @@ fun Client.interfaceSprite(
     id: Int,
     component: Int,
     sprite: Int
-) = send(GameOpcodes.INTERFACE_SPRITE, 6) {
+) = send(Protocol.INTERFACE_SPRITE, 6) {
     writeShortAdd(sprite)
     writeIntInverseMiddle(id shl 16 or component)
 }
@@ -191,7 +191,7 @@ fun Client.interfaceText(
     id: Int,
     component: Int,
     text: String
-) = send(GameOpcodes.INTERFACE_TEXT, 4 + string(text), SHORT) {
+) = send(Protocol.INTERFACE_TEXT, 4 + string(text), SHORT) {
     writeIntLittle(id shl 16 or component)
     writeString(text)
 }
@@ -200,7 +200,7 @@ fun Client.interfaceText(
 fun Client.updateInterface(
     id: Int,
     type: Int
-) = send(GameOpcodes.INTERFACE_WINDOW, 3) {
+) = send(Protocol.INTERFACE_WINDOW, 3) {
     writeByteInverse(type)
     writeShortAdd(id)
 }
@@ -215,7 +215,7 @@ fun Client.interfaceVisibility(
     id: Int,
     component: Int,
     hide: Boolean
-) = send(GameOpcodes.INTERFACE_COMPONENT_VISIBILITY, 5) {
+) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY, 5) {
     writeByteAdd(hide)
     writeIntLittle(id shl 16 or component)
 }

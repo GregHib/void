@@ -4,11 +4,12 @@ import io.ktor.utils.io.core.*
 import world.gregs.voidps.cache.secure.Huffman
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.readSmart
 import world.gregs.voidps.network.readUnsignedByte
 import world.gregs.voidps.utility.inject
 
-class PublicDecoder : Decoder(BYTE) {
+class PublicDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
 
     private val huffman: Huffman by inject()
 

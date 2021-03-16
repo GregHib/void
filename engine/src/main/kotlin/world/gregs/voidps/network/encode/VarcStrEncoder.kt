@@ -3,7 +3,7 @@ package world.gregs.voidps.network.encode
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Client.Companion.SHORT
 import world.gregs.voidps.network.Client.Companion.string
-import world.gregs.voidps.network.GameOpcodes.CLIENT_VARC_STR
+import world.gregs.voidps.network.Protocol.CLIENT_VARC_STR
 import world.gregs.voidps.network.writeShortAddLittle
 import world.gregs.voidps.network.writeString
 

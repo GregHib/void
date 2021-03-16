@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.network.Client.Companion.BYTE
 import world.gregs.voidps.network.Client.Companion.smart
 import world.gregs.voidps.network.Client.Companion.string
-import world.gregs.voidps.network.GameOpcodes.CHAT
+import world.gregs.voidps.network.Protocol.CHAT
 import world.gregs.voidps.network.writeSmart
 import world.gregs.voidps.network.writeString
 
