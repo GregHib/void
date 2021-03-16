@@ -47,6 +47,7 @@ import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
+import java.math.BigInteger
 import java.util.concurrent.Executors
 
 /**
@@ -63,7 +64,11 @@ object Main {
         val startTime = System.currentTimeMillis()
         preload()
         val codec = registerGameHandlers()
-        val server = Network(codec, 634)
+
+        val revision = getProperty("clientBuild").toInt()
+        val modulus = BigInteger(getProperty("rsaModulus"), 16)
+        val private = BigInteger(getProperty("rsaPrivate"), 16)
+        val server = Network(codec, revision, modulus, private)
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 

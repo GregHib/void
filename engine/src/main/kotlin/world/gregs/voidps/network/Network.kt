@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.network.Client.Companion.string
-import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
 import java.math.BigInteger
 import java.util.concurrent.Executors
@@ -23,7 +22,9 @@ import java.util.concurrent.Executors
 @ExperimentalUnsignedTypes
 class Network(
     private val codec: NetworkCodec,
-    private val revision: Int
+    private val revision: Int,
+    private val modulus: BigInteger,
+    private val private: BigInteger
 ) {
 
     private val logger = InlineLogger()
@@ -34,9 +35,6 @@ class Network(
     private var running = false
     private val loginQueue: LoginQueue by inject()
     private val loader: PlayerLoader by inject()
-
-    private val loginRSAModulus = BigInteger(getProperty("lsRsaModulus"), 16)
-    private val loginRSAPrivate = BigInteger(getProperty("lsRsaPrivate"), 16)
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
@@ -104,7 +102,7 @@ class Network(
     private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
         val rsaBlockSize = packet.readShort().toInt() and 0xffff
         val data = packet.readBytes(rsaBlockSize)
-        val rsa = RSA.crypt(data, loginRSAModulus, loginRSAPrivate)
+        val rsa = RSA.crypt(data, modulus, private)
         return ByteReadPacket(rsa)
     }
 
