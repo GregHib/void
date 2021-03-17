@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.readSmart
-import world.gregs.voidps.network.readUnsignedByte
 import world.gregs.voidps.utility.inject
 
 class PublicDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
@@ -16,7 +15,7 @@ class PublicDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
     override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.publicMessage(
             player = player,
-            effects = packet.readUnsignedByte() shl 8 or (packet.readUnsignedByte() and 0xff),
+            effects = (packet.readUByte().toInt() shl 8) or packet.readUByte().toInt(),
             message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""
         )
     }

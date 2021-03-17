@@ -7,17 +7,17 @@ import kotlin.text.toByteArray
 
 suspend fun ByteWriteChannel.writeByte(value: Boolean) = writeByte(if (value) 1 else 0)
 
-suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
-
 suspend fun ByteWriteChannel.writeByteAdd(value: Boolean) = writeByteAdd(if (value) 1 else 0)
-
-suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
-
-suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
 
 suspend fun ByteWriteChannel.writeByteInverse(value: Boolean) = writeByte(if (value) 1 else 0)
 
+suspend fun ByteWriteChannel.writeByteAdd(value: Int) = writeByte(value + 128)
+
+suspend fun ByteWriteChannel.writeByteInverse(value: Int) = writeByte(-value)
+
 suspend fun ByteWriteChannel.writeByteSubtract(value: Int) = writeByte(-value + 128)
+
+suspend fun ByteWriteChannel.writeBytes(value: ByteArray) = writeFully(value)
 
 suspend fun ByteWriteChannel.writeShortAdd(value: Int) {
     writeByte(value shr 8)
@@ -38,20 +38,20 @@ suspend fun ByteWriteChannel.writeIntMiddle(value: Int) {
     writeByte(value shr 16)
 }
 
-suspend fun ByteWriteChannel.writeIntInverseMiddle(value: Int) {
-    writeByte(value shr 16)
-    writeByte(value shr 24)
-    writeByte(value)
-    writeByte(value shr 8)
-}
-
-suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value, ByteOrder.LITTLE_ENDIAN)
-
 suspend fun ByteWriteChannel.writeIntInverse(value: Int) {
     writeByte(value shr 8)
     writeByte(value shr 24)
     writeByte(value shr 16)
     writeByteInverse(value)
+}
+
+suspend fun ByteWriteChannel.writeIntLittle(value: Int) = writeInt(value, ByteOrder.LITTLE_ENDIAN)
+
+suspend fun ByteWriteChannel.writeIntInverseMiddle(value: Int) {
+    writeByte(value shr 16)
+    writeByte(value shr 24)
+    writeByte(value)
+    writeByte(value shr 8)
 }
 
 suspend fun ByteWriteChannel.writeMedium(value: Int) {
@@ -134,50 +134,39 @@ fun ByteReadPacket.readString(): String {
     return sb.toString()
 }
 
-suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff
-
-
-fun ByteReadPacket.readShortAdd(): Int = (readByte().toInt() shl 8) or readUnsignedByteAdd()
-
-fun ByteReadPacket.readUnsignedByteAdd(): Int = (readByte() - 128).toByte().toInt()
-
-fun ByteReadPacket.readUnsignedByte(): Int {
-    return readByte().toInt() and 0xff
-}
-
-fun ByteReadPacket.readUnsignedIntMiddle(): Int {
-    return (readUnsignedByte() shl 8) or readUnsignedByte() or (readUnsignedByte() shl 24) or (readUnsignedByte() shl 16)
-}
-
 fun ByteReadPacket.readBoolean(): Boolean = readByte().toInt() == 1
-
-fun ByteReadPacket.readByteInverse(): Int = -readByte()
-
-fun ByteReadPacket.readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
 
 fun ByteReadPacket.readBooleanInverse() = readByteInverse() == 1
 
 fun ByteReadPacket.readBooleanSubtract() = readByteSubtract() == 1
 
-fun ByteReadPacket.readByteAdd(): Int = (readByte() - 128).toByte().toInt()
-
 fun ByteReadPacket.readBooleanAdd() = readByteAdd() == 1
 
-fun ByteReadPacket.readShortAddLittle(): Int = readUnsignedByteAdd() or (readByte().toInt() shl 8)
+fun ByteReadPacket.readByteAdd(): Int = (readByte() - 128).toByte().toInt()
+
+fun ByteReadPacket.readByteInverse(): Int = -readByte()
+
+fun ByteReadPacket.readByteSubtract(): Int = (readByteInverse() + 128).toByte().toInt()
+
+fun ByteReadPacket.readShortAdd(): Int = (readByte().toInt() shl 8) or readByteAdd()
+
+fun ByteReadPacket.readShortAddLittle(): Int = readByteAdd() or (readByte().toInt() shl 8)
+
+fun ByteReadPacket.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)
+
+fun ByteReadPacket.readUnsignedShortLittle(): Int = readUByte().toInt() or (readUByte().toInt() shl 8)
 
 fun ByteReadPacket.readUnsignedShortAddLittle(): Int = (readByte() - 128 and 0xff) + (readByte().toInt() shl 8 and 0xff00)
 
-fun ByteReadPacket.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUnsignedByte() or (readByte().toInt() shl 8)
+fun ByteReadPacket.readUnsignedIntMiddle(): Int = (readUByte().toInt() shl 8) or readUByte().toInt() or (readUByte().toInt() shl 24) or (readUByte().toInt() shl 16)
 
-fun ByteReadPacket.readUnsignedShortLittle(): Int = readUnsignedByte() or (readUnsignedByte() shl 8)
+fun ByteReadPacket.readIntInverseMiddle(): Int = (readByte().toInt() shl 16) or (readByte().toInt() shl 24) or readUByte().toInt() or (readByte().toInt() shl 8)
 
 fun ByteReadPacket.readSmart(): Int {
-    val peek = readUnsignedByte()
+    val peek = readUByte().toInt()
     return if (peek < 128) {
         peek and 0xFF
     } else {
-        (peek shl 8 or readUnsignedByte()) - 32768
+        (peek shl 8 or readUByte().toInt()) - 32768
     }
 }
-
-fun ByteReadPacket.readUnsignedShortAdd(): Int = (readByte().toInt() shl 8) or ((readByte() - 128) and 0xff)

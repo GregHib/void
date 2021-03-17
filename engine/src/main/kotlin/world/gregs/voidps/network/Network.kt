@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Decoder.Companion.BYTE
 import world.gregs.voidps.network.Decoder.Companion.SHORT
-import world.gregs.voidps.utility.inject
 import java.math.BigInteger
 import java.util.concurrent.Executors
 
@@ -25,23 +24,22 @@ class Network(
     private val protocol: Map<Int, Decoder>,
     private val revision: Int,
     private val modulus: BigInteger,
-    private val private: BigInteger
+    private val private: BigInteger,
+    private val loginQueue: LoginQueue,
+    private val loader: PlayerLoader
 ) {
 
-    private val logger = InlineLogger()
-    private val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-        logger.warn { throwable.message }
-    }
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
     private var running = false
-    private val loginQueue: LoginQueue by inject()
-    private val loader: PlayerLoader by inject()
 
     fun start(port: Int) = runBlocking {
         val executor = Executors.newCachedThreadPool()
         dispatcher = executor.asCoroutineDispatcher()
         val selector = ActorSelectorManager(dispatcher)
         val supervisor = SupervisorJob()
+        val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
+            logger.warn { throwable.message }
+        }
         val scope = CoroutineScope(coroutineContext + supervisor + exceptionHandler)
         with(scope) {
             val server = aSocket(selector).tcp().bind(port = port)
@@ -53,16 +51,12 @@ class Network(
                 val read = socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
                 launch(Dispatchers.IO) {
-                    connect(read, write)
+                    synchronise(read, write)
+                    login(read, write)
                 }
             }
         }
         running = true
-    }
-
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel) {
-        synchronise(read, write)
-        login(read, write)
     }
 
     suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
@@ -72,7 +66,6 @@ class Network(
             write.finish(REJECT_SESSION)
             return
         }
-
         write.respond(ACCEPT_SESSION)
     }
 
@@ -95,7 +88,6 @@ class Network(
             write.finish(GAME_UPDATE)
             return
         }
-
         val rsa = decryptRSA(packet)
         validateSession(read, rsa, packet, write)
     }
@@ -239,6 +231,9 @@ class Network(
         dispatcher.close()
     }
 
+
+    private suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff
+
     private suspend fun ByteWriteChannel.respond(value: Int) {
         writeByte(value)
         flush()
@@ -250,6 +245,8 @@ class Network(
     }
 
     companion object {
+        private val logger = InlineLogger()
+
         private const val SYNCHRONISE = 14
         private const val LOGIN = 16
         private const val RECONNECT = 18

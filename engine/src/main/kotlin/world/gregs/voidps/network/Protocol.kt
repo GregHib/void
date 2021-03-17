@@ -69,10 +69,8 @@ val protocol: Map<Int, Decoder> = mapOf(
     45 to FloorItemOption3Decoder(FloorItemOptionHandler()),
     24 to FloorItemOption4Decoder(FloorItemOptionHandler()),
     26 to FloorItemOption5Decoder(FloorItemOptionHandler()),
-
     53 to ConsoleCommandDecoder(ConsoleCommandHandler()),
     2 to DialogueContinueDecoder(DialogueContinueHandler()),
-
     32 to IntegerEntryDecoder(IntEntryHandler()),
     70 to InterfaceClosedDecoder(InterfaceClosedHandler()),
     72 to InterfaceOnInterfaceDecoder(),
@@ -90,26 +88,21 @@ val protocol: Map<Int, Decoder> = mapOf(
     11 to InterfaceOptionDecoder(8, InterfaceOptionHandler()),
     42 to InterfaceOptionDecoder(9, InterfaceOptionHandler()),
     78 to InterfaceSwitchComponentsDecoder(InterfaceSwitchHandler()),
-
     55 to MovedCameraDecoder(),
     69 to KeysPressedDecoder(),
     83 to MovedMouseDecoder(),
-
     63 to NPCOption1Decoder(NPCOptionHandler()),
     29 to NPCOption2Decoder(NPCOptionHandler()),
     5 to NPCOption3Decoder(NPCOptionHandler()),
     62 to NPCOption4Decoder(NPCOptionHandler()),
     65 to NPCOption5Decoder(NPCOptionHandler()),
-
     27 to ObjectOption1Decoder(ObjectOptionHandler()),
     36 to ObjectOption2Decoder(ObjectOptionHandler()),
     80 to ObjectOption3Decoder(ObjectOptionHandler()),
     56 to ObjectOption4Decoder(ObjectOptionHandler()),
     38 to ObjectOption5Decoder(ObjectOptionHandler()),
-
     0 to PingDecoder(),
     21 to LatencyDecoder(),
-
     25 to PlayerOption1Decoder(PlayerOptionHandler()),
     12 to PlayerOption2Decoder(PlayerOptionHandler()),
     79 to PlayerOption3Decoder(PlayerOptionHandler()),
@@ -118,19 +111,14 @@ val protocol: Map<Int, Decoder> = mapOf(
     51 to PlayerOption6Decoder(PlayerOptionHandler()),
     57 to PlayerOption7Decoder(PlayerOptionHandler()),
     18 to PlayerOption8Decoder(PlayerOptionHandler()),
-
     4 to RegionLoadedDecoder(RegionLoadedHandler()),
     47 to RegionLoadingDecoder(),
-
     7 to ScreenChangeDecoder(ScreenChangeHandler()),
     1 to StringEntryDecoder(StringEntryHandler()),
-
     35 to WalkMapDecoder(WalkMapHandler()),
     82 to WalkMiniMapDecoder(WalkMiniMapHandler()),
-
     49 to WindowClickDecoder(),
     8 to WindowFocusDecoder(),
-
     13 to emptyDecoder(2),
     74 to emptyDecoder(-1),
     77 to emptyDecoder(-1),
