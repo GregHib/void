@@ -12,7 +12,7 @@ class FloorItemOption3Decoder(handler: Handler? = null) : Decoder(7, handler) {
             id = packet.readShort().toInt(),
             x = packet.readShortAdd(),
             run = packet.readBoolean(),
-            y = packet.readShortAddLittle(),
+            y = packet.readUnsignedShortAddLittle(),
             optionIndex = 2
         )
     }

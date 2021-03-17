@@ -9,7 +9,6 @@ import kotlinx.coroutines.*
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
-import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
@@ -26,7 +25,8 @@ class Network(
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val loginQueue: LoginQueue,
-    private val loader: PlayerLoader
+    private val loader: PlayerLoader,
+    private val gameContext: CoroutineDispatcher
 ) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
@@ -47,23 +47,27 @@ class Network(
             logger.info { "Listening for requests on port ${port}..." }
             while (running) {
                 val socket = server.accept()
-                logger.trace { "New connection accepted $socket" }
+                logger.trace { "New connection accepted ${socket.remoteAddress}" }
                 val read = socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
                 launch(Dispatchers.IO) {
-                    synchronise(read, write)
-                    login(read, write)
+                    connect(read, write)
                 }
             }
         }
         running = true
     }
 
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel) {
+        synchronise(read, write)
+        login(read, write)
+    }
+
     suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
         val opcode = read.readByte().toInt()
         if (opcode != SYNCHRONISE) {
             logger.trace { "Invalid sync session id: $opcode" }
-            write.finish(REJECT_SESSION)
+            write.finish(LOGIN_SERVER_REJECTED_SESSION)
             return
         }
         write.respond(ACCEPT_SESSION)
@@ -73,15 +77,15 @@ class Network(
         val opcode = read.readByte().toInt()
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
-            write.finish(REJECT_SESSION)
+            write.finish(LOGIN_SERVER_REJECTED_SESSION)
             return
         }
         val size = read.readShort().toInt()
         val packet = read.readPacket(size)
-        validateClient(read, packet, write)
+        checkClientVersion(read, packet, write)
     }
 
-    suspend fun validateClient(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
+    suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
         val version = packet.readInt()
         if (version != revision) {
             logger.trace { "Invalid revision: $version" }
@@ -92,8 +96,8 @@ class Network(
         validateSession(read, rsa, packet, write)
     }
 
-    private fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
-        val rsaBlockSize = packet.readShort().toInt() and 0xffff
+    fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
+        val rsaBlockSize = packet.readUShort().toInt()
         val data = packet.readBytes(rsaBlockSize)
         val rsa = RSA.crypt(data, modulus, private)
         return ByteReadPacket(rsa)
@@ -101,7 +105,7 @@ class Network(
 
     suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel) {
         val sessionId = rsa.readUByte().toInt()
-        if (sessionId != 10) {
+        if (sessionId != SESSION) {
             logger.debug { "Bad session id $sessionId" }
             write.finish(BAD_SESSION_ID)
             return
@@ -157,7 +161,7 @@ class Network(
 
         val player = loadPlayer(write, username, password, index) ?: return
         write.sendLoginDetails(username, index, 2)
-        withContext(Contexts.Game) {
+        withContext(gameContext) {
             player.gameFrame.displayMode = displayMode
             logger.info { "Player logged in $username index $index." }
             player.login(client)
@@ -232,7 +236,7 @@ class Network(
     }
 
 
-    private suspend fun ByteReadChannel.readUByte() = readByte().toInt() and 0xff
+    private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
 
     private suspend fun ByteWriteChannel.respond(value: Int) {
         writeByte(value)
@@ -250,9 +254,9 @@ class Network(
         private const val SYNCHRONISE = 14
         private const val LOGIN = 16
         private const val RECONNECT = 18
+        private const val SESSION = 10
 
         private const val ACCEPT_SESSION = 0
-        private const val REJECT_SESSION = 0// Wrong?
 
         // Login responses
         private const val DATA_CHANGE = 0

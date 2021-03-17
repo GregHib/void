@@ -26,6 +26,7 @@ class FloorItemOptionHandler : Handler() {
     override fun floorItemOption(player: Player, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
         val tile = Tile(x, y, player.tile.plane)
         val items = items[tile]
+        println(optionIndex)
         val item = items.firstOrNull { it.id == id && it.tile == tile }
         if (item == null) {
             logger.warn { "Invalid floor item $id $tile" }

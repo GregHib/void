@@ -26,6 +26,7 @@ dependencies {
     testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 }
 tasks.withType<Test> {
     jvmArgs("-XX:-OmitStackTraceInFastThrow")
