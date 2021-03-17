@@ -15,7 +15,7 @@ class ObjectOption1Decoder(handler: Handler? = null) : Decoder(7, handler) {
             run = packet.readBooleanSubtract(),
             x = packet.readUnsignedShortAddLittle(),
             y = packet.readShortLittleEndian().toInt(),
-            objectId = packet.readShort().toInt(),
+            objectId = packet.readUShort().toInt(),
             option = 1
         )
     }
