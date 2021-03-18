@@ -2,6 +2,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -12,9 +13,8 @@ import world.gregs.voidps.engine.map.area.Area2D
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.network.codec.game.encode.sendContainerItems
+import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.command.Command
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime

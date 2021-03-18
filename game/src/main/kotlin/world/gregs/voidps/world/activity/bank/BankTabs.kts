@@ -1,16 +1,16 @@
 package world.gregs.voidps.world.activity.bank
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerSpawn
+import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceSwitch
 
 ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
     "swap",
@@ -19,7 +19,7 @@ ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
 IntVariable(1038, Variable.Type.VARC).register("bank_spaces_used_free")
 IntVariable(192, Variable.Type.VARC).register("bank_spaces_used_member")
 
-PlayerSpawn then {
+PlayerRegistered then {
     player.bank.listeners.add {
         player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
         player.setVar("bank_spaces_used_member", player.bank.count)

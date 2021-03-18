@@ -7,7 +7,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-io-jvm:${findProperty("kotlinIoVersion")}")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:${findProperty("kotlinCoroutinesVersion")}")
 
-    implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
+    implementation("io.ktor:ktor-server-core:${findProperty("ktorVersion")}")
+    implementation("io.ktor:ktor-network:${findProperty("ktorVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
 
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
@@ -16,6 +17,7 @@ dependencies {
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jacksonVersion")}")
 
     implementation("org.koin:koin-core:${findProperty("koinVersion")}")
+    implementation("org.mindrot:jbcrypt:${findProperty("jbcryptVersion")}")
 
     implementation("org.koin:koin-logger-slf4j:${findProperty("koinVersion")}")
     implementation("ch.qos.logback:logback-classic:${findProperty("logbackVersion")}")
@@ -24,6 +26,7 @@ dependencies {
     testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 }
 tasks.withType<Test> {
     jvmArgs("-XX:-OmitStackTraceInFastThrow")

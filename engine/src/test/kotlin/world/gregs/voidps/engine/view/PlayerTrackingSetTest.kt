@@ -4,13 +4,11 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -19,7 +17,7 @@ import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
 internal class PlayerTrackingSetTest : KoinMock() {
     lateinit var set: PlayerTrackingSet
 
-    override val modules = listOf(eventModule, module { single { mockk<ContextMenuOptionEncoder>(relaxed = true) } })
+    override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {

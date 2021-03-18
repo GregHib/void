@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.world.interact.dialogue.type.item
 
 internal class ItemBoxTest : DialogueTest() {
 
     @Test
     fun `Send item box`() {
-        mockkStatic("world.gregs.voidps.network.codec.game.encode.ScriptEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             item("""
@@ -34,7 +34,7 @@ internal class ItemBoxTest : DialogueTest() {
 
     @Test
     fun `Item box not sent if interface not opened`() {
-        mockkStatic("world.gregs.voidps.network.codec.game.encode.ScriptEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         coEvery { context.await<Unit>(any()) } just Runs
         every { player.open("obj_box") } returns false

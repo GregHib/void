@@ -12,8 +12,8 @@ import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.network.codec.game.encode.ObjectAddEncoder
-import world.gregs.voidps.network.codec.game.encode.ObjectRemoveEncoder
+import world.gregs.voidps.network.encode.addObject
+import world.gregs.voidps.network.encode.removeObject
 import world.gregs.voidps.utility.get
 
 val customObjectModule = module {
@@ -25,7 +25,7 @@ val customObjectModule = module {
             val list = spawns.getOrPut(gameObject.tile.region) { mutableListOf() }
             list.add(gameObject)
         }
-        CustomObjects(get(), get(), get(), get(), get(), get(), get(), spawns)
+        CustomObjects(get(), get(), get(), get(), get(), spawns)
     }
 }
 
@@ -35,8 +35,6 @@ class CustomObjects(
     private val bus: EventBus,
     private val batcher: ChunkBatcher,
     private val factory: GameObjectFactory,
-    private val addEncoder: ObjectAddEncoder,
-    private val removeEncoder: ObjectRemoveEncoder,
     private val spawns: MutableMap<Region, MutableList<GameObject>>
 ) {
 
@@ -47,14 +45,14 @@ class CustomObjects(
             objects.getAdded(chunk)?.forEach {
                 if (it.visible(player)) {
                     messages += { player ->
-                        addEncoder.encode(player, it.tile.offset(), it.id, it.type, it.rotation)
+                        player.client?.addObject(it.tile.offset(), it.id, it.type, it.rotation)
                     }
                 }
             }
             objects.getRemoved(chunk)?.forEach {
                 if (it.visible(player)) {
                     messages += { player ->
-                        removeEncoder.encode(player, it.tile.offset(), it.type, it.rotation)
+                        player.client?.removeObject(it.tile.offset(), it.type, it.rotation)
                     }
                 }
             }
@@ -108,7 +106,7 @@ class CustomObjects(
 
     private fun despawn(gameObject: GameObject) {
         batcher.update(gameObject.tile.chunk) { player ->
-            removeEncoder.encode(player, gameObject.tile.offset(), gameObject.type, gameObject.rotation)
+            player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
         }
         objects.removeTemp(gameObject)
         bus.emit(Unregistered(gameObject))
@@ -116,7 +114,7 @@ class CustomObjects(
 
     private fun respawn(gameObject: GameObject) {
         batcher.update(gameObject.tile.chunk) { player ->
-            addEncoder.encode(player, gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
+            player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
         }
         objects.addTemp(gameObject)
         bus.emit(Registered(gameObject))
@@ -208,11 +206,11 @@ class CustomObjects(
     private fun switch(original: GameObject, replacement: GameObject) {
         if (original.tile != replacement.tile) {
             batcher.update(original.tile.chunk) { player ->
-                removeEncoder.encode(player, original.tile.offset(), original.type, original.rotation)
+                player.client?.removeObject(original.tile.offset(), original.type, original.rotation)
             }
         }
         batcher.update(replacement.tile.chunk) { player ->
-            addEncoder.encode(player, replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
+            player.client?.addObject(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
         }
         if (original.tile != replacement.tile) {
             objects.removeTemp(original)

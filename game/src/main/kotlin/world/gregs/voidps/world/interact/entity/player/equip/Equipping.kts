@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 
 val itemDecoder: ItemDefinitions by inject()

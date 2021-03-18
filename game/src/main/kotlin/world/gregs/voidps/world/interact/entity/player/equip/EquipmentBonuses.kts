@@ -3,6 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.awaitInterface
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -21,7 +22,6 @@ import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.utility.func.toPascalCase
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 import java.math.RoundingMode
 import java.text.DecimalFormat
 

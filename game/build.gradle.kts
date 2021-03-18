@@ -9,7 +9,6 @@ dependencies {
     implementation(project(":ai"))
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
     implementation("io.github.classgraph:classgraph:${findProperty("classgraphVersion")}")
-    implementation("io.netty:netty-all:${findProperty("nettyVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")
 
     implementation(kotlin("script-runtime"))
@@ -25,6 +24,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-params:${findProperty("junitVersion")}")
     testImplementation("org.koin:koin-test:${findProperty("koinVersion")}")
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:${findProperty("kotlinCoroutinesVersion")}")
 
 }
 tasks.withType<Test> {

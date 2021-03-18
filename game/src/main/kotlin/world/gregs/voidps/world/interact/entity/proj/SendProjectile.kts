@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
-import world.gregs.voidps.network.codec.game.encode.ProjectileAddEncoder
+import world.gregs.voidps.network.encode.addProjectile
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
@@ -17,7 +17,6 @@ val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
-val addEncoder: ProjectileAddEncoder by inject()
 
 ShootProjectile then {
     var index = if (target != null) target.index + 1 else 0
@@ -54,8 +53,7 @@ fun decay(projectile: Projectile) {
 }
 
 fun Projectile.toMessage(): (Player) -> Unit = { player ->
-    addEncoder.encode(
-        player,
+    player.client?.addProjectile(
         tile.offset(3),
         id,
         direction.x,

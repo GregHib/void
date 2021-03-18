@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.interact.entity.player.display
 
 import world.gregs.voidps.engine.action.Suspension
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open

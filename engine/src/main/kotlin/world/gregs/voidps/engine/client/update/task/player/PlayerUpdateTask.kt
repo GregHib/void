@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerTrackingSet
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -12,20 +11,18 @@ import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.tick.task.EntityTask
-import world.gregs.voidps.network.codec.game.encode.PlayerUpdateEncoder
+import world.gregs.voidps.network.encode.updatePlayers
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 26, 2020
  */
 class PlayerUpdateTask(
-    override val entities: Players,
-    val sessions: Sessions,
-    private val updateEncoder: PlayerUpdateEncoder
+    override val entities: Players
 ) : EntityTask<Player>(true) {
 
     override fun predicate(entity: Player): Boolean {
-        return sessions.contains(entity)
+        return entity.client != null
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
@@ -41,7 +38,8 @@ class PlayerUpdateTask(
         processGlobals(writer, updates, players, viewport, true)
         processGlobals(writer, updates, players, viewport, false)
 
-        updateEncoder.encode(player, writer, updates)
+        player.client?.updatePlayers(writer, updates)
+        player.client?.flush()
     }
 
     fun processLocals(

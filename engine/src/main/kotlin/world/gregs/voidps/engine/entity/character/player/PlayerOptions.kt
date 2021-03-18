@@ -1,10 +1,9 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
+import world.gregs.voidps.network.encode.contextMenuOption
 
 class PlayerOptions(
-    private val player: Player,
-    private val optionEncoder: ContextMenuOptionEncoder
+    private val player: Player
 ) {
 
     private val options: Array<String> = Array(OPTION_SIZE) {
@@ -37,7 +36,7 @@ class PlayerOptions(
     }
 
     private fun update(slot: Int, top: Boolean) {
-        optionEncoder.encode(player, options[slot], slot, top)
+        player.client?.contextMenuOption(options[slot], slot, top)
     }
 
     fun remove(option: String): Boolean {

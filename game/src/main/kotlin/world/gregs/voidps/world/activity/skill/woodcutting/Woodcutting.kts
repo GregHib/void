@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.area.area
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree

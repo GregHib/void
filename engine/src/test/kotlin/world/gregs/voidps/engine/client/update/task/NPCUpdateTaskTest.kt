@@ -6,8 +6,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.Sessions
-import world.gregs.voidps.engine.client.clientSessionModule
 import world.gregs.voidps.engine.client.update.task.npc.NPCUpdateTask
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
@@ -20,7 +18,8 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
-import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.updateNPCs
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -30,20 +29,15 @@ internal class NPCUpdateTaskTest : KoinMock() {
 
     lateinit var task: NPCUpdateTask
     lateinit var players: Players
-    lateinit var sessions: Sessions
-    lateinit var encoder: NPCUpdateEncoder
     override val modules = listOf(
         eventModule,
-        entityListModule,
-        clientSessionModule
+        entityListModule
     )
 
     @BeforeEach
     fun setup() {
         players = mockk()
-        sessions = mockk()
-        encoder = mockk(relaxed = true)
-        task = spyk(NPCUpdateTask(players, sessions, encoder))
+        task = spyk(NPCUpdateTask(players))
     }
 
     @Test
@@ -55,12 +49,16 @@ internal class NPCUpdateTaskTest : KoinMock() {
             block.invoke(player)
         }
         every { players.getAtIndex(any()).hint(Player::class) } returns null
-        every { sessions.contains(player) } returns true
+        mockkStatic("world.gregs.voidps.network.encode.NPCUpdateEncoderKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        every { client.updateNPCs(any(), any()) } just Runs
         // When
         task.run()
         // Then
         verify {
             task.runAsync(player)
+            client.updateNPCs(any(), any())
         }
     }
 
@@ -76,7 +74,7 @@ internal class NPCUpdateTaskTest : KoinMock() {
             hint(Player::class)
             players.getAtIndex(any())
         } returns null
-        every { sessions.contains(player) } returns false
+        every { player.client } returns null
         every { task.processLocals(any(), any(), any()) } just Runs
         every { task.processAdditions(any(), any(), any(), any()) } just Runs
         // When

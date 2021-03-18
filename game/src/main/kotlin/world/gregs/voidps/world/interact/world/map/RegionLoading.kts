@@ -15,8 +15,8 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.engine.map.region.Xteas
-import world.gregs.voidps.network.codec.game.encode.DynamicMapRegionEncoder
-import world.gregs.voidps.network.codec.game.encode.MapRegionEncoder
+import world.gregs.voidps.network.encode.dynamicMapRegion
+import world.gregs.voidps.network.encode.mapRegion
 import world.gregs.voidps.utility.inject
 import kotlin.math.abs
 
@@ -30,8 +30,6 @@ val maps: RegionReader by inject()
 val xteas: Xteas by inject()
 val players: Players by inject()
 val dynamicChunks: DynamicChunks by inject()
-val dynamicRegionEncoder: DynamicMapRegionEncoder by inject()
-val regionEncoder: MapRegionEncoder by inject()
 
 val playerRegions = IntArray(MAX_PLAYERS - 1)
 
@@ -141,7 +139,7 @@ fun update(player: Player, initial: Boolean, force: Boolean) {
     }
 
     player.viewport.dynamic = false
-    regionEncoder.encode(player,
+    player.client?.mapRegion(
         chunkX = chunkX,
         chunkY = chunkY,
         forceRefresh = force,
@@ -176,7 +174,7 @@ fun updateDynamic(player: Player, initial: Boolean, force: Boolean) {
     }
 
     player.viewport.dynamic = true
-    dynamicRegionEncoder.encode(player,
+    player.client?.dynamicMapRegion(
         chunkX = chunkX,
         chunkY = chunkY,
         forceRefresh = force,

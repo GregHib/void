@@ -1,27 +1,21 @@
 package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.network.codec.game.encode.ChunkClearEncoder
-import world.gregs.voidps.network.codec.game.encode.ChunkUpdateEncoder
-import world.gregs.voidps.utility.get
-import world.gregs.voidps.utility.inject
+import world.gregs.voidps.network.encode.clearChunk
+import world.gregs.voidps.network.encode.updateChunk
 
 /**
  * Groups messages by [Chunk] sends to all subscribers
  * Also manages initial batch generation (when a player is in view of a new chunk)
  */
 class ChunkBatcher {
-    val sessions: Sessions by inject()
     val subscribers = mutableMapOf<Chunk, MutableSet<(Chunk, MutableList<(Player) -> Unit>) -> Unit>>()
     val subscriptions = mutableMapOf<Player, (Chunk, List<(Player) -> Unit>) -> Unit>()
     val initials = mutableSetOf<(Player, Chunk, MutableList<(Player) -> Unit>) -> Unit>()
     val batches = mutableMapOf<Chunk, MutableList<(Player) -> Unit>>()
-    private val chunkClearEncoder = get<ChunkClearEncoder>()
-    private val chunkUpdateEncoder = get<ChunkUpdateEncoder>()
 
     init {
         Tick.then {
@@ -41,9 +35,9 @@ class ChunkBatcher {
     /**
      * Sends [chunk] coordinates to start update to [player]
      */
-    fun sendChunk(player: Player, chunk: Chunk, flush: Boolean = true) {
+    fun sendChunk(player: Player, chunk: Chunk) {
         val chunkOffset = getChunkOffset(player, chunk)
-        chunkUpdateEncoder.encode(player, flush, chunkOffset.x, chunkOffset.y, chunk.plane)
+        player.client?.updateChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
     /**
@@ -51,7 +45,7 @@ class ChunkBatcher {
      */
     fun sendChunkClear(player: Player, chunk: Chunk) {
         val chunkOffset = getChunkOffset(player, chunk)
-        chunkClearEncoder.encode(player, chunkOffset.x, chunkOffset.y, chunk.plane)
+        player.client?.clearChunk(chunkOffset.x, chunkOffset.y, chunk.plane)
     }
 
     /**
@@ -118,13 +112,11 @@ class ChunkBatcher {
      * Creates a reusable subscription which sends a batch of messages to a [player]
      */
     fun createSubscription(player: Player): (Chunk, List<(Player) -> Unit>) -> Unit = { chunk, messages ->
-        val channel = sessions.get(player)
-        if (channel != null) {
-            sendChunk(player, chunk, flush = false)
+        if (player.client != null) {
+            sendChunk(player, chunk)
             messages.forEach { message ->
                 message.invoke(player)
             }
-            channel.flush()
         }
     }
 

@@ -1,4 +1,5 @@
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.BooleanVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
@@ -8,11 +9,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
 import world.gregs.voidps.world.community.assist.Assistance.stopRedirectingSkillExp
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 /**
  * Assistance system display interface

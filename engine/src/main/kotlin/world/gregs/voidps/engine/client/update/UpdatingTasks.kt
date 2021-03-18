@@ -49,8 +49,6 @@ val updatingTasksModule = module {
             get<NPCs>(),
             get(named("npcVisualEncoders")),
             intArrayOf(
-//                NAME_MASK,
-//                COMBAT_LEVEL_MASK,
                 TRANSFORM_MASK,
                 TURN_MASK
             )
@@ -59,18 +57,10 @@ val updatingTasksModule = module {
     single(createdAtStart = true) { PlayerChangeTask(get()) }
     single(createdAtStart = true) { NPCChangeTask(get()) }
     single(createdAtStart = true) {
-        PlayerUpdateTask(
-            get(),
-            get(),
-            get()
-        )
+        PlayerUpdateTask(get())
     }
     single(createdAtStart = true) {
-        NPCUpdateTask(
-            get(),
-            get(),
-            get()
-        )
+        NPCUpdateTask(get())
     }
     single(createdAtStart = true) { PlayerPostUpdateTask(get()) }
     single(createdAtStart = true) { NPCPostUpdateTask(get()) }

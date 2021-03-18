@@ -1,10 +1,10 @@
 package world.gregs.voidps.world.activity.combat
 
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(43, Variable.Type.VARP, true, 0).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")

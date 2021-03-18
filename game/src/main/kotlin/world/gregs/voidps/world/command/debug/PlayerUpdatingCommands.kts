@@ -5,9 +5,10 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.effect.Colour
 import world.gregs.voidps.engine.entity.character.effect.Transform
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.chat.Command
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
@@ -15,8 +16,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.command.Command
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()

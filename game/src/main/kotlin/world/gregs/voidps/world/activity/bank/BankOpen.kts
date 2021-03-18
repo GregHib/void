@@ -2,18 +2,21 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.awaitInterface
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.IntVariable
+import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.world.activity.bank.Bank.tabs
-import world.gregs.voidps.world.command.Command
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(4893, Variable.Type.VARBIT, persistent = true, defaultValue = 1).register("open_bank_tab")
 IntVariable(4885, Variable.Type.VARBIT, persistent = true).register("bank_tab_1")
@@ -34,8 +37,8 @@ Command where { prefix == "bank" } then {
         player.bank.add(995, 1000)
         player.bank.add(4151, 1)
         player.bank.add(11694, 1)
-        player.sendContainer("bank")
     }
+    player.sendContainer("bank")
 }
 
 InterfaceOpened where { name == "bank" } then {

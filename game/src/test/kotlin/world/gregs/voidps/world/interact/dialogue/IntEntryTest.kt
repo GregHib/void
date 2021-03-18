@@ -5,14 +5,14 @@ import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 internal class IntEntryTest : DialogueTest() {
 
     @Test
     fun `Send int entry`() {
-        mockkStatic("world.gregs.voidps.network.codec.game.encode.ScriptEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
         manager.start(context) {
             intEntry("text")

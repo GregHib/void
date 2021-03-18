@@ -1,32 +1,33 @@
 package world.gregs.voidps.engine.entity.character.player
 
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.verify
+import io.mockk.*
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.network.codec.game.encode.ContextMenuOptionEncoder
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.contextMenuOption
 
 internal class PlayerOptionsTest {
 
     lateinit var player: Player
+    lateinit var client: Client
     lateinit var options: PlayerOptions
-    lateinit var encoder: ContextMenuOptionEncoder
 
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        encoder = mockk(relaxed = true)
-        options = PlayerOptions(player, encoder)
-        mockkStatic("world.gregs.voidps.engine.client.SessionsKt")
+        client = mockk(relaxed = true)
+        every { player.client } returns client
+        options = PlayerOptions(player)
+        mockkStatic("world.gregs.voidps.network.encode.ContextMenuOptionEncoderKt")
+        every { client.contextMenuOption(any(), any(), any(), any()) } just Runs
     }
 
     @Test
     fun `Set option`() {
         assertTrue(options.set(1, "Attack"))
         verify {
-            encoder.encode(player, "Attack", 1, false, -1)
+            client.contextMenuOption("Attack", 1, false, -1)
         }
     }
 
@@ -79,7 +80,7 @@ internal class PlayerOptionsTest {
         options.remove(2)
         assertFalse(options.has(2))
         verify {
-            encoder.encode(player, "null", 2, false, -1)
+            client.contextMenuOption("null", 2, false, -1)
         }
     }
 

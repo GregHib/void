@@ -1,15 +1,15 @@
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
 import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExperience
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 /**
  * Assistance privacy filter settings

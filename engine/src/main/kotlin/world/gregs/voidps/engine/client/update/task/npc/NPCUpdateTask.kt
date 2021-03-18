@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import world.gregs.voidps.buffer.write.Writer
-import world.gregs.voidps.engine.client.Sessions
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.teleporting
@@ -10,20 +9,18 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.tick.task.EntityTask
-import world.gregs.voidps.network.codec.game.encode.NPCUpdateEncoder
+import world.gregs.voidps.network.encode.updateNPCs
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since May 12, 2020
  */
 class NPCUpdateTask(
-    override val entities: Players,
-    val sessions: Sessions,
-    private val npcUpdateEncoder: NPCUpdateEncoder
+    override val entities: Players
 ) : EntityTask<Player>() {
 
     override fun predicate(entity: Player): Boolean {
-        return sessions.contains(entity)
+        return entity.client != null
     }
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")
@@ -37,7 +34,7 @@ class NPCUpdateTask(
         processLocals(writer, updates, npcs)
         processAdditions(writer, updates, player, npcs)
 
-        npcUpdateEncoder.encode(player, writer, updates)
+        player.client?.updateNPCs(writer, updates)
     }
 
     fun processLocals(

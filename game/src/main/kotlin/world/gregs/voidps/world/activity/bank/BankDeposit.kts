@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.bank
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.*
@@ -9,11 +10,10 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
-import world.gregs.voidps.network.codec.game.encode.message
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
-import world.gregs.voidps.world.interact.entity.player.display.InterfaceOption
 
 IntVariable(1249, Variable.Type.VARP, persistent = true, defaultValue = 0).register("last_bank_amount")
 

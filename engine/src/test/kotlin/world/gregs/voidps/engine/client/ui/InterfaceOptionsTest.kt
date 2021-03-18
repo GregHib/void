@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.network.codec.game.encode.sendInterfaceSettings
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.sendInterfaceSettings
+import world.gregs.voidps.network.encode.sendScript
 
 internal class InterfaceOptionsTest {
 
@@ -37,9 +37,9 @@ internal class InterfaceOptionsTest {
         val component = InterfaceComponentDetail(0, comp, parent = 5, container = "container", primaryContainer = false, options = staticOptions)
         every { details.getComponent(name, any()) } returns InterfaceComponentDetail(-1, "")
         every { details.getComponent(name, comp) } returns component
-        mockkStatic("world.gregs.voidps.network.codec.game.encode.InterfaceSettingsEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
-        mockkStatic("world.gregs.voidps.network.codec.game.encode.ScriptEncoderKt")
+        mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")
         every { player.sendScript(any(), *anyVararg()) } just Runs
     }
 

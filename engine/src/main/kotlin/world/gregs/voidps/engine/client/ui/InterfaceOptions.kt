@@ -3,8 +3,8 @@ package world.gregs.voidps.engine.client.ui
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.network.codec.game.encode.sendInterfaceSettings
-import world.gregs.voidps.network.codec.game.encode.sendScript
+import world.gregs.voidps.network.encode.sendInterfaceSettings
+import world.gregs.voidps.network.encode.sendScript
 
 class InterfaceOptions(
     private val player: Player,

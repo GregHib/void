@@ -4,10 +4,10 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerVariables
-import world.gregs.voidps.network.codec.game.encode.sendVarbit
-import world.gregs.voidps.network.codec.game.encode.sendVarc
-import world.gregs.voidps.network.codec.game.encode.sendVarcStr
-import world.gregs.voidps.network.codec.game.encode.sendVarp
+import world.gregs.voidps.network.encode.sendVarbit
+import world.gregs.voidps.network.encode.sendVarc
+import world.gregs.voidps.network.encode.sendVarcStr
+import world.gregs.voidps.network.encode.sendVarp
 import world.gregs.voidps.utility.get
 
 val variablesModule = module {
