@@ -3,6 +3,7 @@ package world.gregs.voidps.network
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.network.selector.*
 import io.ktor.network.sockets.*
+import io.ktor.util.network.*
 import io.ktor.utils.io.*
 import io.ktor.utils.io.core.*
 import kotlinx.coroutines.*
@@ -26,7 +27,8 @@ class Network(
     private val private: BigInteger,
     private val loginQueue: LoginQueue,
     private val loader: PlayerLoader,
-    private val gameContext: CoroutineDispatcher
+    private val gameContext: CoroutineDispatcher,
+    private val loginLimit: Int
 ) {
 
     private lateinit var dispatcher: ExecutorCoroutineDispatcher
@@ -51,16 +53,16 @@ class Network(
                 val read = socket.openReadChannel()
                 val write = socket.openWriteChannel(autoFlush = false)
                 launch(Dispatchers.IO) {
-                    connect(read, write)
+                    connect(read, write, socket.remoteAddress.hostname)
                 }
             }
         }
         running = true
     }
 
-    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel) {
+    suspend fun connect(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         synchronise(read, write)
-        login(read, write)
+        login(read, write, hostname)
     }
 
     suspend fun synchronise(read: ByteReadChannel, write: ByteWriteChannel) {
@@ -73,7 +75,7 @@ class Network(
         write.respond(ACCEPT_SESSION)
     }
 
-    suspend fun login(read: ByteReadChannel, write: ByteWriteChannel) {
+    suspend fun login(read: ByteReadChannel, write: ByteWriteChannel, hostname: String) {
         val opcode = read.readByte().toInt()
         if (opcode != LOGIN && opcode != RECONNECT) {
             logger.trace { "Invalid request id: $opcode" }
@@ -82,10 +84,10 @@ class Network(
         }
         val size = read.readShort().toInt()
         val packet = read.readPacket(size)
-        checkClientVersion(read, packet, write)
+        checkClientVersion(read, packet, write, hostname)
     }
 
-    suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel) {
+    suspend fun checkClientVersion(read: ByteReadChannel, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val version = packet.readInt()
         if (version != revision) {
             logger.trace { "Invalid revision: $version" }
@@ -93,7 +95,7 @@ class Network(
             return
         }
         val rsa = decryptRSA(packet)
-        validateSession(read, rsa, packet, write)
+        validateSession(read, rsa, packet, write, hostname)
     }
 
     fun decryptRSA(packet: ByteReadPacket): ByteReadPacket {
@@ -103,7 +105,7 @@ class Network(
         return ByteReadPacket(rsa)
     }
 
-    suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel) {
+    suspend fun validateSession(read: ByteReadChannel, rsa: ByteReadPacket, packet: ByteReadPacket, write: ByteWriteChannel, hostname: String) {
         val sessionId = rsa.readUByte().toInt()
         if (sessionId != SESSION) {
             logger.debug { "Bad session id $sessionId" }
@@ -128,17 +130,17 @@ class Network(
         val username = xtea.readString()
         xtea.readUByte()// social login
         val displayMode = xtea.readUByte().toInt()
-        val client = createClient(write, isaacKeys)
+        val client = createClient(write, isaacKeys, hostname)
         login(read, write, client, username, password, displayMode)
     }
 
-    private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray): Client {
+    private fun createClient(write: ByteWriteChannel, isaacKeys: IntArray, hostname: String): Client {
         val inCipher = IsaacCipher(isaacKeys)
         for (i in isaacKeys.indices) {
             isaacKeys[i] += 50
         }
         val outCipher = IsaacCipher(isaacKeys)
-        return Client(write, inCipher, outCipher)
+        return Client(write, inCipher, outCipher, hostname)
     }
 
     private fun decryptXtea(packet: ByteReadPacket, isaacKeys: IntArray): ByteReadPacket {
@@ -152,14 +154,20 @@ class Network(
             write.finish(ACCOUNT_ONLINE)
             return
         }
-        val index = loginQueue.login(username)
+
+        if (loginQueue.logins(client.address) >= loginLimit) {
+            write.finish(LOGIN_LIMIT_EXCEEDED)
+            return
+        }
+
+        val index = loginQueue.login(username, client.address)
         if (index == null) {
-            loginQueue.logout(username, index)
+            loginQueue.logout(username, client.address, index)
             write.finish(WORLD_FULL)
             return
         }
 
-        val player = loadPlayer(write, username, password, index) ?: return
+        val player = loadPlayer(write, client, username, password, index) ?: return
         write.sendLoginDetails(username, index, 2)
         withContext(gameContext) {
             player.gameFrame.displayMode = displayMode
@@ -190,13 +198,13 @@ class Network(
         flush()
     }
 
-    suspend fun loadPlayer(write: ByteWriteChannel, username: String, password: String, index: Int): Player? {
+    suspend fun loadPlayer(write: ByteWriteChannel, client: Client, username: String, password: String, index: Int): Player? {
         try {
             var account = loader.load(username)
             if (account == null) {
                 account = loader.create(username, password)
             } else if (account.passwordHash.isBlank() || !BCrypt.checkpw(password, account.passwordHash)) {
-                loginQueue.logout(username, index)
+                loginQueue.logout(username, client.address, index)
                 write.finish(INVALID_CREDENTIALS)
                 return null
             }
@@ -205,7 +213,7 @@ class Network(
             loginQueue.await()
             return account
         } catch (e: IllegalStateException) {
-            loginQueue.logout(username, index)
+            loginQueue.logout(username, client.address, index)
             write.finish(COULD_NOT_COMPLETE_LOGIN)
             return null
         }
@@ -234,7 +242,6 @@ class Network(
         running = false
         dispatcher.close()
     }
-
 
     private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
 

@@ -32,16 +32,28 @@ class LoginQueue(
     private val online = ConcurrentHashMap.newKeySet<String>()
     private val indices = ConcurrentLinkedDeque((1 until MAX_PLAYERS).toList())
     private val waiting = ConcurrentHashMap.newKeySet<CancellableContinuation<Unit>>()
+    private val logins = ConcurrentHashMap<String, Int>()
+
+    fun logins(address: String) = logins[address] ?: 0
 
     fun isOnline(name: String) = online.contains(name)
 
-    fun login(name: String): Int? {
+    fun login(name: String, address: String? = null): Int? {
         online.add(name)
+        if (address != null) {
+            logins[address] = logins(address) + 1
+        }
         return indices.poll()
     }
 
-    fun logout(name: String, index: Int?) {
+    fun logout(name: String, address: String, index: Int?) {
         online.remove(name)
+        val count = logins(address) - 1
+        if (count <= 0) {
+            logins.remove(address)
+        } else {
+            logins[address] = count
+        }
         if (index != null) {
             indices.add(index)
         }

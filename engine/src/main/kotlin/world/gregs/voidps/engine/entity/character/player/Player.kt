@@ -145,7 +145,7 @@ class Player(
                 client?.logout()
             }
             client?.disconnect()
-            loginQueue.logout(name, index)
+            loginQueue.logout(name, client?.address ?: "", index)
             bus.emit(Unregistered(this@Player))
             bus.emit(PlayerUnregistered(this@Player))
         }

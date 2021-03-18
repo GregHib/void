@@ -31,17 +31,20 @@ internal class LoginQueueTest : KoinMock() {
 
     @Test
     fun `Login player name`() {
-        val index = loginQueue.login("test")
+        val index = loginQueue.login("test", "123")
 
         assertEquals(1, index)
+        assertEquals(1, loginQueue.logins("123"))
+        assertEquals(0, loginQueue.logins("321"))
         assertTrue(loginQueue.isOnline("test"))
         assertFalse(loginQueue.isOnline("not online"))
     }
 
     @Test
     fun `Logout player not online`() {
-        val index = loginQueue.login("test")
-        loginQueue.logout("test", index)
+        val index = loginQueue.login("test", "123")
+        loginQueue.logout("test", "123", index)
+        assertEquals(0, loginQueue.logins("123"))
         assertFalse(loginQueue.isOnline("test"))
     }
 

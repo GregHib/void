@@ -11,7 +11,8 @@ import kotlinx.coroutines.runBlocking
 data class Client(
     private val write: ByteWriteChannel,
     val cipherIn: IsaacCipher,
-    private val cipherOut: IsaacCipher?
+    private val cipherOut: IsaacCipher?,
+    val address: String
 ) {
 
     var exit: (() -> Unit)? = null

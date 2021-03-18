@@ -38,7 +38,7 @@ internal class NetworkTest {
     @BeforeEach
     fun setup() {
         protocol = mutableMapOf()
-        network = spyk(Network(protocol, 123, BigInteger.ONE, BigInteger.TWO, loginQueue, loader, TestCoroutineDispatcher()))
+        network = spyk(Network(protocol, 123, BigInteger.ONE, BigInteger.TWO, loginQueue, loader, TestCoroutineDispatcher(), 1))
     }
 
     @Test
@@ -64,17 +64,17 @@ internal class NetworkTest {
         coEvery { read.readShort() } returns 0
         val packet: ByteReadPacket = mockk()
         coEvery { read.readPacket(0) } returns packet
-        coEvery { network.checkClientVersion(read, packet, write) } just Runs
-        network.login(read, write)
+        coEvery { network.checkClientVersion(read, packet, write, any()) } just Runs
+        network.login(read, write, "localhost")
         coVerify {
-            network.checkClientVersion(read, packet, write)
+            network.checkClientVersion(read, packet, write, any())
         }
     }
 
     @Test
     fun `Invalid client login`() = runBlockingTest {
         coEvery { read.readByte() } returns 100
-        network.login(read, write)
+        network.login(read, write, "localhost")
         coVerify {
             write.writeByte(11)
             write.close()
@@ -88,10 +88,10 @@ internal class NetworkTest {
         coEvery { packet.readInt() } returns 123
         val rsa: ByteReadPacket = mockk()
         coEvery { network.decryptRSA(packet) } returns rsa
-        coEvery { network.validateSession(read, any(), packet, write) } just Runs
-        network.checkClientVersion(read, packet, write)
+        coEvery { network.validateSession(read, any(), packet, write, any()) } just Runs
+        network.checkClientVersion(read, packet, write, "127.0.0.1")
         coVerify {
-            network.validateSession(read, any(), packet, write)
+            network.validateSession(read, any(), packet, write, any())
         }
     }
 
@@ -100,7 +100,7 @@ internal class NetworkTest {
         mockkStatic("io.ktor.utils.io.core.InputPrimitivesKt")
         val packet: ByteReadPacket = mockk(relaxed = true)
         coEvery { packet.readInt() } returns 0
-        network.checkClientVersion(read, packet, write)
+        network.checkClientVersion(read, packet, write, "localhost")
         coVerify {
             write.writeByte(6)
             write.close()
@@ -120,13 +120,26 @@ internal class NetworkTest {
 
     @Test
     fun `World full`() = runBlockingTest {
-        val client: Client = mockk()
+        val client: Client = mockk(relaxed = true)
         every { loginQueue.isOnline(any()) } returns false
-        every { loginQueue.login(any()) } returns null
-        every { loginQueue.logout(any(), any()) } just Runs
+        every { loginQueue.login(any(), any()) } returns null
+        every { loginQueue.logins(any()) } returns 0
+        every { loginQueue.logout(any(), any(), any()) } just Runs
         network.login(read, write, client, "bob", "axes", 0)
         coVerify {
             write.writeByte(7)
+            write.close()
+        }
+    }
+
+    @Test
+    fun `Login limit exceeded`() = runBlockingTest {
+        val client: Client = mockk(relaxed = true)
+        every { loginQueue.isOnline(any()) } returns false
+        every { loginQueue.logins(any()) } returns 1
+        network.login(read, write, client, "bob", "axes", 0)
+        coVerify {
+            write.writeByte(9)
             write.close()
         }
     }
@@ -136,7 +149,8 @@ internal class NetworkTest {
         val client: Client = mockk(relaxed = true)
         coEvery { loginQueue.await() } just Runs
         every { loginQueue.isOnline(any()) } returns false
-        every { loginQueue.login(any()) } returns 1
+        every { loginQueue.login(any(), any()) } returns 1
+        every { loginQueue.logins(any()) } returns 0
         every { loader.load(any()) } returns null
         val player: Player = mockk(relaxed = true)
         every { loader.create(any(), any()) } returns player
@@ -152,11 +166,12 @@ internal class NetworkTest {
 
     @Test
     fun `Invalid credentials`() = runBlockingTest {
-        val client: Client = mockk()
+        val client: Client = mockk(relaxed = true)
         val player: Player = mockk()
         every { loginQueue.isOnline(any()) } returns false
-        every { loginQueue.login(any()) } returns 1
-        every { loginQueue.logout(any(), any()) } just Runs
+        every { loginQueue.login(any(), any()) } returns 1
+        every { loginQueue.logins(any()) } returns 0
+        every { loginQueue.logout(any(), any(), any()) } just Runs
         every { loader.load(any()) } returns player
         every { player.passwordHash } returns ""
         network.login(read, write, client, "bob", "axes", 0)
@@ -171,8 +186,9 @@ internal class NetworkTest {
         val client: Client = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
         every { loginQueue.isOnline(any()) } returns false
-        every { loginQueue.login(any()) } returns 1
-        every { loginQueue.logout(any(), any()) } just Runs
+        every { loginQueue.login(any(), any()) } returns 1
+        every { loginQueue.logins(any()) } returns 0
+        every { loginQueue.logout(any(), any(), any()) } just Runs
         every { loader.load(any()) } returns player
         every { loader.initPlayer(player, 1) } just Runs
         coEvery { loginQueue.await() } just Runs

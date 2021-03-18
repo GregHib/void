@@ -67,10 +67,11 @@ object Main {
 
         name = getProperty("name")
         val revision = getProperty("revision").toInt()
+        val limit = getProperty("loginLimit").toInt()
         val modulus = BigInteger(getProperty("rsaModulus"), 16)
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
-        val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game)
+        val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game, limit)
         val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
