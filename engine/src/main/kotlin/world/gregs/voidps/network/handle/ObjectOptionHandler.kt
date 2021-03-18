@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
@@ -21,12 +22,13 @@ class ObjectOptionHandler : Handler() {
     val logger = InlineLogger()
     val objects: Objects by inject()
     val bus: EventBus by inject()
+    val stairs: Stairs by inject()
 
     override fun objectOption(player: Player, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {
         val tile = player.tile.copy(x = x, y = y)
         val target = objects[tile, objectId]
         if (target == null) {
-            logger.warn { "Invalid object $objectId $x $y" }
+            logger.warn { "Invalid object $objectId $tile" }
             return
         }
         val definition = target.def
@@ -47,6 +49,7 @@ class ObjectOptionHandler : Handler() {
                 return@walkTo
             }
             val partial = result is PathResult.Partial
+            stairs.option(player, target, selectedOption)
             bus.emit(ObjectOption(player, target, selectedOption, partial))
         }
     }

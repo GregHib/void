@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
@@ -113,4 +114,12 @@ Command where { prefix == "hide" } then {
 Command where { prefix == "pos" || prefix == "mypos" } then {
     player.message(player.tile.toString())
     println(player.tile)
+}
+
+Command where { prefix == "reload" } then {
+    when(content) {
+        "stairs" -> {
+            get<Stairs>().load()
+        }
+    }
 }
