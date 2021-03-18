@@ -9,7 +9,7 @@ class ObjectOption3Decoder(handler: Handler? = null) : Decoder(7, handler) {
     override fun decode(player: Player, packet: ByteReadPacket) {
         handler?.objectOption(
             player = player,
-            y = packet.readShortAdd(),
+            y = packet.readUnsignedShortAdd(),
             objectId = packet.readUnsignedShortAddLittle(),
             x = packet.readShortLittleEndian().toInt(),
             run = packet.readBooleanAdd(),
