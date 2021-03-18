@@ -1,3 +1,4 @@
+# Lumbridge castle staircase
 - id: 36773
   option: Climb-up
   tile:
@@ -78,6 +79,7 @@
     y: 3229
   delta:
     plane: 1
+# Lumbridge cellar
 - id: 36687
   option: Climb-down
   tile:
@@ -92,3 +94,83 @@
     y: 9616
   delta:
     y: -6400
+# Lumbridge catacombs
+- id: 48797
+  option: Climb-down
+  tile:
+    x: 3247
+    y: 3197
+  delta:
+    x: 623
+    y: 2326
+- id: 48679
+  option: Climb-up
+  tile:
+    x: 3870
+    y: 5524
+  delta:
+    x: -623
+    y: -2326
+## Lumbridge courtyard ladders
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3229
+    y: 3213
+  delta:
+    plane: 1
+- id: 36768
+  option: Climb-up
+  tile:
+    x: 3229
+    y: 3224
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-up
+  tile:
+    x: 3229
+    y: 3213
+    plane: 1
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3213
+    plane: 1
+  delta:
+    plane: -1
+- id: 36769
+  option: Climb-up
+  tile:
+    x: 3229
+    y: 3224
+    plane: 1
+  delta:
+    plane: 1
+- id: 36769
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3224
+    plane: 1
+  delta:
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3213
+    plane: 2
+  delta:
+    plane: -1
+- id: 36770
+  option: Climb-down
+  tile:
+    x: 3229
+    y: 3224
+    plane: 2
+  delta:
+    plane: -1
