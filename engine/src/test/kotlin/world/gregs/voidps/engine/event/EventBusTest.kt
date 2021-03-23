@@ -73,67 +73,11 @@ internal class EventBusTest : KoinMock() {
     fun `Add first`() {
         // Given
         val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { handler.priority } returns 0
         val clazz = TestEvent::class
         // When
         bus.add(clazz, handler = handler)
         // Then
         assertEquals(handler, bus.get(clazz))
-    }
-
-    @Test
-    fun `Add middle`() {
-        // Given
-        val second = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { second.next } returns null
-        every { second.priority } returns 0
-        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { first.next } returns second
-        every { first.priority } returns 2
-        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { handler.priority } returns 1
-        val clazz = TestEvent::class
-        bus.add(clazz, handler = first)
-        // When
-        bus.add(clazz, handler = handler)
-        // Then
-        assertEquals(first, bus.get(clazz))
-        verify { first.next = handler }
-    }
-
-    @Test
-    fun `Add last`() {
-        // Given
-        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { first.next } returns null
-        every { first.priority } returns 10
-        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { handler.priority } returns 0
-        val clazz = TestEvent::class
-        bus.add(clazz, handler = first)
-        // When
-        bus.add(clazz, handler = handler)
-        // Then
-        assertEquals(first, bus.get(clazz))
-        verify { first.next = handler }
-    }
-
-    @Test
-    fun `Add greater than first`() {
-        // Given
-        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { first.next } returns null
-        every { first.priority } returns 5
-        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
-        every { handler.priority } returns 10
-        val clazz = TestEvent::class
-        bus.add(clazz, handler = first)
-        // When
-        bus.add(clazz, handler = handler)
-        // Then
-        verify {
-            handler.next = first
-        }
     }
 
     @Test

@@ -6,7 +6,6 @@ package world.gregs.voidps.engine.event
  */
 class EventHandler<E : Event> {
     var next: EventHandler<E>? = null
-    var priority: Int = 0
     var filter: (E.() -> Boolean)? = null
     lateinit var action: E.(E) -> Unit
 

@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
@@ -25,7 +26,7 @@ val customObjectModule = module {
             val list = spawns.getOrPut(gameObject.tile.region) { mutableListOf() }
             list.add(gameObject)
         }
-        CustomObjects(get(), get(), get(), get(), get(), spawns)
+        CustomObjects(get(), get(), get(), get(), get(), get(), spawns)
     }
 }
 
@@ -35,6 +36,7 @@ class CustomObjects(
     private val bus: EventBus,
     private val batcher: ChunkBatcher,
     private val factory: GameObjectFactory,
+    private val collision: GameObjectCollision,
     private val spawns: MutableMap<Region, MutableList<GameObject>>
 ) {
 
@@ -109,6 +111,7 @@ class CustomObjects(
             player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
         }
         objects.removeTemp(gameObject)
+        collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
         bus.emit(Unregistered(gameObject))
     }
 
@@ -117,6 +120,7 @@ class CustomObjects(
             player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
         }
         objects.addTemp(gameObject)
+        collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
         bus.emit(Registered(gameObject))
     }
 
@@ -218,7 +222,9 @@ class CustomObjects(
             objects.removeAddition(original)
         }
         objects.addTemp(replacement)
+        collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
         bus.emit(Unregistered(original))
+        collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
         bus.emit(Registered(replacement))
     }
 }

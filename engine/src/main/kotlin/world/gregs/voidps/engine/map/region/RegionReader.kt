@@ -13,10 +13,11 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import kotlin.system.measureTimeMillis
 
 val regionModule = module {
-    single { RegionReader(get(), get(), get(), get(), get(), get(), get()) }
+    single { RegionReader(get(), get(), get(), get(), get(), get(), get(), get()) }
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
@@ -28,6 +29,7 @@ class RegionReader(
     private val bus: EventBus,
     private val collisions: CollisionReader,
     private val objects: Objects,
+    private val collision: GameObjectCollision,
     private val customs: CustomObjects,
     private val objectFactory: GameObjectFactory,
     private val decoder: MapDecoder,
@@ -68,6 +70,7 @@ class RegionReader(
                 location.rotation
             )
             objects.add(gameObject)
+            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
             bus.emit(Registered(gameObject))
         }
     }

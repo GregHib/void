@@ -30,26 +30,11 @@ class EventBus {
 
         while (last != null) {
             next = last.next
-
-            if(handler.priority > last.priority) {
-                handler.next = last
-                handlers[clazz] = handler
-                break
-            }
-
             if (next == null) {
                 // Append
                 last.next = handler
                 break
             }
-
-            if (next.priority <= handler.priority) {
-                // Insert
-                last.next = handler
-                handler.next = next
-                break
-            }
-
             last = next
         }
 
@@ -119,7 +104,7 @@ class EventBus {
 /**
  * Registers a simple event handler without filter or priority
  */
-inline infix fun < reified E : Event, C : EventCompanion<E>> C.then(noinline action: E.(E) -> Unit) =
+inline infix fun <reified E : Event, C : EventCompanion<E>> C.then(noinline action: E.(E) -> Unit) =
     runBlocking {
         val handler = EventHandler<E>()
         handler.action = action

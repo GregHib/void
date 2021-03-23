@@ -70,7 +70,7 @@ class NPCLoader(
         }
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
-        bus.emit(NPCRegistered(npc))
+        collisions.add(npc)
         npcs.add(npc)
         bus.emit(Registered(npc))
         return npc
@@ -78,6 +78,7 @@ class NPCLoader(
 
     fun despawn(npc: NPC) {
         npcs.remove(npc)
+        collisions.remove(npc)
     }
 
     fun random(area: Area, traversal: TileTraversalStrategy): Tile {
