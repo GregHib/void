@@ -1,4 +1,3 @@
-import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.Direction
@@ -14,18 +13,13 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.obj.Stairs
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import java.util.concurrent.atomic.AtomicInteger
 
-val bus: EventBus by inject()
-val scheduler: Scheduler by inject()
-
-Command where { prefix == "tele" || prefix == "tp" } then {
+on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
         val plane = params[0].toInt()
@@ -38,7 +32,7 @@ Command where { prefix == "tele" || prefix == "tp" } then {
     }
 }
 
-Command where { prefix == "npc" } then {
+on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
     val spawns: NPCLoader = get()
@@ -63,13 +57,13 @@ val botCounter = AtomicInteger(0)
 val loginQueue: LoginQueue by inject()
 val playerStorage: StorageStrategy<Player> by inject()
 
-Command where { prefix == "save" } then {
+on<Command>({ prefix == "save" }) { player: Player ->
     playerStorage.save(player.name, player)
 }
 
 val definitions: ItemDefinitions by inject()
 
-Command where { prefix == "item" } then {
+on<Command>({ prefix == "item"}) { player: Player ->
     val parts = content.split(" ")
     val id = parts[0].toIntOrNull() ?: definitions.getId(parts[0].toLowerCase())
     var amount = parts.getOrNull(1) ?: "1"
@@ -80,7 +74,7 @@ Command where { prefix == "item" } then {
     println(player.inventory.result)
 }
 
-Command where { prefix == "find" } then {
+on<Command>({ prefix == "find" }) { player: Player ->
     val items: ItemDefinitions = get()
     val search = content.toLowerCase()
     var found = false
@@ -96,27 +90,27 @@ Command where { prefix == "find" } then {
     }
 }
 
-Command where { prefix == "clear" } then {
+on<Command>({ prefix == "clear" }) { player: Player ->
     player.inventory.clearAll()
 }
 
-Command where { prefix == "master" } then {
+on<Command>({ prefix == "master" }) { player: Player ->
     player.setVar("life_points", 990)
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
     }
 }
 
-Command where { prefix == "hide" } then {
+on<Command>({ prefix == "hide" }) { player: Player ->
     player.effects.toggle(Hidden)
 }
 
-Command where { prefix == "pos" || prefix == "mypos" } then {
+on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
     player.message(player.tile.toString())
     println(player.tile)
 }
 
-Command where { prefix == "reload" } then {
+on<Command>({ prefix == "reload" }) { player: Player ->
     when(content) {
         "stairs" -> {
             get<Stairs>().load()

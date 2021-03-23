@@ -2,9 +2,7 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 
 /**
@@ -34,10 +32,6 @@ fun NPC.flagHits() = visuals.flag(NPC_HITS_MASK)
 fun Player.getHits() = visuals.getOrPut(PLAYER_HITS_MASK) { Hits() }
 
 fun NPC.getHits() = visuals.getOrPut(NPC_HITS_MASK) { Hits() }
-
-fun PlayerEvent.hit(hit: Hit) = player.addHit(hit)
-
-fun NPCEvent.hit(hit: Hit) = npc.addHit(hit)
 
 fun Player.addHit(hit: Hit) {
     val hits = getHits()

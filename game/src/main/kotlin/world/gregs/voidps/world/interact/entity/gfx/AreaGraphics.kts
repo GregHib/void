@@ -2,13 +2,14 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addAreaGraphic
 import world.gregs.voidps.utility.inject
@@ -19,7 +20,7 @@ val scheduler: Scheduler by inject()
 val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 
-SpawnGraphic then {
+on<World, SpawnGraphic> {
     val ag = AreaGraphic(tile, Graphic(id, delay, height, rotation, forceRefresh), owner)
     graphics.add(ag)
     batcher.update(tile.chunk, ag.toMessage())

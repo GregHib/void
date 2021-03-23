@@ -93,9 +93,8 @@ class InterfaceOptionHandler : Handler() {
         }
 
         val selectedOption = options.getOrNull(option) ?: ""
-        bus.emit(
+        player.events.emit(
             InterfaceOption(
-                player,
                 id,
                 name,
                 componentId,

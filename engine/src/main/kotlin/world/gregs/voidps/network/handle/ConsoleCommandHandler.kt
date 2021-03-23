@@ -17,7 +17,7 @@ class ConsoleCommandHandler : Handler() {
     override fun consoleCommand(player: Player, command: String) {
         val parts = command.split(" ")
         val prefix = parts[0]
-        bus.emit(Command(player, prefix, command.removePrefix("$prefix ")))
+        player.events.emit(Command(prefix, command.removePrefix("$prefix ")))
     }
 
 }

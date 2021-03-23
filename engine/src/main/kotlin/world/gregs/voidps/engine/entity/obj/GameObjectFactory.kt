@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import org.koin.dsl.module
+import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.DecorationTargetStrategy
@@ -12,7 +13,10 @@ import world.gregs.voidps.engine.path.strat.WallTargetStrategy
  * @author GregHib <greg@gregs.world>
  * @since August 22, 2020
  */
-class GameObjectFactory(private val collisions: Collisions) {
+class GameObjectFactory(
+    private val collisions: Collisions,
+    private val bus: EventBus
+) {
 
     fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {
         val gameObject = GameObject(objectId, tile, type, rotation, owner)
@@ -26,10 +30,11 @@ class GameObjectFactory(private val collisions: Collisions) {
             }
             else -> EntityTileTargetStrategy(gameObject)
         }
+        bus.populate(gameObject)
         return gameObject
     }
 }
 
 val objectFactoryModule = module {
-    single { GameObjectFactory(get()) }
+    single { GameObjectFactory(get(), get()) }
 }

@@ -31,7 +31,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.event.*
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
@@ -81,6 +81,9 @@ class Player(
     var name: String = "",
     var passwordHash: String = ""
 ) : Character {
+
+    @JsonIgnore
+    override val events: Events = Events(this)
 
     @JsonIgnore
     val requests: Requests = Requests(this)
@@ -136,9 +139,9 @@ class Player(
             logout(false)
         }
         if (client != null) {
-            bus.emit(RegionLogin(this))
+            events.emit(RegionLogin)
         }
-        bus.emit(PlayerRegistered(this))
+        events.emit(PlayerRegistered)
         val collisions: Collisions = get()
         collisions.add(this)
         setup()
@@ -161,7 +164,7 @@ class Player(
             val collisions: Collisions = get()
             collisions.remove(this@Player)
             bus.emit(Unregistered(this@Player))
-            bus.emit(PlayerUnregistered(this@Player))
+            events.emit(PlayerUnregistered)
         }
     }
 

@@ -2,8 +2,8 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 /**
  * Declining or closing cancels the trade
@@ -15,6 +15,6 @@ fun isDecline(component: String, option: String) = component == "decline" && opt
 
 fun isClose(component: String, option: String) = component == "close" && option == "Close"
 
-InterfaceOption where { isTradeInterface(name) && (isDecline(component, option) || isClose(component, option)) } then {
+on<InterfaceOption>({ isTradeInterface(name) && (isDecline(component, option) || isClose(component, option)) }) { player: Player ->
     player.action.cancel(ActionType.Trade)
 }

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
-import world.gregs.voidps.engine.event.then
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -18,19 +18,19 @@ import world.gregs.voidps.utility.inject
 val graph: NavigationGraph by inject()
 val bfs: BreadthFirstSearch by inject()
 
-PlayerRegistered then {
+on<PlayerRegistered> { player: Player ->
     findNearest(player)
 }
 
-PlayerUnregistered then {
+on<PlayerUnregistered> { player: Player ->
     graph.remove(player)
 }
 
-PlayerMoved then {
+on<PlayerMoved> { player: Player ->
     if (from.distanceTo(to) > 2) {
         findNearest(player)
     } else {
-        val old = player.movement.nearestWaypoint ?: return@then
+        val old = player.movement.nearestWaypoint ?: return@on
         var nearest = old
         val tile = nearest.end as Tile
         for (edge in graph.getAdjacent(tile)) {

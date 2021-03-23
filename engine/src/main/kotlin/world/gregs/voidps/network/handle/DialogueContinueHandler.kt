@@ -46,9 +46,8 @@ class DialogueContinueHandler : Handler() {
         val name = inter.name
         val componentName = inter.getComponentName(componentId)
 
-        bus.emit(
+        player.events.emit(
             ContinueDialogue(
-                player,
                 id,
                 name,
                 componentId,

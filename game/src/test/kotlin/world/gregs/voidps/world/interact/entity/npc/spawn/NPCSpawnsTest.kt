@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCRegistered
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.entityListModule
@@ -35,7 +34,7 @@ import world.gregs.voidps.world.script.ScriptMock
 internal class NPCSpawnsTest : ScriptMock() {
 
     lateinit var bus: EventBus
-    lateinit var spawnHandler: EventHandler<NPC, NPCSpawn>
+    lateinit var spawnHandler: EventHandler<NPCSpawn>
 
     @BeforeEach
     override fun setup() {

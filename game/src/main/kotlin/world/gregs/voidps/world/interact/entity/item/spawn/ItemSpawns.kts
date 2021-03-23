@@ -3,10 +3,10 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItemFactory
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionLoaded
@@ -25,6 +25,7 @@ data class ItemSpawnBuilder(
     val tile: ItemTile,
 ) {
     data class ItemTile(val x: Int, val y: Int, val plane: Int = 0)
+
     fun build() = ItemSpawn(id, amount, delay, Tile(tile.x, tile.y, tile.plane))
 }
 
@@ -34,7 +35,7 @@ data class ItemSpawn(val id: Int, val amount: Int = 1, val delay: Int = 100, val
 val spawns: MutableMap<Region, MutableList<ItemSpawn>> = mutableMapOf()
 val links = mutableMapOf<FloorItem, ItemSpawn>()
 
-Startup then {
+on<World, Startup> {
     val items: Array<ItemSpawn> = files.load(getProperty("floorItemsPath"))
     items.forEach { spawn ->
         val list = spawns.getOrPut(spawn.tile.region) { mutableListOf() }
@@ -54,9 +55,8 @@ fun ItemSpawn.drop() {
 /**
  * When a region is loaded spawn [FloorItem]'s
  */
-RegionLoaded then {
-    val spawns = spawns[region] ?: return@then
-    spawns.forEach { spawn ->
+on<World, RegionLoaded> {
+    spawns[region]?.forEach { spawn ->
         spawn.drop()
     }
 }
@@ -64,8 +64,7 @@ RegionLoaded then {
 /**
  * When a spawn points item is removed, wait for respawn delay before spawning another.
  */
-Unregistered where { entity is FloorItem && links.containsKey(entity as FloorItem) } then {
-    val item = entity as FloorItem
+on<Unregistered>({ links.containsKey(it) }) { item: FloorItem ->
     val spawn = links.remove(item)!!
     scheduler.launch {
         delay(ticks = spawn.delay)

@@ -4,8 +4,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.world.community.assist.Assistance.getHoursRemaining
@@ -15,7 +14,7 @@ import world.gregs.voidps.world.community.assist.Assistance.hasEarnedMaximumExpe
  * Assistance privacy filter settings
  */
 
-InterfaceOption where { name == "filter_buttons" && component == "assist" && option == "XP Earned/Time" } then {
+on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "XP Earned/Time" }) { player: Player ->
     if (hasEarnedMaximumExperience(player)) {
         val hours = getHoursRemaining(player)
         player.message(
@@ -29,16 +28,16 @@ InterfaceOption where { name == "filter_buttons" && component == "assist" && opt
     }
 }
 
-InterfaceOption where { name == "filter_buttons" && component == "assist" && option == "On Assist" } then {
+on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "On Assist" }) { player: Player ->
     player["assist_filter", true] = "on"
 }
 
-InterfaceOption where { name == "filter_buttons" && component == "assist" && option == "Friends Assist" } then {
+on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "Friends Assist" }) { player: Player ->
     player["assist_filter", true] = "friends"
     cancel(player)
 }
 
-InterfaceOption where { name == "filter_buttons" && component == "assist" && option == "Off Assist" } then {
+on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && option == "Off Assist" }) { player: Player ->
     player["assist_filter", true] = "off"
     cancel(player)
 }

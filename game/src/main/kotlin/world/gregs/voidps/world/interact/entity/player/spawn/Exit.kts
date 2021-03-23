@@ -2,13 +2,13 @@ package world.gregs.voidps.world.interact.entity.player.spawn
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
-InterfaceOption where { name == player.gameFrame.name && component == "logout" && option == "Exit" } then {
+on<InterfaceOption>({ name == it.gameFrame.name && component == "logout" && option == "Exit" }) { player: Player ->
     player.open("logout")
 }
 
-InterfaceOption where { name == "logout" && (component == "lobby" || component == "login") && option == "*" } then {
+on<InterfaceOption>({ name == "logout" && (component == "lobby" || component == "login") && option == "*" }) { player: Player ->
     player.logout(true)
 }

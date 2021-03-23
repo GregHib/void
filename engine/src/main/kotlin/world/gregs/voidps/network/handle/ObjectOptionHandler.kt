@@ -50,7 +50,7 @@ class ObjectOptionHandler : Handler() {
             }
             val partial = result is PathResult.Partial
             stairs.option(player, target, selectedOption)
-            bus.emit(ObjectOption(player, target, selectedOption, partial))
+            player.events.emit(ObjectOption(target, selectedOption, partial))
         }
     }
 

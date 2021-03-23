@@ -53,6 +53,7 @@ class FloorItemFactory(
         }
         val item = FloorItem(tile, id, amount, owner = owner?.name)
         item.interactTarget = PointTargetStrategy(item)
+        bus.populate(item)
         items.add(item)
         batcher.update(tile.chunk) { player -> player.client?.addFloorItem(tile.offset(), id, amount) }
         reveal(item, revealTicks, owner?.index ?: -1)

@@ -1,8 +1,9 @@
 package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.then
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.network.encode.clearChunk
 import world.gregs.voidps.network.encode.updateChunk
@@ -18,7 +19,7 @@ class ChunkBatcher {
     val batches = mutableMapOf<Chunk, MutableList<(Player) -> Unit>>()
 
     init {
-        Tick.then {
+        on<World, Tick> {
             tick()
         }
     }
