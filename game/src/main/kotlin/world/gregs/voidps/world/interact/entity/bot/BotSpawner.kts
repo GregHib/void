@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -53,7 +54,10 @@ val decideTarget = SimpleBotOption(
     ),
     weight = 0.2,
     action = {
-        val target = graph.tiles.keys.randomOrNull() ?: return@SimpleBotOption
+        val target = graph.tiles.keys.firstOrNull { it is Tile && it.equals(3229, 3216, 1) }
+        if (target == null) {
+            return@SimpleBotOption
+        }
         val strategy = object : NodeTargetStrategy() {
             override fun reached(node: Any): Boolean {
                 return node == target
@@ -90,7 +94,7 @@ val loginQueue: LoginQueue by inject()
 val loader: PlayerLoader by inject()
 
 Command where { prefix == "bots" } then {
-    spawnBots(2000)
+    spawnBots(1)
 }
 
 var counter = 0
