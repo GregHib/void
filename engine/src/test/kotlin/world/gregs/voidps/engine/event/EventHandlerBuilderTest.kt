@@ -39,16 +39,14 @@ internal class EventHandlerBuilderTest {
     fun `Builder returns event handler with all values set`() {
         // Given
         val filter = mockk<TestEvent.() -> Boolean>(relaxed = true)
-        val check = mockk<TestEvent.() -> Boolean>(relaxed = true)
         val priority = 4
         val action = mockk<TestEvent.(TestEvent) -> Unit>(relaxed = true)
-        val builder = EventHandlerBuilder(filter, check, priority)
+        val builder = EventHandlerBuilder(filter, priority)
         // When
         val handler = builder.build(action)
         // Then
         assertEquals(action, handler.action)
         assertEquals(filter, handler.filter)
-        assertEquals(check, handler.check)
         assertEquals(priority, handler.priority)
     }
 }

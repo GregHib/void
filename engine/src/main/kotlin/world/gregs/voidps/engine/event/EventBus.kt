@@ -109,7 +109,7 @@ class EventBus {
         var handler = get(clazz)
 
         while (handler != null) {
-            if (handler.applies(event) && handler.checked(event)) {
+            if (handler.applies(event)) {
                 return true
             }
             handler = handler.next
