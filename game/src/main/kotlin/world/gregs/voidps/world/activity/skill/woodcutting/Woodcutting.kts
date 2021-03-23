@@ -11,8 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math
@@ -28,7 +27,7 @@ val players: Players by inject()
 val minPlayers = 0
 val maxPlayers = 2000
 
-ObjectOption where { option == "Chop down" || option == "Chop" } then {
+on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player ->
     player.action(ActionType.Woodcutting) {
         try {
             var first = true
@@ -105,6 +104,9 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
 /**
  * Returns regrow delay based on the type of tree and number of players online
  */
+/**
+ * Returns regrow delay based on the type of tree and number of players online
+ */
 fun getRegrowTickDelay(tree: Tree): Int {
     val delay = tree.respawnDelay
     return if (tree.level == 1) {
@@ -114,6 +116,9 @@ fun getRegrowTickDelay(tree: Tree): Int {
     }
 }
 
+/**
+ * Removes the tree canopy (if exists) on the tile above
+ */
 /**
  * Removes the tree canopy (if exists) on the tile above
  */

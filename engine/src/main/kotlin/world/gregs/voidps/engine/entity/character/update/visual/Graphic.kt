@@ -2,9 +2,7 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.utility.func.toInt
@@ -75,10 +73,6 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     }
     return -1
 }
-
-fun PlayerEvent.graphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) = player.setGraphic(id, delay, height, rotation, forceRefresh)
-
-fun NPCEvent.graphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) = npc.setGraphic(id, delay, height, rotation, forceRefresh)
 
 fun Player.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
     val index = visuals.getIndex(::getPlayerMask)

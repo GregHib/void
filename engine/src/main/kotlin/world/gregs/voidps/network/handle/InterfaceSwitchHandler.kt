@@ -57,9 +57,8 @@ class InterfaceSwitchHandler : Handler() {
         val toName = toInter.name
         val toComponentName = toInter.getComponentName(toComponentId)
 
-        bus.emit(
+        player.events.emit(
             InterfaceSwitch(
-                player,
                 fromId,
                 fromName,
                 fromComponentId,

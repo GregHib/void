@@ -45,6 +45,7 @@ class PlayerLoader(
     }
 
     fun initPlayer(player: Player, index: Int) {
+        bus.populate(player)
         player.index = index
         val interfaceIO = PlayerInterfaceIO(player, bus)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)

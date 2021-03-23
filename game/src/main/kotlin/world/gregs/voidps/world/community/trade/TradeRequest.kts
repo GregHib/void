@@ -20,8 +20,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.utility.inject
@@ -45,10 +44,10 @@ IntVariable(697, Variable.Type.VARC).register("other_offer_value")
 
 IntVariable(203, Variable.Type.VARCSTR).register("other_trader_name")
 
-PlayerOption where { option == "Trade with" } then {
+on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.hasFriend(player))) {
-        return@then
+        return@on
     }
     if (player.requests.has(target, "trade")) {
         player.message("Sending trade offer...", ChatType.GameTrade)
@@ -62,7 +61,7 @@ PlayerOption where { option == "Trade with" } then {
     }
 }
 
-Command where { prefix == "trade" } then {
+on<Command>({ prefix == "trade" }) { player: Player ->
     startTrade(player, player)
 }
 

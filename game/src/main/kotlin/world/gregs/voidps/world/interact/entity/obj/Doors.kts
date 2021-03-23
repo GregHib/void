@@ -2,11 +2,11 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.inc
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.delay.Delay
 import world.gregs.voidps.engine.entity.character.player.delay.delayed
 import world.gregs.voidps.engine.entity.obj.*
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.network.encode.message
@@ -22,12 +22,12 @@ val doorResetDelay = 500
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
-ObjectOption where { obj.def.isDoor() && option == "Close" } then {
+on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
     // Prevent players from trapping one another
     if (player.delayed(Delay.DoorSlam)) {
         if (player.inc("doorSlamCount") > doorStuckCount) {
             player.message("The door seems to be stuck.")
-            return@then
+            return@on
         }
     } else {
         player.clear("doorSlamCount")
@@ -36,7 +36,7 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
     val double = getDoubleDoor(obj, 1)
 
     if (resetExisting(obj, double)) {
-        return@then
+        return@on
     }
 
     val replacement1 = obj.def.getOrNull("close") as? Int
@@ -49,7 +49,7 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
             getRotation(obj, 3),
             doorResetDelay
         )
-        return@then
+        return@on
     }
 
     val replacement2 = double?.def?.getOrNull("close") as? Int
@@ -72,16 +72,16 @@ ObjectOption where { obj.def.isDoor() && option == "Close" } then {
                 10
             )
         }
-        return@then
+        return@on
     }
     player.message("The ${obj.def.name.toLowerCase()} won't budge.")
 }
 
-ObjectOption where { obj.def.isDoor() && option == "Open" } then {
+on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
     val double = getDoubleDoor(obj, 0)
 
     if (resetExisting(obj, double)) {
-        return@then
+        return@on
     }
 
     val replacement1 = obj.def.getOrNull("open") as? Int
@@ -95,7 +95,7 @@ ObjectOption where { obj.def.isDoor() && option == "Open" } then {
             getRotation(obj, 1),
             doorResetDelay
         )
-        return@then
+        return@on
     }
     if (double != null && replacement1 != null && replacement2 != null) {
         val delta = obj.tile.delta(double.tile)
@@ -129,7 +129,7 @@ ObjectOption where { obj.def.isDoor() && option == "Open" } then {
                 doorResetDelay
             )
         }
-        return@then
+        return@on
     }
     player.message("The ${obj.def.name.toLowerCase()} won't budge.")
 }

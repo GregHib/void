@@ -35,15 +35,15 @@ class PlayerInterfaceIO(
     }
 
     override fun notifyClosed(inter: InterfaceDetail) {
-        bus.emit(InterfaceClosed(player, inter.id, inter.name))
+        player.events.emit(InterfaceClosed(inter.id, inter.name))
     }
 
     override fun notifyOpened(inter: InterfaceDetail) {
-        bus.emit(InterfaceOpened(player, inter.id, inter.name))
+        player.events.emit(InterfaceOpened(inter.id, inter.name))
     }
 
     override fun notifyRefreshed(inter: InterfaceDetail) {
-        bus.emit(InterfaceRefreshed(player, inter.id, inter.name))
+        player.events.emit(InterfaceRefreshed(inter.id, inter.name))
     }
 
     override fun sendPlayerHead(component: InterfaceComponentDetail) {

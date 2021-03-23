@@ -7,4 +7,4 @@ import world.gregs.voidps.engine.event.EventCompanion
  * @author GregHib <greg@gregs.world>
  * @since March 28, 2020
  */
-object Startup : Event(), EventCompanion<Startup>
+object Startup : Event, EventCompanion<Startup>

@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,8 +15,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.area.area
@@ -93,7 +93,7 @@ val bots = mutableListOf<Player>()
 val loginQueue: LoginQueue by inject()
 val loader: PlayerLoader by inject()
 
-Command where { prefix == "bots" } then {
+on<Command>({ prefix == "bots" }) { player: Player ->
     spawnBots(1)
 }
 
@@ -124,7 +124,7 @@ fun spawnBots(count: Int) {
 
 }
 
-Tick then {
+on<World, Tick> {
     runBlocking {
         coroutineScope {
             bots.forEach { bot ->

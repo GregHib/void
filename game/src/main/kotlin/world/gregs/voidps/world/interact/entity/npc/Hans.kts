@@ -3,14 +3,14 @@ package world.gregs.voidps.world.interact.entity.npc
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.forceChat
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-NPCOption where { npc.def.name == "Hans" && option == "Talk-to" } then {
+on<NPCOption>({ npc.def.name == "Hans" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
         npc("Hello. What are you doing here?")
         val choice = choice("""

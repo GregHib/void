@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.StringMapVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 IntVariable(101, Variable.Type.VARP, true, 0).register("quest_points")
 
@@ -16,7 +16,7 @@ StringMapVariable(281, Variable.Type.VARP, true, defaultValue = "complete", valu
     "complete" to 1000
 )).register("unstable_foundations")
 
-InterfaceOpened where { name == "quest_journals"} then {
+on<InterfaceOpened>({ name == "quest_journals"}) { player: Player ->
     player.sendVar("quest_points")
     player.sendVar("unstable_foundations")
 }

@@ -11,32 +11,31 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppea
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 
 val itemDecoder: ItemDefinitions by inject()
 
-ContainerAction where { container == "inventory" && (option == "Wield" || option == "Wear") } then {
+on<ContainerAction>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
     val details = itemDecoder.get(item)
 
     if (failedToRemoveOtherHand(player, details)) {
         player.message("Your inventory is full.")
-        return@then
+        return@on
     }
 
     player.inventory.swap(slot, player.equipment, details["slot", EquipSlot.None].index)
     player.flagAppearance()
 }
 
-ContainerAction where { container == "worn_equipment" && option == "Remove" } then {
+on<ContainerAction>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
     if (!player.equipment.move(slot, player.inventory) && player.equipment.result == ContainerResult.Full) {
         player.message("You don't have enough inventory space.")
     }
 }
 
-PlayerRegistered then {
+on<PlayerRegistered> { player: Player ->
     player.equipment.listeners.add { list ->
         for ((index, _, _) in list) {
             if (index == EquipSlot.Weapon.index) {

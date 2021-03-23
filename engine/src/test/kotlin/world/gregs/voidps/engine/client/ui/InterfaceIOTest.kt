@@ -29,7 +29,7 @@ internal class InterfaceIOTest {
         player = mockk()
         bus = mockk()
         client = mockk(relaxed = true)
-        every { bus.emit(any<PlayerEvent>(), any()) } returns mockk()
+        every { player.events.emit(any<PlayerEvent>()) } returns mockk()
         every { player.client } returns client
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         io = PlayerInterfaceIO(player, bus)
@@ -94,7 +94,7 @@ internal class InterfaceIOTest {
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyClosed(inter)
-        verify { bus.emit(InterfaceClosed(player, 10, "interface_name")) }
+        verify { player.events.emit(InterfaceClosed(10, "interface_name")) }
     }
 
     @Test
@@ -103,7 +103,7 @@ internal class InterfaceIOTest {
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyOpened(inter)
-        verify { bus.emit(InterfaceOpened(player, 10, "interface_name")) }
+        verify { player.events.emit(InterfaceOpened(10, "interface_name")) }
     }
 
     @Test
@@ -112,7 +112,7 @@ internal class InterfaceIOTest {
         every { inter.id } returns 10
         every { inter.name } returns "interface_name"
         io.notifyRefreshed(inter)
-        verify { bus.emit(InterfaceRefreshed(player, 10, "interface_name")) }
+        verify { player.events.emit(InterfaceRefreshed(10, "interface_name")) }
     }
 
     @Test

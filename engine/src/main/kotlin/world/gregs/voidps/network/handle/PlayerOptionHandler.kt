@@ -45,7 +45,7 @@ class PlayerOptionHandler : Handler() {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            bus.emit(PlayerOption(player, target, option, index))
+            player.events.emit(PlayerOption(target, option, index))
         }
     }
 }

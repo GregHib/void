@@ -8,8 +8,8 @@ import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.has
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
@@ -20,28 +20,28 @@ val logger = InlineLogger()
 IntVariable(1267, Variable.Type.VARP).register("lent_item")
 IntVariable(1269, Variable.Type.VARP).register("lent_item_amount")
 
-InterfaceOpened where { name == "collection_box" } then {
+on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
     val lentItem: Int? = player.getOrNull("lent_item")
-    if(lentItem != null) {
+    if (lentItem != null) {
         player.container("lent_collection_box").set(0, lentItem)
         val time = getTimeRemaining(player, "lend_timeout")
-        if(time < 0) {
+        if (time < 0) {
             player.setVar("lent_item", -1)
             player.setVar("lent_item_amount", 0)
         }
     }
 }
 
-InterfaceOption where { name == "collection_box" && component == "box_lent" && option == "*" } then {
+on<InterfaceOption>({ name == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
 
-    if(!player.has("lend_timeout")) {
+    if (!player.has("lend_timeout")) {
         // Force reclaim
     } else {
         val remainder = getTimeRemaining(player, "lend_timeout")
-        if(remainder > 0) {
+        if (remainder > 0) {
             player.message("Loan expires ${Loan.getExpiry(player, "lend_timeout")}")
         } else {
-            if(!player.lent.moveAll(player.inventory)) {
+            if (!player.lent.moveAll(player.inventory)) {
                 player.inventory
             }
         }

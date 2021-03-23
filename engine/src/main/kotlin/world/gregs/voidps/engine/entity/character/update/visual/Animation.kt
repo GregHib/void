@@ -2,9 +2,7 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.utility.get
@@ -40,10 +38,6 @@ fun NPC.flagAnimation() = visuals.flag(NPC_ANIMATION_MASK)
 fun Player.getAnimation() = visuals.getOrPut(PLAYER_ANIMATION_MASK) { Animation() }
 
 fun NPC.getAnimation() = visuals.getOrPut(NPC_ANIMATION_MASK) { Animation() }
-
-fun PlayerEvent.animate(id: Int, speed: Int = 0) = player.setAnimation(id, speed)
-
-fun NPCEvent.animate(id: Int, speed: Int = 0) = npc.setAnimation(id, speed)
 
 fun Player.setAnimation(id: Int, speed: Int = 0) {
     setAnimation(getAnimation(), id, speed)

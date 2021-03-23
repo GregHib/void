@@ -7,8 +7,7 @@ import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.assist.Assistance.canAssist
 import world.gregs.voidps.world.community.assist.Assistance.redirectSkillExperience
@@ -28,7 +27,7 @@ BooleanVariable(4100, Variable.Type.VARBIT, true).register("assist_toggle_smithi
 BooleanVariable(4101, Variable.Type.VARBIT, true).register("assist_toggle_cooking")
 BooleanVariable(4102, Variable.Type.VARBIT, true).register("assist_toggle_herblore")
 
-InterfaceOption where { name == "assist_xp" && option == "Toggle Skill On / Off" } then {
+on<InterfaceOption>({ name == "assist_xp" && option == "Toggle Skill On / Off" }) { player: Player ->
     val skill = Skill.valueOf(component.capitalize())
     val assisted: Player? = player.getOrNull("assisted")
     if (assisted == null) {

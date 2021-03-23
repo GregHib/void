@@ -10,6 +10,7 @@ import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.DecorationTargetStrategy
@@ -29,7 +30,8 @@ internal class GameObjectFactoryTest : KoinMock() {
     @BeforeEach
     fun setup() {
         collisions = mockk(relaxed = true)
-        factory = GameObjectFactory(collisions)
+        val bus: EventBus = mockk(relaxed = true)
+        factory = GameObjectFactory(collisions, bus)
         declareMock<ObjectDefinitions> {
             every { get(any<Int>()) } returns ObjectDefinition(id = 1, blockFlag = 1)
         }

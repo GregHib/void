@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity
 
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -10,4 +11,5 @@ import world.gregs.voidps.engine.map.Tile
 interface Entity {
     val id: Int
     var tile: Tile
+    val events: Events
 }

@@ -15,7 +15,7 @@ class IntEntryHandler : Handler() {
     val bus: EventBus by inject()
 
     override fun integerEntered(player: Player, integer: Int) {
-        bus.emit(IntEntered(player, integer))
+        player.events.emit(IntEntered(integer))
     }
 
 }

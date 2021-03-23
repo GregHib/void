@@ -8,8 +8,7 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.Bank.getIndexOfTab
@@ -21,19 +20,20 @@ val logger = InlineLogger()
 
 val decoder: ItemDefinitions by inject()
 
-InterfaceOption where { name == "bank_side" && component == "container" && option.startsWith("Deposit") } then {
+
+on<InterfaceOption>({ name == "bank_side" && component == "container" && option.startsWith("Deposit") }) { player: Player ->
     val amount = when (option) {
         "Deposit-1" -> 1
         "Deposit-5" -> 5
         "Deposit-10" -> 10
         "Deposit-*" -> player.getVar("last_bank_amount", 0)
         "Deposit-All" -> Int.MAX_VALUE
-        else -> return@then
+        else -> return@on
     }
     deposit(player, player.inventory, itemId, itemIndex, amount)
 }
 
-InterfaceOption where { name == "bank_side" && component == "container" && option == "Deposit-X" } then {
+on<InterfaceOption>({ name == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
@@ -55,7 +55,7 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
     var itemId = item
     val def = decoder.get(item)
     if (def.notedTemplateId != -1) {
-        if(def.noteId == -1) {
+        if (def.noteId == -1) {
             logger.warn { "Issue depositing noted item $item" }
             return true
         }
@@ -85,7 +85,7 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
 
 fun Player.full() = message("Your bank is too full to deposit any more.")
 
-InterfaceOption where { name == "bank" && component == "carried" && option == "Deposit carried items" } then {
+on<InterfaceOption>({ name == "bank" && component == "carried" && option == "Deposit carried items" }) { player: Player ->
     if (player.inventory.isEmpty()) {
         player.message("You have no items in your inventory to deposit.")
     } else {
@@ -93,7 +93,9 @@ InterfaceOption where { name == "bank" && component == "carried" && option == "D
     }
 }
 
-InterfaceOption where { name == "bank" && component == "worn" && option == "Deposit worn items" } then {
+on<InterfaceOption>({
+    name == "bank" && component == "worn" && option == "Deposit worn items"
+}) { player: Player ->
     if (player.equipment.isEmpty()) {
         player.message("You have no equipped items to deposit.")
     } else {
@@ -101,7 +103,9 @@ InterfaceOption where { name == "bank" && component == "worn" && option == "Depo
     }
 }
 
-InterfaceOption where { name == "bank" && component == "burden" && option == "Deposit beast of burden inventory" } then {
+on<InterfaceOption>({
+    name == "bank" && component == "burden" && option == "Deposit beast of burden inventory"
+}) { player: Player ->
     // TODO no familiar & no bob familiar messages
     if (player.beastOfBurden.isEmpty()) {
         player.message("Your familiar has no items to deposit.")

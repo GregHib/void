@@ -43,7 +43,7 @@ class NPCOptionHandler : Handler() {
                 return@walkTo
             }
             val partial = result is PathResult.Partial
-            bus.emit(NPCOption(player, npc, selectedOption, partial))
+            player.events.emit(NPCOption(npc, selectedOption, partial))
         }
     }
 

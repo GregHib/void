@@ -2,9 +2,7 @@ package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 
 /**
@@ -24,10 +22,6 @@ fun NPC.flagWatch() = visuals.flag(NPC_WATCH_MASK)
 fun Player.getWatch() = visuals.getOrPut(PLAYER_WATCH_MASK) { Watch() }
 
 fun NPC.getWatch() = visuals.getOrPut(NPC_WATCH_MASK) { Watch() }
-
-fun PlayerEvent.watch(character: Character?) = this.player.watch(character)
-
-fun NPCEvent.watch(character: Character?) = npc.watch(character)
 
 fun NPC.watch(character: Character?) =
     setWatch(if (character is Player) character.index or 0x8000 else if (character is NPC) character.index else -1)

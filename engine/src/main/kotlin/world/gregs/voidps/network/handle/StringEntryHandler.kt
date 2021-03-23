@@ -15,7 +15,7 @@ class StringEntryHandler : Handler() {
     val bus: EventBus by inject()
 
     override fun stringEntered(player: Player, text: String) {
-        bus.emit(StringEntered(player, text))
+        player.events.emit(StringEntered(text))
     }
 
 }

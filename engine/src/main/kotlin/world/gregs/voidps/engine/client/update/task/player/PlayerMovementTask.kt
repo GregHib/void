@@ -76,7 +76,7 @@ class PlayerMovementTask(
             player.tile = player.tile.add(movement.delta)
             players.update(from, player.tile, player)
             collisions.move(player, from, player.tile)
-            bus.emit(PlayerMoved(player, from, player.tile))
+            player.events.emit(PlayerMoved(from, player.tile))
         }
     }
 }

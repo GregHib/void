@@ -70,6 +70,7 @@ class NPCLoader(
         }
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
+        bus.populate(npc)
         collisions.add(npc)
         npcs.add(npc)
         bus.emit(Registered(npc))

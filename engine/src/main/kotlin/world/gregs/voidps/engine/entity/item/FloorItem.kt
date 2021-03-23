@@ -5,8 +5,8 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.get
@@ -23,6 +23,8 @@ data class FloorItem(
     val size: Size = Size.TILE,
     val owner: String? = null
 ) : Entity {
+
+    override val events: Events = Events(this)
 
     fun visible(player: Player): Boolean {
         return owner == null || player.name == owner

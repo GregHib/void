@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.variable.BitwiseVariable
 import world.gregs.voidps.engine.client.variable.StringMapVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.sendVar
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 StringMapVariable(
     465, Variable.Type.VARP, true, mapOf(
@@ -52,7 +52,7 @@ BitwiseVariable(
     )
 ).register("event_emotes")
 
-InterfaceOpened where { name == "emotes" } then {
+on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
     player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
     player.sendVar("lost_tribe_emotes")
     player.sendVar("stronghold_of_security_emotes")

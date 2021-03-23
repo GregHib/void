@@ -8,8 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.trade.Trade.getPartner
@@ -32,36 +31,36 @@ val tradeable: (Int, Int) -> Boolean = { id, _ ->
     def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
 }
 
-PlayerRegistered then {
+on<PlayerRegistered> { player: Player ->
     player.loan.predicate = lendable
     player.offer.predicate = tradeable
 }
 
-InterfaceOption where { name == "trade_side" && component == "offer" } then {
+on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: Player ->
     val amount = when(option) {
        "Offer" -> 1
         "Offer-5" -> 5
         "Offer-10" -> 10
         "Offer-All" -> Int.MAX_VALUE
-        else -> return@then
+        else -> return@on
     }
     offer(player, itemId, itemIndex, amount)
 }
 
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Offer-X" } then {
+on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         offer(player, itemId, itemIndex, amount)
     }
 }
 
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Value" } then {
+on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
     val item = itemDecoder.get(itemId)
     player.message("${item.name} is priceless!", ChatType.GameTrade)
 }
 
-InterfaceOption where { name == "trade_side" && component == "offer" && option == "Lend" } then {
-    val partner = getPartner(player) ?: return@then
+on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
+    val partner = getPartner(player) ?: return@on
     lend(player, partner, itemId, itemIndex)
 }
 

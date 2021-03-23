@@ -45,7 +45,7 @@ class FloorItemOptionHandler : Handler() {
                 return@walkTo
             }
             val partial = result is PathResult.Partial
-            bus.emit(FloorItemOption(player, item, selectedOption, partial))
+            player.events.emit(FloorItemOption(item, selectedOption, partial))
         }
     }
 

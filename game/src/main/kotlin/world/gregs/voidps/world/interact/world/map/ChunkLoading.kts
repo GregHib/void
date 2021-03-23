@@ -2,8 +2,7 @@ import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -16,17 +15,17 @@ import world.gregs.voidps.utility.inject
  */
 val batcher: ChunkBatcher by inject()
 
-PlayerRegistered then {
+on<PlayerRegistered> { player: Player ->
     load(player)
 }
 
-PlayerUnregistered then {
+on<PlayerUnregistered> { player: Player ->
     forEachChunk(player, player.tile) { chunk ->
         batcher.unsubscribe(player, chunk)
     }
 }
 
-PlayerMoved where { from.chunk != to.chunk } then {
+on<PlayerMoved>({ from.chunk != to.chunk }) { player: Player ->
     forEachChunk(player, from) { chunk ->
         batcher.unsubscribe(player, chunk)
     }

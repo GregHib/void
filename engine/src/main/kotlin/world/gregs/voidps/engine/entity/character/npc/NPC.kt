@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.get
@@ -29,6 +30,7 @@ data class NPC(
     override val values: CharacterValues = CharacterValues()
 ) : Character {
 
+    override val events: Events = Events(this)
     override val effects = CharacterEffects()
 
     init {

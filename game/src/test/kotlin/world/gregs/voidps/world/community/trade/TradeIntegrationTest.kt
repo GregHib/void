@@ -36,8 +36,8 @@ internal class TradeIntegrationTest : WorldScript() {
     @Test
     fun test() {
         player1.inventory.add(995, 1000)
-        bus.emit(PlayerOption(player1, player2, "Trade with", 4))
-        bus.emit(PlayerOption(player2, player1, "Trade with", 4))
+        player1.events.emit(PlayerOption(player2, "Trade with", 4))
+        player2.events.emit(PlayerOption(player1, "Trade with", 4))
         offerItem("Offer-10", 2, 995, 0)
         acceptTrade(player1)
         acceptTrade(player2)
@@ -52,15 +52,15 @@ internal class TradeIntegrationTest : WorldScript() {
     }
 
     fun offerItem(option: String, optionId: Int, item: Int, slot: Int) {
-        bus.emit(InterfaceOption(player1, 336, "trade_side", 0, "offer", optionId, option, "item", item, slot))
+        player1.events.emit(InterfaceOption(336, "trade_side", 0, "offer", optionId, option, "item", item, slot))
     }
 
     fun acceptTrade(player: Player) {
-        bus.emit(InterfaceOption(player, 335, "trade_main", 16, "accept", 0, "Accept", "", -1, -1))
+        player.events.emit(InterfaceOption(335, "trade_main", 16, "accept", 0, "Accept", "", -1, -1))
     }
 
     fun confirmTrade(player: Player) {
-        bus.emit(InterfaceOption(player, 334, "trade_confirm", 21, "accept", 0, "Accept", "", -1, -1))
+        player.events.emit(InterfaceOption(334, "trade_confirm", 21, "accept", 0, "Accept", "", -1, -1))
     }
 
 }

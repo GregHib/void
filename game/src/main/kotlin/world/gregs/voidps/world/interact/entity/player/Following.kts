@@ -5,14 +5,13 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.utility.inject
 
 val path: PathFinder by inject()
 
-PlayerOption where { option == "Follow" } then {
+on<PlayerOption>({ option == "Follow" }) { player: Player ->
     val follower = player
     follower.watch(target)
     follower.action(ActionType.Follow) {
