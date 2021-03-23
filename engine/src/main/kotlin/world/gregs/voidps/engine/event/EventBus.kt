@@ -75,11 +75,10 @@ class EventBus {
     /**
      * Event's are only emitted to handlers which are applicable according to [EventHandler.applies]
      * An event can be [Event.cancelled] by any [EventHandler] preventing further handlers from receiving the event.
-     * [Event.result] can be set at any point and will be returned to the emitter.
      */
-    fun <T : Any, E : Event<T>> emit(event: E, clazz: KClass<E>): T? {
+    fun <T : Any, E : Event<T>> emit(event: E, clazz: KClass<E>) {
         if (!checkPassed(event, clazz)) {
-            return null
+            return
         }
 
         var handler = get(clazz)
@@ -98,8 +97,6 @@ class EventBus {
 
             handler = handler.next
         }
-
-        return event.result
     }
 
     /**

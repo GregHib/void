@@ -8,8 +8,6 @@ abstract class Event<T : Any> {
     var cancelled = false
         private set
 
-    var result: T? = null
-
     fun cancel() {
         cancelled = true
     }

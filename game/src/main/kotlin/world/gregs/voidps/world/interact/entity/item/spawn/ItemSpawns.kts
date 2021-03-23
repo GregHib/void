@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.entity.item.FloorItemFactory
 import world.gregs.voidps.engine.event.then
 import world.gregs.voidps.engine.event.where
 import world.gregs.voidps.engine.map.Tile
@@ -13,11 +13,10 @@ import world.gregs.voidps.engine.map.region.RegionLoaded
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.item.spawn.Drop
 
 val files: FileLoader by inject()
-val bus: EventBus by inject()
 val scheduler: Scheduler by inject()
+val factory: FloorItemFactory by inject()
 
 data class ItemSpawnBuilder(
     val id: Int,
@@ -47,7 +46,7 @@ Startup then {
  * Spawns a immediately visible floor item and link it to it's spawn point
  */
 fun ItemSpawn.drop() {
-    val floorItem = bus.emit(Drop(id, amount, tile, 0)) ?: return
+    val floorItem = factory.add(id, amount, tile, 0) ?: return
     links[floorItem] = this
 }
 
