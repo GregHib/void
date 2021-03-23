@@ -17,7 +17,7 @@ import kotlin.reflect.KClass
 @ExtendWith(MockKExtension::class)
 internal class EventBusTest : KoinMock() {
 
-    private class TestEvent : Event<Int>() {
+    private class TestEvent : Event() {
         companion object : EventCompanion<TestEvent>
     }
 
@@ -27,14 +27,14 @@ internal class EventBusTest : KoinMock() {
     fun `Then action`() {
         // Given
         val bus = declareMock<EventBus> {
-            every { add<Int, TestEvent>(any(), any()) } just Runs
+            every { add<TestEvent>(any(), any()) } just Runs
         }
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         // When
         TestEvent then action
         // Then
         verify {
-            bus.add<Int, TestEvent>(any(), any())
+            bus.add<TestEvent>(any(), any())
             register(any<KClass<TestEvent>>(), any())
         }
     }
@@ -43,23 +43,23 @@ internal class EventBusTest : KoinMock() {
     fun `Then filtered`() {
         // Given
         val bus = declareMock<EventBus> {
-            every { add<Int, TestEvent>(any(), any()) } just Runs
+            every { add<TestEvent>(any(), any()) } just Runs
         }
         val action: TestEvent.(TestEvent) -> Unit = mockk(relaxed = true)
         val filter: TestEvent.() -> Boolean = mockk(relaxed = true)
         // When
         TestEvent where filter then action
         // Then
-        verify { bus.add<Int, TestEvent>(any(), any()) }
+        verify { bus.add<TestEvent>(any(), any()) }
     }
 
     @Test
     fun `Register handler`() {
         // Given
         val bus = declareMock<EventBus> {
-            every { add<Int, TestEvent>(any(), any()) } just Runs
+            every { add<TestEvent>(any(), any()) } just Runs
         }
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         // When
         register(TestEvent::class, handler)
         // Then
@@ -72,7 +72,7 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun `Add first`() {
         // Given
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.priority } returns 0
         val clazz = TestEvent::class
         // When
@@ -84,13 +84,13 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun `Add middle`() {
         // Given
-        val second = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val second = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { second.next } returns null
         every { second.priority } returns 0
-        val first = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { first.next } returns second
         every { first.priority } returns 2
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.priority } returns 1
         val clazz = TestEvent::class
         bus.add(clazz, handler = first)
@@ -104,10 +104,10 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun `Add last`() {
         // Given
-        val first = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { first.next } returns null
         every { first.priority } returns 10
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.priority } returns 0
         val clazz = TestEvent::class
         bus.add(clazz, handler = first)
@@ -121,10 +121,10 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun `Add greater than first`() {
         // Given
-        val first = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val first = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { first.next } returns null
         every { first.priority } returns 5
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.priority } returns 10
         val clazz = TestEvent::class
         bus.add(clazz, handler = first)
@@ -139,7 +139,7 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun `Emit filtered by applies`() {
         // Given
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.next } returns null
         every { handler.applies(any()) } returns false
         val clazz = TestEvent::class
@@ -156,7 +156,7 @@ internal class EventBusTest : KoinMock() {
     @Test
     fun emit() {
         // Given
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
+        val handler = mockk<EventHandler<TestEvent>>(relaxed = true)
         every { handler.next } returns null
         every { handler.applies(any()) } returns true
         val clazz = TestEvent::class

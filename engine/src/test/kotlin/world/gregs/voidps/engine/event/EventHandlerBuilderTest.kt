@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test
  */
 internal class EventHandlerBuilderTest {
 
-    private class TestEvent : Event<Unit>() {
+    private class TestEvent : Event() {
         companion object : EventCompanion<TestEvent>
     }
 

@@ -4,8 +4,8 @@ package world.gregs.voidps.engine.event
  * @author GregHib <greg@gregs.world>
  * @since March 26, 2020
  */
-class EventHandler<T : Any, E : Event<T>> {
-    var next: EventHandler<T, E>? = null
+class EventHandler<E : Event> {
+    var next: EventHandler<E>? = null
     var priority: Int = 0
     var filter: (E.() -> Boolean)? = null
     lateinit var action: E.(E) -> Unit

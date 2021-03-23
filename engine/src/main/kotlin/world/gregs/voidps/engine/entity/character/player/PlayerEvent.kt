@@ -6,6 +6,6 @@ import world.gregs.voidps.engine.event.Event
  * @author GregHib <greg@gregs.world>
  * @since March 31, 2020
  */
-abstract class PlayerEvent : Event<Unit>() {
+abstract class PlayerEvent : Event() {
     abstract val player: Player
 }
