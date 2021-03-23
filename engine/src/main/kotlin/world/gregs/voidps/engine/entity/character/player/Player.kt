@@ -30,9 +30,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
+import world.gregs.voidps.engine.entity.character.update.visual.player.*
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.Client
@@ -118,6 +119,14 @@ class Player(
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
+        val players: Players = get()
+        players.add(this)
+        viewport.players.add(this)
+        temporaryMoveType = PlayerMoveType.None
+        movementType = PlayerMoveType.None
+        flagMovementType()
+        flagTemporaryMoveType()
+        face()
     }
 
     fun login(client: Client? = null) {
@@ -130,6 +139,8 @@ class Player(
             bus.emit(RegionLogin(this))
         }
         bus.emit(PlayerRegistered(this))
+        val collisions: Collisions = get()
+        collisions.add(this)
         setup()
         bus.emit(Registered(this))
     }
@@ -147,6 +158,8 @@ class Player(
             }
             client?.disconnect()
             loginQueue.logout(name, client?.address ?: "", index)
+            val collisions: Collisions = get()
+            collisions.remove(this@Player)
             bus.emit(Unregistered(this@Player))
             bus.emit(PlayerUnregistered(this@Player))
         }

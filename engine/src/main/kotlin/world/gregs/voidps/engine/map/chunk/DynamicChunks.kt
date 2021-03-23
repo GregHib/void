@@ -6,10 +6,16 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.map.region.RegionReader
 
-class DynamicChunks(private val bus: EventBus, private val objects: Objects, private val reader: RegionReader) {
+class DynamicChunks(
+    private val bus: EventBus,
+    private val objects: Objects,
+    private val reader: RegionReader,
+    private val collision: GameObjectCollision
+) {
     val chunks: MutableMap<Int, Int> = mutableMapOf()
 
     /**
@@ -46,6 +52,7 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
             val tile = target.tile.add(rotatedX, rotatedY)
             val rotatedObject = gameObject.copy(tile = tile, rotation = gameObject.rotation + rotation and 0x3)
             objects.add(rotatedObject)
+            collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
             bus.emit(Registered(rotatedObject))
         }
         bus.emit(ReloadChunk(source))
@@ -54,7 +61,7 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
     fun remove(chunk: Chunk) {
         chunks.remove(chunk.id)
         val region = chunk.region
-        if(isRegionCleared(chunk.regionPlane)) {
+        if (isRegionCleared(chunk.regionPlane)) {
             reader.loading.remove(region)
         }
         clearObjects(chunk)
@@ -62,7 +69,7 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
     }
 
     private fun isRegionCleared(region: RegionPlane): Boolean {
-        for(regionChunk in region.chunk.area(width = 8, height = 8)) {
+        for (regionChunk in region.chunk.area(width = 8, height = 8)) {
             if (chunks.containsKey(regionChunk.id)) {
                 return false
             }
@@ -72,6 +79,7 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
 
     fun clearObjects(chunkPlane: Chunk) {
         objects.getStatic(chunkPlane)?.forEach {
+            collision.modifyCollision(it, GameObjectCollision.REMOVE_MASK)
             bus.emit(Unregistered(it))
         }
         objects.clear(chunkPlane)
@@ -151,5 +159,5 @@ class DynamicChunks(private val bus: EventBus, private val objects: Objects, pri
 }
 
 val instanceModule = module {
-    single { DynamicChunks(get(), get(), get()) }
+    single { DynamicChunks(get(), get(), get(), get()) }
 }

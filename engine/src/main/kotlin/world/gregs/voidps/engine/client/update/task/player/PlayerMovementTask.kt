@@ -9,13 +9,18 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.movementT
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class PlayerMovementTask(private val players: Players, private val bus: EventBus) : Runnable {
+class PlayerMovementTask(
+    private val players: Players,
+    private val bus: EventBus,
+    private val collisions: Collisions
+) : Runnable {
 
     override fun run() {
         players.forEach { player ->
@@ -69,6 +74,8 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
             movement.previousTile = player.tile
             val from = player.tile
             player.tile = player.tile.add(movement.delta)
+            players.update(from, player.tile, player)
+            collisions.move(player, from, player.tile)
             bus.emit(PlayerMoved(player, from, player.tile))
         }
     }
