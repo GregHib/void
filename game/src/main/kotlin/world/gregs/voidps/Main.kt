@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
+import world.gregs.voidps.engine.entity.item.floorItemModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
@@ -165,7 +166,8 @@ object Main {
                 customObjectModule,
                 npcLoaderModule,
                 npcSpawnModule,
-                stairsModule
+                stairsModule,
+                floorItemModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

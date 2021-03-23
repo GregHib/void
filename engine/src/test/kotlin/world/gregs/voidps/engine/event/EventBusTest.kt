@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.event
 import io.mockk.*
 import io.mockk.junit5.MockKExtension
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.koin.test.inject
@@ -163,11 +162,9 @@ internal class EventBusTest : KoinMock() {
         val clazz = TestEvent::class
         bus.add(clazz, handler = handler)
         val event = TestEvent()
-        event.result = 42
         // When
-        val result = bus.emit(event)
+        bus.emit(event)
         // Then
-        assertEquals(42, result)
         coVerify {
             handler.applies(event)
             handler.applies(event)
@@ -185,9 +182,8 @@ internal class EventBusTest : KoinMock() {
         val event = TestEvent()
         event.cancel()
         // When
-        val result = bus.emit(event)
+        bus.emit(event)
         // Then
-        assertNull(result)
         coVerify(exactly = 0) {
             handler.invoke(event)
         }
