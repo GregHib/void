@@ -19,7 +19,7 @@ data class ShootProjectile(
     val endHeight: Int = startHeight,
     val curve: Int = DEFAULT_CURVE,
     val offset: Int = DEFAULT_OFFSET
-) : Event<Unit>() {
+) : Event() {
 
     constructor(
         tile: Tile,
