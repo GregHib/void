@@ -171,21 +171,4 @@ internal class EventBusTest : KoinMock() {
             handler.invoke(event)
         }
     }
-
-    @Test
-    fun `Emit event cancelled`() {
-        // Given
-        val handler = mockk<EventHandler<Int, TestEvent>>(relaxed = true)
-        every { handler.next } returns null
-        val clazz = TestEvent::class
-        bus.add(clazz, handler = handler)
-        val event = TestEvent()
-        event.cancel()
-        // When
-        bus.emit(event)
-        // Then
-        coVerify(exactly = 0) {
-            handler.invoke(event)
-        }
-    }
 }
