@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEvent
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
 
@@ -22,17 +21,15 @@ internal class InterfaceIOTest {
     private lateinit var io: InterfaceIO
     private lateinit var player: Player
     private lateinit var client: Client
-    private lateinit var bus: EventBus
 
     @BeforeEach
     fun setup() {
         player = mockk()
-        bus = mockk()
         client = mockk(relaxed = true)
         every { player.events.emit(any<PlayerEvent>()) } returns mockk()
         every { player.client } returns client
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        io = PlayerInterfaceIO(player, bus)
+        io = PlayerInterfaceIO(player)
     }
 
     @Test

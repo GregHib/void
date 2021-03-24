@@ -3,15 +3,14 @@ package world.gregs.voidps.engine.map.chunk
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.map.region.RegionReader
 
 class DynamicChunks(
-    private val bus: EventBus,
     private val objects: Objects,
     private val reader: RegionReader,
     private val collision: GameObjectCollision
@@ -53,9 +52,9 @@ class DynamicChunks(
             val rotatedObject = gameObject.copy(tile = tile, rotation = gameObject.rotation + rotation and 0x3)
             objects.add(rotatedObject)
             collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
-            bus.emit(Registered(rotatedObject))
+            rotatedObject.events.emit(Registered)
         }
-        bus.emit(ReloadChunk(source))
+        World.events.emit(ReloadChunk(source))
     }
 
     fun remove(chunk: Chunk) {
@@ -65,7 +64,7 @@ class DynamicChunks(
             reader.loading.remove(region)
         }
         clearObjects(chunk)
-        bus.emit(ReloadChunk(chunk))
+        World.events.emit(ReloadChunk(chunk))
     }
 
     private fun isRegionCleared(region: RegionPlane): Boolean {
@@ -80,7 +79,7 @@ class DynamicChunks(
     fun clearObjects(chunkPlane: Chunk) {
         objects.getStatic(chunkPlane)?.forEach {
             collision.modifyCollision(it, GameObjectCollision.REMOVE_MASK)
-            bus.emit(Unregistered(it))
+            it.events.emit(Unregistered)
         }
         objects.clear(chunkPlane)
     }
@@ -159,5 +158,5 @@ class DynamicChunks(
 }
 
 val instanceModule = module {
-    single { DynamicChunks(get(), get(), get(), get()) }
+    single { DynamicChunks(get(), get(), get()) }
 }

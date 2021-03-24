@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 
@@ -31,7 +30,6 @@ on<InterfaceOption>({ name == "worn_equipment" && component == "items" && option
 }
 
 val decoder: ItemDefinitions by inject()
-val bus: EventBus by inject()
 val logger = InlineLogger()
 
 on<InterfaceOption>({ name == "worn_equipment" && option == "*" }) { player: Player ->

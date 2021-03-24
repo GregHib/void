@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.data.PlayerLoader
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.script.WorldScript
 
@@ -17,7 +16,6 @@ internal class TradeIntegrationTest : WorldScript() {
 
     lateinit var player1: Player
     lateinit var player2: Player
-    lateinit var bus: EventBus
 
     @BeforeEach
     override fun setup() {
@@ -27,7 +25,6 @@ internal class TradeIntegrationTest : WorldScript() {
         player1.start()
         player2 = spyk(loader.create("2", ""))
         player2.start()
-        bus = get()
         setProperty("homeX", 100)
         setProperty("homeY", 100)
         setProperty("homePlane", 1)

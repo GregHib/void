@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.gfx.AreaGraphic
 import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.entity.item.offset
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addAreaGraphic
@@ -17,7 +16,6 @@ import world.gregs.voidps.world.interact.entity.gfx.SpawnGraphic
 
 val graphics: Graphics by inject()
 val scheduler: Scheduler by inject()
-val bus: EventBus by inject()
 val batcher: ChunkBatcher by inject()
 
 on<World, SpawnGraphic> {
@@ -25,7 +23,7 @@ on<World, SpawnGraphic> {
     graphics.add(ag)
     batcher.update(tile.chunk, ag.toMessage())
     decay(ag)
-    bus.emit(Registered(ag))
+    ag.events.emit(Registered)
 }
 
 /**
@@ -42,7 +40,7 @@ fun decay(ag: AreaGraphic) {
             delay(1)// TODO delay by definition duration
         } finally {
             graphics.remove(ag)
-            bus.emit(Unregistered(ag))
+            ag.events.emit(Unregistered)
         }
     }
 }

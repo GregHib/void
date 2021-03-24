@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.utility.inject
 
@@ -19,7 +18,6 @@ import world.gregs.voidps.utility.inject
  */
 class InterfaceOptionHandler : Handler() {
 
-    val bus: EventBus by inject()
     val decoder: InterfaceDecoder by inject()
     val interfaceDetails: InterfaceDetails by inject()
     val containerDefinitions: ContainerDefinitions by inject()

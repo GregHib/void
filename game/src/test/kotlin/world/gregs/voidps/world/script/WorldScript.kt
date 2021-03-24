@@ -12,12 +12,12 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
@@ -28,7 +28,6 @@ import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.script.scriptModule
-import world.gregs.voidps.utility.get
 import java.util.concurrent.Executors
 
 abstract class WorldScript : KoinMock() {
@@ -79,9 +78,8 @@ abstract class WorldScript : KoinMock() {
 
     @BeforeEach
     open fun setup() {
-        val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
         engine = GameLoop(service, listOf())
-        bus.emit(Startup)
+        World.events.emit(Startup)
     }
 }

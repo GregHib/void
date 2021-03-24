@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.Stairs
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
@@ -21,7 +20,6 @@ class ObjectOptionHandler : Handler() {
 
     val logger = InlineLogger()
     val objects: Objects by inject()
-    val bus: EventBus by inject()
     val stairs: Stairs by inject()
 
     override fun objectOption(player: Player, objectId: Int, x: Int, y: Int, run: Boolean, option: Int) {

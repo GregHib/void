@@ -41,7 +41,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         players = mockk(relaxed = true)
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
-        task = PlayerMovementTask(players, mockk(relaxed = true), mockk(relaxed = true))
+        task = PlayerMovementTask(players, mockk(relaxed = true))
         every { players.forEach(any()) } answers {
             val action: (Player) -> Unit = arg(0)
             action.invoke(player)

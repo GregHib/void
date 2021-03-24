@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addProjectile
@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
-val bus: EventBus by inject()
+val store: EventStore by inject()
 val batcher: ChunkBatcher by inject()
 
 on<World, ShootProjectile> {
@@ -25,10 +25,11 @@ on<World, ShootProjectile> {
         index = -index
     }
     val projectile = Projectile(id, tile, direction, index, delay, flightTime, startHeight, endHeight, curve, offset)
+    store.populate(projectile)
     projectiles.add(projectile)
     batcher.update(tile.chunk, projectile.toMessage())
     decay(projectile)
-    bus.emit(Registered(projectile))
+    projectile.events.emit(Registered)
 }
 
 /**
@@ -49,7 +50,7 @@ fun decay(projectile: Projectile) {
         }
         projectile.flightTime = 0
         projectiles.remove(projectile)
-        bus.emit(Unregistered(projectile))
+        projectile.events.emit(Unregistered)
     }
 }
 
