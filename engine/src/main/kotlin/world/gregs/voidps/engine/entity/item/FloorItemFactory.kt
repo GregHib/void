@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
@@ -24,7 +24,7 @@ class FloorItemFactory(
     private val decoder: ItemDefinitions,
     private val items: FloorItems,
     private val scheduler: Scheduler,
-    private val bus: EventBus,
+    private val store: EventStore,
     private val batcher: ChunkBatcher
 ) {
     /**
@@ -53,12 +53,12 @@ class FloorItemFactory(
         }
         val item = FloorItem(tile, id, amount, owner = owner?.name)
         item.interactTarget = PointTargetStrategy(item)
-        bus.populate(item)
+        store.populate(item)
         items.add(item)
         batcher.update(tile.chunk) { player -> player.client?.addFloorItem(tile.offset(), id, amount) }
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
-        bus.emit(Registered(item))
+        item.events.emit(Registered)
         return item
     }
 

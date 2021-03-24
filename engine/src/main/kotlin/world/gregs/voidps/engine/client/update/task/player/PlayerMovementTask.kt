@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 
@@ -18,7 +17,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
  */
 class PlayerMovementTask(
     private val players: Players,
-    private val bus: EventBus,
     private val collisions: Collisions
 ) : Runnable {
 

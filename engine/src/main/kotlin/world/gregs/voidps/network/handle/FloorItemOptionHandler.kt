@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
@@ -21,7 +20,6 @@ class FloorItemOptionHandler : Handler() {
 
     val logger = InlineLogger()
     val items: FloorItems by inject()
-    val bus: EventBus by inject()
 
     override fun floorItemOption(player: Player, id: Int, run: Boolean, y: Int, x: Int, optionIndex: Int) {
         val tile = Tile(x, y, player.tile.plane)

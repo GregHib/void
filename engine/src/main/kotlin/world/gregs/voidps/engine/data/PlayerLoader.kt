@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
@@ -26,7 +26,7 @@ import world.gregs.voidps.utility.getIntProperty
  * @since April 03, 2020
  */
 class PlayerLoader(
-    private val bus: EventBus,
+    private val store: EventStore,
     private val interfaces: InterfaceDetails,
     private val collisions: Collisions,
     private val definitions: ContainerDefinitions,
@@ -45,9 +45,9 @@ class PlayerLoader(
     }
 
     fun initPlayer(player: Player, index: Int) {
-        bus.populate(player)
+        store.populate(player)
         player.index = index
-        val interfaceIO = PlayerInterfaceIO(player, bus)
+        val interfaceIO = PlayerInterfaceIO(player)
         player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, definitions)
         player.options = PlayerOptions(player)

@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.move.NPCMoved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.collision.Collisions
 
@@ -16,7 +15,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
  */
 class NPCMovementTask(
     private val npcs: NPCs,
-    private val bus: EventBus,
     private val collisions: Collisions
 ) : Runnable {
 
@@ -69,7 +67,7 @@ class NPCMovementTask(
             npc.tile = npc.tile.add(movement.delta)
             npcs.update(from, npc.tile, npc)
             collisions.move(npc, from, npc.tile)
-            bus.emit(NPCMoved(npc, from, npc.tile))
+            npc.events.emit(NPCMoved(from, npc.tile))
         }
     }
 }

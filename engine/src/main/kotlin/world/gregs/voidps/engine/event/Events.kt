@@ -6,10 +6,10 @@ import kotlin.reflect.KClass
 
 class Events(
     private val entity: Entity,
-    private val events: MutableMap<KClass<out Event>, MutableList<EventAction>> = mutableMapOf()
-) : MutableMap<KClass<out Event>, MutableList<EventAction>> by events {
+    private val events: MutableMap<KClass<out Event>, MutableList<EventHandler>> = mutableMapOf()
+) : MutableMap<KClass<out Event>, MutableList<EventHandler>> by events {
 
-    fun addAll(clazz: KClass<out Event>, values: List<EventAction>) {
+    fun addAll(clazz: KClass<out Event>, values: List<EventHandler>) {
         events.getOrPut(clazz) { mutableListOf() }.addAll(values)
     }
 
@@ -18,7 +18,7 @@ class Events(
         noinline condition: E.(Player) -> Boolean = { true },
         noinline block: E.(Player) -> Unit
     ) {
-        getOrPut(E::class) { mutableListOf() }.add(EventAction(E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit))
+        getOrPut(E::class) { mutableListOf() }.add(EventHandler(E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit))
     }
 
     fun <E : Event> emit(event: E) = events[event::class]

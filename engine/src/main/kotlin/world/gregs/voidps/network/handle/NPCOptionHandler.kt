@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
@@ -21,7 +20,6 @@ class NPCOptionHandler : Handler() {
 
     val logger = InlineLogger()
     val npcs: NPCs by inject()
-    val bus: EventBus by inject()
 
     override fun npcOption(player: Player, run: Boolean, npcIndex: Int, option: Int) {
         val npc = npcs.getAtIndex(npcIndex) ?: return

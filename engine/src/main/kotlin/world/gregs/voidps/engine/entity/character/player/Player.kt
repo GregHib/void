@@ -133,7 +133,6 @@ class Player(
     }
 
     fun login(client: Client? = null) {
-        val bus: EventBus = get()// Temp until player has it's own event bus
         this.client = client
         client?.exit = {
             logout(false)
@@ -145,7 +144,7 @@ class Player(
         val collisions: Collisions = get()
         collisions.add(this)
         setup()
-        bus.emit(Registered(this))
+        events.emit(Registered)
     }
 
     fun logout(safely: Boolean) {
@@ -155,7 +154,6 @@ class Player(
             action.run(ActionType.Logout) {
                 await<Unit>(Suspension.Infinite)
             }
-            val bus: EventBus = get()// Temp until player has it's own event bus
             if (safely) {
                 client?.logout()
             }
@@ -163,7 +161,7 @@ class Player(
             loginQueue.logout(name, client?.address ?: "", index)
             val collisions: Collisions = get()
             collisions.remove(this@Player)
-            bus.emit(Unregistered(this@Player))
+            events.emit(Unregistered)
             events.emit(PlayerUnregistered)
         }
     }

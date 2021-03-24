@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.event.EventStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Rectangle
@@ -34,7 +34,7 @@ class NPCLoader(
     private val npcs: NPCs,
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
-    private val bus: EventBus
+    private val store: EventStore
 ) {
     private val indexer = IndexAllocator(MAX_NPCS)
     private val logger = InlineLogger()
@@ -61,6 +61,7 @@ class NPCLoader(
         }
         val tile = random(area, traversal)
         val npc = NPC(id, tile, size)
+        store.populate(npc)
         npc.movement.traversal = traversal
         val dir = if (direction == Direction.NONE) Direction.all.random() else direction
         npc.interactTarget = if (definition.name.contains("banker", true)) {
@@ -70,10 +71,9 @@ class NPCLoader(
         }
         npc.index = indexer.obtain() ?: return null
         npc.turn(dir.delta.x, dir.delta.y)
-        bus.populate(npc)
         collisions.add(npc)
         npcs.add(npc)
-        bus.emit(Registered(npc))
+        npc.events.emit(Registered)
         return npc
     }
 

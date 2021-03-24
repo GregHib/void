@@ -1,18 +1,10 @@
 package world.gregs.voidps.engine.event
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 26, 2020
- */
-class EventHandler<E : Event> {
-    var next: EventHandler<E>? = null
-    var filter: (E.() -> Boolean)? = null
-    lateinit var action: E.(E) -> Unit
+import world.gregs.voidps.engine.entity.Entity
+import kotlin.reflect.KClass
 
-    fun applies(event: E) = filter?.invoke(event) != false
-
-    fun invoke(event: E) {
-        action.invoke(event, event)
-    }
-}
-
+data class EventHandler(
+    val event: KClass<out Event>,
+    val condition: Event.(Entity) -> Boolean,
+    val block: Event.(Entity) -> Unit
+)

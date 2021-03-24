@@ -6,15 +6,13 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.network.encode.*
 
 /**
  * Instructions to external systems
  */
 class PlayerInterfaceIO(
-    val player: Player,
-    val bus: EventBus
+    val player: Player
 ) : InterfaceIO {
 
     override fun sendOpen(inter: InterfaceDetail) {

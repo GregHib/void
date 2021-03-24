@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.item.offset
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -26,14 +25,13 @@ val customObjectModule = module {
             val list = spawns.getOrPut(gameObject.tile.region) { mutableListOf() }
             list.add(gameObject)
         }
-        CustomObjects(get(), get(), get(), get(), get(), get(), spawns)
+        CustomObjects(get(), get(), get(), get(), get(), spawns)
     }
 }
 
 class CustomObjects(
     private val objects: Objects,
     private val scheduler: Scheduler,
-    private val bus: EventBus,
     private val batcher: ChunkBatcher,
     private val factory: GameObjectFactory,
     private val collision: GameObjectCollision,
@@ -112,7 +110,7 @@ class CustomObjects(
         }
         objects.removeTemp(gameObject)
         collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
-        bus.emit(Unregistered(gameObject))
+        gameObject.events.emit(Unregistered)
     }
 
     private fun respawn(gameObject: GameObject) {
@@ -121,7 +119,7 @@ class CustomObjects(
         }
         objects.addTemp(gameObject)
         collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
-        bus.emit(Registered(gameObject))
+        gameObject.events.emit(Registered)
     }
 
     /**
@@ -223,9 +221,9 @@ class CustomObjects(
         }
         objects.addTemp(replacement)
         collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
-        bus.emit(Unregistered(original))
+        original.events.emit(Unregistered)
         collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
-        bus.emit(Registered(replacement))
+        replacement.events.emit(Registered)
     }
 }
 

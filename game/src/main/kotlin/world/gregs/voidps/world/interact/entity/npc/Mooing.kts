@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.event.on
 import kotlin.random.Random
 
 val eatGrassAnimation = 5854
-on<NPCRegistered>({ npc.def.name == "Cow" }) { npc: NPC ->
-    action(ActionType.Misc) {
+on<NPCRegistered>({ it.def.name == "Cow" }) { npc: NPC ->
+    npc.action(ActionType.Misc) {
         while(isActive) {
             delay(ticks = Random.nextInt(50, 200))
             npc.movement.clear()

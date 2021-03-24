@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.func.toPascalCase
 import world.gregs.voidps.utility.inject
@@ -67,7 +66,6 @@ on<InterfaceOption>({ it.equipping() && (name == "equipment_side" || name == "eq
 /*
     Redirect equipping actions to regular containers
  */
-val bus: EventBus by inject()
 
 on<InterfaceOption>({ it.equipping() && name == "equipment_side" && component == "container" && option == "Equip" }) { player: Player ->
     player.events.emit(ContainerAction("inventory", item, itemIndex, "Wield"))

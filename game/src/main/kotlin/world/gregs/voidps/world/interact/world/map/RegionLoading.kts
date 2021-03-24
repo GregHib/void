@@ -46,7 +46,7 @@ on<RegionLogin> { player: Player ->
 /*
     Collision map loading
  */
-on<Registered>({ entity is Player }) { player: Player ->
+on<Registered> { player: Player ->
     maps.load(player.tile.region)
 }
 

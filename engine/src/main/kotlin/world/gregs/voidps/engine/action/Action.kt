@@ -4,7 +4,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.singleOrNull
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
@@ -95,11 +94,6 @@ class Action {
         return true
     }
 }
-
-fun NPCEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = npc.action(type, action)
-
-//fun PlayerEvent.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) =
-//    player.action(type, action)
 
 fun Character.action(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
     this.action.run(type, action)

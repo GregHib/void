@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.npcLoaderModule
 import world.gregs.voidps.engine.entity.character.npc.npcSpawnModule
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -31,7 +32,6 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.entity.obj.stairsModule
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
@@ -76,13 +76,12 @@ object Main {
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
         val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game, limit)
-        val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
         val tickStages = getTickStages(protocol)
         val engine = GameLoop(service, tickStages)
 
-        bus.emit(Startup)
+        World.events.emit(Startup)
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
         server.start(getIntProperty("port"))
@@ -103,7 +102,6 @@ object Main {
         val playerPostUpdate: PlayerPostUpdateTask = get()
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
-        val bus: EventBus = get()
         val net = NetworkTask(players, protocol)
         return listOf(
             net,
@@ -114,7 +112,7 @@ object Main {
                 flow.tryEmit(GameLoop.tick)
             },
             Runnable {
-                bus.emit(Tick(GameLoop.tick))
+                World.events.emit(Tick(GameLoop.tick))
             },
             PlayerPathTask(players, get()),
             movementCallback,

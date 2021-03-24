@@ -38,7 +38,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         movement = mockk(relaxed = true)
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
-        task = NPCMovementTask(npcs, mockk(relaxed = true), mockk(relaxed = true))
+        task = NPCMovementTask(npcs, mockk(relaxed = true))
         every { npcs.forEach(any()) } answers {
             val action: (NPC) -> Unit = arg(0)
             action.invoke(npc)
