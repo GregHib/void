@@ -10,7 +10,7 @@ import kotlinx.coroutines.*
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.network.Client.Companion.string
@@ -26,7 +26,7 @@ class Network(
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val loginQueue: LoginQueue,
-    private val loader: PlayerLoader,
+    private val factory: PlayerFactory,
     private val gameContext: CoroutineDispatcher,
     private val loginLimit: Int
 ) {
@@ -200,15 +200,15 @@ class Network(
 
     suspend fun loadPlayer(write: ByteWriteChannel, client: Client, username: String, password: String, index: Int): Player? {
         try {
-            var account = loader.load(username)
+            var account = factory.load(username)
             if (account == null) {
-                account = loader.create(username, password)
+                account = factory.create(username, password)
             } else if (account.passwordHash.isBlank() || !BCrypt.checkpw(password, account.passwordHash)) {
                 loginQueue.logout(username, client.address, index)
                 write.finish(INVALID_CREDENTIALS)
                 return null
             }
-            loader.initPlayer(account, index)
+            factory.initPlayer(account, index)
             logger.info { "Player $username loaded and queued for login." }
             loginQueue.await()
             return account

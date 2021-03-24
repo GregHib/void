@@ -27,10 +27,10 @@ import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 val npcLoaderModule = module {
-    single { NPCLoader(get(), get(), get(), get()) }
+    single { NPCFactory(get(), get(), get(), get()) }
 }
 
-class NPCLoader(
+class NPCFactory(
     private val npcs: NPCs,
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,

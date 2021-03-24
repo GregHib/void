@@ -11,7 +11,7 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import java.math.BigInteger
@@ -25,7 +25,7 @@ internal class NetworkTest {
     lateinit var loginQueue: LoginQueue
 
     @MockK
-    lateinit var loader: PlayerLoader
+    lateinit var factory: PlayerFactory
 
     lateinit var protocol: MutableMap<Int, Decoder>
 
@@ -38,7 +38,7 @@ internal class NetworkTest {
     @BeforeEach
     fun setup() {
         protocol = mutableMapOf()
-        network = spyk(Network(protocol, 123, BigInteger.ONE, BigInteger.TWO, loginQueue, loader, TestCoroutineDispatcher(), 1))
+        network = spyk(Network(protocol, 123, BigInteger.ONE, BigInteger.TWO, loginQueue, factory, TestCoroutineDispatcher(), 1))
     }
 
     @Test
@@ -151,16 +151,16 @@ internal class NetworkTest {
         every { loginQueue.isOnline(any()) } returns false
         every { loginQueue.login(any(), any()) } returns 1
         every { loginQueue.logins(any()) } returns 0
-        every { loader.load(any()) } returns null
+        every { factory.load(any()) } returns null
         val player: Player = mockk(relaxed = true)
-        every { loader.create(any(), any()) } returns player
-        every { loader.initPlayer(player, 1) } just Runs
+        every { factory.create(any(), any()) } returns player
+        every { factory.initPlayer(player, 1) } just Runs
         coEvery { network.readPackets(client, read) } just Runs
         network.login(read, write, client, "bob", "axes", 0)
         coVerify {
             network.readPackets(client, read)
-            loader.create("bob", "axes")
-            loader.initPlayer(player, 1)
+            factory.create("bob", "axes")
+            factory.initPlayer(player, 1)
         }
     }
 
@@ -172,7 +172,7 @@ internal class NetworkTest {
         every { loginQueue.login(any(), any()) } returns 1
         every { loginQueue.logins(any()) } returns 0
         every { loginQueue.logout(any(), any(), any()) } just Runs
-        every { loader.load(any()) } returns player
+        every { factory.load(any()) } returns player
         every { player.passwordHash } returns ""
         network.login(read, write, client, "bob", "axes", 0)
         coVerify {
@@ -189,8 +189,8 @@ internal class NetworkTest {
         every { loginQueue.login(any(), any()) } returns 1
         every { loginQueue.logins(any()) } returns 0
         every { loginQueue.logout(any(), any(), any()) } just Runs
-        every { loader.load(any()) } returns player
-        every { loader.initPlayer(player, 1) } just Runs
+        every { factory.load(any()) } returns player
+        every { factory.initPlayer(player, 1) } just Runs
         coEvery { loginQueue.await() } just Runs
         coEvery { network.readPackets(client, read) } just Runs
         every { player.passwordHash } returns "\$2a\$10\$4ruibyyD1l.sGkzHLJvVn.keNd/jNWkoMNXaP0pVBdk8oSCKyWYhK"
