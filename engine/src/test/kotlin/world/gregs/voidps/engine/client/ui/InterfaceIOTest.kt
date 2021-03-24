@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
+import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
 
@@ -26,7 +26,7 @@ internal class InterfaceIOTest {
     fun setup() {
         player = mockk()
         client = mockk(relaxed = true)
-        every { player.events.emit(any<PlayerEvent>()) } returns mockk()
+        every { player.events.emit(any<Event>()) } returns mockk()
         every { player.client } returns client
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         io = PlayerInterfaceIO(player)

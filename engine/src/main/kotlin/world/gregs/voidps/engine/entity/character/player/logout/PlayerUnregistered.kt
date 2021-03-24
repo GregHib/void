@@ -1,5 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player.logout
 
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
+import world.gregs.voidps.engine.event.Event
 
-object PlayerUnregistered : PlayerEvent
+object PlayerUnregistered : Event
