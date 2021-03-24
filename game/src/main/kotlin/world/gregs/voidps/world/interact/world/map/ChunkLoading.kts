@@ -1,4 +1,4 @@
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
@@ -25,7 +25,7 @@ on<PlayerUnregistered> { player: Player ->
     }
 }
 
-on<PlayerMoved>({ from.chunk != to.chunk }) { player: Player ->
+on<Moved>({ from.chunk != to.chunk }) { player: Player ->
     forEachChunk(player, from) { chunk ->
         batcher.unsubscribe(player, chunk)
     }

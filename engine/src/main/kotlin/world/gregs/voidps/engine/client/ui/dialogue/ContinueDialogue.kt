@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.ui.dialogue
 
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
+import world.gregs.voidps.engine.event.Event
 
 data class ContinueDialogue(
     val id: Int,
@@ -9,4 +9,4 @@ data class ContinueDialogue(
     val component: String,
     val type: String,
     val option: Int
-) : PlayerEvent
+) : Event

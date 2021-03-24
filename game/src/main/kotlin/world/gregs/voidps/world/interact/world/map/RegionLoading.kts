@@ -1,7 +1,6 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.move.NPCMoved
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.*
 import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
@@ -50,11 +49,11 @@ on<Registered> { player: Player ->
     maps.load(player.tile.region)
 }
 
-on<PlayerMoved> { player: Player ->
+on<Moved> { player: Player ->
     maps.load(player.tile.region)
 }
 
-on<NPCMoved> { npc: NPC ->
+on<Moved> { npc: NPC ->
     maps.load(npc.tile.region)
 }
 
@@ -73,11 +72,11 @@ on<PlayerUnregistered> { player: Player ->
     Region updating
  */
 
-on<PlayerMoved>({ from.regionPlane != to.regionPlane }) { player: Player ->
+on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<PlayerMoved>({ needsRegionChange(it) }) { player: Player ->
+on<Moved>({ needsRegionChange(it) }) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 

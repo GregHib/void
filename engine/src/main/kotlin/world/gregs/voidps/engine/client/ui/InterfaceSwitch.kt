@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
+import world.gregs.voidps.engine.event.Event
 
 data class InterfaceSwitch(
     val id: Int,
@@ -15,4 +15,4 @@ data class InterfaceSwitch(
     val toComponent: String,
     val toItemId: Int,
     val toSlot: Int
-) : PlayerEvent
+) : Event

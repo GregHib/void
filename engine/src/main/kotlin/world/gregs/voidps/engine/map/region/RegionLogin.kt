@@ -1,5 +1,5 @@
 package world.gregs.voidps.engine.map.region
 
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
+import world.gregs.voidps.engine.event.Event
 
-object RegionLogin : PlayerEvent
+object RegionLogin : Event

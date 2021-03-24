@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -74,7 +74,7 @@ class PlayerMovementTask(
             player.tile = player.tile.add(movement.delta)
             players.update(from, player.tile, player)
             collisions.move(player, from, player.tile)
-            player.events.emit(PlayerMoved(from, player.tile))
+            player.events.emit(Moved(from, player.tile))
         }
     }
 }

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.engine.entity.character.move.NPCMoved
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -67,7 +67,7 @@ class NPCMovementTask(
             npc.tile = npc.tile.add(movement.delta)
             npcs.update(from, npc.tile, npc)
             collisions.move(npc, from, npc.tile)
-            npc.events.emit(NPCMoved(from, npc.tile))
+            npc.events.emit(Moved(from, npc.tile))
         }
     }
 }
