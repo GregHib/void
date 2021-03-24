@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.event.EventStore
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.strat.DecorationTargetStrategy
@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.path.strat.WallTargetStrategy
  */
 class GameObjectFactory(
     private val collisions: Collisions,
-    private val store: EventStore
+    private val store: EventHandlerStore
 ) {
 
     fun spawn(objectId: Int, tile: Tile, type: Int, rotation: Int, owner: String? = null): GameObject {

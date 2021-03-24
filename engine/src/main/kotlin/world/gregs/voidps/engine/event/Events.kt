@@ -17,8 +17,14 @@ class Events(
     inline fun <reified E : Event> on(
         noinline condition: E.(Player) -> Boolean = { true },
         noinline block: E.(Player) -> Unit
-    ) {
-        getOrPut(E::class) { mutableListOf() }.add(EventHandler(E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit))
+    ): EventHandler {
+        val handler = EventHandler(E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit)
+        getOrPut(E::class) { mutableListOf() }.add(handler)
+        return handler
+    }
+
+    fun remove(handler: EventHandler) {
+        events[handler.event]?.remove(handler)
     }
 
     fun <E : Event> emit(event: E) = events[event::class]

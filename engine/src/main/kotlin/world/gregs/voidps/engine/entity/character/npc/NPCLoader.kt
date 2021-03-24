@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
-import world.gregs.voidps.engine.event.EventStore
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Rectangle
@@ -34,7 +34,7 @@ class NPCLoader(
     private val npcs: NPCs,
     private val definitions: NPCDefinitions,
     private val collisions: Collisions,
-    private val store: EventStore
+    private val store: EventHandlerStore
 ) {
     private val indexer = IndexAllocator(MAX_NPCS)
     private val logger = InlineLogger()
