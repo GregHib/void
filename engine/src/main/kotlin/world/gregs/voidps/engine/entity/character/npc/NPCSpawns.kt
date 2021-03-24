@@ -17,7 +17,7 @@ val npcSpawnModule = module {
 
 class NPCSpawns(
     path: String,
-    private val loader: NPCLoader,
+    private val factory: NPCFactory,
     private val files: FileLoader
 ) {
 
@@ -28,7 +28,7 @@ class NPCSpawns(
         for (area in areas) {
             for (spawn in area.spawns) {
                 repeat(spawn.limit) {
-                    loader.spawn(spawn.name, area.area, spawn.direction)
+                    factory.spawn(spawn.name, area.area, spawn.direction)
                 }
             }
         }

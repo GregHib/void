@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.npc.NPCLoader
+import world.gregs.voidps.engine.entity.character.npc.NPCFactory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.chat.Command
@@ -35,7 +35,7 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
-    val spawns: NPCLoader = get()
+    val spawns: NPCFactory = get()
     val npc = if (id != null) {
         spawns.spawn(id, player.tile, Direction.NORTH)
     } else {

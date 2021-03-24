@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -20,10 +20,10 @@ internal class TradeIntegrationTest : WorldScript() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        val loader: PlayerLoader = get()
-        player1 = spyk(loader.create("1", ""))
+        val factory: PlayerFactory = get()
+        player1 = spyk(factory.create("1", ""))
         player1.start()
-        player2 = spyk(loader.create("2", ""))
+        player2 = spyk(factory.create("2", ""))
         player2.start()
         setProperty("homeX", 100)
         setProperty("homeY", 100)

@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.walkTo
@@ -89,7 +89,7 @@ val options = setOf(
 val bots = mutableListOf<Player>()
 
 val loginQueue: LoginQueue by inject()
-val loader: PlayerLoader by inject()
+val factory: PlayerFactory by inject()
 
 on<Command>({ prefix == "bots" }) { player: Player ->
     spawnBots(1)
@@ -105,7 +105,7 @@ fun spawnBots(count: Int) {
             val name = "Bot ${++counter}"
             val index = loginQueue.login(name)!!
             val bot = Player(index = index, tile = lumbridge.random(), name = name)
-            loader.initPlayer(bot, index)
+            factory.initPlayer(bot, index)
             loginQueue.await()
             bot.login()
 

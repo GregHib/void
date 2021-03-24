@@ -1,10 +1,8 @@
 package world.gregs.voidps.network.handle
 
-import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.engine.path.Walk
 import world.gregs.voidps.network.Handler
-import world.gregs.voidps.network.encode.message
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -13,12 +11,7 @@ import world.gregs.voidps.network.encode.message
 class WalkMiniMapHandler : Handler() {
 
     override fun minimapWalk(player: Player, x: Int, y: Int, running: Boolean) {
-        player.walkTo(player.tile.copy(x = x, y = y)) { result ->
-            if (result is PathResult.Failure) {
-                player.message("You can't reach that.")
-                return@walkTo
-            }
-        }
+        player.events.emit(Walk(player.tile.copy(x, y)))
     }
 
 }
