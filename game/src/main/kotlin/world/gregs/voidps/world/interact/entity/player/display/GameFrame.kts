@@ -9,8 +9,8 @@ import world.gregs.voidps.engine.client.variable.ListVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.event.on
 
 ListVariable(168, Variable.Type.VARC, values = Tab.values().toList(), defaultValue = Tab.Inventory).register("tab")
@@ -42,7 +42,7 @@ val list = listOf(
     "area_status_icon"
 )
 
-on<PlayerRegistered> { player: Player ->
+on<Registered> { player: Player ->
     player.open(player.gameFrame.name)
 
     list.forEach {

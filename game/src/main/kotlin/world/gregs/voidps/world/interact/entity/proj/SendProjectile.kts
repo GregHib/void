@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
-import world.gregs.voidps.engine.event.EventStore
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addProjectile
@@ -16,7 +16,7 @@ import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 
 val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
-val store: EventStore by inject()
+val store: EventHandlerStore by inject()
 val batcher: ChunkBatcher by inject()
 
 on<World, ShootProjectile> {

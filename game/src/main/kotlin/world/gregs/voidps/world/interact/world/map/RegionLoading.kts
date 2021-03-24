@@ -1,10 +1,11 @@
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.area
@@ -23,7 +24,6 @@ import kotlin.math.abs
 /**
  * Keeps track of when players enter and move between regions
  * Loads maps when they are accessed
- * Emits [RegionMapUpdate] events when a players region has changed
  */
 
 val maps: RegionReader by inject()
@@ -61,11 +61,11 @@ on<Moved> { npc: NPC ->
     Player regions
  */
 
-on<PlayerRegistered> { player: Player ->
+on<Registered> { player: Player ->
     playerRegions[player.index - 1] = player.tile.regionPlane.id
 }
 
-on<PlayerUnregistered> { player: Player ->
+on<Unregistered> { player: Player ->
     playerRegions[player.index - 1] = 0
 }
 /*

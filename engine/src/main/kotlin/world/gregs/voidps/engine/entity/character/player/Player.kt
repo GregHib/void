@@ -23,8 +23,6 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.delay.Delays
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Levels
@@ -42,8 +40,6 @@ import world.gregs.voidps.utility.get
 
 /**
  * A player controlled by client or bot
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
 class Player(
@@ -140,7 +136,6 @@ class Player(
         if (client != null) {
             events.emit(RegionLogin)
         }
-        events.emit(PlayerRegistered)
         val collisions: Collisions = get()
         collisions.add(this)
         setup()
@@ -162,7 +157,6 @@ class Player(
             val collisions: Collisions = get()
             collisions.remove(this@Player)
             events.emit(Unregistered)
-            events.emit(PlayerUnregistered)
         }
     }
 

@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.player.equip
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -35,7 +35,7 @@ on<ContainerAction>({ container == "worn_equipment" && option == "Remove" }) { p
     }
 }
 
-on<PlayerRegistered> { player: Player ->
+on<Registered> { player: Player ->
     player.equipment.listeners.add { list ->
         for ((index, _, _) in list) {
             if (index == EquipSlot.Weapon.index) {

@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.bot
 
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
@@ -18,11 +18,11 @@ import world.gregs.voidps.utility.inject
 val graph: NavigationGraph by inject()
 val bfs: BreadthFirstSearch by inject()
 
-on<PlayerRegistered> { player: Player ->
+on<Registered> { player: Player ->
     findNearest(player)
 }
 
-on<PlayerUnregistered> { player: Player ->
+on<Unregistered> { player: Player ->
     graph.remove(player)
 }
 

@@ -5,9 +5,9 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
 import world.gregs.voidps.engine.event.on
@@ -155,7 +155,7 @@ on<InterfaceOption>({ name == "prayer_list" && component == "confirm" && option 
     player.saveQuickPrayers()
 }
 
-on<PlayerUnregistered>({ it.has(TEMP_QUICK_PRAYERS) }) { player: Player ->
+on<Unregistered>({ it.has(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 

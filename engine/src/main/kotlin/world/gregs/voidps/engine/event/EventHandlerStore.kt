@@ -10,13 +10,13 @@ import world.gregs.voidps.utility.get
 import kotlin.reflect.KClass
 
 val eventModule = module {
-    single { EventStore() }
+    single { EventHandlerStore() }
 }
 
 /**
  * Handles the storage and delivery of global [EventHandler]'s
  */
-class EventStore {
+class EventHandlerStore {
 
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
@@ -41,7 +41,7 @@ class EventStore {
 
 @Suppress("UNCHECKED_CAST")
 inline fun <reified T : Entity, reified E : Event> on(noinline condition: E.(T) -> Boolean = { true }, noinline block: E.(T) -> Unit) {
-    get<EventStore>().add(T::class, E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit)
+    get<EventHandlerStore>().add(T::class, E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit)
 }
 
 @JvmName("onPlayer")

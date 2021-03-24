@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 
 on<Command>({ prefix == "record" }) { player: Player ->
+    player.events
     player["recording"] = true
     player["record"] = mutableListOf<Event>()
 }
