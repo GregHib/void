@@ -3,11 +3,11 @@ import world.gregs.voidps.engine.entity.character.effect.Colour
 import world.gregs.voidps.engine.entity.character.effect.Transform
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 
 val npcs: NPCs by inject()

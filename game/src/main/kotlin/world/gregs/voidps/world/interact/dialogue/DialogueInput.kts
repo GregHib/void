@@ -2,10 +2,10 @@ package world.gregs.voidps.world.interact.dialogue
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
-import world.gregs.voidps.engine.client.ui.dialogue.IntEntered
-import world.gregs.voidps.engine.client.ui.dialogue.StringEntered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.instruct.EnterInt
+import world.gregs.voidps.network.instruct.EnterString
 
 val logger = InlineLogger()
 
@@ -48,13 +48,13 @@ on<ContinueDialogue>({ name.contains("multi") && component.startsWith("line") })
     }
 }
 
-on<IntEntered> { player: Player ->
+on<EnterInt> { player: Player ->
     if (isActiveDialogueType(player, "int")) {
         player.dialogues.resume(value)
     }
 }
 
-on<StringEntered> { player: Player ->
+on<EnterString> { player: Player ->
     if (isActiveDialogueType(player, "string")) {
         player.dialogues.resume(value)
     }

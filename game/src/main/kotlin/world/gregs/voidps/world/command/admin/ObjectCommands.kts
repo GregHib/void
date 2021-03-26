@@ -1,11 +1,11 @@
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 
 val objects: Objects by inject()
