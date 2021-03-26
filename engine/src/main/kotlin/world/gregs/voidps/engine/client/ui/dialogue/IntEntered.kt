@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui.dialogue
 
 import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.network.Instruction
 
-data class IntEntered(val value: Int) : Event
+data class IntEntered(val value: Int) : Instruction, Event

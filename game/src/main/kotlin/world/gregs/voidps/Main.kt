@@ -44,9 +44,9 @@ import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.InstructionHandler
+import world.gregs.voidps.network.InstructionTask
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.NetworkTask
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
@@ -78,7 +78,7 @@ object Main {
         val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game, limit)
         val service = Executors.newSingleThreadScheduledExecutor()
 
-        val tickStages = getTickStages(protocol)
+        val tickStages = getTickStages()
         val engine = GameLoop(service, tickStages)
 
         World.events.emit(Startup)
@@ -87,7 +87,7 @@ object Main {
         server.start(getIntProperty("port"))
     }
 
-    private fun getTickStages(protocol: Map<Int, Decoder>): List<Runnable> {
+    private fun getTickStages(): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val playerMovement: PlayerMovementTask = get()
         val movementCallback: PlayerMovementCallbackTask = get()
@@ -102,7 +102,7 @@ object Main {
         val playerPostUpdate: PlayerPostUpdateTask = get()
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
-        val net = NetworkTask(players, protocol)
+        val net = InstructionTask(players, InstructionHandler())
         return listOf(
             net,
             // Connections/Tick Input

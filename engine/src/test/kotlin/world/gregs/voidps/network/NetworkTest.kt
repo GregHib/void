@@ -155,10 +155,10 @@ internal class NetworkTest {
         val player: Player = mockk(relaxed = true)
         every { factory.create(any(), any()) } returns player
         every { factory.initPlayer(player, 1) } just Runs
-        coEvery { network.readPackets(client, read) } just Runs
+        coEvery { network.readPackets(client, player, read) } just Runs
         network.login(read, write, client, "bob", "axes", 0)
         coVerify {
-            network.readPackets(client, read)
+            network.readPackets(client, player, read)
             factory.create("bob", "axes")
             factory.initPlayer(player, 1)
         }
@@ -192,7 +192,7 @@ internal class NetworkTest {
         every { factory.load(any()) } returns player
         every { factory.initPlayer(player, 1) } just Runs
         coEvery { loginQueue.await() } just Runs
-        coEvery { network.readPackets(client, read) } just Runs
+        coEvery { network.readPackets(client, player, read) } just Runs
         every { player.passwordHash } returns "\$2a\$10\$4ruibyyD1l.sGkzHLJvVn.keNd/jNWkoMNXaP0pVBdk8oSCKyWYhK"
         network.login(read, write, client, "bob", "axes", 0)
         coVerifyOrder {
