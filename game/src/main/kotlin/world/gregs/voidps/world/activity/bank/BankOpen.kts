@@ -13,9 +13,9 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.sendScript
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.world.activity.bank.Bank.tabs
 
 IntVariable(4893, Variable.Type.VARBIT, persistent = true, defaultValue = 1).register("open_bank_tab")

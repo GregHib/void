@@ -1,4 +1,4 @@
-package world.gregs.voidps.engine.entity.character.player.chat
+package world.gregs.voidps.network.instruct
 
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.network.Instruction

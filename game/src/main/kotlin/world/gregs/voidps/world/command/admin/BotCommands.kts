@@ -1,9 +1,9 @@
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.Command
 import world.gregs.voidps.engine.entity.character.remove
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.instruct.Command
 
 on<Command>({ prefix == "record" }) { player: Player ->
     val all = mutableListOf<Event>()
