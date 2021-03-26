@@ -32,6 +32,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.entity.obj.stairsModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
@@ -81,7 +82,9 @@ object Main {
         val tickStages = getTickStages()
         val engine = GameLoop(service, tickStages)
 
+        get<EventHandlerStore>().populate(World)
         World.events.emit(Startup)
+
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
         server.start(getIntProperty("port"))

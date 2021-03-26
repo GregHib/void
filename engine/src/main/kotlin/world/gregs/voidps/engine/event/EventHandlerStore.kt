@@ -20,10 +20,6 @@ class EventHandlerStore {
 
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
-    init {
-        populate(World)
-    }
-
     fun <T : Entity> populate(entity: T) {
         for ((key, values) in get(entity::class)) {
             entity.events.addAll(key, values)
