@@ -1,21 +1,18 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.readString
 
-class ReportAbuseDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
+class ReportAbuseDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.reportAbuse(
-            player = player,
-            name = packet.readString(),
-            type = packet.readByte().toInt(),
-            integer = packet.readByte().toInt(),
-            string = packet.readString()
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val name = packet.readString()
+        val type = packet.readByte().toInt()
+        val integer = packet.readByte().toInt()
+        val string = packet.readString()
     }
 
 }

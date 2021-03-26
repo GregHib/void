@@ -1,21 +1,19 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.network.readBooleanAdd
 import world.gregs.voidps.network.readUnsignedShortAdd
 
-class WalkMiniMapDecoder(handler: Handler? = null) : Decoder(18, handler) {
+class WalkMiniMapDecoder : Decoder(18) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.minimapWalk(
-            player = player,
-            y = packet.readShortLittleEndian().toInt(),
-            running = packet.readBooleanAdd(),
-            x = packet.readUnsignedShortAdd()
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val y = packet.readShortLittleEndian().toInt()
+        val running = packet.readBooleanAdd()
+        val x = packet.readUnsignedShortAdd()
         packet.readByte()//-1
         packet.readByte()//-1
         packet.readShort()//Rotation?
@@ -26,6 +24,7 @@ class WalkMiniMapDecoder(handler: Handler? = null) : Decoder(18, handler) {
         packet.readShort()//X in region?
         packet.readShort()//Y in region?
         packet.readByte()//63
+        instructions.emit(Walk(x, y))
     }
 
 }

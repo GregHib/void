@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
@@ -35,6 +36,7 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.utility.get
 
@@ -77,6 +79,9 @@ class Player(
     var name: String = "",
     var passwordHash: String = ""
 ) : Character {
+
+    @JsonIgnore
+    val instructions = MutableSharedFlow<Instruction>(replay = 20)
 
     @JsonIgnore
     override val events: Events = Events(this)

@@ -1,18 +1,13 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 18, 2020
- */
-class PingDecoder(handler: Handler? = null) : Decoder(0, handler) {
+class PingDecoder : Decoder(0) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.ping(player)
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
     }
 
 }

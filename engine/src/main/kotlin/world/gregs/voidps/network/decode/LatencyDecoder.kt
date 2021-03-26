@@ -1,17 +1,14 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 
-class LatencyDecoder(handler: Handler? = null) : Decoder(2, handler) {
+class LatencyDecoder : Decoder(2) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.latency(
-            player = player,
-            value = packet.readShort().toInt()
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val value = packet.readShort().toInt()
     }
 
 }

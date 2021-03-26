@@ -2,10 +2,8 @@ package world.gregs.voidps.network
 
 import com.github.michaelbull.logging.InlineLogger
 import io.ktor.utils.io.*
-import io.ktor.utils.io.core.*
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.runBlocking
 
 data class Client(
@@ -22,10 +20,6 @@ data class Client(
         logger.warn { throwable.message }
         disconnect()
     }
-
-    data class Packet(val opcode: Int, val packet: ByteReadPacket)
-
-    val packets = MutableSharedFlow<Packet>(replay = 20)
 
     fun disconnect() {
         if (!connected) {

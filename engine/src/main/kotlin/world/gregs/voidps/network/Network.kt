@@ -175,7 +175,7 @@ class Network(
             player.login(client)
         }
         try {
-            readPackets(client, read)
+            readPackets(client, player, read)
         } finally {
             client.exit()
         }
@@ -219,7 +219,7 @@ class Network(
         }
     }
 
-    suspend fun readPackets(client: Client, read: ByteReadChannel) {
+    suspend fun readPackets(client: Client, player: Player, read: ByteReadChannel) {
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
@@ -230,11 +230,11 @@ class Network(
             }
             val size = when (decoder.length) {
                 BYTE -> read.readUByte()
-                SHORT -> (read.readUByte() shl 8) or read.readUByte()
+                SHORT -> read.readUShort()
                 else -> decoder.length
             }
-
-            client.packets.emit(Client.Packet(opcode, read.readPacket(size = size)))
+            val packet = read.readPacket(size = size)
+            decoder.decode(player.instructions, packet)
         }
     }
 
@@ -244,6 +244,7 @@ class Network(
     }
 
     private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
+    private suspend fun ByteReadChannel.readUShort(): Int = (readUByte() shl 8) or readUByte()
 
     private suspend fun ByteWriteChannel.respond(value: Int) {
         writeByte(value)
