@@ -21,7 +21,6 @@ import java.util.concurrent.atomic.AtomicInteger
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
-        val params = content.split(",")
         val plane = params[0].toInt()
         val x = params[1].toInt() shl 6 or params[3].toInt()
         val y = params[2].toInt() shl 6 or params[4].toInt()

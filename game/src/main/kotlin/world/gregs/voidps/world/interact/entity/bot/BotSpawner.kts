@@ -143,25 +143,54 @@ on<Command>({ prefix == "bot" }) { player: Player ->
     spawnBots(1)
 }
 
+on<Command>({ prefix == "bots" }) { player: Player ->
+    spawnBots(params[0].toInt())
+}
+
 on<Command>({ prefix == "check" }) { player: Player ->
     val bot = players.indexed.first { it != null && it.name.startsWith("Bot") } ?: return@on
-    for(edge in graph.getAdjacent(bot)) {
+    for (edge in graph.getAdjacent(bot)) {
         println("Check $edge")
     }
 }
 
 on<Command>({ prefix == "goto" }) { player: Player ->
     val bot = players.indexed.first { it != null && it.name.startsWith("Bot") } ?: return@on
-    println(bot.goTo(when (content) {
-        "bank" -> lumbridgeCastleBank
-        "axes" -> bobsAxeShop
-        "trees" -> trees
-        else -> return@on
-    }))
+    println(
+        bot.goTo(
+            when (content) {
+                "bank" -> lumbridgeCastleBank
+                "axes" -> bobsAxeShop
+                "trees" -> trees
+                else -> return@on
+            }
+        )
+    )
     for (waypoint in bot.movement.waypoints) {
         println(waypoint)
     }
 }
+
+on<Command>({ prefix == "botwalk" }) { player: Player ->
+    val bots = players.indexed.filter { it != null && it.name.startsWith("Bot") }.filterNotNull()
+    val options = listOf("bank", "axes", "trees", "lumbridge")
+    for (bot in bots) {
+        val option = options.shuffled().first()
+        bot.goTo(
+            when (option) {
+                "bank" -> lumbridgeCastleBank
+                "axes" -> bobsAxeShop
+                "trees" -> trees
+                "lumbridge" -> lumbridge
+                else -> return@on
+            }
+        )
+        for (waypoint in bot.movement.waypoints) {
+            println(waypoint)
+        }
+    }
+}
+
 
 var counter = 0
 val varrock = Tile(3212, 3428)
