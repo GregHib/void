@@ -1,8 +1,10 @@
 package world.gregs.voidps.engine.map.nav
 
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Instruction
 
 data class Edge(
+    val name: String,
     val start: Any,
     val end: Any,
     val cost: Int,
@@ -14,4 +16,7 @@ data class Edge(
         return cost.compareTo(other.cost)
     }
 
+    override fun toString(): String {
+        return "Edge(${"$name ".trimStart()}${if (start is Player) start.name else start} - $end)"
+    }
 }

@@ -15,7 +15,11 @@ class InstructionTask(
             val instructions = player.instructions
             for (instruction in instructions.replayCache) {
                 logger.debug { "${player.name} ${player.tile} - $instruction" }
-                handler.handle(player, instruction)
+                try {
+                    handler.handle(player, instruction)
+                } catch (e: Throwable) {
+                    logger.error(e) { "Error in instruction $instruction" }
+                }
             }
             instructions.resetReplayCache()
         }

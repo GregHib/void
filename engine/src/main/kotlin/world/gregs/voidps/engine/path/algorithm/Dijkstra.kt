@@ -31,7 +31,7 @@ class Dijkstra(
                 if (traversal.blocked(player, edge)) {
                     continue
                 }
-                val cost = parentCost + if (edge.cost == -1) player.tile.distanceTo(edge.end as Tile) else edge.cost
+                val cost = parentCost + edge.cost
                 if (frontier.cost(edge) > cost) {
                     frontier.visit(edge.end, edge, parentEdge, cost)
                 }
