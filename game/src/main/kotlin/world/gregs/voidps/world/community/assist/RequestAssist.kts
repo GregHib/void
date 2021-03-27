@@ -15,11 +15,9 @@ import world.gregs.voidps.engine.entity.character.player.delay.remaining
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.remove
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.TICKS
 import world.gregs.voidps.utility.func.plural
@@ -54,16 +52,16 @@ val logger = InlineLogger()
 
 IntVariable(4103, Variable.Type.VARBIT, true).register("total_xp_earned")
 
-PlayerOption where { option == "Req Assist" } then {
+on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]
     if (filter == "off" || (filter == "friends" && !target.hasFriend(player))) {
-        return@then
+        return@on
     }
     if (player.requests.has(target, "assist")) {
         player.message("Sending assistance response.", ChatType.GameAssist)
     } else {
         if (requestingTooQuickly(player) || refuseRequest(target, player)) {
-            return@then
+            return@on
         }
         player.message("Sending assistance request.", ChatType.GameAssist)
         target.message("is requesting your assistance.", ChatType.Assist, name = player.name)

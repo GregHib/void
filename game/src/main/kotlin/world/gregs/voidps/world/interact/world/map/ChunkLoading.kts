@@ -1,32 +1,30 @@
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.utility.inject
 
-
 /**
  * Keeps track of local chunks for batched updates
  */
 val batcher: ChunkBatcher by inject()
 
-PlayerRegistered then {
+on<Registered> { player: Player ->
     load(player)
 }
 
-PlayerUnregistered then {
+on<Unregistered> { player: Player ->
     forEachChunk(player, player.tile) { chunk ->
         batcher.unsubscribe(player, chunk)
     }
 }
 
-PlayerMoved where { from.chunk != to.chunk } then {
+on<Moved>({ from.chunk != to.chunk }) { player: Player ->
     forEachChunk(player, from) { chunk ->
         batcher.unsubscribe(player, chunk)
     }

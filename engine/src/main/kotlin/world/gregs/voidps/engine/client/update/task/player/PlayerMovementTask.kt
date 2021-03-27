@@ -1,25 +1,24 @@
 package world.gregs.voidps.engine.client.update.task.player
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import kotlinx.coroutines.*
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class PlayerMovementTask(private val players: Players, private val bus: EventBus) : Runnable {
+class PlayerMovementTask(
+    private val players: Players,
+    private val collisions: Collisions
+) : Runnable {
 
     override fun run() {
         players.forEach { player ->
@@ -61,15 +60,6 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
                 }
             }
         }
-        if (steps.isEmpty()) {
-            val callback = movement.callback
-            if (callback != null) {
-                delay {
-                    callback.invoke()
-                }
-                movement.callback = null
-            }
-        }
     }
 
     /**
@@ -82,7 +72,9 @@ class PlayerMovementTask(private val players: Players, private val bus: EventBus
             movement.previousTile = player.tile
             val from = player.tile
             player.tile = player.tile.add(movement.delta)
-            bus.emit(PlayerMoved(player, from, player.tile))
+            players.update(from, player.tile, player)
+            collisions.move(player, from, player.tile)
+            player.events.emit(Moved(from, player.tile))
         }
     }
 }

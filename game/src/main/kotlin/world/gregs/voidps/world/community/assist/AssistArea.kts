@@ -1,11 +1,9 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.character.*
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 
 /**
@@ -14,7 +12,7 @@ import world.gregs.voidps.engine.map.Tile
 
 val maximumTileDistance = 20
 
-PlayerMoved where { player.has("assistant") } then {
+on<Moved>({ it.has("assistant") }) { player: Player ->
     when (player.movementType) {
         PlayerMoveType.Teleport -> player["assist_point"] = player.tile
         else -> {

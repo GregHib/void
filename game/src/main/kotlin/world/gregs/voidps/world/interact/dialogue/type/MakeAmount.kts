@@ -2,8 +2,8 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 IntVariable(8094, Variable.Type.VARBIT, false, 1).register("skill_creation_maximum")
 IntVariable(8095, Variable.Type.VARBIT, true, 1).register("skill_creation_amount")
@@ -50,37 +50,37 @@ StringVariable(281, Variable.Type.VARCSTR).register("skill_creation_name_7")
 StringVariable(282, Variable.Type.VARCSTR).register("skill_creation_name_8")
 StringVariable(283, Variable.Type.VARCSTR).register("skill_creation_name_9")
 
-InterfaceOption where { name == "skill_creation_amount" && component == "create1" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "create1" }) { player: Player ->
     player.setVar("skill_creation_amount", 1, refresh = false)
 }
 
-InterfaceOption where { name == "skill_creation_amount" && component == "create5" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "create5" }) { player: Player ->
     player.setVar("skill_creation_amount", 5, refresh = false)
 }
 
-InterfaceOption where { name == "skill_creation_amount" && component == "create10" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "create10" }) { player: Player ->
     player.setVar("skill_creation_amount", 10, refresh = false)
 }
 
-InterfaceOption where { name == "skill_creation_amount" && component == "all" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "all" }) { player: Player ->
     val max = player.getVar("skill_creation_maximum", 1)
     player.setVar("skill_creation_amount", max, refresh = false)
 }
 
-InterfaceOption where { name == "skill_creation_amount" && component == "increment" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "increment" }) { player: Player ->
     var current = player.getVar("skill_creation_amount", 0)
     val maximum = player.getVar("skill_creation_maximum", 1)
     current++
-    if(current > maximum) {
+    if (current > maximum) {
         current = maximum
     }
     player.setVar("skill_creation_amount", current)
 }
 
-InterfaceOption where { name == "skill_creation_amount" && component == "decrement" } then {
+on<InterfaceOption>({ name == "skill_creation_amount" && component == "decrement" }) { player: Player ->
     var current = player.getVar("skill_creation_amount", 0)
     current--
-    if(current < 0) {
+    if (current < 0) {
         current = 0
     }
     player.setVar("skill_creation_amount", current)

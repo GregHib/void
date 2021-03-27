@@ -1,14 +1,14 @@
-import world.gregs.voidps.engine.entity.character.player.chat.Command
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.instruct.Command
 
-Command where { prefix == "effects" } then {
+on<Command>({ prefix == "effects" }) { player: Player ->
     for(effect in player.effects.getAll().values) {
         player.message(effect.toString())
     }
 }
 
-Command where { prefix == "remove-effect" } then {
+on<Command>({ prefix == "remove-effect" }) { player: Player ->
     player.effects.remove(content)
 }

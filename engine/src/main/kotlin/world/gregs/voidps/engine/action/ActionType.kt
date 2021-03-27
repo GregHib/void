@@ -4,8 +4,10 @@ import kotlinx.coroutines.CancellationException
 
 sealed class ActionType : CancellationException() {
     object None : ActionType()
+    object Climb : ActionType()
     object Follow : ActionType()
     object Teleport : ActionType()
+    object Movement : ActionType()
     object Combat : ActionType()
     object Misc : ActionType()
     object Assisting : ActionType()

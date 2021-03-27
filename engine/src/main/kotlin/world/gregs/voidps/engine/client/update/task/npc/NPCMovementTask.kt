@@ -1,20 +1,22 @@
 package world.gregs.voidps.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
-import world.gregs.voidps.engine.entity.character.move.NPCMoved
+import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
  * @author GregHib <greg@gregs.world>
  * @since April 25, 2020
  */
-class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Runnable {
+class NPCMovementTask(
+    private val npcs: NPCs,
+    private val collisions: Collisions
+) : Runnable {
 
     override fun run() = runBlocking {
         npcs.forEach { npc ->
@@ -63,7 +65,9 @@ class NPCMovementTask(private val npcs: NPCs, private val bus: EventBus) : Runna
         if (movement.delta != Delta.EMPTY) {
             val from = npc.tile
             npc.tile = npc.tile.add(movement.delta)
-            bus.emit(NPCMoved(npc, from, npc.tile))
+            npcs.update(from, npc.tile, npc)
+            collisions.move(npc, from, npc.tile)
+            npc.events.emit(Moved(from, npc.tile))
         }
     }
 }

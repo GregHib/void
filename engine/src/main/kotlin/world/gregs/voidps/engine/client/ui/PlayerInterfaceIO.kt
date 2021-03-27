@@ -6,15 +6,13 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.network.encode.*
 
 /**
  * Instructions to external systems
  */
 class PlayerInterfaceIO(
-    val player: Player,
-    val bus: EventBus
+    val player: Player
 ) : InterfaceIO {
 
     override fun sendOpen(inter: InterfaceDetail) {
@@ -35,15 +33,15 @@ class PlayerInterfaceIO(
     }
 
     override fun notifyClosed(inter: InterfaceDetail) {
-        bus.emit(InterfaceClosed(player, inter.id, inter.name))
+        player.events.emit(InterfaceClosed(inter.id, inter.name))
     }
 
     override fun notifyOpened(inter: InterfaceDetail) {
-        bus.emit(InterfaceOpened(player, inter.id, inter.name))
+        player.events.emit(InterfaceOpened(inter.id, inter.name))
     }
 
     override fun notifyRefreshed(inter: InterfaceDetail) {
-        bus.emit(InterfaceRefreshed(player, inter.id, inter.name))
+        player.events.emit(InterfaceRefreshed(inter.id, inter.name))
     }
 
     override fun sendPlayerHead(component: InterfaceComponentDetail) {

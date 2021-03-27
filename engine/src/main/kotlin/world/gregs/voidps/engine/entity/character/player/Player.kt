@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.ActionType
@@ -23,26 +24,24 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.delay.Delays
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.entity.character.update.visual.player.*
+import world.gregs.voidps.engine.event.*
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.encode.logout
 import world.gregs.voidps.utility.get
 
 /**
  * A player controlled by client or bot
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 @JsonDeserialize(builder = PlayerBuilder::class)
 class Player(
@@ -62,9 +61,10 @@ class Player(
     override val movement: Movement = Movement(),
     @JsonIgnore
     override val action: Action = Action(),
-    val containers: MutableMap<Int, Container> = mutableMapOf(),
-    @JsonIgnore// Temp
-    val variables: MutableMap<Int, Any> = mutableMapOf(),
+    val containers: MutableMap<String, Container> = mutableMapOf(),
+    val variables: MutableMap<String, Any> = mutableMapOf(),
+    @JsonIgnore
+    val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
     override val values: CharacterValues = CharacterValues(),
     @JsonIgnore
@@ -79,6 +79,12 @@ class Player(
     var name: String = "",
     var passwordHash: String = ""
 ) : Character {
+
+    @JsonIgnore
+    val instructions = MutableSharedFlow<Instruction>(replay = 20)
+
+    @JsonIgnore
+    override val events: Events = Events(this)
 
     @JsonIgnore
     val requests: Requests = Requests(this)
@@ -117,20 +123,28 @@ class Player(
         options.set(2, "Follow")
         options.set(4, "Trade with")
         options.set(7, "Req Assist")
+        val players: Players = get()
+        players.add(this)
+        viewport.players.add(this)
+        temporaryMoveType = PlayerMoveType.None
+        movementType = PlayerMoveType.None
+        flagMovementType()
+        flagTemporaryMoveType()
+        face()
     }
 
     fun login(client: Client? = null) {
-        val bus: EventBus = get()// Temp until player has it's own event bus
         this.client = client
         client?.exit = {
             logout(false)
         }
         if (client != null) {
-            bus.emit(RegionLogin(this))
+            events.emit(RegionLogin)
         }
-        bus.emit(PlayerRegistered(this))
+        val collisions: Collisions = get()
+        collisions.add(this)
         setup()
-        bus.emit(Registered(this))
+        events.emit(Registered)
     }
 
     fun logout(safely: Boolean) {
@@ -140,14 +154,14 @@ class Player(
             action.run(ActionType.Logout) {
                 await<Unit>(Suspension.Infinite)
             }
-            val bus: EventBus = get()// Temp until player has it's own event bus
             if (safely) {
                 client?.logout()
             }
             client?.disconnect()
             loginQueue.logout(name, client?.address ?: "", index)
-            bus.emit(Unregistered(this@Player))
-            bus.emit(PlayerUnregistered(this@Player))
+            val collisions: Collisions = get()
+            collisions.remove(this@Player)
+            events.emit(Unregistered)
         }
     }
 

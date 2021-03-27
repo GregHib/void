@@ -69,8 +69,11 @@ class GameLoop(
         var tick: Long = 0L
         var flow = MutableStateFlow(tick)
             private set
+
         private const val ENGINE_DELAY = 600L
         private const val MILLI_THRESHOLD = 5
+
+        suspend fun await() = flow.singleOrNull()
 
         // Work-around for https://github.com/mockk/mockk/issues/481
         fun setTestFlow(flow: MutableStateFlow<Long>) {
@@ -84,7 +87,7 @@ class GameLoop(
  */
 fun delay(ticks: Int = 0, task: (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
     repeat(ticks) {
-        GameLoop.flow.singleOrNull()
+        GameLoop.await()
     }
     task.invoke(GameLoop.tick)
 }
@@ -92,11 +95,9 @@ fun delay(ticks: Int = 0, task: (Long) -> Unit) = GlobalScope.launch(Contexts.Ga
 /**
  * Executes a task after [ticks], cancelling if player logs out FIXME - use player events
  */
-fun delay(player: Player, ticks: Int = 0, task: (Long) -> Unit) {
-    delay(ticks) {
-        if (player.action.type != ActionType.Logout) {
-            task.invoke(GameLoop.tick)
-        }
+fun delay(player: Player, ticks: Int = 0, task: (Long) -> Unit) = delay(ticks) {
+    if (player.action.type != ActionType.Logout) {
+        task.invoke(GameLoop.tick)
     }
 }
 

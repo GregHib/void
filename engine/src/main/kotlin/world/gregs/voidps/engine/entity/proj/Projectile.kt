@@ -3,7 +3,7 @@ package world.gregs.voidps.engine.entity.proj
 import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
@@ -25,6 +25,7 @@ data class Projectile(
     val owner: String? = null
 ) : Entity {
 
+    override val events: Events = Events(this)
     var job: Job? = null
 
     fun visible(player: Player) = owner == null || owner == player.name

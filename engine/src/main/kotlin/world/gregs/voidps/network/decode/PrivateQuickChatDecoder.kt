@@ -1,20 +1,17 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.readString
 
-class PrivateQuickChatDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
+class PrivateQuickChatDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.privateQuickChat(
-            player = player,
-            name = packet.readString(),
-            file = packet.readUShort().toInt(),
-            data = packet.readBytes(packet.remaining.toInt())
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val name = packet.readString()
+        val file = packet.readUShort().toInt()
+        val data = packet.readBytes(packet.remaining.toInt())
     }
 
 }

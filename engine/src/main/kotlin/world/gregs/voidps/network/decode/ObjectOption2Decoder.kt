@@ -1,20 +1,18 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.instruct.InteractObject
 
-class ObjectOption2Decoder(handler: Handler? = null) : Decoder(7, handler) {
+class ObjectOption2Decoder : Decoder(7) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.objectOption(
-            player = player,
-            y = packet.readShortAddLittle(),
-            x = packet.readShortAdd(),
-            run = packet.readBooleanSubtract(),
-            objectId = packet.readUnsignedShortAddLittle(),
-            option = 2
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val y = packet.readShortAddLittle()
+        val x = packet.readUnsignedShortAdd()
+        val run = packet.readBooleanSubtract()
+        val objectId = packet.readUnsignedShortAddLittle()
+        instructions.emit(InteractObject(objectId, x, y, 2))
     }
 
 }

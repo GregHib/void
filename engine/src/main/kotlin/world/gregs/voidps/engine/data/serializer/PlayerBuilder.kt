@@ -9,19 +9,20 @@ import world.gregs.voidps.engine.map.Tile
 
 internal data class PlayerBuilder(
     var tile: Int,
-    val containers: MutableMap<Int, Container>,
+    val containers: MutableMap<String, Container>,
     val experience: Experience,
+    val variables: MutableMap<String, Any>,
     val levels: Levels,
     val effects: CharacterEffects,
     val name: String,
     val passwordHash: String,
 ) {
-    data class WorldTile(val x: Int, val y: Int, val plane: Int = 0)
 
     fun build() = Player(
         tile = Tile(tile),
         containers = containers,
         experience = experience,
+        variables = variables,
         levels = levels,
         effects = effects,
         name = name,

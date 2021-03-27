@@ -14,9 +14,15 @@ import world.gregs.voidps.engine.path.TraversalType
  */
 class MediumTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 
-    val extra = if(collidesWithEntities) CollisionFlag.ENTITY else 0
+    val extra = if (collidesWithEntities) CollisionFlag.ENTITY else 0
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
+        if (direction == Direction.NONE) {
+            return collisions.check(x, y, plane, direction.block(type, extra))
+                    || collisions.check(x + 1, y, plane, direction.block(type, extra))
+                    || collisions.check(x, y + 1, plane, direction.block(type, extra))
+                    || collisions.check(x + 1, y + 1, plane, direction.block(type, extra))
+        }
         val delta = direction.delta
         val inverse = direction.inverse()
         var offsetX = if (delta.x == 1) size.width else delta.x

@@ -1,13 +1,13 @@
 package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.event.then
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan
 import world.gregs.voidps.world.community.trade.lend.Loan.startBorrowTimer
@@ -20,12 +20,12 @@ import world.gregs.voidps.world.community.trade.lend.Loan.startLendTimer
 
 val logger = InlineLogger()
 
-PlayerRegistered then {
+on<Registered> { player: Player ->
     startLendTimer(player)
     startBorrowTimer(player)
 }
 
-PlayerUnregistered then {
+on<Unregistered> { player: Player ->
     if (!player.has("borrow_timeout") && player.has("borrowed_item")) {
         returnLoan(player)
         val partner: Player? = player.getOrNull("borrowed_from")
@@ -40,7 +40,7 @@ PlayerUnregistered then {
         val partner: Player? = player.getOrNull("lent_to")
         if (partner == null) {
             logger.error { "Unable to find lent item partner for $player" }
-            return@then
+            return@on
         }
         reset(partner, player)
         partner.message("The item you borrowed has been returned to its owner.")

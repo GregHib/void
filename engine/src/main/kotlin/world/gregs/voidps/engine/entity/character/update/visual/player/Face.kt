@@ -3,10 +3,8 @@ package world.gregs.voidps.engine.entity.character.update.visual.player
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -25,10 +23,6 @@ const val FACE_DIRECTION_MASK = 0x2
 fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 
 fun Player.getFace() = visuals.getOrPut(FACE_DIRECTION_MASK) { Face() }
-
-fun PlayerEvent.face(direction: Direction) = face(direction.delta.x, direction.delta.y)
-
-fun PlayerEvent.face(deltaX: Int = 0, deltaY: Int = -1) = player.face(deltaX, deltaY)
 
 fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.y)
 

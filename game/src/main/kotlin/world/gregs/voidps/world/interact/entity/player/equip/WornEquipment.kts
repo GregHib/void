@@ -5,43 +5,41 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 
 
-InterfaceOpened where { name == "worn_equipment" } then {
+on<InterfaceOpened>({ name == "worn_equipment" }) { player: Player ->
     player.sendContainer(name)
 }
 
-InterfaceOption where { name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" } then {
+on<InterfaceOption>({ name == "worn_equipment" && component == "bonuses" && option == "Show Equipment Stats" }) { player: Player ->
 //    player.setVar("equipment_banking", false)
     player.open("equipment_bonuses")
 }
 
-InterfaceOption where { name == "worn_equipment" && component == "price" && option == "Show Price-checker" } then {
+on<InterfaceOption>({ name == "worn_equipment" && component == "price" && option == "Show Price-checker" }) { player: Player ->
     player.open("price_checker")
 }
 
-InterfaceOption where { name == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" } then {
+on<InterfaceOption>({ name == "worn_equipment" && component == "items" && option == "Show Items Kept on Death" }) { player: Player ->
     player.open("items_kept_on_death")
 }
 
 val decoder: ItemDefinitions by inject()
-val bus: EventBus by inject()
 val logger = InlineLogger()
 
-InterfaceOption where { name == "worn_equipment" && option == "*" } then {
+on<InterfaceOption>({ name == "worn_equipment" && option == "*" }) { player: Player ->
     val equipOption = getEquipmentOption(itemId, optionId)
     if (equipOption == null) {
         logger.info { "Unhandled equipment option $itemId - $optionId" }
-        return@then
+        return@on
     }
     val slot = EquipSlot.by(component)
-    bus.emit(ContainerAction(player, name, item, slot.index, equipOption))
+    player.events.emit(ContainerAction(name, item, slot.index, equipOption))
 }
 
 fun getEquipmentOption(itemId: Int, optionId: Int): String? {
@@ -57,6 +55,6 @@ fun getEquipmentOption(itemId: Int, optionId: Int): String? {
     }
 }
 
-InterfaceOption where { name == "inventory" && component == "container" && optionId == 9 } then {
-    bus.emit(ContainerAction(player, name, item, itemIndex, "Examine"))
+on<InterfaceOption>({ name == "inventory" && component == "container" && optionId == 9 }) { player: Player ->
+    player.events.emit(ContainerAction(name, item, itemIndex, "Examine"))
 }

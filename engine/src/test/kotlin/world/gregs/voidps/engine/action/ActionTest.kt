@@ -1,9 +1,12 @@
 package world.gregs.voidps.engine.action
 
 import io.mockk.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CancellableContinuation
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -107,7 +110,7 @@ internal class ActionTest : KoinMock() {
         action.continuation = continuation
         val value = Throwable()
         // When
-        action.cancel(value)
+        action.cancel(value as ActionType)
         // Then
         verify {
             continuation.resumeWithException(value)

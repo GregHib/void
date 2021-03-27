@@ -1,17 +1,18 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 
-class ChatTypeDecoder(handler: Handler? = null) : Decoder(1, handler) {
+/**
+ * Notified the type of message before a message is sent
+ * The type of message sent (0 = public, 1 = friends chat)
+ */
+class ChatTypeDecoder : Decoder(1) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.changeChatType(
-            player = player,
-            type = packet.readUByte().toInt()
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val type = packet.readUByte().toInt()
     }
 
 }

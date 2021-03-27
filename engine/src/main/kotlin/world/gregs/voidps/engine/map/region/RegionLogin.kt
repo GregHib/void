@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.map.region
 
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
-import world.gregs.voidps.engine.event.EventCompanion
+import world.gregs.voidps.engine.event.Event
 
-data class RegionLogin(override val player: Player) : PlayerEvent() {
-    companion object : EventCompanion<RegionLogin>
-}
+object RegionLogin : Event

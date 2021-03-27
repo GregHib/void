@@ -17,9 +17,7 @@ import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.func.toPascalCase
 import world.gregs.voidps.utility.inject
 import java.math.RoundingMode
@@ -37,7 +35,7 @@ val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = action.type == ActionType.Equipping
 
-InterfaceOpened where { name == "equipment_bonuses" } then {
+on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     player.action(ActionType.Equipping) {
         val listener: (List<ContainerModification>) -> Unit = equipmentUpdateListener(player)
         try {
@@ -56,27 +54,26 @@ InterfaceOpened where { name == "equipment_bonuses" } then {
     }
 }
 
-InterfaceOpened where { name == "equipment_side" } then {
+on<InterfaceOpened>({ name == "equipment_side" }) { player: Player ->
     player.interfaceOptions.send("equipment_side", "container")
     player.interfaceOptions.unlockAll("equipment_side", "container", 0 until 28)
 }
 
-InterfaceOption where { player.equipping() && (name == "equipment_side" || name == "equipment_bonuses") && component == "container" && option == "Stats" } then {
+on<InterfaceOption>({ it.equipping() && (name == "equipment_side" || name == "equipment_bonuses") && component == "container" && option == "Stats" }) { player: Player ->
     showStats(player, definitions.get(name))
 }
 
 /*
     Redirect equipping actions to regular containers
  */
-val bus: EventBus by inject()
 
-InterfaceOption where { player.equipping() && name == "equipment_side" && component == "container" && option == "Equip" } then {
-    bus.emit(ContainerAction(player, "inventory", item, itemIndex, "Wield"))
+on<InterfaceOption>({ it.equipping() && name == "equipment_side" && component == "container" && option == "Equip" }) { player: Player ->
+    player.events.emit(ContainerAction("inventory", item, itemIndex, "Wield"))
     checkEmoteUpdate(player)
 }
 
-InterfaceOption where { player.equipping() && name == "equipment_bonuses" && component == "container" && option == "Remove" } then {
-    bus.emit(ContainerAction(player, "worn_equipment", item, itemIndex, "Remove"))
+on<InterfaceOption>({ it.equipping() && name == "equipment_bonuses" && component == "container" && option == "Remove" }) { player: Player ->
+    player.events.emit(ContainerAction("worn_equipment", item, itemIndex, "Remove"))
     checkEmoteUpdate(player)
 }
 

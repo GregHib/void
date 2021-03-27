@@ -1,23 +1,20 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.cache.secure.Huffman
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.readSmart
 import world.gregs.voidps.utility.inject
 
-class PublicDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
+class PublicDecoder : Decoder(BYTE) {
 
     private val huffman: Huffman by inject()
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.publicMessage(
-            player = player,
-            effects = (packet.readUByte().toInt() shl 8) or packet.readUByte().toInt(),
-            message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val effects = (packet.readUByte().toInt() shl 8) or packet.readUByte().toInt()
+        val message = huffman.decompress(length = packet.readSmart(), message = packet.readBytes(packet.remaining.toInt())) ?: ""
     }
 
 }

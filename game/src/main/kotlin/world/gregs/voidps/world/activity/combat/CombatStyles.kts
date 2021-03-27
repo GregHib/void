@@ -3,13 +3,13 @@ package world.gregs.voidps.world.activity.combat
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 IntVariable(43, Variable.Type.VARP, true, 0).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
 
-InterfaceOpened where { name == "combat_styles" } then {
+on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "style1")
     player.interfaceOptions.unlockAll(name, "style2")
     player.interfaceOptions.unlockAll(name, "style3")
@@ -18,11 +18,11 @@ InterfaceOpened where { name == "combat_styles" } then {
     player.sendVar("auto_retaliate")
 }
 
-InterfaceOption where { name == "combat_styles" && component.startsWith("style") } then {
-    val index = component.replace("style", "").toIntOrNull() ?: return@then
+on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }) { player: Player ->
+    val index = component.replace("style", "").toIntOrNull() ?: return@on
     player.setVar("attack_style", index - 1)
 }
 
-InterfaceOption where { name == "combat_styles" && component == "retaliate" && option == "Auto Retaliate" } then {
+on<InterfaceOption>({ name == "combat_styles" && component == "retaliate" && option == "Auto Retaliate" }) { player: Player ->
     player.toggleVar("auto_retaliate")
 }

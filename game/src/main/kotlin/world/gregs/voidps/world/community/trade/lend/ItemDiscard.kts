@@ -6,8 +6,7 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.trade.lend.Loan.getExpiry
@@ -23,14 +22,14 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerAction
 val decoder: ItemDefinitions by inject()
 val logger = InlineLogger()
 
-ContainerAction where { container == "inventory" && option == "Discard" } then {
+on<ContainerAction>({ container == "inventory" && option == "Discard" }) { player: Player ->
     val id = player.inventory.getItem(slot)
     val amount = player.inventory.getAmount(slot)
     if (!player.has("borrowed_item")) {
         if (player.inventory.clear(slot)) {
             logger.info { "$player discarded un-borrowed item $id $amount" }
         }
-        return@then
+        return@on
     }
     val def = decoder.get(id)
     player.dialogue {

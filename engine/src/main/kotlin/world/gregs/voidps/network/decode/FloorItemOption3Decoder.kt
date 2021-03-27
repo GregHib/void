@@ -1,20 +1,19 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.instruct.InteractFloorItem
 
-class FloorItemOption3Decoder(handler: Handler? = null) : Decoder(7, handler) {
+class FloorItemOption3Decoder : Decoder(7) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
-        handler?.floorItemOption(
-            player = player,
-            id = packet.readShort().toInt(),
-            x = packet.readShortAdd(),
-            run = packet.readBoolean(),
-            y = packet.readUnsignedShortAddLittle(),
-            optionIndex = 2
-        )
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
+        val id = packet.readShort().toInt()
+        val x = packet.readShortAdd()
+        val run = packet.readBoolean()
+        val y = packet.readUnsignedShortAddLittle()
+        val optionIndex = 2
+        instructions.emit(InteractFloorItem(id, x, y, 2))
     }
 
 }

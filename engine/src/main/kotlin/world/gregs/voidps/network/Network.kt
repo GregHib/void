@@ -10,7 +10,7 @@ import kotlinx.coroutines.*
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.cache.secure.RSA
 import world.gregs.voidps.cache.secure.Xtea
-import world.gregs.voidps.engine.data.PlayerLoader
+import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.network.Client.Companion.string
@@ -26,7 +26,7 @@ class Network(
     private val modulus: BigInteger,
     private val private: BigInteger,
     private val loginQueue: LoginQueue,
-    private val loader: PlayerLoader,
+    private val factory: PlayerFactory,
     private val gameContext: CoroutineDispatcher,
     private val loginLimit: Int
 ) {
@@ -175,7 +175,7 @@ class Network(
             player.login(client)
         }
         try {
-            readPackets(client, read)
+            readPackets(client, player, read)
         } finally {
             client.exit()
         }
@@ -200,15 +200,15 @@ class Network(
 
     suspend fun loadPlayer(write: ByteWriteChannel, client: Client, username: String, password: String, index: Int): Player? {
         try {
-            var account = loader.load(username)
+            var account = factory.load(username)
             if (account == null) {
-                account = loader.create(username, password)
+                account = factory.create(username, password)
             } else if (account.passwordHash.isBlank() || !BCrypt.checkpw(password, account.passwordHash)) {
                 loginQueue.logout(username, client.address, index)
                 write.finish(INVALID_CREDENTIALS)
                 return null
             }
-            loader.initPlayer(account, index)
+            factory.initPlayer(account, index)
             logger.info { "Player $username loaded and queued for login." }
             loginQueue.await()
             return account
@@ -219,7 +219,7 @@ class Network(
         }
     }
 
-    suspend fun readPackets(client: Client, read: ByteReadChannel) {
+    suspend fun readPackets(client: Client, player: Player, read: ByteReadChannel) {
         while (true) {
             val cipher = client.cipherIn.nextInt()
             val opcode = (read.readUByte() - cipher) and 0xff
@@ -230,11 +230,11 @@ class Network(
             }
             val size = when (decoder.length) {
                 BYTE -> read.readUByte()
-                SHORT -> (read.readUByte() shl 8) or read.readUByte()
+                SHORT -> read.readUShort()
                 else -> decoder.length
             }
-
-            client.packets.emit(Client.Packet(opcode, read.readPacket(size = size)))
+            val packet = read.readPacket(size = size)
+            decoder.decode(player.instructions, packet)
         }
     }
 
@@ -244,6 +244,7 @@ class Network(
     }
 
     private suspend fun ByteReadChannel.readUByte(): Int = readByte().toInt() and 0xff
+    private suspend fun ByteReadChannel.readUShort(): Int = (readUByte() shl 8) or readUByte()
 
     private suspend fun ByteWriteChannel.respond(value: Int) {
         writeByte(value)

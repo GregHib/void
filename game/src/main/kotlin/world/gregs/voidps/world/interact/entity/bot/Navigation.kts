@@ -1,16 +1,15 @@
 package world.gregs.voidps.world.interact.entity.bot
 
-import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
-import world.gregs.voidps.engine.event.then
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
 import world.gregs.voidps.engine.map.nav.NavigationGraph
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.BreadthFirstSearch
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.utility.inject
@@ -18,56 +17,63 @@ import world.gregs.voidps.utility.inject
 val graph: NavigationGraph by inject()
 val bfs: BreadthFirstSearch by inject()
 
-PlayerRegistered then {
+on<Registered> { player: Player ->
     findNearest(player)
 }
 
-PlayerUnregistered then {
+on<Unregistered> { player: Player ->
     graph.remove(player)
 }
 
-PlayerMoved then {
-    if (from.distanceTo(to) > 2) {
-        findNearest(player)
+on<Moved> { player: Player ->
+    findNearest(player)
+    /*if (from.distanceTo(to) > 2) {
     } else {
-        val old = player.movement.nearestWaypoint ?: return@then
-        var nearest = old
-        val tile = nearest.end as Tile
-        for (edge in graph.getAdjacent(tile)) {
-            if (player.tile.distanceTo(edge.start as Tile) < player.tile.distanceTo(tile)) {
-                nearest = edge
+        val edges = graph.get(player)
+        val it = edges.iterator()
+        while (it.hasNext()) {
+            val edge = it.next()
+            val tile = edge.start as? Tile ?: continue
+            if (edge.start is Tile && player.tile.distanceTo(tile) > 20) {
+                println("Remove $edge")
+                it.remove()
             }
         }
-        if (old != nearest) {
-            updateGraph(player, old, nearest)
+        val toAdd = mutableListOf<Edge>()
+        for (parent in edges) {
+            for (edge in graph.getAdjacent(parent)) {
+                val tile = edge.start as? Tile ?: continue
+                if (player.tile.distanceTo(tile) <= 20) {
+                    println("Add $edge")
+                    toAdd.add(edge)
+                }
+            }
         }
-    }
+        edges.addAll(toAdd)
+    }*/
 }
 
+val movement = Movement()
+
 fun findNearest(player: Player) {
-    val result = bfs.find(player.tile, player.size, player.movement, object : TileTargetStrategy {
+    val edges = graph.get(player)
+    edges.clear()
+    movement.reset()
+    bfs.find(player.tile, player.size, movement, object : TileTargetStrategy {
         override val tile: Tile
             get() = player.tile
         override val size: Size
             get() = player.size
 
         override fun reached(tile: Tile, size: Size): Boolean {
-            return graph.contains(tile)
+            val distance = this.tile.distanceTo(tile)
+            if (distance > 20) {
+                return true
+            }
+            if (graph.contains(tile)) {
+                edges.add(Edge("", player, tile, distance))
+            }
+            return false
         }
     }, player.movement.traversal)
-    if (result is PathResult.Success) {
-        player.movement.steps.clear()
-        val last = player.movement.nearestWaypoint
-        val edge = Edge(player, result.last, player.tile.distanceTo(result.last))
-        updateGraph(player, last, edge)
-    } else {
-        println("Couldn't find nearby waypoint $player")
-    }
-}
-
-fun updateGraph(player: Player, old: Edge?, new: Edge) {
-    val set = graph.get(player) ?: ObjectOpenHashSet()
-    set.remove(old)
-    set.add(new)
-    player.movement.nearestWaypoint = new
 }

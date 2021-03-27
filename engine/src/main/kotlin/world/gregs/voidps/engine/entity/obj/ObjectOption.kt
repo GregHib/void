@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
-import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.PlayerEvent
-import world.gregs.voidps.engine.event.EventCompanion
+import com.fasterxml.jackson.annotation.JsonTypeInfo
+import world.gregs.voidps.engine.event.Event
 
-data class ObjectOption(override val player: Player, val obj: GameObject, val option: String?, val partial: Boolean) : PlayerEvent() {
-    companion object : EventCompanion<ObjectOption>
-}
+@JsonTypeInfo(use= JsonTypeInfo.Id.CLASS, include=JsonTypeInfo.As.PROPERTY, property="@class")
+data class ObjectOption(val obj: GameObject, val option: String?, val partial: Boolean) : Event

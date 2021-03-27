@@ -1,18 +1,20 @@
 package world.gregs.voidps.network.decode
 
 import io.ktor.utils.io.core.*
-import world.gregs.voidps.engine.entity.character.player.Player
+import kotlinx.coroutines.flow.MutableSharedFlow
 import world.gregs.voidps.network.Decoder
-import world.gregs.voidps.network.Handler
+import world.gregs.voidps.network.Instruction
 
-class KeysPressedDecoder(handler: Handler? = null) : Decoder(BYTE, handler) {
+/**
+ * key's pressed - Pair<Key, Time>
+ */
+class KeysPressedDecoder : Decoder(BYTE) {
 
-    override fun decode(player: Player, packet: ByteReadPacket) {
+    override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val keys = ArrayList<Pair<Int, Int>>()
         while (packet.remaining > 0) {
             keys.add(packet.readUByte().toInt() to packet.readUShort().toInt())
         }
-        handler?.keysPressed(player, keys)
     }
 
 }

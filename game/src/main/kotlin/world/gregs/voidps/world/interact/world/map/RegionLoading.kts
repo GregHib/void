@@ -1,12 +1,13 @@
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.move.NPCMoved
-import world.gregs.voidps.engine.entity.character.move.PlayerMoved
-import world.gregs.voidps.engine.entity.character.player.*
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
@@ -23,7 +24,6 @@ import kotlin.math.abs
 /**
  * Keeps track of when players enter and move between regions
  * Loads maps when they are accessed
- * Emits [RegionMapUpdate] events when a players region has changed
  */
 
 val maps: RegionReader by inject()
@@ -35,7 +35,7 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-RegionLogin then {
+on<RegionLogin> { player: Player ->
     players.forEach { other ->
         player.viewport.players.lastSeen[other] = other.tile
     }
@@ -45,15 +45,15 @@ RegionLogin then {
 /*
     Collision map loading
  */
-Registered where { entity is Player } then {
-    maps.load(entity.tile.region)
-}
-
-PlayerMoved then {
+on<Registered> { player: Player ->
     maps.load(player.tile.region)
 }
 
-NPCMoved then {
+on<Moved> { player: Player ->
+    maps.load(player.tile.region)
+}
+
+on<Moved> { npc: NPC ->
     maps.load(npc.tile.region)
 }
 
@@ -61,26 +61,26 @@ NPCMoved then {
     Player regions
  */
 
-PlayerRegistered then {
+on<Registered> { player: Player ->
     playerRegions[player.index - 1] = player.tile.regionPlane.id
 }
 
-PlayerUnregistered then {
+on<Unregistered> { player: Player ->
     playerRegions[player.index - 1] = 0
 }
 /*
     Region updating
  */
 
-PlayerMoved where { from.regionPlane != to.regionPlane } then {
+on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-PlayerMoved where { needsRegionChange(player) } then {
+on<Moved>({ needsRegionChange(it) }) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
-ReloadChunk then {
+on<World, ReloadChunk> {
     players.forEach { player ->
         if (inViewOfChunk(player, chunk)) {
             updateRegion(player, initial = false, force = true)

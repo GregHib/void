@@ -9,9 +9,9 @@ import world.gregs.voidps.engine.client.variable.ListVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.character.player.login.PlayerRegistered
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.on
 
 ListVariable(168, Variable.Type.VARC, values = Tab.values().toList(), defaultValue = Tab.Inventory).register("tab")
 
@@ -42,7 +42,7 @@ val list = listOf(
     "area_status_icon"
 )
 
-PlayerRegistered then {
+on<Registered> { player: Player ->
     player.open(player.gameFrame.name)
 
     list.forEach {
@@ -66,18 +66,18 @@ fun String.toUnderscoreCase(): String {
 
 Tab.values().forEach { tab ->
     val name = tab.name.toUnderscoreCase()
-    InterfaceOption where { name == player.gameFrame.name && component == name && option == name } then {
+    on<InterfaceOption>({ name == it.gameFrame.name && component == name && option == name }) { player: Player ->
         player.setVar("tab", tab, refresh = false)
     }
 }
 
-InterfaceOpened where { name == player.gameFrame.name } then {
+on<InterfaceOpened>({ name == it.gameFrame.name }) { player: Player ->
     // Remove immediately on Login
     delay { player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false) }
     // Screen change needs an extra tick delay for some unknown reason
     delay(1) { player.interfaces.sendVisibility(player.gameFrame.name, "wilderness_level", false) }
 }
 
-InterfaceClosed where { (player.action.suspension as? Suspension.Interface)?.id == name } then {
+on<InterfaceClosed>({ (it.action.suspension as? Suspension.Interface)?.id == name }) { player: Player ->
     player.action.resume()
 }

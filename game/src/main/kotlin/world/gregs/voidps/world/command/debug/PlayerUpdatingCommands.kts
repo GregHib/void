@@ -4,25 +4,21 @@ import kotlinx.coroutines.launch
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.effect.Colour
 import world.gregs.voidps.engine.entity.character.effect.Transform
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
-import world.gregs.voidps.engine.entity.character.player.chat.Command
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
-val login: LoginQueue by inject()
-val bus: EventBus by inject()
 
-Command where { prefix == "kill" } then {
+on<Command>({ prefix == "kill" }) { player: Player ->
     players.indexed.forEachIndexed { index, bot ->
         if (bot != null && bot.name.startsWith("Bot")) {
             players.remove(bot.tile, bot)
@@ -39,26 +35,26 @@ Command where { prefix == "kill" } then {
     }
 }
 
-Command where { prefix == "players" } then {
+on<Command>({ prefix == "players" }) { player: Player ->
     println("Players: ${players.indexed.filterNotNull().size}")
 }
 
-Command where { prefix == "under" } then {
+on<Command>({ prefix == "under" }) { player: Player ->
     players[player.tile]?.filterNotNull()?.forEach {
         println("$it - ${player.viewport.players.current.contains(it)}")
     }
 }
 
-Command where { prefix == "anim" } then {
+on<Command>({ prefix == "anim" }) { player: Player ->
     player.setAnimation(content.toInt())// 863
 }
 
-Command where { prefix == "gfx" } then {
+on<Command>({ prefix == "gfx" }) { player: Player ->
     val id = content.toInt()
     player.setGraphic(id)// 93
 }
 
-Command where { prefix == "tfm" || prefix == "transform" } then {
+on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
     val id = content.toInt()
     if (id != -1) {
         player.effects.add(Transform(id))
@@ -67,48 +63,48 @@ Command where { prefix == "tfm" || prefix == "transform" } then {
     }
 }
 
-Command where { prefix == "overlay" } then {
+on<Command>({ prefix == "overlay" }) { player: Player ->
     player.effects.add(Colour(-2108002746, 10, 100))
 }
 
-Command where { prefix == "chat" } then {
+on<Command>({ prefix == "chat" }) { player: Player ->
     player.forceChat = "Testing"
 }
 
-Command where { prefix == "move" } then {
+on<Command>({ prefix == "move" }) { player: Player ->
     player.setForceMovement(Tile(0, -2), 120, startDelay = 60, direction = Direction.SOUTH)
 }
 
-Command where { prefix == "hit" } then {
+on<Command>({ prefix == "hit" }) { player: Player ->
     player.addHit(Hit(10, Hit.Mark.Healed, 255))
 }
 
-Command where { prefix == "time" } then {
+on<Command>({ prefix == "time" }) { player: Player ->
     player.setTimeBar(true, 0, 60, 1)
 }
 
-Command where { prefix == "watch" } then {
+on<Command>({ prefix == "watch" }) { player: Player ->
     val bot = players.indexed.firstOrNull { it != null && it.name.startsWith("Bot") }
     if (bot != null) {
         player.watch(bot)
     }
 }
 
-Command where { prefix == "shoot" } then {
+on<Command>({ prefix == "shoot" }) { player: Player ->
     player.shoot(15, player.tile.addY(10))
 }
 
-Command where { prefix == "face" } then {
+on<Command>({ prefix == "face" }) { player: Player ->
     val parts = content.split(" ")
     player.face(parts[0].toInt(), parts[1].toInt())
 }
 
-Command where { prefix == "chunk" } then {
+on<Command>({ prefix == "chunk" }) { player: Player ->
     val chunks: DynamicChunks = get()
     chunks.set(player.tile.chunk, player.tile.chunk, rotation = 2)
 }
 
-Command where { prefix == "chunk2" } then {
+on<Command>({ prefix == "chunk2" }) { player: Player ->
     val chunks: DynamicChunks = get()
     chunks.remove(player.tile.chunk)
 }

@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.character.update.visual.npc
 
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCEvent
 import world.gregs.voidps.engine.entity.character.update.Visual
 import kotlin.math.atan2
 
@@ -23,10 +22,6 @@ const val TURN_MASK = 0x4
 fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
 
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
-
-fun NPCEvent.turn(direction: Direction) = turn(direction.delta.x, direction.delta.y)
-
-fun NPCEvent.turn(deltaX: Int = 0, deltaY: Int = -1) = npc.turn(deltaX, deltaY)
 
 fun NPC.turn(direction: Direction) = turn(direction.delta.x, direction.delta.y)
 

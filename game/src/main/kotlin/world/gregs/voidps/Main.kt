@@ -19,15 +19,20 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
+import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.npc.npcLoaderModule
+import world.gregs.voidps.engine.entity.character.npc.npcSpawnModule
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
 import world.gregs.voidps.engine.entity.definition.detailsModule
+import world.gregs.voidps.engine.entity.item.floorItemModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
-import world.gregs.voidps.engine.event.EventBus
+import world.gregs.voidps.engine.entity.obj.stairsModule
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
@@ -38,11 +43,12 @@ import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
+import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
-import world.gregs.voidps.network.Decoder
+import world.gregs.voidps.network.InstructionHandler
+import world.gregs.voidps.network.InstructionTask
 import world.gregs.voidps.network.Network
-import world.gregs.voidps.network.NetworkTask
 import world.gregs.voidps.network.protocol
 import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
@@ -72,21 +78,23 @@ object Main {
         val private = BigInteger(getProperty("rsaPrivate"), 16)
 
         val server = Network(protocol, revision, modulus, private, get(), get(), Contexts.Game, limit)
-        val bus: EventBus = get()
         val service = Executors.newSingleThreadScheduledExecutor()
 
-        val tickStages = getTickStages(protocol)
+        val tickStages = getTickStages()
         val engine = GameLoop(service, tickStages)
 
-        bus.emit(Startup)
+        get<EventHandlerStore>().populate(World)
+        World.events.emit(Startup)
+
         engine.start()
         logger.info { "${getProperty("name")} loaded in ${System.currentTimeMillis() - startTime}ms" }
         server.start(getIntProperty("port"))
     }
 
-    private fun getTickStages(protocol: Map<Int, Decoder>): List<Runnable> {
+    private fun getTickStages(): List<Runnable> {
         val loginQueue: LoginQueue = get()
         val playerMovement: PlayerMovementTask = get()
+        val movementCallback: PlayerMovementCallbackTask = get()
         val npcMovement: NPCMovementTask = get()
         val viewport: ViewportUpdating = get()
         val playerVisuals: PlayerVisualsTask = get()
@@ -98,9 +106,11 @@ object Main {
         val playerPostUpdate: PlayerPostUpdateTask = get()
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
-        val bus: EventBus = get()
-        val net = NetworkTask(players, protocol)
+        val net = InstructionTask(players, InstructionHandler())
         return listOf(
+            Runnable {
+                World.events.emit(AiTick)
+            },
             net,
             // Connections/Tick Input
             loginQueue,
@@ -109,9 +119,10 @@ object Main {
                 flow.tryEmit(GameLoop.tick)
             },
             Runnable {
-                bus.emit(Tick(GameLoop.tick))
+                World.events.emit(Tick(GameLoop.tick))
             },
             PlayerPathTask(players, get()),
+            movementCallback,
             playerMovement,
             npcMovement,
             // Update
@@ -157,7 +168,11 @@ object Main {
                 objectFactoryModule,
                 lineOfSightModule,
                 navModule,
-                customObjectModule
+                customObjectModule,
+                npcLoaderModule,
+                npcSpawnModule,
+                stairsModule,
+                floorItemModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

@@ -5,13 +5,12 @@ import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.logout.PlayerUnregistered
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
-import world.gregs.voidps.engine.event.then
-import world.gregs.voidps.engine.event.where
+import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
@@ -78,13 +77,13 @@ val cursesGroups = setOf(
     setOf("Sap Spirit", "Leech Special Attack", "Turmoil")
 )
 
-InterfaceOption where { name == "prayer_list" && component == "regular_prayers" } then {
+on<InterfaceOption>({ name == "prayer_list" && component == "regular_prayers" }) { player: Player ->
     val prayers = player.getActiveVarKey()
     player.togglePrayer(itemIndex, prayers)
     player.updateOverhead(prayers)
 }
 
-InterfaceOption where { name == "prayer_list" && component == "quick_prayers" } then {
+on<InterfaceOption>({ name == "prayer_list" && component == "quick_prayers" }) { player: Player ->
     player.togglePrayer(itemIndex, player.getQuickVarKey())
 }
 
@@ -117,7 +116,13 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String) {
  * quick prayers are stored in [TEMP_QUICK_PRAYERS]
  */
 
-InterfaceOption where { name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" } then {
+/**
+ * Quick prayers
+ * Until the new quick prayer selection is confirmed old
+ * quick prayers are stored in [TEMP_QUICK_PRAYERS]
+ */
+
+on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
     val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player.setVar("tab", Tab.PrayerList)
@@ -125,14 +130,14 @@ InterfaceOption where { name == "prayer_orb" && component == "orb" && option == 
     } else if (player.has(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
-    if(selecting) {
+    if (selecting) {
         player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)
     } else {
         player.interfaceOptions.unlockAll(name, "regular_prayers", 0..29)
     }
 }
 
-InterfaceOption where { name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" } then {
+on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
     val active = player.toggleVar(USING_QUICK_PRAYERS)
     val activePrayers = player.getActiveVarKey()
     if (active) {
@@ -146,11 +151,11 @@ InterfaceOption where { name == "prayer_orb" && component == "orb" && option == 
     player.updateOverhead(activePrayers)
 }
 
-InterfaceOption where { name == "prayer_list" && component == "confirm" && option == "Confirm Selection" } then {
+on<InterfaceOption>({ name == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->
     player.saveQuickPrayers()
 }
 
-PlayerUnregistered where { player.has(TEMP_QUICK_PRAYERS) } then {
+on<Unregistered>({ it.has(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 

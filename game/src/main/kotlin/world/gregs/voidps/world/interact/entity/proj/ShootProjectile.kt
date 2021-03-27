@@ -1,12 +1,10 @@
 package world.gregs.voidps.world.interact.entity.proj
 
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.event.Event
-import world.gregs.voidps.engine.event.EventBus
-import world.gregs.voidps.engine.event.EventCompanion
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.utility.get
 
 data class ShootProjectile(
     val id: Int,
@@ -19,7 +17,7 @@ data class ShootProjectile(
     val endHeight: Int = startHeight,
     val curve: Int = DEFAULT_CURVE,
     val offset: Int = DEFAULT_OFFSET
-) : Event<Unit>() {
+) : Event {
 
     constructor(
         tile: Tile,
@@ -45,7 +43,7 @@ data class ShootProjectile(
         sourceSize * 64 + offset
     )
 
-    companion object : EventCompanion<ShootProjectile> {
+    companion object {
         const val DEFAULT_FLIGHT = 40
         const val DEFAULT_HEIGHT = 40
         const val DEFAULT_CURVE = 0
@@ -64,8 +62,7 @@ fun Character.shoot(
     curve: Int = ShootProjectile.DEFAULT_CURVE,
     offset: Int = ShootProjectile.DEFAULT_OFFSET
 ) {
-    val bus: EventBus = get()
-    bus.emit(
+    World.events.emit(
         ShootProjectile(
             id = id,
             tile = tile,
@@ -91,8 +88,7 @@ fun Character.shoot(
     curve: Int = ShootProjectile.DEFAULT_CURVE,
     offset: Int = ShootProjectile.DEFAULT_OFFSET
 ) {
-    val bus: EventBus = get()
-    bus.emit(
+    World.events.emit(
         ShootProjectile(
             id = id,
             tile = tile,

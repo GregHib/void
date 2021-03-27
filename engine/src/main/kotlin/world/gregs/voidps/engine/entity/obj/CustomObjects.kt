@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.item.offset
-import world.gregs.voidps.engine.event.EventBus
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
@@ -32,9 +32,9 @@ val customObjectModule = module {
 class CustomObjects(
     private val objects: Objects,
     private val scheduler: Scheduler,
-    private val bus: EventBus,
     private val batcher: ChunkBatcher,
     private val factory: GameObjectFactory,
+    private val collision: GameObjectCollision,
     private val spawns: MutableMap<Region, MutableList<GameObject>>
 ) {
 
@@ -109,7 +109,8 @@ class CustomObjects(
             player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
         }
         objects.removeTemp(gameObject)
-        bus.emit(Unregistered(gameObject))
+        collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
+        gameObject.events.emit(Unregistered)
     }
 
     private fun respawn(gameObject: GameObject) {
@@ -117,7 +118,8 @@ class CustomObjects(
             player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
         }
         objects.addTemp(gameObject)
-        bus.emit(Registered(gameObject))
+        collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
+        gameObject.events.emit(Registered)
     }
 
     /**
@@ -218,8 +220,10 @@ class CustomObjects(
             objects.removeAddition(original)
         }
         objects.addTemp(replacement)
-        bus.emit(Unregistered(original))
-        bus.emit(Registered(replacement))
+        collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
+        original.events.emit(Unregistered)
+        collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
+        replacement.events.emit(Registered)
     }
 }
 
