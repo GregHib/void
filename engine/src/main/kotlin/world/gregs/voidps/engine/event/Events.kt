@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.event
 
 import world.gregs.voidps.engine.entity.Entity
-import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.reflect.KClass
 
 class Events(
@@ -10,14 +9,16 @@ class Events(
 ) : MutableMap<KClass<out Event>, MutableList<EventHandler>> by events {
 
     var all: ((Event) -> Unit)? = null
+
     fun addAll(clazz: KClass<out Event>, values: List<EventHandler>) {
         events.getOrPut(clazz) { mutableListOf() }.addAll(values)
     }
 
+
     @Suppress("UNCHECKED_CAST")
-    inline fun <reified E : Event> on(
-        noinline condition: E.(Player) -> Boolean = { true },
-        noinline block: E.(Player) -> Unit
+    inline fun <reified T : Entity, reified E : Event> on(
+        noinline condition: E.(T) -> Boolean = { true },
+        noinline block: E.(T) -> Unit
     ): EventHandler {
         val handler = EventHandler(E::class, condition as Event.(Entity) -> Boolean, block as Event.(Entity) -> Unit)
         getOrPut(E::class) { mutableListOf() }.add(handler)

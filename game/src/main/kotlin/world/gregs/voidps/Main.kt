@@ -43,6 +43,7 @@ import world.gregs.voidps.engine.map.region.regionModule
 import world.gregs.voidps.engine.map.region.xteaModule
 import world.gregs.voidps.engine.path.algorithm.lineOfSightModule
 import world.gregs.voidps.engine.path.pathFindModule
+import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.network.InstructionHandler
@@ -107,6 +108,9 @@ object Main {
         val players: Players = get()
         val net = InstructionTask(players, InstructionHandler())
         return listOf(
+            Runnable {
+                World.events.emit(AiTick)
+            },
             net,
             // Connections/Tick Input
             loginQueue,

@@ -105,7 +105,7 @@ internal class ActionTest : KoinMock() {
         // Given
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         action.continuation = continuation
-        val value = Throwable()
+        val value = CancellationException()
         // When
         action.cancel(value)
         // Then
