@@ -11,6 +11,7 @@ dependencies {
     implementation("io.ktor:ktor-network:${findProperty("ktorVersion")}")
     implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
 
+    implementation("org.yaml:snakeyaml:${findProperty("snakeYamlVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-databind:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")

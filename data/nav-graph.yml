@@ -1,111 +1,181 @@
-# Lumbridge
-## South tower
-### Ground floor
-#### Door
-- tile: [ 3226, 3214 ]
-  edges:
-    - tile: [ 3227, 3214 ]
-      cost: 3
-      steps:
-        - type: "object"
-          object: 36846
-          tile: [ 3226, 3214 ]
-          option: "Open"
-#### Ladder
-- tile: [ 3227, 3214 ]
-  edges:
-    - tile: [ 3229, 3214, 1 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36768
-          tile: [ 3229, 3213 ]
-          option: "Climb-up"
-### 1st floor
-#### Ladder
-- tile: [ 3229, 3214, 1 ]
-  edges:
-    - tile: [ 3229, 3214, 2 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36769
-          tile: [ 3229, 3213, 1 ]
-          option: "Climb-up"
-    - tile: [ 3229, 3214, 0 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36769
-          tile: [ 3229, 3213, 1 ]
-          option: "Climb-down"
-## Castle
-### 2nd floor
-### Stairs
-- tile: [ 3205, 3209, 2 ]
-  edges:
-    - tile: [ 3205, 3209, 1 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36775
-          tile: [ 3204, 3207, 2 ]
-          option: "Climb-down"
-### 1st floor
-#### Stairs
-- tile: [ 3205, 3209, 1 ]
-  edges:
-    - tile: [ 3205, 3209, 0 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36774
-          tile: [ 3204, 3207, 1 ]
-          option: "Climb-down"
-    - tile: [ 3205, 3209, 2 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36774
-          tile: [ 3204, 3207, 1 ]
-          option: "Climb-up"
-### Ground floor
-#### Stairs
-- tile: [ 3205, 3209 ]
-  edges:
-    - tile: [ 3205, 3209, 1 ]
-      cost: 1
-      steps:
-        - type: "object"
-          object: 36773
-          tile: [ 3204, 3207 ]
-          option: "Climb-up"
-    - tile: [ 3208, 3210 ]
-      cost: 3
-      steps:
-        - type: "walk"
-          tile: [ 3208, 3210 ]
-#### Kitchen corridor
-- tile: [ 3208, 3210 ]
-  edges:
-    - tile: [ 3215, 3216 ]
-      cost: 12
-      steps:
-        - type: "walk"
-          tile: [ 3215, 3216 ]
-#### South corridor
-- tile: [ 3215, 3216 ]
-  edges:
-    - tile: [ 3222, 3218 ]
-      cost: 10
-      steps:
-        - type: "walk"
-          tile: [ 3222, 3218 ]
-#### South entrance
-- tile: [ 3222, 3218 ]
-  edges:
-    - tile: [ 3226, 3214 ]
-      cost: 8
-      steps:
-        - type: "walk"
-          tile: [ 3226, 3214 ]
+nodes:
+  lumbridge:
+    south-tower:
+      - &south-tower-door [ 3226, 3214 ]
+      - &south-tower-ground-floor [ 3227, 3214 ]
+      - &south-tower-1st-floor [ 3229, 3214, 1 ]
+      - &south-tower-2nd-floor [ 3229, 3214, 1 ]
+      - &south-tower-1st-floor-ladder
+        type: "object"
+        object: 36769
+        tile: [ 3229, 3213, 1 ]
+    castle:
+      - &castle-2nd-floor-south-stairs [ 3205, 3209, 2 ]
+      - &castle-1st-floor-south-stairs [ 3205, 3209, 1 ]
+      - &castle-ground-floor-south-stairs [ 3205, 3209 ]
+      - &castle-2nd-floor-bank [ 3208, 3219, 2 ]
+      - &castle-kitchen-corridor [ 3208, 3210 ]
+      - &castle-south-entrance [ 3215, 3216 ]
+      - &castle-1st-floor-south-staircase
+        type: "object"
+        object: 36774
+        tile: [ 3204, 3207, 1 ]
+    courtyard:
+      - &courtyard-south [ 3222, 3218 ]
+      - &courtyard-north [ 3222, 3220 ]
+      - &gate-south [ 3235, 3218 ]
+      - &gate-north [ 3235, 3220 ]
+    south-village:
+      - &south-village [ 3236, 3205 ]
+      - &church [ 3243, 3209 ]
+      - &bobs-axes [ 3231, 3203 ]
+      - &bobs-door
+        type: "object"
+        object: 45476
+        tile: [ 3234, 3203 ]
+        option: "Open"
+    bridge:
+      - &west-bridge [ 3236, 3225 ]
+      - &unstable-house [ 3230, 3232 ]
+    west-village:
+      - &general-store-east [ 3222, 3241 ]
+      - &general-store [ 3217, 3241 ]
+      - &general-store-door
+        type: "object"
+        object: 45476
+        tile: [ 3219, 3241 ]
+        option: "Open"
+      - &trees [ 3226, 3245 ]
+edges:
+  lumbridge:
+    south-tower:
+      - from: *south-tower-door
+        to: *south-tower-ground-floor
+        cost: 3
+        steps:
+          - type: "object"
+            object: 36846
+            tile: *south-tower-door
+            option: "Open"
+      - from: *south-tower-ground-floor
+        to: *south-tower-1st-floor
+        cost: 1
+        steps:
+          - type: "object"
+            object: 32768
+            tile: [ 3229, 3213 ]
+            option: "Climb-up"
+      - from: *south-tower-1st-floor
+        to: *south-tower-2nd-floor
+        cost: 1
+        steps:
+          - <<: *south-tower-1st-floor-ladder
+            option: "Climb-up"
+      - from: *south-tower-1st-floor
+        to: [ 3229, 3214, 0 ]
+        cost: 1
+        steps:
+          - <<: *south-tower-1st-floor-ladder
+            option: "Climb-down"
+      - from: *south-tower-2nd-floor
+        to: *south-tower-1st-floor
+        cost: 1
+        steps:
+          - type: "object"
+            object: 36770
+            tile: [ 3229, 3213, 2 ]
+            option: "Climb-down"
+    castle:
+      2nd-floor:
+        - from: *castle-2nd-floor-south-stairs
+          to: *castle-1st-floor-south-stairs
+          cost: 1
+          steps:
+            - type: "object"
+              object: 36775
+              tile: [ 3204, 3207, 2 ]
+              option: "Climb-down"
+        - from: *castle-2nd-floor-bank
+          to: *castle-2nd-floor-south-stairs
+      1st-floor:
+        - from: *castle-1st-floor-south-stairs
+          to: *castle-ground-floor-south-stairs
+          cost: 1
+          steps:
+            - <<: *castle-1st-floor-south-staircase
+              option: "Climb-down"
+        - from: *castle-1st-floor-south-stairs
+          to: *castle-2nd-floor-south-stairs
+          cost: 1
+          steps:
+            - <<: *castle-1st-floor-south-staircase
+              option: "Climb-up"
+      ground-floor:
+        - from: *castle-ground-floor-south-stairs
+          to: *castle-1st-floor-south-stairs
+          cost: 1
+          steps:
+            - type: "object"
+              object: 36773
+              tile: [ 3204, 3207 ]
+              option: "Climb-up"
+        - from: *castle-ground-floor-south-stairs
+          to: *castle-kitchen-corridor
+        - from: *castle-kitchen-corridor
+          to: *castle-south-entrance
+        - from: *castle-south-entrance
+          to: *courtyard-south
+    courtyard:
+      - from: *courtyard-south
+        to: *south-tower-door
+      - from: *courtyard-south
+        to: *courtyard-north
+      - from: *courtyard-south
+        to: *gate-south
+      - from: *courtyard-north
+        to: *gate-north
+      - from: *gate-south
+        to: *gate-north
+    south-village:
+      - from: *gate-south
+        to: *south-village
+      - from: *gate-south
+        to: *church
+      - from: *south-village
+        to: *church
+      - from: *south-village
+        to: *bobs-axes
+        cost: 5
+        steps:
+          - <<: *bobs-door
+          - type: "walk"
+            tile: *bobs-axes
+      - from: *bobs-axes
+        to: *south-village
+        cost: 5
+        steps:
+          - <<: *bobs-door
+          - type: "walk"
+            tile: *gate-south
+    bridge:
+      - from: *gate-north
+        to: *west-bridge
+      - from: *west-bridge
+        to: *unstable-house
+    west-village:
+      - from: *unstable-house
+        to: *general-store-east
+      - from: *general-store-east
+        to: *general-store
+        steps:
+          - <<: *general-store-door
+          - type: "walk"
+            tile: *general-store
+      - from: *general-store
+        to: *general-store-east
+        steps:
+          - <<: *general-store-door
+          - type: "walk"
+            tile: *general-store-east
+      - from: *general-store-east
+        to: *trees

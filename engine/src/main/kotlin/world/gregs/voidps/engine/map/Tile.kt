@@ -1,6 +1,8 @@
 package world.gregs.voidps.engine.map
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import world.gregs.voidps.engine.data.serializer.TileDeserializer
 import world.gregs.voidps.engine.data.serializer.TileSerializer
 import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.chunk.Chunk
@@ -15,6 +17,7 @@ import world.gregs.voidps.utility.get
  * @since March 28, 2020
  */
 @JsonSerialize(using = TileSerializer::class)
+@JsonDeserialize(using = TileDeserializer::class)
 inline class Tile(val id: Int) : Coordinate3D {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
