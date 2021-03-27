@@ -1,10 +1,8 @@
 package world.gregs.voidps.engine.action
 
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.singleOrNull
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
-import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -17,6 +15,7 @@ class Action {
 
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
+    var job: Job? = null
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
@@ -54,7 +53,8 @@ class Action {
      * Cancel the current coroutine
      * @param throwable The reason for cancellation see [ActionType]
      */
-    fun cancel(throwable: Throwable = CancellationException()) {
+    fun cancel(throwable: CancellationException = CancellationException()) {
+        job?.cancel(throwable)
         continuation?.resumeWithException(throwable)
         continuation = null
         suspension = null
@@ -66,10 +66,18 @@ class Action {
      * @param action The suspendable action function
      */
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
+        this@Action.cancel()
         this.type = type
-        this@Action.cancel(type)
-        val coroutine = action.createCoroutine(this@Action, ActionContinuation)
-        coroutine.resume(Unit)
+        job = GlobalScope.launch(Contexts.Game) {
+            this@Action.type = type
+            try {
+                action.invoke(this@Action)
+            } finally {
+                if (this@Action.type == type) {
+                    this@Action.type = ActionType.None
+                }
+            }
+        }
     }
 
     /**
@@ -89,7 +97,7 @@ class Action {
     suspend fun delay(ticks: Int = 1): Boolean {
         repeat(ticks) {
             suspension = Suspension.Tick
-            GameLoop.flow.singleOrNull()
+            GameLoop.await()
         }
         return true
     }
