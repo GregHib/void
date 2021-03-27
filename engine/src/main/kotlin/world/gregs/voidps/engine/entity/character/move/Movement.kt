@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.move
 
+import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
@@ -12,6 +13,7 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import java.util.*
+import kotlin.coroutines.resume
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -60,8 +62,11 @@ fun Player.walkTo(strategy: TileTargetStrategy, action: (PathResult) -> Unit) {
         movement.clear()
         movement.target = true
         movement.strategy = strategy
-        movement.completable = {
-            action.invoke(it)
+        suspendCancellableCoroutine<Unit> { continuation ->
+            movement.completable = {
+                action.invoke(it)
+                continuation.resume(Unit)
+            }
         }
     }
 }

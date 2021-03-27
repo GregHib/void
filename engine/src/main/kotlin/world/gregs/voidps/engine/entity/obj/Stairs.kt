@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.obj
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
+import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
@@ -10,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import kotlin.coroutines.resume
 
 val stairsModule = module {
     single(createdAtStart = true) { Stairs(getProperty("stairsPath"), get()) }
@@ -46,6 +48,12 @@ class Stairs(
                 delay(2)
             }
             player.move(tele.delta)
+            suspendCancellableCoroutine<Unit> { continuation ->
+                player.movement.callback = {
+                    continuation.resume(Unit)
+                }
+            }
+            delay(1)
         }
     }
 
