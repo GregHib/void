@@ -1,16 +1,12 @@
 package world.gregs.voidps.engine.map.nav
 
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.core.JsonFactory
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectOpenHashSet
 import org.koin.dsl.module
 import world.gregs.voidps.engine.map.Tile
 
 val navModule = module {
-    single(createdAtStart = true) { GraphLoader(get(), get()).run(getProperty("navGraph")) }
+    single(createdAtStart = true) { GraphLoader(get()).run(getProperty("navGraph")) }
 }
 
 class NavigationGraph(
@@ -25,7 +21,7 @@ class NavigationGraph(
 
     fun getAdjacent(node: Any): Set<Edge> = adjacencyList.getOrDefault(node, empty)
 
-    fun get(node: Any) = adjacencyList.getOrDefault(node, empty)
+    fun get(node: Any): ObjectOpenHashSet<Edge> = adjacencyList.getOrPut(node) { ObjectOpenHashSet() }
 
     fun add(node: Any, set: ObjectOpenHashSet<Edge>) {
         adjacencyList[node] = set
@@ -36,9 +32,6 @@ class NavigationGraph(
     }
 
     companion object {
-        private val empty = ObjectOpenHashSet<Edge>()
-        private val reader = ObjectMapper(JsonFactory())
-            .registerKotlinModule()
-            .setSerializationInclusion(JsonInclude.Include.NON_DEFAULT)
+        private val empty = emptySet<Edge>()
     }
 }

@@ -44,10 +44,10 @@ internal class DijkstraTest {
         val c = Tile(20, 0)
         val d = Tile(25, 0)
 
-        val e1 = Edge(player, a, 0)
-        val e2 = Edge(a, b, 0)
-        val e3 = Edge(b, c, 0)
-        val e4 = Edge(c, d, 0)
+        val e1 = Edge("", player, a, 0)
+        val e2 = Edge("", a, b, 0)
+        val e3 = Edge("", b, c, 0)
+        val e4 = Edge("", c, d, 0)
         every { graph.getAdjacent(player) } returns setOf(e1)
         every { graph.getAdjacent(a) } returns setOf(e2)
         every { graph.getAdjacent(b) } returns setOf(e3)
@@ -87,9 +87,9 @@ internal class DijkstraTest {
         val a = Tile(5, 10)
         val b = Tile(15, 0)
 
-        val edge = Edge(player, b, 9)
+        val edge = Edge("", player, b, 9)
         every { graph.getAdjacent(any()) } returns setOf()
-        every { graph.getAdjacent(player) } returns setOf(Edge(player, a, 10), edge)
+        every { graph.getAdjacent(player) } returns setOf(Edge("", player, a, 10), edge)
 
         val movement: Movement = mockk()
         val waypoints = LinkedList<Edge>()
@@ -122,10 +122,10 @@ internal class DijkstraTest {
         val b = Tile(15, 0)
         val c = Tile(0, 0)
 
-        val e1 = Edge(player, a, 0)
-        val e2 = Edge(a, b, 0)
-        val e3 = Edge(b, c, 0)
-        val e4 = Edge(c, a, 0)
+        val e1 = Edge("", player, a, 0)
+        val e2 = Edge("", a, b, 0)
+        val e3 = Edge("", b, c, 0)
+        val e4 = Edge("", c, a, 0)
         every { graph.getAdjacent(player) } returns setOf(e1)
         every { graph.getAdjacent(a) } returns setOf(e2)
         every { graph.getAdjacent(b) } returns setOf(e3)
@@ -166,7 +166,7 @@ internal class DijkstraTest {
         val player: Player = mockk()
         val a = Tile(5, 10)
 
-        val edge = Edge(player, a, 9)
+        val edge = Edge("", player, a, 9)
         every { graph.getAdjacent(player) } returns setOf(edge)
 
         val movement: Movement = mockk()
