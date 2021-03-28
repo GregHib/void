@@ -150,7 +150,7 @@ internal class ChunkBatcherTest : KoinMock() {
         batcher.batches[chunk] = messages
         batcher.subscribers[chunk] = subscribers
         // When
-        batcher.tick()
+        batcher.run()
         // Then
         verify { subscription.invoke(chunk, messages) }
         assertTrue(messages.isEmpty())
