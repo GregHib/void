@@ -24,7 +24,6 @@ import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.MediumTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
-import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 val npcLoaderModule = module {
     single { NPCFactory(get(), get(), get(), get()) }
@@ -59,7 +58,11 @@ class NPCFactory(
             2 -> MediumTraversal(TraversalType.Land, true, collisions)
             else -> LargeTraversal(TraversalType.Land, true, size, collisions)
         }
-        val tile = random(area, traversal)
+        val tile = area.random(traversal)
+        if (tile == null) {
+            logger.warn { "No free area found for npc spawn $id $area" }
+            return null
+        }
         val npc = NPC(id, tile, size)
         store.populate(npc)
         npc.movement.traversal = traversal
@@ -80,19 +83,6 @@ class NPCFactory(
     fun despawn(npc: NPC) {
         npcs.remove(npc)
         collisions.remove(npc)
-    }
-
-    fun random(area: Area, traversal: TileTraversalStrategy): Tile {
-        var tile = area.random()
-        var exit = 100
-        while (traversal.blocked(tile, Direction.NONE)) {
-            if (--exit <= 0) {
-                logger.warn { "Failed to find empty tile $area, $tile" }
-                break
-            }
-            tile = area.random()
-        }
-        return tile
     }
 
     companion object {

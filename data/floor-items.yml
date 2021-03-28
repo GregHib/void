@@ -1,5 +1,17 @@
-# Edgeville Gloves
-- id: 1059
-  tile:
-    x: 3097
-    y: 3486
+- name: Edgeville gloves
+  area:
+    x: [ 3097 ]
+    y: [ 3486 ]
+  spawns:
+    - name: leather_gloves
+- name: Bobs axes
+  area:
+    x: [ 3227, 3233 ]
+    y: [ 3201, 3205 ]
+  spawns:
+    - name: bronze_hatchet
+    - name: iron_hatchet
+    - name: steel_hatchet
+    - name: mithril_hatchet
+    - name: adamant_hatchet
+    - name: rune_hatchet
