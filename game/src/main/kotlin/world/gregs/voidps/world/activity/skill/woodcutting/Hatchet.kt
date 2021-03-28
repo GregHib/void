@@ -53,7 +53,9 @@ enum class Hatchet(val index: Int) {
 
     companion object {
 
-        fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean): Boolean {
+        val regular = values().copyOfRange(0, 12)
+
+        fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean = false): Boolean {
             if (hatchet == null) {
                 if (message) {
                     player.message("You need a hatchet to chop down this tree.")
@@ -75,8 +77,23 @@ enum class Hatchet(val index: Int) {
             return list.maxByOrNull { hatchet -> hatchet.requiredLevel }
         }
 
+        fun highest(player: Player): Hatchet? {
+            return regular.lastOrNull { hatchet -> hasRequirements(player, hatchet, false) }
+        }
+
         private fun Player.has(hatchet: Hatchet) = inventory.contains(hatchet.id) || equipment.contains(hatchet.id)
 
+        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == Dwarven_Army_Axe.id || name == Inferno_Adze.id
+
+        fun get(name: String): Hatchet? {
+            val name = name.replace(" ", "_").toLowerCase()
+            for (hatchet in values()) {
+                if (name == hatchet.id) {
+                    return hatchet
+                }
+            }
+            return null
+        }
 
         /**
          * Calculates the chance of success out of 256 given a [hatchet] and the hatchet chances for that tree [treeHatchetDifferences]

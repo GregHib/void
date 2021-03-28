@@ -2,7 +2,7 @@ package world.gregs.voidps.ai
 
 interface Option<C : Context, T : Any> {
     val targets: C.() -> List<T>
-    val considerations: Set<C.(T) -> Double>
+    val considerations: List<C.(T) -> Double>
     val momentum: Double
     val weight: Double
     val action: (C.(T) -> Unit)?
@@ -59,6 +59,6 @@ interface Option<C : Context, T : Any> {
     /**
      * For debugging
      */
-    fun getScores(context: C): Map<Any, List<Double>> = targets(context).map { target -> target to getScores(context, target) }.toMap()
+    fun getScores(context: C) = targets(context).map { target -> Triple(target, getScores(context, target), score(context, target)) }.toList()
 
 }

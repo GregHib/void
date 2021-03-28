@@ -35,7 +35,7 @@ val playerRegions = IntArray(MAX_PLAYERS - 1)
 
 private val blankXtea = IntArray(4)
 
-on<RegionLogin> { player: Player ->
+on<RegionLogin>({ it.client != null }) { player: Player ->
     players.forEach { other ->
         player.viewport.players.lastSeen[other] = other.tile
     }
@@ -76,13 +76,13 @@ on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
 
-on<Moved>({ needsRegionChange(it) }) { player: Player ->
+on<Moved>({ it.client != null && needsRegionChange(it) }) { player: Player ->
     updateRegion(player, false, crossedDynamicBoarder(player))
 }
 
 on<World, ReloadChunk> {
     players.forEach { player ->
-        if (inViewOfChunk(player, chunk)) {
+        if (player.client != null && inViewOfChunk(player, chunk)) {
             updateRegion(player, initial = false, force = true)
         }
     }

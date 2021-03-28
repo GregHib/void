@@ -17,8 +17,8 @@ class Objects(
     private val timers: MutableMap<GameObject, Job> = mutableMapOf()
 ) : BatchList<GameObject> {
 
-    fun addTemp(gameObject: GameObject) : Boolean {
-        return if(isOriginal(gameObject)) {
+    fun addTemp(gameObject: GameObject): Boolean {
+        return if (isOriginal(gameObject)) {
             removeRemoval(gameObject)
         } else {
             addAddition(gameObject)
@@ -75,15 +75,15 @@ class Objects(
     override operator fun get(chunk: Chunk): Set<GameObject> {
         val set = mutableSetOf<GameObject>()
         val base = getStatic(chunk)
-        if(base != null) {
+        if (base != null) {
             set.addAll(base)
         }
         val removed = getRemoved(chunk)
-        if(removed != null) {
+        if (removed != null) {
             set.removeAll(removed)
         }
         val added = getAdded(chunk)
-        if(added != null) {
+        if (added != null) {
             set.addAll(added)
         }
         return set

@@ -42,7 +42,7 @@ fun Double.logistic(steepness: Double = 1.0, midpoint: Double = 0.0): Double {
 }
 
 /**
- * Note: normalized
+ * Note: Not normalized
  * @param logBase 0.01..100
  */
 fun Double.logit(logBase: Double = E) = (log(this / (1 - this), logBase) + (2 * E)) / (4 * E)

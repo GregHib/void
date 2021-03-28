@@ -15,10 +15,6 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import java.util.*
 import kotlin.coroutines.resume
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 26, 2020
- */
 data class Movement(
     var previousTile: Tile = Tile.EMPTY,
     var trailingTile: Tile = Tile.EMPTY,
@@ -37,8 +33,6 @@ data class Movement(
 
     var callback: (() -> Unit)? = null
     lateinit var traversal: TileTraversalStrategy
-
-    var nearestWaypoint: Edge? = null
 
     fun clear() {
         steps.clear()
