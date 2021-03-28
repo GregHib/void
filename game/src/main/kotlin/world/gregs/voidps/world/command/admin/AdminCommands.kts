@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCFactory
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.effect.Hidden
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
@@ -32,6 +33,18 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     }
 }
 
+val players: Players by inject()
+
+on<Command>({ prefix == "teletome" }) { player: Player ->
+    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    other.tele(player.tile)
+}
+
+on<Command>({ prefix == "teleto" }) { player: Player ->
+    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    player.tele(other.tile)
+}
+
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
@@ -40,7 +53,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
         spawns.spawn(id, player.tile, Direction.NORTH)
     } else {
         println(
-                """
+            """
             - name: $content
               x: ${player.tile.x}
               y: ${player.tile.y}
@@ -63,7 +76,7 @@ on<Command>({ prefix == "save" }) { player: Player ->
 
 val definitions: ItemDefinitions by inject()
 
-on<Command>({ prefix == "item"}) { player: Player ->
+on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = parts[0].toIntOrNull() ?: definitions.getId(parts[0].toLowerCase())
     var amount = parts.getOrNull(1) ?: "1"
@@ -111,7 +124,7 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 }
 
 on<Command>({ prefix == "reload" }) { player: Player ->
-    when(content) {
+    when (content) {
         "stairs" -> {
             get<Stairs>().load()
         }

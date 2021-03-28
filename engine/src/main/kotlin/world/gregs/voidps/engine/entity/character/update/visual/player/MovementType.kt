@@ -35,7 +35,7 @@ var Player.movementType: PlayerMoveType
         }
     }
 
-fun Player.tele(tile: Tile) = tele(this.tile.delta(tile))
+fun Player.tele(tile: Tile) = tele(tile.delta(this.tile))
 
 fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
 
