@@ -13,7 +13,7 @@ on<ContainerAction>({ container == "inventory" && option == "Drop" }) { player: 
     val id = player.inventory.getItem(slot)
     val amount = player.inventory.getAmount(slot)
     if (player.inventory.clear(slot) && id != -1 && amount > 0) {
-        factory.add(id, amount, player.tile, 60, 60, player)
+        factory.spawn(id, amount, player.tile, 60, 60, player)
     } else {
         logger.info { "Error dropping item $id $amount for $player" }
     }

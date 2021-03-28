@@ -37,12 +37,13 @@ class FloorItemFactory(
      * @param disappearTicks Number of ticks before the item is removed
      * @param owner The index of the owner of the item
      */
-    fun add(id: Int,
-            amount: Int,
-            tile: Tile,
-            revealTicks: Int = -1,
-            disappearTicks: Int = -1,
-            owner: Player? = null
+    fun spawn(
+        id: Int,
+        amount: Int,
+        tile: Tile,
+        revealTicks: Int = -1,
+        disappearTicks: Int = -1,
+        owner: Player? = null
     ): FloorItem? {
         val definition = decoder.get(id)
         if (definition.stackable == 1) {
@@ -62,15 +63,14 @@ class FloorItemFactory(
         return item
     }
 
-    fun add(
+    fun spawn(
         name: String,
         amount: Int,
         tile: Tile,
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
-    ) = add(decoder.getId(name), amount, tile, revealTicks, disappearTicks, owner)
-
+    ) = spawn(decoder.getId(name), amount, tile, revealTicks, disappearTicks, owner)
 
     fun FloorItems.getExistingStack(tile: Tile, id: Int): FloorItem? {
         return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }

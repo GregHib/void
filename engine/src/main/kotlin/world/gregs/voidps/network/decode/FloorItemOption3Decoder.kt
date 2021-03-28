@@ -9,10 +9,9 @@ class FloorItemOption3Decoder : Decoder(7) {
 
     override suspend fun decode(instructions: MutableSharedFlow<Instruction>, packet: ByteReadPacket) {
         val id = packet.readShort().toInt()
-        val x = packet.readShortAdd()
+        val x = packet.readUnsignedShortAdd()
         val run = packet.readBoolean()
         val y = packet.readUnsignedShortAddLittle()
-        val optionIndex = 2
         instructions.emit(InteractFloorItem(id, x, y, 2))
     }
 
