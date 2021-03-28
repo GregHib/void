@@ -42,17 +42,17 @@ class CustomObjects(
 
     init {
         batcher.addInitial { player, chunk, messages ->
-            objects.getAdded(chunk)?.forEach {
-                if (it.visible(player)) {
-                    messages += { player ->
-                        player.client?.addObject(it.tile.offset(), it.id, it.type, it.rotation)
-                    }
-                }
-            }
             objects.getRemoved(chunk)?.forEach {
                 if (it.visible(player)) {
                     messages += { player ->
                         player.client?.removeObject(it.tile.offset(), it.type, it.rotation)
+                    }
+                }
+            }
+            objects.getAdded(chunk)?.forEach {
+                if (it.visible(player)) {
+                    messages += { player ->
+                        player.client?.addObject(it.tile.offset(), it.id, it.type, it.rotation)
                     }
                 }
             }
@@ -214,11 +214,7 @@ class CustomObjects(
         batcher.update(replacement.tile.chunk) { player ->
             player.client?.addObject(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
         }
-        if (original.tile != replacement.tile) {
-            objects.removeTemp(original)
-        } else {
-            objects.removeAddition(original)
-        }
+        objects.removeTemp(original)
         objects.addTemp(replacement)
         collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
         original.events.emit(Unregistered)

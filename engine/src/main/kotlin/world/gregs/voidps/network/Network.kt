@@ -171,6 +171,7 @@ class Network(
         write.sendLoginDetails(username, index, 2)
         withContext(gameContext) {
             player.gameFrame.displayMode = displayMode
+            loginQueue.await()
             logger.info { "Player logged in $username index $index." }
             player.login(client)
         }

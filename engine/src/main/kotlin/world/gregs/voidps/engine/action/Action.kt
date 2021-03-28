@@ -16,6 +16,7 @@ class Action {
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
     var job: Job? = null
+    var completion: (() -> Unit)? = null
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
@@ -76,6 +77,8 @@ class Action {
                 if (this@Action.type == type) {
                     this@Action.type = ActionType.None
                 }
+                completion?.invoke()
+                completion = null
             }
         }
     }
