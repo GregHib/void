@@ -1,10 +1,7 @@
 package world.gregs.voidps.engine.map.chunk
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.tick.Tick
 import world.gregs.voidps.network.encode.clearChunk
 import world.gregs.voidps.network.encode.updateChunk
 
@@ -12,17 +9,11 @@ import world.gregs.voidps.network.encode.updateChunk
  * Groups messages by [Chunk] sends to all subscribers
  * Also manages initial batch generation (when a player is in view of a new chunk)
  */
-class ChunkBatcher {
+class ChunkBatcher : Runnable {
     val subscribers = mutableMapOf<Chunk, MutableSet<(Chunk, MutableList<(Player) -> Unit>) -> Unit>>()
     val subscriptions = mutableMapOf<Player, (Chunk, List<(Player) -> Unit>) -> Unit>()
     val initials = mutableSetOf<(Player, Chunk, MutableList<(Player) -> Unit>) -> Unit>()
     val batches = mutableMapOf<Chunk, MutableList<(Player) -> Unit>>()
-
-    init {
-        on<World, Tick> {
-            tick()
-        }
-    }
 
     /**
      * Returns the chunk offset for [chunk] relative to [player]'s viewport
@@ -98,7 +89,7 @@ class ChunkBatcher {
     /**
      * Sends all chunk batches to subscribers
      */
-    fun tick() {
+    override fun run() {
         batches.forEach { (chunk, messages) ->
             if (messages.isNotEmpty()) {
                 subscribers[chunk]?.forEach { subscriber ->
