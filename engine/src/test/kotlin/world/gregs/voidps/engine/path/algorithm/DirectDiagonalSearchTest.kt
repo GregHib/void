@@ -10,12 +10,12 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -45,7 +45,7 @@ internal class DirectDiagonalSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Move $dir to $tile") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -71,7 +71,7 @@ internal class DirectDiagonalSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Move $dir to $tile") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -101,7 +101,7 @@ internal class DirectDiagonalSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Move $dir to $tile") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)

@@ -25,7 +25,7 @@ data class Movement(
     var delta: Delta = Delta.EMPTY,
     var walkStep: Direction = Direction.NONE,
     var runStep: Direction = Direction.NONE,
-    val steps: Steps = Steps(),
+    val steps: LinkedList<Direction> = LinkedList<Direction>(),
     val waypoints: LinkedList<Edge> = LinkedList(),
     var frozen: Boolean = false,
     var running: Boolean = false,

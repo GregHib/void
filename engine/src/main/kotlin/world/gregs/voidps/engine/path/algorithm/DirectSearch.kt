@@ -3,11 +3,11 @@ package world.gregs.voidps.engine.path.algorithm
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import java.util.*
 
 /**
  * Moves horizontally and vertically until blocked by obstacle or reaches target
@@ -29,7 +29,7 @@ class DirectSearch : TilePathAlgorithm {
     }
 
     fun addHorizontal(
-        steps: Steps,
+        steps: LinkedList<Direction>,
         tile: Tile,
         size: Size,
         strategy: TileTargetStrategy,
@@ -62,7 +62,7 @@ class DirectSearch : TilePathAlgorithm {
     }
 
     fun addVertical(
-        steps: Steps,
+        steps: LinkedList<Direction>,
         tile: Tile,
         size: Size,
         strategy: TileTargetStrategy,

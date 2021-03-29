@@ -22,7 +22,7 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
         val callback = player.movement.completable!!
         player.movement.target = false
         val result = finder.find(player, strategy)
-        logger.debug { "Path length: ${player.movement.steps.steps.size}" }
+        logger.debug { "Path length: ${player.movement.steps.size}" }
         player.movement.callback = {
             callback.invoke(result)
         }

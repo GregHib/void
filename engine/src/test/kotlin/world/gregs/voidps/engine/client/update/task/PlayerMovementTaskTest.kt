@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -20,6 +19,7 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -52,7 +52,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if frozen`() {
         // Given
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
         every { movement.steps } returns steps
@@ -67,7 +67,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     @Test
     fun `Steps ignored if viewport not loaded`() {
         // Given
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
         every { movement.steps } returns steps
@@ -82,7 +82,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Walk step`() {
         // Given
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
@@ -108,7 +108,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Walk ignored if blocked`() {
         // Given
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         every { player.movement } returns movement
         every { movement.steps } returns steps
@@ -129,7 +129,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Run ignored if blocked`() {
         // Given
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
@@ -156,7 +156,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Run step`() {
         // Given
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
@@ -189,7 +189,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
     fun `Run odd step walks`() {
         // Given
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
-        val steps = Steps()
+        val steps = LinkedList<Direction>()
         steps.add(Direction.NORTH)
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
