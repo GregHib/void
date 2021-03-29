@@ -74,6 +74,9 @@ data class Container(
     @JsonIgnore
     fun isFull() = amounts.none { isFree(it) }
 
+    @JsonIgnore
+    fun isNotFull() = amounts.any { isFree(it) }
+
     fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
 
     fun getItems(): IntArray = items.clone()

@@ -12,9 +12,8 @@ import world.gregs.voidps.utility.inject
 val path: PathFinder by inject()
 
 on<PlayerOption>({ option == "Follow" }) { player: Player ->
-    val follower = player
-    follower.watch(target)
-    follower.action(ActionType.Follow) {
+    player.watch(target)
+    player.action(ActionType.Follow) {
         try {
             while (!disengageTarget(target)) {
                 if (!player.reached(target)) {
@@ -24,7 +23,7 @@ on<PlayerOption>({ option == "Follow" }) { player: Player ->
                 delay()
             }
         } finally {
-            follower.watch(null)
+            player.watch(null)
         }
     }
 }
