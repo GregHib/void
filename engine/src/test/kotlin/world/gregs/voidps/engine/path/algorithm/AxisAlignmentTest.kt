@@ -10,13 +10,13 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
+import java.util.*
 
 internal class AxisAlignmentTest {
 
@@ -31,7 +31,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Already reached target is complete`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(0, 0)
         val target = Tile(0, 0)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -50,7 +50,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Unreached no steps towards target is failure`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -69,7 +69,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Diagonal blocked tries horizontal`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -93,7 +93,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Diagonal and horizontal blocked tries vertical`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 9)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -118,7 +118,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Blocked route is failure`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 9)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -142,7 +142,7 @@ internal class AxisAlignmentTest {
     @Test
     fun `Blocked route is partial`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(9, 11)
         val target = Tile(11, 9)
         val strategy: TileTargetStrategy = mockk(relaxed = true)

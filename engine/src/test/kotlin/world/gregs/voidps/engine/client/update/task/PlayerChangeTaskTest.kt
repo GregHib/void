@@ -8,7 +8,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.client.update.task.player.PlayerChangeTask
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.LocalChange
@@ -17,6 +16,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.script.KoinMock
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -37,7 +37,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update walk`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.EAST
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Delta(1, 0)
@@ -56,7 +56,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update run`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.NORTH
         every { player.movement.runStep } returns Direction.NORTH
         every { player.movement.delta } returns Delta(0, 2)
@@ -76,7 +76,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
         // Given
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementTypeKt")
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Delta(12, -11, 1)
@@ -95,7 +95,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update tele far`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movement.delta } returns Delta(247, -365, 1)
@@ -114,7 +114,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update visual`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.change } returns LocalChange.Update
         every { player.movementType } returns PlayerMoveType.None
         every { player.movement.delta } returns Delta.EMPTY
@@ -131,7 +131,7 @@ internal class PlayerChangeTaskTest : KoinMock() {
     fun `Local update no movement`() {
         // Given
         val player: Player = mockk(relaxed = true)
-        every { player.movement.steps } returns Steps()
+        every { player.movement.steps } returns LinkedList<Direction>()
         every { player.movement.walkStep } returns Direction.NONE
         every { player.movement.runStep } returns Direction.NONE
         every { player.movementType } returns PlayerMoveType.Teleport

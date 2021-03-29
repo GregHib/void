@@ -12,12 +12,12 @@ import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
+import java.util.*
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -41,7 +41,7 @@ internal class DirectSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Horizontal moves $dir if $tile of target") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -65,7 +65,7 @@ internal class DirectSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Horizontal blocked $dir") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -84,7 +84,7 @@ internal class DirectSearchTest {
     @Test
     fun `Horizontal moves none if aligned with target`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 11)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -105,7 +105,7 @@ internal class DirectSearchTest {
     @Test
     fun `Horizontal returns partial if vertical blocked`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 11)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -126,7 +126,7 @@ internal class DirectSearchTest {
     @Test
     fun `Horizontal moves vertical if not blocked`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(10, 11)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -150,7 +150,7 @@ internal class DirectSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Horizontal moves $dir if $tile of target") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -174,7 +174,7 @@ internal class DirectSearchTest {
     ).map { (tile, dir) ->
         dynamicTest("Horizontal blocked $dir") {
             // Given
-            val steps: Steps = mockk(relaxed = true)
+            val steps: LinkedList<Direction> = mockk(relaxed = true)
             val target = Tile(10, 10)
             val strategy: TileTargetStrategy = mockk(relaxed = true)
             val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -194,7 +194,7 @@ internal class DirectSearchTest {
     @Test
     fun `Vertical moves none if aligned with target`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -215,7 +215,7 @@ internal class DirectSearchTest {
     @Test
     fun `Vertical returns partial if horizontal blocked`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)
@@ -236,7 +236,7 @@ internal class DirectSearchTest {
     @Test
     fun `Vertical moves horizontal if not blocked`() {
         // Given
-        val steps: Steps = mockk(relaxed = true)
+        val steps: LinkedList<Direction> = mockk(relaxed = true)
         val tile = Tile(10, 10)
         val target = Tile(11, 10)
         val strategy: TileTargetStrategy = mockk(relaxed = true)

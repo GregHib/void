@@ -7,14 +7,15 @@ import io.mockk.verify
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Direction.*
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.move.Steps
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
+import java.util.*
 
 internal class AxisAlignmentIntegrationTest {
 
@@ -52,7 +53,7 @@ internal class AxisAlignmentIntegrationTest {
         ).map { (offset, expected) ->
             dynamicTest("Move $offset") {
                 // Given
-                val steps: Steps = mockk(relaxed = true)
+                val steps: LinkedList<Direction> = mockk(relaxed = true)
                 val target = Tile(10, 10)
                 val strategy: TileTargetStrategy = mockk(relaxed = true)
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
@@ -82,7 +83,7 @@ internal class AxisAlignmentIntegrationTest {
         ).map { (offset, block, expected) ->
             dynamicTest("Move $offset") {
                 // Given
-                val steps: Steps = mockk(relaxed = true)
+                val steps: LinkedList<Direction> = mockk(relaxed = true)
                 val target = Tile(10, 10)
                 val strategy: TileTargetStrategy = mockk(relaxed = true)
                 val traversal: TileTraversalStrategy = mockk(relaxed = true)
