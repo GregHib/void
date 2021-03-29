@@ -130,6 +130,7 @@ class Player(
         movementType = PlayerMoveType.None
         flagMovementType()
         flagTemporaryMoveType()
+        flagAppearance()
         face()
     }
 
