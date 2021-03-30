@@ -10,9 +10,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.obj.*
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectOption
+import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math
 import world.gregs.voidps.utility.inject
@@ -21,7 +22,6 @@ import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 import kotlin.random.Random
 
 val definitions: ItemDefinitions by inject()
-val objects: Objects by inject()
 val players: Players by inject()
 
 val minPlayers = 0
@@ -96,14 +96,10 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     if (stumpId != -1) {
         val delay = getRegrowTickDelay(tree)
         obj.replace(stumpId, ticks = delay)
-        removeCanopy(obj, delay)
     }
     return true
 }
 
-/**
- * Returns regrow delay based on the type of tree and number of players online
- */
 /**
  * Returns regrow delay based on the type of tree and number of players online
  */
@@ -114,18 +110,4 @@ fun getRegrowTickDelay(tree: Tree): Int {
     } else {
         Math.interpolate(players.count, delay.last, delay.first, minPlayers, maxPlayers)
     }
-}
-
-/**
- * Removes the tree canopy (if exists) on the tile above
- */
-/**
- * Removes the tree canopy (if exists) on the tile above
- */
-fun removeCanopy(obj: GameObject, delay: Int) {
-    val canopyTile = obj.tile.addPlane(1)
-    val chunks = canopyTile.chunk.area(1)
-    chunks.flatMap { objects[it] }
-        .firstOrNull { it.tile.within(canopyTile, 1) }
-        ?.remove(ticks = delay)
 }
