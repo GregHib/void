@@ -26,6 +26,7 @@ val isNotAtTrees: BotContext.(Any) -> Double = { (bot.tile !in trees).toDouble()
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
+val doesNotWantToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire.inverse() }
 val hasEquipmentToCutTrees: BotContext.(Any) -> Double = { (Hatchet.get(bot) != null).toDouble() }
 
 val goToTrees = SimpleBotOption(
@@ -72,7 +73,8 @@ val dropLogs = SimpleBotOption(
     targets = { listOf(this) },
     considerations = listOf(
         { bot.impatience },
-        { bot.inventory.count.toDouble().scale(0.0, 28.0) }
+        { bot.inventory.count.toDouble().scale(0.0, 28.0) },
+        doesNotWantToStoreLogs
     ),
     action = {
         var count = 0

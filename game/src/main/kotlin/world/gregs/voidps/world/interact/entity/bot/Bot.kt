@@ -34,7 +34,6 @@ val Player.patience: Double
 val Player.impatience: Double
     get() = patience.inverse()
 
-
 var Player.step: Instruction?
     get() = getOrNull("step")
     set(value) {
@@ -48,12 +47,16 @@ var Player.step: Instruction?
 val Player.woodcuttingDesire: Double
     get() = get("woodcuttingDesire", 0.0)
 
+val Player.logStorageDesire: Double
+    get() = get("logStorageDesire", 0.0)
+
 fun Player.initBot() {
     this["bot"] = true
     this["context"] = BotContext(this)
     this["steps"] = LinkedList<Instruction>()
     this["options"] = mutableSetOf<SimpleBotOption<*>>()
     this["woodcuttingDesire"] = 1.0
+    this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
 }
 

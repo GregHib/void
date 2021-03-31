@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.sendVar
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.network.instruct.Command
@@ -38,12 +39,16 @@ on<Command>({ prefix == "bank" }) { player: Player ->
         player.bank.add(4151, 1)
         player.bank.add(11694, 1)
     }
-    player.sendContainer("bank")
+}
+
+on<ObjectOption>({ option == "Use-quickly" }) { player: Player ->
+    player.open("bank")
 }
 
 on<InterfaceOpened>({ name == "bank" }) { player: Player ->
     player.action(ActionType.Bank) {
         try {
+            player.sendContainer("bank")
             player.open("bank_side")
             player.sendVar("open_bank_tab")
             player.sendVar("bank_item_mode")
