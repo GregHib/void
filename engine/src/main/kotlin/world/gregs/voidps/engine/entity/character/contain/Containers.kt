@@ -36,10 +36,11 @@ fun Player.container(name: String, detail: ContainerDefinition, secondary: Boole
         Container(
             id = detail.id,
             capacity = get<ContainerDefinitions>().get(detail.id).length,
-            listeners = mutableListOf(),
-            stackMode = detail["stack", StackMode.Normal]
+            listeners = mutableListOf()
         )
     }.apply {
+        id = detail.id
+        stackMode = detail["stack", StackMode.Normal]
         if (listeners.isEmpty()) {
             definitions = get()
             listeners.add { updates ->
