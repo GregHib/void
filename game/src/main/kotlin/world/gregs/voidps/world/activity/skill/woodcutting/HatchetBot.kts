@@ -25,6 +25,7 @@ val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", fals
 val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
 
 val isNotAtShop: BotContext.(Any) -> Double = { (bot.tile !in bobsAxeShop).toDouble() }
+val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 
 val shopHasBetterHatchetThanCurrent: BotContext.(Any) -> Double = {
     val bestShopHasToOffer = Hatchet.regular.lastOrNull { hatchet -> Hatchet.hasRequirements(bot, hatchet) && shopContains(hatchet) }
@@ -64,6 +65,7 @@ val goToHatchetShop = SimpleBotOption(
         isNotGoingSomewhere,
         isNotAtShop,
         wantsToCutTrees,
+        hasInventorySpace,
         shopHasBetterHatchetThanCurrent
     ),
     action = {

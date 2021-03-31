@@ -20,7 +20,6 @@ val logger = InlineLogger()
 
 val decoder: ItemDefinitions by inject()
 
-
 on<InterfaceOption>({ name == "bank_side" && component == "container" && option.startsWith("Deposit") }) { player: Player ->
     val amount = when (option) {
         "Deposit-1" -> 1
@@ -93,9 +92,7 @@ on<InterfaceOption>({ name == "bank" && component == "carried" && option == "Dep
     }
 }
 
-on<InterfaceOption>({
-    name == "bank" && component == "worn" && option == "Deposit worn items"
-}) { player: Player ->
+on<InterfaceOption>({ name == "bank" && component == "worn" && option == "Deposit worn items" }) { player: Player ->
     if (player.equipment.isEmpty()) {
         player.message("You have no equipped items to deposit.")
     } else {
@@ -103,9 +100,7 @@ on<InterfaceOption>({
     }
 }
 
-on<InterfaceOption>({
-    name == "bank" && component == "burden" && option == "Deposit beast of burden inventory"
-}) { player: Player ->
+on<InterfaceOption>({ name == "bank" && component == "burden" && option == "Deposit beast of burden inventory" }) { player: Player ->
     // TODO no familiar & no bob familiar messages
     if (player.beastOfBurden.isEmpty()) {
         player.message("Your familiar has no items to deposit.")
