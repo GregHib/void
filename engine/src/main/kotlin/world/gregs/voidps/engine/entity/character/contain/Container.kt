@@ -7,11 +7,11 @@ import java.util.*
 
 data class Container(
     @JsonIgnore
-    val id: Int = -1,
+    var id: Int = -1,
     @JsonIgnore
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     @JsonIgnore
-    val stackMode: StackMode = StackMode.Normal,
+    var stackMode: StackMode = StackMode.Normal,
     private val items: IntArray,
     private val amounts: IntArray,
     @JsonIgnore
