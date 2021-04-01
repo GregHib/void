@@ -22,24 +22,21 @@ on<World, AiTick> {
             players.forEach { bot ->
                 if (bot.isBot) {
                     launch(Contexts.Updating) {
+                        val builder = StringBuilder()
+                        if (logger.isTraceEnabled) {
+                            for (option in bot.botOptions) {
+                                builder.append(option.name).appendLine()
+                                for (score in option.getScores(bot.context)) {
+                                    builder.append(score).appendLine()
+                                }
+                            }
+                        }
                         val last = bot.context.last
                         val decision = decisionMaker.decide(bot.context, bot.botOptions)
                         decision?.invoke()
                         if (last != decision) {
-                            logger.debug {
-                                bot.context.last
-                                val builder = StringBuilder()
-                                builder.append("Decision made: ${(decision?.option as? SimpleBotOption)?.name} ${decision?.score} ${decision?.target}").appendLine()
-                                if (logger.isTraceEnabled) {
-                                    for (option in bot.botOptions) {
-                                        builder.append(option.name).appendLine()
-                                        for (score in option.getScores(bot.context)) {
-                                            builder.append(score).appendLine()
-                                        }
-                                    }
-                                }
-                                builder.toString()
-                            }
+                            logger.trace { builder.toString() }
+                            logger.debug { "Decision made: ${(decision?.option as? SimpleBotOption)?.name} ${decision?.score} ${decision?.target}" }
                         }
                     }
                 }

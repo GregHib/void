@@ -1,9 +1,6 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-import world.gregs.voidps.ai.exponential
-import world.gregs.voidps.ai.inverse
-import world.gregs.voidps.ai.scale
-import world.gregs.voidps.ai.toDouble
+import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.contains
@@ -27,7 +24,7 @@ val lumbridgeCastleBank = Rectangle(3207, 3215, 3210, 3222, 2)
 
 val isNotAtBank: BotContext.(Any) -> Double = { (bot.tile !in lumbridgeCastleBank).toDouble() }
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
-val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isFull().toDouble() }
+val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.count.toDouble().scale(0.0, 28.0).exponential(7.0) }
 val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
 val wantsToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire }
 val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.contains("logs").toDouble() }
@@ -49,7 +46,7 @@ val goToBank = SimpleBotOption(
     }
 )
 
-val isNearestBank: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.tile).toDouble().scale(0.0, 20.0).inverse().exponential() }
+val isNearestBank: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.tile).toDouble().scale(0.0, 20.0).inverse().logit() }
 val isNotBusy: BotContext.(Any) -> Double = { if (bot.isInteruptable()) 0.75 else (bot.action.type == ActionType.None).toDouble() }
 
 fun Player.isInteruptable() = action.type == ActionType.Movement
@@ -71,7 +68,7 @@ val openBankBooth = SimpleBotOption(
 )
 
 
-val isLogs: BotContext.(Pair<Int, Int>) -> Double = { (id, _) -> (definitions.get(id).name == "Logs").toDouble() }
+val isLogs: BotContext.(Pair<Int, Int>) -> Double = { (id, _) -> (Log.get(definitions.getName(id)) != null).toDouble() }
 val definitions: ItemDefinitions by inject()
 val bankIsOpen: BotContext.(Any) -> Double = { (bot.action.type == ActionType.Bank).toDouble() }
 

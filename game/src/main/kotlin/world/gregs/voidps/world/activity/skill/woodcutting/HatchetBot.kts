@@ -3,10 +3,12 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.on
@@ -87,6 +89,13 @@ val pickupHatchet = SimpleBotOption(
     }
 )
 
+val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, Int>> = {
+    bot.inventory.getItems().withIndex().mapNotNull {
+        val hatchet = Hatchet.get(definition.get(it.value).name)
+        if (hatchet == null) null else Triple(hatchet, it.index, it.value)
+    }
+}
+
 val isWorseThanCurrent: BotContext.(Triple<Hatchet, Int, Int>) -> Double = { (hatchet) ->
     val current = Hatchet.get(bot)
     (current != null && hatchet.ordinal < current.ordinal).toDouble()
@@ -94,15 +103,29 @@ val isWorseThanCurrent: BotContext.(Triple<Hatchet, Int, Int>) -> Double = { (ha
 
 val dropOldHatchet = SimpleBotOption(
     name = "drop old hatchet",
-    targets = {
-        bot.inventory.getItems().withIndex().mapNotNull {
-            val hatchet = Hatchet.get(definition.get(it.value).name)
-            if (hatchet == null) null else Triple(hatchet, it.index, it.value)
-        }
-    },
+    targets = inventoryHatchets,
     considerations = listOf(isWorseThanCurrent),
     action = { (_, slot, item) ->
         bot.instructions.tryEmit(InteractInterface(149, 0, item, slot, 7))
+    }
+)
+
+val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, Int>) -> Double = { (hatchet) ->
+    val currentWeapon = bot.equipment.getItem(EquipSlot.Weapon.index)
+    if(currentWeapon == -1) {
+        1.0
+    } else {
+        val current = Hatchet.get(definition.getName(currentWeapon))
+        (current != null && current.ordinal < hatchet.ordinal).toDouble()
+    }
+}
+
+val equipHatchet = SimpleBotOption(
+    name = "equip hatchet if better than or no weapon",
+    targets = inventoryHatchets,
+    considerations = listOf(betterThanEquippedHatchet),
+    action = { (_, slot, item) ->
+        bot.instructions.tryEmit(InteractInterface(149, 0, item, slot, 1))
     }
 )
 
@@ -110,4 +133,5 @@ on<Player, Registered>({ it.isBot }) {
     it.botOptions.add(goToHatchetShop)
     it.botOptions.add(dropOldHatchet)
     it.botOptions.add(pickupHatchet)
+    it.botOptions.add(equipHatchet)
 }
