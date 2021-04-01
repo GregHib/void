@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
@@ -16,10 +17,12 @@ import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 import world.gregs.voidps.world.interact.entity.bot.*
 
 val objects: Objects by inject()
+val definitions: ItemDefinitions by inject()
 val trees = Rectangle(3220, 3244, 3234, 3249)
 
 val isNotAtTrees: BotContext.(Any) -> Double = { (bot.tile !in trees).toDouble() }
@@ -92,8 +95,8 @@ val dropLogs = SimpleBotOption(
     action = {
         var count = 0
         for ((slot, item) in bot.inventory.getItems().withIndex()) {
-            if (item == 1511) {
-                bot.instructions.tryEmit(InteractInterface(149, 0, item, slot, 7))
+            if (Log.get(item) != null) {
+                bot.instructions.tryEmit(InteractInterface(149, 0, definitions.getId(item), slot, 7))
                 if (++count == 2) {
                     break
                 }

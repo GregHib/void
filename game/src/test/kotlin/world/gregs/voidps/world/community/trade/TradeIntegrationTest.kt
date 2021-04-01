@@ -32,7 +32,7 @@ internal class TradeIntegrationTest : WorldScript() {
 
     @Test
     fun test() {
-        player1.inventory.add(995, 1000)
+        player1.inventory.add("coins", 1000)
         player1.events.emit(PlayerOption(player2, "Trade with", 4))
         player2.events.emit(PlayerOption(player1, "Trade with", 4))
         offerItem("Offer-10", 2, 995, 0)

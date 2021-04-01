@@ -23,6 +23,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
 
     override fun validate(player: Player, instruction: InteractInterface) {
         val (id, componentId, itemId, itemSlot, option) = instruction
+
         if (!player.interfaces.contains(id)) {
             logger.info { "Interface $id not found for player $player" }
             return
@@ -40,8 +41,8 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         val componentName = inter.getComponentName(componentId)
         val component = inter.getComponent(componentName)
         val name = inter.name
-        var item = ""
 
+        var item = ""
         if (itemId != -1 && itemSlot != -1) {
             if (component == null) {
                 logger.info { "Interface $name component $componentId not found for player $player" }
@@ -61,18 +62,18 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
 
             var found = false
             val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, itemId)) {
-                item = itemDefinitions.getName(itemId)
+            if (primary.isValidId(itemSlot, item)) {
                 found = true
+                item = itemDefinitions.getName(itemId)
             } else {
                 val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, itemId)) {
-                    item = itemDefinitions.getName(itemId)
+                if (secondary.isValidId(itemSlot, item)) {
                     found = true
+                    item = itemDefinitions.getName(itemId)
                 }
             }
             if (!found) {
-                logger.info { "Interface $name container item $itemId $itemSlot not found for player $player" }
+                logger.info { "Interface $name container item $item $itemSlot not found for player $player" }
                 return
             }
         }

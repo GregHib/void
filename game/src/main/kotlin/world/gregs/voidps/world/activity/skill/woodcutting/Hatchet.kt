@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
-import world.gregs.voidps.engine.entity.character.contain.contains
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player

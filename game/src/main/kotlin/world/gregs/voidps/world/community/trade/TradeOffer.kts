@@ -19,15 +19,15 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
  * Offering an item to trade or loan
  */
 
-val itemDecoder: ItemDefinitions by inject()
+val definitions: ItemDefinitions by inject()
 
-val lendable: (Int, Int) -> Boolean = { id, amount ->
-    val def = itemDecoder.get(id)
+val lendable: (String, Int) -> Boolean = { id, amount ->
+    val def = definitions.get(id)
     amount == 1 && def.lendId != -1
 }
 
-val tradeable: (Int, Int) -> Boolean = { id, _ ->
-    val def = itemDecoder.get(id)
+val tradeable: (String, Int) -> Boolean = { id, _ ->
+    val def = definitions.get(id)
     def.notedTemplateId == -1 && def.lendTemplateId == -1 && def.singleNoteTemplateId == -1 && def.dummyItem == 0
 }
 
@@ -44,27 +44,27 @@ on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: 
         "Offer-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    offer(player, itemId, itemIndex, amount)
+    offer(player, item, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        offer(player, itemId, itemIndex, amount)
+        offer(player, item, itemIndex, amount)
     }
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
-    val item = itemDecoder.get(itemId)
+    val item = definitions.get(item)
     player.message("${item.name} is priceless!", ChatType.GameTrade)
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
-    lend(player, partner, itemId, itemIndex)
+    lend(player, partner, item, itemIndex)
 }
 
-fun offer(player: Player, id: Int, slot: Int, amount: Int) {
+fun offer(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
@@ -80,7 +80,7 @@ fun offer(player: Player, id: Int, slot: Int, amount: Int) {
     }
 }
 
-fun lend(player: Player, other: Player, id: Int, slot: Int) {
+fun lend(player: Player, other: Player, id: String, slot: Int) {
     if (!isTrading(player, 1)) {
         return
     }

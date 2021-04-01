@@ -89,14 +89,14 @@ val pickupHatchet = SimpleBotOption(
     }
 )
 
-val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, Int>> = {
+val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, String>> = {
     bot.inventory.getItems().withIndex().mapNotNull {
         val hatchet = Hatchet.get(definition.get(it.value).name)
         if (hatchet == null) null else Triple(hatchet, it.index, it.value)
     }
 }
 
-val isWorseThanCurrent: BotContext.(Triple<Hatchet, Int, Int>) -> Double = { (hatchet) ->
+val isWorseThanCurrent: BotContext.(Triple<Hatchet, Int, String>) -> Double = { (hatchet) ->
     val current = Hatchet.get(bot)
     (current != null && hatchet.ordinal < current.ordinal).toDouble()
 }
@@ -106,16 +106,16 @@ val dropOldHatchet = SimpleBotOption(
     targets = inventoryHatchets,
     considerations = listOf(isWorseThanCurrent),
     action = { (_, slot, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, item, slot, 7))
+        bot.instructions.tryEmit(InteractInterface(149, 0, definition.getId(item), slot, 7))
     }
 )
 
-val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, Int>) -> Double = { (hatchet) ->
+val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, String>) -> Double = { (hatchet) ->
     val currentWeapon = bot.equipment.getItem(EquipSlot.Weapon.index)
-    if(currentWeapon == -1) {
+    if(currentWeapon.isBlank()) {
         1.0
     } else {
-        val current = Hatchet.get(definition.getName(currentWeapon))
+        val current = Hatchet.get(currentWeapon)
         (current != null && current.ordinal < hatchet.ordinal).toDouble()
     }
 }
@@ -125,7 +125,7 @@ val equipHatchet = SimpleBotOption(
     targets = inventoryHatchets,
     considerations = listOf(betterThanEquippedHatchet),
     action = { (_, slot, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, item, slot, 1))
+        bot.instructions.tryEmit(InteractInterface(149, 0, definition.getId(item), slot, 1))
     }
 )
 

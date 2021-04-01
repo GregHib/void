@@ -32,12 +32,15 @@ IntVariable(4892, Variable.Type.VARBIT, persistent = true).register("bank_tab_8"
 on<Command>({ prefix == "bank" }) { player: Player ->
     player.open("bank")
     if (player.bank.isEmpty()) {
-        for (i in 1038 until 1048 step 2) {
-            player.bank.add(i, 1)
-        }
-        player.bank.add(995, 1000)
-        player.bank.add(4151, 1)
-        player.bank.add(11694, 1)
+        player.bank.add("red_partyhat", 1)
+        player.bank.add("yellow_partyhat", 1)
+        player.bank.add("blue_partyhat", 1)
+        player.bank.add("green_partyhat", 1)
+        player.bank.add("purple_partyhat", 1)
+        player.bank.add("white_partyhat", 1)
+        player.bank.add("coins", 1000)
+        player.bank.add("abyssal_whip", 1)
+        player.bank.add("armadyl_godsword", 1)
     }
 }
 

@@ -7,12 +7,10 @@ import java.util.*
 
 data class Container(
     @JsonIgnore
-    var id: Int = -1,
-    @JsonIgnore
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     @JsonIgnore
     var stackMode: StackMode = StackMode.Normal,
-    private val items: IntArray,
+    private val items: Array<String>,
     private val amounts: IntArray,
     @JsonIgnore
     val minimumStack: Int = 0
@@ -22,16 +20,14 @@ data class Container(
     lateinit var definitions: ItemDefinitions
 
     constructor(
-        id: Int = -1,
         capacity: Int,
         stackMode: StackMode = StackMode.Normal,
         listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
         minimumStack: Int = 0,
     ) : this(
-        id,
         listeners,
         stackMode,
-        IntArray(capacity) { -1 },
+        Array(capacity) { "" },
         IntArray(capacity) { minimumStack },
         minimumStack
     )
@@ -47,14 +43,14 @@ data class Container(
      * A predicate to check if an item is allowed to be added to this container.
      */
     @JsonIgnore
-    var predicate: ((Int, Int) -> Boolean)? = null
+    var predicate: ((String, Int) -> Boolean)? = null
 
     private fun result(result: ContainerResult): Boolean {
         this.result = result
         return result == ContainerResult.Success
     }
 
-    fun stackable(id: Int) = when (stackMode) {
+    fun stackable(id: String) = when (stackMode) {
         StackMode.Always -> true
         StackMode.Never -> false
         StackMode.Normal -> definitions.get(id).stackable == 1
@@ -77,31 +73,33 @@ data class Container(
     @JsonIgnore
     fun isNotFull() = amounts.any { isFree(it) }
 
-    fun getItem(index: Int): Int = items.getOrNull(index) ?: -1
+    fun getItem(index: Int): String = items.getOrNull(index) ?: ""
 
-    fun getItems(): IntArray = items.clone()
+    fun getItems(): Array<String> = items.clone()
 
     fun getAmount(index: Int): Int = amounts.getOrNull(index) ?: minimumStack
 
     fun getAmounts(): IntArray = amounts.clone()
 
-    fun indexOf(id: Int) = items.indexOf(id)
+    fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOf(id)
+
+    fun contains(id: String) = indexOf(id) != -1
 
     fun inBounds(index: Int) = index in items.indices
 
-    fun isValid(index: Int, id: Int, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
+    fun isValid(index: Int, id: String, amount: Int) = isValidId(index, id) && isValidAmount(index, amount)
 
-    fun isValidId(index: Int, id: Int) = inBounds(index) && items[index] == id
+    fun isValidId(index: Int, id: String) = inBounds(index) && items[index] == id
 
     fun isValidAmount(index: Int, amount: Int) = inBounds(index) && amounts[index] == amount
 
-    fun isValidInput(id: Int, amount: Int): Boolean {
-        return isValidId(id) && isValidAmount(amount) && id < definitions.size && (predicate == null || predicate!!.invoke(id, amount))
+    fun isValidInput(id: String, amount: Int): Boolean {
+        return isValidId(id) && isValidAmount(amount) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
     }
 
-    fun isValidOrEmpty(id: Int, amount: Int) = (!isValidId(id) && !isValidAmount(amount)) || isValidInput(id, amount)
+    fun isValidOrEmpty(id: String, amount: Int) = (!isValidId(id) && !isValidAmount(amount)) || isValidInput(id, amount)
 
-    private fun isValidId(id: Int) = id >= 0
+    private fun isValidId(id: String) = id.isNotBlank()
 
     private fun isValidAmount(amount: Int) = amount > minimumStack
 
@@ -129,8 +127,11 @@ data class Container(
         return -1
     }
 
-    fun getCount(id: Int): Long {
+    fun getCount(id: String): Long {
         var count = 0L
+        if (id.isBlank()) {
+            return count
+        }
         for (index in items.indices) {
             if (getItem(index) == id && getAmount(index) > minimumStack) {
                 count += getAmount(index)
@@ -143,7 +144,7 @@ data class Container(
      * Clears item at the given index
      * @return successful
      */
-    fun clear(index: Int, update: Boolean = true): Boolean = set(index, -1, minimumStack, update)
+    fun clear(index: Int, update: Boolean = true): Boolean = set(index, "", minimumStack, update)
 
     /**
      * Clears all indices
@@ -155,7 +156,7 @@ data class Container(
         update()
     }
 
-    fun set(index: Int, id: Int, amount: Int = 1, update: Boolean = true): Boolean {
+    fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true): Boolean {
         if (!inBounds(index)) {
             return false
         }
@@ -215,7 +216,7 @@ data class Container(
      * @param replacement The replacement item id
      * @return Whether the item was found and replaced successfully
      */
-    fun replace(id: Int, replacement: Int): Boolean {
+    fun replace(id: String, replacement: String): Boolean {
         if (stackable(id) || stackable(replacement)) {
             return false
         }
@@ -230,11 +231,11 @@ data class Container(
     /**
      * Inserts between items at a specific index
      * @param index The index to insert at
-     * @param id The id of the item(s) to add
+     * @param id The item to add
      * @param amount The stack amount or individual count
      * @return Whether an item was successfully inserted
      */
-    fun insert(index: Int, id: Int, amount: Int = 1): Boolean {
+    fun insert(index: Int, id: String, amount: Int = 1): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -258,17 +259,17 @@ data class Container(
     /**
      * Adds items at a specific index
      * Note: Will never add items outside of the given [index]
-     * @param id The id of the item(s) to add
+     * @param id The item to add
      * @param amount The stack amount or individual count
      * @return Whether an item was successfully added
      */
-    fun add(index: Int, id: Int, amount: Int = 1): Boolean {
+    fun add(index: Int, id: String, amount: Int = 1): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
 
         val item = items[index]
-        if (item != -1 && item != id) {
+        if (item.isNotBlank() && item != id) {
             return result(ContainerResult.WrongType)
         }
 
@@ -293,7 +294,7 @@ data class Container(
      * @param amount The stack amount or individual count
      * @return Whether an item was successfully added
      */
-    fun add(id: Int, amount: Int = 1): Boolean {
+    fun add(id: String, amount: Int = 1): Boolean {
         if (!isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -337,7 +338,7 @@ data class Container(
      *  @param amount The stack number to remove (default 1 for unstackable)
      *  @return Whether an item was successfully removed
      */
-    fun remove(index: Int, id: Int, amount: Int = 1): Boolean {
+    fun remove(index: Int, id: String, amount: Int = 1): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -381,7 +382,7 @@ data class Container(
      *  @param amount The stack or individual number of items to remove
      *  @return Whether an item was successfully removed
      */
-    fun remove(id: Int, amount: Int = 1): Boolean {
+    fun remove(id: String, amount: Int = 1): Boolean {
         if (!isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -424,7 +425,7 @@ data class Container(
     }
 
     fun sort() {
-        val items = LinkedList<Int>()
+        val items = LinkedList<String>()
         val amounts = LinkedList<Int>()
         for (i in this.items.indices.reversed()) {
             val id = this.items[i]
@@ -439,9 +440,6 @@ data class Container(
         }
         items.forEachIndexed { index, id ->
             val amount = amounts[index]
-//            if(this.items[index] != id && this.amounts[index] != amount) {
-//                track(index, this.items[index], this.amounts[index], id, amount)
-//            }
             this.items[index] = id
             this.amounts[index] = amount
         }
@@ -463,7 +461,7 @@ data class Container(
     fun move(index: Int, container: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
         val id = getItem(index)
         val amount = getAmount(index)
-        if (id == -1 || amount == minimumStack) {
+        if (id.isBlank() || amount == minimumStack) {
             return result(ContainerResult.Invalid)
         }
         return move(container, id, amount, index, targetIndex, insert)
@@ -475,12 +473,12 @@ data class Container(
      */
     fun move(
         container: Container,
-        id: Int,
+        id: String,
         amount: Int = 1,
         index: Int? = null,
         targetIndex: Int? = null,
         insert: Boolean = false,
-        targetId: Int = id
+        targetId: String = id
     ): Boolean {
         var success = if (index == null) {
             remove(id, amount)
@@ -514,7 +512,7 @@ data class Container(
         return revertRemoval(index, id, amount, container, result)
     }
 
-    private fun gracefullyOverflow(container: Container, id: Int, amount: Int, targetIndex: Int?, targetId: Int): Boolean {
+    private fun gracefullyOverflow(container: Container, id: String, amount: Int, targetIndex: Int?, targetId: String): Boolean {
         val index = targetIndex ?: container.indexOf(id)
         val current = container.getAmount(index)
 
@@ -533,7 +531,7 @@ data class Container(
         return revertRemoval(index, id, if (success) newAmount else amount, container, ContainerResult.Full)
     }
 
-    private fun revertRemoval(index: Int?, id: Int, amount: Int, container: Container, result: ContainerResult): Boolean {
+    private fun revertRemoval(index: Int?, id: String, amount: Int, container: Container, result: ContainerResult): Boolean {
         val reverted = if (index == null) {
             add(id, amount)
         } else {
@@ -547,7 +545,7 @@ data class Container(
         return result(result)
     }
 
-    private fun track(index: Int, oldItem: Int, oldAmount: Int, item: Int, amount: Int) {
+    private fun track(index: Int, oldItem: String, oldAmount: Int, item: String, amount: Int) {
         updates.add(ContainerModification(index, oldItem, oldAmount, item, amount))
     }
 

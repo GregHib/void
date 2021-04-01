@@ -30,14 +30,14 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option.start
         "Withdraw-All but one" -> player.bank.getAmount(itemIndex) - 1
         else -> return@on
     }
-    withdraw(player, itemId, itemIndex, amount)
+    withdraw(player, item, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        withdraw(player, itemId, itemIndex, amount)
+        withdraw(player, item, itemIndex, amount)
     }
 }
 
@@ -45,16 +45,16 @@ on<InterfaceOption>({ name == "bank" && component == "note_mode" && option == "T
     player.toggleVar("bank_notes")
 }
 
-fun withdraw(player: Player, item: Int, slot: Int, amount: Int) {
+fun withdraw(player: Player, item: String, slot: Int, amount: Int) {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return
     }
 
-    var itemId = item
+    var noted = item
     if (player.getVar("bank_notes", false)) {
         val def = decoder.get(item)
         if (def.noteId != -1) {
-            itemId = def.noteId
+            noted = decoder.getName(def.noteId)
         } else {
             player.message("This item cannot be withdrawn as a note.")
         }
@@ -66,7 +66,7 @@ fun withdraw(player: Player, item: Int, slot: Int, amount: Int) {
         amount = current
     }
 
-    if (!player.bank.move(player.inventory, item, amount, slot, targetId = itemId)) {
+    if (!player.bank.move(player.inventory, item, amount, slot, targetId = noted)) {
         if (player.bank.result == ContainerResult.Full) {
             player.message("Your inventory is full.")
         } else {

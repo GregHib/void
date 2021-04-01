@@ -14,7 +14,7 @@ val logger = InlineLogger()
 on<ContainerAction>({ container == "inventory" && option == "Destroy" }) { player: Player ->
     val id = player.inventory.getItem(slot)
     val amount = player.inventory.getAmount(slot)
-    if(id != -1 && amount > 0) {
+    if(id.isNotBlank() && amount > 0) {
         val item = decoder.get(id)
         player.dialogue {
             val destroy = destroy("""

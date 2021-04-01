@@ -3,7 +3,6 @@ package world.gregs.voidps.world.activity.skill.woodcutting.log
 import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.contain.contains
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -68,20 +67,20 @@ val openBankBooth = SimpleBotOption(
 )
 
 
-val isLogs: BotContext.(Pair<Int, Int>) -> Double = { (id, _) -> (Log.get(definitions.getName(id)) != null).toDouble() }
+val isLogs: BotContext.(IndexedValue<String>) -> Double = { (_, id) -> (Log.get(id) != null).toDouble() }
 val definitions: ItemDefinitions by inject()
 val bankIsOpen: BotContext.(Any) -> Double = { (bot.action.type == ActionType.Bank).toDouble() }
 
 val depositLogs = SimpleBotOption(
     name = "deposit all logs into bank",
-    targets = { bot.inventory.getItems().mapIndexed { index, id -> id to index } },
+    targets = { bot.inventory.getItems().withIndex().toList() },
     considerations = listOf(
         bankIsOpen,
         isLogs,
         wantsToStoreLogs
     ),
-    action = { (id, slot) ->
-        bot.instructions.tryEmit(InteractInterface(interfaceId = 763, componentId = 0, itemId = id, itemSlot = slot, option = 5))
+    action = { (slot, id) ->
+        bot.instructions.tryEmit(InteractInterface(interfaceId = 763, componentId = 0, itemId = definitions.getId(id), itemSlot = slot, option = 5))
     }
 )
 

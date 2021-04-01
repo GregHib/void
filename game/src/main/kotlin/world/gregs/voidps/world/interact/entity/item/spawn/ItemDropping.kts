@@ -12,7 +12,7 @@ val logger = InlineLogger()
 on<ContainerAction>({ container == "inventory" && option == "Drop" }) { player: Player ->
     val id = player.inventory.getItem(slot)
     val amount = player.inventory.getAmount(slot)
-    if (player.inventory.clear(slot) && id != -1 && amount > 0) {
+    if (player.inventory.clear(slot) && id.isNotBlank() && amount > 0) {
         factory.spawn(id, amount, player.tile, 60, 60, player)
     } else {
         logger.info { "Error dropping item $id $amount for $player" }
