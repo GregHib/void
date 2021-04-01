@@ -23,7 +23,7 @@ fun Container.weight(): Double {
     var weight = 0.0
     getItems().forEachIndexed { index, id ->
         val amount = getAmount(index)
-        if(id != -1 && amount > 0) {
+        if(id.isNotBlank() && amount > 0) {
             weight += definitions.get(id)["weight", 0.0] * amount
         }
     }

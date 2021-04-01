@@ -29,36 +29,35 @@ on<InterfaceOption>({ name == "bank_side" && component == "container" && option.
         "Deposit-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    deposit(player, player.inventory, itemId, itemIndex, amount)
+    deposit(player, player.inventory, item, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "bank_side" && component == "container" && option == "Deposit-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        deposit(player, player.inventory, itemId, itemIndex, amount)
+        deposit(player, player.inventory, item, itemIndex, amount)
     }
 }
 
-fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: Int): Boolean {
+fun deposit(player: Player, container: Container, item: String, slot: Int, amount: Int): Boolean {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return true
     }
 
-    val details = decoder.get(item)
-    if (!details["bankable", true]) {
+    val def = decoder.get(item)
+    if (!def["bankable", true]) {
         player.message("This item cannot be banked.")
         return true
     }
 
-    var itemId = item
-    val def = decoder.get(item)
+    var noted = item
     if (def.notedTemplateId != -1) {
         if (def.noteId == -1) {
             logger.warn { "Issue depositing noted item $item" }
             return true
         }
-        itemId = def.noteId
+        noted = decoder.getName(def.noteId)
     }
 
     val current = container.getCount(item).toInt()
@@ -69,7 +68,7 @@ fun deposit(player: Player, container: Container, item: Int, slot: Int, amount: 
 
     val tab = player.getVar("open_bank_tab", 1) - 1
     val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    if (!container.move(player.bank, item, amount, slot, targetIndex, true, itemId)) {
+    if (!container.move(player.bank, item, amount, slot, targetIndex, true, noted)) {
         if (player.bank.result == ContainerResult.Full) {
             player.full()
         } else {

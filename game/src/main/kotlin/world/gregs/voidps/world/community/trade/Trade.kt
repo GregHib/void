@@ -33,7 +33,7 @@ fun Container.calculateValue(decoder: ItemDefinitions): Long {
     var value = 0L
     for ((index, item) in items.withIndex()) {
         val amount = amounts[index]
-        if (item != -1 && amount > 0) {
+        if (item.isNotBlank() && amount > 0) {
             val itemDef = decoder.get(item)
             value += (itemDef.cost * amount)
         }

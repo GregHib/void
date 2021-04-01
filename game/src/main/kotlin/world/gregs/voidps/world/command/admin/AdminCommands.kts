@@ -78,7 +78,7 @@ val definitions: ItemDefinitions by inject()
 
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
-    val id = parts[0].toIntOrNull() ?: definitions.getId(parts[0].toLowerCase())
+    val id = definitions.getNameOrNull(parts[0].toIntOrNull() ?: -1) ?: parts[0].toLowerCase()
     var amount = parts.getOrNull(1) ?: "1"
     if (amount == "max") {
         amount = Int.MAX_VALUE.toString()

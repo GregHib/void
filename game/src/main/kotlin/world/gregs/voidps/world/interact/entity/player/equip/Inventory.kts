@@ -22,25 +22,26 @@ on<InterfaceOpened>({ name == "inventory" }) { player: Player ->
 
 on<InterfaceSwitch>({ name == "inventory" && toName == "inventory" }) { player: Player ->
     val container = player.inventory
-    var fromItemId = fromItemId
+    val item = decoder.getName(fromItemId)
+    var fromItem = item
 
-    if (fromItemId == -1) {
+    if (fromItem.isBlank()) {
         if (!container.inBounds(fromSlot)) {
             logger.debug { "Interface $toId component $toComponentId from slot $fromSlot not found for player $player" }
             return@on
         }
 
-        fromItemId = container.getItem(fromSlot)
+        fromItem = container.getItem(fromSlot)
     }
 
-    if (!container.isValidId(fromSlot, fromItemId)) {
-        logger.debug { "Interface $id component $componentId from item $fromItemId slot $fromSlot not found for player $player" }
+    if (!container.isValidId(fromSlot, fromItem)) {
+        logger.debug { "Interface $id component $componentId from item $fromItem slot $fromSlot not found for player $player" }
         return@on
     }
 
     val toSlot = toSlot - 28
-    if (!container.isValidId(toSlot, toItemId)) {
-        logger.debug { "Interface $toId component $toComponentId to item $toItemId slot $toSlot not found for player $player" }
+    if (!container.isValidId(toSlot, item)) {
+        logger.debug { "Interface $toId component $toComponentId to item $item slot $toSlot not found for player $player" }
         return@on
     }
     player.inventory.swap(fromSlot, toSlot)

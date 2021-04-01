@@ -39,15 +39,15 @@ class BodyParts(
         return before != parts[part.ordinal]
     }
 
-    private fun showItem(part: BodyPart, item: Int): Boolean {
-        return item != -1 && when (part) {
+    private fun showItem(part: BodyPart, item: String): Boolean {
+        return item.isNotBlank() && when (part) {
             BodyPart.Hair, BodyPart.Beard -> false
             BodyPart.Arms -> definitions.get(item)["type", EquipType.None] != EquipType.Sleeveless
             else -> true
         }
     }
 
-    private fun showBodyPart(part: BodyPart, item: Int): Boolean {
+    private fun showBodyPart(part: BodyPart, item: String): Boolean {
         val type = definitions.get(item)["type", EquipType.None]
         return part.index != -1 && when (part) {
             BodyPart.Hair -> type != EquipType.FullFace && type != EquipType.Hair

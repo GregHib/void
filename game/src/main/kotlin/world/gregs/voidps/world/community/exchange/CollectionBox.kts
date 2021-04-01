@@ -1,4 +1,3 @@
-import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.IntVariable
@@ -15,18 +14,16 @@ import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.community.trade.lent
 
-val logger = InlineLogger()
-
 IntVariable(1267, Variable.Type.VARP).register("lent_item")
 IntVariable(1269, Variable.Type.VARP).register("lent_item_amount")
 
 on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
-    val lentItem: Int? = player.getOrNull("lent_item")
+    val lentItem: String? = player.getOrNull("lent_item")
     if (lentItem != null) {
         player.container("lent_collection_box").set(0, lentItem)
         val time = getTimeRemaining(player, "lend_timeout")
         if (time < 0) {
-            player.setVar("lent_item", -1)
+            player.setVar("lent_item", "")
             player.setVar("lent_item_amount", 0)
         }
     }

@@ -94,7 +94,7 @@ fun updateEmote(player: Player) {
     player.setVar("equipment_emote", player.appearance.emote)
 }
 
-fun updateStats(player: Player, id: Int, add: Boolean) {
+fun updateStats(player: Player, id: String, add: Boolean) {
     val item = definitions.getOrNull(id) ?: return
     names.forEach { (name, key) ->
         val value = item.getInt(key.toLong(), 0)
@@ -121,7 +121,7 @@ fun updateStats(player: Player) {
         sendBonus(player, name, 0)
     }
     player.equipment.getItems().forEach {
-        if(it != -1) {
+        if(it.isNotBlank()) {
             updateStats(player, it, true)
         }
     }

@@ -70,8 +70,8 @@ object Loan {
     }
 
     fun returnLoan(player: Player) {
-        val item = player["borrowed_item", -1]
-        if (item == -1) {
+        val item = player["borrowed_item", ""]
+        if (item.isBlank()) {
             reset(player)
             logger.info { "Unable to find borrowed item for $player" }
             return
@@ -79,7 +79,7 @@ object Loan {
         returnLoan(player, item)
     }
 
-    fun returnLoan(player: Player, item: Int) {
+    fun returnLoan(player: Player, item: String) {
         reset(player)
         if (!player.inventory.remove(item) && !player.equipment.remove(item) && !player.bank.remove(item) && !player.beastOfBurden.remove(item)) {
             logger.warn { "Player doesn't have lent item to remove $player $item" }
@@ -92,15 +92,16 @@ object Loan {
         player.clear("borrow_timeout")
     }
 
-    fun lendItem(player: Player, other: Player, item: Int, duration: Int) {
+    fun lendItem(player: Player, other: Player, item: String, duration: Int) {
         val def = definitions.get(item)
-        if (player.inventory.add(def.lendId)) {
+        val lend = definitions.getName(def.lendId)
+        if (player.inventory.add(lend)) {
             if (duration > 0) {
                 val millis = TimeUnit.HOURS.toMillis(duration.toLong()) - TimeUnit.MINUTES.toMillis(1L)
                 player["borrow_timeout", true] = System.currentTimeMillis() + millis
                 other["lend_timeout", true] = System.currentTimeMillis() + millis
             }
-            player["borrowed_item", true] = def.lendId
+            player["borrowed_item", true] = lend
             other["lent_item", true] = item
             player["borrowed_from"] = other
             other["lent_to"] = player

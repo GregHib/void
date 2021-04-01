@@ -23,36 +23,36 @@ on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { 
         "Remove" -> 1
         "Remove-5" -> 5
         "Remove-10" -> 10
-        "Remove-All" -> player.offer.getCount(itemId).toInt()
+        "Remove-All" -> player.offer.getCount(item).toInt()
         else -> return@on
     }
-    remove(player, itemId, itemIndex, amount)
+    remove(player, item, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        remove(player, itemId, itemIndex, amount)
+        remove(player, item, itemIndex, amount)
     }
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
-    val item = itemDecoder.get(itemId)
+    val item = itemDecoder.get(item)
     player.message("${item.name} is priceless!", ChatType.GameTrade)
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
-    removeLend(player, itemId, 0)
+    removeLend(player, item, 0)
 }
 
-fun remove(player: Player, id: Int, slot: Int, amount: Int) {
+fun remove(player: Player, id: String, slot: Int, amount: Int) {
     if (!isTrading(player, amount)) {
         return
     }
     player.offer.move(player.inventory, id, amount, slot)
 }
 
-fun removeLend(player: Player, id: Int, slot: Int) {
+fun removeLend(player: Player, id: String, slot: Int) {
     if (!isTrading(player, 1)) {
         return
     }
