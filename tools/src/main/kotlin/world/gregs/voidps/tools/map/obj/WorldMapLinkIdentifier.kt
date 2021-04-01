@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.definition.load.ObjectDefinitionLoader
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.CollisionReader
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -59,7 +60,7 @@ object WorldMapLinkIdentifier {
         }
         val start = System.currentTimeMillis()
         val objCollision = GameObjectCollision(collisions)
-        val factory = GameObjectFactory(collisions)
+        val factory = GameObjectFactory(collisions, EventHandlerStore())
         val list = mutableListOf<GameObject>()
         for (region in regions) {
             val def = mapDecoder.getOrNull(region.id) ?: continue

@@ -14,7 +14,7 @@ import world.gregs.voidps.network.instruct.Walk
 import java.io.File
 
 class GraphLoader(
-    private val definitions: ObjectDefinitions
+    private val definitions: ObjectDefinitions?
 ) : TimedLoader<NavigationGraph>("ai nav graph") {
 
     private fun flatten(path: String, map: Map<String, Any>, process: (String, List<Map<String, Any>>) -> Unit): List<Map<String, Any>> {
@@ -76,7 +76,7 @@ class GraphLoader(
                 val x = tile[0]
                 val y = tile[1]
                 val option = map["option"] as String
-                val def = definitions.getOrNull(objectId) ?: return null
+                val def = definitions?.getOrNull(objectId) ?: return null
                 val optionIndex = def.options.indexOf(option) + 1
                 return InteractObject(objectId, x, y, optionIndex)
             }

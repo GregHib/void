@@ -1,16 +1,16 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.tools.map.view.graph.Area
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.graph.Link
-import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
 import java.awt.*
 import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private val nav: MutableNavigationGraph,
+    private val nav: NavigationGraph,
     private val area: AreaSet,
 ) {
 
@@ -33,7 +33,7 @@ class GraphDrawer(
 
     fun draw(g: Graphics) {
         g.color = linkColour
-        nav.adjacencyList.keys.forEach { node ->
+        nav.nodes.filterIsInstance<Tile>().forEach { node ->
             if (node.plane != view.plane) {
                 return@forEach
             }
@@ -46,13 +46,15 @@ class GraphDrawer(
             val height = view.mapToImageY(1)
             g.fillOval(viewX, viewY, width, height)
 
-            val links = nav.getLinks(node)
+            val links = nav.getAdjacent(node)
             links.forEachIndexed { index, link ->
-                if (link.start.plane != view.plane || link.end.plane != view.plane) {
+                val start = link.start as? Tile ?: return@forEachIndexed
+                val end = link.end as? Tile ?: return@forEachIndexed
+                if (start.plane != view.plane || end.plane != view.plane) {
                     return@forEachIndexed
                 }
-                val endX = view.mapToViewX(link.end.x) + width / 2
-                val endY = view.mapToViewY(view.flipMapY(link.end.y)) + height / 2
+                val endX = view.mapToViewX(end.x) + width / 2
+                val endY = view.mapToViewY(view.flipMapY(end.y)) + height / 2
                 val offset = width / 4
                 if (view.scale > 10) {
                     g.drawArrowHead(viewX + width / 2, viewY + height / 2, endX, endY, offset * 3, width / 2, index.toString())

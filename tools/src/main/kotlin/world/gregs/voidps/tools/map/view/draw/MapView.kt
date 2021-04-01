@@ -1,10 +1,14 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.nav.GraphLoader
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
-import world.gregs.voidps.tools.map.view.graph.MutableNavigationGraph
-import world.gregs.voidps.tools.map.view.interact.*
+import world.gregs.voidps.tools.map.view.interact.MouseDrag
+import world.gregs.voidps.tools.map.view.interact.MouseHover
+import world.gregs.voidps.tools.map.view.interact.MouseZoom
+import world.gregs.voidps.tools.map.view.interact.ResizeListener
 import world.gregs.voidps.tools.map.view.ui.OptionsPane
 import java.awt.Color
 import java.awt.Dimension
@@ -16,7 +20,7 @@ import javax.swing.SwingUtilities
 class MapView(private val graphFile: String, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val nav = MutableNavigationGraph.load(graphFile)
+    private val nav = GraphLoader(null).run(graphFile)
     private val areaSet = AreaSet.load(areaFile)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
@@ -27,9 +31,10 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
     private val graph = GraphDrawer(this, nav, areaSet)
-    private val click = MouseClick(this, nav, graph, area, areaSet)
+
+    //    private val click = MouseClick(this, nav, graph, area, areaSet)
     private val apc = AreaPointConnector(this, areaSet)
-    private val lc = LinkConnector(this, nav)
+//    private val lc = LinkConnector(this, nav)
 
     /*
         Offset from view 0, 0 to top left of world map
@@ -59,7 +64,7 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
             centreOn(3087, flipMapY(3500))
             options.updatePosition(3087, 3500, 0)
         }
-        addMouseListener(click)
+//        addMouseListener(click)
         addMouseListener(drag)
         addMouseMotionListener(drag)
         addMouseWheelListener(zoom)
@@ -69,7 +74,7 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
         GlobalScope.launch(Dispatchers.IO) {
             while (isActive) {
                 delay(10000)
-                MutableNavigationGraph.save(nav, graphFile)
+//                MutableNavigationGraph.save(nav, graphFile)
                 AreaSet.save(areaSet, areaFile)
             }
         }
@@ -144,15 +149,15 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
 
     fun resetDrag() {
         apc.reset()
-        lc.reset()
+//        lc.reset()
     }
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
         val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), plane)
-        val node = nav.getNodeOrNull(mapStartX, flipMapY(mapStartY), plane)
+        val node = nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), plane) }
         when {
             node != null -> {
-                lc.update(mapStartX, mapStartY, mouseX, mouseY)
+//                lc.update(mapStartX, mapStartY, mouseX, mouseY)
                 highlight.update(mouseX, mouseY)
             }
             point != null -> {
@@ -224,7 +229,7 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
         graph.draw(g)
         highlight.draw(g)
         apc.draw(g)
-        lc.draw(g)
+//        lc.draw(g)
         area.draw(g)
 
         if (debugBorder > 0) {

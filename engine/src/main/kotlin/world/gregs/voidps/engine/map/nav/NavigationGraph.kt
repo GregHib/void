@@ -14,6 +14,8 @@ class NavigationGraph(
 ) {
     // Temp for demo
     val tiles = adjacencyList.filterKeys { it is Tile }
+    val nodes: Set<Any>
+        get() = adjacencyList.keys
 
     val size = adjacencyList.size
 

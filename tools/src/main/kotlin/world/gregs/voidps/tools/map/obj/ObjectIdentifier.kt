@@ -47,7 +47,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
             ObjectIdentification(
                 "Ladder",
                 { interactiveOptions.minus(obj.getOptions()) },
-                setOf(
+                listOf(
                     sizeDifference,
                     differenceBetweenNames,
                     interactTileDistance,
@@ -60,7 +60,7 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
             ObjectIdentification(
                 "Stairs",
                 { interactiveOptions.minus(obj.getOptions()) },
-                setOf(
+                listOf(
                     sizeDifference,
                     differenceBetweenNames,
                     interactTileDistance,
@@ -73,14 +73,14 @@ class ObjectIdentifier(private val linker: ObjectLinker, private val worldMapLin
             ObjectIdentification(
                 "World Map Link",
                 { worldMapLinks },
-                setOf(
+                listOf(
                     distanceToTile
                 )
             ),
             ObjectIdentification(
                 "Wall",// Or one way ladder
                 { linker.getAllTiles(obj) },
-                setOf(
+                listOf(
                     wallOptions,
                     isOppositeTile,
                     isPopulatedPlane
