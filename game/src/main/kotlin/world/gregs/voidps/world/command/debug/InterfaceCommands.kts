@@ -25,6 +25,7 @@ on<Command>({ prefix == "inter" }) { player: Player ->
         if (id == -1) {
             player.client?.closeInterface(parent, index)
         } else {
+            println("Open $parent $index $id")
             player.client?.openInterface(false, parent, index, id)
         }
     }
@@ -43,6 +44,11 @@ on<Command>({ prefix == "show" }) { player: Player ->
 on<Command>({ prefix == "sendItem" }) { player: Player ->
     val parts = content.split(" ")
     player.interfaces.sendItem(parts[0], parts[1], parts[2].toInt(), parts.getOrNull(3)?.toInt() ?: 1)
+}
+
+on<Command>({ prefix == "sendText" }) { player: Player ->
+    val parts = content.split(" ")
+    player.interfaces.sendText(parts[0], parts[1], content.removePrefix("${parts[0]} ${parts[1]} "))
 }
 
 on<Command>({ prefix == "setting" }) { player: Player ->
