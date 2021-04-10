@@ -969,7 +969,7 @@ toplevel:
   id: 548
   type: full_screen
   components:
-    logout: 182
+    logout: 181
     adviser: 184
     compass: 178
     world_map: 180
