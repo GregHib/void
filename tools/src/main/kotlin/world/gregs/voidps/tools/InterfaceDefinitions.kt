@@ -13,23 +13,11 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        println(decoder.size)
-        var maxId = 0
-        var maxIndex = 0
-        for (i in decoder.indices) {
+        for (i in listOf(620)) {
             val def = decoder.getOrNull(i) ?: continue
-            var index = 0
             for ((id, comp) in def.components ?: continue) {
-                if (id > maxId) {
-                    println("${comp.id} $id ${comp.options?.toList()}")
-                    maxId = id
-                }
-                if(index > maxIndex) {
-                    maxIndex = index
-                }
-                index++
+                println("${comp.id} $id ${comp}")
             }
         }
-        println("Max component id $maxId index: $maxIndex")
     }
 }

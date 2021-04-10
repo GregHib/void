@@ -883,6 +883,12 @@ open_url:
 
 item_info:
   id: 449
+  type: overlay_tab
+  components:
+    exit: 1
+    info: 12
+    sprite: 13
+    name: 14
 
 multi_var3:
   id: 451
@@ -990,6 +996,7 @@ toplevel:
     emotes: 103
     music_player: 104
     notes: 105
+    logout_tab: 220
     wilderness_level: 9
 
 photo_booth:
@@ -1130,9 +1137,34 @@ unknown_side1:
 
 shop:
   id: 620
+  type: main_screen
+  components:
+    title: 20
+    free_options:
+      id: 26
+      container: inventory
+      options:
+        Info: 0
+        Take-1: 1
+        Take-5: 2
+        Take-10: 3
+        Take-50: 4
+        Examine: 9
+    stock_options:
+      id: 25
+      container: inventory
+      options:
+        Info: 0
+        Buy-1: 1
+        Buy-5: 2
+        Buy-10: 3
+        Buy-50: 4
+        Buy-500: 5
+        Examine: 9
 
-shop_template_side:
+shop_side:
   id: 621
+  type: overlay_tab
 
 stake_confirm:
   id: 626

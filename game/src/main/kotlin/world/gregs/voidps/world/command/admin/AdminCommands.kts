@@ -125,8 +125,6 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 
 on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
-        "stairs" -> {
-            get<Stairs>().load()
-        }
+        "stairs" -> get<Stairs>().load()
     }
 }

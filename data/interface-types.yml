@@ -97,6 +97,10 @@ notes_tab:
   fixedIndex: 217
   resizeIndex: 101
 
+overlay_tab:
+  fixedIndex: 197
+  resizeIndex: 83
+
 logout_tab:
   fixedIndex: 220
   resizeIndex: 104
