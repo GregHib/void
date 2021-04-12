@@ -38,7 +38,7 @@ internal class DestroyTest : KoinMock() {
         every { player.open(any()) } returns true
         every { player.interfaces } returns interfaces
         declareMock<ItemDefinitions> {
-            every { get(1234) } returns ItemDefinition(name = "magic")
+            every { this@declareMock.get("1234") } returns ItemDefinition(id = 1234, name = "magic")
         }
     }
 
@@ -48,7 +48,7 @@ internal class DestroyTest : KoinMock() {
             destroy("""
                 question
                 lines
-            """, 1234)
+            """, "1234")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -65,7 +65,7 @@ internal class DestroyTest : KoinMock() {
         coEvery { context.await<Boolean>(any()) } returns false
         every { player.open("confirm_destroy") } returns false
         manager.start(context) {
-            destroy("question", 1234)
+            destroy("question", "1234")
         }
 
         runBlocking(Contexts.Game) {
@@ -80,7 +80,7 @@ internal class DestroyTest : KoinMock() {
     fun `Destroy returns boolean`() {
         coEvery { context.await<Boolean>(any()) } returns true
         manager.start(context) {
-            assertTrue(destroy("question", 1234))
+            assertTrue(destroy("question", "1234"))
         }
     }
 }
