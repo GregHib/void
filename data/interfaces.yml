@@ -1468,7 +1468,7 @@ bank:
 
 bank_side:
   id: 763
-  type: inventory_tab
+  type: overlay_tab
   components:
     container:
       id: 0
