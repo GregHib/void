@@ -64,7 +64,7 @@ on<InterfaceOpened>({ name == "bank" }) { player: Player ->
             player.interfaceOptions.unlockAll("bank_side", "container", 0 until 28)
             awaitInterface(name)
         } finally {
-            player.open("inventory")
+            player.close("bank_side")
             player.close("bank")
         }
     }
