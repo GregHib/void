@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.colourOverlay
 import world.gregs.voidps.engine.entity.character.update.visual.flagColourOverlay
 
-data class Colour(val colour: Int, val delay: Int, val duration: Int) : CharacterEffect("colour") {
+data class ColourOverlay(val colour: Int, val delay: Int, val duration: Int) : CharacterEffect("colour") {
 
     override fun onPlayerStart(player: Player) {
         set(player, colour, delay, duration)
