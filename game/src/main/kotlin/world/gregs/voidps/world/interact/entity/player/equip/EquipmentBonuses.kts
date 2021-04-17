@@ -18,7 +18,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANC
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.func.toPascalCase
 import world.gregs.voidps.utility.inject
 import java.math.RoundingMode
 import java.text.DecimalFormat
@@ -97,63 +96,55 @@ fun updateEmote(player: Player) {
 fun updateStats(player: Player, id: String, add: Boolean) {
     val item = definitions.getOrNull(id) ?: return
     names.forEach { (name, key) ->
-        val value = item.getInt(key.toLong(), 0)
+        val value = item[key, 0]
         if (value > 0) {
-            val current = player[name, 0]
+            val current = player[key, 0]
             val modified = if (add) {
                 current + value
             } else {
                 current - value
             }
-            player[name] = modified
-            sendBonus(player, name, modified)
+            player[key] = modified
+            sendBonus(player, name, key, modified)
         }
     }
 }
 
-fun sendBonus(player: Player, name: String, value: Int) {
-    player.interfaces.sendText("equipment_bonuses", name, "${toDisplayName(name, false)}: ${format(name, value, true)}")
+fun sendBonus(player: Player, name: String, key: String, value: Int) {
+    player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
 }
 
 fun updateStats(player: Player) {
-    names.forEach { (name, _) ->
-        player[name] = 0
-        sendBonus(player, name, 0)
+    names.forEach { (name, key) ->
+        player[key] = 0
+        sendBonus(player, name, key, 0)
     }
     player.equipment.getItems().forEach {
-        if(it.isNotBlank()) {
+        if (it.isNotBlank()) {
             updateStats(player, it, true)
         }
     }
 }
 
-fun toDisplayName(name: String, shorten: Boolean): String {
-    var value = name.replace("_def", "").replace("_", " ").toPascalCase()
-    if (shorten) {
-        value = value.replace("Ranged Strength", "Ranged Str.")
-    }
-    return value
-}
-
 val names = listOf(
-    "stab" to 0,
-    "slash" to 1,
-    "crush" to 2,
-    "magic" to 3,
-    "range" to 4,
-    "stab_def" to 5,
-    "slash_def" to 6,
-    "crush_def" to 7,
-    "magic_def" to 8,
-    "ranged_def" to 9,
-    "summoning" to 417,
-    "absorb_melee" to 967,
-    "absorb_magic" to 969,
-    "absorb_ranged" to 968,
-    "strength" to 641,
-    "ranged_strength" to 643,
-    "prayer" to 11,
-    "magic_damage" to 685
+    "Stab" to "stab",
+    "Slash" to "slash",
+    "Crush" to "crush",
+    "Magic" to "magic",
+    "Range" to "range",
+    "Stab" to "stab_def",
+    "Slash" to "slash_def",
+    "Crush" to "crush_def",
+    "Magic" to "magic_def",
+    "Ranged" to "range_def",
+    "Summoning" to "summoning_def",
+    "Absorb Melee" to "absorb_melee",
+    "Absorb Magic" to "absorb_magic",
+    "Absorb Ranged" to "absorb_range",
+    "Strength" to "str",
+    "Ranged Strength" to "ranged_str",
+    "Prayer" to "prayer",
+    "Magic Damage" to "magic_damage"
 )
 
 /*
@@ -182,14 +173,14 @@ fun showStats(player: Player, item: ItemDefinition) {
 
     fun appendLine(name: String, value: String) {
         titles.append("<br>")
-        types.append(toDisplayName(name, true), if (first) ":                 " else ":", "<br>")
+        types.append(name.replace("Ranged Strength", "Ranged Str."), if (first) ":                 " else ":", "<br>")
         stats.append(value, "<br>")
         first = false
     }
 
     fun addValue(index: Int) {
         val (name, key) = names[index]
-        val value = getValue(name, item, key)
+        val value = EquipBonuses.getValue(item, key)
         if (value != null) {
             appendLine(name, value)
         }
@@ -227,21 +218,4 @@ fun showStats(player: Player, item: ItemDefinition) {
 
 val df = DecimalFormat("0.0").apply {
     roundingMode = RoundingMode.FLOOR
-}
-
-fun getValue(name: String, item: ItemDefinition, key: Int): String? {
-    val value = item.getInt(key.toLong(), 0)
-    if (value == 0) {
-        return null
-    }
-
-    return format(name, value, false)
-}
-
-fun format(name: String, value: Int, bonuses: Boolean): String? {
-    return when (name) {
-        "magic_damage", "absorb_melee", "absorb_magic", "absorb_ranged" -> "${if (value >= 0) "+" else "-"}${value}%"
-        "strength", "ranged_strength" -> "${if (value > 0) "+" else if (value < 0) "-" else ""}${value / 10.0}"
-        else -> if(bonuses) "${if (value >= 0) "+" else "-"}${value}" else value.toString()
-    }
 }

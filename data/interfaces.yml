@@ -1237,24 +1237,24 @@ equipment_bonuses:
         Remove: 0
         Stats: 8
         Examine: 9
-    stab: 31
-    slash: 32
-    crush: 33
-    magic: 34
-    range: 35
-    stab_def: 36
-    slash_def: 37
-    crush_def: 38
-    magic_def: 39
-    ranged_def: 40
-    summoning: 41
-    absorb_melee: 42
-    absorb_magic: 43
-    absorb_ranged: 44
-    strength: 45
-    ranged_strength: 46
-    prayer: 47
-    magic_damage: 48
+    stab: 30
+    slash: 31
+    crush: 32
+    magic: 33
+    range: 34
+    stab_def: 35
+    slash_def: 36
+    crush_def: 37
+    magic_def: 38
+    range_def: 39
+    summoning_def: 40
+    absorb_melee: 41
+    absorb_magic: 42
+    absorb_range: 43
+    str: 44
+    ranged_str: 45
+    prayer: 46
+    magic_damage: 47
     bank: 49
     stats: 52
     close: 75
