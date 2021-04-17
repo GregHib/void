@@ -1,5 +1,5 @@
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.effect.Colour
+import world.gregs.voidps.engine.entity.character.effect.ColourOverlay
 import world.gregs.voidps.engine.entity.character.effect.Transform
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,7 +45,7 @@ on<Command>({ prefix == "npcanim" }) { player: Player ->
 
 on<Command>({ prefix == "npcoverlay" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.effects.add(Colour(-2108002746, 10, 100))
+    npc.effects.add(ColourOverlay(-2108002746, 10, 100))
 }
 
 on<Command>({ prefix == "npcchat" }) { player: Player ->
