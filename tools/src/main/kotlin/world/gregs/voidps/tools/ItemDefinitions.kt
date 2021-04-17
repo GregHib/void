@@ -16,9 +16,7 @@ object ItemDefinitions {
         println(decoder.size)
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-            if(def.name.contains("chameleon", true)) {
-                println("$i ${def.name}")
-            }
+            println("$i ${def.name}")
         }
     }
 }

@@ -373,7 +373,6 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             if (uid.contains("_puppy")) {
                 content.selectExamine(uid, 1)
             }
-            replaceGameName(extras)
             examines.forEach { (uid, index) ->
                 content.selectExamine(uid, index)
             }
@@ -491,17 +490,6 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
                 selections.forEachIndexed { index, any ->
                     second[indexSuffix(name, index)] = any
                 }
-            }
-        }
-    }
-
-    private fun replaceGameName(extras: MutableMap<String, Any>) {
-        forAll {
-            if (extras.containsKey("examine$it")) {
-                extras["examine$it"] = (extras.getValue("examine$it") as String).replace("RuneScape", "Dusk")
-            }
-            if (extras.containsKey("destroy$it")) {
-                extras["destroy$it"] = (extras.getValue("destroy$it") as String).replace("RuneScape", "Dusk")
             }
         }
     }

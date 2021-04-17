@@ -219,7 +219,6 @@ internal object RunescapeWikiModifier {
         value = value.replace(regex2, "")
         value = value.replace("(The Blood Pact)", "")
         value = value.replace("(The Curse of Arrav)", "")
-        value = value.replace("RuneScape", "Dusk")
         value = value.replace("shieldbow; I", "longbow; I")
         value = value.replace("Ammunition for shieldbows", "Ammunition for longbows")
         if(value.contains("(") && !examineExceptions.any { value.contains(it, true) }) {

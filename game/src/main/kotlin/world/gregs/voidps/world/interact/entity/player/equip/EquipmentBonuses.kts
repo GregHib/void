@@ -142,7 +142,7 @@ val names = listOf(
     "Absorb Magic" to "absorb_magic",
     "Absorb Ranged" to "absorb_range",
     "Strength" to "str",
-    "Ranged Strength" to "ranged_str",
+    "Ranged Strength" to "range_str",
     "Prayer" to "prayer",
     "Magic Damage" to "magic_damage"
 )
