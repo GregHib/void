@@ -53,7 +53,7 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                     "AKA$suffix" -> extras.putIfAbsent(key.removeSuffix(suffix).toLowerCase(), removeLinks(value as String))
                     "tradeable$suffix", "edible$suffix", "bankable$suffix", "stacksinbank$suffix" -> {
                         val text = value as String
-                        extras.putIfAbsent(key.removeSuffix(suffix), text.equals("yes", true))
+                        extras.putIfAbsent(key.removeSuffix(suffix).replace("stacksinbank", "bank_stacks"), text.equals("yes", true))
                     }
                     "examine$suffix" -> {
                         val text = removeLinks(value as String).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()

@@ -15,7 +15,7 @@ object EquipBonuses {
     fun format(key: String, value: Int, bonuses: Boolean): String {
         return when (key) {
             "magic_damage", "absorb_melee", "absorb_magic", "absorb_range" -> "${if (value >= 0) "+" else "-"}${value}%"
-            "str", "ranged_str" -> "${if (value > 0) "+" else if (value < 0) "-" else ""}${value / 10.0}"
+            "str", "range_str" -> "${if (value > 0) "+" else if (value < 0) "-" else ""}${value / 10.0}"
             else -> if(bonuses) "${if (value >= 0) "+" else "-"}${value}" else value.toString()
         }
     }
