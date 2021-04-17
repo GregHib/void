@@ -35,7 +35,8 @@ object Protocol {
     const val FLOOR_ITEM_ADD = 63
     const val SCRIPT = 8
     const val LOGOUT = 55
-    const val CLIENT_VARC_STR = 53
+    const val CLIENT_VARC_STR_LARGE = 53
+    const val CLIENT_VARC_STR = 92
     const val INTERFACE_MODEL = 23
     const val FLOOR_ITEM_REVEAL = 109
     const val PROJECTILE_ADD = 15
