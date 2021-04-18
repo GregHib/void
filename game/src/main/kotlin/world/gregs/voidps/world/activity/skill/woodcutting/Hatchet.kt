@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
+import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
 @Suppress("EnumEntryName")
 enum class Hatchet(val index: Int) {
@@ -47,7 +48,7 @@ enum class Hatchet(val index: Int) {
         get() = when (this) {
             Inferno_Adze -> 61
             Sacred_Clay_Hatchet, Volatile_Clay_Hatchet -> 50
-            else -> get<ItemDefinitions>().get(id).getParam(750L, 0)
+            else -> get<ItemDefinitions>().get(id).requiredLevel()
         }
 
     companion object {
