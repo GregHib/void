@@ -8,29 +8,20 @@ import java.util.*
 data class Container(
     @JsonIgnore
     val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
-    @JsonIgnore
-    var stackMode: StackMode = StackMode.Normal,
     private val items: Array<String>,
     private val amounts: IntArray,
-    @JsonIgnore
-    val minimumStack: Int = 0
 ) {
 
     @JsonIgnore
+    var id: Int = -1
+    @JsonIgnore
+    var capacity: Int = items.size
+    @JsonIgnore
+    var stackMode: StackMode = StackMode.Normal
+    @JsonIgnore
+    var minimumStack: Int = 0
+    @JsonIgnore
     lateinit var definitions: ItemDefinitions
-
-    constructor(
-        capacity: Int,
-        stackMode: StackMode = StackMode.Normal,
-        listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
-        minimumStack: Int = 0,
-    ) : this(
-        listeners,
-        stackMode,
-        Array(capacity) { "" },
-        IntArray(capacity) { minimumStack },
-        minimumStack
-    )
 
     @JsonIgnore
     private var updates = mutableListOf<ContainerModification>()

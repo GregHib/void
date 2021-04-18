@@ -2,7 +2,6 @@ package world.gregs.voidps.tools
 
 import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.Cache
-import world.gregs.voidps.cache.Configs
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
@@ -20,16 +19,16 @@ object ClientScriptDefinitions {
         val decoder: ClientScriptDecoder = koin.get()
         val validContexts = arrayOf(10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 73, 76)
         for (i in decoder.indices) {
-            if (i != 1186) {
+            if (i != 2193) {
                 continue
             }
             val def = decoder.getOrNull(i) ?: continue
             println(def)
-            for(o in def.instructions.indices) {
-                if(def.intOperands!![o] == 6448) {
-                    println("Found ${def.instructions[o]}")
-                }
-            }
+//            for(o in def.instructions.indices) {
+//                if(def.intOperands!![o] == 6448) {
+//                    println("Found ${def.instructions[o]}")
+//                }
+//            }
 //            if (def.stringOperands?.contains("Level 21 Agility") == true) {
 //                println(def)
 //            }

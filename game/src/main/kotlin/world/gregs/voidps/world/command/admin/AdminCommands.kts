@@ -18,6 +18,7 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import java.util.concurrent.atomic.AtomicInteger
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
@@ -127,4 +128,8 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "stairs" -> get<Stairs>().load()
     }
+}
+
+on<Command>({ prefix == "shop" }) { player: Player ->
+    player.events.emit(OpenShop(content))
 }

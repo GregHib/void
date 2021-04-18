@@ -24,4 +24,8 @@ sealed class Colour(val int: Int) {
         builder.append("<col=$string>").append(text).append("</col>")
         return builder.toString()
     }
+
+    companion object {
+        fun bool(boolean: Boolean) = if (boolean) Green else Red
+    }
 }

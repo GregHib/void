@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
@@ -31,7 +32,7 @@ on<ContainerAction>({ container == "inventory" && (option == "Wield" || option =
 
 on<ContainerAction>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
     if (!player.equipment.move(slot, player.inventory) && player.equipment.result == ContainerResult.Full) {
-        player.message("You don't have enough inventory space.")
+        player.inventoryFull()
     }
 }
 

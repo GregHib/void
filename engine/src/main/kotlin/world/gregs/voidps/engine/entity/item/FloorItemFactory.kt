@@ -27,16 +27,6 @@ class FloorItemFactory(
     private val store: EventHandlerStore,
     private val batcher: ChunkBatcher
 ) {
-    /**
-     * Spawns a floor item
-     * Note: Not concerned with where the item is coming from
-     * @param id The id of the item to spawn
-     * @param amount The stack size of the item to spawn
-     * @param tile The tile on which to spawn the item
-     * @param revealTicks Number of ticks before the item is revealed to all
-     * @param disappearTicks Number of ticks before the item is removed
-     * @param owner The index of the owner of the item
-     */
     fun spawn(
         id: Int,
         amount: Int,
@@ -63,6 +53,16 @@ class FloorItemFactory(
         return item
     }
 
+    /**
+     * Spawns a floor item
+     * Note: Not concerned with where the item is coming from
+     * @param name The id of the item to spawn
+     * @param amount The stack size of the item to spawn
+     * @param tile The tile on which to spawn the item
+     * @param revealTicks Number of ticks before the item is revealed to all
+     * @param disappearTicks Number of ticks before the item is removed
+     * @param owner The index of the owner of the item
+     */
     fun spawn(
         name: String,
         amount: Int,
