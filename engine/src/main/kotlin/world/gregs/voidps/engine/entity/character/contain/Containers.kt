@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.FloorItemFactory
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
@@ -11,10 +12,13 @@ import world.gregs.voidps.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {
     val definitions: ContainerDefinitions = get()
-    val containerId = definitions.getId(name)
-    val itemDefs: ItemDefinitions = get()
     val container = container(name, definitions.get(name), secondary)
-    sendContainerItems(containerId, container.getItems().map { itemDefs.getId(it) }.toIntArray(), container.getAmounts(), secondary)
+    sendContainer(container)
+}
+
+fun Player.sendContainer(container: Container, secondary: Boolean = false) {
+    val itemDefs: ItemDefinitions = get()
+    sendContainerItems(container.id, container.getItems().map { itemDefs.getId(it) }.toIntArray(), container.getAmounts(), secondary)
 }
 
 fun Player.hasContainer(name: String): Boolean {
@@ -34,15 +38,20 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
 }
 
 fun Player.container(name: String, detail: ContainerDefinition, secondary: Boolean = false): Container {
+    val itemDefs: ItemDefinitions = get()
     return containers.getOrPut(if (secondary) "_$name" else name) {
+        val ids = detail.ids
+        val amounts = detail.amounts
         Container(
-            capacity = get<ContainerDefinitions>().get(detail.id).length,
-            listeners = mutableListOf()
+            items = ids?.map { itemDefs.getName(it) }?.toTypedArray() ?: Array(detail.length) { "" },
+            amounts = amounts ?: IntArray(detail.length),
         )
     }.apply {
         if (listeners.isEmpty()) {
+            id = detail.id
+            capacity = detail.length
             stackMode = detail["stack", StackMode.Normal]
-            definitions = get()
+            definitions = itemDefs
             listeners.add { updates ->
                 sendInterfaceItemUpdate(detail.id, updates.map { Triple(it.index, definitions.getIdOrNull(it.item) ?: -1, it.amount) }, secondary)
             }
@@ -59,10 +68,39 @@ val Player.equipment: Container
 val Player.beastOfBurden: Container
     get() = container("beast_of_burden")
 
-fun Player.purchase(amount: Int): Boolean {
-    if (inventory.remove("coins", amount)) {
+fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
+    if (inventory.remove(currency, amount)) {
         return true
     }
-    message("You don't have enough coins.")
+    message("You don't have enough ${currency.replace("_", " ")}.")
+    return false
+}
+
+fun Player.inventoryFull() = message("You don't have enough inventory space.")
+
+/**
+ * Adds [item] to [inventory] and drops excess
+ */
+fun Player.give(item: String, amount: Int): Boolean {
+    inventory.add(item, amount)
+    when (inventory.result) {
+        ContainerResult.Success -> return true
+        ContainerResult.Overflow -> {
+            val index = inventory.indexOf(item)
+            val current = inventory.getAmount(index)
+            val overflow = ((current.toLong() + amount) - Int.MAX_VALUE).toInt()
+            val fill = Int.MAX_VALUE - current
+            if ((fill == 0 || inventory.add(item, fill)) && overflow > 0) {
+                val factory: FloorItemFactory = get()
+                factory.spawn(item, overflow, tile, -1, -1, this)
+            } else {
+                return false
+            }
+        }
+        ContainerResult.Full -> {
+            val factory: FloorItemFactory = get()
+            factory.spawn(item, amount, tile, -1, -1, this)
+        }
+    }
     return false
 }

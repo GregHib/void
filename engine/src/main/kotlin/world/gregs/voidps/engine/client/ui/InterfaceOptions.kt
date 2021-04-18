@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.network.encode.sendInterfaceSettings
 import world.gregs.voidps.network.encode.sendScript
+import kotlin.math.min
 
 class InterfaceOptions(
     private val player: Player,
@@ -51,7 +52,8 @@ class InterfaceOptions(
         val comp = details.getComponent(name, component)
         val script = if (comp.primaryContainer) 150 else 695
         val id = (comp.parent shl 16) or comp.id
-        val options = get(name, component).slice(0 until 9).toTypedArray()
+        val all = get(name, component)
+        val options = all.copyOfRange(0, min(9, all.size))
         val container = containerDefinitions.get(comp.container)
         if(container.id != -1) {
             player.sendScript(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options)

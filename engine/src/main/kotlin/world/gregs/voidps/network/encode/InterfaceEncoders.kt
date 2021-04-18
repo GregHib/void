@@ -167,6 +167,23 @@ fun Player.sendInterfaceSettings(
 }
 
 /**
+ * Sends vertical height to a interfaces' component
+ * @param id The id of the parent window
+ * @param component The index of the component
+ * @param settings The settings hash
+ */
+fun Player.sendInterfaceScroll(
+    id: Int,
+    component: Int,
+    settings: Int
+) {
+    client?.send(Protocol.INTERFACE_SCROLL_VERTICAL, 6) {
+        writeIntInverseMiddle(id shl 16 or component)
+        writeShortAdd(settings)
+    }
+}
+
+/**
  * Sends a sprite to a interface component
  * @param id The id of the parent interface
  * @param component The index of the component

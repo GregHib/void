@@ -889,6 +889,13 @@ item_info:
     info: 12
     sprite: 13
     name: 14
+    button:
+      id: 21
+      options:
+        Buy-1: 0
+        Buy-5: 1
+        Buy-10: 2
+        Buy-50: 3
 
 multi_var3:
   id: 451
@@ -1140,7 +1147,7 @@ shop:
   type: main_screen
   components:
     title: 20
-    free_options:
+    sample:
       id: 26
       container: inventory
       options:
@@ -1150,7 +1157,7 @@ shop:
         Take-10: 3
         Take-50: 4
         Examine: 9
-    stock_options:
+    stock:
       id: 25
       container: inventory
       options:
@@ -1165,6 +1172,17 @@ shop:
 shop_side:
   id: 621
   type: overlay_tab
+  components:
+    container:
+      id: 0
+      container: inventory
+      options:
+        Value: 0
+        Sell 1: 1
+        Sell 5: 2
+        Sell 10: 3
+        Sell 50: 4
+        Examine: 5
 
 stake_confirm:
   id: 626
@@ -1252,7 +1270,7 @@ equipment_bonuses:
     absorb_magic: 42
     absorb_range: 43
     str: 44
-    ranged_str: 45
+    range_str: 45
     prayer: 46
     magic_damage: 47
     bank: 49

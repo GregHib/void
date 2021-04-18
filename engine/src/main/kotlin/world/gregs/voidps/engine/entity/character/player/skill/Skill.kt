@@ -29,6 +29,8 @@ enum class Skill {
 
     val combat: Boolean = ordinal <= 6 || ordinal == 23
 
+    fun maximum(): Int = if (this == Dungeoneering) 120 else 99
+
     companion object {
         val all = values()
         val count = all.size

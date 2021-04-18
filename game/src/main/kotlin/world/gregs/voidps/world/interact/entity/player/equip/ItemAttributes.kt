@@ -17,6 +17,10 @@ fun ItemDefinition.requiredLevel(index: Int = 0): Int = getInt(750L + (index * 2
 
 fun ItemDefinition.requiredSkill(index: Int = 0): Skill? = (params?.get(749L + (index * 2)) as? Int)?.let { Skill.all[it] }
 
+fun ItemDefinition.getMaxedSkill(): Skill? = (params?.get(277) as? Int)?.let { Skill.all[it] }
+
+fun ItemDefinition.hasRequirements(): Boolean = params?.contains(750L) == true || params?.contains(277L) == true
+
 fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
     for (i in 0 until 10) {
         val skill = item.requiredSkill(index) ?: break
@@ -25,10 +29,8 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
             return false
         }
     }
-    val maxed = item.getInt(277, -1)
-    if (maxed != -1) {
-        val skill = Skill.all[maxed]
-        if (!has(skill, if (item.name.startsWith("Dungeoneering")) 120 else 99)) {
+    item.getMaxedSkill()?.let { skill ->
+        if (!has(skill, skill.maximum())) {
             return false
         }
     }
@@ -45,4 +47,4 @@ fun ItemDefinition.isSkillCape(): Boolean = getInt(258, -1) == 1
 
 fun ItemDefinition.isTrimmedSkillCape(): Boolean = getInt(259, -1) == 1
 
-fun ItemDefinition.questUnlockStage(): Int = getInt(743, -1)
+fun ItemDefinition.quest(): Int = getInt(743, -1)

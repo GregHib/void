@@ -235,6 +235,7 @@ ifabas_general_store:
   id: 227
 ranging_guild_ticket_exchange:
   id: 228
+  currency: archery_ticket
 magic_guild_store_-_mystic_robes:
   id: 232
 port_phasmatys_general_store:
@@ -317,18 +318,23 @@ lletya_food_store:
   id: 304
 gabootys_tai_bwo_wannai_cooperative:
   id: 305
+  currency: trading_sticks
 gabootys_tai_bwo_wannai_drinky_store:
   id: 306
+  currency: trading_sticks
 ore_seller:
   id: 318
 armour_store:
   id: 319
 tzhaar-hur-tels_equipment_store:
   id: 325
+  currency: tokkul
 tzhaar-hur-leks_ore_and_gem_store:
   id: 326
-void_knight_magic_store:
+  currency: tokkul
+tzhaar-mej-rohs_rune_store:
   id: 327
+  currency: tokkul
 white_knight_master_armoury:
   id: 333
 shop_of_distaste:
@@ -359,6 +365,8 @@ fortunatos_fine_wine:
   id: 385
 void_knight_archery_store:
   id: 387
+void_knight_magic_store:
+  id: 388
 void_knight_general_store:
   id: 389
 miscellanian_clothes_shop:
@@ -381,6 +389,7 @@ nardoks_bone_weapons:
   id: 413
 honest_jimmys_house_of_stuff:
   id: 414
+  currency: pieces_of_eight
 moon_clan_general_store:
   id: 416
 moon_clan_fine_clothes:
@@ -397,6 +406,7 @@ proselyte_temple_knight_armoury:
   id: 444
 castle_wars_ticket_exchange:
   id: 447
+  currency: castle_wars_ticket
 martin_thwaits_lost_and_found_skillcape:
   id: 455
 martin_thwaits_lost_and_found_trimmed:
