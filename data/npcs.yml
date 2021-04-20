@@ -60,4 +60,9 @@
     - name: hans
     - name: rat
       limit: 2
-
+- name: Bobs brilliant axes
+  area:
+    x: [ 3227, 3233 ]
+    y: [ 3201, 3205 ]
+  spawns:
+    - name: bob

@@ -31,7 +31,7 @@ data class SpawnArea(
             name = name,
             area = area.let {
                 if (it.x.size <= 2) {
-                    Rectangle(it.x.first(), it.y.first(), it.x.last(), it.y.last())
+                    Rectangle(it.x.first(), it.y.first(), it.x.last(), it.y.last(), it.plane)
                 } else {
                     Polygon(it.x, it.y, it.plane)
                 }

@@ -148,3 +148,7 @@ giant_spider:
   style: "stab"
   examine: "I think this spider has been genetically modified."
   category: "spider"
+bob:
+  id: 519
+  race: "Human"
+  examine: "An expert on axes."
