@@ -45,7 +45,8 @@ data class Transform(val npc: Int) : CharacterEffect("transform") {
     override fun onPlayerFinish(player: Player) {
         player.emote = 1426
         player.size = Size.TILE
-        player.movement.traversal = get<SmallTraversal>()
+        val collisions: Collisions = get()
+        player.movement.traversal = SmallTraversal(TraversalType.Land, false, collisions)
         player.appearance.apply {
             transform = -1
             size = Size.TILE.width
