@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.map.lumbridge
+
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.contain.inventory
