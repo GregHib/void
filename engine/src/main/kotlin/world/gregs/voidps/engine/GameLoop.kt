@@ -1,14 +1,11 @@
 package world.gregs.voidps.engine
 
 import com.github.michaelbull.logging.InlineLogger
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.yield
-import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -85,19 +82,29 @@ class GameLoop(
 /**
  * Executes a task after [ticks]
  */
-fun delay(ticks: Int = 0, task: (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
-    repeat(ticks) {
-        GameLoop.await()
+fun delay(ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
+    if (loop) {
+        while (isActive) {
+            repeat(ticks) {
+                GameLoop.await()
+            }
+            task.invoke(GameLoop.tick)
+        }
+    } else {
+        repeat(ticks) {
+            GameLoop.await()
+        }
+        task.invoke(GameLoop.tick)
     }
-    task.invoke(GameLoop.tick)
 }
 
 /**
- * Executes a task after [ticks], cancelling if player logs out FIXME - use player events
+ * Executes a task after [ticks], cancelling if player logs out
  */
-fun delay(player: Player, ticks: Int = 0, task: (Long) -> Unit) = delay(ticks) {
-    if (player.action.type != ActionType.Logout) {
-        task.invoke(GameLoop.tick)
+fun delay(player: Player, ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) {
+    val job = delay(ticks, loop, task)
+    player.events.on<Player, Unregistered> {
+        job.cancel()
     }
 }
 
