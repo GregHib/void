@@ -1,5 +1,6 @@
 bobs_brilliant_axes:
   id: 1
+  shop: true
 horviks_armour_shop:
   id: 2
 al_kharid_general_store:
@@ -499,6 +500,7 @@ lumbridge_general_store_sample:
   id: 553
 bobs_brilliant_axes_sample:
   id: 554
+  shop: true
 lowes_archery_emporium_sample:
   id: 556
 auburys_rune_shop_sample:
