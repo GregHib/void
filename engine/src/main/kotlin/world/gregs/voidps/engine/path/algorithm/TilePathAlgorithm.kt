@@ -8,10 +8,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
- */
 interface TilePathAlgorithm : PathAlgorithm<TileTargetStrategy, TileTraversalStrategy> {
 
     /**

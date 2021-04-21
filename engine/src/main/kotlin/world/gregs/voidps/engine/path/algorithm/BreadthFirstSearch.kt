@@ -15,8 +15,6 @@ import kotlin.math.min
  * Searches every tile breadth-first to find the target
  * Closest reachable tile to target is returned if target is unreachable
  * Used by players
- * @author GregHib <greg@gregs.world>
- * @since May 20, 2020
  */
 class BreadthFirstSearch(
     private val pool: ObjectPool<BreadthFirstSearchFrontier>,

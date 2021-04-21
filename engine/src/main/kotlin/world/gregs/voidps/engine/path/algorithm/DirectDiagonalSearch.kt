@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 /**
  * Moves in any direction towards the target until blocked by obstacle or reaches
  * Used for following and combat.
- * @author GregHib <greg@gregs.world>
- * @since May 20, 2020
  */
 class DirectDiagonalSearch : TilePathAlgorithm {
 
