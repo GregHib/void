@@ -34,13 +34,13 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
                     Great! I buy and sell pickaxes and hatchets. There are
                     plenty to choose from, and I've some free samples too.
                     Take your pick... or hatchet.
-                    """, Expression.Laugh)
+                """, Expression.Laugh)
                 player.events.emit(OpenShop("bobs_brilliant_axes"))
             }
             3 -> npc("""
-                Of course I can, though the material may cost you.
-                Just hand me the item and I'll have a look.
-            """)
+                    Of course I can, though the material may cost you.
+                    Just hand me the item and I'll have a look.
+                """)
         }
     }
 }
@@ -52,7 +52,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Trade" }) { player: Player -
 
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
-        if(!repairable(item)) {
+        if (!repairable(item)) {
             npc("Sorry friend, but I can't do anything with that.", Expression.Disregard)
             return@talkWith
         }
