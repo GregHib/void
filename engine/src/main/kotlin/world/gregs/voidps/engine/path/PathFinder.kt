@@ -15,6 +15,7 @@ import world.gregs.voidps.engine.path.strat.SingleTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 
 val pathFindModule = module {
+    single { AvoidAlgorithm() }
     single { DirectSearch() }
     single { DirectDiagonalSearch() }
     single { AxisAlignment() }
