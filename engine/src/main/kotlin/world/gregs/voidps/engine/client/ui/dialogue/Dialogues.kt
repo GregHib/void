@@ -4,6 +4,7 @@ import kotlinx.coroutines.CancellableContinuation
 import kotlinx.coroutines.CancellationException
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.utility.get
 import java.util.*
@@ -65,6 +66,17 @@ fun Player.dialogue(id: String, function: suspend DialogueContext.() -> Unit) {
 
 fun Player.dialogue(id: Int, name: String, function: suspend DialogueContext.() -> Unit) {
     dialogues.start(this, id, name, function)
+}
+
+fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
+    dialogues.start(this, npc) {
+        try {
+            npc.watch(player)
+            function.invoke(this)
+        } finally {
+            npc.watch(null)
+        }
+    }
 }
 
 fun Player.dialogue(npc: NPC? = null, function: suspend DialogueContext.() -> Unit) {
