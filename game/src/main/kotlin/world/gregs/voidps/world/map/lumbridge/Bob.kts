@@ -2,6 +2,7 @@ package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -9,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math.interpolate
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -46,11 +48,10 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Trade" }) { player: Player -
     player.events.emit(OpenShop("bobs_brilliant_axes"))
 }
 
-on<NPCOption>({ npc.def.name == "Bob" && option == "Use-on" }) { player: Player ->// TODO item on npc
-    val item = ""
+on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.dialogue(npc) {
         if(!repairable(item)) {
-            npc("Sorry friend, but I can't do anything with that.", Expression.Conflicted)
+            npc("Sorry friend, but I can't do anything with that.", Expression.Disregard)
             return@dialogue
         }
         val cost = repairCost(player, item)
@@ -62,15 +63,17 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Use-on" }) { player: Player 
         if (choice == 1) {
             if (player.purchase(cost)) {
                 player.inventory.replace(item, repaired(item))
+                npc("There you go. It's a pleasure doing business with you!")
+            } else {
+                player.message("You don't have enough coins.")
             }
-            npc("There you go. It's a pleasure doing business with you!")
         }
     }
 }
 
-fun repaired(item: String) = item.replace("_100", "_new").replace("_75", "_new").replace("_50", "_new").replace("_broken", "_new")
+fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || item.endsWith("_50") || item.endsWith("_25") || item.endsWith("_broken")
 
-fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || item.endsWith("_50") || item.endsWith("_broken")
+fun repaired(item: String) = item.replace("_100", "_new").replace("_75", "_new").replace("_50", "_new").replace("_25", "_new").replace("_broken", "_new")
 
 fun repairCost(player: Player, item: String): Int {
     val def = itemDefs.get(item)
