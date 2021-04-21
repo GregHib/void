@@ -1,13 +1,14 @@
 package world.gregs.voidps.world.map.lumbridge
 
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
-import world.gregs.voidps.engine.client.ui.dialogue.dialogue
+import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -20,7 +21,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 val itemDefs: ItemDefinitions by inject()
 
 on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player ->
-    player.dialogue(npc) {
+    player.talkWith(npc) {
         val choice = choice("""
             Give me a quest!
             I'd like to trade.
@@ -45,14 +46,15 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 }
 
 on<NPCOption>({ npc.def.name == "Bob" && option == "Trade" }) { player: Player ->
+    npc.turn(player)
     player.events.emit(OpenShop("bobs_brilliant_axes"))
 }
 
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
-    player.dialogue(npc) {
+    player.talkWith(npc) {
         if(!repairable(item)) {
             npc("Sorry friend, but I can't do anything with that.", Expression.Disregard)
-            return@dialogue
+            return@talkWith
         }
         val cost = repairCost(player, item)
         npc("That'll cost you $cost gold coins to fix, are you sure?")
