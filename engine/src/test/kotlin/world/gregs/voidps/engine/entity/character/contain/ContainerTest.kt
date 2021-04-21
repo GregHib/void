@@ -27,9 +27,9 @@ internal class ContainerTest {
         container = spyk(
             Container(
                 items = items,
-                amounts = amounts,
-                minimumStack = 0
+                amounts = amounts
             ).apply {
+                minimumStack = 0
                 this.definitions = this@ContainerTest.definitions
             }
         )
@@ -40,9 +40,11 @@ internal class ContainerTest {
         // Given
         val id = "1"
         container = Container(
-            stackMode = StackMode.Always,
-            capacity = 10
+            items = emptyArray(),
+            amounts = intArrayOf()
         ).apply {
+            stackMode = StackMode.Always
+            capacity = 10
             this.definitions = this@ContainerTest.definitions
         }
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
@@ -57,9 +59,11 @@ internal class ContainerTest {
         // Given
         val id = "1"
         container = Container(
-            stackMode = StackMode.Never,
-            capacity = 10
+            items = emptyArray(),
+            amounts = intArrayOf()
         ).apply {
+            stackMode = StackMode.Never
+            capacity = 10
             this.definitions = this@ContainerTest.definitions
         }
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
@@ -74,9 +78,11 @@ internal class ContainerTest {
         // Given
         val id = "1"
         container = Container(
-            stackMode = StackMode.Normal,
-            capacity = 10
+            items = emptyArray(),
+            amounts = intArrayOf()
         ).apply {
+            stackMode = StackMode.Normal
+            capacity = 10
             this.definitions = this@ContainerTest.definitions
         }
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
@@ -91,9 +97,11 @@ internal class ContainerTest {
         // Given
         val id = "1"
         container = Container(
-            stackMode = StackMode.Normal,
-            capacity = 10
+            items = emptyArray(),
+            amounts = intArrayOf()
         ).apply {
+            stackMode = StackMode.Normal
+            capacity = 10
             this.definitions = this@ContainerTest.definitions
         }
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
@@ -111,9 +119,9 @@ internal class ContainerTest {
         amounts[5] = -2
         container = Container(
             items = Array(10) { "" },
-            amounts = amounts,
-            minimumStack = -1
+            amounts = amounts
         ).apply {
+            minimumStack = -1
             this.definitions = this@ContainerTest.definitions
         }
         // When
@@ -862,9 +870,9 @@ internal class ContainerTest {
 
     private fun items(vararg items: Pair<String, Int>?) = Container(
         items = items.map { it?.first ?: "" }.toTypedArray(),
-        amounts = items.map { it?.second ?: 0 }.toIntArray(),
-        minimumStack = 0
+        amounts = items.map { it?.second ?: 0 }.toIntArray()
     ).apply {
+        minimumStack = 0
         this.definitions = this@ContainerTest.definitions
     }
 
@@ -877,7 +885,8 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -903,7 +912,8 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -928,7 +938,8 @@ internal class ContainerTest {
         val index = 3
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -953,7 +964,8 @@ internal class ContainerTest {
         val otherIndex = 4
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -977,7 +989,8 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1002,7 +1015,8 @@ internal class ContainerTest {
         val newId = "3"
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1027,7 +1041,8 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1045,7 +1060,8 @@ internal class ContainerTest {
         val amount = 2
         val other = spyk(
             Container(
-                capacity = 1
+                items = Array(1) { "" },
+                amounts = IntArray(1)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1280,7 +1296,8 @@ internal class ContainerTest {
         }
         val other = spyk(
             Container(
-                capacity = 10
+                items = Array(10) { "" },
+                amounts = IntArray(10)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1304,7 +1321,8 @@ internal class ContainerTest {
         }
         val other = spyk(
             Container(
-                capacity = 2
+                items = Array(2) { "" },
+                amounts = IntArray(2)
             ).apply {
                 this.definitions = this@ContainerTest.definitions
             }
@@ -1337,7 +1355,8 @@ internal class ContainerTest {
 
                 val other = spyk(
                     Container(
-                        capacity = 1
+                        items = Array(1) { "" },
+                        amounts = IntArray(1)
                     ).apply {
                         this.definitions = this@ContainerTest.definitions
                     }
