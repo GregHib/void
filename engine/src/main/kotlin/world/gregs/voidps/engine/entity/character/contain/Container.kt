@@ -3,32 +3,47 @@ package world.gregs.voidps.engine.entity.character.contain
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.Events
 import java.util.*
 
 data class Container(
-    @JsonIgnore
-    val listeners: MutableList<(List<ContainerModification>) -> Unit> = mutableListOf(),
     private val items: Array<String>,
-    private val amounts: IntArray,
+    private val amounts: IntArray
 ) {
 
     @JsonIgnore
     var id: Int = -1
+
+    @JsonIgnore
+    lateinit var name: String
+
     @JsonIgnore
     var capacity: Int = items.size
+
     @JsonIgnore
     var stackMode: StackMode = StackMode.Normal
+
     @JsonIgnore
     var minimumStack: Int = 0
+
     @JsonIgnore
     lateinit var definitions: ItemDefinitions
 
     @JsonIgnore
-    private var updates = mutableListOf<ContainerModification>()
+    lateinit var events: Events
+
+    @JsonIgnore
+    var secondary: Boolean = false
+
+    @JsonIgnore
+    private var updates = mutableListOf<ItemChanged>()
 
     @JsonIgnore
     var result: ContainerResult = ContainerResult.Success
         private set
+
+    @JsonIgnore
+    var setup = false
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
@@ -135,7 +150,7 @@ data class Container(
      * Clears item at the given index
      * @return successful
      */
-    fun clear(index: Int, update: Boolean = true): Boolean = set(index, "", minimumStack, update)
+    fun clear(index: Int, update: Boolean = true, moved: Boolean = false): Boolean = set(index, "", minimumStack, update, moved)
 
     /**
      * Clears all indices
@@ -147,11 +162,11 @@ data class Container(
         update()
     }
 
-    fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true): Boolean {
+    fun set(index: Int, id: String, amount: Int = 1, update: Boolean = true, moved: Boolean = false): Boolean {
         if (!inBounds(index)) {
             return false
         }
-        track(index, items[index], amounts[index], id, amount)
+        track(index, items[index], amounts[index], id, amount, moved)
         items[index] = id
         amounts[index] = amount
         if (update) {
@@ -170,8 +185,8 @@ data class Container(
         }
         val tempId = items[firstIndex]
         val tempAmount = amounts[firstIndex]
-        set(firstIndex, items[secondIndex], amounts[secondIndex], false)
-        set(secondIndex, tempId, tempAmount, false)
+        set(firstIndex, items[secondIndex], amounts[secondIndex], update = false, moved = true)
+        set(secondIndex, tempId, tempAmount, update = false, moved = true)
         update()
         return true
     }
@@ -196,8 +211,8 @@ data class Container(
             container.result(ContainerResult.Invalid)
             return false
         }
-        set(firstIndex, toId, toAmount)
-        container.set(secondIndex, fromId, fromAmount)
+        set(firstIndex, toId, toAmount, moved = true)
+        container.set(secondIndex, fromId, fromAmount, moved = true)
         return true
     }
 
@@ -224,9 +239,10 @@ data class Container(
      * @param index The index to insert at
      * @param id The item to add
      * @param amount The stack amount or individual count
+     *  @param moved If this action is part of a larger movement transaction
      * @return Whether an item was successfully inserted
      */
-    fun insert(index: Int, id: String, amount: Int = 1): Boolean {
+    fun insert(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -243,7 +259,7 @@ data class Container(
         for (i in free downTo index + 1) {
             set(i, items[i - 1], amounts[i - 1], update = false)
         }
-        set(index, id, amount)
+        set(index, id, amount, moved = moved)
         return result(ContainerResult.Success)
     }
 
@@ -252,9 +268,10 @@ data class Container(
      * Note: Will never add items outside of the given [index]
      * @param id The item to add
      * @param amount The stack amount or individual count
+     *  @param moved If this action is part of a larger movement transaction
      * @return Whether an item was successfully added
      */
-    fun add(index: Int, id: String, amount: Int = 1): Boolean {
+    fun add(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -275,7 +292,7 @@ data class Container(
             return result(ContainerResult.Overflow)
         }
 
-        set(index, id, combined)
+        set(index, id, combined, moved = moved)
         return result(ContainerResult.Success)
     }
 
@@ -283,9 +300,10 @@ data class Container(
      * Adds any number of items stacked or otherwise
      * @param id The id of the item(s) to add
      * @param amount The stack amount or individual count
+     *  @param moved If this action is part of a movement transaction
      * @return Whether an item was successfully added
      */
-    fun add(id: String, amount: Int = 1): Boolean {
+    fun add(id: String, amount: Int = 1, moved: Boolean = false): Boolean {
         if (!isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -299,14 +317,14 @@ data class Container(
                     return result(ContainerResult.Overflow)
                 }
 
-                set(index, id, combined)
+                set(index, id, combined, moved = moved)
             } else {
                 index = freeIndex()
                 if (index == -1) {
                     return result(ContainerResult.Full)
                 }
 
-                set(index, id, amount)
+                set(index, id, amount, moved = moved)
             }
         } else {
             if (spaces < amount) {
@@ -315,7 +333,7 @@ data class Container(
 
             repeat(amount) {
                 val index = freeIndex()
-                set(index, id, amount = 1, update = false)
+                set(index, id, amount = 1, update = false, moved = moved)
             }
             update()
         }
@@ -327,9 +345,10 @@ data class Container(
      *  Note: Will never remove items not in this index
      *  @param id The item id to remove
      *  @param amount The stack number to remove (default 1 for unstackable)
+     *  @param moved If this action is part of a movement transaction
      *  @return Whether an item was successfully removed
      */
-    fun remove(index: Int, id: String, amount: Int = 1): Boolean {
+    fun remove(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -340,30 +359,19 @@ data class Container(
         }
 
         if (amount > 1 && !stackable(id)) {
-            return remove(id, amount)
+            return remove(id, amount, moved)
         }
 
-        val stack = amounts[index]
-        val combined = stack - amount
-
-        if (stack xor amount and (stack xor combined) < 0) {
-            return result(ContainerResult.Deficient)
+        checkCombined(index, amount)?.let {
+            return result(it)
         }
-
-        if (isUnderMin(combined)) {
-            return result(ContainerResult.Deficient)
-        }
-
-        if (isFree(combined)) {
-            clear(index)
-            return result(ContainerResult.Success)
-        }
+        val combined = amounts[index] - amount
 
         if (combined > 1 && !stackable(id)) {
             return result(ContainerResult.Unstackable)
         }
 
-        set(index, id, combined)
+        set(index, id, combined, moved = moved)
         return result(ContainerResult.Success)
     }
 
@@ -371,9 +379,10 @@ data class Container(
      *  Removes any number of items stacked or otherwise
      *  @param id The item id to remove
      *  @param amount The stack or individual number of items to remove
+     *  @param moved If this action is part of a movement transaction
      *  @return Whether an item was successfully removed
      */
-    fun remove(id: String, amount: Int = 1): Boolean {
+    fun remove(id: String, amount: Int = 1, moved: Boolean = false): Boolean {
         if (!isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -383,23 +392,11 @@ data class Container(
         }
 
         if (stackable(id)) {
-            val stack = amounts[index]
-            val combined = stack - amount
-
-            if (stack xor amount and (stack xor combined) < 0) {
-                return result(ContainerResult.Deficient)
+            checkCombined(index, amount)?.let {
+                return result(it)
             }
-
-            if (isUnderMin(combined)) {
-                return result(ContainerResult.Deficient)
-            }
-
-            if (isFree(combined)) {
-                clear(index)
-                return result(ContainerResult.Success)
-            }
-
-            set(index, id, combined)
+            val combined = amounts[index] - amount
+            set(index, id, combined, moved = moved)
         } else {
             val count = items.count { it == id }
             if (count < amount) {
@@ -408,11 +405,30 @@ data class Container(
 
             repeat(amount) {
                 index = indexOf(id)
-                clear(index, update = false)
+                clear(index, update = false, moved = moved)
             }
             update()
         }
         return result(ContainerResult.Success)
+    }
+
+    private fun checkCombined(index: Int, amount: Int): ContainerResult? {
+        val stack = amounts[index]
+        val combined = stack - amount
+
+        if (stack xor amount and (stack xor combined) < 0) {
+            return ContainerResult.Deficient
+        }
+
+        if (isUnderMin(combined)) {
+            return ContainerResult.Deficient
+        }
+
+        if (isFree(combined)) {
+            clear(index)
+            return ContainerResult.Success
+        }
+        return null
     }
 
     fun sort() {
@@ -472,9 +488,9 @@ data class Container(
         targetId: String = id
     ): Boolean {
         var success = if (index == null) {
-            remove(id, amount)
+            remove(id, amount, moved = true)
         } else {
-            remove(index, id, amount)
+            remove(index, id, amount, moved = true)
         }
 
         if (!success) {
@@ -482,12 +498,12 @@ data class Container(
         }
 
         success = if (targetIndex == null) {
-            container.add(targetId, amount)
+            container.add(targetId, amount, moved = true)
         } else {
             if (insert) {
-                container.insert(targetIndex, targetId, amount)
+                container.insert(targetIndex, targetId, amount, moved = true)
             } else {
-                container.add(targetIndex, targetId, amount)
+                container.add(targetIndex, targetId, amount, moved = true)
             }
         }
 
@@ -503,6 +519,9 @@ data class Container(
         return revertRemoval(index, id, amount, container, result)
     }
 
+    /**
+     * In an overflow scenario as many items are moved as possible with excess being left in their original container
+     */
     private fun gracefullyOverflow(container: Container, id: String, amount: Int, targetIndex: Int?, targetId: String): Boolean {
         val index = targetIndex ?: container.indexOf(id)
         val current = container.getAmount(index)
@@ -514,9 +533,9 @@ data class Container(
         val overflow = Int.MAX_VALUE - current
         val newAmount = amount - overflow
         val success = if (targetIndex == null) {
-            container.add(targetId, overflow)
+            container.add(targetId, overflow, moved = true)
         } else {
-            container.add(targetIndex, targetId, overflow)
+            container.add(targetIndex, targetId, overflow, moved = true)
         }
 
         return revertRemoval(index, id, if (success) newAmount else amount, container, ContainerResult.Full)
@@ -524,9 +543,9 @@ data class Container(
 
     private fun revertRemoval(index: Int?, id: String, amount: Int, container: Container, result: ContainerResult): Boolean {
         val reverted = if (index == null) {
-            add(id, amount)
+            add(id, amount, moved = true)
         } else {
-            add(index, id, amount)
+            add(index, id, amount, moved = true)
         }
 
         if (!reverted) {
@@ -536,13 +555,14 @@ data class Container(
         return result(result)
     }
 
-    private fun track(index: Int, oldItem: String, oldAmount: Int, item: String, amount: Int) {
-        updates.add(ContainerModification(index, oldItem, oldAmount, item, amount))
+    private fun track(index: Int, oldItem: String, oldAmount: Int, item: String, amount: Int, moved: Boolean) {
+        updates.add(ItemChanged(name, index, oldItem, oldAmount, item, amount, moved))
     }
 
     private fun update() {
-        listeners.forEach {
-            it.invoke(updates)
+        events.emit(ContainerUpdate(containerId = id, secondary = secondary, updates = updates))
+        for (update in updates) {
+            events.emit(update)
         }
         updates = mutableListOf()
     }

@@ -11,42 +11,60 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.Events
 
 internal class ContainerTest {
     private lateinit var container: Container
     private lateinit var definitions: ItemDefinitions
     private lateinit var items: Array<String>
     private lateinit var amounts: IntArray
+    private lateinit var events: Events
 
     @BeforeEach
     fun setup() {
         definitions = mockk(relaxed = true)
+        events = mockk(relaxed = true)
         every { definitions.size } returns 100
         items = Array(10) { "" }
         amounts = IntArray(10) { 0 }
-        container = spyk(
-            Container(
-                items = items,
-                amounts = amounts
-            ).apply {
-                minimumStack = 0
-                this.definitions = this@ContainerTest.definitions
-            }
-        )
+        container = container()
     }
+
+    private fun container(
+        id: Int = 123,
+        secondary: Boolean = false,
+        name: String = "test",
+        capacity: Int = 10,
+        items: Array<String> = this.items,
+        amounts: IntArray = this.amounts,
+        stackMode: StackMode = StackMode.Always,
+        minimumStack: Int = 0
+    ): Container = spyk(
+        Container(
+            items = items,
+            amounts = amounts
+        ).apply {
+            this.id = id
+            this.name = name
+            this.capacity = capacity
+            this.definitions = this@ContainerTest.definitions
+            this.minimumStack = minimumStack
+            this.secondary = secondary
+            this.stackMode = stackMode
+            this.events = this@ContainerTest.events
+        }
+    )
 
     @Test
     fun `Stackable true if always stack mode`() {
         // Given
         val id = "1"
-        container = Container(
+        container = container(
             items = emptyArray(),
-            amounts = intArrayOf()
-        ).apply {
-            stackMode = StackMode.Always
+            amounts = intArrayOf(),
+            stackMode = StackMode.Always,
             capacity = 10
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
@@ -58,14 +76,12 @@ internal class ContainerTest {
     fun `Stackable false if never stack mode`() {
         // Given
         val id = "1"
-        container = Container(
+        container = container(
             items = emptyArray(),
-            amounts = intArrayOf()
-        ).apply {
-            stackMode = StackMode.Never
+            amounts = intArrayOf(),
+            stackMode = StackMode.Never,
             capacity = 10
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
@@ -77,14 +93,12 @@ internal class ContainerTest {
     fun `Stackable true if normal stack mode and item stacks`() {
         // Given
         val id = "1"
-        container = Container(
+        container = container(
             items = emptyArray(),
-            amounts = intArrayOf()
-        ).apply {
-            stackMode = StackMode.Normal
+            amounts = intArrayOf(),
+            stackMode = StackMode.Normal,
             capacity = 10
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
         every { definitions.get(id) } returns ItemDefinition(stackable = 1)
         // When
         val stackable = container.stackable(id)
@@ -96,14 +110,12 @@ internal class ContainerTest {
     fun `Stackable false if normal stack mode and item unstackable`() {
         // Given
         val id = "1"
-        container = Container(
+        container = container(
             items = emptyArray(),
-            amounts = intArrayOf()
-        ).apply {
-            stackMode = StackMode.Normal
+            amounts = intArrayOf(),
+            stackMode = StackMode.Normal,
             capacity = 10
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
         every { definitions.get(id) } returns ItemDefinition(stackable = 0)
         // When
         val stackable = container.stackable(id)
@@ -117,13 +129,10 @@ internal class ContainerTest {
         amounts[1] = -1
         amounts[4] = -1
         amounts[5] = -2
-        container = Container(
-            items = Array(10) { "" },
-            amounts = amounts
-        ).apply {
+        container = container(
+            amounts = amounts,
             minimumStack = -1
-            this.definitions = this@ContainerTest.definitions
-        }
+        )
         // When
         val spaces = container.spaces
         // Then
@@ -333,7 +342,7 @@ internal class ContainerTest {
         val id = "1"
         items[index] = id
         amounts[index] = 1
-        for(i in 1 until items.size) {
+        for (i in 1 until items.size) {
             items[i] = "2"
             amounts[i] = 1
         }
@@ -868,13 +877,11 @@ internal class ContainerTest {
         assertEquals(items(TYPE_3 to 3, TYPE_2 to 2, TYPE_1 to 1), container)
     }
 
-    private fun items(vararg items: Pair<String, Int>?) = Container(
+    private fun items(vararg items: Pair<String, Int>?) = container(
         items = items.map { it?.first ?: "" }.toTypedArray(),
-        amounts = items.map { it?.second ?: 0 }.toIntArray()
-    ).apply {
+        amounts = items.map { it?.second ?: 0 }.toIntArray(),
         minimumStack = 0
-        this.definitions = this@ContainerTest.definitions
-    }
+    )
 
     @Test
     fun `Move item from index in one container to index in another container`() {
@@ -883,23 +890,19 @@ internal class ContainerTest {
         val amount = 2
         val index = 3
         val otherIndex = 4
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
-        every { container.remove(index, id, amount) } returns true
-        every { other.add(otherIndex, id, amount) } returns true
+        every { container.remove(index, id, amount, moved = true) } returns true
+        every { other.add(otherIndex, id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, index = index, targetIndex = otherIndex))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(index, id, amount)
-            other.add(otherIndex, id, amount)
+            container.remove(index, id, amount, moved = true)
+            other.add(otherIndex, id, amount, moved = true)
         }
     }
 
@@ -910,23 +913,19 @@ internal class ContainerTest {
         val amount = 2
         val index = 3
         val otherIndex = 4
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
-        every { container.remove(index, id, amount) } returns true
-        every { other.insert(otherIndex, id, amount) } returns true
+        every { container.remove(index, id, amount, moved = true) } returns true
+        every { other.insert(otherIndex, id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, index = index, targetIndex = otherIndex, insert = true))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(index, id, amount)
-            other.insert(otherIndex, id, amount)
+            container.remove(index, id, amount, moved = true)
+            other.insert(otherIndex, id, amount, moved = true)
         }
     }
 
@@ -936,23 +935,19 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val index = 3
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
-        every { container.remove(index, id, amount) } returns true
-        every { other.add(id, amount) } returns true
+        every { container.remove(index, id, amount, moved = true) } returns true
+        every { other.add(id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, index = index))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(index, id, amount)
-            other.add(id, amount)
+            container.remove(index, id, amount, moved = true)
+            other.add(id, amount, moved = true)
         }
     }
 
@@ -962,23 +957,19 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val otherIndex = 4
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
-        every { container.remove(id, amount) } returns true
-        every { other.add(otherIndex, id, amount) } returns true
+        every { container.remove(id, amount, moved = true) } returns true
+        every { other.add(otherIndex, id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, targetIndex = otherIndex))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(id, amount)
-            other.add(otherIndex, id, amount)
+            container.remove(id, amount, moved = true)
+            other.add(otherIndex, id, amount, moved = true)
         }
     }
 
@@ -987,23 +978,19 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val amount = 2
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
-        every { container.remove(id, amount) } returns true
-        every { other.add(id, amount) } returns true
+        every { container.remove(id, amount, moved = true) } returns true
+        every { other.add(id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, index = null, targetIndex = null))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(id, amount)
-            other.add(id, amount)
+            container.remove(id, amount, moved = true)
+            other.add(id, amount, moved = true)
         }
     }
 
@@ -1013,24 +1000,20 @@ internal class ContainerTest {
         val id = "1"
         val amount = 2
         val newId = "3"
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
         every { definitions.get(newId) } returns ItemDefinition()
-        every { container.remove(id, amount) } returns true
-        every { other.add(id, amount) } returns true
+        every { container.remove(id, amount, moved = true) } returns true
+        every { other.add(id, amount, moved = true) } returns true
         // When
         assertTrue(container.move(other, id, amount, index = null, targetIndex = null, targetId = newId))
         // Then
         assertEquals(ContainerResult.Success, container.result)
         verify {
-            container.remove(id, amount)
-            other.add(newId, amount)
+            container.remove(id, amount, moved = true)
+            other.add(newId, amount, moved = true)
         }
     }
 
@@ -1039,13 +1022,9 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val amount = 2
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
         // When
         assertFalse(container.move(other, id, amount))
@@ -1058,13 +1037,9 @@ internal class ContainerTest {
         // Given
         val id = "1"
         val amount = 2
-        val other = spyk(
-            Container(
-                items = Array(1) { "" },
-                amounts = IntArray(1)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(1) { "" },
+            amounts = IntArray(1)
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns false
@@ -1075,9 +1050,9 @@ internal class ContainerTest {
         // Then
         assertEquals(ContainerResult.Full, container.result)
         verify {
-            container.remove(id, amount)
-            other.add(id, amount)
-            container.add(id, amount)
+            container.remove(id, amount, moved = true)
+            other.add(id, amount, moved = true)
+            container.add(id, amount, moved = true)
         }
     }
 
@@ -1095,8 +1070,8 @@ internal class ContainerTest {
         // Then
         assertTrue(result)
         verify {
-            container.set(firstIndex, "4", 5, false)
-            container.set(secondIndex, "2", 3, false)
+            container.set(firstIndex, "4", 5, update = false, moved = true)
+            container.set(secondIndex, "2", 3, update = false, moved = true)
         }
     }
 
@@ -1105,13 +1080,9 @@ internal class ContainerTest {
         // Given
         val otherItems = Array(10) { "" }
         val otherAmounts = IntArray(10) { 0 }
-        val other = spyk(
-            Container(
-                items = otherItems,
-                amounts = otherAmounts
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = otherItems,
+            amounts = otherAmounts
         )
         val firstIndex = 1
         val secondIndex = 3
@@ -1124,8 +1095,8 @@ internal class ContainerTest {
         // Then
         assertTrue(result)
         verify {
-            container.set(firstIndex, "4", 5)
-            other.set(secondIndex, "2", 3)
+            container.set(firstIndex, "4", 5, moved = true)
+            other.set(secondIndex, "2", 3, moved = true)
         }
     }
 
@@ -1134,13 +1105,9 @@ internal class ContainerTest {
         // Given
         val otherItems = Array(10) { "" }
         val otherAmounts = IntArray(10) { 0 }
-        val other = spyk(
-            Container(
-                items = otherItems,
-                amounts = otherAmounts
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = otherItems,
+            amounts = otherAmounts
         )
         val firstIndex = 1
         val secondIndex = 3
@@ -1151,8 +1118,8 @@ internal class ContainerTest {
         // Then
         assertTrue(result)
         verify {
-            container.set(firstIndex, "", 0)
-            other.set(secondIndex, "2", 3)
+            container.set(firstIndex, "", 0, moved = true)
+            other.set(secondIndex, "2", 3, moved = true)
         }
     }
 
@@ -1166,33 +1133,34 @@ internal class ContainerTest {
 
     @Test
     fun `Listeners notified of updates`() {
-        // Given
-        var captured: List<ContainerModification>? = null
-        container.listeners.add {
-            captured = it.toList()
-        }
         // When
         container.set(2, "123", 2)
         // Then
-        assertEquals(listOf(ContainerModification(2, "", 0, "123", 2)), captured)
+        verify {
+            events.emit(ContainerUpdate(
+                containerId = 123,
+                secondary = false,
+                updates = listOf(ItemChanged("test", 2, "", 0, "123", 2, false))
+            ))
+        }
     }
 
     @Test
     fun `Listeners notified multiple changes`() {
-        // Given
-        var captured: List<ContainerModification>? = null
-        container.listeners.add {
-            captured = it.toList()
-        }
+        container.secondary = true
         // When
         container.swap(2, 3)
         // Then
-        assertEquals(
-            listOf(
-                ContainerModification(2, "", 0, "", 0),
-                ContainerModification(3, "", 0, "", 0)
-            ), captured
-        )
+        verify {
+            events.emit(ContainerUpdate(
+                containerId = 123,
+                secondary = true,
+                updates = listOf(
+                    ItemChanged("test", 2, "", 0, "", 0, true),
+                    ItemChanged("test", 3, "", 0, "", 0, true)
+                )
+            ))
+        }
     }
 
     @Test
@@ -1294,13 +1262,9 @@ internal class ContainerTest {
             items[it * 2] = (it + 1).toString()
             amounts[it * 2] = it + 1
         }
-        val other = spyk(
-            Container(
-                items = Array(10) { "" },
-                amounts = IntArray(10)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(10) { "" },
+            amounts = IntArray(10)
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns true
@@ -1319,13 +1283,9 @@ internal class ContainerTest {
             items[it * 2] = (it + 1).toString()
             amounts[it * 2] = it + 1
         }
-        val other = spyk(
-            Container(
-                items = Array(2) { "" },
-                amounts = IntArray(2)
-            ).apply {
-                this.definitions = this@ContainerTest.definitions
-            }
+        val other = container(
+            items = Array(2) { "" },
+            amounts = IntArray(2)
         )
         every { container.stackable(any<String>()) } returns true
         every { other.stackable(any<String>()) } returns true
@@ -1353,19 +1313,15 @@ internal class ContainerTest {
                 items[index] = id
                 amounts[index] = from
 
-                val other = spyk(
-                    Container(
-                        items = Array(1) { "" },
-                        amounts = IntArray(1)
-                    ).apply {
-                        this.definitions = this@ContainerTest.definitions
-                    }
+                val other = container(
+                    items = Array(1) { "" },
+                    amounts = IntArray(1)
                 )
                 other.set(index, id, to)
                 every { container.stackable(any<String>()) } returns true
                 every { other.stackable(any<String>()) } returns true
                 // When
-                if(indexed) {
+                if (indexed) {
                     assertFalse(container.move(other, id, from))
                 } else {
                     assertFalse(container.move(other, id, from))

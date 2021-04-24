@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItemFactory
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
-import world.gregs.voidps.network.encode.sendInterfaceItemUpdate
 import world.gregs.voidps.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {
@@ -38,8 +37,8 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
 }
 
 fun Player.container(name: String, detail: ContainerDefinition, secondary: Boolean = false): Container {
-    val itemDefs: ItemDefinitions = get()
     return containers.getOrPut(if (secondary) "_$name" else name) {
+        val itemDefs: ItemDefinitions = get()
         val ids = detail.ids
         val amounts = detail.amounts
         Container(
@@ -47,14 +46,15 @@ fun Player.container(name: String, detail: ContainerDefinition, secondary: Boole
             amounts = amounts ?: IntArray(detail.length),
         )
     }.apply {
-        if (listeners.isEmpty()) {
+        if (!setup) {
             id = detail.id
+            this.name = if (secondary) "_$name" else name
             capacity = detail.length
             stackMode = detail["stack", StackMode.Normal]
-            definitions = itemDefs
-            listeners.add { updates ->
-                sendInterfaceItemUpdate(detail.id, updates.map { Triple(it.index, definitions.getIdOrNull(it.item) ?: -1, it.amount) }, secondary)
-            }
+            definitions = get()
+            this.events = this@container.events
+            this.secondary = secondary
+            this.setup = true
         }
     }
 }

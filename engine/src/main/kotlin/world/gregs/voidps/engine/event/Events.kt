@@ -14,7 +14,6 @@ class Events(
         events.getOrPut(clazz) { mutableListOf() }.addAll(values)
     }
 
-
     @Suppress("UNCHECKED_CAST")
     inline fun <reified T : Entity, reified E : Event> on(
         noinline condition: E.(T) -> Boolean = { true },

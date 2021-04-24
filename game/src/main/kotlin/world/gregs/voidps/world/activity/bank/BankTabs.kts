@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -19,7 +20,7 @@ IntVariable(1038, Variable.Type.VARC).register("bank_spaces_used_free")
 IntVariable(192, Variable.Type.VARC).register("bank_spaces_used_member")
 
 on<Registered> { player: Player ->
-    player.bank.listeners.add {
+    player.events.on<Player, ItemChanged>({ container == "bank" }) {
         player.setVar("bank_spaces_used_free", player.bank.getFreeToPlayItemCount())
         player.setVar("bank_spaces_used_member", player.bank.count)
         player.bank.sort()
