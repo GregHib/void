@@ -144,3 +144,8 @@ on<Player, Registered>({ it.isBot }) {
     it.botOptions.add(pickupHatchet)
     it.botOptions.add(equipHatchet)
 }
+/*
+    When a new axe is bought or picked up
+        All the older axes become progressively useless (volatile axes exception because they degrade?)
+
+ */
