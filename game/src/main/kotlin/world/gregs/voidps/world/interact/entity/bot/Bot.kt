@@ -50,6 +50,9 @@ val Player.woodcuttingDesire: Double
 val Player.logStorageDesire: Double
     get() = get("logStorageDesire", 0.0)
 
+val Player.desiredItems: MutableMap<String, Double>
+    get() = get("itemDesire")
+
 fun Player.initBot() {
     this["bot"] = true
     this["context"] = BotContext(this)
@@ -58,6 +61,7 @@ fun Player.initBot() {
     this["woodcuttingDesire"] = 1.0
     this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
+    this["itemDesire"] = mutableMapOf<String, Double>()
 }
 
 fun Player.goTo(area: Area): PathResult {
