@@ -151,4 +151,5 @@ giant_spider:
 bob:
   id: 519
   race: "Human"
+  shop: bobs_brilliant_axes
   examine: "An expert on axes."

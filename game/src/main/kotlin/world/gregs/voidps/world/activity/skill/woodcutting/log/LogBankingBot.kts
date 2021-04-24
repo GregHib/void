@@ -2,6 +2,8 @@ package world.gregs.voidps.world.activity.skill.woodcutting.log
 
 import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
@@ -87,9 +89,6 @@ val depositLogs = SimpleBotOption(
 val exitBank = SimpleBotOption(
     name = "exit bank",
     targets = { listOf(this) },
-    considerations = listOf(
-        bankIsOpen
-    ),
     weight = 0.5,
     action = {
         bot.instructions.tryEmit(CloseInterface)
@@ -97,9 +96,20 @@ val exitBank = SimpleBotOption(
     }
 )
 
-on<Player, Registered>({ it.isBot }) {
-    it.botOptions.add(goToBank)
-    it.botOptions.add(openBankBooth)
-    it.botOptions.add(depositLogs)
-    it.botOptions.add(exitBank)
+on<Registered>({ it.isBot }) { bot: Player ->
+    bot.botOptions.add(goToBank)
+    bot.botOptions.add(openBankBooth)
+}
+
+val dynamicOptions = arrayOf(
+    depositLogs,
+    exitBank
+)
+
+on<InterfaceOpened>({ it.isBot && name == "bank" }) { bot: Player ->
+    bot.botOptions.addAll(dynamicOptions)
+}
+
+on<InterfaceClosed>({ it.isBot && name == "bank" }) { bot: Player ->
+    bot.botOptions.removeAll(dynamicOptions)
 }

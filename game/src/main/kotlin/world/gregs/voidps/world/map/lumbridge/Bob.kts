@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -43,11 +42,6 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
                 """)
         }
     }
-}
-
-on<NPCOption>({ npc.def.name == "Bob" && option == "Trade" }) { player: Player ->
-    npc.turn(player)
-    player.events.emit(OpenShop("bobs_brilliant_axes"))
 }
 
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->

@@ -12,8 +12,10 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
@@ -43,6 +45,11 @@ StringMapVariable(532, Variable.Type.VARP, values = currencies).register("shop_c
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
+
+on<NPCOption>({ npc.def.has("shop") && option == "Trade" }) { player: Player ->
+    npc.turn(player)
+    player.events.emit(OpenShop(npc.def["shop"]))
+}
 
 on<OpenShop> { player: Player ->
     player.action(ActionType.Shopping) {

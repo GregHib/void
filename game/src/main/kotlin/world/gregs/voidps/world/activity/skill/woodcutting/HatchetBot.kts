@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItem
@@ -19,8 +20,9 @@ import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 
-val definition: ItemDefinitions by inject()
+val itemDefs: ItemDefinitions by inject()
 val floorItems: FloorItems by inject()
+val containerDefs: ContainerDefinitions by inject()
 val bobsAxeShop = Rectangle(3227, 3201, 3233, 3205)
 
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
@@ -30,13 +32,17 @@ val isNotAtShop: BotContext.(Any) -> Double = { (bot.tile !in bobsAxeShop).toDou
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 
 val shopHasBetterHatchetThanCurrent: BotContext.(Any) -> Double = {
-    val bestShopHasToOffer = Hatchet.regular.lastOrNull { hatchet -> Hatchet.hasRequirements(bot, hatchet) && shopContains(hatchet) }
     val current = (Hatchet.get(bot)?.index ?: -1) + 1
-    val best = (bestShopHasToOffer?.index ?: -1) + 1
+    val best = (bestShopHatchet(bot)?.index ?: -1) + 1
     (best - current).toDouble().scale(0.0, current.toDouble())
 }
 
-fun shopContains(hatchet: Hatchet) = hatchet.index < 7
+fun bestShopHatchet(bot: Player) = Hatchet.regular.lastOrNull { hatchet -> Hatchet.hasRequirements(bot, hatchet) && shopContains(hatchet) }
+
+fun shopContains(hatchet: Hatchet): Boolean {
+    val ids = containerDefs.get("bobs_brilliant_axes").ids ?: return false
+    return ids.contains(itemDefs.getId(hatchet.id))
+}
 
 val floorHatchetIsBetterThanCurrent: BotContext.(FloorItem) -> Double = { floorItem ->
     isBetterHatchet(bot, floorItem).toDouble()
@@ -72,6 +78,9 @@ val goToHatchetShop = SimpleBotOption(
     ),
     action = {
         bot.goTo(bobsAxeShop)
+        bestShopHatchet(bot)?.let {
+            bot.desiredItems[it.id] = 1.0
+        }
     }
 )
 
@@ -91,7 +100,7 @@ val pickupHatchet = SimpleBotOption(
 
 val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, String>> = {
     bot.inventory.getItems().withIndex().mapNotNull {
-        val hatchet = Hatchet.get(definition.get(it.value).name)
+        val hatchet = Hatchet.get(itemDefs.get(it.value).name)
         if (hatchet == null) null else Triple(hatchet, it.index, it.value)
     }
 }
@@ -106,7 +115,7 @@ val dropOldHatchet = SimpleBotOption(
     targets = inventoryHatchets,
     considerations = listOf(isWorseThanCurrent),
     action = { (_, slot, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, definition.getId(item), slot, 7))
+        bot.instructions.tryEmit(InteractInterface(149, 0, itemDefs.getId(item), slot, 7))
     }
 )
 
@@ -125,7 +134,7 @@ val equipHatchet = SimpleBotOption(
     targets = inventoryHatchets,
     considerations = listOf(betterThanEquippedHatchet),
     action = { (_, slot, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, definition.getId(item), slot, 1))
+        bot.instructions.tryEmit(InteractInterface(149, 0, itemDefs.getId(item), slot, 1))
     }
 )
 
