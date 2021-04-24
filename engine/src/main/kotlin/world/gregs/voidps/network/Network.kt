@@ -214,6 +214,8 @@ class Network(
             loginQueue.await()
             return account
         } catch (e: IllegalStateException) {
+            logger.trace { "Error loading player account ${e.stackTrace.toList()}" }
+            e.printStackTrace()
             loginQueue.logout(username, client.address, index)
             write.finish(COULD_NOT_COMPLETE_LOGIN)
             return null

@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ContainerModification
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendScript
@@ -70,15 +71,11 @@ fun startTrade(player: Player, other: Player) {
     player.setVar("other_trader_name", other.name)
     player["trade_partner"] = other
 
-    val offerListener: (List<ContainerModification>) -> Unit = updateOffer(player, other)
-    val loanListener: (List<ContainerModification>) -> Unit = updateLoan(player, other)
-    val inventoryListener: (List<ContainerModification>) -> Unit = {
+    val offerHandler: EventHandler = updateOffer(player, other)
+    val loanHandler: EventHandler = updateLoan(player, other)
+    val inventoryHandler: EventHandler = player.events.on<Player, ItemChanged>({ container == "inventory" }) {
         updateInventorySpaces(other, player)
     }
-
-    player.offer.listeners.add(offerListener)
-    player.loan.listeners.add(loanListener)
-    player.inventory.listeners.add(inventoryListener)
 
     player.action(ActionType.Trade) {
         try {
@@ -89,9 +86,9 @@ fun startTrade(player: Player, other: Player) {
             cancel(player)
             other.action.cancel(ActionType.Trade)
         } finally {
-            player.offer.listeners.remove(offerListener)
-            player.loan.listeners.remove(loanListener)
-            player.inventory.listeners.remove(inventoryListener)
+            player.events.remove(offerHandler)
+            player.events.remove(loanHandler)
+            player.events.remove(inventoryHandler)
             reset(player, other)
             player.closeType("main_screen")
             player.closeType("underlay")
@@ -111,7 +108,7 @@ fun tradeItems(player: Player, other: Player) {
 fun loanItem(player: Player, other: Player) {
     val loanItem = player.otherLoan.getItem(0)
     val duration = other.getVar("lend_time", -1)
-    if(loanItem.isBlank() || duration == -1) {
+    if (loanItem.isBlank() || duration == -1) {
         return
     }
     lendItem(player, other, loanItem, duration)
@@ -173,19 +170,17 @@ fun reset(player: Player, other: Player) {
 /*
     Loan
  */
-fun updateLoan(player: Player, other: Player): (List<ContainerModification>) -> Unit = { updates ->
-    applyUpdates(other.otherLoan, updates)
-    val warn = player["accepted_trade", false] && removedAnyItems(updates)
+fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "loan" }) { player: Player ->
+    applyUpdates(other.otherLoan, this)
+    val warn = player["accepted_trade", false] && removedAnyItems(this)
     modified(player, other, warn)
 }
 
-fun applyUpdates(container: Container, updates: List<ContainerModification>) {
-    for ((index, _, _, item, amount) in updates) {
-        container.set(index, item, amount)
-    }
+fun applyUpdates(container: Container, update: ItemChanged) {
+    container.set(update.index, update.item, update.amount)
 }
 
-fun removedAnyItems(list: List<ContainerModification>) = list.any { (_, _, oldAmount, _, amount) -> amount < oldAmount }
+fun removedAnyItems(change: ItemChanged) = change.amount < change.oldAmount
 
 fun modified(player: Player, other: Player, warned: Boolean) {
     if (warned) {
@@ -199,22 +194,20 @@ fun modified(player: Player, other: Player, warned: Boolean) {
 /*
     Offer
  */
-fun updateOffer(player: Player, other: Player): (List<ContainerModification>) -> Unit = { updates ->
-    applyUpdates(other.otherOffer, updates)
-    val warn = player["accepted_trade", false] && removedAnyItems(updates)
-    if(warn) {
-        highlightRemovedSlots(player, other, updates)
+fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<Player, ItemChanged>({ container == "offer" }) { update ->
+    applyUpdates(other.otherOffer, this)
+    val warn = player["accepted_trade", false] && removedAnyItems(this)
+    if (warn) {
+        highlightRemovedSlots(player, other, this)
     }
     modified(player, other, warn)
     updateValue(player, other)
 }
 
-fun highlightRemovedSlots(player: Player, other: Player, updates: List<ContainerModification>) {
-    for ((index, _, oldAmount, _, amount) in updates) {
-        if(amount < oldAmount) {
-            player.warn("trade_main", "offer_warning", index)
-            other.warn("trade_main", "other_warning", index)
-        }
+fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
+    if (update.amount < update.oldAmount) {
+        player.warn("trade_main", "offer_warning", update.index)
+        other.warn("trade_main", "other_warning", update.index)
     }
 }
 

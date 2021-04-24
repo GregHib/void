@@ -10,10 +10,8 @@ import world.gregs.voidps.engine.client.variable.StringVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.clear
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.ContainerModification
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.container
-import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -54,7 +52,7 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     val container = player.container(if (sample) "${shop}_sample" else shop)
     val item = container.getItem(actualIndex)
     player["info_sample"] = sample
-    showInfo(player, item, if (sample) -1 else container.getAmount(actualIndex), actualIndex, container)
+    showInfo(player, item, if (sample) -1 else container.getAmount(actualIndex), actualIndex, if (sample) "${shop}_sample" else shop)
 }
 
 on<InterfaceOption>({ name == "item_info" && component == "exit" }) { player: Player ->
@@ -63,20 +61,11 @@ on<InterfaceOption>({ name == "item_info" && component == "exit" }) { player: Pl
 }
 
 on<InterfaceClosed>({ name == "item_info" }) { player: Player ->
-    val bind: (List<ContainerModification>) -> Unit = player.getOrNull("item_info_bind") ?: return@on
-    val shop: String = player["shop"]
-    if (player.hasContainer("${shop}_sample")) {
-        val sample = player.container("${shop}_sample")
-        sample.listeners.remove(bind)
-    }
-    if (player.hasContainer(shop)) {
-        val main = player.container(shop)
-        main.listeners.remove(bind)
-    }
+    player.events.remove(player.getOrNull("item_info_bind"))
     player.clear("item_info_bind")
 }
 
-fun showInfo(player: Player, item: String, amount: Int, index: Int, container: Container) {
+fun showInfo(player: Player, item: String, amount: Int, index: Int, name: String) {
     player.open("item_info")
     val id = itemDefs.getId(item)
     if (id != -1) {
@@ -92,15 +81,10 @@ fun showInfo(player: Player, item: String, amount: Int, index: Int, container: C
                 player.setVar("item_info_price", if (amount < 1) amount else Price.getPrice(player, itemDefs.getId(item), index, amount))
                 setRequirements(player, def)
                 if (amount != -1) {
-                    val bind: (List<ContainerModification>) -> Unit = {
-                        for (mod in it) {
-                            if (mod.index == index) {
-                                player.setVar("item_info_price", if (mod.amount == 0) 0 else Price.getPrice(player, itemDefs.getId(item), index, mod.amount))
-                            }
-                        }
+                    val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
+                        player.setVar("item_info_price", if (this.amount == 0) 0 else Price.getPrice(player, itemDefs.getId(item), index, this.amount))
                     }
-                    container.listeners.add(bind)
-                    player["item_info_bind"] = bind
+                    player["item_info_bind"] = handler
                 }
             }
         }

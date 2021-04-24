@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.character.contain.ContainerModification
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -36,17 +36,19 @@ fun Player.equipping() = action.type == ActionType.Equipping
 
 on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     player.action(ActionType.Equipping) {
-        val listener: (List<ContainerModification>) -> Unit = equipmentUpdateListener(player)
+        val handler = player.events.on<Player, ItemChanged>({ container == "worn_equipment" }) {
+            updateStats(player, oldItem, false)
+            updateStats(player, item, true)
+        }
         try {
             player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
-            player.equipment.listeners.add(listener)
             updateEmote(player)
             player.open("equipment_side")
             player.interfaceOptions.unlockAll("equipment_bonuses", "container", 0 until 16)
             updateStats(player)
             awaitInterface(name)
         } finally {
-            player.equipment.listeners.remove(listener)
+            player.events.remove(handler)
             player.open("inventory")
             player.close("equipment_bonuses")
         }
@@ -74,13 +76,6 @@ on<InterfaceOption>({ it.equipping() && name == "equipment_side" && component ==
 on<InterfaceOption>({ it.equipping() && name == "equipment_bonuses" && component == "container" && option == "Remove" }) { player: Player ->
     player.events.emit(ContainerAction("worn_equipment", item, itemIndex, "Remove"))
     checkEmoteUpdate(player)
-}
-
-fun equipmentUpdateListener(player: Player): (List<ContainerModification>) -> Unit = { list ->
-    list.forEach {
-        updateStats(player, it.oldItem, false)
-        updateStats(player, it.item, true)
-    }
 }
 
 fun checkEmoteUpdate(player: Player) {

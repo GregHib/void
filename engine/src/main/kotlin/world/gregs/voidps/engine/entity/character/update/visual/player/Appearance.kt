@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.character.update.visual.player
 
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.BodyParts
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -107,19 +108,15 @@ val Player.appearance: Appearance
     }
 
 private fun Player.updateAppearanceOnEquipmentChanges(parts: BodyParts) {
-    equipment.listeners.add { list ->
-        var changed = false
-        for ((index, _, _, _, _) in list) {
-            val slot = EquipSlot.by(index)
-            val part = BodyPart.by(slot) ?: continue
-            if (parts.updateConnected(part)) {
-                changed = true
-            }
-        }
-        if (changed) {
-            flagAppearance()
-        }
+    events.on<Player, ItemChanged>({ container == "worn_equipment" && needsUpdate(index, parts) }) {
+        flagAppearance()
     }
+}
+
+private fun needsUpdate(index: Int, parts: BodyParts): Boolean {
+    val slot = EquipSlot.by(index)
+    val part = BodyPart.by(slot) ?: return false
+    return parts.updateConnected(part)
 }
 
 private fun Player.flag(action: Appearance.() -> Unit) {

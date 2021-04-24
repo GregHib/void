@@ -8,16 +8,14 @@ import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.StringMapVariable
 import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.contain.Container
-import world.gregs.voidps.engine.entity.character.contain.StackMode
-import world.gregs.voidps.engine.entity.character.contain.container
-import world.gregs.voidps.engine.entity.character.contain.sendContainer
+import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -53,6 +51,7 @@ on<NPCOption>({ npc.def.has("shop") && option == "Trade" }) { player: Player ->
 
 on<OpenShop> { player: Player ->
     player.action(ActionType.Shopping) {
+        var handler: EventHandler? = null
         try {
             val definition = containerDefs.getOrNull(name) ?: return@action
             val currency: String = definition["currency", "coins"]
@@ -69,13 +68,14 @@ on<OpenShop> { player: Player ->
 
             player.setVar("main_container", definition.id)
             val main = openShopContainer(player, name)
-            sendAmounts(player, main)
+            handler = sendAmounts(player, main, name)
             player.interfaceOptions.unlockAll("shop", "stock", 0 until main.capacity * 6)
 
             player.interfaces.sendText("shop", "title", definition.getOrNull("title") as? String ?: "Shop")
 
             awaitInterface("shop")
         } finally {
+            player.events.remove(handler)
             player.close("shop")
             player.close("item_info")
             player.close("shop_side")
@@ -112,13 +112,11 @@ fun fillShop(container: Container, name: String) {
     }
 }
 
-fun sendAmounts(player: Player, container: Container) {
+fun sendAmounts(player: Player, container: Container, name: String): EventHandler {
     for ((index, amount) in container.getAmounts().withIndex()) {
         player.setVar("amount_$index", amount)
     }
-    container.listeners.add {
-        for (mod in it) {
-            player.setVar("amount_${mod.index}", mod.amount)
-        }
+    return player.events.on<Player, ItemChanged>({ this.container == name }) {
+        player.setVar("amount_${index}", amount)
     }
 }
