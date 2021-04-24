@@ -1,28 +1,19 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import world.gregs.voidps.engine.event.Events
 import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
 class Levels(
-    private val boosts: MutableMap<Skill, Int> = mutableMapOf()
+    private val boosts: MutableMap<Skill, Int> = mutableMapOf(),
 ) {
     @JsonIgnore
     lateinit var experience: Experience
     @JsonIgnore
-    private val listeners = mutableListOf<(Skill, Int, Int) -> Unit>()
-    @JsonIgnore
-    private val levelListeners = mutableListOf<(Skill, Int, Int) -> Unit>()
-
-    fun addBoostListener(listener: (Skill, Int, Int) -> Unit) {
-        listeners.add(listener)
-    }
-
-    fun addLevelUpListener(listener: (Skill, Int, Int) -> Unit) {
-        levelListeners.add(listener)
-    }
+    lateinit var events: Events
 
     fun link(experience: Experience) {
         this.experience = experience
@@ -30,9 +21,7 @@ class Levels(
             val previousLevel = getLevel(from)
             val currentLevel = getLevel(to)
             if (currentLevel > previousLevel) {
-                for (listener in levelListeners) {
-                    listener.invoke(skill, previousLevel, currentLevel)
-                }
+                events.emit(Leveled(skill, previousLevel, currentLevel))
             }
         }
     }
@@ -84,9 +73,7 @@ class Levels(
 
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
-        for (listener in listeners) {
-            listener.invoke(skill, previous, level)
-        }
+        events.emit(Boosted(skill, previous, level))
     }
 
     private fun minimumLevel(skill: Skill): Int {

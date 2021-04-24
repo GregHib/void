@@ -1,19 +1,24 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
+import io.mockk.mockk
+import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.event.Events
 
 internal class LevelsTest {
 
     lateinit var exp: Experience
     lateinit var levels: Levels
+    lateinit var events: Events
 
     @BeforeEach
     fun setup() {
         exp = Experience(maximum = 10000.0)
+        events = mockk(relaxed = true)
         levels = Levels()
+        levels.events = events
         levels.link(exp)
     }
 
@@ -178,28 +183,18 @@ internal class LevelsTest {
     fun `Listen to boost change`() {
         exp.set(Skill.Magic, 1154.0)
         levels.setBoost(Skill.Magic, -1)
-        var called = false
-        levels.addBoostListener { skill, from, to ->
-            assertEquals(Skill.Magic, skill)
-            assertEquals(9, from)
-            assertEquals(12, to)
-            called = true
-        }
         levels.setBoost(Skill.Magic, 2)
-        assertTrue(called)
+        verify {
+            events.emit(Boosted(Skill.Magic, 9, 12))
+        }
     }
 
     @Test
     fun `Listen to level up`() {
-        var called = false
-        levels.addLevelUpListener { skill, from, to ->
-            assertEquals(Skill.Magic, skill)
-            assertEquals(1, from)
-            assertEquals(10, to)
-            called = true
-        }
         exp.set(Skill.Magic, 1154.0)
-        assertTrue(called)
+        verify {
+            events.emit(Leveled(Skill.Magic, 1, 10))
+        }
     }
 
 }

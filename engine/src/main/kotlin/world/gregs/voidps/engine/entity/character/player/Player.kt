@@ -30,7 +30,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
-import world.gregs.voidps.engine.event.*
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.RegionLogin
@@ -115,6 +115,7 @@ class Player(
 
     fun start() {
         movement.previousTile = tile
+        levels.events = events
         levels.link(experience)
         effects.link(this)
     }
