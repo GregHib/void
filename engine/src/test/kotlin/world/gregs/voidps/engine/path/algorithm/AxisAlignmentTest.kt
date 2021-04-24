@@ -59,7 +59,6 @@ internal class AxisAlignmentTest {
         every { movement.steps } returns steps
         every { strategy.tile } returns value(target)
         every { strategy.reached(target, size) } returns false
-        every { aa.toDirection(any()) } returns Direction.NONE
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
         // Then
@@ -75,9 +74,9 @@ internal class AxisAlignmentTest {
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
+        every { strategy.tile } returns value(target)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
-        every { aa.toDirection(any()) } returns Direction.SOUTH_EAST
         every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
         // When
         val result = aa.find(tile, size, movement, strategy, traversal)
@@ -99,9 +98,9 @@ internal class AxisAlignmentTest {
         val strategy: TileTargetStrategy = mockk(relaxed = true)
         val traversal: TileTraversalStrategy = mockk(relaxed = true)
         val movement: Movement = mockk(relaxed = true)
+        every { strategy.tile } returns value(target)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
-        every { aa.toDirection(any()) } returns Direction.SOUTH_EAST
         every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
         every { traversal.blocked(tile, Direction.EAST) } returns true
         // When
@@ -126,7 +125,7 @@ internal class AxisAlignmentTest {
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
-        every { aa.toDirection(any()) } returns Direction.SOUTH_EAST
+        every { strategy.tile } returns value(target)
         every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns true
         every { traversal.blocked(tile, Direction.EAST) } returns true
         every { traversal.blocked(tile, Direction.SOUTH) } returns true
@@ -150,7 +149,7 @@ internal class AxisAlignmentTest {
         val movement: Movement = mockk(relaxed = true)
         every { movement.steps } returns steps
         every { strategy.reached(target, size) } returns true
-        every { aa.toDirection(any()) } returns Direction.SOUTH_EAST
+        every { strategy.tile } returns value(target)
         every { traversal.blocked(tile, Direction.SOUTH_EAST) } returns false
         val blocked = tile.add(Direction.SOUTH_EAST.delta)
         every { traversal.blocked(blocked, Direction.SOUTH_EAST) } returns true
@@ -167,7 +166,7 @@ internal class AxisAlignmentTest {
     fun `Direction from delta`() {
         Direction.values().forEach {
             val delta = Delta(it.delta.x * 10, it.delta.y * 10)
-            val direction = aa.toDirection(delta)
+            val direction = delta.toDirection()
             assertEquals(it, direction)
         }
     }
