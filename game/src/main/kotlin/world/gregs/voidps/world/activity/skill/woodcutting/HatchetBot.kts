@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
@@ -80,9 +81,6 @@ val goToHatchetShop = SimpleBotOption(
     ),
     action = {
         bot.goTo(bobsAxeShop)
-        bestShopHatchet(bot)?.let {
-            bot.desiredItems[it.id] = 1.0
-        }
     }
 )
 
@@ -123,7 +121,7 @@ val dropOldHatchet = SimpleBotOption(
 
 val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, String>) -> Double = { (hatchet) ->
     val currentWeapon = bot.equipment.getItem(EquipSlot.Weapon.index)
-    if(currentWeapon.isBlank()) {
+    if (currentWeapon.isBlank()) {
         1.0
     } else {
         val current = Hatchet.get(currentWeapon)
@@ -140,11 +138,11 @@ val equipHatchet = SimpleBotOption(
     }
 )
 
-on<Registered>({ it.isBot }) { it: Player ->
-    it.botOptions.add(goToHatchetShop)
-    it.botOptions.add(dropOldHatchet)
-    it.botOptions.add(pickupHatchet)
-    it.botOptions.add(equipHatchet)
+on<Registered>({ it.isBot }) { bot: Player ->
+    bot.botOptions.add(dropOldHatchet)
+    bot.botOptions.add(pickupHatchet)
+    bot.botOptions.add(equipHatchet)
+    updateHatchetDesire(bot)
 }
 
 on<Boosted>({ it.isBot }) { bot: Player ->
@@ -155,11 +153,20 @@ on<Leveled>({ it.isBot }) { bot: Player ->
     updateHatchetDesire(bot)
 }
 
-fun updateHatchetDesire(bot: Player) {
-
+on<ItemChanged>({ Hatchet.isHatchet(item) }) { bot: Player ->
+    updateHatchetDesire(bot)
 }
-/*
-    When a new axe is bought or picked up
-        All the older axes become progressively useless (volatile axes exception because they degrade?)
 
- */
+fun updateHatchetDesire(bot: Player) {
+    val current = (Hatchet.get(bot)?.ordinal ?: -1) + 1
+    val best = (Hatchet.highest(bot)?.ordinal ?: -1) + 1
+    Hatchet.regular.forEach { hatchet ->
+        if (Hatchet.hasRequirements(bot, hatchet, false)) {
+            // Hatchet desire = how much better it is than the current hatchet
+            val option = hatchet.ordinal + 1
+            bot.desiredItems[hatchet.id] = (option - current).toDouble().scale(0.0, best.toDouble())
+        } else {
+            bot.desiredItems.remove(hatchet.id)
+        }
+    }
+}
