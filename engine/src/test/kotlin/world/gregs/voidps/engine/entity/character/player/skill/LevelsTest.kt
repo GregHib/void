@@ -18,8 +18,7 @@ internal class LevelsTest {
         exp = Experience(maximum = 10000.0)
         events = mockk(relaxed = true)
         levels = Levels()
-        levels.events = events
-        levels.link(exp)
+        levels.link(exp, events)
     }
 
     @Test

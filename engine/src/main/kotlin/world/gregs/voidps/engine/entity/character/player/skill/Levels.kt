@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.floor
 import kotlin.math.max
@@ -13,11 +14,12 @@ class Levels(
     @JsonIgnore
     lateinit var experience: Experience
     @JsonIgnore
-    lateinit var events: Events
+    private lateinit var events: Events
 
-    fun link(experience: Experience) {
+    fun link(experience: Experience, events: Events) {
         this.experience = experience
-        experience.addListener { skill, from, to ->
+        this.events = events
+        events.on<Player, GrantExp> {
             val previousLevel = getLevel(from)
             val currentLevel = getLevel(to)
             if (currentLevel > previousLevel) {

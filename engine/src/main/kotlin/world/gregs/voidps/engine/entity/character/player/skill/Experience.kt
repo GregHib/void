@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player.skill
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Events
 
 class Experience(
     val experience: DoubleArray = defaultExperience.clone(),
@@ -9,10 +10,9 @@ class Experience(
     @JsonIgnore
     private val maximum: Double = MAXIMUM_EXPERIENCE
 ) {
+
     @JsonIgnore
-    private val listeners: MutableList<(Skill, Double, Double) -> Unit> = mutableListOf()
-    @JsonIgnore
-    private val blockedListeners: MutableList<(Skill, Double) -> Unit> = mutableListOf()
+    lateinit var events: Events
 
     fun get(skill: Skill): Double {
         return experience[skill.ordinal]
@@ -26,44 +26,20 @@ class Experience(
         }
     }
 
-    fun notify(skill: Skill, experience: Double) {
-        for (listener in blockedListeners) {
-            listener.invoke(skill, experience)
-        }
-    }
-
     fun update(skill: Skill, previous: Double = get(skill)) {
         val experience = get(skill)
-        for (listener in listeners) {
-            listener.invoke(skill, previous, experience)
-        }
+        events.emit(GrantExp(skill, previous, experience))
     }
 
     fun add(skill: Skill, experience: Double) {
         if (experience > 0.0) {
             if (blocked.contains(skill)) {
-                notify(skill, experience)
+                events.emit(BlockedExperience(skill, experience))
             } else {
                 val current = get(skill)
                 set(skill, current + experience)
             }
         }
-    }
-
-    fun addListener(listener: (Skill, from: Double, to: Double) -> Unit) {
-        listeners.add(listener)
-    }
-
-    fun removeListener(listener: (Skill, Double, Double) -> Unit) {
-        listeners.remove(listener)
-    }
-
-    fun addBlockedListener(listener: (Skill, experience: Double) -> Unit) {
-        blockedListeners.add(listener)
-    }
-
-    fun removeBlockedListener(listener: (Skill, Double) -> Unit) {
-        blockedListeners.remove(listener)
     }
 
     fun addBlock(skill: Skill) {
