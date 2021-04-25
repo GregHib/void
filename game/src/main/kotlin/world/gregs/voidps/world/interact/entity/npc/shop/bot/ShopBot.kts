@@ -1,3 +1,4 @@
+import world.gregs.voidps.ai.inverse
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
@@ -16,10 +17,19 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
-import kotlin.math.max
 
 val desireToUseShop: BotContext.(NPC) -> Double = { npc ->
-    max(desireToBuy(bot, npc), desireToSell(bot, npc))
+    val buy = desireToBuy(bot, npc)
+    val sell = desireToSell(bot, npc)
+    if (buy > sell) {
+        if (bot.inventory.isFull() || bot.inventory.contains("coins")) {
+            0.0
+        } else {
+            buy
+        }
+    } else {
+        sell
+    }
 }
 
 val containerDefs: ContainerDefinitions by inject()
@@ -40,15 +50,14 @@ fun desireToBuy(bot: Player, npc: NPC): Double {
 fun desireToSell(bot: Player, npc: NPC): Double {
     val shop = npc.def.getOrNull("shop") as? String ?: return 0.0
     val container = containerDefs.get(shop)
-    return container.ids?.maxOf { desireToBuy(bot, itemDefs.getName(it)) } ?: 0.0
+    return container.ids?.maxOf { desireToSell(bot, itemDefs.getName(it)) } ?: 0.0
 }
 
 fun desireToSell(bot: Player, item: String): Double {
     if (item.isBlank()) {
         return 0.0
     }
-    // desireForCoins * (last used score + percentage of total value)
-    return 0.0//bot.desiredItems.getOrDefault("coins", 0.0)
+    return bot.desiredItems[item]?.inverse() ?: return 0.0
 }
 
 fun desireToBuy(bot: Player, item: String): Double {
@@ -58,8 +67,33 @@ fun desireToBuy(bot: Player, item: String): Double {
     return bot.desiredItems.getOrDefault(item, 0.0)
 }
 
+val shops = mutableListOf<NPC>()
+
+on<Registered>({ it.def.has("shop") }) { npc: NPC ->
+    shops.add(npc)
+}
+
+val notGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
+
+val notAtShop: BotContext.(NPC) -> Double = { npc -> bot.viewport.npcs.current.contains(npc).toDouble().inverse() }
+
+val goToShop = SimpleBotOption(
+    name = "go to shop",
+    targets = { shops },
+    weight = 0.75,
+    considerations = listOf(
+        notGoingSomewhere,
+        notAtShop,
+        // TODO distance
+        desireToUseShop
+    ),
+    action = { npc ->
+        bot.goTo(npc.tile)// TODO need to get the nearest/linked node to a shop. Link npc or shop def with node, or node with npc or shop, or even a separate tagging within nav-graph?
+    }
+)
+
 val openShop = SimpleBotOption(
-    name = "Open shop",
+    name = "open shop",
     targets = { bot.viewport.npcs.current.filter { it.def.options.contains("Trade") } },
     weight = 0.75,
     considerations = listOf(
@@ -74,6 +108,8 @@ val itemDefinitions: ItemDefinitions by inject()
 
 val desireToSellItem: BotContext.(String) -> Double = { desireToSell(bot, it) }
 
+val relativeItemValue: BotContext.(String) -> Double = { 0.0 }
+
 val desireToBuyItem: BotContext.(IndexedValue<String>) -> Double = { (_, item) -> desireToBuy(bot, item) }
 
 val sellItemToShop = SimpleBotOption(
@@ -82,6 +118,7 @@ val sellItemToShop = SimpleBotOption(
     weight = 1.0,
     considerations = listOf(
         { (bot.inventory.spaces > 0 || bot.inventory.contains(bot["shop_currency", "coins"])).toDouble() },
+        relativeItemValue,
         desireToSellItem
     ),
     action = { item ->
@@ -160,6 +197,7 @@ val exitShop = SimpleBotOption(
 )
 
 on<Registered>({ it.isBot }) { bot: Player ->
+    bot.botOptions.add(goToShop)
     bot.botOptions.add(openShop)
 }
 

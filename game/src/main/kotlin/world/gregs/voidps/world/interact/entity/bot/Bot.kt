@@ -76,3 +76,16 @@ fun Player.goTo(area: Area): PathResult {
     }
     return get<Dijkstra>().find(this, strategy, EdgeTraversal())
 }
+
+fun Player.goTo(tile: Tile, radius: Int = 20): PathResult {// TODO combine Area2D/3D with Area?
+    movement.waypoints.clear()
+    steps.clear()
+    step = null
+    this["navigating"] = true
+    val strategy = object : NodeTargetStrategy() {
+        override fun reached(node: Any): Boolean {
+            return node is Tile && node.within(tile, radius)
+        }
+    }
+    return get<Dijkstra>().find(this, strategy, EdgeTraversal())
+}
