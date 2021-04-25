@@ -7,6 +7,8 @@ import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Boosted
+import world.gregs.voidps.engine.entity.character.player.skill.Leveled
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
@@ -138,11 +140,23 @@ val equipHatchet = SimpleBotOption(
     }
 )
 
-on<Player, Registered>({ it.isBot }) {
+on<Registered>({ it.isBot }) { it: Player ->
     it.botOptions.add(goToHatchetShop)
     it.botOptions.add(dropOldHatchet)
     it.botOptions.add(pickupHatchet)
     it.botOptions.add(equipHatchet)
+}
+
+on<Boosted>({ it.isBot }) { bot: Player ->
+    updateHatchetDesire(bot)
+}
+
+on<Leveled>({ it.isBot }) { bot: Player ->
+    updateHatchetDesire(bot)
+}
+
+fun updateHatchetDesire(bot: Player) {
+
 }
 /*
     When a new axe is bought or picked up

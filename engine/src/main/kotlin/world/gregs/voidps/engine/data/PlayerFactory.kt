@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
+import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -60,9 +61,9 @@ class PlayerFactory(
                 primary = secondary
             )
         }
-        player.experience.addListener { skill, _, experience ->
+        player.events.on<Player, GrantExp> {
             val level = player.levels.get(skill)
-            player.client?.skillLevel(skill.ordinal, level, experience.toInt())
+            player.client?.skillLevel(skill.ordinal, level, to.toInt())
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)

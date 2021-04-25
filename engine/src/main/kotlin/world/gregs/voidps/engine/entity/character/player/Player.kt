@@ -115,8 +115,8 @@ class Player(
 
     fun start() {
         movement.previousTile = tile
-        levels.events = events
-        levels.link(experience)
+        experience.events = events
+        levels.link(experience, events)
         effects.link(this)
     }
 

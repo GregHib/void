@@ -12,11 +12,13 @@ import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.delay.Delay
 import world.gregs.voidps.engine.entity.character.player.delay.delayed
 import world.gregs.voidps.engine.entity.character.player.delay.remaining
+import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.remove
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.TICKS
@@ -163,7 +165,7 @@ fun cancelAssist(assistant: Player?, assisted: Player?) {
 }
 
 fun interceptExperience(player: Player, assisted: Player) {
-    val listener: (Skill, Double) -> Unit = { skill, experience ->
+    assisted["assist_listener"] = player.events.on<Player, BlockedExperience> {
         val active = player.getVar("assist_toggle_${skill.name.toLowerCase()}", false)
         var gained = player.getVar("total_xp_earned", 0.0)
         if (active && !exceededMaximum(gained)) {
@@ -185,15 +187,13 @@ fun interceptExperience(player: Player, assisted: Player) {
             }
         }
     }
-    assisted.experience.addBlockedListener(listener)
-    assisted["assist_listener"] = listener
 }
 
 
 fun stopInterceptingExperience(assisted: Player) {
-    val listener: ((Skill, Double) -> Unit)? = assisted.remove("assist_listener")
+    val listener: EventHandler? = assisted.remove("assist_listener")
     if (listener != null) {
-        assisted.experience.removeBlockedListener(listener)
+        assisted.events.remove(listener)
     }
 }
 
