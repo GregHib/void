@@ -1,15 +1,20 @@
+import world.gregs.voidps.ai.exponential
 import world.gregs.voidps.ai.inverse
+import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
+import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.CloseInterface
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
@@ -22,7 +27,7 @@ val desireToUseShop: BotContext.(NPC) -> Double = { npc ->
     val buy = desireToBuy(bot, npc)
     val sell = desireToSell(bot, npc)
     if (buy > sell) {
-        if (bot.inventory.isFull() || bot.inventory.contains("coins")) {
+        if (bot.inventory.isFull() || !bot.inventory.contains("coins")) {
             0.0
         } else {
             buy
@@ -42,30 +47,21 @@ fun desireToBuy(bot: Player, npc: NPC): Double {
     if (bot.inventory.isFull()) {
         return 0.0
     }
-    val shop = npc.def.getOrNull("shop") as? String ?: return 0.0
-    val container = containerDefs.get(shop)
-    return container.ids?.maxOf { desireToBuy(bot, itemDefs.getName(it)) } ?: 0.0
+    return npc.shop().ids?.maxOf { desireToBuy(bot, itemDefs.getName(it)) } ?: 0.0
 }
 
 fun desireToSell(bot: Player, npc: NPC): Double {
-    val shop = npc.def.getOrNull("shop") as? String ?: return 0.0
-    val container = containerDefs.get(shop)
-    return container.ids?.maxOf { desireToSell(bot, itemDefs.getName(it)) } ?: 0.0
+    return npc.shop().ids?.maxOf { desireToSell(bot, itemDefs.getName(it)) } ?: 0.0
 }
 
-fun desireToSell(bot: Player, item: String): Double {
-    if (item.isBlank()) {
-        return 0.0
-    }
-    return bot.desiredItems[item]?.inverse() ?: return 0.0
+fun NPC.shop(): ContainerDefinition {
+    val shop = def.getOrNull("shop") as? String ?: ""
+    return containerDefs.get(shop)
 }
 
-fun desireToBuy(bot: Player, item: String): Double {
-    if (item.isBlank()) {
-        return 0.0
-    }
-    return bot.desiredItems.getOrDefault(item, 0.0)
-}
+fun desireToSell(bot: Player, item: String) = bot.undesiredItems.getOrDefault(item, 0.0)
+
+fun desireToBuy(bot: Player, item: String) = bot.desiredItems.getOrDefault(item, 0.0)
 
 val shops = mutableListOf<NPC>()
 
@@ -75,27 +71,36 @@ on<Registered>({ it.def.has("shop") }) { npc: NPC ->
 
 val notGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 
-val notAtShop: BotContext.(NPC) -> Double = { npc -> bot.viewport.npcs.current.contains(npc).toDouble().inverse() }
+val notAtShop: BotContext.(NPC) -> Double = { npc ->
+    val botNode: Any? = bot.getOrNull("nearest_node")
+    val npcNode: Any? = npc.getOrNull("nearest_node")
+    (botNode != null && npcNode != null && botNode != npcNode).toDouble()
+}
+
+val distanceToShop: BotContext.(NPC) -> Double = { npc ->
+    npc.tile.distanceTo(bot.tile).toDouble().scale(0.0, 2000.0).inverse().exponential(20.0, 0.35)
+}
 
 val goToShop = SimpleBotOption(
     name = "go to shop",
     targets = { shops },
-    weight = 0.75,
+    weight = 1.0,
     considerations = listOf(
         notGoingSomewhere,
         notAtShop,
-        // TODO distance
+        distanceToShop,// TODO take teleports into account
         desireToUseShop
     ),
     action = { npc ->
-        bot.goTo(npc.tile)// TODO need to get the nearest/linked node to a shop. Link npc or shop def with node, or node with npc or shop, or even a separate tagging within nav-graph?
+        val node: Tile = npc["nearest_node"]
+        bot.goTo(node)
     }
 )
 
 val openShop = SimpleBotOption(
     name = "open shop",
     targets = { bot.viewport.npcs.current.filter { it.def.options.contains("Trade") } },
-    weight = 0.75,
+    weight = 1.0,
     considerations = listOf(
         desireToUseShop
     ),
@@ -104,11 +109,7 @@ val openShop = SimpleBotOption(
     }
 )
 
-val itemDefinitions: ItemDefinitions by inject()
-
 val desireToSellItem: BotContext.(String) -> Double = { desireToSell(bot, it) }
-
-val relativeItemValue: BotContext.(String) -> Double = { 0.0 }
 
 val desireToBuyItem: BotContext.(IndexedValue<String>) -> Double = { (_, item) -> desireToBuy(bot, item) }
 
@@ -117,15 +118,14 @@ val sellItemToShop = SimpleBotOption(
     targets = { bot.inventory.getItems().toList() },
     weight = 1.0,
     considerations = listOf(
-        { (bot.inventory.spaces > 0 || bot.inventory.contains(bot["shop_currency", "coins"])).toDouble() },
-        relativeItemValue,
-        desireToSellItem
+        desireToSellItem,
+        { (bot.inventory.spaces > 0 || bot.inventory.contains(bot["shop_currency", "coins"])).toDouble() }
     ),
     action = { item ->
         bot.instructions.tryEmit(InteractInterface(
             interfaceId = 621,
             componentId = 0,
-            itemId = itemDefinitions.getId(item),
+            itemId = itemDefs.getId(item),
             itemSlot = bot.inventory.indexOf(item),
             option = 1// Sell 1
         ))
@@ -145,7 +145,7 @@ val takeItemFromShop = SimpleBotOption(
         desireToBuyItem,
         inStock
     ),
-    action = { (index, item) ->
+    action = { (_, item) ->
         bot.instructions.tryEmit(InteractInterface(
             interfaceId = 620,
             componentId = 26,
@@ -168,7 +168,7 @@ val buyItemFromShop = SimpleBotOption(
         inStock,
         hasCoins
     ),
-    action = { (index, item) ->
+    action = { (index, _) ->
         bot.instructions.tryEmit(InteractInterface(
             interfaceId = 620,
             componentId = 25,
@@ -176,7 +176,6 @@ val buyItemFromShop = SimpleBotOption(
             itemSlot = index * 6,
             option = 1// Buy 1
         ))
-        bot.desiredItems.remove(item)
     }
 )
 

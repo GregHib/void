@@ -43,12 +43,12 @@ on<InterfaceOption>({ name == "filter_buttons" && component == "assist" && optio
 }
 
 fun cancel(player: Player) {
-    if (player.has("assistant")) {
+    if (player.contains("assistant")) {
         val assistant: Player? = player.getOrNull("assistant")
         assistant?.action?.cancel(ActionType.Assisting)
     }
 
-    if (player.has("assisted")) {
+    if (player.contains("assisted")) {
         player.action.cancel(ActionType.Assisting)
     }
 }

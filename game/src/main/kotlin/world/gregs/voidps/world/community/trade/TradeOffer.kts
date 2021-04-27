@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.has
+import world.gregs.voidps.engine.entity.character.contains
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
@@ -85,12 +85,12 @@ fun lend(player: Player, other: Player, id: String, slot: Int) {
         return
     }
 
-    if(player.has("lent_item")) {
+    if(player.contains("lent_item")) {
         player.message("You are already lending an item, you can't lend another.")
         return
     }
 
-    if(other.has("borrowed_item")) {
+    if(other.contains("borrowed_item")) {
         player.message("They are already borrowing an item and can't borrow another.")
         return
     }

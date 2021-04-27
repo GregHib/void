@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.has
+import world.gregs.voidps.engine.entity.character.contains
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on
@@ -60,7 +60,7 @@ on<Command>({ prefix == "exec" }) { player: Player ->
 on<Command>({ prefix == "bot" }) { player: Player ->
     when {
         player.isBot -> player["bot"] = false
-        player.has("context") -> player["bot"] = true
+        player.contains("context") -> player["bot"] = true
         else -> {
             player.initBot()
             player.events.emit(Registered)

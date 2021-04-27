@@ -3,8 +3,8 @@ package world.gregs.voidps.world.community.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.contains
 import world.gregs.voidps.engine.entity.character.getOrNull
-import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on
@@ -26,7 +26,7 @@ on<Registered> { player: Player ->
 }
 
 on<Unregistered> { player: Player ->
-    if (!player.has("borrow_timeout") && player.has("borrowed_item")) {
+    if (!player.contains("borrow_timeout") && player.contains("borrowed_item")) {
         returnLoan(player)
         val partner: Player? = player.getOrNull("borrowed_from")
         if (partner == null) {
@@ -36,7 +36,7 @@ on<Unregistered> { player: Player ->
             partner.message("The item you lent has been returned to your collection box.")
         }
     }
-    if (!player.has("lend_timeout") && player.has("lent_item")) {
+    if (!player.contains("lend_timeout") && player.contains("lent_item")) {
         val partner: Player? = player.getOrNull("lent_to")
         if (partner == null) {
             logger.error { "Unable to find lent item partner for $player" }

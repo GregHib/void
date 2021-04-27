@@ -39,6 +39,7 @@ data class Movement(
     lateinit var traversal: TileTraversalStrategy
 
     fun clear() {
+        waypoints.clear()
         steps.clear()
         reset()
     }

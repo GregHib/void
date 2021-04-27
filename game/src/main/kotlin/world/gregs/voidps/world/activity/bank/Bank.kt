@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.bank
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.container
+import world.gregs.voidps.engine.entity.character.contain.has
 import world.gregs.voidps.engine.entity.character.player.Player
 
 object Bank {
@@ -24,7 +25,7 @@ object Bank {
                 return tab
             }
         }
-        return if(slot <= max) mainTab else -1
+        return if (slot <= max) mainTab else -1
     }
 
     fun getIndexOfTab(player: Player, tab: Int): Int {
@@ -45,3 +46,5 @@ object Bank {
 
 val Player.bank: Container
     get() = container("bank")
+
+fun Player.has(item: String, banked: Boolean) = has(item) || (banked && bank.contains(item))

@@ -127,7 +127,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "S
     if (selecting) {
         player.setVar("tab", Tab.PrayerList)
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
-    } else if (player.has(TEMP_QUICK_PRAYERS)) {
+    } else if (player.contains(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
     }
     if (selecting) {
@@ -155,7 +155,7 @@ on<InterfaceOption>({ name == "prayer_list" && component == "confirm" && option 
     player.saveQuickPrayers()
 }
 
-on<Unregistered>({ it.has(TEMP_QUICK_PRAYERS) }) { player: Player ->
+on<Unregistered>({ it.contains(TEMP_QUICK_PRAYERS) }) { player: Player ->
     player.cancelQuickPrayers()
 }
 

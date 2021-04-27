@@ -13,8 +13,7 @@ val walkToTarget = SimpleBotOption(
     targets = { listOf(this) },
     considerations = listOf(
         { (bot.action.type == ActionType.None || bot.action.type == ActionType.Movement).toDouble() },
-//        { hasTarget(bot).toDouble() }
-        { (bot["navigating", false]).toDouble() },
+        { (bot["navigating", false]).toDouble() }
     ),
     weight = 0.9,
     action = {
@@ -61,6 +60,6 @@ fun isNearingStepCompletion(bot: Player): Boolean {
     return bot.action.type == ActionType.None
 }
 
-on<Player, Registered>({ it.isBot }) { player ->
+on<Registered>({ it.isBot }) { player: Player ->
     player.botOptions.add(walkToTarget)
 }

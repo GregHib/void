@@ -33,6 +33,9 @@ data class FloorItem(
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(id)
 
+    val name: String
+        get() = get<ItemDefinitions>().getName(id)
+
     var state: FloorItemState = FloorItemState.Private
 
     var disappear: Job? = null
