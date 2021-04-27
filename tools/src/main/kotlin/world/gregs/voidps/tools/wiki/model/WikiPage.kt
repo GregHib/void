@@ -31,24 +31,28 @@ data class WikiPage(
 
     val templates: List<Pair<String, Any>> by lazy {
         content.filterIsInstance<WtTemplate>().mapNotNull { template ->
-            if(template.name.isResolved) {
+            if (template.name.isResolved) {
                 val name = template.name.asString.trim()
                 val arguments = template.args
 
-                name to if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
-                    arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[0] as WtName) to unwrap(arg[1] as WtValue) }.toMap()
-                } else {
-                    arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
-                }
+                name to getTemplate(arguments)
             } else {
                 null
             }
         }
     }
 
+    private fun getTemplate(arguments: WtTemplateArguments): Any {
+        return if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
+            arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[0] as WtName) to unwrapValue(arg[1] as WtValue) }
+        } else {
+            arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
+        }
+    }
+
     val redirected: Boolean = revision.text.contains(redirectPattern)
 
-    fun getRedirect(wiki: Wiki) : WikiPage? {
+    fun getRedirect(wiki: Wiki): WikiPage? {
         val redirect = redirectPattern.find(revision.text)!!.groupValues[1]
         return try {
             wiki.getExactPageOrNull(redirect)
@@ -62,18 +66,45 @@ data class WikiPage(
         return templates.firstOrNull { it.first.contains(name, true) }?.second as? Map<String, Any>
     }
 
+    fun getTemplateList(name: String): List<Pair<String, Any>>? {
+        return templates.firstOrNull { it.first.contains(name, true) }?.second as? List<Pair<String, Any>>
+    }
+
     fun getTemplateMaps(name: String): List<Map<String, Any>> {
         return templates.filter { it.first.contains(name, true) }.mapNotNull { it.second as? Map<String, Any> }
     }
 
     private fun unwrap(node: WtNode): String {
         val first = node.firstOrNull() ?: return ""
-        if(first is WtText) {
-            return first.content.trim()
-        } else if(first is WtTagExtension) {
+        return if (first is WtText) {
+            first.content.trim()
+        } else if (first is WtTagExtension) {
             first.body.content.trim()
+        } else {
+            ""
         }
-        return ""
+    }
+
+    private fun unwrapValue(node: WtNode): Any {
+        val first = node.firstOrNull() ?: return ""
+        return when {
+            node.size > 1 -> {
+                val template = node[1]
+                if (template is WtTemplate) {
+                    if (template.name.isResolved) {
+                        val arguments = template.args
+                        getTemplate(arguments)
+                    } else {
+                        emptyList<Any>()
+                    }
+                } else {
+                    emptyList<Any>()
+                }
+            }
+            first is WtText -> first.content.trim()
+            first is WtTagExtension -> first.body.content.trim()
+            else -> ""
+        }
     }
 
     val tables: List<WikiPageTable> by lazy {
