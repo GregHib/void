@@ -3,9 +3,12 @@ package world.gregs.voidps.world.interact.entity.bot
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.Edge
@@ -35,12 +38,31 @@ val movement = Movement()
 fun findNearest(player: Player) {
     val edges = graph.get(player)
     edges.clear()
+    var first = true
+    findNodes(player) { tile, distance ->
+        if (first) {
+            player["nearest_node"] = tile
+            first = false
+        }
+        edges.add(Edge("", player, tile, distance, listOf(Walk(tile.x, tile.y))))
+        false
+    }
+}
+
+on<Registered>({ it.def.has("shop") }) { npc: NPC ->
+    findNodes(npc) { tile, _ ->
+        npc["nearest_node"] = tile
+        true
+    }
+}
+
+fun findNodes(character: Character, onNode: (Tile, Int) -> Boolean) {
     movement.reset()
-    bfs.find(player.tile, player.size, movement, object : TileTargetStrategy {
+    bfs.find(character.tile, character.size, movement, object : TileTargetStrategy {
         override val tile: Tile
-            get() = player.tile
+            get() = character.tile
         override val size: Size
-            get() = player.size
+            get() = character.size
 
         override fun reached(tile: Tile, size: Size): Boolean {
             val distance = this.tile.distanceTo(tile)
@@ -48,9 +70,9 @@ fun findNearest(player: Player) {
                 return true
             }
             if (graph.contains(tile)) {
-                edges.add(Edge("", player, tile, distance, listOf(Walk(tile.x, tile.y))))
+                return onNode(tile, distance)
             }
             return false
         }
-    }, player.movement.traversal)
+    }, character.movement.traversal)
 }

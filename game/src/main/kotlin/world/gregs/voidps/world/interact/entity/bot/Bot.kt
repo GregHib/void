@@ -50,8 +50,21 @@ val Player.woodcuttingDesire: Double
 val Player.logStorageDesire: Double
     get() = get("logStorageDesire", 0.0)
 
+fun Player.setDesire(item: String, value: Double) {
+    desiredItems[item] = value
+    undesiredItems.remove(item)
+}
+
+fun Player.setUndesired(item: String, value: Double) {
+    undesiredItems[item] = value
+    desiredItems.remove(item)
+}
+
 val Player.desiredItems: MutableMap<String, Double>
     get() = get("itemDesire")
+
+val Player.undesiredItems: MutableMap<String, Double>
+    get() = get("undesiredItems")
 
 fun Player.initBot() {
     this["bot"] = true
@@ -62,6 +75,7 @@ fun Player.initBot() {
     this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
     this["itemDesire"] = mutableMapOf<String, Double>()
+    this["undesiredItems"] = mutableMapOf<String, Double>()
 }
 
 fun Player.goTo(area: Area): PathResult {
@@ -77,14 +91,14 @@ fun Player.goTo(area: Area): PathResult {
     return get<Dijkstra>().find(this, strategy, EdgeTraversal())
 }
 
-fun Player.goTo(tile: Tile, radius: Int = 20): PathResult {// TODO combine Area2D/3D with Area?
+fun Player.goTo(tile: Tile): PathResult {
     movement.waypoints.clear()
     steps.clear()
     step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
-            return node is Tile && node.within(tile, radius)
+            return node is Tile && node == tile
         }
     }
     return get<Dijkstra>().find(this, strategy, EdgeTraversal())

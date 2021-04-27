@@ -61,7 +61,7 @@ fun Character.inc(key: String): Int {
     return value
 }
 
-fun Character.has(key: String) = values.has(key)
+fun Character.contains(key: String) = values.has(key)
 
 operator fun <T : Any> Character.get(key: String) = values.get<T>(key)
 

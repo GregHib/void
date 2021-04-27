@@ -1,10 +1,12 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
+import world.gregs.voidps.ai.inverse
 import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.contain.has
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -110,10 +112,17 @@ val isWorseThanCurrent: BotContext.(Triple<Hatchet, Int, String>) -> Double = { 
     (current != null && hatchet.ordinal < current.ordinal).toDouble()
 }
 
+val noInventoryOverlayOpen: BotContext.(Any) -> Double = {
+    (bot.interfaces.get("overlay_tab") == null).toDouble()
+}
+
 val dropOldHatchet = SimpleBotOption(
     name = "drop old hatchet",
     targets = inventoryHatchets,
-    considerations = listOf(isWorseThanCurrent),
+    considerations = listOf(
+        noInventoryOverlayOpen,
+        isWorseThanCurrent
+    ),
     action = { (_, slot, item) ->
         bot.instructions.tryEmit(InteractInterface(149, 0, itemDefs.getId(item), slot, 7))
     }
@@ -139,8 +148,6 @@ val equipHatchet = SimpleBotOption(
 )
 
 on<Registered>({ it.isBot }) { bot: Player ->
-    bot.botOptions.add(dropOldHatchet)
-    bot.botOptions.add(pickupHatchet)
     bot.botOptions.add(equipHatchet)
     updateHatchetDesire(bot)
 }
@@ -158,15 +165,33 @@ on<ItemChanged>({ Hatchet.isHatchet(item) }) { bot: Player ->
 }
 
 fun updateHatchetDesire(bot: Player) {
-    val current = (Hatchet.get(bot)?.ordinal ?: -1) + 1
-    val best = (Hatchet.highest(bot)?.ordinal ?: -1) + 1
-    Hatchet.regular.forEach { hatchet ->
+    val best = (Hatchet.highest(bot)?.index ?: -1) + 1.0
+    val woodcuttingDesire = bot.woodcuttingDesire
+    var hasHatchet = false
+    // For all hatchets best - worst
+    Hatchet.regular.reversed().forEach { hatchet ->
         if (Hatchet.hasRequirements(bot, hatchet, false)) {
-            // Hatchet desire = how much better it is than the current hatchet
-            val option = hatchet.ordinal + 1
-            bot.desiredItems[hatchet.id] = (option - current).toDouble().scale(0.0, best.toDouble())
+            val desire = (hatchet.index + 1.0).scale(0.0, best) * woodcuttingDesire
+            println("$hatchet ${bot.has(hatchet.id)} $hasHatchet $desire")
+            if (bot.has(hatchet.id)) {
+                if (hasHatchet) {
+                    // Worse hatchets are undesirable
+                    bot.setUndesired(hatchet.id, desire.inverse())
+                } else {
+                    // No desire for owned hatchets
+                    hasHatchet = true
+                    bot.desiredItems.remove(hatchet.id)
+                }
+            } else if (!hasHatchet) {
+                bot.setDesire(hatchet.id, desire)
+            } else {
+                // No desire to get rid of items not owned
+                bot.undesiredItems.remove(hatchet.id)
+            }
         } else {
             bot.desiredItems.remove(hatchet.id)
+            bot.undesiredItems.remove(hatchet.id)
         }
     }
+    println("Desires ${bot.desiredItems} ${bot.undesiredItems}")
 }

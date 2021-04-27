@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contains
 import world.gregs.voidps.engine.entity.character.getOrNull
-import world.gregs.voidps.engine.entity.character.has
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -31,7 +31,7 @@ on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
 
 on<InterfaceOption>({ name == "collection_box" && component == "box_lent" && option == "*" }) { player: Player ->
 
-    if (!player.has("lend_timeout")) {
+    if (!player.contains("lend_timeout")) {
         // Force reclaim
     } else {
         val remainder = getTimeRemaining(player, "lend_timeout")
