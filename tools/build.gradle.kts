@@ -17,6 +17,7 @@ dependencies {
     implementation("com.displee:rs-cache-library:${findProperty("displeeCacheVersion")}")
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")
+    implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jacksonVersion")}")
 
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
 }

@@ -53,4 +53,17 @@ object Infobox {
         return null
     }
 
+    fun getFirstList(page: WikiPage?, templateNames: List<String>): List<Pair<String, Any>>? {
+        if (page == null) {
+            return null
+        }
+        for (name in templateNames) {
+            val map = page.getTemplateList(name)
+            if (map != null) {
+                return map
+            }
+        }
+        return null
+    }
+
 }
