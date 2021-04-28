@@ -20,6 +20,7 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 import world.gregs.voidps.world.interact.entity.bot.*
+import kotlin.math.max
 
 val objects: Objects by inject()
 val definitions: ItemDefinitions by inject()
@@ -28,7 +29,10 @@ val trees = Rectangle(3220, 3244, 3234, 3249)
 val isNotAtTrees: BotContext.(Any) -> Double = { (bot.tile !in trees).toDouble() }
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
-val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
+val wantsToCutTrees: BotContext.(Any) -> Double = {
+    max(bot.desiredExperience.getOrDefault(Skill.Woodcutting, 0.0),
+        bot.desiredItems.getOrDefault("logs", 0.0))
+}
 val doesNotWantToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire.inverse() }
 val hasEquipmentToCutTrees: BotContext.(Any) -> Double = { (Hatchet.get(bot) != null).toDouble() }
 
@@ -52,9 +56,9 @@ val isNearestTree: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.
 val isPreferredTree: BotContext.(GameObject) -> Double = {
     val desire: String = bot["desiredLog", ""]
     val tree = Tree.get(it)
-    if(tree == null || !bot.has(Skill.Woodcutting, tree.level)) {
+    if (tree == null || !bot.has(Skill.Woodcutting, tree.level)) {
         0.0
-    } else if(desire.isNotBlank()) {
+    } else if (desire.isNotBlank()) {
         (desire == tree.log?.id).toDouble()
     } else {
         val level = (bot.levels.get(Skill.Woodcutting) / 10) + 1
