@@ -41,6 +41,7 @@ object Protocol {
     const val FLOOR_ITEM_REVEAL = 109
     const val PROJECTILE_ADD = 15
     const val MINI_SOUND = 11
+    const val PLAY_MUSIC = 85
     const val INTERFACE_WINDOW = 102
     const val PLAYER_UPDATING = 105
     const val INTERFACE_CLOSE = 112

@@ -9,6 +9,7 @@ interface Area {
 
     val area: Double
     val region: Region
+    val regions: Set<Region>
 
     operator fun contains(tile: Tile): Boolean
 

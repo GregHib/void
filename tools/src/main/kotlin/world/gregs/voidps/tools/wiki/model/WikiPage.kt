@@ -76,12 +76,10 @@ data class WikiPage(
 
     private fun unwrap(node: WtNode): String {
         val first = node.firstOrNull() ?: return ""
-        return if (first is WtText) {
-            first.content.trim()
-        } else if (first is WtTagExtension) {
-            first.body.content.trim()
-        } else {
-            ""
+        return when (first) {
+            is WtText -> first.content.trim()
+            is WtTagExtension -> first.body.content.trim()
+            else -> ""
         }
     }
 
@@ -89,16 +87,17 @@ data class WikiPage(
         val first = node.firstOrNull() ?: return ""
         return when {
             node.size > 1 -> {
-                val template = node[1]
-                if (template is WtTemplate) {
-                    if (template.name.isResolved) {
-                        val arguments = template.args
-                        getTemplate(arguments)
+                node.mapNotNull {
+                    if (it is WtTemplate) {
+                        if (it.name.isResolved) {
+                            val arguments = it.args
+                            getTemplate(arguments)
+                        } else {
+                            null
+                        }
                     } else {
-                        emptyList<Any>()
+                        null
                     }
-                } else {
-                    emptyList<Any>()
                 }
             }
             first is WtText -> first.content.trim()

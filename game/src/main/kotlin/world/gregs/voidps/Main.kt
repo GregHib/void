@@ -56,6 +56,7 @@ import world.gregs.voidps.script.scriptModule
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
+import world.gregs.voidps.world.interact.world.map.musicModule
 import java.math.BigInteger
 import java.util.concurrent.Executors
 
@@ -177,7 +178,8 @@ object Main {
                 npcSpawnModule,
                 stairsModule,
                 floorItemModule,
-                floorItemSpawnModule
+                floorItemSpawnModule,
+                musicModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

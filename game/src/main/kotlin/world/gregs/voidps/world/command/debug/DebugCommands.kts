@@ -1,7 +1,6 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -10,11 +9,10 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area2D
-import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.path.traverse.SmallTraversal
+import world.gregs.voidps.network.encode.play
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
@@ -32,8 +30,7 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val traversal = SmallTraversal(TraversalType.Land, false, get())
-    println(traversal.blocked(player.tile, Direction.NONE))
+    player.play(content.toInt())
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->
