@@ -182,7 +182,7 @@ val buyItemFromShop = SimpleBotOption(
 val exitShop = SimpleBotOption(
     name = "exit shop",
     targets = { empty },
-    weight = 0.5,
+    weight = 0.25,
     action = {
         bot.instructions.tryEmit(CloseInterface)
         bot.instructions.tryEmit(InteractInterface(

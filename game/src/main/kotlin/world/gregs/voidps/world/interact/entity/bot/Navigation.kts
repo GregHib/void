@@ -20,7 +20,7 @@ val walkToTarget = SimpleBotOption(
     weight = 0.9,
     action = {
         if (isNearingStepCompletion(bot)) {
-            val steps = bot.steps
+            val steps = bot.steps ?: return@SimpleBotOption
             if (steps.isEmpty()) {
                 for (next in bot.movement.waypoints) {
                     steps.addAll(next.steps)
@@ -51,7 +51,7 @@ fun isNearingStepCompletion(bot: Player): Boolean {
         if (bot.tile.within(walk.x, walk.y, 1)) {
             return true
         }
-        val next = bot.steps.peek() as? Walk
+        val next = bot.steps?.peek() as? Walk
         if (next != null && bot.tile.within(next.x, next.y, 20)) {
             return true
         }
