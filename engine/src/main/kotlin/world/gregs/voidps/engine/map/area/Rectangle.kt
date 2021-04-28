@@ -16,6 +16,7 @@ open class Rectangle(
 
     override val area = ((maxX - minX) * (maxY - minY)).toDouble()
     override val region = Tile(minX, minY).region
+    override val regions = Tile(minX, minY).area(width = maxX - minX + 1, height = maxY - minY + 1).map { it.region }.toSet()
 
     override fun contains(tile: Tile): Boolean {
         return tile.plane == plane && tile.x >= minX && tile.x <= maxX && tile.y >= minY && tile.y <= maxY

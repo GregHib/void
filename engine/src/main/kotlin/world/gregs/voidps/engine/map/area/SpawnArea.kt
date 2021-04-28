@@ -29,18 +29,21 @@ data class SpawnArea(
 
         fun build() = SpawnArea(
             name = name,
-            area = area.let {
-                if (it.x.size <= 2) {
-                    Rectangle(it.x.first(), it.y.first(), it.x.last(), it.y.last(), it.plane)
-                } else {
-                    Polygon(it.x, it.y, it.plane)
-                }
-            },
+            area = area.toArea(),
             spawns = spawns,
             delay = delay
         )
 
         data class SpawnArea(val x: IntArray, val y: IntArray, val plane: Int = 0) {
+
+            fun toArea(): Area {
+                return if (x.size <= 2) {
+                    Rectangle(x.first(), y.first(), x.last(), y.last(), plane)
+                } else {
+                    Polygon(x, y, plane)
+                }
+            }
+
             override fun equals(other: Any?): Boolean {
                 if (this === other) return true
                 if (javaClass != other?.javaClass) return false

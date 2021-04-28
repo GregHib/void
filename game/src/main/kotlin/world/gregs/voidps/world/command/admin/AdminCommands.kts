@@ -19,6 +19,7 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.world.map.MusicTracks
 import java.util.concurrent.atomic.AtomicInteger
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
@@ -127,6 +128,7 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "stairs" -> get<Stairs>().load()
+        "music", "tracks", "songs" -> get<MusicTracks>().load()
     }
 }
 
