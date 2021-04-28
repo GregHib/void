@@ -40,5 +40,11 @@ enum class Expression(val id: Int) {
     Conflicted(9835),
     Chicken(9793),
     Goofy(9878),
-    EvilLaugh(9842);
+    EvilLaugh(9842),
+
+    GatekeeperHappy(14074),
+    GatekeeperSad(14075),
+    GatekeeperSuspicious(14076),
+    GatekeeperTired(14077),
+    GatekeeperCry(14078);
 }
