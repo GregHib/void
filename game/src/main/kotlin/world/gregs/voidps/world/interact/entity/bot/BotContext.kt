@@ -6,4 +6,5 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 class BotContext(val bot: Player) : Context {
     override var last: Decision<*, *>? = null
+    val empty = listOf(this)
 }

@@ -26,6 +26,7 @@ class GraphLoader(
                 process.invoke(path, value as List<Map<String, Any>>)
             }
         }
+        count = list.size
         return list
     }
 

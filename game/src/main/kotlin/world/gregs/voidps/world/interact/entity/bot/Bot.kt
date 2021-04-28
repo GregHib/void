@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -64,7 +64,7 @@ fun Player.setUndesired(item: String, value: Double) {
 val Player.desiredExperience: MutableMap<Skill, Double>
     get() = get("experienceDesire")
 
-val Player.desiredStorageItems: MutableMap<String, Double>
+val Player.desiredItemStorage: MutableMap<String, Double>
     get() = get("itemStorageDesire")
 
 val Player.desiredItems: MutableMap<String, Double>
@@ -72,6 +72,9 @@ val Player.desiredItems: MutableMap<String, Double>
 
 val Player.undesiredItems: MutableMap<String, Double>
     get() = get("undesiredItems")
+
+val Player.area: MapArea?
+    get() = getOrNull("area")
 
 fun Player.initBot() {
     this["bot"] = true
@@ -87,14 +90,15 @@ fun Player.initBot() {
     this["experienceDesire"] = mutableMapOf<Skill, Double>()
 }
 
-fun Player.goTo(area: Area): PathResult {
+fun Player.goTo(map: MapArea): PathResult {
+    this["targetArea"] = map
     movement.waypoints.clear()
     steps.clear()
     step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
-            return node is Tile && node in area
+            return node is Tile && node in map.area
         }
     }
     return get<Dijkstra>().find(this, strategy, EdgeTraversal())

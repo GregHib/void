@@ -2,15 +2,17 @@ import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.world.interact.entity.bot.*
 
 val walkToTarget = SimpleBotOption(
     "continue walking to target",
-    targets = { listOf(this) },
+    targets = { empty },
     considerations = listOf(
         { (bot.action.type == ActionType.None || bot.action.type == ActionType.Movement).toDouble() },
         { (bot["navigating", false]).toDouble() }
@@ -32,19 +34,16 @@ val walkToTarget = SimpleBotOption(
                 if (steps.isEmpty()) {
                     bot.action.completion = {
                         bot["navigating"] = false
+                        val target: MapArea? = bot.getOrNull("targetArea")
+                        if (target != null) {
+                            bot["area"] = target
+                        }
                     }
                 }
             }
         }
     }
 )
-
-fun hasTarget(bot: Player): Boolean {
-    if (bot.steps.isNotEmpty()) {
-        return true
-    }
-    return bot.movement.waypoints.isNotEmpty()
-}
 
 fun isNearingStepCompletion(bot: Player): Boolean {
     if (bot.step is Walk) {

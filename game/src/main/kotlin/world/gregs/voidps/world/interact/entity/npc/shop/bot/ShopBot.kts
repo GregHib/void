@@ -181,7 +181,7 @@ val buyItemFromShop = SimpleBotOption(
 
 val exitShop = SimpleBotOption(
     name = "exit shop",
-    targets = { listOf(this) },
+    targets = { empty },
     weight = 0.5,
     action = {
         bot.instructions.tryEmit(CloseInterface)

@@ -1,0 +1,43 @@
+lumbridge_north_trees:
+  area:
+    x: [ 3220, 3234 ]
+    y: [ 3244, 3249 ]
+  values:
+    trees: [ tree, oak ]
+lumbridge_west_yew_tree:
+  area:
+    x: [ 3164, 3168 ]
+    y: [ 3218, 3222 ]
+  values:
+    trees: [ tree, yew ]
+lumbridge_north_west_yew_tree:
+  area:
+    x: [ 3183, 3187 ]
+    y: [ 3225, 3229 ]
+  values:
+    trees: [ tree, yew ]
+lumbridge_west_trees:
+  area:
+    x: [ 3186, 3197 ]
+    y: [ 3238, 3250 ]
+  values:
+    trees: [ tree, oak ]
+lumbridge_east_trees:
+  area:
+    x: [ 3260, 3267 ]
+    y: [ 3214, 3226 ]
+  values:
+    trees: [ tree, oak ]
+bobs_axe_shop:
+  area:
+    x: [ 3227, 3233 ]
+    y: [ 3201, 3205 ]
+  values:
+    shop: [ bronze_hatchet, iron_hatchet, steel_hatchet, black_hatchet, mithril_hatchet, adamant_hatchet, rune_hatchet ]
+lumbridge_castle_bank:
+  area:
+    x: [ 3207, 3210 ]
+    y: [ 3215, 3222 ]
+    plane: 2
+  values:
+    bank: true

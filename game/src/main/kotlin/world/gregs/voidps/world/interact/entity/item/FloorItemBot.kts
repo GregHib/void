@@ -7,16 +7,13 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItem
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.network.instruct.InteractFloorItem
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 
 val itemDefs: ItemDefinitions by inject()
-val floorItems: FloorItems by inject()
 
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 val isNotBusy: BotContext.(Any) -> Double = { bot.movement.frozen.toDouble().inverse() }
@@ -24,7 +21,7 @@ val itemDesire: BotContext.(FloorItem) -> Double = { item -> bot.desiredItems[it
 
 val pickupItem = SimpleBotOption(
     name = "pickup item",
-    targets = { bot.tile.chunk.area(2).flatMap { floorItems[it] }.toList() },
+    targets = { bot.viewport.items.toList() },
     weight = 0.6,
     considerations = listOf(
         isNotBusy,
