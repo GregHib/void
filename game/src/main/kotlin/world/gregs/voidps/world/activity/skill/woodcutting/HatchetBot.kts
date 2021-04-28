@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
-import world.gregs.voidps.ai.inverse
 import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
@@ -70,17 +69,18 @@ fun updateHatchetDesire(bot: Player) {
     // For all hatchets best - worst
     Hatchet.regular.reversed().forEach { hatchet ->
         if (Hatchet.hasRequirements(bot, hatchet, false)) {
-            val desire = (hatchet.index + 1.0).scale(0.0, best) * woodcuttingDesire
             if (bot.has(hatchet.id)) {
                 if (hasHatchet) {
                     // Worse hatchets are undesirable
-                    bot.setUndesired(hatchet.id, desire.inverse())
+                    val uselessness = (hatchet.index + 1.0).scale(0.0, best)
+                    bot.setUndesired(hatchet.id, uselessness)
                 } else {
                     // No desire for owned hatchets
                     hasHatchet = true
                     bot.desiredItems.remove(hatchet.id)
                 }
             } else if (!hasHatchet) {
+                val desire = (hatchet.index + 1.0).scale(0.0, best) * woodcuttingDesire
                 bot.setDesire(hatchet.id, desire)
             } else {
                 // No desire to get rid of items not owned

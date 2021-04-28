@@ -58,7 +58,8 @@ class GraphLoader(
                 }
             }
         }
-        return NavigationGraph(map)
+        val tags: Map<Any, Set<String>> = (data["tags"] as List<Map<String, Any>>).map { toTile(it["tile"] as List<Int>) to (it["tags"] as List<String>).toSet() }.toMap()
+        return NavigationGraph(map, tags)
     }
 
     private fun toTile(list: List<Int>): Tile {

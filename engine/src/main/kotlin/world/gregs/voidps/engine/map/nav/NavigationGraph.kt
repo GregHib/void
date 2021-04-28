@@ -11,6 +11,7 @@ val navModule = module {
 
 class NavigationGraph(
     private val adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>,
+    private val tags: Map<Any, Set<String>>
 ) {
     // Temp for demo
     val tiles = adjacencyList.filterKeys { it is Tile }
@@ -25,6 +26,8 @@ class NavigationGraph(
 
     fun get(node: Any): ObjectOpenHashSet<Edge> = adjacencyList.getOrPut(node) { ObjectOpenHashSet() }
 
+    fun tags(node: Any): Set<String> = tags[node] ?: emptyTags
+
     fun add(node: Any, set: ObjectOpenHashSet<Edge>) {
         adjacencyList[node] = set
     }
@@ -35,5 +38,6 @@ class NavigationGraph(
 
     companion object {
         private val empty = emptySet<Edge>()
+        private val emptyTags = emptySet<String>()
     }
 }

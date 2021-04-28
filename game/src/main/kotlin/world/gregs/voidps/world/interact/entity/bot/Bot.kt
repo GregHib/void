@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
+import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -26,8 +27,8 @@ val Player.botOptions: MutableSet<SimpleBotOption<*>>
 val Player.isBot: Boolean
     get() = get("bot", false)
 
-val Player.steps: LinkedList<Instruction>
-    get() = get("steps")
+val Player.steps: LinkedList<Instruction>?
+    get() = getOrNull("steps")
 
 val Player.patience: Double
     get() = get("patience")
@@ -45,9 +46,11 @@ var Player.step: Instruction?
         }
     }
 
+@Deprecated("Use experience or item desires")
 val Player.woodcuttingDesire: Double
     get() = get("woodcuttingDesire", 0.0)
 
+@Deprecated("Use item storage desires")
 val Player.logStorageDesire: Double
     get() = get("logStorageDesire", 0.0)
 
@@ -84,8 +87,12 @@ fun Player.initBot() {
     this["woodcuttingDesire"] = 1.0
     this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
-    this["itemDesire"] = mutableMapOf<String, Double>()
-    this["itemStorageDesire"] = mutableMapOf<String, Double>()
+    this["itemDesire"] = mutableMapOf<String, Double>(
+        "logs" to 1.0
+    )
+    this["itemStorageDesire"] = mutableMapOf<String, Double>(
+        "logs" to 1.0
+    )
     this["undesiredItems"] = mutableMapOf<String, Double>()
     this["experienceDesire"] = mutableMapOf<Skill, Double>()
 }
@@ -93,7 +100,7 @@ fun Player.initBot() {
 fun Player.goTo(map: MapArea): PathResult {
     this["targetArea"] = map
     movement.waypoints.clear()
-    steps.clear()
+    steps?.clear()
     step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
@@ -101,12 +108,17 @@ fun Player.goTo(map: MapArea): PathResult {
             return node is Tile && node in map.area
         }
     }
-    return get<Dijkstra>().find(this, strategy, EdgeTraversal())
+    val result = get<Dijkstra>().find(this, strategy, EdgeTraversal())
+    if (result is PathResult.Failure) {
+        this["navigating"] = false
+    }
+    println("Go to $map $result")
+    return result
 }
 
 fun Player.goTo(tile: Tile): PathResult {
     movement.waypoints.clear()
-    steps.clear()
+    steps?.clear()
     step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
@@ -114,5 +126,29 @@ fun Player.goTo(tile: Tile): PathResult {
             return node is Tile && node == tile
         }
     }
-    return get<Dijkstra>().find(this, strategy, EdgeTraversal())
+    val result = get<Dijkstra>().find(this, strategy, EdgeTraversal())
+    if (result is PathResult.Failure) {
+        this["navigating"] = false
+    }
+    println("Navigate to $tile $result")
+    return result
+}
+
+fun Player.goTo(tag: String): PathResult {
+    movement.waypoints.clear()
+    steps?.clear()
+    step = null
+    this["navigating"] = true
+    val graph: NavigationGraph = get()
+    val strategy = object : NodeTargetStrategy() {
+        override fun reached(node: Any): Boolean {
+            return node is Tile && graph.tags(node).contains(tag)
+        }
+    }
+    val result = get<Dijkstra>().find(this, strategy, EdgeTraversal())
+    if (result is PathResult.Failure) {
+        this["navigating"] = false
+    }
+    println("Go to $result ${movement.waypoints}")
+    return result
 }
