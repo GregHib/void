@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
@@ -60,6 +61,12 @@ fun Player.setUndesired(item: String, value: Double) {
     desiredItems.remove(item)
 }
 
+val Player.desiredExperience: MutableMap<Skill, Double>
+    get() = get("experienceDesire")
+
+val Player.desiredStorageItems: MutableMap<String, Double>
+    get() = get("itemStorageDesire")
+
 val Player.desiredItems: MutableMap<String, Double>
     get() = get("itemDesire")
 
@@ -75,7 +82,9 @@ fun Player.initBot() {
     this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
     this["itemDesire"] = mutableMapOf<String, Double>()
+    this["itemStorageDesire"] = mutableMapOf<String, Double>()
     this["undesiredItems"] = mutableMapOf<String, Double>()
+    this["experienceDesire"] = mutableMapOf<Skill, Double>()
 }
 
 fun Player.goTo(area: Area): PathResult {
