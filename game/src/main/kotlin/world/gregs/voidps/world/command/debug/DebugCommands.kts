@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.map.area.Area2D
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.network.encode.play
+import world.gregs.voidps.network.encode.playMusicTrack
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
@@ -30,7 +30,7 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.play(content.toInt())
+    player.playMusicTrack(content.toInt())
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->

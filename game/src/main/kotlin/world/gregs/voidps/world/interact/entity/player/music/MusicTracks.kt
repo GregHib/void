@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.world.map
+package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileLoader

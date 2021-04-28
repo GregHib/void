@@ -19,7 +19,7 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
-import world.gregs.voidps.world.interact.world.map.MusicTracks
+import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import java.util.concurrent.atomic.AtomicInteger
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
