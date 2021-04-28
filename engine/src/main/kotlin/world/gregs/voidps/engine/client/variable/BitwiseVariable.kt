@@ -11,8 +11,8 @@ data class BitwiseVariable<T>(override val id: Int, override val type: Variable.
     override fun getValue(id: T): Int? {
         val index = values.indexOf(id)
         if (index == -1) {
-            return null//Invalid value
+            return null// Invalid value
         }
-        return 1 shl index//Return power of 2 of the index
+        return 1 shl index// Return power of 2 of the index
     }
 }

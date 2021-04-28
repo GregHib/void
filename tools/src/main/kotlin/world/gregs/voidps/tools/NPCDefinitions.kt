@@ -19,12 +19,10 @@ object NPCDefinitions {
         println(decoder.size)
         for (i in 0 until decoder.size) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.startsWith("giant spider", true)) {
+            if (def.name.contains("gatekeeper", true)) {
                 println("$i ${def.name} ${def.modelIds?.toList()} ${def.options.toList()} ${def.modifiedColours?.toList()}")
                 list.add(def)
             }
         }
-        val map = list.groupBy { it.modelIds?.toList() }.mapValues { it.value.groupBy({ def -> def.modifiedColours?.toList() }, { def -> def.id }).toMap() }
-        println(map)
     }
 }

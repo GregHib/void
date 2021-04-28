@@ -5,7 +5,7 @@ import world.gregs.voidps.network.Protocol.PLAY_MUSIC
 import world.gregs.voidps.network.writeByteSubtract
 import world.gregs.voidps.network.writeShortAddLittle
 
-fun Player.play(
+fun Player.playMusicTrack(
     music: Int,
     delay: Int = 100,
     volume: Int = 255
