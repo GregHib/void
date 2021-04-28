@@ -8,7 +8,10 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.player.Viewport
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.list.PooledMapList
+import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.utility.inject
 
@@ -20,10 +23,15 @@ class ViewportUpdating : Runnable {
 
     val players: Players by inject()
     val npcs: NPCs by inject()
+    val objects: Objects by inject()
+    val items: FloorItems by inject()
 
     override fun run() = runBlocking {
         coroutineScope {
             players.forEach { player ->
+                launch(Contexts.Updating) {
+                    gatherObjectsAndItems(player.tile, player.viewport)
+                }
                 if (player.client == null) {
                     return@forEach
                 }
@@ -93,6 +101,15 @@ class ViewportUpdating : Runnable {
             }
         }
         return total
+    }
+
+    fun gatherObjectsAndItems(tile: Tile, viewport: Viewport) {
+        viewport.objects.clear()
+        viewport.items.clear()
+        Spiral.spiral(tile.chunk, 2) { chunk ->
+            viewport.objects.addAll(objects[chunk])
+            viewport.items.addAll(items[chunk])
+        }
     }
 
     companion object {

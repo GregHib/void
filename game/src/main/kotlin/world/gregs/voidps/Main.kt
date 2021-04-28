@@ -35,6 +35,7 @@ import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.entity.obj.stairsModule
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.eventModule
+import world.gregs.voidps.engine.map.area.areasModule
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
@@ -179,7 +180,8 @@ object Main {
                 stairsModule,
                 floorItemModule,
                 floorItemSpawnModule,
-                musicModule
+                musicModule,
+                areasModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

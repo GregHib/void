@@ -7,13 +7,14 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.CloseInterface
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
@@ -21,18 +22,21 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 
 val objects: Objects by inject()
-val lumbridgeCastleBank = Rectangle(3207, 3215, 3210, 3222, 2)
+val areas: Areas by inject()
 
-val isNotAtBank: BotContext.(Any) -> Double = { (bot.tile !in lumbridgeCastleBank).toDouble() }
+val isNotAtBank: BotContext.(Any) -> Double = {
+    val area: MapArea? = bot.getOrNull("area")// TODO extension to simplify
+    (area == null || !area.values.containsKey("bank")).toDouble()
+}
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.count.toDouble().scale(0.0, 28.0).exponential(7.0) }
 val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
 val wantsToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire }
-val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.contains("logs").toDouble() }
+val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.getItems().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it, 0.0) } ?: 0.0 }
 
 val goToBank = SimpleBotOption(
     name = "go to bank",
-    targets = { listOf(this) },
+    targets = { areas.getTagged("bank") },
     weight = 0.5,
     considerations = listOf(
         isNotAtBank,
@@ -43,7 +47,7 @@ val goToBank = SimpleBotOption(
         hasLogsInInventory
     ),
     action = {
-        bot.goTo(lumbridgeCastleBank)
+        bot.goTo(it)
     }
 )
 
@@ -54,7 +58,7 @@ fun Player.isInteruptable() = action.type == ActionType.Movement
 
 val openBankBooth = SimpleBotOption(
     name = "open bank",
-    targets = { bot.tile.chunk.area(2).flatMap { objects[it] }.filter { it.def.options[1] == "Use-quickly" } },
+    targets = { bot.viewport.objects.filter { it.def.options[1] == "Use-quickly" } },
     considerations = listOf(
         isNotBusy,
         hasNoInventorySpace,
@@ -88,7 +92,7 @@ val depositLogs = SimpleBotOption(
 
 val exitBank = SimpleBotOption(
     name = "exit bank",
-    targets = { listOf(this) },
+    targets = { empty },
     weight = 0.5,
     action = {
         bot.instructions.tryEmit(CloseInterface)

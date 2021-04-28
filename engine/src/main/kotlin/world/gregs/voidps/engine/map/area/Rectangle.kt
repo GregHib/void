@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.map.area
 
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.region.Region
 import kotlin.random.Random
 
 open class Rectangle(
@@ -15,8 +16,14 @@ open class Rectangle(
     constructor(tile: Tile, size: Size) : this(tile.x, tile.y, tile.x + size.width, tile.y + size.height, tile.plane)
 
     override val area = ((maxX - minX) * (maxY - minY)).toDouble()
-    override val region = Tile(minX, minY).region
-    override val regions = Tile(minX, minY).area(width = maxX - minX + 1, height = maxY - minY + 1).map { it.region }.toSet()
+    override val regions: Set<Region> = calcRegions()
+
+    private fun calcRegions(): Set<Region> {
+        val min = Tile(minX, minY).region
+        val max = Tile(maxX, maxY).region
+        val delta = max.delta(min)
+        return min.area(delta.x + 1, delta.y + 1).toSet()
+    }
 
     override fun contains(tile: Tile): Boolean {
         return tile.plane == plane && tile.x >= minX && tile.x <= maxX && tile.y >= minY && tile.y <= maxY

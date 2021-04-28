@@ -25,6 +25,11 @@ nodes:
       - &courtyard-north [ 3222, 3220 ]
       - &gate-south [ 3235, 3218 ]
       - &gate-north [ 3235, 3220 ]
+      - &lumbridge-grounds-south [ 3209, 3205 ]
+    west-tower:
+      - &lumbridge-tower-west [ 3199, 3218 ]
+      - &lumbridge-yew-trees [ 3184, 3225 ]
+      - &lumbridge-yew-trees-west [ 3168, 3221 ]
     south-village:
       - &south-village [ 3236, 3205 ]
       - &church [ 3243, 3209 ]
@@ -35,8 +40,15 @@ nodes:
         tile: [ 3234, 3203 ]
         option: "Open"
     bridge:
-      - &west-bridge [ 3236, 3225 ]
+      - &lum-bridge-west [ 3236, 3225 ]
+      - &lum-bridge-east [ 3253, 3225 ]
       - &unstable-house [ 3230, 3232 ]
+      - &lumbridge-trees-east [ 3263, 3222 ]
+      - &lum-bridge-north [ 3235, 3261 ]
+    goblins:
+      - &lum-goblins [ 3254, 3239 ]
+      - &lum-goblin-trees-east [ 3258, 3250 ]
+      - &lum-goblin-path-north [ 3251, 3252 ]
     west-village:
       - &general-store-east [ 3222, 3241 ]
       - &general-store [ 3217, 3241 ]
@@ -45,7 +57,9 @@ nodes:
         object: 45476
         tile: [ 3219, 3241 ]
         option: "Open"
-      - &trees [ 3226, 3245 ]
+      - &lum-village-trees-west [ 3226, 3245 ]
+      - &lumbridge-task-building [ 3204, 3246 ]
+      - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
 edges:
   lumbridge:
     south-tower:
@@ -125,6 +139,13 @@ edges:
           to: *castle-south-entrance
         - from: *castle-south-entrance
           to: *courtyard-south
+      west-tower:
+        - from: *lumbridge-grounds-south
+          to: *lumbridge-tower-west
+        - from: *lumbridge-tower-west
+          to: *lumbridge-yew-trees
+        - from: *lumbridge-yew-trees
+          to: *lumbridge-yew-trees-west
     courtyard:
       - from: *courtyard-south
         to: *south-tower-door
@@ -136,6 +157,8 @@ edges:
         to: *gate-north
       - from: *gate-south
         to: *gate-north
+      - from: *courtyard-south
+        to: *lumbridge-grounds-south
     south-village:
       - from: *gate-south
         to: *south-village
@@ -159,9 +182,22 @@ edges:
             tile: *gate-south
     bridge:
       - from: *gate-north
-        to: *west-bridge
-      - from: *west-bridge
+        to: *lum-bridge-west
+      - from: *lum-bridge-west
         to: *unstable-house
+      - from: *lum-bridge-west
+        to: *lum-bridge-east
+      - from: *lum-bridge-east
+        to: *lumbridge-trees-east
+    goblins:
+      - from: *lum-bridge-east
+        to: *lum-goblins
+      - from: *lum-goblins
+        to: *lum-goblin-trees-east
+      - from: *lum-goblins
+        to: *lum-goblin-path-north
+      - from: *lum-goblin-path-north
+        to: *lum-bridge-north
     west-village:
       - from: *unstable-house
         to: *general-store-east
@@ -178,4 +214,10 @@ edges:
           - type: "walk"
             tile: *general-store-east
       - from: *general-store-east
-        to: *trees
+        to: *lum-village-trees-west
+      - from: *lum-village-trees-west
+        to: *lum-bridge-north
+      - from: *general-store-east
+        to: *lumbridge-task-building
+      - from: *lumbridge-task-building
+        to: *lumbridge-fishing-shop-entrance

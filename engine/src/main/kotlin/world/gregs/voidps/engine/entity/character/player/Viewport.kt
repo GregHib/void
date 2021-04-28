@@ -6,7 +6,9 @@ import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Co
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.NPC_TICK_CAP
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.PLAYER_TICK_CAP
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 /**
@@ -37,6 +39,9 @@ data class Viewport(
     val playerUpdates = BufferWriter(4096)
     val npcChanges = BufferWriter(4096)
     val npcUpdates = BufferWriter(4096)
+
+    val objects = mutableSetOf<GameObject>()
+    val items = mutableSetOf<FloorItem>()
 
     fun isActive(index: Int) = idlePlayers[index] and 0x1 == 0
 

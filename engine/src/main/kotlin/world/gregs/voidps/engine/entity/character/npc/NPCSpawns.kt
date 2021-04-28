@@ -24,8 +24,9 @@ class NPCSpawns(
         val spawns: MutableMap<Region, MutableList<SpawnArea>> = mutableMapOf()
         val points: Array<SpawnArea> = files.load(path)
         points.forEach { spawn ->
-            val list = spawns.getOrPut(spawn.area.region) { mutableListOf() }
-            list.add(spawn)
+            for (region in spawn.area.regions) {
+                spawns.getOrPut(region) { mutableListOf() }.add(spawn)
+            }
             count++
         }
         this.spawns = spawns

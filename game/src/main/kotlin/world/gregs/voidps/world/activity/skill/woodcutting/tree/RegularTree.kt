@@ -1,5 +1,7 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.tree
 
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 import world.gregs.voidps.world.activity.skill.woodcutting.log.MiscLog
 import world.gregs.voidps.world.activity.skill.woodcutting.log.RegularLog
@@ -49,4 +51,10 @@ enum class RegularTree(
 
     override val id: String = name.toLowerCase()
 
+    companion object {
+        fun get(gameObject: GameObject): RegularTree? {
+            val name = DefinitionsDecoder.toIdentifier(gameObject.def.name)
+            return values().firstOrNull { tree -> tree.id == name }
+        }
+    }
 }

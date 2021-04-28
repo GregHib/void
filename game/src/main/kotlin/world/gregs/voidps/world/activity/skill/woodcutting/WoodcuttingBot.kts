@@ -1,6 +1,9 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
-import world.gregs.voidps.ai.*
+import world.gregs.voidps.ai.exponential
+import world.gregs.voidps.ai.inverse
+import world.gregs.voidps.ai.scale
+import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -10,23 +13,21 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.area.Rectangle
-import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
-import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
+import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.interact.entity.bot.*
 import kotlin.math.max
 
-val objects: Objects by inject()
+val areas: Areas by inject()
 val definitions: ItemDefinitions by inject()
-val trees = Rectangle(3220, 3244, 3234, 3249)
 
-val isNotAtTrees: BotContext.(Any) -> Double = { (bot.tile !in trees).toDouble() }
+val isNotAtTrees: BotContext.(MapArea) -> Double = { (bot.tile !in it.area).toDouble() }
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 val wantsToCutTrees: BotContext.(Any) -> Double = {
@@ -36,41 +37,52 @@ val wantsToCutTrees: BotContext.(Any) -> Double = {
 val doesNotWantToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire.inverse() }
 val hasEquipmentToCutTrees: BotContext.(Any) -> Double = { (Hatchet.get(bot) != null).toDouble() }
 
+val isPreferredArea: BotContext.(MapArea) -> Double = {
+    val trees = it.values["trees"] as List<String>
+    val tree: RegularTree? = RegularTree.values().lastOrNull { tree -> trees.contains(tree.id) && bot.has(Skill.Woodcutting, tree.level) }
+    treeDesire(bot, tree)
+}
+
 val goToTrees = SimpleBotOption(
     name = "go to trees",
-    targets = { listOf(this) },
+    targets = { areas.getTagged("trees") },
     weight = 0.5,
     considerations = listOf(
         isNotAtTrees,
         isNotGoingSomewhere,
         hasInventorySpace,
         wantsToCutTrees,
-        hasEquipmentToCutTrees
+        hasEquipmentToCutTrees,
+        isPreferredArea
     ),
     action = {
-        bot.goTo(trees)
+        bot.goTo(it)
     }
 )
 
 val isNearestTree: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.tile).toDouble().scale(0.0, 20.0).inverse().exponential() }
 val isPreferredTree: BotContext.(GameObject) -> Double = {
+    val tree = RegularTree.get(it)
+    treeDesire(bot, tree)
+}
+
+fun treeDesire(bot: Player, tree: RegularTree?): Double {
     val desire: String = bot["desiredLog", ""]
-    val tree = Tree.get(it)
-    if (tree == null || !bot.has(Skill.Woodcutting, tree.level)) {
+    return if (tree == null || !bot.has(Skill.Woodcutting, tree.level)) {
         0.0
     } else if (desire.isNotBlank()) {
         (desire == tree.log?.id).toDouble()
     } else {
-        val level = (bot.levels.get(Skill.Woodcutting) / 10) + 1
-        (level - ((tree.level / 10) + 1)).toDouble().scale(0.0, level.toDouble()).inverse().sine()
+        val bestTree = RegularTree.values().last { bot.has(Skill.Woodcutting, it.level) }
+        ((bestTree.ordinal + 1) - (tree.ordinal + 1)).toDouble().scale(0.0, bestTree.ordinal + 1.0).inverse()
     }
 }
+
 val isNotBusy: BotContext.(Any) -> Double = { if (bot.isInteruptable()) 0.75 else (bot.action.type == ActionType.None).toDouble() }
 
 val cutDownTree = SimpleBotOption(
     name = "cut tree",
-    targets = { bot.tile.chunk.area(2).flatMap { objects[it] }.filter { it.def.options[0] == "Chop down" || it.def.options[0] == "Chop" } },
-    weight = 0.5,
+    targets = { bot.viewport.objects.filter { it.def.options[0] == "Chop down" || it.def.options[0] == "Chop" } },
     considerations = listOf(
         isNotBusy,
         hasInventorySpace,
@@ -90,7 +102,7 @@ fun Player.isInteruptable() = action.type == ActionType.Woodcutting || action.ty
 
 val dropLogs = SimpleBotOption(
     name = "drop logs",
-    targets = { listOf(this) },
+    targets = { empty },
     considerations = listOf(
         { bot.impatience },
         { bot.inventory.count.toDouble().scale(0.0, 28.0) },
@@ -111,7 +123,7 @@ val dropLogs = SimpleBotOption(
 
 val wait = SimpleBotOption(
     name = "wait around",
-    targets = { listOf(this) },
+    targets = { empty },
     weight = 0.2,
     considerations = listOf(
         { bot.patience }
