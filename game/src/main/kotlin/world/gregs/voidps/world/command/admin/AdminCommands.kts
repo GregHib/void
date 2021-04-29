@@ -14,6 +14,7 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
@@ -31,7 +32,11 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
         player.tele(x, y, plane)
     } else {
         val parts = content.split(" ")
-        player.tele(parts[0].toInt(), parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
+        if (parts.size == 1) {
+            player.tele(Region(parts[0].toInt()).tile.add(32, 32))
+        } else {
+            player.tele(parts[0].toInt(), parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
+        }
     }
 }
 
