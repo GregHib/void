@@ -43,10 +43,7 @@ class RegionManager(
         if (tiles.containsKey(regionId)) {
             return tiles[regionId]
         }
-        val def = mapDecoder.getOrNull(regionId)
-        if(def == null || def.objects.isEmpty()) {
-            return null
-        }
+        val def = mapDecoder.getOrNull(regionId) ?: return null
         tiles[regionId] = def
         return def
     }
