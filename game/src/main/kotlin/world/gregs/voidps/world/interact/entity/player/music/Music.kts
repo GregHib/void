@@ -34,11 +34,13 @@ fun unlockDefaultTracks(player: Player) {
     val hints = enumDefs.get(1349)
     hints.map?.forEach { (key, value) ->
         if (value is String && value == "automatically.") {
-            if (!player.hasUnlocked(key)) {
-                player.unlockTrack(key)
-            }
+            player.unlockTrack(key)
         }
     }
+    // scape_summon
+    player.unlockTrack(602)
+    // scape_theme
+    player.unlockTrack(717)
 }
 
 fun playAreaTrack(player: Player) {
@@ -74,14 +76,19 @@ on<InterfaceOption>({ name == "music_player" && component == "tracks" && option 
     }
 }
 
-fun Player.unlockTrack(musicIndex: Int) = addVar("music_${musicIndex / 32}", musicIndex)
+fun Player.unlockTrack(musicIndex: Int): Boolean {
+    if (!hasUnlocked(musicIndex)) {
+        addVar("music_${musicIndex / 32}", musicIndex)
+        return true
+    }
+    return false
+}
 
 fun Player.hasUnlocked(musicIndex: Int) = hasVar("music_${musicIndex / 32}", musicIndex)
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
-    if (!player.hasUnlocked(index)) {
-        player.unlockTrack(index)
+    if (player.unlockTrack(index)) {
         player.message(Colour.Red.wrap("You have unlocked a new music track: ${musicName(index)}."))
     }
     if (!player["playing_song", false]) {
