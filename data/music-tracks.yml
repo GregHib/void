@@ -861,6 +861,15 @@ scape_main:
   areas:
     - x: [ 1600, 1600, 1728, 1728 ]
       y: [ 5632, 5760, 5760, 5632 ]
+land_of_snow:
+  index: 154
+  areas:
+    - region: 10584
+incarceration:
+  index: 158
+  areas:
+    - region: 12610
+      plane: 1
 scape_soft:
   index: 159
   areas:
@@ -1670,6 +1679,10 @@ cave_of_the_goblins:
       y: [ 9536, 9600, 9600, 9536 ]
     - x: [ 2496, 2496, 2528, 2528 ]
       y: [ 5504, 5632, 5632, 5504 ]
+bish_bash_bosh:
+  index: 305
+  areas:
+    - region: 10284
 zogre_dance:
   index: 306
   areas:
@@ -1832,12 +1845,12 @@ strange_place:
   areas:
     - x: [ 1856, 1856, 1920, 1920 ]
       y: [ 4480, 4544, 4544, 4480 ]
-brew_hoo_hoo!:
+brew_hoo_hoo:
   index: 338
   areas:
     - x: [ 3648, 3648, 3712, 3712 ]
       y: [ 9920, 9984, 9984, 9920 ]
-tzhaar!:
+tzhaar:
   index: 339
   areas:
     - x: [ 2368, 2368, 2432, 2432 ]
@@ -2031,6 +2044,12 @@ poles_apart:
       y: [ 3776, 3840, 3840, 3776 ]
     - x: [ 2688, 2688, 2752, 2752 ]
       y: [ 10176, 10240, 10240, 10176 ]
+scarabaeoidea:
+  index: 383
+  areas:
+    - x: [ 3363, 3373 ]
+      y: [ 9260, 9267 ]
+      plane: 1
 jungle_hunt:
   index: 384
   areas:
@@ -2096,7 +2115,7 @@ chickened_out:
   areas:
     - x: [ 2432, 2432, 2496, 2496 ]
       y: [ 4352, 4416, 4416, 4352 ]
-too_many_cooks...:
+too_many_cooks:
   index: 398
   areas:
     - x: [ 2944, 2944, 3008, 3008 ]
@@ -2197,6 +2216,11 @@ labyrinth:
   areas:
     - x: [ 3264, 3264, 3328, 3328 ]
       y: [ 9216, 9280, 9280, 9216 ]
+safety_in_numbers:
+  index: 416
+  areas:
+    - x: [ 3072, 3111 ]
+      y: [ 4224, 4255 ]
 everlasting_fire:
   index: 417
   areas:
@@ -2211,6 +2235,10 @@ waking_dream:
     - x: [ 1744, 1744, 1776, 1776 ]
       y: [ 5072, 5104, 5104, 5072 ]
       plane: 2
+dreamstate:
+  index: 419
+  areas:
+    - region: 7247
 the_lunar_isle:
   index: 420
   areas:
@@ -2232,7 +2260,7 @@ warriors_guild:
   areas:
     - x: [ 2832, 2832, 2816, 2816, 2825, 2838, 2838, 2839, 2840, 2841, 2842, 2845, 2846, 2847, 2848, 2849, 2849, 2860, 2860, 2865, 2866, 2867, 2868, 2871, 2872, 2873, 2874, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2877, 2877, 2876, 2876, 2874, 2873, 2872, 2871, 2868, 2867, 2866, 2865 ]
       y: [ 3556, 3545, 3545, 3529, 3538, 3538, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3534, 3534, 3537, 3537, 3536, 3536, 3537, 3537, 3536, 3536, 3537, 3537, 3539, 3540, 3541, 3542, 3544, 3545, 3548, 3549, 3551, 3552, 3553, 3554, 3556, 3556, 3557, 3557, 3556, 3556, 3557, 3557, 3556 ]
-lifes_a_beach!:
+lifes_a_beach:
   index: 424
   areas:
     - x: [ 3712, 3712, 3776, 3776 ]
@@ -2259,7 +2287,7 @@ the_galleon:
   areas:
     - x: [ 2176, 2176, 2240, 2240 ]
       y: [ 3776, 3840, 3840, 3776 ]
-h.a.m._fisted:
+ham_fisted:
   index: 429
   areas:
     - x: [ 2560, 2560, 2624, 2624 ]
@@ -2395,6 +2423,10 @@ dorgeshuun_deep:
   areas:
     - x: [ 2688, 2688, 2752, 2752 ]
       y: [ 5184, 5248, 5248, 5184 ]
+high_spirits:
+  index: 457
+  areas:
+    - region: 6726
 looking_back:
   index: 458
   areas:
@@ -2402,6 +2434,10 @@ looking_back:
       y: [ 3442, 3456, 3456, 3442 ]
     - x: [ 1728, 1728, 1792, 1792 ]
       y: [ 4928, 4992, 4992, 4928 ]
+jungle_bells:
+  index: 461
+  areas:
+    - region: 12627
 garden_of_summer:
   index: 462
   areas:
@@ -2473,7 +2509,11 @@ impetuous:
   areas:
     - x: [ 2560, 2560, 2624, 2624 ]
       y: [ 4288, 4352, 4352, 4288 ]
-h.a.m._attack:
+easter_jig:
+  index: 475
+  areas:
+    - region: 9810
+ham_attack:
   index: 476
   areas:
     - x: [ 2432, 2432, 2496, 2496 ]
@@ -2483,11 +2523,16 @@ slice_of_silent_movie:
   areas:
     - x: [ 2528, 2528, 2560, 2560 ]
       y: [ 5504, 5568, 5568, 5504 ]
-h.a.m._and_seek:
+ham_and_seek:
   index: 478
   areas:
     - x: [ 2368, 2368, 2432, 2432 ]
       y: [ 5504, 5568, 5568, 5504 ]
+venomous:
+  index: 479
+  areas:
+    - x: [ 3216, 3225, 3229, 3236, 3259, 3259, 3254, 3250, 3245, 3235, 3234, 3230, 3224, 3216 ]
+      y: [ 3942, 3942, 3937, 3937, 3950, 3956, 3954, 3953, 3949, 3949, 3950, 3950, 3947, 3946 ]
 mouse_trap:
   index: 480
   areas:
@@ -2543,6 +2588,52 @@ the_maze:
       y: [ 9600, 9664, 9664, 9600 ]
     - x: [ 2816, 2816, 2880, 2880 ]
       y: [ 9216, 9344, 9344, 9216 ]
+zamorak_zoo:
+  index: 490
+  areas:
+    - x: [ 2880, 2944, 2944, 2912, 2912, 2904, 2904, 2880 ]
+      y: [ 5376, 5376, 5312, 5312, 5336, 5336, 5344, 5344 ]
+      plane: 2
+strength_of_saradomin:
+  index: 491
+  areas:
+    - x: [ 2912, 2944, 2944, 2880, 2880, 2904, 2904, 2912 ]
+      y: [ 5312, 5312, 5248, 5248, 5280, 5280, 5288, 5288 ]
+      plane: 1
+bandos_battalion:
+  index: 492
+  areas:
+    - x: [ 2816, 2816, 2880, 2880, 2856, 2856, 2848, 2848 ]
+      y: [ 5312, 5376, 5376, 5344, 5344, 5336, 5336, 5312 ]
+      plane: 2
+armadyl_alliance:
+  index: 493
+  areas:
+    - x: [ 2816, 2848, 2848, 2856, 2856, 2880, 2880, 2816 ]
+      y: [ 5312, 5312, 5288, 5288, 5280, 5280, 5248, 5248 ]
+      plane: 2
+armageddon:
+  index: 494
+  areas:
+    - x: [ 2848, 2856, 2856, 2904, 2904, 2912, 2911, 2904, 2904, 2856, 2856, 2848 ]
+      y: [ 5336, 5336, 5344, 5344, 5336, 5336, 5288, 5288, 5280, 5280, 5288, 5288 ]
+      plane: 2
+storeroom_shuffle:
+  index: 495
+  areas:
+    - region: 8022
+the_longramble_scramble:
+  index: 496
+  areas:
+    - x: [ 2330, 2349 ]
+      y: [ 3086, 3106 ]
+waste_defaced:
+  index: 497
+  areas:
+    - region: 8001
+      plane: 1
+    - region: 8002
+      plane: 1
 knightmare:
   index: 498
   areas:
@@ -2555,160 +2646,64 @@ lore_and_order:
   areas:
     - x: [ 1792, 1792, 1856, 1856 ]
       y: [ 4224, 4288, 4288, 4224 ]
-narnodes_theme:
-  index: 513
-  areas:
-    - x: [ 2432, 2432, 2496, 2496 ]
-      y: [ 9856, 9920, 9920, 9856 ]
-land_of_snow:
-  index: -1
-  areas:
-    - region: 10584
-incarceration:
-  index: -1
-  areas:
-    - region: 12610
-      plane: 1
-bish_bash_bosh:
-  index: -1
-  areas:
-    - region: 10284
-scarabaeoidea:
-  index: -1
-  areas:
-    - x: [ 3363, 3373 ]
-      y: [ 9260, 9267 ]
-      plane: 1
-safety_in_numbers:
-  index: -1
-  areas:
-    - x: [ 3072, 3111 ]
-      y: [ 4224, 4255 ]
-dreamstate:
-  index: -1
-  areas:
-    - region: 7247
-high_spirits:
-  index: -1
-  areas:
-    - region: 6726
-jungle_bells:
-  index: -1
-  areas:
-    - region: 12627
-easter_jig:
-  index: -1
-  areas:
-    - region: 9810
-venomous:
-  index: -1
-  areas:
-    - x: [ 3216, 3225, 3229, 3236, 3259, 3259, 3254, 3250, 3245, 3235, 3234, 3230, 3224, 3216 ]
-      y: [ 3942, 3942, 3937, 3937, 3950, 3956, 3954, 3953, 3949, 3949, 3950, 3950, 3947, 3946 ]
-zamorak_zoo:
-  index: -1
-  areas:
-    - x: [ 2880, 2944, 2944, 2912, 2912, 2904, 2904, 2880 ]
-      y: [ 5376, 5376, 5312, 5312, 5336, 5336, 5344, 5344 ]
-      plane: 2
-strength_of_saradomin:
-  index: -1
-  areas:
-    - x: [ 2912, 2944, 2944, 2880, 2880, 2904, 2904, 2912 ]
-      y: [ 5312, 5312, 5248, 5248, 5280, 5280, 5288, 5288 ]
-      plane: 1
-bandos_battalion:
-  index: -1
-  areas:
-    - x: [ 2816, 2816, 2880, 2880, 2856, 2856, 2848, 2848 ]
-      y: [ 5312, 5376, 5376, 5344, 5344, 5336, 5336, 5312 ]
-      plane: 2
-armadyl_alliance:
-  index: -1
-  areas:
-    - x: [ 2816, 2848, 2848, 2856, 2856, 2880, 2880, 2816 ]
-      y: [ 5312, 5312, 5288, 5288, 5280, 5280, 5248, 5248 ]
-      plane: 2
-zaros_zeitgeist:
-  index: -1
-  areas:
-    - x: [ 2900, 2940 ]
-      y: [ 5188, 5219 ]
-armageddon:
-  index: -1
-  areas:
-    - x: [ 2848, 2856, 2856, 2904, 2904, 2912, 2911, 2904, 2904, 2856, 2856, 2848 ]
-      y: [ 5336, 5336, 5344, 5344, 5336, 5336, 5288, 5288, 5280, 5280, 5288, 5288 ]
-      plane: 2
-storeroom_shuffle:
-  index: -1
-  areas:
-    - region: 8022
-the_longramble_scramble:
-  index: -1
-  areas:
-    - x: [ 2330, 2349 ]
-      y: [ 3086, 3106 ]
-waste_defaced:
-  index: -1
-  areas:
-    - region: 8001
-      plane: 1
-    - region: 8002
-      plane: 1
 terrorbird_tussle:
-  index: -1
+  index: 500
   areas:
     - x: [ 2019, 2032 ]
       y: [ 4248, 4268 ]
       plane: 1
 altar_ego:
-  index: -1
+  index: 501
   areas:
     - region: 13131
 animal_apogee:
-  index: -1
+  index: 504
   areas:
     - x: [ 3436, 3448 ]
       y: [ 9744, 9753 ]
       plane: 1
 temple_of_tribes:
-  index: -1
+  index: 505
   areas:
     - region: 11074
 catacombs_and_tombs:
-  index: -1
+  index: 506
   areas:
     - region: 9794
 dusk_in_yubiusk:
-  index: -1
+  index: 508
   areas:
     - region: 8770
       plane: 1
 grimly_fiendish:
-  index: -1
+  index: 509
   areas:
     - region: 6475
 tune_from_the_dune:
-  index: -1
+  index: 510
   areas:
     - region: 13611
 copris_lunaris:
-  index: -1
+  index: 512
   areas:
     - region: 13712
       plane: 1
     - region: 13456
       plane: 1
+narnodes_theme:
+  index: 513
+  areas:
+    - x: [ 2432, 2432, 2496, 2496 ]
+      y: [ 9856, 9920, 9920, 9856 ]
 tournament:
-  index: -1
+  index: 514
   areas:
     - region: 12367
     - region: 12623
     - region: 12880
     - region: 13135
 clan_wars:
-  index: -1
+  index: 515
   areas:
     - region: 13115
     - region: 13114
@@ -2719,226 +2714,235 @@ clan_wars:
     - region: 11356
     - region: 11612
 charmin_farmin:
-  index: -1
+  index: 516
   areas:
     - region: 6473
 the_adventurer:
-  index: -1
+  index: 520
   areas:
     - x: [ 3202, 3207 ]
-    - y: [ 3239, 3244 ]
-the_mentor:
-  index: -1
-  areas:
-    - region: 10062
+      y: [ 3239, 3244 ]
 creepy:
-  index: -1
+  index: 521
   areas:
     - region: 10062
 the_trade_parade:
-  index: -1
+  index: 555
   areas:
     - x: [ 3136, 3136, 3200, 3200 ]
       y: [ 3456, 3520, 3520, 3456 ]
+the_mentor:
+  index: 611
+  areas:
+    - region: 10062
 bloodbath:
-  index: -1
+  index: 584
   areas:
     - region: 9804
       plane: 1
 the_route_of_all_evil:
-  index: -1
+  index: 585
   areas:
     - region: 12629
     - region: 13142
 the_route_of_the_problem:
-  index: -1
+  index: 586
   areas:
     - region: 12630
     - region: 12885
 the_wrong_path:
-  index: -1
+  index: 587
   areas:
     - region: 12374
 the_columbarium:
-  index: -1
+  index: 588
   areas:
     - region: 13723
 the_terrible_tunnels:
-  index: -1
+  index: 589
   areas:
     - x: [ 3614, 3614, 3631, 3631, 3603 ]
       y: [ 9727, 9679, 9679, 9673, 9673 ]
 the_terrible_caverns:
-  index: -1
+  index: 590
   areas:
     - region: 14488
+dillo-gence_is_key:
+  index: 591
+  areas:
+    - region: 8280
+arma_gonna_get_you:
+  index: 592
+  areas:
+    - x: [ 2519, 2536 ]
+      y: [ 5229, 5241 ]
+toktz-ket-ek-mack:
+  index: 593
+  areas:
+    - region: 9553
 jailbird:
-  index: -1
+  index: 594
   areas:
     - region: 12078
 bittersweet_bunny:
-  index: -1
+  index: 595
   areas:
     - region: 15259
-a_pirates_life_for_me:
-  index: -1
-  areas:
-    - region: 12078
 something_fishy:
-  index: -1
+  index: 596
   areas:
     - region: 15259
-undead_army:
-  index: -1
-  areas:
-    - region: 11324
-    - region: 12956
-    - region: 13212
-the_ruins_of_camdozaal:
-  index: -1
-  areas:
-    - region: 12186
-shining_spirit:
-  index: -1
-  areas:
-    - region: 11331
-troubled_spirit:
-  index: -1
-  areas:
-    - region: 11330
 under_the_sand:
-  index: -1
+  index: 597
   areas:
     - region: 13968
 desert_smoke:
-  index: -1
+  index: 598
   areas:
     - region: 13458
     - region: 13459
-waiting_for_the_hunt:
-  index: -1
+a_pirates_life_for_me:
+  index: 599
   areas:
-    - region: 6487
+    - region: 12078
 guthixs_hunter:
-  index: -1
+  index: 603
   areas:
     - region: 6488
     - region: 6489
     - region: 6745
     - region: 6745
     - region: 6744
+waiting_for_the_hunt:
+  index: 604
+  areas:
+    - region: 6487
 second_vision:
-  index: -1
+  index: 606
   areas:
     - region: 6741
       plane: 2
-bane_of_summer:
-  index: -1
+undead_army:
+  index: 607
   areas:
-    - region: 11587
-      plane: 2
+    - region: 11324
+    - region: 12956
+    - region: 13212
+the_ruins_of_camdozaal:
+  index: 609
+  areas:
+    - region: 12186
 slain_to_waste:
-  index: -1
+  index: 612
   areas:
     - x: [ 3349, 3368 ]
       y: [ 9429, 9444 ]
+shining_spirit:
+  index: 615
+  areas:
+    - region: 11331
+troubled_spirit:
+  index: 616
+  areas:
+    - region: 11330
+bane_of_summer:
+  index: 617
+  areas:
+    - region: 11587
+      plane: 2
 the_vacant_abyss:
-  index: -1
+  index: 618
   areas:
     - region: 10820
 stealing_creation:
-  index: -1
+  index: 620
   areas:
     - region: 7769
 circus:
-  index: -1
+  index: 621
   areas:
     - region: 14167
 dangerous_logic:
-  index: -1
+  index: 622
   areas:
     - region: 8004
 black_of_knight:
-  index: -1
+  index: 623
   areas:
     - region: 12187
+magic_and_mystery:
+  index: 625
+  areas:
+    - region: 12614
+the_sound_of_guthix:
+  index: 626
+  areas:
+    - region: 10075
+command_centre:
+  index: 629
+  areas:
+    - region: 9516
+the_phoenix:
+  index: 630
+  areas:
+    - x: [ 3522, 3550 ]
+      y: [ 5186, 5214 ]
 the_evil_within:
-  index: -1
+  index: 632
   areas:
     - x: [ 2954, 2957 ]
       y: [ 3189, 3822 ]
       plane: 1
-the_sound_of_guthix:
-  index: -1
-  areas:
-    - region: 10075
-magic_and_mystery:
-  index: -1
-  areas:
-    - region: 12614
-command_centre:
-  index: -1
-  areas:
-    - region: 9516
-the_phoenix:
-  index: -1
-  areas:
-    - x: [ 3522, 3550 ]
-      y: [ 5186, 5214 ]
 cavernous_mythology:
-  index: -1
+  index: 635
   areas:
     - region: 8025
 winter_funfare:
-  index: -1
+  index: 636
   areas:
     - region: 8282
 waiting_for_battle:
-  index: -1
+  index: 637
   areas:
     - region: 16988
 lair_of_kang_admi:
-  index: -1
+  index: 638
   areas:
     - x: [ 3409, 3409, 3448, 3448, 3422 ]
       y: [ 4383, 4409, 4409, 4373, 4373 ]
 frost_fight:
-  index: -1
+  index: 639
   areas:
     - x: [ 3397, 3417 ]
       y: [ 4359, 4378 ]
 the_plundered_tomb:
-  index: -1
+  index: 644
   areas:
     - region: 5965
 ancestral_wisdom:
-  index: -1
+  index: 645
   areas:
     - region: 5963
 the_muspahs_tomb:
-  index: -1
+  index: 647
   areas:
     - region: 14422
-rest_for_the_weary:
-  index: -1
-  areas:
-    - region: 11325
 lamistards_labyrinth:
-  index: -1
+  index: 648
   areas:
     - region: 11168
 the_heist:
-  index: -1
+  index: 649
   areas:
     - region: 12956
     - region: 13212
 snack_attack:
-  index: -1
+  index: 650
   areas:
     - x: [ 1906, 1917 ]
       y: [ 5122, 5133 ]
 soul_wars:
-  index: -1
+  index: 652
   areas:
     - region: 7218
     - region: 7474
@@ -2947,121 +2951,129 @@ soul_wars:
     - region: 14420
     - region: 14676
 the_waiting_game:
-  index: -1
+  index: 653
   areas:
     - region: 7473
+rest_for_the_weary:
+  index: 654
+  areas:
+    - region: 11325
 the_throne_of_bandos:
-  index: -1
+  index: 656
   areas:
     - x: [ 2316, 2353 ]
       y: [ 4265, 4281 ]
-the_chosen_commander:
-  index: -1
-  areas:
-    - x: [ 2316, 2353 ]
-      y: [ 4232, 4251 ]
 penguin_possible:
-  index: -1
+  index: 657
   areas:
     - x: [ 2663, 2680 ]
       y: [ 10376, 10390 ]
+the_chosen_commander:
+  index: 660
+  areas:
+    - x: [ 2316, 2353 ]
+      y: [ 4232, 4251 ]
 the_pengmersible:
-  index: -1
+  index: 661
   areas:
     - region: 14170
 desert_island_bear:
-  index: -1
+  index: 662
   areas:
     - region: 11304
 ice_day_for_penguins:
-  index: -1
+  index: 665
   areas:
     - region: 10814
 zaros_stirs:
-  index: -1
+  index: 691
   areas:
     - region: 12633
 the_horn_of_chill:
-  index: -1
+  index: 692
   areas:
     - x: [ 2891, 2917 ]
       y: [ 10315, 10325 ]
       plane: 1
+but_we_can_fight:
+  index: 694
+  areas:
+    - region: 9795
 lazy_wabbit:
-  index: -1
+  index: 695
   areas:
     - region: 9810
 eruption:
-  index: -1
+  index: 707
   areas:
     - region: 12345
     - region: 12346
     - region: 12601
     - region: 12602
 im_counting_on_you:
-  index: -1
+  index: 708
   areas:
     - x: [ 3076, 3085 ]
       y: [ 9769, 9788 ]
 kharidian_nights:
-  index: -1
+  index: 709
   areas:
     - region: 13871
 living_rock:
-  index: -1
+  index: 710
   areas:
     - region: 14415
     - region: 14416
     - region: 14671
     - region: 14672
 exhibit_a:
-  index: -1
+  index: 711
   areas:
     - x: [ 3379, 3397 ]
       y: [ 3508, 3526 ]
 fight_of_the_dwarves:
-  index: -1
+  index: 712
   areas:
     - region: 5961
 final_destination:
-  index: -1
+  index: 715
   areas:
     - region: 6482
 honkytonky_newbie_melody:
-  index: -1
+  index: 718
   areas:
-    - x: [ 3215, 3233 ]
-      y: [ 3393, 3403 ]
+    - x: [ 3216, 3221, 3222, 3224, 3225, 3232, 3232, 3233, 3233, 3232, 3232, 3218, 3218, 3216 ]
+      y: [ 3393, 3393, 3394, 3394, 3393, 3393, 3395, 3395, 3397, 3397, 3402, 3402, 3396, 3396 ]
 honkytonky_harmony:
-  index: -1
+  index: 719
   areas:
-    - x: [ 2953, 2961 ]
-      y: [ 3366, 3378 ]
+    - x: [ 2955, 2995, 2953, 2953, 2960, 2960, 2961, 2961, 2960, 2960, 2957, 2957 ]
+      y: [ 3378, 3374, 3374, 3366, 3366, 3369, 3369, 3373, 3373, 3375, 3375, 3378 ]
 trick_or_treat:
-  index: -1
+  index: 720
   areas:
     - region: 15184
 itsy_bitsy:
-  index: -1
+  index: 721
   areas:
     - x: [ 1980, 1971 ]
       y: [ 5308, 5298 ]
     - region: 15184
 poison_dreams:
-  index: -1
+  index: 722
   areas:
     - region: 14930
 honkytonky_medieval:
-  index: -1
+  index: 723
   areas:
     - x: [ 3266, 3266, 3270, 3273, 3274 ]
       y: [ 3388, 3394, 3394, 3391, 3391 ]
 jaws_of_the_dagannoth:
-  index: -1
+  index: 724
   areas:
     - region: 18012
 the_duke:
-  index: -1
+  index: 725
   areas:
     - x: [ 3203, 3217 ]
       y: [ 3206, 3231 ]
@@ -3070,29 +3082,29 @@ the_duke:
       y: [ 3206, 3231 ]
       plane: 2
 the_fallen_hero:
-  index: -1
+  index: 726
   areas:
     - region: 17500
 honkytonky_sea_shanty:
-  index: -1
+  index: 728
   areas:
     - x: [ 3044, 3055 ]
       y: [ 3255, 3259 ]
 honkytonky_parade:
-  index: -1
+  index: 729
   areas:
     - x: [ 3275, 3275, 3272, 3272, 3286, 3286, 3288, 3288, 3286, 3286 ]
       y: [ 3506, 3491, 3491, 3486, 3486, 3497, 3497, 3502, 3502, 3506 ]
 maiasaura:
-  index: -1
+  index: 730
   areas:
     - region: 17499
 root_canal:
-  index: -1
+  index: 733
   areas:
     - region: 6465
 desolate_ruins:
-  index: -1
+  index: 734
   areas:
     - region: 12891
     - region: 12892
@@ -3100,352 +3112,340 @@ desolate_ruins:
     - region: 13148
     - region: 13404
     - region: 13403
-battle_of_souls:
-  index: -1
-  areas:
-    - region: 13403
 silent_knight:
-  index: -1
+  index: 736
   areas:
     - region: 10584
 ghost_of_christmas_presents:
-  index: -1
+  index: 737
   areas:
     - region: 10327
+battle_of_souls:
+  index: 739
+  areas:
+    - region: 13403
 these_stones:
-  index: -1
+  index: 740
   areas:
     - region: 14411
 a_familiar_feeling:
-  index: -1
+  index: 741
   areas:
     - region: 14678
     - region: 14679
     - region: 14934
     - region: 14935
 dead_and_buried:
-  index: -1
+  index: 742
   areas:
     - region: 15957
     - region: 15958
 freshwater:
-  index: -1
+  index: 744
   areas:
     - x: [ 2560, 2623 ]
       y: [ 3533, 3583 ]
 saltwater:
-  index: -1
+  index: 745
   areas:
     - x: [ 2560, 2575 ]
       y: [ 3520, 3532 ]
     - x: [ 2590, 2623 ]
       y: [ 3520, 3532 ]
 stillwater:
-  index: -1
+  index: 746
   areas:
     - x: [ 2576, 2589 ]
       y: [ 3523, 3532 ]
 an_easter_united:
-  index: -1
+  index: 747
   areas:
     - region: 9811
 thieves_guild_i:
-  index: -1
+  index: 749
   areas:
     - region: 18524
 thieves_guild_ii:
-  index: -1
+  index: 750
   areas:
     - region: 19036
 thieves_guild_iii:
-  index: -1
+  index: 751
   areas:
     - region: 18522
 thieves_guild_iv:
-  index: -1
+  index: 752
   areas:
     - region: 19034
 body_talk:
-  index: -1
+  index: 753
   areas:
     - region: 16471
 love_lost:
-  index: -1
+  index: 755
   areas:
     - region: 15193
 love_and_hate:
-  index: -1
+  index: 756
   areas:
     - region: 15448
 love_bites:
-  index: -1
+  index: 757
   areas:
     - x: [ 3800, 3807 ]
       y: [ 5720, 5727 ]
 mindful:
-  index: -1
+  index: 761
   areas:
     - region: 17238
       plane: 1
 void_knights_theme:
-  index: -1
+  index: 762
   areas:
     - region: 17238
 lortnoc_tsep:
-  index: -1
+  index: 763
   areas:
     - region: 16982
       plane: 1
     - region: 17494
       plane: 1
 judge_and_jury:
-  index: -1
+  index: 765
   areas:
     - region: 7234
 born_to_do_this:
-  index: -1
+  index: 766
   areas:
     - region: 13626
     - region: 13625
     - region: 13882
     - region: 13881
+astea_frostweb:
+  index: 794
+  areas:
+    - x: [ 241, 254 ]
+      y: [ 4993, 5006 ]
+tokash_the_bloodchiller:
+  index: 795
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5009, 5022 ]
+icy_bones:
+  index: 796
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5009, 5022 ]
+luminescent_icefiend:
+  index: 797
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 4993, 5006 ]
+gluttonous_behemoth:
+  index: 798
+  areas:
+    - x: [ 225, 238 ]
+      y: [ 4993, 5006 ]
+plane-freezer_lakhrahnaz:
+  index: 799
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 4993, 5006 ]
+ballak_the_pummeller:
+  index: 826
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5137, 5150 ]
+bulwark_beast:
+  index: 827
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5137, 5150 ]
+hobgoblin_geomancer:
+  index: 828
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5121, 5134 ]
+shadow-forger_ihlakhizan:
+  index: 829
+  areas:
+    - x: [ 225, 238 ]
+      y: [ 5121, 5134 ]
+unholy_cursebearer:
+  index: 830
+  areas:
+    - x: [ 212, 219 ]
+      y: [ 5121, 5130 ]
+shadow-divine_skinweaver:
+  index: 831
+  areas:
+    - x: [ 241, 254 ]
+      y: [ 5121, 5134 ]
+harlakk_the_riftsplitter:
+  index: 858
+  areas:
+    - x: [ 225, 238 ]
+      y: [ 5249, 5262 ]
+lexicus_runewright:
+  index: 859
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5265, 5278 ]
+night-gazer_khighorahk:
+  index: 860
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5249, 5262 ]
+sagittare:
+  index: 861
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5265, 5278 ]
+rammernaut:
+  index: 862
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5249, 5262 ]
+stomp:
+  index: 863
+  areas:
+    - x: [ 242, 253 ]
+      y: [ 5249, 5259 ]
+necrolord:
+  index: 906
+  areas:
+    - x: [ 241, 254 ]
+      y: [ 5377, 5390 ]
+gravecreeper:
+  index: 907
+  areas:
+    - x: [ 226, 237 ]
+      y: [ 5377, 5390 ]
+skeletal_trio:
+  index: 908
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5377, 5390 ]
+yklagor_the_thunderous:
+  index: 909
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5377, 5390 ]
+runed_behemoth:
+  index: 910
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5393, 5406 ]
+flesh-spoiler_haasghenahk:
+  index: 911
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5393, 5406 ]
+blink:
+  index: 922
+  areas:
+    - x: [ 195, 204 ]
+      y: [ 5505, 5517 ]
+kalger_the_warmonger:
+  index: 923
+  areas:
+    - x: [ 193, 206 ]
+      y: [ 5521, 5534 ]
+hope_devourer:
+  index: 924
+  areas:
+    - x: [ 241, 254 ]
+      y: [ 5505, 5518 ]
+warped_gulega:
+  index: 925
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5505, 5518 ]
+dreadnaught:
+  index: 926
+  areas:
+    - x: [ 225, 238 ]
+      y: [ 5505, 5518 ]
+world-gorger_shukarhazh:
+  index: 927
+  areas:
+    - x: [ 209, 222 ]
+      y: [ 5521, 5534 ]
 out_of_control:
-  index: -1
+  index: 928
   areas:
     - x: [ 4375, 4386 ]
       y: [ 5670, 5680 ]
 chain_reaction:
-  index: -1
+  index: 929
   areas:
     - region: 17751
 unavoidable_conflict:
-  index: -1
+  index: 932
   areas:
     - region: 10637
 right_of_conquest:
-  index: -1
+  index: 933
   areas:
     - x: [ 2640, 2651 ]
       y: [ 9034, 9045 ]
     - x: [ 2640, 2652 ]
       y: [ 9054, 9067 ]
 halloween_party:
-  index: -1
+  index: 939
   areas:
     - region: 17235
 black_zabeth_live:
-  index: -1
+  index: 940
   areas:
     - region: 17237
 black_zabeth:
-  index: -1
+  index: 941
   areas:
     - region: 17237
 in_security:
-  index: -1
+  index: 942
   areas:
     - x: [ 4493, 4450 ]
       y: [ 5647, 5681 ]
-precarious_void:
-  index: -1
-  areas:
-    - x: [ 4511, 4529 ]
-      y: [ 5644, 5658 ]
 give_it_your_pest_shot:
-  index: -1
+  index: 943
   areas:
     - region: 18006
 the_void_stares_back:
-  index: -1
+  index: 945
   areas:
     - region: 18007
+precarious_void:
+  index: 946
+  areas:
+    - x: [ 4511, 4529 ]
+      y: [ 5644, 5658 ]
 christmas_caverns:
-  index: -1
+  index: 953
   areas:
     - region: 11354
     - region: 11098
     - region: 11610
 seasonal_sports:
-  index: -1
+  index: 954
   areas:
     - region: 10841
 rocky_rescue:
-  index: -1
+  index: 963
   areas:
     - region: 8792
 the_records_chamber:
-  index: -1
+  index: 965
   areas:
     - region: 7771
 colonel_grimsson:
-  index: -1
+  index: 969
   areas:
     - region: 6747
     - region: 6235
-astea_frostweb:
-  index: -1
+zaros_zeitgeist:
+  index: 972
   areas:
-    - x: [ 241, 254 ]
-      y: [ 4993, 5006 ]
-tokash_the_bloodchiller:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5009, 5022 ]
-icy_bones:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5009, 5022 ]
-luminescent_icefiend:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 4993, 5006 ]
-gluttonous_behemoth:
-  index: -1
-  areas:
-    - x: [ 225, 238 ]
-      y: [ 4993, 5006 ]
-plane-freezer_lakhrahnaz:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 4993, 5006 ]
-ballak_the_pummeller:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5137, 5150 ]
-bulwark_beast:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5137, 5150 ]
-hobgoblin_geomancer:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5121, 5134 ]
-shadow-forger_ihlakhizan:
-  index: -1
-  areas:
-    - x: [ 225, 238 ]
-      y: [ 5121, 5134 ]
-unholy_cursebearer:
-  index: -1
-  areas:
-    - x: [ 212, 219 ]
-      y: [ 5121, 5130 ]
-shadow-divine_skinweaver:
-  index: -1
-  areas:
-    - x: [ 241, 254 ]
-      y: [ 5121, 5134 ]
-harlakk_the_riftsplitter:
-  index: -1
-  areas:
-    - x: [ 225, 238 ]
-      y: [ 5249, 5262 ]
-lexicus_runewright:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5265, 5278 ]
-night-gazer_khighorahk:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5249, 5262 ]
-sagittare:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5265, 5278 ]
-rammernaut:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5249, 5262 ]
-stomp:
-  index: -1
-  areas:
-    - x: [ 242, 253 ]
-      y: [ 5249, 5259 ]
-necrolord:
-  index: -1
-  areas:
-    - x: [ 241, 254 ]
-      y: [ 5377, 5390 ]
-gravecreeper:
-  index: -1
-  areas:
-    - x: [ 226, 237 ]
-      y: [ 5377, 5390 ]
-skeletal_trio:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5377, 5390 ]
-yklagor_the_thunderous:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5377, 5390 ]
-runed_behemoth:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5393, 5406 ]
-flesh-spoiler_haasghenahk:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5393, 5406 ]
-blink:
-  index: -1
-  areas:
-    - x: [ 195, 204 ]
-      y: [ 5505, 5517 ]
-kalger_the_warmonger:
-  index: -1
-  areas:
-    - x: [ 193, 206 ]
-      y: [ 5521, 5534 ]
-hope_devourer:
-  index: -1
-  areas:
-    - x: [ 241, 254 ]
-      y: [ 5505, 5518 ]
-warped_gulega:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5505, 5518 ]
-dreadnaught:
-  index: -1
-  areas:
-    - x: [ 225, 238 ]
-      y: [ 5505, 5518 ]
-world-gorger_shukarhazh:
-  index: -1
-  areas:
-    - x: [ 209, 222 ]
-      y: [ 5521, 5534 ]
-arma_gonna_get_you:
-  index: -1
-  areas:
-    - x: [ 2519, 2536 ]
-      y: [ 5229, 5241 ]
-dillo-gence_is_key:
-  index: -1
-  areas:
-    - region: 8280
-toktz-ket-ek-mack:
-  index: -1
-  areas:
-    - region: 9553
-but_we_can_fight:
-  index: -1
-  areas:
-    - region: 9795
+    - x: [ 2900, 2940 ]
+      y: [ 5188, 5219 ]
