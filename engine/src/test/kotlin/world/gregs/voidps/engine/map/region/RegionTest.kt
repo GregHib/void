@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.map.region
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.Tile
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -78,5 +79,17 @@ internal class RegionTest {
         // Then
         assertEquals(3072, tile.x)
         assertEquals(3456, tile.y)
+    }
+
+    @Test
+    fun `Contains tile`() {
+        // Given
+        val region = Region(0, 0)
+        // When
+        assertTrue(region.contains(Tile(0, 0)))
+        assertTrue(region.contains(Tile(0, 63)))
+        assertTrue(region.contains(Tile(63, 0)))
+        assertTrue(region.contains(Tile(63, 63)))
+        assertFalse(region.contains(Tile(64, 0)))
     }
 }
