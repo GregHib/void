@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.playMusicTrack
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.isBot
 
@@ -105,3 +106,13 @@ fun play(player: Player, index: Int) {
 fun musicId(index: Int): Int = enumDefs.get(1351).getInt(index)
 
 fun musicName(index: Int): String = enumDefs.get(1345).getString(index)
+
+
+/**
+ * Unlocks all music tracks
+ */
+on<Command>({ prefix == "unlock" }) { player: Player ->
+    enumDefs.get(1345).map?.keys?.forEach { key ->
+        player.unlockTrack(key)
+    }
+}
