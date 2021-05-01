@@ -16,10 +16,13 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.isBot
 
-val configs = listOf(20, 21, 22, 23, 24, 25, 298, 311, 346, 414, 464, 598, 662, 721, 906, 1009, 1104, 1136, 1180, 1202, 1381, 1394, 1434, 1596)
+// 837.cs2
+val configs = listOf(20, 21, 22, 23, 24, 25, 298, 311, 346, 414, 464, 598, 662, 721, 906, 1009, 1104, 1136, 1180, 1202, 1381, 1394, 1434, 1596, 1618, 1619, 1620, -1, 1864, 1865, 2019, -1)
 
 for ((index, config) in configs.withIndex()) {
-    BitwiseVariable(config, Variable.Type.VARP, persistent = true, values = (index * 32 until (index + 1) * 32).toList()).register("music_$index")
+    if (config != -1) {
+        BitwiseVariable(config, Variable.Type.VARP, persistent = true, values = (index * 32 until (index + 1) * 32).toList()).register("unlocked_music_$index")
+    }
 }
 
 val tracks: MusicTracks by inject()
@@ -38,10 +41,9 @@ fun unlockDefaultTracks(player: Player) {
             player.unlockTrack(key)
         }
     }
-    // scape_summon
-    player.unlockTrack(602)
-    // scape_theme
-    player.unlockTrack(717)
+
+    player.unlockTrack(602)// scape_summon
+    player.unlockTrack(717)// scape_theme
 }
 
 fun playAreaTrack(player: Player) {
@@ -55,10 +57,10 @@ fun playAreaTrack(player: Player) {
 }
 
 fun sendUnlocks(player: Player) {
-    for (index in configs.indices) {
-        player.sendVar("music_$index")
+    for (key in player.variables.keys.filter { it.startsWith("unlocked_music_") }) {
+        player.sendVar(key)
     }
-    player.interfaceOptions.unlockAll("music_player", "tracks", 0..configs.size * 64)
+    player.interfaceOptions.unlockAll("music_player", "tracks", 0..(configs.size) * 64)
 }
 
 on<Moved>({ !it.isBot }) { player: Player ->
@@ -80,13 +82,13 @@ on<InterfaceOption>({ name == "music_player" && component == "tracks" && option 
 
 fun Player.unlockTrack(musicIndex: Int): Boolean {
     if (!hasUnlocked(musicIndex)) {
-        addVar("music_${musicIndex / 32}", musicIndex)
+        addVar("unlocked_music_${musicIndex / 32}", musicIndex)
         return true
     }
     return false
 }
 
-fun Player.hasUnlocked(musicIndex: Int) = hasVar("music_${musicIndex / 32}", musicIndex)
+fun Player.hasUnlocked(musicIndex: Int) = hasVar("unlocked_music_${musicIndex / 32}", musicIndex)
 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
