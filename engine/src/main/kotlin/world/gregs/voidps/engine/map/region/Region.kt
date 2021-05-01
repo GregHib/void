@@ -2,13 +2,15 @@ package world.gregs.voidps.engine.map.region
 
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Coordinate2D
+import kotlin.random.Random
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
-inline class Region(val id: Int) : Coordinate2D {
+inline class Region(val id: Int) : Coordinate2D, Area {
 
     constructor(x: Int, y: Int) : this(getId(x, y))
 
@@ -31,6 +33,18 @@ inline class Region(val id: Int) : Coordinate2D {
     fun delta(point: Region) = delta(point.x, point.y)
 
     fun toPlane(plane: Int) = RegionPlane(x, y, plane)
+
+    override val area: Double
+        get() = 4096.0
+
+    override val regions: Set<Region>
+        get() = setOf(this)
+
+    override fun contains(tile: Tile): Boolean = tile.region == this
+
+    override fun random(): Tile {
+        return tile.add(Random.nextInt(0, 64), Random.nextInt(0, 64))
+    }
 
     companion object {
         fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)

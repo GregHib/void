@@ -48,6 +48,7 @@ fun playAreaTrack(player: Player) {
     for (track in tracks) {
         if (track.area.contains(player.tile)) {
             autoPlay(player, track)
+            break
         }
     }
 }
