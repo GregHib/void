@@ -822,9 +822,7 @@ cursed:
   index: 186
   areas:
     - region: 9623
-    - region: 9291
-    - x: [ 3264, 3328, 3328, 3264 ]
-      y: [ 12608, 12608, 12544, 12544 ]
+    - region: 9879
 understanding:
   index: 187
   areas:
@@ -1862,8 +1860,9 @@ on_the_wing:
 little_cave_of_horrors:
   index: 426
   areas:
-    - x: [ 3712, 3712, 3776, 3776, 3840, 3840 ]
-      y: [ 9472, 9344, 9344, 9408, 9408, 9472 ]
+    - region: 14994
+    - region: 14995
+    - region: 15251
 the_mollusc_menace:
   index: 427
   areas:
@@ -1935,8 +1934,7 @@ pirates_of_penance:
 brimstails_scales:
   index: 443
   areas:
-    - x: [ 2368, 2416, 2416, 2400, 2400, 2368 ]
-      y: [ 9856, 9856, 9808, 9808, 9792, 9792 ]
+    - region: 9625
 my_arms_journey:
   index: 444
   areas:
