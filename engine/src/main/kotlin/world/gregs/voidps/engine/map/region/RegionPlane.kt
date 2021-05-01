@@ -2,14 +2,16 @@ package world.gregs.voidps.engine.map.region
 
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.chunk.Chunk
+import kotlin.random.Random
 
 /**
  * @author GregHib <greg@gregs.world>
  * @since April 16, 2020
  */
-inline class RegionPlane(val id: Int) : Coordinate3D {
+inline class RegionPlane(val id: Int) : Coordinate3D, Area {
 
     constructor(x: Int, y: Int, plane: Int) : this(getId(x, y, plane))
 
@@ -36,6 +38,18 @@ inline class RegionPlane(val id: Int) : Coordinate3D {
     fun delta(point: RegionPlane) = delta(point.x, point.y, point.plane)
 
     override fun add(x: Int, y: Int) = add(x, y, 0)
+
+    override val area: Double
+        get() = 4096.0
+
+    override val regions: Set<Region>
+        get() = setOf(region)
+
+    override fun contains(tile: Tile): Boolean = tile.plane == plane && tile.region == region
+
+    override fun random(): Tile {
+        return tile.add(Random.nextInt(0, 64), Random.nextInt(0, 64), plane)
+    }
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = RegionPlane(x and 0xff, y and 0xff, plane and 0x3)
