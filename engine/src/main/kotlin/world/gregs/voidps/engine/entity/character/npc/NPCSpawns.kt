@@ -16,7 +16,7 @@ val npcSpawnModule = module {
 }
 
 class NPCSpawns(
-    private val factory: NPCFactory
+    private val npcs: NPCs
 ) {
 
     private lateinit var spawns: Map<Region, List<SpawnArea>>
@@ -30,7 +30,7 @@ class NPCSpawns(
             area.spawned = true
             for (spawn in area.spawns) {
                 repeat(spawn.limit) {
-                    factory.spawn(spawn.name, area.area, spawn.direction)
+                    npcs.add(spawn.name, area.area, spawn.direction)
                 }
             }
         }

@@ -2,7 +2,8 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.npc.NPCFactory
+import world.gregs.voidps.engine.entity.character.npc.NPCSpawns
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -12,12 +13,13 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.item.FloorItemFactory
 import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
@@ -58,19 +60,17 @@ on<Command>({ prefix == "teleto" }) { player: Player ->
 on<Command>({ prefix == "npc" }) { player: Player ->
     val id = content.toIntOrNull()
     val defs: NPCDefinitions = get()
-    val spawns: NPCFactory = get()
+    val npcs: NPCs = get()
     val npc = if (id != null) {
-        spawns.spawn(id, player.tile, Direction.NORTH)
+        npcs.add(defs.getName(id), player.tile, Direction.NORTH)
     } else {
-        println(
-            """
-            - name: $content
-              x: ${player.tile.x}
-              y: ${player.tile.y}
-              plane: ${player.tile.plane}
-        """.trimIndent()
-        )
-        spawns.spawn(content, player.tile, Direction.NORTH)
+        println("""
+                - name: $content
+                  x: ${player.tile.x}
+                  y: ${player.tile.y}
+                  plane: ${player.tile.plane}
+            """.trimIndent())
+        npcs.add(content, player.tile, Direction.NORTH)
     }
 //    npc?.movement?.frozen = true
 }
@@ -134,23 +134,47 @@ on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
 }
 
 on<Command>({ prefix == "reload" }) { player: Player ->
+    var reloadRegions = false
     when (content) {
         "stairs" -> get<Stairs>().load()
         "music", "tracks", "songs" -> get<MusicTracks>().load()
         "floor items" -> {
-            val factory: FloorItemFactory = get()
             val items: FloorItems = get()
             items.chunks.forEach { (_, set) ->
                 set.forEach {
-                    factory.remove(it)
+                    items.remove(it)
                 }
             }
             val spawns: FloorItemSpawns = get()
             spawns.load()
-            val players: Players = get()
-            players.forEach {
-                spawns.load(it.tile.region)
+            reloadRegions = true
+        }
+        "npcs" -> {
+            val npcs: NPCs = get()
+            npcs.forEach {
+                npcs.remove(it)
             }
+            val spawns: NPCSpawns = get()
+            spawns.load()
+            reloadRegions = true
+        }
+        "objects" -> {
+            val objects: CustomObjects = get()
+            objects.spawns.forEach { (_, set) ->
+                set.forEach {
+                    objects.remove(it)
+                }
+            }
+            objects.load()
+            reloadRegions = true
+        }
+    }
+    if (reloadRegions) {
+        val regions: RegionReader = get()
+        regions.clear()
+        val players: Players = get()
+        players.forEach {
+            regions.load(it.tile.region)
         }
     }
 }
