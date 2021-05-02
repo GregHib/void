@@ -5,6 +5,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.flatGroupBy
 import world.gregs.voidps.engine.map.area.SpawnArea
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.path.TraversalType
@@ -31,6 +32,10 @@ class FloorItemSpawns(
     fun load(region: Region) {
         val areas = spawns[region] ?: return
         for (area in areas) {
+            if (area.spawned) {
+                continue
+            }
+            area.spawned = true
             for (spawn in area.spawns) {
                 repeat(spawn.limit) {
                     drop(area, spawn)
@@ -59,7 +64,9 @@ class FloorItemSpawns(
 
     fun load() = timedLoad("floor item spawn") {
         val data: Array<SpawnArea> = get<FileLoader>().load(getProperty("floorItemsPath"))
-        this.spawns = data.flatMap { spawn -> spawn.area.regions.map { it to mutableListOf(spawn) } }.toMap()
+        this.spawns = data.flatGroupBy { it.area.regions }
         data.size
     }
+
+
 }

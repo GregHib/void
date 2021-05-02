@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.entity.character.npc
 
-import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
-import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
@@ -83,24 +79,5 @@ class NPCFactory(
     fun despawn(npc: NPC) {
         npcs.remove(npc)
         collisions.remove(npc)
-    }
-
-    companion object {
-        @JvmStatic
-        fun main(args: Array<String>) {
-            val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
-                enable(YAMLGenerator.Feature.MINIMIZE_QUOTES)
-                disable(YAMLGenerator.Feature.SPLIT_LINES)
-            })
-
-            val result = mapper.readValue<Map<String, Any>>(
-                """
-                test_1:
-                test_2:
-                    id: 1234
-            """.trimIndent()
-            )
-            println(result)
-        }
     }
 }

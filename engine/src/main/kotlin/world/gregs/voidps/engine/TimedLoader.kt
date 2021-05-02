@@ -31,3 +31,7 @@ fun timedLoad(name: String, block: () -> Int) {
     }
     logger.info { "Loaded $result ${name.plural(result)} in ${time.toInt()}ms" }
 }
+
+inline fun <T, R> Array<out T>.flatGroupBy(transform: (T) -> Iterable<R>): Map<R, List<T>> {
+    return flatMap { spawn -> transform.invoke(spawn).map { it to spawn } }.groupBy { it.first }.mapValues { it.value.map { it.second } }
+}
