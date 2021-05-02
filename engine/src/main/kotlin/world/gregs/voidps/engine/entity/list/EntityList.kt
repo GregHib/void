@@ -50,7 +50,7 @@ val entityListModule = module {
     single { NPCs() }
     single { Players() }
     single { Objects() }
-    single { FloorItems() }
+    single { FloorItems(get(), get(), get(), get()) }
     single { Projectiles() }
     single { Graphics() }
 }

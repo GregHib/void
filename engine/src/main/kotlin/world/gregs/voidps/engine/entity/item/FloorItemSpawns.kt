@@ -20,7 +20,7 @@ val floorItemSpawnModule = module {
 }
 
 class FloorItemSpawns(
-    private val factory: FloorItemFactory
+    private val items: FloorItems
 ) {
 
     private lateinit var spawns: Map<Region, List<SpawnArea>>
@@ -45,7 +45,7 @@ class FloorItemSpawns(
             logger.warn { "No free tile in item spawn area ${area.name}" }
             return
         }
-        val item = factory.spawn(spawn.name, spawn.amount, tile, revealTicks = 0) ?: return
+        val item = items.add(spawn.name, spawn.amount, tile, revealTicks = 0) ?: return
         item.events.on<FloorItem, Unregistered> {
             delay(area.delay) {
                 drop(area, spawn)
