@@ -13,12 +13,11 @@ import world.gregs.voidps.utility.get
 
 /**
  * An [Item] with physical location
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 data class FloorItem(
     override var tile: Tile,
     override val id: Int,
+    val name: String,
     var amount: Int = 1,
     val size: Size = Size.TILE,
     val owner: String? = null
@@ -32,9 +31,6 @@ data class FloorItem(
 
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(id)
-
-    val name: String
-        get() = get<ItemDefinitions>().getName(id)
 
     var state: FloorItemState = FloorItemState.Private
 

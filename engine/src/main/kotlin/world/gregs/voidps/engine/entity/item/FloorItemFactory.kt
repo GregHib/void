@@ -27,31 +27,6 @@ class FloorItemFactory(
     private val store: EventHandlerStore,
     private val batcher: ChunkBatcher
 ) {
-    fun spawn(
-        id: Int,
-        amount: Int,
-        tile: Tile,
-        revealTicks: Int = -1,
-        disappearTicks: Int = -1,
-        owner: Player? = null
-    ): FloorItem? {
-        val definition = decoder.get(id)
-        if (definition.stackable == 1) {
-            val existing = items.getExistingStack(tile, id)
-            if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
-                return null
-            }
-        }
-        val item = FloorItem(tile, id, amount, owner = owner?.name)
-        item.interactTarget = PointTargetStrategy(item)
-        store.populate(item)
-        items.add(item)
-        batcher.update(tile.chunk) { player -> player.client?.addFloorItem(tile.offset(), id, amount) }
-        reveal(item, revealTicks, owner?.index ?: -1)
-        disappear(item, disappearTicks)
-        item.events.emit(Registered)
-        return item
-    }
 
     /**
      * Spawns a floor item
@@ -70,10 +45,28 @@ class FloorItemFactory(
         revealTicks: Int = -1,
         disappearTicks: Int = -1,
         owner: Player? = null
-    ) = spawn(decoder.getId(name), amount, tile, revealTicks, disappearTicks, owner)
+    ): FloorItem? {
+        val definition = decoder.get(name)
+        val id = definition.id
+        if (definition.stackable == 1) {
+            val existing = items.getExistingStack(tile, name)
+            if (existing != null && combinedStacks(existing, amount, disappearTicks)) {
+                return null
+            }
+        }
+        val item = FloorItem(tile, id, name, amount, owner = owner?.name)
+        item.interactTarget = PointTargetStrategy(item)
+        store.populate(item)
+        items.add(item)
+        batcher.update(tile.chunk) { player -> player.client?.addFloorItem(tile.offset(), id, amount) }
+        reveal(item, revealTicks, owner?.index ?: -1)
+        disappear(item, disappearTicks)
+        item.events.emit(Registered)
+        return item
+    }
 
-    fun FloorItems.getExistingStack(tile: Tile, id: Int): FloorItem? {
-        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.id == id }
+    fun FloorItems.getExistingStack(tile: Tile, name: String): FloorItem? {
+        return get(tile).firstOrNull { it.tile == tile && it.state == FloorItemState.Private && it.name == name }
     }
 
     /**
