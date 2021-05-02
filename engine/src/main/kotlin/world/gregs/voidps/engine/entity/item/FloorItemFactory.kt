@@ -102,12 +102,16 @@ class FloorItemFactory(
         if (ticks >= 0) {
             item.disappear = scheduler.launch {
                 delay(ticks)
-                if (item.state != FloorItemState.Removed) {
-                    item.state = FloorItemState.Removed
-                    batcher.update(item.tile.chunk) { player -> player.client?.removeFloorItem(item.tile.offset(), item.id) }
-                    items.remove(item)
-                }
+                remove(item)
             }
+        }
+    }
+
+    fun remove(item: FloorItem) {
+        if (item.state != FloorItemState.Removed) {
+            item.state = FloorItemState.Removed
+            batcher.update(item.tile.chunk) { player -> player.client?.removeFloorItem(item.tile.offset(), item.id) }
+            items.remove(item)
         }
     }
 

@@ -12,6 +12,9 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.item.FloorItemFactory
+import world.gregs.voidps.engine.entity.item.FloorItemSpawns
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.region.Region
@@ -134,6 +137,21 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "stairs" -> get<Stairs>().load()
         "music", "tracks", "songs" -> get<MusicTracks>().load()
+        "floor items" -> {
+            val factory: FloorItemFactory = get()
+            val items: FloorItems = get()
+            items.chunks.forEach { (_, set) ->
+                set.forEach {
+                    factory.remove(it)
+                }
+            }
+            val spawns: FloorItemSpawns = get()
+            spawns.load()
+            val players: Players = get()
+            players.forEach {
+                spawns.load(it.tile.region)
+            }
+        }
     }
 }
 

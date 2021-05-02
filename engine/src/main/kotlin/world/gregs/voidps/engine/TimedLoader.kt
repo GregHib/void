@@ -22,3 +22,12 @@ abstract class TimedLoader<T>(private val name: String) {
         private val logger = InlineLogger()
     }
 }
+
+private val logger = InlineLogger("TimedLoader")
+
+fun timedLoad(name: String, block: () -> Int) {
+    val (result, time) = measureDurationForResult {
+        block.invoke()
+    }
+    logger.info { "Loaded $result ${name.plural(result)} in ${time.toInt()}ms" }
+}
