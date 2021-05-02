@@ -7,18 +7,24 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.koin.dsl.module
 import org.koin.test.mock.declareMock
+import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
+import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.chunk.equals
+import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.script.KoinMock
 
@@ -30,7 +36,14 @@ internal class ViewportUpdatingTest : KoinMock() {
 
     override val modules = listOf(
         eventModule,
-        entityListModule
+        entityListModule,
+        module {
+            single { mockk<NPCDefinitions>(relaxed = true) }
+            single { mockk<ItemDefinitions>(relaxed = true) }
+            single { mockk<Collisions>(relaxed = true) }
+            single { mockk<Scheduler>(relaxed = true) }
+            single { mockk<ChunkBatcher>(relaxed = true) }
+        }
     )
 
     lateinit var task: ViewportUpdating

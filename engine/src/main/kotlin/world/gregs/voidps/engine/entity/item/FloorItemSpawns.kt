@@ -68,5 +68,4 @@ class FloorItemSpawns(
         data.size
     }
 
-
 }

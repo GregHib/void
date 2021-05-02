@@ -9,7 +9,6 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.engine.client.update.task.npc.NPCVisualsTask
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.Visuals
@@ -66,7 +65,6 @@ internal class NPCVisualsTaskTest : KoinMock() {
     fun `Update skips if un-flagged`() {
         // Given
         val task: NPCVisualsTask = get()
-        val npcs: NPCs = get()
         val visuals: Visuals = mockk(relaxed = true)
         val npc: NPC = mockk(relaxed = true)
         every { npc.visuals } returns visuals
