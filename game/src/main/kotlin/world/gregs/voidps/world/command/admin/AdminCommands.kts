@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
@@ -168,6 +169,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             objects.load()
             reloadRegions = true
         }
+        "areas" -> get<Areas>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()
