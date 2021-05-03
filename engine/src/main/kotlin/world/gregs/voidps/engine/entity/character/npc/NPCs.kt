@@ -1,17 +1,81 @@
 package world.gregs.voidps.engine.entity.character.npc
 
+import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
+import world.gregs.voidps.cache.definition.data.NPCDefinition
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.character.IndexAllocator
+import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.entity.list.PooledMapList
+import world.gregs.voidps.engine.event.EventHandlerStore
+import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.TraversalType
+import world.gregs.voidps.engine.path.strat.DistanceTargetStrategy
+import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
+import world.gregs.voidps.engine.path.traverse.LargeTraversal
+import world.gregs.voidps.engine.path.traverse.MediumTraversal
+import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 30, 2020
- */
 data class NPCs(
-    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC?>> = Int2ObjectOpenHashMap(MAX_NPCS),
-    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC?>> = LinkedList(),
+    private val definitions: NPCDefinitions,
+    private val collisions: Collisions,
+    private val store: EventHandlerStore
+) : PooledMapList<NPC> {
+    private val indexer = IndexAllocator(MAX_NPCS)
+
+    override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<NPC?>> = Int2ObjectOpenHashMap(MAX_NPCS)
+    override val pool: LinkedList<ObjectLinkedOpenHashSet<NPC?>> = LinkedList()
     override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
-) : PooledMapList<NPC>
+    private val logger = InlineLogger()
+
+    fun add(name: String, area: Area, direction: Direction = Direction.NONE): NPC? {
+        val def = definitions.get(name)
+        val traversal = getTraversal(def)
+        val tile = area.random(traversal)
+        if (tile == null) {
+            logger.warn { "No free area found for npc spawn $name $area" }
+            return null
+        }
+        return add(name, tile, direction)
+    }
+
+    fun add(name: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
+        val def = definitions.get(name)
+        val npc = NPC(def.id, tile, getSize(def))
+        store.populate(npc)
+        npc.movement.traversal = getTraversal(def)
+        val dir = if (direction == Direction.NONE) Direction.all.random() else direction
+        npc.interactTarget = if (def.name.contains("banker", true)) {
+            DistanceTargetStrategy(1, npc.tile.add(dir.delta))
+        } else {
+            RectangleTargetStrategy(collisions, npc)
+        }
+        npc.index = indexer.obtain() ?: return null
+        npc.turn(dir.delta.x, dir.delta.y)
+        collisions.add(npc)
+        super.add(npc)
+        npc.events.emit(Registered)
+        return npc
+    }
+
+    private fun getTraversal(definition: NPCDefinition) = when (definition.size) {
+        1 -> SmallTraversal(TraversalType.Land, true, collisions)
+        2 -> MediumTraversal(TraversalType.Land, true, collisions)
+        else -> LargeTraversal(TraversalType.Land, true, getSize(definition), collisions)
+    }
+
+    private fun getSize(definition: NPCDefinition) = Size(definition.size, definition.size)
+
+    override fun remove(npc: NPC) {
+        super.remove(npc)
+        collisions.remove(npc)
+    }
+}

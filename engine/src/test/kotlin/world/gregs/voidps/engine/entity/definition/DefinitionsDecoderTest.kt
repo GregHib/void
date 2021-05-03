@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
 import io.mockk.every
-import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
@@ -9,8 +8,6 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.engine.data.file.FileLoader
 
 abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : DefinitionsDecoder<T, D>> where T : Definition, T : Extra {
 
@@ -30,7 +27,6 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
 
     abstract fun definitions(decoder: D, id: Map<String, Map<String, Any>>, names: Map<Int, String>): S
 
-    abstract fun loader(loader: FileLoader): TimedLoader<S>
 
     lateinit var decoder: D
 
@@ -43,25 +39,15 @@ abstract class DefinitionsDecoderTest<T, D : DefinitionDecoder<T>, S : Definitio
     }
 
     @Test
-    fun `Load details`() {
-        val loader: FileLoader = mockk()
-        every { loader.load<Map<String, Map<String, Any>>>("path") } returns mutableMapOf("name" to map(1))
-        val detailLoader = loader(loader)
-        val result = detailLoader.run("path")
-        assertEquals(mapOf("name" to populated(1)), result.extras)
-        assertEquals(mapOf(1 to "name"), result.names)
-    }
-
-    @Test
     fun `Get details for id`() {
-        val details = definitions(decoder, mapOf("name" to populated(1)), mapOf(1 to "name"))
+        val details = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
         val result = details.get("name")
         assertEquals(populatedDefinition(1), result)
     }
 
     @Test
     fun `Get details for name`() {
-        val details = definitions(decoder, mapOf("name" to populated(1)), mapOf(1 to "name"))
+        val details = definitions(decoder, mapOf("name" to map(1)), mapOf(1 to "name"))
         val result = details.get("name")
         assertEquals(populatedDefinition(1), result)
     }

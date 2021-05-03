@@ -4,9 +4,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 import world.gregs.voidps.cache.definition.decoder.GraphicDecoder
-import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.entity.definition.load.GraphicDefinitionLoader
 
 internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition, GraphicDecoder, GraphicDefinitions>() {
 
@@ -25,11 +22,10 @@ internal class GraphicDefinitionsTest : DefinitionsDecoderTest<GraphicDefinition
     }
 
     override fun definitions(decoder: GraphicDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): GraphicDefinitions {
-        return GraphicDefinitions(decoder, id, names)
-    }
-
-    override fun loader(loader: FileLoader): TimedLoader<GraphicDefinitions> {
-        return GraphicDefinitionLoader(loader, decoder)
+        return GraphicDefinitions(decoder).apply {
+            load(id)
+            this.names = names
+        }
     }
 
 }

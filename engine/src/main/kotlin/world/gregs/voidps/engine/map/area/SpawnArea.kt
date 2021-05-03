@@ -11,6 +11,8 @@ data class SpawnArea(
     val delay: Int = 0
 ) {
 
+    var spawned = false
+
     data class Spawn(
         val name: String,
         val weight: Int = 1,

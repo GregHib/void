@@ -76,4 +76,8 @@ class RegionReader(
             gameObject.events.emit(Registered)
         }
     }
+
+    fun clear() {
+        loading.clear()
+    }
 }

@@ -12,20 +12,15 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
+import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.encode.addObject
 import world.gregs.voidps.network.encode.removeObject
 import world.gregs.voidps.utility.get
+import world.gregs.voidps.utility.getProperty
 
 val customObjectModule = module {
     single(createdAtStart = true) {
-        val files: FileLoader = get()
-        val spawns: MutableMap<Region, MutableList<GameObject>> = mutableMapOf()
-        val gameObjects: Array<GameObject> = files.load(getProperty("objectsPath"))
-        gameObjects.forEach { gameObject ->
-            val list = spawns.getOrPut(gameObject.tile.region) { mutableListOf() }
-            list.add(gameObject)
-        }
-        CustomObjects(get(), get(), get(), get(), get(), spawns)
+        CustomObjects(get(), get(), get(), get(), get())
     }
 }
 
@@ -35,10 +30,9 @@ class CustomObjects(
     private val batcher: ChunkBatcher,
     private val factory: GameObjectFactory,
     private val collision: GameObjectCollision,
-    private val spawns: MutableMap<Region, MutableList<GameObject>>
 ) {
-
     private val logger = InlineLogger()
+    lateinit var spawns: Map<Region, List<GameObject>>
 
     init {
         batcher.addInitial { player, chunk, messages ->
@@ -220,6 +214,16 @@ class CustomObjects(
         original.events.emit(Unregistered)
         collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)
         replacement.events.emit(Registered)
+    }
+
+    init {
+        load()
+    }
+
+    fun load() = timedLoad("object spawn") {
+        val data: Array<GameObject> = get<FileLoader>().load(getProperty("objectsPath"))
+        this.spawns = data.groupBy { obj -> obj.tile.region }
+        data.size
     }
 }
 

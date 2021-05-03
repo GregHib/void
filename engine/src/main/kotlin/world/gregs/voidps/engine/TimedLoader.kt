@@ -4,21 +4,15 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.core.time.measureDurationForResult
 import world.gregs.voidps.utility.func.plural
 
-abstract class TimedLoader<T>(private val name: String) {
+private val logger = InlineLogger("TimedLoader")
 
-    var count = 0
-
-    fun run(vararg args: Any?): T {
-        val (result, time) = measureDurationForResult {
-            load(args)
-        }
-        logger.info { "Loaded $count ${name.plural(count)} in ${time.toInt()}ms" }
-        return result
+fun timedLoad(name: String, block: () -> Int) {
+    val (result, time) = measureDurationForResult {
+        block.invoke()
     }
+    logger.info { "Loaded $result ${name.plural(result)} in ${time.toInt()}ms" }
+}
 
-    abstract fun load(args: Array<out Any?>): T
-
-    companion object {
-        private val logger = InlineLogger()
-    }
+inline fun <T, R> Array<out T>.flatGroupBy(transform: (T) -> Iterable<R>): Map<R, List<T>> {
+    return flatMap { spawn -> transform.invoke(spawn).map { it to spawn } }.groupBy { it.first }.mapValues { it.value.map { it.second } }
 }

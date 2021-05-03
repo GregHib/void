@@ -7,16 +7,15 @@ import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.utility.get
+import world.gregs.voidps.utility.getProperty
 
 val musicModule = module {
-    single(createdAtStart = true) { MusicTracks(getProperty("musicPath"), get()) }
+    single(createdAtStart = true) { MusicTracks() }
 }
 
-class MusicTracks(
-    private val path: String,
-    private val files: FileLoader
-) {
+class MusicTracks {
 
     private lateinit var tracks: Map<Region, List<Track>>
 
@@ -24,18 +23,13 @@ class MusicTracks(
         load()
     }
 
-    fun load() {
-        tracks = load(files.load(path))
-    }
-
     operator fun get(region: Region): List<Track> {
         return tracks[region] ?: emptyList()
     }
 
-    private fun load(data: Map<String, Map<String, Any>>): Map<Region, List<Track>> {
+    fun load() = timedLoad("music track") {
+        val data: Map<String, Map<String, Any>> = get<FileLoader>().load(getProperty("musicPath"))
         val map = mutableMapOf<Region, MutableList<Track>>()
-        var count = 0
-        val time = System.currentTimeMillis()
         for ((_, m) in data) {
             val index = m["index"] as Int
             val areas = (m["areas"] as List<Map<String, List<Int>>>).map {
@@ -67,10 +61,9 @@ class MusicTracks(
                     tracks.sortBy { it.area is Region }
                 }
             }
-            count++
         }
-        println("Loaded $count ${"music track".plural(count)} in ${System.currentTimeMillis() - time}ms")
-        return map
+        this.tracks = map
+        data.size
     }
 
     data class Track(val index: Int, val area: Area)

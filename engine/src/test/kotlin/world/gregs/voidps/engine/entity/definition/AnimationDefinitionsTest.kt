@@ -4,9 +4,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
-import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.entity.definition.load.AnimationDefinitionLoader
 
 internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefinition, AnimationDecoder, AnimationDefinitions>() {
 
@@ -25,11 +22,10 @@ internal class AnimationDefinitionsTest : DefinitionsDecoderTest<AnimationDefini
     }
 
     override fun definitions(decoder: AnimationDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): AnimationDefinitions {
-        return AnimationDefinitions(decoder, id, names)
-    }
-
-    override fun loader(loader: FileLoader): TimedLoader<AnimationDefinitions> {
-        return AnimationDefinitionLoader(loader, decoder)
+        return AnimationDefinitions(decoder).apply {
+            load(id)
+            this.names = names
+        }
     }
 
 }

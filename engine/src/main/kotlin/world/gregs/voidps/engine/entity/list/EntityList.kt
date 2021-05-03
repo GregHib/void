@@ -47,10 +47,10 @@ const val MAX_PLAYERS = 0x800// 2048
 const val MAX_NPCS = 0x8000// 32768
 
 val entityListModule = module {
-    single { NPCs() }
+    single { NPCs(get(), get(), get()) }
     single { Players() }
     single { Objects() }
-    single { FloorItems() }
+    single { FloorItems(get(), get(), get(), get()) }
     single { Projectiles() }
     single { Graphics() }
 }

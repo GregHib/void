@@ -4,7 +4,6 @@ import org.koin.dsl.module
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
-import world.gregs.voidps.engine.entity.definition.load.*
 
 /**
  * Stores additional static information about an entity as well as a unique string identifier
@@ -80,10 +79,10 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
 }
 
 val detailsModule = module {
-    single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDefinitionsPath")) }
-    single(createdAtStart = true) { NPCDefinitionLoader(get(), get()).run(getProperty("npcDefinitionsPath")) }
-    single(createdAtStart = true) { ItemDefinitionLoader(get(), get()).run(getProperty("itemDefinitionsPath")) }
-    single(createdAtStart = true) { AnimationDefinitionLoader(get(), get()).run(getProperty("animationDefinitionsPath")) }
-    single(createdAtStart = true) { GraphicDefinitionLoader(get(), get()).run(getProperty("graphicDefinitionsPath")) }
-    single(createdAtStart = true) { ContainerDefinitionLoader(get(), get()).run(getProperty("containerDefinitionsPath")) }
+    single(createdAtStart = true) { ObjectDefinitions(get()).load() }
+    single(createdAtStart = true) { NPCDefinitions(get()).load() }
+    single(createdAtStart = true) { ItemDefinitions(get()).load() }
+    single(createdAtStart = true) { AnimationDefinitions(get()).load() }
+    single(createdAtStart = true) { GraphicDefinitions(get()).load() }
+    single(createdAtStart = true) { ContainerDefinitions(get()).load() }
 }

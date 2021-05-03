@@ -4,7 +4,7 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.item.FloorItemFactory
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.utility.get
@@ -93,15 +93,15 @@ fun Player.give(item: String, amount: Int): Boolean {
             val overflow = ((current.toLong() + amount) - Int.MAX_VALUE).toInt()
             val fill = Int.MAX_VALUE - current
             if ((fill == 0 || inventory.add(item, fill)) && overflow > 0) {
-                val factory: FloorItemFactory = get()
-                factory.spawn(item, overflow, tile, -1, -1, this)
+                val items: FloorItems = get()
+                items.add(item, overflow, tile, -1, -1, this)
             } else {
                 return false
             }
         }
         ContainerResult.Full -> {
-            val factory: FloorItemFactory = get()
-            factory.spawn(item, amount, tile, -1, -1, this)
+            val items: FloorItems = get()
+            items.add(item, amount, tile, -1, -1, this)
         }
     }
     return false

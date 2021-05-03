@@ -13,7 +13,9 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
@@ -163,7 +165,15 @@ class Player(
             loginQueue.logout(name, client?.address ?: "", index)
             val collisions: Collisions = get()
             collisions.remove(this@Player)
+            val players: Players = get()
+            players.remove(tile, this@Player)
+            players.remove(tile.chunk, this@Player)
+            delay(1) {
+                players.removeAtIndex(index)
+            }
             events.emit(Unregistered)
+            val storage: StorageStrategy<Player> = get()
+            storage.save(name, this@Player)
         }
     }
 
