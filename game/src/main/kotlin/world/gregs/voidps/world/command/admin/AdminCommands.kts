@@ -11,8 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.effect.Hidden
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
@@ -170,9 +169,14 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             objects.load()
             reloadRegions = true
         }
-        "interfaces" -> {}
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas" -> get<Areas>().load()
+        "object defs" -> get<ObjectDefinitions>().load()
+        "anim defs" -> get<AnimationDefinitions>().load()
+        "container defs" -> get<ContainerDefinitions>().load()
+        "graphic defs" -> get<GraphicDefinitions>().load()
+        "npc defs" -> get<NPCDefinitions>().load()
+        "item defs" -> get<ItemDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()

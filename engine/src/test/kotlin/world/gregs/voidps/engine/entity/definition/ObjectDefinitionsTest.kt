@@ -4,9 +4,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
-import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.entity.definition.load.ObjectDefinitionLoader
 
 internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, ObjectDecoder, ObjectDefinitions>() {
 
@@ -25,10 +22,9 @@ internal class ObjectDefinitionsTest : DefinitionsDecoderTest<ObjectDefinition, 
     }
 
     override fun definitions(decoder: ObjectDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ObjectDefinitions {
-        return ObjectDefinitions(decoder, id, names)
-    }
-
-    override fun loader(loader: FileLoader): TimedLoader<ObjectDefinitions> {
-        return ObjectDefinitionLoader(decoder, loader)
+        return ObjectDefinitions(decoder).apply {
+            load(id)
+            this.names = names
+        }
     }
 }

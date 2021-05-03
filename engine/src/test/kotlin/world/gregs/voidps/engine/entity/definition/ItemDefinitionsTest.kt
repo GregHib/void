@@ -4,9 +4,6 @@ import io.mockk.mockk
 import org.junit.jupiter.api.BeforeEach
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
-import world.gregs.voidps.engine.TimedLoader
-import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.entity.definition.load.ItemDefinitionLoader
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -61,11 +58,10 @@ internal class ItemDefinitionsTest : DefinitionsDecoderTest<ItemDefinition, Item
     }
 
     override fun definitions(decoder: ItemDecoder, id: Map<String, Map<String, Any>>, names: Map<Int, String>): ItemDefinitions {
-        return ItemDefinitions(decoder, id, names)
-    }
-
-    override fun loader(loader: FileLoader): TimedLoader<ItemDefinitions> {
-        return ItemDefinitionLoader(loader, decoder)
+        return ItemDefinitions(decoder).apply {
+            load(id)
+            this.names = names
+        }
     }
 
 }
