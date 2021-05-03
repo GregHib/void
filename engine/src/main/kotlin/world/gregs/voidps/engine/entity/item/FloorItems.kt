@@ -102,7 +102,9 @@ class FloorItems(
         if (entity.state != FloorItemState.Removed) {
             entity.state = FloorItemState.Removed
             batcher.update(entity.tile.chunk) { player -> player.client?.removeFloorItem(entity.tile.offset(), entity.id) }
-            return super.remove(entity)
+            if (super.remove(entity)) {
+                entity.events.emit(Registered)
+            }
         }
         return false
     }
@@ -124,7 +126,7 @@ class FloorItems(
 
     init {
         batcher.addInitial { player, chunk, messages ->
-            this[chunk].forEach {
+            get(chunk).forEach {
                 if (it.visible(player)) {
                     messages += { player -> player.client?.addFloorItem(it.tile.offset(), it.id, it.amount) }
                 }
