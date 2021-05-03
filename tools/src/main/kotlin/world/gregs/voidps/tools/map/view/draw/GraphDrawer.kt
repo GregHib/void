@@ -10,7 +10,7 @@ import kotlin.math.sqrt
 
 class GraphDrawer(
     private val view: MapView,
-    private val nav: NavigationGraph,
+    private val nav: NavigationGraph?,
     private val area: AreaSet,
 ) {
 
@@ -33,7 +33,7 @@ class GraphDrawer(
 
     fun draw(g: Graphics) {
         g.color = linkColour
-        nav.nodes.filterIsInstance<Tile>().forEach { node ->
+        nav?.nodes?.filterIsInstance<Tile>()?.forEach { node ->
             if (node.plane != view.plane) {
                 return@forEach
             }

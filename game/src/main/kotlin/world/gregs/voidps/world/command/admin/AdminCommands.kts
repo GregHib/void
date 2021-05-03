@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
@@ -169,6 +170,8 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             objects.load()
             reloadRegions = true
         }
+        "interfaces" -> {}
+        "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas" -> get<Areas>().load()
     }
     if (reloadRegions) {

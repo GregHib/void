@@ -1,8 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
 import kotlinx.coroutines.*
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.nav.GraphLoader
 import world.gregs.voidps.tools.map.view.draw.WorldMap.Companion.flipRegionY
 import world.gregs.voidps.tools.map.view.graph.AreaSet
 import world.gregs.voidps.tools.map.view.interact.MouseDrag
@@ -20,7 +18,7 @@ import javax.swing.SwingUtilities
 class MapView(private val graphFile: String, private val areaFile: String) : JPanel() {
 
     private val options = OptionsPane(this)
-    private val nav = GraphLoader(null).run(graphFile)
+//    private val nav = GraphLoader(null).run(graphFile)
     private val areaSet = AreaSet.load(areaFile)
     private val highlight = HighlightedTile(this, options)
     private val area = HighlightedArea(this, areaSet)
@@ -30,7 +28,7 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
     private val hover = MouseHover(highlight, area)
     private val map = WorldMap(this)
     private val resize = ResizeListener(map)
-    private val graph = GraphDrawer(this, nav, areaSet)
+    private val graph = GraphDrawer(this, null, areaSet)
 
     //    private val click = MouseClick(this, nav, graph, area, areaSet)
     private val apc = AreaPointConnector(this, areaSet)
@@ -154,7 +152,7 @@ class MapView(private val graphFile: String, private val areaFile: String) : JPa
 
     fun drag(mouseX: Int, mouseY: Int, mapStartX: Int, mapStartY: Int, offsetX: Int, offsetY: Int) {
         val point = areaSet.getPointOrNull(mapStartX, flipMapY(mapStartY), plane)
-        val node = nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), plane) }
+        val node = null//nav.nodes.firstOrNull { it is Tile && it.id == Tile.getId(mapStartX, flipMapY(mapStartY), plane) }
         when {
             node != null -> {
 //                lc.update(mapStartX, mapStartY, mouseX, mouseY)
