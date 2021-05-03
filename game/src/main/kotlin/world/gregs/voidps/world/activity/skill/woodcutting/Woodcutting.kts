@@ -80,7 +80,7 @@ fun success(level: Int, hatchet: Hatchet, tree: Tree): Boolean {
 fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log ?: return true
     val added = player.inventory.add(log.id)
-    player.message(if (added) "You get some ${log.id.replace("_", "").toLowerCase()}." else "You don't have enough inventory space.")
+    player.message(if (added) "You get some ${log.id.replace("_", " ").toLowerCase()}." else "You don't have enough inventory space.")
     return added
 }
 
