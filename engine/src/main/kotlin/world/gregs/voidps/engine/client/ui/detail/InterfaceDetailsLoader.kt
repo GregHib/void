@@ -1,31 +1,28 @@
 package world.gregs.voidps.engine.client.ui.detail
 
 import org.koin.dsl.module
-import world.gregs.voidps.engine.TimedLoader
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
+import world.gregs.voidps.engine.timedLoad
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
 private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
-class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<InterfaceDetails>("interfaces") {
+class InterfaceDetailsLoader(private val loader: FileLoader) {
 
     fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
 
-    override fun load(args: Array<out Any?>): InterfaceDetails {
-        return loadAll(args[0] as String, args[1] as String)
-    }
-
-    fun loadAll(detailPath: String, typesPath: String): InterfaceDetails {
-        val detailData = loadFile(detailPath)
-        val typeData = loadFile(typesPath)
-        val names = loadNames(detailData)
-        val types = loadTypes(typeData, names.map { it.value to it.key }.toMap())
-        val details = loadDetails(detailData, types)
-        count = names.size
-        return InterfaceDetails(details, names)
+    fun load(details: InterfaceDetails, detailPath: String, typesPath: String) {
+        timedLoad("interface") {
+            val detailData = loadFile(detailPath)
+            val typeData = loadFile(typesPath)
+            val names = loadNames(detailData)
+            val types = loadTypes(typeData, names.map { it.value to it.key }.toMap())
+            details.load(loadDetails(detailData, types), names)
+            names.size
+        }
     }
 
     fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
@@ -111,7 +108,9 @@ class InterfaceDetailsLoader(private val loader: FileLoader) : TimedLoader<Inter
 
 val interfaceModule = module {
     single(createdAtStart = true) {
-        InterfaceDetailsLoader(get())
-            .run(getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+        InterfaceDetails().apply {
+            InterfaceDetailsLoader(get())
+                .load(this, getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
+        }
     }
 }

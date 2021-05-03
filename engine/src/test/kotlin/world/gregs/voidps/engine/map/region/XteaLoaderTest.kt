@@ -19,7 +19,7 @@ internal class XteaLoaderTest {
 
     @Test
     fun `Xteas get by region`() {
-        val xteas = Xteas(mapOf(0 to intArrayOf(1, 2, 3, 4)))
+        val xteas = Xteas(mutableMapOf(0 to intArrayOf(1, 2, 3, 4)))
         val xtea = xteas[Region(0)]
         assertNotNull(xtea)
         assertArrayEquals(intArrayOf(1, 2, 3, 4), xtea!!)
@@ -72,7 +72,7 @@ internal class XteaLoaderTest {
         val path = "./123.txt"
         val file = File(path)
         file.writeText("-1\n2\n3")
-        val xteas = loader.run(path)
+        val xteas = Xteas(mutableMapOf()).apply { loader.load(this, path) }
         val values = xteas[123]
         assertNotNull(values)
         assertArrayEquals(intArrayOf(-1, 2, 3, 0), values!!)
@@ -84,8 +84,8 @@ internal class XteaLoaderTest {
         val path = "./xteas.json"
         val file = File(path)
         file.writeText("[\n{\n\"id\": 123,\n\"xteas\": [-1,2,99,100]\n}\n]")
-        val xteas = loader.run(path, "id", "xteas")
-        assertEquals(1, loader.count)
+        val xteas = Xteas(mutableMapOf()).apply { loader.load(this, path, "id", "xteas") }
+        assertEquals(1, xteas.size)
         val values = xteas[123]
         assertNotNull(values)
         assertArrayEquals(intArrayOf(-1, 2, 99, 100), values!!)
@@ -97,8 +97,8 @@ internal class XteaLoaderTest {
         val path = "./xteas.json"
         val file = File(path)
         file.writeText("[\n\t{\n\t\t\"mapsquare\": 123,\n\t\t\"keys\": [-1, 2, 99, 100]\n\t}\n]")
-        val xteas = loader.run(path)
-        assertEquals(1, loader.count)
+        val xteas = Xteas(mutableMapOf()).apply { loader.load(this, path) }
+        assertEquals(1, xteas.size)
         val values = xteas[123]
         assertNotNull(values)
         assertArrayEquals(intArrayOf(-1, 2, 99, 100), values!!)
@@ -116,8 +116,8 @@ internal class XteaLoaderTest {
             stream.writeInt(2)
             stream.writeInt(1)
         }
-        val xtea = loader.run(path)
-        assertEquals(1, loader.count)
+        val xtea = Xteas(mutableMapOf()).apply { loader.load(this, path) }
+        assertEquals(1, xtea.size)
         val values = xtea[123]
         assertNotNull(values)
         assertArrayEquals(intArrayOf(-100, 99, 2, 1), values!!)

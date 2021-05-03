@@ -3,29 +3,31 @@ package world.gregs.voidps.engine.map.region
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import world.gregs.voidps.engine.TimedLoader
+import world.gregs.voidps.engine.timedLoad
 import java.io.File
 import java.io.RandomAccessFile
 
 private typealias Xtea = IntArray
 
-class XteaLoader : TimedLoader<Xteas>("xtea") {
+class XteaLoader {
 
-    override fun load(args: Array<out Any?>): Xteas {
-        val path = args[0] as String
-        val file = File(path)
-        val xteas = when {
-            file.extension == "txt" -> loadDirectory(file.parentFile)
-            file.isDirectory -> loadDirectory(file)
-            file.extension == "json" -> loadJson(
-                file.readText(),
-                args.getOrNull(1) as? String ?: DEFAULT_KEY,
-                args.getOrNull(2) as? String ?: DEFAULT_VALUE
-            )
-            else -> loadBinary(RandomAccessFile(file, "r"))
+    fun load(xteas: Xteas, path: String, key: String? = null, value: String? = null) {
+        timedLoad("xtea") {
+            val file = File(path)
+            val all = when {
+                file.extension == "txt" -> loadDirectory(file.parentFile)
+                file.isDirectory -> loadDirectory(file)
+                file.extension == "json" -> loadJson(
+                    file.readText(),
+                    key ?: DEFAULT_KEY,
+                    value ?: DEFAULT_VALUE
+                )
+                else -> loadBinary(RandomAccessFile(file, "r"))
+            }
+            xteas.delegate.clear()
+            xteas.delegate.putAll(all)
+            all.size
         }
-        count = xteas.size
-        return Xteas(xteas)
     }
 
     fun loadText(text: String): IntArray {

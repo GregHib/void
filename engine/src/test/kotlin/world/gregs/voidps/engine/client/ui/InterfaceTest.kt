@@ -29,7 +29,9 @@ abstract class InterfaceTest : KoinMock() {
         }
         interfaces = mutableMapOf()
         names = mutableMapOf()
-        details = declare { spyk(InterfaceDetails(interfaces, names)) }
+        details = declare { spyk(InterfaceDetails().apply {
+            load(interfaces, names)
+        }) }
         gameframe = spyk(PlayerGameFrame())
         manager = spyk(InterfaceManager(io, details, gameframe))
     }

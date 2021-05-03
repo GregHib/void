@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.ui.load
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.spyk
-import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -125,8 +124,9 @@ internal class InterfaceLoaderTest {
         )
         every { fileLoader.load<Map<String, Map<String, Any>>>(detailsPath) } returns detailData
         every { fileLoader.load<Map<String, Map<String, Any>>>(typesPath) } returns typesData
-        val result = loader.loadAll(detailsPath, typesPath)
-        val expected = InterfaceDetails(
+        val result = InterfaceDetails().apply { loader.load(this, detailsPath, typesPath) }
+        val expected = InterfaceDetails()
+        expected.load(
             mapOf(
                 "interface_name" to InterfaceDetail(
                     id = 1,
@@ -147,12 +147,5 @@ internal class InterfaceLoaderTest {
             )
         )
         assertEquals(expected, result)
-    }
-
-    @Test
-    fun `Load parameters`() {
-        every { loader.loadAll(any(), any()) } returns mockk()
-        loader.run("one", "two")
-        verify { loader.loadAll("one", "two") }
     }
 }
