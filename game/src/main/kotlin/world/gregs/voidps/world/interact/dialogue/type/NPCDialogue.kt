@@ -28,12 +28,7 @@ suspend fun DialogueContext.npc(id: Int, npcName: String, text: String, expressi
         return
     }
 
-    val name = getInterfaceName(
-        "npc_chat",
-        lines.size,
-        clickToContinue
-    )
-
+    val name = getInterfaceName("npc_chat", lines.size, clickToContinue)
     if (player.open(name)) {
         val head = getChatHeadComponentName(largeHead)
         player.interfaces.sendNPCHead(name, head, id)

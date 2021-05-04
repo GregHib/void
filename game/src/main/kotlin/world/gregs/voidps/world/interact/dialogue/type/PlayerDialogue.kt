@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 
 private val logger = InlineLogger()
 
@@ -17,9 +16,7 @@ suspend fun DialogueContext.player(text: String, expression: Expression = Expres
         return
     }
 
-    val name =
-        getInterfaceName("chat", lines.size, clickToContinue)
-
+    val name = getInterfaceName("chat", lines.size, clickToContinue)
     if (player.open(name)) {
         val head = getChatHeadComponentName(largeHead)
         player.interfaces.sendPlayerHead(name, head)

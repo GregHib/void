@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math.interpolate
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
@@ -56,13 +55,9 @@ on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
             Yes I'm sure!
             On second thoughts, no thanks.
         """)
-        if (choice == 1) {
-            if (player.purchase(cost)) {
-                player.inventory.replace(item, repaired(item))
-                npc("There you go. It's a pleasure doing business with you!")
-            } else {
-                player.message("You don't have enough coins.")
-            }
+        if (choice == 1 && player.purchase(cost)) {
+            player.inventory.replace(item, repaired(item))
+            npc("There you go. It's a pleasure doing business with you!")
         }
     }
 }

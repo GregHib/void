@@ -20,11 +20,7 @@ suspend fun DialogueContext.choice(text: String, title: String? = null, saySelec
     val question = title?.trimIndent()?.replace("\n", "<br>")
     val multilineTitle = question?.contains("<br>") ?: false
     val multilineOptions = lines.any { isMultiline(it) }
-    val name = getChoiceName(
-        multilineTitle,
-        multilineOptions,
-        lines.size
-    )
+    val name = getChoiceName(multilineTitle, multilineOptions, lines.size)
     if (player.open(name)) {
         if (question != null) {
             val longestLine = question.split("<br>").maxByOrNull { it.length }?.length ?: 0
