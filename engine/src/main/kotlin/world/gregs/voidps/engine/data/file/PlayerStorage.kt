@@ -1,9 +1,7 @@
 package world.gregs.voidps.engine.data.file
 
-import com.fasterxml.jackson.core.JsonFactory
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
-import com.fasterxml.jackson.module.kotlin.registerKotlinModule
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -15,8 +13,8 @@ import java.io.File
  */
 class PlayerStorage(private val path: String) : StorageStrategy<Player> {
 
-    val mapper = ObjectMapper(JsonFactory()).registerKotlinModule()
-    val writer = mapper.writerWithDefaultPrettyPrinter()
+    private val mapper = jacksonObjectMapper()
+    private val writer = mapper.writerWithDefaultPrettyPrinter()
 
     private fun path(name: String) = "$path\\$name.json"
 
