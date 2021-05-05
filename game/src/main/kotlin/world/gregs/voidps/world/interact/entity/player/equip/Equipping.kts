@@ -41,7 +41,7 @@ on<Registered> { player: Player ->
 }
 
 fun updateWeaponEmote(player: Player) {
-    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val weapon = player.equipment.getItemId(EquipSlot.Weapon.index)
     val def = itemDecoder.get(weapon)
     val anim = def.getParam(644, 1426)
     player.emote = anim
@@ -73,6 +73,6 @@ fun hasTwoHandedWeapon(player: Player, item: ItemDefinition) =
 fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == EquipSlot.Weapon && item["type", EquipType.None] == EquipType.TwoHanded
 
 fun holdingTwoHandedWeapon(player: Player): Boolean {
-    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val weapon = player.equipment.getItemId(EquipSlot.Weapon.index)
     return itemDecoder.get(weapon)["type", EquipType.None] == EquipType.TwoHanded
 }

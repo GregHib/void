@@ -14,13 +14,13 @@ on<InterfaceOption>({ name == "shop_side" && component == "container" && option 
 }
 
 on<InterfaceOption>({ name == "shop" && component == "sample" && option == "Examine" }) { player: Player ->
-    val item = player.shopContainer(true).getItem(itemIndex / 4)
+    val item = player.shopContainer(true).getItemId(itemIndex / 4)
     val examine = itemDefs.get(item).getOrNull("examine") as? String ?: return@on
     player.message(examine)
 }
 
 on<InterfaceOption>({ name == "shop" && component == "stock" && option == "Examine" }) { player: Player ->
-    val item = player.shopContainer(false).getItem(itemIndex / 6)
+    val item = player.shopContainer(false).getItemId(itemIndex / 6)
     val examine = itemDefs.get(item).getOrNull("examine") as? String ?: return@on
     player.message(examine)
 }

@@ -10,7 +10,7 @@ val items: FloorItems by inject()
 val logger = InlineLogger()
 
 on<ContainerAction>({ container == "inventory" && option == "Drop" }) { player: Player ->
-    val id = player.inventory.getItem(slot)
+    val id = player.inventory.getItemId(slot)
     val amount = player.inventory.getAmount(slot)
     if (player.inventory.clear(slot) && id.isNotBlank() && amount > 0) {
         items.add(id, amount, player.tile, 60, 60, player)

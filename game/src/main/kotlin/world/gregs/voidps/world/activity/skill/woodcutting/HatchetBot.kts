@@ -27,7 +27,7 @@ val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, String>> = {
 }
 
 val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, String>) -> Double = { (hatchet) ->
-    val currentWeapon = bot.equipment.getItem(EquipSlot.Weapon.index)
+    val currentWeapon = bot.equipment.getItemId(EquipSlot.Weapon.index)
     if (currentWeapon.isBlank()) {
         1.0
     } else {

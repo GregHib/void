@@ -12,7 +12,7 @@ val decoder: ItemDefinitions by inject()
 val logger = InlineLogger()
 
 on<ContainerAction>({ container == "inventory" && option == "Destroy" }) { player: Player ->
-    val id = player.inventory.getItem(slot)
+    val id = player.inventory.getItemId(slot)
     val amount = player.inventory.getAmount(slot)
     if(id.isNotBlank() && amount > 0) {
         val item = decoder.get(id)

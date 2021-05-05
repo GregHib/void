@@ -23,7 +23,7 @@ val decoder: ItemDefinitions by inject()
 val logger = InlineLogger()
 
 on<ContainerAction>({ container == "inventory" && option == "Discard" }) { player: Player ->
-    val id = player.inventory.getItem(slot)
+    val id = player.inventory.getItemId(slot)
     val amount = player.inventory.getAmount(slot)
     if (!player.contains("borrowed_item")) {
         if (player.inventory.clear(slot)) {

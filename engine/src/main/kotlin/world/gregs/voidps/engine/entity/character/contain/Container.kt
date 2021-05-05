@@ -81,7 +81,9 @@ data class Container(
     @JsonIgnore
     fun isNotFull() = items.any { isFree(it.amount) }
 
-    fun getItem(index: Int): String = items.getOrNull(index)?.name ?: ""
+    fun getItemId(index: Int): String = items.getOrNull(index)?.name ?: ""
+
+    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item.EMPTY
 
     fun getItems(): Array<String> = items.map { it.name }.toTypedArray()
 
@@ -147,7 +149,7 @@ data class Container(
             return count
         }
         for (index in items.indices) {
-            if (getItem(index) == id && getAmount(index) > minimumStack) {
+            if (getItemId(index) == id && getAmount(index) > minimumStack) {
                 count += getAmount(index)
             }
         }
@@ -467,7 +469,7 @@ data class Container(
     }
 
     fun move(index: Int, container: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
-        val id = getItem(index)
+        val id = getItemId(index)
         val amount = getAmount(index)
         if (id.isBlank() || amount == minimumStack) {
             return result(ContainerResult.Invalid)

@@ -50,7 +50,7 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
     val container = player.container(if (sample) "${shop}_sample" else shop)
-    val item = container.getItem(actualIndex)
+    val item = container.getItemId(actualIndex)
     player["info_sample"] = sample
     showInfo(player, item, if (sample) -1 else container.getAmount(actualIndex), actualIndex, if (sample) "${shop}_sample" else shop)
 }

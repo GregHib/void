@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.item.BodyPart
 import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.utility.get
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -99,7 +98,7 @@ fun Player.flagAppearance() = visuals.flag(APPEARANCE_MASK)
 
 val Player.appearance: Appearance
     get() = visuals.getOrPut(APPEARANCE_MASK) {
-        val bodyParts = BodyParts(equipment, get(), intArrayOf(3, 14, 18, 26, 34, 38, 42))
+        val bodyParts = BodyParts(equipment, intArrayOf(3, 14, 18, 26, 34, 38, 42))
         BodyPart.all.forEach {
             bodyParts.updateConnected(it)
         }

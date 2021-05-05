@@ -72,7 +72,7 @@ fun withdraw(player: Player, item: String, slot: Int, amount: Int) {
         } else {
             logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
         }
-    } else if (player.bank.getItem(slot) != item) {
+    } else if (player.bank.getItemId(slot) != item) {
         val tab = Bank.getTab(player, slot)
         if (tab > 0) {
             player.decVar("bank_tab_$tab")

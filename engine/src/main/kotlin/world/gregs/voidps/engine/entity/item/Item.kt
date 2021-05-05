@@ -14,6 +14,9 @@ data class Item(
     val id: Int
         get() = def.id
 
+    fun isEmpty() = name.isBlank()
+    fun isNotEmpty() = name.isNotBlank()
+
     companion object {
         val EMPTY = Item("", 0, 0)
     }

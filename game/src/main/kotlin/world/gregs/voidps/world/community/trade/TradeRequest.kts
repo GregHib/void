@@ -106,7 +106,7 @@ fun tradeItems(player: Player, other: Player) {
 }
 
 fun loanItem(player: Player, other: Player) {
-    val loanItem = player.otherLoan.getItem(0)
+    val loanItem = player.otherLoan.getItemId(0)
     val duration = other.getVar("lend_time", -1)
     if (loanItem.isBlank() || duration == -1) {
         return

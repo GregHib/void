@@ -54,7 +54,7 @@ fun take(player: Player, shop: Container, index: Int, amount: Int) {
     if (amountAvailable <= 0) {
         return
     }
-    shop.move(player.inventory, shop.getItem(index), actualAmount, index)
+    shop.move(player.inventory, shop.getItemId(index), actualAmount, index)
     when (shop.result) {
         ContainerResult.Full -> player.inventoryFull()
     }
@@ -73,7 +73,7 @@ on<InterfaceOption>({ name == "shop" && component == "stock" && option.startsWit
 }
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
-    val item = shop.getItem(index)
+    val item = shop.getItemId(index)
     val def = itemDefs.get(item)
     val price = Price.getPrice(player, def.id, index, amount)
 

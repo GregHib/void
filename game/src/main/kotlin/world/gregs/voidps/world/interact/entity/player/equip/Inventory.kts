@@ -31,7 +31,7 @@ on<InterfaceSwitch>({ name == "inventory" && toName == "inventory" }) { player: 
             return@on
         }
 
-        fromItem = container.getItem(fromSlot)
+        fromItem = container.getItemId(fromSlot)
     }
 
     if (!container.isValidId(fromSlot, fromItem)) {

@@ -1178,7 +1178,7 @@ internal class ContainerTest {
         val id = "100"
         items[index] = id
         // When
-        val item = container.getItem(index)
+        val item = container.getItemId(index)
         // Then
         assertEquals(id, item)
     }
@@ -1188,7 +1188,7 @@ internal class ContainerTest {
         // Given
         val index = -2
         // When
-        val item = container.getItem(index)
+        val item = container.getItemId(index)
         // Then
         assertEquals("", item)
     }

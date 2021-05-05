@@ -30,7 +30,7 @@ on<Registered> { player: Player ->
                 if (maximum == current) {
                     continue
                 }
-                val item = container.getItem(index)
+                val item = container.getItemId(index)
                 val difference = abs(current - maximum)
                 val percent = max(1, (difference * 0.1).toInt())
                 if (current < maximum) {
