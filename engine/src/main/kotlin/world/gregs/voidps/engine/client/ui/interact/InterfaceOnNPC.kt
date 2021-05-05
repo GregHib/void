@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.ui.interact
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 data class InterfaceOnNPC(
@@ -9,8 +10,7 @@ data class InterfaceOnNPC(
     val name: String,
     val componentId: Int,
     val component: String,
-    val item: String,
-    val itemId: Int,
+    val item: Item,
     val itemIndex: Int,
     val container: String
 ) : Event

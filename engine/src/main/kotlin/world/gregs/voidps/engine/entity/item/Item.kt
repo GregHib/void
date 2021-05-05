@@ -17,6 +17,12 @@ data class Item(
     fun isEmpty() = name.isBlank()
     fun isNotEmpty() = name.isNotBlank()
 
+    fun toNote(): Item? = if (def.notedTemplateId != -1 && def.noteId != -1) {
+        copy(name = get<ItemDefinitions>().getName(def.noteId))
+    } else {
+        null
+    }
+
     companion object {
         val EMPTY = Item("", 0, 0)
     }

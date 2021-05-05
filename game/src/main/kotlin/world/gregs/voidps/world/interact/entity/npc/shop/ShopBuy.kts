@@ -79,7 +79,6 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
     val currency: String = player["shop_currency", "coins"]
     val currencyAvailable = player.inventory.getCount(currency).toInt()
 
-
     val amountAvailable = shop.getAmount(index)
     val budget = currencyAvailable / price
 

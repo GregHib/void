@@ -19,7 +19,7 @@ on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { 
         "Remove" -> 1
         "Remove-5" -> 5
         "Remove-10" -> 10
-        "Remove-All" -> player.offer.getCount(item.name).toInt()
+        "Remove-All" -> player.offer.getCount(item).toInt()
         else -> return@on
     }
     remove(player, item.name, itemIndex, amount)

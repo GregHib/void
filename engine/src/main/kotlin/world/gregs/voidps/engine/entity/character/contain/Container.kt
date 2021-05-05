@@ -141,6 +141,8 @@ data class Container(
         return -1
     }
 
+    fun getCount(item: Item) = getCount(item.name)
+
     fun getCount(id: String): Long {
         var count = 0L
         if (id.isBlank()) {

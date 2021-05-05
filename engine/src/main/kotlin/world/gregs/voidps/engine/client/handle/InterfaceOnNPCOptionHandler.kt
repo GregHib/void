@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
@@ -52,7 +53,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         val name = inter.name
 
         // If an item is provided
-        var item = ""
+        var item = Item.EMPTY
         var containerName = ""
         if (itemId != -1 && itemSlot != -1) {
             // Check the component name is valid
@@ -76,14 +77,14 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
 
             var found = false
             val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, item)) {
+            if (primary.isValidId(itemSlot, itemDefinitions.getName(itemId))) {
                 found = true
-                item = itemDefinitions.getName(itemId)
+                item = primary.getItem(itemSlot)
             } else {
                 val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, item)) {
+                if (secondary.isValidId(itemSlot, itemDefinitions.getName(itemId))) {
                     found = true
-                    item = itemDefinitions.getName(itemId)
+                    item = secondary.getItem(itemSlot)
                 }
             }
             if (!found) {
@@ -108,7 +109,6 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
                     componentId,
                     componentName,
                     item,
-                    itemId,
                     itemSlot,
                     containerName
                 )

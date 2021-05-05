@@ -8,15 +8,12 @@ import world.gregs.voidps.engine.entity.character.contain.purchase
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.Math.interpolate
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
-
-val itemDefs: ItemDefinitions by inject()
 
 on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
@@ -45,7 +42,7 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
-        if (!repairable(item)) {
+        if (!repairable(item.name)) {
             npc("Sorry friend, but I can't do anything with that.", Expression.Disregard)
             return@talkWith
         }
@@ -56,7 +53,7 @@ on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
             On second thoughts, no thanks.
         """)
         if (choice == 1 && player.purchase(cost)) {
-            player.inventory.replace(item, repaired(item))
+            player.inventory.replace(item.name, repaired(item.name))
             npc("There you go. It's a pleasure doing business with you!")
         }
     }
@@ -66,9 +63,9 @@ fun repairable(item: String) = item.endsWith("_100") || item.endsWith("_75") || 
 
 fun repaired(item: String) = item.replace("_100", "_new").replace("_75", "_new").replace("_50", "_new").replace("_25", "_new").replace("_broken", "_new")
 
-fun repairCost(player: Player, item: String): Int {
-    val def = itemDefs.get(item)
-    val max = (def.cost * 0.6).toInt()
-    val min = (def.cost * 0.4).toInt()
+fun repairCost(player: Player, item: Item): Int {
+    val cost = item.def.cost
+    val max = (cost * 0.6).toInt()
+    val min = (cost * 0.4).toInt()
     return interpolate(player.levels.get(Skill.Smithing), max, min, 0, 99)
 }

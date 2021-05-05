@@ -8,17 +8,15 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
+import kotlin.math.min
 
 BooleanVariable(115, Variable.Type.VARP, persistent = true).register("bank_notes")
 
 val logger = InlineLogger()
-
-val decoder: ItemDefinitions by inject()
 
 on<InterfaceOption>({ name == "bank" && component == "container" && option.startsWith("Withdraw") }) { player: Player ->
     val amount = when (option) {
@@ -27,17 +25,17 @@ on<InterfaceOption>({ name == "bank" && component == "container" && option.start
         "Withdraw-10" -> 10
         "Withdraw-*" -> player.getVar("last_bank_amount", 0)
         "Withdraw-All" -> Int.MAX_VALUE
-        "Withdraw-All but one" -> player.bank.getAmount(itemIndex) - 1
+        "Withdraw-All but one" -> item.amount - 1
         else -> return@on
     }
-    withdraw(player, item.name, itemIndex, amount)
+    withdraw(player, item, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "bank" && component == "container" && option == "Withdraw-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
         player.setVar("last_bank_amount", amount)
-        withdraw(player, item.name, itemIndex, amount)
+        withdraw(player, item, itemIndex, amount)
     }
 }
 
@@ -45,34 +43,35 @@ on<InterfaceOption>({ name == "bank" && component == "note_mode" && option == "T
     player.toggleVar("bank_notes")
 }
 
-fun withdraw(player: Player, item: String, slot: Int, amount: Int) {
+fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return
     }
 
     var noted = item
     if (player.getVar("bank_notes", false)) {
-        val def = decoder.get(item)
-        if (def.noteId != -1) {
-            noted = decoder.getName(def.noteId)
-        } else {
+        val note = item.toNote()
+        if (note == null) {
             player.message("This item cannot be withdrawn as a note.")
+        } else {
+            noted = note
         }
     }
 
-    val current = player.bank.getAmount(slot)
-    var amount = amount
-    if (amount > current) {
-        amount = current
-    }
-
-    if (!player.bank.move(player.inventory, item, amount, slot, targetId = noted)) {
+    if (!player.bank.move(
+            container = player.inventory,
+            id = item.name,
+            amount = min(amount, item.amount),
+            index = slot,
+            targetId = noted.name
+        )
+    ) {
         if (player.bank.result == ContainerResult.Full) {
             player.message("Your inventory is full.")
         } else {
             logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
         }
-    } else if (player.bank.getItemId(slot) != item) {
+    } else if (player.bank.getItemId(slot) != item.name) {
         val tab = Bank.getTab(player, slot)
         if (tab > 0) {
             player.decVar("bank_tab_$tab")
