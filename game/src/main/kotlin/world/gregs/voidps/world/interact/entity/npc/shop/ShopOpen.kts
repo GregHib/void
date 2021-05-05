@@ -113,8 +113,8 @@ fun fillShop(container: Container, name: String) {
 }
 
 fun sendAmounts(player: Player, container: Container, name: String): EventHandler {
-    for ((index, amount) in container.getAmounts().withIndex()) {
-        player.setVar("amount_$index", amount)
+    for ((index, item) in container.getItems().withIndex()) {
+        player.setVar("amount_$index", item.amount)
     }
     return player.events.on<Player, ItemChanged>({ this.container == name }) {
         player.setVar("amount_${index}", item.amount)
