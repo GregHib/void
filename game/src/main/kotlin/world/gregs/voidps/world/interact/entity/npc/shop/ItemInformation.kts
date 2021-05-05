@@ -82,7 +82,7 @@ fun showInfo(player: Player, item: String, amount: Int, index: Int, name: String
                 setRequirements(player, def)
                 if (amount != -1) {
                     val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
-                        player.setVar("item_info_price", if (this.amount == 0) 0 else Price.getPrice(player, itemDefs.getId(item), index, this.amount))
+                        player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, itemDefs.getId(item), index, this.item.amount))
                     }
                     player["item_info_bind"] = handler
                 }

@@ -177,10 +177,10 @@ fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<P
 }
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.set(update.index, update.item, update.amount)
+    container.set(update.index, update.item.name, update.item.amount)
 }
 
-fun removedAnyItems(change: ItemChanged) = change.amount < change.oldAmount
+fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
 
 fun modified(player: Player, other: Player, warned: Boolean) {
     if (warned) {
@@ -205,7 +205,7 @@ fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<
 }
 
 fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
-    if (update.amount < update.oldAmount) {
+    if (update.item.amount < update.oldItem.amount) {
         player.warn("trade_main", "offer_warning", update.index)
         other.warn("trade_main", "other_warning", update.index)
     }

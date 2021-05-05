@@ -58,7 +58,7 @@ on<Leveled>({ it.isBot }) { bot: Player ->
     updateHatchetDesire(bot)
 }
 
-on<ItemChanged>({ it.isBot && Hatchet.isHatchet(item) }) { bot: Player ->
+on<ItemChanged>({ it.isBot && Hatchet.isHatchet(item.name) }) { bot: Player ->
     updateHatchetDesire(bot)
 }
 

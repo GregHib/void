@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.utility.get
@@ -41,10 +42,11 @@ fun Player.container(name: String, detail: ContainerDefinition, secondary: Boole
         val itemDefs: ItemDefinitions = get()
         val ids = detail.ids
         val amounts = detail.amounts
-        Container(
-            items = ids?.map { itemDefs.getName(it) }?.toTypedArray() ?: Array(detail.length) { "" },
-            amounts = amounts ?: IntArray(detail.length),
-        )
+        if(ids == null || amounts == null) {
+            Container(detail.length)
+        } else {
+            Container(Array(ids.size) { i -> Item(itemDefs.getName(ids[i]), amounts[i]) })
+        }
     }.apply {
         if (!setup) {
             id = detail.id

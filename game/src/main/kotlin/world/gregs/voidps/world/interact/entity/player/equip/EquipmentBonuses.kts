@@ -37,8 +37,8 @@ fun Player.equipping() = action.type == ActionType.Equipping
 on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     player.action(ActionType.Equipping) {
         val handler = player.events.on<Player, ItemChanged>({ container == "worn_equipment" }) {
-            updateStats(player, oldItem, false)
-            updateStats(player, item, true)
+            updateStats(player, oldItem.name, false)
+            updateStats(player, item.name, true)
         }
         try {
             player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))

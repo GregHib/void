@@ -117,6 +117,6 @@ fun sendAmounts(player: Player, container: Container, name: String): EventHandle
         player.setVar("amount_$index", amount)
     }
     return player.events.on<Player, ItemChanged>({ this.container == name }) {
-        player.setVar("amount_${index}", amount)
+        player.setVar("amount_${index}", item.amount)
     }
 }

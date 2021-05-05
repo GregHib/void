@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Events
 
 internal class ContainerTest {
@@ -41,8 +42,7 @@ internal class ContainerTest {
         minimumStack: Int = 0
     ): Container = spyk(
         Container(
-            items = items,
-            amounts = amounts
+            items = Array(items.size) { i -> Item(items[i], amounts[i]) }
         ).apply {
             this.id = id
             this.name = name
@@ -1140,7 +1140,7 @@ internal class ContainerTest {
             events.emit(ContainerUpdate(
                 containerId = 123,
                 secondary = false,
-                updates = listOf(ItemChanged("test", 2, "", 0, "123", 2, false))
+                updates = listOf(ItemChanged("test", 2, Item("", 0), Item("123", 2), false))
             ))
         }
     }
@@ -1156,8 +1156,8 @@ internal class ContainerTest {
                 containerId = 123,
                 secondary = true,
                 updates = listOf(
-                    ItemChanged("test", 2, "", 0, "", 0, true),
-                    ItemChanged("test", 3, "", 0, "", 0, true)
+                    ItemChanged("test", 2, Item("", 0), Item("", 0), true),
+                    ItemChanged("test", 3, Item("", 0), Item("", 0), true)
                 )
             ))
         }
