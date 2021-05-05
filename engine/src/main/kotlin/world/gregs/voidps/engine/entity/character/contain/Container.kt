@@ -27,9 +27,6 @@ data class Container(
     var stackMode: StackMode = StackMode.Normal
 
     @JsonIgnore
-    var minimumStack: Int = 0
-
-    @JsonIgnore
     lateinit var definitions: ItemDefinitions
 
     @JsonIgnore
@@ -47,10 +44,6 @@ data class Container(
 
     @JsonIgnore
     var setup = false
-
-    @get:JsonIgnore
-    val empty: Item
-        get() = Item("", minimumStack)
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
@@ -71,28 +64,28 @@ data class Container(
 
     @get:JsonIgnore
     val count: Int
-        get() = items.withIndex().count { (index, item) -> !isFree(index, item.amount) }
+        get() = items.indices.count { !isIndexFree(it) }
 
     @get:JsonIgnore
     val spaces: Int
-        get() = items.withIndex().count { (index, item) -> isFree(index, item.amount) }
+        get() = items.indices.count { isIndexFree(it) }
 
     @JsonIgnore
-    fun isEmpty() = items.withIndex().all { (index, item) -> isFree(index, item.amount) }
+    fun isEmpty() = items.indices.all { isIndexFree(it) }
 
     @JsonIgnore
-    fun isFull() = items.withIndex().none { (index, item) -> isFree(index, item.amount) }
+    fun isFull() = items.indices.none { isIndexFree(it) }
 
     @JsonIgnore
-    fun isNotFull() = items.withIndex().any { (index, item) -> isFree(index, item.amount) }
+    fun isNotFull() = items.indices.any { isIndexFree(it) }
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.name ?: ""
 
     fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", getMinimum(index))
 
-    fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: minimumStack
+    fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: 0
 
-    fun getMinimum(index: Int): Int = minimumAmounts.getOrNull(index) ?: minimumStack
+    private fun getMinimum(index: Int): Int = minimumAmounts.getOrNull(index) ?: 0
 
     fun getItems(): Array<Item> = items.clone()
 
@@ -112,25 +105,26 @@ data class Container(
         return isValidId(id) && isValidAmount(amount) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
     }
 
-    fun isValidInput(id: String, amount: Int, index: Int): Boolean {
+    private fun isValidInput(id: String, amount: Int, index: Int): Boolean {
         return isValidId(id) && isValidAmountIndex(amount, index) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
-    }
-
-    fun isValidInput(item: Item, index: Int): Boolean {
-        return isValidId(item.name) && isValidAmountIndex(item.amount, index) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
     }
 
     fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.name) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
+    private fun isValidInput(item: Item, index: Int): Boolean {
+        return isValidId(item.name) && isValidAmountIndex(item.amount, index) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
+    }
+
     private fun isValidId(id: String) = id.isNotBlank()
 
     private fun isValidAmount(amount: Int) = amount > 0
+
     private fun isValidAmountIndex(amount: Int, index: Int) = amount > getMinimum(index)
 
     /**
      * Checks [amount] for a slot is empty
      */
-    fun isFree(index: Int, amount: Int) = amount == getMinimum(index)
+    private fun isFree(index: Int, amount: Int) = amount == getMinimum(index)
 
     /**
      * If values is underflowing [minimumAmounts]

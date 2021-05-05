@@ -18,6 +18,7 @@ internal class ContainerTest {
     private lateinit var container: Container
     private lateinit var definitions: ItemDefinitions
     private lateinit var items: Array<Item>
+    private lateinit var minimumAmounts: IntArray
     private lateinit var events: Events
 
     @BeforeEach
@@ -26,6 +27,7 @@ internal class ContainerTest {
         events = mockk(relaxed = true)
         every { definitions.size } returns 100
         items = Array(10) { Item("", 0) }
+        minimumAmounts = IntArray(10)
         container = container()
     }
 
@@ -36,7 +38,7 @@ internal class ContainerTest {
         capacity: Int = 10,
         items: Array<Item> = this.items,
         stackMode: StackMode = StackMode.Always,
-        minimumStack: Int = 0
+        minimumAmounts: IntArray = this.minimumAmounts
     ): Container = spyk(
         Container(
             items = items
@@ -45,10 +47,10 @@ internal class ContainerTest {
             this.name = name
             this.capacity = capacity
             this.definitions = this@ContainerTest.definitions
-            this.minimumStack = minimumStack
             this.secondary = secondary
             this.stackMode = stackMode
-            this.events = this@ContainerTest.events
+            this.events.add(this@ContainerTest.events)
+            this.minimumAmounts = minimumAmounts
         }
     )
 
@@ -124,7 +126,7 @@ internal class ContainerTest {
         items[5] = Item("", -2)
         container = container(
             items = items,
-            minimumStack = -1
+            minimumAmounts = IntArray(10) { -1 }
         )
         // When
         val spaces = container.spaces
@@ -262,16 +264,6 @@ internal class ContainerTest {
         every { definitions.getId("not_real") } returns -1
         // When
         val valid = container.isValidInput("not_real", 2)
-        // Then
-        assertFalse(valid)
-    }
-
-    @Test
-    fun `Valid input checks amount is correct`() {
-        // Given
-        every { container.minimumStack } returns -1
-        // When
-        val valid = container.isValidInput("item_name", 0)
         // Then
         assertFalse(valid)
     }
@@ -841,8 +833,7 @@ internal class ContainerTest {
     }
 
     private fun items(vararg items: Pair<String, Int>?) = container(
-        items = items.map { Item(it?.first ?: "", it?.second ?: 0) }.toTypedArray(),
-        minimumStack = 0
+        items = items.map { Item(it?.first ?: "", it?.second ?: 0) }.toTypedArray()
     )
 
     @Test
@@ -1039,8 +1030,8 @@ internal class ContainerTest {
         val second = Item("4", 5)
         items[firstIndex] = first
         otherItems[secondIndex] = second
-        every { other.isValidOrEmpty(first) } returns true
-        every { container.isValidOrEmpty(second) } returns true
+        every { other.isValidOrEmpty(first, firstIndex) } returns true
+        every { container.isValidOrEmpty(second, secondIndex) } returns true
         // When
         val result = container.swap(firstIndex, other, secondIndex)
         // Then
@@ -1060,8 +1051,8 @@ internal class ContainerTest {
         val secondIndex = 3
         val first = Item("2", 3)
         items[firstIndex] = first
-        every { other.isValidOrEmpty(first) } returns true
-        every { container.isValidOrEmpty(any()) } returns true
+        every { other.isValidOrEmpty(first, firstIndex) } returns true
+        every { container.isValidOrEmpty(any(), secondIndex) } returns true
         // When
         val result = container.swap(firstIndex, other, secondIndex)
         // Then

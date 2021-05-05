@@ -32,7 +32,6 @@ object GeneralStores {
                 name = key
                 capacity = def.length
                 stackMode = StackMode.Always
-                minimumStack = 0
                 definitions = itemDefs
                 setup = true
             }
