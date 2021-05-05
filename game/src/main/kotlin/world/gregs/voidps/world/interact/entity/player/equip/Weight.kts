@@ -17,16 +17,7 @@ on<Registered> { player: Player ->
     }
 }
 
-fun Container.weight(): Double {
-    var weight = 0.0
-    getItems().forEachIndexed { index, id ->
-        val amount = getAmount(index)
-        if (id.isNotBlank() && amount > 0) {
-            weight += definitions.get(id)["weight", 0.0] * amount
-        }
-    }
-    return weight
-}
+fun Container.weight(): Double = getItems().sumOf { it.def["weight", 0.0] * it.amount }
 
 fun updateWeight(player: Player) {
     var weight = 0.0

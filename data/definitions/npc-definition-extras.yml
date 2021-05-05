@@ -153,3 +153,11 @@ bob:
   race: "Human"
   shop: bobs_brilliant_axes
   examine: "An expert on axes."
+shopkeeper_lumbridge:
+  id: 520
+  race: "Human"
+  examine: "Sells stuff."
+shop_assistant_lumbridge:
+  id: 521
+  race: "Human"
+  examine: "Likes you more the more you spend."

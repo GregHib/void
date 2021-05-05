@@ -9,9 +9,8 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
@@ -21,7 +20,6 @@ import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 
-val objects: Objects by inject()
 val areas: Areas by inject()
 
 val isNotAtBank: BotContext.(Any) -> Double = {
@@ -32,7 +30,7 @@ val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", fals
 val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.count.toDouble().scale(0.0, 28.0).exponential(7.0) }
 val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
 val wantsToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire }
-val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.getItems().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it, 0.0) } ?: 0.0 }
+val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.getItems().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it.name, 0.0) } ?: 0.0 }
 
 val goToBank = SimpleBotOption(
     name = "go to bank",
@@ -73,20 +71,19 @@ val openBankBooth = SimpleBotOption(
 )
 
 
-val isLogs: BotContext.(IndexedValue<String>) -> Double = { (_, id) -> (Log.get(id) != null).toDouble() }
-val definitions: ItemDefinitions by inject()
+val isLogs: BotContext.(IndexedValue<Item>) -> Double = { (_, id) -> (Log.get(id.name) != null).toDouble() }
 val bankIsOpen: BotContext.(Any) -> Double = { (bot.action.type == ActionType.Bank).toDouble() }
 
 val depositLogs = SimpleBotOption(
     name = "deposit all logs into bank",
-    targets = { bot.inventory.getItems().withIndex().toList() },
+    targets = { bot.inventory.getItems().withIndex() },
     considerations = listOf(
         bankIsOpen,
         isLogs,
         wantsToStoreLogs
     ),
-    action = { (slot, id) ->
-        bot.instructions.tryEmit(InteractInterface(interfaceId = 763, componentId = 0, itemId = definitions.getId(id), itemSlot = slot, option = 5))
+    action = { (slot, item) ->
+        bot.instructions.tryEmit(InteractInterface(interfaceId = 763, componentId = 0, itemId = item.id, itemSlot = slot, option = 5))
     }
 )
 

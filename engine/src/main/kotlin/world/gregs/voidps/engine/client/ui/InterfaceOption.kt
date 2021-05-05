@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 data class InterfaceOption(
@@ -9,7 +10,6 @@ data class InterfaceOption(
     val component: String,
     val optionId: Int,
     val option: String,
-    val item: String,
-    val itemId: Int,
+    val item: Item,
     val itemIndex: Int
 ) : Event

@@ -44,24 +44,23 @@ on<InterfaceOption>({ name == "trade_side" && component == "offer" }) { player: 
         "Offer-All" -> Int.MAX_VALUE
         else -> return@on
     }
-    offer(player, item, itemIndex, amount)
+    offer(player, item.name, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Offer-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        offer(player, item, itemIndex, amount)
+        offer(player, item.name, itemIndex, amount)
     }
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Value" }) { player: Player ->
-    val item = definitions.get(item)
-    player.message("${item.name} is priceless!", ChatType.GameTrade)
+    player.message("${item.def.name} is priceless!", ChatType.GameTrade)
 }
 
 on<InterfaceOption>({ name == "trade_side" && component == "offer" && option == "Lend" }) { player: Player ->
     val partner = getPartner(player) ?: return@on
-    lend(player, partner, item, itemIndex)
+    lend(player, partner, item.name, itemIndex)
 }
 
 fun offer(player: Player, id: String, slot: Int, amount: Int) {

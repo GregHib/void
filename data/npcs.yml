@@ -66,3 +66,10 @@
     y: [ 3201, 3205 ]
   spawns:
     - name: bob
+- name: Lumbridge general store
+  area:
+    x: [ 3211, 3218 ]
+    y: [ 3239, 3243 ]
+  spawns:
+    - name: shopkeeper_lumbridge
+    - name: shop_assistant_lumbridge

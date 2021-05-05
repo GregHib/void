@@ -18,13 +18,11 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.friend.hasFriend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
@@ -35,7 +33,6 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  */
 
 val logger = InlineLogger()
-val decoder: ItemDefinitions by inject()
 
 BooleanVariable(1042, Variable.Type.VARP).register("offer_modified")
 BooleanVariable(1043, Variable.Type.VARP).register("other_offer_modified")
@@ -106,7 +103,7 @@ fun tradeItems(player: Player, other: Player) {
 }
 
 fun loanItem(player: Player, other: Player) {
-    val loanItem = player.otherLoan.getItem(0)
+    val loanItem = player.otherLoan.getItemId(0)
     val duration = other.getVar("lend_time", -1)
     if (loanItem.isBlank() || duration == -1) {
         return
@@ -177,10 +174,10 @@ fun updateLoan(player: Player, other: Player): EventHandler = player.events.on<P
 }
 
 fun applyUpdates(container: Container, update: ItemChanged) {
-    container.set(update.index, update.item, update.amount)
+    container.set(update.index, update.item.name, update.item.amount)
 }
 
-fun removedAnyItems(change: ItemChanged) = change.amount < change.oldAmount
+fun removedAnyItems(change: ItemChanged) = change.item.amount < change.oldItem.amount
 
 fun modified(player: Player, other: Player, warned: Boolean) {
     if (warned) {
@@ -205,7 +202,7 @@ fun updateOffer(player: Player, other: Player): EventHandler = player.events.on<
 }
 
 fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
-    if (update.amount < update.oldAmount) {
+    if (update.item.amount < update.oldItem.amount) {
         player.warn("trade_main", "offer_warning", update.index)
         other.warn("trade_main", "other_warning", update.index)
     }
@@ -221,7 +218,7 @@ fun Player.warn(name: String, component: String, slot: Int) {
 }
 
 fun updateValue(player: Player, other: Player) {
-    val value = player.offer.calculateValue(decoder)
+    val value = player.offer.calculateValue()
     player.setVar("offer_value", value)
     other.setVar("other_offer_value", value)
 }

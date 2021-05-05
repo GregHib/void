@@ -10,24 +10,21 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Boosted
 import world.gregs.voidps.engine.entity.character.player.skill.Leveled
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
 
-val itemDefs: ItemDefinitions by inject()
-
-val inventoryHatchets: BotContext.() -> List<Triple<Hatchet, Int, String>> = {
+val inventoryHatchets: BotContext.() -> List<Pair<Hatchet, IndexedValue<Item>>> = {
     bot.inventory.getItems().withIndex().mapNotNull {
-        val hatchet = Hatchet.get(itemDefs.get(it.value).name)
-        if (hatchet == null) null else Triple(hatchet, it.index, it.value)
+        val hatchet = Hatchet.get(it.value.def.name)
+        if (hatchet == null) null else Pair(hatchet, it)
     }
 }
 
-val betterThanEquippedHatchet: BotContext.(Triple<Hatchet, Int, String>) -> Double = { (hatchet) ->
-    val currentWeapon = bot.equipment.getItem(EquipSlot.Weapon.index)
+val betterThanEquippedHatchet: BotContext.(Pair<Hatchet, IndexedValue<Item>>) -> Double = { (hatchet) ->
+    val currentWeapon = bot.equipment.getItemId(EquipSlot.Weapon.index)
     if (currentWeapon.isBlank()) {
         1.0
     } else {
@@ -40,8 +37,8 @@ val equipHatchet = SimpleBotOption(
     name = "equip better hatchet or if no weapon",
     targets = inventoryHatchets,
     considerations = listOf(betterThanEquippedHatchet),
-    action = { (_, slot, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, itemDefs.getId(item), slot, 1))
+    action = { (_, it) ->
+        bot.instructions.tryEmit(InteractInterface(149, 0, it.value.id, it.index, 1))
     }
 )
 
@@ -58,7 +55,7 @@ on<Leveled>({ it.isBot }) { bot: Player ->
     updateHatchetDesire(bot)
 }
 
-on<ItemChanged>({ it.isBot && Hatchet.isHatchet(item) }) { bot: Player ->
+on<ItemChanged>({ it.isBot && Hatchet.isHatchet(item.name) }) { bot: Player ->
     updateHatchetDesire(bot)
 }
 

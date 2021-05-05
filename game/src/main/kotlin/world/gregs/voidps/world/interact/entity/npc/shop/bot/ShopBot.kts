@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.network.instruct.CloseInterface
@@ -109,24 +110,24 @@ val openShop = SimpleBotOption(
     }
 )
 
-val desireToSellItem: BotContext.(String) -> Double = { desireToSell(bot, it) }
+val desireToSellItem: BotContext.(IndexedValue<Item>) -> Double = { desireToSell(bot, it.value.name) }
 
-val desireToBuyItem: BotContext.(IndexedValue<String>) -> Double = { (_, item) -> desireToBuy(bot, item) }
+val desireToBuyItem: BotContext.(IndexedValue<Item>) -> Double = { (_, item) -> desireToBuy(bot, item.name) }
 
 val sellItemToShop = SimpleBotOption(
     name = "sell item",
-    targets = { bot.inventory.getItems().toList() },
+    targets = { bot.inventory.getItems().withIndex() },
     weight = 1.0,
     considerations = listOf(
         desireToSellItem,
         { (bot.inventory.spaces > 0 || bot.inventory.contains(bot["shop_currency", "coins"])).toDouble() }
     ),
-    action = { item ->
+    action = { indexed ->
         bot.instructions.tryEmit(InteractInterface(
             interfaceId = 621,
             componentId = 0,
-            itemId = itemDefs.getId(item),
-            itemSlot = bot.inventory.indexOf(item),
+            itemId = indexed.value.id,
+            itemSlot = indexed.index,
             option = 1// Sell 1
         ))
     }
@@ -134,33 +135,33 @@ val sellItemToShop = SimpleBotOption(
 
 val hasSpace: BotContext.(Any) -> Double = { (bot.inventory.spaces > 0).toDouble() }
 
-val inStock: BotContext.(IndexedValue<String>) -> Double = { (index, _) -> (bot.shopContainer(false).getAmount(index) > 0).toDouble() }
+val inStock: BotContext.(IndexedValue<Item>) -> Double = { (_, item) -> (item.amount > 0).toDouble() }
 
 val takeItemFromShop = SimpleBotOption(
     name = "take item",
-    targets = { bot.shopContainer(true).getItems().withIndex().toList() },
+    targets = { bot.shopContainer(true).getItems().withIndex() },
     weight = 0.9,
     considerations = listOf(
         hasSpace,
         desireToBuyItem,
         inStock
     ),
-    action = { (_, item) ->
+    action = { (index, _) ->
         bot.instructions.tryEmit(InteractInterface(
             interfaceId = 620,
             componentId = 26,
             itemId = -1,
-            itemSlot = bot.shopContainer(true).indexOf(item) * 4,
+            itemSlot = index * 4,
             option = 1// Take 1
         ))
     }
 )
 
-val hasCoins: BotContext.(IndexedValue<String>) -> Double = { (index, item) -> (bot.inventory.contains("coins") && bot.inventory.getCount("coins") >= Price.getPrice(bot, itemDefs.getId(item), index, 1)).toDouble() }
+val hasCoins: BotContext.(IndexedValue<Item>) -> Double = { (index, item) -> (bot.inventory.contains("coins") && bot.inventory.getCount("coins") >= Price.getPrice(bot, item.id, index, 1)).toDouble() }
 
 val buyItemFromShop = SimpleBotOption(
     name = "buy item",
-    targets = { bot.shopContainer(false).getItems().withIndex().toList() },
+    targets = { bot.shopContainer(false).getItems().withIndex() },
     weight = 0.8,
     considerations = listOf(
         hasSpace,

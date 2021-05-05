@@ -1,25 +1,28 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.entity.character.contain.ContainerResult
 import world.gregs.voidps.engine.entity.character.contain.give
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.npc.shop.shop
 import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import kotlin.math.min
 
 val itemDefs: ItemDefinitions by inject()
 
 on<InterfaceOption>({ name == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
-    if (!player.shopContainer(false).contains(item)) {
+    if (!sellable(item, player)) {
         player.message("You can't sell this item to this shop.")
         return@on
     }
-    val price = getSellPrice(item)
-    player.message("${itemDefs.get(item).name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
+    val price = getSellPrice(item.name)
+    player.message("${item.def.name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
 }
 
 on<InterfaceOption>({ name == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
@@ -38,17 +41,27 @@ fun getSellPrice(item: String): Int {
     return (def.cost * 0.4).toInt()
 }
 
-fun sell(player: Player, item: String, index: Int, amount: Int) {
+fun sell(player: Player, item: Item, index: Int, amount: Int) {
     val container = player.shopContainer(false)
-    if (!container.contains(item)) {
+    if (!sellable(item, player)) {
         player.message("You can't sell this item to this shop.")
         return
     }
     val available = player.inventory.getCount(item).toInt()
     val actualAmount = min(available, amount)
-    if (actualAmount > 0 && player.inventory.move(container, item, actualAmount, index)) {
+    if (actualAmount > 0 && player.inventory.move(container, item.name, actualAmount, index)) {
         val currency: String = player["shop_currency", "coins"]
-        val price = getSellPrice(item)
+        val price = getSellPrice(item.name)
         player.give(currency, price * actualAmount)
+    } else {
+        if (player.inventory.result == ContainerResult.Full) {
+            player.message("Shop is currently full.")
+        }
     }
+}
+
+fun sellable(item: Item, player: Player): Boolean {
+    val container = player.shopContainer(false)
+    val store = player.shop().contains("general_store")
+    return (store && item.def["tradeable", true] && item.name != "coins") || container.contains(item.name)
 }

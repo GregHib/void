@@ -8,6 +8,39 @@ fun String.plural(count: Long, plural: String = "s"): String {
     return if (count == 1L) this else suffixIfNot(plural)
 }
 
+/*
+    International System of Units (SI)
+ */
+fun Long.toSIPrefix(): String {
+    return when {
+        this >= 0xe8d4a51000 -> "${this / 0xe8d4a51000}T"
+        this >= 0x3b9aCa00 -> "${this / 0x3b9aCa00}B"
+        this >= 0xf4240 -> "${this / 0xf4240}M"
+        this >= 0x3e8 -> "${this / 0x3e8}K"
+        else -> toString()
+    }
+}
+
+fun Int.toSIPrefix() = toLong().toSIPrefix()
+
+fun String.toSILong(): Long {
+    val last = last()
+    return if (last.isLetter()) {
+        val long = removeSuffix(last.toString()).toLongOrNull() ?: return 0L
+        when (last().toLowerCase()) {
+            't' -> long * 0xe8d4a51000
+            'b' -> long * 0x3b9aCa00
+            'm' -> long * 0xf4240
+            'k' -> long * 0x3e8
+            else -> long
+        }
+    } else {
+        toLongOrNull() ?: 0L
+    }
+}
+
+fun String.toSIInt() = toSILong().toInt()
+
 fun Boolean?.toInt() = if (this == true) 1 else 0
 
 fun Int?.toBoolean() = this == 1

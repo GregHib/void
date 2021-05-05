@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.script.WorldScript
 
@@ -42,22 +43,22 @@ internal class TradeIntegrationTest : WorldScript() {
         confirmTrade(player1)
         confirmTrade(player2)
         tick()
-        assertEquals(995, player1.inventory.getItem(0))
+        assertEquals(995, player1.inventory.getItemId(0))
         assertEquals(990, player1.inventory.getAmount(0))
-        assertEquals(995, player2.inventory.getItem(0))
+        assertEquals(995, player2.inventory.getItemId(0))
         assertEquals(10, player2.inventory.getAmount(0))
     }
 
     fun offerItem(option: String, optionId: Int, item: Int, slot: Int) {
-        player1.events.emit(InterfaceOption(336, "trade_side", 0, "offer", optionId, option, "item", item, slot))
+        player1.events.emit(InterfaceOption(336, "trade_side", 0, "offer", optionId, option, Item("item", item), slot))
     }
 
     fun acceptTrade(player: Player) {
-        player.events.emit(InterfaceOption(335, "trade_main", 16, "accept", 0, "Accept", "", -1, -1))
+        player.events.emit(InterfaceOption(335, "trade_main", 16, "accept", 0, "Accept", Item("", -1), -1))
     }
 
     fun confirmTrade(player: Player) {
-        player.events.emit(InterfaceOption(334, "trade_confirm", 21, "accept", 0, "Accept", "", -1, -1))
+        player.events.emit(InterfaceOption(334, "trade_confirm", 21, "accept", 0, "Accept", Item("", -1), -1))
     }
 
 }

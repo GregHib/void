@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
@@ -40,24 +41,20 @@ on<InterfaceOption>({ name == "bank_side" && component == "container" && option 
     }
 }
 
-fun deposit(player: Player, container: Container, item: String, slot: Int, amount: Int): Boolean {
+fun deposit(player: Player, container: Container, item: Item, slot: Int, amount: Int): Boolean {
     if (player.action.type != ActionType.Bank || amount < 1) {
         return true
     }
 
-    val def = decoder.get(item)
-    if (!def["bankable", true]) {
+    if (!item.def["bankable", true]) {
         player.message("This item cannot be banked.")
         return true
     }
 
-    var noted = item
-    if (def.notedTemplateId != -1) {
-        if (def.noteId == -1) {
-            logger.warn { "Issue depositing noted item $item" }
-            return true
-        }
-        noted = decoder.getName(def.noteId)
+    val noted = item.toNote()
+    if (noted == null) {
+        logger.warn { "Issue depositing noted item $item" }
+        return true
     }
 
     val current = container.getCount(item).toInt()
@@ -68,7 +65,7 @@ fun deposit(player: Player, container: Container, item: String, slot: Int, amoun
 
     val tab = player.getVar("open_bank_tab", 1) - 1
     val targetIndex: Int? = if (tab > 0) getIndexOfTab(player, tab) + player.getVar("bank_tab_$tab", 0) else null
-    if (!container.move(player.bank, item, amount, slot, targetIndex, true, noted)) {
+    if (!container.move(player.bank, item.name, amount, slot, targetIndex, true, noted.name)) {
         if (player.bank.result == ContainerResult.Full) {
             player.full()
         } else {
@@ -109,8 +106,8 @@ on<InterfaceOption>({ name == "bank" && component == "burden" && option == "Depo
 }
 
 fun bankAll(player: Player, container: Container) {
-    for (index in container.getItems().indices.reversed()) {
-        if (!container.isIndexFree(index) && !deposit(player, container, container.getItem(index), index, container.getAmount(index))) {
+    for ((index, item) in container.getItems().withIndex().reversed()) {
+        if (!container.isIndexFree(index) && !deposit(player, container, item, index, item.amount)) {
             break
         }
     }

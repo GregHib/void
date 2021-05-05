@@ -1,7 +1,7 @@
 package world.gregs.voidps.ai
 
 interface Option<C : Context, T : Any> {
-    val targets: C.() -> Collection<T>
+    val targets: C.() -> Iterable<T>
     val considerations: Collection<C.(T) -> Double>
     val momentum: Double
     val weight: Double

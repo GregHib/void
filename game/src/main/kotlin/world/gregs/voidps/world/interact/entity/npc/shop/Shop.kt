@@ -7,7 +7,14 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 fun Player.hasShopSample(): Boolean = this["info_sample", false]
 
+fun Player.shop(): String = this["shop"]
+
 fun Player.shopContainer(sample: Boolean = hasShopSample()): Container {
     val shop: String = this["shop"]
-    return container(if (sample) "${shop}_sample" else shop)
+    val name = if (sample) "${shop}_sample" else shop
+    return if (name.endsWith("general_store")) {
+        GeneralStores.bind(this, name)
+    } else {
+        container(name)
+    }
 }

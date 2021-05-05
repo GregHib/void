@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.utility.get
@@ -16,8 +17,7 @@ fun Player.sendContainer(name: String, secondary: Boolean = false) {
 }
 
 fun Player.sendContainer(container: Container, secondary: Boolean = false) {
-    val itemDefs: ItemDefinitions = get()
-    sendContainerItems(container.id, container.getItems().map { itemDefs.getId(it) }.toIntArray(), container.getAmounts(), secondary)
+    sendContainerItems(container.id, container.getItems().map { it.id }.toIntArray(), container.getItems().map { it.amount }.toIntArray(), secondary)
 }
 
 fun Player.hasContainer(name: String): Boolean {
@@ -36,23 +36,26 @@ fun Player.container(name: String, secondary: Boolean = false): Container {
     return container(name, container, secondary)
 }
 
-fun Player.container(name: String, detail: ContainerDefinition, secondary: Boolean = false): Container {
+fun Player.container(name: String, def: ContainerDefinition, secondary: Boolean = false): Container {
+    val shop = def["shop", false]
     return containers.getOrPut(if (secondary) "_$name" else name) {
         val itemDefs: ItemDefinitions = get()
-        val ids = detail.ids
-        val amounts = detail.amounts
-        Container(
-            items = ids?.map { itemDefs.getName(it) }?.toTypedArray() ?: Array(detail.length) { "" },
-            amounts = amounts ?: IntArray(detail.length),
-        )
+        val ids = def.ids
+        val amounts = def.amounts
+        Container(items = if (ids == null || amounts == null) {
+            Array(def.length) { Item("", if (shop) -1 else 0) }
+        } else {
+            Array(ids.size) { i -> Item(itemDefs.getName(ids[i]), amounts[i]) }
+        })
     }.apply {
         if (!setup) {
-            id = detail.id
+            minimumAmounts = IntArray(capacity) { if (shop) -1 else 0 }
+            id = def.id
             this.name = if (secondary) "_$name" else name
-            capacity = detail.length
-            stackMode = detail["stack", StackMode.Normal]
+            capacity = def.length
+            stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal]
             definitions = get()
-            this.events = this@container.events
+            this.events.add(this@container.events)
             this.secondary = secondary
             this.setup = true
         }

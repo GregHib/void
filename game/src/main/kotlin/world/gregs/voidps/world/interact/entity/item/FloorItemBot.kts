@@ -5,15 +5,12 @@ import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractFloorItem
 import world.gregs.voidps.network.instruct.InteractInterface
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.bot.*
-
-val itemDefs: ItemDefinitions by inject()
 
 val hasInventorySpace: BotContext.(Any) -> Double = { bot.inventory.isNotFull().toDouble() }
 val isNotBusy: BotContext.(Any) -> Double = { bot.movement.frozen.toDouble().inverse() }
@@ -33,7 +30,7 @@ val pickupItem = SimpleBotOption(
     }
 )
 
-val dropDesire: BotContext.(IndexedValue<String>) -> Double = { (_, item) -> bot.desiredItems[item]?.inverse() ?: 0.0 }
+val dropDesire: BotContext.(IndexedValue<Item>) -> Double = { (_, item) -> bot.desiredItems[item.name]?.inverse() ?: 0.0 }
 
 val noInventoryOverlayOpen: BotContext.(Any) -> Double = {
     (bot.interfaces.get("overlay_tab") == null).toDouble()
@@ -41,14 +38,14 @@ val noInventoryOverlayOpen: BotContext.(Any) -> Double = {
 
 val dropItem = SimpleBotOption(
     name = "drop item",
-    targets = {  bot.inventory.getItems().withIndex().toList() },
+    targets = { bot.inventory.getItems().withIndex() },
     weight = 0.2,
     considerations = listOf(
         dropDesire,
         noInventoryOverlayOpen
     ),
     action = { (index, item) ->
-        bot.instructions.tryEmit(InteractInterface(149, 0, itemDefs.getId(item), index, 7))
+        bot.instructions.tryEmit(InteractInterface(149, 0, item.id, index, 7))
     }
 )
 

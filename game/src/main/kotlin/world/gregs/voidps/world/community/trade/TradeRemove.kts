@@ -5,18 +5,14 @@ import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.trade.Trade.isTrading
 import world.gregs.voidps.world.interact.dialogue.type.intEntry
 
 /**
  * Removing an item from an offer or loan
  */
-
-val itemDecoder: ItemDefinitions by inject()
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { player: Player ->
     val amount = when(option) {
@@ -26,23 +22,22 @@ on<InterfaceOption>({ name == "trade_main" && component == "offer_options" }) { 
         "Remove-All" -> player.offer.getCount(item).toInt()
         else -> return@on
     }
-    remove(player, item, itemIndex, amount)
+    remove(player, item.name, itemIndex, amount)
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Remove-X" }) { player: Player ->
     player.dialogue {
         val amount = intEntry("Enter amount:")
-        remove(player, item, itemIndex, amount)
+        remove(player, item.name, itemIndex, amount)
     }
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "offer_options" && option == "Value" }) { player: Player ->
-    val item = itemDecoder.get(item)
-    player.message("${item.name} is priceless!", ChatType.GameTrade)
+    player.message("${item.def.name} is priceless!", ChatType.GameTrade)
 }
 
 on<InterfaceOption>({ name == "trade_main" && component == "loan_item" && option == "Remove" }) { player: Player ->
-    removeLend(player, item, 0)
+    removeLend(player, item.name, 0)
 }
 
 fun remove(player: Player, id: String, slot: Int, amount: Int) {

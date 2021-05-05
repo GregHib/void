@@ -1157,6 +1157,7 @@ shop:
   type: main_screen
   components:
     title: 20
+    store: 19
     sample:
       id: 26
       container: inventory

@@ -8,9 +8,7 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.inject
 
 ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
     "swap",
@@ -28,10 +26,8 @@ on<Registered> { player: Player ->
     }
 }
 
-val decoder: ItemDefinitions by inject()
-
 fun Container.getFreeToPlayItemCount(): Int {
-    return getItems().count { !(decoder.getOrNull(it)?.members ?: true) }
+    return getItems().count { !it.def.members }
 }
 
 on<InterfaceSwitch>({ name == "bank" && component == "container" && toName == name && toComponent == component }) { player: Player ->

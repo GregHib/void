@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import java.math.RoundingMode
@@ -88,10 +89,9 @@ fun updateEmote(player: Player) {
     player.setVar("equipment_emote", player.appearance.emote)
 }
 
-fun updateStats(player: Player, id: String, add: Boolean) {
-    val item = definitions.getOrNull(id) ?: return
+fun updateStats(player: Player, item: Item, add: Boolean) {
     names.forEach { (name, key) ->
-        val value = item[key, 0]
+        val value = item.def[key, 0]
         if (value > 0) {
             val current = player[key, 0]
             val modified = if (add) {
@@ -115,7 +115,7 @@ fun updateStats(player: Player) {
         sendBonus(player, name, key, 0)
     }
     player.equipment.getItems().forEach {
-        if (it.isNotBlank()) {
+        if (it.isNotEmpty()) {
             updateStats(player, it, true)
         }
     }

@@ -43,6 +43,7 @@ dwarven_shopping_store:
   id: 23
 lumbridge_general_store:
   id: 24
+  shop: true
 bettys_magic_emporium:
   id: 25
 green_gemstone_gems:
@@ -498,6 +499,7 @@ faruqs_tools_for_games:
   id: 551
 lumbridge_general_store_sample:
   id: 553
+  shop: true
 bobs_brilliant_axes_sample:
   id: 554
   shop: true
