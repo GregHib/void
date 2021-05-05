@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.effect.Hidden
-import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -23,11 +22,11 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
+import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
-import java.util.concurrent.atomic.AtomicInteger
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
@@ -76,9 +75,6 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 //    npc?.movement?.frozen = true
 }
 
-val botCounter = AtomicInteger(0)
-
-val loginQueue: LoginQueue by inject()
 val playerStorage: StorageStrategy<Player> by inject()
 
 on<Command>({ prefix == "save" }) { player: Player ->
@@ -90,11 +86,12 @@ val definitions: ItemDefinitions by inject()
 on<Command>({ prefix == "item" }) { player: Player ->
     val parts = content.split(" ")
     val id = definitions.getNameOrNull(parts[0].toIntOrNull() ?: -1) ?: parts[0].toLowerCase()
-    var amount = parts.getOrNull(1) ?: "1"
-    if (amount == "max") {
-        amount = Int.MAX_VALUE.toString()
-    }
-    player.inventory.add(id, amount.toInt())
+    val amount = parts.getOrNull(1) ?: "1"
+    player.inventory.add(id, if (amount == "max") {
+        Int.MAX_VALUE
+    } else {
+        amount.toSILong().toInt()
+    })
     println(player.inventory.result)
 }
 
