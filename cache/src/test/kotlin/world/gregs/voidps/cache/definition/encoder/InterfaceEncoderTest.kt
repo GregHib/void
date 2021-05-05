@@ -50,7 +50,7 @@ internal class InterfaceEncoderTest {
         )
         val encoder = InterfaceEncoder()
 
-        val writer = BufferWriter()
+        val writer = BufferWriter(1024)
         with(encoder) {
             writer.encode(definition)
         }

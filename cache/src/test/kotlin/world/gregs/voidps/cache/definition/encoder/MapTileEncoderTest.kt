@@ -20,12 +20,12 @@ internal class MapTileEncoderTest {
             }
         }
         val encoder = MapTileEncoder()
-        val writer = BufferWriter()
+        val writer = BufferWriter(16384)
         // When
         with(encoder) {
             writer.encode(def)
         }
         // Then
-//        assertArrayEquals(byteArrayOf(50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 55, 0, 56, 0, 57, 0), writer.toArray())
+//        assertArrayEquals(byteArrayOf(50, 0, 51, 0, 52, 0, 53, 0, 54, 0, 55, 0, 56, 0, 57, 0), writer.toArray().sliceArray(0 until 16))
     }
 }
