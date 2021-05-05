@@ -154,14 +154,14 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeShort(definition.modelSizeX)
         }
 
-        if (definition.modelSizeY != 128) {
+        if (definition.modelSizeZ != 128) {
             writeByte(66)
-            writeShort(definition.modelSizeY)
+            writeShort(definition.modelSizeZ)
         }
 
-        if (definition.modelSizeZ != 128) {
+        if (definition.modelSizeY != 128) {
             writeByte(67)
-            writeShort(definition.modelSizeZ)
+            writeShort(definition.modelSizeY)
         }
 
         if (definition.blockFlag != 0) {
@@ -174,14 +174,14 @@ class ObjectEncoder : DefinitionEncoder<ObjectDefinition> {
             writeShort(definition.offsetX shr 2)
         }
 
-        if (definition.offsetY != 0) {
+        if (definition.offsetZ != 0) {
             writeByte(71)
-            writeShort(definition.offsetY shr 2)
+            writeShort(definition.offsetZ shr 2)
         }
 
-        if (definition.offsetZ != 0) {
+        if (definition.offsetY != 0) {
             writeByte(72)
-            writeShort(definition.offsetZ shr 2)
+            writeShort(definition.offsetY shr 2)
         }
 
         if (definition.blocksLand) {

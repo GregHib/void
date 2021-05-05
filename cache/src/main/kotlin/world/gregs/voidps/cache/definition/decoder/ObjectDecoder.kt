@@ -88,12 +88,12 @@ open class ObjectDecoder(cache: world.gregs.voidps.cache.Cache, val member: Bool
             62 -> mirrored = true
             64 -> castsShadow = false
             65 -> modelSizeX = buffer.readShort()
-            66 -> modelSizeY = buffer.readShort()
-            67 -> modelSizeZ = buffer.readShort()
+            66 -> modelSizeZ = buffer.readShort()
+            67 -> modelSizeY = buffer.readShort()
             69 -> blockFlag = buffer.readUnsignedByte()
             70 -> offsetX = buffer.readUnsignedShort() shl 2
-            71 -> offsetY = buffer.readUnsignedShort() shl 2
-            72 -> offsetZ = buffer.readUnsignedShort() shl 2
+            71 -> offsetZ = buffer.readUnsignedShort() shl 2
+            72 -> offsetY = buffer.readUnsignedShort() shl 2
             73 -> blocksLand = true
             74 -> ignoreOnRoute = true
             75 -> supportItems = buffer.readUnsignedByte()

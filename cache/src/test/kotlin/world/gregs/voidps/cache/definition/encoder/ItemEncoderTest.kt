@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import java.io.File
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -51,19 +52,19 @@ internal class ItemEncoderTest {
             stackIds = intArrayOf(9, 8, 7, 6, 5, 4, 3, 2, 1, 0),
             stackAmounts = intArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),
             floorScaleX = 174,
-            floorScaleY = 175,
-            floorScaleZ = 176,
+            floorScaleZ = 175,
+            floorScaleY = 176,
             ambience = 120,
             diffusion = 75,
             team = 2,
             lendId = 150,
             lendTemplateId = 72,
             maleWieldX = 12,
-            maleWieldY = 13,
-            maleWieldZ = 17,
+            maleWieldZ = 13,
+            maleWieldY = 17,
             femaleWieldX = 11,
-            femaleWieldY = 13,
-            femaleWieldZ = 21,
+            femaleWieldZ = 13,
+            femaleWieldY = 21,
             primaryCursorOpcode = 10,
             primaryCursor = 5,
             secondaryCursorOpcode = 7,
@@ -80,16 +81,16 @@ internal class ItemEncoderTest {
         )
         val encoder = ItemEncoder()
 
-        val writer = BufferWriter()
+        val writer = BufferWriter(1024)
         with(encoder) {
             writer.encode(definition)
         }
 
         val data = writer.array()
 
-//        val file = File("item-definition.dat")
-//        file.writeBytes(data)
-        val stream = ItemEncoderTest::class.java.getResourceAsStream("item-definition.dat")
+        val file = File("item-definition.dat")
+        file.writeBytes(data)
+        val stream = file.inputStream()
         val expected = stream.readAllBytes()
         assertArrayEquals(expected, data)
     }

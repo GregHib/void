@@ -95,10 +95,10 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
                 it.contouredGround == definition.contouredGround &&
                 it.castsShadow == definition.castsShadow &&
                 it.modelSizeX == definition.modelSizeX &&
-                it.modelSizeY == definition.modelSizeY &&
                 it.modelSizeZ == definition.modelSizeZ &&
+                it.modelSizeY == definition.modelSizeY &&
                 it.offsetX == definition.offsetX &&
-                it.offsetY == definition.offsetY &&
-                it.offsetZ == definition.offsetZ
+                it.offsetZ == definition.offsetZ &&
+                it.offsetY == definition.offsetY
     }
 }

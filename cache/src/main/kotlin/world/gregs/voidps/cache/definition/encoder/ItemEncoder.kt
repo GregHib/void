@@ -220,14 +220,14 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeShort(definition.floorScaleX)
         }
 
-        if (definition.floorScaleY != 128) {
+        if (definition.floorScaleZ != 128) {
             writeByte(111)
-            writeShort(definition.floorScaleY)
+            writeShort(definition.floorScaleZ)
         }
 
-        if (definition.floorScaleZ != 128) {
+        if (definition.floorScaleY != 128) {
             writeByte(112)
-            writeShort(definition.floorScaleZ)
+            writeShort(definition.floorScaleY)
         }
 
         if (definition.ambience != 0) {
@@ -255,18 +255,18 @@ class ItemEncoder : DefinitionEncoder<ItemDefinition> {
             writeShort(definition.lendTemplateId)
         }
 
-        if (definition.maleWieldX != 0 || definition.maleWieldY != 0 || definition.maleWieldZ != 0) {
+        if (definition.maleWieldX != 0 || definition.maleWieldZ != 0 || definition.maleWieldY != 0) {
             writeByte(125)
             writeByte(definition.maleWieldX shr 2)
-            writeByte(definition.maleWieldY shr 2)
             writeByte(definition.maleWieldZ shr 2)
+            writeByte(definition.maleWieldY shr 2)
         }
 
-        if (definition.femaleWieldX != 0 || definition.femaleWieldY != 0 || definition.femaleWieldZ != 0) {
+        if (definition.femaleWieldX != 0 || definition.femaleWieldZ != 0 || definition.femaleWieldY != 0) {
             writeByte(126)
             writeByte(definition.femaleWieldX shr 2)
-            writeByte(definition.femaleWieldY shr 2)
             writeByte(definition.femaleWieldZ shr 2)
+            writeByte(definition.femaleWieldY shr 2)
         }
 
         if (definition.primaryCursorOpcode != -1 || definition.primaryCursor != -1) {

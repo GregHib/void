@@ -72,8 +72,8 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
                 stackAmounts!![opcode - 100] = buffer.readShort()
             }
             110 -> floorScaleX = buffer.readShort()
-            111 -> floorScaleY = buffer.readShort()
-            112 -> floorScaleZ = buffer.readShort()
+            111 -> floorScaleZ = buffer.readShort()
+            112 -> floorScaleY = buffer.readShort()
             113 -> ambience = buffer.readByte()
             114 -> diffusion = buffer.readByte() * 5
             115 -> team = buffer.readUnsignedByte()
@@ -81,13 +81,13 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
             122 -> lendTemplateId = buffer.readShort()
             125 -> {
                 maleWieldX = buffer.readByte() shl 2
-                maleWieldY = buffer.readByte() shl 2
                 maleWieldZ = buffer.readByte() shl 2
+                maleWieldY = buffer.readByte() shl 2
             }
             126 -> {
                 femaleWieldX = buffer.readByte() shl 2
-                femaleWieldY = buffer.readByte() shl 2
                 femaleWieldZ = buffer.readByte() shl 2
+                femaleWieldY = buffer.readByte() shl 2
             }
             127 -> {
                 primaryCursorOpcode = buffer.readUnsignedByte()
@@ -143,13 +143,13 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         params = item.params
         members = item.members
         modifiedTextureColours = item.modifiedTextureColours
-        maleWieldY = item.maleWieldY
+        maleWieldZ = item.maleWieldZ
         secondaryFemaleModel = item.secondaryFemaleModel
         spriteCameraYaw = template.spriteCameraYaw
         floorOptions = item.floorOptions
         secondaryFemaleDialogueHead = item.secondaryFemaleDialogueHead
         recolourPalette = item.recolourPalette
-        femaleWieldY = item.femaleWieldY
+        femaleWieldZ = item.femaleWieldZ
         spritePitch = template.spritePitch
         primaryFemaleModel = item.primaryFemaleModel
         modelId = template.modelId
@@ -160,10 +160,10 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         femaleWieldX = item.femaleWieldX
         secondaryMaleModel = item.secondaryMaleModel
         cost = 0
-        maleWieldZ = item.maleWieldZ
+        maleWieldY = item.maleWieldY
         originalColours = item.originalColours
         spriteTranslateX = template.spriteTranslateX
-        femaleWieldZ = item.femaleWieldZ
+        femaleWieldY = item.femaleWieldY
         primaryFemaleDialogueHead = item.primaryFemaleDialogueHead
         spriteScale = template.spriteScale
         name = item.name
@@ -219,9 +219,9 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         secondaryMaleModel = item.secondaryMaleModel
         options = arrayOfNulls(5)
         floorOptions = item.floorOptions
-        maleWieldY = item.maleWieldY
+        maleWieldZ = item.maleWieldZ
         primaryMaleDialogueHead = item.primaryMaleDialogueHead
-        femaleWieldY = item.femaleWieldY
+        femaleWieldZ = item.femaleWieldZ
         name = item.name
         spriteScale = template.spriteScale
         originalColours = item.originalColours
@@ -242,8 +242,8 @@ class ItemDecoder718(cache: Cache) : DefinitionDecoder<ItemDefinition>(cache, IT
         spriteTranslateX = template.spriteTranslateX
         spriteCameraYaw = template.spriteCameraYaw
         primaryMaleModel = item.primaryMaleModel
-        femaleWieldZ = item.femaleWieldZ
-        maleWieldZ = item.maleWieldZ
+        femaleWieldY = item.femaleWieldY
+        maleWieldY = item.maleWieldY
         originalTextureColours = item.originalTextureColours
         System.arraycopy(item.options, 0, options, 0, 4)
         options[4] = "Discard"

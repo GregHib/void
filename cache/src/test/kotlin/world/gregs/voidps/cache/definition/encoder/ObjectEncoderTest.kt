@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertArrayEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
+import java.io.File
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -37,12 +38,12 @@ internal class ObjectEncoderTest {
             mirrored = true,
             castsShadow = false,
             modelSizeX = 64,
-            modelSizeY = 82,
-            modelSizeZ = 32,
+            modelSizeZ = 82,
+            modelSizeY = 32,
             blockFlag = 1,
             offsetX = 10,
-            offsetY = 32,
-            offsetZ = 100,
+            offsetZ = 32,
+            offsetY = 100,
             blocksLand = true,
             ignoreOnRoute = true,
             supportItems = 0,
@@ -95,15 +96,15 @@ internal class ObjectEncoderTest {
 
         val encoder = ObjectEncoder()
 
-        val writer = BufferWriter()
+        val writer = BufferWriter(1024)
         with(encoder) {
             writer.encode(definition)
         }
 
         val data = writer.array()
-//        val file = File("object-definition.dat")
-//        file.writeBytes(data)
-        val stream = ObjectEncoderTest::class.java.getResourceAsStream("object-definition.dat")
+        val file = File("object-definition.dat")
+        file.writeBytes(data)
+        val stream = file.inputStream()
         val expected = stream.readAllBytes()
         assertArrayEquals(expected, data)
     }
