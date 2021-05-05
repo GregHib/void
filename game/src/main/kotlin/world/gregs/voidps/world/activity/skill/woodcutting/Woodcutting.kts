@@ -3,6 +3,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Level
@@ -80,7 +81,11 @@ fun success(level: Int, hatchet: Hatchet, tree: Tree): Boolean {
 fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log ?: return true
     val added = player.inventory.add(log.id)
-    player.message(if (added) "You get some ${log.id.replace("_", " ").toLowerCase()}." else "You don't have enough inventory space.")
+    if (added) {
+        player.message("You get some ${log.id.replace("_", " ").toLowerCase()}.")
+    } else {
+        player.inventoryFull()
+    }
     return added
 }
 

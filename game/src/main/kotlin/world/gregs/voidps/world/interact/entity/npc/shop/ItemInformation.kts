@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,6 +21,7 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
+import world.gregs.voidps.world.interact.entity.npc.shop.shopContainer
 import world.gregs.voidps.world.interact.entity.player.equip.*
 
 /**
@@ -48,7 +48,7 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     val shop: String = player["shop"]
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
-    val container = player.container(if (sample) "${shop}_sample" else shop)
+    val container = player.shopContainer(sample)
     val item = container.getItem(actualIndex)
     player["info_sample"] = sample
     showInfo(player, item, actualIndex, if (sample) "${shop}_sample" else shop, sample)
@@ -75,16 +75,21 @@ fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boole
             player.setVar("info_left", attackStatsColumn(def))
             player.setVar("info_middle", middleColumn)
             player.setVar("info_right", defenceStatsColumn(def))
-            player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'<br> ")
-            player.setVar("item_info_price", if(sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
             setRequirements(player, def)
-            if (!sample) {
-                val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
-                    player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
-                }
-                player["item_info_bind"] = handler
-            }
+        } else {
+            player.setVar("info_left", "")
+            player.setVar("info_middle", "")
+            player.setVar("info_right", "")
+            player.setVar("item_info_requirement_title", "")
         }
+        player.setVar("item_info_price", if(sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
+        if (!sample) {
+            val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
+                player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
+            }
+            player["item_info_bind"] = handler
+        }
+        player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'")
     }
 }
 

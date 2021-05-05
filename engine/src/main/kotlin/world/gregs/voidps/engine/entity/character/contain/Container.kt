@@ -12,6 +12,9 @@ data class Container(
 ) {
 
     @JsonIgnore
+    lateinit var minimumAmounts: IntArray
+
+    @JsonIgnore
     var id: Int = -1
 
     @JsonIgnore
@@ -30,7 +33,7 @@ data class Container(
     lateinit var definitions: ItemDefinitions
 
     @JsonIgnore
-    lateinit var events: Events
+    val events = mutableSetOf<Events>()
 
     @JsonIgnore
     var secondary: Boolean = false
@@ -68,26 +71,28 @@ data class Container(
 
     @get:JsonIgnore
     val count: Int
-        get() = items.count { !isFree(it.amount) }
+        get() = items.withIndex().count { (index, item) -> !isFree(index, item.amount) }
 
     @get:JsonIgnore
     val spaces: Int
-        get() = items.count { isFree(it.amount) }
+        get() = items.withIndex().count { (index, item) -> isFree(index, item.amount) }
 
     @JsonIgnore
-    fun isEmpty() = items.all { isFree(it.amount) }
+    fun isEmpty() = items.withIndex().all { (index, item) -> isFree(index, item.amount) }
 
     @JsonIgnore
-    fun isFull() = items.none { isFree(it.amount) }
+    fun isFull() = items.withIndex().none { (index, item) -> isFree(index, item.amount) }
 
     @JsonIgnore
-    fun isNotFull() = items.any { isFree(it.amount) }
+    fun isNotFull() = items.withIndex().any { (index, item) -> isFree(index, item.amount) }
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.name ?: ""
 
-    fun getItem(index: Int): Item = items.getOrNull(index) ?: empty
+    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item("", getMinimum(index))
 
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: minimumStack
+
+    fun getMinimum(index: Int): Int = minimumAmounts.getOrNull(index) ?: minimumStack
 
     fun getItems(): Array<Item> = items.clone()
 
@@ -107,30 +112,35 @@ data class Container(
         return isValidId(id) && isValidAmount(amount) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
     }
 
-    fun isValidInput(item: Item): Boolean {
-        return isValidId(item.name) && isValidAmount(item.amount) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
+    fun isValidInput(id: String, amount: Int, index: Int): Boolean {
+        return isValidId(id) && isValidAmountIndex(amount, index) && definitions.getId(id) != -1 && (predicate == null || predicate!!.invoke(id, amount))
     }
 
-    fun isValidOrEmpty(item: Item) = (!isValidId(item.name) && !isValidAmount(item.amount)) || isValidInput(item)
+    fun isValidInput(item: Item, index: Int): Boolean {
+        return isValidId(item.name) && isValidAmountIndex(item.amount, index) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
+    }
+
+    fun isValidOrEmpty(item: Item, index: Int) = (!isValidId(item.name) && !isValidAmountIndex(item.amount, index)) || isValidInput(item, index)
 
     private fun isValidId(id: String) = id.isNotBlank()
 
-    private fun isValidAmount(amount: Int) = amount > minimumStack
+    private fun isValidAmount(amount: Int) = amount > 0
+    private fun isValidAmountIndex(amount: Int, index: Int) = amount > getMinimum(index)
 
     /**
      * Checks [amount] for a slot is empty
      */
-    fun isFree(amount: Int) = amount == minimumStack
+    fun isFree(index: Int, amount: Int) = amount == getMinimum(index)
 
     /**
-     * If values is underflowing [minimumStack]
+     * If values is underflowing [minimumAmounts]
      */
-    fun isUnderMin(amount: Int) = amount < minimumStack
+    private fun isUnderMin(index: Int, amount: Int) = amount < getMinimum(index)
 
     /**
      * Checks if an index is free
      */
-    fun isIndexFree(index: Int) = isFree(items[index].amount)
+    fun isIndexFree(index: Int) = isFree(index, items[index].amount)
 
     fun freeIndex(): Int {
         for (index in items.indices) {
@@ -149,7 +159,7 @@ data class Container(
             return count
         }
         for (index in items.indices) {
-            if (getItemId(index) == id && getAmount(index) > minimumStack) {
+            if (getItemId(index) == id && getAmount(index) > getMinimum(index)) {
                 count += getAmount(index)
             }
         }
@@ -160,7 +170,7 @@ data class Container(
      * Clears item at the given index
      * @return successful
      */
-    fun clear(index: Int, update: Boolean = true, moved: Boolean = false): Boolean = set(index, "", minimumStack, update, moved)
+    fun clear(index: Int, update: Boolean = true, moved: Boolean = false): Boolean = set(index, "", getMinimum(index), update, moved)
 
     /**
      * Clears all indices
@@ -180,7 +190,7 @@ data class Container(
         if (!inBounds(index)) {
             return false
         }
-        val previous = items[index]
+        val previous = getItem(index)
         track(index, previous, item, moved)
         items[index] = item
         if (update) {
@@ -216,7 +226,7 @@ data class Container(
         }
         val from = items[firstIndex]
         val to = container.items[secondIndex]
-        if (!isValidOrEmpty(to) || !container.isValidOrEmpty(from)) {
+        if (!isValidOrEmpty(to, secondIndex) || !container.isValidOrEmpty(from, firstIndex)) {
             result(ContainerResult.Invalid)
             container.result(ContainerResult.Invalid)
             return false
@@ -253,7 +263,7 @@ data class Container(
      * @return Whether an item was successfully inserted
      */
     fun insert(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
-        if (!inBounds(index) || !isValidInput(id, amount)) {
+        if (!inBounds(index) || !isValidInput(id, amount, index)) {
             return result(ContainerResult.Invalid)
         }
 
@@ -282,7 +292,7 @@ data class Container(
      * @return Whether an item was successfully added
      */
     fun add(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
-        if (!inBounds(index) || !isValidInput(id, amount)) {
+        if (!inBounds(index) || !isValidInput(id, amount, index)) {
             return result(ContainerResult.Invalid)
         }
 
@@ -326,7 +336,6 @@ data class Container(
                 if (stack xor combined and (amount xor combined) < 0) {
                     return result(ContainerResult.Overflow)
                 }
-
                 set(index, id, combined, moved = moved)
             } else {
                 index = freeIndex()
@@ -359,7 +368,7 @@ data class Container(
      *  @return Whether an item was successfully removed
      */
     fun remove(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
-        if (!inBounds(index) || !isValidInput(id, amount)) {
+        if (!inBounds(index) || !isValidInput(id, amount, index)) {
             return result(ContainerResult.Invalid)
         }
 
@@ -430,11 +439,11 @@ data class Container(
             return ContainerResult.Deficient
         }
 
-        if (isUnderMin(combined)) {
+        if (isUnderMin(index, combined)) {
             return ContainerResult.Deficient
         }
 
-        if (isFree(combined)) {
+        if (isFree(index, combined)) {
             clear(index)
             return ContainerResult.Success
         }
@@ -443,8 +452,8 @@ data class Container(
 
     fun sort() {
         val all = LinkedList<Item>()
-        for (item in this.items.reversed()) {
-            if (isFree(item.amount)) {
+        for ((index, item) in this.items.withIndex().reversed()) {
+            if (isFree(index, item.amount)) {
                 all.addLast(item)
             } else {
                 all.addFirst(item)
@@ -471,7 +480,7 @@ data class Container(
     fun move(index: Int, container: Container, targetIndex: Int? = null, insert: Boolean = false): Boolean {
         val id = getItemId(index)
         val amount = getAmount(index)
-        if (id.isBlank() || amount == minimumStack) {
+        if (id.isBlank() || amount == getMinimum(index)) {
             return result(ContainerResult.Invalid)
         }
         return move(container, id, amount, index, targetIndex, insert)
@@ -563,9 +572,11 @@ data class Container(
     }
 
     private fun update() {
-        events.emit(ContainerUpdate(containerId = id, secondary = secondary, updates = updates))
-        for (update in updates) {
-            events.emit(update)
+        for (events in events) {
+            events.emit(ContainerUpdate(containerId = id, secondary = secondary, updates = updates))
+            for (update in updates) {
+                events.emit(update)
+            }
         }
         updates = mutableListOf()
     }
@@ -578,15 +589,12 @@ data class Container(
 
         if (stackMode != other.stackMode) return false
         if (!items.contentEquals(other.items)) return false
-        if (minimumStack != other.minimumStack) return false
-
         return true
     }
 
     override fun hashCode(): Int {
         var result = stackMode.hashCode()
         result = 31 * result + items.contentHashCode()
-        result = 31 * result + minimumStack
         return result
     }
 
