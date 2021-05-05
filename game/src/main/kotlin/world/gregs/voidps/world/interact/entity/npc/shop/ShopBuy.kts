@@ -73,9 +73,8 @@ on<InterfaceOption>({ name == "shop" && component == "stock" && option.startsWit
 }
 
 fun buy(player: Player, shop: Container, index: Int, amount: Int) {
-    val item = shop.getItemId(index)
-    val def = itemDefs.get(item)
-    val price = Price.getPrice(player, def.id, index, amount)
+    val item = shop.getItem(index)
+    val price = Price.getPrice(player, item.id, index, amount)
 
     val currency: String = player["shop_currency", "coins"]
     val currencyAvailable = player.inventory.getCount(currency).toInt()
@@ -96,7 +95,7 @@ fun buy(player: Player, shop: Container, index: Int, amount: Int) {
 
     val actualAmount = min(amountAvailable, amount)
     val cost = actualAmount * price
-    if (shop.move(player.inventory, item, actualAmount, index)) {
+    if (shop.move(player.inventory, item.name, actualAmount, index)) {
         player.purchase(cost, currency)
         if (actualAmount < amount) {
             player.message("Shop has run out of stock.")

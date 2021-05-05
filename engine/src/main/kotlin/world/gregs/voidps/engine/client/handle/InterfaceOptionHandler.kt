@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.utility.inject
@@ -42,7 +43,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         val component = inter.getComponent(componentName)
         val name = inter.name
 
-        var item = ""
+        var item = Item.EMPTY
         if (itemId != -1 && itemSlot != -1) {
             if (component == null) {
                 logger.info { "Interface $name component $componentId not found for player $player" }
@@ -62,14 +63,15 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
 
             var found = false
             val primary = player.container(def, secondary = false)
-            if (primary.isValidId(itemSlot, item)) {
+            val itemName = itemDefinitions.getName(itemId)
+            if (primary.isValidId(itemSlot, itemName)) {
                 found = true
-                item = itemDefinitions.getName(itemId)
+                item = primary.getItem(itemSlot)
             } else {
                 val secondary = player.container(def, secondary = true)
-                if (secondary.isValidId(itemSlot, item)) {
+                if (secondary.isValidId(itemSlot, itemName)) {
                     found = true
-                    item = itemDefinitions.getName(itemId)
+                    item = secondary.getItem(itemSlot)
                 }
             }
             if (!found) {
@@ -96,7 +98,6 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
                 option,
                 selectedOption,
                 item,
-                itemId,
                 itemSlot
             )
         )

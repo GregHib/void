@@ -48,14 +48,14 @@ on<InterfaceSwitch>({ name == "inventory" && toName == "inventory" }) { player: 
 }
 
 on<InterfaceOption>({ name == "inventory" && component == "container" }) { player: Player ->
-    val itemDef = decoder.get(itemId)
+    val itemDef = item.def
     val equipOption = when (optionId) {
         7 -> itemDef.options.getOrNull(4)
         9 -> "Examine"
         else -> itemDef.options.getOrNull(optionId)
     }
     if (equipOption == null) {
-        logger.info { "Unknown item option $itemId $optionId" }
+        logger.info { "Unknown item option $item $optionId" }
         return@on
     }
     player.events.emit(

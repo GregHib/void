@@ -6,24 +6,20 @@ import world.gregs.voidps.engine.entity.character.contain.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
-
-val itemDecoder: ItemDefinitions by inject()
 
 on<ContainerAction>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
-    val details = itemDecoder.get(item)
+    val def = item.def
 
-    if (failedToRemoveOtherHand(player, details)) {
+    if (failedToRemoveOtherHand(player, def)) {
         player.message("Your inventory is full.")
         return@on
     }
 
-    player.inventory.swap(slot, player.equipment, details["slot", EquipSlot.None].index)
+    player.inventory.swap(slot, player.equipment, def["slot", EquipSlot.None].index)
     player.flagAppearance()
 }
 
@@ -41,9 +37,8 @@ on<Registered> { player: Player ->
 }
 
 fun updateWeaponEmote(player: Player) {
-    val weapon = player.equipment.getItemId(EquipSlot.Weapon.index)
-    val def = itemDecoder.get(weapon)
-    val anim = def.getParam(644, 1426)
+    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val anim = weapon.def.getParam(644, 1426)
     player.emote = anim
 }
 
@@ -73,6 +68,6 @@ fun hasTwoHandedWeapon(player: Player, item: ItemDefinition) =
 fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == EquipSlot.Weapon && item["type", EquipType.None] == EquipType.TwoHanded
 
 fun holdingTwoHandedWeapon(player: Player): Boolean {
-    val weapon = player.equipment.getItemId(EquipSlot.Weapon.index)
-    return itemDecoder.get(weapon)["type", EquipType.None] == EquipType.TwoHanded
+    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    return weapon.def["type", EquipType.None] == EquipType.TwoHanded
 }

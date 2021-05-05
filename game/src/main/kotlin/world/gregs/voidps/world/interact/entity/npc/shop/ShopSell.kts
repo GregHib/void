@@ -14,12 +14,12 @@ import kotlin.math.min
 val itemDefs: ItemDefinitions by inject()
 
 on<InterfaceOption>({ name == "shop_side" && component == "container" && option == "Value" }) { player: Player ->
-    if (!player.shopContainer(false).contains(item)) {
+    if (!player.shopContainer(false).contains(item.name)) {
         player.message("You can't sell this item to this shop.")
         return@on
     }
-    val price = getSellPrice(item)
-    player.message("${itemDefs.get(item).name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
+    val price = getSellPrice(item.name)
+    player.message("${item.def.name}: shop will buy for $price ${player["shop_currency", "coin"].plural(price)}.")
 }
 
 on<InterfaceOption>({ name == "shop_side" && component == "container" && option.startsWith("Sell") }) { player: Player ->
@@ -30,7 +30,7 @@ on<InterfaceOption>({ name == "shop_side" && component == "container" && option.
         "Sell 50" -> 50
         else -> return@on
     }
-    sell(player, item, itemIndex, amount)
+    sell(player, item.name, itemIndex, amount)
 }
 
 fun getSellPrice(item: String): Int {

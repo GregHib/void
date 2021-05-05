@@ -111,8 +111,6 @@ data class Container(
         return isValidId(item.name) && isValidAmount(item.amount) && item.id != -1 && (predicate == null || predicate!!.invoke(item.name, item.amount))
     }
 
-    fun isValidOrEmpty(id: String, amount: Int) = (!isValidId(id) && !isValidAmount(amount)) || isValidInput(id, amount)
-
     fun isValidOrEmpty(item: Item) = (!isValidId(item.name) && !isValidAmount(item.amount)) || isValidInput(item)
 
     private fun isValidId(id: String) = id.isNotBlank()

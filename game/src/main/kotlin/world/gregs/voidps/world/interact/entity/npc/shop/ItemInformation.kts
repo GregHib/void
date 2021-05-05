@@ -17,8 +17,8 @@ import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.Price
@@ -38,7 +38,6 @@ IntVariable(1242, Variable.Type.VARC).register("info_colour")
 IntVariable(1241, Variable.Type.VARC).register("info_title_colour")
 IntVariable(744, Variable.Type.VARC).register("item_info_price")
 
-val itemDefs: ItemDefinitions by inject()
 val enums: EnumDecoder by inject()
 val structs: StructDecoder by inject()
 val messages = enums.get(1434).map!!
@@ -50,9 +49,9 @@ on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
     val container = player.container(if (sample) "${shop}_sample" else shop)
-    val item = container.getItemId(actualIndex)
+    val item = container.getItem(actualIndex)
     player["info_sample"] = sample
-    showInfo(player, item, if (sample) -1 else container.getAmount(actualIndex), actualIndex, if (sample) "${shop}_sample" else shop)
+    showInfo(player, item, actualIndex, if (sample) "${shop}_sample" else shop, sample)
 }
 
 on<InterfaceOption>({ name == "item_info" && component == "exit" }) { player: Player ->
@@ -65,27 +64,25 @@ on<InterfaceClosed>({ name == "item_info" }) { player: Player ->
     player.clear("item_info_bind")
 }
 
-fun showInfo(player: Player, item: String, amount: Int, index: Int, name: String) {
+fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boolean) {
     player.open("item_info")
-    val id = itemDefs.getId(item)
-    if (id != -1) {
+    if (item.isNotEmpty()) {
         player.setVar("info_title_colour", Colour.Orange.int)
         player.setVar("info_colour", Colour.Orange.int)
-        player.setVar("info_item", id)
-        itemDefs.getOrNull(item)?.let { def ->
-            if (def.options.contains("Wear") || def.options.contains("Wield")) {
-                player.setVar("info_left", attackStatsColumn(def))
-                player.setVar("info_middle", middleColumn)
-                player.setVar("info_right", defenceStatsColumn(def))
-                player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'<br> ")
-                player.setVar("item_info_price", if (amount < 1) amount else Price.getPrice(player, itemDefs.getId(item), index, amount))
-                setRequirements(player, def)
-                if (amount != -1) {
-                    val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
-                        player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, itemDefs.getId(item), index, this.item.amount))
-                    }
-                    player["item_info_bind"] = handler
+        player.setVar("info_item", item.id)
+        val def = item.def
+        if (def.options.contains("Wear") || def.options.contains("Wield")) {
+            player.setVar("info_left", attackStatsColumn(def))
+            player.setVar("info_middle", middleColumn)
+            player.setVar("info_right", defenceStatsColumn(def))
+            player.setVar("item_info_examine", "'${def["examine", "It's a null."]}'<br> ")
+            player.setVar("item_info_price", if(sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
+            setRequirements(player, def)
+            if (!sample) {
+                val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
+                    player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
                 }
+                player["item_info_bind"] = handler
             }
         }
     }
