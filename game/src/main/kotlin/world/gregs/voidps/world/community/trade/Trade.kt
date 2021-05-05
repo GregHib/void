@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 
 object Trade {
     fun isTrading(player: Player, amount: Int): Boolean {
@@ -27,15 +26,11 @@ object Trade {
     }
 }
 
-fun Container.calculateValue(decoder: ItemDefinitions): Long {
-    val items = getItems()
-    val amounts = getAmounts()
+fun Container.calculateValue(): Long {
     var value = 0L
-    for ((index, item) in items.withIndex()) {
-        val amount = amounts[index]
-        if (item.isNotBlank() && amount > 0) {
-            val itemDef = decoder.get(item)
-            value += (itemDef.cost * amount)
+    for (item in getItems()) {
+        if (item.isNotEmpty() && item.amount > 0) {
+            value += (item.def.cost * item.amount)
         }
     }
     return value

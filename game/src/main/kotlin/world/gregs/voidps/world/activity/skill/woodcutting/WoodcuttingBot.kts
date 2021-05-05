@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -25,7 +24,6 @@ import world.gregs.voidps.world.interact.entity.bot.*
 import kotlin.math.max
 
 val areas: Areas by inject()
-val definitions: ItemDefinitions by inject()
 
 val isNotAtTrees: BotContext.(MapArea) -> Double = { (bot.tile !in it.area).toDouble() }
 val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
@@ -111,8 +109,8 @@ val dropLogs = SimpleBotOption(
     action = {
         var count = 0
         for ((slot, item) in bot.inventory.getItems().withIndex()) {
-            if (Log.get(item) != null) {
-                bot.instructions.tryEmit(InteractInterface(149, 0, definitions.getId(item), slot, 7))
+            if (Log.get(item.name) != null) {
+                bot.instructions.tryEmit(InteractInterface(149, 0, item.id, slot, 7))
                 if (++count == 2) {
                     break
                 }

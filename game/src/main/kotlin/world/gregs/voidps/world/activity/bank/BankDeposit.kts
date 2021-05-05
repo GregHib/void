@@ -106,8 +106,8 @@ on<InterfaceOption>({ name == "bank" && component == "burden" && option == "Depo
 }
 
 fun bankAll(player: Player, container: Container) {
-    for (index in container.getItems().indices.reversed()) {
-        if (!container.isIndexFree(index) && !deposit(player, container, container.getItem(index), index, container.getAmount(index))) {
+    for ((index, item) in container.getItems().withIndex().reversed()) {
+        if (!container.isIndexFree(index) && !deposit(player, container, item, index, item.amount)) {
             break
         }
     }

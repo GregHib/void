@@ -18,13 +18,11 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.community.friend.hasFriend
 import world.gregs.voidps.world.community.trade.lend.Loan.lendItem
 import world.gregs.voidps.world.interact.entity.player.display.Tab
@@ -35,7 +33,6 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  */
 
 val logger = InlineLogger()
-val decoder: ItemDefinitions by inject()
 
 BooleanVariable(1042, Variable.Type.VARP).register("offer_modified")
 BooleanVariable(1043, Variable.Type.VARP).register("other_offer_modified")
@@ -221,7 +218,7 @@ fun Player.warn(name: String, component: String, slot: Int) {
 }
 
 fun updateValue(player: Player, other: Player) {
-    val value = player.offer.calculateValue(decoder)
+    val value = player.offer.calculateValue()
     player.setVar("offer_value", value)
     other.setVar("other_offer_value", value)
 }

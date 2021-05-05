@@ -11,8 +11,6 @@ data class Container(
     private val items: Array<Item>
 ) {
 
-    constructor(capacity: Int) : this(Array(capacity) { Item.EMPTY })
-
     @JsonIgnore
     var id: Int = -1
 
@@ -46,6 +44,10 @@ data class Container(
 
     @JsonIgnore
     var setup = false
+
+    @get:JsonIgnore
+    val empty: Item
+        get() = Item("", minimumStack)
 
     /**
      * A predicate to check if an item is allowed to be added to this container.
@@ -83,13 +85,11 @@ data class Container(
 
     fun getItemId(index: Int): String = items.getOrNull(index)?.name ?: ""
 
-    fun getItem(index: Int): Item = items.getOrNull(index) ?: Item.EMPTY
-
-    fun getItems(): Array<String> = items.map { it.name }.toTypedArray()
+    fun getItem(index: Int): Item = items.getOrNull(index) ?: empty
 
     fun getAmount(index: Int): Int = items.getOrNull(index)?.amount ?: minimumStack
 
-    fun getAmounts(): IntArray = items.map { it.amount }.toIntArray()
+    fun getItems(): Array<Item> = items.clone()
 
     fun indexOf(id: String) = if (id.isBlank()) -1 else items.indexOfFirst { it.name == id }
 
@@ -197,8 +197,8 @@ data class Container(
         if (!inBounds(firstIndex) || !inBounds(secondIndex)) {
             return false
         }
-        val temp = items[firstIndex]
-        set(firstIndex, items[secondIndex], update = false, moved = true)
+        val temp = getItem(firstIndex)
+        set(firstIndex, getItem(secondIndex), update = false, moved = true)
         set(secondIndex, temp, update = false, moved = true)
         update()
         return true
@@ -408,7 +408,7 @@ data class Container(
             val combined = items[index].amount - amount
             set(index, id, combined, moved = moved)
         } else {
-            val count = items.count { name == id }
+            val count = items.count { it.name == id }
             if (count < amount) {
                 return result(ContainerResult.Deficient)
             }
