@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -27,8 +29,7 @@ data class Movement(
     var runStep: Direction = Direction.NONE,
     val steps: LinkedList<Direction> = LinkedList<Direction>(),
     val waypoints: LinkedList<Edge> = LinkedList(),
-    var frozen: Boolean = false,
-    var running: Boolean = false,
+    var frozen: Boolean = false
 ) {
 
     var completable: ((PathResult) -> Unit)? = null
@@ -50,6 +51,10 @@ data class Movement(
         runStep = Direction.NONE
     }
 }
+
+var Character.running: Boolean
+    get() = get("running", false)
+    set(value) = set("running", value)
 
 fun Player.walkTo(target: Any, action: (PathResult) -> Unit) {
     walkTo(getStrategy(target), action)

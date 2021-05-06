@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -10,8 +11,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 class NPCMovementTask(
     private val npcs: NPCs,
@@ -40,7 +39,7 @@ class NPCMovementTask(
                 movement.walkStep = step
                 movement.delta = step.delta
                 npc.movementType = if (npc.crawling) NPCMoveType.Crawl else NPCMoveType.Walk
-                if (movement.running) {
+                if (npc.running) {
                     if (steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
                         step = steps.poll()

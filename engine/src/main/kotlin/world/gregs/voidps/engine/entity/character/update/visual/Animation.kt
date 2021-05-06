@@ -49,6 +49,10 @@ fun NPC.setAnimation(id: Int, speed: Int = 0) {
     flagAnimation()
 }
 
+fun Player.clearAnimation() = setAnimation(-1)
+
+fun NPC.clearAnimation() = setAnimation(-1)
+
 fun Player.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)
 
 fun NPC.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)

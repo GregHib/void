@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task.player
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -12,8 +13,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 class PlayerMovementTask(
     private val players: Players,
@@ -43,7 +42,7 @@ class PlayerMovementTask(
                 movement.delta = step.delta
                 player.movementType = PlayerMoveType.Walk
                 player.temporaryMoveType = PlayerMoveType.Walk
-                if (movement.running) {
+                if (player.running) {
                     if (steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = steps.poll()

@@ -1492,8 +1492,12 @@ chancy_idle:
   id: 2713
 mandrith_walk:
   id: 2715
+rest_legs_out:
+  id: 2716
 onyx:
   id: 2717
+stand_legs_out:
+  id: 2921
 lord_daquarius_step_right:
   id: 2724
 mage_of_zamorak_step_right:
@@ -3222,6 +3226,8 @@ penguin_idle_3:
   id: 5682
 penguin_idle_4:
   id: 5685
+rest_arms_back:
+  id: 5713
 chuck_walk:
   id: 5719
 chuck_idle:
@@ -3232,6 +3238,8 @@ icelord_idle:
   id: 5722
 spade_5:
   id: 5746
+stand_arms_back:
+  id: 5748
 delgon_idle:
   id: 5751
 tolna_idle:
@@ -6398,6 +6406,10 @@ kgp_agent_walk:
   id: 11756
 null_236:
   id: 11782
+rest_arms_crossed:
+  id: 11786
+stand_arms_crossed:
+  id: 11788
 drummer_walk:
   id: 11795
 musician_walk:
