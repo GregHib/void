@@ -163,6 +163,7 @@ shop_assistant_lumbridge:
   examine: "Likes you more the more you spend."
 musician_lumbridge:
   id: 29
+  song: 702
   race: "Human"
   examine: "What restful music!"
 musician_draynor_village:

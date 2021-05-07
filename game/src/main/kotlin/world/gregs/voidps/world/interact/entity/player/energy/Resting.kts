@@ -4,6 +4,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.world.interact.entity.player.music.play
 
 val animations = setOf(
     "rest_arms_back",
@@ -21,14 +23,14 @@ val animations = setOf(
 )
 
 on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Player ->
-    rest(player, false)
+    rest(player, -1)
 }
 
 on<NPCOption>({ npc.def.name == "Musician" && option == "Listen-to" }) { player: Player ->
-    rest(player, true)
+    rest(player, npc.def["song"])
 }
 
-fun rest(player: Player, music: Boolean) {
+fun rest(player: Player, music: Int) {
     println(player.action.type)
     if (player.action.type == ActionType.Resting) {
         player.message("You are already resting.")
@@ -38,17 +40,25 @@ fun rest(player: Player, music: Boolean) {
         player.movement.clear()
         player["movement"] = player.getVar("movement", "walk")
         val anim = animations.random()
+        val lastTrack = player["current_track", -1]
         try {
-            player.setVar("movement", if (music) "music" else "rest")
+            player.setVar("movement", if (music != -1) "music" else "rest")
             player.setAnimation(anim)
-            player.message("You begin resting..", ChatType.GameFilter)
+            if (music != -1) {
+                player.play(music)
+            } else {
+                player.message("You begin resting..", ChatType.GameFilter)
+            }
             await(Suspension.Infinite)
         } finally {
             player.setAnimation(anim.replace("rest", "stand"))
             val type = player["movement", "walk"]
             player.setVar("movement", type)
+            if (lastTrack != -1) {
+                player.play(lastTrack)
+            }
             player.movement.frozen = true
-            world.gregs.voidps.engine.delay(player, if (type == "run") 2 else 3) {
+            delay(player, if (type == "run") 2 else 3) {
                 player.clearAnimation()
                 player.movement.frozen = false
             }

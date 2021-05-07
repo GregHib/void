@@ -34,7 +34,7 @@ suspend fun DialogueContext.choice() {
             choice()
         }
         2 -> resting()
-        4 -> exit()
+        3 -> exit()
     }
 }
 
