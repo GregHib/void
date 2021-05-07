@@ -32,7 +32,7 @@ StringMapVariable(173, Variable.Type.VARP, true, mapOf(
 
 val maxEnergy = 10000
 
-class Energy : PlayerEffect("restore") {
+class Energy : PlayerEffect("background") {
     lateinit var task: Job
 
     override fun onStart(player: Player) {
@@ -93,6 +93,7 @@ val animations = setOf(
 )
 
 on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Player ->
+    player.movement.clear()
     player.action(ActionType.Resting) {
         val type: String = player.getVar("movement", "walk")
         val anim = animations.random()
