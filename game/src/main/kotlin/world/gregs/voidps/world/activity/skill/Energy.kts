@@ -56,9 +56,8 @@ class Energy : PlayerEffect("background") {
             }
             if (change != 0) {
                 val updated = (energy + change).coerceIn(0, maxEnergy)
-                player["energy", true] = updated
-                val percentage = (updated / maxEnergy.toDouble() * 100).toInt()
-                player.sendRunEnergy(percentage)
+                setEnergy(player, updated)
+                walkWhenOutOfEnergy(player, updated)
             }
         }
     }
@@ -69,9 +68,22 @@ class Energy : PlayerEffect("background") {
     }
 }
 
+fun setEnergy(player: Player, energy: Int) {
+    player["energy", true] = energy
+    player.sendRunEnergy(player.energyPercent())
+}
+
+fun walkWhenOutOfEnergy(player: Player, energy: Int) {
+    if (energy == 0) {
+        player.setVar("movement", "walk")
+        player.running = false
+    }
+}
+
+fun Player.energyPercent() = (this["energy", maxEnergy] / maxEnergy.toDouble() * 100).toInt()
 
 on<InterfaceOpened>({ name == "energy_orb" }) { player: Player ->
-    player.sendRunEnergy(player["energy", maxEnergy] / maxEnergy * 100)
+    player.sendRunEnergy(player.energyPercent())
 }
 
 on<Registered> { player: Player ->
@@ -81,7 +93,30 @@ on<Registered> { player: Player ->
 }
 
 on<InterfaceOption>({ name == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->
-    val walk = player.getVar("movement", "walk") == "walk"
+    val type = player.getVar("movement", "walk")
+    if (type == "rest" || type == "musician") {
+        toggleWhileResting(player, type)
+        return@on
+    }
+    toggleRun(player, type)
+}
+
+fun toggleWhileResting(player: Player, type: String) {
+    val updated = if (player["movement", "walk"] == "walk") "run" else "walk"
+    player.setVar("movement", updated)
+    player["movement"] = updated
+    player.running = updated == "run"
+    delay(2) {
+        player.setVar("movement", type)
+    }
+}
+
+fun toggleRun(player: Player, type: String) {
+    val energy = player.energyPercent()
+    if (energy == 0) {
+        player.message("You don't have enough energy left to run!", ChatType.GameFilter)
+    }
+    val walk = type == "walk" && energy > 0
     player.setVar("movement", if (walk) "run" else "walk")
     player.running = walk
 }
@@ -95,7 +130,7 @@ val animations = setOf(
 on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Player ->
     player.movement.clear()
     player.action(ActionType.Resting) {
-        val type: String = player.getVar("movement", "walk")
+        player["movement"] = player.getVar("movement", "walk")
         val anim = animations.random()
         try {
             player.setVar("movement", "rest")
@@ -104,6 +139,7 @@ on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Play
             await(Suspension.Infinite)
         } finally {
             player.setAnimation(anim.replace("rest", "stand"))
+            val type = player["movement", "walk"]
             player.setVar("movement", type)
             player.movement.frozen = true
             delay(player, if (type == "run") 2 else 3) {
