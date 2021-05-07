@@ -73,3 +73,10 @@
   spawns:
     - name: shopkeeper_lumbridge
     - name: shop_assistant_lumbridge
+- name: Lumbridge musician
+  area:
+    x: [ 3233 ]
+    y: [ 3233 ]
+  spawns:
+    - name: musician_lumbridge
+      direction: WEST

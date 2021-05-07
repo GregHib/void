@@ -161,3 +161,11 @@ shop_assistant_lumbridge:
   id: 521
   race: "Human"
   examine: "Likes you more the more you spend."
+musician_lumbridge:
+  id: 29
+  race: "Human"
+  examine: "What restful music!"
+musician_draynor_village:
+  id: 30
+  race: "Human"
+  examine: "What restful music!"
