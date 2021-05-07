@@ -41,7 +41,7 @@ class Energy : PlayerEffect("restore") {
             val energy = player["energy", maxEnergy]
             val movement = player.getVar("movement", "walk")
             var change = 0
-            if (player.movement.steps.isNotEmpty() && movement == "run") {
+            if (player.movement.moving && movement == "run") {
                 val weight = player["weight", 0].coerceIn(-64, 64)
                 val decrement = (67 * weight) / 64
                 change = decrement * -10
@@ -54,7 +54,7 @@ class Energy : PlayerEffect("restore") {
                     else -> interpolate(agility, 27, 157, 1, 99)
                 }
             }
-            if(change != 0) {
+            if (change != 0) {
                 val updated = (energy + change).coerceIn(0, maxEnergy)
                 player["energy", true] = updated
                 val percentage = (updated / maxEnergy.toDouble() * 100).toInt()

@@ -33,7 +33,8 @@ class NPCMovementTask(
     fun step(npc: NPC) {
         val movement = npc.movement
         val steps = movement.steps
-        if (steps.peek() != null) {
+        movement.moving = steps.peek() != null
+        if (movement.moving) {
             var step = steps.poll()
             if (!movement.traversal.blocked(npc.tile, step)) {
                 movement.walkStep = step

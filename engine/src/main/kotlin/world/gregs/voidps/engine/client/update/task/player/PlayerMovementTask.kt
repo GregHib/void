@@ -35,7 +35,8 @@ class PlayerMovementTask(
     fun step(player: Player) {
         val movement = player.movement
         val steps = movement.steps
-        if (steps.peek() != null) {
+        movement.moving = steps.peek() != null
+        if (movement.moving) {
             var step = steps.poll()
             if (!movement.traversal.blocked(player.tile, step)) {
                 movement.walkStep = step

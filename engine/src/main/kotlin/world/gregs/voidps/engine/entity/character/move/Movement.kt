@@ -32,6 +32,7 @@ data class Movement(
     var frozen: Boolean = false
 ) {
 
+    var moving = false
     var completable: ((PathResult) -> Unit)? = null
     var strategy: TileTargetStrategy? = null
     var target: Boolean = false
