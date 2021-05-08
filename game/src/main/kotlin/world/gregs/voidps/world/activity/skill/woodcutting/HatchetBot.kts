@@ -25,10 +25,10 @@ val inventoryHatchets: BotContext.() -> List<Pair<Hatchet, IndexedValue<Item>>> 
 
 val betterThanEquippedHatchet: BotContext.(Pair<Hatchet, IndexedValue<Item>>) -> Double = { (hatchet) ->
     val currentWeapon = bot.equipped(EquipSlot.Weapon)
-    if (currentWeapon.isBlank()) {
+    if (currentWeapon.isEmpty()) {
         1.0
     } else {
-        val current = Hatchet.get(currentWeapon)
+        val current = Hatchet.get(currentWeapon.name)
         (current != null && current.ordinal < hatchet.ordinal).toDouble()
     }
 }
