@@ -2,6 +2,7 @@ package world.gregs.voidps.world.interact.entity.npc
 
 import world.gregs.voidps.Main.name
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
+import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
@@ -13,7 +14,7 @@ import world.gregs.voidps.world.interact.dialogue.type.npc
 
 on<NPCOption>({ npc.def.name == "Banker" && option == "Talk-to" }) { player: Player ->
     player.dialogue(npc) {
-        npc("Good day. How may I help you?")
+        npc("Good day. How may I help you?", Expression.Disregard)
         val loanReturned = getTimeRemaining(player, "lend_timeout") < 0
         val collection = false
 

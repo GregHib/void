@@ -13,16 +13,16 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.def.name == "Hans" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
-        npc("Hello. What are you doing here?")
+        npc("Hello. What are you doing here?", Expression.Talking)
         val choice = choice("""
             I'm looking for whoever is in charge of this place.
             I have come to kill everyone in this castle!
             I don't know. I'm lost. Where am I?
-        """, saySelection = false)
+        """)
         when (choice) {
             1 -> {
                 player("I'm looking for whoever is in charge of this place.")
-                npc("Who, the Duke? He's in his study, on the first floor.")
+                npc("Who, the Duke? He's in his study, on the first floor.", Expression.Talking)
             }
             2 -> {
                 player("I'm looking for whoever is in charge of this place.", Expression.EvilLaugh)
@@ -31,7 +31,7 @@ on<NPCOption>({ npc.def.name == "Hans" && option == "Talk-to" }) { player: Playe
             }
             3 -> {
                 player("I don't know. I'm lost. Where am I?", Expression.Uncertain)
-                npc("You are in Lumbridge Castle.")
+                npc("You are in Lumbridge Castle.", Expression.Talking)
             }
         }
     }

@@ -19,8 +19,7 @@ suspend fun DialogueContext.choice() {
             Who are you?
             Can I ask you some questions about resting?
             That's all for now
-        """,
-        saySelection = false)
+        """)
     when (choice) {
         1 -> {
             player("Who are you?", Expression.Think)
@@ -48,8 +47,7 @@ suspend fun DialogueContext.resting() {
             What's special about resting by a musician?
             Can you summarise the effects for me?
             That's all for now.
-        """,
-        saySelection = false
+        """
     )
     when (choice) {
         1 -> {

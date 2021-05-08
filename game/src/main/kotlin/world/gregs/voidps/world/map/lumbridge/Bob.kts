@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.Math.interpolate
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
+import world.gregs.voidps.world.interact.dialogue.type.player
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 
 on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player ->
@@ -25,17 +26,21 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
         when (choice) {
             1 -> npc("Sorry I don't have any quests for you at the moment.")
             2 -> {
+                player("I'd like to trade.", Expression.Disregard)
                 npc("""
                     Great! I buy and sell pickaxes and hatchets. There are
                     plenty to choose from, and I've some free samples too.
                     Take your pick... or hatchet.
-                """, Expression.Laugh)
+                """, Expression.Agree)
                 player.events.emit(OpenShop("bobs_brilliant_axes"))
             }
-            3 -> npc("""
-                    Of course I can, though the material may cost you.
-                    Just hand me the item and I'll have a look.
-                """)
+            3 -> {
+                player("Can you repair my items for me?", Expression.Sad)
+                npc("""
+                    Of course I can, though the material may cost you. Just
+                    hand me the item and I'll have a look.
+                """, Expression.Shock)
+            }
         }
     }
 }

@@ -28,8 +28,7 @@ suspend fun DialogueContext.choice() {
     val choice = choice("""
             Who are you?
             That's all for now
-        """,
-        saySelection = false)
+        """)
     when (choice) {
         1 -> {
             player("Who are you?", Expression.Think)

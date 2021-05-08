@@ -200,24 +200,9 @@ internal class ChoiceTest : DialogueTest() {
     }
 
     @Test
-    fun `Send choice and repeat selection`() {
+    fun `Send choice and don't repeat selection`() {
         manager.start(context) {
-            choice(text = "Yes\nNo", saySelection = true)
-        }
-        runBlocking(Contexts.Game) {
-            manager.resume(1)
-        }
-        runBlocking(Contexts.Game) {
-            coVerify {
-                context.player("Yes")
-            }
-        }
-    }
-
-    @Test
-    fun `Send choice but don't repeat selection`() {
-        manager.start(context) {
-            choice(text = "Yes\nNo", saySelection = false)
+            choice(text = "Yes\nNo")
         }
         runBlocking(Contexts.Game) {
             manager.resume(1)
