@@ -89,6 +89,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.running } returns false
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         // When
@@ -164,6 +165,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { player.running } returns true
@@ -195,6 +197,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { player.running } returns true
