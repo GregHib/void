@@ -61,8 +61,6 @@ class Player(
     override val visuals: Visuals = Visuals(),
     @JsonIgnore
     override val movement: Movement = Movement(),
-    @JsonIgnore
-    override val action: Action = Action(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
     val variables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
@@ -87,6 +85,9 @@ class Player(
 
     @JsonIgnore
     override val events: Events = Events(this)
+
+    @JsonIgnore
+    override val action: Action = Action(events)
 
     @JsonIgnore
     val requests: Requests = Requests(this)

@@ -33,10 +33,17 @@ val betterThanEquippedHatchet: BotContext.(Pair<Hatchet, IndexedValue<Item>>) ->
     }
 }
 
+val noInventoryOverlayOpen: BotContext.(Any) -> Double = {
+    (bot.interfaces.get("overlay_tab") == null).toDouble()
+}
+
 val equipHatchet = SimpleBotOption(
     name = "equip better hatchet or if no weapon",
     targets = inventoryHatchets,
-    considerations = listOf(betterThanEquippedHatchet),
+    considerations = listOf(
+        noInventoryOverlayOpen,
+        betterThanEquippedHatchet
+    ),
     action = { (_, it) ->
         bot.instructions.tryEmit(InteractInterface(149, 0, it.value.id, it.index, 1))
     }

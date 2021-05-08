@@ -38,7 +38,7 @@ val goToBank = SimpleBotOption(
     weight = 0.5,
     considerations = listOf(
         isNotAtBank,
-        isNotGoingSomewhere,
+//        isNotGoingSomewhere,
         hasNoInventorySpace,
         wantsToCutTrees,
         wantsToStoreLogs,

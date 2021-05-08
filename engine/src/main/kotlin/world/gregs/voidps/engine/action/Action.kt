@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.action
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.event.Events
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -11,7 +12,9 @@ import kotlin.coroutines.resumeWithException
  * Also access for suspension methods
  */
 @Suppress("UNCHECKED_CAST")
-class Action {
+class Action(
+    private val events: Events
+) {
 
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
@@ -69,6 +72,7 @@ class Action {
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
         this@Action.cancel()
         this.type = type
+        events.emit(ActionStarted(type))
         job = GlobalScope.launch(Contexts.Game) {
             this@Action.type = type
             try {
@@ -79,6 +83,7 @@ class Action {
                 }
                 completion?.invoke()
                 completion = null
+                events.emit(ActionFinished(type))
             }
         }
     }

@@ -4,6 +4,7 @@ import world.gregs.voidps.ai.exponential
 import world.gregs.voidps.ai.inverse
 import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
+import world.gregs.voidps.engine.GameLoop.Companion.tick
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -11,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -18,9 +20,11 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.interact.entity.bot.*
+import java.util.concurrent.TimeUnit
 import kotlin.math.max
 
 val areas: Areas by inject()
@@ -91,6 +95,7 @@ val cutDownTree = SimpleBotOption(
     ),
     action = { tree ->
         if ((bot.isInteruptable() && last?.target != tree) || bot.action.type == ActionType.None) {
+            bot["cut_tree"] = tick
             bot.instructions.tryEmit(InteractObject(tree.id, tree.tile.x, tree.tile.y, 1))
         }
     }
@@ -119,11 +124,17 @@ val dropLogs = SimpleBotOption(
     }
 )
 
+val recentlyCutTrees: BotContext.(Any) -> Double = {
+    (tick - bot["cut_tree", 0]).toDouble().scale(0.0, TimeUnit.SECONDS.toTicks(4).toDouble()).inverse()
+}
+
 val wait = SimpleBotOption(
-    name = "wait around",
+    name = "wait for tree to regrow",
     targets = { empty },
-    weight = 0.2,
+    weight = 0.3,
     considerations = listOf(
+        wantsToCutTrees,
+        recentlyCutTrees,
         { bot.patience }
     ),
     action = {}

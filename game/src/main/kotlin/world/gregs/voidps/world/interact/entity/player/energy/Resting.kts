@@ -31,7 +31,6 @@ on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: 
 }
 
 fun rest(player: Player, music: Int) {
-    println(player.action.type)
     if (player.action.type == ActionType.Resting) {
         player.message("You are already resting.")
         return
@@ -58,7 +57,7 @@ fun rest(player: Player, music: Int) {
                 player.play(lastTrack)
             }
             player.movement.frozen = true
-            delay(player, if (type == "run") 2 else 3) {
+            delay(player, 3) {
                 player.clearAnimation()
                 player.movement.frozen = false
             }
