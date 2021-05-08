@@ -9,10 +9,8 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.npc.NPC
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
 internal class NPCChatTest : DialogueTest() {
@@ -42,7 +40,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                npc(text = text, clickToContinue = true)
+                npc(text = text, clickToContinue = true, expression = "talk")
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -67,7 +65,7 @@ internal class NPCChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                npc(text = text, clickToContinue = false)
+                npc(text = text, clickToContinue = false, expression = "talk")
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -83,7 +81,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Sending five or more lines to chat is ignored`() {
         manager.start(context) {
-            npc(text = "\nOne\nTwo\nThree\nFour\nFive")
+            npc(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
@@ -97,7 +95,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send player chat head size and animation`(large: Boolean) {
         every { npc.id } returns 123
         manager.start(context) {
-            npc(text = "Text", largeHead = large, expression = Expression.Talking)
+            npc(text = "Text", largeHead = large, expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -110,7 +108,7 @@ internal class NPCChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         manager.start(context) {
-            npc(text = "text", title = "Bob")
+            npc(text = "text", title = "Bob", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -125,7 +123,7 @@ internal class NPCChatTest : DialogueTest() {
         every { context.npcName } returns "Jim"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            npc(text = "text", largeHead = true, expression = Expression.Laugh)
+            npc(text = "text", largeHead = true, expression = "laugh")
         }
         runBlocking(Contexts.Game) {
             coVerify {
@@ -141,7 +139,7 @@ internal class NPCChatTest : DialogueTest() {
         every { player.open("npc_chat1") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            npc(text = "text")
+            npc(text = "text", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
@@ -155,7 +153,7 @@ internal class NPCChatTest : DialogueTest() {
     fun `Send different npc chat`() {
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            npc(id = 123, npcName = "Bill", text = "text")
+            npc(id = 123, npcName = "Bill", text = "text", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             coVerify {

@@ -9,9 +9,7 @@ import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.entity.character.update.visual.player.name
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 internal class PlayerChatTest : DialogueTest() {
@@ -36,7 +34,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                player(text = text, clickToContinue = true)
+                player(text = text, clickToContinue = true, expression = "talk")
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -61,7 +59,7 @@ internal class PlayerChatTest : DialogueTest() {
     ).map { (text, expected) ->
         dynamicTest("Text '$text' expected $expected") {
             manager.start(context) {
-                player(text = text, clickToContinue = false)
+                player(text = text, clickToContinue = false, expression = "talk")
             }
             runBlocking(Contexts.Game) {
                 verify {
@@ -77,7 +75,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Sending five or more lines to chat is ignored`() {
         manager.start(context) {
-            player(text = "\nOne\nTwo\nThree\nFour\nFive")
+            player(text = "\nOne\nTwo\nThree\nFour\nFive", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify(exactly = 0) {
@@ -90,7 +88,7 @@ internal class PlayerChatTest : DialogueTest() {
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
         manager.start(context) {
-            player(text = "Text", largeHead = large, expression = Expression.Talking)
+            player(text = "Text", largeHead = large, expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -103,7 +101,7 @@ internal class PlayerChatTest : DialogueTest() {
     @Test
     fun `Send custom player chat title`() {
         manager.start(context) {
-            player(text = "text", title = "Bob")
+            player(text = "text", title = "Bob", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
@@ -117,7 +115,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.name } returns "Jim"
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            player(text = "text", largeHead = true, expression = Expression.Laugh)
+            player(text = "text", largeHead = true, expression = "laugh")
         }
         runBlocking(Contexts.Game) {
             coVerify {
@@ -133,7 +131,7 @@ internal class PlayerChatTest : DialogueTest() {
         every { player.open("chat1") } returns false
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
-            player(text = "text")
+            player(text = "text", expression = "talk")
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {

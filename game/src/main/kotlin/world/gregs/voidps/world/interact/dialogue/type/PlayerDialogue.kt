@@ -2,13 +2,14 @@ package world.gregs.voidps.world.interact.dialogue.type
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.utility.get
 
 private val logger = InlineLogger()
 
-suspend fun DialogueContext.player(expression: Expression, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.player(expression: String, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {
@@ -18,9 +19,10 @@ suspend fun DialogueContext.player(expression: Expression, text: String, largeHe
 
     val name = getInterfaceName("chat", lines.size, clickToContinue)
     if (player.open(name)) {
+        val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
         player.interfaces.sendPlayerHead(name, head)
-        player.interfaces.sendAnimation(name, head, expression.id)
+        player.interfaces.sendAnimation(name, head, animationDefs.getId(expression))
         player.interfaces.sendText(name, "title", title ?: player.name)
         sendLines(player, name, lines)
         await<Unit>("chat")

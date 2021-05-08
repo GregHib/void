@@ -1,3 +1,81 @@
+# Dialogue expressions
+sad:
+  id: 9760
+dwell:
+  id: 9757
+teary:
+  id: 9769
+upset:
+  id: 9761
+cry:
+  id: 9768
+wail:
+  id: 9765
+afraid:
+  id: 9773
+shock:
+  id: 9750
+disbelief:
+  id: 9753
+scared:
+  id: 9777
+angry:
+  id: 9781
+furious:
+  id: 9785
+mad:
+  id: 9789
+talk:
+  id: 9803
+delay:
+  id: 9806
+think:
+  id: 9830
+suspicious:
+  id: 9836
+happy:
+  id: 9843
+laugh:
+  id: 9840
+laughing:
+  id: 9851
+hysterics:
+  id: 9841
+cheerful:
+  id: 9847
+disagree:
+  id: 9814
+uncertain:
+  id: 9811
+disregard:
+  id: 9827
+disdain:
+  id: 9832
+silent:
+  id: 9804
+eyes_closed:
+  id: 9877
+asleep:
+  id: 9802
+conflicted:
+  id: 9835
+chicken:
+  id: 9793
+goofy:
+  id: 9878
+evil_laugh:
+  id: 9842
+gatekeeper_happy:
+  id: 14074
+gatekeeper_sad:
+  id: 14075
+gatekeeper_suspicious:
+  id: 14076
+gatekeeper_tired:
+  id: 14077
+gatekeeper_cry:
+  id: 14078
+# End expressions
 bees_walk:
   id: 0
 capn_arnav_idle:

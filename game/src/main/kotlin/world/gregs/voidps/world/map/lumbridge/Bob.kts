@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.map.lumbridge
 
-import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.talkWith
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -24,10 +23,10 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
             Can you repair my items for me?
         """)
         when (choice) {
-            1 -> npc(Expression.Talking, "Sorry I don't have any quests for you at the moment.")
+            1 -> npc("talk", "Sorry I don't have any quests for you at the moment.")
             2 -> {
-                player(Expression.Disregard, "I'd like to trade.")
-                npc(Expression.Agree, """
+                player("disregard", "I'd like to trade.")
+                npc("cheerful", """
                     Great! I buy and sell pickaxes and hatchets. There are
                     plenty to choose from, and I've some free samples too.
                     Take your pick... or hatchet.
@@ -35,8 +34,8 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
                 player.events.emit(OpenShop("bobs_brilliant_axes"))
             }
             3 -> {
-                player(Expression.Sad, "Can you repair my items for me?")
-                npc(Expression.Shock, """
+                player("sad", "Can you repair my items for me?")
+                npc("shock", """
                     Of course I can, though the material may cost you. Just
                     hand me the item and I'll have a look.
                 """)
@@ -48,18 +47,18 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
         if (!repairable(item.name)) {
-            npc(Expression.Disregard, "Sorry friend, but I can't do anything with that.")
+            npc("disregard", "Sorry friend, but I can't do anything with that.")
             return@talkWith
         }
         val cost = repairCost(player, item)
-        npc(Expression.Talking, "That'll cost you $cost gold coins to fix, are you sure?")
+        npc("talk", "That'll cost you $cost gold coins to fix, are you sure?")
         val choice = choice("""
             Yes I'm sure!
             On second thoughts, no thanks.
         """)
         if (choice == 1 && player.purchase(cost)) {
             player.inventory.replace(item.name, repaired(item.name))
-            npc(Expression.Talking, "There you go. It's a pleasure doing business with you!")
+            npc("talk", "There you go. It's a pleasure doing business with you!")
         }
     }
 }

@@ -1,5 +1,4 @@
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.Expression
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -22,8 +21,8 @@ suspend fun DialogueContext.choice() {
         """)
     when (choice) {
         1 -> {
-            player(Expression.Think, "Who are you?")
-            npc(Expression.Agree, """
+            player("think", "Who are you?")
+            npc("cheerful", """
                     Me? Thump-Thump.
                     Me make thump-thumps with thump-thump drum.
                     Other goblins listen.
@@ -47,24 +46,24 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player(Expression.Think, "So how does resting work?")
-            npc(Expression.Agree, """
+            player("think", "So how does resting work?")
+            npc("cheerful", """
                     You stoopid. Goblin sit down, goblin rest,
                     goblin feel better.
                 """)
             resting()
         }
         2 -> {
-            player(Expression.Cheerful, "What's special about resting by a musician?")
-            npc(Expression.Agree, """
+            player("happy", "What's special about resting by a musician?")
+            npc("cheerful", """
                     Drumming good! Make you feel better,
                     boom booms make you run longer!
                 """)
             resting()
         }
         3 -> {
-            player(Expression.Cheerful, "Can you summarise the effects for me?")
-            npc(Expression.Agree, """
+            player("happy", "Can you summarise the effects for me?")
+            npc("cheerful", """
                 Wot? You sit down, you rest.
                 Listen to Thump-Thump is better.
             """)
@@ -75,6 +74,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player(Expression.Disregard, "That's all for now.")
-    npc(Expression.Agree, "You listen to boom boom. Good!")
+    player("disregard", "That's all for now.")
+    npc("cheerful", "You listen to boom boom. Good!")
 }
