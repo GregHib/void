@@ -42,7 +42,7 @@ class Energy : PlayerEffect("background") {
     private fun getDrainAmount(player: Player): Int {
         val weight = player["weight", 0].coerceIn(-64, 64)
         val decrement = (67 * weight) / 64
-        return decrement * -10
+        return -decrement
     }
 
     private fun getRestoreAmount(player: Player): Int {
