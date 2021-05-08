@@ -34,8 +34,8 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
                 player.events.emit(OpenShop("bobs_brilliant_axes"))
             }
             3 -> {
-                player("sad", "Can you repair my items for me?")
-                npc("shock", """
+                player("upset", "Can you repair my items for me?")
+                npc("think", """
                     Of course I can, though the material may cost you. Just
                     hand me the item and I'll have a look.
                 """)
@@ -58,7 +58,7 @@ on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
         """)
         if (choice == 1 && player.purchase(cost)) {
             player.inventory.replace(item.name, repaired(item.name))
-            npc("talk", "There you go. It's a pleasure doing business with you!")
+            npc("cheerful", "There you go. It's a pleasure doing business with you!")
         }
     }
 }

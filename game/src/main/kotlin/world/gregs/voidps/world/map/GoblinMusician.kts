@@ -15,18 +15,18 @@ on<NPCOption>({ npc.name == "goblin_musician" && option == "Talk-to" }) { player
 
 suspend fun DialogueContext.choice() {
     val choice = choice("""
-            Who are you?
-            Can I ask you some questions about resting?
-            That's all for now
-        """)
+        Who are you?
+        Can I ask you some questions about resting?
+        That's all for now
+    """)
     when (choice) {
         1 -> {
             player("think", "Who are you?")
-            npc("cheerful", """
-                    Me? Thump-Thump.
-                    Me make thump-thumps with thump-thump drum.
-                    Other goblins listen.
-                """)
+            npc("cheerful_old", """
+                Me? Thump-Thump.
+                Me make thump-thumps with thump-thump drum.
+                Other goblins listen.
+            """)
             choice()
         }
         2 -> resting()
@@ -47,23 +47,23 @@ suspend fun DialogueContext.resting() {
     when (choice) {
         1 -> {
             player("think", "So how does resting work?")
-            npc("cheerful", """
-                    You stoopid. Goblin sit down, goblin rest,
-                    goblin feel better.
-                """)
+            npc("talk_old", """
+                You stoopid. Goblin sit down, goblin rest,
+                goblin feel better.
+            """)
             resting()
         }
         2 -> {
             player("happy", "What's special about resting by a musician?")
-            npc("cheerful", """
-                    Drumming good! Make you feel better,
-                    boom booms make you run longer!
-                """)
+            npc("talk_old", """
+                Drumming good! Make you feel better,
+                boom booms make you run longer!
+            """)
             resting()
         }
         3 -> {
             player("happy", "Can you summarise the effects for me?")
-            npc("cheerful", """
+            npc("talk_old", """
                 Wot? You sit down, you rest.
                 Listen to Thump-Thump is better.
             """)
@@ -75,5 +75,5 @@ suspend fun DialogueContext.resting() {
 
 suspend fun DialogueContext.exit() {
     player("disregard", "That's all for now.")
-    npc("cheerful", "You listen to boom boom. Good!")
+    npc("cheerful_old", "You listen to boom boom. Good!")
 }

@@ -1,70 +1,130 @@
+test:
+  id: 9788
 # Dialogue expressions
 sad:
   id: 9760
+sad_old:
+  id: 609
 dwell:
   id: 9757
 teary:
   id: 9769
 upset:
   id: 9761
+upset_old:
+  id: 610
 cry:
   id: 9768
 wail:
   id: 9765
 afraid:
   id: 9773
+afraid_old:
+  id: 596
 shock:
   id: 9750
+surprised:
+  id: 9746
+surprised_old:
+  id: 571
 disbelief:
   id: 9753
 scared:
   id: 9777
 angry:
   id: 9781
+angry_old:
+  id: 615
 furious:
   id: 9785
+furious_old:
+  id: 614
 mad:
   id: 9789
-talk:
+talking:
   id: 9803
-delay:
+talking_old:
+  id: 588
+talk:
   id: 9806
+talk_old:
+  id: 590
 think:
   id: 9830
+think_old:
+  id: 557
 suspicious:
   id: 9836
+suspicious_old:
+  id: 592
+sceptic:
+  id: 9834
+sceptic_old:
+  id: 563
 happy:
   id: 9843
 laugh:
   id: 9840
+laugh_old:
+  id: 605
 laughing:
   id: 9851
 hysterics:
   id: 9841
+hysterics_old:
+  id: 606
 cheerful:
   id: 9847
+cheerful_old:
+  id: 567
+shake:
+  id: 9745
+shake_old:
+  id: 570
 disagree:
   id: 9814
+admit:
+  id: 9815
+admit_old:
+  id: 579
 uncertain:
   id: 9811
+uncertain_old:
+  id: 575
+unsure:
+  id: 9828
+unsure_old:
+  id: 555
 disregard:
   id: 9827
+disregard_old:
+  id: 554
 disdain:
   id: 9832
+unamused:
+  id: 9833
+unamused_old:
+  id: 562
 silent:
   id: 9804
+silent_old:
+  id: 589
 eyes_closed:
   id: 9877
 asleep:
   id: 9802
 conflicted:
   id: 9835
+conflicted_old:
+  id: 600
 chicken:
   id: 9793
 goofy:
   id: 9878
 evil_laugh:
   id: 9842
+evil_laugh_old:
+  id: 607
 gatekeeper_happy:
   id: 14074
 gatekeeper_sad:

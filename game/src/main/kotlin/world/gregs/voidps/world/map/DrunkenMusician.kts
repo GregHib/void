@@ -14,26 +14,26 @@ on<NPCOption>({ npc.name == "drunken_musician" && option == "Talk-to" }) { playe
 }
 suspend fun DialogueContext.choice() {
     val choice = choice("""
-            Who are you?
-            Can I ask you some questions about resting?
-            That's all for now
-        """)
+        Who are you?
+        Can I ask you some questions about resting?
+        That's all for now
+    """)
     when (choice) {
         1 -> {
             player("think", "Who are you?")
-            npc("cheerful", """
-                    Me? I'sh mooshian! Lemme her help youse relaxsh:
-                    sit down, reshst your weery limz an' stuff.
-                    You'll feel mush better. Like me, I ffeel great!
-                """)
+            npc("conflicted", """
+                Me? I'sh mooshian! Lemme her help youse relaxsh:
+                sit down, reshst your weery limz an' stuff.
+                You'll feel mush better. Like me, I ffeel great!
+            """)
             player("think", "You're drunk, aren't you?")
-            npc("cheerful", "I'm jus' relaxshed, mate.")
+            npc("conflicted", "I'm jus' relaxshed, mate.")
             player("think", "I'm not sure I want to be as relaxed as you are.")
-            npc("cheerful", """
+            npc("conflicted", """
                 Youze'll never be as relaxshed as as I am,
                 I worked hard to get this relaxshed.
             """)
-            player("disregard", "Clearly...")
+            player("disdain", "Clearly...")
             choice()
         }
         2 -> resting()
@@ -54,28 +54,28 @@ suspend fun DialogueContext.resting() {
     when (choice) {
         1 -> {
             player("think", "So how does resting work?")
-            npc("cheerful", """
-                    Well, youze sit down and resht.
-                    Then you feel better. Mush better.
-                """)
-            npc("cheerful", """
-                    If youze are lissening to my relaxshing moozik
-                    then iss even bettar. Relaxshing moozik, like mine.
-                """)
+            npc("conflicted", """
+                Well, youze sit down and resht.
+                Then you feel better. Mush better.
+            """)
+            npc("conflicted", """
+                If youze are lissening to my relaxshing moozik
+                then iss even bettar. Relaxshing moozik, like mine.
+            """)
             player("disregard", "Right; that's nice and clear. Thanks.")
             resting()
         }
         2 -> {
             player("happy", "What's special about resting by a musician?")
-            npc("cheerful", """
-                    Moozik's great! My moozik is the bessht.
-                    Mush more relaxshing than those else.
-                """)
+            npc("conflicted", """
+                Moozik's great! My moozik is the bessht.
+                Mush more relaxshing than those else.
+            """)
             resting()
         }
         3 -> {
             player("happy", "Can you summarise the effects for me?")
-            npc("cheerful", """
+            npc("conflicted", """
                 Yeshh, 'course. 'f youze sit down you resht.
                 Moozik make reshting better.
             """)
@@ -87,5 +87,5 @@ suspend fun DialogueContext.resting() {
 
 suspend fun DialogueContext.exit() {
     player("disregard", "That's all for now.")
-    npc("cheerful", "Fanks. Sshtay relaxshed!")
+    npc("conflicted", "Fanks. Sshtay relaxshed!")
 }
