@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
 import world.gregs.voidps.engine.client.ui.dialogue.Expression
-import world.gregs.voidps.engine.client.ui.dialogue.talkWith
+import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -8,8 +8,8 @@ import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.npc
 import world.gregs.voidps.world.interact.dialogue.type.player
 
-on<NPCOption>({ npc.def.name == "Musician" && option == "Talk-to" }) { player: Player ->
-    player.talkWith(npc) {
+on<NPCOption>({ npc.name.startsWith("musician") && option == "Talk-to" }) { player: Player ->
+    player.dialogue(npc) {
         choice()
     }
 }
@@ -19,9 +19,11 @@ suspend fun DialogueContext.choice() {
             Who are you?
             Can I ask you some questions about resting?
             That's all for now
-        """)
+        """,
+        saySelection = false)
     when (choice) {
         1 -> {
+            player("Who are you?", Expression.Think)
             npc("""
                     Me? I'm a musician Let me help you relax: sit down,
                     rest your weary limbs and allow me to wash away the
@@ -96,6 +98,7 @@ suspend fun DialogueContext.resting() {
             resting()
         }
         3 -> {
+            player("Can you summarise the effects for me?", Expression.Cheerful)
             npc("""
                 Certainly. You can rest anywhere, simply choose the Rest
                 option on the run buttons.

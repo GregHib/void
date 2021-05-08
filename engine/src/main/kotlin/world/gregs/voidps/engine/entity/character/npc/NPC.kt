@@ -33,6 +33,9 @@ data class NPC(
     override val events: Events = Events(this)
     override val effects = CharacterEffects()
 
+    val name: String
+        get() = get<NPCDefinitions>().getName(id)
+
     init {
         effects.link(this)
     }

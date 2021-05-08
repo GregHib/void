@@ -1,5 +1,8 @@
 package world.gregs.voidps.engine.entity.item
 
+import world.gregs.voidps.engine.entity.character.contain.equipment
+import world.gregs.voidps.engine.entity.character.player.Player
+
 enum class EquipSlot(val index: Int) {
     None(-1),
     Hat(0),
@@ -25,3 +28,5 @@ enum class EquipSlot(val index: Int) {
 
     }
 }
+
+fun Player.equipped(slot: EquipSlot): Item = equipment.getItem(slot.index)

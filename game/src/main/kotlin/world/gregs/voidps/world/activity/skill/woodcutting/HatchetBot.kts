@@ -4,7 +4,6 @@ import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.has
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -12,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Boosted
 import world.gregs.voidps.engine.entity.character.player.skill.Leveled
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.world.interact.entity.bot.*
@@ -24,7 +24,7 @@ val inventoryHatchets: BotContext.() -> List<Pair<Hatchet, IndexedValue<Item>>> 
 }
 
 val betterThanEquippedHatchet: BotContext.(Pair<Hatchet, IndexedValue<Item>>) -> Double = { (hatchet) ->
-    val currentWeapon = bot.equipment.getItemId(EquipSlot.Weapon.index)
+    val currentWeapon = bot.equipped(EquipSlot.Weapon)
     if (currentWeapon.isBlank()) {
         1.0
     } else {

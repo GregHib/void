@@ -26,7 +26,7 @@ on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Play
     rest(player, -1)
 }
 
-on<NPCOption>({ npc.def.name == "Musician" && option == "Listen-to" }) { player: Player ->
+on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
     rest(player, npc.def["song"])
 }
 
