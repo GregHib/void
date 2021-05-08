@@ -10,17 +10,17 @@ import world.gregs.voidps.utility.get
 
 private val logger = InlineLogger()
 
-suspend fun DialogueContext.npc(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
-    npc(npcId, npcName, text, expression, largeHead, clickToContinue, title)
+suspend fun DialogueContext.npc(expression: Expression, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+    npc(npcId, npcName, expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun DialogueContext.npc(id: String, text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.npc(id: String, expression: Expression, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val definitions: NPCDefinitions = get()
     val npcId = definitions.getId(id)
-    npc(npcId, definitions.getName(npcId), text, expression, largeHead, clickToContinue, title)
+    npc(npcId, definitions.getName(npcId), expression, text, largeHead, clickToContinue, title)
 }
 
-suspend fun DialogueContext.npc(id: Int, npcName: String, text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.npc(id: Int, npcName: String, expression: Expression, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {

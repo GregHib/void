@@ -22,12 +22,12 @@ suspend fun DialogueContext.choice() {
         """)
     when (choice) {
         1 -> {
-            player("Who are you?", Expression.Think)
-            npc("""
+            player(Expression.Think, "Who are you?")
+            npc(Expression.Agree, """
                     Me? Thump-Thump.
                     Me make thump-thumps with thump-thump drum.
                     Other goblins listen.
-                """, Expression.Agree)
+                """)
             choice()
         }
         2 -> resting()
@@ -47,27 +47,27 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("So how does resting work?", Expression.Think)
-            npc("""
+            player(Expression.Think, "So how does resting work?")
+            npc(Expression.Agree, """
                     You stoopid. Goblin sit down, goblin rest,
                     goblin feel better.
-                """, Expression.Agree)
+                """)
             resting()
         }
         2 -> {
-            player("What's special about resting by a musician?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "What's special about resting by a musician?")
+            npc(Expression.Agree, """
                     Drumming good! Make you feel better,
                     boom booms make you run longer!
-                """, Expression.Agree)
+                """)
             resting()
         }
         3 -> {
-            player("Can you summarise the effects for me?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "Can you summarise the effects for me?")
+            npc(Expression.Agree, """
                 Wot? You sit down, you rest.
                 Listen to Thump-Thump is better.
-            """, Expression.Agree)
+            """)
             resting()
         }
         4 -> exit()
@@ -75,6 +75,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("That's all for now.", Expression.Disregard)
-    npc("You listen to boom boom. Good!", Expression.Agree)
+    player(Expression.Disregard, "That's all for now.")
+    npc(Expression.Agree, "You listen to boom boom. Good!")
 }

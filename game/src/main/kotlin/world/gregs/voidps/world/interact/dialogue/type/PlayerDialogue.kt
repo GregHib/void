@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 private val logger = InlineLogger()
 
-suspend fun DialogueContext.player(text: String, expression: Expression = Expression.Talking, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
+suspend fun DialogueContext.player(expression: Expression, text: String, largeHead: Boolean = false, clickToContinue: Boolean = true, title: String? = null) {
     val lines = text.trimIndent().lines()
 
     if (lines.size > 4) {

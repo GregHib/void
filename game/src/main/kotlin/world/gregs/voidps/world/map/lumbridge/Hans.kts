@@ -13,7 +13,7 @@ import world.gregs.voidps.world.interact.dialogue.type.player
 
 on<NPCOption>({ npc.def.name == "Hans" && option == "Talk-to" }) { player: Player ->
     player.talkWith(npc) {
-        npc("Hello. What are you doing here?", Expression.Talking)
+        npc(Expression.Talking, "Hello. What are you doing here?")
         val choice = choice("""
             I'm looking for whoever is in charge of this place.
             I have come to kill everyone in this castle!
@@ -21,17 +21,17 @@ on<NPCOption>({ npc.def.name == "Hans" && option == "Talk-to" }) { player: Playe
         """)
         when (choice) {
             1 -> {
-                player("I'm looking for whoever is in charge of this place.")
-                npc("Who, the Duke? He's in his study, on the first floor.", Expression.Talking)
+                player(Expression.Talking, "I'm looking for whoever is in charge of this place.")
+                npc(Expression.Talking, "Who, the Duke? He's in his study, on the first floor.")
             }
             2 -> {
-                player("I'm looking for whoever is in charge of this place.", Expression.EvilLaugh)
+                player(Expression.EvilLaugh, "I'm looking for whoever is in charge of this place.")
                 npc.forceChat = "Help! Help!"
                 npc.avoid(player)
             }
             3 -> {
-                player("I don't know. I'm lost. Where am I?", Expression.Uncertain)
-                npc("You are in Lumbridge Castle.", Expression.Talking)
+                player(Expression.Uncertain, "I don't know. I'm lost. Where am I?")
+                npc(Expression.Talking, "You are in Lumbridge Castle.")
             }
         }
     }

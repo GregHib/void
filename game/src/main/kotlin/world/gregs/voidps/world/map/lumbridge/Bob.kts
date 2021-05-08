@@ -24,22 +24,22 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
             Can you repair my items for me?
         """)
         when (choice) {
-            1 -> npc("Sorry I don't have any quests for you at the moment.")
+            1 -> npc(Expression.Talking, "Sorry I don't have any quests for you at the moment.")
             2 -> {
-                player("I'd like to trade.", Expression.Disregard)
-                npc("""
+                player(Expression.Disregard, "I'd like to trade.")
+                npc(Expression.Agree, """
                     Great! I buy and sell pickaxes and hatchets. There are
                     plenty to choose from, and I've some free samples too.
                     Take your pick... or hatchet.
-                """, Expression.Agree)
+                """)
                 player.events.emit(OpenShop("bobs_brilliant_axes"))
             }
             3 -> {
-                player("Can you repair my items for me?", Expression.Sad)
-                npc("""
+                player(Expression.Sad, "Can you repair my items for me?")
+                npc(Expression.Shock, """
                     Of course I can, though the material may cost you. Just
                     hand me the item and I'll have a look.
-                """, Expression.Shock)
+                """)
             }
         }
     }
@@ -48,18 +48,18 @@ on<NPCOption>({ npc.def.name == "Bob" && option == "Talk-to" }) { player: Player
 on<InterfaceOnNPC>({ npc.def.name == "Bob" }) { player: Player ->
     player.talkWith(npc) {
         if (!repairable(item.name)) {
-            npc("Sorry friend, but I can't do anything with that.", Expression.Disregard)
+            npc(Expression.Disregard, "Sorry friend, but I can't do anything with that.")
             return@talkWith
         }
         val cost = repairCost(player, item)
-        npc("That'll cost you $cost gold coins to fix, are you sure?")
+        npc(Expression.Talking, "That'll cost you $cost gold coins to fix, are you sure?")
         val choice = choice("""
             Yes I'm sure!
             On second thoughts, no thanks.
         """)
         if (choice == 1 && player.purchase(cost)) {
             player.inventory.replace(item.name, repaired(item.name))
-            npc("There you go. It's a pleasure doing business with you!")
+            npc(Expression.Talking, "There you go. It's a pleasure doing business with you!")
         }
     }
 }

@@ -21,20 +21,20 @@ suspend fun DialogueContext.choice() {
         """)
     when (choice) {
         1 -> {
-            player("Who are you?", Expression.Think)
-            npc("""
+            player(Expression.Think, "Who are you?")
+            npc(Expression.Agree, """
                     Me? I'sh mooshian! Lemme her help youse relaxsh:
                     sit down, reshst your weery limz an' stuff.
                     You'll feel mush better. Like me, I ffeel great!
-                """, Expression.Agree)
-            player("You're drunk, aren't you?", Expression.Think)
-            npc("I'm jus' relaxshed, mate.", Expression.Agree)
-            player("I'm not sure I want to be as relaxed as you are.", Expression.Think)
-            npc("""
+                """)
+            player(Expression.Think, "You're drunk, aren't you?")
+            npc(Expression.Agree, "I'm jus' relaxshed, mate.")
+            player(Expression.Think, "I'm not sure I want to be as relaxed as you are.")
+            npc(Expression.Agree, """
                 Youze'll never be as relaxshed as as I am,
                 I worked hard to get this relaxshed.
-            """, Expression.Agree)
-            player("Clearly...", Expression.Disregard)
+            """)
+            player(Expression.Disregard, "Clearly...")
             choice()
         }
         2 -> resting()
@@ -54,32 +54,32 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("So how does resting work?", Expression.Think)
-            npc("""
+            player(Expression.Think, "So how does resting work?")
+            npc(Expression.Agree, """
                     Well, youze sit down and resht.
                     Then you feel better. Mush better.
-                """, Expression.Agree)
-            npc("""
+                """)
+            npc(Expression.Agree, """
                     If youze are lissening to my relaxshing moozik
                     then iss even bettar. Relaxshing moozik, like mine.
-                """, Expression.Agree)
-            player("Right; that's nice and clear. Thanks.", Expression.Disregard)
+                """)
+            player(Expression.Disregard, "Right; that's nice and clear. Thanks.")
             resting()
         }
         2 -> {
-            player("What's special about resting by a musician?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "What's special about resting by a musician?")
+            npc(Expression.Agree, """
                     Moozik's great! My moozik is the bessht.
                     Mush more relaxshing than those else.
-                """, Expression.Agree)
+                """)
             resting()
         }
         3 -> {
-            player("Can you summarise the effects for me?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "Can you summarise the effects for me?")
+            npc(Expression.Agree, """
                 Yeshh, 'course. 'f youze sit down you resht.
                 Moozik make reshting better.
-            """, Expression.Agree)
+            """)
             resting()
         }
         4 -> exit()
@@ -87,6 +87,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("That's all for now.", Expression.Disregard)
-    npc("Fanks. Sshtay relaxshed!", Expression.Agree)
+    player(Expression.Disregard, "That's all for now.")
+    npc(Expression.Agree, "Fanks. Sshtay relaxshed!")
 }

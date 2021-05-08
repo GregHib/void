@@ -22,16 +22,16 @@ suspend fun DialogueContext.choice() {
         """)
     when (choice) {
         1 -> {
-            player("Who are you?", Expression.Think)
-            npc("""
+            player(Expression.Think, "Who are you?")
+            npc(Expression.Agree, """
                     Me? I'm a musician Let me help you relax: sit down,
                     rest your weary limbs and allow me to wash away the
                     troubles of the day.
-                """, Expression.Agree)
-            npc("""
+                """)
+            npc(Expression.Agree, """
                     After a long trek, what could be better than some
                     music to give you the energy to continue? 
-                """, Expression.Agree)
+                """)
             choice()
         }
         2 -> resting()
@@ -51,66 +51,66 @@ suspend fun DialogueContext.resting() {
     )
     when (choice) {
         1 -> {
-            player("So how does resting work?", Expression.Think)
-            npc("""
+            player(Expression.Think, "So how does resting work?")
+            npc(Expression.Agree, """
                     Have you ever been on a long journey, and simply
                     wanted to have a rest? When you're running from
                     city to city, it's so easy to run out of breath, don't you
                     find?
-                """, Expression.Agree)
-            player("Yes, I can never run as far as I'd like.", Expression.Disregard)
-            npc("""
+                """)
+            player(Expression.Disregard, "Yes, I can never run as far as I'd like.")
+            npc(Expression.Agree, """
                     Well, you may rest anywhere, simply choose the Rest
                     option on the run buttons.
-                """, Expression.Agree)
-            npc("""
+                """)
+            npc(Expression.Agree, """
                     When you are nice and relaxed, you will recharge your
                     run energy more quickly and your life points twice as fast
                     as you would do so normally.
-                """, Expression.Agree)
-            npc("""
+                """)
+            npc(Expression.Talking, """
                     Of course, you can't do anything else while you're
                     resting, other than talk.
-                """, Expression.Talking)
-            player("Why not?", Expression.Disregard)
-            npc("""
+                """)
+            player(Expression.Disregard, "Why not?")
+            npc(Expression.Agree, """
                     Well, you wouldn't be resting, now would you?
                     Also, you should know that resting by a musician, has
                     a similar effect but the benefits are greater.
-                """, Expression.Agree)
+                """)
             resting()
         }
         2 -> {
-            player("What's special about resting by a musician?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "What's special about resting by a musician?")
+            npc(Expression.Agree, """
                     The effects of resting are enhanced by music. Your
                     run energy will recharge many times the normal rate,
                     and your life points three times as fast.
-                """, Expression.Agree)
-            npc("""
+                """)
+            npc(Expression.Agree, """
                     Simply sit down and rest as you would normally, nice
                     and close to the musician. You'll turn to face the
                     musician and hear the music. Like resting anywhere, if
                     you do anything other than talk, you will stop resting.
-                """, Expression.Agree)
+                """)
             resting()
         }
         3 -> {
-            player("Can you summarise the effects for me?", Expression.Cheerful)
-            npc("""
+            player(Expression.Cheerful, "Can you summarise the effects for me?")
+            npc(Expression.Agree, """
                 Certainly. You can rest anywhere, simply choose the Rest
                 option on the run buttons.
-            """, Expression.Agree)
-            npc("""
+            """)
+            npc(Expression.Agree, """
                 Resting anywhere will replenish your run energy more
                 quickly than normal, your life points will replenish
                 twice as fast as well! 
-            """, Expression.Agree)
-            npc("""
+            """)
+            npc(Expression.Agree, """
                 Resting by a musician will replenish your run energy
                 many times faster than normal, and your life points will
                 also replenish three times as fast.
-            """, Expression.Agree)
+            """)
             resting()
         }
         4 -> exit()
@@ -118,6 +118,6 @@ suspend fun DialogueContext.resting() {
 }
 
 suspend fun DialogueContext.exit() {
-    player("That's all for now.", Expression.Disregard)
-    npc("Well, don't forget to have a rest every now and again.", Expression.Agree)
+    player(Expression.Disregard, "That's all for now.")
+    npc(Expression.Agree, "Well, don't forget to have a rest every now and again.")
 }
