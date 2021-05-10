@@ -38,13 +38,13 @@ object XteaCrossReferencer {
 //                map[extra++] = XteaLoader().run(it.absolutePath)
 //            }
 //        }
-        map[extra++] = XteaLoader().run(File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\633\\").absolutePath)
+        map[extra++] = Xteas().apply { XteaLoader().load(this, path = File("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\633\\").absolutePath)}
     }
 
     @JvmStatic
     fun main(args: Array<String>) {
         val library = CacheLibrary("./data/cache/")
-        val xteas = XteaLoader().run("./data/xteas.dat")
+        val xteas = Xteas().apply { XteaLoader().load(xteas = this, path = "./data/xteas.dat") }
 
         val xteasList = all("${System.getProperty("user.home")}\\Downloads\\rs634_cache\\xteas\\xteas.dat")
         more(xteasList)

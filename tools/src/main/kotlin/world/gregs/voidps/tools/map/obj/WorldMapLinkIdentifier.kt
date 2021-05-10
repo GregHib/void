@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
-import world.gregs.voidps.engine.entity.definition.load.ObjectDefinitionLoader
+import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.GameObjectFactory
 import world.gregs.voidps.engine.entity.obj.Objects
@@ -36,7 +36,7 @@ object WorldMapLinkIdentifier {
             modules(cacheModule, cacheDefinitionModule, cacheConfigModule, xteaModule, fileLoaderModule,
                 module {
                     single(override = true) { ObjectDecoder(get(), true, false, false) }
-                    single(createdAtStart = true) { ObjectDefinitionLoader(get(), get()).run(getProperty("objectDefinitionsPath")) }
+                    single(createdAtStart = true) { ObjectDefinitions(get()).load(path = getProperty("objectDefinitionsPath")) }
                     single { Objects() }
                     single { Collisions() }
                     single { MapDecoder(get(), get<Xteas>()) }

@@ -5,12 +5,13 @@ import world.gregs.voidps.cache.CacheDelegate
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.XteaLoader
+import world.gregs.voidps.engine.map.region.Xteas
 
 object XteaValidator {
     @JvmStatic
     fun main(args: Array<String>) = runBlocking {
         val cache = CacheDelegate("./data/cache/")
-        val xteas = XteaLoader().run("./xteas/")
+        val xteas = Xteas().apply { XteaLoader().load(this, "./xteas/") }
 
         val archives = cache.getArchives(Indices.MAPS).toSet()
         var total = 0
