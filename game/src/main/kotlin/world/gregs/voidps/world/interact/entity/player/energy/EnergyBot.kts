@@ -47,14 +47,16 @@ val fullEnergy: BotContext.(Any) -> Double = {
 val listenToMusician = SimpleBotOption(
     "listen to musician",
     targets = { bot.viewport.npcs.current.filter { it.def.options.contains("Listen-to") } },
-    weight = 0.8,
+    weight = 0.5,
     considerations = listOf(
         goingSomewhere,
         lowEnergy,
         distanceToMusician
     ),
     action = {
-        bot.instructions.tryEmit(InteractNPC(npcIndex = it.index, option = 3))// Listen to
+        if (bot.action.type != ActionType.Resting) {
+            bot.instructions.tryEmit(InteractNPC(npcIndex = it.index, option = 3))// Listen to
+        }
     }
 )
 
@@ -68,7 +70,7 @@ val stopResting = SimpleBotOption(
     ),
     action = {
         val movement = bot.getVar("movement", "walk")
-        if (movement == "walk" || movement == "run") {
+        if (movement == "rest" || movement == "music") {
             bot.instructions.tryEmit(Walk(bot.tile.x, bot.tile.y))
         }
     }

@@ -1,27 +1,30 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
-import world.gregs.voidps.ai.exponential
-import world.gregs.voidps.ai.inverse
-import world.gregs.voidps.ai.scale
-import world.gregs.voidps.ai.toDouble
+import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.GameLoop.Companion.tick
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.utility.toTicks
+import world.gregs.voidps.world.activity.bank.bank
 import world.gregs.voidps.world.activity.skill.woodcutting.log.Log
+import world.gregs.voidps.world.activity.skill.woodcutting.log.RegularLog
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.interact.entity.bot.*
 import java.util.concurrent.TimeUnit
@@ -36,7 +39,6 @@ val wantsToCutTrees: BotContext.(Any) -> Double = {
     max(bot.desiredExperience.getOrDefault(Skill.Woodcutting, 0.0),
         bot.desiredItems.getOrDefault("logs", 0.0))
 }
-val doesNotWantToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire.inverse() }
 val hasEquipmentToCutTrees: BotContext.(Any) -> Double = { (Hatchet.get(bot) != null).toDouble() }
 
 val isPreferredArea: BotContext.(MapArea) -> Double = {
@@ -108,8 +110,7 @@ val dropLogs = SimpleBotOption(
     targets = { empty },
     considerations = listOf(
         { bot.impatience },
-        { bot.inventory.count.toDouble().scale(0.0, 28.0) },
-        doesNotWantToStoreLogs
+        { bot.inventory.count.toDouble().scale(0.0, 28.0) }
     ),
     action = {
         var count = 0
@@ -140,9 +141,43 @@ val wait = SimpleBotOption(
     action = {}
 )
 
+on<Registered>({ it.isBot }) { player: Player ->
+    val def: ItemDefinitions = get()
+    RegularLog.values().forEach {
+        updateLogDesires(player, it.name, def.get(it.id).cost)
+    }
+}
+
+on<ItemChanged>({ it.isBot && container == "inventory" && Log.get(item.name) != null }) { player: Player ->
+    updateLogDesires(player, item.name, item.def.cost)
+}
+
+fun calculateNetWorth(player: Player): Long {
+    var worth = 0L
+    for (item in player.inventory.getItems()) {
+        worth += item.def.cost
+    }
+    for (item in player.equipment.getItems()) {
+        worth += item.def.cost
+    }
+    for (item in player.bank.getItems()) {
+        worth += item.def.cost
+    }
+    return worth
+}
+
+fun updateLogDesires(bot: Player, log: String, cost: Int) {
+    val netWorth = calculateNetWorth(bot)
+    val value = if(cost >= netWorth) 1.0 else cost.toDouble().scale(netWorth / 1000000.0, netWorth / 10000.0)
+    val desire = combine(bot.patience, value)
+    bot.desiredItems[log] = desire
+    val storeDesire = max(bot.desiredItemStorage.getOrDefault(log, 1.0), desire)
+    val needForSpace = bot.inventory.count.toDouble().scale(0.0, 28.0)
+    bot.undesiredItems[log] = combine(storeDesire.inverse(), needForSpace)
+}
+
 on<Player, Registered>({ it.isBot }) {
     it.botOptions.add(cutDownTree)
     it.botOptions.add(goToTrees)
-    it.botOptions.add(dropLogs)
     it.botOptions.add(wait)
 }

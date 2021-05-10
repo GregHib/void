@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.activity.skill.woodcutting.log
+package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.ai.*
 import world.gregs.voidps.engine.action.ActionType
@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.Item
@@ -26,11 +25,9 @@ val isNotAtBank: BotContext.(Any) -> Double = {
     val area: MapArea? = bot.getOrNull("area")// TODO extension to simplify
     (area == null || !area.values.containsKey("bank")).toDouble()
 }
-val isNotGoingSomewhere: BotContext.(Any) -> Double = { (!bot["navigating", false]).toDouble() }
 val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.count.toDouble().scale(0.0, 28.0).exponential(7.0) }
-val wantsToCutTrees: BotContext.(Any) -> Double = { bot.woodcuttingDesire }
-val wantsToStoreLogs: BotContext.(Any) -> Double = { bot.logStorageDesire }
-val hasLogsInInventory: BotContext.(Any) -> Double = { bot.inventory.getItems().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it.name, 0.0) } ?: 0.0 }
+val wantsToStoreItem: BotContext.(IndexedValue<Item>) -> Double = { bot.desiredItemStorage.getOrDefault(it.value.name, 0.0) }
+val wantsToStoreItems: BotContext.(Any) -> Double = { bot.inventory.getItems().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it.name, 0.0) } ?: 0.0 }
 
 val goToBank = SimpleBotOption(
     name = "go to bank",
@@ -38,18 +35,15 @@ val goToBank = SimpleBotOption(
     weight = 0.5,
     considerations = listOf(
         isNotAtBank,
-//        isNotGoingSomewhere,
         hasNoInventorySpace,
-        wantsToCutTrees,
-        wantsToStoreLogs,
-        hasLogsInInventory
+        wantsToStoreItems
     ),
     action = {
         bot.goTo(it)
     }
 )
 
-val isNearestBank: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.tile).toDouble().scale(0.0, 20.0).inverse().logit() }
+val isNearestBooth: BotContext.(GameObject) -> Double = { bot.tile.distanceTo(it.tile).toDouble().scale(0.0, 20.0).inverse().logit() }
 val isNotBusy: BotContext.(Any) -> Double = { if (bot.isInteruptable()) 0.75 else (bot.action.type == ActionType.None).toDouble() }
 
 fun Player.isInteruptable() = action.type == ActionType.Movement
@@ -60,10 +54,8 @@ val openBankBooth = SimpleBotOption(
     considerations = listOf(
         isNotBusy,
         hasNoInventorySpace,
-        wantsToCutTrees,
-        wantsToStoreLogs,
-        isNearestBank,
-        hasLogsInInventory
+        isNearestBooth,
+        wantsToStoreItems
     ),
     action = { bank ->
         bot.instructions.tryEmit(InteractObject(objectId = bank.id, x = bank.tile.x, y = bank.tile.y, option = 2))
@@ -71,16 +63,14 @@ val openBankBooth = SimpleBotOption(
 )
 
 
-val isLogs: BotContext.(IndexedValue<Item>) -> Double = { (_, id) -> (Log.get(id.name) != null).toDouble() }
 val bankIsOpen: BotContext.(Any) -> Double = { (bot.action.type == ActionType.Bank).toDouble() }
 
 val depositLogs = SimpleBotOption(
-    name = "deposit all logs into bank",
+    name = "deposit item into bank",
     targets = { bot.inventory.getItems().withIndex() },
     considerations = listOf(
         bankIsOpen,
-        isLogs,
-        wantsToStoreLogs
+        wantsToStoreItem
     ),
     action = { (slot, item) ->
         bot.instructions.tryEmit(InteractInterface(interfaceId = 763, componentId = 0, itemId = item.id, itemSlot = slot, option = 5))

@@ -46,14 +46,6 @@ var Player.step: Instruction?
         }
     }
 
-@Deprecated("Use experience or item desires")
-val Player.woodcuttingDesire: Double
-    get() = get("woodcuttingDesire", 0.0)
-
-@Deprecated("Use item storage desires")
-val Player.logStorageDesire: Double
-    get() = get("logStorageDesire", 0.0)
-
 fun Player.setDesire(item: String, value: Double) {
     desiredItems[item] = value
     undesiredItems.remove(item)
@@ -84,17 +76,19 @@ fun Player.initBot() {
     this["context"] = BotContext(this)
     this["steps"] = LinkedList<Instruction>()
     this["options"] = mutableSetOf<SimpleBotOption<*>>()
-    this["woodcuttingDesire"] = 1.0
-    this["logStorageDesire"] = 1.0
     this["patience"] = 0.5
     this["itemDesire"] = mutableMapOf<String, Double>(
-        "logs" to 1.0
+        "logs" to 1.0,
+        "oak_logs" to 1.0
     )
     this["itemStorageDesire"] = mutableMapOf<String, Double>(
-        "logs" to 1.0
+        "logs" to 1.0,
+        "oak_logs" to 1.0
     )
     this["undesiredItems"] = mutableMapOf<String, Double>()
-    this["experienceDesire"] = mutableMapOf<Skill, Double>()
+    this["experienceDesire"] = mutableMapOf<Skill, Double>(
+        Skill.Woodcutting to 1.0
+    )
 }
 
 fun Player.goTo(map: MapArea): PathResult {
