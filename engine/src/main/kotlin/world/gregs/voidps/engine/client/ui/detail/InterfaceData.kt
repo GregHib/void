@@ -4,8 +4,8 @@ package world.gregs.voidps.engine.client.ui.detail
  * Location of an interface in relation to it's parents and screen mode
  */
 data class InterfaceData(
-    val fixedParent: Int? = null,
-    val resizableParent: Int? = null,
+    val fixedParent: String? = null,
+    val resizableParent: String? = null,
     val fixedIndex: Int? = null,
     val resizableIndex: Int? = null
 ) {

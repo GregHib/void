@@ -22,7 +22,7 @@ internal class ActionTest : KoinMock() {
 
     @BeforeEach
     fun setup() {
-        action = spyk(Action())
+        action = spyk(Action(mockk(relaxed = true)))
     }
 
     @Test

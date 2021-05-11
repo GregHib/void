@@ -23,7 +23,7 @@ data class InterfaceDetail(
         return data?.getIndex(resizable) ?: throw InvalidInterfaceException()
     }
 
-    fun getParent(resizable: Boolean): Int {
+    fun getParent(resizable: Boolean): String {
         return data?.getParent(resizable) ?: throw InvalidInterfaceException()
     }
 

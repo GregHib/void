@@ -19,7 +19,7 @@ on<Command>({ prefix == "inter" }) { player: Player ->
         var parent = if (player.gameFrame.resizable) 746 else 548
         var index = if (player.gameFrame.resizable) 12 else 9
         if (inter.data != null) {
-            parent = inter.getParent(player.gameFrame.resizable)
+            parent = details.get(inter.getParent(player.gameFrame.resizable)).id
             index = inter.getIndex(player.gameFrame.resizable)
         }
         if (id == -1) {

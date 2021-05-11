@@ -89,7 +89,7 @@ abstract class Interfaces(private val details: InterfaceDetails) {
     protected abstract fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean
 
     companion object {
-        const val ROOT_ID = -1
+        const val ROOT_ID = "root"
         const val ROOT_INDEX = 0
     }
 }

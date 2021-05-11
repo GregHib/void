@@ -35,12 +35,9 @@ class InterfaceDetailsLoader(private val loader: FileLoader) {
         val parent = values.readString("parent")
         val fixedParentName = parent ?: values.readString("fixedParent") ?: DEFAULT_FIXED_PARENT
         val resizeParentName = parent ?: values.readString("resizeParent") ?: DEFAULT_RESIZE_PARENT
-        val fixedParent = names.getParentId(fixedParentName)
-        val resizeParent = names.getParentId(resizeParentName)
-
         name to InterfaceData(
-            fixedParent,
-            resizeParent,
+            fixedParentName,
+            resizeParentName,
             fixedIndex,
             resizeIndex
         )
@@ -92,12 +89,6 @@ class InterfaceDetailsLoader(private val loader: FileLoader) {
     private fun Map<String, Any>.getId(): Int {
         val id = readInt("id")
         checkNotNull(id) { "Missing interface id $id" }
-        return id
-    }
-
-    private fun Map<String, Int>.getParentId(name: String): Int {
-        val id = this[name]
-        checkNotNull(id) { "Missing parent $name" }
         return id
     }
 

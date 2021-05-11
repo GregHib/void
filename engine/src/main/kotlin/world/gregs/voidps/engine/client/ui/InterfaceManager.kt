@@ -112,12 +112,12 @@ class InterfaceManager(
     }
 
     private fun closeChildrenOf(parent: InterfaceDetail) {
-        val children = getChildren(parent.id)
+        val children = getChildren(parent.name)
         children.forEach { child ->
             close(child)
         }
     }
 
-    private fun getChildren(parent: Int): List<InterfaceDetail> =
+    private fun getChildren(parent: String): List<InterfaceDetail> =
         openInterfaces.filter { inter -> inter.getParent(gameFrame.resizable) == parent }
 }

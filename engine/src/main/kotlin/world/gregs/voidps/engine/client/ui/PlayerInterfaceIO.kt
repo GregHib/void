@@ -1,12 +1,15 @@
 package world.gregs.voidps.engine.client.ui
 
+import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
+import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.encode.*
+import world.gregs.voidps.utility.get
 
 /**
  * Instructions to external systems
@@ -17,19 +20,21 @@ class PlayerInterfaceIO(
 
     override fun sendOpen(inter: InterfaceDetail) {
         val parent = inter.getParent(player.gameFrame.resizable)
-        if (parent == -1) {
+        if (parent == ROOT_ID) {
             player.client?.updateInterface(inter.id, 0)
         } else {
             val index = inter.getIndex(player.gameFrame.resizable)
             val permanent = inter.type != "main_screen" && inter.type != "underlay" && inter.type != "dialogue_box"
-            player.client?.openInterface(permanent, parent, index, inter.id)
+            val details: InterfaceDetails = get()
+            player.client?.openInterface(permanent, details.get(parent).id, index, inter.id)
         }
     }
 
     override fun sendClose(inter: InterfaceDetail) {
         val index = inter.getIndex(player.gameFrame.resizable)
         val parent = inter.getParent(player.gameFrame.resizable)
-        player.client?.closeInterface(parent, index)
+        val details: InterfaceDetails = get()
+        player.client?.closeInterface(details.get(parent).id, index)
     }
 
     override fun notifyClosed(inter: InterfaceDetail) {
