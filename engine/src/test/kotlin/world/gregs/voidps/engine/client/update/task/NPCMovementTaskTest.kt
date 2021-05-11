@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.npc.NPCMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -20,10 +21,6 @@ import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 29, 2020
- */
 internal class NPCMovementTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)
@@ -39,6 +36,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         npcs = mockk(relaxed = true)
         npc = mockk(relaxed = true)
         task = NPCMovementTask(npcs, mockk(relaxed = true))
+        mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
         every { npcs.forEach(any()) } answers {
             val action: (NPC) -> Unit = arg(0)
             action.invoke(npc)
@@ -67,8 +65,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         steps.add(Direction.NORTH)
         steps.add(Direction.NORTH)
         every { npc.movement } returns movement
+        every { npc.running } returns false
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
         // When
@@ -93,7 +93,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
-        every { movement.running } returns false
+        every { npc.running } returns false
         // When
         task.run()
         // Then
@@ -115,7 +115,7 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
         every { npc.movementType = any() } just Runs
-        every { movement.running } returns true
+        every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
         // When
         task.run()
@@ -138,9 +138,10 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
-        every { movement.running } returns true
+        every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
         every { movement.delta = any() } just Runs
         // When
@@ -167,10 +168,11 @@ internal class NPCMovementTaskTest : KoinMock() {
         every { npc.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         every { npc.movementType = any() } just Runs
-        every { movement.running } returns true
+        every { npc.running } returns true
         every { movement.delta } returns value(Direction.NORTH.delta)
         every { movement.delta = any() } just Runs
         // When

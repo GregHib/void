@@ -71,6 +71,7 @@ fun Player.dialogue(id: Int, name: String, function: suspend DialogueContext.() 
 fun Player.talkWith(npc: NPC, function: suspend DialogueContext.() -> Unit) {
     dialogues.start(this, npc) {
         try {
+            npc.movement.clear()
             npc.watch(player)
             function.invoke(this)
         } finally {

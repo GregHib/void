@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task.npc
 
 import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCMoveType
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -10,8 +11,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile npcs are located on based on [Movement.delta] and [Movement.steps]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 class NPCMovementTask(
     private val npcs: NPCs,
@@ -20,11 +19,10 @@ class NPCMovementTask(
 
     override fun run() = runBlocking {
         npcs.forEach { npc ->
-            val locked = npc.movement.frozen
-            if (!locked) {
+            if (!npc.movement.frozen) {
                 step(npc)
-                move(npc)
             }
+            move(npc)
         }
     }
 
@@ -34,13 +32,14 @@ class NPCMovementTask(
     fun step(npc: NPC) {
         val movement = npc.movement
         val steps = movement.steps
-        if (steps.peek() != null) {
+        movement.moving = steps.peek() != null
+        if (movement.moving) {
             var step = steps.poll()
             if (!movement.traversal.blocked(npc.tile, step)) {
                 movement.walkStep = step
                 movement.delta = step.delta
                 npc.movementType = if (npc.crawling) NPCMoveType.Crawl else NPCMoveType.Walk
-                if (movement.running) {
+                if (npc.running) {
                     if (steps.peek() != null) {
                         val tile = npc.tile.add(step.delta)
                         step = steps.poll()

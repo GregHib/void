@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.client.update.task.player.PlayerMovementTask
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.Movement
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -21,10 +22,6 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.script.KoinMock
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 29, 2020
- */
 internal class PlayerMovementTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)
@@ -42,6 +39,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         player = mockk(relaxed = true)
         viewport = mockk(relaxed = true)
         task = PlayerMovementTask(players, mockk(relaxed = true))
+        mockkStatic("world.gregs.voidps.engine.entity.character.move.MovementKt")
         every { players.forEach(any()) } answers {
             val action: (Player) -> Unit = arg(0)
             action.invoke(player)
@@ -88,8 +86,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.MovementType")
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.TemporaryMoveType")
         every { player.movement } returns movement
+        every { player.running } returns false
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
         // When
@@ -115,7 +115,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
-        every { movement.running } returns false
+        every { player.running } returns false
         // When
         task.run()
         // Then
@@ -139,7 +139,7 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { movement.traversal } returns traversal
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns true
-        every { movement.running } returns true
+        every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
         task.run()
@@ -165,9 +165,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
-        every { movement.running } returns true
+        every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
         task.run()
@@ -196,9 +197,10 @@ internal class PlayerMovementTaskTest : KoinMock() {
         every { player.movement } returns movement
         every { movement.steps } returns steps
         every { movement.traversal } returns traversal
+        every { movement.moving } returns true
         every { viewport.loaded } returns true
         every { traversal.blocked(anyValue(), Direction.NORTH) } returns false
-        every { movement.running } returns true
+        every { player.running } returns true
         every { movement.delta } returns Direction.NORTH.delta
         // When
         task.run()

@@ -84,7 +84,7 @@ on<Command>({ prefix == "time" }) { player: Player ->
 }
 
 on<Command>({ prefix == "watch" }) { player: Player ->
-    val bot = players.indexed.firstOrNull { it != null && it.name.startsWith("Bot") }
+    val bot = players.indexed.firstOrNull { it != null && it.name == content }
     if (bot != null) {
         player.watch(bot)
     }

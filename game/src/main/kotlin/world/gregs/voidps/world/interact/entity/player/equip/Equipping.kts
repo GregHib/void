@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 
@@ -37,7 +38,7 @@ on<Registered> { player: Player ->
 }
 
 fun updateWeaponEmote(player: Player) {
-    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val weapon = player.equipped(EquipSlot.Weapon)
     val anim = weapon.def.getParam(644, 1426)
     player.emote = anim
 }
@@ -68,6 +69,6 @@ fun hasTwoHandedWeapon(player: Player, item: ItemDefinition) =
 fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == EquipSlot.Weapon && item["type", EquipType.None] == EquipType.TwoHanded
 
 fun holdingTwoHandedWeapon(player: Player): Boolean {
-    val weapon = player.equipment.getItem(EquipSlot.Weapon.index)
+    val weapon = player.equipped(EquipSlot.Weapon)
     return weapon.def["type", EquipType.None] == EquipType.TwoHanded
 }

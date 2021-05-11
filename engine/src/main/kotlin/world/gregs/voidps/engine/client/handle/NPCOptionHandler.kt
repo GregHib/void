@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.handle
 
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,17 +26,22 @@ class NPCOptionHandler : Handler<InteractNPC>() {
             return
         }
 
+        val selectedOption = options[index]
+        val click = NPCClick(npc, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
         player.watch(npc)
         player.face(npc)
-        val selectedOption = options[index]
-        player.walkTo(npc) { result ->
+        player.walkTo(npc) {
             player.watch(null)
             player.face(npc)
-            if (result is PathResult.Failure) {
+            if (player.movement.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Partial
+            val partial = player.movement.result is PathResult.Partial
             player.events.emit(NPCOption(npc, selectedOption, partial))
         }
     }

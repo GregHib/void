@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.PlayerFactory
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
@@ -60,7 +61,7 @@ fun spawnBots(count: Int) {
                 delay(2)
                 bot.action.type = ActionType.None
                 bots.add(bot)
-                bot.movement.running = true
+                bot.running = true
             }
         }
     }

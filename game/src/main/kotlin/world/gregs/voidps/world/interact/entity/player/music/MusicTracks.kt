@@ -1,13 +1,17 @@
 package world.gregs.voidps.world.interact.entity.player.music
 
 import org.koin.dsl.module
+import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.network.encode.playMusicTrack
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
 
@@ -67,4 +71,11 @@ class MusicTracks {
     }
 
     data class Track(val index: Int, val area: Area)
+}
+
+fun Player.play(musicIndex: Int) {
+    val enumDefs: EnumDecoder = get()
+    playMusicTrack(enumDefs.get(1351).getInt(musicIndex))
+    interfaces.sendText("music_player", "currently_playing", enumDefs.get(1345).getString(musicIndex))
+    this["current_track"] = musicIndex
 }

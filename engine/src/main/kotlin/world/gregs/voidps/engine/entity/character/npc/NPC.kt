@@ -26,12 +26,15 @@ data class NPC(
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
     override val movement: Movement = Movement(tile.minus(1)),
-    override val action: Action = Action(),
     override val values: CharacterValues = CharacterValues()
 ) : Character {
 
     override val events: Events = Events(this)
+    override val action: Action = Action(events)
     override val effects = CharacterEffects()
+
+    val name: String
+        get() = get<NPCDefinitions>().getName(id)
 
     init {
         effects.link(this)

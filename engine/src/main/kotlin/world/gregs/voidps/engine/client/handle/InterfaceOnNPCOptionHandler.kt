@@ -94,10 +94,10 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         }
 
 
-        player.walkTo(npc) { result ->
+        player.walkTo(npc) {
             player.watch(null)
             player.face(npc)
-            if (result is PathResult.Failure) {
+            if (player.movement.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }

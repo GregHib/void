@@ -36,7 +36,7 @@ on<ContainerAction>({ container == "inventory" && option == "Discard" }) { playe
         val discard = choice("""
                 Yes, discard it. I won't need it again.
                 No, I'll keep hold of it.
-            """, "Really discard item?", saySelection = false)
+            """, "Really discard item?")
 
         if (discard == 1) {
             player.message("The item has been returned to it's owner.")

@@ -4,17 +4,20 @@ import world.gregs.voidps.ai.scale
 import world.gregs.voidps.ai.toDouble
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.has
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Boosted
 import world.gregs.voidps.engine.entity.character.player.skill.Leveled
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractInterface
+import world.gregs.voidps.world.activity.skill.woodcutting.log.RegularLog
 import world.gregs.voidps.world.interact.entity.bot.*
+import kotlin.math.max
 
 val inventoryHatchets: BotContext.() -> List<Pair<Hatchet, IndexedValue<Item>>> = {
     bot.inventory.getItems().withIndex().mapNotNull {
@@ -24,19 +27,26 @@ val inventoryHatchets: BotContext.() -> List<Pair<Hatchet, IndexedValue<Item>>> 
 }
 
 val betterThanEquippedHatchet: BotContext.(Pair<Hatchet, IndexedValue<Item>>) -> Double = { (hatchet) ->
-    val currentWeapon = bot.equipment.getItemId(EquipSlot.Weapon.index)
-    if (currentWeapon.isBlank()) {
+    val currentWeapon = bot.equipped(EquipSlot.Weapon)
+    if (currentWeapon.isEmpty()) {
         1.0
     } else {
-        val current = Hatchet.get(currentWeapon)
+        val current = Hatchet.get(currentWeapon.name)
         (current != null && current.ordinal < hatchet.ordinal).toDouble()
     }
+}
+
+val noInventoryOverlayOpen: BotContext.(Any) -> Double = {
+    (bot.interfaces.get("overlay_tab") == null).toDouble()
 }
 
 val equipHatchet = SimpleBotOption(
     name = "equip better hatchet or if no weapon",
     targets = inventoryHatchets,
-    considerations = listOf(betterThanEquippedHatchet),
+    considerations = listOf(
+        noInventoryOverlayOpen,
+        betterThanEquippedHatchet
+    ),
     action = { (_, it) ->
         bot.instructions.tryEmit(InteractInterface(149, 0, it.value.id, it.index, 1))
     }
@@ -61,7 +71,10 @@ on<ItemChanged>({ it.isBot && Hatchet.isHatchet(item.name) }) { bot: Player ->
 
 fun updateHatchetDesire(bot: Player) {
     val best = (Hatchet.highest(bot)?.index ?: -1) + 1.0
-    val woodcuttingDesire = bot.woodcuttingDesire
+    val woodcuttingDesire = max(
+        RegularLog.values().maxOfOrNull { bot.desiredItemStorage.getOrDefault(it.name, 0.0) } ?: 0.0,
+        bot.desiredExperience.getOrDefault(Skill.Woodcutting, 0.0)
+    )
     var hasHatchet = false
     // For all hatchets best - worst
     Hatchet.regular.reversed().forEach { hatchet ->
@@ -88,5 +101,4 @@ fun updateHatchetDesire(bot: Player) {
             bot.undesiredItems.remove(hatchet.id)
         }
     }
-    println("Desires ${bot.desiredItems} ${bot.undesiredItems}")
 }

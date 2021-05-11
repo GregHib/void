@@ -73,3 +73,199 @@
   spawns:
     - name: shopkeeper_lumbridge
     - name: shop_assistant_lumbridge
+- name: Lumbridge musician
+  area:
+    x: [ 3233 ]
+    y: [ 3233 ]
+  spawns:
+    - name: musician_lumbridge
+      direction: WEST
+- name: Draynor musician
+  area:
+    x: [ 3110 ]
+    y: [ 3253 ]
+  spawns:
+    - name: musician_draynor_village
+      direction: EAST
+- name: Varrock south musician
+  area:
+    x: [ 3289 ]
+    y: [ 3339 ]
+  spawns:
+    - name: musician_gower_farm
+      direction: SOUTH
+- name: Lumber yard musician
+  area:
+    x: [ 3291 ]
+    y: [ 3455 ]
+  spawns:
+    - name: musician_lumber_yard
+      direction: WEST
+- name: Al kharid musician
+  area:
+    x: [ 3292 ]
+    y: [ 3212 ]
+  spawns:
+    - name: musician_al_kharid
+      direction: NORTH
+- name: Shanty pass musician
+  area:
+    x: [ 3309 ]
+    y: [ 3126 ]
+  spawns:
+    - name: musician_shantay_pass
+      direction: WEST
+- name: Port sarim musician
+  area:
+    x: [ 3017 ]
+    y: [ 3277 ]
+  spawns:
+    - name: musician_port_sarim
+      direction: SOUTH
+- name: Falador musician
+  area:
+    x: [ 3017 ]
+    y: [ 3277 ]
+  spawns:
+    - name: musician_falador
+      direction: SOUTH
+- name: Edgeville musician
+  area:
+    x: [ 3057 ]
+    y: [ 3472 ]
+  spawns:
+    - name: musician_edgeville
+      direction: SOUTH
+- name: Cook's guild musician
+  area:
+    x: [ 3153 ]
+    y: [ 3422 ]
+  spawns:
+    - name: musician_cooks_guild
+      direction: SOUTH
+- name: Catherby musician
+  area:
+    x: [ 2849 ]
+    y: [ 3439 ]
+  spawns:
+    - name: musician_catherby
+      direction: SOUTH
+- name: Seers' village musician
+  area:
+    x: [ 2657 ]
+    y: [ 3570 ]
+  spawns:
+    - name: musician_rellekka
+      direction: EAST
+- name: Rellekka musician
+  area:
+    x: [ 2655 ]
+    y: [ 3694 ]
+  spawns:
+    - name: musician_rellekka
+      direction: EAST
+- name: Mountain camp musician
+  area:
+    x: [ 2760 ]
+    y: [ 3644 ]
+  spawns:
+    - name: musician_mountain_camp
+      direction: SOUTH
+- name: Miscellenia musician
+  area:
+    x: [ 2536 ]
+    y: [ 3861 ]
+  spawns:
+    - name: musician_miscellania
+      direction: NORTH
+- name: Port khazard musician
+  area:
+    x: [ 2536 ]
+    y: [ 3861 ]
+  spawns:
+    - name: musician_port_khazard
+      direction: WEST
+- name: Piscatoris musician
+  area:
+    x: [ 2363 ]
+    y: [ 3492 ]
+  spawns:
+    - name: musician_piscatoris
+      direction: WEST
+- name: Yanille musician
+  area:
+    x: [ 2526 ]
+    y: [ 3096 ]
+  spawns:
+    - name: musician_yanille
+      direction: SOUTH
+- name: Tai bwo wannai musician
+  area:
+    x: [ 2771 ]
+    y: [ 3131 ]
+  spawns:
+    - name: musician_tai_bwo_wannai
+      direction: SOUTH
+- name: Shilo village musician
+  area:
+    x: [ 2811 ]
+    y: [ 2947 ]
+  spawns:
+    - name: musician_shilo_village
+      direction: SOUTH
+- name: Fishing guild musician
+  area:
+    x: [ 2605 ]
+    y: [ 3385 ]
+  spawns:
+    - name: musician_fishing_guild
+      direction: SOUTH
+- name: Sophanem musician
+  area:
+    x: [ 3278 ]
+    y: [ 2802 ]
+  spawns:
+    - name: musician_sophanem
+      direction: SOUTH
+- name: Fenkenstrain's castle musician
+  area:
+    x: [ 3582 ]
+    y: [ 3524 ]
+  spawns:
+    - name: musician_fenkenstrains_castle
+      direction: SOUTH
+- name: Nature grotto musician
+  area:
+    x: [ 3424 ]
+    y: [ 3320 ]
+  spawns:
+    - name: bill_blakey
+      direction: SOUTH
+- name: Stealing creation musician
+  area:
+    x: [ 3143 ]
+    y: [ 3642 ]
+  spawns:
+    - name: goblin_musician
+      direction: WEST
+- name: Red dragon isle musician
+  area:
+    x: [ 3244 ]
+    y: [ 3821 ]
+  spawns:
+    - name: ghostly_piper
+      direction: SOUTH
+- name: The forgotten cemetery musician
+  area:
+    x: [ 3003 ]
+    y: [ 3739 ]
+  spawns:
+    - name: drunken_musician
+      direction: SOUTH
+- name: Isafdar musician
+  area:
+    x: [ 2255 ]
+    y: [ 3190 ]
+  spawns:
+    - name: musician_isafdar
+      direction: SOUTH

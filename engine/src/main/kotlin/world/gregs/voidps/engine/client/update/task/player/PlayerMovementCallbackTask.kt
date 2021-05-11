@@ -12,17 +12,12 @@ class PlayerMovementCallbackTask(private val players: Players) : Runnable {
 
     override fun run() {
         players.forEach { player ->
-            val locked = player.movement.frozen || !player.viewport.loaded
-            if (!locked) {
-                val movement = player.movement
-                val steps = movement.steps
-                if (steps.isEmpty()) {
-                    val callback = movement.callback
-                    if (callback != null) {
-                        callback.invoke()
-                        movement.callback = null
-                    }
-                }
+            val movement = player.movement
+            val locked = movement.frozen || !player.viewport.loaded
+            val action = movement.action
+            if (!locked && action != null && movement.steps.isEmpty()) {
+                action.invoke()
+                movement.action = null
             }
         }
     }

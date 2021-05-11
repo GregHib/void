@@ -15,6 +15,7 @@ data class Item(
     @get:JsonIgnore
     val def: ItemDefinition
         get() = get<ItemDefinitions>().get(name)
+
     @get:JsonIgnore
     val id: Int
         get() = def.id
@@ -25,10 +26,14 @@ data class Item(
     @JsonIgnore
     fun isNotEmpty() = name.isNotBlank()
 
-    fun toNote(): Item? = if (def.notedTemplateId != -1 && def.noteId != -1) {
-        copy(name = get<ItemDefinitions>().getName(def.noteId))
+    fun toNote(): Item? = if (def.notedTemplateId != -1) {
+        if (def.noteId != -1) {
+            copy(name = get<ItemDefinitions>().getName(def.noteId))
+        } else {
+            null
+        }
     } else {
-        null
+        this
     }
 
     companion object {

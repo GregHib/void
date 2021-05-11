@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.effect.ColourOverlay
 import world.gregs.voidps.engine.entity.character.effect.Transform
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.*
@@ -82,7 +83,7 @@ on<Command>({ prefix == "npccrawl" }) { player: Player ->
 
 on<Command>({ prefix == "npcrun" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.movement.running = true
+    npc.running = true
     npc.movement.steps.add(Direction.NORTH)
     npc.movement.steps.add(Direction.NORTH)
 }

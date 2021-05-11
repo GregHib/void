@@ -39,7 +39,7 @@ data class NPCs(
     fun add(name: String, area: Area, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(name)
         val traversal = getTraversal(def)
-        val tile = area.random(traversal)
+        val tile = if (area.area == 0.0) area.random() else area.random(traversal)
         if (tile == null) {
             logger.warn { "No free area found for npc spawn $name $area" }
             return null

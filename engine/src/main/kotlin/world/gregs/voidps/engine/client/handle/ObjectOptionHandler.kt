@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
+import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.Stairs
@@ -36,15 +37,20 @@ class ObjectOptionHandler : Handler<InteractObject>() {
             return
         }
 
-        player.face(target)
         val selectedOption = options[index]
-        player.walkTo(target) { result ->
+        val click = ObjectClick(target, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
+        player.face(target)
+        player.walkTo(target) {
             player.face(target)
-            if (result is PathResult.Failure) {
+            if (player.movement.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Partial
+            val partial = player.movement.result is PathResult.Partial
             stairs.option(player, target, selectedOption)
             player.events.emit(ObjectOption(target, selectedOption, partial))
         }

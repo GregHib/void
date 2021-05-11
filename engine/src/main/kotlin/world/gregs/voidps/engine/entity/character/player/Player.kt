@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
@@ -61,8 +62,6 @@ class Player(
     override val visuals: Visuals = Visuals(),
     @JsonIgnore
     override val movement: Movement = Movement(),
-    @JsonIgnore
-    override val action: Action = Action(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
     val variables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
@@ -87,6 +86,9 @@ class Player(
 
     @JsonIgnore
     override val events: Events = Events(this)
+
+    @JsonIgnore
+    override val action: Action = Action(events)
 
     @JsonIgnore
     val requests: Requests = Requests(this)
@@ -116,7 +118,7 @@ class Player(
     var changeValue: Int = -1
 
     fun start() {
-        movement.previousTile = tile
+        movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(experience, events)
         effects.link(this)

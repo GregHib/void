@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.update.task.player
 
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.entity.character.Moved
+import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -12,8 +13,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 class PlayerMovementTask(
     private val players: Players,
@@ -22,9 +21,10 @@ class PlayerMovementTask(
 
     override fun run() {
         players.forEach { player ->
-            val locked = player.movement.frozen || !player.viewport.loaded
-            if (!locked) {
-                step(player)
+            if (player.viewport.loaded) {
+                if (!player.movement.frozen) {
+                    step(player)
+                }
                 move(player)
             }
         }
@@ -36,18 +36,21 @@ class PlayerMovementTask(
     fun step(player: Player) {
         val movement = player.movement
         val steps = movement.steps
-        if (steps.peek() != null) {
+        movement.moving = steps.peek() != null
+        if (movement.moving) {
             var step = steps.poll()
             if (!movement.traversal.blocked(player.tile, step)) {
+                movement.previousTile = player.tile
                 movement.walkStep = step
                 movement.delta = step.delta
                 player.movementType = PlayerMoveType.Walk
                 player.temporaryMoveType = PlayerMoveType.Walk
-                if (movement.running) {
+                if (player.running) {
                     if (steps.peek() != null) {
                         val tile = player.tile.add(step.delta)
                         step = steps.poll()
                         if (!movement.traversal.blocked(tile, step)) {
+                            movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
                             player.movementType = PlayerMoveType.Run
@@ -69,7 +72,6 @@ class PlayerMovementTask(
         val movement = player.movement
         movement.trailingTile = player.tile
         if (movement.delta != Delta.EMPTY) {
-            movement.previousTile = player.tile
             val from = player.tile
             player.tile = player.tile.add(movement.delta)
             players.update(from, player.tile, player)
