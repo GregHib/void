@@ -6,9 +6,9 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
@@ -21,9 +21,21 @@ val animations = setOf(
     "rest_arms_crossed",
     "rest_legs_out"
 )
+val alreadyResting = "You are already resting."
 
 on<InterfaceOption>({ name == "energy_orb" && option == "Rest" }) { player: Player ->
-    rest(player, -1)
+    if (player.getVar("movement", "walk") == "rest") {
+        player.message(alreadyResting)
+    } else {
+        rest(player, -1)
+    }
+}
+
+on<NPCClick>({ option == "Listen-to" }) { player: Player ->
+    if (player.getVar("movement", "walk") == "music") {
+        player.message(alreadyResting)
+        cancel = true
+    }
 }
 
 on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: Player ->
@@ -31,10 +43,6 @@ on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: 
 }
 
 fun rest(player: Player, music: Int) {
-    if (player.action.type == ActionType.Resting) {
-        player.message("You are already resting.")
-        return
-    }
     player.action(ActionType.Resting) {
         player.movement.clear()
         player["movement"] = player.getVar("movement", "walk")
@@ -45,8 +53,6 @@ fun rest(player: Player, music: Int) {
             player.setAnimation(anim)
             if (music != -1) {
                 player.play(music)
-            } else {
-                player.message("You begin resting..", ChatType.GameFilter)
             }
             await(Suspension.Infinite)
         } finally {
@@ -57,7 +63,7 @@ fun rest(player: Player, music: Int) {
                 player.play(lastTrack)
             }
             player.movement.frozen = true
-            delay(player, 3) {
+            delay(player, 2) {
                 player.clearAnimation()
                 player.movement.frozen = false
             }

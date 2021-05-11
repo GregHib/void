@@ -46,9 +46,9 @@ class GameLoop(
 
     private fun printTickIfOverThreshold(nano: Long, tick: Long) {
         val millis = TimeUnit.NANOSECONDS.toMillis(nano)
-        if (millis >= MILLI_THRESHOLD) {
+//        if (millis >= MILLI_THRESHOLD) {
             logger.info { "Tick $tick took ${millis}ms" }
-        }
+//        }
     }
 
     private fun loopTickStages() = runBlocking(Contexts.Game) {

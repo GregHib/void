@@ -46,7 +46,6 @@ class Stairs(
                 delay(2)
             }
             player.move(tele.delta)
-//            await<Unit>(Suspension.Path)
             delay(1)
         }
     }
