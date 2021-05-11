@@ -49,7 +49,6 @@ fun Player.tele(delta: Delta) {
 }
 
 fun Player.move(delta: Delta) {
-    movement.target = false
     movement.clear()
     movement.delta = delta
     movement.strategy = null

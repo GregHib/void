@@ -14,14 +14,14 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
     private val logger = InlineLogger()
 
     override fun predicate(entity: Player): Boolean {
-        return entity.movement.target
+        return entity.movement.strategy != null
     }
 
     override fun runAsync(player: Player) {
         val strategy = player.movement.strategy!!
-        player.movement.target = false
         player.movement.result = finder.find(player, strategy)
         logger.debug { "Path length: ${player.movement.steps.size}" }
+        player.movement.strategy = null
     }
 
 }

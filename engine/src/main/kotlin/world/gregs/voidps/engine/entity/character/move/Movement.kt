@@ -36,7 +36,6 @@ data class Movement(
     var moving = false
     var strategy: TileTargetStrategy? = null
     var action: (() -> Unit)? = null
-    var target: Boolean = false
     var result: PathResult = PathResult.Failure
 
     lateinit var traversal: TileTraversalStrategy
@@ -68,7 +67,6 @@ fun Player.walkTo(strategy: TileTargetStrategy, action: () -> Unit) {
         this.action.cancel()
         dialogues.clear()
         movement.clear()
-        movement.target = true
         movement.strategy = strategy
         movement.action = action
     }
@@ -80,7 +78,6 @@ fun Character.avoid(target: Character) {
     action(ActionType.Movement) {
         try {
             movement.clear()
-            movement.target = true
             movement.strategy = strategy
             watch(target)
             val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)
