@@ -40,6 +40,7 @@ class PlayerMovementTask(
         if (movement.moving) {
             var step = steps.poll()
             if (!movement.traversal.blocked(player.tile, step)) {
+                movement.previousTile = player.tile
                 movement.walkStep = step
                 movement.delta = step.delta
                 player.movementType = PlayerMoveType.Walk
@@ -49,6 +50,7 @@ class PlayerMovementTask(
                         val tile = player.tile.add(step.delta)
                         step = steps.poll()
                         if (!movement.traversal.blocked(tile, step)) {
+                            movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
                             player.movementType = PlayerMoveType.Run
@@ -70,7 +72,6 @@ class PlayerMovementTask(
         val movement = player.movement
         movement.trailingTile = player.tile
         if (movement.delta != Delta.EMPTY) {
-            movement.previousTile = player.tile
             val from = player.tile
             player.tile = player.tile.add(movement.delta)
             players.update(from, player.tile, player)

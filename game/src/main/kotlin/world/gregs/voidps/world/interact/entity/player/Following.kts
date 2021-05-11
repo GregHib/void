@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player
 
+import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,8 +15,11 @@ val path: PathFinder by inject()
 on<PlayerOption>({ option == "Follow" }) { player: Player ->
     player.watch(target)
     player.action(ActionType.Follow) {
+        val handler = target.events.on<Player, ActionStarted>({ shouldDisengage(type) }) {
+            cancel()
+        }
         try {
-            while (!disengageTarget(target)) {
+            while (true) {
                 if (!player.reached(target)) {
                     player.movement.clear()
                     path.find(player, target.followTarget, false)
@@ -24,6 +28,7 @@ on<PlayerOption>({ option == "Follow" }) { player: Player ->
             }
         } finally {
             player.watch(null)
+            target.events.remove(handler)
         }
     }
 }
@@ -32,7 +37,6 @@ fun Player.reached(target: Player): Boolean {
     return target.followTarget.reached(tile, size)
 }
 
-fun disengageTarget(target: Player): Boolean {
-    val action = target.action.type
-    return action == ActionType.Teleport || action == ActionType.Logout
+fun shouldDisengage(type: ActionType): Boolean {
+    return type == ActionType.Teleport || type == ActionType.Climb || type == ActionType.Logout
 }

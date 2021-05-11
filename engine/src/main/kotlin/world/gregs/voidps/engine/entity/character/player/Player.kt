@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
@@ -117,7 +118,7 @@ class Player(
     var changeValue: Int = -1
 
     fun start() {
-        movement.previousTile = tile
+        movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(experience, events)
         effects.link(this)

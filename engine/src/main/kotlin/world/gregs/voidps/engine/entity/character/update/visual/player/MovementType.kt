@@ -53,6 +53,7 @@ fun Player.move(delta: Delta) {
     movement.delta = delta
     movement.strategy = null
     movement.result = PathResult.Failure
+    movement.previousTile = tile
     if (movement.delta != Delta.EMPTY) {
         movementType = PlayerMoveType.Teleport
     }
