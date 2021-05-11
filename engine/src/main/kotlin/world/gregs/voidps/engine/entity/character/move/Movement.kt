@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.move
 
-import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
@@ -17,9 +17,9 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.utility.get
 import java.util.*
-import kotlin.coroutines.resume
 
 data class Movement(
     var previousTile: Tile = Tile.EMPTY,
@@ -33,11 +33,11 @@ data class Movement(
 ) {
 
     var moving = false
-    var completable: ((PathResult) -> Unit)? = null
     var strategy: TileTargetStrategy? = null
+    var action: (() -> Unit)? = null
     var target: Boolean = false
+    var result: PathResult = PathResult.Failure
 
-    var callback: (() -> Unit)? = null
     lateinit var traversal: TileTraversalStrategy
 
     fun clear() {
@@ -57,23 +57,19 @@ var Character.running: Boolean
     get() = get("running", false)
     set(value) = set("running", value)
 
-fun Player.walkTo(target: Any, action: (PathResult) -> Unit) {
+fun Player.walkTo(target: Any, action: () -> Unit) {
     walkTo(getStrategy(target), action)
 }
 
-fun Player.walkTo(strategy: TileTargetStrategy, action: (PathResult) -> Unit) {
-    action(ActionType.Movement) {
+fun Player.walkTo(strategy: TileTargetStrategy, action: () -> Unit) {
+    sync {
+
         watch(null)
         dialogues.clear()
         movement.clear()
         movement.target = true
         movement.strategy = strategy
-        suspendCancellableCoroutine<Unit> { continuation ->
-            movement.completable = {
-                action.invoke(it)
-                continuation.resume(Unit)
-            }
-        }
+        movement.action = action
     }
 }
 
@@ -88,11 +84,7 @@ fun Character.avoid(target: Character) {
             watch(target)
             val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)
             if (result is PathResult.Success) {
-                suspendCancellableCoroutine<Unit> { continuation ->
-                    movement.completable = {
-                        continuation.resume(Unit)
-                    }
-                }
+                await<Unit>(Suspension.Path)
             }
             delay(4)
         } finally {

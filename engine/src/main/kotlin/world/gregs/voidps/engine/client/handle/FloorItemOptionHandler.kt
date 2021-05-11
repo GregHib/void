@@ -32,13 +32,13 @@ class FloorItemOptionHandler : Handler<InteractFloorItem>() {
             return
         }
         val selectedOption = options[optionIndex]
-        player.walkTo(item) { result ->
+        player.walkTo(item) {
             player.face(item)
-            if (result is PathResult.Failure) {
+            if (player.movement.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Partial
+            val partial = player.movement.result is PathResult.Partial
             player.events.emit(FloorItemOption(item, selectedOption, partial))
         }
     }

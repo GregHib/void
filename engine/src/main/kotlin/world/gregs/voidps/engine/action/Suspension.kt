@@ -5,4 +5,5 @@ sealed class Suspension {
     object Tick : Suspension()
     object Follow : Suspension()
     object Infinite : Suspension()
+    object Path : Suspension()
 }

@@ -38,13 +38,13 @@ class ObjectOptionHandler : Handler<InteractObject>() {
 
         player.face(target)
         val selectedOption = options[index]
-        player.walkTo(target) { result ->
+        player.walkTo(target) {
             player.face(target)
-            if (result is PathResult.Failure) {
+            if (player.movement.result is PathResult.Failure) {
                 player.message("You can't reach that.")
                 return@walkTo
             }
-            val partial = result is PathResult.Partial
+            val partial = player.movement.result is PathResult.Partial
             stairs.option(player, target, selectedOption)
             player.events.emit(ObjectOption(target, selectedOption, partial))
         }

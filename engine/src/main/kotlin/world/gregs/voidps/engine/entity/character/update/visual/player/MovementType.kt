@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.engine.path.PathResult
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -49,9 +50,10 @@ fun Player.tele(delta: Delta) {
 
 fun Player.move(delta: Delta) {
     movement.target = false
-    movement.callback = null
     movement.clear()
     movement.delta = delta
+    movement.strategy = null
+    movement.result = PathResult.Failure
     if (movement.delta != Delta.EMPTY) {
         movementType = PlayerMoveType.Teleport
     }
