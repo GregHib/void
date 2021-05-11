@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
+import world.gregs.voidps.engine.entity.item.FloorItemClick
 import world.gregs.voidps.engine.entity.item.FloorItemOption
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.path.PathResult
@@ -32,6 +33,11 @@ class FloorItemOptionHandler : Handler<InteractFloorItem>() {
             return
         }
         val selectedOption = options[optionIndex]
+        val click = FloorItemClick(item, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
         player.walkTo(item) {
             player.face(item)
             if (player.movement.result is PathResult.Failure) {

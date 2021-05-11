@@ -8,8 +8,6 @@ class Events(
     private val events: MutableMap<KClass<out Event>, MutableList<EventHandler>> = mutableMapOf()
 ) : MutableMap<KClass<out Event>, MutableList<EventHandler>> by events {
 
-    var all: ((Event) -> Unit)? = null
-
     fun addAll(clazz: KClass<out Event>, values: List<EventHandler>) {
         events.getOrPut(clazz) { mutableListOf() }.addAll(values)
     }
@@ -29,7 +27,6 @@ class Events(
     }
 
     fun <E : Event> emit(event: E) {
-        all?.invoke(event)
         events[event::class]
             ?.filter { it.condition(event, entity) }
             ?.forEach { it.block(event, entity) }

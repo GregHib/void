@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.handle
 
 import world.gregs.voidps.engine.entity.character.move.walkTo
+import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -25,9 +26,14 @@ class NPCOptionHandler : Handler<InteractNPC>() {
             return
         }
 
+        val selectedOption = options[index]
+        val click = NPCClick(npc, selectedOption)
+        player.events.emit(click)
+        if (click.cancel) {
+            return
+        }
         player.watch(npc)
         player.face(npc)
-        val selectedOption = options[index]
         player.walkTo(npc) {
             player.watch(null)
             player.face(npc)

@@ -1,7 +1,7 @@
 package world.gregs.voidps.engine.entity.character.move
 
+import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.utility.get
 import java.util.*
+import kotlin.coroutines.resume
 
 data class Movement(
     var previousTile: Tile = Tile.EMPTY,
@@ -63,10 +64,10 @@ fun Player.walkTo(target: Any, action: () -> Unit) {
 
 fun Player.walkTo(strategy: TileTargetStrategy, action: () -> Unit) {
     sync {
-
         watch(null)
         dialogues.clear()
         movement.clear()
+        this.action.cancel()
         movement.target = true
         movement.strategy = strategy
         movement.action = action
@@ -84,7 +85,11 @@ fun Character.avoid(target: Character) {
             watch(target)
             val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)
             if (result is PathResult.Success) {
-                await<Unit>(Suspension.Path)
+                suspendCancellableCoroutine<Unit> {
+                    movement.action = {
+                        it.resume(Unit)
+                    }
+                }
             }
             delay(4)
         } finally {
