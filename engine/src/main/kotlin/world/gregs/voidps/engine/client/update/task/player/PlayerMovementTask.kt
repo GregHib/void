@@ -21,9 +21,10 @@ class PlayerMovementTask(
 
     override fun run() {
         players.forEach { player ->
-            val locked = player.movement.frozen || !player.viewport.loaded
-            if (!locked) {
-                step(player)
+            if (player.viewport.loaded) {
+                if (!player.movement.frozen) {
+                    step(player)
+                }
                 move(player)
             }
         }

@@ -65,9 +65,9 @@ fun Player.walkTo(target: Any, action: () -> Unit) {
 fun Player.walkTo(strategy: TileTargetStrategy, action: () -> Unit) {
     sync {
         watch(null)
+        this.action.cancel()
         dialogues.clear()
         movement.clear()
-        this.action.cancel()
         movement.target = true
         movement.strategy = strategy
         movement.action = action

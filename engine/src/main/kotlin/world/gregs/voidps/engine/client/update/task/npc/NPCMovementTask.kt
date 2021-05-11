@@ -19,11 +19,10 @@ class NPCMovementTask(
 
     override fun run() = runBlocking {
         npcs.forEach { npc ->
-            val locked = npc.movement.frozen
-            if (!locked) {
+            if (!npc.movement.frozen) {
                 step(npc)
-                move(npc)
             }
+            move(npc)
         }
     }
 
