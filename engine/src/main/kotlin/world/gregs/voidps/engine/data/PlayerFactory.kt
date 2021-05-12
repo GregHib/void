@@ -49,7 +49,7 @@ class PlayerFactory(
         store.populate(player)
         player.index = index
         val interfaceIO = PlayerInterfaceIO(player)
-        player.interfaces = InterfaceManager(interfaceIO, interfaces, player.gameFrame)
+        player.interfaces = InterfaceManager(player, interfaceIO, interfaces, player.gameFrame)
         player.interfaceOptions = InterfaceOptions(player, interfaces, containerDefs)
         player.options = PlayerOptions(player)
         player.appearance.displayName = player.name

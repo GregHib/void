@@ -1,13 +1,22 @@
 package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
+import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
+import world.gregs.voidps.network.encode.closeInterface
+import world.gregs.voidps.network.encode.openInterface
+import world.gregs.voidps.network.encode.updateInterface
 
 /**
  * API for the interacting and tracking of client interfaces
  */
 class InterfaceManager(
+    private val player: Player,
     private val io: InterfaceIO,
     interfaces: InterfaceDetails,
     private val gameFrame: PlayerGameFrame,
@@ -40,8 +49,8 @@ class InterfaceManager(
     override fun remove(name: String): Boolean {
         if (openInterfaces.remove(name)) {
             val inter = details.get(name)
-            io.sendClose(inter)
-            io.notifyClosed(inter)
+            sendClose(inter)
+            notifyClosed(inter)
             return true
         }
         return false
@@ -56,8 +65,8 @@ class InterfaceManager(
     override fun refresh() {
         openInterfaces.forEach {
             val inter = details.get(it)
-            io.sendOpen(inter)
-            io.notifyRefreshed(inter)
+            sendOpen(inter)
+            notifyRefreshed(inter)
         }
     }
 
@@ -104,12 +113,12 @@ class InterfaceManager(
     private fun sendIfOpened(name: String): Boolean {
         if (openInterfaces.add(name)) {
             val inter = details.get(name)
-            io.sendOpen(inter)
-            io.notifyOpened(inter)
+            sendOpen(inter)
+            notifyOpened(inter)
             return true
         }
         val inter = details.get(name)
-        io.notifyRefreshed(inter)
+        notifyRefreshed(inter)
         return false
     }
 
@@ -119,4 +128,33 @@ class InterfaceManager(
 
     private fun getChildren(parent: String): List<String> =
         openInterfaces.filter { name -> details.get(name).getParent(gameFrame.resizable) == parent }
+
+    private fun sendOpen(inter: InterfaceDetail) {
+        val parent = inter.getParent(player.gameFrame.resizable)
+        if (parent == ROOT_ID) {
+            player.client?.updateInterface(inter.id, 0)
+        } else {
+            val index = inter.getIndex(player.gameFrame.resizable)
+            val permanent = inter.type != "main_screen" && inter.type != "underlay" && inter.type != "dialogue_box"
+            player.client?.openInterface(permanent, details.get(parent).id, index, inter.id)
+        }
+    }
+
+    private fun sendClose(inter: InterfaceDetail) {
+        val index = inter.getIndex(player.gameFrame.resizable)
+        val parent = inter.getParent(player.gameFrame.resizable)
+        player.client?.closeInterface(details.get(parent).id, index)
+    }
+
+    private fun notifyClosed(inter: InterfaceDetail) {
+        player.events.emit(InterfaceClosed(inter.id, inter.name))
+    }
+
+    private fun notifyOpened(inter: InterfaceDetail) {
+        player.events.emit(InterfaceOpened(inter.id, inter.name))
+    }
+
+    private fun notifyRefreshed(inter: InterfaceDetail) {
+        player.events.emit(InterfaceRefreshed(inter.id, inter.name))
+    }
 }
