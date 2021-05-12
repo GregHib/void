@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 
@@ -12,34 +11,35 @@ class InterfaceManager(
     private val io: InterfaceIO,
     interfaces: InterfaceDetails,
     private val gameFrame: PlayerGameFrame,
-    private val openInterfaces: MutableSet<InterfaceDetail> = mutableSetOf()
+    private val openInterfaces: MutableSet<String> = mutableSetOf()
 ) : Interfaces(interfaces) {
 
-    override fun open(inter: InterfaceDetail): Boolean {
-        if (!hasOpenOrRootParent(inter)) {
+    override fun open(name: String): Boolean {
+        if (!hasOpenOrRootParent(name)) {
             return false
         }
-        return sendIfOpened(inter)
+        return sendIfOpened(name)
     }
 
-    override fun close(inter: InterfaceDetail): Boolean {
-        if (remove(inter)) {
-            closeChildrenOf(inter)
+    override fun close(name: String): Boolean {
+        if (remove(name)) {
+            closeChildrenOf(name)
             return true
         }
         return false
     }
 
-    override fun closeChildren(inter: InterfaceDetail): Boolean {
-        if (contains(inter)) {
-            closeChildrenOf(inter)
+    override fun closeChildren(name: String): Boolean {
+        if (contains(name)) {
+            closeChildrenOf(name)
             return true
         }
         return false
     }
 
-    override fun remove(inter: InterfaceDetail): Boolean {
-        if (openInterfaces.remove(inter)) {
+    override fun remove(name: String): Boolean {
+        if (openInterfaces.remove(name)) {
+            val inter = details.get(name)
             io.sendClose(inter)
             io.notifyClosed(inter)
             return true
@@ -48,13 +48,14 @@ class InterfaceManager(
     }
 
     override fun get(type: String): String? {
-        return openInterfaces.firstOrNull { it.type == type }?.name
+        return openInterfaces.firstOrNull { details.get(it).type == type }
     }
 
-    override fun contains(inter: InterfaceDetail): Boolean = openInterfaces.contains(inter)
+    override fun contains(name: String): Boolean = openInterfaces.contains(name)
 
     override fun refresh() {
-        openInterfaces.forEach { inter ->
+        openInterfaces.forEach {
+            val inter = details.get(it)
             io.sendOpen(inter)
             io.notifyRefreshed(inter)
         }
@@ -95,29 +96,27 @@ class InterfaceManager(
         return true
     }
 
-    private fun hasOpenOrRootParent(inter: InterfaceDetail): Boolean = parentIsRoot(inter) || hasOpenParent(inter)
+    private fun hasOpenOrRootParent(name: String): Boolean {
+        val parent = details.get(name).getParent(gameFrame.resizable)
+        return parent == ROOT_ID || contains(parent)
+    }
 
-    private fun parentIsRoot(inter: InterfaceDetail): Boolean = inter.getParent(gameFrame.resizable) == ROOT_ID
-
-    private fun hasOpenParent(inter: InterfaceDetail): Boolean = contains(inter.getParent(gameFrame.resizable))
-
-    private fun sendIfOpened(inter: InterfaceDetail): Boolean {
-        if (openInterfaces.add(inter)) {
+    private fun sendIfOpened(name: String): Boolean {
+        if (openInterfaces.add(name)) {
+            val inter = details.get(name)
             io.sendOpen(inter)
             io.notifyOpened(inter)
             return true
         }
+        val inter = details.get(name)
         io.notifyRefreshed(inter)
         return false
     }
 
-    private fun closeChildrenOf(parent: InterfaceDetail) {
-        val children = getChildren(parent.name)
-        children.forEach { child ->
-            close(child)
-        }
+    private fun closeChildrenOf(parent: String) {
+        getChildren(parent).forEach(::close)
     }
 
-    private fun getChildren(parent: String): List<InterfaceDetail> =
-        openInterfaces.filter { inter -> inter.getParent(gameFrame.resizable) == parent }
+    private fun getChildren(parent: String): List<String> =
+        openInterfaces.filter { name -> details.get(name).getParent(gameFrame.resizable) == parent }
 }

@@ -132,12 +132,12 @@ internal class InterfaceLoaderTest {
                     id = 1,
                     name = "interface_name",
                     type = "interface_type",
-                    data = InterfaceData(2, 3, 0, 0),
+                    data = InterfaceData("2", "3", 0, 0),
                     components = mapOf("component_name" to InterfaceComponentDetail(1, "component_name"))
                 ),
-                "toplevel" to InterfaceDetail(id = 2, name = "toplevel", type = "root", data = InterfaceData(-1, -1, 0, 0)),
-                "toplevel_full" to InterfaceDetail(id = 3, name = "toplevel_full", type = "root", data = InterfaceData(-1, -1, 0, 0)),
-                "root" to InterfaceDetail(id = -1, name = "root", type = "root", data = InterfaceData(-1, -1, 0, 0))
+                "toplevel" to InterfaceDetail(id = 2, name = "toplevel", type = "root", data = InterfaceData("root", "root", 0, 0)),
+                "toplevel_full" to InterfaceDetail(id = 3, name = "toplevel_full", type = "root", data = InterfaceData("root", "root", 0, 0)),
+                "root" to InterfaceDetail(id = -1, name = "root", type = "root", data = InterfaceData("root", "root", 0, 0))
             ),
             mapOf(
                 1 to "interface_name",

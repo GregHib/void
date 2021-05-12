@@ -67,9 +67,9 @@ internal class InterfaceManagerTest : InterfaceTest() {
     fun `Interface details lookup`(resizable: Boolean) {
         gameframe.resizable = resizable
         names[4] = "four"
-        interfaces["four"] = InterfaceDetail(id = 4, data = InterfaceData(fixedParent = 8, fixedIndex = 9, resizableParent = 10, resizableIndex = 11))
+        interfaces["four"] = InterfaceDetail(id = 4, data = InterfaceData(fixedParent = "8", fixedIndex = 9, resizableParent = "10", resizableIndex = 11))
         val result = details.get("four")
-        assertEquals(if (resizable) 10 else 8, result.getParent(gameframe.resizable))
+        assertEquals(if (resizable) "10" else "8", result.getParent(gameframe.resizable))
         assertEquals(if (resizable) 11 else 9, result.getIndex(gameframe.resizable))
     }
 }

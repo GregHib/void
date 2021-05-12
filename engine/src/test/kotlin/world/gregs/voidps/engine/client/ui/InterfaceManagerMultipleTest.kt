@@ -23,8 +23,8 @@ internal class InterfaceManagerMultipleTest : InterfaceTest() {
     @BeforeEach
     override fun setup() {
         super.setup()
-        detail = InterfaceDetail(id = 0, data = InterfaceData(fixedParent = 1, fixedIndex = ROOT_INDEX))
-        detail1 = InterfaceDetail(id = 1, data = InterfaceData(fixedParent = 2, fixedIndex = ROOT_INDEX))
+        detail = InterfaceDetail(id = 0, data = InterfaceData(fixedParent = "1", fixedIndex = ROOT_INDEX))
+        detail1 = InterfaceDetail(id = 1, data = InterfaceData(fixedParent = "2", fixedIndex = ROOT_INDEX))
         detail2 = InterfaceDetail(id = 2, data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
         names[0] = zero
         names[1] = one

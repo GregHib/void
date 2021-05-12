@@ -3,7 +3,6 @@ package world.gregs.voidps.engine.client.ui
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.utility.get
@@ -11,31 +10,21 @@ import world.gregs.voidps.utility.get
 /**
  * Helper functions for integer and string identifiers
  */
-abstract class Interfaces(private val details: InterfaceDetails) {
+abstract class Interfaces(internal val details: InterfaceDetails) {
 
-    fun open(name: String): Boolean = open(details.get(name))
+    abstract fun open(name: String): Boolean
 
-    protected abstract fun open(inter: InterfaceDetail): Boolean
-
-    fun close(name: String): Boolean = close(details.get(name))
-
-    protected abstract fun close(inter: InterfaceDetail): Boolean
+    abstract fun close(name: String): Boolean
 
     abstract fun get(type: String): String?
 
-    fun closeChildren(name: String): Boolean = closeChildren(details.get(name))
+    abstract fun closeChildren(name: String): Boolean
 
-    protected abstract fun closeChildren(inter: InterfaceDetail): Boolean
+    abstract fun remove(name: String): Boolean
 
-    fun remove(name: String): Boolean = remove(details.get(name))
+    fun contains(id: Int): Boolean = contains(details.get(id).name)
 
-    protected abstract fun remove(inter: InterfaceDetail): Boolean
-
-    fun contains(name: String): Boolean = contains(details.getSafe(name))
-
-    fun contains(id: Int): Boolean = contains(details.get(id))
-
-    protected abstract fun contains(inter: InterfaceDetail): Boolean
+    abstract fun contains(name: String): Boolean
 
     abstract fun refresh()
 

@@ -25,7 +25,7 @@ internal class InterfaceLoaderTypeTest {
     fun `Load joint interface index`() {
         val map = mapOf("type_name" to mapOf("index" to 1))
         val result = loader.loadTypes(map, names)
-        val expected = mapOf("type_name" to InterfaceData(toplevel, toplevel, 1, 1))
+        val expected = mapOf("type_name" to InterfaceData("toplevel", "toplevel_full", 1, 1))
         assertEquals(expected, result)
     }
 
@@ -33,7 +33,7 @@ internal class InterfaceLoaderTypeTest {
     fun `Load individual interface indices`() {
         val map = mapOf("type_name" to mapOf("fixedIndex" to 2, "resizeIndex" to 3))
         val result = loader.loadTypes(map, names)
-        val expected = mapOf("type_name" to InterfaceData(toplevel, toplevel, 2, 3))
+        val expected = mapOf("type_name" to InterfaceData("toplevel", "toplevel_full", 2, 3))
         assertEquals(expected, result)
     }
 
@@ -44,8 +44,8 @@ internal class InterfaceLoaderTypeTest {
         val result = loader.loadTypes(map, names)
 
         val expected = mapOf(
-            "type_name" to InterfaceData(toplevel, toplevel, 1, 1),
-            "type_name_two" to InterfaceData(toplevel, toplevel, 2, 3)
+            "type_name" to InterfaceData("toplevel", "toplevel_full", 1, 1),
+            "type_name_two" to InterfaceData("toplevel", "toplevel_full", 2, 3)
         )
         assertEquals(expected, result)
     }
@@ -55,7 +55,7 @@ internal class InterfaceLoaderTypeTest {
         val map = mapOf("type_name" to mapOf("parent" to "parent_name"))
         names["parent_name"] = 1
         val result = loader.loadTypes(map, names)
-        val expected = mapOf("type_name" to InterfaceData(fixedParent = 1, resizableParent = 1))
+        val expected = mapOf("type_name" to InterfaceData(fixedParent = "parent_name", resizableParent = "parent_name"))
         assertEquals(expected, result)
     }
 
@@ -65,7 +65,7 @@ internal class InterfaceLoaderTypeTest {
         names["parent_name"] = 1
         names["parent_name_two"] = 2
         val result = loader.loadTypes(map, names)
-        val expected = mapOf("type_name" to InterfaceData(fixedParent = 1, resizableParent = 2))
+        val expected = mapOf("type_name" to InterfaceData(fixedParent = "parent_name", resizableParent = "parent_name_two"))
         assertEquals(expected, result)
     }
 
@@ -81,12 +81,12 @@ internal class InterfaceLoaderTypeTest {
 
         val expected = mapOf(
             "type_name" to InterfaceData(
-                fixedParent = 1,
-                resizableParent = 1
+                fixedParent = "parent_name",
+                resizableParent = "parent_name"
             ),
             "type_name_two" to InterfaceData(
-                fixedParent = 1,
-                resizableParent = 2
+                fixedParent = "parent_name",
+                resizableParent = "parent_name_two"
             )
         )
         assertEquals(expected, result)
@@ -100,8 +100,8 @@ internal class InterfaceLoaderTypeTest {
         val result = loader.loadTypes(map, names)
         val expected = mapOf(
             "type_name" to InterfaceData(
-                fixedParent = 1,
-                resizableParent = 2
+                fixedParent = "toplevel",
+                resizableParent = "toplevel_full"
             )
         )
         assertEquals(expected, result)

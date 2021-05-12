@@ -37,7 +37,7 @@ internal class InterfaceIOTest {
         val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns false
         every { inter.id } returns 1
-        every { inter.getParent(false) } returns -1
+        every { inter.getParent(false) } returns "root"
         io.sendOpen(inter)
         verify {
             client.updateInterface(1, 0)
@@ -49,7 +49,7 @@ internal class InterfaceIOTest {
         val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns true
         every { inter.id } returns 100
-        every { inter.getParent(true) } returns 10
+        every { inter.getParent(true) } returns "10"
         every { inter.getIndex(true) } returns 1
         every { inter.type } returns "main_screen"
         io.sendOpen(inter)
@@ -63,7 +63,7 @@ internal class InterfaceIOTest {
         val inter: InterfaceDetail = mockk()
         every { player.gameFrame.resizable } returns false
         every { inter.id } returns 100
-        every { inter.getParent(false) } returns 10
+        every { inter.getParent(false) } returns "10"
         every { inter.getIndex(false) } returns 1
         every { inter.type } returns ""
         io.sendOpen(inter)
@@ -78,7 +78,7 @@ internal class InterfaceIOTest {
         every { player.gameFrame.resizable } returns true
         every { inter.id } returns 10
         every { inter.getIndex(true) } returns 1
-        every { inter.getParent(true) } returns 100
+        every { inter.getParent(true) } returns "100"
         io.sendClose(inter)
         verify {
             client.closeInterface(100, 1)
