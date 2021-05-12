@@ -2,15 +2,15 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.utility.get
 
 /**
  * Helper functions for integer and string identifiers
  */
-abstract class Interfaces(internal val details: InterfaceDetails) {
+abstract class Interfaces(internal val player: Player, internal val details: InterfaceDetails) {
 
     abstract fun open(name: String): Boolean
 
@@ -30,52 +30,45 @@ abstract class Interfaces(internal val details: InterfaceDetails) {
 
     fun sendPlayerHead(name: String, component: String): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendPlayerHead(comp)
+        player.client?.playerDialogueHead(comp.parent, comp.id)
+        return true
     }
-
-    protected abstract fun sendPlayerHead(component: InterfaceComponentDetail): Boolean
 
     fun sendAnimation(name: String, component: String, animation: Int): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendAnimation(comp, animation)
+        player.client?.animateInterface(comp.parent, comp.id, animation)
+        return true
     }
-
-    protected abstract fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean
 
     fun sendNPCHead(name: String, component: String, npc: Int): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendNPCHead(comp, npc)
+        player.client?.npcDialogueHead(comp.parent, comp.id, npc)
+        return true
     }
-
-    protected abstract fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean
 
     fun sendText(name: String, component: String, text: String): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendText(comp, text)
+        player.client?.interfaceText(comp.parent, comp.id, text)
+        return true
     }
-
-    protected abstract fun sendText(component: InterfaceComponentDetail, text: String): Boolean
 
     fun sendVisibility(name: String, component: String, visible: Boolean): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendVisibility(comp, visible)
+        player.client?.interfaceVisibility(comp.parent, comp.id, !visible)
+        return true
     }
-
-    protected abstract fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean
 
     fun sendSprite(name: String, component: String, sprite: Int): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendSprite(comp, sprite)
+        player.client?.interfaceSprite(comp.parent, comp.id, sprite)
+        return true
     }
-
-    protected abstract fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean
 
     fun sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
         val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendItem(comp, item, amount)
+        player.client?.interfaceItem(comp.parent, comp.id, item, amount)
+        return true
     }
-
-    protected abstract fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean
 
     companion object {
         const val ROOT_ID = "root"

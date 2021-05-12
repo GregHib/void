@@ -1,6 +1,5 @@
 package world.gregs.voidps.engine.client.ui
 
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
@@ -16,12 +15,11 @@ import world.gregs.voidps.network.encode.updateInterface
  * API for the interacting and tracking of client interfaces
  */
 class InterfaceManager(
-    private val player: Player,
-    private val io: InterfaceIO,
+    player: Player,
     interfaces: InterfaceDetails,
     private val gameFrame: PlayerGameFrame,
     private val openInterfaces: MutableSet<String> = mutableSetOf()
-) : Interfaces(interfaces) {
+) : Interfaces(player, interfaces) {
 
     override fun open(name: String): Boolean {
         if (!hasOpenOrRootParent(name)) {
@@ -68,41 +66,6 @@ class InterfaceManager(
             sendOpen(inter)
             notifyRefreshed(inter)
         }
-    }
-
-    override fun sendPlayerHead(component: InterfaceComponentDetail): Boolean {
-        io.sendPlayerHead(component)
-        return true
-    }
-
-    override fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean {
-        io.sendAnimation(component, animation)
-        return true
-    }
-
-    override fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean {
-        io.sendNPCHead(component, npc)
-        return true
-    }
-
-    override fun sendText(component: InterfaceComponentDetail, text: String): Boolean {
-        io.sendText(component, text)
-        return true
-    }
-
-    override fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean {
-        io.sendVisibility(component, visible)
-        return true
-    }
-
-    override fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean {
-        io.sendSprite(component, sprite)
-        return true
-    }
-
-    override fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean {
-        io.sendItem(component, item, amount)
-        return true
     }
 
     private fun hasOpenOrRootParent(name: String): Boolean {
