@@ -2,14 +2,14 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
+import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.details
+import world.gregs.voidps.engine.entity.definition.getComponent
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
@@ -51,46 +51,42 @@ class Interfaces(
 
     fun remove(name: String): Boolean {
         if (openInterfaces.remove(name)) {
-            val inter = definitions.get(name).details
-            sendClose(inter)
-            events.emit(InterfaceClosed(inter.id, inter.name))
+            sendClose(name)
+            events.emit(InterfaceClosed(definitions.getId(name), name))
             return true
         }
         return false
     }
 
     fun get(type: String): String? {
-        return openInterfaces.firstOrNull { definitions.get(it).details.type == type }
+        return openInterfaces.firstOrNull { getType(it) == type }
     }
 
-    fun contains(id: Int): Boolean = contains(definitions.get(id).details.name)
+    fun contains(id: Int): Boolean = contains(definitions.getName(id))
 
     fun contains(name: String): Boolean {
         return openInterfaces.contains(name)
     }
 
     fun refresh() {
-        openInterfaces.forEach {
-            val inter = definitions.get(it).details
-            sendOpen(inter)
-            notifyRefreshed(inter)
+        openInterfaces.forEach { name ->
+            sendOpen(name)
+            notifyRefreshed(definitions.getId(name), name)
         }
     }
 
     private fun hasOpenOrRootParent(name: String): Boolean {
-        val parent = definitions.get(name).details.getParent(gameFrame.resizable)
+        val parent = getParent(name)
         return parent == ROOT_ID || contains(parent)
     }
 
     private fun sendIfOpened(name: String): Boolean {
         if (openInterfaces.add(name)) {
-            val inter = definitions.get(name).details
-            sendOpen(inter)
-            events.emit(InterfaceOpened(inter.id, inter.name))
+            sendOpen(name)
+            events.emit(InterfaceOpened(definitions.getId(name), name))
             return true
         }
-        val inter = definitions.get(name).details
-        notifyRefreshed(inter)
+        notifyRefreshed(definitions.getId(name), name)
         return false
     }
 
@@ -99,27 +95,43 @@ class Interfaces(
     }
 
     private fun getChildren(parent: String): List<String> =
-        openInterfaces.filter { name -> definitions.get(name).details.getParent(gameFrame.resizable) == parent }
+        openInterfaces.filter { name -> getParent(name) == parent }
 
-    private fun sendOpen(inter: InterfaceDetail) {
-        val parent = inter.getParent(gameFrame.resizable)
+    private fun getParent(name: String): String {
+        return definitions.get(name)[if (gameFrame.resizable) "parent_resize" else "parent_fixed", ""]
+    }
+
+    private fun getIndex(name: String): Int {
+        return definitions.get(name)[if (gameFrame.resizable) "index_resize" else "index_fixed", -1]
+    }
+
+    private fun getType(name: String): String {
+        return definitions.get(name)["type", "main_screen"]
+    }
+
+    private fun sendOpen(name: String) {
+        val parent = getParent(name)
         if (parent == ROOT_ID) {
-            client?.updateInterface(inter.id, 0)
+            client?.updateInterface(definitions.getId(name), 0)
         } else {
-            val index = inter.getIndex(gameFrame.resizable)
-            val permanent = inter.type != "main_screen" && inter.type != "underlay" && inter.type != "dialogue_box"
-            client?.openInterface(permanent, definitions.get(parent).details.id, index, inter.id)
+            val type = getType(name)
+            val permanent = type != "main_screen" && type != "underlay" && type != "dialogue_box"
+            client?.openInterface(
+                permanent = permanent,
+                parent = definitions.getId(parent),
+                component = getIndex(name),
+                id = definitions.getId(name)
+            )
         }
     }
 
-    private fun sendClose(inter: InterfaceDetail) {
-        val index = inter.getIndex(gameFrame.resizable)
-        val parent = inter.getParent(gameFrame.resizable)
-        client?.closeInterface(definitions.get(parent).details.id, index)
+    private fun sendClose(name: String) {
+        val parent = getParent(name)
+        client?.closeInterface(definitions.getId(parent), getIndex(name))
     }
 
-    private fun notifyRefreshed(inter: InterfaceDetail) {
-        events.emit(InterfaceRefreshed(inter.id, inter.name))
+    private fun notifyRefreshed(id: Int, name: String) {
+        events.emit(InterfaceRefreshed(id, name))
     }
 
     companion object {
@@ -128,53 +140,58 @@ class Interfaces(
     }
 }
 
+private fun getComponent(name: String, componentName: String): InterfaceComponentDetail? {
+    val definitions: InterfaceDefinitions = get()
+    return definitions.getOrNull(name)?.getComponent(componentName)
+}
+
 fun Interfaces.sendPlayerHead(name: String, component: String): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.playerDialogueHead(comp.parent, comp.id)
     return true
 }
 
 fun Interfaces.sendAnimation(name: String, component: String, animation: Int): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.animateInterface(comp.parent, comp.id, animation)
     return true
 }
 
 fun Interfaces.sendNPCHead(name: String, component: String, npc: Int): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.npcDialogueHead(comp.parent, comp.id, npc)
     return true
 }
 
 fun Interfaces.sendText(name: String, component: String, text: String): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.interfaceText(comp.parent, comp.id, text)
     return true
 }
 
 fun Interfaces.sendVisibility(name: String, component: String, visible: Boolean): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.interfaceVisibility(comp.parent, comp.id, !visible)
     return true
 }
 
 fun Interfaces.sendSprite(name: String, component: String, sprite: Int): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.interfaceSprite(comp.parent, comp.id, sprite)
     return true
 }
 
 fun Interfaces.sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
-    val comp = definitions.getOrNull(name)?.details?.getComponentOrNull(component) ?: return false
+    val comp = getComponent(name, component) ?: return false
     client?.interfaceItem(comp.parent, comp.id, item, amount)
     return true
 }
 
 fun Player.open(interfaceName: String): Boolean {
     val defs: InterfaceDefinitions = get()
-    val inter = defs.get(interfaceName).details
-    if (inter.type.isNotEmpty()) {
-        val id = interfaces.get(inter.type)
+    val type = defs.get(interfaceName)["type", ""]
+    if (type.isNotEmpty()) {
+        val id = interfaces.get(type)
         if (id != null) {
             interfaces.close(id)
         }

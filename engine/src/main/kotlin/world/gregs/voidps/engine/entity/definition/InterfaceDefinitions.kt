@@ -71,7 +71,15 @@ class InterfaceDefinitions(
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
-        name to mapOf("data" to InterfaceDetail(id, name, typeName, type, components))
+        name to values.toMutableMap().apply {
+            this["index_fixed"] = type.fixedIndex ?: throw IllegalArgumentException()
+            this["index_resize"] = type.resizableIndex ?: throw IllegalArgumentException()
+            this["parent_fixed"] = type.fixedParent ?: throw IllegalArgumentException()
+            this["parent_resize"] = type.resizableParent ?: throw IllegalArgumentException()
+            this["components"] = components
+            this["componentNames"] = components.map { it.value.id to it.key }.toMap()
+            this["data"] = InterfaceDetail(id, name, typeName, type, components)
+        }
     }.toMap()
 
     private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
@@ -116,5 +124,13 @@ class InterfaceDefinitions(
 
 }
 
+@Deprecated("Use extras map instead")
 val InterfaceDefinition.details: InterfaceDetail
     get() = extras["data"] as? InterfaceDetail ?: InterfaceDetail(-1, "")
+
+fun InterfaceDefinition.getComponent(name: String): InterfaceComponentDetail? {
+    return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name)
+}
+fun InterfaceDefinition.getComponentName(id: Int): String? {
+    return (getOrNull("componentNames") as? Map<Int, String>)?.get(id)
+}

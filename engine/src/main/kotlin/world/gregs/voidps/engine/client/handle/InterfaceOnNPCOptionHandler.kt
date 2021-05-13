@@ -50,7 +50,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         // Get the string ids of the interface and component
         val inter = interfaceDefinitions.get(id).details
         val componentName = inter.getComponentName(componentId)
-        val component = inter.getComponent(componentName)
+        val component = inter.getComponentOrNull(componentName)
         val name = inter.name
 
         // If an item is provided
