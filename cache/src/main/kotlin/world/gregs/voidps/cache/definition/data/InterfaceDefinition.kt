@@ -1,13 +1,11 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
+import world.gregs.voidps.cache.definition.Extra
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 @Suppress("ArrayInDataClass")
 data class InterfaceDefinition(
     override var id: Int = -1,
-    var components: Map<Int, InterfaceComponentDefinition>? = null
-) : Definition
+    var components: Map<Int, InterfaceComponentDefinition>? = null,
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Extra

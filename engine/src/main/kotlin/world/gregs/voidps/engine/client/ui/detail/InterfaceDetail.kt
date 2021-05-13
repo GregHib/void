@@ -27,7 +27,9 @@ data class InterfaceDetail(
         return data?.getParent(resizable) ?: throw InvalidInterfaceException()
     }
 
-    fun getComponent(name: String): InterfaceComponentDetail? = components[name]
+    fun getComponentOrNull(name: String): InterfaceComponentDetail? = components[name]
+
+    fun getComponent(name: String) = getComponentOrNull(name) ?: InterfaceComponentDetail(-1, "")
 
     fun getComponentName(id: Int): String = componentNames[id] ?: ""
 

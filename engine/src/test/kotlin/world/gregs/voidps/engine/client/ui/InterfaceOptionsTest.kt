@@ -6,10 +6,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.network.encode.sendInterfaceSettings
 import world.gregs.voidps.network.encode.sendScript
 
@@ -19,7 +19,7 @@ internal class InterfaceOptionsTest {
 
     lateinit var player: Player
 
-    lateinit var details: InterfaceDetails
+    lateinit var details: InterfaceDefinitions
 
     lateinit var containerDefinitions: ContainerDefinitions
 

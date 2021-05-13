@@ -1,33 +1,52 @@
-package world.gregs.voidps.engine.client.ui.detail
+package world.gregs.voidps.engine.entity.definition
 
-import org.koin.dsl.module
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
+import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
+import world.gregs.voidps.engine.client.ui.detail.InterfaceData
+import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
 import world.gregs.voidps.engine.timedLoad
+import world.gregs.voidps.utility.get
+import world.gregs.voidps.utility.getProperty
 
 private const val DEFAULT_TYPE = "main_screen"
 private const val DEFAULT_FIXED_PARENT = GAME_FRAME_NAME
 private const val DEFAULT_RESIZE_PARENT = GAME_FRAME_RESIZE_NAME
 
-class InterfaceDetailsLoader(private val loader: FileLoader) {
+class InterfaceDefinitions(
+    override val decoder: InterfaceDecoder
+) : DefinitionsDecoder<InterfaceDefinition, InterfaceDecoder> {
 
-    fun loadFile(path: String): Map<String, Map<String, Any>> = loader.load(path)
+    override lateinit var extras: Map<String, Map<String, Any>>
+    override lateinit var names: Map<Int, String>
 
-    fun load(details: InterfaceDetails, detailPath: String, typesPath: String) {
+    fun load(
+        loader: FileLoader = get(),
+        path: String = getProperty("interfacesPath"),
+        typePath: String = getProperty("interfaceTypesPath")
+    ): InterfaceDefinitions {
         timedLoad("interface") {
-            val detailData = loadFile(detailPath)
-            val typeData = loadFile(typesPath)
-            val names = loadNames(detailData)
-            val types = loadTypes(typeData, names.map { it.value to it.key }.toMap())
-            details.load(loadDetails(detailData, types), names)
-            names.size
+            load(
+                loader.load(path),
+                loader.load<Map<String, Map<String, Any>>>(typePath)
+            )
         }
+        return this
+    }
+
+    fun load(data: Map<String, Map<String, Any>>, typeData: Map<String, Map<String, Any>>): Int {
+        this.names = loadNames(data)
+        val types = loadTypes(typeData)
+        extras = loadDetails(data, types)
+        return names.size
     }
 
     fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
 
-    fun loadTypes(data: Map<String, Map<String, Any>>, names: Map<String, Int>) = data.map { (name, values) ->
+    fun loadTypes(data: Map<String, Map<String, Any>>) = data.map { (name, values) ->
         val index = values.readInt("index")
         val fixedIndex = index ?: values.readInt("fixedIndex")
         val resizeIndex = index ?: values.readInt("resizeIndex")
@@ -52,7 +71,7 @@ class InterfaceDetailsLoader(private val loader: FileLoader) {
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
-        name to InterfaceDetail(id, name, typeName, type, components)
+        name to mapOf("data" to InterfaceDetail(id, name, typeName, type, components))
     }.toMap()
 
     private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
@@ -97,11 +116,5 @@ class InterfaceDetailsLoader(private val loader: FileLoader) {
 
 }
 
-val interfaceModule = module {
-    single(createdAtStart = true) {
-        InterfaceDetails().apply {
-            InterfaceDetailsLoader(get())
-                .load(this, getProperty("interfacesPath"), getProperty("interfaceTypesPath"))
-        }
-    }
-}
+val InterfaceDefinition.details: InterfaceDetail
+    get() = extras["data"] as? InterfaceDetail ?: InterfaceDetail(-1, "")

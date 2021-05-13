@@ -1,13 +1,16 @@
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
+import world.gregs.voidps.engine.client.ui.sendItem
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.details
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 
-val details: InterfaceDetails by inject()
+val definitions: InterfaceDefinitions by inject()
 
 on<Command>({ prefix == "inter" }) { player: Player ->
     val id = content.toIntOrNull()
@@ -15,11 +18,11 @@ on<Command>({ prefix == "inter" }) { player: Player ->
         val name = content
         player.interfaces.open(name)
     } else if (id != -1 || !closeInterface(player)) {
-        val inter = details.getSafe(details.getNameOrNull(id) ?: "")
+        val inter = definitions.get(definitions.getNameOrNull(id) ?: "").details
         var parent = if (player.gameFrame.resizable) 746 else 548
         var index = if (player.gameFrame.resizable) 12 else 9
         if (inter.data != null) {
-            parent = details.get(inter.getParent(player.gameFrame.resizable)).id
+            parent = definitions.get(inter.getParent(player.gameFrame.resizable)).id
             index = inter.getIndex(player.gameFrame.resizable)
         }
         if (id == -1) {

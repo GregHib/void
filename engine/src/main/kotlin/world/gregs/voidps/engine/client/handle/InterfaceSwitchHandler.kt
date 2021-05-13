@@ -1,19 +1,18 @@
 package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.details
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.MoveContainerItem
 import world.gregs.voidps.utility.inject
 
 class InterfaceSwitchHandler : Handler<MoveContainerItem>() {
 
-    private val decoder: InterfaceDecoder by inject()
-    private val lookup: InterfaceDetails by inject()
+    private val definitions: InterfaceDefinitions by inject()
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: MoveContainerItem) {
@@ -51,14 +50,14 @@ class InterfaceSwitchHandler : Handler<MoveContainerItem>() {
             return null
         }
 
-        val definition = decoder.get(toId)
+        val definition = definitions.get(toId)
         val component = definition.components?.get(toComponentId)
         if (component == null) {
             logger.debug { "Interface $toId component $toComponentId not found for player $player" }
             return null
         }
 
-        return lookup.get(toId)
+        return definition.details
     }
 
 }

@@ -26,6 +26,7 @@ class InterfaceDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
             return null
         }
         val definition = create()
+        definition.id = id
         definition.components = (0..lastArchive).map { file ->
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archive, file)

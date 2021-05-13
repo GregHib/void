@@ -1,9 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.awaitInterface
-import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.StringMapVariable
 import world.gregs.voidps.engine.client.variable.Variable

@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.client.ui.detail.InterfaceData
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
@@ -69,9 +68,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface name`() {
-        assertThrows<InterfaceDetails.IllegalNameException> {
-            player.close("interface_name")
-        }
+        assertFalse(player.close("interface_name"))
         verify { manager.close("interface_name") }
     }
 
@@ -90,9 +87,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close children`() {
-        assertThrows<InterfaceDetails.IllegalNameException> {
-            player.closeChildren("interface_name")
-        }
+        assertFalse(player.closeChildren("interface_name"))
         verify { manager.closeChildren("interface_name") }
     }
 

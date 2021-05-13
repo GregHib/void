@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
 import world.gregs.voidps.engine.client.ui.detail.InterfaceData
 import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 
 internal class InterfaceManagerTest : InterfaceTest() {
 
@@ -19,12 +18,8 @@ internal class InterfaceManagerTest : InterfaceTest() {
         val name = "unknown"
         assertFalse(manager.contains(name))
         assertNull(manager.get(name))
-        assertThrows<InterfaceDetails.IllegalNameException> {
-            assertFalse(manager.close(name))
-        }
-        assertThrows<InterfaceDetails.IllegalNameException> {
-            manager.open(name)
-        }
+        assertFalse(manager.close(name))
+        assertFalse(manager.open(name))
         verify(exactly = 0) {
             io.sendClose(any())
             io.notifyClosed(any())

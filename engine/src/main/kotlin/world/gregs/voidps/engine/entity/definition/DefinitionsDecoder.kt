@@ -85,4 +85,5 @@ val detailsModule = module {
     single(createdAtStart = true) { AnimationDefinitions(get()).load() }
     single(createdAtStart = true) { GraphicDefinitions(get()).load() }
     single(createdAtStart = true) { ContainerDefinitions(get()).load() }
+    single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
 }

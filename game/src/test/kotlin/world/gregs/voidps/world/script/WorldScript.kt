@@ -6,7 +6,6 @@ import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.client.ui.detail.interfaceModule
 import world.gregs.voidps.engine.client.update.updatingTasksModule
 import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
@@ -51,7 +50,6 @@ abstract class WorldScript : KoinMock() {
         pathFindModule,
         schedulerModule,
         batchedChunkModule,
-        interfaceModule,
         variablesModule,
         instanceModule,
         instancePoolModule,
