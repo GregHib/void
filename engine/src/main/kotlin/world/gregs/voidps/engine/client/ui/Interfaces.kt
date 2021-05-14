@@ -145,21 +145,9 @@ private fun getComponent(name: String, componentName: String): InterfaceComponen
     return definitions.getOrNull(name)?.getComponent(componentName)
 }
 
-fun Interfaces.sendPlayerHead(name: String, component: String): Boolean {
-    val comp = getComponent(name, component) ?: return false
-    client?.playerDialogueHead(comp.parent, comp.id)
-    return true
-}
-
 fun Interfaces.sendAnimation(name: String, component: String, animation: Int): Boolean {
     val comp = getComponent(name, component) ?: return false
     client?.animateInterface(comp.parent, comp.id, animation)
-    return true
-}
-
-fun Interfaces.sendNPCHead(name: String, component: String, npc: Int): Boolean {
-    val comp = getComponent(name, component) ?: return false
-    client?.npcDialogueHead(comp.parent, comp.id, npc)
     return true
 }
 
