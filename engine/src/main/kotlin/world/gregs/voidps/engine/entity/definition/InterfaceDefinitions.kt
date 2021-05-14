@@ -20,7 +20,7 @@ class InterfaceDefinitions(
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
-    private lateinit var componentExtras: Map<String, Map<String, Map<String, Any>>>
+    private lateinit var componentExtras: Map<String, Map<Int, Map<String, Any>>>
     private lateinit var componentNames: Map<String, Map<Int, String>>
 
     fun getComponentName(name: String, id: Int): String {
@@ -38,9 +38,8 @@ class InterfaceDefinitions(
     override fun setExtras(definition: InterfaceDefinition, name: String, map: Map<String, Any>) {
         super.setExtras(definition, name, map)
         val extras = componentExtras[name] ?: return
-        val names = componentNames[name] ?: return
         definition.components?.forEach { (id, component) ->
-            extras[names[id]]?.let { extra ->
+            extras[id]?.let { extra ->
                 component.extras = extra
             }
         }
@@ -64,6 +63,7 @@ class InterfaceDefinitions(
         this.names = data.map { (name, values) -> values.getId() to name }.toMap()
         val types = loadTypes(typeData)
         extras = loadDetails(data, types, loadComponentNames2(data))
+
         componentNames = loadComponentNames(data)
         componentExtras = loadComponentDetails(data)
         return names.size
@@ -128,26 +128,20 @@ class InterfaceDefinitions(
     private fun loadComponentDetails(
         data: Map<String, Map<String, Any>>
     ) = data.mapNotNull { (name, values) ->
-        val id = values.getId()
-        val components = values.getComponents(id)
-        name to components
+        val parent = values.getId()
+        name to ((values["components"] as? Map<*, *>)?.map {
+            componentExtras(it.key as String, it.value!!, parent)
+        }?.toMap() ?: return@mapNotNull null)
     }.toMap()
 
-    private fun Map<String, Any>.getComponents(parent: Int): Map<String, Map<String, Any>> {
-        val value = this["components"] as? Map<*, *>
-        val components = value?.map {
-            val name = it.key as String
-            name to componentExtras(name, it.value!!, parent)
-        }?.toMap()
-        return components ?: emptyMap()
-    }
-
-    private fun componentExtras(name: String, value: Any, parent: Int): Map<String, Any> {
+    private fun componentExtras(name: String, value: Any, parent: Int): Pair<Int, Map<String, Any>> {
+        var id = value as? Int
         val out = mutableMapOf<String, Any>(
             "name" to name,
             "parent" to parent,
         )
         (value as? Map<*, *>)?.let { extras ->
+            id = extras["id"] as Int
             (extras["container"] as? String)?.let {
                 out["container"] = it
             }
@@ -162,7 +156,7 @@ class InterfaceDefinitions(
                 out["options"] = options
             }
         }
-        return out
+        return id!! to out
     }
 
     private fun Map<String, Any>.getId(): Int {
