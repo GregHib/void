@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
@@ -11,8 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
@@ -25,7 +23,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
     private val npcs: NPCs by inject()
     private val decoder: InterfaceDecoder by inject()
     private val itemDefinitions: ItemDefinitions by inject()
-    private val interfaceDetails: InterfaceDetails by inject()
+    private val interfaceDefinitions: InterfaceDefinitions by inject()
     private val containerDefinitions: ContainerDefinitions by inject()
     private val logger = InlineLogger()
 
@@ -47,10 +45,9 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         }
 
         // Get the string ids of the interface and component
-        val inter = interfaceDetails.get(id)
-        val componentName = inter.getComponentName(componentId)
-        val component = inter.getComponent(componentName)
-        val name = inter.name
+        val name = interfaceDefinitions.getName(id)
+        val componentName = definition.getComponentName(componentId)
+        val component = definition.getComponentOrNull(componentName)
 
         // If an item is provided
         var item = Item.EMPTY
@@ -62,7 +59,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
                 return
             }
             // Check the component container exists
-            containerName = component.container
+            containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
                 return

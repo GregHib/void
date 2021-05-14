@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.client.ui.detail.interfaceModule
 import world.gregs.voidps.engine.client.update.task.npc.*
 import world.gregs.voidps.engine.client.update.task.player.*
 import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating
@@ -25,7 +24,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
-import world.gregs.voidps.engine.entity.definition.detailsModule
+import world.gregs.voidps.engine.entity.definition.definitionsModule
 import world.gregs.voidps.engine.entity.item.floorItemSpawnModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
@@ -164,11 +163,10 @@ object Main {
                 pathFindModule,
                 schedulerModule,
                 batchedChunkModule,
-                interfaceModule,
                 variablesModule,
                 instanceModule,
                 instancePoolModule,
-                detailsModule,
+                definitionsModule,
                 objectFactoryModule,
                 lineOfSightModule,
                 navModule,

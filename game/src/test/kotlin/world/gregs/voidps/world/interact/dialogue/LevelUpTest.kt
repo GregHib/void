@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.world.interact.dialogue.type.levelUp
 

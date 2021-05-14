@@ -6,7 +6,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.closeType
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.contain.Container
@@ -18,6 +18,8 @@ import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -209,12 +211,11 @@ fun highlightRemovedSlots(player: Player, other: Player, update: ItemChanged) {
 }
 
 fun Player.warn(name: String, component: String, slot: Int) {
-    val details: InterfaceDetails = world.gregs.voidps.utility.get()
+    val defs: InterfaceDefinitions = world.gregs.voidps.utility.get()
     val containerDefinitions: ContainerDefinitions = world.gregs.voidps.utility.get()
-    val comp = details.getComponent(name, component)
-    val container = containerDefinitions.get(comp.container)
-    println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
-    sendScript(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
+    val comp = defs.get(name).getComponentOrNull(component) ?: return
+    val container = containerDefinitions.get(comp["container", ""])
+    sendScript(143, (comp["parent", -1] shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {

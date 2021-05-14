@@ -1,104 +1,185 @@
 package world.gregs.voidps.engine.client.ui
 
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.*
 import world.gregs.voidps.utility.get
 
 /**
- * Helper functions for integer and string identifiers
+ * API for the interacting and tracking of client interfaces
  */
-abstract class Interfaces(private val details: InterfaceDetails) {
+class Interfaces(
+    private val events: Events,
+    var client: Client? = null,
+    val definitions: InterfaceDefinitions,
+    private val gameFrame: PlayerGameFrame,
+    private val openInterfaces: MutableSet<String> = mutableSetOf()
+) {
 
-    fun open(name: String): Boolean = open(details.get(name))
-
-    protected abstract fun open(inter: InterfaceDetail): Boolean
-
-    fun close(name: String): Boolean = close(details.get(name))
-
-    protected abstract fun close(inter: InterfaceDetail): Boolean
-
-    abstract fun get(type: String): String?
-
-    fun closeChildren(name: String): Boolean = closeChildren(details.get(name))
-
-    protected abstract fun closeChildren(inter: InterfaceDetail): Boolean
-
-    fun remove(name: String): Boolean = remove(details.get(name))
-
-    protected abstract fun remove(inter: InterfaceDetail): Boolean
-
-    fun contains(name: String): Boolean = contains(details.getSafe(name))
-
-    fun contains(id: Int): Boolean = contains(details.get(id))
-
-    protected abstract fun contains(inter: InterfaceDetail): Boolean
-
-    abstract fun refresh()
-
-    fun sendPlayerHead(name: String, component: String): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendPlayerHead(comp)
+    fun open(name: String): Boolean {
+        if (!hasOpenOrRootParent(name)) {
+            return false
+        }
+        return sendIfOpened(name)
     }
 
-    protected abstract fun sendPlayerHead(component: InterfaceComponentDetail): Boolean
-
-    fun sendAnimation(name: String, component: String, animation: Int): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendAnimation(comp, animation)
+    fun close(name: String): Boolean {
+        if (remove(name)) {
+            closeChildrenOf(name)
+            return true
+        }
+        return false
     }
 
-    protected abstract fun sendAnimation(component: InterfaceComponentDetail, animation: Int): Boolean
-
-    fun sendNPCHead(name: String, component: String, npc: Int): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendNPCHead(comp, npc)
+    fun closeChildren(name: String): Boolean {
+        if (contains(name)) {
+            closeChildrenOf(name)
+            return true
+        }
+        return false
     }
 
-    protected abstract fun sendNPCHead(component: InterfaceComponentDetail, npc: Int): Boolean
-
-    fun sendText(name: String, component: String, text: String): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendText(comp, text)
+    fun remove(name: String): Boolean {
+        if (openInterfaces.remove(name)) {
+            sendClose(name)
+            events.emit(InterfaceClosed(definitions.getId(name), name))
+            return true
+        }
+        return false
     }
 
-    protected abstract fun sendText(component: InterfaceComponentDetail, text: String): Boolean
-
-    fun sendVisibility(name: String, component: String, visible: Boolean): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendVisibility(comp, visible)
+    fun get(type: String): String? {
+        return openInterfaces.firstOrNull { getType(it) == type }
     }
 
-    protected abstract fun sendVisibility(component: InterfaceComponentDetail, visible: Boolean): Boolean
+    fun contains(id: Int): Boolean = contains(definitions.getName(id))
 
-    fun sendSprite(name: String, component: String, sprite: Int): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendSprite(comp, sprite)
+    fun contains(name: String): Boolean {
+        return openInterfaces.contains(name)
     }
 
-    protected abstract fun sendSprite(component: InterfaceComponentDetail, sprite: Int): Boolean
-
-    fun sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
-        val comp = details.getComponentOrNull(name, component) ?: return false
-        return sendItem(comp, item, amount)
+    fun refresh() {
+        openInterfaces.forEach { name ->
+            sendOpen(name)
+            notifyRefreshed(definitions.getId(name), name)
+        }
     }
 
-    protected abstract fun sendItem(component: InterfaceComponentDetail, item: Int, amount: Int): Boolean
+    private fun hasOpenOrRootParent(name: String): Boolean {
+        val parent = getParent(name)
+        return parent == ROOT_ID || contains(parent)
+    }
+
+    private fun sendIfOpened(name: String): Boolean {
+        if (openInterfaces.add(name)) {
+            sendOpen(name)
+            events.emit(InterfaceOpened(definitions.getId(name), name))
+            return true
+        }
+        notifyRefreshed(definitions.getId(name), name)
+        return false
+    }
+
+    private fun closeChildrenOf(parent: String) {
+        getChildren(parent).forEach(::close)
+    }
+
+    private fun getChildren(parent: String): List<String> =
+        openInterfaces.filter { name -> getParent(name) == parent }
+
+    private fun getParent(name: String): String {
+        return definitions.get(name)[if (gameFrame.resizable) "parent_resize" else "parent_fixed", ""]
+    }
+
+    private fun getIndex(name: String): Int {
+        return definitions.get(name)[if (gameFrame.resizable) "index_resize" else "index_fixed", -1]
+    }
+
+    private fun getType(name: String): String {
+        return definitions.get(name)["type", "main_screen"]
+    }
+
+    private fun sendOpen(name: String) {
+        val parent = getParent(name)
+        if (parent == ROOT_ID) {
+            client?.updateInterface(definitions.getId(name), 0)
+        } else {
+            val type = getType(name)
+            val permanent = type != "main_screen" && type != "underlay" && type != "dialogue_box"
+            client?.openInterface(
+                permanent = permanent,
+                parent = definitions.getId(parent),
+                component = getIndex(name),
+                id = definitions.getId(name)
+            )
+        }
+    }
+
+    private fun sendClose(name: String) {
+        val parent = getParent(name)
+        client?.closeInterface(definitions.getId(parent), getIndex(name))
+    }
+
+    private fun notifyRefreshed(id: Int, name: String) {
+        events.emit(InterfaceRefreshed(id, name))
+    }
 
     companion object {
-        const val ROOT_ID = -1
+        const val ROOT_ID = "root"
         const val ROOT_INDEX = 0
     }
 }
 
+private fun getComponent(name: String, componentName: String): InterfaceComponentDefinition? {
+    val definitions: InterfaceDefinitions = get()
+    return definitions.get(name).getComponentOrNull(componentName)
+}
+
+fun Interfaces.sendAnimation(name: String, component: String, animation: Int): Boolean {
+    val comp = getComponent(name, component) ?: return false
+    client?.animateInterface(comp["parent", -1], comp.id, animation)
+    return true
+}
+
+fun Interfaces.sendText(name: String, component: String, text: String): Boolean {
+    val comp = getComponent(name, component) ?: return false
+    client?.interfaceText(comp["parent", -1], comp.id, text)
+    return true
+}
+
+fun Interfaces.sendVisibility(name: String, component: String, visible: Boolean): Boolean {
+    val comp = getComponent(name, component) ?: return false
+    client?.interfaceVisibility(comp["parent", -1], comp.id, !visible)
+    return true
+}
+
+fun Interfaces.sendSprite(name: String, component: String, sprite: Int): Boolean {
+    val comp = getComponent(name, component) ?: return false
+    client?.interfaceSprite(comp["parent", -1], comp.id, sprite)
+    return true
+}
+
+fun Interfaces.sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
+    val comp = getComponent(name, component) ?: return false
+    client?.interfaceItem(comp["parent", -1], comp.id, item, amount)
+    return true
+}
+
 fun Player.open(interfaceName: String): Boolean {
-    val lookup: InterfaceDetails = get()
-    val inter = lookup.get(interfaceName)
-    if (inter.type.isNotEmpty()) {
-        val id = interfaces.get(inter.type)
+    val defs: InterfaceDefinitions = get()
+    val type = defs.get(interfaceName)["type", ""]
+    if (type.isNotEmpty()) {
+        val id = interfaces.get(type)
         if (id != null) {
             interfaces.close(id)
         }

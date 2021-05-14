@@ -3,6 +3,8 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitInterfaces
 import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.clear
 import world.gregs.voidps.engine.entity.character.get

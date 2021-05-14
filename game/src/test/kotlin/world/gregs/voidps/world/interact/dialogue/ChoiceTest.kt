@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.world.interact.dialogue.type.choice
 import world.gregs.voidps.world.interact.dialogue.type.player
 
@@ -17,7 +19,7 @@ internal class ChoiceTest : DialogueTest() {
     override fun setup() {
         super.setup()
         mockkStatic("world.gregs.voidps.world.interact.dialogue.type.PlayerDialogueKt")
-        coEvery { context.player(any()) } just Runs
+        coEvery { context.player(any(), any()) } just Runs
     }
 
     @TestFactory
@@ -209,7 +211,7 @@ internal class ChoiceTest : DialogueTest() {
         }
         runBlocking(Contexts.Game) {
             coVerify(exactly = 0) {
-                context.player("Yes")
+                context.player("talk", "Yes")
             }
         }
     }

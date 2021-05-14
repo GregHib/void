@@ -43,9 +43,9 @@ internal class TradeIntegrationTest : WorldScript() {
         confirmTrade(player1)
         confirmTrade(player2)
         tick()
-        assertEquals(995, player1.inventory.getItemId(0))
+        assertEquals("coins", player1.inventory.getItemId(0))
         assertEquals(990, player1.inventory.getAmount(0))
-        assertEquals(995, player2.inventory.getItemId(0))
+        assertEquals("coins", player2.inventory.getItemId(0))
         assertEquals(10, player2.inventory.getAmount(0))
     }
 

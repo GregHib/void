@@ -993,9 +993,9 @@ toplevel:
   type: full_screen
   components:
     logout: 181
-    adviser: 184
-    compass: 178
-    world_map: 180
+    adviser: 183
+    compass: 177
+    world_map: 179
     xp_orb: 0
     combat_styles: 128
     task_system: 129

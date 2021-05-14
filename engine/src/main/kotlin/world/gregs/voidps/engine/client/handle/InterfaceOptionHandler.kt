@@ -3,12 +3,10 @@ package world.gregs.voidps.engine.client.handle
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetails
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
@@ -17,7 +15,7 @@ import world.gregs.voidps.utility.inject
 class InterfaceOptionHandler : Handler<InteractInterface>() {
 
     private val decoder: InterfaceDecoder by inject()
-    private val interfaceDetails: InterfaceDetails by inject()
+    private val interfaceDefinitions: InterfaceDefinitions by inject()
     private val containerDefinitions: ContainerDefinitions by inject()
     private val itemDefinitions: ItemDefinitions by inject()
     private val logger = InlineLogger()
@@ -25,7 +23,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
     override fun validate(player: Player, instruction: InteractInterface) {
         val (id, componentId, itemId, itemSlot, option) = instruction
 
-        if (!player.interfaces.contains(id)) {
+        if (!player.interfaces.contains(interfaceDefinitions.getName(id))) {
             logger.info { "Interface $id not found for player $player" }
             return
         }
@@ -38,10 +36,9 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
 
         var options = componentDef.options
 
-        val inter = interfaceDetails.get(id)
-        val componentName = inter.getComponentName(componentId)
-        val component = inter.getComponent(componentName)
-        val name = inter.name
+        val name = interfaceDefinitions.getName(id)
+        val componentName = definition.getComponentName(componentId)
+        val component = definition.getComponentOrNull(componentName)
 
         var item = Item.EMPTY
         if (itemId != -1 && itemSlot != -1) {
@@ -49,7 +46,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
                 logger.info { "Interface $name component $componentId not found for player $player" }
                 return
             }
-            val containerName = component.container
+            val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
                 return

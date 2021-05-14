@@ -141,6 +141,7 @@ class Player(
 
     fun login(client: Client? = null) {
         this.client = client
+        interfaces.client = client
         client?.exit = {
             logout(false)
         }

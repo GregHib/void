@@ -7,44 +7,28 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
-import world.gregs.voidps.engine.client.ui.Interfaces
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.world.interact.dialogue.type.makeAmount
-import world.gregs.voidps.world.script.KoinMock
 
-internal class MakeAmountTest : KoinMock() {
+internal class MakeAmountTest : DialogueTest() {
 
-    lateinit var interfaces: Interfaces
     lateinit var interfaceOptions: InterfaceOptions
-    lateinit var manager: Dialogues
-    lateinit var player: Player
-    lateinit var context: DialogueContext
-
-    override val modules = listOf(cacheDefinitionModule)
 
     @BeforeEach
-    fun setup() {
-        mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
+    override fun setup() {
+        super.setup()
         mockkStatic("world.gregs.voidps.engine.client.variable.VariablesKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
         interfaceOptions = mockk(relaxed = true)
-        manager = spyk(Dialogues())
-        context = mockk(relaxed = true)
         every { context.player } returns player
         coEvery { context.await<Int>(any()) } returns 0
-        every { player.open(any()) } returns true
         every { player.setVar(any(), any<Int>()) } just Runs
         every { player.getVar(any(), any<Int>()) } returns 0
-        every { player.interfaces } returns interfaces
         every { player.interfaceOptions } returns interfaceOptions
         declareMock<ItemDefinitions> {
             every { get(1) } returns ItemDefinition(name = "Jimmy")

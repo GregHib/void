@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.event.on

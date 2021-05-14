@@ -3,11 +3,8 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.awaitInterface
-import world.gregs.voidps.engine.client.ui.close
+import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
