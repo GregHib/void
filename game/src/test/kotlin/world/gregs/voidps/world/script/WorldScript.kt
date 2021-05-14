@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.data.playerLoaderModule
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.character.update.visualUpdatingModule
-import world.gregs.voidps.engine.entity.definition.detailsModule
+import world.gregs.voidps.engine.entity.definition.definitionsModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.eventModule
@@ -53,7 +53,7 @@ abstract class WorldScript : KoinMock() {
         variablesModule,
         instanceModule,
         instancePoolModule,
-        detailsModule,
+        definitionsModule,
         objectFactoryModule
     )
 

@@ -82,7 +82,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
     }
 }
 
-val detailsModule = module {
+val definitionsModule = module {
     single(createdAtStart = true) { ObjectDefinitions(get()).load() }
     single(createdAtStart = true) { NPCDefinitions(get()).load() }
     single(createdAtStart = true) { ItemDefinitions(get()).load() }
