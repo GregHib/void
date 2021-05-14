@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.cache.config.data.ContainerDefinition
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.menu.InterfaceOptionSettings.getHash
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
@@ -19,7 +20,7 @@ internal class InterfaceOptionsTest {
 
     lateinit var player: Player
 
-    lateinit var details: InterfaceDefinitions
+    lateinit var definitions: InterfaceDefinitions
 
     lateinit var containerDefinitions: ContainerDefinitions
 
@@ -31,12 +32,21 @@ internal class InterfaceOptionsTest {
     @BeforeEach
     fun setup() {
         player = mockk(relaxed = true)
-        details = mockk(relaxed = true)
+        definitions = mockk(relaxed = true)
         containerDefinitions = mockk(relaxed = true)
-        options = InterfaceOptions(player, details, containerDefinitions)
-        val component = InterfaceComponentDetail(0, comp, parent = 5, container = "container", primaryContainer = false, options = staticOptions)
-        every { details.getComponent(name, any()) } returns InterfaceComponentDetail(-1, "")
-        every { details.getComponent(name, comp) } returns component
+        options = InterfaceOptions(player, definitions, containerDefinitions)
+        every { definitions.get(name) } returns InterfaceDefinition(
+            extras = mapOf("componentNames" to mapOf(comp to 0)),
+            components = mapOf(
+                0 to InterfaceComponentDefinition(
+                    id = 0,
+                    extras = mapOf(
+                    "parent" to 5,
+                    "container" to "container",
+                    "primaryContainer" to false,
+                    "options" to staticOptions
+                ))
+            ))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
         every { player.sendInterfaceSettings(any(), any(), any(), any(), any()) } just Runs
         mockkStatic("world.gregs.voidps.network.encode.ScriptEncoderKt")

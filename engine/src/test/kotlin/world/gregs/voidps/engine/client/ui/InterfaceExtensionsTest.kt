@@ -6,18 +6,18 @@ import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
-import world.gregs.voidps.engine.client.ui.detail.InterfaceData
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.entity.character.player.Player
 
 internal class InterfaceExtensionsTest : InterfaceTest() {
 
     private lateinit var player: Player
+
+    val name = "interface_name"
 
     @BeforeEach
     override fun setup() {
@@ -29,20 +29,21 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Open by name`() {
-        every { details.get("interface_name") } returns InterfaceDetail(id = 0, type = "")
-        assertThrows<InterfaceDetail.InvalidInterfaceException> {
-            player.open("interface_name")
-        }
-        verify { manager.open("interface_name") }
+        every { definitions.get(name) } returns InterfaceDefinition(id = 0)
+        assertFalse(player.open(name))
+        verify { manager.open(name) }
         verify(exactly = 0) { manager.close(any<String>()) }
     }
 
     @Test
     fun `Interface already open with same type is closed first`() {
-        interfaces["first"] = InterfaceDetail(id = 0, name = "first", type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        interfaces["second"] = InterfaceDetail(id = 1, name = "second", type = "interface_type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names[0] = "first"
-        names[1] = "second"
+        val extras = mapOf(
+            "type" to "interface_type",
+            "parent_fixed" to ROOT_ID,
+            "index_fixed" to ROOT_INDEX
+        )
+        every { definitions.get("first") } returns InterfaceDefinition(id = 0, extras = extras)
+        every { definitions.get("second") } returns InterfaceDefinition(id = 1, extras = extras)
         manager.open("first")
         val result = player.open("second")
         verifyOrder {
@@ -54,8 +55,8 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Interface name is open`() {
-        val result = player.isOpen("interface_name")
-        verify { manager.contains("interface_name") }
+        val result = player.isOpen(name)
+        verify { manager.contains(name) }
         assertFalse(result)
     }
 
@@ -68,14 +69,13 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close interface name`() {
-        assertFalse(player.close("interface_name"))
-        verify { manager.close("interface_name") }
+        assertFalse(player.close(name))
+        verify { manager.close(name) }
     }
 
     @Test
     fun `Close interface type`() {
-        interfaces["second"] = mockk()
-        names[1] = "second"
+        every { definitions.get("second") } returns InterfaceDefinition()
         every { manager.get("interface_type") } returns "second"
         val result = player.closeType("interface_type")
         verifyOrder {
@@ -87,15 +87,14 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
 
     @Test
     fun `Close children`() {
-        assertFalse(player.closeChildren("interface_name"))
-        verify { manager.closeChildren("interface_name") }
+        assertFalse(player.closeChildren(name))
+        verify { manager.closeChildren(name) }
     }
 
     @Test
     fun `Suspend interface`() = runBlocking {
         val action: Action = mockk()
         val interfaces: Interfaces = mockk()
-        names[4] = "four"
         every { player.interfaces } returns interfaces
         every { player.action } returns action
         every { interfaces.get("main_screen") } returns "four"

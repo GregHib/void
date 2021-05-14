@@ -1,25 +1,33 @@
 package world.gregs.voidps.engine.client.ui
 
+import io.mockk.every
 import io.mockk.verifyOrder
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_ID
 import world.gregs.voidps.engine.client.ui.Interfaces.Companion.ROOT_INDEX
-import world.gregs.voidps.engine.client.ui.detail.InterfaceData
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
+import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
+import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
+import world.gregs.voidps.network.encode.closeInterface
+import world.gregs.voidps.network.encode.openInterface
 
 internal class InterfaceManagerSingleTest : InterfaceTest() {
-    lateinit var detail: InterfaceDetail
 
     private val name = "zero"
 
     @BeforeEach
     override fun setup() {
         super.setup()
-        detail = InterfaceDetail(id = 0, name = name, type = "type", data = InterfaceData(fixedParent = ROOT_ID, fixedIndex = ROOT_INDEX))
-        names[0] = name
-        interfaces[name] = detail
+        every { definitions.get(name) } returns InterfaceDefinition(extras = mapOf(
+            "type" to "type",
+            "parent_fixed" to ROOT_ID,
+            "index_fixed" to ROOT_INDEX
+        ))
+        every { definitions.getId(name) } returns 1
+        gameframe.resizable = false
     }
 
     @Test
@@ -35,8 +43,8 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
         assertEquals(name, manager.get("type"))
 
         verifyOrder {
-            io.sendOpen(detail)
-            io.notifyOpened(detail)
+            client.openInterface(true, 0, 0, 1)
+            events.emit(InterfaceOpened(1, name))
         }
     }
 
@@ -47,10 +55,9 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
         assertFalse(manager.open(name))
 
         verifyOrder {
-            io.sendOpen(detail)
-            io.notifyOpened(detail)
-
-            io.notifyRefreshed(detail)
+            client.openInterface(true, 0, 0,1)
+            events.emit(InterfaceOpened(1, name))
+            events.emit(InterfaceRefreshed(1, name))
         }
     }
 
@@ -62,8 +69,8 @@ internal class InterfaceManagerSingleTest : InterfaceTest() {
         assertFalse(manager.contains(name))
 
         verifyOrder {
-            io.sendClose(detail)
-            io.notifyClosed(detail)
+            client.closeInterface(0, 0)
+            events.emit(InterfaceClosed(1, name))
         }
     }
 }
