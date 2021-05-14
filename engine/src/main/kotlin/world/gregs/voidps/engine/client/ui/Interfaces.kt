@@ -111,7 +111,7 @@ class Interfaces(
 
     private fun sendOpen(name: String) {
         val parent = getParent(name)
-        if (parent.isBlank()) {
+        if (parent == ROOT_ID) {
             client?.updateInterface(definitions.getId(name), 0)
         } else {
             val type = getType(name)
