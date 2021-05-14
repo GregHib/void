@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.network.encode.sendInterfaceSettings
 import world.gregs.voidps.network.encode.sendScript
 import kotlin.math.min
@@ -26,8 +27,7 @@ class InterfaceOptions(
     }
 
     private fun getStatic(name: String, component: String): Array<String> {
-        val static = definitions.getComponent(name, component)
-        return static.options
+        return definitions.getComponent(name, component)["options", emptyArray()]
     }
 
     private fun getId(name: String, component: String) = "${name}_$component"
@@ -49,11 +49,11 @@ class InterfaceOptions(
 
     fun send(name: String, component: String) {
         val comp = definitions.getComponent(name, component)
-        val script = if (comp.primaryContainer) 150 else 695
-        val id = (comp.parent shl 16) or comp.id
+        val script = if (comp["primaryContainer", true]) 150 else 695
+        val id = (comp["parent", -1] shl 16) or comp.id
         val all = get(name, component)
         val options = all.copyOfRange(0, min(9, all.size))
-        val container = containerDefinitions.get(comp.container)
+        val container = containerDefinitions.get(comp["container", ""])
         if(container.id != -1) {
             player.sendScript(script, id, container.id, container["width", 0], container["height", 0], 0, -1, *options)
         }
@@ -68,7 +68,7 @@ class InterfaceOptions(
                 setting += (2 shl index)
             }
         }
-        player.sendInterfaceSettings(comp.parent, comp.id, slots.first, slots.last, setting)
+        player.sendInterfaceSettings(comp["parent", -1], comp.id, slots.first, slots.last, setting)
     }
 
     fun unlock(name: String, component: String, slots: IntRange = -1..-1, vararg options: String) {
@@ -84,11 +84,11 @@ class InterfaceOptions(
                 setting += (2 shl index)
             }
         }
-        player.sendInterfaceSettings(comp.parent, comp.id, slots.first, slots.last, setting)
+        player.sendInterfaceSettings(comp["parent", -1], comp.id, slots.first, slots.last, setting)
     }
 
     fun lockAll(name: String, component: String, range: IntRange = -1..-1) {
         val comp = definitions.getComponent(name, component)
-        player.sendInterfaceSettings(comp.parent, comp.id, range.first, range.last, 0)
+        player.sendInterfaceSettings(comp["parent", -1], comp.id, range.first, range.last, 0)
     }
 }

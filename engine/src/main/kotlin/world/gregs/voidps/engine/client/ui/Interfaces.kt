@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.ui
 
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
@@ -7,10 +8,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
-import world.gregs.voidps.engine.entity.definition.InterfaceComponent
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.id
-import world.gregs.voidps.engine.entity.definition.parent
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
@@ -141,38 +139,38 @@ class Interfaces(
     }
 }
 
-private fun getComponent(name: String, componentName: String): InterfaceComponent? {
+private fun getComponent(name: String, componentName: String): InterfaceComponentDefinition? {
     val definitions: InterfaceDefinitions = get()
     return definitions.getComponentOrNull(name, componentName)
 }
 
 fun Interfaces.sendAnimation(name: String, component: String, animation: Int): Boolean {
     val comp = getComponent(name, component) ?: return false
-    client?.animateInterface(comp.parent, comp.id, animation)
+    client?.animateInterface(comp["parent", -1], comp.id, animation)
     return true
 }
 
 fun Interfaces.sendText(name: String, component: String, text: String): Boolean {
     val comp = getComponent(name, component) ?: return false
-    client?.interfaceText(comp.parent, comp.id, text)
+    client?.interfaceText(comp["parent", -1], comp.id, text)
     return true
 }
 
 fun Interfaces.sendVisibility(name: String, component: String, visible: Boolean): Boolean {
     val comp = getComponent(name, component) ?: return false
-    client?.interfaceVisibility(comp.parent, comp.id, !visible)
+    client?.interfaceVisibility(comp["parent", -1], comp.id, !visible)
     return true
 }
 
 fun Interfaces.sendSprite(name: String, component: String, sprite: Int): Boolean {
     val comp = getComponent(name, component) ?: return false
-    client?.interfaceSprite(comp.parent, comp.id, sprite)
+    client?.interfaceSprite(comp["parent", -1], comp.id, sprite)
     return true
 }
 
 fun Interfaces.sendItem(name: String, component: String, item: Int, amount: Int): Boolean {
     val comp = getComponent(name, component) ?: return false
-    client?.interfaceItem(comp.parent, comp.id, item, amount)
+    client?.interfaceItem(comp["parent", -1], comp.id, item, amount)
     return true
 }
 

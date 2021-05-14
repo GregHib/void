@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.definition
 
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
@@ -21,28 +22,28 @@ class InterfaceDefinitions(
     override lateinit var names: Map<Int, String>
     private lateinit var componentExtras: Map<String, Map<String, Map<String, Any>>>
     private lateinit var componentNames: Map<String, Map<Int, String>>
+    private lateinit var componentNames2: Map<String, Map<String, Int>>
 
     fun getComponentName(name: String, id: Int): String {
         return componentNames[name]?.get(id) ?: ""
     }
 
-    fun getComponentOrNull(name: String, component: String): InterfaceComponent? {
-        return componentExtras[name]?.get(component)?.let {
-            InterfaceComponent(it)
-        }
+    fun getComponentOrNull(name: String, component: String): InterfaceComponentDefinition? {
+        val id = componentNames2[name]?.get(component) ?: return null
+        return get(name).components?.get(id)
     }
 
-    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponent(emptyMap())
+    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponentDefinition()
 
-    override fun applyExtras(definition: InterfaceDefinition, name: String) {
-        super.applyExtras(definition, name)
-//        val extras = componentExtras[name] ?: return
-//        val names = componentNames[name] ?: return
-//        definition.components?.forEach { (id, component) ->
-//            extras[names[id]]?.let { extra ->
-//                component.extras = extra
-//            }
-//        }
+    override fun setExtras(definition: InterfaceDefinition, name: String, map: Map<String, Any>) {
+        super.setExtras(definition, name, map)
+        val extras = componentExtras[name] ?: return
+        val names = componentNames[name] ?: return
+        definition.components?.forEach { (id, component) ->
+            extras[names[id]]?.let { extra ->
+                component.extras = extra
+            }
+        }
     }
 
     fun load(
@@ -60,17 +61,17 @@ class InterfaceDefinitions(
     }
 
     fun load(data: Map<String, Map<String, Any>>, typeData: Map<String, Map<String, Any>>): Int {
-        this.names = loadNames(data)
+        this.names = data.map { (name, values) -> values.getId() to name }.toMap()
         val types = loadTypes(typeData)
         extras = loadDetails(data, types)
         componentNames = loadComponentNames(data)
+        componentNames2 = loadComponentNames2(data)
         componentExtras = loadComponentDetails(data)
         return names.size
     }
 
-    fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
 
-    fun loadComponentNames(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
+    private fun loadComponentNames(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
         val components = values["components"] as? Map<*, *> ?: return@mapNotNull null
         name to components.mapNotNull components@{
             when (it.value) {
@@ -81,7 +82,18 @@ class InterfaceDefinitions(
         }.toMap()
     }.toMap()
 
-    fun loadTypes(data: Map<String, Map<String, Any>>) = data.map { (name, values) ->
+    private fun loadComponentNames2(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
+        val components = values["components"] as? Map<*, *> ?: return@mapNotNull null
+        name to components.mapNotNull components@{
+            it.key as String to when (it.value) {
+                is Int -> it.value as Int
+                is Map<*, *> -> (it.value as Map<*, *>)["id"] as Int
+                else -> return@components null
+            }
+        }.toMap()
+    }.toMap()
+
+    private fun loadTypes(data: Map<String, Map<String, Any>>) = data.map { (name, values) ->
         val index = values.readInt("index")
         val fixedIndex = index ?: values.readInt("fixedIndex")!!
         val resizeIndex = index ?: values.readInt("resizeIndex")!!
@@ -97,7 +109,7 @@ class InterfaceDefinitions(
         )
     }.toMap()
 
-    fun loadDetails(
+    private fun loadDetails(
         data: Map<String, Map<String, Any>>,
         types: Map<String, Map<String, Any>>
     ) = data.map { (name, values) ->
@@ -110,7 +122,7 @@ class InterfaceDefinitions(
         }
     }.toMap()
 
-    fun loadComponentDetails(
+    private fun loadComponentDetails(
         data: Map<String, Map<String, Any>>
     ) = data.mapNotNull { (name, values) ->
         val id = values.getId()
@@ -122,42 +134,32 @@ class InterfaceDefinitions(
         val value = this["components"] as? Map<*, *>
         val components = value?.map {
             val name = it.key as String
-            name to createComponent(name, it.value!!, parent)
+            name to componentExtras(name, it.value!!, parent)
         }?.toMap()
         return components ?: emptyMap()
     }
 
-    fun createComponent(name: String, value: Any, parent: Int): Map<String, Any> {
-        return if (value is Int) {
-            mapOf(
-                "id" to value,
-                "name" to name,
-                "parent" to parent
-            )
-        } else {
-            val map = value as Map<*, *>
-            val id = map["id"] as Int
-            val container = map["container"] as? String ?: ""
-            val primary = map["primary"] as? Boolean ?: true
-            val options = map["options"] as? Map<*, *>
-            mapOf(
-                "id" to id,
-                "name" to name,
-                "parent" to parent,
-                "container" to container,
-                "primaryContainer" to primary,
-                "options" to convert(options)
-            )
+    private fun componentExtras(name: String, value: Any, parent: Int): Map<String, Any> {
+        val out = mutableMapOf<String, Any>(
+            "name" to name,
+            "parent" to parent,
+        )
+        (value as? Map<*, *>)?.let { extras ->
+            (extras["container"] as? String)?.let {
+                out["container"] = it
+            }
+            (extras["primary"] as? Boolean)?.let {
+                out["primary"] = it
+            }
+            (extras["options"] as? Map<*, *>)?.let {
+                val options = Array(it.maxOf { it.value as Int } + 1) { "" }
+                it.forEach { (option, index) ->
+                    options[index as Int] = option as String
+                }
+                out["options"] = options
+            }
         }
-    }
-
-    private fun convert(map: Map<*, *>?): Array<String> {
-        val max = map?.maxByOrNull { it.value as Int }?.value as? Int ?: -1
-        val array = Array(max + 1) { "" }
-        map?.forEach { (option, index) ->
-            array[index as Int] = option as String
-        }
-        return array
+        return out
     }
 
     private fun Map<String, Any>.getId(): Int {
@@ -170,23 +172,3 @@ class InterfaceDefinitions(
     private fun Map<String, Any>.readString(name: String) = this[name] as? String
 
 }
-
-inline class InterfaceComponent(val map: Map<String, Any>)
-
-val InterfaceComponent.id: Int
-    get() = map["id"] as Int
-
-val InterfaceComponent.name: String
-    get() = map["string"] as String
-
-val InterfaceComponent.parent: Int
-    get() = map["parent"] as? Int ?: -1
-
-val InterfaceComponent.container: String
-    get() = map["container"] as? String ?: ""
-
-val InterfaceComponent.primaryContainer: Boolean
-    get() = map["primaryContainer"] as? Boolean ?: true
-
-val InterfaceComponent.options: Array<String>
-    get() = map["options"] as? Array<String> ?: emptyArray()

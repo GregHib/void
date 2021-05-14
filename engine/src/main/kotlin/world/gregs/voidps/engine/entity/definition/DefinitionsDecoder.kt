@@ -29,11 +29,11 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
 
     private fun applyExtras(definition: T) {
         val name = names[definition.id] ?: return
-        applyExtras(definition, name)
+        val map = extras[name] ?: return
+        setExtras(definition, name, map)
     }
 
-    open fun applyExtras(definition: T, name: String) {
-        val map = extras[name] ?: return
+    open fun setExtras(definition: T, name: String, map: Map<String, Any>) {
         definition.extras = map
     }
 
@@ -41,7 +41,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
         val map = extras[name] ?: return null
         val id = map["id"] as? Int ?: return null
         val definition = decoder.getOrNull(id) ?: return null
-        definition.extras = map
+        setExtras(definition, name, map)
         return definition
     }
 
@@ -50,7 +50,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
         val id = map?.get("id") as? Int ?: -1
         val definition = decoder.get(id)
         if (map != null) {
-            definition.extras = map
+            setExtras(definition, name, map)
         }
         return definition
     }

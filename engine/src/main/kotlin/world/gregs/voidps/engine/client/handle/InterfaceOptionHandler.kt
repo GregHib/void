@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.container
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
@@ -49,7 +48,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
                 logger.info { "Interface $name component $componentId not found for player $player" }
                 return
             }
-            val containerName = component.container
+            val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
                 return

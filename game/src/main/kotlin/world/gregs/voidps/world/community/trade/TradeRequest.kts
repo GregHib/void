@@ -17,7 +17,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.set
-import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
+import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
@@ -212,9 +213,8 @@ fun Player.warn(name: String, component: String, slot: Int) {
     val defs: InterfaceDefinitions = world.gregs.voidps.utility.get()
     val containerDefinitions: ContainerDefinitions = world.gregs.voidps.utility.get()
     val comp = defs.getComponent(name, component)
-    val container = containerDefinitions.get(comp.container)
-    println(listOf(comp.parent, comp.id, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot))
-    sendScript(143, (comp.parent shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
+    val container = containerDefinitions.get(comp["container", ""])
+    sendScript(143, (comp["parent", -1] shl 16) or comp.id, container["width", 0.0], container["height", 0.0], slot)
 }
 
 fun updateValue(player: Player, other: Player) {

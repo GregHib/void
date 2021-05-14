@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.container
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
@@ -62,7 +61,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
                 return
             }
             // Check the component container exists
-            containerName = component.container
+            containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
                 return
