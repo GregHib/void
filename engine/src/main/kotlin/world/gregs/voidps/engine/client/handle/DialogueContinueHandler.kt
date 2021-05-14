@@ -4,7 +4,6 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.dialogue.ContinueDialogue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentName
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractDialogue
 import world.gregs.voidps.utility.inject
@@ -35,7 +34,7 @@ class DialogueContinueHandler : Handler<InteractDialogue>() {
         }
 
         val name = definitions.getName(id)
-        val componentName = definition.getComponentName(componentId)
+        val componentName = definitions.getComponentName(name, componentId)
 
         player.events.emit(
             ContinueDialogue(

@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.utility.get
 
@@ -60,6 +59,6 @@ private fun getInterfaceName(name: String, lines: Int, prompt: Boolean): String 
 
 private fun sendNPCHead(player: Player, name: String, component: String, npc: Int) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.getOrNull(name)?.getComponentOrNull(component) ?: return
+    val comp = definitions.getComponentOrNull(name, component) ?: return
     player.client?.npcDialogueHead(comp.parent, comp.id, npc)
 }

@@ -8,10 +8,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 import world.gregs.voidps.cache.definition.data.InterfaceComponentSetting
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class InterfaceDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<InterfaceDefinition>(cache, INTERFACES) {
 
     override fun create() = InterfaceDefinition()
@@ -27,14 +23,14 @@ class InterfaceDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
         }
         val definition = create()
         definition.id = id
-        definition.components = (0..lastArchive).map { file ->
+        definition.components = (0..lastArchive).associateWith { file ->
             val component = InterfaceComponentDefinition(id = file + (id shl 16))
             val data = cache.getFile(index, archive, file)
             if (data != null) {
                 component.read(BufferReader(data))
             }
-            file to component
-        }.toMap()
+            component
+        }
         return definition
     }
 

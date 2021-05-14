@@ -9,7 +9,6 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponent
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
@@ -142,7 +141,7 @@ class Interfaces(
 
 private fun getComponent(name: String, componentName: String): InterfaceComponentDetail? {
     val definitions: InterfaceDefinitions = get()
-    return definitions.getOrNull(name)?.getComponent(componentName)
+    return definitions.getComponentOrNull(name, componentName)
 }
 
 fun Interfaces.sendAnimation(name: String, component: String, animation: Int): Boolean {

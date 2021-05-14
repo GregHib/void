@@ -1,12 +1,8 @@
 package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
-import java.util.*
+import world.gregs.voidps.cache.definition.Extra
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class InterfaceComponentDefinition(
     override var id: Int = -1,
     var type: Int = 0,
@@ -105,8 +101,9 @@ data class InterfaceComponentDefinition(
     var anIntArray4789: IntArray? = null,
     var clientVarc: IntArray? = null,
     var anIntArray4805: IntArray? = null,
-    var hasScript: Boolean = false
-) : Definition {
+    var hasScript: Boolean = false,
+    override var extras: Map<String, Any> = emptyMap()
+) : Definition, Extra {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false

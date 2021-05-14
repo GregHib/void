@@ -29,6 +29,10 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
 
     private fun applyExtras(definition: T) {
         val name = names[definition.id] ?: return
+        applyExtras(definition, name)
+    }
+
+    open fun applyExtras(definition: T, name: String) {
         val map = extras[name] ?: return
         definition.extras = map
     }

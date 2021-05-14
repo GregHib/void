@@ -5,7 +5,6 @@ import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentName
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.MoveContainerItem
 import world.gregs.voidps.utility.inject
@@ -20,11 +19,11 @@ class InterfaceSwitchHandler : Handler<MoveContainerItem>() {
 
         val from = interfaceExists(player, fromId, fromComponentId) ?: return
         val fromName = definitions.getName(fromId)
-        val fromComponentName = from.getComponentName(fromComponentId)
+        val fromComponentName = definitions.getComponentName(fromName, fromComponentId)
 
         val to = interfaceExists(player, toId, toComponentId) ?: return
         val toName = definitions.getName(toId)
-        val toComponentName = to.getComponentName(toComponentId)
+        val toComponentName = definitions.getComponentName(toName, toComponentId)
 
         player.events.emit(
             InterfaceSwitch(

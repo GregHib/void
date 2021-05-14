@@ -20,6 +20,29 @@ class InterfaceDefinitions(
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
+    private lateinit var componentExtras: Map<String, Map<String, InterfaceComponentDetail>>
+    private lateinit var componentNames: Map<String, Map<Int, String>>
+
+    fun getComponentName(name: String, id: Int): String {
+        return componentNames[name]?.get(id) ?: ""
+    }
+
+    fun getComponentOrNull(name: String, component: String): InterfaceComponentDetail? {
+        return componentExtras[name]?.get(component)
+    }
+
+    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponentDetail(-1, "")
+
+    override fun applyExtras(definition: InterfaceDefinition, name: String) {
+        super.applyExtras(definition, name)
+//        val extras = componentExtras[name] ?: return
+//        val names = componentNames[name] ?: return
+//        definition.components?.forEach { (id, component) ->
+//            extras[names[id]]?.let { extra ->
+//                component.extras = extra
+//            }
+//        }
+    }
 
     fun load(
         loader: FileLoader = get(),
@@ -39,10 +62,23 @@ class InterfaceDefinitions(
         this.names = loadNames(data)
         val types = loadTypes(typeData)
         extras = loadDetails(data, types)
+        componentNames = loadComponentNames(data)
+        componentExtras = loadComponentDetails(data)
         return names.size
     }
 
     fun loadNames(data: Map<String, Map<String, Any>>) = data.map { (name, values) -> values.getId() to name }.toMap()
+
+    fun loadComponentNames(data: Map<String, Map<String, Any>>) = data.mapNotNull { (name, values) ->
+        val components = values["components"] as? Map<*, *> ?: return@mapNotNull null
+        name to components.mapNotNull components@{
+            when (it.value) {
+                is Int -> it.value as Int
+                is Map<*, *> -> (it.value as Map<*, *>)["id"] as Int
+                else -> return@components null
+            } to it.key as String
+        }.toMap()
+    }.toMap()
 
     fun loadTypes(data: Map<String, Map<String, Any>>) = data.map { (name, values) ->
         val index = values.readInt("index")
@@ -53,10 +89,10 @@ class InterfaceDefinitions(
         val fixedParentName = parent ?: values.readString("fixedParent") ?: DEFAULT_FIXED_PARENT
         val resizeParentName = parent ?: values.readString("resizeParent") ?: DEFAULT_RESIZE_PARENT
         name to mapOf(
-            "index_fixed" to fixedParentName,
-            "index_resize" to resizeParentName,
-            "parent_fixed" to fixedIndex,
-            "parent_resize" to resizeIndex
+            "parent_fixed" to fixedParentName,
+            "parent_resize" to resizeParentName,
+            "index_fixed" to fixedIndex,
+            "index_resize" to resizeIndex
         )
     }.toMap()
 
@@ -64,19 +100,24 @@ class InterfaceDefinitions(
         data: Map<String, Map<String, Any>>,
         types: Map<String, Map<String, Any>>
     ) = data.map { (name, values) ->
-        val id = values.getId()
         val typeName = values.readString("type") ?: DEFAULT_TYPE
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
+        name to values.toMutableMap().apply {
+            this["name"] to name
+            putAll(type)
+        }
+    }.toMap()
+
+    fun loadComponentDetails(
+        data: Map<String, Map<String, Any>>
+    ) = data.mapNotNull { (name, values) ->
+        val id = values.getId()
         val components = values.getComponents()
         components.values.forEach {
             it.parent = id
         }
-        name to values.toMutableMap().apply {
-            putAll(type)
-            this["components"] = components
-            this["componentNames"] = components.map { it.value.id to it.key }.toMap()
-        }
+        name to components
     }.toMap()
 
     private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
@@ -119,14 +160,4 @@ class InterfaceDefinitions(
     private fun Map<String, Any>.readInt(name: String) = this[name] as? Int
     private fun Map<String, Any>.readString(name: String) = this[name] as? String
 
-}
-
-fun InterfaceDefinition.getComponentOrNull(name: String): InterfaceComponentDetail? {
-    return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name)
-}
-fun InterfaceDefinition.getComponent(name: String): InterfaceComponentDetail {
-    return getComponentOrNull(name) ?: InterfaceComponentDetail(-1, "")
-}
-fun InterfaceDefinition.getComponentName(id: Int): String {
-    return (getOrNull("componentNames") as? Map<Int, String>)?.get(id) ?: ""
 }
