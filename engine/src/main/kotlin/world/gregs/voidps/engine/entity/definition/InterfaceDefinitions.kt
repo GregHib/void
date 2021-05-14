@@ -22,10 +22,10 @@ class InterfaceDefinitions(
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
     private lateinit var componentExtras: Map<String, Map<Int, Map<String, Any>>>
-    private lateinit var componentNames: Map<String, Map<Int, String>>
 
     fun getComponentName(name: String, id: Int): String {
-        return componentNames[name]?.get(id) ?: ""
+        val inter = get(name)
+        return (inter.getOrNull("componentIds") as? Map<Int, String>)?.get(id) ?: return ""
     }
 
     fun getComponentOrNull(name: String, component: String): InterfaceComponentDefinition? {
@@ -66,8 +66,8 @@ class InterfaceDefinitions(
         val types = loadTypes(typeData)
         val components = getComponentsMap(data)
         val idToNames = components.mapValues { it.value.toMap() }
-        componentNames = components.mapValues { entry -> entry.value.associate { it.second to it.first } }
-        extras = loadInterfaceExtras(data, types, idToNames)
+        val componentNames = components.mapValues { entry -> entry.value.associate { it.second to it.first } }
+        extras = loadInterfaceExtras(data, types, idToNames, componentNames)
         componentExtras = loadComponentExtras(data)
         return names.size
     }
@@ -97,7 +97,8 @@ class InterfaceDefinitions(
     private fun loadInterfaceExtras(
         data: Map<String, Map<String, Any>>,
         types: Map<String, Map<String, Any>>,
-        components: Map<String, Map<String, Int>>
+        components: Map<String, Map<String, Int>>,
+        componentNames: Map<String, Map<Int, String>>
     ) = data.mapValues { (name, values) ->
         val typeName = values["type"] as? String ?: DEFAULT_TYPE
         val type = types[typeName]
@@ -108,6 +109,10 @@ class InterfaceDefinitions(
             components[name]?.let {
                 this["componentNames"] = it
             }
+            componentNames[name]?.let {
+                this["componentIds"] = it
+            }
+
         }
     }
 
