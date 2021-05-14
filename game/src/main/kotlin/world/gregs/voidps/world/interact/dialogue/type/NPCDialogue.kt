@@ -6,9 +6,7 @@ import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendAnimation
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.NPCDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.utility.get
 

@@ -8,6 +8,8 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.id
+import world.gregs.voidps.engine.entity.definition.parent
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.utility.get
 

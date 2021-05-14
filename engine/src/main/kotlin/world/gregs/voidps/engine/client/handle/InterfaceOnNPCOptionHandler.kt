@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.container
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler

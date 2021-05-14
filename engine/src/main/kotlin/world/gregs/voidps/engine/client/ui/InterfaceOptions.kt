@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.network.encode.sendInterfaceSettings
 import world.gregs.voidps.network.encode.sendScript
 import kotlin.math.min

@@ -2,13 +2,15 @@ package world.gregs.voidps.engine.client.ui
 
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.action.Suspension
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
+import world.gregs.voidps.engine.entity.definition.InterfaceComponent
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.id
+import world.gregs.voidps.engine.entity.definition.parent
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.*
@@ -139,7 +141,7 @@ class Interfaces(
     }
 }
 
-private fun getComponent(name: String, componentName: String): InterfaceComponentDetail? {
+private fun getComponent(name: String, componentName: String): InterfaceComponent? {
     val definitions: InterfaceDefinitions = get()
     return definitions.getComponentOrNull(name, componentName)
 }

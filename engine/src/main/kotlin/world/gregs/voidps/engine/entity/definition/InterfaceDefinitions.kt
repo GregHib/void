@@ -2,7 +2,6 @@ package world.gregs.voidps.engine.entity.definition
 
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
-import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
@@ -20,18 +19,20 @@ class InterfaceDefinitions(
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
-    private lateinit var componentExtras: Map<String, Map<String, InterfaceComponentDetail>>
+    private lateinit var componentExtras: Map<String, Map<String, Map<String, Any>>>
     private lateinit var componentNames: Map<String, Map<Int, String>>
 
     fun getComponentName(name: String, id: Int): String {
         return componentNames[name]?.get(id) ?: ""
     }
 
-    fun getComponentOrNull(name: String, component: String): InterfaceComponentDetail? {
-        return componentExtras[name]?.get(component)
+    fun getComponentOrNull(name: String, component: String): InterfaceComponent? {
+        return componentExtras[name]?.get(component)?.let {
+            InterfaceComponent(it)
+        }
     }
 
-    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponentDetail(-1, "")
+    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponent(emptyMap())
 
     override fun applyExtras(definition: InterfaceDefinition, name: String) {
         super.applyExtras(definition, name)
@@ -113,32 +114,40 @@ class InterfaceDefinitions(
         data: Map<String, Map<String, Any>>
     ) = data.mapNotNull { (name, values) ->
         val id = values.getId()
-        val components = values.getComponents()
-        components.values.forEach {
-            it.parent = id
-        }
+        val components = values.getComponents(id)
         name to components
     }.toMap()
 
-    private fun Map<String, Any>.getComponents(): Map<String, InterfaceComponentDetail> {
+    private fun Map<String, Any>.getComponents(parent: Int): Map<String, Map<String, Any>> {
         val value = this["components"] as? Map<*, *>
         val components = value?.map {
             val name = it.key as String
-            name to createComponent(name, it.value!!)
+            name to createComponent(name, it.value!!, parent)
         }?.toMap()
         return components ?: emptyMap()
     }
 
-    fun createComponent(name: String, value: Any): InterfaceComponentDetail {
+    fun createComponent(name: String, value: Any, parent: Int): Map<String, Any> {
         return if (value is Int) {
-            InterfaceComponentDetail(value, name)
+            mapOf(
+                "id" to value,
+                "name" to name,
+                "parent" to parent
+            )
         } else {
             val map = value as Map<*, *>
             val id = map["id"] as Int
             val container = map["container"] as? String ?: ""
             val primary = map["primary"] as? Boolean ?: true
             val options = map["options"] as? Map<*, *>
-            InterfaceComponentDetail(id, name, container = container, primaryContainer = primary, options = convert(options))
+            mapOf(
+                "id" to id,
+                "name" to name,
+                "parent" to parent,
+                "container" to container,
+                "primaryContainer" to primary,
+                "options" to convert(options)
+            )
         }
     }
 
@@ -161,3 +170,23 @@ class InterfaceDefinitions(
     private fun Map<String, Any>.readString(name: String) = this[name] as? String
 
 }
+
+inline class InterfaceComponent(val map: Map<String, Any>)
+
+val InterfaceComponent.id: Int
+    get() = map["id"] as Int
+
+val InterfaceComponent.name: String
+    get() = map["string"] as String
+
+val InterfaceComponent.parent: Int
+    get() = map["parent"] as? Int ?: -1
+
+val InterfaceComponent.container: String
+    get() = map["container"] as? String ?: ""
+
+val InterfaceComponent.primaryContainer: Boolean
+    get() = map["primaryContainer"] as? Boolean ?: true
+
+val InterfaceComponent.options: Array<String>
+    get() = map["options"] as? Array<String> ?: emptyArray()
