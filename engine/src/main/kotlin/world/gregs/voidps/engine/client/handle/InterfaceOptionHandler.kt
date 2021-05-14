@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentName
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.instruct.InteractInterface
@@ -39,7 +40,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         var options = componentDef.options
 
         val name = interfaceDefinitions.getName(id)
-        val componentName = interfaceDefinitions.getComponentName(name, componentId)
+        val componentName = definition.getComponentName(componentId)
         val component = interfaceDefinitions.getComponentOrNull(name, componentName)
 
         var item = Item.EMPTY
