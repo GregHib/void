@@ -128,9 +128,13 @@ class InterfaceDefinitions(
 val InterfaceDefinition.details: InterfaceDetail
     get() = extras["data"] as? InterfaceDetail ?: InterfaceDetail(-1, "")
 
-fun InterfaceDefinition.getComponent(name: String): InterfaceComponentDetail? {
+
+fun InterfaceDefinition.getComponentOrNull(name: String): InterfaceComponentDetail? {
     return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name)
 }
-fun InterfaceDefinition.getComponentName(id: Int): String? {
-    return (getOrNull("componentNames") as? Map<Int, String>)?.get(id)
+fun InterfaceDefinition.getComponent(name: String): InterfaceComponentDetail {
+    return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name) ?: InterfaceComponentDetail(-1, "")
+}
+fun InterfaceDefinition.getComponentName(id: Int): String {
+    return (getOrNull("componentNames") as? Map<Int, String>)?.get(id) ?: ""
 }
