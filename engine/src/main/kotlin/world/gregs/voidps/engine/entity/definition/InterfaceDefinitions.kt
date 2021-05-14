@@ -23,14 +23,6 @@ class InterfaceDefinitions(
     override lateinit var names: Map<Int, String>
     private lateinit var componentExtras: Map<String, Map<Int, Map<String, Any>>>
 
-    fun getComponentOrNull(name: String, component: String): InterfaceComponentDefinition? {
-        val inter = get(name)
-        val id = (inter.getOrNull("componentNames") as? Map<String, Int>)?.get(component) ?: return null
-        return inter.components?.get(id)
-    }
-
-    fun getComponent(name: String, component: String) = getComponentOrNull(name, component) ?: InterfaceComponentDefinition()
-
     override fun setExtras(definition: InterfaceDefinition, name: String, map: Map<String, Any>) {
         super.setExtras(definition, name, map)
         val extras = componentExtras[name] ?: return

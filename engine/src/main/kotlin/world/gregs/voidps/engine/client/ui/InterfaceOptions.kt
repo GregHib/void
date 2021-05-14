@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.client.ui
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.network.encode.sendInterfaceSettings
 import world.gregs.voidps.network.encode.sendScript
 import kotlin.math.min
@@ -27,7 +28,7 @@ class InterfaceOptions(
     }
 
     private fun getStatic(name: String, component: String): Array<String> {
-        return definitions.getComponent(name, component)["options", emptyArray()]
+        return definitions.get(name).getComponentOrNull(component)?.get("options") ?: emptyArray()
     }
 
     private fun getId(name: String, component: String) = "${name}_$component"
@@ -48,7 +49,7 @@ class InterfaceOptions(
     }
 
     fun send(name: String, component: String) {
-        val comp = definitions.getComponent(name, component)
+        val comp = definitions.get(name).getComponentOrNull(component) ?: return
         val script = if (comp["primaryContainer", true]) 150 else 695
         val id = (comp["parent", -1] shl 16) or comp.id
         val all = get(name, component)
@@ -60,7 +61,7 @@ class InterfaceOptions(
     }
 
     fun unlockAll(name: String, component: String, slots: IntRange = -1..-1) {
-        val comp = definitions.getComponent(name, component)
+        val comp = definitions.get(name).getComponentOrNull(component) ?: return
         val options = get(name, component)
         var setting = 0
         for ((index, option) in options.withIndex()) {
@@ -76,7 +77,7 @@ class InterfaceOptions(
     }
 
     fun unlock(name: String, component: String, slots: IntRange = -1..-1, options: Set<String>) {
-        val comp = definitions.getComponent(name, component)
+        val comp = definitions.get(name).getComponentOrNull(component) ?: return
         val opts = get(name, component)
         var setting = 0
         for ((index, option) in opts.withIndex()) {
@@ -88,7 +89,7 @@ class InterfaceOptions(
     }
 
     fun lockAll(name: String, component: String, range: IntRange = -1..-1) {
-        val comp = definitions.getComponent(name, component)
+        val comp = definitions.get(name).getComponentOrNull(component) ?: return
         player.sendInterfaceSettings(comp["parent", -1], comp.id, range.first, range.last, 0)
     }
 }

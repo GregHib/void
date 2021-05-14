@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.definition.getComponentName
+import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.network.Handler
@@ -50,7 +47,7 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
         // Get the string ids of the interface and component
         val name = interfaceDefinitions.getName(id)
         val componentName = definition.getComponentName(componentId)
-        val component = interfaceDefinitions.getComponentOrNull(name, componentName)
+        val component = definition.getComponentOrNull(componentName)
 
         // If an item is provided
         var item = Item.EMPTY

@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
 import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.utility.get
 
@@ -49,6 +50,6 @@ private fun getInterfaceName(name: String, lines: Int, prompt: Boolean): String 
 
 private fun sendPlayerHead(player: Player, name: String, component: String) {
     val definitions: InterfaceDefinitions = get()
-    val comp = definitions.getComponentOrNull(name, component) ?: return
+    val comp = definitions.get(name).getComponentOrNull(component) ?: return
     player.client?.playerDialogueHead(comp["parent", -1], comp.id)
 }
