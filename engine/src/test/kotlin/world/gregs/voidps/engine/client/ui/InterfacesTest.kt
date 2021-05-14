@@ -21,10 +21,10 @@ internal class InterfacesTest : InterfaceTest() {
     fun `Unknown interfaces throw exceptions`() {
         val name = "unknown"
         every { definitions.get(name) } returns InterfaceDefinition()
-        assertFalse(manager.contains(name))
-        assertNull(manager.get(name))
-        assertFalse(manager.close(name))
-        assertFalse(manager.open(name))
+        assertFalse(interfaces.contains(name))
+        assertNull(interfaces.get(name))
+        assertFalse(interfaces.close(name))
+        assertFalse(interfaces.open(name))
         verify(exactly = 0) {
             client.closeInterface(any(), any())
             events.emit(any<InterfaceClosed>())
@@ -44,10 +44,10 @@ internal class InterfacesTest : InterfaceTest() {
             )
         )
         every { definitions.getId(name) } returns 0
-        assertFalse(manager.contains(name))
-        assertFalse(manager.close(name))
-        assertFalse(manager.remove(name))
-        assertNull(manager.get("type"))
+        assertFalse(interfaces.contains(name))
+        assertFalse(interfaces.close(name))
+        assertFalse(interfaces.remove(name))
+        assertNull(interfaces.get("type"))
         verify(exactly = 0) {
             client.closeInterface(any(), any())
             events.emit(any<InterfaceClosed>())
@@ -60,6 +60,6 @@ internal class InterfacesTest : InterfaceTest() {
         gameframe.resizable = resizable
         val name = "zero"
         every { definitions.get(name) } returns InterfaceDefinition()
-        assertFalse(manager.open(name))
+        assertFalse(interfaces.open(name))
     }
 }

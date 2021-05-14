@@ -15,8 +15,8 @@ abstract class InterfaceTest : KoinMock() {
 
     internal lateinit var client: Client
     internal lateinit var events: Events
-    internal lateinit var manager: Interfaces
-    internal lateinit var interfaces: MutableSet<String>
+    internal lateinit var interfaces: Interfaces
+    internal lateinit var open: MutableSet<String>
     internal lateinit var definitions: InterfaceDefinitions
     internal lateinit var gameframe: PlayerGameFrame
 
@@ -26,8 +26,8 @@ abstract class InterfaceTest : KoinMock() {
         events = mockk(relaxed = true)
         definitions = declare { mockk(relaxed = true) }
         gameframe = spyk(PlayerGameFrame())
-        interfaces = mutableSetOf()
-        manager = spyk(Interfaces(events, client, definitions, gameframe, interfaces))
+        open = mutableSetOf()
+        interfaces = spyk(Interfaces(events, client, definitions, gameframe, open))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
     }
 }

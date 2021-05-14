@@ -24,15 +24,15 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         super.setup()
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
-        every { player.interfaces } returns manager
+        every { player.interfaces } returns interfaces
     }
 
     @Test
     fun `Open by name`() {
         every { definitions.get(name) } returns InterfaceDefinition(id = 0)
         assertFalse(player.open(name))
-        verify { manager.open(name) }
-        verify(exactly = 0) { manager.close(any<String>()) }
+        verify { interfaces.open(name) }
+        verify(exactly = 0) { interfaces.close(any<String>()) }
     }
 
     @Test
@@ -44,11 +44,11 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
         )
         every { definitions.get("first") } returns InterfaceDefinition(id = 0, extras = extras)
         every { definitions.get("second") } returns InterfaceDefinition(id = 1, extras = extras)
-        manager.open("first")
+        interfaces.open("first")
         val result = player.open("second")
         verifyOrder {
-            manager.close("first")
-            manager.open("second")
+            interfaces.close("first")
+            interfaces.open("second")
         }
         assertTrue(result)
     }
@@ -56,31 +56,31 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     @Test
     fun `Interface name is open`() {
         val result = player.isOpen(name)
-        verify { manager.contains(name) }
+        verify { interfaces.contains(name) }
         assertFalse(result)
     }
 
     @Test
     fun `Has interface type open`() {
         val result = player.hasOpen("interface_type")
-        verify { manager.get("interface_type") }
+        verify { interfaces.get("interface_type") }
         assertFalse(result)
     }
 
     @Test
     fun `Close interface name`() {
         assertFalse(player.close(name))
-        verify { manager.close(name) }
+        verify { interfaces.close(name) }
     }
 
     @Test
     fun `Close interface type`() {
         every { definitions.get("second") } returns InterfaceDefinition()
-        every { manager.get("interface_type") } returns "second"
+        every { interfaces.get("interface_type") } returns "second"
         val result = player.closeType("interface_type")
         verifyOrder {
-            manager.get("interface_type")
-            manager.close("second")
+            interfaces.get("interface_type")
+            interfaces.close("second")
         }
         assertFalse(result)
     }
@@ -88,7 +88,7 @@ internal class InterfaceExtensionsTest : InterfaceTest() {
     @Test
     fun `Close children`() {
         assertFalse(player.closeChildren(name))
-        verify { manager.closeChildren(name) }
+        verify { interfaces.closeChildren(name) }
     }
 
     @Test

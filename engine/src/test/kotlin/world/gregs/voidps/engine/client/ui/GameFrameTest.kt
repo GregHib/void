@@ -21,7 +21,7 @@ internal class GameFrameTest : InterfaceTest() {
         super.setup()
         player = mockk(relaxed = true)
         every { player.gameFrame } returns gameframe
-        every { player.interfaces } returns manager
+        every { player.interfaces } returns interfaces
         every { definitions.get("toplevel_full") } returns InterfaceDefinition(extras = mapOf("parent_resize" to ROOT_ID, "index_resize" to ROOT_INDEX))
         every { definitions.get("toplevel") } returns InterfaceDefinition(extras = mapOf("parent_fixed" to ROOT_ID, "index_fixed" to ROOT_INDEX))
     }
@@ -41,7 +41,7 @@ internal class GameFrameTest : InterfaceTest() {
     @Test
     fun `Size set top level if full open`() {
         gameframe.resizable = true
-        interfaces.add("toplevel_full")
+        open.add("toplevel_full")
         val result = player.setDisplayMode(PlayerGameFrame.FIXED_SCREEN)
         assertTrue(result)
         assertEquals(false, gameframe.resizable)
@@ -49,7 +49,7 @@ internal class GameFrameTest : InterfaceTest() {
 
     @Test
     fun `Size set full if top level open`() {
-        interfaces.add("toplevel")
+        open.add("toplevel")
         val result = player.setDisplayMode(PlayerGameFrame.RESIZABLE_SCREEN)
         assertTrue(result)
         assertEquals(true, gameframe.resizable)

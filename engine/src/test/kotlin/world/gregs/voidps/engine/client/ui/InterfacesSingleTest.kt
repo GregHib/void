@@ -31,22 +31,22 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Unopened doesn't exist`() {
-        assertFalse(manager.contains(name))
-        assertNull(manager.get("type"))
+        assertFalse(interfaces.contains(name))
+        assertNull(interfaces.get("type"))
     }
 
     @Test
     fun `Opened contains with type`() {
-        interfaces.add(name)
-        assertTrue(manager.contains(name))
-        assertEquals(name, manager.get("type"))
+        open.add(name)
+        assertTrue(interfaces.contains(name))
+        assertEquals(name, interfaces.get("type"))
     }
 
     @Test
     fun `Reopen only refreshes`() {
-        interfaces.add(name)
+        open.add(name)
 
-        assertFalse(manager.open(name))
+        assertFalse(interfaces.open(name))
 
         verify {
             events.emit(InterfaceRefreshed(1, name))
@@ -56,10 +56,10 @@ internal class InterfacesSingleTest : InterfaceTest() {
     @Test
     fun `Close no longer contains`() {
         every { definitions.getId("root") } returns 2
-        interfaces.add(name)
+        open.add(name)
 
-        assertTrue(manager.close(name))
-        assertFalse(manager.contains(name))
+        assertTrue(interfaces.close(name))
+        assertFalse(interfaces.contains(name))
 
         verifyOrder {
             client.closeInterface(2, 0)

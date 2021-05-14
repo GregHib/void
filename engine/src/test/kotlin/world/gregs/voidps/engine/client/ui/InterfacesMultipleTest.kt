@@ -35,7 +35,7 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Can't open child if parent isn't open`() {
-        assertFalse(manager.open(one))
+        assertFalse(interfaces.open(one))
 
         verify(exactly = 0) {
             client.openInterface(any(), any(), any(), any())
@@ -45,9 +45,9 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Can open parents and children`() {
-        assertTrue(manager.open(two))
-        assertTrue(manager.open(one))
-        assertTrue(manager.open(zero))
+        assertTrue(interfaces.open(two))
+        assertTrue(interfaces.open(one))
+        assertTrue(interfaces.open(zero))
 
         verifyOrder {
             client.updateInterface(2, 0)
@@ -61,15 +61,15 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Remove doesn't close children`() {
-        manager.open(two)
-        manager.open(one)
-        manager.open(zero)
+        interfaces.open(two)
+        interfaces.open(one)
+        interfaces.open(zero)
 
-        assertTrue(manager.remove(two))
+        assertTrue(interfaces.remove(two))
 
-        assertFalse(manager.contains(two))
-        assertTrue(manager.contains(one))
-        assertTrue(manager.contains(zero))
+        assertFalse(interfaces.contains(two))
+        assertTrue(interfaces.contains(one))
+        assertTrue(interfaces.contains(zero))
 
         verifyOrder {
             client.closeInterface(0, 0)
@@ -85,15 +85,15 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Close children doesn't close parent`() {
-        manager.open(two)
-        manager.open(one)
-        manager.open(zero)
+        interfaces.open(two)
+        interfaces.open(one)
+        interfaces.open(zero)
 
-        assertTrue(manager.closeChildren(two))
+        assertTrue(interfaces.closeChildren(two))
 
-        assertTrue(manager.contains(two))
-        assertFalse(manager.contains(one))
-        assertFalse(manager.contains(zero))
+        assertTrue(interfaces.contains(two))
+        assertFalse(interfaces.contains(one))
+        assertFalse(interfaces.contains(zero))
         verifyOrder {
             client.closeInterface(2, 0)
             events.emit(InterfaceClosed(1, one))
@@ -108,15 +108,15 @@ internal class InterfacesMultipleTest : InterfaceTest() {
 
     @Test
     fun `Close closes children and parent`() {
-        manager.open(two)
-        manager.open(one)
-        manager.open(zero)
+        interfaces.open(two)
+        interfaces.open(one)
+        interfaces.open(zero)
 
-        assertTrue(manager.close(two))
+        assertTrue(interfaces.close(two))
 
-        assertFalse(manager.contains(two))
-        assertFalse(manager.contains(one))
-        assertFalse(manager.contains(zero))
+        assertFalse(interfaces.contains(two))
+        assertFalse(interfaces.contains(one))
+        assertFalse(interfaces.contains(zero))
         verifyOrder {
             client.closeInterface(0, 0)
             events.emit(InterfaceClosed(2, two))
