@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.network.encode.closeInterface
 import world.gregs.voidps.network.encode.openInterface
 
-internal class InterfaceManagerTest : InterfaceTest() {
+internal class InterfacesTest : InterfaceTest() {
 
     @Test
     fun `Unknown interfaces throw exceptions`() {

@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.network.encode.closeInterface
 
-internal class InterfaceManagerSingleTest : InterfaceTest() {
+internal class InterfacesSingleTest : InterfaceTest() {
 
     private val name = "zero"
 

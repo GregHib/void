@@ -14,8 +14,9 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.network.encode.closeInterface
 import world.gregs.voidps.network.encode.openInterface
+import world.gregs.voidps.network.encode.updateInterface
 
-internal class InterfaceManagerMultipleTest : InterfaceTest() {
+internal class InterfacesMultipleTest : InterfaceTest() {
 
     private val zero = "zero"
     private val one = "one"
@@ -49,7 +50,7 @@ internal class InterfaceManagerMultipleTest : InterfaceTest() {
         assertTrue(manager.open(zero))
 
         verifyOrder {
-            client.openInterface(false, 0, 0, 2)
+            client.updateInterface(2, 0)
             events.emit(InterfaceOpened(2, two))
             client.openInterface(false, 2, 0, 1)
             events.emit(InterfaceOpened(1, one))

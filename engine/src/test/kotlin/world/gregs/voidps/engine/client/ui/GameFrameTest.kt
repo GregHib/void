@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.character.player.setDisplayMode
 
-internal class PlayerGameFrameTest : InterfaceTest() {
+internal class GameFrameTest : InterfaceTest() {
 
     private lateinit var player: Player
 
