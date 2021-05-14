@@ -3,8 +3,6 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.detail.InterfaceComponentDetail
-import world.gregs.voidps.engine.client.ui.detail.InterfaceData
-import world.gregs.voidps.engine.client.ui.detail.InterfaceDetail
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
@@ -48,37 +46,36 @@ class InterfaceDefinitions(
 
     fun loadTypes(data: Map<String, Map<String, Any>>) = data.map { (name, values) ->
         val index = values.readInt("index")
-        val fixedIndex = index ?: values.readInt("fixedIndex")
-        val resizeIndex = index ?: values.readInt("resizeIndex")
+        val fixedIndex = index ?: values.readInt("fixedIndex")!!
+        val resizeIndex = index ?: values.readInt("resizeIndex")!!
 
         val parent = values.readString("parent")
         val fixedParentName = parent ?: values.readString("fixedParent") ?: DEFAULT_FIXED_PARENT
         val resizeParentName = parent ?: values.readString("resizeParent") ?: DEFAULT_RESIZE_PARENT
-        name to InterfaceData(
-            fixedParentName,
-            resizeParentName,
-            fixedIndex,
-            resizeIndex
+        name to mapOf(
+            "index_fixed" to fixedParentName,
+            "index_resize" to resizeParentName,
+            "parent_fixed" to fixedIndex,
+            "parent_resize" to resizeIndex
         )
     }.toMap()
 
     fun loadDetails(
         data: Map<String, Map<String, Any>>,
-        types: Map<String, InterfaceData>
+        types: Map<String, Map<String, Any>>
     ) = data.map { (name, values) ->
         val id = values.getId()
         val typeName = values.readString("type") ?: DEFAULT_TYPE
         val type = types[typeName]
         checkNotNull(type) { "Missing interface type $typeName" }
         val components = values.getComponents()
+        components.values.forEach {
+            it.parent = id
+        }
         name to values.toMutableMap().apply {
-            this["index_fixed"] = type.fixedIndex ?: throw IllegalArgumentException()
-            this["index_resize"] = type.resizableIndex ?: throw IllegalArgumentException()
-            this["parent_fixed"] = type.fixedParent ?: throw IllegalArgumentException()
-            this["parent_resize"] = type.resizableParent ?: throw IllegalArgumentException()
+            putAll(type)
             this["components"] = components
             this["componentNames"] = components.map { it.value.id to it.key }.toMap()
-            this["data"] = InterfaceDetail(id, name, typeName, type, components)
         }
     }.toMap()
 
@@ -124,16 +121,11 @@ class InterfaceDefinitions(
 
 }
 
-@Deprecated("Use extras map instead")
-val InterfaceDefinition.details: InterfaceDetail
-    get() = extras["data"] as? InterfaceDetail ?: InterfaceDetail(-1, "")
-
-
 fun InterfaceDefinition.getComponentOrNull(name: String): InterfaceComponentDetail? {
     return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name)
 }
 fun InterfaceDefinition.getComponent(name: String): InterfaceComponentDetail {
-    return (getOrNull("components") as? Map<String, InterfaceComponentDetail>)?.get(name) ?: InterfaceComponentDetail(-1, "")
+    return getComponentOrNull(name) ?: InterfaceComponentDetail(-1, "")
 }
 fun InterfaceDefinition.getComponentName(id: Int): String {
     return (getOrNull("componentNames") as? Map<Int, String>)?.get(id) ?: ""
