@@ -1,6 +1,9 @@
 package world.gregs.voidps.world.interact.dialogue
 
-import io.mockk.*
+import io.mockk.coEvery
+import io.mockk.coVerify
+import io.mockk.every
+import io.mockk.verify
 import kotlinx.coroutines.runBlocking
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
@@ -8,37 +11,18 @@ import org.junit.jupiter.api.Test
 import org.koin.test.mock.declareMock
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.action.Contexts
-import world.gregs.voidps.engine.client.cacheDefinitionModule
-import world.gregs.voidps.engine.client.ui.Interfaces
-import world.gregs.voidps.engine.client.ui.dialogue.DialogueContext
-import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendItem
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.world.interact.dialogue.type.destroy
-import world.gregs.voidps.world.script.KoinMock
 
-internal class DestroyTest : KoinMock() {
-
-    lateinit var interfaces: Interfaces
-    lateinit var manager: Dialogues
-    lateinit var player: Player
-    lateinit var context: DialogueContext
-
-    override val modules = listOf(cacheDefinitionModule)
+internal class DestroyTest : DialogueTest() {
 
     @BeforeEach
-    fun setup() {
-        mockkStatic("world.gregs.voidps.engine.client.ui.InterfacesKt")
-        player = mockk(relaxed = true)
-        interfaces = mockk(relaxed = true)
-        manager = spyk(Dialogues())
-        context = mockk(relaxed = true)
+    override fun setup() {
+        super.setup()
         every { context.player } returns player
-        every { player.open(any()) } returns true
-        every { player.interfaces } returns interfaces
         declareMock<ItemDefinitions> {
             every { this@declareMock.get("1234") } returns ItemDefinition(id = 1234, name = "magic")
         }

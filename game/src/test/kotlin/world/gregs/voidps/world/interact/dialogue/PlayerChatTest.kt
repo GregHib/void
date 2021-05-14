@@ -8,8 +8,18 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.AnimationDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendAnimation
+import world.gregs.voidps.engine.client.ui.sendText
+import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.playerDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.player
 
 internal class PlayerChatTest : DialogueTest() {
@@ -19,8 +29,12 @@ internal class PlayerChatTest : DialogueTest() {
         super.setup()
         mockkStatic("world.gregs.voidps.engine.entity.character.update.visual.player.AppearanceKt")
         every { player.name } returns "John"
+        declareMock<AnimationDefinitions> {
+            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
+            every { this@declareMock.getId("talk") } returns 9803
+            every { this@declareMock.getId("laugh") } returns 9840
+        }
     }
-
 
     @TestFactory
     fun `Send lines player chat`() = arrayOf(
@@ -87,12 +101,19 @@ internal class PlayerChatTest : DialogueTest() {
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
+        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.entity.definition.InterfaceDefinitionsKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        val definition: InterfaceDefinition = mockk(relaxed = true)
+        every { definitions.get("chat1") } returns definition
+        every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 123, extras = mapOf("parent" to 4))
         manager.start(context) {
             player(text = "Text", largeHead = large, expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
-                interfaces.sendPlayerHead("chat1", if (large) "head_large" else "head")
+                client.playerDialogueHead(4, 123)
                 interfaces.sendAnimation("chat1", if (large) "head_large" else "head", 9803)
             }
         }

@@ -8,9 +8,19 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import org.koin.test.mock.declareMock
+import world.gregs.voidps.cache.definition.data.AnimationDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
+import world.gregs.voidps.cache.definition.data.InterfaceDefinition
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendAnimation
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.definition.getComponentOrNull
+import world.gregs.voidps.network.Client
+import world.gregs.voidps.network.encode.npcDialogueHead
 import world.gregs.voidps.world.interact.dialogue.type.npc
 
 internal class NPCChatTest : DialogueTest() {
@@ -26,6 +36,11 @@ internal class NPCChatTest : DialogueTest() {
         every { npc.def.name } returns "John"
         every { context.npcId } returns 123
         every { context.npcName } returns "John"
+        declareMock<AnimationDefinitions> {
+            every { this@declareMock.get(any<String>()) } returns AnimationDefinition()
+            every { this@declareMock.getId("talk") } returns 9803
+            every { this@declareMock.getId("laugh") } returns 9840
+        }
     }
 
     @TestFactory
@@ -93,13 +108,20 @@ internal class NPCChatTest : DialogueTest() {
     @ParameterizedTest
     @ValueSource(booleans = [true, false])
     fun `Send player chat head size and animation`(large: Boolean) {
+        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.entity.definition.InterfaceDefinitionsKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        val definition: InterfaceDefinition = mockk(relaxed = true)
+        every { definitions.get("npc_chat1") } returns definition
+        every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
         every { npc.id } returns 123
         manager.start(context) {
             npc(text = "Text", largeHead = large, expression = "talk")
         }
         runBlocking(Contexts.Game) {
             verify {
-                interfaces.sendNPCHead("npc_chat1", if (large) "head_large" else "head", 123)
+                client.npcDialogueHead(4, 321, 123)
                 interfaces.sendAnimation("npc_chat1", if (large) "head_large" else "head", 9803)
             }
         }
@@ -151,6 +173,14 @@ internal class NPCChatTest : DialogueTest() {
 
     @Test
     fun `Send different npc chat`() {
+        mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
+        mockkStatic("world.gregs.voidps.engine.entity.definition.InterfaceDefinitionsKt")
+        val client: Client = mockk(relaxed = true)
+        every { player.client } returns client
+        val definition: InterfaceDefinition = mockk(relaxed = true)
+        every { definitions.get("npc_chat1") } returns definition
+        every { definition.getComponentOrNull(any()) } returns InterfaceComponentDefinition(id = 321, extras = mapOf("parent" to 4))
+        every { npc.id } returns 123
         coEvery { context.await<Unit>(any()) } just Runs
         manager.start(context) {
             npc(id = 123, npcName = "Bill", text = "text", expression = "talk")
@@ -158,7 +188,7 @@ internal class NPCChatTest : DialogueTest() {
         runBlocking(Contexts.Game) {
             coVerify {
                 interfaces.sendText("npc_chat1", "title", "Bill")
-                interfaces.sendNPCHead("npc_chat1", "head", 123)
+                client.npcDialogueHead(4, 321, 123)
                 interfaces.sendText("npc_chat1", "line1", "text")
                 context.await<Unit>("chat")
             }

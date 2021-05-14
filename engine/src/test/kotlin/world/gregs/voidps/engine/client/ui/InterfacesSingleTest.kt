@@ -55,13 +55,14 @@ internal class InterfacesSingleTest : InterfaceTest() {
 
     @Test
     fun `Close no longer contains`() {
+        every { definitions.getId("root") } returns 2
         interfaces.add(name)
 
         assertTrue(manager.close(name))
         assertFalse(manager.contains(name))
 
         verifyOrder {
-            client.closeInterface(0, 0)
+            client.closeInterface(2, 0)
             events.emit(InterfaceClosed(1, name))
         }
     }

@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.client.ui.open
+import world.gregs.voidps.engine.client.ui.sendSprite
+import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.network.encode.sendScript
 import world.gregs.voidps.world.interact.dialogue.type.item
 

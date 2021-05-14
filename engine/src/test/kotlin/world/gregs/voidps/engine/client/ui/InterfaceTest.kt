@@ -4,7 +4,7 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.spyk
 import org.junit.jupiter.api.BeforeEach
-import org.koin.dsl.module
+import org.koin.test.mock.declare
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.event.Events
@@ -24,13 +24,10 @@ abstract class InterfaceTest : KoinMock() {
     open fun setup() {
         client = mockk(relaxed = true)
         events = mockk(relaxed = true)
-        definitions = mockk(relaxed = true)
+        definitions = declare { mockk(relaxed = true) }
         gameframe = spyk(PlayerGameFrame())
         interfaces = mutableSetOf()
         manager = spyk(Interfaces(events, client, definitions, gameframe, interfaces))
         mockkStatic("world.gregs.voidps.network.encode.InterfaceEncodersKt")
-        loadModules(module {
-            single { definitions }
-        })
     }
 }
