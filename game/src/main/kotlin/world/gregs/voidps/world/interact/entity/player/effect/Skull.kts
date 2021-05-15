@@ -8,12 +8,12 @@ on<Registered> { player: Player ->
     player.restart("skull")
 }
 
-on<StartEffect>({ effect == "skull" }) { player: Player ->
+on<EffectStart>({ effect == "skull" }) { player: Player ->
     player.appearance.skull = player["skull", 0]
     player.flagAppearance()
 }
 
-on<StopEffect>({ effect == "skull" }) { player: Player ->
+on<EffectStop>({ effect == "skull" }) { player: Player ->
     player.appearance.skull = -1
     player.clear("skull")
     player.flagAppearance()

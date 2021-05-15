@@ -45,8 +45,8 @@ internal class EffectsTest {
         entity.stop(effect)
         assertFalse(entity.has(effect))
         verifyOrder {
-            events.emit(StartEffect(effect))
-            events.emit(StopEffect(effect))
+            events.emit(EffectStart(effect))
+            events.emit(EffectStop(effect))
         }
     }
 

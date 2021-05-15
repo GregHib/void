@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.StartEffect
+import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -13,7 +13,7 @@ import world.gregs.voidps.utility.Math
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
-on<StartEffect>({ effect == "energy" }) { player: Player ->
+on<EffectStart>({ effect == "energy" }) { player: Player ->
     delay(player, 1, loop = true){
         val energy = player["energy", MAX_ENERGY]
         val movement = player.getVar("movement", "walk")

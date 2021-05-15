@@ -5,8 +5,8 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.event.Event
 
-data class StartEffect(val effect: String) : Event
-data class StopEffect(val effect: String) : Event
+data class EffectStart(val effect: String) : Event
+data class EffectStop(val effect: String) : Event
 
 fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
     values["${effect}_effect", persist] = ticks
@@ -16,7 +16,7 @@ fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
             stop(effect)
         }
     }
-    events.emit(StartEffect(effect))
+    events.emit(EffectStart(effect))
 }
 
 fun Entity.stop(effect: String) {
@@ -24,7 +24,7 @@ fun Entity.stop(effect: String) {
     values.remove("${effect}_tick")
     (values.remove("${effect}_job") as? Job)?.cancel()
     if (stopped) {
-        events.emit(StopEffect(effect))
+        events.emit(EffectStop(effect))
     }
 }
 

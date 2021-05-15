@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.interact.entity.effect
 
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.StopEffect
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.npc.flagTransform
@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.utility.get
 
-on<StopEffect>({ effect == "transform" }) { player: Player ->
+on<EffectStop>({ effect == "transform" }) { player: Player ->
     player.emote = 1426
     player.size = Size.TILE
     val collisions: Collisions = get()
@@ -32,7 +32,7 @@ on<StopEffect>({ effect == "transform" }) { player: Player ->
     player.flagAppearance()
 }
 
-on<StopEffect>({ effect == "transform" }) { npc: NPC ->
+on<EffectStop>({ effect == "transform" }) { npc: NPC ->
     npc.transform.id = -1
     npc.flagTransform()
 }

@@ -1,17 +1,17 @@
 package world.gregs.voidps.world.interact.entity.effect
 
-import world.gregs.voidps.engine.entity.StopEffect
+import world.gregs.voidps.engine.entity.EffectStop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.colourOverlay
 import world.gregs.voidps.engine.event.on
 
-on<StopEffect>({ effect == "colour_overlay" }) { player: Player ->
+on<EffectStop>({ effect == "colour_overlay" }) { player: Player ->
     stop(player)
 }
 
-on<StopEffect>({ effect == "colour_overlay" }) { npc: NPC ->
+on<EffectStop>({ effect == "colour_overlay" }) { npc: NPC ->
     stop(npc)
 }
 
