@@ -1,12 +1,11 @@
+import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.EffectStart
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.sendRunEnergy
 import world.gregs.voidps.utility.Math
@@ -14,7 +13,7 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
-    delay(player, 1, loop = true){
+    player["energy_tick_job"] = delay(player, 1, loop = true) {
         val energy = player["energy", MAX_ENERGY]
         val movement = player.getVar("movement", "walk")
         val change = when {
@@ -28,6 +27,10 @@ on<EffectStart>({ effect == "energy" }) { player: Player ->
             walkWhenOutOfEnergy(player, updated)
         }
     }
+}
+
+on<EffectStop>({ effect == "energy" }) { player: Player ->
+    player.getOrNull<Job>("energy_tick_job")?.cancel()
 }
 
 fun getDrainAmount(player: Player): Int {
