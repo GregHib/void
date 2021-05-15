@@ -6,7 +6,6 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 
 on<Command>({ prefix == "effects" }) { player: Player ->
-    player.message("-- Effects --", ChatType.Console)
     for (key in player.values.keys) {
         if (key.endsWith("_effect")) {
             player.message(key.removeSuffix("_effect"), ChatType.Console)

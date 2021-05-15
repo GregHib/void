@@ -34,8 +34,8 @@ on<EffectStop>({ effect == "energy" }) { player: Player ->
 }
 
 fun getDrainAmount(player: Player): Int {
-    val weight = player["weight", 0].coerceIn(-64, 64)
-    val decrement = (67 * weight) / 64
+    val weight = player["weight", 0].coerceIn(0, 64)
+    val decrement = 67 + ((67 * weight) / 64)
     return -decrement
 }
 
