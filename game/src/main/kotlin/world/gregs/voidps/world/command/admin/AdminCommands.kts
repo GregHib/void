@@ -27,6 +27,8 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
@@ -140,6 +142,20 @@ on<Command>({ prefix == "unskull" }) { player: Player ->
 
 on<Command>({ prefix == "rest" }) { player: Player ->
     player["energy"] = MAX_ENERGY
+}
+
+on<Command>({ prefix == "curses" }) { player: Player ->
+    player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
+}
+
+on<Command>({ prefix == "pray" }) { player: Player ->
+    player.levels.clearBoost(Skill.Prayer)
+}
+
+on<Command>({ prefix == "restore" }) { player: Player ->
+    Skill.values().forEach {
+        player.levels.clearBoost(it)
+    }
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

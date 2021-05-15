@@ -20,7 +20,6 @@ BooleanVariable(182, Variable.Type.VARC).register(USING_QUICK_PRAYERS)
 IntVariable(2382, Variable.Type.VARP, true, 990).register(PRAYER_POINTS)
 
 on<InterfaceOpened>({ name == "prayer_orb" }) { player: Player ->
-    player.setVar(PRAYERS, "curses")
     player.sendVar(SELECTING_QUICK_PRAYERS)
     player.sendVar(USING_QUICK_PRAYERS)
 }
