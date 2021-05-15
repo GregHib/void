@@ -1,7 +1,7 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.*
@@ -12,7 +12,9 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.colourOverlay
 import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.transform
 
 val players: Players by inject()
 
@@ -53,19 +55,11 @@ on<Command>({ prefix == "gfx" }) { player: Player ->
 }
 
 on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
-    val id = content.toInt()
-    if (id != -1) {
-        player.start("transformation")
-        player["transformation"] = id
-    } else {
-        player.stop("transformation")
-        player.remove("transformation")
-    }
+    player.transform(content)
 }
 
 on<Command>({ prefix == "overlay" }) { player: Player ->
-    player.start("colour_overlay", 100)
-    player["overlay_colour"] = -2108002746
+    player.colourOverlay(-2108002746, 10, 100)
 }
 
 on<Command>({ prefix == "chat" }) { player: Player ->

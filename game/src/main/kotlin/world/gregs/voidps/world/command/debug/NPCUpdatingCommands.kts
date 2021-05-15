@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.colourOverlay
 
 val npcs: NPCs by inject()
 val pf: PathFinder by inject()
@@ -47,8 +48,7 @@ on<Command>({ prefix == "npcanim" }) { player: Player ->
 
 on<Command>({ prefix == "npcoverlay" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.start("colour_overlay", 100)
-    npc["overlay_colour"] = -2108002746
+    npc.colourOverlay(-2108002746, 10, 100)
 }
 
 on<Command>({ prefix == "npcchat" }) { player: Player ->

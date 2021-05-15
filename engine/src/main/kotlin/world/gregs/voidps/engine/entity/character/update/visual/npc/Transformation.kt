@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 
 /**
  * Changes the characteristics to match NPC with [id]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 data class Transformation(
     var id: Int = -1

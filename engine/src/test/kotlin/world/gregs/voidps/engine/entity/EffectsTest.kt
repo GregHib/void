@@ -1,9 +1,6 @@
 package world.gregs.voidps.engine.entity
 
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkStatic
-import io.mockk.verify
+import io.mockk.*
 import kotlinx.coroutines.Job
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
@@ -47,6 +44,10 @@ internal class EffectsTest {
         assertTrue(entity.has(effect))
         entity.stop(effect)
         assertFalse(entity.has(effect))
+        verifyOrder {
+            events.emit(StartEffect(effect))
+            events.emit(StopEffect(effect))
+        }
     }
 
     @Test
@@ -103,7 +104,7 @@ internal class EffectsTest {
     fun `Restart effect from time remaining`() {
         val effect = "effect"
         GameLoop.tick = 10
-        entity.values[effect] = 5
+        entity.values["${effect}_effect"] = 5
         entity.restart(effect)
         assertEquals(5, entity.remaining(effect))
     }
