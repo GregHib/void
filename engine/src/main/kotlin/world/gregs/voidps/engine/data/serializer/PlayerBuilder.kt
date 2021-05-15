@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.data.serializer
 
 import world.gregs.voidps.engine.entity.character.CharacterEffects
+import world.gregs.voidps.engine.entity.character.CharacterValues
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
@@ -16,6 +17,7 @@ internal data class PlayerBuilder(
     val effects: CharacterEffects,
     val name: String,
     val passwordHash: String,
+    val values: MutableMap<String, Any>,
 ) {
 
     fun build() = Player(
@@ -26,6 +28,7 @@ internal data class PlayerBuilder(
         levels = levels,
         effects = effects,
         name = name,
+        values = CharacterValues(values),
         passwordHash = passwordHash
     )
 }

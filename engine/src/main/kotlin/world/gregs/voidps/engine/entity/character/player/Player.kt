@@ -66,7 +66,6 @@ class Player(
     val variables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
     val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
-    @JsonIgnore
     override val values: CharacterValues = CharacterValues(),
     @JsonIgnore
     val delays: Delays = Delays(),

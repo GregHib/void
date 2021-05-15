@@ -1,47 +1,43 @@
 package world.gregs.voidps.engine.entity.character
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+
 /**
- * Map for storing any temporary values
+ * Map for storing a mix of temporary and general values
  */
-class CharacterValues {
-    private val map = HashMap<String, Any>()
-    private val persistent = mutableSetOf<String>()
+class CharacterValues(
+    private val map: MutableMap<String, Any> = mutableMapOf()
+) : MutableMap<String, Any> by map {
+    @JsonIgnore
+    private val temporary = mutableMapOf<String, Any>()
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T> get(key: String, defaultValue: T): T {
-        return (map[key] as? T) ?: defaultValue
+    override fun get(key: String): Any? = if (map.containsKey(key)) {
+        map[key]
+    } else {
+        temporary[key]
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> get(key: String) = map[key] as T
+    override fun containsKey(key: String): Boolean = map.containsKey(key) || temporary.containsKey(key)
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> getOrNull(key: String) = map[key] as? T
-
-    fun has(key: String) = map.containsKey(key)
-
-    fun getBoolean(key: String) = get(key, false)
-
-    fun getLong(key: String) = get(key, -1L)
-
-    fun getInt(key: String) = get(key, -1)
-
-    fun getDouble(key: String) = get(key, -1.0)
-
-    fun getString(key: String) = get(key, "")
-
-    operator fun set(key: String, value: Any) {
-        map[key] = value
+    operator fun set(key: String, persistent: Boolean, value: Any) {
+        if (persistent) {
+            map[key] = value
+        } else {
+            temporary[key] = value
+        }
     }
 
-    @Suppress("UNCHECKED_CAST")
-    fun <T : Any> remove(key: String): T? = map.remove(key) as? T
+    override fun put(key: String, value: Any): Any? = if (map.containsKey(key)) {
+        map.put(key, value)
+    } else {
+        temporary.put(key, value)
+    }
 
-    fun clear(key: String) {
+    override fun remove(key: String): Any? = if (map.containsKey(key)) {
         map.remove(key)
+    } else {
+        temporary.remove(key)
     }
-
-    fun persist(key: String) = persistent.add(key)
 }
 
 operator fun Character.set(key: String, value: Any) {
@@ -49,10 +45,7 @@ operator fun Character.set(key: String, value: Any) {
 }
 
 operator fun Character.set(key: String, persistent: Boolean, value: Any) {
-    values[key] = value
-    if (persistent) {
-        values.persist(key)
-    }
+    values[key, persistent] = value
 }
 
 fun Character.inc(key: String): Int {
@@ -61,14 +54,17 @@ fun Character.inc(key: String): Int {
     return value
 }
 
-fun Character.contains(key: String) = values.has(key)
+fun Character.contains(key: String) = values.containsKey(key)
 
-operator fun <T : Any> Character.get(key: String) = values.get<T>(key)
+@Suppress("UNCHECKED_CAST")
+operator fun <T : Any> Character.get(key: String) = values[key] as T
 
-operator fun <T : Any> Character.get(key: String, defaultValue: T) = values.get(key, defaultValue)
+@Suppress("UNCHECKED_CAST")
+fun <T : Any> Character.getOrNull(key: String): T? = values[key] as? T
 
-fun <T : Any> Character.getOrNull(key: String): T? = values.getOrNull(key)
+operator fun <T : Any> Character.get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 
-fun <T : Any> Character.remove(key: String): T? = values.remove(key)
+@Suppress("UNCHECKED_CAST")
+fun <T : Any> Character.remove(key: String): T? = values.remove(key) as? T
 
-fun Character.clear(key: String) = values.clear(key)
+fun Character.clear(key: String) = values.remove(key) != null
