@@ -1,10 +1,5 @@
-import com.github.michaelbull.logging.InlineLogger
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.delay.Delay
-import world.gregs.voidps.engine.entity.character.player.delay.delayed
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
@@ -13,34 +8,28 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.isDoor
 import world.gregs.voidps.utility.func.isGate
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.utility.toTicks
+import java.util.concurrent.TimeUnit
 
 val objects: Objects by inject()
-val logger = InlineLogger()
 
 // Delay in ticks before a door closes itself
-val doorResetDelay = 500
+val doorResetDelay = TimeUnit.MINUTES.toTicks(5)
 // Times a door can be closed consecutively before getting stuck
 val doorStuckCount = 5
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
     // Prevent players from trapping one another
-    if (player.delayed(Delay.DoorSlam)) {
-        if (player.inc("doorSlamCount") > doorStuckCount) {
-            player.message("The door seems to be stuck.")
-            return@on
-        }
-    } else {
-        player.clear("doorSlamCount")
+    if (stuck(player)) {
+        return@on
     }
 
     val double = getDoubleDoor(obj, 1)
-
     if (resetExisting(obj, double)) {
         return@on
     }
 
     val replacement1 = obj.def.getOrNull("close") as? Int
-
     if (double == null && replacement1 != null) {
         obj.replace(
             replacement1,
@@ -132,6 +121,23 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
         return@on
     }
     player.message("The ${obj.def.name.toLowerCase()} won't budge.")
+}
+
+fun stuck(player: Player): Boolean {
+    if (player.has("stuck_door")) {
+        player.message("The door seems to be stuck.")
+        return true
+    }
+    if (player.has("recently_opened_door")) {
+        if (player.inc("door_slam_count") >= doorStuckCount) {
+            player.start("stuck_door", TimeUnit.MINUTES.toTicks(1))
+            return true
+        }
+    } else {
+        player.clear("door_slam_count")
+    }
+    player.start("recently_opened_door", 10)
+    return false
 }
 
 fun resetExisting(obj: GameObject, double: GameObject?): Boolean {

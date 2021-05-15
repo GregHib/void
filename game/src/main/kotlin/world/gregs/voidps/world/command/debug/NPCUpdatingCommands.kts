@@ -4,13 +4,12 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
-import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.effect.colourOverlay
+import world.gregs.voidps.world.interact.entity.effect.transform
 
 val npcs: NPCs by inject()
 val pf: PathFinder by inject()
@@ -31,8 +30,7 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.start("transform")
-    npc["transformation"] = 50
+    npc.transform("king_black_dragon")
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->

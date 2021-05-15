@@ -51,6 +51,19 @@ internal class EffectsTest {
     }
 
     @Test
+    fun `Starting twice will reset effect timer`() {
+        val effect = "effect"
+        entity.start(effect)
+        entity.start(effect)
+        assertTrue(entity.has(effect))
+        verifyOrder {
+            events.emit(EffectStart(effect))
+            events.emit(EffectStop(effect))
+            events.emit(EffectStart(effect))
+        }
+    }
+
+    @Test
     fun `Remove effect after delay`() {
         val effect = "effect"
         GameLoop.tick = 10
@@ -66,8 +79,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         entity.start(effect, 6)
         GameLoop.tick = 14
-        assertEquals(2, entity.remaining(effect))
-        assertEquals(4, entity.elapsed(effect))
+        assertEquals(2L, entity.remaining(effect))
+        assertEquals(4L, entity.elapsed(effect))
     }
 
     @Test
@@ -76,8 +89,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         entity.start(effect, 6)
         entity.stop(effect)
-        assertEquals(-1, entity.remaining(effect))
-        assertEquals(-1, entity.elapsed(effect))
+        assertEquals(-1L, entity.remaining(effect))
+        assertEquals(-1L, entity.elapsed(effect))
     }
 
     @Test
@@ -99,7 +112,7 @@ internal class EffectsTest {
         entity.start(effect, 6)
         GameLoop.tick = 12
         entity.save(effect)
-        assertEquals(4, entity.values[effect])
+        assertEquals(4L, entity.values[effect])
     }
 
     @Test
@@ -108,8 +121,8 @@ internal class EffectsTest {
         GameLoop.tick = 10
         entity.values["${effect}_effect"] = 5
         entity.restart(effect)
-        assertEquals(5, entity.remaining(effect))
-        assertEquals(0, entity.elapsed(effect))
+        assertEquals(5L, entity.remaining(effect))
+        assertEquals(0L, entity.elapsed(effect))
     }
 
     @Test

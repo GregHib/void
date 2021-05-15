@@ -9,6 +9,9 @@ data class EffectStart(val effect: String) : Event
 data class EffectStop(val effect: String) : Event
 
 fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
+    if (has(effect)) {
+        stop(effect)
+    }
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
@@ -30,14 +33,14 @@ fun Entity.stop(effect: String) {
 
 fun Entity.has(effect: String): Boolean = contains("${effect}_effect")
 
-fun Entity.remaining(effect: String): Int {
+fun Entity.remaining(effect: String): Long {
     val expected: Long = getOrNull("${effect}_tick") ?: return -1
-    return (expected - GameLoop.tick).toInt()
+    return expected - GameLoop.tick
 }
 
-fun Entity.elapsed(effect: String): Int {
+fun Entity.elapsed(effect: String): Long {
     val remaining = remaining(effect)
-    if (remaining == -1) {
+    if (remaining == -1L) {
         return -1
     }
     val total: Int = getOrNull("${effect}_effect") ?: return -1
