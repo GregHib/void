@@ -16,16 +16,10 @@ import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterEffects
-import world.gregs.voidps.engine.entity.character.CharacterValues
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
-import world.gregs.voidps.engine.entity.character.player.delay.Delays
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
@@ -66,15 +60,11 @@ class Player(
     val variables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
     val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
-    @JsonIgnore
-    override val values: CharacterValues = CharacterValues(),
-    @JsonIgnore
-    val delays: Delays = Delays(),
+    override val values: Values = Values(),
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
     val levels: Levels = Levels(),
-    override val effects: CharacterEffects = CharacterEffects(),
     @JsonIgnore
     var client: Client? = null,
     var name: String = "",
@@ -121,7 +111,6 @@ class Player(
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(experience, events)
-        effects.link(this)
     }
 
     fun setup() {

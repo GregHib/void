@@ -6,18 +6,13 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.character.clear
-import world.gregs.voidps.engine.entity.character.get
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.delay.Delay
-import world.gregs.voidps.engine.entity.character.player.delay.delayed
-import world.gregs.voidps.engine.entity.character.player.delay.remaining
 import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.remove
-import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.EventHandler
@@ -77,12 +72,13 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
 }
 
 fun requestingTooQuickly(player: Player): Boolean {
-    if (player.delayed(Delay.RequestAssist)) {
-        val time = TICKS.toSeconds(player.remaining(Delay.RequestAssist))
+    if (player.has("recent_assist_request")) {
+        val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
         player.message("You have only just made an assistance request", ChatType.GameAssist)
         player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.GameAssist)
         return true
     }
+    player.start("recent_assist_request", 16)
     return false
 }
 
@@ -103,6 +99,7 @@ fun setupAssisted(player: Player, assistant: Player) = player.action {
     setAssistAreaStatus(player, true)
     delay(2)
     player.setAnimation(7299)
+    player.face(assistant)
 }
 
 fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.Assisting) {

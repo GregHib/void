@@ -5,8 +5,8 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.player.Player
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
@@ -47,7 +47,7 @@ class GameLoop(
     private fun printTickIfOverThreshold(nano: Long, tick: Long) {
         val millis = TimeUnit.NANOSECONDS.toMillis(nano)
 //        if (millis >= MILLI_THRESHOLD) {
-            logger.info { "Tick $tick took ${millis}ms" }
+        logger.info { "Tick $tick took ${millis}ms" }
 //        }
     }
 
@@ -101,11 +101,12 @@ fun delay(ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) = GlobalS
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-fun delay(player: Player, ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) {
+inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: (Long) -> Unit): Job {
     val job = delay(ticks, loop, task)
-    player.events.on<Player, Unregistered> {
+    entity.events.on<T, Unregistered> {
         job.cancel()
     }
+    return job
 }
 
 /**

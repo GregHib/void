@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC
@@ -16,7 +16,8 @@ import world.gregs.voidps.world.interact.entity.bot.BotContext
 import world.gregs.voidps.world.interact.entity.bot.SimpleBotOption
 import world.gregs.voidps.world.interact.entity.bot.botOptions
 import world.gregs.voidps.world.interact.entity.bot.isBot
-import world.gregs.voidps.world.interact.entity.player.energy.Energy.Companion.energyPercent
+import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
+import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
 
 val goingSomewhere: BotContext.(Any) -> Double = { (bot["navigating", false]).toDouble() }
 val walkToggled: BotContext.(Any) -> Double = { (!bot.running).toDouble() }
@@ -32,7 +33,7 @@ val distanceToMusician: BotContext.(NPC) -> Double = { npc ->
     bot.tile.distanceTo(npc.tile).toDouble().scale(0.0, 30.0).inverse().logistic(2.0, 0.23)
 }
 
-fun Player.energyScale() = this["energy", 10000].toDouble().scale(0.0, 10000.0)
+fun Player.energyScale() = this["energy", MAX_ENERGY].toDouble().scale(0.0, MAX_ENERGY.toDouble())
 
 val lowEnergy: BotContext.(Any) -> Double = {
     bot.energyScale().exponential(3.2).inverse()

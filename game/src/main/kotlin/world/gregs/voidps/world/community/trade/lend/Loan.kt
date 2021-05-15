@@ -2,7 +2,7 @@ package world.gregs.voidps.world.community.trade.lend
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.character.*
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.beastOfBurden
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.inventory

@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.effect.Hidden
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -15,6 +14,9 @@ import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Stairs
+import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.stop
+import world.gregs.voidps.engine.entity.toggle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -26,6 +28,8 @@ import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.player.effect.skull
+import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
@@ -123,7 +127,19 @@ on<Command>({ prefix == "master" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
-    player.effects.toggle(Hidden)
+    player.toggle("hidden")
+}
+
+on<Command>({ prefix == "skull" }) { player: Player ->
+    player.skull()
+}
+
+on<Command>({ prefix == "unskull" }) { player: Player ->
+    player.stop("skull")
+}
+
+on<Command>({ prefix == "rest" }) { player: Player ->
+    player["energy"] = MAX_ENERGY
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
