@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
-import world.gregs.voidps.engine.data.serializer.LevelsSerializer
+import com.fasterxml.jackson.annotation.JsonProperty
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.floor
@@ -10,9 +9,9 @@ import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
 
-@JsonSerialize(using = LevelsSerializer::class)
 class Levels(
-    private val offsets: MutableMap<Skill, Int> = mutableMapOf(),
+    @JsonProperty("levelOffsets")
+    val offsets: MutableMap<Skill, Int> = mutableMapOf(),
 ) {
     @JsonIgnore
     lateinit var experience: Experience
@@ -44,8 +43,6 @@ class Levels(
     fun getOffset(skill: Skill): Int {
         return offsets[skill] ?: 0
     }
-
-    fun getOffsets(): Map<Skill, Int> = offsets
 
     fun setOffset(skill: Skill, level: Int) {
         val previous = get(skill)

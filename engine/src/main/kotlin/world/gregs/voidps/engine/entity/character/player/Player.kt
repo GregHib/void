@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -64,7 +65,7 @@ class Player(
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
-    @JsonProperty("levelOffsets")
+    @get:JsonUnwrapped
     val levels: Levels = Levels(),
     @JsonIgnore
     var client: Client? = null,

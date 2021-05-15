@@ -61,7 +61,7 @@ val prayerGroups = setOf(
     setOf("Rigour", "Sharp Eye", "Hawk Eye", "Eagle Eye"),
     setOf("Mystic Will", "Mystic Might", "Mystic Lore", "Augury"),
     setOf("Rapid Renewal", "Rapid Heal"),
-    setOf("Smite", "Protect from Missiles", "Protect Item", "Protect from Melee", "Redemption", "Protect from Magic", "Retribution"),
+    setOf("Smite", "Protect from Missiles", "Protect from Melee", "Redemption", "Protect from Magic", "Retribution"),
     setOf("Redemption", "Retribution", "Smite", "Protect from Summoning")
 )
 

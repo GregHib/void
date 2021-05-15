@@ -27,7 +27,7 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
                 break
             }
         }
-        player["prayer_drain_counter"] = prayerDrainCounter
+        player["prayer_drain_counter", true] = prayerDrainCounter
     }
 }
 
