@@ -55,7 +55,7 @@ BitwiseVariable(1582, Variable.Type.VARP, values = curseNames).register(ACTIVE_C
 BitwiseVariable(1587, Variable.Type.VARP, true, values = curseNames).register(QUICK_CURSES)
 
 val prayerGroups = setOf(
-    setOf("Steel Skin", "Piety", "Thick Skin", "Chivalry", "Rock Skin"),
+    setOf("Steel Skin", "Piety", "Thick Skin", "Chivalry", "Rock Skin", "Augury", "Rigour"),
     setOf("Burst of Strength", "Piety", "Chivalry", "Ultimate Strength", "Superhuman Strength"),
     setOf("Improved Reflexes", "Incredible Reflexes", "Piety", "Clarity of Thought", "Chivalry"),
     setOf("Rigour", "Sharp Eye", "Hawk Eye", "Eagle Eye"),
