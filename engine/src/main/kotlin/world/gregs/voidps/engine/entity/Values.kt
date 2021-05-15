@@ -38,9 +38,6 @@ class Values(
     } else {
         temporary.remove(key)
     }
-
-    override val entries: MutableSet<MutableMap.MutableEntry<String, Any>>
-        get() = TODO("Not yet implemented")
 }
 
 operator fun Entity.set(key: String, value: Any) {

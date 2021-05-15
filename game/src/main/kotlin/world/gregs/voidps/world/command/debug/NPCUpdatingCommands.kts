@@ -10,7 +10,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.colourOverlay
+import world.gregs.voidps.world.interact.entity.effect.colourOverlay
 
 val npcs: NPCs by inject()
 val pf: PathFinder by inject()

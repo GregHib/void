@@ -1,3 +1,5 @@
+package world.gregs.voidps.world.interact.entity.effect
+
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.StopEffect
 import world.gregs.voidps.engine.entity.character.npc.NPC

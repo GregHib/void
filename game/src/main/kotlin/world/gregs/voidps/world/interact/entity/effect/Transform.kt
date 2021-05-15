@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity
+package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -8,9 +8,9 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.transform
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.emote
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
-import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
@@ -20,7 +20,7 @@ import world.gregs.voidps.utility.get
 
 fun Player.transform(npc: String) {
     if (npc.isBlank()) {
-        clear("transform")
+        stop("transform")
         return
     }
     val definitions: NPCDefinitions = get()
@@ -48,7 +48,7 @@ fun Player.transform(npc: String) {
 
 fun NPC.transform(npc: String) {
     if (npc.isBlank()) {
-        clear("transform")
+        stop("transform")
         return
     }
     val definitions: NPCDefinitions = get()

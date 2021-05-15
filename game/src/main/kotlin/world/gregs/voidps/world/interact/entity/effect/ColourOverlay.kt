@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity
+package world.gregs.voidps.world.interact.entity.effect
 
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.colourOverlay

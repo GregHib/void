@@ -20,10 +20,12 @@ fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
 }
 
 fun Entity.stop(effect: String) {
-    values.remove("${effect}_effect")
+    val stopped = values.remove("${effect}_effect") != null
     values.remove("${effect}_tick")
     (values.remove("${effect}_job") as? Job)?.cancel()
-    events.emit(StopEffect(effect))
+    if (stopped) {
+        events.emit(StopEffect(effect))
+    }
 }
 
 fun Entity.has(effect: String): Boolean {
@@ -40,7 +42,7 @@ fun Entity.save(effect: String) {
 }
 
 fun Entity.restart(effect: String) {
-    val ticks = values["${effect}_effect"] as Int
+    val ticks = values["${effect}_effect"] as? Int ?: return
     start(effect, ticks, true)
 }
 

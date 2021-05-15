@@ -12,9 +12,9 @@ import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.colourOverlay
+import world.gregs.voidps.world.interact.entity.effect.colourOverlay
+import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.proj.shoot
-import world.gregs.voidps.world.interact.entity.transform
 
 val players: Players by inject()
 

@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendRunEnergy
-import world.gregs.voidps.world.interact.entity.player.energy.Energy.Companion.energyPercent
 
 StringMapVariable(173, Variable.Type.VARP, true, mapOf(
     "walk" to 0,
