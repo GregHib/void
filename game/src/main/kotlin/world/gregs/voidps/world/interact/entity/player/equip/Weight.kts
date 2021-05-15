@@ -24,6 +24,6 @@ fun updateWeight(player: Player) {
     weight += player.equipment.weight()
     weight += player.inventory.weight()
 
-    player["weight", true] = weight
+    player["weight"] = weight
     player.client?.weight(weight.toInt())
 }
