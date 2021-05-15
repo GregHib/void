@@ -1,11 +1,11 @@
-package world.gregs.voidps.engine.entity.character
+package world.gregs.voidps.engine.entity
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 
 /**
  * Map for storing a mix of temporary and general values
  */
-class CharacterValues(
+class Values(
     private val map: MutableMap<String, Any> = mutableMapOf()
 ) : MutableMap<String, Any> by map {
     @JsonIgnore
@@ -40,31 +40,31 @@ class CharacterValues(
     }
 }
 
-operator fun Character.set(key: String, value: Any) {
+operator fun Entity.set(key: String, value: Any) {
     values[key] = value
 }
 
-operator fun Character.set(key: String, persistent: Boolean, value: Any) {
+operator fun Entity.set(key: String, persistent: Boolean, value: Any) {
     values[key, persistent] = value
 }
 
-fun Character.inc(key: String): Int {
+fun Entity.inc(key: String): Int {
     val value = get(key, 0) + 1
     values[key] = value
     return value
 }
 
-fun Character.contains(key: String) = values.containsKey(key)
+fun Entity.contains(key: String) = values.containsKey(key)
 
 @Suppress("UNCHECKED_CAST")
-operator fun <T : Any> Character.get(key: String) = values[key] as T
+operator fun <T : Any> Entity.get(key: String) = values[key] as T
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> Character.getOrNull(key: String): T? = values[key] as? T
+fun <T : Any> Entity.getOrNull(key: String): T? = values[key] as? T
 
-operator fun <T : Any> Character.get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
+operator fun <T : Any> Entity.get(key: String, defaultValue: T) = getOrNull(key) as? T ?: defaultValue
 
 @Suppress("UNCHECKED_CAST")
-fun <T : Any> Character.remove(key: String): T? = values.remove(key) as? T
+fun <T : Any> Entity.remove(key: String): T? = values.remove(key) as? T
 
-fun Character.clear(key: String) = values.remove(key) != null
+fun Entity.clear(key: String) = values.remove(key) != null

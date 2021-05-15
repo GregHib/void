@@ -22,7 +22,6 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterEffects
-import world.gregs.voidps.engine.entity.character.CharacterValues
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.delay.Delays
@@ -66,7 +65,7 @@ class Player(
     val variables: MutableMap<String, Any> = mutableMapOf(),
     @JsonIgnore
     val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
-    override val values: CharacterValues = CharacterValues(),
+    override val values: Values = Values(),
     @JsonIgnore
     val delays: Delays = Delays(),
     @JsonIgnore

@@ -3,9 +3,9 @@ package world.gregs.voidps.engine.entity.character.npc
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.CharacterEffects
-import world.gregs.voidps.engine.entity.character.CharacterValues
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
@@ -17,8 +17,6 @@ import world.gregs.voidps.utility.get
 
 /**
  * A non-player character
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 data class NPC(
     override val id: Int,
@@ -26,7 +24,7 @@ data class NPC(
     override val size: Size = Size.TILE,
     override val visuals: Visuals = Visuals(),
     override val movement: Movement = Movement(tile.minus(1)),
-    override val values: CharacterValues = CharacterValues()
+    override val values: Values = Values()
 ) : Character {
 
     override val events: Events = Events(this)

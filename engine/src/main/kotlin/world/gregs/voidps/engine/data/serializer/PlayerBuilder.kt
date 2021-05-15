@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.data.serializer
 
-import world.gregs.voidps.engine.entity.character.CharacterEffects
-import world.gregs.voidps.engine.entity.character.CharacterValues
+import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
@@ -28,7 +27,7 @@ internal data class PlayerBuilder(
         levels = levels,
         effects = effects,
         name = name,
-        values = CharacterValues(values),
+        values = Values(values),
         passwordHash = passwordHash
     )
 }
