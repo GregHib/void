@@ -1,11 +1,11 @@
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.effect.ColourOverlay
-import world.gregs.voidps.engine.entity.character.effect.Transform
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.*
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
+import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathFinder
 import world.gregs.voidps.network.instruct.Command
@@ -30,7 +30,8 @@ on<Command>({ prefix == "npcs" }) { player: Player ->
 
 on<Command>({ prefix == "npctfm" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.effects.add(Transform(50))
+    npc.start("transform")
+    npc["transformation"] = 50
 }
 
 on<Command>({ prefix == "npcturn" }) { player: Player ->
@@ -46,7 +47,8 @@ on<Command>({ prefix == "npcanim" }) { player: Player ->
 
 on<Command>({ prefix == "npcoverlay" }) { player: Player ->
     val npc = npcs[player.tile.addY(1)]!!.first()!!
-    npc.effects.add(ColourOverlay(-2108002746, 10, 100))
+    npc.start("colour_overlay", 100)
+    npc["overlay_colour"] = -2108002746
 }
 
 on<Command>({ prefix == "npcchat" }) { player: Player ->

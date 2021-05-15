@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
-import world.gregs.voidps.engine.entity.character.player.effect.Hidden
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -15,6 +14,7 @@ import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.entity.obj.Stairs
+import world.gregs.voidps.engine.entity.toggle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -123,7 +123,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
-    player.effects.toggle(Hidden)
+    player.toggle("hidden")
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

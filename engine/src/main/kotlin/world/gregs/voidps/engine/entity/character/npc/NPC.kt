@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.action.Action
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.CharacterEffects
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
@@ -29,14 +28,9 @@ data class NPC(
 
     override val events: Events = Events(this)
     override val action: Action = Action(events)
-    override val effects = CharacterEffects()
 
     val name: String
         get() = get<NPCDefinitions>().getName(id)
-
-    init {
-        effects.link(this)
-    }
 
     override var change: LocalChange? = null
     var walkDirection: Int = -1

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendRunEnergy
@@ -29,7 +30,7 @@ on<InterfaceOpened>({ name == "energy_orb" }) { player: Player ->
 on<Registered> { player: Player ->
     player.sendVar("movement")
     player.running = player.getVar("movement", "walk") == "run"
-    player.effects.add(Energy())
+    player.start("energy")
 }
 
 on<InterfaceOption>({ name == "energy_orb" && option == "Turn Run mode on" }) { player: Player ->

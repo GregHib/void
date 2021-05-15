@@ -101,11 +101,12 @@ fun delay(ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) = GlobalS
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: (Long) -> Unit) {
+inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: (Long) -> Unit): Job {
     val job = delay(ticks, loop, task)
     entity.events.on<T, Unregistered> {
         job.cancel()
     }
+    return job
 }
 
 /**

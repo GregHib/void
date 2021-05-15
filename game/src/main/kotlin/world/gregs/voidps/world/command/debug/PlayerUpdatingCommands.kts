@@ -1,9 +1,7 @@
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.effect.ColourOverlay
-import world.gregs.voidps.engine.entity.character.effect.Transform
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.update.visual.*
@@ -57,14 +55,17 @@ on<Command>({ prefix == "gfx" }) { player: Player ->
 on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->
     val id = content.toInt()
     if (id != -1) {
-        player.effects.add(Transform(id))
+        player.start("transformation")
+        player["transformation"] = id
     } else {
-        player.effects.remove("transform")
+        player.stop("transformation")
+        player.remove("transformation")
     }
 }
 
 on<Command>({ prefix == "overlay" }) { player: Player ->
-    player.effects.add(ColourOverlay(-2108002746, 10, 100))
+    player.start("colour_overlay", 100)
+    player["overlay_colour"] = -2108002746
 }
 
 on<Command>({ prefix == "chat" }) { player: Player ->

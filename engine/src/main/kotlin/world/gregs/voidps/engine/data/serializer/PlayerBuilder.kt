@@ -13,7 +13,6 @@ internal data class PlayerBuilder(
     val experience: Experience,
     val variables: MutableMap<String, Any>,
     val levels: Levels,
-    val effects: CharacterEffects,
     val name: String,
     val passwordHash: String,
     val values: MutableMap<String, Any>,
@@ -25,7 +24,6 @@ internal data class PlayerBuilder(
         experience = experience,
         variables = variables,
         levels = levels,
-        effects = effects,
         name = name,
         values = Values(values),
         passwordHash = passwordHash

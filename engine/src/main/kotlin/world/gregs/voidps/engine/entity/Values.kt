@@ -9,7 +9,7 @@ class Values(
     private val map: MutableMap<String, Any> = mutableMapOf()
 ) : MutableMap<String, Any> by map {
     @JsonIgnore
-    private val temporary = mutableMapOf<String, Any>()
+    val temporary = mutableMapOf<String, Any>()
 
     override fun get(key: String): Any? = if (map.containsKey(key)) {
         map[key]
@@ -38,6 +38,9 @@ class Values(
     } else {
         temporary.remove(key)
     }
+
+    override val entries: MutableSet<MutableMap.MutableEntry<String, Any>>
+        get() = TODO("Not yet implemented")
 }
 
 operator fun Entity.set(key: String, value: Any) {

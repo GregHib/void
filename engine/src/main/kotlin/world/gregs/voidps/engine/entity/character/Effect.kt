@@ -9,7 +9,7 @@ abstract class Effect(val effectType: String) {
 
     fun removeSelf(character: Character, ticks: Int) {
         task = delay(ticks) {
-            character.effects.remove(this)
+//            character.effects.remove(this)
         }
     }
 
