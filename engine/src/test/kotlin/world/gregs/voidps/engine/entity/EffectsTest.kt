@@ -67,6 +67,7 @@ internal class EffectsTest {
         entity.start(effect, 6)
         GameLoop.tick = 14
         assertEquals(2, entity.remaining(effect))
+        assertEquals(4, entity.elapsed(effect))
     }
 
     @Test
@@ -76,6 +77,7 @@ internal class EffectsTest {
         entity.start(effect, 6)
         entity.stop(effect)
         assertEquals(-1, entity.remaining(effect))
+        assertEquals(-1, entity.elapsed(effect))
     }
 
     @Test
@@ -107,6 +109,7 @@ internal class EffectsTest {
         entity.values["${effect}_effect"] = 5
         entity.restart(effect)
         assertEquals(5, entity.remaining(effect))
+        assertEquals(0, entity.elapsed(effect))
     }
 
     @Test
