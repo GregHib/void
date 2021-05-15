@@ -149,12 +149,12 @@ on<Command>({ prefix == "curses" }) { player: Player ->
 }
 
 on<Command>({ prefix == "pray" }) { player: Player ->
-    player.levels.clearBoost(Skill.Prayer)
+    player.levels.clearOffset(Skill.Prayer)
 }
 
 on<Command>({ prefix == "restore" }) { player: Player ->
     Skill.values().forEach {
-        player.levels.clearBoost(it)
+        player.levels.clearOffset(it)
     }
 }
 

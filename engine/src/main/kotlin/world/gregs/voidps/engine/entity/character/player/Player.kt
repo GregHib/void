@@ -64,6 +64,7 @@ class Player(
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
+    @JsonProperty("levelOffsets")
     val levels: Levels = Levels(),
     @JsonIgnore
     var client: Client? = null,
