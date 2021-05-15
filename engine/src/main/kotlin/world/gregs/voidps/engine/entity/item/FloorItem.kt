@@ -4,6 +4,7 @@ import kotlinx.coroutines.Job
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.Events
@@ -24,6 +25,7 @@ data class FloorItem(
 ) : Entity {
 
     override val events: Events = Events(this)
+    override val values: Values = Values()
 
     fun visible(player: Player): Boolean {
         return owner == null || player.name == owner

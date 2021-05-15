@@ -3,10 +3,10 @@ package world.gregs.voidps.world.community.trade.lend
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.character.contains
-import world.gregs.voidps.engine.entity.character.getOrNull
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan.returnLoan

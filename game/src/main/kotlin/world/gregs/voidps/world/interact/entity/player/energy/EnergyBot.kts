@@ -4,10 +4,10 @@ import world.gregs.voidps.engine.action.ActionStarted
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.instruct.InteractInterface
 import world.gregs.voidps.network.instruct.InteractNPC

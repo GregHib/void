@@ -1,10 +1,10 @@
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.clear
-import world.gregs.voidps.engine.entity.character.inc
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.delay.Delay
 import world.gregs.voidps.engine.entity.character.player.delay.delayed
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.inc
 import world.gregs.voidps.engine.entity.obj.*
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile

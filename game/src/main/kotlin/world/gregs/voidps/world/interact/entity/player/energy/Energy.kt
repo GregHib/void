@@ -4,12 +4,12 @@ import kotlinx.coroutines.Job
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerEffect
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.encode.sendRunEnergy
 import world.gregs.voidps.utility.Math
 

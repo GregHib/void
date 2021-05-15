@@ -2,9 +2,9 @@ package world.gregs.voidps.world.interact.entity.npc.shop
 
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.equip.isSkillCape
 import world.gregs.voidps.world.interact.entity.player.equip.isTrimmedSkillCape

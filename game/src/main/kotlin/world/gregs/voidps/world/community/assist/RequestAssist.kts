@@ -6,8 +6,6 @@ import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.character.clear
-import world.gregs.voidps.engine.entity.character.get
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -16,10 +14,12 @@ import world.gregs.voidps.engine.entity.character.player.delay.delayed
 import world.gregs.voidps.engine.entity.character.player.delay.remaining
 import world.gregs.voidps.engine.entity.character.player.skill.BlockedExperience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.remove
-import world.gregs.voidps.engine.entity.character.set
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.remove
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message

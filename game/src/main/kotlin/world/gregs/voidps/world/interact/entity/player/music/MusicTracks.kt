@@ -5,7 +5,7 @@ import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.set
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Polygon
 import world.gregs.voidps.engine.map.area.Rectangle
