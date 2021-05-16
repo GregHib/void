@@ -199,7 +199,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     var reloadRegions = false
     when (content) {
         "stairs" -> get<Stairs>().load()
-        "music", "tracks", "songs" -> get<MusicTracks>().load()
+        "tracks", "songs" -> get<MusicTracks>().load()
         "floor items" -> {
             val items: FloorItems = get()
             items.chunks.forEach { (_, set) ->
@@ -238,6 +238,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "graphic defs" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs" -> get<ItemDefinitions>().load()
+        "sound", "sound effects" -> get<SoundDefinitions>().load()
+        "midi" -> get<MidiDefinitions>().load()
+        "music", "music effects" -> get<MusicEffectDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()
