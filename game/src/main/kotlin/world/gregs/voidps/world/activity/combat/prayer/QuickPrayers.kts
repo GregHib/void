@@ -138,12 +138,21 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "S
 }
 
 on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Turn Quick Prayers On" }) { player: Player ->
+    if (player.levels.get(Skill.Prayer) == 0) {
+        player.message("You've run out of prayer points.")
+        player.setVar(USING_QUICK_PRAYERS, false)
+        return@on
+    }
     val active = player.toggleVar(USING_QUICK_PRAYERS)
     val activePrayers = player.getActivePrayerVarKey()
     if (active) {
         val quickPrayers: Int = player.getOrNull(TEMP_QUICK_PRAYERS) ?: player.getVar(player.getQuickVarKey(), 0)
         if (quickPrayers > 0) {
             player.setVar(activePrayers, quickPrayers)
+        } else {
+            player.message("You haven't selected any quick-prayers.")
+            player.setVar(USING_QUICK_PRAYERS, false)
+            return@on
         }
     } else {
         player.setVar(activePrayers, 0)
