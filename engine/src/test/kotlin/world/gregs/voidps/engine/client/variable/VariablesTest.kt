@@ -13,7 +13,7 @@ import world.gregs.voidps.network.encode.sendVarp
 
 internal class VariablesTest {
 
-    private lateinit var manager: VariableManager
+    private lateinit var store: VariableStore
     private lateinit var variables: Variables
     private lateinit var component: MutableMap<String, Any>
     private lateinit var variable: Variable<Int>
@@ -25,7 +25,7 @@ internal class VariablesTest {
         map = mutableMapOf()
         variable = mockk(relaxed = true)
         every { variable.persistent } returns true
-        manager = mockk(relaxed = true)
+        store = mockk(relaxed = true)
         component = mutableMapOf()
         variables = spyk(Variables(map))
         player = mockk(relaxed = true)
@@ -38,9 +38,9 @@ internal class VariablesTest {
         mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns variables
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         variables.player = player
-        variables.manager = manager
+        variables.store = store
     }
 
     @Test
@@ -116,7 +116,7 @@ internal class VariablesTest {
         val variable = mockk<Variable<String>>(relaxed = true)
         every { variable.type } returns Variable.Type.VARCSTR
         every { variable.defaultValue } returns "nothing"
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.send(key)
         // Then
@@ -145,9 +145,9 @@ internal class VariablesTest {
 
     @Test
     fun `Get no variable`() {
-        every { manager.get(key) } returns null
+        every { store.get(key) } returns null
         // Given
-        manager.clear()
+        store.clear()
         // When
         val result = variables.get(key, -1)
         // Then
@@ -159,7 +159,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 0
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
@@ -172,7 +172,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 1
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.add(key, "Second", true)
         // Then
@@ -185,7 +185,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 1
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
@@ -198,7 +198,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 0
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.add(key, "First", false)
         // Then
@@ -211,7 +211,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 3
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.remove(key, "First", true)
         // Then
@@ -224,7 +224,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
         map[key] = 3
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then
@@ -237,7 +237,7 @@ internal class VariablesTest {
         // Given
         val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = false)
         variables.temporaryVariables[key] = 3
-        every { manager.get(key) } returns variable
+        every { store.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then

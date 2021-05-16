@@ -6,30 +6,30 @@ import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-internal class VariableManagerTest {
+internal class VariableStoreTest {
 
-    private lateinit var manager: VariableManager
+    private lateinit var store: VariableStore
     private lateinit var variable: Variable<Int>
 
     @BeforeEach
     fun setup() {
         variable = mockk(relaxed = true)
-        manager = VariableManager()
+        store = VariableStore()
     }
 
     @Test
     fun `Register variable`() {
-        assertNull(manager.get(key))
-        manager.register(key, variable)
-        assertNotNull(manager.get(key))
+        assertNull(store.get(key))
+        store.register(key, variable)
+        assertNotNull(store.get(key))
     }
 
     @Test
     fun `Clear variables`() {
-        manager.register(key, variable)
-        assertNotNull(manager.get(key))
-        manager.clear()
-        assertNull(manager.get(key))
+        store.register(key, variable)
+        assertNotNull(store.get(key))
+        store.clear()
+        assertNull(store.get(key))
     }
 
     companion object {

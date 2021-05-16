@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import kotlin.collections.set
 
 val variablesModule = module {
-    single { VariableManager() }
+    single { VariableStore() }
 }
 
 @Suppress("UNCHECKED_CAST")
-class VariableManager {
+class VariableStore {
     private val variables = mutableMapOf<String, Variable<*>>()
 
     fun register(name: String, variable: Variable<*>) {

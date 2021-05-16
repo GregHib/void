@@ -19,10 +19,10 @@ class Variables(
     lateinit var player: Player
 
     @JsonIgnore
-    lateinit var manager: VariableManager
+    lateinit var store: VariableStore
 
     fun <T : Any> set(key: String, value: T, refresh: Boolean) {
-        val variable = manager.get(key) as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = store.get(key) as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
         set(key, variable, value)
         if (refresh) {
             send(key)
@@ -30,22 +30,22 @@ class Variables(
     }
 
     fun send(key: String) {
-        val variable = manager.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = store.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         variable.send(key)
     }
 
     fun <T : Any> get(key: String): T {
-        val variable = manager.get(key) as Variable<T>
+        val variable = store.get(key) as Variable<T>
         return get(key, variable)
     }
 
     fun <T : Any> get(key: String, default: T): T {
-        val variable = manager.get(key) as? Variable<T> ?: return default
+        val variable = store.get(key) as? Variable<T> ?: return default
         return get(key, variable)
     }
 
     fun <T : Any> add(key: String, id: T, refresh: Boolean) {
-        val variable = manager.get(key) as? BitwiseVar<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = store.get(key) as? BitwiseVar<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = get(key, variable)
@@ -59,7 +59,7 @@ class Variables(
     }
 
     fun <T : Any> remove(key: String, id: T, refresh: Boolean) {
-        val variable = manager.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = get(key, variable)
@@ -73,7 +73,7 @@ class Variables(
     }
 
     fun <T : Any> has(key: String, id: T): Boolean {
-        val variable = manager.get(key) as? BitwiseVariable<T> ?: return false
+        val variable = store.get(key) as? BitwiseVariable<T> ?: return false
         val power = variable.getValue(id) ?: return false
         val value = get(key, variable)
 

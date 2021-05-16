@@ -114,7 +114,7 @@ class Player(
         experience.events = events
         levels.link(experience, events)
         variables.player = this
-        variables.manager = get()
+        variables.store = get()
     }
 
     fun setup() {
