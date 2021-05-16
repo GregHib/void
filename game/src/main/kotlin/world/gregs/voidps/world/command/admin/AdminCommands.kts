@@ -35,6 +35,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
+import world.gregs.voidps.world.interact.entity.player.music.playMusic
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -178,6 +179,10 @@ on<Command>({ prefix == "midi" }) { player: Player ->
     } else {
         player.client?.playMIDI(id)
     }
+}
+
+on<Command>({ prefix == "music" }) { player: Player ->
+    player.playMusic(content.toInt())
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

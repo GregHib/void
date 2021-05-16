@@ -2,13 +2,11 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.Protocol
+import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.MIDI_SOUND
+import world.gregs.voidps.network.Protocol.MUSIC_EFFECT
 import world.gregs.voidps.network.Protocol.PLAY_MUSIC
 import world.gregs.voidps.network.Protocol.SOUND_EFFECT
-import world.gregs.voidps.network.writeByteSubtract
-import world.gregs.voidps.network.writeShortAddLittle
 
 fun Player.playMusicTrack(
     music: Int,
@@ -51,7 +49,7 @@ fun Client.playMIDI(
 fun Client.areaMIDI(
     tile: Int,
     id: Int,
-    type: Int,
+    radius: Int,
     repeat: Int,
     delay: Int,
     volume: Int,
@@ -59,7 +57,7 @@ fun Client.areaMIDI(
 ) = send(Protocol.MIDI_AREA) {
     writeByte(tile)
     writeShort(id)
-    writeByte((type shl 4) or repeat)
+    writeByte((radius shl 4) or repeat)
     writeByte(delay)
     writeByte(volume)
     writeShort(speed)
@@ -68,7 +66,7 @@ fun Client.areaMIDI(
 fun Client.areaSound(
     tile: Int,
     id: Int,
-    type: Int,
+    radius: Int,
     repeat: Int,
     delay: Int,
     volume: Int,
@@ -76,8 +74,17 @@ fun Client.areaSound(
 ) = send(Protocol.SOUND_AREA) {
     writeByte(tile)
     writeShort(id)
-    writeByte((type shl 4) or repeat)
+    writeByte((radius shl 4) or repeat)
     writeByte(delay)
     writeByte(volume)
     writeShort(speed)
+}
+
+fun Client.playMusicEffect(
+    effect: Int,
+    volume: Int = 255
+) = send(MUSIC_EFFECT) {
+    writeMedium(0)
+    writeShortAddLittle(effect)
+    writeByteInverse(volume)
 }

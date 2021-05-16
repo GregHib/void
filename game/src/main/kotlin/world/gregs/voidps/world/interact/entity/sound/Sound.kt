@@ -1,8 +1,11 @@
 package world.gregs.voidps.world.interact.entity.sound
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.MidiDefinitions
+import world.gregs.voidps.engine.entity.definition.MusicEffectDefinitions
 import world.gregs.voidps.engine.entity.definition.SoundDefinitions
 import world.gregs.voidps.network.encode.playMIDI
+import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.utility.get
 
@@ -41,7 +44,7 @@ fun Player.playMidi(
     speed: Int = 255,
     repeat: Int = 1
 ) {
-    val definitions: SoundDefinitions = get()
+    val definitions: MidiDefinitions = get()
     val id = definitions.getId(name)
     client?.playMIDI(id, delay, volume, speed, repeat)
 }
@@ -54,10 +57,19 @@ fun Player.playGlobalMidi(
     speed: Int = 255,
     repeat: Int = 1
 ) {
-    val definitions: SoundDefinitions = get()
+    val definitions: MidiDefinitions = get()
     val id = definitions.getId(name)
     client?.playMIDI(id, delay, volume, speed, repeat)
     if (radius > 0) {
         areaMidi(id, tile, radius, repeat, delay, volume, speed)
     }
+}
+
+fun Player.playMusicEffect(
+    name: String,
+    volume: Int = 255
+) {
+    val definitions: MusicEffectDefinitions = get()
+    val id = definitions.getId(name)
+    client?.playMusicEffect(id, volume)
 }

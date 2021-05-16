@@ -77,4 +77,5 @@ val definitionsModule = module {
     single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
+    single(createdAtStart = true) { MusicEffectDefinitions().load() }
 }
