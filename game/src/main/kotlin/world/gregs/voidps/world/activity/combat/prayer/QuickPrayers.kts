@@ -21,6 +21,7 @@ import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_Q
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.TEMP_QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.USING_QUICK_PRAYERS
 import world.gregs.voidps.world.interact.entity.player.display.Tab
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 /**
  * Prayers
@@ -156,6 +157,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "T
             return@on
         }
     } else {
+        player.playSound("deactivate_prayer")
         player.setVar(activePrayers, 0)
     }
     player.events.emit(UpdatePrayers)

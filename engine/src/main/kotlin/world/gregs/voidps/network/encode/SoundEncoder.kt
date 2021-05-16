@@ -20,13 +20,13 @@ fun Player.playMusicTrack(
     writeShortAddLittle(music)
 }
 
-fun Player.playSoundEffect(
+fun Client.playSoundEffect(
     sound: Int,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
     repeat: Int = 1
-) = client?.send(SOUND_EFFECT) {
+) = send(SOUND_EFFECT) {
     writeShort(sound)
     writeByte(repeat)
     writeShort(delay)
@@ -34,13 +34,13 @@ fun Player.playSoundEffect(
     writeShort(speed)
 }
 
-fun Player.playMIDI(
+fun Client.playMIDI(
     sound: Int,
     delay: Int = 0,
     volume: Int = 255,
     speed: Int = 255,
     repeat: Int = 1
-) = client?.send(MIDI_SOUND) {
+) = send(MIDI_SOUND) {
     writeShort(sound)
     writeByte(repeat)
     writeShort(delay)

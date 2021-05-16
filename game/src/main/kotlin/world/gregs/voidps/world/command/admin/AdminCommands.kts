@@ -35,6 +35,8 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
+import world.gregs.voidps.world.interact.entity.sound.playMidi
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
@@ -161,11 +163,21 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 }
 
 on<Command>({ prefix == "sound" }) { player: Player ->
-    player.playSoundEffect(content.toInt())
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playSound(content)
+    } else {
+        player.client?.playSoundEffect(id)
+    }
 }
 
 on<Command>({ prefix == "midi" }) { player: Player ->
-    player.playMIDI(content.toInt())
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playMidi(content)
+    } else {
+        player.client?.playMIDI(id)
+    }
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

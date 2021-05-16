@@ -6,12 +6,11 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.definition.Extra
 
 /**
- * Stores additional static information about an entity as well as a unique string identifier
+ * Looks up [Definition]'s using [Extras] unique string identifier
+ * Sets [Extra] values inside [Definition]
  */
-interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, T : Extra {
+interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Definition, T : Extra {
     val decoder: D
-    val extras: Map<String, Map<String, Any>>
-    val names: Map<Int, String>
 
     val size: Int
         get() = decoder.size
@@ -55,20 +54,6 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> where T : Definition, 
         return definition
     }
 
-    fun getNameOrNull(id: Int): String? {
-        return names[id]
-    }
-
-    fun getName(id: Int): String = getNameOrNull(id) ?: ""
-
-    fun getIdOrNull(name: String): Int? {
-        return extras[name]?.get("id") as? Int
-    }
-
-    fun getId(name: String): Int {
-        return getIdOrNull(name) ?: -1
-    }
-
     companion object {
         private val tagRegex = "<.*?>".toRegex()
 
@@ -90,4 +75,6 @@ val definitionsModule = module {
     single(createdAtStart = true) { GraphicDefinitions(get()).load() }
     single(createdAtStart = true) { ContainerDefinitions(get()).load() }
     single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
+    single(createdAtStart = true) { SoundDefinitions().load() }
+    single(createdAtStart = true) { MidiDefinitions().load() }
 }
