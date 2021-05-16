@@ -1,8 +1,7 @@
 package world.gregs.voidps.engine.client.variable
 
 import io.mockk.*
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -256,6 +255,24 @@ internal class VariablesTest {
         // Then
         assertEquals(2, variables.temporaryVariables[key])
         verify(exactly = 0) { variables.send(key) }
+    }
+
+    @Test
+    fun `Clear bitwise of multiple values`() {
+        // Given
+        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        map[key] = 3
+        every { store.get(key) } returns variable
+        // When
+        variables.clear<String>(key, true)
+        // Then
+        assertNull(map[key])
+        verifyOrder {
+            variables.send(key)
+            events.emit(VariableRemoved(key, "First", 3, 2))
+            variables.send(key)
+            events.emit(VariableRemoved(key, "Second", 2, 0))
+        }
     }
 
     companion object {

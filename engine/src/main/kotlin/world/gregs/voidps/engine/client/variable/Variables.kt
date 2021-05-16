@@ -68,7 +68,21 @@ class Variables(
     fun <T : Any> remove(key: String, id: T, refresh: Boolean) {
         val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
 
-        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
+        if (!remove(variable, key, id, refresh)) {
+            logger.debug { "Invalid bitwise value '$id'" }
+        }
+    }
+
+    fun <T : Any> clear(key: String, refresh: Boolean) {
+        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+
+        for (id in variable.values) {
+            remove(variable, key, id, refresh)
+        }
+    }
+
+    private fun <T : Any> remove(variable: BitwiseVariable<T>, key: String, id: T, refresh: Boolean): Boolean {
+        val power = variable.getValue(id) ?: return false
         val value = get(key, variable)
 
         if (value.has(power)) {// If is added
@@ -78,6 +92,7 @@ class Variables(
             }
             player.events.emit(VariableRemoved(key, id, value, value - power))
         }
+        return true
     }
 
     fun <T : Any> has(key: String, id: T): Boolean {
@@ -126,4 +141,48 @@ class Variables(
         private fun Int.has(power: Int) = (this and power) != 0
 
     }
+}
+
+fun <T : Any> Player.setVar(key: String, value: T, refresh: Boolean = true) =
+    variables.set(key, value, refresh)
+
+fun Player.sendVar(key: String) = variables.send(key)
+
+fun <T : Any> Player.addVar(key: String, value: T, refresh: Boolean = true) =
+    variables.add(key, value, refresh)
+
+fun <T : Any> Player.removeVar(key: String, value: T, refresh: Boolean = true) =
+    variables.remove(key, value, refresh)
+
+fun <T : Any> Player.clearVar(key: String, refresh: Boolean = true) =
+    variables.clear<T>(key, refresh)
+
+fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
+    val value = variables.get(key, false)
+    variables.set(key, !value, refresh)
+    return !value
+}
+
+fun Player.incVar(key: String, refresh: Boolean = true): Int {
+    val value: Int = variables.get(key)
+    variables.set(key, value + 1, refresh)
+    return value + 1
+}
+
+fun Player.decVar(key: String, refresh: Boolean = true): Int {
+    val value: Int = variables.get(key)
+    variables.set(key, value - 1, refresh)
+    return value - 1
+}
+
+fun <T : Any> Player.hasVar(key: String, id: T): Boolean {
+    return variables.has(key, id)
+}
+
+fun <T : Any> Player.getVar(key: String, default: T): T {
+    return variables.get(key, default)
+}
+
+fun <T : Any> Player.getVar(key: String): T {
+    return variables.get(key)
 }
