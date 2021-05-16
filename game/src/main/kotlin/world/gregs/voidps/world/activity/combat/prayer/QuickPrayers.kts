@@ -131,9 +131,9 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "S
         player.saveQuickPrayers()
     }
     if (selecting) {
-        player.interfaceOptions.unlockAll(name, "quick_prayers", 0..29)
+        player.interfaceOptions.unlockAll("prayer_list", "quick_prayers", 0..29)
     } else {
-        player.interfaceOptions.unlockAll(name, "regular_prayers", 0..29)
+        player.interfaceOptions.unlockAll("prayer_list", "regular_prayers", 0..29)
     }
 }
 
