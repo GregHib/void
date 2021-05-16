@@ -28,11 +28,12 @@ class Variables(
 
     fun <T : Any> set(key: String, value: T, refresh: Boolean) {
         val variable = store.get(key) as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val previous = get(key, variable.defaultValue)
         set(key, variable, value)
         if (refresh) {
             send(key)
         }
-        player.events.emit(VariableSet(key, value))
+        player.events.emit(VariableSet(key, previous, value))
     }
 
     fun send(key: String) {
@@ -67,24 +68,8 @@ class Variables(
 
     fun <T : Any> remove(key: String, id: T, refresh: Boolean) {
         val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
-
-        if (!remove(variable, key, id, refresh)) {
-            logger.debug { "Invalid bitwise value '$id'" }
-        }
-    }
-
-    fun <T : Any> clear(key: String, refresh: Boolean) {
-        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
-
-        for (id in variable.values) {
-            remove(variable, key, id, refresh)
-        }
-    }
-
-    private fun <T : Any> remove(variable: BitwiseVariable<T>, key: String, id: T, refresh: Boolean): Boolean {
-        val power = variable.getValue(id) ?: return false
+        val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
         val value = get(key, variable)
-
         if (value.has(power)) {// If is added
             set(key, variable, value - power)// Remove
             if (refresh) {
@@ -92,7 +77,16 @@ class Variables(
             }
             player.events.emit(VariableRemoved(key, id, value, value - power))
         }
-        return true
+    }
+
+    fun <T : Any> clear(key: String, refresh: Boolean) {
+        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val previous = get(key, variable.defaultValue)
+        set(key, variable, variable.defaultValue)
+        if (refresh) {
+            send(key)
+        }
+        player.events.emit(VariableSet(key, previous, variable.defaultValue))
     }
 
     fun <T : Any> has(key: String, id: T): Boolean {
@@ -134,14 +128,13 @@ class Variables(
 
     companion object {
         private val logger = InlineLogger()
-
-        /**
-         * Checks if value [this] contains value [power]
-         */
-        private fun Int.has(power: Int) = (this and power) != 0
-
     }
 }
+
+/**
+ * Checks if value [this] contains value [power]
+ */
+fun Int.has(power: Int) = (this and power) != 0
 
 fun <T : Any> Player.setVar(key: String, value: T, refresh: Boolean = true) =
     variables.set(key, value, refresh)

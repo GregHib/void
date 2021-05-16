@@ -54,7 +54,7 @@ internal class VariablesTest {
         assertEquals(42, map[key])
         verify {
             variables.send(any())
-            events.emit(VariableSet(key, 42))
+            events.emit(VariableSet(key, 1, 42))
         }
     }
 
@@ -199,7 +199,7 @@ internal class VariablesTest {
         variables.add(key, "First", true)
         // Then
         assertEquals(1, map[key])//Doesn't change
-        verify(exactly = 0) {variables.send(key) }
+        verify(exactly = 0) { variables.send(key) }
     }
 
     @Test
@@ -269,9 +269,7 @@ internal class VariablesTest {
         assertNull(map[key])
         verifyOrder {
             variables.send(key)
-            events.emit(VariableRemoved(key, "First", 3, 2))
-            variables.send(key)
-            events.emit(VariableRemoved(key, "Second", 2, 0))
+            events.emit(VariableSet(key, 3, 0))
         }
     }
 
