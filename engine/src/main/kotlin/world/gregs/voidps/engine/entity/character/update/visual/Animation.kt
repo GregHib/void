@@ -53,9 +53,13 @@ fun Player.clearAnimation() = setAnimation(-1)
 
 fun NPC.clearAnimation() = setAnimation(-1)
 
-fun Player.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)
+fun Player.setAnimation(name: String, speed: Int = 0) {
+    setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return, speed)
+}
 
-fun NPC.setAnimation(name: String, speed: Int = 0) = setAnimation(get<AnimationDefinitions>().get(name).id, speed)
+fun NPC.setAnimation(name: String, speed: Int = 0) {
+    setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return, speed)
+}
 
 private fun setAnimation(anim: Animation, id: Int, speed: Int) {
     when {

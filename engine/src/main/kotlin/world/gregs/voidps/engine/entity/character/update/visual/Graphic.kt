@@ -5,7 +5,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
+import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
+import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.utility.func.toInt
+import world.gregs.voidps.utility.get
 
 /**
  * @author GregHib <greg@gregs.world>
@@ -24,6 +27,7 @@ data class Graphic(
         get() = (delay and 0xffff) or (height shl 16)
     val packedRotationRefresh: Int
         get() = (rotation and 0x7) or (slot shl 3) or (forceRefresh.toInt() shl 7)
+
     override fun reset(character: Character) {
         id = -1
         delay = 0
@@ -72,6 +76,18 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
         }
     }
     return -1
+}
+
+fun Player.clearGraphic() = setGraphic(-1)
+
+fun NPC.clearGraphic() = setGraphic(-1)
+
+fun Player.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
+    setGraphic(get<GraphicDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
+}
+
+fun NPC.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
+    setGraphic(get<AnimationDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
 }
 
 fun Player.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {

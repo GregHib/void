@@ -17,7 +17,7 @@ fun Player.playSound(
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    val id = definitions.getId(name)
+    val id = definitions.getIdOrNull(name) ?: return
     client?.playSoundEffect(id, delay, volume, speed, repeat)
 }
 
@@ -30,7 +30,7 @@ fun Player.playGlobalSound(
     repeat: Int = 1
 ) {
     val definitions: SoundDefinitions = get()
-    val id = definitions.getId(name)
+    val id = definitions.getIdOrNull(name) ?: return
     client?.playSoundEffect(id, delay, volume, speed, repeat)
     if (radius > 0) {
         areaSound(id, tile, radius, repeat, delay, volume, speed)
@@ -45,7 +45,7 @@ fun Player.playMidi(
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    val id = definitions.getId(name)
+    val id = definitions.getIdOrNull(name) ?: return
     client?.playMIDI(id, delay, volume, speed, repeat)
 }
 
@@ -58,7 +58,7 @@ fun Player.playGlobalMidi(
     repeat: Int = 1
 ) {
     val definitions: MidiDefinitions = get()
-    val id = definitions.getId(name)
+    val id = definitions.getIdOrNull(name) ?: return
     client?.playMIDI(id, delay, volume, speed, repeat)
     if (radius > 0) {
         areaMidi(id, tile, radius, repeat, delay, volume, speed)
@@ -70,6 +70,6 @@ fun Player.playMusicEffect(
     volume: Int = 255
 ) {
     val definitions: MusicEffectDefinitions = get()
-    val id = definitions.getId(name)
+    val id = definitions.getIdOrNull(name) ?: return
     client?.playMusicEffect(id, volume)
 }
