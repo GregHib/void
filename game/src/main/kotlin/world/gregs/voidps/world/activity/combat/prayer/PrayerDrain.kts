@@ -1,6 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import kotlinx.coroutines.Job
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.hasVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.delay
@@ -22,7 +23,7 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
             prayerDrainCounter -= prayerDrainResistance
             if (player.levels.get(Skill.Prayer) == 0) {
                 player.message("You have run out of Prayer points; you can recharge at an altar.")
-                player.setVar(player.getActivePrayerVarKey(), 0)
+                player.clearVar<String>(player.getActivePrayerVarKey())
                 player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)
                 player.events.emit(UpdatePrayers)
                 break

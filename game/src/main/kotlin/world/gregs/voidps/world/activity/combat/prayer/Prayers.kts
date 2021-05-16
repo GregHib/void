@@ -5,10 +5,15 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.has
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 IntVariable(6857, Variable.Type.VARBIT, defaultValue = 30).register("attack_bonus")
 IntVariable(6858, Variable.Type.VARBIT, defaultValue = 30).register("strength_bonus")
@@ -29,8 +34,22 @@ on<Registered> { player: Player ->
     player.sendVar("magic_bonus")
 }
 
+on<PrayerActivate> { player: Player ->
+    val id = prayer.replace(" ", "_").toLowerCase()
+    if (curses) {
+        player.setAnimation("activate_$id")
+        player.setGraphic("activate_$id")
+    } else {
+        player.playSound("activate_$id")
+    }
+}
+
+on<PrayerDeactivate> { player: Player ->
+    player.playSound("deactivate_prayer")
+}
+
 on<UpdatePrayers> { player: Player ->
-    val key = if (player.isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
+    val key = if (player.isCurses()) ACTIVE_CURSES else ACTIVE_PRAYERS
     //TODO update stats
     player.updateOverhead(key)
     updatePrayerDrain(player, key)

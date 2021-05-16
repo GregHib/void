@@ -8332,3 +8332,9 @@ queen_of_sunrise_idle:
   id: 15362
 river_spirit_idle:
   id: 15368
+activate_protect_item:
+  id: 12567
+activate_berserker:
+  id: 12589
+activate_turmoil:
+  id: 12565

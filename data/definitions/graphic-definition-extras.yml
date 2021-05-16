@@ -224,3 +224,9 @@ guthix_jadinko:
   id: 2915
 zamorak_jadinko:
   id: 2917
+activate_protect_item:
+  id: 2213
+activate_berserker:
+  id: 2266
+activate_turmoil:
+  id: 2226
