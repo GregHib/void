@@ -126,6 +126,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "S
     val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
     if (selecting) {
         player.setVar("tab", Tab.PrayerList)
+        player.sendVar(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
     } else if (player.contains(TEMP_QUICK_PRAYERS)) {
         player.saveQuickPrayers()
