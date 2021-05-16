@@ -1,7 +1,7 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
-import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.hasVar
+import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
@@ -9,6 +9,25 @@ import world.gregs.voidps.engine.entity.has
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+
+IntVariable(6857, Variable.Type.VARBIT, defaultValue = 30).register("attack_bonus")
+IntVariable(6858, Variable.Type.VARBIT, defaultValue = 30).register("strength_bonus")
+IntVariable(6859, Variable.Type.VARBIT, defaultValue = 30).register("defence_bonus")
+IntVariable(6860, Variable.Type.VARBIT, defaultValue = 30).register("range_bonus")
+IntVariable(6861, Variable.Type.VARBIT, defaultValue = 30).register("magic_bonus")
+
+BooleanVariable(6839, Variable.Type.VARBIT).register("being_leeched")
+IntVariable(6844, Variable.Type.VARBIT).register("leech_attack_bonus")
+IntVariable(6845, Variable.Type.VARBIT).register("leech_strength_bonus")
+IntVariable(6846, Variable.Type.VARBIT).register("leech_defence_bonus")
+
+on<Registered> { player: Player ->
+    player.sendVar("attack_bonus")
+    player.sendVar("strength_bonus")
+    player.sendVar("defence_bonus")
+    player.sendVar("range_bonus")
+    player.sendVar("magic_bonus")
+}
 
 on<UpdatePrayers> { player: Player ->
     val key = if (player.isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
