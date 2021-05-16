@@ -113,8 +113,7 @@ class Player(
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(experience, events)
-        variables.player = this
-        variables.store = get()
+        variables.link(this, get())
     }
 
     fun setup() {

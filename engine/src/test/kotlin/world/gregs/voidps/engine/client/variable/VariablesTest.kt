@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc
 import world.gregs.voidps.network.encode.sendVarcStr
@@ -15,9 +16,9 @@ internal class VariablesTest {
 
     private lateinit var store: VariableStore
     private lateinit var variables: Variables
-    private lateinit var component: MutableMap<String, Any>
     private lateinit var variable: Variable<Int>
     private lateinit var player: Player
+    private lateinit var events: Events
     private lateinit var map: MutableMap<String, Any>
 
     @BeforeEach
@@ -26,8 +27,8 @@ internal class VariablesTest {
         variable = mockk(relaxed = true)
         every { variable.persistent } returns true
         store = mockk(relaxed = true)
-        component = mutableMapOf()
         variables = spyk(Variables(map))
+        events = mockk(relaxed = true)
         player = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
         every { player.sendVarp(any(), any()) } just Runs
@@ -38,9 +39,9 @@ internal class VariablesTest {
         mockkStatic("world.gregs.voidps.network.encode.VarcStrEncoderKt")
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns variables
+        every { player.events } returns events
         every { store.get(key) } returns variable
-        variables.player = player
-        variables.store = store
+        variables.link(player, store)
     }
 
     @Test
@@ -52,7 +53,10 @@ internal class VariablesTest {
         variables.set(key, 42, true)
         // Then
         assertEquals(42, map[key])
-        verify { variables.send(any()) }
+        verify {
+            variables.send(any())
+            events.emit(VariableSet(key, 42))
+        }
     }
 
     @Test
@@ -164,7 +168,10 @@ internal class VariablesTest {
         variables.add(key, "First", true)
         // Then
         assertEquals(1, map[key])
-        verify{ variables.send(key) }
+        verify {
+            variables.send(key)
+            events.emit(VariableAdded(key, "First", 0, 1))
+        }
     }
 
     @Test
@@ -177,7 +184,10 @@ internal class VariablesTest {
         variables.add(key, "Second", true)
         // Then
         assertEquals(3, map[key])
-        verify{ variables.send(key) }
+        verify {
+            variables.send(key)
+            events.emit(VariableAdded(key, "Second", 1, 3))
+        }
     }
 
     @Test
@@ -190,7 +200,7 @@ internal class VariablesTest {
         variables.add(key, "First", true)
         // Then
         assertEquals(1, map[key])//Doesn't change
-        verify(exactly = 0) { variables.send(key) }
+        verify(exactly = 0) {variables.send(key) }
     }
 
     @Test
@@ -216,7 +226,10 @@ internal class VariablesTest {
         variables.remove(key, "First", true)
         // Then
         assertEquals(2, map[key])
-        verify { variables.send(key) }
+        verify {
+            variables.send(key)
+            events.emit(VariableRemoved(key, "First", 3, 2))
+        }
     }
 
     @Test

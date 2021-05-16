@@ -16,10 +16,15 @@ class Variables(
     val temporaryVariables: MutableMap<String, Any> = mutableMapOf()
 
     @JsonIgnore
-    lateinit var player: Player
+    private lateinit var player: Player
 
     @JsonIgnore
-    lateinit var store: VariableStore
+    private lateinit var store: VariableStore
+
+    fun link(player: Player, store: VariableStore) {
+        this.player = player
+        this.store = store
+    }
 
     fun <T : Any> set(key: String, value: T, refresh: Boolean) {
         val variable = store.get(key) as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
@@ -27,6 +32,7 @@ class Variables(
         if (refresh) {
             send(key)
         }
+        player.events.emit(VariableSet(key, value))
     }
 
     fun send(key: String) {
@@ -55,6 +61,7 @@ class Variables(
             if (refresh) {
                 send(key)
             }
+            player.events.emit(VariableAdded(key, id, value, value + power))
         }
     }
 
@@ -69,6 +76,7 @@ class Variables(
             if (refresh) {
                 send(key)
             }
+            player.events.emit(VariableRemoved(key, id, value, value - power))
         }
     }
 
@@ -76,7 +84,6 @@ class Variables(
         val variable = store.get(key) as? BitwiseVariable<T> ?: return false
         val power = variable.getValue(id) ?: return false
         val value = get(key, variable)
-
         return value.has(power)
     }
 
