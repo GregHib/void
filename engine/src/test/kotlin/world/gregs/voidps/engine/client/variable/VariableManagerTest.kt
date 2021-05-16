@@ -11,9 +11,9 @@ import world.gregs.voidps.network.encode.sendVarc
 import world.gregs.voidps.network.encode.sendVarcStr
 import world.gregs.voidps.network.encode.sendVarp
 
-internal class VariablesTest {
+internal class VariableManagerTest {
 
-    private lateinit var variables: Variables
+    private lateinit var variables: VariableManager
     private lateinit var component: MutableMap<String, Any>
     private lateinit var variable: Variable<Int>
     private lateinit var player: Player
@@ -22,7 +22,7 @@ internal class VariablesTest {
     fun setup() {
         variable = mockk(relaxed = true)
         every { variable.persistent } returns true
-        variables = spyk(Variables())
+        variables = spyk(VariableManager())
         component = mutableMapOf()
         player = mockk(relaxed = true)
         mockkStatic("world.gregs.voidps.network.encode.VarpEncoderKt")
