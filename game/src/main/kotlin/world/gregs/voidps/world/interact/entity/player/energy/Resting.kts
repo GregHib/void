@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.player.music.playMusic
+import world.gregs.voidps.world.interact.entity.player.music.playTrack
 
 val animations = setOf(
     "rest_arms_back",
@@ -42,17 +42,17 @@ on<NPCOption>({ npc.def["song", -1] != -1 && option == "Listen-to" }) { player: 
     rest(player, npc.def["song"])
 }
 
-fun rest(player: Player, music: Int) {
+fun rest(player: Player, track: Int) {
     player.action(ActionType.Resting) {
         player.movement.clear()
         player["movement"] = player.getVar("movement", "walk")
         val anim = animations.random()
         val lastTrack = player["current_track", -1]
         try {
-            player.setVar("movement", if (music != -1) "music" else "rest")
+            player.setVar("movement", if (track != -1) "music" else "rest")
             player.setAnimation(anim)
-            if (music != -1) {
-                player.playMusic(music)
+            if (track != -1) {
+                player.playTrack(track)
             }
             await(Suspension.Infinite)
         } finally {
@@ -60,7 +60,7 @@ fun rest(player: Player, music: Int) {
             val type = player["movement", "walk"]
             player.setVar("movement", type)
             if (lastTrack != -1) {
-                player.playMusic(lastTrack)
+                player.playTrack(lastTrack)
             }
             player.movement.frozen = true
             delay(player, 2) {

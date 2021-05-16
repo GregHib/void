@@ -24,6 +24,7 @@ import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.playMIDI
+import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
@@ -35,7 +36,7 @@ import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
-import world.gregs.voidps.world.interact.entity.player.music.playMusic
+import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
@@ -182,7 +183,11 @@ on<Command>({ prefix == "midi" }) { player: Player ->
 }
 
 on<Command>({ prefix == "music" }) { player: Player ->
-    player.playMusic(content.toInt())
+    player.client?.playMusicEffect(content.toInt())
+}
+
+on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
+    player.playTrack(content.toInt())
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

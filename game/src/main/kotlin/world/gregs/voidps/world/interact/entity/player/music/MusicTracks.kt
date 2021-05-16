@@ -74,9 +74,9 @@ class MusicTracks {
     data class Track(val index: Int, val area: Area)
 }
 
-fun Player.playMusic(musicIndex: Int) {
+fun Player.playTrack(trackIndex: Int) {
     val enumDefs: EnumDecoder = get()
-    playMusicTrack(enumDefs.get(1351).getInt(musicIndex))
-    interfaces.sendText("music_player", "currently_playing", enumDefs.get(1345).getString(musicIndex))
-    this["current_track"] = musicIndex
+    playMusicTrack(enumDefs.get(1351).getInt(trackIndex))
+    interfaces.sendText("music_player", "currently_playing", enumDefs.get(1345).getString(trackIndex))
+    this["current_track"] = trackIndex
 }
