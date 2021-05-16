@@ -48,18 +48,35 @@ fun Player.playMIDI(
     writeShort(speed)
 }
 
+fun Client.areaMIDI(
+    tile: Int,
+    id: Int,
+    type: Int,
+    repeat: Int,
+    delay: Int,
+    volume: Int,
+    speed: Int
+) = send(Protocol.MIDI_AREA) {
+    writeByte(tile)
+    writeShort(id)
+    writeByte((type shl 4) or repeat)
+    writeByte(delay)
+    writeByte(volume)
+    writeShort(speed)
+}
+
 fun Client.areaSound(
     tile: Int,
     id: Int,
     type: Int,
-    rotation: Int,
+    repeat: Int,
     delay: Int,
     volume: Int,
     speed: Int
 ) = send(Protocol.SOUND_AREA) {
     writeByte(tile)
     writeShort(id)
-    writeByte((type shl 4) and rotation)
+    writeByte((type shl 4) or repeat)
     writeByte(delay)
     writeByte(volume)
     writeShort(speed)

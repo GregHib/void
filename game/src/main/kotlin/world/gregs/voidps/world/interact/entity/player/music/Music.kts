@@ -75,7 +75,7 @@ on<InterfaceOption>({ name == "music_player" && component == "tracks" && option 
     val index = itemIndex / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true
-        player.play(index)
+        player.playMusic(index)
     }
 }
 
@@ -95,7 +95,7 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
         player.message(Colour.Red.wrap("You have unlocked a new music track: ${musicName(index)}."))
     }
     if (!player["playing_song", false]) {
-        player.play(index)
+        player.playMusic(index)
     }
 }
 

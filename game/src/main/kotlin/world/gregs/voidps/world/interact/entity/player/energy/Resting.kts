@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.player.music.play
+import world.gregs.voidps.world.interact.entity.player.music.playMusic
 
 val animations = setOf(
     "rest_arms_back",
@@ -52,7 +52,7 @@ fun rest(player: Player, music: Int) {
             player.setVar("movement", if (music != -1) "music" else "rest")
             player.setAnimation(anim)
             if (music != -1) {
-                player.play(music)
+                player.playMusic(music)
             }
             await(Suspension.Infinite)
         } finally {
@@ -60,7 +60,7 @@ fun rest(player: Player, music: Int) {
             val type = player["movement", "walk"]
             player.setVar("movement", type)
             if (lastTrack != -1) {
-                player.play(lastTrack)
+                player.playMusic(lastTrack)
             }
             player.movement.frozen = true
             delay(player, 2) {

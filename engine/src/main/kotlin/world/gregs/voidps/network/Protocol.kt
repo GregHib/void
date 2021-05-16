@@ -62,7 +62,8 @@ object Protocol {
     const val CLIENT_VARC_LARGE = 16
     const val INTERFACE_PLAYER_HEAD = 77
     const val INTERFACE_COMPONENT_VISIBILITY = 108
-    const val SOUND_AREA = 66
+    const val MIDI_AREA = 66
+    const val SOUND_AREA = 5
     const val INTERFACE_COMPONENT_ORIENTATION = 88
     const val DYNAMIC_REGION = 70
 }

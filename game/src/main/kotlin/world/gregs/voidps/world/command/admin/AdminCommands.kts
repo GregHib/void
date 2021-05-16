@@ -23,6 +23,8 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.encode.playMIDI
+import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.get
@@ -156,6 +158,14 @@ on<Command>({ prefix == "restore" }) { player: Player ->
     Skill.values().forEach {
         player.levels.clearOffset(it)
     }
+}
+
+on<Command>({ prefix == "sound" }) { player: Player ->
+    player.playSoundEffect(content.toInt())
+}
+
+on<Command>({ prefix == "midi" }) { player: Player ->
+    player.playMIDI(content.toInt())
 }
 
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->

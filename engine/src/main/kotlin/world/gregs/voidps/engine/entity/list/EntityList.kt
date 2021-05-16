@@ -8,12 +8,9 @@ import world.gregs.voidps.engine.entity.gfx.Graphics
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.proj.Projectiles
+import world.gregs.voidps.engine.entity.sound.Sounds
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 interface EntityList<T : Entity> {
 
     operator fun get(hash: Int): Set<T?>?
@@ -53,4 +50,5 @@ val entityListModule = module {
     single { FloorItems(get(), get(), get(), get()) }
     single { Projectiles() }
     single { Graphics() }
+    single { Sounds() }
 }
