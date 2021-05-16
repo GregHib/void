@@ -56,7 +56,7 @@ fun playAreaTrack(player: Player) {
 }
 
 fun sendUnlocks(player: Player) {
-    for (key in player.variables.keys.filter { it.startsWith("unlocked_music_") }) {
+    for (key in player.variables.variables.keys.filter { it.startsWith("unlocked_music_") }) {
         player.sendVar(key)
     }
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..(configs.size) * 64)
