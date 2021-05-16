@@ -41,7 +41,9 @@ data class Client(
         write.flush()
     }
 
-    fun send(opcode: Int, size: Int, type: Int = FIXED, block: suspend ByteWriteChannel.() -> Unit) {
+    fun send(opcode: Int, block: suspend ByteWriteChannel.() -> Unit) = send(opcode, -1, FIXED, block)
+
+    fun send(opcode: Int, size: Int, type: Int, block: suspend ByteWriteChannel.() -> Unit) {
         if (!connected) {
             return
         }

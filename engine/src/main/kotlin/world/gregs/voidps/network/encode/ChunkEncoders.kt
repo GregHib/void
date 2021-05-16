@@ -15,7 +15,7 @@ fun Client.clearChunk(
     xOffset: Int,
     yOffset: Int,
     plane: Int
-) = send(CHUNK_CLEAR, 3) {
+) = send(CHUNK_CLEAR) {
     writeByteAdd(plane)
     writeByteInverse(yOffset)
     writeByteInverse(xOffset)
@@ -30,7 +30,7 @@ fun Client.updateChunk(
     xOffset: Int,
     yOffset: Int,
     plane: Int
-) = send(Protocol.UPDATE_CHUNK, 3) {
+) = send(Protocol.UPDATE_CHUNK) {
     writeByteInverse(yOffset)
     writeByteAdd(plane)
     writeByteAdd(xOffset)

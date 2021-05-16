@@ -17,7 +17,7 @@ fun Client.addAreaGraphic(
     height: Int,
     delay: Int,
     rotation: Int
-) = send(GRAPHIC_AREA, 5) {
+) = send(GRAPHIC_AREA) {
     writeByte(tile)
     writeShort(id)
     writeByte(height)

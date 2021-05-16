@@ -9,6 +9,6 @@ import world.gregs.voidps.network.Protocol.PLAYER_WEIGHT
  */
 fun Client.weight(
     weight: Int
-) = send(PLAYER_WEIGHT, 2) {
+) = send(PLAYER_WEIGHT) {
     writeShort(weight)
 }

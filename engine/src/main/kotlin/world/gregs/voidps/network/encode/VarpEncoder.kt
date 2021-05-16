@@ -14,12 +14,12 @@ import world.gregs.voidps.network.writeShortAdd
  */
 fun Player.sendVarp(id: Int, value: Int) {
     if (value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
-        client?.send(CLIENT_VARP, 3) {
+        client?.send(CLIENT_VARP) {
             writeShort(id)
             writeByte(value)
         }
     } else {
-        client?.send(CLIENT_VARP_LARGE, 6) {
+        client?.send(CLIENT_VARP_LARGE) {
             writeIntInverseMiddle(value)
             writeShortAdd(id)
         }

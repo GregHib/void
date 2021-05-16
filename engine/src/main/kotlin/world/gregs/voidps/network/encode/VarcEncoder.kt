@@ -15,12 +15,12 @@ import world.gregs.voidps.network.writeShortLittle
  */
 fun Player.sendVarc(id: Int, value: Int) {
     if(value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
-        client?.send(CLIENT_VARC, 3) {
+        client?.send(CLIENT_VARC) {
             writeByte(value)
             writeShortAddLittle(id)
         }
     } else {
-        client?.send(CLIENT_VARC_LARGE, 6) {
+        client?.send(CLIENT_VARC_LARGE) {
             writeIntLittle(value)
             writeShortLittle(id)
         }
