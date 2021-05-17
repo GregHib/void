@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 
 object PrayerConfigs {
     const val PRAYERS = "prayers"
-    const val PRAYER_POINTS = "prayer_points"
 
     const val SELECTING_QUICK_PRAYERS = "select_quick_prayers"
     const val USING_QUICK_PRAYERS = "using_quick_prayers"
