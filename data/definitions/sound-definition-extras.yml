@@ -100,3 +100,5 @@ close_gate:
   id: 70
 open_gate:
   id: 71
+fell_tree:
+  id: 2734

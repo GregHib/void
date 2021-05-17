@@ -20,6 +20,7 @@ import world.gregs.voidps.utility.Math
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
 val players: Players by inject()
@@ -99,6 +100,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     if (stumpId != -1) {
         val delay = getRegrowTickDelay(tree)
         obj.replace(stumpId, ticks = delay)
+        areaSound("fell_tree", obj.tile, 5)
     }
     return true
 }
