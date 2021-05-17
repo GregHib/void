@@ -1,15 +1,11 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class ForceMovement(
     var start: Tile = Tile.EMPTY,
     var startDelay: Int = 0,
@@ -22,13 +18,11 @@ const val PLAYER_FORCE_MOVEMENT_MASK = 0x2000
 
 const val NPC_FORCE_MOVEMENT_MASK = 0x1000
 
-fun Player.flagForceMovement() = visuals.flag(PLAYER_FORCE_MOVEMENT_MASK)
+private fun mask(character: Character) = if (character is Player) PLAYER_FORCE_MOVEMENT_MASK else NPC_FORCE_MOVEMENT_MASK
 
-fun NPC.flagForceMovement() = visuals.flag(NPC_FORCE_MOVEMENT_MASK)
+fun Character.flagForceMovement() = visuals.flag(mask(this))
 
-fun Player.getForceMovement() = visuals.getOrPut(PLAYER_FORCE_MOVEMENT_MASK) { ForceMovement() }
-
-fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMovement() }
+fun Character.getForceMovement() = visuals.getOrPut(mask(this)) { ForceMovement() }
 
 /**
  * @param endDelta The delta position to move towards
@@ -37,18 +31,7 @@ fun NPC.getForceMovement() = visuals.getOrPut(NPC_FORCE_MOVEMENT_MASK) { ForceMo
  * @param startDelay Client ticks until starting the movement
  * @param direction The cardinal direction to face during movement
  */
-fun Player.setForceMovement(
-    endDelta: Tile = Tile.EMPTY,
-    endDelay: Int = 0,
-    startDelta: Tile = Tile(0),
-    startDelay: Int = 0,
-    direction: Direction = Direction.NONE
-) {
-    setForceMovement(getForceMovement(), startDelta, startDelay, endDelta, endDelay, direction)
-    flagForceMovement()
-}
-
-fun NPC.setForceMovement(
+fun Character.setForceMovement(
     endDelta: Tile = Tile.EMPTY,
     endDelay: Int = 0,
     startDelta: Tile = Tile(0),

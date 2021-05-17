@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 
@@ -25,21 +24,13 @@ const val PLAYER_HITS_MASK = 0x4
 
 const val NPC_HITS_MASK = 0x40
 
-fun Player.flagHits() = visuals.flag(PLAYER_HITS_MASK)
+private fun mask(character: Character) = if (character is Player) PLAYER_HITS_MASK else NPC_HITS_MASK
 
-fun NPC.flagHits() = visuals.flag(NPC_HITS_MASK)
+fun Character.flagHits() = visuals.flag(mask(this))
 
-fun Player.getHits() = visuals.getOrPut(PLAYER_HITS_MASK) { Hits() }
+fun Character.getHits() = visuals.getOrPut(mask(this)) { Hits() }
 
-fun NPC.getHits() = visuals.getOrPut(NPC_HITS_MASK) { Hits() }
-
-fun Player.addHit(hit: Hit) {
-    val hits = getHits()
-    hits.hits.add(hit)
-    flagHits()
-}
-
-fun NPC.addHit(hit: Hit) {
+fun Character.addHit(hit: Hit) {
     val hits = getHits()
     hits.hits.add(hit)
     flagHits()

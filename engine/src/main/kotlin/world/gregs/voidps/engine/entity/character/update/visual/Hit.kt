@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Hit(
     val amount: Int,
     val mark: Mark,

@@ -1,11 +1,9 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.character.update.Visuals
-import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.utility.func.toInt
 import world.gregs.voidps.utility.get
@@ -61,13 +59,11 @@ private fun getNPCMask(index: Int) = when (index) {
     else -> NPC_GRAPHIC_0_MASK
 }
 
-fun Player.flagGraphic(index: Int) = visuals.flag(getPlayerMask(index))
+private fun mask(character: Character, index: Int) = if (character is Player) getPlayerMask(index) else getNPCMask(index)
 
-fun NPC.flagGraphic(index: Int) = visuals.flag(getNPCMask(index))
+fun Character.flagGraphic(index: Int) = visuals.flag(mask(this, index))
 
-fun Player.getGraphic(index: Int = 0) = visuals.getOrPut(getPlayerMask(index)) { Graphic() }
-
-fun NPC.getGraphic(index: Int = 0) = visuals.getOrPut(getNPCMask(index)) { Graphic() }
+fun Character.getGraphic(index: Int = 0) = visuals.getOrPut(mask(this, index)) { Graphic() }
 
 private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     for (i in 0 until 4) {
@@ -78,26 +74,14 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     return -1
 }
 
-fun Player.clearGraphic() = setGraphic(-1)
+fun Character.clearGraphic() = setGraphic(-1)
 
-fun NPC.clearGraphic() = setGraphic(-1)
-
-fun Player.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
+fun Character.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
     setGraphic(get<GraphicDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
 }
 
-fun NPC.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    setGraphic(get<AnimationDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
-}
-
-fun Player.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    val index = visuals.getIndex(::getPlayerMask)
-    setGraphic(getGraphic(index), id, delay, height, rotation, forceRefresh)
-    flagGraphic(index)
-}
-
-fun NPC.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    val index = visuals.getIndex(::getNPCMask)
+fun Character.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
+    val index = if (this is Player) visuals.getIndex(::getPlayerMask) else visuals.getIndex(::getNPCMask)
     setGraphic(getGraphic(index), id, delay, height, rotation, forceRefresh)
     flagGraphic(index)
 }

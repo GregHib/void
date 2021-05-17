@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity.character.update.visual
 
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
@@ -32,31 +31,20 @@ const val PLAYER_ANIMATION_MASK = 0x8
 
 const val NPC_ANIMATION_MASK = 0x8
 
-fun Character.flagAnimation() = visuals.flag(if (this is Player) PLAYER_ANIMATION_MASK else NPC_ANIMATION_MASK)
+private fun mask(character: Character) = if (character is Player) PLAYER_ANIMATION_MASK else NPC_ANIMATION_MASK
 
-fun Player.getAnimation() = visuals.getOrPut(PLAYER_ANIMATION_MASK) { Animation() }
+fun Character.flagAnimation() = visuals.flag(mask(this))
 
-fun NPC.getAnimation() = visuals.getOrPut(NPC_ANIMATION_MASK) { Animation() }
+fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
 
-fun Player.setAnimation(id: Int, speed: Int = 0) {
+fun Character.setAnimation(id: Int, speed: Int = 0) {
     setAnimation(getAnimation(), id, speed)
     flagAnimation()
 }
 
-fun NPC.setAnimation(id: Int, speed: Int = 0) {
-    setAnimation(getAnimation(), id, speed)
-    flagAnimation()
-}
+fun Character.clearAnimation() = setAnimation(-1)
 
-fun Player.clearAnimation() = setAnimation(-1)
-
-fun NPC.clearAnimation() = setAnimation(-1)
-
-fun Player.setAnimation(name: String, speed: Int = 0) {
-    setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return, speed)
-}
-
-fun NPC.setAnimation(name: String, speed: Int = 0) {
+fun Character.setAnimation(name: String, speed: Int = 0) {
     setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return, speed)
 }
 
