@@ -1,9 +1,5 @@
 package world.gregs.voidps.cache.definition.data
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class InterfaceComponentSetting(var setting: Int, var anInt7413: Int) {
     fun method2743(): Int {
         return setting and 0x3fda8 shr 11

@@ -7,10 +7,6 @@ import world.gregs.voidps.cache.Indices.WORLD_MAP
 import world.gregs.voidps.cache.definition.data.WorldMapIcon
 import world.gregs.voidps.cache.definition.data.WorldMapIconDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since December 21, 2020
- */
 class WorldMapIconDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<WorldMapIconDefinition>(cache, WORLD_MAP) {
 
     private var archive = -1

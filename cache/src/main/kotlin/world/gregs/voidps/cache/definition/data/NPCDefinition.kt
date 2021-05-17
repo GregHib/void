@@ -4,12 +4,7 @@ import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
-import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class NPCDefinition(
     override var id: Int = -1,
     var modelIds: IntArray? = null,

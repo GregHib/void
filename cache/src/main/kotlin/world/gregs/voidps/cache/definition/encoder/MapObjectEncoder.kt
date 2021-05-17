@@ -4,10 +4,6 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.MapDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since December 28, 2020
- */
 class MapObjectEncoder : DefinitionEncoder<MapDefinition> {
 
     override fun Writer.encode(definition: MapDefinition) {

@@ -4,10 +4,6 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.InterfaceComponentDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since September 04, 2020
- */
 class InterfaceEncoder : DefinitionEncoder<InterfaceComponentDefinition> {
 
     override fun Writer.encode(definition: InterfaceComponentDefinition) {

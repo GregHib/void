@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Indices.QUICK_CHAT_MENUS
 import world.gregs.voidps.cache.Indices.QUICK_CHAT_MESSAGES
 import world.gregs.voidps.cache.definition.data.QuickChatOptionDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class QuickChatOptionDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<QuickChatOptionDefinition>(cache, QUICK_CHAT_MESSAGES) {
 
     override fun create() = QuickChatOptionDefinition()

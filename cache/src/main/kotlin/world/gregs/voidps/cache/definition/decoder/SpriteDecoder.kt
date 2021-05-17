@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Indices.SPRITES
 import world.gregs.voidps.cache.definition.data.IndexedSprite
 import world.gregs.voidps.cache.definition.data.SpriteDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
 
     override val size: Int

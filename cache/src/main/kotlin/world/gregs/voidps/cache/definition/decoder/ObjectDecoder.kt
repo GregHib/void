@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.OBJECTS
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 open class ObjectDecoder(cache: world.gregs.voidps.cache.Cache, val member: Boolean, val lowDetail: Boolean, val configReplace: Boolean) : DefinitionDecoder<ObjectDefinition>(cache, OBJECTS) {
 
     override fun create() = ObjectDefinition()

@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.FLOOR_OVERLAY
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.OverlayDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class OverlayDecoder(cache: Cache) : ConfigDecoder<OverlayDefinition>(cache, FLOOR_OVERLAY) {
 
     override fun create() = OverlayDefinition()

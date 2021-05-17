@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.Configs.RENDER_ANIMATIONS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.RenderAnimationDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class RenderAnimationDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<RenderAnimationDefinition>(cache, RENDER_ANIMATIONS) {
 
     override fun create() = RenderAnimationDefinition()

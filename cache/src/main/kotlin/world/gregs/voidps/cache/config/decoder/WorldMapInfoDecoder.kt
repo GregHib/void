@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.Configs.WORLD_MAP_INFO
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.WorldMapInfoDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class WorldMapInfoDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<WorldMapInfoDefinition>(cache, WORLD_MAP_INFO) {
 
     override fun create() = WorldMapInfoDefinition()

@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.VARC
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.ClientVariableParameterDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class ClientVariableParameterDecoder(cache: Cache) : ConfigDecoder<ClientVariableParameterDefinition>(cache, VARC) {
 
     override fun create() = ClientVariableParameterDefinition()

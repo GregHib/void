@@ -4,10 +4,6 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-/**
- * @author Greg Hibberd <greg@greghibberd.com>
- * @since January 17, 2021
- */
 class ClientScriptEncoder(private val revision634: Boolean = false) : DefinitionEncoder<ClientScriptDefinition> {
 
     override fun Writer.encode(definition: ClientScriptDefinition) {

@@ -2,10 +2,6 @@ package world.gregs.voidps.cache.definition.data
 
 import world.gregs.voidps.cache.Definition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class TextureDefinition(
     override var id: Int = -1,
     var useTextureColour: Boolean = false,

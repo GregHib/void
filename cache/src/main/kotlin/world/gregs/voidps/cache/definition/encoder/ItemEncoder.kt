@@ -4,10 +4,6 @@ import world.gregs.voidps.buffer.write.Writer
 import world.gregs.voidps.cache.DefinitionEncoder
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 13, 2020
- */
 class ItemEncoder : DefinitionEncoder<ItemDefinition> {
 
     override fun Writer.encode(definition: ItemDefinition) {

@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.CONTAINERS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class ContainerDecoder(cache: Cache) : ConfigDecoder<ContainerDefinition>(cache, CONTAINERS) {
 
     override fun create() = ContainerDefinition()

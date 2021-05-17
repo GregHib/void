@@ -9,10 +9,6 @@ import world.gregs.voidps.cache.definition.data.MapDefinition
 import world.gregs.voidps.cache.definition.data.MapObject
 import world.gregs.voidps.cache.definition.data.MapTile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since December 28, 2020
- */
 class MapDecoder(cache: Cache, private val xteas: Map<Int, IntArray>) : DefinitionDecoder<MapDefinition>(cache, MAPS) {
 
     override fun create() = MapDefinition()

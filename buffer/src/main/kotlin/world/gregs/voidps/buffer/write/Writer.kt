@@ -3,9 +3,6 @@ package world.gregs.voidps.buffer.write
 
 /**
  * All functions relative to writing directly to a packet are done by this class
- *
- * @author GregHib <greg@gregs.world>
- * @since February 18, 2020
  */
 interface Writer {
 

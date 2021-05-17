@@ -2,10 +2,6 @@ package world.gregs.voidps.cache.definition.data
 
 import java.awt.image.BufferedImage
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 @Suppress("ArrayInDataClass")
 data class IndexedSprite(
     var offsetX: Int = 0,

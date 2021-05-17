@@ -2,10 +2,6 @@ package world.gregs.voidps.cache.definition
 
 import world.gregs.voidps.buffer.read.Reader
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 interface Recolourable {
     var originalColours: ShortArray?
     var modifiedColours: ShortArray?
