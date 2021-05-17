@@ -42,53 +42,55 @@ on<PrayerActivate> { player: Player ->
     } else {
         player.playSound("activate_$id")
     }
+    startPrayerDrain(player)
+    updateOverheadIcon(player, curses)
 }
 
-on<PrayerDeactivate> { player: Player ->
-    player.playSound("deactivate_prayer")
-}
-
-on<UpdatePrayers> { player: Player ->
-    val key = if (player.isCurses()) ACTIVE_CURSES else ACTIVE_PRAYERS
-    //TODO update stats
-    updateOverhead(player, key)
-    updatePrayerDrain(player, key)
-}
-
-fun updatePrayerDrain(player: Player, listKey: String) {
-    val activePrayers = player.getVar(listKey, 0)
-    if (activePrayers == 0 && player.has("prayer_drain")) {
-        player.stop("prayer_drain")
-    } else if (activePrayers > 0 && !player.has("prayer_drain")) {
+fun startPrayerDrain(player: Player) {
+    if (!player.has("prayer_drain")) {
         player.start("prayer_drain")
     }
 }
 
-fun updateOverhead(player: Player, listKey: String) {
-    val changed = if (player.isCurses()) {
-        player.setCurseIcon(listKey)
+on<PrayerDeactivate> { player: Player ->
+    player.playSound("deactivate_prayer")
+    stopPrayerDrain(player, curses)
+    updateOverheadIcon(player, curses)
+}
+
+fun stopPrayerDrain(player: Player, curses: Boolean) {
+    val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
+    val activePrayers = player.getVar(key, 0)
+    if (activePrayers == 0 && player.has("prayer_drain")) {
+        player.stop("prayer_drain")
+    }
+}
+
+fun updateOverheadIcon(player: Player, curses: Boolean) {
+    val changed = if (curses) {
+        player.changedCurseIcon()
     } else {
-        player.setPrayerIcon(listKey)
+        player.changedPrayerIcon()
     }
     if (changed) {
         player.flagAppearance()
     }
 }
 
-fun Player.setCurseIcon(listKey: String): Boolean {
+fun Player.changedCurseIcon(): Boolean {
     var value = -1
     when {
-        hasVar(listKey, "Wrath") -> value = 19
-        hasVar(listKey, "Soul Split") -> value = 20
+        hasVar(ACTIVE_CURSES, "Wrath") -> value = 19
+        hasVar(ACTIVE_CURSES, "Soul Split") -> value = 20
         else -> {
-            if (hasVar(listKey, "Deflect Summoning")) {
+            if (hasVar(ACTIVE_CURSES, "Deflect Summoning")) {
                 value += 4
             }
 
             value += when {
-                hasVar(listKey, "Deflect Magic") -> if (value > -1) 3 else 2
-                hasVar(listKey, "Deflect Missiles") -> if (value > -1) 2 else 3
-                hasVar(listKey, "Deflect Melee") -> 1
+                hasVar(ACTIVE_CURSES, "Deflect Magic") -> if (value > -1) 3 else 2
+                hasVar(ACTIVE_CURSES, "Deflect Missiles") -> if (value > -1) 2 else 3
+                hasVar(ACTIVE_CURSES, "Deflect Melee") -> 1
                 else -> 0
             }
             if (value > -1) {
@@ -103,21 +105,21 @@ fun Player.setCurseIcon(listKey: String): Boolean {
     return false
 }
 
-fun Player.setPrayerIcon(listKey: String): Boolean {
+fun Player.changedPrayerIcon(): Boolean {
     var value = -1
     when {
-        hasVar(listKey, "Retribution") -> value = 3
-        hasVar(listKey, "Redemption") -> value = 5
-        hasVar(listKey, "Smite") -> value = 4
+        hasVar(ACTIVE_PRAYERS, "Retribution") -> value = 3
+        hasVar(ACTIVE_PRAYERS, "Redemption") -> value = 5
+        hasVar(ACTIVE_PRAYERS, "Smite") -> value = 4
         else -> {
-            if (hasVar(listKey, "Protect from Summoning")) {
+            if (hasVar(ACTIVE_PRAYERS, "Protect from Summoning")) {
                 value += 8
             }
 
             value += when {
-                hasVar(listKey, "Protect from Magic") -> 3
-                hasVar(listKey, "Protect from Missiles") -> 2
-                hasVar(listKey, "Protect from Melee") -> 1
+                hasVar(ACTIVE_PRAYERS, "Protect from Magic") -> 3
+                hasVar(ACTIVE_PRAYERS, "Protect from Missiles") -> 2
+                hasVar(ACTIVE_PRAYERS, "Protect from Melee") -> 1
                 else -> 0
             }
         }

@@ -81,7 +81,6 @@ val cursesGroups = setOf(
 on<InterfaceOption>({ name == "prayer_list" && component == "regular_prayers" }) { player: Player ->
     val prayers = player.getActivePrayerVarKey()
     player.togglePrayer(itemIndex, prayers, false)
-    player.events.emit(UpdatePrayers)
 }
 
 on<InterfaceOption>({ name == "prayer_list" && component == "quick_prayers" }) { player: Player ->
@@ -160,7 +159,6 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "T
         player.playSound("deactivate_prayer")
         player.clearVar<String>(activePrayers)
     }
-    player.events.emit(UpdatePrayers)
 }
 
 on<InterfaceOption>({ name == "prayer_list" && component == "confirm" && option == "Confirm Selection" }) { player: Player ->

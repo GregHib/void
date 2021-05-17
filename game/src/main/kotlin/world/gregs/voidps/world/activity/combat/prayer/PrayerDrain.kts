@@ -25,7 +25,6 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
                 player.message("You have run out of Prayer points; you can recharge at an altar.")
                 player.clearVar<String>(player.getActivePrayerVarKey())
                 player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)
-                player.events.emit(UpdatePrayers)
                 break
             }
         }
