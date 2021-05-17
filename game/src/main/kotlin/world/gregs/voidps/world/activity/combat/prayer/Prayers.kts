@@ -51,7 +51,7 @@ on<PrayerDeactivate> { player: Player ->
 on<UpdatePrayers> { player: Player ->
     val key = if (player.isCurses()) ACTIVE_CURSES else ACTIVE_PRAYERS
     //TODO update stats
-    player.updateOverhead(key)
+    updateOverhead(player, key)
     updatePrayerDrain(player, key)
 }
 
@@ -64,14 +64,14 @@ fun updatePrayerDrain(player: Player, listKey: String) {
     }
 }
 
-fun Player.updateOverhead(listKey: String) {
-    val changed = if (isCurses()) {
-        setCurseIcon(listKey)
+fun updateOverhead(player: Player, listKey: String) {
+    val changed = if (player.isCurses()) {
+        player.setCurseIcon(listKey)
     } else {
-        setPrayerIcon(listKey)
+        player.setPrayerIcon(listKey)
     }
     if (changed) {
-        flagAppearance()
+        player.flagAppearance()
     }
 }
 
