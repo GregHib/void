@@ -84038,7 +84038,7 @@ tanned_hobgoblin_skin:
   examine: "This skin is ready to be turned into a stuffed animal."
   use: "Quest"
   kept: "Wilderness"
-ram_skull_helme:
+ram_skull_helm_e:
   id: 15214
   tradeable: false
   stab_def: 22.0
@@ -111492,72 +111492,6 @@ void_knight_deflector:
   slot: "Shield"
   examine: "A deft void knight shield."
   kept: "Reclaim"
-junk_3:
-  id: 19713
-  slot: "Amulet"
-junk_4:
-  id: 19714
-  slot: "Weapon"
-junk_5:
-  id: 19715
-  slot: "Weapon"
-junk_6:
-  id: 19716
-  slot: "Weapon"
-junk_7:
-  id: 19717
-  slot: "Weapon"
-junk_8:
-  id: 19718
-  slot: "Shield"
-junk_9:
-  id: 19719
-  slot: "Weapon"
-junk_10:
-  id: 19720
-  slot: "Weapon"
-junk_11:
-  id: 19721
-  slot: "Shield"
-junk_12:
-  id: 19722
-  slot: "Shield"
-junk_13:
-  id: 19723
-  slot: "Weapon"
-junk_14:
-  id: 19724
-  slot: "Weapon"
-junk_15:
-  id: 19725
-  slot: "Weapon"
-junk_16:
-  id: 19726
-  slot: "Weapon"
-junk_17:
-  id: 19727
-  slot: "Shield"
-junk_18:
-  id: 19728
-  slot: "Weapon"
-junk_19:
-  id: 19729
-  slot: "Weapon"
-junk_20:
-  id: 19730
-  slot: "Weapon"
-junk_21:
-  id: 19731
-  slot: "Weapon"
-junk_22:
-  id: 19732
-  slot: "Weapon"
-junk_23:
-  id: 19733
-  slot: "Weapon"
-junk_24:
-  id: 19734
-  slot: "Weapon"
 barrister_top:
   id: 19735
   tradeable: false
