@@ -92,3 +92,11 @@ equip_sword:
   id: 2248
 equip_whip:
   id: 2249
+close_door:
+  id: 80
+open_door:
+  id: 81
+close_gate:
+  id: 70
+open_gate:
+  id: 71

@@ -37,6 +37,7 @@ import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.sound.playMidi
+import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.Stairs
 
@@ -167,7 +168,7 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 on<Command>({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content)
+        player.playSound(content.replace(" ", "_"))
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -176,14 +177,19 @@ on<Command>({ prefix == "sound" }) { player: Player ->
 on<Command>({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content)
+        player.playMidi(content.replace(" ", "_"))
     } else {
         player.client?.playMIDI(id)
     }
 }
 
 on<Command>({ prefix == "music" }) { player: Player ->
-    player.client?.playMusicEffect(content.toInt())
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playMusicEffect(content.replace(" ", "_"))
+    } else {
+        player.client?.playMusicEffect(id)
+    }
 }
 
 on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
