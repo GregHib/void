@@ -46,12 +46,21 @@ on<Command>({ prefix == "under" }) { player: Player ->
 }
 
 on<Command>({ prefix == "anim" }) { player: Player ->
-    player.setAnimation(content.toInt())// 863
+    val id = content.toIntOrNull()
+    when (id) {
+        null -> player.setAnimation(content)
+        -1 -> player.clearAnimation()
+        else -> player.setAnimation(id)// 863
+    }
 }
 
 on<Command>({ prefix == "gfx" }) { player: Player ->
-    val id = content.toInt()
-    player.setGraphic(id)// 93
+    val id = content.toIntOrNull()
+    when (id) {
+        null -> player.setGraphic(content)
+        -1 -> player.clearGraphic()
+        else -> player.setGraphic(id)// 93
+    }
 }
 
 on<Command>({ prefix == "tfm" || prefix == "transform" }) { player: Player ->

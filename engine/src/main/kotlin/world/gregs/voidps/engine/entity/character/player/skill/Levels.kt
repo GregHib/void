@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.entity.character.player.skill
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonProperty
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.floor
@@ -9,10 +10,12 @@ import kotlin.math.min
 import kotlin.math.pow
 
 class Levels(
-    private val boosts: MutableMap<Skill, Int> = mutableMapOf(),
+    @JsonProperty("levelOffsets")
+    val offsets: MutableMap<Skill, Int> = mutableMapOf(),
 ) {
     @JsonIgnore
     lateinit var experience: Experience
+
     @JsonIgnore
     private lateinit var events: Events
 
@@ -29,7 +32,7 @@ class Levels(
     }
 
     fun get(skill: Skill): Int {
-        return getMax(skill) + getBoost(skill)
+        return getMax(skill) + getOffset(skill)
     }
 
     fun getMax(skill: Skill): Int {
@@ -37,45 +40,47 @@ class Levels(
         return getLevel(exp)
     }
 
-    fun getBoost(skill: Skill): Int {
-        return boosts[skill] ?: 0
+    fun getOffset(skill: Skill): Int {
+        return offsets[skill] ?: 0
     }
 
-    fun setBoost(skill: Skill, level: Int) {
+    fun setOffset(skill: Skill, level: Int) {
         val previous = get(skill)
-        boosts[skill] = level
+        offsets[skill] = level
         notify(skill, previous)
     }
 
-    fun clearBoost(skill: Skill) {
-        boosts.remove(skill)
+    fun clearOffset(skill: Skill) {
+        val previous = get(skill)
+        offsets.remove(skill)
+        notify(skill, previous)
     }
 
     fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0) {
         val offset = multiply(getMax(skill), multiplier)
         val boost = calculateAmount(amount, offset)
-        val minimumBoost = min(0, getBoost(skill))
+        val minimumBoost = min(0, getOffset(skill))
         modify(skill, boost, minimumBoost, 0)
     }
 
     fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false) {
         val offset = multiply(minimumLevel(skill), multiplier)
         val boost = calculateAmount(amount, offset)
-        val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getBoost(skill) + boost) else max(getBoost(skill), boost)
+        val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getOffset(skill) + boost) else max(getOffset(skill), boost)
         modify(skill, boost, 0, maximumBoost)
     }
 
     fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true) {
         val offset = multiply(maximumLevel(skill), multiplier)
         val drain = calculateAmount(amount, offset)
-        val current = getBoost(skill)
+        val current = getOffset(skill)
         val minimumDrain = if (stack) max(-getMax(skill), current - drain) else min(current, -drain)
         modify(skill, -drain, minimumDrain, 0)
     }
 
     private fun notify(skill: Skill, previous: Int) {
         val level = get(skill)
-        events.emit(Boosted(skill, previous, level))
+        events.emit(LevelChanged(skill, previous, level))
     }
 
     private fun minimumLevel(skill: Skill): Int {
@@ -91,9 +96,9 @@ class Levels(
     }
 
     private fun modify(skill: Skill, amount: Int, min: Int, max: Int) {
-        val current = getBoost(skill)
+        val current = getOffset(skill)
         val combined = current + amount
-        setBoost(skill, combined.coerceIn(min, max))
+        setOffset(skill, combined.coerceIn(min, max))
     }
 
     private fun multiply(level: Int, multiplier: Double) = if (multiplier > 0.0) (level * multiplier).toInt() else 0

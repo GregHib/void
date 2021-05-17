@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.update.Visual
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class TemporaryMoveType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return type != PlayerMoveType.None
+    }
+
     override fun reset(character: Character) {
         val player = character as Player
         player.temporaryMoveType = PlayerMoveType.None

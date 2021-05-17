@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.TEXTURE_DEFINITIONS
 import world.gregs.voidps.cache.definition.data.TextureDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class TextureDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<TextureDefinition>(cache, TEXTURE_DEFINITIONS) {
 
     override fun create() = TextureDefinition()

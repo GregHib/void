@@ -3,10 +3,6 @@ package world.gregs.voidps.cache.definition.data
 import world.gregs.voidps.cache.Definition
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class WorldMapDefinition(
     override var id: Int = -1,
     var map: String = "",

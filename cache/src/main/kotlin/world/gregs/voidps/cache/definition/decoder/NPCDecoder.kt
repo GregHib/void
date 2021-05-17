@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.NPCS
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class NPCDecoder(cache: world.gregs.voidps.cache.Cache, val member: Boolean) : DefinitionDecoder<NPCDefinition>(cache, NPCS) {
 
     override fun create() = NPCDefinition()

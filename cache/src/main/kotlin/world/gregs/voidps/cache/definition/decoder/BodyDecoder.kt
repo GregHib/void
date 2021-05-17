@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.DEFAULTS
 import world.gregs.voidps.cache.definition.data.BodyDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class BodyDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<BodyDefinition>(cache, DEFAULTS) {
 
     val logger = InlineLogger()

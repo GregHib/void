@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.GRAPHICS
 import world.gregs.voidps.cache.definition.data.GraphicDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class GraphicDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<GraphicDefinition>(cache, GRAPHICS) {
 
     override fun create() = GraphicDefinition()

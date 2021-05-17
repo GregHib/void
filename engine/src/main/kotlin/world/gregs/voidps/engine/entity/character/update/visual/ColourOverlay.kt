@@ -13,7 +13,7 @@ data class ColourOverlay(
 const val PLAYER_COLOUR_OVERLAY_MASK = 0x40000
 const val NPC_COLOUR_OVERLAY_MASK = 0x2000
 
-fun mask(character: Character) = if (character is Player) PLAYER_COLOUR_OVERLAY_MASK else NPC_COLOUR_OVERLAY_MASK
+private fun mask(character: Character) = if (character is Player) PLAYER_COLOUR_OVERLAY_MASK else NPC_COLOUR_OVERLAY_MASK
 
 fun Character.flagColourOverlay() = visuals.flag(mask(this))
 

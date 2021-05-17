@@ -18,7 +18,7 @@ fun Client.animateInterface(
     id: Int,
     component: Int,
     animation: Int
-) = send(INTERFACE_ANIMATION, 6) {
+) = send(INTERFACE_ANIMATION) {
     writeShort(animation)
     writeIntMiddle(id shl 16 or component)
 }
@@ -31,7 +31,7 @@ fun Client.animateInterface(
 fun Client.closeInterface(
     id: Int,
     component: Int
-) = send(Protocol.INTERFACE_CLOSE, 4) {
+) = send(Protocol.INTERFACE_CLOSE) {
     writeInt(id shl 16 or component)
 }
 
@@ -46,7 +46,7 @@ fun Client.colourInterface(
     red: Int,
     green: Int,
     blue: Int
-) = send(Protocol.INTERFACE_COLOUR, 6) {
+) = send(Protocol.INTERFACE_COLOUR) {
     writeShortAdd((red shl 10) + (green shl 5) + blue)
     writeIntLittle(id shl 16 or component)
 }
@@ -61,7 +61,7 @@ fun Client.npcDialogueHead(
     id: Int,
     component: Int,
     npc: Int
-) = send(Protocol.INTERFACE_NPC_HEAD, 6) {
+) = send(Protocol.INTERFACE_NPC_HEAD) {
     writeIntLittle(id shl 16 or component)
     writeShortAdd(npc)
 }
@@ -74,7 +74,7 @@ fun Client.npcDialogueHead(
 fun Client.playerDialogueHead(
     id: Int,
     component: Int
-) = send(Protocol.INTERFACE_PLAYER_HEAD, 4) {
+) = send(Protocol.INTERFACE_PLAYER_HEAD) {
     writeIntMiddle(id shl 16 or component)
 }
 
@@ -90,7 +90,7 @@ fun Client.interfaceItem(
     component: Int,
     item: Int,
     amount: Int
-) = send(Protocol.INTERFACE_ITEM, 10) {
+) = send(Protocol.INTERFACE_ITEM) {
     writeShortLittle(item)
     writeIntInverseMiddle(id shl 16 or component)
     writeInt(amount)
@@ -137,7 +137,7 @@ fun Client.openInterface(
     parent: Int,
     component: Int,
     id: Int
-) = send(Protocol.INTERFACE_OPEN, 7) {
+) = send(Protocol.INTERFACE_OPEN) {
     writeShortLittle(id)
     writeIntLittle(parent shl 16 or component)
     writeByteAdd(permanent)
@@ -158,7 +158,7 @@ fun Player.sendInterfaceSettings(
     toSlot: Int,
     settings: Int
 ) {
-    client?.send(Protocol.INTERFACE_COMPONENT_SETTINGS, 12) {
+    client?.send(Protocol.INTERFACE_COMPONENT_SETTINGS) {
         writeShortAdd(toSlot)
         writeShortLittle(fromSlot)
         writeInt(id shl 16 or component)
@@ -177,7 +177,7 @@ fun Player.sendInterfaceScroll(
     component: Int,
     settings: Int
 ) {
-    client?.send(Protocol.INTERFACE_SCROLL_VERTICAL, 6) {
+    client?.send(Protocol.INTERFACE_SCROLL_VERTICAL) {
         writeIntInverseMiddle(id shl 16 or component)
         writeShortAdd(settings)
     }
@@ -193,7 +193,7 @@ fun Client.interfaceSprite(
     id: Int,
     component: Int,
     sprite: Int
-) = send(Protocol.INTERFACE_SPRITE, 6) {
+) = send(Protocol.INTERFACE_SPRITE) {
     writeShortAdd(sprite)
     writeIntInverseMiddle(id shl 16 or component)
 }
@@ -217,7 +217,7 @@ fun Client.interfaceText(
 fun Client.updateInterface(
     id: Int,
     type: Int
-) = send(Protocol.INTERFACE_WINDOW, 3) {
+) = send(Protocol.INTERFACE_WINDOW) {
     writeByteInverse(type)
     writeShortAdd(id)
 }
@@ -232,7 +232,7 @@ fun Client.interfaceVisibility(
     id: Int,
     component: Int,
     hide: Boolean
-) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY, 5) {
+) = send(Protocol.INTERFACE_COMPONENT_VISIBILITY) {
     writeByteAdd(hide)
     writeIntLittle(id shl 16 or component)
 }

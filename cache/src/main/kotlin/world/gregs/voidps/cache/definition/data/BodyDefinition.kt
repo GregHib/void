@@ -4,8 +4,6 @@ import world.gregs.voidps.cache.Definition
 
 /**
  * Equipment Slots Definition
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
  */
 @Suppress("ArrayInDataClass")
 data class BodyDefinition(

@@ -17,8 +17,10 @@ object ObjectDefinitions {
         println(decoder.size)
         repeat(decoder.size) {
             val def = decoder.getOrNull(it) ?: return@repeat
-            if(def.name.contains("tree", true)) {
-                println(def.blockFlag)
+            if(def.name.contains("ladder", true) || def.name.contains("trapdoor", true)) {
+                if(!def.options.contains("Climb-down")) {
+                    println(def.options.toList())
+                }
             }
         }
     }

@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.container
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.contain.hasContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.*
@@ -21,7 +22,7 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
     private val logger = InlineLogger()
 
     override fun validate(player: Player, instruction: InteractInterface) {
-        val (id, componentId, itemId, itemSlot, option) = instruction
+        var (id, componentId, itemId, itemSlot, option) = instruction
 
         if (!player.interfaces.contains(interfaceDefinitions.getName(id))) {
             logger.info { "Interface $id not found for player $player" }
@@ -41,11 +42,12 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
         val component = definition.getComponentOrNull(componentName)
 
         var item = Item.EMPTY
-        if (itemId != -1 && itemSlot != -1) {
+        if (itemId != -1) {
             if (component == null) {
                 logger.info { "Interface $name component $componentId not found for player $player" }
                 return
             }
+
             val containerName = component["container", ""]
             if (!player.hasContainer(containerName)) {
                 logger.info { "Interface $name container $containerName not found for player $player" }
@@ -59,8 +61,11 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
             }
 
             var found = false
-            val primary = player.container(def, secondary = false)
             val itemName = itemDefinitions.getName(itemId)
+            if (itemSlot == -1 && containerName == "worn_equipment") {
+                itemSlot = player.equipment.indexOf(itemName)
+            }
+            val primary = player.container(def, secondary = false)
             if (primary.isValidId(itemSlot, itemName)) {
                 found = true
                 item = primary.getItem(itemSlot)

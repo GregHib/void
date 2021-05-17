@@ -40,7 +40,8 @@ object Protocol {
     const val INTERFACE_MODEL = 23
     const val FLOOR_ITEM_REVEAL = 109
     const val PROJECTILE_ADD = 15
-    const val MINI_SOUND = 11
+    const val SOUND_EFFECT = 103
+    const val MIDI_SOUND = 106
     const val PLAY_MUSIC = 85
     const val INTERFACE_WINDOW = 102
     const val PLAYER_UPDATING = 105
@@ -61,9 +62,11 @@ object Protocol {
     const val CLIENT_VARC_LARGE = 16
     const val INTERFACE_PLAYER_HEAD = 77
     const val INTERFACE_COMPONENT_VISIBILITY = 108
+    const val MIDI_AREA = 66
     const val SOUND_AREA = 5
     const val INTERFACE_COMPONENT_ORIENTATION = 88
     const val DYNAMIC_REGION = 70
+    const val MUSIC_EFFECT = 116
 }
 
 val protocol: Map<Int, Decoder> = mapOf(

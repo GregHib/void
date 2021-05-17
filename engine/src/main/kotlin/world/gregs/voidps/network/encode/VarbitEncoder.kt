@@ -15,12 +15,12 @@ import world.gregs.voidps.network.writeShortLittle
  */
 fun Player.sendVarbit(id: Int, value: Int) {
     if(value in Byte.MIN_VALUE..Byte.MAX_VALUE) {
-        client?.send(CLIENT_VARBIT, 3) {
+        client?.send(CLIENT_VARBIT) {
             writeByteAdd(value)
             writeShortLittle(id)
         }
     } else {
-        client?.send(CLIENT_VARBIT_LARGE, 6) {
+        client?.send(CLIENT_VARBIT_LARGE) {
             writeShortAdd(id)
             writeIntInverseMiddle(value)
         }

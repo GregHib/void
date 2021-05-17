@@ -16,7 +16,7 @@ fun Client.skillLevel(
     skill: Int,
     level: Int,
     experience: Int
-) = send(SKILL_LEVEL, 6) {
+) = send(SKILL_LEVEL) {
     writeByteSubtract(level)
     writeByteInverse(skill)
     writeIntMiddle(experience)

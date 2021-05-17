@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class ItemDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<ItemDefinition>(cache, ITEMS) {
 
     override fun create() = ItemDefinition()

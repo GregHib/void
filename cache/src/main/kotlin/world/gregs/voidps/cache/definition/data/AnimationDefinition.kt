@@ -3,10 +3,6 @@ package world.gregs.voidps.cache.definition.data
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class AnimationDefinition(
     override var id: Int = -1,
     var durations: IntArray? = null,

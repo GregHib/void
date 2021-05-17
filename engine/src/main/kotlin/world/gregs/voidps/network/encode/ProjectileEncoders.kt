@@ -30,7 +30,7 @@ fun Client.addProjectile(
     duration: Int,
     curve: Int,
     startOffset: Int
-) = send(PROJECTILE_ADD, 16) {
+) = send(PROJECTILE_ADD) {
     writeByte(offset)
     writeByte(distanceX)
     writeByte(distanceY)
@@ -70,7 +70,7 @@ fun Client.addProjectileHalfTile(
     duration: Int,
     curve: Int,
     startOffset: Int
-) = send(Protocol.PROJECTILE_DISPLACE, 19) {
+) = send(Protocol.PROJECTILE_DISPLACE) {
     writeByte(offset)
     val flag = 0
     // Inverse height 0x1

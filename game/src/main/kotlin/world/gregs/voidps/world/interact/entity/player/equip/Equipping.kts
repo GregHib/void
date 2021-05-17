@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<ContainerAction>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
     val def = item.def
@@ -20,20 +21,26 @@ on<ContainerAction>({ container == "inventory" && (option == "Wield" || option =
         return@on
     }
 
-    player.inventory.swap(slot, player.equipment, def["slot", EquipSlot.None].index)
+    val slot = def["slot", EquipSlot.None]
+    player.inventory.swap(this.slot, player.equipment, slot.index)
     player.flagAppearance()
+    playEquipSound(player, def, slot)
 }
 
 on<ContainerAction>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
-    if (!player.equipment.move(slot, player.inventory) && player.equipment.result == ContainerResult.Full) {
+    if (player.equipment.move(slot, player.inventory)) {
+        val slot = item.def["slot", EquipSlot.None]
+        playEquipSound(player, item.def, slot)
+    } else if (player.equipment.result == ContainerResult.Full) {
         player.inventoryFull()
     }
 }
 
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) { player: Player ->
+    updateWeaponEmote(player)
+}
+
 on<Registered> { player: Player ->
-    player.events.on<Player, ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index }) {
-        updateWeaponEmote(player)
-    }
     updateWeaponEmote(player)
 }
 
@@ -71,4 +78,34 @@ fun isTwoHandedWeapon(item: ItemDefinition) = item["slot", EquipSlot.None] == Eq
 fun holdingTwoHandedWeapon(player: Player): Boolean {
     val weapon = player.equipped(EquipSlot.Weapon)
     return weapon.def["type", EquipType.None] == EquipType.TwoHanded
+}
+
+fun playEquipSound(player: Player, item: ItemDefinition, slot: EquipSlot) {
+    val name = item.name.toLowerCase()
+    val material = item["material", "cloth"]
+    var sound = when (slot) {
+        EquipSlot.Weapon -> when {
+            // Might be able to improve using attack strategies
+            name.contains("spear") || name.contains("staff") || name.contains("javelin") || name.contains("hasta") || name.contains("halberd") -> "equip_spear"
+            name.contains("hammer") || name.contains("maul") -> "equip_hammer"
+            name.contains("mace") || name.contains("flail") -> "equip_mace"
+            name.contains("bow") || name.contains("knife") || name.contains("dart") || name.contains("thrownaxe") -> "equip_range"
+            name.contains("whip") -> "equip_whip"
+            name.contains("hatchet") -> "equip_hatchet"
+            name.contains("axe") -> "equip_axe"
+            else -> "equip_sword"
+        }
+        EquipSlot.Hat -> if (material == "metal") "equip_helm" else "equip_clothes"
+        EquipSlot.Chest -> if (material == "metal") "equip_body" else "equip_clothes"
+        EquipSlot.Shield -> if (material == "metal") "equip_shield" else "equip_clothes"
+        EquipSlot.Legs -> if (material == "metal") "equip_legs" else "equip_clothes"
+        EquipSlot.Feet -> if (material == "metal") "equip_boots" else "equip_clothes"
+        EquipSlot.Hands -> if (material == "metal") "equip_boots" else "equip_clothes"
+        EquipSlot.Arrows -> if (material == "metal") "equip_bolts" else "equip_range"
+        else -> "equip_clothes"
+    }
+    if (material == "leather") {
+        sound = "equip_leather"
+    }
+    player.playSound(sound)
 }

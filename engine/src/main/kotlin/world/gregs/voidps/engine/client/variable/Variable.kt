@@ -28,7 +28,7 @@ interface Variable<T : Any> {
      * Registers the variable into the global list [variables] with identifier [name]
      */
     fun register(name: String) {
-        get<Variables>().register(name, this)
+        get<VariableStore>().register(name, this)
     }
 
 }

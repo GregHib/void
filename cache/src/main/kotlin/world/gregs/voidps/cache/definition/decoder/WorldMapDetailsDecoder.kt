@@ -7,10 +7,6 @@ import world.gregs.voidps.cache.definition.data.WorldMapDefinition
 import world.gregs.voidps.cache.definition.data.WorldMapSection
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class WorldMapDetailsDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<WorldMapDefinition>(cache, WORLD_MAP) {
 
     val archive = cache.getArchiveId(index, "details")

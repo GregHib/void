@@ -29,7 +29,6 @@ import world.gregs.voidps.engine.entity.item.floorItemSpawnModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
-import world.gregs.voidps.engine.entity.obj.stairsModule
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.area.areasModule
@@ -55,6 +54,7 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.getProperty
 import world.gregs.voidps.world.interact.entity.player.music.musicModule
+import world.gregs.voidps.world.interact.world.stairsModule
 import java.math.BigInteger
 import java.util.concurrent.Executors
 

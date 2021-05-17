@@ -19,7 +19,7 @@ fun Client.addObject(
     id: Int,
     type: Int,
     rotation: Int
-) = send(OBJECT_ADD, 4) {
+) = send(OBJECT_ADD) {
     writeByteSubtract((type shl 2) or rotation)
     writeShort(id)
     writeByteAdd(tile)
@@ -37,7 +37,7 @@ fun Client.animateObject(
     animation: Int,
     type: Int,
     rotation: Int
-) = send(Protocol.OBJECT_ANIMATION, 7) {
+) = send(Protocol.OBJECT_ANIMATION) {
     writeShortAddLittle(animation)
     writeByteAdd((type shl 2) or rotation)
     writeIntInverseMiddle(tile)
@@ -54,7 +54,7 @@ fun Client.animateSpecificObject(
     animation: Int,
     type: Int,
     rotation: Int
-) = send(Protocol.OBJECT_ANIMATION_SPECIFIC, 4) {
+) = send(Protocol.OBJECT_ANIMATION_SPECIFIC) {
     writeShortLittle(animation)
     writeByteSubtract(tile)
     writeByteInverse((type shl 2) or rotation)
@@ -69,7 +69,7 @@ fun GameObject.animate(id: Int) = get<ChunkBatcher>()
 fun Client.preloadObject(
     id: Int,
     modelType: Int
-) = send(Protocol.OBJECT_PRE_FETCH, 3) {
+) = send(Protocol.OBJECT_PRE_FETCH) {
     writeShort(id)
     writeByte(modelType)
 }
@@ -83,7 +83,7 @@ fun Client.removeObject(
     tile: Int,
     type: Int,
     rotation: Int
-) = send(Protocol.OBJECT_REMOVE, 2) {
+) = send(Protocol.OBJECT_REMOVE) {
     writeByteAdd((type shl 2) or rotation)
     writeByte(tile)
 }

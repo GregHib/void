@@ -13,7 +13,7 @@ fun Client.addFloorItem(
     tile: Int,
     id: Int,
     amount: Int
-) = send(FLOOR_ITEM_ADD, 5) {
+) = send(FLOOR_ITEM_ADD) {
     writeShortLittle(amount)
     writeShortLittle(id)
     writeByte(tile)
@@ -26,7 +26,7 @@ fun Client.addFloorItem(
 fun Client.removeFloorItem(
     tile: Int,
     id: Int
-) = send(Protocol.FLOOR_ITEM_REMOVE, 3) {
+) = send(Protocol.FLOOR_ITEM_REMOVE) {
     writeShortAddLittle(id)
     writeByteSubtract(tile)
 }
@@ -42,7 +42,7 @@ fun Client.revealFloorItem(
     id: Int,
     amount: Int,
     owner: Int
-) = send(Protocol.FLOOR_ITEM_REVEAL, 7) {
+) = send(Protocol.FLOOR_ITEM_REVEAL) {
     writeShortLittle(amount)
     writeByte(tile)
     writeShortAdd(id)
@@ -62,7 +62,7 @@ fun Client.updateFloorItem(
     id: Int,
     oldAmount: Int,
     newAmount: Int
-) = send(Protocol.FLOOR_ITEM_UPDATE, 7) {
+) = send(Protocol.FLOOR_ITEM_UPDATE) {
     writeByte(tile)
     writeShort(id)
     writeShort(oldAmount)

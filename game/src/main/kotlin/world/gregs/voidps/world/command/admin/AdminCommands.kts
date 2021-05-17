@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.entity.toggle
@@ -23,14 +22,24 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.encode.playMIDI
+import world.gregs.voidps.network.encode.playMusicEffect
+import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
+import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
+import world.gregs.voidps.world.interact.entity.player.music.playTrack
+import world.gregs.voidps.world.interact.entity.sound.playMidi
+import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
+import world.gregs.voidps.world.interact.entity.sound.playSound
+import world.gregs.voidps.world.interact.world.Stairs
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
@@ -142,6 +151,51 @@ on<Command>({ prefix == "rest" }) { player: Player ->
     player["energy"] = MAX_ENERGY
 }
 
+on<Command>({ prefix == "curses" }) { player: Player ->
+    player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
+}
+
+on<Command>({ prefix == "pray" }) { player: Player ->
+    player.levels.clearOffset(Skill.Prayer)
+}
+
+on<Command>({ prefix == "restore" }) { player: Player ->
+    Skill.values().forEach {
+        player.levels.clearOffset(it)
+    }
+}
+
+on<Command>({ prefix == "sound" }) { player: Player ->
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playSound(content.replace(" ", "_"))
+    } else {
+        player.client?.playSoundEffect(id)
+    }
+}
+
+on<Command>({ prefix == "midi" }) { player: Player ->
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playMidi(content.replace(" ", "_"))
+    } else {
+        player.client?.playMIDI(id)
+    }
+}
+
+on<Command>({ prefix == "music" }) { player: Player ->
+    val id = content.toIntOrNull()
+    if (id == null) {
+        player.playMusicEffect(content.replace(" ", "_"))
+    } else {
+        player.client?.playMusicEffect(id)
+    }
+}
+
+on<Command>({ prefix == "song" || prefix == "track" }) { player: Player ->
+    player.playTrack(content.toInt())
+}
+
 on<Command>({ prefix == "pos" || prefix == "mypos" }) { player: Player ->
     player.message(player.tile.toString())
     println(player.tile)
@@ -151,7 +205,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     var reloadRegions = false
     when (content) {
         "stairs" -> get<Stairs>().load()
-        "music", "tracks", "songs" -> get<MusicTracks>().load()
+        "tracks", "songs" -> get<MusicTracks>().load()
         "floor items" -> {
             val items: FloorItems = get()
             items.chunks.forEach { (_, set) ->
@@ -190,6 +244,9 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "graphic defs" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs" -> get<ItemDefinitions>().load()
+        "sound", "sound effects" -> get<SoundDefinitions>().load()
+        "midi" -> get<MidiDefinitions>().load()
+        "music", "music effects" -> get<MusicEffectDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()

@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.player
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.JsonUnwrapped
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -13,6 +14,7 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
 import world.gregs.voidps.engine.client.ui.dialogue.Dialogues
+import world.gregs.voidps.engine.client.variable.Variables
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
@@ -57,13 +59,13 @@ class Player(
     @JsonIgnore
     override val movement: Movement = Movement(),
     val containers: MutableMap<String, Container> = mutableMapOf(),
-    val variables: MutableMap<String, Any> = mutableMapOf(),
-    @JsonIgnore
-    val temporaryVariables: MutableMap<String, Any> = mutableMapOf(),
+    @get:JsonUnwrapped
+    val variables: Variables = Variables(),
     override val values: Values = Values(),
     @JsonIgnore
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
+    @get:JsonUnwrapped
     val levels: Levels = Levels(),
     @JsonIgnore
     var client: Client? = null,
@@ -111,6 +113,7 @@ class Player(
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
         levels.link(experience, events)
+        variables.link(this, get())
     }
 
     fun setup() {

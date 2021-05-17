@@ -56,7 +56,7 @@ fun playAreaTrack(player: Player) {
 }
 
 fun sendUnlocks(player: Player) {
-    for (key in player.variables.keys.filter { it.startsWith("unlocked_music_") }) {
+    for (key in player.variables.variables.keys.filter { it.startsWith("unlocked_music_") }) {
         player.sendVar(key)
     }
     player.interfaceOptions.unlockAll("music_player", "tracks", 0..(configs.size) * 64)
@@ -75,13 +75,13 @@ on<InterfaceOption>({ name == "music_player" && component == "tracks" && option 
     val index = itemIndex / 2
     if (player.hasUnlocked(index)) {
         player["playing_song"] = true
-        player.play(index)
+        player.playTrack(index)
     }
 }
 
-fun Player.unlockTrack(musicIndex: Int): Boolean {
-    if (!hasUnlocked(musicIndex)) {
-        addVar("unlocked_music_${musicIndex / 32}", musicIndex)
+fun Player.unlockTrack(trackIndex: Int): Boolean {
+    if (!hasUnlocked(trackIndex)) {
+        addVar("unlocked_music_${trackIndex / 32}", trackIndex)
         return true
     }
     return false
@@ -95,7 +95,7 @@ fun autoPlay(player: Player, track: MusicTracks.Track) {
         player.message(Colour.Red.wrap("You have unlocked a new music track: ${musicName(index)}."))
     }
     if (!player["playing_song", false]) {
-        player.play(index)
+        player.playTrack(index)
     }
 }
 

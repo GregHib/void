@@ -9,6 +9,7 @@ import world.gregs.voidps.utility.func.isDoor
 import world.gregs.voidps.utility.func.isGate
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.utility.toTicks
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import java.util.concurrent.TimeUnit
 
 val objects: Objects by inject()
@@ -26,6 +27,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
 
     val double = getDoubleDoor(obj, 1)
     if (resetExisting(obj, double)) {
+        player.playSound(if (obj.def.isGate()) "close_gate" else "close_door")
         return@on
     }
 
@@ -38,6 +40,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
             getRotation(obj, 3),
             doorResetDelay
         )
+        player.playSound("close_door")
         return@on
     }
 
@@ -60,6 +63,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
                 getRotation(double, if (flip) 3 else 1),
                 10
             )
+            player.playSound("close_door")
         }
         return@on
     }
@@ -70,6 +74,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
     val double = getDoubleDoor(obj, 0)
 
     if (resetExisting(obj, double)) {
+        player.playSound(if (obj.def.isGate()) "open_gate" else "open_door")
         return@on
     }
 
@@ -84,6 +89,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
             getRotation(obj, 1),
             doorResetDelay
         )
+        player.playSound("open_door")
         return@on
     }
     if (double != null && replacement1 != null && replacement2 != null) {
@@ -105,6 +111,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
                 getRotation(second, 3),
                 doorResetDelay
             )
+            player.playSound("open_gate")
         } else {// Double doors
             replaceObjectPair(
                 obj,
@@ -117,6 +124,7 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
                 getRotation(double, if (flip) 3 else 1),
                 doorResetDelay
             )
+            player.playSound("open_door")
         }
         return@on
     }

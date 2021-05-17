@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ANIMATIONS
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<AnimationDefinition>(cache, ANIMATIONS) {
 
     override fun create() = AnimationDefinition()

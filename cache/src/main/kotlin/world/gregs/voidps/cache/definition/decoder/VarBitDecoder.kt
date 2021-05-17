@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.VAR_BIT
 import world.gregs.voidps.cache.definition.data.VarBitDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class VarBitDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<VarBitDefinition>(cache, VAR_BIT) {
 
     override fun create() = VarBitDefinition()

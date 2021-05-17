@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,12 +33,17 @@ val definitions: ItemDefinitions by inject()
 
 fun Player.equipping() = action.type == ActionType.Equipping
 
+on<Registered> { player: Player ->
+    updateStats(player)
+}
+
+on<ItemChanged>({ container == "worn_equipment" }) { player: Player ->
+    updateStats(player, oldItem, false)
+    updateStats(player, item, true)
+}
+
 on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     player.action(ActionType.Equipping) {
-        val handler = player.events.on<Player, ItemChanged>({ container == "worn_equipment" }) {
-            updateStats(player, oldItem, false)
-            updateStats(player, item, true)
-        }
         try {
             player.interfaces.sendVisibility("equipment_bonuses", "close", !player.getVar("equipment_banking", false))
             updateEmote(player)
@@ -46,7 +52,6 @@ on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
             updateStats(player)
             awaitInterface(name)
         } finally {
-            player.events.remove(handler)
             player.open("inventory")
             player.close("equipment_bonuses")
         }
@@ -103,7 +108,9 @@ fun updateStats(player: Player, item: Item, add: Boolean) {
 }
 
 fun sendBonus(player: Player, name: String, key: String, value: Int) {
-    player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
+    if (player.action.type == ActionType.Equipping) {
+        player.interfaces.sendText("equipment_bonuses", key, "$name: ${EquipBonuses.format(key, value, true)}")
+    }
 }
 
 fun updateStats(player: Player) {

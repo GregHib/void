@@ -4,9 +4,6 @@ import java.nio.ByteBuffer
 
 /**
  * All functions relative to writing directly to a packet are done by this class
- *
- * @author GregHib <greg@gregs.world>
- * @since February 18, 2020
  */
 class BufferWriter(
     capacity: Int = 64,

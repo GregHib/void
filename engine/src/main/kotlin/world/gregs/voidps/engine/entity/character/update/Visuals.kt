@@ -2,10 +2,6 @@ package world.gregs.voidps.engine.entity.character.update
 
 import world.gregs.voidps.engine.entity.character.Character
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 @Suppress("ArrayInDataClass")
 data class Visuals(
     var flag: Int = 0,
@@ -30,7 +26,9 @@ data class Visuals(
     fun reset(character: Character) {
         flag = 0
         aspects.forEach { (_, visual) ->
-            visual.reset(character)
+            if (visual.needsReset(character)) {
+                visual.reset(character)
+            }
         }
     }
 

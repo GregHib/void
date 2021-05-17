@@ -40,4 +40,14 @@ object Level {
         return true
     }
 
+    fun Player.hasMax(skill: Skill, level: Int, message: Boolean = false): Boolean {
+        if (levels.getMax(skill) < level) {
+            if (message) {
+                message("You need to have an ${skill.name} level of $level.")
+            }
+            return false
+        }
+        return true
+    }
+
 }

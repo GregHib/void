@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices.ENUMS
 import world.gregs.voidps.cache.definition.data.EnumDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class EnumDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<EnumDefinition>(cache, ENUMS) {
 
     override fun create() = EnumDefinition()

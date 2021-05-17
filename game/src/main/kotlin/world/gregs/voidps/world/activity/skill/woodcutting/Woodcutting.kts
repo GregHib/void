@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -19,6 +20,7 @@ import world.gregs.voidps.utility.Math
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
+import world.gregs.voidps.world.interact.entity.sound.areaSound
 import kotlin.random.Random
 
 val players: Players by inject()
@@ -66,7 +68,7 @@ on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player
                 }
             }
         } finally {
-            player.setAnimation(-1)
+            player.clearAnimation()
         }
     }
 }
@@ -98,6 +100,7 @@ fun deplete(tree: Tree, obj: GameObject): Boolean {
     if (stumpId != -1) {
         val delay = getRegrowTickDelay(tree)
         obj.replace(stumpId, ticks = delay)
+        areaSound("fell_tree", obj.tile, 5)
     }
     return true
 }

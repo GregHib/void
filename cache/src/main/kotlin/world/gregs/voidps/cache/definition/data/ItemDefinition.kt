@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.definition.Extra
 import world.gregs.voidps.cache.definition.Parameterized
 import world.gregs.voidps.cache.definition.Recolourable
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class ItemDefinition(
     override var id: Int = -1,
     var modelId: Int = 0,
