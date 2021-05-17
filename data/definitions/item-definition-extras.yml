@@ -22980,7 +22980,7 @@ cooked_undead_meat:
   kept: "Wilderness"
 cooked_meat_noted_2:
   id: 4294
-h.a.m._shirt:
+ham_shirt:
   id: 4298
   price: 22
   limit: 100
@@ -22990,9 +22990,9 @@ h.a.m._shirt:
   slot: "Chest"
   examine: "The label says 'Vivid Crimson', but it looks pink to me!"
   kept: "Wilderness"
-h.a.m._shirt_noted:
+ham_shirt_noted:
   id: 4299
-h.a.m._robe:
+ham_robe:
   id: 4300
   price: 15
   limit: 100
@@ -23002,9 +23002,9 @@ h.a.m._robe:
   slot: "Legs"
   examine: "The label says 'Vivid Crimson', but it looks pink to me!"
   kept: "Wilderness"
-h.a.m._robe_noted:
+ham_robe_noted:
   id: 4301
-h.a.m._hood:
+ham_hood:
   id: 4302
   price: 620
   limit: 100
@@ -23016,9 +23016,9 @@ h.a.m._hood:
   type: "Hair"
   examine: "Lightweight head protection and eye shield."
   kept: "Wilderness"
-h.a.m._hood_noted:
+ham_hood_noted:
   id: 4303
-h.a.m._cloak:
+ham_cloak:
   id: 4304
   price: 342
   limit: 100
@@ -23029,9 +23029,9 @@ h.a.m._cloak:
   slot: "Cape"
   examine: "A H.A.M. cape."
   kept: "Wilderness"
-h.a.m._cloak_noted:
+ham_cloak_noted:
   id: 4305
-h.a.m._logo:
+ham_logo:
   id: 4306
   price: 28
   limit: 100
@@ -23039,9 +23039,9 @@ h.a.m._logo:
   slot: "Amulet"
   examine: "A badge for the H.A.M. cult."
   kept: "Wilderness"
-h.a.m._logo_noted:
+ham_logo_noted:
   id: 4307
-h.a.m._gloves:
+ham_gloves:
   id: 4308
   price: 49
   limit: 100
@@ -23051,9 +23051,9 @@ h.a.m._gloves:
   slot: "Hands"
   examine: "Gloves worn by the Humans Against Monsters group."
   kept: "Wilderness"
-h.a.m._gloves_noted:
+ham_gloves_noted:
   id: 4309
-h.a.m._boots:
+ham_boots:
   id: 4310
   price: 155
   limit: 100
@@ -23063,7 +23063,7 @@ h.a.m._boots:
   slot: "Feet"
   examine: "Boots worn by the Humans Against Monsters group."
   kept: "Wilderness"
-h.a.m._boots_noted:
+ham_boots_noted:
   id: 4311
 crystal_of_seren:
   id: 4313
@@ -44901,7 +44901,7 @@ rune_heraldic_helm_guthix:
   type: "FullFace"
   examine: "The colours represent Guthix."
   kept: "Reclaim"
-rune_heraldic_helm_h.a.m.:
+rune_heraldic_helm_ham:
   id: 8476
   tradeable: false
   weight: 2.721
@@ -45708,7 +45708,7 @@ steel_heraldic_helm_guthix:
   type: "FullFace"
   examine: "The colours represent Guthix."
   kept: "Reclaim"
-steel_heraldic_helm_h.a.m.:
+steel_heraldic_helm_ham:
   id: 8694
   tradeable: false
   weight: 2.721
@@ -45912,7 +45912,7 @@ rune_kiteshield_guthix_heraldic:
   material: "metal"
   examine: "A shield with the symbol of Guthix."
   kept: "Reclaim"
-rune_kiteshield_h.a.m.:
+rune_kiteshield_ham:
   id: 8726
   limit: 100
   absorb_melee: 3
@@ -46204,7 +46204,7 @@ steel_kiteshield_guthix:
   material: "metal"
   examine: "A shield with the symbol of Guthix."
   kept: "Reclaim"
-steel_kiteshield_h.a.m.:
+steel_kiteshield_ham:
   id: 8758
   limit: 100
   tradeable: false
@@ -46740,25 +46740,25 @@ ground_ashes:
   weight: 0.056
   examine: "A heap of finely ground ashes."
   kept: "Reclaim"
-steel_key_h.a.m.:
+steel_key_ham:
   id: 8866
   tradeable: false
   weight: 0.01
   examine: "You stole this key from a guard in the HAM cave."
   kept: "Wilderness"
-bronze_key_h.a.m.:
+bronze_key_ham:
   id: 8867
   tradeable: false
   weight: 0.01
   examine: "You stole this key from a guard in the HAM cave."
   kept: "Wilderness"
-silver_key_h.a.m.:
+silver_key_ham:
   id: 8868
   tradeable: false
   weight: 0.01
   examine: "You stole this key from a guard in the HAM cave."
   kept: "Wilderness"
-iron_key_h.a.m.:
+iron_key_ham:
   id: 8869
   tradeable: false
   weight: 0.01
@@ -59854,7 +59854,7 @@ artefact_sword:
   examine: "An ancient goblin object encrusted in dirt."
   use: "Quest"
   kept: "Wilderness"
-mace_h.a.m.:
+mace_ham:
   id: 11058
   tradeable: false
   weight: 0.001
@@ -80979,7 +80979,7 @@ michaels_letter:
   destroy2: "You tear up the letter as you won't need it any more."
   use: "Quest"
   kept: "Wilderness"
-h.a.m._prison_key:
+ham_prison_key:
   id: 14678
   tradeable: false
   weight: 0.01
@@ -105206,7 +105206,7 @@ flame_fragment_farmer:
   examine: "This fragment of elemental fire pulses as if alive."
   use: "Quest"
   kept: "Wilderness"
-flame_fragment_h.a.m._member:
+flame_fragment_ham_member:
   id: 18655
   tradeable: false
   destroy: "You stole this from a HAM member."
