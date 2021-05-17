@@ -15,8 +15,7 @@ enum class EquipSlot(val index: Int) {
     Hands(9),
     Feet(10),
     Ring(12),
-    Arrows(13),
-    Aura(14);
+    Arrows(13);
 
     companion object {
         fun by(index: Int): EquipSlot = values().firstOrNull { it.index == index } ?: None

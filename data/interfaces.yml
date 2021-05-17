@@ -846,17 +846,127 @@ worn_equipment:
     bonuses: 39
     price: 42
     items: 45
-    hat: 8
-    cape: 11
-    amulet: 14
-    weapon: 17
-    chest: 20
-    shield: 23
-    legs: 26
-    hands: 29
-    feet: 32
-    ring: 35
-    arrows: 38
+    hat:
+      id: 8
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    cape:
+      id: 11
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    amulet:
+      id: 14
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    weapon:
+      id: 17
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    chest:
+      id: 20
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    shield:
+      id: 23
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    legs:
+      id: 26
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    hands:
+      id: 29
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    feet:
+      id: 32
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    ring:
+      id: 35
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
+    arrows:
+      id: 38
+      container: worn_equipment
+      options:
+        Remove: 0
+        Option2: 1
+        Option3: 2
+        Option4: 3
+        Option5: 4
+        Option6: 5
+        Examine: 9
 
 spells_ancient_elements:
   id: 389

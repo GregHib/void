@@ -60,3 +60,35 @@ activate_piety:
   id: 3825
 deactivate_prayer:
   id: 2663
+equip_hatchet:
+  id: 2229
+equip_axe:
+  id: 2232
+equip_bolts:
+  id: 2235
+equip_boots:
+  id: 2237
+equip_clothes:
+  id: 2238
+equip_body:
+  id: 2239
+equip_helm:
+  id: 2240
+equip_leather:
+  id: 2241
+equip_legs:
+  id: 2242
+equip_hammer:
+  id: 2243
+equip_range:
+  id: 2244
+equip_shield:
+  id: 2245
+equip_mace:
+  id: 2246
+equip_spear:
+  id: 2247
+equip_sword:
+  id: 2248
+equip_whip:
+  id: 2249
