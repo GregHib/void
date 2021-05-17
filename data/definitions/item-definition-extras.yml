@@ -53810,7 +53810,6 @@ rune_helm_h3:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
-  aka: ""
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -57389,7 +57388,6 @@ rune_helm_h3_2:
   magic_def: -1.0
   range_def: 30.0
   summoning_def: 7.0
-  aka: ""
   slot: "Hat"
   material: "metal"
   type: "Hair"
@@ -101412,7 +101410,6 @@ kratonite_bar_noted:
 fractite_bar:
   id: 17658
   weight: 1.814
-  aka: ""
   examine: "A solid bar of metal, used for smithing."
   use: "Dungeoneering"
   kept: "Always"
@@ -101437,7 +101434,6 @@ argonite_bar_noted:
 katagon_bar:
   id: 17664
   weight: 1.814
-  aka: ""
   examine: "A solid bar of metal, used for smithing."
   use: "Dungeoneering"
   kept: "Always"
