@@ -10,10 +10,6 @@ import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.utility.func.toInt
 import world.gregs.voidps.utility.get
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Graphic(
     var id: Int = -1,
     var delay: Int = 0,
@@ -27,6 +23,10 @@ data class Graphic(
         get() = (delay and 0xffff) or (height shl 16)
     val packedRotationRefresh: Int
         get() = (rotation and 0x7) or (slot shl 3) or (forceRefresh.toInt() shl 7)
+
+    override fun needsReset(character: Character): Boolean {
+        return id != -1
+    }
 
     override fun reset(character: Character) {
         id = -1

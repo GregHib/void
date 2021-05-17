@@ -5,15 +5,15 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Hits(
     val hits: MutableList<Hit> = mutableListOf(),
     var source: Int = -1,// TODO source & target setting
     var target: Int = -1
 ) : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return hits.isNotEmpty()
+    }
+
     override fun reset(character: Character) {
         hits.clear()
         source = -1

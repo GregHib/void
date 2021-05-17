@@ -5,11 +5,11 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class ForceChat(var text: String = "") : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return text.isNotEmpty()
+    }
+
     override fun reset(character: Character) {
         text = ""
     }

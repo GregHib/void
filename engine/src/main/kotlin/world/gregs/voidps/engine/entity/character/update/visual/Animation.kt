@@ -18,12 +18,17 @@ data class Animation(
     var fourth: Int = -1,
     var speed: Int = 0
 ) : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return first != -1
+    }
+
     override fun reset(character: Character) {
         first = -1
         second = -1
         third = -1
         fourth = -1
         speed = 0
+        character.flagAnimation()
     }
 }
 
@@ -31,9 +36,7 @@ const val PLAYER_ANIMATION_MASK = 0x8
 
 const val NPC_ANIMATION_MASK = 0x8
 
-fun Player.flagAnimation() = visuals.flag(PLAYER_ANIMATION_MASK)
-
-fun NPC.flagAnimation() = visuals.flag(NPC_ANIMATION_MASK)
+fun Character.flagAnimation() = visuals.flag(if (this is Player) PLAYER_ANIMATION_MASK else NPC_ANIMATION_MASK)
 
 fun Player.getAnimation() = visuals.getOrPut(PLAYER_ANIMATION_MASK) { Animation() }
 

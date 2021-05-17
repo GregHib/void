@@ -5,16 +5,16 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class TimeBar(
     var full: Boolean = false,
     var exponentialDelay: Int = 0,
     var delay: Int = 0,
     var increment: Int = 0
 ) : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return full || exponentialDelay != 0 || delay != 0 || increment != 0
+    }
+
     override fun reset(character: Character) {
         full = false
         exponentialDelay = 0

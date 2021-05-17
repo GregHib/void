@@ -10,11 +10,11 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.path.PathResult
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
+    override fun needsReset(character: Character): Boolean {
+        return type != PlayerMoveType.None
+    }
+
     override fun reset(character: Character) {
         val player = character as Player
         player.movementType = PlayerMoveType.None
