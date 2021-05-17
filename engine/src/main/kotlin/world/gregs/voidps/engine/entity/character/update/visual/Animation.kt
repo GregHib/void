@@ -23,7 +23,6 @@ data class Animation(
         third = -1
         fourth = -1
         speed = 0
-        character.flagAnimation()
     }
 }
 
