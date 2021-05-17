@@ -8342,3 +8342,5 @@ climb_down:
   id: 827
 climb_up:
   id: 828
+assist:
+  id: 7299

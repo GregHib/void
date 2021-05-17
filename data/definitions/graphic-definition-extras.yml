@@ -230,3 +230,7 @@ activate_berserker:
   id: 2266
 activate_turmoil:
   id: 2226
+assist:
+  id: 1247
+cow_eat_grass:
+  id: 5854

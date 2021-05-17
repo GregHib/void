@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.skill.Level
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.ObjectOption
@@ -66,7 +67,7 @@ on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player
                 }
             }
         } finally {
-            player.setAnimation(-1)
+            player.clearAnimation()
         }
     }
 }

@@ -98,7 +98,7 @@ fun setupAssisted(player: Player, assistant: Player) = player.action {
     player["assist_point"] = player.tile
     setAssistAreaStatus(player, true)
     delay(2)
-    player.setAnimation(7299)
+    player.setAnimation("assist")
     player.face(assistant)
 }
 
@@ -115,8 +115,8 @@ fun setupAssistant(player: Player, assisted: Player) = player.action(ActionType.
         applyExistingSkillRedirects(player, assisted)
         setAssistAreaStatus(player, true)
         player.sendVar("total_xp_earned")
-        player.setAnimation(7299)
-        player.setGraphic(1247)
+        player.setAnimation("assist")
+        player.setGraphic("assist")
         toggleInventory(player, enabled = false)
         player.awaitInterfaces()
     } finally {
