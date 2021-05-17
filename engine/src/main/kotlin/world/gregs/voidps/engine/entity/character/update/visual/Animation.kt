@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.definition.AnimationDefinitions
 import world.gregs.voidps.utility.get
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Animation(
     var first: Int = -1,
     var second: Int = -1,

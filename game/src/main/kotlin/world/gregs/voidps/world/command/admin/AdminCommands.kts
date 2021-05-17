@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.obj.Stairs
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.entity.toggle
@@ -39,6 +38,7 @@ import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import world.gregs.voidps.world.interact.world.Stairs
 
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {

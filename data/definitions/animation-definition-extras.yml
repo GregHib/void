@@ -8338,3 +8338,7 @@ activate_berserker:
   id: 12589
 activate_turmoil:
   id: 12565
+climb_down:
+  id: 827
+climb_up:
+  id: 828
