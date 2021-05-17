@@ -44233,7 +44233,6 @@ intricate_decorative_armour:
   magic_def: -12.0
   range_def: 137.0
   summoning_def: 76.0
-  examine: "N/A"
 rune_case_1:
   id: 8276
   examine: "Elemental runes made by a skilled runecrafter."
@@ -104035,7 +104034,6 @@ mercenarys_gloves:
   kept: "Reclaim"
 dungeoneering_experience:
   id: 18348
-  examine: "N/A"
 chaotic_rapier_new:
   id: 18349
   bank_stacks: false
@@ -105877,7 +105875,6 @@ profound_decorative_armour:
   magic_def: -12.0
   range_def: 197.0
   summoning_def: 102.0
-  examine: "N/A"
 hunter_kit_noted:
   id: 18756
 court_summons:
