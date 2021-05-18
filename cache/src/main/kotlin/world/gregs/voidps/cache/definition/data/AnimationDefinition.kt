@@ -27,8 +27,8 @@ data class AnimationDefinition(
     override var extras: Map<String, Any> = emptyMap()
 ) : Definition, Extra {
 
-    val time: Int
-        get() = (durations?.sum() ?: 0) * 10
+    val time: Long
+        get() = (durations?.sum() ?: 0) * 20L
 
     val clientTicks: Int
         get() {
