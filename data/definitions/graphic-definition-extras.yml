@@ -234,3 +234,33 @@ assist:
   id: 1247
 cow_eat_grass:
   id: 5854
+emote_enhanced_yawn:
+  id: 277
+emote_blow_kiss:
+  id: 1702
+emote_idea:
+  id: 712
+emote_zombie_hand:
+  id: 1244
+emote_air_guitar:
+  id: 1537
+emote_safety_first:
+  id: 1553
+emote_explore:
+  id: 1734
+emote_trick:
+  id: 1864
+emote_freeze:
+  id: 1973
+emote_give_thanks:
+  id: 86
+emote_around_the_world_in_eggty_days:
+  id: 2037
+emote_dramatic_point:
+  id: 780
+emote_puppet_master:
+  id: 2837
+emote_seal_of_approval:
+  id: 1287
+emote_taskmaster:
+  id: 2930

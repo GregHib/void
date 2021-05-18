@@ -89,11 +89,23 @@ class Variables(
         player.events.emit(VariableSet(key, previous, variable.defaultValue))
     }
 
+    /**
+     * @return whether [id] is active for [key]
+     */
     fun <T : Any> has(key: String, id: T): Boolean {
         val variable = store.get(key) as? BitwiseVariable<T> ?: return false
         val power = variable.getValue(id) ?: return false
         val value = get(key, variable)
         return value.has(power)
+    }
+
+    /**
+     * @return whether [id] is a valid value in [key]
+     */
+    fun <T : Any> contains(key: String, id: T): Boolean {
+        val variable = store.get(key) as? BitwiseVariable<T> ?: return false
+        variable.getValue(id) ?: return false
+        return true
     }
 
     internal fun <T : Any> Variable<T>.send(key: String) {
@@ -166,6 +178,10 @@ fun Player.decVar(key: String, refresh: Boolean = true): Int {
     val value: Int = variables.get(key)
     variables.set(key, value - 1, refresh)
     return value - 1
+}
+
+fun <T : Any> Player.containsVar(key: String, id: T): Boolean {
+    return variables.contains(key, id)
 }
 
 fun <T : Any> Player.hasVar(key: String, id: T): Boolean {

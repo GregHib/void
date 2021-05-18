@@ -20,4 +20,5 @@ sealed class ActionType : CancellationException() {
     object Woodcutting : ActionType()
     object Shopping : ActionType()
     object Resting : ActionType()
+    object Emote : ActionType()
 }
