@@ -1,11 +1,13 @@
 package world.gregs.voidps
 
 import com.github.michaelbull.logging.InlineLogger
+import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.GameLoop.Companion.flow
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
@@ -108,6 +110,7 @@ object Main {
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
         val batcher: ChunkBatcher = get()
+        val scheduler: Scheduler = get()
         val net = InstructionTask(players, InstructionHandler())
         return listOf(
             Runnable {
@@ -118,6 +121,9 @@ object Main {
             loginQueue,
             // Tick
             Runnable {
+                runBlocking {
+                    scheduler.tick()
+                }
                 flow.tryEmit(GameLoop.tick)
             },
             Runnable {

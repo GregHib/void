@@ -20,8 +20,9 @@ class PlayerPathTask(override val entities: Players, val finder: PathFinder) : E
     override fun runAsync(player: Player) {
         val strategy = player.movement.strategy!!
         player.movement.result = finder.find(player, strategy)
-        logger.debug { "Path length: ${player.movement.steps.size}" }
+        player.movement.length = player.movement.steps.size
         player.movement.strategy = null
+        logger.debug { "Path length: ${player.movement.length}" }
     }
 
 }

@@ -5,8 +5,10 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
 import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.utility.get
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
@@ -82,7 +84,7 @@ class GameLoop(
 /**
  * Executes a task after [ticks]
  */
-fun delay(ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
+fun delay(ticks: Int = 0, loop: Boolean = false, task: suspend (Long) -> Unit) = GlobalScope.launch(Contexts.Game) {
     if (loop) {
         while (isActive) {
             repeat(ticks) {
@@ -101,7 +103,7 @@ fun delay(ticks: Int = 0, loop: Boolean = false, task: (Long) -> Unit) = GlobalS
 /**
  * Executes a task after [ticks], cancelling if player logs out
  */
-inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: (Long) -> Unit): Job {
+inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
     val job = delay(ticks, loop, task)
     entity.events.on<T, Unregistered> {
         job.cancel()
@@ -113,8 +115,7 @@ inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean =
  * Syncs task with the start of the current or next tick
  */
 @Suppress("unused")
-fun sync(task: (Long) -> Unit) {
-    delay(1) {
-        task.invoke(GameLoop.tick)
-    }
+fun sync(task: suspend (Long) -> Unit) {
+    val scheduler: Scheduler = get()
+    scheduler.sync(task)
 }

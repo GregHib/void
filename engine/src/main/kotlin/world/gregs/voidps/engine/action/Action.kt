@@ -3,7 +3,10 @@ package world.gregs.voidps.engine.action
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.utility.toTicks
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -64,6 +67,13 @@ class Action(
         suspension = null
     }
 
+    suspend fun cancelAndJoin(throwable: CancellationException = CancellationException()) {
+        job?.cancelAndJoin()
+        continuation?.resumeWithException(throwable)
+        continuation = null
+        suspension = null
+    }
+
     /**
      * Cancels any existing action replacing it with [action]
      * @param type For the current action to decide whether to finish or cancel early
@@ -71,7 +81,7 @@ class Action(
      */
     fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
         this@Action.cancel()
-        this.type = type
+        this@Action.type = type
         events.emit(ActionStarted(type))
         job = GlobalScope.launch(Contexts.Game) {
             this@Action.type = type
