@@ -44,11 +44,11 @@ fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
  * @param walk can animate while walking
  * @param run can animate while running
  */
-fun Character.setAnimation(name: String, speed: Int = 0, stand: Boolean = true, walk: Boolean = false, run: Boolean = false): Long {
+fun Character.setAnimation(name: String, speed: Int = 0, stand: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
     return setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return -1, speed, stand, walk, run)
 }
 
-fun Character.setAnimation(id: Int, speed: Int = 0, stand: Boolean = true, walk: Boolean = false, run: Boolean = false): Long {
+fun Character.setAnimation(id: Int, speed: Int = 0, stand: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
     val time = setAnimation(getAnimation(), id, speed, stand, walk, run)
     flagAnimation()
     return time
@@ -59,7 +59,7 @@ fun Character.clearAnimation() {
     flagAnimation()
 }
 
-private fun setAnimation(anim: Animation, id: Int, speed: Int, stand: Boolean = true, walk: Boolean = false, run: Boolean = false): Long {
+private fun setAnimation(anim: Animation, id: Int, speed: Int, stand: Boolean, walk: Boolean, run: Boolean): Long {
     val definition = get<AnimationDefinitions>().get(id)
     val priority = definition.priority
     if (priority <= anim.priority) {
