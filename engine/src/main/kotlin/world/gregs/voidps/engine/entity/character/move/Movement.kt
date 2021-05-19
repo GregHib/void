@@ -1,7 +1,10 @@
 package world.gregs.voidps.engine.entity.character.move
 
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
@@ -17,7 +20,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.AvoidAlgorithm
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
-import world.gregs.voidps.engine.sync
 import world.gregs.voidps.utility.get
 import java.util.*
 import kotlin.coroutines.resume
@@ -37,6 +39,7 @@ data class Movement(
     var strategy: TileTargetStrategy? = null
     var action: (() -> Unit)? = null
     var result: PathResult = PathResult.Failure
+    var length: Int = 0
 
     lateinit var traversal: TileTraversalStrategy
 
@@ -57,13 +60,27 @@ var Character.running: Boolean
     get() = get("running", false)
     set(value) = set("running", value)
 
-fun Player.walkTo(target: Any, action: () -> Unit) {
-    walkTo(getStrategy(target), action)
+suspend fun Character.freeze(block: suspend () -> Unit) {
+    movement.frozen = true
+    block.invoke()
+    movement.frozen = false
 }
 
-fun Player.walkTo(strategy: TileTargetStrategy, action: () -> Unit) {
-    sync {
-        this.action.cancel()
+fun Player.cantReach(target: Any): Boolean = cantReach(getStrategy(target))
+
+fun Player.cantReach(strategy: TileTargetStrategy): Boolean {
+    return movement.result is PathResult.Failure ||
+            (movement.result is PathResult.Partial && !strategy.reached(tile, size))
+}
+
+suspend fun Player.walkTo(target: Any, watch: Character? = null, action: () -> Unit) {
+    walkTo(getStrategy(target), watch, action)
+}
+
+suspend fun Player.walkTo(strategy: TileTargetStrategy, watch: Character? = null, action: () -> Unit) {
+    GlobalScope.launch(Contexts.Game) {
+        this@walkTo.action.cancelAndJoin()
+        watch(watch)
         dialogues.clear()
         movement.clear()
         movement.strategy = strategy

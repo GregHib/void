@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerMoveType
 import world.gregs.voidps.engine.entity.character.player.Players
+import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.movementType
 import world.gregs.voidps.engine.entity.character.update.visual.player.temporaryMoveType
 import world.gregs.voidps.engine.map.Delta
@@ -43,6 +44,7 @@ class PlayerMovementTask(
                 movement.previousTile = player.tile
                 movement.walkStep = step
                 movement.delta = step.delta
+                player.face(step, false)
                 player.movementType = PlayerMoveType.Walk
                 player.temporaryMoveType = PlayerMoveType.Walk
                 if (player.running) {
@@ -53,6 +55,7 @@ class PlayerMovementTask(
                             movement.previousTile = tile
                             movement.runStep = step
                             movement.delta = movement.delta.add(step.delta)
+                            player.face(step, false)
                             player.movementType = PlayerMoveType.Run
                             player.temporaryMoveType = PlayerMoveType.Run
                         }

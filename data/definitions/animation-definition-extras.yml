@@ -1,139 +1,137 @@
-test:
-  id: 9788
 # Dialogue expressions
-sad:
+expression_sad:
   id: 9760
-sad_old:
+expression_sad_old:
   id: 609
-dwell:
+expression_dwell:
   id: 9757
-teary:
+expression_teary:
   id: 9769
-upset:
+expression_upset:
   id: 9761
-upset_old:
+expression_upset_old:
   id: 610
-cry:
+expression_cry:
   id: 9768
-wail:
+expression_wail:
   id: 9765
-afraid:
+expression_afraid:
   id: 9773
-afraid_old:
+expression_afraid_old:
   id: 596
-shock:
+expression_shock:
   id: 9750
-surprised:
+expression_surprised:
   id: 9746
-surprised_old:
+expression_surprised_old:
   id: 571
-disbelief:
+expression_disbelief:
   id: 9753
-scared:
+expression_scared:
   id: 9777
-angry:
+expression_angry:
   id: 9781
-angry_old:
+expression_angry_old:
   id: 615
-furious:
+expression_furious:
   id: 9785
-furious_old:
+expression_furious_old:
   id: 614
-mad:
+expression_mad:
   id: 9789
-talking:
+expression_talking:
   id: 9803
-talking_old:
+expression_talking_old:
   id: 588
-talk:
+expression_talk:
   id: 9806
-talk_old:
+expression_talk_old:
   id: 590
-think:
+expression_think:
   id: 9830
-think_old:
+expression_think_old:
   id: 557
-suspicious:
+expression_suspicious:
   id: 9836
-suspicious_old:
+expression_suspicious_old:
   id: 592
-sceptic:
+expression_sceptic:
   id: 9834
-sceptic_old:
+expression_sceptic_old:
   id: 563
-happy:
+expression_happy:
   id: 9843
-laugh:
+expression_laugh:
   id: 9840
-laugh_old:
+expression_laugh_old:
   id: 605
-laughing:
+expression_laughing:
   id: 9851
-hysterics:
+expression_hysterics:
   id: 9841
-hysterics_old:
+expression_hysterics_old:
   id: 606
-cheerful:
+expression_cheerful:
   id: 9847
-cheerful_old:
+expression_cheerful_old:
   id: 567
-shake:
+expression_shake:
   id: 9745
-shake_old:
+expression_shake_old:
   id: 570
-disagree:
+expression_disagree:
   id: 9814
-admit:
+expression_admit:
   id: 9815
-admit_old:
+expression_admit_old:
   id: 579
-uncertain:
+expression_uncertain:
   id: 9811
-uncertain_old:
+expression_uncertain_old:
   id: 575
-unsure:
+expression_unsure:
   id: 9828
-unsure_old:
+expression_unsure_old:
   id: 555
-disregard:
+expression_disregard:
   id: 9827
-disregard_old:
+expression_disregard_old:
   id: 554
-disdain:
+expression_disdain:
   id: 9832
-unamused:
+expression_unamused:
   id: 9833
-unamused_old:
+expression_unamused_old:
   id: 562
-silent:
+expression_silent:
   id: 9804
-silent_old:
+expression_silent_old:
   id: 589
-eyes_closed:
+expression_eyes_closed:
   id: 9877
-asleep:
+expression_asleep:
   id: 9802
-conflicted:
+expression_conflicted:
   id: 9835
-conflicted_old:
+expression_conflicted_old:
   id: 600
-chicken:
+expression_chicken:
   id: 9793
-goofy:
+expression_goofy:
   id: 9878
-evil_laugh:
+expression_evil_laugh:
   id: 9842
-evil_laugh_old:
+expression_evil_laugh_old:
   id: 607
-gatekeeper_happy:
+expression_gatekeeper_happy:
   id: 14074
-gatekeeper_sad:
+expression_gatekeeper_sad:
   id: 14075
-gatekeeper_suspicious:
+expression_gatekeeper_suspicious:
   id: 14076
-gatekeeper_tired:
+expression_gatekeeper_tired:
   id: 14077
-gatekeeper_cry:
+expression_gatekeeper_cry:
   id: 14078
 # End expressions
 bees_walk:
@@ -8344,3 +8342,214 @@ climb_up:
   id: 828
 assist:
   id: 7299
+emote_yes:
+  id: 855
+emote_no:
+  id: 856
+emote_bow:
+  id: 858
+emote_enhanced_bow:
+  id: 5312
+emote_angry:
+  id: 859
+emote_enhanced_angry:
+  id: 5315
+emote_think:
+  id: 857
+emote_wave:
+  id: 863
+emote_shrug:
+  id: 2113
+emote_cheer:
+  id: 862
+emote_beckon:
+  id: 864
+emote_laugh:
+  id: 861
+emote_jump_for_joy:
+  id: 2109
+emote_yawn:
+  id: 2111
+emote_enhanced_yawn:
+  id: 5313
+emote_dance:
+  id: 866
+emote_enhanced_dance:
+  id: 5316
+emote_jig:
+  id: 2106
+emote_twirl:
+  id: 2107
+emote_headbang:
+  id: 2108
+emote_cry:
+  id: 860
+emote_blow_kiss:
+  id: 1374
+emote_panic:
+  id: 2105
+emote_raspberry:
+  id: 2110
+emote_clap:
+  id: 865
+emote_salute:
+  id: 2112
+emote_goblin_bow:
+  id: 2127
+emote_goblin_salute:
+  id: 2128
+emote_glass_box:
+  id: 1131
+emote_climb_rope:
+  id: 1130
+emote_lean:
+  id: 1129
+emote_glass_wall:
+  id: 1128
+emote_idea:
+  id: 4276
+emote_stomp:
+  id: 4278
+emote_flap:
+  id: 4280
+emote_slap_head:
+  id: 4275
+emote_zombie_walk:
+  id: 3544
+emote_zombie_dance:
+  id: 3543
+emote_zombie_hand:
+  id: 7272
+emote_scared:
+  id: 2836
+emote_bunny_hop:
+  id: 6111
+emote_snowman_dance:
+  id: 7531
+emote_air_guitar:
+  id: 2414
+emote_safety_first:
+  id: 8770
+emote_explore:
+  id: 9990
+emote_trick:
+  id: 10530
+emote_freeze:
+  id: 11044
+emote_turkey_transform:
+  id: 10994
+emote_turkey_return:
+  id: 10995
+emote_turkey_dance:
+  id: 10996
+emote_around_the_world_in_eggty_days:
+  id: 11542
+emote_dramatic_point:
+  id: 12658
+emote_faint:
+  id: 14165
+emote_puppet_master:
+  id: 14869
+emote_seal_of_approval:
+  id: 15104
+emote_seal_stand:
+  id: 15105
+emote_seal_clap:
+  id: 15106
+emote_seal_clap_short:
+  id: 15107
+emote_seal_return:
+  id: 15108
+emote_taskmaster:
+  id: 15033
+emote_dungeoneering_start:
+  id: 13190
+emote_dungeoneering_melee:
+  id: 13192
+emote_dungeoneering_mage:
+  id: 13193
+emote_dungeoneering_range:
+  id: 13194
+emote_attack:
+  id: 4959
+emote_defence:
+  id: 4961
+emote_strength:
+  id: 4981
+emote_constitution:
+  id: 14242
+emote_ranged:
+  id: 4973
+emote_prayer:
+  id: 4979
+emote_magic:
+  id: 4939
+emote_cooking:
+  id: 4955
+emote_woodcutting:
+  id: 4957
+emote_fletching:
+  id: 4937
+emote_fishing:
+  id: 4951
+emote_firemaking:
+  id: 4975
+emote_crafting:
+  id: 4949
+emote_smithing:
+  id: 4943
+emote_mining:
+  id: 4941
+emote_herblore:
+  id: 4969
+emote_agility:
+  id: 4977
+emote_thieving:
+  id: 4965
+emote_slayer:
+  id: 4967
+emote_farming:
+  id: 4963
+emote_runecrafting:
+  id: 4947
+emote_hunter:
+  id: 5158
+emote_construction:
+  id: 4953
+emote_summoning:
+  id: 8525
+emote_quest_point:
+  id: 4945
+emote_dung_master_bow:
+  id: 14588
+# 14588
+emote_dung_master_spell:
+  id: 14609
+emote_dung_master_sword:
+  id: 14610
+emote_fly_kite:
+  id: 8990
+emote_reindeer:
+  id: 5059
+emote_recite_prayer:
+  id: 5864
+emote_chicken_dance:
+  id: 6400
+emote_spinning_plate:
+  id: 1902
+emote_spinning_plate_take:
+  id: 1904
+emote_spinning_plate_drop:
+  id: 1906
+emote_yoyo_play:
+  id: 1457
+emote_yoyo_loop:
+  id: 1458
+emote_yoyo_walk:
+  id: 1459
+emote_yoyo_crazy:
+  id: 1460
+emote_shake_snow_globe:
+  id: 2926
+emote_trample_snow:
+  id: 7528

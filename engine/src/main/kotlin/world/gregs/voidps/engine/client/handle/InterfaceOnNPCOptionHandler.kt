@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.Handler
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.InteractInterfaceNPC
@@ -90,26 +91,30 @@ class InterfaceOnNPCOptionHandler : Handler<InteractInterfaceNPC>() {
             }
         }
 
-
-        player.walkTo(npc) {
-            player.watch(null)
-            player.face(npc)
-            if (player.movement.result is PathResult.Failure) {
-                player.message("You can't reach that.")
-                return@walkTo
-            }
-            player.events.emit(
-                InterfaceOnNPC(
-                    npc,
-                    id,
-                    name,
-                    componentId,
-                    componentName,
-                    item,
-                    itemSlot,
-                    containerName
+        sync {
+            player.watch(npc)
+            player.walkTo(npc) {
+                player.watch(null)
+                if (player.movement.length == 0) {
+                    player.face(npc)
+                }
+                if (player.movement.result is PathResult.Failure) {
+                    player.message("You can't reach that.")
+                    return@walkTo
+                }
+                player.events.emit(
+                    InterfaceOnNPC(
+                        npc,
+                        id,
+                        name,
+                        componentId,
+                        componentName,
+                        item,
+                        itemSlot,
+                        containerName
+                    )
                 )
-            )
+            }
         }
     }
 }

@@ -50,6 +50,7 @@ on<InterfaceSwitch>({ name == "inventory" && toName == "inventory" }) { player: 
 on<InterfaceOption>({ name == "inventory" && component == "container" }) { player: Player ->
     val itemDef = item.def
     val equipOption = when (optionId) {
+        6 -> itemDef.options.getOrNull(3)
         7 -> itemDef.options.getOrNull(4)
         9 -> "Examine"
         else -> itemDef.options.getOrNull(optionId)

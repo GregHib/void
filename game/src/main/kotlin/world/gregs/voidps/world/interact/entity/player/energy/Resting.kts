@@ -1,10 +1,11 @@
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -56,16 +57,14 @@ fun rest(player: Player, track: Int) {
             }
             await(Suspension.Infinite)
         } finally {
-            player.setAnimation(anim.replace("rest", "stand"))
-            val type = player["movement", "walk"]
-            player.setVar("movement", type)
-            if (lastTrack != -1) {
-                player.playTrack(lastTrack)
-            }
-            player.movement.frozen = true
-            delay(player, 2) {
+            withContext(NonCancellable) {
+                val type = player["movement", "walk"]
+                player.setVar("movement", type)
+                if (lastTrack != -1) {
+                    player.playTrack(lastTrack)
+                }
+                player.playAnimation(anim.replace("rest", "stand"))
                 player.clearAnimation()
-                player.movement.frozen = false
             }
         }
     }

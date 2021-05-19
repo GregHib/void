@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import world.gregs.voidps.engine.data.serializer.TileDeserializer
 import world.gregs.voidps.engine.data.serializer.TileSerializer
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
@@ -53,6 +54,10 @@ inline class Tile(val id: Int) : Coordinate3D {
     fun add(delta: Delta) = add(delta.x, delta.y, delta.plane)
     fun minus(delta: Delta) = minus(delta.x, delta.y, delta.plane)
     fun delta(delta: Delta) = delta(delta.x, delta.y, delta.plane)
+
+    fun add(direction: Direction) = add(direction.delta)
+    fun minus(direction: Direction) = minus(direction.delta)
+    fun delta(direction: Direction) = delta(direction.delta)
 
     override fun add(x: Int, y: Int) = add(x, y, 0)
 

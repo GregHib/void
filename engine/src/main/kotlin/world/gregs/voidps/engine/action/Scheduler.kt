@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import org.koin.dsl.module
+import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.delay
 import kotlin.coroutines.resume
 
@@ -15,6 +16,22 @@ class Scheduler : CoroutineScope {
     override val coroutineContext = Contexts.Game
 
     fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
+
+
+    private val list = mutableListOf<suspend (Long) -> Unit>()
+
+    fun sync(block: suspend (Long) -> Unit) {
+        list.add(block)
+    }
+
+    suspend fun tick() {
+        val it = list.iterator()
+        while (it.hasNext()) {
+            val next = it.next()
+            next.invoke(GameLoop.tick)
+            it.remove()
+        }
+    }
 
 }
 

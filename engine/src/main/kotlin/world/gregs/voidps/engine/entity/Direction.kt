@@ -1,7 +1,6 @@
 package world.gregs.voidps.engine.entity
 
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.equals
 
 /**
@@ -30,6 +29,13 @@ enum class Direction(deltaX: Int, deltaY: Int) {
     fun isHorizontal() = delta.x != 0
 
     fun isVertical() = delta.y != 0
+
+    /**
+     * Rotate direction clockwise in increments of 1/8
+     */
+    fun rotate(count: Int): Direction {
+        return all[(ordinal + count + all.size).rem(all.size)]
+    }
 
     fun vertical(): Direction {
         return when (delta.y) {

@@ -61,6 +61,8 @@ private fun getNPCMask(index: Int) = when (index) {
 
 private fun mask(character: Character, index: Int) = if (character is Player) getPlayerMask(index) else getNPCMask(index)
 
+private fun index(character: Character) = if (character is Player) character.visuals.getIndex(::getPlayerMask) else character.visuals.getIndex(::getNPCMask)
+
 fun Character.flagGraphic(index: Int) = visuals.flag(mask(this, index))
 
 fun Character.getGraphic(index: Int = 0) = visuals.getOrPut(mask(this, index)) { Graphic() }
@@ -74,14 +76,18 @@ private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
     return -1
 }
 
-fun Character.clearGraphic() = setGraphic(-1)
+fun Character.clearGraphic() {
+    val index = index(this)
+    getGraphic(index).reset(this)
+    flagGraphic(index)
+}
 
 fun Character.setGraphic(name: String, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
     setGraphic(get<GraphicDefinitions>().getIdOrNull(name) ?: return, delay, height, rotation, forceRefresh)
 }
 
 fun Character.setGraphic(id: Int, delay: Int = 0, height: Int = 0, rotation: Int = 0, forceRefresh: Boolean = false) {
-    val index = if (this is Player) visuals.getIndex(::getPlayerMask) else visuals.getIndex(::getNPCMask)
+    val index = index(this)
     setGraphic(getGraphic(index), id, delay, height, rotation, forceRefresh)
     flagGraphic(index)
 }

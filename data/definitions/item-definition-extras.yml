@@ -87263,7 +87263,7 @@ dark_bow_green:
   type: "TwoHanded"
   examine: "A bow from a darker dimension, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
-dungeoneering_cape:
+dungeoneering_cape_2:
   id: 15706
   tradeable: false
   stab_def: 9.0
@@ -103953,7 +103953,7 @@ coal_bag:
   destroy: "You'll have to buy another coal bag from Daemonheim if you destroy this one."
   examine: "A bag for holding coal."
   kept: "Wilderness"
-anti-poison_totem_off-hand:
+anti-poison_totem:
   id: 18340
   stab_def: 40.0
   slash_def: 35.0
@@ -104800,7 +104800,7 @@ spirit_guardian:
   examine: "The spiritual remains of a defender of the dungeons."
 stalker:
   id: 18507
-dungeoneering_cape_2:
+dungeoneering_cape:
   id: 18508
   tradeable: false
   stab_def: 9.0

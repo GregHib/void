@@ -3,7 +3,10 @@ package world.gregs.voidps.engine.action
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.utility.toTicks
+import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
@@ -64,27 +67,32 @@ class Action(
         suspension = null
     }
 
+    suspend fun cancelAndJoin(throwable: CancellationException = CancellationException()) {
+        job?.cancelAndJoin()
+        continuation?.resumeWithException(throwable)
+        continuation = null
+        suspension = null
+    }
+
     /**
      * Cancels any existing action replacing it with [action]
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) {
-        this@Action.cancel()
-        this.type = type
+    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = GlobalScope.launch(Contexts.Game) {
+        this@Action.cancelAndJoin()
+        this@Action.type = type
         events.emit(ActionStarted(type))
-        job = GlobalScope.launch(Contexts.Game) {
-            this@Action.type = type
-            try {
-                action.invoke(this@Action)
-            } finally {
-                if (this@Action.type == type) {
-                    this@Action.type = ActionType.None
-                }
-                completion?.invoke()
-                completion = null
-                events.emit(ActionFinished(type))
+        this@Action.job = this.coroutineContext.job
+        try {
+            action.invoke(this@Action)
+        } finally {
+            if (this@Action.type == type) {
+                this@Action.type = ActionType.None
             }
+            completion?.invoke()
+            completion = null
+            events.emit(ActionFinished(type))
         }
     }
 
@@ -108,6 +116,11 @@ class Action(
             GameLoop.await()
         }
         return true
+    }
+
+    suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true) {
+        val ms = setAnimation(name, speed, stand, force, walk, run)
+        delay(TimeUnit.MILLISECONDS.toTicks(ms))
     }
 }
 

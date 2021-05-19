@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.map.area.Area2D
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
@@ -58,8 +59,10 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
                     next.end
                 } as Tile
                 first = false
-                player.walkTo(tile) {
-                    cont.resume(Unit)
+                sync {
+                    player.walkTo(tile) {
+                        cont.resume(Unit)
+                    }
                 }
             }
         }

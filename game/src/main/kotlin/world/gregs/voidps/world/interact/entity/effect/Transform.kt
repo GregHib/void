@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.effect
 
+import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -23,8 +24,19 @@ fun Player.transform(npc: String) {
         stop("transform")
         return
     }
-    val definitions: NPCDefinitions = get()
-    val definition = definitions.get(npc)
+    transform(get<NPCDefinitions>().get(npc))
+}
+
+fun Player.transform(npc: Int) {
+    if (npc == -1) {
+        stop("transform")
+        return
+    }
+    transform(get<NPCDefinitions>().get(npc))
+}
+
+private fun Player.transform(definition: NPCDefinition) {
+    start("transform")
     emote = definition.renderEmote
     size = Size(definition.size, definition.size)
     val collisions: Collisions = get()
@@ -43,7 +55,6 @@ fun Player.transform(npc: String) {
         soundDistance = definition.soundDistance
     }
     flagAppearance()
-    start("transform")
 }
 
 fun NPC.transform(npc: String) {
@@ -51,9 +62,9 @@ fun NPC.transform(npc: String) {
         stop("transform")
         return
     }
+    start("transform")
     val definitions: NPCDefinitions = get()
     val definition = definitions.get(npc)
     transform.id = definition.id
     flagTransform()
-    start("transform")
 }

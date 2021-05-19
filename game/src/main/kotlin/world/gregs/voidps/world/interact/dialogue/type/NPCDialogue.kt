@@ -37,7 +37,7 @@ suspend fun DialogueContext.npc(id: Int, npcName: String, expression: String, te
         val animationDefs: AnimationDefinitions = get()
         val head = getChatHeadComponentName(largeHead)
         sendNPCHead(player, name, head, id)
-        player.interfaces.sendAnimation(name, head, animationDefs.getId(expression))
+        player.interfaces.sendAnimation(name, head, animationDefs.getId("expression_$expression"))
         player.interfaces.sendText(name, "title", title ?: npcName)
         sendLines(player, name, lines)
         await<Unit>("chat")
