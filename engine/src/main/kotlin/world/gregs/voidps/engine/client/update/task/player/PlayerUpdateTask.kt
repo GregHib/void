@@ -13,10 +13,6 @@ import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.encode.updatePlayers
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 26, 2020
- */
 class PlayerUpdateTask(
     override val entities: Players
 ) : EntityTask<Player>(true) {

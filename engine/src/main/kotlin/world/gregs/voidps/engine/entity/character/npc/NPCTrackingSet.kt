@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.map.Delta
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 21, 2020
- */
 class NPCTrackingSet(
     val tickMax: Int,
     override val maximum: Int,

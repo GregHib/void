@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import kotlin.math.atan2
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Turn(
     var x: Int = 0,
     var y: Int = 0,

@@ -10,8 +10,6 @@ import world.gregs.voidps.engine.map.collision.flag
 
 /**
  * Checks if within interact range of a targeted decoration
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
  */
 data class DecorationTargetStrategy(
     private val collisions: Collisions,

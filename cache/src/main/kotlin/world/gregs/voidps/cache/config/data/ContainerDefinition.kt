@@ -3,10 +3,6 @@ package world.gregs.voidps.cache.config.data
 import world.gregs.voidps.cache.Definition
 import world.gregs.voidps.cache.definition.Extra
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class ContainerDefinition(
     override var id: Int = -1,
     var length: Int = 0,

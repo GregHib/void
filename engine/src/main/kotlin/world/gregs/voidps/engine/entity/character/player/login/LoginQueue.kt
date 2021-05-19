@@ -10,10 +10,6 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ConcurrentLinkedDeque
 import kotlin.coroutines.resume
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 31, 2020
- */
 val loginQueueModule = module {
     single {
         LoginQueue(getIntProperty("loginPerTickCap", 1))

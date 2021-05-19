@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.getTurn
 import world.gregs.voidps.engine.tick.task.EntityTask
 import world.gregs.voidps.network.encode.updateNPCs
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 12, 2020
- */
 class NPCUpdateTask(
     override val entities: Players
 ) : EntityTask<Player>() {

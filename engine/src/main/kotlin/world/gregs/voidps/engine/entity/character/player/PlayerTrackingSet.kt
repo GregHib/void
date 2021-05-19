@@ -4,12 +4,7 @@ import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Co
 import world.gregs.voidps.engine.entity.character.CharacterTrackingSet
 import world.gregs.voidps.engine.map.Tile
 import java.util.*
-import kotlin.collections.LinkedHashSet
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 21, 2020
- */
 class PlayerTrackingSet(
     val tickMax: Int,
     override val maximum: Int,

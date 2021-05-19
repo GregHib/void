@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.Hit
 import world.gregs.voidps.engine.entity.character.update.visual.Hits
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_HITS_MASK
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class PlayerHitsEncoder : VisualEncoder<Hits>(PLAYER_HITS_MASK) {
 
     override fun encode(writer: Writer, visual: Hits) {

@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.ForceMovement
 import world.gregs.voidps.engine.entity.character.update.visual.NPC_FORCE_MOVEMENT_MASK
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class NPCForceMovementEncoder : VisualEncoder<ForceMovement>(NPC_FORCE_MOVEMENT_MASK) {
 
     override fun encode(writer: Writer, visual: ForceMovement) {

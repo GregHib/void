@@ -16,10 +16,6 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 20, 2020
- */
 internal class BreadthFirstSearchTest {
 
     private lateinit var bfs: BreadthFirstSearch

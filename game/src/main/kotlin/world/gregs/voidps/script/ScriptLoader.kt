@@ -8,10 +8,6 @@ import org.koin.dsl.module
 import world.gregs.voidps.utility.func.plural
 import kotlin.system.measureTimeMillis
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 val scriptModule = module {
     single(createdAtStart = true) {
         loadScripts(getProperty("scriptModule"))

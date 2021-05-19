@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.path.TraversalType
 
 /**
  * Checks for collision in the direction of movement for entities of size 2x2
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
  */
 class MediumTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 

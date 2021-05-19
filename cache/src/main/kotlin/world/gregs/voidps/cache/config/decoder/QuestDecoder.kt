@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.Configs.QUESTS
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.QuestDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class QuestDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<QuestDefinition>(cache, QUESTS) {
 
     override fun create() = QuestDefinition()

@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.map.Tile
 
 /**
  * Checks if within distance of a target
- * @author GregHib <greg@gregs.world>
- * @since September 9, 2020
  */
 data class DistanceTargetStrategy(
     private var distance: Int,

@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.player.APPEARANCE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.Appearance
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class AppearanceEncoder : VisualEncoder<Appearance>(APPEARANCE_MASK) {
 
     override fun encode(writer: Writer, visual: Appearance) {

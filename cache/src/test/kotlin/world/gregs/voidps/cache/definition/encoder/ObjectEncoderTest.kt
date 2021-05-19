@@ -6,10 +6,6 @@ import world.gregs.voidps.buffer.write.BufferWriter
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import java.io.File
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 13, 2020
- */
 internal class ObjectEncoderTest {
 
     @Test

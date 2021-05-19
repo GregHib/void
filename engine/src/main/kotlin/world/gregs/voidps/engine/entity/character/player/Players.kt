@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.list.PooledMapList
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 30, 2020
- */
 @Suppress("ArrayInDataClass")
 data class Players(
     override val data: Int2ObjectOpenHashMap<ObjectLinkedOpenHashSet<Player?>> = Int2ObjectOpenHashMap(

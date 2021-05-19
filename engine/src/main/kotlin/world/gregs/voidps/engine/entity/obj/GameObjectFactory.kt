@@ -9,10 +9,6 @@ import world.gregs.voidps.engine.path.strat.EntityTileTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.strat.WallTargetStrategy
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since August 22, 2020
- */
 class GameObjectFactory(
     private val collisions: Collisions,
     private val store: EventHandlerStore

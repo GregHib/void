@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 16, 2020
- */
 data class Collisions(val delegate: MutableMap<Int, Int> = mutableMapOf()) : MutableMap<Int, Int> by delegate {
     fun add(player: Player) {
         add(player.tile.x, player.tile.y, player.tile.plane, CollisionFlag.ENTITY)

@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.world.script.KoinMock
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 09, 2020
- */
 internal class LoginQueueTest : KoinMock() {
 
     lateinit var loginQueue: LoginQueue

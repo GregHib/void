@@ -18,10 +18,6 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.script.KoinMock
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 03, 2020
- */
 internal class PlayerChangeTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)

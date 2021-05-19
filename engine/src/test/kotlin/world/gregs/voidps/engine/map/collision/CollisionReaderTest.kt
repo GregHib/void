@@ -10,10 +10,6 @@ import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BLOCKED
 import world.gregs.voidps.engine.map.collision.CollisionReader.Companion.BRIDGE_TILE
 import world.gregs.voidps.engine.map.region.Region
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 17, 2020
- */
 internal class CollisionReaderTest {
     lateinit var collisions: Collisions
     lateinit var reader: CollisionReader

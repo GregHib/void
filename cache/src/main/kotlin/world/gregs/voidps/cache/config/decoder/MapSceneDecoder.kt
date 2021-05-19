@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.MAP_SCENES
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.MapSceneDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class MapSceneDecoder(cache: Cache) : ConfigDecoder<MapSceneDefinition>(cache, MAP_SCENES) {
 
     override fun create() = MapSceneDefinition()

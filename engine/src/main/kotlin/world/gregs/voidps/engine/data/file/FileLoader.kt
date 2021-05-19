@@ -8,10 +8,6 @@ import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import java.io.File
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 03, 2020
- */
 class FileLoader(private val quotes: Boolean = false) {
     val mapper = ObjectMapper(YAMLFactory().disable(YAMLGenerator.Feature.WRITE_DOC_START_MARKER).apply {
         if (!quotes) {

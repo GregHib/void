@@ -21,10 +21,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.path.TraversalType
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
- */
 internal class MediumTraversalTest {
 
     lateinit var collisions: Collisions

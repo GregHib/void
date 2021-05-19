@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.map.area.Coordinate2D
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since July 05, 2020
- */
 inline class Instance(val id: Int) : Coordinate2D {
 
     constructor(x: Int, y: Int) : this(getId(x, y))

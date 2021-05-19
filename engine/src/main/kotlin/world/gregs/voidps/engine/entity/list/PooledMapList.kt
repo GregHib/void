@@ -9,8 +9,6 @@ import java.util.*
 
 /**
  * Spatial entity list can store both tile and chunk location
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 interface PooledMapList<T : Character> : EntityList<T> {
 

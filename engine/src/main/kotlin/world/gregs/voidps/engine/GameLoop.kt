@@ -13,10 +13,6 @@ import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
 import kotlin.system.measureNanoTime
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 class GameLoop(
     private val service: ScheduledExecutorService,
     private val stages: List<Runnable>

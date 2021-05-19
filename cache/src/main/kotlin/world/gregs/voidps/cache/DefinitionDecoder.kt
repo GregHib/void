@@ -4,10 +4,6 @@ import world.gregs.voidps.buffer.read.BufferReader
 import world.gregs.voidps.buffer.read.Reader
 import java.util.concurrent.ConcurrentHashMap
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 06, 2020
- */
 abstract class DefinitionDecoder<T : Definition>(protected val cache: Cache, internal val index: Int) {
 
     protected val dataCache = ConcurrentHashMap<Int, T>()

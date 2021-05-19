@@ -13,13 +13,8 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 15, 2020
- */
 internal class NPCChangeTaskTest : KoinMock() {
 
     override val modules = listOf(eventModule, entityListModule)

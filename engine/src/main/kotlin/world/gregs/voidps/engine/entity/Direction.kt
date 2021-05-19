@@ -3,10 +3,6 @@ package world.gregs.voidps.engine.entity
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.equals
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 enum class Direction(deltaX: Int, deltaY: Int) {
     NORTH_WEST(-1, 1),
     NORTH(0, 1),

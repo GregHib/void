@@ -21,10 +21,6 @@ import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updateNPCs
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 16, 2020
- */
 internal class NPCUpdateTaskTest : KoinMock() {
 
     lateinit var task: NPCUpdateTask

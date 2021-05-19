@@ -5,10 +5,6 @@ import world.gregs.voidps.cache.Configs.FLOOR_UNDERLAY
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.UnderlayDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class UnderlayDecoder(cache: world.gregs.voidps.cache.Cache) : ConfigDecoder<UnderlayDefinition>(cache, FLOOR_UNDERLAY) {
 
     override fun create() = UnderlayDefinition()

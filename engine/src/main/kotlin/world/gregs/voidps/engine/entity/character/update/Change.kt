@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.entity.character.update
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 14, 2020
- */
 sealed class LocalChange(val id: Int) {
     object Update : LocalChange(0)
     object Walk : LocalChange(1)

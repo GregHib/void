@@ -6,10 +6,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 31, 2020
- */
 internal class IndexAllocatorTest {
 
     lateinit var allocator: IndexAllocator

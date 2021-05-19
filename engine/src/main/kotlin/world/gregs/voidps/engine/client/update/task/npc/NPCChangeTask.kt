@@ -8,10 +8,6 @@ import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.tick.task.EntityTask
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 15, 2020
- */
 class NPCChangeTask(override val entities: NPCs) : EntityTask<NPC>() {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

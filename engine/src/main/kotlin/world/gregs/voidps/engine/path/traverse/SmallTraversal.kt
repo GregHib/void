@@ -9,9 +9,6 @@ import world.gregs.voidps.engine.path.TraversalType
 /**
  * Checks for collision in the direction of movement for entities of size 1x1
  * If direction of movement is diagonal then both horizontal and vertical directions are checked too.
- *
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
  */
 class SmallTraversal(private val type: TraversalType, collidesWithEntities: Boolean, private val collisions: Collisions) : TileTraversalStrategy {
 

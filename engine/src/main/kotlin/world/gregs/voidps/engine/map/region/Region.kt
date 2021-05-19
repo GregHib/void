@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.area.Coordinate2D
 import kotlin.random.Random
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 16, 2020
- */
 inline class Region(val id: Int) : Coordinate2D, Area {
 
     constructor(x: Int, y: Int) : this(getId(x, y))

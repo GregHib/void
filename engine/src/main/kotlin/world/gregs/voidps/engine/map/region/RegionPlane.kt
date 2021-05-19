@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.chunk.Chunk
 import kotlin.random.Random
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 16, 2020
- */
 inline class RegionPlane(val id: Int) : Coordinate3D, Area {
 
     constructor(x: Int, y: Int, plane: Int) : this(getId(x, y, plane))

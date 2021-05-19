@@ -10,10 +10,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.Appearanc
 import world.gregs.voidps.engine.entity.list.PooledMapList
 import world.gregs.voidps.engine.tick.task.EntityTask
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class PlayerVisualsTask(
     override val entities: PooledMapList<Player>,
     private val encoders: Array<VisualEncoder<Visual>>,

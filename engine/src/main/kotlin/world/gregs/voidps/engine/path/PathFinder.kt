@@ -38,8 +38,6 @@ val pathFindModule = module {
 
 /**
  * Determines the correct strategy to use to reach a target [Entity] or [Tile]
- * @author GregHib <greg@gregs.world>
- * @since May 21, 2020
  */
 class PathFinder(
     private val aa: AxisAlignment,

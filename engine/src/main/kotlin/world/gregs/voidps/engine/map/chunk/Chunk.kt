@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.map.area.Coordinate3D
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since June 20, 2020
- */
 inline class Chunk(val id: Int) : Coordinate3D {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))

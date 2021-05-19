@@ -15,10 +15,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.utility.inject
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 17, 2020
- */
 class ViewportUpdating : Runnable {
 
     val players: Players by inject()

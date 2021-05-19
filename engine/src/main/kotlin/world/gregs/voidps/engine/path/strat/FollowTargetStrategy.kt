@@ -7,8 +7,6 @@ import world.gregs.voidps.engine.map.equals
 
 /**
  * Checks if on the tile behind a player
- * @author GregHib <greg@gregs.world>
- * @since August 22, 2020
  */
 data class FollowTargetStrategy(
     private val player: Player

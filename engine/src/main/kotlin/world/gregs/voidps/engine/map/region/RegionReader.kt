@@ -22,10 +22,6 @@ val regionModule = module {
     single { MapDecoder(get(), get<Xteas>()) }
 }
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 16, 2020
- */
 class RegionReader(
     private val collisions: CollisionReader,
     private val objects: Objects,

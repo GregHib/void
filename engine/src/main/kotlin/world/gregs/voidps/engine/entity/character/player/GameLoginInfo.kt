@@ -1,9 +1,5 @@
 package world.gregs.voidps.engine.entity.character.player
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 18, 2020
- */
 data class GameLoginInfo(
     val username: String,
     val password: String,

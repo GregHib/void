@@ -18,10 +18,6 @@ import world.gregs.voidps.engine.path.algorithm.DirectSearch
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 21, 2020
- */
 internal class PathFinderTest {
     lateinit var pf: PathFinder
     lateinit var ds: DirectSearch

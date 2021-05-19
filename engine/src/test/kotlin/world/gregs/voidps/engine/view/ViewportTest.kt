@@ -8,10 +8,6 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.entity.character.player.Viewport
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class ViewportTest {
 
     lateinit var viewport: Viewport

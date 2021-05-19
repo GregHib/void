@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
 import java.io.File
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 03, 2020
- */
 class PlayerStorage(private val path: String) : StorageStrategy<Player> {
 
     private val mapper = jacksonObjectMapper()

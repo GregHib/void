@@ -4,10 +4,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.TraversalStrategy
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
- */
 interface TileTraversalStrategy : TraversalStrategy {
 
     fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean = true

@@ -7,10 +7,6 @@ import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class EntityListTest {
 
     lateinit var list: EntityList<Entity>

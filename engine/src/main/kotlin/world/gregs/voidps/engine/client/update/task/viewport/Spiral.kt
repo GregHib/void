@@ -3,10 +3,6 @@ package world.gregs.voidps.engine.client.update.task.viewport
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 object Spiral {
 
     val STEPS: Array<Array<IntArray>>

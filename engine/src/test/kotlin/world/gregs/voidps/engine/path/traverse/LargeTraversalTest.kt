@@ -30,10 +30,6 @@ import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.script.KoinMock
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
- */
 internal class LargeTraversalTest : KoinMock() {
 
     lateinit var collisions: Collisions

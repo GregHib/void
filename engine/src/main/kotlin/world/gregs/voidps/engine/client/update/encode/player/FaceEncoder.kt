@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRE
 import world.gregs.voidps.engine.entity.character.update.visual.player.Face
 import kotlin.math.atan2
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class FaceEncoder : VisualEncoder<Face>(FACE_DIRECTION_MASK) {
 
     override fun encode(writer: Writer, visual: Face) {

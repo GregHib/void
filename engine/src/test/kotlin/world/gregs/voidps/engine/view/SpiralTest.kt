@@ -5,10 +5,6 @@ import org.junit.jupiter.api.DynamicTest.dynamicTest
 import org.junit.jupiter.api.TestFactory
 import world.gregs.voidps.engine.client.update.task.viewport.Spiral
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class SpiralTest {
 
     @TestFactory

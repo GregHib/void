@@ -50,8 +50,6 @@ fun Client.revealFloorItem(
 }
 
 /**
- * @author GregHib <greg@gregs.world>
- * @since June 19, 2020
  * @param tile The tile offset from the chunk update send
  * @param id Item id
  * @param oldAmount Previous item stack size

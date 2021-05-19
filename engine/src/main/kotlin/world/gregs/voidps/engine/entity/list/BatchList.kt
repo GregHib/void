@@ -4,10 +4,6 @@ import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since June 04, 2020
- */
 interface BatchList<T : Entity> {
 
     val chunks: MutableMap<Chunk, MutableSet<T>>

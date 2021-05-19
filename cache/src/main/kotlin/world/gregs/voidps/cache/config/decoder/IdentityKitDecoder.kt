@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.IDENTITY_KIT
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.IdentityKitDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class IdentityKitDecoder(cache: Cache) : ConfigDecoder<IdentityKitDefinition>(cache, IDENTITY_KIT) {
 
     override fun create() = IdentityKitDefinition()

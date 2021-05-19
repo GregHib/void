@@ -18,10 +18,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.engine.value
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class ViewportUpdatingIntegrationTest : KoinMock() {
 
     override val modules = listOf(

@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.map.Tile
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class PooledMapListTest {
 
     lateinit var list: PooledMapList<Character>

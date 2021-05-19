@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since June 27, 2020
- */
 class Objects(
     override val chunks: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
     private val added: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),

@@ -14,10 +14,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.FACE_DIRE
 import world.gregs.voidps.engine.entity.character.update.visual.player.MOVEMENT_TYPE_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.player.TEMPORARY_MOVE_TYPE_MASK
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 val updatingTasksModule = module {
     single(createdAtStart = true) { ViewportUpdating() }
     single(createdAtStart = true) {

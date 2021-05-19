@@ -19,10 +19,6 @@ import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
 import world.gregs.voidps.utility.get
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 26, 2020
- */
 internal class PlayerVisualsTaskTest : KoinMock() {
 
     private val encoder: VisualEncoder<Visual> = mockk(relaxed = true)

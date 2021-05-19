@@ -10,10 +10,6 @@ import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.tick.task.EntityTask
 import kotlin.math.abs
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class PlayerChangeTask(override val entities: Players) : EntityTask<Player>(true) {
 
     @Suppress("PARAMETER_NAME_CHANGED_ON_OVERRIDE")

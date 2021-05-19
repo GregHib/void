@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.Animation
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_ANIMATION_MASK
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class PlayerAnimationEncoder : VisualEncoder<Animation>(PLAYER_ANIMATION_MASK) {
 
     override fun encode(writer: Writer, visual: Animation) {

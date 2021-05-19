@@ -28,10 +28,6 @@ import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
 import world.gregs.voidps.engine.script.KoinMock
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 22, 2020
- */
 internal class ViewportUpdatingTest : KoinMock() {
 
     override val modules = listOf(

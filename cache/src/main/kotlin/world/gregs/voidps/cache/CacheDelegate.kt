@@ -5,10 +5,6 @@ import com.displee.cache.index.Index255
 import com.github.michaelbull.logging.InlineLogger
 import java.math.BigInteger
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since January 01, 2020
- */
 class CacheDelegate(directory: String) : Cache {
 
     private val delegate = CacheLibrary(directory)

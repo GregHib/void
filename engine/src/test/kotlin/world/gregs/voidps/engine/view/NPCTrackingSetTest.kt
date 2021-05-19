@@ -13,10 +13,6 @@ import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.script.KoinMock
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 24, 2020
- */
 internal class NPCTrackingSetTest : KoinMock() {
     lateinit var set: NPCTrackingSet
 

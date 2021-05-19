@@ -5,8 +5,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 
 /**
  * Changes the tile players are located on based on [Movement.delta] and [Movement.steps]
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
  */
 class PlayerMovementCallbackTask(private val players: Players) : Runnable {
 

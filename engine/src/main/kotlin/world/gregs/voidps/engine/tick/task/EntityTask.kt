@@ -8,10 +8,6 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.list.PooledMapList
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 @Deprecated("Use scripts instead")
 abstract class EntityTask<T : Character>(val sequential: Boolean = false) : Runnable {
     private val logger = InlineLogger()

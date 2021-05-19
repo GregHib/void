@@ -17,10 +17,6 @@ import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 import world.gregs.voidps.engine.value
 import java.util.*
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since August 17, 2020
- */
 internal class DirectDiagonalSearchTest {
 
     lateinit var dd: DirectDiagonalSearch

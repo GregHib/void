@@ -6,10 +6,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.NPC_TIME_BAR_MAS
 import world.gregs.voidps.engine.entity.character.update.visual.TimeBar
 import world.gregs.voidps.utility.func.toInt
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class NPCTimeBarEncoder : VisualEncoder<TimeBar>(NPC_TIME_BAR_MASK) {
 
     override fun encode(writer: Writer, visual: TimeBar) {

@@ -13,10 +13,6 @@ import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.utility.get
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 @JsonSerialize(using = TileSerializer::class)
 @JsonDeserialize(using = TileDeserializer::class)
 inline class Tile(val id: Int) : Coordinate3D {

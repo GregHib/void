@@ -16,8 +16,6 @@ import world.gregs.voidps.utility.get
 
 /**
  * Interactive Object
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
  */
 @JsonDeserialize(builder = GameObjectBuilder::class)
 data class GameObject(

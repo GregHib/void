@@ -3,10 +3,6 @@ package world.gregs.voidps.engine.entity.character
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedDeque
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 31, 2020
- */
 class IndexAllocator(private val max: Int) {
     var cap = 1
     val free: Deque<Int> = ConcurrentLinkedDeque()

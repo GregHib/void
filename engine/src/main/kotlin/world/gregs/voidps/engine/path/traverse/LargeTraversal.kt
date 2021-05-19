@@ -11,8 +11,6 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getSout
 
 /**
  * Checks for collision in the direction of movement for entities with any size
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
  */
 class LargeTraversal(private val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TileTraversalStrategy {
 

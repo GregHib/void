@@ -2,10 +2,6 @@ package world.gregs.voidps.engine.map.collision
 
 import world.gregs.voidps.engine.entity.Direction
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 16, 2020
- */
 object CollisionFlag {
 
     const val FLOOR = 0x200000

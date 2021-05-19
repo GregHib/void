@@ -7,10 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 17, 2020
- */
 internal class CollisionsTest {
 
     lateinit var data: MutableMap<Int, Int>

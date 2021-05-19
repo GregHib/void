@@ -11,10 +11,6 @@ import world.gregs.voidps.cache.Indices.ITEMS
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 23, 2020
- */
 class EncoderComparator {
     @Test
     fun compare() {

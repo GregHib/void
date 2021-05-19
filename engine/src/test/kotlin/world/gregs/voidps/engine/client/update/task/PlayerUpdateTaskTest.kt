@@ -28,10 +28,6 @@ import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.updatePlayers
 import world.gregs.voidps.utility.func.toInt
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since May 02, 2020
- */
 internal class PlayerUpdateTaskTest : KoinMock() {
 
     lateinit var task: PlayerUpdateTask

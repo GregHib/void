@@ -9,8 +9,6 @@ import world.gregs.voidps.engine.map.equals
 
 /**
  * Checks if on an exact tile
- * @author GregHib <greg@gregs.world>
- * @since May 18, 2020
  */
 data class EntityTileTargetStrategy(
     val entity: Entity

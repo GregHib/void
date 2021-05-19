@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.Graphic
 import world.gregs.voidps.engine.entity.character.update.visual.PLAYER_GRAPHIC_0_MASK
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class PlayerPrimaryGraphicEncoder : VisualEncoder<Graphic>(PLAYER_GRAPHIC_0_MASK) {
 
     override fun encode(writer: Writer, visual: Graphic) {

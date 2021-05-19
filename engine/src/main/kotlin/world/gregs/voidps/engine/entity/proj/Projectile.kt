@@ -8,10 +8,6 @@ import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 data class Projectile(
     override val id: Int,
     override var tile: Tile,

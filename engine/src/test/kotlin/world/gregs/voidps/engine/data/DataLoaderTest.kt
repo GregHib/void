@@ -4,10 +4,6 @@ import io.mockk.mockk
 import io.mockk.verify
 import org.junit.jupiter.api.Test
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 03, 2020
- */
 internal class DataLoaderTest {
 
     @Test

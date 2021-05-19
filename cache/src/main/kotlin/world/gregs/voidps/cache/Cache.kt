@@ -3,10 +3,6 @@ package world.gregs.voidps.cache
 import com.displee.cache.index.Index255
 import java.math.BigInteger
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since March 28, 2020
- */
 interface Cache {
 
     var index255: Index255?

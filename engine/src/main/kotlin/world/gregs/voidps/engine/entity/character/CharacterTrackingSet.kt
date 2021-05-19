@@ -2,10 +2,6 @@ package world.gregs.voidps.engine.entity.character
 
 import kotlin.math.abs
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 21, 2020
- */
 interface CharacterTrackingSet<T : Character> {
 
     val maximum: Int

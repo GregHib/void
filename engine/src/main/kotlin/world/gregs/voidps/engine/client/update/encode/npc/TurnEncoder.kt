@@ -5,10 +5,6 @@ import world.gregs.voidps.engine.entity.character.update.VisualEncoder
 import world.gregs.voidps.engine.entity.character.update.visual.npc.TURN_MASK
 import world.gregs.voidps.engine.entity.character.update.visual.npc.Turn
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 class TurnEncoder : VisualEncoder<Turn>(TURN_MASK) {
 
     override fun encode(writer: Writer, visual: Turn) {

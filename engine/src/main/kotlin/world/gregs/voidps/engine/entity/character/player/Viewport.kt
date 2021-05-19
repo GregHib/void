@@ -11,10 +11,6 @@ import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.Chunk
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 21, 2020
- */
 @Suppress("ArrayInDataClass")
 data class Viewport(
     val players: PlayerTrackingSet = PlayerTrackingSet(

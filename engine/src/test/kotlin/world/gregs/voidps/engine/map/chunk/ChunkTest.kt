@@ -3,10 +3,6 @@ package world.gregs.voidps.engine.map.chunk
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since June 20, 2020
- */
 internal class ChunkTest {
 
     @Test

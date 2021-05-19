@@ -6,10 +6,6 @@ import world.gregs.voidps.cache.Configs.VARP
 import world.gregs.voidps.cache.config.ConfigDecoder
 import world.gregs.voidps.cache.config.data.PlayerVariableParameterDefinition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 08, 2020
- */
 class PlayerVariableParameterDecoder(cache: Cache) : ConfigDecoder<PlayerVariableParameterDefinition>(cache, VARP) {
 
     override fun create() = PlayerVariableParameterDefinition()

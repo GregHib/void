@@ -6,10 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import java.io.File
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 04, 2020
- */
 internal class FileLoaderTest {
 
 

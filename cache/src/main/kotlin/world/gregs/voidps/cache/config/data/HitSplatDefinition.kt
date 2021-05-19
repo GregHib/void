@@ -2,10 +2,6 @@ package world.gregs.voidps.cache.config.data
 
 import world.gregs.voidps.cache.Definition
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 07, 2020
- */
 data class HitSplatDefinition(
     override var id: Int = -1,
     var font: Int = -1,
