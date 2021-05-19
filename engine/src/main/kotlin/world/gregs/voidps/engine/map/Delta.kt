@@ -22,6 +22,10 @@ data class Delta(override val x: Int, override val y: Int, override val plane: I
     fun minus(delta: Delta) = minus(delta.x, delta.y, delta.plane)
     fun delta(delta: Delta) = delta(delta.x, delta.y, delta.plane)
 
+    fun add(direction: Direction) = add(direction.delta)
+    fun minus(direction: Direction) = minus(direction.delta)
+    fun delta(direction: Direction) = delta(direction.delta)
+
     override fun add(x: Int, y: Int) = add(x, y, 0)
 
     fun toDirection(): Direction = when {

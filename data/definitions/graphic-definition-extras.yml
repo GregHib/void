@@ -264,3 +264,69 @@ emote_seal_of_approval:
   id: 1287
 emote_taskmaster:
   id: 2930
+emote_dungeoneering_start:
+  id: 2442
+emote_attack:
+  id: 823
+emote_defence:
+  id: 824
+emote_strength:
+  id: 828
+emote_constitution:
+  id: 2745
+emote_ranged:
+  id: 832
+emote_prayer:
+  id: 829
+emote_magic:
+  id: 813
+emote_cooking:
+  id: 821
+emote_woodcutting:
+  id: 822
+emote_fletching:
+  id: 812
+emote_fishing:
+  id: 819
+emote_firemaking:
+  id: 831
+emote_crafting:
+  id: 818
+emote_smithing:
+  id: 815
+emote_mining:
+  id: 814
+emote_herblore:
+  id: 835
+emote_agility:
+  id: 830
+emote_thieving:
+  id: 826
+emote_slayer:
+  id: 1656
+emote_farming:
+  id: 825
+emote_runecrafting:
+  id: 817
+emote_hunter:
+  id: 907
+emote_construction:
+  id: 820
+emote_summoning:
+  id: 1515
+emote_quest_point:
+  id: 816
+emote_dung_master_bow:
+  id: 2781
+emote_dung_master_spell:
+  id: 2782
+emote_dung_master_return:
+  id: 2783
+emote_dung_master_hobgoblin:
+  id: 2777
+emote_dung_master_gravecreeper:
+  id: 2778
+emote_dung_master_flesh_spoiler:
+  id: 2779
+emote_dung_master_cursebearer:
+  id: 2780

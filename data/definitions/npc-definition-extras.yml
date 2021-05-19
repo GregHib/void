@@ -296,3 +296,15 @@ musician_isafdar:
   song: 704
   race: "Elf"
   examine: "She's beautiful."
+turkey:
+  id: 8499
+  examine: "It's huge and delicious!"
+seal:
+  id: 13255
+  examine: "Arf arf."
+primal_warrior:
+  id: 11227
+celestial_mage:
+  id: 11228
+sagittarian_ranger:
+  id: 11229

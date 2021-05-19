@@ -8436,8 +8436,12 @@ emote_trick:
   id: 10530
 emote_freeze:
   id: 11044
-emote_give_thanks:
+emote_turkey_transform:
   id: 10994
+emote_turkey_return:
+  id: 10995
+emote_turkey_dance:
+  id: 10996
 emote_around_the_world_in_eggty_days:
   id: 11542
 emote_dramatic_point:
@@ -8448,5 +8452,78 @@ emote_puppet_master:
   id: 14869
 emote_seal_of_approval:
   id: 15104
+emote_seal_stand:
+  id: 15105
+emote_seal_clap:
+  id: 15106
+emote_seal_clap_short:
+  id: 15107
+emote_seal_return:
+  id: 15108
 emote_taskmaster:
   id: 15033
+emote_dungeoneering_start:
+  id: 13190
+emote_dungeoneering_melee:
+  id: 13192
+emote_dungeoneering_mage:
+  id: 13193
+emote_dungeoneering_range:
+  id: 13194
+emote_attack:
+  id: 4959
+emote_defence:
+  id: 4961
+emote_strength:
+  id: 4981
+emote_constitution:
+  id: 14242
+emote_ranged:
+  id: 4973
+emote_prayer:
+  id: 4979
+emote_magic:
+  id: 4939
+emote_cooking:
+  id: 4955
+emote_woodcutting:
+  id: 4957
+emote_fletching:
+  id: 4937
+emote_fishing:
+  id: 4951
+emote_firemaking:
+  id: 4975
+emote_crafting:
+  id: 4949
+emote_smithing:
+  id: 4943
+emote_mining:
+  id: 4941
+emote_herblore:
+  id: 4969
+emote_agility:
+  id: 4977
+emote_thieving:
+  id: 4965
+emote_slayer:
+  id: 4967
+emote_farming:
+  id: 4963
+emote_runecrafting:
+  id: 4947
+emote_hunter:
+  id: 5158
+emote_construction:
+  id: 4953
+emote_summoning:
+  id: 8525
+emote_quest_point:
+  id: 4945
+emote_dung_master_bow:
+  id: 14588
+# 14588
+emote_dung_master_spell:
+  id: 14609
+emote_dung_master_sword:
+  id: 14610

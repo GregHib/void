@@ -87263,7 +87263,7 @@ dark_bow_green:
   type: "TwoHanded"
   examine: "A bow from a darker dimension, painted green from the yolk of a Penance egg."
   kept: "Reclaim"
-dungeoneering_cape:
+dungeoneering_cape_2:
   id: 15706
   tradeable: false
   stab_def: 9.0
@@ -104800,7 +104800,7 @@ spirit_guardian:
   examine: "The spiritual remains of a defender of the dungeons."
 stalker:
   id: 18507
-dungeoneering_cape_2:
+dungeoneering_cape:
   id: 18508
   tradeable: false
   stab_def: 9.0
