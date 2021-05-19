@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.set
@@ -9,7 +8,6 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.network.instruct.Walk
@@ -49,12 +47,12 @@ on<Command>({ prefix == "exec" }) { player: Player ->
         }
         return player.action.type == ActionType.None
     }
-    World.events.on<World, AiTick> {
+    /*World.events.on<World, AiTick> {
         if (list.isNotEmpty() && next()) {
             current = list.peek()
             player.instructions.tryEmit(list.poll())
         }
-    }
+    }*/
 }
 
 on<Command>({ prefix == "bot" }) { player: Player ->

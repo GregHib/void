@@ -4,6 +4,7 @@ import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.runBlocking
 import org.koin.core.context.startKoin
 import org.koin.logger.slf4jLogger
+import world.gregs.voidps.bot.taskModule
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.GameLoop.Companion.flow
 import world.gregs.voidps.engine.action.Contexts
@@ -113,9 +114,6 @@ object Main {
         val scheduler: Scheduler = get()
         val net = InstructionTask(players, InstructionHandler())
         return listOf(
-            Runnable {
-                World.events.emit(AiTick)
-            },
             net,
             // Connections/Tick Input
             loginQueue,
@@ -143,7 +141,10 @@ object Main {
             playerUpdate,
             npcUpdate,
             playerPostUpdate,
-            npcPostUpdate
+            npcPostUpdate,
+            Runnable {
+                World.events.emit(AiTick)
+            }
         )
     }
 
@@ -181,7 +182,8 @@ object Main {
                 stairsModule,
                 floorItemSpawnModule,
                 musicModule,
-                areasModule
+                areasModule,
+                taskModule
             )
             fileProperties("/game.properties")
             fileProperties("/private.properties")

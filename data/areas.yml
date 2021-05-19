@@ -41,3 +41,10 @@ lumbridge_castle_bank:
     plane: 2
   values:
     bank: true
+lumbridge_castle_portcullis:
+  area:
+    x: [ 3227, 3230 ]
+    y: [ 3212, 3225 ]
+    plane: 2
+  values:
+    high: true
