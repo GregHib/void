@@ -118,8 +118,8 @@ class Action(
         return true
     }
 
-    suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, walk: Boolean = false, run: Boolean = false) {
-        val ms = setAnimation(name, speed, stand, walk, run)
+    suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true) {
+        val ms = setAnimation(name, speed, stand, force, walk, run)
         delay(TimeUnit.MILLISECONDS.toTicks(ms))
     }
 }
