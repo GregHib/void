@@ -8,11 +8,8 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Distance
+import world.gregs.voidps.engine.map.Tile
 
-/**
- * @author GregHib <greg@gregs.world>
- * @since April 25, 2020
- */
 data class Face(var deltaX: Int = 0, var deltaY: Int = -1) : Visual {
     fun getDirection(): Direction {
         val dx = deltaX.coerceIn(-1, 1)
@@ -27,9 +24,16 @@ fun Player.flagFace() = visuals.flag(FACE_DIRECTION_MASK)
 
 fun Player.getFace() = visuals.getOrPut(FACE_DIRECTION_MASK) { Face() }
 
-fun Player.face(direction: Direction) = face(direction.delta.x, direction.delta.y)
+fun Player.face(direction: Direction, update: Boolean = true) = face(direction.delta.x, direction.delta.y, update)
 
-fun Player.face(entity: Entity) {
+fun Player.face(tile: Tile, update: Boolean = true) {
+    val delta = tile.delta(this.tile)
+    if (delta != Delta.EMPTY) {
+        face(delta.x, delta.y, update)
+    }
+}
+
+fun Player.face(entity: Entity, update: Boolean = true) {
     val tile = when (entity) {
         is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
         is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
@@ -38,13 +42,19 @@ fun Player.face(entity: Entity) {
     }
     val delta = tile.delta(this.tile)
     if (delta != Delta.EMPTY) {
-        face(delta.x, delta.y)
+        face(delta.x, delta.y, update)
     }
 }
 
-fun Player.face(deltaX: Int = 0, deltaY: Int = -1) {
+fun Player.face(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
     val face = getFace()
     face.deltaX = deltaX
     face.deltaY = deltaY
-    flagFace()
+    if (update) {
+        flagFace()
+    }
 }
+
+var Player.direction: Direction
+    get() = getFace().getDirection()
+    set(value) = face(value)

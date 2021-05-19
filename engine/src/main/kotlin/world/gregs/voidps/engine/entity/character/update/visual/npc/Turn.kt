@@ -25,23 +25,25 @@ fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
 
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 
-fun NPC.turn(entity: Entity) {
+fun NPC.turn(entity: Entity, update: Boolean = true) {
     val delta = entity.tile.delta(tile)
     if (delta != Delta.EMPTY) {
-        turn(delta.x, delta.y)
+        turn(delta.x, delta.y, update)
     }
 }
 
-fun NPC.turn(direction: Direction) = turn(direction.delta.x, direction.delta.y)
+fun NPC.turn(direction: Direction, update: Boolean = true) = turn(direction.delta.x, direction.delta.y, update)
 
-fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1) {
+fun NPC.turn(deltaX: Int = 0, deltaY: Int = -1, update: Boolean = true) {
     val turn = getTurn()
     turn.x = tile.x
     turn.y = tile.y
     turn.directionX = deltaX
     turn.directionY = deltaY
     turn.direction = getFaceDirection(deltaX, deltaY)
-    flagTurn()
+    if (update) {
+        flagTurn()
+    }
 }
 
 fun getFaceDirection(xOffset: Int, yOffset: Int): Int {
