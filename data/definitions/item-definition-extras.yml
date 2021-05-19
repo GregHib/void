@@ -103953,7 +103953,7 @@ coal_bag:
   destroy: "You'll have to buy another coal bag from Daemonheim if you destroy this one."
   examine: "A bag for holding coal."
   kept: "Wilderness"
-anti-poison_totem_off-hand:
+anti-poison_totem:
   id: 18340
   stab_def: 40.0
   slash_def: 35.0

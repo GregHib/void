@@ -8527,3 +8527,29 @@ emote_dung_master_spell:
   id: 14609
 emote_dung_master_sword:
   id: 14610
+emote_fly_kite:
+  id: 8990
+emote_reindeer:
+  id: 5059
+emote_recite_prayer:
+  id: 5864
+emote_chicken_dance:
+  id: 6400
+emote_spinning_plate:
+  id: 1902
+emote_spinning_plate_take:
+  id: 1904
+emote_spinning_plate_drop:
+  id: 1906
+emote_yoyo_play:
+  id: 1457
+emote_yoyo_loop:
+  id: 1458
+emote_yoyo_walk:
+  id: 1459
+emote_yoyo_crazy:
+  id: 1460
+emote_shake_snow_globe:
+  id: 2926
+emote_trample_snow:
+  id: 7528

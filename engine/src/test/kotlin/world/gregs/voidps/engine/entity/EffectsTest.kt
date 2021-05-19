@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity
 
 import io.mockk.*
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -14,7 +15,7 @@ internal class EffectsTest {
     lateinit var entity: Entity
     lateinit var events: Events
     lateinit var values: Values
-    lateinit var task: (Long) -> Unit
+    lateinit var task: suspend (Long) -> Unit
     lateinit var job: Job
 
     @BeforeEach
@@ -64,7 +65,7 @@ internal class EffectsTest {
     }
 
     @Test
-    fun `Remove effect after delay`() {
+    fun `Remove effect after delay`() = runBlockingTest {
         val effect = "effect"
         GameLoop.tick = 10
         entity.start(effect, 2)

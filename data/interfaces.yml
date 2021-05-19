@@ -1253,11 +1253,11 @@ report_abuse_name:
 report_abuse_select:
   id: 594
 
-warning_wilderness2:
-  id: 600
-
 godwars_killcount:
   id: 598
+
+warning_wilderness2:
+  id: 600
 
 unknown_side1:
   id: 602
@@ -1350,8 +1350,11 @@ party_room_side:
 bounty_overlay_waiting:
   id: 656
 
-lore_bank_side:
-  id: 665
+snow_globe:
+  id: 659
+  type: main_screen
+  components:
+    continue: 2
 
 pet_details:
   id: 662
@@ -1361,6 +1364,9 @@ pet_hunger_details:
 
 attack_style:
   id: 664
+
+lore_bank_side:
+  id: 665
 
 summoning_scroll_creation:
   id: 666
@@ -1527,6 +1533,8 @@ summoning_orb:
 health_orb:
   id: 748
   type: health_orb
+  component:
+    poison: 2
 
 prayer_orb:
   id: 749
