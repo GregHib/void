@@ -60,35 +60,6 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3246 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
-tags:
-  - tile: *lumbridge-trees-east
-    tags:
-      - tree
-      - oak
-  - tile: *lum-village-trees-west
-    tags:
-      - tree
-      - oak
-  - tile: *lumbridge-yew-trees
-    tags:
-      - tree
-      - yew
-  - tile: *lumbridge-yew-trees-west
-    tags:
-      - tree
-      - yew
-  - tile: *castle-2nd-floor-bank
-    tags:
-      - bank
-  - tile: *bobs-axes
-    tags:
-      - bronze_hatchet
-      - iron_hatchet
-      - steel_hatchet
-      - black_hatchet
-      - mithril_hatchet
-      - adamant_hatchet
-      - rune_hatchet
 edges:
   lumbridge:
     south-tower:

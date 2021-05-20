@@ -23,7 +23,7 @@ val areas: Areas by inject()
 
 val isNotAtBank: BotContext.(Any) -> Double = {
     val area: MapArea? = bot.getOrNull("area")// TODO extension to simplify
-    (area == null || !area.values.containsKey("bank")).toDouble()
+    (area == null || !area.tags.contains("bank")).toDouble()
 }
 val hasNoInventorySpace: BotContext.(Any) -> Double = { bot.inventory.count.toDouble().scale(0.0, 28.0).exponential(7.0) }
 val wantsToStoreItem: BotContext.(IndexedValue<Item>) -> Double = { bot.desiredItemStorage.getOrDefault(it.value.name, 0.0) }

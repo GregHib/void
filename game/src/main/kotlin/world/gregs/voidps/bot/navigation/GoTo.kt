@@ -6,14 +6,6 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.world.interact.entity.bot.goTo
 import world.gregs.voidps.world.interact.entity.bot.steps
 
-/*
-    TODO
-        remove tags from nav graph but leave mutable set
-        replace values in areas with tags
-        on startup check all graph nodes against areas and add tags
-        also bind which area goes with which node? So can always keep track of which area a bot is in
-        enjoy
- */
 suspend fun Bot.goToNearest(tag: String) {
     player.goTo(tag)
     navigate()

@@ -42,7 +42,7 @@ val wantsToCutTrees: BotContext.(Any) -> Double = {
 val hasEquipmentToCutTrees: BotContext.(Any) -> Double = { (Hatchet.get(bot) != null).toDouble() }
 
 val isPreferredArea: BotContext.(MapArea) -> Double = {
-    val trees = it.values["trees"] as List<String>
+    val trees = it.tags.toList()//["trees"] as List<String>
     val tree: RegularTree? = RegularTree.values().lastOrNull { tree -> trees.contains(tree.id) && bot.has(Skill.Woodcutting, tree.level) }
     treeDesire(bot, tree)
 }

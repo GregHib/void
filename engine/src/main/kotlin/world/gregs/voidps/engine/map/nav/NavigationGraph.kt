@@ -6,8 +6,11 @@ import org.koin.dsl.module
 import org.yaml.snakeyaml.LoaderOptions
 import org.yaml.snakeyaml.Yaml
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.InteractObject
@@ -16,15 +19,16 @@ import world.gregs.voidps.utility.getProperty
 import java.io.File
 
 val navModule = module {
-    single(createdAtStart = true) { NavigationGraph(get()) }
+    single(createdAtStart = true) { NavigationGraph(get(), get()).load() }
 }
 
 class NavigationGraph(
-    private val definitions: ObjectDefinitions
+    private val definitions: ObjectDefinitions,
+    private val areas: Areas
 ) {
 
     private lateinit var adjacencyList: Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>
-    private lateinit var tags: Map<Any, Set<String>>
+    private val tags = mutableMapOf<Any, Set<MapArea>>()
 
     val nodes: Set<Any>
         get() = adjacencyList.keys
@@ -37,7 +41,7 @@ class NavigationGraph(
 
     fun get(node: Any): ObjectOpenHashSet<Edge> = adjacencyList.getOrPut(node) { ObjectOpenHashSet() }
 
-    fun tags(node: Any): Set<String> = tags[node] ?: emptyTags
+    fun areas(node: Any): Set<MapArea> = tags[node] ?: emptyTags
 
     fun add(node: Any, set: ObjectOpenHashSet<Edge>) {
         adjacencyList[node] = set
@@ -47,42 +51,50 @@ class NavigationGraph(
         adjacencyList.remove(node)
     }
 
-    init {
-        load()
-    }
-
-    fun load() = timedLoad("ai nav graph") {
-        val path = getProperty("navGraphPath")
-        val options = LoaderOptions()
-        options.maxAliasesForCollections = Int.MAX_VALUE
-        val yaml = Yaml(options)
-        // Jackson yaml doesn't support anchors - https://github.com/FasterXML/jackson-dataformats-text/issues/98
-        val data: Map<String, Any> = yaml.load(File(path).readText(Charsets.UTF_8))
-        val edges = data["edges"] as Map<String, Any>
-        val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
-        flatten("", edges) { path, edges ->
-            for (edge in edges) {
-                val start = toTile(edge["from"] as List<Int>)
-                val end = toTile(edge["to"] as List<Int>)
-                var cost = edge["cost"] as? Int ?: 0
-                val steps = edge["steps"] as? List<Map<String, Any>>
-                val walk = steps == null
-                val instructions = if (steps == null) {
-                    cost = Distance.manhattan(start.x, start.y, end.x, end.y)
-                    listOf(Walk(end.x, end.y))
-                } else {
-                    steps.mapNotNull { toInstruction(it) }
-                }
-                map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions))
-                if (walk) {
-                    map.getOrPut(end) { ObjectOpenHashSet() }.add(Edge(path, end, start, cost, listOf(Walk(start.x, start.y))))
+    fun load(path: String = getProperty("navGraphPath")): NavigationGraph {
+        timedLoad("ai nav graph") {
+            val options = LoaderOptions()
+            options.maxAliasesForCollections = Int.MAX_VALUE
+            val yaml = Yaml(options)
+            // Jackson yaml doesn't support anchors - https://github.com/FasterXML/jackson-dataformats-text/issues/98
+            val data: Map<String, Any> = yaml.load(File(path).readText(Charsets.UTF_8))
+            val edges = data["edges"] as Map<String, Any>
+            val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
+            flatten("", edges) { path, edges ->
+                for (edge in edges) {
+                    val start = toTile(edge["from"] as List<Int>)
+                    val end = toTile(edge["to"] as List<Int>)
+                    var cost = edge["cost"] as? Int ?: 0
+                    val steps = edge["steps"] as? List<Map<String, Any>>
+                    val walk = steps == null
+                    val instructions = if (steps == null) {
+                        cost = Distance.manhattan(start.x, start.y, end.x, end.y)
+                        listOf(Walk(end.x, end.y))
+                    } else {
+                        steps.mapNotNull { toInstruction(it) }
+                    }
+                    map.getOrPut(start) { ObjectOpenHashSet() }.add(Edge(path, start, end, cost, instructions))
+                    if (walk) {
+                        map.getOrPut(end) { ObjectOpenHashSet() }.add(Edge(path, end, start, cost, listOf(Walk(start.x, start.y))))
+                    }
                 }
             }
+            this.adjacencyList = map
+            tagAreas()
+            edges.size
         }
-        val tags: Map<Any, Set<String>> = (data["tags"] as List<Map<String, Any>>).map { toTile(it["tile"] as List<Int>) to (it["tags"] as List<String>).toSet() }.toMap()
-        this.adjacencyList = map
-        this.tags = tags
-        edges.size
+        return this
+    }
+
+    private fun tagAreas() {
+        adjacencyList.forEach { (node, _) ->
+            val tile = when (node) {
+                is Tile -> node
+                is GameObject -> node.tile
+                else -> return@forEach
+            }
+            tags[node] = areas.getAll().filter { it.area.contains(tile) }.toSet()
+        }
     }
 
     private fun flatten(path: String, map: Map<String, Any>, process: (String, List<Map<String, Any>>) -> Unit): List<Map<String, Any>> {
@@ -123,7 +135,7 @@ class NavigationGraph(
 
     companion object {
         private val empty = emptySet<Edge>()
-        private val emptyTags = emptySet<String>()
+        private val emptyTags = emptySet<MapArea>()
     }
 
 }

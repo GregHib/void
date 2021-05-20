@@ -154,8 +154,7 @@ fun Player.goTo(tag: String): PathResult {
     val graph: NavigationGraph = get()
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
-            println("Check $node ${graph.tags(node).contains(tag)}")
-            return node is Tile && graph.tags(node).contains(tag)
+            return node is Tile && graph.areas(node).any { it.tags.contains(tag) }
         }
     }
     val result = get<Dijkstra>().find(this, strategy, EdgeTraversal())

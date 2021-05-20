@@ -14,7 +14,7 @@ class AnimationDefinitions(
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
 
-    fun load(loader: FileLoader = get(), path: String = getProperty("animationDefinitionsPath")): AnimationDefinitions{
+    fun load(loader: FileLoader = get(), path: String = getProperty("animationDefinitionsPath")): AnimationDefinitions {
         timedLoad("animation definition") {
             load(loader.load<Map<String, Map<String, Any>>>(path))
         }
