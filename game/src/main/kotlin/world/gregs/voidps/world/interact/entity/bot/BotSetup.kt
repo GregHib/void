@@ -29,6 +29,7 @@ val Player.botOptions: MutableSet<SimpleBotOption<*>>
 val Player.isBot: Boolean
     get() = contains("bot")
 
+@Deprecated("Removed.")
 val Player.steps: LinkedList<Instruction>?
     get() = getOrNull("steps")
 
@@ -84,7 +85,7 @@ val Player.area: MapArea?
 
 fun Player.initBot() {
 //    this["context"] = BotContext(this)
-    this["steps"] = LinkedList<Instruction>()
+//    this["steps"] = LinkedList<Instruction>()
     /*this["options"] = mutableSetOf<SimpleBotOption<*>>()
     this["patience"] = 0.5
     this["itemDesire"] = mutableMapOf<String, Double>(
@@ -112,8 +113,6 @@ fun Player.initBot() {
 fun Player.goTo(map: MapArea): PathResult {
     this["targetArea"] = map
     movement.waypoints.clear()
-    steps?.clear()
-    step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
@@ -130,8 +129,6 @@ fun Player.goTo(map: MapArea): PathResult {
 
 fun Player.goTo(tile: Tile): PathResult {
     movement.waypoints.clear()
-    steps?.clear()
-    step = null
     this["navigating"] = true
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
@@ -148,8 +145,6 @@ fun Player.goTo(tile: Tile): PathResult {
 
 fun Player.goTo(tag: String): PathResult {
     movement.waypoints.clear()
-    steps?.clear()
-    step = null
     this["navigating"] = true
     val graph: NavigationGraph = get()
     val strategy = object : NodeTargetStrategy() {
