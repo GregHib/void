@@ -1,6 +1,7 @@
 package world.gregs.voidps.bot.navigation
 
 import world.gregs.voidps.engine.entity.character.player.Bot
+import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.MapArea
@@ -12,6 +13,10 @@ import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.utility.get
 
 suspend fun Bot.goToNearest(tag: String) {
+    val current: MapArea? = this.getOrNull("area")
+    if (current?.tags?.contains(tag) == true) {
+        return
+    }
     val graph: NavigationGraph = get()
     var last: MapArea? = null
     val result = goTo(object : NodeTargetStrategy() {
@@ -34,6 +39,10 @@ suspend fun Bot.goToNearest(tag: String) {
 }
 
 suspend fun Bot.goToArea(map: MapArea) {
+    val current: MapArea? = this.getOrNull("area")
+    if (current == map) {
+        return
+    }
     val result = goTo(object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
             return node is Tile && node in map.area
