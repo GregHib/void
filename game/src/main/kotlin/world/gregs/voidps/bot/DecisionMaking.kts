@@ -1,6 +1,7 @@
 package world.gregs.voidps.bot
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Bot
@@ -41,6 +42,7 @@ on<World, AiTick> {
                             bot.botEvents.emit(event)
                             iterator.remove()
                         }
+                        bot.resume("tick")
                     }
                 }
             }
