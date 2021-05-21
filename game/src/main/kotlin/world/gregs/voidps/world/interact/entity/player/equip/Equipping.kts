@@ -86,6 +86,7 @@ fun playEquipSound(player: Player, item: ItemDefinition, slot: EquipSlot) {
     var sound = when (slot) {
         EquipSlot.Weapon -> when {
             // Might be able to improve using attack strategies
+            name.contains("mystic") && name.contains("staff") -> "equip_elemental_staff"
             name.contains("spear") || name.contains("staff") || name.contains("javelin") || name.contains("hasta") || name.contains("halberd") -> "equip_spear"
             name.contains("hammer") || name.contains("maul") -> "equip_hammer"
             name.contains("mace") || name.contains("flail") -> "equip_mace"
@@ -93,19 +94,32 @@ fun playEquipSound(player: Player, item: ItemDefinition, slot: EquipSlot) {
             name.contains("whip") -> "equip_whip"
             name.contains("hatchet") -> "equip_hatchet"
             name.contains("axe") -> "equip_axe"
-            else -> "equip_sword"
+            name.contains("salamander") -> "equip_salamander"
+            name.contains("banner") -> "equip_banner"
+            name.contains("blunt") -> "equip_blunt"
+            name == "sled" -> "equip_sled"
+            name == "dark bow" -> "equip_darkbow"
+            name == "silverlight" -> "equip_silverlight"
+            else -> if (material == "metal") "equip_sword" else "equip_clothes"
         }
         EquipSlot.Hat -> if (material == "metal") "equip_helm" else "equip_clothes"
         EquipSlot.Chest -> if (material == "metal") "equip_body" else "equip_clothes"
         EquipSlot.Shield -> if (material == "metal") "equip_shield" else "equip_clothes"
         EquipSlot.Legs -> if (material == "metal") "equip_legs" else "equip_clothes"
-        EquipSlot.Feet -> if (material == "metal") "equip_boots" else "equip_clothes"
-        EquipSlot.Hands -> if (material == "metal") "equip_boots" else "equip_clothes"
+        EquipSlot.Feet -> if (material == "metal") "equip_feet" else "equip_clothes"
+        EquipSlot.Hands -> if (material == "metal") "equip_hands" else "equip_clothes"
         EquipSlot.Arrows -> if (material == "metal") "equip_bolts" else "equip_range"
+        EquipSlot.Ring -> if (name == "beacon ring") "equip_surok_ring" else "equip_clothes"
         else -> "equip_clothes"
+    }
+    if (name.contains("jester")) {
+        sound = "equip_jester"
     }
     if (material == "leather") {
         sound = "equip_leather"
+    }
+    if (material == "wood") {
+        sound = "equip_wood"
     }
     player.playSound(sound)
 }
