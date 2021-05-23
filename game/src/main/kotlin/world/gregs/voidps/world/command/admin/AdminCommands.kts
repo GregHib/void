@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -132,6 +133,13 @@ on<Command>({ prefix == "master" }) { player: Player ->
     player.setVar("life_points", 990)
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
+    }
+}
+
+on<Command>({ prefix == "reset" }) { player: Player ->
+    player.setVar("life_points", 100)
+    for ((index, skill) in Skill.all.withIndex()) {
+        player.experience.set(skill, Experience.defaultExperience[index])
     }
 }
 

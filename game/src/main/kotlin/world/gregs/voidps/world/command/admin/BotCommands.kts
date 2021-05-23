@@ -1,8 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.clear
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
@@ -54,12 +53,10 @@ on<Command>({ prefix == "exec" }) { player: Player ->
 }
 
 on<Command>({ prefix == "bot" }) { player: Player ->
-    when {
-        player.isBot -> player["bot"] = false
-        player.contains("context") -> player["bot"] = true
-        else -> {
-            player.initBot()
-            player.events.emit(Registered)
-        }
+    if (player.isBot) {
+        player.clear("bot")
+    } else {
+        player.initBot()
+        player.events.emit(Registered)
     }
 }

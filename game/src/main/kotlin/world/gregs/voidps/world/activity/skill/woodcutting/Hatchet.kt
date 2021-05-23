@@ -6,6 +6,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
@@ -25,6 +26,7 @@ enum class Hatchet(val index: Int) {
     Sacred_Clay_Hatchet(6),
     Volatile_Clay_Hatchet(6),
     Inferno_Adze(7),
+
     // Dungeoneering hatchet indices made up
     Novite_Hatchet(0),
     Bathus_Hatchet(1),
@@ -55,6 +57,10 @@ enum class Hatchet(val index: Int) {
 
         val regular = values().copyOfRange(0, 12)
 
+        fun hasRequirements(player: Player, hatchet: Item?, message: Boolean = false): Boolean {
+            return hasRequirements(player, get(hatchet?.name ?: return false) ?: return false, message)
+        }
+
         fun hasRequirements(player: Player, hatchet: Hatchet?, message: Boolean = false): Boolean {
             if (hatchet == null) {
                 if (message) {
@@ -84,6 +90,8 @@ enum class Hatchet(val index: Int) {
         private fun Player.has(hatchet: Hatchet) = inventory.contains(hatchet.id) || equipment.contains(hatchet.id)
 
         fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == Dwarven_Army_Axe.id || name == Inferno_Adze.id
+
+        fun isHatchet(item: Item): Boolean = isHatchet(item.name)
 
         fun get(name: String): Hatchet? {
             val name = name.replace(" ", "_").toLowerCase()

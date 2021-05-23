@@ -2,27 +2,27 @@ lumbridge_north_trees:
   area:
     x: [ 3220, 3234 ]
     y: [ 3244, 3249 ]
-  tags: [ trees, tree, oak ]
+  tags: [ trees, regular, oak ]
 lumbridge_west_yew_tree:
   area:
     x: [ 3164, 3168 ]
     y: [ 3218, 3222 ]
-  tags: [ trees, tree, yew ]
+  tags: [ trees, regular, yew ]
 lumbridge_north_west_yew_tree:
   area:
     x: [ 3183, 3187 ]
     y: [ 3225, 3229 ]
-  tags: [ trees, tree, yew ]
+  tags: [ trees, regular, yew ]
 lumbridge_west_trees:
   area:
     x: [ 3186, 3197 ]
     y: [ 3238, 3250 ]
-  tags: [ trees, tree, oak ]
+  tags: [ trees, regular, oak, spaces_2 ]
 lumbridge_east_trees:
   area:
     x: [ 3260, 3267 ]
     y: [ 3214, 3226 ]
-  tags: [ trees, tree, oak ]
+  tags: [ trees, regular, oak ]
 bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]

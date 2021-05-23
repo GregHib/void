@@ -36,7 +36,6 @@ val movement = Movement()
 fun findNearest(bot: Bot) {
     val edges = graph.get(bot.player)
     edges.clear()
-    var first = true
     findNodes(bot.player) { tile, distance ->
         edges.add(Edge("", bot, tile, distance, listOf(Walk(tile.x, tile.y))))
         false

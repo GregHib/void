@@ -1,6 +1,9 @@
 package world.gregs.voidps.bot
 
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.World
@@ -28,9 +31,10 @@ on<World, AiTick> {
                     val bot: Bot = player["bot"]
                     launch(Contexts.Updating) {
                         if (!player.contains("task")) {
-                            val task = tasks.obtain()
-                            GlobalScope.launch(Contexts.Game) {
-                                task?.invoke(scope, bot)
+                            val task = tasks.obtain(bot)
+                            println("New task $task")
+                            scope.launch {
+                                task?.block?.invoke(bot)
                                 player["task"] = false
                             }
                             player["task"] = true
