@@ -12,8 +12,6 @@ import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.network.instruct.Walk
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.bot.botOptions
-import world.gregs.voidps.world.interact.entity.bot.context
 import world.gregs.voidps.world.interact.entity.bot.initBot
 import world.gregs.voidps.world.interact.entity.bot.isBot
 import java.util.*
@@ -62,15 +60,6 @@ on<Command>({ prefix == "bot" }) { player: Player ->
         else -> {
             player.initBot()
             player.events.emit(Registered)
-        }
-    }
-}
-
-on<Command>({ prefix == "eval" }) { player: Player ->
-    for (option in player.botOptions) {
-        println(option.name)
-        for (score in option.getScores(player.context)) {
-            println(score)
         }
     }
 }

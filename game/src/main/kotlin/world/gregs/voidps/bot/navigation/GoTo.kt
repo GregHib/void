@@ -64,6 +64,7 @@ private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
 }
 
 private suspend fun Bot.navigate() {
+    // TODO if low energy, rest
     val waypoints = player.movement.waypoints.toMutableList().iterator()
     while (waypoints.hasNext()) {
         val waypoint = waypoints.next()

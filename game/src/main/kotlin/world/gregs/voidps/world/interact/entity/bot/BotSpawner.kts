@@ -13,11 +13,9 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.tick.Startup
-import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
 
 val scheduler: Scheduler by inject()
@@ -36,13 +34,7 @@ on<World, Startup> {
     spawnBots(1)
 }*/
 
-on<Command>({ prefix == "goto" }) { player: Player ->
-    val bot = players.indexed.first { it != null && it.name.startsWith("Bot") } ?: return@on
-    println(bot.goTo(areas.getValue(content)))
-}
-
 var counter = 0
-val varrock = Tile(3212, 3428)
 val lumbridge = Rectangle(3221, 3217, 3222, 3220)
 
 fun spawnBots(count: Int) {
