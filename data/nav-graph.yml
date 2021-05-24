@@ -23,8 +23,8 @@ nodes:
     courtyard:
       - &courtyard-south [ 3222, 3218 ]
       - &courtyard-north [ 3222, 3220 ]
-      - &gate-south [ 3235, 3218 ]
-      - &gate-north [ 3235, 3220 ]
+      - &gate-south [ 3234, 3218 ]
+      - &gate-north [ 3234, 3220 ]
       - &lumbridge-grounds-south [ 3209, 3205 ]
     west-tower:
       - &lumbridge-tower-west [ 3199, 3218 ]
@@ -60,6 +60,21 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3246 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
+      - &lumbridge-west-path [ 3172, 3239 ]
+      - &lumbridge-ham-path [ 3157, 3234 ]
+      - &lumbridge-tree-patch [ 3193, 3236 ]
+      - &lumbridge-swap-north-wall [ 3153, 3216 ]
+    draynor:
+      - &draynor-east-path [ 3138, 3227 ]
+      - &draynor-jail-path-south [ 3119, 3228 ]
+      - &draynor-jail-path-west [ 3105, 3238 ]
+      - &draynor-bank-cross-road [ 3104, 3248 ]
+      - &draynor-bank [ 3093, 3245 ]
+      - &draynor-stalls [ 3079, 3249 ]
+      - &draynor-pigsty [ 3071, 3266 ]
+      - &draynor-willow-trees [ 3086, 3237 ]
+      - &draynor-south [ 3097, 3235 ]
+      - &draynor-bank-trees [ 3099, 3246 ]
 edges:
   lumbridge:
     south-tower:
@@ -144,8 +159,12 @@ edges:
           to: *lumbridge-tower-west
         - from: *lumbridge-tower-west
           to: *lumbridge-yew-trees
+        - from: *lumbridge-tower-west
+          to: *lumbridge-tree-patch
         - from: *lumbridge-yew-trees
           to: *lumbridge-yew-trees-west
+        - from: *lumbridge-yew-trees
+          to: *lumbridge-tree-patch
     courtyard:
       - from: *courtyard-south
         to: *south-tower-door
@@ -221,3 +240,44 @@ edges:
         to: *lumbridge-task-building
       - from: *lumbridge-task-building
         to: *lumbridge-fishing-shop-entrance
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-west-path
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-tree-patch
+      - from: *lumbridge-west-path
+        to: *lumbridge-ham-path
+      - from: *lumbridge-west-path
+        to: *lumbridge-yew-trees
+      - from: *lumbridge-west-path
+        to: *lumbridge-yew-trees-west
+      - from: *lumbridge-yew-trees-west
+        to: *lumbridge-swap-north-wall
+      - from: *lumbridge-ham-path
+        to: *draynor-east-path
+    draynor:
+      - from: *draynor-east-path
+        to: *draynor-jail-path-south
+      - from: *draynor-jail-path-south
+        to: *draynor-jail-path-west
+      - from: *draynor-jail-path-west
+        to: *draynor-bank-cross-road
+      - from: *draynor-bank-cross-road
+        to: *draynor-bank
+      - from: *draynor-bank
+        to: *draynor-stalls
+      - from: *draynor-bank
+        to: *draynor-bank-trees
+      - from: *draynor-bank-cross-road
+        to: *draynor-bank-trees
+      - from: *draynor-stalls
+        to: *draynor-pigsty
+      - from: *draynor-stalls
+        to: *draynor-willow-trees
+      - from: *draynor-bank
+        to: *draynor-willow-trees
+      - from: *draynor-willow-trees
+        to: *draynor-south
+      - from: *draynor-jail-path-west
+        to: *draynor-south
+      - from: *draynor-east-path
+        to: *lumbridge-swap-north-wall
