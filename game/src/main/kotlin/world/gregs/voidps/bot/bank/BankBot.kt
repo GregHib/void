@@ -22,6 +22,7 @@ suspend fun Bot.openBank() {
 suspend fun Bot.depositAll() {
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 33, itemId = -1, itemSlot = -1, option = 0))
     await<Unit>("tick")
+    await<Unit>("tick")
 }
 
 suspend fun Bot.depositAll(item: String, slot: Int = player.inventory.indexOf(item)) {

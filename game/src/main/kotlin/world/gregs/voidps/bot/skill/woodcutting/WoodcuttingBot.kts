@@ -112,37 +112,64 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: Tree?): Boolean {
     return player.has(Skill.Woodcutting, tree.level, false)
 }
 
+fun Bot.getBestUsableShopHatchet(shop: String): Hatchet? {
+    val container: ContainerDefinition = get<ContainerDefinitions>().get(shop)
+    return container.items()
+        .mapNotNull { Hatchet.get(it) }
+        .filter { Hatchet.hasRequirements(player, it, false) }
+        .maxByOrNull { it.index }
+}
+
+fun Bot.getBestOwnedUsableHatchet(): Hatchet? {
+    val weapon = player.equipped(EquipSlot.Weapon)
+    if (Hatchet.hasRequirements(player, weapon)) {
+        return Hatchet.get(weapon.name)
+    }
+    val inventoryHatchet = player.inventory.getItems()
+        .mapNotNull { Hatchet.get(it.name) }
+        .filter { Hatchet.hasRequirements(player, it) }
+        .maxByOrNull { it.index }
+    if (inventoryHatchet != null) {
+        return inventoryHatchet
+    }
+    return player.bank.getItems()
+        .mapNotNull { Hatchet.get(it.name) }
+        .filter { Hatchet.hasRequirements(player, it) }
+        .maxByOrNull { it.index }
+}
+
 suspend fun Bot.setupInventory() {
+    val bestOwned = getBestOwnedUsableHatchet()
+    if (bestOwned == null || bestOwned.index < 7) {
+        val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
+        if (bestShop != null && bestOwned?.index ?: -1 < bestShop.index) {
+            buyHatchet(bestShop)
+            return
+        }
+    }
+
     val equipped = Hatchet.hasRequirements(player, player.equipped(EquipSlot.Weapon))
     val hasHatchet = equipped || player.inventory.getItems().any { Hatchet.hasRequirements(player, it) }
     if (hasHatchet && player.inventory.spaces > 10) {
         return
     }
-    val bestHatchet = player.bank.getItems()
-        .mapNotNull { Hatchet.get(it.name) }
-        .filter { Hatchet.hasRequirements(player, it, false) }
-        .maxByOrNull { it.ordinal }
-    if (bestHatchet == null) {
-        buyHatchet()
-        return
-    }
     openBank()
     depositAll()
-    withdraw(bestHatchet.id)
+    if (!equipped) {
+        val bestHatchet = player.bank.getItems()
+            .mapNotNull { Hatchet.get(it.name) }
+            .filter { Hatchet.hasRequirements(player, it, false) }
+            .maxByOrNull { it.ordinal }!!
+        withdraw(bestHatchet.id)
+    }
     closeBank()
 }
 
-suspend fun Bot.buyHatchet(): Hatchet {
+suspend fun Bot.buyHatchet(hatchet: Hatchet) {
     withdrawCoins()
-    val shop = openShop("bobs_axe_shop")
-    val container: ContainerDefinition = get<ContainerDefinitions>().get(shop.def.get<String>("shop"))
-    val best = container.items()
-        .mapNotNull { Hatchet.get(it) }
-        .filter { Hatchet.hasRequirements(player, it, false) }
-        .maxByOrNull { it.ordinal }!!
-    buy(best.id)
+    openShop("bobs_axe_shop")
+    buy(hatchet.id)
     closeShop()
-    return best
 }
 
 fun Bot.hasUsableHatchet(): Boolean {
