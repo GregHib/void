@@ -27,9 +27,9 @@ class Areas {
         return tagged[tag] ?: emptySet()
     }
 
-    fun load(path: String = getProperty("areaPath")) : Areas {
+    fun load(loader: FileLoader = get(), path: String = getProperty("areaPath")) : Areas {
         timedLoad("map area") {
-            val data: Map<String, Map<String, Any>> = get<FileLoader>().load(path)
+            val data: Map<String, Map<String, Any>> = loader.load(path)
             val areas = data.mapValues { (key, value) -> toArea(key, value) }
 
             val tagged = mutableMapOf<String, MutableSet<MapArea>>()
