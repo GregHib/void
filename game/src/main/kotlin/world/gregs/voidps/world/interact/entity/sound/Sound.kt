@@ -67,9 +67,9 @@ fun Player.playGlobalMidi(
 
 fun Player.playMusicEffect(
     name: String,
-    volume: Int = 255
+    volume: Double = 1.0
 ) {
     val definitions: MusicEffectDefinitions = get()
     val id = definitions.getIdOrNull(name) ?: return
-    client?.playMusicEffect(id, volume)
+    client?.playMusicEffect(id, (volume.coerceIn(0.0, 1.0) * 255).toInt())
 }

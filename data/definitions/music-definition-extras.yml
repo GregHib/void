@@ -1,4 +1,102 @@
+level_up_farming:
+  id: 10
+level_up_farming_unlock:
+  id: 11
+level_up_agility:
+  id: 28
+level_up_attack:
+  id: 29
+level_up_attack_unlock:
+  id: 30
+level_up_construction:
+  id: 31
+level_up_construction_unlock:
+  id: 32
+level_up_cooking:
+  id: 33
+level_up_cooking_unlock:
+  id: 34
+level_up_crafting:
+  id: 35
+level_up_crafting_unlock:
+  id: 36
+level_up_defence:
+  id: 37
+level_up_defence_unlock:
+  id: 38
+level_up_firemaking:
+  id: 39
+level_up_firemaking_unlock:
+  id: 40
+level_up_fishing:
+  id: 41
+level_up_fishing_unlock:
+  id: 42
+level_up_fletching:
+  id: 43
+level_up_fletching_unlock:
+  id: 44
+level_up_herblore:
+  id: 45
+level_up_herblore_unlock:
+  id: 46
+level_up_constitution:
+  id: 47
+level_up_constitution_unlock:
+  id: 48
+level_up_hunter:
+  id: 49
+level_up_hunter_unlock:
+  id: 50
+level_up_magic:
+  id: 51
+level_up_magic_unlock:
+  id: 52
+level_up_mining:
+  id: 53
+level_up_mining_unlock:
+  id: 54
+level_up_prayer:
+  id: 55
+level_up_prayer_unlock:
+  id: 56
+level_up_range:
+  id: 57
+level_up_range_unlock:
+  id: 58
+level_up_runecrafting:
+  id: 59
+level_up_runecrafting_unlock:
+  id: 60
+level_up_slayer:
+  id: 61
+level_up_slayer_unlock:
+  id: 62
+level_up_smithing:
+  id: 63
+level_up_smithing_unlock:
+  id: 64
+level_up_strength:
+  id: 65
+level_up_strength_unlock:
+  id: 66
+level_up_thieving:
+  id: 67
+level_up_thieving_unlock:
+  id: 68
+level_up_woodcutting:
+  id: 69
+level_up_woodcutting_unlock:
+  id: 70
 barrows_chest:
   id: 77
 harmony_snow_globe:
   id: 296
+level_up_summoning:
+  id: 300
+level_up_summoning_unlock:
+  id: 301
+level_up_dungeoneering:
+  id: 416
+level_up_dungeoneering_unlock:
+  id: 417
