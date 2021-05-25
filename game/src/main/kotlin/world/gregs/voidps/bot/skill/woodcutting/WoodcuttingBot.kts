@@ -43,37 +43,35 @@ on<ActionFinished>({ type == ActionType.Woodcutting }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("trees")) {
         val spaces = area.tags.firstOrNull { it.startsWith("spaces_") }?.removePrefix("spaces_")?.toIntOrNull() ?: 1
-        repeat(spaces) {
-            val type = when {
-                area.tags.contains("willow") -> RegularTree.Willow
-                area.tags.contains("maple") -> RegularTree.Maple_Tree
-                area.tags.contains("yew") -> RegularTree.Yew
-                area.tags.contains("ivy") -> RegularTree.Ivy
-                area.tags.contains("magic") -> RegularTree.Magic_Tree
-                else -> null
-            }
+        val type = when {
+            area.tags.contains("willow") -> RegularTree.Willow
+            area.tags.contains("maple") -> RegularTree.Maple_Tree
+            area.tags.contains("yew") -> RegularTree.Yew
+            area.tags.contains("ivy") -> RegularTree.Ivy
+            area.tags.contains("magic") -> RegularTree.Magic_Tree
+            else -> null
+        }
 
-            val range = when (type) {
-                RegularTree.Willow -> 30 until 45
-                RegularTree.Maple_Tree -> 45 until 60
-                RegularTree.Yew -> 60 until 68
-                RegularTree.Ivy -> 68 until 75
-                RegularTree.Magic_Tree -> 75..99
-                else -> 0 until 30
-            }
-
-            val task = Task(
-                {
-                    while (player.levels.getMax(Skill.Woodcutting) < range.last) {
-                        cutTrees(area, type)
-                    }
-                },
-                requirements = listOf(
-                    { player.levels.getMax(Skill.Woodcutting) in range },
-                    { hasUsableHatchet() || hasCoins(2000) }
-                )
-
+        val range = when (type) {
+            RegularTree.Willow -> 30 until 45
+            RegularTree.Maple_Tree -> 45 until 60
+            RegularTree.Yew -> 60 until 68
+            RegularTree.Ivy -> 68 until 75
+            RegularTree.Magic_Tree -> 75..99
+            else -> 0 until 30
+        }
+        val task = Task(
+            {
+                while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
+                    cutTrees(area, type)
+                }
+            },
+            requirements = listOf(
+                { player.levels.getMax(Skill.Woodcutting) in range },
+                { hasUsableHatchet() || hasCoins(2000) }
             )
+        )
+        repeat(spaces) {
             tasks.register(task)
         }
     }

@@ -49,7 +49,7 @@ drayor_willow_trees:
   area:
     x: [ 3083, 3090 ]
     y: [ 3227, 3238 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees, willow, spaces_6 ]
 drayor_oak_trees:
   area:
     x: [ 3098, 3103 ]
