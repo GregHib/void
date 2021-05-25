@@ -12,6 +12,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.entity.list.PooledMapList
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
@@ -44,7 +45,9 @@ data class NPCs(
             logger.warn { "No free area found for npc spawn $name $area" }
             return null
         }
-        return add(name, tile, direction)
+        return add(name, tile, direction)?.apply {
+            this["area"] = area
+        }
     }
 
     fun add(name: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
