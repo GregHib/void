@@ -19,7 +19,7 @@ class Experience(
     }
 
     fun set(skill: Skill, experience: Double) {
-        if (experience > 0.0 && experience <= maximum && !blocked.contains(skill)) {
+        if (experience in 0.0..maximum && !blocked.contains(skill)) {
             val previous = get(skill)
             this.experience[skill.ordinal] = experience
             update(skill, previous)
@@ -54,7 +54,7 @@ class Experience(
 
     companion object {
         const val MAXIMUM_EXPERIENCE = 200000000.0
-        private val defaultExperience = DoubleArray(Skill.count) {
+        val defaultExperience = DoubleArray(Skill.count) {
             if (it == Skill.Constitution.ordinal) {
                 1154.0
             } else {

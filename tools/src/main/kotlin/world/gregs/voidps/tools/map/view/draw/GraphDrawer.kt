@@ -1,5 +1,6 @@
 package world.gregs.voidps.tools.map.view.draw
 
+import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.tools.map.view.graph.Area
@@ -18,6 +19,11 @@ class GraphDrawer(
     private val textColour = Color.WHITE
     private val indexFont = Font("serif", Font.BOLD, 16)
     private val areaColour = Color(0.0f, 1.0f, 0.0f, 0.1f)
+    private val distances = nav?.nodes?.map { nav.get(it) }?.flatten()?.distinct()?.mapNotNull { edge ->
+        val start = edge.start as? Tile ?: return@mapNotNull null
+        val end = edge.end as? Tile ?: return@mapNotNull null
+        edge to Distance.chebyshev(start.x, start.y, end.x, end.y)
+    }?.toMap()
 
     fun repaint(link: Link) {
         repaint(link.start)
@@ -46,21 +52,27 @@ class GraphDrawer(
             val height = view.mapToImageY(1)
             g.fillOval(viewX, viewY, width, height)
 
-            val links = nav.getAdjacent(node)
-            links.forEachIndexed { index, link ->
-                val start = link.start as? Tile ?: return@forEachIndexed
-                val end = link.end as? Tile ?: return@forEachIndexed
+            val edges = nav.getAdjacent(node)
+            edges.forEachIndexed { index, edge ->
+                val start = edge.start as? Tile ?: return@forEachIndexed
+                val end = edge.end as? Tile ?: return@forEachIndexed
                 if (start.plane != view.plane || end.plane != view.plane) {
                     return@forEachIndexed
                 }
+                val distance = distances?.get(edge)
                 val endX = view.mapToViewX(end.x) + width / 2
                 val endY = view.mapToViewY(view.flipMapY(end.y)) + height / 2
                 val offset = width / 4
+                val startX = viewX + width / 2
+                val startY = viewY + height / 2
                 if (view.scale > 10) {
-                    g.drawArrowHead(viewX + width / 2, viewY + height / 2, endX, endY, offset * 3, width / 2, index.toString())
+                    g.drawArrowHead(startX, startY, endX, endY, offset * 3, width / 2, index.toString())
+                    if (distance != null) {
+                        g.drawString(distance.toString(), startX + (endX - startX) / 2, startY + (endY - startY) / 2)
+                    }
                 }
-                if (view.contains(endX, endY)) {
-                    g.drawLine(viewX + width / 2, viewY + height / 2, endX, endY)
+                if (view.contains(startX, startY) || view.contains(endX, endY)) {
+                    g.drawLine(startX, startY, endX, endY)
                 }
             }
         }

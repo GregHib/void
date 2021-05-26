@@ -18,6 +18,7 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-core:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:${findProperty("jacksonVersion")}")
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:${findProperty("jacksonVersion")}")
+    implementation("it.unimi.dsi:fastutil:${findProperty("fastUtilVersion")}")
 
     testImplementation("io.mockk:mockk:${findProperty("mockkVersion")}")
 }

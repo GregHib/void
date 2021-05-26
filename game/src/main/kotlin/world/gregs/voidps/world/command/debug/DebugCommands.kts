@@ -9,11 +9,11 @@ import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area2D
+import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
 import world.gregs.voidps.engine.sync
-import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
@@ -31,7 +31,18 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    player.client?.playMusicEffect(77, 255)
+    val map = get<Areas>().getValue("lumbridge_fishing_shop_trees")
+    println(map.area.area)
+    println(map.area.random())
+    val strategy = object : NodeTargetStrategy() {
+        override fun reached(node: Any): Boolean {
+            println("Check $node")
+            return node is Tile && node in map.area
+        }
+    }
+    player.movement.waypoints.clear()
+    val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
+    println(result)
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->

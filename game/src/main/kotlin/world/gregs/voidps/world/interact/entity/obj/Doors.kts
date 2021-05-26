@@ -1,3 +1,5 @@
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.obj.*
@@ -71,64 +73,68 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Close" }) { player: Player ->
 }
 
 on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
-    val double = getDoubleDoor(obj, 0)
+    player.action(ActionType.OpenDoor) {
+        val double = getDoubleDoor(obj, 0)
 
-    if (resetExisting(obj, double)) {
-        player.playSound(if (obj.def.isGate()) "open_gate" else "open_door")
-        return@on
-    }
+        if (resetExisting(obj, double)) {
+            player.playSound(if (obj.def.isGate()) "open_gate" else "open_door")
+            return@action
+        }
 
-    val replacement1 = obj.def.getOrNull("open") as? Int
-    val replacement2 = double?.def?.getOrNull("open") as? Int
+        val replacement1 = obj.def.getOrNull("open") as? Int
+        val replacement2 = double?.def?.getOrNull("open") as? Int
 
-    if (double == null && replacement1 != null) {// Single Doors
-        obj.replace(
-            replacement1,
-            getTile(obj, 1),
-            obj.type,
-            getRotation(obj, 1),
-            doorResetDelay
-        )
-        player.playSound("open_door")
-        return@on
-    }
-    if (double != null && replacement1 != null && replacement2 != null) {
-        val delta = obj.tile.delta(double.tile)
-        val dir = Direction.cardinal[obj.rotation]
-        val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
-        if (obj.def.isGate()) {
-            val first = if (flip) double else obj
-            val second = if (flip) obj else double
-            val tile = getTile(first, 1)
-            replaceObjectPair(
-                first,
-                first.def["open"],
-                tile,
-                getRotation(first, 3),
-                second,
-                second.def["open"],
-                getTile(tile, second.rotation, 1),
-                getRotation(second, 3),
-                doorResetDelay
-            )
-            player.playSound("open_gate")
-        } else {// Double doors
-            replaceObjectPair(
-                obj,
+        if (double == null && replacement1 != null) {// Single Doors
+            obj.replace(
                 replacement1,
                 getTile(obj, 1),
-                getRotation(obj, if (flip) 1 else 3),
-                double,
-                replacement2,
-                getTile(double, 1),
-                getRotation(double, if (flip) 3 else 1),
+                obj.type,
+                getRotation(obj, 1),
                 doorResetDelay
             )
             player.playSound("open_door")
+            delay(1)
+            return@action
         }
-        return@on
+        if (double != null && replacement1 != null && replacement2 != null) {
+            val delta = obj.tile.delta(double.tile)
+            val dir = Direction.cardinal[obj.rotation]
+            val flip = dir.delta.equals(delta.x.coerceIn(-1, 1), delta.y.coerceIn(-1, 1))
+            if (obj.def.isGate()) {
+                val first = if (flip) double else obj
+                val second = if (flip) obj else double
+                val tile = getTile(first, 1)
+                replaceObjectPair(
+                    first,
+                    first.def["open"],
+                    tile,
+                    getRotation(first, 3),
+                    second,
+                    second.def["open"],
+                    getTile(tile, second.rotation, 1),
+                    getRotation(second, 3),
+                    doorResetDelay
+                )
+                player.playSound("open_gate")
+            } else {// Double doors
+                replaceObjectPair(
+                    obj,
+                    replacement1,
+                    getTile(obj, 1),
+                    getRotation(obj, if (flip) 1 else 3),
+                    double,
+                    replacement2,
+                    getTile(double, 1),
+                    getRotation(double, if (flip) 3 else 1),
+                    doorResetDelay
+                )
+                player.playSound("open_door")
+            }
+            delay(1)
+            return@action
+        }
+        player.message("The ${obj.def.name.toLowerCase()} won't budge.")
     }
-    player.message("The ${obj.def.name.toLowerCase()} won't budge.")
 }
 
 fun stuck(player: Player): Boolean {

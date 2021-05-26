@@ -1,11 +1,11 @@
 package world.gregs.voidps.world.interact.entity.sound
 
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.JingleDefinitions
 import world.gregs.voidps.engine.entity.definition.MidiDefinitions
-import world.gregs.voidps.engine.entity.definition.MusicEffectDefinitions
 import world.gregs.voidps.engine.entity.definition.SoundDefinitions
+import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
-import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.utility.get
 
@@ -65,11 +65,11 @@ fun Player.playGlobalMidi(
     }
 }
 
-fun Player.playMusicEffect(
+fun Player.playJingle(
     name: String,
-    volume: Int = 255
+    volume: Double = 1.0
 ) {
-    val definitions: MusicEffectDefinitions = get()
+    val definitions: JingleDefinitions = get()
     val id = definitions.getIdOrNull(name) ?: return
-    client?.playMusicEffect(id, volume)
+    client?.playJingle(id, (volume.coerceIn(0.0, 1.0) * 255).toInt())
 }

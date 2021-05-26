@@ -28,6 +28,7 @@ import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import world.gregs.voidps.world.interact.entity.player.equip.getMaxedSkill
 import world.gregs.voidps.world.interact.entity.player.equip.isSkillCape
 import world.gregs.voidps.world.interact.entity.player.equip.isTrimmedSkillCape
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
 BooleanVariable(2309, Variable.Type.VARBIT, true).register("unlocked_emote_flap")
@@ -126,6 +127,9 @@ on<InterfaceOption>({ name == "emotes" }) { player: Player ->
                 id == "bow" && player.equipped(EquipSlot.Legs).name == "pantaloons" -> playEnhancedEmote(player, id)
                 id == "dance" && player.equipped(EquipSlot.Legs).name == "flared_trousers" -> playEnhancedEmote(player, id)
                 else -> {
+                    if (id == "air_guitar") {
+                        player.playJingle(id)
+                    }
                     player.setGraphic("emote_$id")
                     player.playAnimation("emote_$id", walk = false, run = false)
                 }

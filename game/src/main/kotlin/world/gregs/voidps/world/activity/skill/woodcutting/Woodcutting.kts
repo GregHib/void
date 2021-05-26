@@ -2,6 +2,7 @@ package world.gregs.voidps.world.activity.skill.woodcutting
 
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,7 +33,7 @@ on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player
     player.action(ActionType.Woodcutting) {
         try {
             var first = true
-            while (true) {
+            while (isActive && player.awaitDialogues()) {
                 val tree = Tree.get(obj)
                 if (tree == null || !player.has(Skill.Woodcutting, tree.level, true)) {
                     break

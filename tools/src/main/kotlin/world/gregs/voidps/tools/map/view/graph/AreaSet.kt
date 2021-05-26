@@ -3,9 +3,8 @@ package world.gregs.voidps.tools.map.view.graph
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.core.JsonFactory
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.module.kotlin.readValue
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
-import java.io.File
+import world.gregs.voidps.engine.data.file.FileLoader
 
 class AreaSet {
     val areas = mutableSetOf<Area>()
@@ -63,24 +62,21 @@ class AreaSet {
         private val writer = reader.writerWithDefaultPrettyPrinter()
 
         fun save(set: AreaSet, path: String = "./areas.json") {
-            writer.writeValue(File(path), set.areas)
+//            writer.writeValue(File(path), set.areas)
         }
 
-        fun load(path: String = "./areas.json"): AreaSet {
+        fun load(loader: FileLoader, path: String = "./areas.yml"): AreaSet {
             val set = AreaSet()
-            val file = File(path)
-            val map = reader.readValue<List<Map<String, Any>>>(file)
-            val areas = map.map {
+            val map = loader.load<Map<String, Map<String, Any>>>(path)
+            val areas = map.map { (key, value) ->
+                val a = value["area"] as Map<String, Any>
+                val x = a["x"] as List<Int>
+                val y = a["y"] as List<Int>
                 Area(
-                    it["name"] as? String,
-                    it["planeMin"] as? Int ?: 0,
-                    it["planeMax"] as? Int ?: 0,
-                    (it["points"] as List<Map<String, Any>>).map { p ->
-                        Point(
-                            p["x"] as Int,
-                            p["y"] as Int
-                        )
-                    }.toMutableList()
+                    key,
+                    value["plane"] as? Int ?: 0,
+                    value["plane"] as? Int ?: 0,
+                    x.mapIndexed { index, m -> Point(m, y[index]) }.toMutableList()
                 )
             }
             areas.forEach { area ->

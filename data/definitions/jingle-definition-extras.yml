@@ -1,0 +1,358 @@
+recipe_for_disaster_diving_cutscene:
+  id: 1
+tears_of_guthix_light_creature_flight:
+  id: 2
+gnomeball_goal:
+  id: 3
+farming_amulet_alert:
+  id: 7
+cacti_health_check:
+  id: 9
+level_up_farming:
+  id: 10
+level_up_farming_unlock:
+  id: 11
+forgettable_tale_puzzle_completed:
+  id: 12
+enter_house_tropical_wood:
+  id: 16
+enter_house_whitewashed_stone:
+  id: 18
+enter_house_fremennik-style_wood:
+  id: 19
+enter_house_basic_wood:
+  id: 20
+enter_house_basic_stone:
+  id: 21
+enter_house_fancy_stone:
+  id: 22
+rogues_den_completed:
+  id: 24
+level_up_agility:
+  id: 28
+level_up_attack:
+  id: 29
+level_up_attack_unlock:
+  id: 30
+level_up_construction:
+  id: 31
+level_up_construction_unlock:
+  id: 32
+level_up_cooking:
+  id: 33
+level_up_cooking_unlock:
+  id: 34
+level_up_crafting:
+  id: 35
+level_up_crafting_unlock:
+  id: 36
+level_up_defence:
+  id: 37
+level_up_defence_unlock:
+  id: 38
+level_up_firemaking:
+  id: 39
+level_up_firemaking_unlock:
+  id: 40
+level_up_fishing:
+  id: 41
+level_up_fishing_unlock:
+  id: 42
+level_up_fletching:
+  id: 43
+level_up_fletching_unlock:
+  id: 44
+level_up_herblore:
+  id: 45
+level_up_herblore_unlock:
+  id: 46
+level_up_constitution:
+  id: 47
+level_up_constitution_unlock:
+  id: 48
+level_up_hunter:
+  id: 49
+level_up_hunter_unlock:
+  id: 50
+level_up_magic:
+  id: 51
+level_up_magic_unlock:
+  id: 52
+level_up_mining:
+  id: 53
+level_up_mining_unlock:
+  id: 54
+level_up_prayer:
+  id: 55
+level_up_prayer_unlock:
+  id: 56
+level_up_range:
+  id: 57
+level_up_range_unlock:
+  id: 58
+level_up_runecrafting:
+  id: 59
+level_up_runecrafting_unlock:
+  id: 60
+level_up_slayer:
+  id: 61
+level_up_slayer_unlock:
+  id: 62
+level_up_smithing:
+  id: 63
+level_up_smithing_unlock:
+  id: 64
+level_up_strength:
+  id: 65
+level_up_strength_unlock:
+  id: 66
+level_up_thieving:
+  id: 67
+level_up_thieving_unlock:
+  id: 68
+level_up_woodcutting:
+  id: 69
+level_up_woodcutting_unlock:
+  id: 70
+brimhaven_agility_ticket:
+  id: 71
+fight_pits_champion:
+  id: 75
+fight_cave_wave_complete:
+  id: 76
+barrows_chest:
+  id: 77
+barrows_complete:
+  id: 77
+castle_wars_draw:
+  id: 80
+castle_wars_loss:
+  id: 81
+castle_wars_win:
+  id: 82
+champions_challenge_victory:
+  id: 85
+between_a_rock_schematics_completed:
+  id: 87
+death_unused:
+  id: 89
+death:
+  id: 90
+death_plateau_dice_win:
+  id: 94
+lunar_diplomacy_dream_puzzle_complete:
+  id: 95
+lunar_diplomacy_dreamland_enter:
+  id: 96
+duel_start:
+  id: 97
+duel_arena_victory:
+  id: 98
+easter_scape_scrambled:
+  id: 99
+twin_is_caught:
+  id: 101
+recipe_for_disaster_kklik_appears:
+  id: 102
+death_to_the_dorgeshuun_first_sunshine:
+  id: 103
+burthorpe_games_room_draw:
+  id: 108
+burthorpe_games_room_loss:
+  id: 109
+burthorpe_games_room_victory:
+  id: 110
+gnome_restaurant_reward_token_delivery:
+  id: 111
+recipe_for_disaster_lumbridge_guide_quiz_complete:
+  id: 113
+enlightened_journey_balloon_journey_test:
+  id: 116
+maze_complete:
+  id: 117
+enlightened_journey_balloon_journey:
+  id: 118
+ratcatchers_king_rat_dies:
+  id: 123
+ratcatchers_king_rat_wins:
+  id: 124
+recruitment_drive_miss_cheevers_puzzle_complete:
+  id: 131
+monkey_madness_jungle_demon_defated:
+  id: 134
+monkey_madness_cutscene:
+  id: 135
+swamp_boaty:
+  id: 137
+buy_skillcape:
+  id: 137
+corsair_curse_ogre_boat_travel:
+  id: 138
+mournings_end_part_ii_crystal_obtained:
+  id: 139
+barbarian_assault_wave_complete:
+  id: 142
+barbarian_assault_penance_queen_appear:
+  id: 143
+pest_control_defeat:
+  id: 144
+pest_control_win:
+  id: 145
+postie_pete:
+  id: 148
+prison_pete_failure:
+  id: 149
+agility_pyramid_top:
+  id: 151
+quest_complete_1:
+  id: 152
+quest_complete_2:
+  id: 153
+quest_complete_3:
+  id: 154
+recruitment_drive_lady_tables_puzzle_complete:
+  id: 156
+stronghold_of_security_gift_of_peace:
+  id: 157
+stronghold_of_security_cradle_of_life:
+  id: 158
+recruitment_drive_sir_ren_itchoods_puzzle_complete:
+  id: 159
+recruitment_drive_sir_spishyus_puzzle_complete:
+  id: 160
+death_plateau_dice_loss:
+  id: 161
+recruitment_drive_sir_tinleys_puzzle_complete:
+  id: 161
+recruitment_drive_sir_kaum_puzzle_complete:
+  id: 162
+fremennik_trials_ballad_completed:
+  id: 163
+fremennik_trials_ballad_refrain:
+  id: 164
+fremennik_trials_ballad_opening:
+  id: 165
+mountain_daughter_quest_complete:
+  id: 166
+sailing_theme_short:
+  id: 171
+sailing_theme:
+  id: 172
+werewolf_skullball_goal:
+  id: 174
+the_feud_snake_charming:
+  id: 175
+stronghold_of_security_box_of_health:
+  id: 177
+stronghold_of_security_grain_of_plenty:
+  id: 179
+speedy_gnome_failure:
+  id: 185
+speedy_gnome_success:
+  id: 186
+tai_bwo_wannai_tinsay_returns:
+  id: 188
+tai_bwo_wannai_trio_tiadeche_returns:
+  id: 189
+tai_bwo_wannai_trio_shaikahan_defeated:
+  id: 190
+shades_of_mortton_temple_built:
+  id: 191
+teasure_trail_complete:
+  id: 193
+temple_trek_complete:
+  id: 194
+temple_trekking_start:
+  id: 195
+temple_trekking_failure:
+  id: 196
+temple_trekking_success:
+  id: 197
+lazy_cat:
+  id: 198
+wily_cat:
+  id: 199
+fairy_tale_part_ii_fairy_godfather_pickpocket:
+  id: 204
+fairy_tale_part_ii_fairy_queen_awakens:
+  id: 205
+watchtower_reactivate:
+  id: 234
+animal_magnetism_chicken_cutscene:
+  id: 235
+christmas_shanty_claws:
+  id: 237
+cold_war_penguin_bongos:
+  id: 240
+cold_war_cowbell:
+  id: 241
+fremennik_isles_berating_the_king:
+  id: 242
+great_brain_robbery_kitten_cutscene:
+  id: 244
+dorgesh_kaan_nursery:
+  id: 246
+what_lies_below_surok_dance:
+  id: 247
+what_lies_below_surok_rock:
+  id: 248
+easter_event_complete:
+  id: 249
+easter_first_task_complete:
+  id: 250
+karamja_medium_tasks_complete:
+  id: 251
+karamaja_easy_tasks_complete:
+  id: 252
+karamja_easy_task_complete:
+  id: 254
+karamja_hard_tasks_complete:
+  id: 255
+karamja_hard_task_complete:
+  id: 255
+karamja_medium_task_complete:
+  id: 256
+grim_tales_ruperts_footsteps_1:
+  id: 257
+grim_tales_ruperts_footsteps_2:
+  id: 258
+grim_tales_ruperts_footsteps_3:
+  id: 259
+grim_tales_grimgnashs_story_correct:
+  id: 263
+grim_tales_grimgnashs_story_complete:
+  id: 264
+grim_tales_grimgnashs_story_incorrect:
+  id: 265
+dragon_slayer_defeat_elvarg:
+  id: 267
+surprise_exam_passed:
+  id: 269
+surprise_exam_failure:
+  id: 270
+kings_ransom_king_arthur_is_freed:
+  id: 271
+kings_ransom_trial_verdict:
+  id: 272
+grand_exchange_offer_complete:
+  id: 284
+harmony_snow_globe:
+  id: 296
+level_up_summoning:
+  id: 300
+level_up_summoning_unlock:
+  id: 301
+air_guitar:
+  id: 302
+shooting_star_discovered:
+  id: 344
+soul_wars_loss:
+  id: 379
+soul_wars_win:
+  id: 380
+level_up_dungeoneering:
+  id: 416
+level_up_dungeoneering_unlock:
+  id: 417
+pyramid_plunder_snake_charming:
+  id: 417

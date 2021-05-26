@@ -1,5 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.music
 
+import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.cache.definition.decoder.EnumDecoder
 import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
@@ -13,7 +14,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.bot.isBot
 
 // 837.cs2
 val configs = listOf(20, 21, 22, 23, 24, 25, 298, 311, 346, 414, 464, 598, 662, 721, 906, 1009, 1104, 1136, 1180, 1202, 1381, 1394, 1434, 1596, 1618, 1619, 1620, -1, 1864, 1865, 2019, -1)

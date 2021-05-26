@@ -58,10 +58,19 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
         }
     }
 
-    if (!player.bank.move(
+    var full = false
+    val actual = when {
+        player.inventory.stackable(item.name) -> min(amount, item.amount)
+        player.inventory.spaces < amount -> {
+            full = true
+            player.inventory.spaces
+        }
+        else -> amount
+    }
+    if (actual > 0 && !player.bank.move(
             container = player.inventory,
             id = item.name,
-            amount = min(amount, item.amount),
+            amount = actual,
             index = slot,
             targetId = noted.name
         )
@@ -71,10 +80,15 @@ fun withdraw(player: Player, item: Item, slot: Int, amount: Int) {
         } else {
             logger.info { "Bank withdraw issue: $player ${player.bank.result}" }
         }
-    } else if (player.bank.getItemId(slot) != item.name) {
-        val tab = Bank.getTab(player, slot)
-        if (tab > 0) {
-            player.decVar("bank_tab_$tab")
+    } else {
+        if (player.bank.getItemId(slot) != item.name) {
+            val tab = Bank.getTab(player, slot)
+            if (tab > 0) {
+                player.decVar("bank_tab_$tab")
+            }
+        }
+        if (full) {
+            player.message("Your inventory is full.")
         }
     }
 }

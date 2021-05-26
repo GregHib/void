@@ -5,13 +5,13 @@ import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
 
-class MusicEffectDefinitions : Extras {
+class JingleDefinitions : Extras {
 
     override lateinit var extras: Map<String, Map<String, Any>>
     override lateinit var names: Map<Int, String>
 
-    fun load(loader: FileLoader = get(), path: String = getProperty("musicDefinitionsPath")): MusicEffectDefinitions {
-        timedLoad("music definition") {
+    fun load(loader: FileLoader = get(), path: String = getProperty("jingleDefinitionsPath")): JingleDefinitions {
+        timedLoad("jingle definition") {
             load(loader.load<Map<String, Map<String, Any>>>(path))
         }
         return this

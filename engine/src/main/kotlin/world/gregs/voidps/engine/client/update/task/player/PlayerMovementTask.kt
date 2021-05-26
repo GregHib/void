@@ -1,6 +1,7 @@
 package world.gregs.voidps.engine.client.update.task.player
 
 import kotlinx.coroutines.*
+import world.gregs.voidps.engine.entity.character.MoveStop
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -64,6 +65,9 @@ class PlayerMovementTask(
                         player.temporaryMoveType = PlayerMoveType.Run
                     }
                 }
+            }
+            if (steps.isEmpty()) {
+                player.events.emit(MoveStop)
             }
         }
     }

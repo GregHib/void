@@ -4,7 +4,7 @@ nodes:
       - &south-tower-door [ 3226, 3214 ]
       - &south-tower-ground-floor [ 3227, 3214 ]
       - &south-tower-1st-floor [ 3229, 3214, 1 ]
-      - &south-tower-2nd-floor [ 3229, 3214, 1 ]
+      - &south-tower-2nd-floor [ 3229, 3214, 2 ]
       - &south-tower-1st-floor-ladder
         type: "object"
         object: 36769
@@ -23,8 +23,8 @@ nodes:
     courtyard:
       - &courtyard-south [ 3222, 3218 ]
       - &courtyard-north [ 3222, 3220 ]
-      - &gate-south [ 3235, 3218 ]
-      - &gate-north [ 3235, 3220 ]
+      - &gate-south [ 3234, 3218 ]
+      - &gate-north [ 3234, 3220 ]
       - &lumbridge-grounds-south [ 3209, 3205 ]
     west-tower:
       - &lumbridge-tower-west [ 3199, 3218 ]
@@ -60,35 +60,23 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3246 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
-tags:
-  - tile: *lumbridge-trees-east
-    tags:
-      - tree
-      - oak
-  - tile: *lum-village-trees-west
-    tags:
-      - tree
-      - oak
-  - tile: *lumbridge-yew-trees
-    tags:
-      - tree
-      - yew
-  - tile: *lumbridge-yew-trees-west
-    tags:
-      - tree
-      - yew
-  - tile: *castle-2nd-floor-bank
-    tags:
-      - bank
-  - tile: *bobs-axes
-    tags:
-      - bronze_hatchet
-      - iron_hatchet
-      - steel_hatchet
-      - black_hatchet
-      - mithril_hatchet
-      - adamant_hatchet
-      - rune_hatchet
+      - &lumbridge-west-path [ 3172, 3239 ]
+      - &lumbridge-ham-path [ 3157, 3234 ]
+      - &lumbridge-tree-patch [ 3193, 3236 ]
+      - &lumbridge-swap-north-wall [ 3153, 3216 ]
+    draynor:
+      - &draynor-east-path [ 3138, 3227 ]
+      - &draynor-jail-path-south [ 3119, 3228 ]
+      - &draynor-jail-path-west [ 3105, 3238 ]
+      - &draynor-bank-cross-road [ 3104, 3248 ]
+      - &draynor-bank [ 3093, 3245 ]
+      - &draynor-stalls [ 3079, 3249 ]
+      - &draynor-pigsty [ 3071, 3266 ]
+      - &draynor-willow-trees [ 3086, 3237 ]
+      - &draynor-south [ 3097, 3235 ]
+      - &draynor-bank-trees [ 3099, 3246 ]
+      - &draynor-west-trees [ 3072, 3250 ]
+      - &draynor-north-trees [ 3079, 3265 ]
 edges:
   lumbridge:
     south-tower:
@@ -105,7 +93,7 @@ edges:
         cost: 1
         steps:
           - type: "object"
-            object: 32768
+            object: 36768
             tile: [ 3229, 3213 ]
             option: "Climb-up"
       - from: *south-tower-1st-floor
@@ -173,8 +161,12 @@ edges:
           to: *lumbridge-tower-west
         - from: *lumbridge-tower-west
           to: *lumbridge-yew-trees
+        - from: *lumbridge-tower-west
+          to: *lumbridge-tree-patch
         - from: *lumbridge-yew-trees
           to: *lumbridge-yew-trees-west
+        - from: *lumbridge-yew-trees
+          to: *lumbridge-tree-patch
     courtyard:
       - from: *courtyard-south
         to: *south-tower-door
@@ -250,3 +242,48 @@ edges:
         to: *lumbridge-task-building
       - from: *lumbridge-task-building
         to: *lumbridge-fishing-shop-entrance
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-west-path
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-tree-patch
+      - from: *lumbridge-west-path
+        to: *lumbridge-ham-path
+      - from: *lumbridge-west-path
+        to: *lumbridge-yew-trees
+      - from: *lumbridge-west-path
+        to: *lumbridge-yew-trees-west
+      - from: *lumbridge-yew-trees-west
+        to: *lumbridge-swap-north-wall
+      - from: *lumbridge-ham-path
+        to: *draynor-east-path
+    draynor:
+      - from: *draynor-east-path
+        to: *draynor-jail-path-south
+      - from: *draynor-jail-path-south
+        to: *draynor-jail-path-west
+      - from: *draynor-jail-path-west
+        to: *draynor-bank-cross-road
+      - from: *draynor-bank-cross-road
+        to: *draynor-bank
+      - from: *draynor-bank
+        to: *draynor-stalls
+      - from: *draynor-bank
+        to: *draynor-bank-trees
+      - from: *draynor-bank-cross-road
+        to: *draynor-bank-trees
+      - from: *draynor-stalls
+        to: *draynor-pigsty
+      - from: *draynor-stalls
+        to: *draynor-willow-trees
+      - from: *draynor-stalls
+        to: *draynor-west-trees
+      - from: *draynor-stalls
+        to: *draynor-north-trees
+      - from: *draynor-bank
+        to: *draynor-willow-trees
+      - from: *draynor-willow-trees
+        to: *draynor-south
+      - from: *draynor-jail-path-west
+        to: *draynor-south
+      - from: *draynor-east-path
+        to: *lumbridge-swap-north-wall

@@ -1,78 +1,78 @@
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import world.gregs.voidps.bot.isBot
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.action.Contexts
+import world.gregs.voidps.engine.action.Scheduler
+import world.gregs.voidps.engine.action.delay
+import world.gregs.voidps.engine.data.PlayerFactory
+import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.move.running
+import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.contains
-import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
+import world.gregs.voidps.engine.event.Event
+import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.path.algorithm.Dijkstra
-import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
-import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.network.Instruction
+import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.network.instruct.Walk
+import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.bot.botOptions
-import world.gregs.voidps.world.interact.entity.bot.context
-import world.gregs.voidps.world.interact.entity.bot.initBot
-import world.gregs.voidps.world.interact.entity.bot.isBot
-import java.util.*
 
-val dijkstra: Dijkstra by inject()
+val scheduler: Scheduler by inject()
+val bots = mutableListOf<Player>()
 
-on<Command>({ prefix == "exec" }) { player: Player ->
-    val target = Tile(3229, 3214, 2)
-    val strategy = object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            return node == target
-        }
-    }
-    dijkstra.find(player, strategy, EdgeTraversal())
-    val list = LinkedList<Instruction>()
-    for (edge in player.movement.waypoints) {
-        for (instruction in edge.steps) {
-            list.add(instruction)
-        }
-    }
-
-    var current: Instruction? = null
-
-    fun next(): Boolean {
-        if (current is Walk) {
-            val walk = current as Walk
-            if (player.tile.within(walk.x, walk.y, 1)) {
-                return true
-            }
-
-        }
-        return player.action.type == ActionType.None
-    }
-    World.events.on<World, AiTick> {
-        if (list.isNotEmpty() && next()) {
-            current = list.peek()
-            player.instructions.tryEmit(list.poll())
-        }
-    }
-}
+val loginQueue: LoginQueue by inject()
+val factory: PlayerFactory by inject()
 
 on<Command>({ prefix == "bot" }) { player: Player ->
-    when {
-        player.isBot -> player["bot"] = false
-        player.contains("context") -> player["bot"] = true
-        else -> {
-            player.initBot()
-            player.events.emit(Registered)
+    if (player.isBot) {
+        player.clear("bot")
+    } else {
+        player.initBot()
+        player.events.emit(Registered)
+    }
+}
+
+var counter = 0
+
+on<Command>({ prefix == "bots" }) { _: Player ->
+    val count = content.toIntOrNull() ?: 1
+    val lumbridge = Rectangle(3221, 3217, 3222, 3220)
+    repeat(count) {
+        GlobalScope.launch(Contexts.Game) {
+            val name = "Bot ${++counter}"
+            val index = loginQueue.login(name)!!
+            val account = factory.load(name)
+            val new = account == null
+            val bot = account ?: Player(index = index, tile = lumbridge.random(), name = name)
+            factory.initPlayer(bot, index)
+            loginQueue.await()
+            if (new) {
+                bot.inventory.add("coins", 10000)
+            }
+            bot.initBot()
+            bot.login()
+            scheduler.launch {
+                delay(1)
+                bot.viewport.loaded = true
+                delay(2)
+                bot.action.type = ActionType.None
+                bots.add(bot)
+                bot.running = true
+            }
         }
     }
 }
 
-on<Command>({ prefix == "eval" }) { player: Player ->
-    for (option in player.botOptions) {
-        println(option.name)
-        for (score in option.getScores(player.context)) {
-            println(score)
-        }
+fun Player.initBot() {
+    val bot = Bot(this)
+    get<EventHandlerStore>().populate(Bot::class, bot.botEvents)
+    this["bot"] = bot
+    val e = mutableListOf<Event>()
+    this["events"] = e
+    events.all = {
+        e.add(it)
     }
 }

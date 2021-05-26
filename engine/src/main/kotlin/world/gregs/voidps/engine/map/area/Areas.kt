@@ -7,7 +7,7 @@ import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
 
 val areasModule = module {
-    single(createdAtStart = true) { Areas() }
+    single(createdAtStart = true) { Areas().load() }
 }
 
 class Areas {
@@ -27,25 +27,26 @@ class Areas {
         return tagged[tag] ?: emptySet()
     }
 
-    init {
-        load()
-    }
+    fun load(loader: FileLoader = get(), path: String = getProperty("areaPath")) : Areas {
+        timedLoad("map area") {
+            val data: Map<String, Map<String, Any>> = loader.load(path)
+            val areas = data.mapValues { (key, value) -> toArea(key, value) }
 
-    fun load() = timedLoad("map area") {
-        val data: Map<String, Map<String, Any>> = get<FileLoader>().load(getProperty("areaPath"))
-        val areas = data.mapValues { (key, value) -> toArea(key, value) }
-
-        val tagged = mutableMapOf<String, MutableSet<MapArea>>()
-        for (key in data.keys) {
-            val area = areas.getValue(key)
-            for (tag in area.values.keys) {
-                tagged.getOrPut(tag) { mutableSetOf() }.add(area)
+            val tagged = mutableMapOf<String, MutableSet<MapArea>>()
+            for (key in data.keys) {
+                val area = areas.getValue(key)
+                for (tag in area.tags) {
+                    tagged.getOrPut(tag) { mutableSetOf() }.add(area)
+                }
             }
+            this.named = areas
+            this.tagged = tagged
+            areas.size
         }
-        this.named = areas
-        this.tagged = tagged
-        areas.size
+        return this
     }
+
+    fun getAll() = named.values
 
     private fun toArea(name: String, map: Map<String, Any>): MapArea {
         val area = map["area"] as Map<String, Any>
@@ -57,10 +58,10 @@ class Areas {
         } else {
             Polygon(x.toIntArray(), y.toIntArray(), plane)
         }
-        return MapArea(name, shape, map["values"] as? Map<String, Any> ?: emptyMap())
+        return MapArea(name, shape, (map["tags"] as? List<String>)?.toSet() ?: emptySet())
     }
 
     companion object {
-        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptyMap())
+        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptySet())
     }
 }

@@ -3261,6 +3261,7 @@ blurite_sword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A Faladian Knight's sword."
   kept: "Wilderness"
 blurite_ore:
@@ -3390,6 +3391,7 @@ rusty_sword:
   id: 686
   tradeable: false
   weight: 2.267
+  material: "metal"
   examine: "A decent-enough weapon gone rusty."
   kept: "Reclaim"
 broken_arrow:
@@ -6464,6 +6466,7 @@ wooden_shield:
   magic_def: 1.0
   range_def: 4.0
   slot: "Shield"
+  material: "wood"
   examine: "A solid wooden shield."
   kept: "Wilderness"
 wooden_shield_noted:
@@ -6756,6 +6759,7 @@ iron_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 iron_dagger_noted:
@@ -6772,6 +6776,7 @@ bronze_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 bronze_dagger_noted:
@@ -6788,6 +6793,7 @@ steel_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel dagger."
   kept: "Wilderness"
 steel_dagger_noted:
@@ -6804,6 +6810,7 @@ mithril_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril dagger."
 mithril_dagger_noted:
   id: 1210
@@ -6819,6 +6826,7 @@ adamant_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant dagger."
 adamant_dagger_noted:
   id: 1212
@@ -6834,6 +6842,7 @@ rune_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune dagger."
 rune_dagger_noted:
   id: 1214
@@ -6850,6 +6859,7 @@ dragon_dagger:
   magic_def: 1.0
   aka: "DD"
   slot: "Weapon"
+  material: "metal"
   examine: "A powerful dagger."
 dragon_dagger_noted:
   id: 1216
@@ -6865,6 +6875,7 @@ black_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious black dagger."
 black_dagger_noted:
   id: 1218
@@ -6879,6 +6890,7 @@ iron_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 iron_dagger_p_noted:
@@ -6894,6 +6906,7 @@ bronze_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 bronze_dagger_p_noted:
@@ -6909,6 +6922,7 @@ steel_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel dagger."
   kept: "Wilderness"
 steel_dagger_p_noted:
@@ -6924,6 +6938,7 @@ mithril_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril dagger."
 mithril_dagger_p_noted:
   id: 1226
@@ -6938,6 +6953,7 @@ adamant_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant dagger."
 adamant_dagger_p_noted:
   id: 1228
@@ -6952,6 +6968,7 @@ rune_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune dagger."
 rune_dagger_p_noted:
   id: 1230
@@ -6967,6 +6984,7 @@ dragon_dagger_p:
   magic_def: 1.0
   aka: "DD"
   slot: "Weapon"
+  material: "metal"
   examine: "A powerful dagger."
 dragon_dagger_p_noted:
   id: 1232
@@ -6981,6 +6999,7 @@ black_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious black dagger."
 black_dagger_p_noted:
   id: 1234
@@ -7320,6 +7339,7 @@ bronze_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp sword."
   kept: "Wilderness"
 bronze_sword_noted:
@@ -7336,6 +7356,7 @@ iron_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp sword."
   kept: "Wilderness"
 iron_sword_noted:
@@ -7352,6 +7373,7 @@ steel_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel sword."
   kept: "Wilderness"
 steel_sword_noted:
@@ -7368,6 +7390,7 @@ black_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp sword."
 black_sword_noted:
   id: 1284
@@ -7383,6 +7406,7 @@ mithril_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril sword."
 mithril_sword_noted:
   id: 1286
@@ -7398,6 +7422,7 @@ adamant_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant sword."
 adamant_sword_noted:
   id: 1288
@@ -7413,6 +7438,7 @@ rune_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune sword."
 rune_sword_noted:
   id: 1290
@@ -7428,6 +7454,7 @@ bronze_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
   kept: "Wilderness"
 bronze_longsword_noted:
@@ -7444,6 +7471,7 @@ iron_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
   kept: "Wilderness"
 iron_longsword_noted:
@@ -7460,6 +7488,7 @@ steel_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel longsword."
   kept: "Wilderness"
 steel_longsword_noted:
@@ -7476,6 +7505,7 @@ black_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 black_longsword_noted:
   id: 1298
@@ -7491,6 +7521,7 @@ mithril_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril longsword."
 mithril_longsword_noted:
   id: 1300
@@ -7506,6 +7537,7 @@ adamant_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant longsword."
 adamant_longsword_noted:
   id: 1302
@@ -7521,6 +7553,7 @@ rune_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune longsword."
 rune_longsword_noted:
   id: 1304
@@ -7536,6 +7569,7 @@ dragon_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A very powerful sword."
 dragon_longsword_noted:
   id: 1306
@@ -7551,6 +7585,7 @@ bronze_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two handed sword."
   kept: "Wilderness"
@@ -7568,6 +7603,7 @@ iron_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two handed sword."
   kept: "Wilderness"
@@ -7585,6 +7621,7 @@ steel_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A steel 2h sword."
   kept: "Wilderness"
@@ -7602,6 +7639,7 @@ black_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two handed sword."
 black_2h_sword_noted:
@@ -7618,6 +7656,7 @@ mithril_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A mithril 2h sword."
 mithril_2h_sword_noted:
@@ -7634,6 +7673,7 @@ adamant_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "An adamant 2h sword."
 adamant_2h_sword_noted:
@@ -7650,6 +7690,7 @@ rune_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A rune 2h sword."
 rune_2h_sword_noted:
@@ -7665,6 +7706,7 @@ bronze_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious, curved sword."
   kept: "Wilderness"
 bronze_scimitar_noted:
@@ -7680,6 +7722,7 @@ iron_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious, curved sword."
   kept: "Wilderness"
 iron_scimitar_noted:
@@ -7695,6 +7738,7 @@ steel_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel scimitar."
   kept: "Wilderness"
 steel_scimitar_noted:
@@ -7710,6 +7754,7 @@ black_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious, curved sword."
 black_scimitar_noted:
   id: 1328
@@ -7724,6 +7769,7 @@ mithril_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril scimitar."
 mithril_scimitar_noted:
   id: 1330
@@ -7738,6 +7784,7 @@ adamant_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant scimitar."
 adamant_scimitar_noted:
   id: 1332
@@ -7752,6 +7799,7 @@ rune_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune scimitar."
 rune_scimitar_noted:
   id: 1334
@@ -16409,6 +16457,7 @@ wolfbane:
   magic_def: 1.0
   summoning_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can reclaim it from Drezel/Ivan in the Paterdomus mausoleum."
   examine: "A silver dagger that can prevent werewolves changing form."
   kept: "Reclaim"
@@ -18425,6 +18474,7 @@ splitbark_helm:
   summoning_def: 7.0
   slot: "Hat"
   type: "Hair"
+  material: "wood"
   examine: "A wooden helmet."
 splitbark_helm_noted:
   id: 3386
@@ -18443,6 +18493,7 @@ splitbark_body:
   magic_def: 15.0
   summoning_def: 40.0
   slot: "Chest"
+  material: "wood"
   examine: "Provides good protection."
 splitbark_body_noted:
   id: 3388
@@ -18461,6 +18512,7 @@ splitbark_legs:
   magic_def: 10.0
   summoning_def: 15.0
   slot: "Legs"
+  material: "wood"
   examine: "These should protect my legs."
 splitbark_legs_noted:
   id: 3390
@@ -18477,6 +18529,7 @@ splitbark_gauntlets:
   magic_def: 2.0
   summoning_def: 3.0
   slot: "Hands"
+  material: "wood"
   examine: "These should keep my hands safe."
 splitbark_gauntlets_noted:
   id: 3392
@@ -18493,6 +18546,7 @@ splitbark_boots:
   magic_def: 2.0
   summoning_def: 9.0
   slot: "Feet"
+  material: "wood"
   examine: "Wooden foot protection."
 splitbark_boots_noted:
   id: 3394
@@ -20552,6 +20606,7 @@ fremennik_blade:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword used only by Fremennik warriors."
   kept: "Reclaim"
 fremennik_shield:
@@ -21504,6 +21559,7 @@ basic_decorative_sword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword with simple, basic decoration."
   kept: "Wilderness"
 basic_decorative_platebody:
@@ -24132,6 +24188,7 @@ detailed_decorative_sword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword with finely detailed decoration."
   kept: "Wilderness"
 detailed_decorative_platebody:
@@ -24202,6 +24259,7 @@ intricate_decorative_sword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword with incredibly intricate decoration."
   kept: "Reclaim"
 intricate_decorative_platebody:
@@ -24711,6 +24769,7 @@ dragon_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious, curved sword."
 dragon_scimitar_noted:
   id: 4588
@@ -30531,6 +30590,7 @@ iron_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 iron_dagger_p+_noted:
@@ -30546,6 +30606,7 @@ bronze_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 bronze_dagger_p+_noted:
@@ -30561,6 +30622,7 @@ steel_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel dagger."
   kept: "Wilderness"
 steel_dagger_p+_noted:
@@ -30576,6 +30638,7 @@ mithril_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril dagger."
 mithril_dagger_p+_noted:
   id: 5675
@@ -30590,6 +30653,7 @@ adamant_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant dagger."
 adamant_dagger_p+_noted:
   id: 5677
@@ -30604,6 +30668,7 @@ rune_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune dagger."
 rune_dagger_p+_noted:
   id: 5679
@@ -30619,6 +30684,7 @@ dragon_dagger_p+:
   magic_def: 1.0
   aka: "DD"
   slot: "Weapon"
+  material: "metal"
   examine: "A powerful dagger."
 dragon_dagger_p+_noted:
   id: 5681
@@ -30633,6 +30699,7 @@ black_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious black dagger."
 black_dagger_p+_noted:
   id: 5683
@@ -30647,6 +30714,7 @@ iron_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 iron_dagger_p++_noted:
@@ -30662,6 +30730,7 @@ bronze_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   kept: "Wilderness"
 bronze_dagger_p++_noted:
@@ -30677,6 +30746,7 @@ steel_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A steel dagger."
   kept: "Wilderness"
 steel_dagger_p++_noted:
@@ -30692,6 +30762,7 @@ mithril_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A mithril dagger."
 mithril_dagger_p++_noted:
   id: 5693
@@ -30706,6 +30777,7 @@ adamant_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "An adamant dagger."
 adamant_dagger_p++_noted:
   id: 5695
@@ -30720,6 +30792,7 @@ rune_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A rune dagger."
 rune_dagger_p++_noted:
   id: 5697
@@ -30735,6 +30808,7 @@ dragon_dagger_p++:
   magic_def: 1.0
   aka: "DD"
   slot: "Weapon"
+  material: "metal"
   examine: "A powerful dagger."
 dragon_dagger_p++_noted:
   id: 5699
@@ -30749,6 +30823,7 @@ black_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious black dagger."
 black_dagger_p++_noted:
   id: 5701
@@ -34602,6 +34677,7 @@ toktz-xil-ak:
   slash_def: 3.0
   aka: "Obsidian splitsword"
   slot: "Weapon"
+  material: "metal"
   examine: "A razor sharp sword of obsidian."
 toktz-ket-xil:
   id: 6524
@@ -34632,6 +34708,7 @@ toktz-xil-ek:
   slash: 48.0
   aka: "Obsidian knife"
   slot: "Weapon"
+  material: "metal"
   examine: "A large knife of obsidian."
 toktz-mej-tal:
   id: 6526
@@ -35023,6 +35100,7 @@ white_dagger:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious white dagger."
 white_dagger_noted:
   id: 6592
@@ -35038,6 +35116,7 @@ white_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious white dagger."
 white_dagger_p_noted:
   id: 6594
@@ -35053,6 +35132,7 @@ white_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious white dagger."
 white_dagger_p+_noted:
   id: 6596
@@ -35068,6 +35148,7 @@ white_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious white dagger."
 white_dagger_p++_noted:
   id: 6598
@@ -35136,6 +35217,7 @@ white_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor sharp sword."
 white_sword_noted:
   id: 6606
@@ -35152,6 +35234,7 @@ white_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor sharp longsword."
 white_longsword_noted:
   id: 6608
@@ -35168,6 +35251,7 @@ white_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two handed sword."
 white_2h_sword_noted:
@@ -35184,6 +35268,7 @@ white_scimitar:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A vicious, curved sword."
 white_scimitar_noted:
   id: 6612
@@ -36029,6 +36114,7 @@ darklight:
   crush_def: 2.0
   magic_def: 2.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can reclaim it from Gideon Bede in the Saradomin churchist"
   examine: "The magical sword 'Silverlight', enhanced with the blood of Agrith Naar."
   kept: "Reclaim"
@@ -37161,6 +37247,7 @@ rune_longsword_mage_training_arena:
   crush: -2.0
   slash_def: 3.0
   crush_def: 2.0
+  material: "metal"
   examine: "A razor sharp longsword."
   kept: "Always"
 cylinder:
@@ -38238,6 +38325,7 @@ dragon_2h_sword:
   range_def: -1.0
   aka: "D2H"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed Dragon Sword."
 insulated_boots:
@@ -39907,6 +39995,7 @@ wooden_spoon:
   crush: -2.0
   slash_def: 2.0
   slot: "Weapon"
+  material: "wood"
   examine: "Spoooooon!"
 wooden_spoon_noted:
   id: 7434
@@ -41418,6 +41507,7 @@ wooden_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "wood"
   examine: "A less-than razor sharp sword."
   kept: "Reclaim"
 wooden_shield_weapons_rack:
@@ -41765,6 +41855,7 @@ rusty_sword_2:
   tradeable: false
   weight: 2.267
   slot: "Weapon"
+  material: "metal"
   examine: "A decent-enough weapon gone rusty."
   kept: "Reclaim"
 toy_soldier:
@@ -55881,6 +55972,7 @@ keris:
   magic: 2.0
   magic_def: 2.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
   examine: "A mystical-feeling dagger."
   kept: "Reclaim"
@@ -55896,6 +55988,7 @@ keris_p:
   magic: 2.0
   magic_def: 2.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
   examine: "A mystical-feeling dagger."
   kept: "Reclaim"
@@ -55911,6 +56004,7 @@ keris_p+:
   magic: 2.0
   magic_def: 2.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
   examine: "A mystical-feeling dagger."
   kept: "Reclaim"
@@ -55926,6 +56020,7 @@ keris_p++:
   magic: 2.0
   magic_def: 2.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
   examine: "A mystical-feeling dagger."
   kept: "Reclaim"
@@ -59713,6 +59808,7 @@ brine_sabre:
   slash: 47.0
   crush: -2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A salty sword."
 brine_sabre_noted:
   id: 11038
@@ -62389,6 +62485,7 @@ armadyl_godsword:
   crush: 80.0
   aka: "AGS"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A beautiful, heavy sword."
 armadyl_godsword_noted:
@@ -62404,6 +62501,7 @@ bandos_godsword:
   crush: 80.0
   aka: "BGS"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A brutally heavy sword."
 bandos_godsword_noted:
@@ -62419,6 +62517,7 @@ saradomin_godsword:
   crush: 80.0
   aka: "SGS"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A gracious, heavy sword."
 saradomin_godsword_noted:
@@ -62434,6 +62533,7 @@ zamorak_godsword:
   crush: 80.0
   aka: "ZGS"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A terrifying, heavy sword."
 zamorak_godsword_noted:
@@ -62662,6 +62762,7 @@ saradomin_sword:
   crush: 60.0
   aka: "SS"
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "The incredible blade of an Icyene."
 saradomin_sword_noted:
@@ -68082,6 +68183,7 @@ splitbark_helm_e:
   summoning_def: 7.0
   slot: "Hat"
   type: "Hair"
+  material: "wood"
   examine: "A wooden helmet."
   kept: "Reclaim"
 splitbark_helm_charged:
@@ -68101,6 +68203,7 @@ splitbark_helm_charged:
   summoning_def: 7.0
   slot: "Hat"
   type: "Hair"
+  material: "wood"
   examine: "A wooden helmet."
   kept: "Reclaim"
 rune_full_helm_e:
@@ -72963,6 +73066,7 @@ leaf-bladed_sword:
   weight: 1.814
   slash: 62.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp sword."
 leaf-bladed_sword_noted:
   id: 13291
@@ -76527,6 +76631,7 @@ vestas_longsword_new:
   slash_def: 4.0
   crush_def: 3.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
 vestas_longsword_noted:
   id: 13900
@@ -76542,6 +76647,7 @@ vestas_longsword_degraded:
   slash_def: 4.0
   crush_def: 3.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
 statiuss_warhammer_new:
   id: 13902
@@ -76829,6 +76935,7 @@ corrupt_vestas_longsword_new:
   slash_def: 4.0
   crush_def: 3.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_vestas_longsword_noted:
   id: 13924
@@ -76844,6 +76951,7 @@ corrupt_vestas_longsword_degraded:
   slash_def: 4.0
   crush_def: 3.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_statiuss_warhammer_new:
   id: 13926
@@ -77393,6 +77501,7 @@ corrupt_dragon_dagger_new:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_dagger_noted:
   id: 13977
@@ -77407,6 +77516,7 @@ corrupt_dragon_dagger_degraded:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_scimitar_new:
@@ -77419,6 +77529,7 @@ corrupt_dragon_scimitar_new:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_scimitar_noted:
   id: 13980
@@ -77432,6 +77543,7 @@ corrupt_dragon_scimitar_degraded:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "Your scimitar is fragile and will disappear if you drop it. Are you sure you want to drop it?"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_longsword_new:
@@ -77446,6 +77558,7 @@ corrupt_dragon_longsword_new:
   crush_def: 2.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_longsword_noted:
   id: 13983
@@ -77461,6 +77574,7 @@ corrupt_dragon_longsword_degraded:
   crush_def: 2.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
 corrupt_dragon_mace_new:
   id: 13985
@@ -78678,6 +78792,7 @@ scimitar_class_1:
   weight: 0.05
   slash: 55.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a vicious, curved sword."
 scimitar_class_1_noted:
   id: 14288
@@ -78688,6 +78803,7 @@ scimitar_class_2:
   weight: 0.1
   slash: 90.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a vicious, curved sword."
 scimitar_class_2_noted:
   id: 14290
@@ -78698,6 +78814,7 @@ scimitar_class_3:
   weight: 0.15
   slash: 145.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a vicious, curved sword."
 scimitar_class_3_noted:
   id: 14292
@@ -78708,6 +78825,7 @@ scimitar_class_4:
   weight: 0.2
   slash: 180.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a vicious, curved sword."
 scimitar_class_4_noted:
   id: 14294
@@ -78718,6 +78836,7 @@ scimitar_class_5:
   weight: 0.25
   slash: 225.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a vicious, curved sword."
 scimitar_class_5_noted:
   id: 14296
@@ -78728,6 +78847,7 @@ dagger_class_1:
   stab: 41.0
   weight: 0.05
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a sharp dagger."
 dagger_class_1_noted:
   id: 14298
@@ -78738,6 +78858,7 @@ dagger_class_2:
   stab: 68.0
   weight: 0.1
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a sharp dagger."
 dagger_class_2_noted:
   id: 14300
@@ -78748,6 +78869,7 @@ dagger_class_3:
   stab: 101.0
   weight: 0.15
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a sharp dagger."
 dagger_class_3_noted:
   id: 14302
@@ -78758,6 +78880,7 @@ dagger_class_4:
   stab: 135.0
   weight: 0.2
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a sharp dagger."
 dagger_class_4_noted:
   id: 14304
@@ -78768,6 +78891,7 @@ dagger_class_5:
   stab: 168.0
   weight: 0.25
   slot: "Weapon"
+  material: "metal"
   examine: "The sacred clay has transformed into a sharp dagger."
 dagger_class_5_noted:
   id: 14306
@@ -86492,6 +86616,7 @@ reeses_sword:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
   examine: "Old, battered, and not very sharp."
   kept: "Wilderness"
@@ -88415,6 +88540,7 @@ frostbite_dagger_bound:
   range: -2.0
   magic_def: 4.0
   slot: "Weapon"
+  material: "metal"
   examine: "A dagger made out of enchanted ice."
 hailstorm_dagger_bound:
   id: 15827
@@ -88427,6 +88553,7 @@ hailstorm_dagger_bound:
   range: -2.0
   magic_def: 8.0
   slot: "Weapon"
+  material: "metal"
   examine: "A dagger made out of enchanted ice, covered in sharp frost shards."
 shadow_silk_hood_bound:
   id: 15828
@@ -88712,6 +88839,7 @@ novite_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 novite_dagger_p_b:
   id: 15849
@@ -88723,6 +88851,7 @@ novite_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88736,6 +88865,7 @@ novite_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88749,6 +88879,7 @@ novite_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88762,6 +88893,7 @@ bathus_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 bathus_dagger_p_b:
   id: 15853
@@ -88773,6 +88905,7 @@ bathus_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88786,6 +88919,7 @@ bathus_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88799,6 +88933,7 @@ bathus_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88812,6 +88947,7 @@ marmaros_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 marmaros_dagger_p_b:
   id: 15857
@@ -88823,6 +88959,7 @@ marmaros_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88836,6 +88973,7 @@ marmaros_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88849,6 +88987,7 @@ marmaros_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88862,6 +89001,7 @@ kratonite_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 kratonite_dagger_p_b:
   id: 15861
@@ -88873,6 +89013,7 @@ kratonite_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88886,6 +89027,7 @@ kratonite_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88899,6 +89041,7 @@ kratonite_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88912,6 +89055,7 @@ fractite_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 fractite_dagger_p_b:
   id: 15865
@@ -88923,6 +89067,7 @@ fractite_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88936,6 +89081,7 @@ fractite_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88949,6 +89095,7 @@ fractite_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88962,6 +89109,7 @@ zephyrium_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 zephyrium_dagger_p_b:
   id: 15869
@@ -88973,6 +89121,7 @@ zephyrium_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88986,6 +89135,7 @@ zephyrium_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -88999,6 +89149,7 @@ zephyrium_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89012,6 +89163,7 @@ argonite_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 argonite_dagger_p_b:
   id: 15873
@@ -89023,6 +89175,7 @@ argonite_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89036,6 +89189,7 @@ argonite_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89049,6 +89203,7 @@ argonite_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89062,6 +89217,7 @@ katagon_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Sharp but pointy."
 katagon_dagger_p_b:
   id: 15877
@@ -89073,6 +89229,7 @@ katagon_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89086,6 +89243,7 @@ katagon_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89099,6 +89257,7 @@ katagon_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89112,6 +89271,7 @@ gorgonite_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 gorgonite_dagger_p_b:
   id: 15881
@@ -89123,6 +89283,7 @@ gorgonite_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89136,6 +89297,7 @@ gorgonite_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89149,6 +89311,7 @@ gorgonite_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89162,6 +89325,7 @@ promethium_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 promethium_dagger_p_b:
   id: 15885
@@ -89173,6 +89337,7 @@ promethium_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89186,6 +89351,7 @@ promethium_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89199,6 +89365,7 @@ promethium_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89212,6 +89379,7 @@ primal_dagger_bound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 primal_dagger_p_b:
   id: 15889
@@ -89223,6 +89391,7 @@ primal_dagger_p_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89236,6 +89405,7 @@ primal_dagger_p+_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -89249,6 +89419,7 @@ primal_dagger_p++_b:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -90677,6 +90848,7 @@ novite_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 bathus_longsword_bound:
   id: 16025
@@ -90688,6 +90860,7 @@ bathus_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 marmaros_longsword_bound:
   id: 16026
@@ -90699,6 +90872,7 @@ marmaros_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 kratonite_longsword_bound:
   id: 16027
@@ -90710,6 +90884,7 @@ kratonite_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 fractite_longsword_bound:
   id: 16028
@@ -90721,6 +90896,7 @@ fractite_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 zephyrium_longsword_bound:
   id: 16029
@@ -90732,6 +90908,7 @@ zephyrium_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 argonite_longsword_bound:
   id: 16030
@@ -90743,6 +90920,7 @@ argonite_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 katagon_longsword_bound:
   id: 16031
@@ -90754,6 +90932,7 @@ katagon_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 gorgonite_longsword_bound:
   id: 16032
@@ -90765,6 +90944,7 @@ gorgonite_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 promethium_longsword_bound:
   id: 16033
@@ -90776,6 +90956,7 @@ promethium_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 primal_longsword_bound:
   id: 16034
@@ -90787,6 +90968,7 @@ primal_longsword_bound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 novite_rapier_bound:
   id: 16035
@@ -90798,6 +90980,7 @@ novite_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 bathus_rapier_bound:
   id: 16036
@@ -90809,6 +90992,7 @@ bathus_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 marmaros_rapier_bound:
   id: 16037
@@ -90820,6 +91004,7 @@ marmaros_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 kratonite_rapier_bound:
   id: 16038
@@ -90831,6 +91016,7 @@ kratonite_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 fractite_rapier_bound:
   id: 16039
@@ -90843,6 +91029,7 @@ fractite_rapier_bound:
   crush_def: 1.0
   magic_def: 4.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 zephyrium_rapier_bound:
   id: 16040
@@ -90854,6 +91041,7 @@ zephyrium_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 argonite_rapier_bound:
   id: 16041
@@ -90865,6 +91053,7 @@ argonite_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 katagon_rapier_bound:
   id: 16042
@@ -90876,6 +91065,7 @@ katagon_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 gorgonite_rapier_bound:
   id: 16043
@@ -90887,6 +91077,7 @@ gorgonite_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 promethium_rapier_bound:
   id: 16044
@@ -90898,6 +91089,7 @@ promethium_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 primal_rapier_bound:
   id: 16045
@@ -90909,6 +91101,7 @@ primal_rapier_bound:
   slash_def: 2.0
   crush_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp rapier."
 protoleather_coif_bound:
   id: 16046
@@ -91948,6 +92141,7 @@ novite_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 bathus_2h_sword_bound:
@@ -91960,6 +92154,7 @@ bathus_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 marmaros_2h_sword_bound:
@@ -91972,6 +92167,7 @@ marmaros_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 kratonite_2h_sword_bound:
@@ -91984,6 +92180,7 @@ kratonite_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 fractite_2h_sword_bound:
@@ -91996,6 +92193,7 @@ fractite_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A 2-handed sword."
 zephyrium_2h_sword_bound:
@@ -92008,6 +92206,7 @@ zephyrium_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 argonite_2h_sword_bound:
@@ -92020,6 +92219,7 @@ argonite_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 katagon_2h_sword_bound:
@@ -92032,6 +92232,7 @@ katagon_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 gorgonite_2h_sword_bound:
@@ -92044,6 +92245,7 @@ gorgonite_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 promethium_2h_sword_bound:
@@ -92056,6 +92258,7 @@ promethium_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 primal_2h_sword_bound:
@@ -92068,6 +92271,7 @@ primal_2h_sword_bound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 sapphire_amulet_b:
@@ -94425,6 +94629,7 @@ novite_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 novite_longsword_noted:
   id: 16384
@@ -94437,6 +94642,7 @@ bathus_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 bathus_longsword_noted:
   id: 16386
@@ -94449,6 +94655,7 @@ marmaros_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 marmaros_longsword_noted:
   id: 16388
@@ -94461,6 +94668,7 @@ kratonite_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 kratonite_longsword_noted:
   id: 16390
@@ -94473,6 +94681,7 @@ fractite_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 fractite_longsword_noted:
   id: 16392
@@ -94485,6 +94694,7 @@ zephyrium_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 zephyrium_longsword_noted:
   id: 16394
@@ -94497,6 +94707,7 @@ argonite_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 argonite_longsword_noted:
   id: 16396
@@ -94509,6 +94720,7 @@ katagon_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 katagon_longsword_noted:
   id: 16398
@@ -94521,6 +94733,7 @@ gorgonite_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 gorgonite_longsword_noted:
   id: 16400
@@ -94533,6 +94746,7 @@ promethium_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 promethium_longsword_noted:
   id: 16402
@@ -94545,6 +94759,7 @@ primal_longsword_unbound:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 primal_longsword_noted:
   id: 16404
@@ -95789,6 +96004,7 @@ novite_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 novite_dagger_noted:
   id: 16758
@@ -95802,6 +96018,7 @@ novite_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95817,6 +96034,7 @@ novite_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95832,6 +96050,7 @@ novite_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95846,6 +96065,7 @@ bathus_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 bathus_dagger_noted:
   id: 16766
@@ -95859,6 +96079,7 @@ bathus_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95874,6 +96095,7 @@ bathus_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95889,6 +96111,7 @@ bathus_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95903,6 +96126,7 @@ marmaros_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 marmaros_dagger_noted:
   id: 16774
@@ -95916,6 +96140,7 @@ marmaros_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95931,6 +96156,7 @@ marmaros_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95946,6 +96172,7 @@ marmaros_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95960,6 +96187,7 @@ kratonite_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 kratonite_dagger_noted:
   id: 16782
@@ -95973,6 +96201,7 @@ kratonite_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -95988,6 +96217,7 @@ kratonite_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96003,6 +96233,7 @@ kratonite_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96017,6 +96248,7 @@ fractite_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 fractite_dagger_noted:
   id: 16790
@@ -96030,6 +96262,7 @@ fractite_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96045,6 +96278,7 @@ fractite_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96060,6 +96294,7 @@ fractite_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96074,6 +96309,7 @@ zephyrium_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 zephyrium_dagger_noted:
   id: 16798
@@ -96087,6 +96323,7 @@ zephyrium_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96102,6 +96339,7 @@ zephyrium_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96117,6 +96355,7 @@ zephyrium_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96131,6 +96370,7 @@ argonite_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 argonite_dagger_noted:
   id: 16806
@@ -96144,6 +96384,7 @@ argonite_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96159,6 +96400,7 @@ argonite_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96174,6 +96416,7 @@ argonite_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96188,6 +96431,7 @@ katagon_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Sharp but pointy."
 katagon_dagger_noted:
   id: 16814
@@ -96201,6 +96445,7 @@ katagon_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96216,6 +96461,7 @@ katagon_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96231,6 +96477,7 @@ katagon_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96245,6 +96492,7 @@ gorgonite_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 gorgonite_dagger_noted:
   id: 16822
@@ -96258,6 +96506,7 @@ gorgonite_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96273,6 +96522,7 @@ gorgonite_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96288,6 +96538,7 @@ gorgonite_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96302,6 +96553,7 @@ promethium_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 promethium_dagger_noted:
   id: 16830
@@ -96315,6 +96567,7 @@ promethium_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96330,6 +96583,7 @@ promethium_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96345,6 +96599,7 @@ promethium_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96359,6 +96614,7 @@ primal_dagger_unbound:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
 primal_dagger_noted:
   id: 16838
@@ -96372,6 +96628,7 @@ primal_dagger_p:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96387,6 +96644,7 @@ primal_dagger_p+:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96402,6 +96660,7 @@ primal_dagger_p++:
   magic: 1.0
   magic_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "Short but pointy."
   use: "Dungeoneering"
   kept: "Always"
@@ -96669,6 +96928,7 @@ novite_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 novite_2h_sword_noted:
@@ -96682,6 +96942,7 @@ bathus_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 bathus_2h_sword_noted:
@@ -96695,6 +96956,7 @@ marmaros_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 marmaros_2h_sword_noted:
@@ -96708,6 +96970,7 @@ kratonite_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 kratonite_2h_sword_noted:
@@ -96721,6 +96984,7 @@ fractite_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A 2-handed sword."
 fractite_2h_sword_noted:
@@ -96734,6 +96998,7 @@ zephyrium_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 zephyrium_2h_sword_noted:
@@ -96747,6 +97012,7 @@ argonite_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 argonite_2h_sword_noted:
@@ -96760,6 +97026,7 @@ katagon_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 katagon_2h_sword_noted:
@@ -96773,6 +97040,7 @@ gorgonite_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 gorgonite_2h_sword_noted:
@@ -96786,6 +97054,7 @@ promethium_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 promethium_2h_sword_noted:
@@ -96799,6 +97068,7 @@ primal_2h_sword_unbound:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 primal_2h_sword_noted:
@@ -97154,6 +97424,7 @@ fractite_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
   use: "Dungeoneering"
   kept: "Always"
@@ -97169,6 +97440,7 @@ gorgonite_longsword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
   use: "Dungeoneering"
   kept: "Always"
@@ -97242,6 +97514,7 @@ fractite_2h_sword:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
   use: "Dungeoneering"
@@ -99500,6 +99773,7 @@ frostbite_dagger_unbound:
   range: -2.0
   magic_def: 4.0
   slot: "Weapon"
+  material: "metal"
   examine: "A dagger made out of enchanted ice."
 frostbite_dagger_noted:
   id: 17276
@@ -99513,6 +99787,7 @@ hailstorm_dagger_unbound:
   range: -2.0
   magic_def: 8.0
   slot: "Weapon"
+  material: "metal"
   examine: "A dagger made out of enchanted ice, covered in sharp frost shards."
 hailstorm_dagger_noted:
   id: 17278
@@ -104065,6 +104340,7 @@ chaotic_longsword_new:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 chaotic_longsword_broken:
   id: 18352
@@ -104075,6 +104351,7 @@ chaotic_longsword_broken:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword. It doesn't look in good condition."
 chaotic_maul_new:
   id: 18353
@@ -104255,6 +104532,7 @@ gravite_longsword_new:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword."
 gravite_longsword_broken:
   id: 18368
@@ -104265,6 +104543,7 @@ gravite_longsword_broken:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A razor-sharp longsword. It doesn't look in good condition."
 gravite_2h_sword_new:
   id: 18369
@@ -104276,6 +104555,7 @@ gravite_2h_sword_new:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword."
 gravite_2h_sword_broken:
@@ -104287,6 +104567,7 @@ gravite_2h_sword_broken:
   magic: -4.0
   range_def: -1.0
   slot: "Weapon"
+  material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword, it doesn't look in good condition."
 gravite_staff_new:
@@ -105552,6 +105833,7 @@ profound_decorative_sword:
   slash_def: 3.0
   crush_def: 2.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword with stunningly profound decoration."
   kept: "Reclaim"
 profound_decorative_platebody:
@@ -106032,6 +106314,7 @@ korasis_sword_quiet_before_the_swarm:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "A sword of a Void Knight."
   use: "Quest"
   kept: "Vanish"
@@ -111804,6 +112087,7 @@ korasis_sword_the_void_stares_back:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sword of a Void Knight."
   use: "Quest"
   kept: "Vanish"
@@ -111874,6 +112158,7 @@ korasis_sword:
   crush: -2.0
   slash_def: 1.0
   slot: "Weapon"
+  material: "metal"
   examine: "The sword of a Void Knight."
   kept: "Reclaim"
 elite_void_knight_top_executioner:

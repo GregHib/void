@@ -334,3 +334,5 @@ emote_reindeer:
   id: 859
 emote_snow_globe_flurry:
   id: 1284
+level_up:
+  id: 199

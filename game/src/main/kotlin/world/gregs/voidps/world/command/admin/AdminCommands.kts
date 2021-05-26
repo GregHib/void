@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
+import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -22,8 +23,8 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
-import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
@@ -36,8 +37,8 @@ import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
-import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.Stairs
 
@@ -90,8 +91,10 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 
 val playerStorage: StorageStrategy<Player> by inject()
 
-on<Command>({ prefix == "save" }) { player: Player ->
-    playerStorage.save(player.name, player)
+on<Command>({ prefix == "save" }) { _: Player ->
+    players.forEach {
+        playerStorage.save(it.name, it)
+    }
 }
 
 val definitions: ItemDefinitions by inject()
@@ -106,6 +109,19 @@ on<Command>({ prefix == "item" }) { player: Player ->
         amount.toSILong().toInt()
     })
     println(player.inventory.result)
+}
+
+on<Command>({ prefix == "give" }) { player: Player ->
+    val parts = content.split(" ")
+    val id = definitions.getNameOrNull(parts.first().toIntOrNull() ?: -1) ?: parts.first().toLowerCase()
+    val amount = parts[1]
+    val name = content.removePrefix("${parts[0]} ${parts[1]} ")
+    val target = players.indexed.filterNotNull().firstOrNull { it.name == name }
+    if (target == null) {
+        player.message("Couldn't find player $target")
+    } else {
+        target.inventory.add(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
+    }
 }
 
 on<Command>({ prefix == "find" }) { player: Player ->
@@ -132,6 +148,13 @@ on<Command>({ prefix == "master" }) { player: Player ->
     player.setVar("life_points", 990)
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
+    }
+}
+
+on<Command>({ prefix == "reset" }) { player: Player ->
+    player.setVar("life_points", 100)
+    for ((index, skill) in Skill.all.withIndex()) {
+        player.experience.set(skill, Experience.defaultExperience[index])
     }
 }
 
@@ -183,12 +206,12 @@ on<Command>({ prefix == "midi" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "music" }) { player: Player ->
+on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMusicEffect(content.replace(" ", "_"))
+        player.playJingle(content.replace(" ", "_"))
     } else {
-        player.client?.playMusicEffect(id)
+        player.client?.playJingle(id)
     }
 }
 
@@ -239,14 +262,14 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
         "areas" -> get<Areas>().load()
         "object defs" -> get<ObjectDefinitions>().load()
-        "anim defs" -> get<AnimationDefinitions>().load()
-        "container defs" -> get<ContainerDefinitions>().load()
-        "graphic defs" -> get<GraphicDefinitions>().load()
+        "anim defs", "anims" -> get<AnimationDefinitions>().load()
+        "container defs", "containers" -> get<ContainerDefinitions>().load()
+        "graphic defs", "graphics" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs" -> get<ItemDefinitions>().load()
-        "sound", "sound effects" -> get<SoundDefinitions>().load()
+        "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
-        "music", "music effects" -> get<MusicEffectDefinitions>().load()
+        "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()

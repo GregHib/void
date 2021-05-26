@@ -4,6 +4,7 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.utility.get
@@ -20,11 +21,13 @@ class EventHandlerStore {
 
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
-    fun <T : Entity> populate(entity: T) {
-        for ((key, values) in get(entity::class)) {
-            entity.events.addAll(key, values)
+    fun <T : Entity> populate(clazz: KClass<T>, events: Events) {
+        for ((key, values) in get(clazz)) {
+            events.addAll(key, values)
         }
     }
+
+    fun <T : Entity> populate(entity: T) = populate(entity::class, entity.events)
 
     fun get(entity: KClass<out Entity>): Map<KClass<out Event>, List<EventHandler>> {
         return handlers[entity] ?: emptyMap()
@@ -51,3 +54,6 @@ inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean =
 
 @JvmName("onWorld")
 inline fun <reified E : Event> on(noinline condition: E.(World) -> Boolean = { true }, noinline block: E.(World) -> Unit) = on<World, E>(condition, block)
+
+@JvmName("onBot")
+inline fun <reified E : Event> on(noinline condition: E.(Bot) -> Boolean = { true }, noinline block: E.(Bot) -> Unit) = on<Bot, E>(condition, block)
