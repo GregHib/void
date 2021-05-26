@@ -73,12 +73,12 @@ private suspend fun Bot.rest() {
     if (musician != null && player.tile.distanceTo(musician.tile) < 10) {
         player.instructions.emit(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
         repeat(32) {
-            await<Unit>("tick")
+            await("tick")
         }
     } else {
         player.instructions.emit(InteractInterface(interfaceId = 750, componentId = 1, itemId = -1, itemSlot = -1, option = 1))
         repeat(50) {
-            await<Unit>("tick")
+            await("tick")
         }
     }
 }
@@ -101,9 +101,9 @@ private suspend fun Bot.navigate() {
             player.instructions.emit(step)
             // TODO proper solution for validation failure
             if (step is InteractObject && get<Objects>()[player.tile.copy(step.x, step.y), step.objectId] == null) {
-                await<Unit>("tick")
+                await("tick")
             } else {
-                await<Unit>("move")
+                await("move")
             }
         }
         waypoints.remove()

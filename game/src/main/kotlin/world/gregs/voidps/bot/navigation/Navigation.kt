@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import kotlin.coroutines.resume
 
-suspend fun <T : Any> Bot.await(type: Any) = suspendCancellableCoroutine<T> { cont ->
+suspend fun Bot.await(type: Any) = suspendCancellableCoroutine<Unit> { cont ->
     player["suspension"] = type
     player["cont"] = cont
 }

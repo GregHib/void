@@ -1,5 +1,5 @@
 import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskStore
+import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.*
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.instruct.InteractObject
+import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
@@ -34,7 +35,7 @@ import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
 
 val areas: Areas by inject()
-val tasks: TaskStore by inject()
+val tasks: TaskManager by inject()
 
 on<ActionFinished>({ type == ActionType.Woodcutting }) { bot: Bot ->
     bot.resume("woodcutting")
@@ -61,19 +62,20 @@ on<World, Startup> {
             else -> 0 until 30
         }
         val task = Task(
-            {
+            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
+            block = {
                 while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
                     cutTrees(area, type)
                 }
             },
+            area = area.area,
+            spaces = spaces,
             requirements = listOf(
                 { player.levels.getMax(Skill.Woodcutting) in range },
                 { hasUsableHatchet() || hasCoins(2000) }
             )
         )
-        repeat(spaces) {
-            tasks.register(task)
-        }
+        tasks.register(task)
     }
 }
 
@@ -85,14 +87,14 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
             .filter { isAvailableTree(map, it, type) }
             .minByOrNull { tile.distanceTo(Distance.getNearest(it.tile, it.size, tile)) }
         if (tree == null) {
-            await<Unit>("tick")
+            await("tick")
             if (player.inventory.spaces < 4) {
                 break
             }
             continue
         }
         player.instructions.emit(InteractObject(tree.id, tree.tile.x, tree.tile.y, 1))
-        await<Unit>("woodcutting")
+        await("woodcutting")
     }
 }
 

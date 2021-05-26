@@ -16,19 +16,19 @@ suspend fun Bot.openBank() {
     goToNearest("bank")
     val bank = player.viewport.objects.first { it.def.options[1] == "Use-quickly" }
     player.instructions.emit(InteractObject(objectId = bank.id, x = bank.tile.x, y = bank.tile.y, option = 2))
-    await<Unit>("bank")
+    await("bank")
 }
 
 suspend fun Bot.depositAll() {
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 33, itemId = -1, itemSlot = -1, option = 0))
-    await<Unit>("tick")
-    await<Unit>("tick")
+    await("tick")
+    await("tick")
 }
 
 suspend fun Bot.depositAll(item: String, slot: Int = player.inventory.indexOf(item)) {
     val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 763, componentId = 0, itemId = id, itemSlot = slot, option = 5))
-    await<Unit>("tick")
+    await("tick")
 }
 
 suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item), amount: Int = 1) {
@@ -43,7 +43,7 @@ suspend fun Bot.deposit(item: String, slot: Int = player.inventory.indexOf(item)
     if (option == 4) {
         player.instructions.emit(EnterInt(value = amount))
     }
-    await<Unit>("tick")
+    await("tick")
 }
 
 suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), amount: Int = 1) {
@@ -58,19 +58,19 @@ suspend fun Bot.withdraw(item: String, slot: Int = player.bank.indexOf(item), am
     if (option == 4) {
         player.instructions.emit(EnterInt(value = amount))
     }
-    await<Unit>("tick")
+    await("tick")
 }
 
 suspend fun Bot.withdrawAll(item: String, slot: Int = player.bank.indexOf(item)) {
     val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = id, itemSlot = slot, option = 5))
-    await<Unit>("tick")
+    await("tick")
 }
 
 suspend fun Bot.withdrawAllButOne(item: String, slot: Int = player.bank.indexOf(item)) {
     val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
     player.instructions.emit(InteractInterface(interfaceId = 762, componentId = 93, itemId = id, itemSlot = slot, option = 6))
-    await<Unit>("tick")
+    await("tick")
 }
 
 suspend fun Bot.closeBank() = closeInterface(762, 43)

@@ -20,7 +20,7 @@ suspend fun Bot.openShop(map: MapArea): NPC {
     goToArea(map)
     val shop = player.viewport.npcs.current.first { it.def.options.contains("Trade") }
     player.instructions.emit(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
-    await<Unit>("shop")
+    await("shop")
     return shop
 }
 
@@ -51,4 +51,5 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
             else -> 1
         }
     }
+    await("tick")
 }
