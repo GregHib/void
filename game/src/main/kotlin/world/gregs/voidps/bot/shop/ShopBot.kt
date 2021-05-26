@@ -32,7 +32,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
     if (index == -1) {
         return// fail
     }
-    val slot = (index + 1) * 4
+    val slot = index * 6
     var remaining = amount
     while (remaining > 0) {
         val option = when {
