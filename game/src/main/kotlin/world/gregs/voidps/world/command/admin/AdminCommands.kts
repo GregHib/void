@@ -91,8 +91,10 @@ on<Command>({ prefix == "npc" }) { player: Player ->
 
 val playerStorage: StorageStrategy<Player> by inject()
 
-on<Command>({ prefix == "save" }) { player: Player ->
-    playerStorage.save(player.name, player)
+on<Command>({ prefix == "save" }) { _: Player ->
+    players.forEach {
+        playerStorage.save(it.name, it)
+    }
 }
 
 val definitions: ItemDefinitions by inject()

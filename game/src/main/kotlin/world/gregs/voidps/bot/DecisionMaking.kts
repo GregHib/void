@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
+import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 
 val players: Players by inject()
@@ -21,6 +22,19 @@ val tasks: TaskManager by inject()
 val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
+on<Registered> { bot: Bot ->
+    if (bot.contains("task")) {
+        val name: String = bot["task"]
+        val tasks: TaskManager = get()
+        val task = tasks.get(name)
+        if (task == null) {
+            bot.clear("task")
+        } else {
+            assign(bot, task)
+        }
+    }
+}
+
 on<World, AiTick> {
     runBlocking {
         coroutineScope {
@@ -28,16 +42,7 @@ on<World, AiTick> {
                 if (player.isBot) {
                     val bot: Bot = player["bot"]
                     if (!player.contains("task")) {
-                        tasks.assign(bot).let { task ->
-                            logger.debug { "Task assigned: ${player.name} - ${task.name}" }
-                            player["task"] = true
-                            task.spaces--
-                            scope.launch {
-                                task.block.invoke(bot)
-                                player.clear("task")
-                                task.spaces++
-                            }
-                        }
+                        assign(bot, tasks.assign(bot))
                     }
                     launch(Contexts.Updating) {
                         val events: MutableList<Event> = player["events"]
@@ -52,5 +57,16 @@ on<World, AiTick> {
                 }
             }
         }
+    }
+}
+
+fun assign(bot: Bot, task: Task) {
+    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
+    bot["task"] = task.name
+    task.spaces--
+    scope.launch {
+        task.block.invoke(bot)
+        bot.clear("task")
+        task.spaces++
     }
 }

@@ -6,14 +6,12 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.PlayerFactory
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
@@ -46,10 +44,14 @@ on<Command>({ prefix == "bots" }) { _: Player ->
         GlobalScope.launch(Contexts.Game) {
             val name = "Bot ${++counter}"
             val index = loginQueue.login(name)!!
-            val bot = Player(index = index, tile = lumbridge.random(), name = name)
+            val account = factory.load(name)
+            val new = account == null
+            val bot = account ?: Player(index = index, tile = lumbridge.random(), name = name)
             factory.initPlayer(bot, index)
             loginQueue.await()
-            bot.inventory.add("coins", 10000)
+            if (new) {
+                bot.inventory.add("coins", 10000)
+            }
             bot.initBot()
             bot.login()
             scheduler.launch {

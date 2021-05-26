@@ -17,6 +17,10 @@ class TaskManager {
         queue.add(task)
     }
 
+    fun get(name: String): Task? {
+        return queue.firstOrNull { it.name == name }
+    }
+
     fun assign(bot: Bot): Task {
         return queue
             .filter { !it.full() && it.requirements.all { req -> req(bot) } }
