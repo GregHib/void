@@ -14,7 +14,6 @@ import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.interact.entity.bot.isBot
 
 val players: Players by inject()
 val tasks: TaskManager by inject()
@@ -28,19 +27,19 @@ on<World, AiTick> {
             players.forEach { player ->
                 if (player.isBot) {
                     val bot: Bot = player["bot"]
-                    launch(Contexts.Updating) {
-                        if (!player.contains("task")) {
-                            tasks.assign(bot).let { task ->
-                                logger.debug { "Task assigned: ${player.name} - ${task.name}" }
-                                player["task"] = true
-                                scope.launch {
-                                    task.spaces--
-                                    task.block.invoke(bot)
-                                    player.clear("task")
-                                    task.spaces++
-                                }
+                    if (!player.contains("task")) {
+                        tasks.assign(bot).let { task ->
+                            logger.debug { "Task assigned: ${player.name} - ${task.name}" }
+                            player["task"] = true
+                            task.spaces--
+                            scope.launch {
+                                task.block.invoke(bot)
+                                player.clear("task")
+                                task.spaces++
                             }
                         }
+                    }
+                    launch(Contexts.Updating) {
                         val events: MutableList<Event> = player["events"]
                         val iterator = events.iterator()
                         while (iterator.hasNext()) {

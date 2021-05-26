@@ -55,6 +55,8 @@ suspend fun Bot.goToArea(map: MapArea) {
     })
     if (result !is PathResult.Failure) {
         this["area"] = map
+    } else {
+        throw IllegalStateException("Failed to find path to ${map.name}")
     }
 }
 

@@ -11,7 +11,7 @@ data class Task(
     var spaces: Int = 1,
     val requirements: Collection<Bot.() -> Boolean> = emptySet()
 ) {
-    fun full() = spaces == 0
+    fun full() = spaces <= 0
 
     fun distanceTo(tile: Tile): Int {
         return if (area == null) 0 else tile.distanceTo(area.random())

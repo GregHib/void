@@ -17,7 +17,7 @@ lumbridge_west_trees:
   area:
     x: [ 3186, 3197 ]
     y: [ 3238, 3250 ]
-  tags: [ trees, regular, oak, spaces_2 ]
+  tags: [ trees, regular, oak ]
 lumbridge_east_trees:
   area:
     x: [ 3260, 3267 ]
@@ -40,11 +40,6 @@ lumbridge_castle_portcullis:
     y: [ 3212, 3225 ]
     plane: 2
   tags: [ high ]
-lumbridge_fishing_shop_trees:
-  area:
-    x: [ 3185, 3189 ]
-    y: [ 3247, 3257 ]
-  tags: [ trees, regular, oak ]
 drayor_willow_trees:
   area:
     x: [ 3083, 3090 ]

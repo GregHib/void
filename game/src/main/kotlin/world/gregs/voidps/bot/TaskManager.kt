@@ -31,7 +31,7 @@ class TaskManager {
                     await("tick")
                 }
             },
-            spaces = -1
+            spaces = Int.MAX_VALUE
         )
     }
 }

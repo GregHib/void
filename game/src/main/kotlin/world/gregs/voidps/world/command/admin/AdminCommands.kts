@@ -109,6 +109,19 @@ on<Command>({ prefix == "item" }) { player: Player ->
     println(player.inventory.result)
 }
 
+on<Command>({ prefix == "give" }) { player: Player ->
+    val parts = content.split(" ")
+    val id = definitions.getNameOrNull(parts.first().toIntOrNull() ?: -1) ?: parts.first().toLowerCase()
+    val amount = parts[1]
+    val name = content.removePrefix("${parts[0]} ${parts[1]} ")
+    val target = players.indexed.filterNotNull().firstOrNull { it.name == name }
+    if (target == null) {
+        player.message("Couldn't find player $target")
+    } else {
+        target.inventory.add(id, if (amount == "max") Int.MAX_VALUE else amount.toSILong().toInt())
+    }
+}
+
 on<Command>({ prefix == "find" }) { player: Player ->
     val items: ItemDefinitions = get()
     val search = content.toLowerCase()

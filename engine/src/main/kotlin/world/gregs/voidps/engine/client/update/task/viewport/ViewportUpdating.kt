@@ -28,9 +28,6 @@ class ViewportUpdating : Runnable {
                 launch(Contexts.Updating) {
                     gatherObjectsAndItems(player.tile, player.viewport)
                 }
-                if (player.client == null) {
-                    return@forEach
-                }
                 launch(Contexts.Updating) {
                     update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player)
                 }

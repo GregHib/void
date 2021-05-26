@@ -75,6 +75,8 @@ nodes:
       - &draynor-willow-trees [ 3086, 3237 ]
       - &draynor-south [ 3097, 3235 ]
       - &draynor-bank-trees [ 3099, 3246 ]
+      - &draynor-west-trees [ 3072, 3250 ]
+      - &draynor-north-trees [ 3079, 3265 ]
 edges:
   lumbridge:
     south-tower:
@@ -273,6 +275,10 @@ edges:
         to: *draynor-pigsty
       - from: *draynor-stalls
         to: *draynor-willow-trees
+      - from: *draynor-stalls
+        to: *draynor-west-trees
+      - from: *draynor-stalls
+        to: *draynor-north-trees
       - from: *draynor-bank
         to: *draynor-willow-trees
       - from: *draynor-willow-trees
