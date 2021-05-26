@@ -32,12 +32,10 @@ class ViewportUpdating : Runnable {
                     return@forEach
                 }
                 launch(Contexts.Updating) {
-                    update(player.tile, players, player.viewport.players,
-                        LOCAL_PLAYER_CAP, player)
+                    update(player.tile, players, player.viewport.players, LOCAL_PLAYER_CAP, player)
                 }
                 launch(Contexts.Updating) {
-                    update(player.tile, npcs, player.viewport.npcs,
-                        LOCAL_NPC_CAP, null)
+                    update(player.tile, npcs, player.viewport.npcs, LOCAL_NPC_CAP, null)
                 }
             }
         }
@@ -61,9 +59,7 @@ class ViewportUpdating : Runnable {
      * Updates [set] precisely for when local entities exceeds maximum stopping at [CharacterTrackingSet.maximum]
      */
     fun <T : Character> gatherByTile(tile: Tile, list: PooledMapList<T>, set: CharacterTrackingSet<T>, self: T?) {
-        Spiral.spiral(tile,
-            VIEW_RADIUS
-        ) { t ->
+        Spiral.spiral(tile, VIEW_RADIUS) { t ->
             val entities = list[t]
             if (entities != null && !set.track(entities, self)) {
                 return
@@ -116,6 +112,6 @@ class ViewportUpdating : Runnable {
 
         // View radius could be controlled per tracking set to give a nicer linear
         // expanding square when loading areas with more than max entities
-        const val VIEW_RADIUS = 15
+        const val VIEW_RADIUS = 20
     }
 }
