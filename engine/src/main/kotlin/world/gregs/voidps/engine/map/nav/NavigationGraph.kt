@@ -52,7 +52,7 @@ class NavigationGraph(
     }
 
     fun load(path: String = getProperty("navGraphPath")): NavigationGraph {
-        timedLoad("ai nav graph") {
+        timedLoad("ai nav graph edge") {
             val options = LoaderOptions()
             options.maxAliasesForCollections = Int.MAX_VALUE
             val yaml = Yaml(options)
@@ -60,8 +60,10 @@ class NavigationGraph(
             val data: Map<String, Any> = yaml.load(File(path).readText(Charsets.UTF_8))
             val edges = data["edges"] as Map<String, Any>
             val map = Object2ObjectOpenHashMap<Any, ObjectOpenHashSet<Edge>>()
+            var count = 0
             flatten("", edges) { path, edges ->
                 for (edge in edges) {
+                    count++
                     val start = toTile(edge["from"] as List<Int>)
                     val end = toTile(edge["to"] as List<Int>)
                     var cost = edge["cost"] as? Int ?: 0
@@ -81,7 +83,7 @@ class NavigationGraph(
             }
             this.adjacencyList = map
             tagAreas()
-            edges.size
+            count
         }
         return this
     }

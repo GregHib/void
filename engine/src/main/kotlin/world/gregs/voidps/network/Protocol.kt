@@ -66,7 +66,7 @@ object Protocol {
     const val SOUND_AREA = 5
     const val INTERFACE_COMPONENT_ORIENTATION = 88
     const val DYNAMIC_REGION = 70
-    const val MUSIC_EFFECT = 116
+    const val JINGLE = 116
 }
 
 val protocol: Map<Int, Decoder> = mapOf(

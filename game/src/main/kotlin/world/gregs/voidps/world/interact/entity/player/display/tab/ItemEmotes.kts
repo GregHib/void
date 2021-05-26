@@ -18,7 +18,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.equip.ContainerAction
-import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
 on<ContainerAction>({ item.name == "toy_kite" && option == "Fly" }) { player: Player ->
@@ -84,7 +84,7 @@ on<ContainerAction>({ container == "inventory" && item.name == "snow_globe" && o
     emote(player) {
         player.message("You shake the snow globe.")
         player.playAnimation("emote_shake_snow_globe")
-        player.playMusicEffect("harmony_snow_globe")
+        player.playJingle("harmony_snow_globe")
         player.dialogue {
             val result: Boolean = await("snow_globe")
             if (result) {

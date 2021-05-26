@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.skill.Leveled
 import world.gregs.voidps.engine.entity.character.player.skill.Skill.*
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 
 ListVariable(4757, Variable.Type.VARBIT, false, values = listOf(
     -1, Attack, Strength, Range, Magic, Defence, Constitution, Prayer, Agility, Herblore, Thieving, Crafting, Runecrafting, Mining,
@@ -25,7 +25,7 @@ on<Leveled>({ to > from }) { player: Player ->
             Hunter -> to.rem(2) == 0
             else -> true// TODO has unlocked something
         }
-        player.playMusicEffect("level_up_${skill.name.toLowerCase()}${if (unlock) "_unlock" else ""}", 0.5)
+        player.playJingle("level_up_${skill.name.toLowerCase()}${if (unlock) "_unlock" else ""}", 0.5)
         player.setGraphic("level_up")
         player.addVar("skill_stat_flash", skill)
         levelUp("""

@@ -3,8 +3,8 @@ package world.gregs.voidps.network.encode
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.network.*
+import world.gregs.voidps.network.Protocol.JINGLE
 import world.gregs.voidps.network.Protocol.MIDI_SOUND
-import world.gregs.voidps.network.Protocol.MUSIC_EFFECT
 import world.gregs.voidps.network.Protocol.PLAY_MUSIC
 import world.gregs.voidps.network.Protocol.SOUND_EFFECT
 
@@ -80,10 +80,10 @@ fun Client.areaSound(
     writeShort(speed)
 }
 
-fun Client.playMusicEffect(
+fun Client.playJingle(
     effect: Int,
     volume: Int = 255
-) = send(MUSIC_EFFECT) {
+) = send(JINGLE) {
     writeMedium(0)
     writeShortAddLittle(effect)
     writeByteInverse(volume)

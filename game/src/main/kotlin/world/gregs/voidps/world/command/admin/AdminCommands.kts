@@ -23,8 +23,8 @@ import world.gregs.voidps.engine.map.nav.NavigationGraph
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
-import world.gregs.voidps.network.encode.playMusicEffect
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
@@ -37,8 +37,8 @@ import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
 import world.gregs.voidps.world.interact.entity.player.music.playTrack
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
-import world.gregs.voidps.world.interact.entity.sound.playMusicEffect
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.Stairs
 
@@ -204,12 +204,12 @@ on<Command>({ prefix == "midi" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "music" }) { player: Player ->
+on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMusicEffect(content.replace(" ", "_"))
+        player.playJingle(content.replace(" ", "_"))
     } else {
-        player.client?.playMusicEffect(id)
+        player.client?.playJingle(id)
     }
 }
 
@@ -267,7 +267,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "item defs" -> get<ItemDefinitions>().load()
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
-        "music", "music effects" -> get<MusicEffectDefinitions>().load()
+        "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
     }
     if (reloadRegions) {
         val regions: RegionReader = get()
