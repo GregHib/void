@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.client.update.task.viewport
 
+import world.gregs.voidps.engine.client.update.task.viewport.ViewportUpdating.Companion.VIEW_RADIUS
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
@@ -8,7 +9,7 @@ object Spiral {
     val STEPS: Array<Array<IntArray>>
 
     init {
-        STEPS = (0..15).map {
+        STEPS = (0..VIEW_RADIUS).map {
             outwards(it)
         }.toTypedArray()
     }
