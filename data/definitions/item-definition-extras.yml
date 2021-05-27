@@ -25389,7 +25389,7 @@ crumbling_tome:
   aka: "Legend of the Brothers"
   examine: "This book must be really old!"
   kept: "Reclaim"
-ahrims_hood_new:
+ahrims_hood:
   id: 4708
   price: 73000
   limit: 10
@@ -25407,7 +25407,7 @@ ahrims_hood_new:
   examine: "Ahrim The Blighted's Hood."
 ahrims_hood_noted:
   id: 4709
-ahrims_staff_new:
+ahrims_staff:
   id: 4710
   price: 131900
   limit: 10
@@ -25426,7 +25426,7 @@ ahrims_staff_new:
   examine: "Ahrim the Blighted's quarterstaff."
 ahrims_staff_noted:
   id: 4711
-ahrims_robe_top_new:
+ahrims_robe_top:
   id: 4712
   price: 1300000
   limit: 10
@@ -25443,7 +25443,7 @@ ahrims_robe_top_new:
   examine: "Ahrim the Blighted's armoured robe top."
 ahrims_robe_top_noted:
   id: 4713
-ahrims_robe_skirt_new:
+ahrims_robe_skirt:
   id: 4714
   price: 2200000
   limit: 10
@@ -25460,7 +25460,7 @@ ahrims_robe_skirt_new:
   examine: "Ahrim the Blighted's armoured robe skirt."
 ahrims_robe_skirt_noted:
   id: 4715
-dharoks_helm_new:
+dharoks_helm:
   id: 4716
   price: 3000000
   limit: 10
@@ -25479,7 +25479,7 @@ dharoks_helm_new:
   examine: "Dharok The Wretched's Helmet"
 dharoks_helm_noted:
   id: 4717
-dharoks_greataxe_new:
+dharoks_greataxe:
   id: 4718
   price: 711400
   limit: 10
@@ -25516,7 +25516,7 @@ dharoks_platebody:
   kept: "Reclaim"
 dharoks_platebody_noted:
   id: 4721
-dharoks_platelegs_new:
+dharoks_platelegs:
   id: 4722
   price: 1100000
   limit: 10
@@ -25535,7 +25535,7 @@ dharoks_platelegs_new:
   examine: "Dharok the wretched's plate leg armour."
 dharoks_platelegs_noted:
   id: 4723
-guthans_helm_new:
+guthans_helm:
   id: 4724
   price: 714000
   limit: 10
@@ -25555,7 +25555,7 @@ guthans_helm_new:
   examine: "Guthan the Infested's helm."
 guthans_helm_noted:
   id: 4725
-guthans_warspear_new:
+guthans_warspear:
   id: 4726
   price: 646600
   limit: 10
@@ -25571,7 +25571,7 @@ guthans_warspear_new:
   examine: "Guthan The Infested's Warspear."
 guthans_warspear_noted:
   id: 4727
-guthans_platebody_new:
+guthans_platebody:
   id: 4728
   price: 440600
   limit: 10
@@ -25591,7 +25591,7 @@ guthans_platebody_new:
   examine: "Guthan the Infested's platebody armour."
 guthans_platebody_noted:
   id: 4729
-guthans_chainskirt_new:
+guthans_chainskirt:
   id: 4730
   price: 269100
   limit: 10
@@ -25610,7 +25610,7 @@ guthans_chainskirt_new:
   examine: "Guthan the Infested's chainskirt."
 guthans_chainskirt_noted:
   id: 4731
-karils_coif_new:
+karils_coif:
   id: 4732
   price: 33600
   limit: 10
@@ -25630,7 +25630,7 @@ karils_coif_new:
   examine: "Karil the Tainted's coif."
 karils_coif_noted:
   id: 4733
-karils_crossbow_new:
+karils_crossbow:
   id: 4734
   price: 179700
   limit: 10
@@ -25640,7 +25640,7 @@ karils_crossbow_new:
   examine: "Karil the Tainted's repeating crossbow."
 karils_crossbow_noted:
   id: 4735
-karils_top_new:
+karils_top:
   id: 4736
   price: 3900000
   limit: 10
@@ -25659,7 +25659,7 @@ karils_top_new:
   examine: "Karil the Tainted's leatherbody."
 karils_top_noted:
   id: 4737
-karils_skirt_new:
+karils_skirt:
   id: 4738
   price: 428700
   limit: 10
@@ -25686,7 +25686,7 @@ bolt_rack:
   slot: "Arrows"
   material: "metal"
   examine: "Must need a special type of crossbow to use this."
-torags_helm_new:
+torags_helm:
   id: 4745
   price: 217684
   limit: 10
@@ -25706,7 +25706,7 @@ torags_helm_new:
   examine: "Torag the Corrupted's helm."
 torags_helm_noted:
   id: 4746
-torags_hammers_new:
+torags_hammers:
   id: 4747
   price: 99900
   limit: 10
@@ -25720,7 +25720,7 @@ torags_hammers_new:
   examine: "Torag the Corrupted's twin hammers."
 torags_hammers_noted:
   id: 4748
-torags_platebody_new:
+torags_platebody:
   id: 4749
   price: 524300
   limit: 10
@@ -25739,7 +25739,7 @@ torags_platebody_new:
   examine: "Torag the Corrupted's plate body armour."
 torags_platebody_noted:
   id: 4750
-torags_platelegs_new:
+torags_platelegs:
   id: 4751
   price: 640500
   limit: 10
@@ -25758,7 +25758,7 @@ torags_platelegs_new:
   examine: "Torag the Corrupted's plate leg armour."
 torags_platelegs_noted:
   id: 4752
-veracs_helm_new:
+veracs_helm:
   id: 4753
   price: 1800000
   limit: 10
@@ -25778,7 +25778,7 @@ veracs_helm_new:
   examine: "Verac the Defiled's helm."
 veracs_helm_noted:
   id: 4754
-veracs_flail_new:
+veracs_flail:
   id: 4755
   price: 161600
   limit: 10
@@ -25792,7 +25792,7 @@ veracs_flail_new:
   examine: "Verac the Defiled's Flail."
 veracs_flail_noted:
   id: 4756
-veracs_brassard_new:
+veracs_brassard:
   id: 4757
   price: 286600
   limit: 10
@@ -25811,7 +25811,7 @@ veracs_brassard_new:
   examine: "Verac The Defiled's Brassard."
 veracs_brassard_noted:
   id: 4758
-veracs_plateskirt_new:
+veracs_plateskirt:
   id: 4759
   price: 679400
   limit: 10
@@ -61013,7 +61013,7 @@ impling_scroll:
   examine: "Lets you easily identify your prey."
   kept: "Vanish"
   use: "Removed"
-ham_shirt:
+ham_shirt_2:
   id: 11274
   limit: 100
   slash_def: 2.0
@@ -71220,7 +71220,7 @@ worn-out_steel_gauntlets:
   examine: "I have to keep my hands safe!"
 worn-out_steel_gauntlets_noted:
   id: 12993
-black_gauntlets_new:
+black_gauntlets:
   id: 12994
   limit: 10
   stab_def: 5.0
@@ -71348,7 +71348,7 @@ worn-out_rune_gauntlets:
   examine: "A bit worse for wear"
 worn-out_rune_gauntlets_noted:
   id: 13005
-dragon_gauntlets_new:
+dragon_gauntlets:
   id: 13006
   limit: 10
   str: 3.0
@@ -76100,7 +76100,7 @@ brawling_gloves_cooking:
   destroy: "Your brawling gloves are fragile and will disappear if you drop them. Are you sure you want to drop them?"
   examine: "A pair of gloves that gives you bonus Cooking xp."
   kept: "Vanish"
-zuriels_robe_top_new:
+zuriels_robe_top:
   id: 13858
   price: 1200000
   limit: 10
@@ -76132,7 +76132,7 @@ zuriels_robe_top_degraded:
   summoning_def: 60.0
   slot: "Chest"
   examine: "This item degrades in combat, and will turn to dust."
-zuriels_robe_bottom_new:
+zuriels_robe_bottom:
   id: 13861
   price: 571100
   limit: 10
@@ -76164,7 +76164,7 @@ zuriels_robe_bottom_degraded:
   summoning_def: 30.0
   slot: "Legs"
   examine: "This item degrades in combat, and will turn to dust."
-zuriels_hood_new:
+zuriels_hood:
   id: 13864
   price: 219900
   limit: 10
@@ -76198,7 +76198,7 @@ zuriels_hood_degraded:
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades in combat, and will turn to dust."
-zuriels_staff_new:
+zuriels_staff:
   id: 13867
   price: 2500000
   limit: 10
@@ -76232,7 +76232,7 @@ zuriels_staff_degraded:
   magic_def: 18.0
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
-morrigans_leather_body_new:
+morrigans_leather_body:
   id: 13870
   price: 1800000
   limit: 10
@@ -76270,7 +76270,7 @@ morrigans_leather_body_degraded:
   material: "leather"
   examine: "This item degrades in combat, and will turn to dust."
   destroy2: "Destroy, Your leather body is fragile and will disappear if you drop it. Are you sure you want to drop it?"
-morrigans_leather_chaps_new:
+morrigans_leather_chaps:
   id: 13873
   price: 410200
   limit: 10
@@ -76306,7 +76306,7 @@ morrigans_leather_chaps_degraded:
   slot: "Legs"
   material: "leather"
   examine: "This item degrades in combat, and will turn to dust."
-morrigans_coif_new:
+morrigans_coif:
   id: 13876
   price: 156300
   limit: 10
@@ -76381,7 +76381,7 @@ morrigans_throwing_axe:
   range_str: 117.0
   slot: "Weapon"
   examine: "A vicious throwing axe."
-statiuss_platebody_new:
+statiuss_platebody:
   id: 13884
   price: 6000000
   limit: 10
@@ -76425,7 +76425,7 @@ statiuss_platebody_degraded:
   slot: "Chest"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
-vestas_chainbody_new:
+vestas_chainbody:
   id: 13887
   price: 9600000
   limit: 10
@@ -76469,7 +76469,7 @@ vestas_chainbody_degraded:
   material: "metal"
   type: "Sleeveless"
   examine: "This item degrades in combat, and will turn to dust."
-statiuss_platelegs_new:
+statiuss_platelegs:
   id: 13890
   price: 5400000
   limit: 10
@@ -76513,7 +76513,7 @@ statiuss_platelegs_degraded:
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
-vestas_plateskirt_new:
+vestas_plateskirt:
   id: 13893
   price: 6200000
   limit: 10
@@ -76557,7 +76557,7 @@ vestas_plateskirt_degraded:
   slot: "Legs"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
-statiuss_full_helm_new:
+statiuss_full_helm:
   id: 13896
   price: 2200000
   limit: 10
@@ -76603,7 +76603,7 @@ statiuss_full_helm_degraded:
   material: "metal"
   type: "Hair"
   examine: "This item degrades in combat, and will turn to dust."
-vestas_longsword_new:
+vestas_longsword:
   id: 13899
   price: 38300000
   limit: 10
@@ -76633,7 +76633,7 @@ vestas_longsword_degraded:
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades in combat, and will turn to dust."
-statiuss_warhammer_new:
+statiuss_warhammer:
   id: 13902
   price: 17300000
   limit: 10
@@ -76655,7 +76655,7 @@ statiuss_warhammer_degraded:
   crush: 123.0
   slot: "Weapon"
   examine: "This item degrades in combat, and will turn to dust."
-vestas_spear_new:
+vestas_spear:
   id: 13905
   price: 4100000
   limit: 10
@@ -76685,7 +76685,7 @@ vestas_spear_degraded:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades in combat, and will turn to dust."
-corrupt_statiuss_platebody_new:
+corrupt_statiuss_platebody:
   id: 13908
   price: 5200000
   limit: 10
@@ -76729,7 +76729,7 @@ corrupt_statiuss_platebody_degraded:
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_vestas_chainbody_new:
+corrupt_vestas_chainbody:
   id: 13911
   price: 7600000
   limit: 10
@@ -76773,7 +76773,7 @@ corrupt_vestas_chainbody_degraded:
   material: "metal"
   type: "Sleeveless"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_statiuss_platelegs_new:
+corrupt_statiuss_platelegs:
   id: 13914
   price: 5200000
   limit: 10
@@ -76817,7 +76817,7 @@ corrupt_statiuss_platelegs_degraded:
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_vestas_plateskirt_new:
+corrupt_vestas_plateskirt:
   id: 13917
   price: 5500000
   limit: 10
@@ -76861,7 +76861,7 @@ corrupt_vestas_plateskirt_degraded:
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_statiuss_full_helm_new:
+corrupt_statiuss_full_helm:
   id: 13920
   price: 1700000
   limit: 10
@@ -76907,7 +76907,7 @@ corrupt_statiuss_full_helm_degraded:
   material: "metal"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_vestas_longsword_new:
+corrupt_vestas_longsword:
   id: 13923
   price: 9500000
   limit: 10
@@ -76937,7 +76937,7 @@ corrupt_vestas_longsword_degraded:
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_statiuss_warhammer_new:
+corrupt_statiuss_warhammer:
   id: 13926
   price: 6100000
   limit: 10
@@ -76959,7 +76959,7 @@ corrupt_statiuss_warhammer_degraded:
   crush: 123.0
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_vestas_spear_new:
+corrupt_vestas_spear:
   id: 13929
   price: 1100000
   limit: 10
@@ -76989,7 +76989,7 @@ corrupt_vestas_spear_degraded:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_zuriels_robe_top_new:
+corrupt_zuriels_robe_top:
   id: 13932
   price: 467200
   limit: 10
@@ -77021,7 +77021,7 @@ corrupt_zuriels_robe_top_degraded:
   summoning_def: 60.0
   slot: "Chest"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_zuriels_robe_bottom_new:
+corrupt_zuriels_robe_bottom:
   id: 13935
   price: 370700
   limit: 10
@@ -77053,7 +77053,7 @@ corrupt_zuriels_robe_bottom_degraded:
   summoning_def: 30.0
   slot: "Legs"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_zuriels_hood_new:
+corrupt_zuriels_hood:
   id: 13938
   price: 137400
   limit: 10
@@ -77087,7 +77087,7 @@ corrupt_zuriels_hood_degraded:
   slot: "Hat"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_zuriels_staff_new:
+corrupt_zuriels_staff:
   id: 13941
   price: 1400000
   limit: 10
@@ -77121,7 +77121,7 @@ corrupt_zuriels_staff_degraded:
   magic_def: 18.0
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_morrigans_leather_body_new:
+corrupt_morrigans_leather_body:
   id: 13944
   price: 1000000
   limit: 10
@@ -77157,7 +77157,7 @@ corrupt_morrigans_leather_body_degraded:
   slot: "Chest"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_morrigans_leather_chaps_new:
+corrupt_morrigans_leather_chaps:
   id: 13947
   price: 203000
   limit: 10
@@ -77193,7 +77193,7 @@ corrupt_morrigans_leather_chaps_degraded:
   slot: "Legs"
   material: "leather"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_morrigans_coif_new:
+corrupt_morrigans_coif:
   id: 13950
   price: 121300
   limit: 10
@@ -77268,7 +77268,7 @@ corrupt_morrigans_throwing_axe:
   range_str: 117.0
   slot: "Weapon"
   examine: "A vicious throwing axe."
-corrupt_dragon_chainbody_new:
+corrupt_dragon_chainbody:
   id: 13958
   price: 355300
   limit: 10
@@ -77302,7 +77302,7 @@ corrupt_dragon_chainbody_degraded:
   slot: "Chest"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_helm_new:
+corrupt_dragon_helm:
   id: 13961
   price: 103800
   limit: 10
@@ -77340,7 +77340,7 @@ corrupt_dragon_helm_degraded:
   material: "metal"
   type: "Hair"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_sq_shield_new:
+corrupt_dragon_sq_shield:
   id: 13964
   price: 210600
   limit: 10
@@ -77374,7 +77374,7 @@ corrupt_dragon_sq_shield_degraded:
   slot: "Shield"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_plateskirt_new:
+corrupt_dragon_plateskirt:
   id: 13967
   price: 91900
   limit: 10
@@ -77412,7 +77412,7 @@ corrupt_dragon_plateskirt_degraded:
   material: "metal"
   destroy: "Destroy"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_platelegs_new:
+corrupt_dragon_platelegs:
   id: 13970
   price: 120500
   limit: 10
@@ -77448,7 +77448,7 @@ corrupt_dragon_platelegs_degraded:
   slot: "Legs"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_battleaxe_new:
+corrupt_dragon_battleaxe:
   id: 13973
   price: 2600000
   limit: 10
@@ -77474,7 +77474,7 @@ corrupt_dragon_battleaxe_degraded:
   range_def: -1.0
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_dagger_new:
+corrupt_dragon_dagger:
   id: 13976
   price: 66700
   limit: 10
@@ -77503,7 +77503,7 @@ corrupt_dragon_dagger_degraded:
   material: "metal"
   destroy: "Your dagger is fragile and will disappear if you drop it. Are you sure you want to drop it?"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_scimitar_new:
+corrupt_dragon_scimitar:
   id: 13979
   price: 2899454
   limit: 10
@@ -77530,7 +77530,7 @@ corrupt_dragon_scimitar_degraded:
   material: "metal"
   destroy: "Your scimitar is fragile and will disappear if you drop it. Are you sure you want to drop it?"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_longsword_new:
+corrupt_dragon_longsword:
   id: 13982
   price: 979900
   limit: 10
@@ -77560,7 +77560,7 @@ corrupt_dragon_longsword_degraded:
   slot: "Weapon"
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_mace_new:
+corrupt_dragon_mace:
   id: 13985
   price: 150300
   limit: 10
@@ -77586,7 +77586,7 @@ corrupt_dragon_mace_degraded:
   magic: 1.0
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
-corrupt_dragon_spear_new:
+corrupt_dragon_spear:
   id: 13988
   price: 104600
   limit: 10
@@ -104292,7 +104292,7 @@ mercenarys_gloves:
   kept: "Reclaim"
 dungeoneering_experience:
   id: 18348
-chaotic_rapier_new:
+chaotic_rapier:
   id: 18349
   bank_stacks: false
   str: 101.0
@@ -104313,7 +104313,7 @@ chaotic_rapier_broken:
   crush_def: 1.0
   slot: "Weapon"
   examine: "A razor-sharp rapier. It doesn't look in good condition."
-chaotic_longsword_new:
+chaotic_longsword:
   id: 18351
   bank_stacks: false
   str: 120.0
@@ -104336,7 +104336,7 @@ chaotic_longsword_broken:
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword. It doesn't look in good condition."
-chaotic_maul_new:
+chaotic_maul:
   id: 18353
   bank_stacks: false
   str: 155.0
@@ -104355,7 +104355,7 @@ chaotic_maul_broken:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A massive maul. It doesn't look in good condition."
-chaotic_staff_new:
+chaotic_staff:
   id: 18355
   magic_damage: 20
   bank_stacks: false
@@ -104382,7 +104382,7 @@ chaotic_staff_broken:
   magic_def: 18.0
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful. It doesn't look in good condition."
-chaotic_crossbow_new:
+chaotic_crossbow:
   id: 18357
   bank_stacks: false
   range: 120.0
@@ -104393,7 +104393,7 @@ chaotic_crossbow_broken:
   range: 120.0
   slot: "Weapon"
   examine: "A small crossbow, only effective at short distance. It doesn't look in good condition."
-chaotic_kiteshield_new:
+chaotic_kiteshield:
   id: 18359
   absorb_melee: 7
   absorb_range: 14
@@ -104424,7 +104424,7 @@ chaotic_kiteshield_broken:
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-eagle-eye_kiteshield_new:
+eagle-eye_kiteshield:
   id: 18361
   absorb_magic: 14
   absorb_range: 7
@@ -104457,7 +104457,7 @@ eagle-eye_kiteshield_broken:
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-farseer_kiteshield_new:
+farseer_kiteshield:
   id: 18363
   absorb_melee: 14
   absorb_magic: 7
@@ -104486,7 +104486,7 @@ farseer_kiteshield_broken:
   slot: "Shield"
   material: "metal"
   examine: "A large metal shield. It doesn't look in good condition."
-gravite_rapier_new:
+gravite_rapier:
   id: 18365
   bank_stacks: false
   str: 48.0
@@ -104505,7 +104505,7 @@ gravite_rapier_broken:
   slash_def: 1.0
   slot: "Weapon"
   examine: "A razor-sharp rapier. It doesn't look in good condition."
-gravite_longsword_new:
+gravite_longsword:
   id: 18367
   bank_stacks: false
   str: 54.5
@@ -104528,7 +104528,7 @@ gravite_longsword_broken:
   slot: "Weapon"
   material: "metal"
   examine: "A razor-sharp longsword. It doesn't look in good condition."
-gravite_2h_sword_new:
+gravite_2h_sword:
   id: 18369
   bank_stacks: false
   str: 90.0
@@ -104553,7 +104553,7 @@ gravite_2h_sword_broken:
   material: "metal"
   type: "TwoHanded"
   examine: "A two-handed sword, it doesn't look in good condition."
-gravite_staff_new:
+gravite_staff:
   id: 18371
   magic_damage: 5
   bank_stacks: false
@@ -104582,7 +104582,7 @@ gravite_staff_broken:
   magic_def: 15.0
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful. It doesn't look in good condition."
-gravite_shortbow_new:
+gravite_shortbow:
   id: 18373
   bank_stacks: false
   range: 47.0
@@ -113926,7 +113926,7 @@ ancient_ceremonial_boots:
   examine: "Ceremonial boots dedicated to an ancient god."
 ancient_ceremonial_boots_noted:
   id: 20134
-torva_full_helm_new:
+torva_full_helm:
   id: 20135
   price: 204000000
   limit: 2
@@ -113988,7 +113988,7 @@ torva_full_helm_broken:
   material: "metal"
   type: "FullFace"
   examine: "A broken ancient warrior's full helm."
-torva_platebody_new:
+torva_platebody:
   id: 20139
   price: 366000000
   limit: 2
@@ -114047,7 +114047,7 @@ torva_platebody_broken:
   slot: "Chest"
   material: "metal"
   examine: "A broken ancient warrior's platebody."
-torva_platelegs_new:
+torva_platelegs:
   id: 20143
   price: 378300000
   limit: 2
@@ -114106,7 +114106,7 @@ torva_platelegs_broken:
   slot: "Legs"
   material: "metal"
   examine: "A broken ancient warrior's platelegs."
-pernix_cowl_new:
+pernix_cowl:
   id: 20147
   price: 108200000
   limit: 2
@@ -114174,7 +114174,7 @@ pernix_cowl_broken:
   material: "leather"
   type: "FullFace"
   examine: "A broken ancient ranger's cowl."
-pernix_body_new:
+pernix_body:
   id: 20151
   price: 566700000
   limit: 2
@@ -114239,7 +114239,7 @@ pernix_body_broken:
   slot: "Chest"
   material: "leather"
   examine: "A broken ancient ranger's body armour."
-pernix_chaps_new:
+pernix_chaps:
   id: 20155
   price: 317100000
   limit: 2
@@ -114304,7 +114304,7 @@ pernix_chaps_broken:
   slot: "Legs"
   material: "leather"
   examine: "A broken ancient ranger's chaps."
-virtus_mask_new:
+virtus_mask:
   id: 20159
   price: 50400000
   limit: 2
@@ -114360,7 +114360,7 @@ virtus_mask_broken:
   slot: "Hat"
   type: "FullFace"
   examine: "A broken ancient mage's mask."
-virtus_robe_top_new:
+virtus_robe_top:
   id: 20163
   price: 190200000
   limit: 2
@@ -114410,7 +114410,7 @@ virtus_robe_top_broken:
   summoning_def: 65.0
   slot: "Chest"
   examine: "A broken ancient mage's robe top."
-virtus_robe_legs_new:
+virtus_robe_legs:
   id: 20167
   price: 116200000
   limit: 2
@@ -114460,7 +114460,7 @@ virtus_robe_legs_broken:
   summoning_def: 32.0
   slot: "Legs"
   examine: "A broken ancient mage's robe legs."
-zaryte_bow_new:
+zaryte_bow:
   id: 20171
   price: 108200000
   limit: 2
