@@ -38,11 +38,11 @@ object AnimationNames {
             if(render != null) {
                 map.getOrPut(render) { mutableListOf() }.add(id)
             }
-            if (def.leftHand != -1) {
-                map.getOrPut(toIdentifier(itemDecoder.get(def.leftHand).name)) { mutableListOf() }.add(id)
+            if (def.leftHandItem != -1) {
+                map.getOrPut(toIdentifier(itemDecoder.get(def.leftHandItem).name)) { mutableListOf() }.add(id)
             }
-            if (def.rightHand != -1) {
-                map.getOrPut(toIdentifier(itemDecoder.get(def.rightHand).name)) { mutableListOf() }.add(id)
+            if (def.rightHandItem != -1) {
+                map.getOrPut(toIdentifier(itemDecoder.get(def.rightHandItem).name)) { mutableListOf() }.add(id)
             }
         }
 

@@ -38,8 +38,8 @@ class AnimationDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
                 }
             }
             5 -> priority = buffer.readUnsignedByte()
-            6 -> leftHand = buffer.readShort()
-            7 -> rightHand = buffer.readShort()
+            6 -> leftHandItem = buffer.readShort()
+            7 -> rightHandItem = buffer.readShort()
             8 -> maxLoops = buffer.readUnsignedByte()
             9 -> animatingPrecedence = buffer.readUnsignedByte()
             10 -> walkingPrecedence = buffer.readUnsignedByte()
