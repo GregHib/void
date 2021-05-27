@@ -9916,7 +9916,7 @@ dragonstone_amulet:
   examine: "I wonder if I can get this enchanted."
 dragonstone_ammy_noted_2:
   id: 1703
-amulet_of_glory_0:
+amulet_of_glory:
   id: 1704
   price: 33500
   limit: 100
@@ -14097,7 +14097,7 @@ ring_of_life:
   examine: "An enchanted ring."
 ring_of_life_noted:
   id: 2571
-ring_of_wealth_0:
+ring_of_wealth:
   id: 2572
   price: 28700
   limit: 500
@@ -16003,7 +16003,7 @@ ogre_arrow:
   range_str: 22.0
   slot: "Arrows"
   examine: "A large ogre arrow with a bone tip."
-ogre_bellows_0:
+ogre_bellows:
   id: 2871
   examine: "A large pair of ogre bellows."
 ogre_bellows_3:
@@ -20054,7 +20054,7 @@ lyre:
   slot: "Weapon"
   examine: "It's a musical instrument that I don't know how to play."
   kept: "Reclaim"
-enchanted_lyre_0:
+enchanted_lyre:
   id: 3690
   slot: "Weapon"
   examine: "A musical instrument that I can magically play."
@@ -28767,7 +28767,7 @@ secateurs:
   kept: "Wilderness"
 secateurs_noted:
   id: 5330
-watering_can_0:
+watering_can:
   id: 5331
   price: 481
   limit: 100
@@ -33358,7 +33358,7 @@ broodoo_shield_green_1:
   examine: "A scary broodoo shield."
 broodoo_shield_1_noted:
   id: 6234
-broodoo_shield_green_0:
+broodoo_shield_green:
   id: 6235
   price: 1907
   limit: 100
@@ -33537,7 +33537,7 @@ broodoo_shield_orange_1:
   examine: "A scary broodoo shield."
 broodoo_shield_1_noted_2:
   id: 6256
-broodoo_shield_orange_0:
+broodoo_shield_orange:
   id: 6257
   price: 3396
   limit: 100
@@ -33716,7 +33716,7 @@ broodoo_shield_blue_1:
   examine: "A scary broodoo shield."
 broodoo_shield_1_noted_3:
   id: 6278
-broodoo_shield_blue_0:
+broodoo_shield_blue:
   id: 6279
   price: 3950
   limit: 100
@@ -36476,7 +36476,7 @@ lamp_spirits_of_the_elid:
   examine: "Ooh a nice shiny lamp."
   use: "Quest"
   kept: "Reclaim"
-watering_can:
+watering_can_0:
   id: 6797
   limit: 100
   tradeable: false
@@ -44367,7 +44367,7 @@ anti-dragon_shield_2:
   magic_def: 2.0
   range_def: 8.0
   examine: "This provides partial protection from dragonbreath attacks."
-amulet_of_glory:
+amulet_of_glory_mounted:
   id: 8283
   limit: 100
   prayer: 3
@@ -47110,7 +47110,7 @@ black_mask_1:
   examine: "A magic cave horror mask."
 black_mask_1_noted:
   id: 8920
-black_mask_0:
+black_mask:
   id: 8921
   price: 323300
   limit: 10
@@ -47858,7 +47858,7 @@ pharaohs_sceptre_1:
   destroy: "No"
 pharaohs_sceptre_1_noted:
   id: 9049
-pharaohs_sceptre_0:
+pharaohs_sceptre:
   id: 9050
   price: 973636
   limit: 10
@@ -54494,7 +54494,7 @@ amulet_of_glory_t_1:
   examine: "A very powerful dragonstone amulet."
 amulet_of_glory_t1_noted:
   id: 10361
-amulet_of_glory_t_0:
+amulet_of_glory_t:
   id: 10362
   price: 297000
   limit: 2
@@ -55638,7 +55638,7 @@ healing_vial_2:
 healing_vial_1:
   id: 10545
   examine: "A quarter-full healing vial."
-healing_vial_0:
+healing_vial:
   id: 10546
   examine: "An empty healing vial."
 healer_hat:
@@ -57616,7 +57616,7 @@ bob_shirt_5:
   id: 10718
   slot: "Chest"
   examine: "See table"
-amulet_of_glory_t:
+amulet_of_glory_t_0:
   id: 10719
   limit: 2
   prayer: 3
@@ -60134,7 +60134,7 @@ skills_necklace_1:
   examine: "This will help me travel."
 skills_necklace_1_noted:
   id: 11112
-skills_necklace_0:
+skills_necklace:
   id: 11113
   price: 18800
   limit: 500
@@ -60228,7 +60228,7 @@ combat_bracelet_1:
   examine: "A handy way to get around."
 combat_bracelet_1_noted:
   id: 11125
-combat_bracelet_0:
+combat_bracelet:
   id: 11126
   price: 30600
   limit: 500
@@ -82293,7 +82293,7 @@ unfinished_net:
   weight: 0.623
   examine: "A strong net with no closing wire."
   kept: "Reclaim"
-seaweed_net_0:
+seaweed_net:
   id: 14859
   price: 66
   examine: "A sturdy net with closing wire."
