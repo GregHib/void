@@ -17,7 +17,7 @@ val cacheModule = module {
 val cacheDefinitionModule = module {
     single { AnimationDecoder(get()) }
     single { BodyDecoder(get()) }
-    single { ClientScriptDecoder(get()) }
+    single { ClientScriptDecoder(get(), revision634 = true) }
     single { EnumDecoder(get()) }
     single { GraphicDecoder(get()) }
     single { InterfaceDecoder(get()) }
