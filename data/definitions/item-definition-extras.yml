@@ -25509,7 +25509,6 @@ dharoks_platebody:
   crush_def: 107.0
   magic_def: -6.0
   range_def: 132.0
-  weight2: 0.0
   summoning_def: 60.0
   slot: "Chest"
   material: "metal"
@@ -26581,7 +26580,6 @@ dharoks_greataxe_0:
   crush: 95.0
   magic: -4.0
   range_def: -1.0
-  weight2: 0.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Dharok the Wretched's greataxe."
@@ -29146,7 +29144,6 @@ empty_sack_noted:
 potatoes_1:
   id: 5420
   weight: 0.907
-  weight10: 4.989
   examine: "There is 1 potato in this sack."
 potatoes_1_noted:
   id: 5421
@@ -29208,7 +29205,6 @@ potatoes_10_noted:
 onions_1:
   id: 5440
   weight: 0.907
-  weight10: 4.989
   examine: "There is 1 onion in this sack."
 onions_1_noted:
   id: 5441
@@ -29270,7 +29266,6 @@ onions_10_noted:
 cabbages_sack_1:
   id: 5460
   weight: 0.907
-  weight10: 4.989
   examine: "There is 1 cabbage in this sack."
 cabbages_1_noted:
   id: 5461
@@ -36485,15 +36480,7 @@ watering_can:
   id: 6797
   limit: 100
   tradeable: false
-  weight1: 0.1
-  weight2: 0.2
-  weight3: 0.3
-  weight4: 0.4
-  weight5: 0.5
-  weight6: 0.6
-  weight7: 0.7
-  weight8: 0.8
-  weight9: 0.9
+  weight: 0.1
   examine: "See article"
   kept: "Wilderness"
 earth_warrior_champions_scroll:
@@ -36905,8 +36892,7 @@ puppet_box_2:
 bauble_box_2:
   id: 6855
   tradeable: false
-  weight1: 1.0
-  weight2: 2.0
+  weight: 2.0
   examine: "A box for storing painted baubles."
   kept: "Reclaim"
   use: "Removed"
@@ -56905,8 +56891,7 @@ spotted_cape_3:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  weight1: 0.453
-  weight2: -2.267
+  weight: -2.267
   slot: "Cape"
   examine: "A surprisingly aerodynamic cape."
   kept: "Reclaim"
@@ -56916,8 +56901,7 @@ spottier_cape_3:
   slash_def: 1.0
   crush_def: 1.0
   range_def: 2.0
-  weight1: 0.453
-  weight2: -4.535
+  weight: -4.535
   slot: "Cape"
   examine: "A really surprisingly aerodynamic cape."
   kept: "Reclaim"
@@ -80477,8 +80461,7 @@ elite_black_full_helm_lent:
 santa_costume_top_3:
   id: 14595
   tradeable: false
-  weight1: 0.001
-  weight2: 0.25
+  weight: 0.001
   slot: "Chest"
   destroy: "You can get another from Diango in Draynor Village."
   examine: "A red and jolly top."
@@ -113309,10 +113292,7 @@ zamoraks_favour_1:
   examine: "1 dose of Zamorak's favour."
 juju_hunter_potion_4_2:
   id: 20043
-  weight1: 0.02
-  weight2: 0.025
-  weight3: 0.03
-  weight4: 0.035
+  weight: 0.035
   examine: "X doses of juju hunter potion."
 witchdoctor_robes:
   id: 20044

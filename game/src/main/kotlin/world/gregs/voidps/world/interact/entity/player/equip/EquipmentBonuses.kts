@@ -64,7 +64,7 @@ on<InterfaceOpened>({ name == "equipment_side" }) { player: Player ->
 }
 
 on<InterfaceOption>({ it.equipping() && (name == "equipment_side" || name == "equipment_bonuses") && component == "container" && option == "Stats" }) { player: Player ->
-    showStats(player, definitions.get(name))
+    showStats(player, definitions.get(item.name))
 }
 
 /*
@@ -208,7 +208,7 @@ fun showStats(player: Player, item: ItemDefinition) {
             else -> item.attackSpeed().toString()
         })
     }
-    appendLine("weight", "${df.format(item["weight", 0.0])} kg")
+    appendLine("Weight", "${df.format(item["weight", 0.0])} kg")
 
     player.setVar("equipment_titles", titles.toString())
     player.setVar("equipment_names", types.toString())
