@@ -27,7 +27,7 @@ object ContainerConverter {
         println(koin.get<Cache>())
         var decoder = ContainerDecoder(koin.get())
 
-        val containers = (0 until decoder.size).map { it to decoder.getOrNull(it) }.toMap()
+        val containers = (0 until decoder.last).map { it to decoder.getOrNull(it) }.toMap()
 
         koin.unloadModules(listOf(cache718))
         koin.loadModules(listOf(cache667))
@@ -35,7 +35,7 @@ object ContainerConverter {
         val itemDecoder = ItemDecoder(koin.get())
         decoder = ContainerDecoder(koin.get())
         var counter = 0
-        for (i in 0 until decoder.size) {
+        for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i)
             val cont = containers[i]
             if(def == null || cont == null) {

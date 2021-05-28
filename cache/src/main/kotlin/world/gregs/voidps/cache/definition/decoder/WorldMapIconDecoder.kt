@@ -14,7 +14,7 @@ class WorldMapIconDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
 
     override fun getArchive(id: Int) = archive
 
-    override val size: Int
+    override val last: Int
         get() = cache.lastFileId(index, archive)
 
     override fun create() = WorldMapIconDefinition()

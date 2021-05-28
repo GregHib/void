@@ -13,7 +13,7 @@ class ItemEquipmentInfo(decoder: ItemDecoder, val cache: Cache) : Pipeline.Modif
     private val decoder718 = ItemDecoder718(cache)
     init {
         // Load equip slots and types
-        repeat(decoder718.size) { id ->
+        repeat(decoder718.last) { id ->
             decoder718.get(id)
         }
     }

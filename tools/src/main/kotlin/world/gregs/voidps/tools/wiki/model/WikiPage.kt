@@ -44,7 +44,7 @@ data class WikiPage(
 
     private fun getTemplate(arguments: WtTemplateArguments): Any {
         return if (arguments.any { it is WtTemplateArgument && it.hasName() }) {
-            arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[0] as WtName) to unwrapValue(arg[1] as WtValue) }
+            arguments.filterIsInstance<WtTemplateArgument>().associate { arg -> unwrap(arg[0] as WtName) to unwrapValue(arg[1] as WtValue) }
         } else {
             arguments.filterIsInstance<WtTemplateArgument>().map { arg -> unwrap(arg[1] as WtValue) }
         }

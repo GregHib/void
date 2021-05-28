@@ -12,7 +12,7 @@ class TextureDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<
 
     var metricsCount = 0
 
-    override val size: Int
+    override val last: Int
         get() = metricsCount
 
     init {

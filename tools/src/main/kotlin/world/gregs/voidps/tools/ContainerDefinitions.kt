@@ -14,8 +14,8 @@ object ContainerDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ContainerDecoder(koin.get())
-        println(decoder.size)
-        for (i in 0 until decoder.size) {
+        println(decoder.last)
+        for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
             println(def)
         }

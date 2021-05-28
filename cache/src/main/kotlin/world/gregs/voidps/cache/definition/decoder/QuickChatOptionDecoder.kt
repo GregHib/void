@@ -12,7 +12,7 @@ class QuickChatOptionDecoder(cache: world.gregs.voidps.cache.Cache) : Definition
 
     override fun getArchive(id: Int) = 0
 
-    override val size: Int
+    override val last: Int
         get() {
             val lastArchive = cache.lastArchiveId(index)
             val lastArchive2 = cache.lastArchiveId(QUICK_CHAT_MENUS)

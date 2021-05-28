@@ -7,7 +7,7 @@ import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
 class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
 
-    override val size: Int
+    override val last: Int
         get() = cache.lastArchiveId(index)
 
     override fun getFile(id: Int): Int {

@@ -15,7 +15,7 @@ object AnimationDefinitions {
         val decoder = AnimationDecoder(koin.get())
         var count = 0
         println(decoder.get(877))
-        for (i in 0 until decoder.size) {
+        for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
         }
         println(count)

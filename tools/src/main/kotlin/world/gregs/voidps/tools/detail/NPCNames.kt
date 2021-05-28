@@ -22,7 +22,7 @@ private class NPCNames(val decoder: NPCDecoder) : NameDumper() {
             val decoder = NPCDecoder(koin.get(), member = true)
             val loader: FileLoader = koin.get()
             val names = NPCNames(decoder)
-            names.dump(loader, "./npc-details.yml", "npc", decoder.size)
+            names.dump(loader, "./npc-details.yml", "npc", decoder.last)
         }
     }
 

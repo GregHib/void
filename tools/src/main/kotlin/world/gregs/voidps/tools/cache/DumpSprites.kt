@@ -16,9 +16,9 @@ object DumpSprites {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = SpriteDecoder(koin.get())
-        println(decoder.size)
+        println(decoder.last)
         File("./sprites/").mkdir()
-        repeat(decoder.size) { i ->
+        repeat(decoder.last) { i ->
             val def = decoder.getOrNull(i) ?: return@repeat
             println("Sprite $i ${def.sprites?.size}")
             val sprites = def.sprites ?: return@repeat

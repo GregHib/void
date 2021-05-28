@@ -107,7 +107,7 @@ internal object RunescapeWikiModifier {
             if (ids.isEmpty() && releasedBefore(properties, revision)) {
                 val name = properties["Name"] ?: ""
                 val found = mutableListOf<Int>()
-                repeat(decoder.size) { id ->
+                repeat(decoder.last) { id ->
                     if (output.containsKey(id)) {
                         return@repeat
                     }

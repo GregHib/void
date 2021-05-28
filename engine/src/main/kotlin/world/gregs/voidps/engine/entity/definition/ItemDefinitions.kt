@@ -18,7 +18,7 @@ class ItemDefinitions(
     override lateinit var names: Map<Int, String>
 
     private var equipmentCount = 0
-    private val equipmentIndices = (0 until decoder.size).associateWith {
+    private val equipmentIndices = (0 until decoder.last).associateWith {
         val def = decoder.getOrNull(it)
         if (def != null && (def.primaryMaleModel >= 0 || def.primaryFemaleModel >= 0)) {
             equipmentCount++

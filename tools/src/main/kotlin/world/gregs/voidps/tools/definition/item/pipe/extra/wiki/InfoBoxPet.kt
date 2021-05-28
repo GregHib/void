@@ -21,6 +21,10 @@ class InfoBoxPet : Pipeline.Modifier<Extras> {
         val templates = page?.getTemplateMaps("infobox pet")
         val template = templates?.firstOrNull { (it["itemid"] as? String)?.toIntOrNull() == id } ?: page?.getTemplateMap("infobox pet") ?: return
         template.forEach { (key, value) ->
+            if(value is ArrayList<*>) {
+                println("Unknown al $value")
+                return@forEach
+            }
             when (key) {
                 "growthtime" -> {
                     extras.putIfAbsent(key, (value as String).toIntOrNull() ?: 0)

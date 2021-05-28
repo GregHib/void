@@ -12,7 +12,7 @@ class InterfaceDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecode
 
     override fun create() = InterfaceDefinition()
 
-    override val size: Int
+    override val last: Int
         get() = cache.lastArchiveId(index)
 
     override fun readData(id: Int): InterfaceDefinition? {

@@ -15,8 +15,12 @@ class ItemExchangePrices(val wiki: Wiki) : Pipeline.Modifier<Extras> {
             when {
                 text.contains("exchangeitem", true) -> {
                     val map = page.getTemplateMap("exchangeitem") ?: return@forEach
-                    val id = (map["ItemId"] as String).toInt()
-                    itemIds[id] = page
+                    val id = (map["ItemId"] as? String)?.toInt()
+                    if (id == null) {
+                        println("Unknown id ${map["ItemId"]}")
+                    } else {
+                        itemIds[id] = page
+                    }
                 }
             }
         }

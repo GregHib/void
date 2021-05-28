@@ -16,8 +16,8 @@ object NPCDefinitions {
 
         val list = mutableListOf<NPCDefinition>()
         val decoder = NPCDecoder(koin.get(), false)
-        println(decoder.size)
-        for (i in 0 until decoder.size) {
+        println(decoder.last)
+        for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
             if (def.name.contains("gatekeeper", true)) {
                 println("$i ${def.name} ${def.modelIds?.toList()} ${def.options.toList()} ${def.modifiedColours?.toList()}")
