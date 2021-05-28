@@ -1387,7 +1387,7 @@ glarials_amulet:
   slot: "Amulet"
   examine: "A bright green gem set in a necklace."
   kept: "Wilderness"
-glarials_urn_full:
+glarials_urn:
   id: 296
   tradeable: false
   weight: 0.141
@@ -10930,7 +10930,7 @@ uncooked_cake:
   examine: "Now all I need to do is cook it."
 uncooked_cake_noted:
   id: 1890
-cake_full:
+cake:
   id: 1891
   price: 87
   limit: 1000
@@ -10952,7 +10952,7 @@ cake_slice:
   examine: "I'd rather have a whole cake."
 slice_of_cake_noted:
   id: 1896
-chocolate_cake_full:
+chocolate_cake:
   id: 1897
   price: 413
   limit: 1000
@@ -12608,7 +12608,7 @@ uncooked_pizza:
   examine: "This needs cooking."
 uncooked_pizza_noted:
   id: 2288
-plain_pizza_full:
+plain_pizza:
   id: 2289
   price: 410
   limit: 1000
@@ -12624,7 +12624,7 @@ plain_pizza_half:
   examine: "Half of this plain pizza has been eaten."
 "1_2_plain_pizza_noted":
   id: 2292
-meat_pizza_full:
+meat_pizza:
   id: 2293
   price: 385
   limit: 1000
@@ -12640,7 +12640,7 @@ meat_pizza_half:
   examine: "Half of this meat pizza has been eaten."
 "1_2_meat_pizza_noted":
   id: 2296
-anchovy_pizza_full:
+anchovy_pizza:
   id: 2297
   price: 488
   limit: 1000
@@ -12656,7 +12656,7 @@ anchovy_pizza_half:
   examine: "Half of this anchovy pizza has been eaten."
 "1_2_anchovy_pizza_noted":
   id: 2300
-pineapple_pizza_full:
+pineapple_pizza:
   id: 2301
   price: 709
   limit: 1000
@@ -12745,7 +12745,7 @@ uncooked_berry_pie:
   kept: "Wilderness"
 uncooked_berry_pie_noted:
   id: 2322
-apple_pie_full:
+apple_pie:
   id: 2323
   price: 104
   limit: 1000
@@ -12753,7 +12753,7 @@ apple_pie_full:
   examine: "Mmm Apple pie."
 apple_pie_noted:
   id: 2324
-redberry_pie_full:
+redberry_pie:
   id: 2325
   price: 436
   limit: 1000
@@ -12761,7 +12761,7 @@ redberry_pie_full:
   examine: "Looks tasty."
 redberry_pie_noted:
   id: 2326
-meat_pie_full:
+meat_pie:
   id: 2327
   price: 123
   limit: 1000
@@ -22540,7 +22540,7 @@ new_crystal_bow:
   weight: 1.8
 new_crystal_bow_noted:
   id: 4213
-crystal_bow_full:
+crystal_bow:
   id: 4214
   limit: 2
   range: 100.0
@@ -38742,7 +38742,7 @@ raw_garden_pie:
   examine: "Needs cooking before I eat it."
 raw_garden_pie_noted:
   id: 7177
-garden_pie_full:
+garden_pie:
   id: 7178
   price: 898
   limit: 1000
@@ -38782,7 +38782,7 @@ raw_fish_pie:
   examine: "Raw fish is risky, better cook it."
 raw_fish_pie_noted:
   id: 7187
-fish_pie_full:
+fish_pie:
   id: 7188
   price: 76
   limit: 1000
@@ -38822,7 +38822,7 @@ raw_admiral_pie:
   examine: "This would taste a lot better cooked."
 raw_admiral_pie_noted:
   id: 7197
-admiral_pie_full:
+admiral_pie:
   id: 7198
   price: 144
   limit: 1000
@@ -38860,7 +38860,7 @@ raw_wild_pie:
   examine: "Good as it looks, I'd better cook it."
 raw_wild_pie_noted:
   id: 7207
-wild_pie_full:
+wild_pie:
   id: 7208
   price: 604
   limit: 1000
@@ -38900,7 +38900,7 @@ raw_summer_pie:
   examine: "Fresh fruit may be good for you, but I should really cook this."
 raw_summer_pie_noted:
   id: 7217
-summer_pie_full:
+summer_pie:
   id: 7218
   price: 499
   limit: 1000
@@ -65555,7 +65555,7 @@ truffle:
   kept: "Reclaim"
 truffle_noted:
   id: 12133
-evil_turnip_full:
+evil_turnip:
   id: 12134
   price: 6344
   limit: 5000
