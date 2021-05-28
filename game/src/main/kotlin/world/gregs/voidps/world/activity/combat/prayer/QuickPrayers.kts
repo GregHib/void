@@ -90,9 +90,8 @@ on<InterfaceOption>({ name == "prayer_list" && component == "quick_prayers" }) {
 fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
     val curses = isCurses()
     val enum = if (curses) curseEnumId else prayerEnumId
-    val params = getPrayerParameters(prayerIndex, enum)
-    val name = getPrayerName(params)
-        ?: return logger.warn { "Unable to find prayer button $prayerIndex $listKey $params" }
+    val params = getPrayerParameters(prayerIndex, enum) ?: return logger.warn { "Unable to find prayer $prayerIndex $listKey" }
+    val name = getPrayerName(params) ?: return logger.warn { "Unable to find prayer button $prayerIndex $listKey $params" }
     val activated = hasVar(listKey, name)
     if (activated) {
         removeVar(listKey, name)
@@ -101,9 +100,10 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
             message("You need to recharge your Prayer at an altar.")
             return
         }
-        val requiredLevel = params?.get(737) as? Int ?: 0
+        val requiredLevel = params[737] as? Int ?: 0
         if (!hasMax(Skill.Prayer, requiredLevel)) {
-            message("You need a prayer level of $requiredLevel to use $name.")
+            val message = params[738] as? String
+            message(message ?: "You need a prayer level of $requiredLevel to use $name.")
             return
         }
         for (group in if (curses) cursesGroups else prayerGroups) {
