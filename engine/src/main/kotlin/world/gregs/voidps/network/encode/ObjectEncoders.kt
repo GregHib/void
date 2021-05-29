@@ -4,30 +4,47 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Protocol.OBJECT_ADD
 import world.gregs.voidps.utility.get
 
-fun addObject(gameObject: GameObject): (Player) -> Unit = { player ->
-    player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
+fun addObject(gameObject: GameObject): ChunkUpdate = object : ChunkUpdate {
+    override val size = 4
+
+    override fun visible(player: Player) = gameObject.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.OBJECT_ADD)
+        writeByteSubtract((gameObject.type shl 2) or  gameObject.rotation)
+        writeShort( gameObject.id)
+        writeByteAdd( gameObject.tile.offset())
+    }
 }
 
-/**
- * @param tile The tile offset from the chunk update send
- * @param id Object id
- * @param type Object type
- * @param rotation Object rotation
- */
-fun Client.addObject(
-    tile: Int,
-    id: Int,
-    type: Int,
-    rotation: Int
-) = send(OBJECT_ADD) {
-    writeByteSubtract((type shl 2) or rotation)
-    writeShort(id)
-    writeByteAdd(tile)
+fun GameObject.animate(id: Int) = get<ChunkBatches>().update(tile.chunk, object : ChunkUpdate {
+    override val size = 4
+
+    override fun visible(player: Player) = true
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.OBJECT_ANIMATION_SPECIFIC)
+        writeShortLittle(id)
+        writeByteSubtract(tile.offset())
+        writeByteInverse((type shl 2) or rotation)
+    }
+})
+
+fun removeObject(gameObject: GameObject): ChunkUpdate = object : ChunkUpdate {
+    override val size = 2
+
+    override fun visible(player: Player) = gameObject.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.OBJECT_REMOVE)
+        writeByteAdd((gameObject.type shl 2) or gameObject.rotation)
+        writeByte(gameObject.tile.offset())
+    }
 }
 
 /**
@@ -49,26 +66,6 @@ fun Client.animateObject(
 }
 
 /**
- * @param tile The tile offset from the chunk update send
- * @param animation Animation id
- * @param type Object type
- * @param rotation Object rotation
- */
-fun Client.animateSpecificObject(
-    tile: Int,
-    animation: Int,
-    type: Int,
-    rotation: Int
-) = send(Protocol.OBJECT_ANIMATION_SPECIFIC) {
-    writeShortLittle(animation)
-    writeByteSubtract(tile)
-    writeByteInverse((type shl 2) or rotation)
-}
-
-fun GameObject.animate(id: Int) = get<ChunkBatcher>()
-    .update(tile.chunk) { player -> player.client?.animateSpecificObject(tile.offset(), id, type, rotation) }
-
-/**
  * Preloads a object model
  */
 fun Client.preloadObject(
@@ -77,19 +74,4 @@ fun Client.preloadObject(
 ) = send(Protocol.OBJECT_PRE_FETCH) {
     writeShort(id)
     writeByte(modelType)
-}
-
-fun removeObject(gameObject: GameObject): (Player) -> Unit = { player -> player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation) }
-/**
- * @param tile The tile offset from the chunk update send
- * @param type Object type
- * @param rotation Object rotation
- */
-fun Client.removeObject(
-    tile: Int,
-    type: Int,
-    rotation: Int
-) = send(Protocol.OBJECT_REMOVE) {
-    writeByteAdd((type shl 2) or rotation)
-    writeByte(tile)
 }

@@ -4,75 +4,65 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.*
-import world.gregs.voidps.network.Protocol.FLOOR_ITEM_ADD
 
-fun addFloorItem(floorItem: FloorItem): (Player) -> Unit =  { player -> player.client?.addFloorItem(floorItem.tile.offset(), floorItem.id, floorItem.amount) }
+fun addFloorItem(floorItem: FloorItem): ChunkUpdate = object : ChunkUpdate {
+    override val size = 5
 
-fun removeFloorItem(floorItem: FloorItem): (Player) -> Unit =  { player -> player.client?.removeFloorItem(floorItem.tile.offset(), floorItem.id) }
+    override fun visible(player: Player) = floorItem.visible(player)
 
-fun revealFloorItem(floorItem: FloorItem, owner: Int): (Player) -> Unit =  { player -> player.client?.revealFloorItem(floorItem.tile.offset(), floorItem.id, floorItem.amount, owner) }
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.FLOOR_ITEM_ADD)
+        writeShortLittle(floorItem.amount)
+        writeShortLittle(floorItem.id)
+        writeByte(floorItem.tile.offset())
+    }
+}
 
-fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int): (Player) -> Unit =  { player -> player.client?.updateFloorItem(floorItem.tile.offset(), floorItem.id, stack, combined) }
-/**
- * @param tile The tile offset from the chunk update send
- * @param id Item id
- * @param amount Item stack size
- */
-fun Client.addFloorItem(
-    tile: Int,
-    id: Int,
-    amount: Int
-) = send(FLOOR_ITEM_ADD) {
-    writeShortLittle(amount)
-    writeShortLittle(id)
-    writeByte(tile)
+fun removeFloorItem(floorItem: FloorItem): ChunkUpdate = object : ChunkUpdate {
+    override val size = 3
+
+    override fun visible(player: Player) = floorItem.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.FLOOR_ITEM_REMOVE)
+        writeShortAddLittle(floorItem.id)
+        writeByteSubtract(floorItem.tile.offset())
+    }
 }
 
 /**
- * @param tile The tile offset from the chunk update send
- * @param id Item id
- */
-fun Client.removeFloorItem(
-    tile: Int,
-    id: Int
-) = send(Protocol.FLOOR_ITEM_REMOVE) {
-    writeShortAddLittle(id)
-    writeByteSubtract(tile)
-}
-
-/**
- * @param tile The tile offset from the chunk update send
- * @param id Item id
- * @param amount Item stack size
  * @param owner Client index if matches client's local index then item won't be displayed
  */
-fun Client.revealFloorItem(
-    tile: Int,
-    id: Int,
-    amount: Int,
-    owner: Int
-) = send(Protocol.FLOOR_ITEM_REVEAL) {
-    writeShortLittle(amount)
-    writeByte(tile)
-    writeShortAdd(id)
-    writeShortAdd(owner)
+fun revealFloorItem(floorItem: FloorItem, owner: Int): ChunkUpdate = object : ChunkUpdate {
+    override val size = 7
+
+    override fun visible(player: Player) = floorItem.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.FLOOR_ITEM_REVEAL)
+        writeShortLittle(floorItem.amount)
+        writeByte(floorItem.tile.offset())
+        writeShortAdd(floorItem.id)
+        writeShortAdd(owner)
+    }
 }
 
 /**
- * @param tile The tile offset from the chunk update send
- * @param id Item id
- * @param oldAmount Previous item stack size
- * @param newAmount Updated item stack size
+ * @param stack Previous item stack size
+ * @param combined Updated item stack size
  */
-fun Client.updateFloorItem(
-    tile: Int,
-    id: Int,
-    oldAmount: Int,
-    newAmount: Int
-) = send(Protocol.FLOOR_ITEM_UPDATE) {
-    writeByte(tile)
-    writeShort(id)
-    writeShort(oldAmount)
-    writeShort(newAmount)
+fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int): ChunkUpdate = object : ChunkUpdate {
+    override val size = 7
+
+    override fun visible(player: Player) = floorItem.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.FLOOR_ITEM_UPDATE)
+        writeByte(floorItem.tile.offset())
+        writeShort(floorItem.id)
+        writeShort(stack)
+        writeShort(combined)
+    }
 }

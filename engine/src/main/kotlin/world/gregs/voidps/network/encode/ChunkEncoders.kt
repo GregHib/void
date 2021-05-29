@@ -31,7 +31,7 @@ fun Client.updateChunk(
     yOffset: Int,
     plane: Int
 ) = send(Protocol.UPDATE_CHUNK) {
-    writeByteInverse(yOffset)
+    writeByteInverse(xOffset)
     writeByteAdd(plane)
-    writeByteAdd(xOffset)
+    writeByteAdd(yOffset)
 }

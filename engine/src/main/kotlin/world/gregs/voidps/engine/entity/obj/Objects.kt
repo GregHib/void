@@ -29,13 +29,13 @@ class Objects(
         }
     }
 
-    fun addRemoval(gameObject: GameObject) = removed.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+    private fun addRemoval(gameObject: GameObject) = removed.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
 
-    fun removeRemoval(gameObject: GameObject) = removed[gameObject.tile.chunk]?.remove(gameObject) ?: false
+    private fun removeRemoval(gameObject: GameObject) = removed[gameObject.tile.chunk]?.remove(gameObject) ?: false
 
-    fun addAddition(gameObject: GameObject) = added.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
+    private fun addAddition(gameObject: GameObject) = added.getOrPut(gameObject.tile.chunk) { mutableSetOf() }.add(gameObject)
 
-    fun removeAddition(gameObject: GameObject) = added[gameObject.tile.chunk]?.remove(gameObject) ?: false
+    private fun removeAddition(gameObject: GameObject) = added[gameObject.tile.chunk]?.remove(gameObject) ?: false
 
     fun isOriginal(gameObject: GameObject) = chunks[gameObject.tile.chunk]?.contains(gameObject) ?: false
 

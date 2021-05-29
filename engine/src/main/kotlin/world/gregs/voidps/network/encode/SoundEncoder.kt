@@ -4,6 +4,7 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.sound.AreaSound
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.JINGLE
 import world.gregs.voidps.network.Protocol.MIDI_SOUND
@@ -48,48 +49,6 @@ fun Client.playMIDI(
     writeShort(speed)
 }
 
-fun addSound(sound: AreaSound): (Player) -> Unit = { player ->
-    if (sound.midi) {
-        player.client?.areaMIDI(sound.tile.offset(), sound.id, sound.radius, sound.rotation, sound.delay, sound.volume, sound.speed)
-    } else {
-        player.client?.areaSound(sound.tile.offset(), sound.id, sound.radius, sound.rotation, sound.delay, sound.volume, sound.speed)
-    }
-}
-
-fun Client.areaMIDI(
-    tile: Int,
-    id: Int,
-    radius: Int,
-    repeat: Int,
-    delay: Int,
-    volume: Int,
-    speed: Int
-) = send(Protocol.MIDI_AREA) {
-    writeByte(tile)
-    writeShort(id)
-    writeByte((radius shl 4) or repeat)
-    writeByte(delay)
-    writeByte(volume)
-    writeShort(speed)
-}
-
-fun Client.areaSound(
-    tile: Int,
-    id: Int,
-    radius: Int,
-    repeat: Int,
-    delay: Int,
-    volume: Int,
-    speed: Int
-) = send(Protocol.SOUND_AREA) {
-    writeByte(tile)
-    writeShort(id)
-    writeByte((radius shl 4) or repeat)
-    writeByte(delay)
-    writeByte(volume)
-    writeShort(speed)
-}
-
 fun Client.playJingle(
     effect: Int,
     volume: Int = 255
@@ -97,4 +56,20 @@ fun Client.playJingle(
     writeMedium(0)
     writeShortAddLittle(effect)
     writeByteInverse(volume)
+}
+
+fun addSound(sound: AreaSound): ChunkUpdate = object : ChunkUpdate {
+    override val size = 8
+
+    override fun visible(player: Player): Boolean = sound.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(if (sound.midi) Protocol.Batch.MIDI_AREA else Protocol.Batch.SOUND_AREA)
+        writeByte(sound.tile.offset())
+        writeShort(sound.id)
+        writeByte((sound.radius shl 4) or sound.repeat)
+        writeByte(sound.delay)
+        writeByte(sound.volume)
+        writeShort(sound.speed)
+    }
 }

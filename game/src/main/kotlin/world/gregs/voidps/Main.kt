@@ -35,7 +35,7 @@ import world.gregs.voidps.engine.entity.obj.objectFactoryModule
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.area.areasModule
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.batchedChunkModule
 import world.gregs.voidps.engine.map.chunk.instanceModule
 import world.gregs.voidps.engine.map.collision.collisionModule
@@ -110,7 +110,7 @@ object Main {
         val playerPostUpdate: PlayerPostUpdateTask = get()
         val npcPostUpdate: NPCPostUpdateTask = get()
         val players: Players = get()
-        val batcher: ChunkBatcher = get()
+        val batches: ChunkBatches = get()
         val scheduler: Scheduler = get()
         val net = InstructionTask(players, InstructionHandler())
         return listOf(
@@ -132,7 +132,7 @@ object Main {
             playerMovement,
             npcMovement,
             // Update
-            batcher,
+            batches,
             viewport,
             playerVisuals,
             npcVisuals,

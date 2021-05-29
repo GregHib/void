@@ -4,62 +4,29 @@ import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.proj.Projectile
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol
-import world.gregs.voidps.network.Protocol.PROJECTILE_ADD
 
-fun addProjectile(projectile: Projectile): (Player) -> Unit = { player ->
-    player.client?.addProjectile(
-        projectile.tile.offset(3),
-        projectile.id,
-        projectile.direction.x,
-        projectile.direction.y,
-        projectile.index,
-        projectile.startHeight,
-        projectile.endHeight,
-        projectile.delay,
-        projectile.delay + projectile.flightTime,
-        projectile.curve,
-        projectile.offset
-    )
-}
-/**
- * @param offset The tile offset from the chunk update send (encoded with 3 rather than the usual 4)
- * @param id Projectile graphic id
- * @param distanceX The delta between start and end x coordinates
- * @param distanceY The delta between start and end y coordinates
- * @param targetIndex Target index plus one, negated for player
- * @param startHeight 40 = player head height
- * @param endHeight 40 = player head height
- * @param delay time before starting in client ticks, 30 = 1 tick
- * @param duration combined total of time of start delay + reaching target in client ticks, 30 = 1 tick
- * @param curve value between -63..63
- * @param startOffset offset from start coordinate, 64 = 1 tile
- */
-fun Client.addProjectile(
-    offset: Int,
-    id: Int,
-    distanceX: Int,
-    distanceY: Int,
-    targetIndex: Int,
-    startHeight: Int,
-    endHeight: Int,
-    delay: Int,
-    duration: Int,
-    curve: Int,
-    startOffset: Int
-) = send(PROJECTILE_ADD) {
-    writeByte(offset)
-    writeByte(distanceX)
-    writeByte(distanceY)
-    writeShort(targetIndex)
-    writeShort(id)
-    writeByte(startHeight)
-    writeByte(endHeight)
-    writeShort(delay)
-    writeShort(duration)
-    writeByte(curve)
-    writeShort(startOffset)
+fun addProjectile(projectile: Projectile): ChunkUpdate = object : ChunkUpdate {
+    override val size = 16
+
+    override fun visible(player: Player): Boolean = projectile.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.PROJECTILE_ADD)
+        writeByte(projectile.tile.offset(3))
+        writeByte(projectile.id)
+        writeByte(projectile.direction.x)
+        writeShort(projectile.direction.y)
+        writeShort(projectile.index)
+        writeByte(projectile.startHeight)
+        writeByte(projectile.endHeight)
+        writeShort(projectile.delay)
+        writeShort(projectile.delay + projectile.flightTime)
+        writeByte(projectile.curve)
+        writeShort(projectile.offset)
+    }
 }
 
 /**
@@ -88,7 +55,7 @@ fun Client.addProjectileHalfTile(
     duration: Int,
     curve: Int,
     startOffset: Int
-) = send(Protocol.PROJECTILE_DISPLACE) {
+) = send(Protocol.Batch.PROJECTILE_DISPLACE) {
     writeByte(offset)
     val flag = 0
     // Inverse height 0x1

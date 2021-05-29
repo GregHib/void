@@ -4,13 +4,17 @@ import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.list.BatchList
+import world.gregs.voidps.engine.entity.remove
+import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
 import world.gregs.voidps.network.encode.addFloorItem
 import world.gregs.voidps.network.encode.removeFloorItem
@@ -21,7 +25,7 @@ class FloorItems(
     private val decoder: ItemDefinitions,
     private val scheduler: Scheduler,
     private val store: EventHandlerStore,
-    private val batcher: ChunkBatcher
+    private val batches: ChunkBatches
 ) : BatchList<FloorItem> {
 
     override val chunks: MutableMap<Chunk, MutableSet<FloorItem>> = mutableMapOf()
@@ -56,7 +60,10 @@ class FloorItems(
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
-        batcher.update(tile.chunk, addFloorItem(item))
+        val update = addFloorItem(item)
+        item["update"] = update
+        batches.addInitial(tile.chunk, update)
+        batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
         item.events.emit(Registered)
@@ -80,7 +87,7 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
-        batcher.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
+        batches.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
         existing.disappear?.cancel("Floor item disappear time extended.")
         disappear(existing, disappearTicks)
         return true
@@ -101,9 +108,12 @@ class FloorItems(
     override fun remove(entity: FloorItem): Boolean {
         if (entity.state != FloorItemState.Removed) {
             entity.state = FloorItemState.Removed
-            batcher.update(entity.tile.chunk, removeFloorItem(entity))
+            batches.update(entity.tile.chunk, removeFloorItem(entity))
+            entity.remove<ChunkUpdate>("update")?.let {
+                batches.removeInitial(entity.tile.chunk, it)
+            }
             if (super.remove(entity)) {
-                entity.events.emit(Registered)
+                entity.events.emit(Unregistered)
             }
         }
         return false
@@ -118,17 +128,7 @@ class FloorItems(
                 delay(ticks)
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Public
-                    batcher.update(item.tile.chunk, revealFloorItem(item ,owner))
-                }
-            }
-        }
-    }
-
-    init {
-        batcher.addInitial { player, chunk, messages ->
-            get(chunk).forEach {
-                if (it.visible(player)) {
-                    messages += addFloorItem(it)
+                    batches.update(item.tile.chunk, revealFloorItem(item ,owner))
                 }
             }
         }
