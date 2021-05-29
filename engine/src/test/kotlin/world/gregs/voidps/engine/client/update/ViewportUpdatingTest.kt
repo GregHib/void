@@ -22,7 +22,7 @@ import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.equals
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.equals
@@ -38,7 +38,7 @@ internal class ViewportUpdatingTest : KoinMock() {
             single { mockk<ItemDefinitions>(relaxed = true) }
             single { mockk<Collisions>(relaxed = true) }
             single { mockk<Scheduler>(relaxed = true) }
-            single { mockk<ChunkBatcher>(relaxed = true) }
+            single { mockk<ChunkBatches>(relaxed = true) }
         }
     )
 
@@ -66,7 +66,7 @@ internal class ViewportUpdatingTest : KoinMock() {
         // When
         task.run()
         // Then
-        verify(exactly = if (session) -1 else 0) {
+        verify {
             task.update(anyValue(), any<Players>(), any(), any(), any())
             task.update(anyValue(), any<NPCs>(), any(), any(), any())
         }
