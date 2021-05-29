@@ -45,7 +45,7 @@ class NPCVisualsTask(
                 return@forEach
             }
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            encoder.encode(writer, visual)
+            encoder.encodeVisual(writer, visual)
         }
         visuals.update = writer.toArray()
     }
@@ -59,7 +59,7 @@ class NPCVisualsTask(
         writeFlag(writer, addFlag)
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
-            encoder.encode(writer, visual)
+            encoder.encodeVisual(writer, visual)
         }
         visuals.addition = writer.toArray()
     }

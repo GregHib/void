@@ -48,7 +48,7 @@ class PlayerVisualsTask(
             }
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
             if (visual !is Appearance) {
-                encoder.encode(writer, visual)
+                encoder.encodeVisual(writer, visual)
             } else {
                 visuals.appearance = encodeAppearance(writer, encoder, visual)
             }
@@ -65,7 +65,7 @@ class PlayerVisualsTask(
         addEncoders.forEach { encoder ->
             val visual = visuals.aspects[encoder.mask] ?: return@forEach
             if (visual !is Appearance) {
-                encoder.encode(writer, visual)
+                encoder.encodeVisual(writer, visual)
             } else {
                 val data = visuals.appearance
                 if (data != null) {
@@ -81,9 +81,9 @@ class PlayerVisualsTask(
     /**
      * Returns byte array of encoded [appearance] and writes it to [writer]
      */
-    fun encodeAppearance(writer: BufferWriter, encoder: VisualEncoder<Visual>, appearance: Appearance): ByteArray {
+    private fun encodeAppearance(writer: BufferWriter, encoder: VisualEncoder<out Visual>, appearance: Appearance): ByteArray {
         val start = writer.position()
-        encoder.encode(writer, appearance)
+        encoder.encodeVisual(writer, appearance)
         val size = writer.position() - start
         val data = ByteArray(size)
         System.arraycopy(writer.array(), start, data, 0, size)
