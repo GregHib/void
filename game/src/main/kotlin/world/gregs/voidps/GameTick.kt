@@ -47,13 +47,7 @@ fun getTickStages(
     // Connections/Tick Input
     loginQueue,
     // Tick
-    Runnable {
-        runBlocking {
-            scheduler.tick()
-        }
-        GameLoop.flow.tryEmit(GameLoop.tick)
-        World.events.emit(Tick(GameLoop.tick))
-    },
+    GameTick(scheduler),
     PlayerPathTask(players, pathFinder),
     PlayerMovementCallbackTask(players),
     PlayerMovementTask(players, collisions),
@@ -69,10 +63,24 @@ fun getTickStages(
     NPCUpdateTask(players),
     PlayerPostUpdateTask(players),
     NPCPostUpdateTask(npcs),
-    Runnable {
+    AiTick()
+)
+
+private class GameTick(private val scheduler: Scheduler): Runnable {
+    override fun run() {
+        runBlocking {
+            scheduler.tick()
+        }
+        GameLoop.flow.tryEmit(GameLoop.tick)
+        World.events.emit(Tick(GameLoop.tick))
+    }
+}
+
+private class AiTick: Runnable {
+    override fun run() {
         World.events.emit(AiTick)
     }
-)
+}
 
 private fun playerVisualEncoders() = castOf(
     WatchEncoder(PLAYER_WATCH_MASK),
