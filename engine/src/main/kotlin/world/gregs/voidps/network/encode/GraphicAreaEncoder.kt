@@ -1,8 +1,15 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.gfx.AreaGraphic
+import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol.GRAPHIC_AREA
+
+fun addGraphic(ag: AreaGraphic): (Player) -> Unit = { player ->
+    player.client?.addAreaGraphic(ag.tile.offset(), ag.graphic.id, ag.graphic.height, ag.graphic.delay, ag.graphic.rotation)
+}
 
 /**
  * @param tile The tile offset from the chunk update send

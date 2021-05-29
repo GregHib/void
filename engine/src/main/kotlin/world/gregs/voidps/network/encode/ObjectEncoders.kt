@@ -1,12 +1,17 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.OBJECT_ADD
 import world.gregs.voidps.utility.get
+
+fun addObject(gameObject: GameObject): (Player) -> Unit = { player ->
+    player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
+}
 
 /**
  * @param tile The tile offset from the chunk update send
@@ -74,6 +79,7 @@ fun Client.preloadObject(
     writeByte(modelType)
 }
 
+fun removeObject(gameObject: GameObject): (Player) -> Unit = { player -> player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation) }
 /**
  * @param tile The tile offset from the chunk update send
  * @param type Object type

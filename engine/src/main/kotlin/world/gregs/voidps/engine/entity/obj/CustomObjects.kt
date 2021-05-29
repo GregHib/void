@@ -7,7 +7,6 @@ import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.ChunkBatcher
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
@@ -38,16 +37,12 @@ class CustomObjects(
         batcher.addInitial { player, chunk, messages ->
             objects.getRemoved(chunk)?.forEach {
                 if (it.visible(player)) {
-                    messages += { player ->
-                        player.client?.removeObject(it.tile.offset(), it.type, it.rotation)
-                    }
+                    messages += removeObject(it)
                 }
             }
             objects.getAdded(chunk)?.forEach {
                 if (it.visible(player)) {
-                    messages += { player ->
-                        player.client?.addObject(it.tile.offset(), it.id, it.type, it.rotation)
-                    }
+                    messages += addObject(it)
                 }
             }
         }
@@ -99,18 +94,14 @@ class CustomObjects(
     }
 
     private fun despawn(gameObject: GameObject) {
-        batcher.update(gameObject.tile.chunk) { player ->
-            player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
-        }
+        batcher.update(gameObject.tile.chunk, removeObject(gameObject))
         objects.removeTemp(gameObject)
         collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
         gameObject.events.emit(Unregistered)
     }
 
     private fun respawn(gameObject: GameObject) {
-        batcher.update(gameObject.tile.chunk) { player ->
-            player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
-        }
+        batcher.update(gameObject.tile.chunk, addObject(gameObject))
         objects.addTemp(gameObject)
         collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
         gameObject.events.emit(Registered)
@@ -201,13 +192,9 @@ class CustomObjects(
 
     private fun switch(original: GameObject, replacement: GameObject) {
         if (original.tile != replacement.tile) {
-            batcher.update(original.tile.chunk) { player ->
-                player.client?.removeObject(original.tile.offset(), original.type, original.rotation)
-            }
+            batcher.update(original.tile.chunk, removeObject(original))
         }
-        batcher.update(replacement.tile.chunk) { player ->
-            player.client?.addObject(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
-        }
+        batcher.update(replacement.tile.chunk, addObject(replacement))
         objects.removeTemp(original)
         objects.addTemp(replacement)
         collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)

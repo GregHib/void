@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
@@ -27,7 +26,7 @@ on<World, ShootProjectile> {
     val projectile = Projectile(id, tile, direction, index, delay, flightTime, startHeight, endHeight, curve, offset)
     store.populate(projectile)
     projectiles.add(projectile)
-    batcher.update(tile.chunk, projectile.toMessage())
+    batcher.update(tile.chunk, addProjectile(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
 }
@@ -54,26 +53,10 @@ fun decay(projectile: Projectile) {
     }
 }
 
-fun Projectile.toMessage(): (Player) -> Unit = { player ->
-    player.client?.addProjectile(
-        tile.offset(3),
-        id,
-        direction.x,
-        direction.y,
-        index,
-        startHeight,
-        endHeight,
-        delay,
-        delay + flightTime,
-        curve,
-        offset
-    )
-}
-
 batcher.addInitial { player, chunk, messages ->
     projectiles[chunk].forEach {
         if (it.visible(player)) {
-            messages += it.toMessage()
+            messages += addProjectile(it)
         }
     }
 }

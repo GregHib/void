@@ -56,7 +56,7 @@ class FloorItems(
         item.interactTarget = PointTargetStrategy(item)
         store.populate(item)
         super.add(item)
-        batcher.update(tile.chunk) { player -> player.client?.addFloorItem(tile.offset(), id, amount) }
+        batcher.update(tile.chunk, addFloorItem(item))
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
         item.events.emit(Registered)
@@ -80,7 +80,7 @@ class FloorItems(
         }
         // Floor item is mutable because we need to keep the reveal timer from before
         existing.amount = combined
-        batcher.update(existing.tile.chunk) { player -> player.client?.updateFloorItem(existing.tile.offset(), existing.id, stack, combined) }
+        batcher.update(existing.tile.chunk, updateFloorItem(existing, stack, combined))
         existing.disappear?.cancel("Floor item disappear time extended.")
         disappear(existing, disappearTicks)
         return true
@@ -101,7 +101,7 @@ class FloorItems(
     override fun remove(entity: FloorItem): Boolean {
         if (entity.state != FloorItemState.Removed) {
             entity.state = FloorItemState.Removed
-            batcher.update(entity.tile.chunk) { player -> player.client?.removeFloorItem(entity.tile.offset(), entity.id) }
+            batcher.update(entity.tile.chunk, removeFloorItem(entity))
             if (super.remove(entity)) {
                 entity.events.emit(Registered)
             }
@@ -118,7 +118,7 @@ class FloorItems(
                 delay(ticks)
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Public
-                    batcher.update(item.tile.chunk) { player -> player.client?.revealFloorItem(item.tile.offset(), item.id, item.amount, owner) }
+                    batcher.update(item.tile.chunk, revealFloorItem(item ,owner))
                 }
             }
         }
@@ -128,7 +128,7 @@ class FloorItems(
         batcher.addInitial { player, chunk, messages ->
             get(chunk).forEach {
                 if (it.visible(player)) {
-                    messages += { player -> player.client?.addFloorItem(it.tile.offset(), it.id, it.amount) }
+                    messages += addFloorItem(it)
                 }
             }
         }

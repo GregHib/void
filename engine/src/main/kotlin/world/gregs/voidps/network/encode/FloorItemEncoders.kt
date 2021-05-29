@@ -1,9 +1,19 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.FLOOR_ITEM_ADD
 
+fun addFloorItem(floorItem: FloorItem): (Player) -> Unit =  { player -> player.client?.addFloorItem(floorItem.tile.offset(), floorItem.id, floorItem.amount) }
+
+fun removeFloorItem(floorItem: FloorItem): (Player) -> Unit =  { player -> player.client?.removeFloorItem(floorItem.tile.offset(), floorItem.id) }
+
+fun revealFloorItem(floorItem: FloorItem, owner: Int): (Player) -> Unit =  { player -> player.client?.revealFloorItem(floorItem.tile.offset(), floorItem.id, floorItem.amount, owner) }
+
+fun updateFloorItem(floorItem: FloorItem, stack: Int, combined: Int): (Player) -> Unit =  { player -> player.client?.updateFloorItem(floorItem.tile.offset(), floorItem.id, stack, combined) }
 /**
  * @param tile The tile offset from the chunk update send
  * @param id Item id

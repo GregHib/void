@@ -1,10 +1,28 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.Protocol
 import world.gregs.voidps.network.Protocol.PROJECTILE_ADD
 
+fun addProjectile(projectile: Projectile): (Player) -> Unit = { player ->
+    player.client?.addProjectile(
+        projectile.tile.offset(3),
+        projectile.id,
+        projectile.direction.x,
+        projectile.direction.y,
+        projectile.index,
+        projectile.startHeight,
+        projectile.endHeight,
+        projectile.delay,
+        projectile.delay + projectile.flightTime,
+        projectile.curve,
+        projectile.offset
+    )
+}
 /**
  * @param offset The tile offset from the chunk update send (encoded with 3 rather than the usual 4)
  * @param id Projectile graphic id

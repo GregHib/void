@@ -2,6 +2,8 @@ package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.entity.sound.AreaSound
 import world.gregs.voidps.network.*
 import world.gregs.voidps.network.Protocol.JINGLE
 import world.gregs.voidps.network.Protocol.MIDI_SOUND
@@ -44,6 +46,14 @@ fun Client.playMIDI(
     writeShort(delay)
     writeByte(volume)
     writeShort(speed)
+}
+
+fun addSound(sound: AreaSound): (Player) -> Unit = { player ->
+    if (sound.midi) {
+        player.client?.areaMIDI(sound.tile.offset(), sound.id, sound.radius, sound.rotation, sound.delay, sound.volume, sound.speed)
+    } else {
+        player.client?.areaSound(sound.tile.offset(), sound.id, sound.radius, sound.rotation, sound.delay, sound.volume, sound.speed)
+    }
 }
 
 fun Client.areaMIDI(
