@@ -28,7 +28,6 @@ inline class Tile(val id: Int) {
         get() = getX(id)
     val y: Int
         get() = getY(id)
-
     val plane: Int
         get() = getPlane(id)
 

@@ -18,8 +18,6 @@ on<Registered> { player: Player ->
 
 }
 
-// TODO same for npcs
-
 on<EffectStart>({ effect == "poison" }) { player: Player ->
     player.message(Colour.Green.wrap("You have been poisoned."))
     delay(0) {
