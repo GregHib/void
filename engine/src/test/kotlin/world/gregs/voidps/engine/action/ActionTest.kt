@@ -4,25 +4,26 @@ import io.mockk.*
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.singleOrNull
+import kotlinx.coroutines.test.TestCoroutineScope
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
-import kotlin.coroutines.Continuation
-import kotlin.coroutines.createCoroutine
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 
 internal class ActionTest : KoinMock() {
+    lateinit var scope: CoroutineScope
     lateinit var action: Action
 
     override val modules = listOf(eventModule)
 
     @BeforeEach
     fun setup() {
-        action = spyk(Action(mockk(relaxed = true)))
+        scope = TestCoroutineScope()
+        action = spyk(Action(mockk(relaxed = true), scope))
     }
 
     @Test
@@ -146,18 +147,15 @@ internal class ActionTest : KoinMock() {
         val continuation: CancellableContinuation<Unit> = mockk(relaxed = true)
         val block: suspend Action.() -> Unit = mockk(relaxed = true)
         val type = ActionType.Follow
-        val coroutine: Continuation<Unit> = mockk(relaxed = true)
-        mockkStatic("kotlin.coroutines.ContinuationKt")
         action.continuation = continuation
         every { action.cancel(any()) } just Runs
         coEvery { action.delay(0) } returns true
-        every { block.createCoroutine(action, ActionContinuation) } returns coroutine
         // When
-        action.run(type, block)
+        val job = action.run(type, block)
         // Then
-        coVerifyOrder {
-            action.cancel(type)
-            block.createCoroutine(action, ActionContinuation)
+        assertNotNull(job)
+        coVerify {
+            action.cancelAndJoin(any())
         }
     }
 
@@ -168,7 +166,7 @@ internal class ActionTest : KoinMock() {
         action.continuation = continuation
         val value = Suspension.Tick
         // When
-        GlobalScope.launch {
+        scope.launch {
             action.await<Unit>(value)
         }
         // Then

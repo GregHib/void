@@ -16,7 +16,8 @@ import kotlin.coroutines.resumeWithException
  */
 @Suppress("UNCHECKED_CAST")
 class Action(
-    private val events: Events
+    private val events: Events,
+    private val scope: CoroutineScope = CoroutineScope(Contexts.Game)
 ) {
 
     var continuation: CancellableContinuation<*>? = null
@@ -79,7 +80,7 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = GlobalScope.launch(Contexts.Game) {
+    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = scope.launch {
         this@Action.cancelAndJoin()
         this@Action.type = type
         events.emit(ActionStarted(type))
