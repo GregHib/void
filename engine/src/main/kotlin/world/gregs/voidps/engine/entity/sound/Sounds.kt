@@ -4,5 +4,5 @@ import world.gregs.voidps.engine.entity.list.BatchList
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 class Sounds(
-    override val chunks: MutableMap<Chunk, MutableSet<AreaSound>> = mutableMapOf()
+    override val chunks: MutableMap<Chunk, MutableList<AreaSound>> = mutableMapOf()
 ) : BatchList<AreaSound>

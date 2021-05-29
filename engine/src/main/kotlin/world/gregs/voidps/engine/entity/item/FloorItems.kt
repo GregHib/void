@@ -25,10 +25,9 @@ class FloorItems(
     private val decoder: ItemDefinitions,
     private val scheduler: Scheduler,
     private val store: EventHandlerStore,
-    private val batches: ChunkBatches
+    private val batches: ChunkBatches,
+    override val chunks: MutableMap<Chunk, MutableList<FloorItem>> = mutableMapOf()
 ) : BatchList<FloorItem> {
-
-    override val chunks: MutableMap<Chunk, MutableSet<FloorItem>> = mutableMapOf()
 
     /**
      * Spawns a floor item

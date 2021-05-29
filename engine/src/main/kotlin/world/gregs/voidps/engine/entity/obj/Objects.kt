@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.chunk.Chunk
 
 class Objects(
-    override val chunks: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
+    override val chunks: HashMap<Chunk, MutableList<GameObject>> = hashMapOf(),
     private val added: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
     private val removed: HashMap<Chunk, MutableSet<GameObject>> = hashMapOf(),
     private val timers: MutableMap<GameObject, Job> = mutableMapOf()
@@ -56,8 +56,8 @@ class Objects(
         return true
     }
 
-    override operator fun get(tile: Tile): Set<GameObject> {
-        return get(tile.chunk).filter { it.tile == tile }.toSet()
+    override operator fun get(tile: Tile): List<GameObject> {
+        return get(tile.chunk).filter { it.tile == tile }
     }
 
     fun getType(tile: Tile, type: Int): GameObject? {
@@ -68,24 +68,24 @@ class Objects(
         return get(tile.chunk).firstOrNull { it.id == id && it.tile == tile }
     }
 
-    override operator fun get(chunk: Chunk): Set<GameObject> {
-        val set = mutableSetOf<GameObject>()
+    override operator fun get(chunk: Chunk): List<GameObject> {
+        val list = mutableListOf<GameObject>()
         val base = getStatic(chunk)
         if (base != null) {
-            set.addAll(base)
+            list.addAll(base)
         }
         val removed = getRemoved(chunk)
         if (removed != null) {
-            set.removeAll(removed)
+            list.removeAll(removed)
         }
         val added = getAdded(chunk)
         if (added != null) {
-            set.addAll(added)
+            list.addAll(added)
         }
-        return set
+        return list
     }
 
-    fun getStatic(chunk: Chunk): Set<GameObject>? = chunks[chunk]
+    fun getStatic(chunk: Chunk): List<GameObject>? = chunks[chunk]
 
     fun getAdded(chunk: Chunk): Set<GameObject>? = added[chunk]
 
