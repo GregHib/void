@@ -64,7 +64,7 @@ class FloorItemSpawns(
 
     fun load() = timedLoad("floor item spawn") {
         val data: Array<SpawnArea> = get<FileLoader>().load(getProperty("floorItemsPath"))
-        this.spawns = data.flatGroupBy { it.area.regions }
+        this.spawns = data.flatGroupBy { it.area.toRegions() }
         data.size
     }
 

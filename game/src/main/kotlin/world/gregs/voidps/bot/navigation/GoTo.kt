@@ -72,7 +72,7 @@ private suspend fun Bot.goTo(strategy: NodeTargetStrategy): PathResult {
 
 private suspend fun Bot.rest() {
     val musician = player.viewport.npcs.current.firstOrNull { it.def.options.contains("Listen-to") }
-    if (musician != null && player.tile.distanceTo(musician.tile) < 10) {
+    if (musician != null && player.tile.distanceTo(musician) < 10) {
         player.instructions.emit(InteractNPC(npcIndex = 49, option = musician.def.options.indexOfFirst { it == "Listen-to" } + 1))
         repeat(32) {
             await("tick")

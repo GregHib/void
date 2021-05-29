@@ -4,7 +4,6 @@ import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.utility.inject
@@ -40,7 +39,7 @@ fun load(player: Player) {
 }
 
 fun forEachChunk(player: Player, tile: Tile, block: (Chunk) -> Unit) {
-    val view = tile.chunk.area(player.viewport.tileSize shr 5, planes = 4)
+    val view = tile.chunk.toCuboid(radius = player.viewport.tileSize shr 5).copy(minPlane = 0, maxPlane = 3).toChunks()
     for (chunk in view) {
         block(chunk)
     }

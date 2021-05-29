@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.collision.check
@@ -33,7 +32,7 @@ val isPopulatedPlane: ObjectIdentificationContext.(Tile) -> Double = { target ->
     if (obj.tile.plane == target.plane) {
         (availableTiles.contains(target) && obj.reachableFrom(target)).toDouble()
     } else {
-        target.area(4).any { collisions[it.x, it.y, it.plane] != 0 }.toDouble()
+        target.toCuboid(4).any { collisions[it.x, it.y, it.plane] != 0 }.toDouble()
     }
 }
 

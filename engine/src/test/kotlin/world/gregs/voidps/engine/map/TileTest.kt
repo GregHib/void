@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class TileTest {
@@ -101,5 +101,59 @@ internal class TileTest {
         assertEquals(12342, region.id)
         assertEquals(48, region.x)
         assertEquals(54, region.y)
+    }
+
+    @Test
+    fun `Tile area test`() {
+        // Given
+        val area = Tile(2, 2, 2).toCuboid(width = 1, height = 1)
+        // Then
+        assertTrue(area.contains(2, 2, 2))
+        assertFalse(area.contains(3, 2, 2))
+        assertFalse(area.contains(2, 3, 2))
+        assertFalse(area.contains(2, 2, 3))
+        assertFalse(area.contains(1, 2, 2))
+        assertFalse(area.contains(2, 1, 2))
+        assertFalse(area.contains(2, 2, 1))
+    }
+
+    @Test
+    fun `Rectangle area test`() {
+        // Given
+        val area = Tile(2, 2, 1).toCuboid(width = 3, height = 6)
+        // Then
+        assertTrue(area.contains(2, 2, 1))
+        assertFalse(area.contains(2, 2, 0))
+        assertFalse(area.contains(2, 2, 2))
+
+        assertFalse(area.contains(1, 2, 1))
+        assertFalse(area.contains(2, 1, 1))
+        assertFalse(area.contains(1, 2, 1))
+        assertFalse(area.contains(2, 1, 1))
+
+        assertTrue(area.contains(4, 4, 1))
+        assertFalse(area.contains(5, 4, 1))
+        assertTrue(area.contains(4, 7, 1))
+        assertFalse(area.contains(4, 8, 1))
+    }
+
+    @Test
+    fun `Rectangle radius test`() {
+        // Given
+        val area = Tile(4, 3, 1).toCuboid(radius = 2)
+        // Then
+        assertTrue(area.contains(4, 3, 1))
+        assertFalse(area.contains(4, 3, 0))
+        assertFalse(area.contains(4, 3, 2))
+
+        assertTrue(area.contains(2, 3, 1))
+        assertFalse(area.contains(1, 3, 1))
+        assertTrue(area.contains(4, 1, 1))
+        assertFalse(area.contains(4, 0, 1))
+
+        assertTrue(area.contains(6, 3, 1))
+        assertFalse(area.contains(7, 3, 1))
+        assertTrue(area.contains(4, 5, 1))
+        assertFalse(area.contains(4, 6, 1))
     }
 }

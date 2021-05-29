@@ -1,7 +1,8 @@
 package world.gregs.voidps.engine.map.region
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.map.Tile
 
 internal class RegionPlaneTest {
 
@@ -106,5 +107,44 @@ internal class RegionPlaneTest {
         assertEquals(384, chunk.x)
         assertEquals(432, chunk.y)
         assertEquals(1, chunk.plane)
+    }
+
+    @Test
+    fun `Cuboid test`() {
+        val cuboid = RegionPlane(2, 2, 1).toCuboid(width = 1, height = 1, planes = 1)
+        val m = 160
+        assertFalse(cuboid.contains(Tile(134, m, 0)))
+        assertTrue(cuboid.contains(Tile(134, m, 1)))
+        assertFalse(cuboid.contains(Tile(134, m, 2)))
+        assertFalse(cuboid.contains(Tile(127, m, 1)))
+        assertTrue(cuboid.contains(Tile(128, m, 1)))
+        assertFalse(cuboid.contains(Tile(192, m, 1)))
+        assertTrue(cuboid.contains(Tile(191, m, 1)))
+        assertFalse(cuboid.contains(Tile(m, 127, 1)))
+        assertTrue(cuboid.contains(Tile(m, 128, 1)))
+        assertFalse(cuboid.contains(Tile(m, 192, 1)))
+        assertTrue(cuboid.contains(Tile(m, 191, 1)))
+    }
+
+    @Test
+    fun `Cuboid area test`() {
+        val cuboid = RegionPlane(1, 1, 1).toCuboid(width = 2, height = 3, planes = 2)
+        assertEquals(64, cuboid.minX)
+        assertEquals(64, cuboid.minY)
+        assertEquals(1, cuboid.minPlane)
+        assertEquals(191, cuboid.maxX)
+        assertEquals(255, cuboid.maxY)
+        assertEquals(2, cuboid.maxPlane)
+    }
+
+    @Test
+    fun `Cuboid radius test`() {
+        val cuboid = RegionPlane(2, 3, 1).toCuboid(radius = 2, planes = 2)
+        assertEquals(0, cuboid.minX)
+        assertEquals(64, cuboid.minY)
+        assertEquals(1, cuboid.minPlane)
+        assertEquals(319, cuboid.maxX)
+        assertEquals(383, cuboid.maxY)
+        assertEquals(2, cuboid.maxPlane)
     }
 }

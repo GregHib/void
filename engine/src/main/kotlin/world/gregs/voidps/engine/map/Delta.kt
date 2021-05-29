@@ -1,11 +1,14 @@
 package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.area.Coordinate3D
 
-data class Delta(override val x: Int, override val y: Int, override val plane: Int = 0) : Coordinate3D {
+data class Delta(
+    val x: Int,
+    val y: Int,
+    val plane: Int = 0
+) {
 
-    override fun add(x: Int, y: Int, plane: Int) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
+    fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
 
     fun addX(value: Int) = add(value, 0, 0)
     fun addY(value: Int) = add(0, value, 0)
@@ -25,8 +28,6 @@ data class Delta(override val x: Int, override val y: Int, override val plane: I
     fun add(direction: Direction) = add(direction.delta)
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = delta(direction.delta)
-
-    override fun add(x: Int, y: Int) = add(x, y, 0)
 
     fun toDirection(): Direction = when {
         x > 0 -> when {

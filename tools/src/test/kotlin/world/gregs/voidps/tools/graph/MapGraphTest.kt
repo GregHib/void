@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
 internal class MapGraphTest {
@@ -25,21 +24,21 @@ internal class MapGraphTest {
     @Test
     fun `Flood fill empty tile`() {
         val tile = Tile(0, 0)
-        val tiles = graph.getFloodedTiles(strategy, tile, tile.area(width = 1, height = 1))
+        val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 1, height = 1))
         assertEquals(mapOf(tile to 0), tiles)
     }
 
     @Test
     fun `Flood fill 2x2`() {
         val tile = Tile(0, 0)
-        val tiles = graph.getFloodedTiles(strategy, tile, tile.area(width = 2, height = 2))
+        val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 2, height = 2))
         assertEquals(mapOf(tile to 0, Tile(0, 1) to 1, Tile(1, 0) to 1, Tile(1, 1) to 1), tiles)
     }
 
     @Test
     fun `Flood fill 2x2 offset start`() {
         val tile = Tile(1, 1)
-        val tiles = graph.getFloodedTiles(strategy, tile, Tile(0).area(width = 2, height = 2))
+        val tiles = graph.getFloodedTiles(strategy, tile, Tile(0).toCuboid(width = 2, height = 2))
         assertEquals(mapOf(tile to 0, Tile(1, 0) to 1, Tile(0, 1) to 1, Tile(0, 0) to 1), tiles)
     }
 
@@ -49,7 +48,7 @@ internal class MapGraphTest {
         every { strategy.blocked(Tile(0, 1), Direction.EAST) } returns true
         every { strategy.blocked(Tile(1, 0), Direction.NORTH) } returns true
         val tile = Tile(0, 0)
-        val tiles = graph.getFloodedTiles(strategy, tile, tile.area(width = 2, height = 2))
+        val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 2, height = 2))
         assertEquals(mapOf(tile to 0, Tile(0, 1) to 1, Tile(1, 0) to 1), tiles)
     }
 
@@ -57,7 +56,7 @@ internal class MapGraphTest {
     fun `Other planes collision ignored`() {
         every { strategy.blocked(Tile(0, 0, 1), any()) } returns true
         val tile = Tile(0, 0)
-        val tiles = graph.getFloodedTiles(strategy, tile, tile.area(width = 1, height = 1))
+        val tiles = graph.getFloodedTiles(strategy, tile, tile.toCuboid(width = 1, height = 1))
         assertEquals(mapOf(tile to 0), tiles)
     }
 
@@ -88,20 +87,20 @@ internal class MapGraphTest {
 
     @Test
     fun `Find filled points`() {
-        assertEquals(listOf(Tile(0, 0)), graph.getCenterPoints(strategy, Tile(0).area(width = 1, height = 1)))
+        assertEquals(listOf(Tile(0, 0)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 1, height = 1)))
     }
 
     @Test
     fun `No free center points`() {
         every { strategy.blocked(any(), any()) } returns true
-        assertEquals(listOf<Tile>(), graph.getCenterPoints(strategy, Tile(0).area(width = 3, height = 3)))
+        assertEquals(listOf<Tile>(), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }
 
     @Test
     fun `Find not collided points`() {
         every { strategy.blocked(Tile(0, 0), Direction.NONE) } returns true
         every { strategy.blocked(Tile(1, 0), Direction.WEST) } returns true
-        assertEquals(listOf(Tile(1, 0)), graph.getCenterPoints(strategy, Tile(0).area(width = 2, height = 1)))
+        assertEquals(listOf(Tile(1, 0)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 2, height = 1)))
     }
 
     @Test
@@ -109,12 +108,12 @@ internal class MapGraphTest {
         every { strategy.blocked(Tile(0, 1), Direction.NONE) } returns true
         every { strategy.blocked(Tile(0, 0), Direction.NORTH) } returns true
         every { strategy.blocked(Tile(0, 2), Direction.SOUTH) } returns true
-        assertEquals(listOf(Tile(0, 0), Tile(0, 2)), graph.getCenterPoints(strategy, Tile(0).area(width = 1, height = 3)))
+        assertEquals(listOf(Tile(0, 0), Tile(0, 2)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 1, height = 3)))
     }
 
     @Test
     fun `Find one point for two connected tiles`() {
-        assertEquals(listOf(Tile(0, 0)), graph.getCenterPoints(strategy, Tile(0).area(width = 2, height = 1)))
+        assertEquals(listOf(Tile(0, 0)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 2, height = 1)))
     }
 
     @Test
@@ -128,7 +127,7 @@ internal class MapGraphTest {
             every { strategy.blocked(Tile(x, 2), Direction.SOUTH_EAST) } returns true
             every { strategy.blocked(Tile(x, 2), Direction.SOUTH_WEST) } returns true
         }
-        assertEquals(listOf(Tile(1, 0), Tile(1, 2)), graph.getCenterPoints(strategy, Tile(0).area(width = 3, height = 3)))
+        assertEquals(listOf(Tile(1, 0), Tile(1, 2)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }
 
     @Test
@@ -138,7 +137,7 @@ internal class MapGraphTest {
         for(dir in Direction.all) {
             every { strategy.blocked(center.minus(dir.delta), dir) } returns true
         }
-        assertEquals(listOf(Tile(0, 1)), graph.getCenterPoints(strategy, Tile(0).area(width = 3, height = 3)))
+        assertEquals(listOf(Tile(0, 1)), graph.getCenterPoints(strategy, Tile(0).toCuboid(width = 3, height = 3)))
     }
 
     @Test

@@ -39,7 +39,7 @@ data class SpawnArea(
         data class SpawnArea(val x: IntArray, val y: IntArray, val plane: Int = 0) {
 
             fun toArea(): Area = when {
-                x.size <= 2 -> Rectangle(x.first(), y.first(), x.last(), y.last(), plane)
+                x.size <= 2 -> Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
                 else -> Polygon(x, y, plane)
             }
 

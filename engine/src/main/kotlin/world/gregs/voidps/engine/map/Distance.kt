@@ -1,8 +1,6 @@
 package world.gregs.voidps.engine.map
 
 import world.gregs.voidps.engine.entity.Size
-import world.gregs.voidps.engine.map.area.Coordinate2D
-import world.gregs.voidps.engine.map.area.Coordinate3D
 import kotlin.math.abs
 import kotlin.math.min
 import kotlin.math.sqrt
@@ -44,13 +42,6 @@ object Distance {
     }
 
     /**
-     * @return the length of a line between the two points [first] & [second]
-     */
-    fun euclidean(first: Coordinate2D, second: Coordinate2D): Double {
-        return euclidean(first.x, first.y, second.x, second.y)
-    }
-
-    /**
      * @return the length of a line between the two points [x1], [y1] - [x2], [y2]
      */
     fun euclidean(x1: Int, y1: Int, x2: Int, y2: Int): Double {
@@ -60,9 +51,9 @@ object Distance {
     /**
      * @return the length of a line between the two points [first] & [second]
      */
-    fun euclidean(first: Coordinate3D, second: Coordinate3D, plane: Boolean = true): Double {
+    fun euclidean(first: Tile, second: Tile, plane: Boolean = true): Double {
         if (!plane) {
-            return euclidean(first as Coordinate2D, second)
+            return euclidean(first.x, first.y, second.x, second.y)
         }
         return euclidean(first.x, first.y, first.plane, second.x, second.y, second.plane)
     }

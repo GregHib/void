@@ -5,25 +5,31 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import world.gregs.voidps.engine.data.serializer.TileDeserializer
 import world.gregs.voidps.engine.data.serializer.TileSerializer
 import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.map.area.Coordinate3D
+import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.utility.get
+import kotlin.math.abs
 
 @JsonSerialize(using = TileSerializer::class)
 @JsonDeserialize(using = TileDeserializer::class)
-inline class Tile(val id: Int) : Coordinate3D {
+inline class Tile(val id: Int) {
 
     constructor(x: Int, y: Int, plane: Int = 0) : this(getId(x, y, plane))
 
-    override val x: Int
+    val x: Int
         get() = getX(id)
-    override val y: Int
+    val y: Int
         get() = getY(id)
-    override val plane: Int
+
+    val plane: Int
         get() = getPlane(id)
 
     val chunk: Chunk
@@ -34,7 +40,7 @@ inline class Tile(val id: Int) : Coordinate3D {
         get() = RegionPlane(x / 64, y / 64, plane)
 
     fun copy(x: Int = this.x, y: Int = this.y, plane: Int = this.plane) = Tile(x, y, plane)
-    override fun add(x: Int, y: Int, plane: Int) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
+    fun add(x: Int, y: Int, plane: Int = 0) = copy(x = this.x + x, y = this.y + y, plane = this.plane + plane)
 
     fun addX(value: Int) = add(value, 0, 0)
     fun addY(value: Int) = add(0, value, 0)
@@ -55,11 +61,36 @@ inline class Tile(val id: Int) : Coordinate3D {
     fun minus(direction: Direction) = minus(direction.delta)
     fun delta(direction: Direction) = delta(direction.delta)
 
-    override fun add(x: Int, y: Int) = add(x, y, 0)
-
     fun withinSight(other: Tile): Boolean {
         return get<BresenhamsLine>().withinSight(this, other) is PathResult.Success
     }
+
+    fun distanceTo(entity: Entity) = when (entity) {
+        is Character -> distanceTo(entity.tile, entity.size)
+        is GameObject -> distanceTo(entity.tile, entity.size)
+        else -> distanceTo(entity.tile)
+    }
+
+    fun distanceTo(other: Tile, size: Size) = distanceTo(Distance.getNearest(other, size, this))
+
+    fun distanceTo(other: Tile): Int {
+        if (plane != other.plane) {
+            return -1
+        }
+        return Distance.chebyshev(x, y, other.x, other.y)
+    }
+
+    fun within(other: Tile, radius: Int): Boolean {
+        return plane == other.plane && abs(x - other.x) <= radius && abs(y - other.y) <= radius
+    }
+
+    fun within(x: Int, y: Int, plane: Int, radius: Int): Boolean {
+        return this.plane == plane && abs(this.x - x) <= radius && abs(this.y - y) <= radius
+    }
+
+    fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width - 1, height - 1, 0)
+
+    fun toCuboid(radius: Int = 1) = Cuboid(minus(radius, radius), (radius * 2 + 1) - 1, (radius * 2 + 1) - 1, 0)
 
     override fun toString(): String {
         return "Tile($x, $y, $plane)"

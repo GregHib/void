@@ -42,7 +42,7 @@ class NPCSpawns(
 
     fun load() = timedLoad("npc spawn") {
         val data: Array<SpawnArea> = get<FileLoader>().load(getProperty("npcsPath"))
-        this.spawns = data.flatGroupBy { it.area.regions }
+        this.spawns = data.flatGroupBy { it.area.toRegions() }
         data.size
     }
 

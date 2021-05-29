@@ -2,7 +2,8 @@ package world.gregs.voidps.engine.map.region
 
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.map.Tile
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 internal class RegionTest {
 
@@ -77,15 +78,70 @@ internal class RegionTest {
         assertEquals(3456, tile.y)
     }
 
-    @Test
-    fun `Contains tile`() {
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Region area test`(cuboid: Boolean) {
         // Given
-        val region = Region(0, 0)
+        val area = if (cuboid) {
+            Region(0, 0).toCuboid(width = 1, height = 1)
+        } else {
+            Region(0, 0).toRectangle(width = 1, height = 1)
+        }
         // When
-        assertTrue(region.contains(Tile(0, 0)))
-        assertTrue(region.contains(Tile(0, 63)))
-        assertTrue(region.contains(Tile(63, 0)))
-        assertTrue(region.contains(Tile(63, 63)))
-        assertFalse(region.contains(Tile(64, 0)))
+        assertTrue(area.contains(0, 0))
+        assertTrue(area.contains(0, 63))
+        assertTrue(area.contains(63, 0))
+        assertTrue(area.contains(63, 63))
+        assertFalse(area.contains(64, 0))
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Rectangle area test`(cuboid: Boolean) {
+        // Given
+        val area = if (cuboid) {
+            Region(1, 1).toCuboid(width = 2, height = 3)
+        } else {
+            Region(1, 1).toRectangle(width = 2, height = 3)
+        }
+        // When
+        assertTrue(area.contains(64, 64))
+        assertFalse(area.contains(63, 64))
+        assertFalse(area.contains(192, 64))
+        assertTrue(area.contains(191, 64))
+        assertTrue(area.contains(64, 64))
+        assertFalse(area.contains(64, 63))
+        assertFalse(area.contains(64, 256))
+        assertTrue(area.contains(64, 255))
+    }
+
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `Radius test`(cuboid: Boolean) {
+        // Given
+        val area = if (cuboid) {
+            Region(3, 3).toCuboid(radius = 2)
+        } else {
+            Region(3, 3).toRectangle(radius = 2)
+        }
+        // When
+        assertTrue(area.contains(64, 64))
+        assertFalse(area.contains(63, 64))
+        assertFalse(area.contains(64, 63))
+        assertTrue(area.contains(383, 64))
+        assertFalse(area.contains(384, 64))
+        assertTrue(area.contains(64, 383))
+        assertFalse(area.contains(64, 384))
+    }
+
+    @Test
+    fun `Cuboid test`() {
+        // Given
+        val cuboid = Region(0, 0).toCuboid(width = 1, height = 1)
+        // When
+        assertFalse(cuboid.contains(0, 0, -1))
+        assertTrue(cuboid.contains(0, 0, 0))
+        assertTrue(cuboid.contains(0, 0, 3))
+        assertFalse(cuboid.contains(0, 0, 4))
     }
 }
