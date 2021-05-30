@@ -635,3 +635,13 @@ sacred_clay_hatchet_log_canoe:
   id: 12318
 volatile_clay_hatchet_log_canoe:
   id: 12319
+hatchet_class_1_chop:
+  id: 10603
+hatchet_class_2_chop:
+  id: 10604
+hatchet_class_3_chop:
+  id: 10605
+hatchet_class_4_chop:
+  id: 10606
+hatchet_class_5_chop:
+  id: 10607

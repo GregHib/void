@@ -24,7 +24,12 @@ enum class Hatchet(val index: Int) {
     Sacred_Clay_Hatchet(6),
     Volatile_Clay_Hatchet(6),
     Inferno_Adze(7),
-
+    // Stealing creation
+    Hatchet_Class_1(0),
+    Hatchet_Class_2(1),
+    Hatchet_Class_3(2),
+    Hatchet_Class_4(3),
+    Hatchet_Class_5(4),
     // Dungeoneering hatchet indices made up
     Novite_Hatchet(0),
     Bathus_Hatchet(1),
