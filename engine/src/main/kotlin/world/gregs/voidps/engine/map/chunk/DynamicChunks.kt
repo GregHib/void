@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.obj.Objects
-import world.gregs.voidps.engine.map.area.area
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.map.region.RegionReader
@@ -68,7 +67,7 @@ class DynamicChunks(
     }
 
     private fun isRegionCleared(region: RegionPlane): Boolean {
-        for (regionChunk in region.chunk.area(width = 8, height = 8)) {
+        for (regionChunk in region.chunk.toCuboid(width = 8, height = 8).toChunks()) {
             if (chunks.containsKey(regionChunk.id)) {
                 return false
             }

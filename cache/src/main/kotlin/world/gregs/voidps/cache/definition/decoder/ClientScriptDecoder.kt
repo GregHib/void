@@ -5,9 +5,9 @@ import world.gregs.voidps.cache.DefinitionDecoder
 import world.gregs.voidps.cache.Indices
 import world.gregs.voidps.cache.definition.data.ClientScriptDefinition
 
-class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
+class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache, private val revision634: Boolean) : DefinitionDecoder<ClientScriptDefinition>(cache, Indices.CLIENT_SCRIPTS) {
 
-    override val size: Int
+    override val last: Int
         get() = cache.lastArchiveId(index)
 
     override fun getFile(id: Int): Int {
@@ -23,15 +23,19 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
     override fun ClientScriptDefinition.read(opcode: Int, buffer: Reader) {
         buffer.position(buffer.length - 2)
         val i = buffer.readShort()
-        val length: Int = buffer.length - (2 + i) - 16
+        val length: Int = buffer.length - (2 + i) - if (revision634) 12 else 16
         buffer.position(length)
         val instructionCount = buffer.readInt()
         intVariableCount = buffer.readShort()
         stringVariableCount = buffer.readShort()
-        longVariableCount = buffer.readShort()
+        if (!revision634) {
+            longVariableCount = buffer.readShort()
+        }
         intArgumentCount = buffer.readShort()
         stringArgumentCount = buffer.readShort()
-        longArgumentCount = buffer.readShort()
+        if (!revision634) {
+            longArgumentCount = buffer.readShort()
+        }
         val count = buffer.readUnsignedByte()
         if (count > 0) {
             val list = mutableListOf<List<Pair<Int, Int>>>()
@@ -56,7 +60,7 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
                     stringOperands = arrayOfNulls(instructionCount)
                 }
                 stringOperands!![index] = buffer.readString().intern()
-            } else if (clientOpcode == 54) {
+            } else if (!revision634 && clientOpcode == 54) {
                 if (longOperands == null) {
                     longOperands = LongArray(instructionCount)
                 }
@@ -65,7 +69,7 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDec
                 if (intOperands == null) {
                     intOperands = IntArray(instructionCount)
                 }
-                if (clientOpcode < 150 && clientOpcode != 21 && clientOpcode != 38 && clientOpcode != 39) {
+                if (clientOpcode < 100 && clientOpcode != 21 && clientOpcode != 38 && clientOpcode != 39) {
                     intOperands!![index] = buffer.readInt()
                 } else {
                     intOperands!![index] = buffer.readUnsignedByte()

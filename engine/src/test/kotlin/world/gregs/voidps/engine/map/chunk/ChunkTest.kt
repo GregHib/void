@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.map.chunk
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 
 internal class ChunkTest {
@@ -97,5 +97,55 @@ internal class ChunkTest {
         assertEquals(48, region.x)
         assertEquals(54, region.y)
         assertEquals(1, region.plane)
+    }
+
+    @Test
+    fun `Chunk area test`() {
+        // Given
+        val area = Chunk(0, 0, 0).toCuboid(width = 1, height = 1)
+        // When
+        assertFalse(area.contains(0, 0, 1))
+        assertTrue(area.contains(0, 0))
+        assertTrue(area.contains(0, 7))
+        assertTrue(area.contains(7, 0))
+        assertTrue(area.contains(7, 7))
+        assertFalse(area.contains(8, 0))
+    }
+
+    @Test
+    fun `Rectangle area test`() {
+        // Given
+        val area = Chunk(3, 3, 1).toCuboid(width = 2, height = 3)
+        // When
+        assertTrue(area.contains(24, 24, 1))
+        assertFalse(area.contains(24, 24, 0))
+        assertFalse(area.contains(24, 24, 2))
+
+        assertFalse(area.contains(23, 24, 1))
+        assertFalse(area.contains(24, 23, 1))
+        assertTrue(area.contains(39, 24, 1))
+        assertFalse(area.contains(40, 24, 1))
+        assertTrue(area.contains(24, 47, 1))
+        assertFalse(area.contains(24, 48, 1))
+    }
+
+    @Test
+    fun `Rectangle radius test`() {
+        // Given
+        val area = Chunk(3, 3, 1).toCuboid(radius = 2)
+        // When
+        assertTrue(area.contains(24, 24, 1))
+        assertFalse(area.contains(24, 24, 0))
+        assertFalse(area.contains(24, 24, 2))
+
+        assertTrue(area.contains(8, 24, 1))
+        assertFalse(area.contains(7, 24, 1))
+        assertTrue(area.contains(24, 8, 1))
+        assertFalse(area.contains(24, 7, 1))
+
+        assertFalse(area.contains(48, 24, 1))
+        assertTrue(area.contains(47, 24, 1))
+        assertFalse(area.contains(24, 48, 1))
+        assertTrue(area.contains(24, 47, 1))
     }
 }

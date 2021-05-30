@@ -1,26 +1,23 @@
 package world.gregs.voidps.network.encode
 
 import io.ktor.utils.io.*
-import world.gregs.voidps.network.Client
-import world.gregs.voidps.network.Protocol.GRAPHIC_AREA
+import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.gfx.AreaGraphic
+import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.network.Protocol
 
-/**
- * @param tile The tile offset from the chunk update send
- * @param id graphic id
- * @param height 0..255 start height off the ground
- * @param delay delay to start graphic 30 = 1 tick
- * @param rotation 0..7
- */
-fun Client.addAreaGraphic(
-    tile: Int,
-    id: Int,
-    height: Int,
-    delay: Int,
-    rotation: Int
-) = send(GRAPHIC_AREA) {
-    writeByte(tile)
-    writeShort(id)
-    writeByte(height)
-    writeShort(delay)
-    writeByte(rotation)
+fun addGraphic(ag: AreaGraphic): ChunkUpdate = object : ChunkUpdate {
+    override val size = 7
+
+    override fun visible(player: Player): Boolean = ag.visible(player)
+
+    override suspend fun encode(writer: ByteWriteChannel) = writer.run {
+        writeByte(Protocol.Batch.GRAPHIC_AREA)
+        writeByte(ag.tile.offset())
+        writeShort(ag.graphic.id)
+        writeByte(ag.graphic.height)
+        writeShort(ag.graphic.delay)
+        writeByte(ag.graphic.rotation)
+    }
 }

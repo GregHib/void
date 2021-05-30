@@ -84,7 +84,7 @@ object NPCDefinitionPipeline {
         val pages = mutableMapOf<Int, PageCollector>()
         val incomplete = mutableListOf<PageCollector>()
 
-        repeat(decoder.size) { id ->
+        repeat(decoder.last) { id ->
             if(debugId >= 0 && id != debugId) {
                 return@repeat
             }
@@ -122,7 +122,7 @@ object NPCDefinitionPipeline {
         val pipeline = Pipeline<Extras>().apply {
             add(InfoBoxNPC(revision, infoboxes))
         }
-        repeat(decoder.size) { id ->
+        repeat(decoder.last) { id ->
             if (debugId >= 0 && id != debugId) {
                 return@repeat
             }

@@ -25,7 +25,7 @@ private object ObjectDefinitionPipeline {
         pages: Map<Int, PageCollector>
     ): MutableMap<Int, Extras> {
         val output = mutableMapOf<Int, Extras>()
-        repeat(decoder.size) { id ->
+        repeat(decoder.last) { id ->
             val def = decoder.getOrNull(id) ?: return@repeat
             val page = pages[def.id]
             if (page != null) {

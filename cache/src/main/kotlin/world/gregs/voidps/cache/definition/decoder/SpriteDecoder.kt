@@ -8,7 +8,7 @@ import world.gregs.voidps.cache.definition.data.SpriteDefinition
 
 class SpriteDecoder(cache: world.gregs.voidps.cache.Cache) : DefinitionDecoder<SpriteDefinition>(cache, SPRITES) {
 
-    override val size: Int
+    override val last: Int
         get() = cache.lastArchiveId(index)
 
     override fun create() = SpriteDefinition()

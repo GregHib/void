@@ -59,18 +59,23 @@ class LivePageCollector(val type: String, categories: List<String>, infoboxes: L
             }
             map.forEach { (key, value) ->
                 if (key.startsWith(itemKey)) {
-                    val string = value as String
-                    if (string.contains(",")) {
-                        value.split(",").forEach {
-                            append(ids, it.trim(), page)
-                        }
+                    val string = value as? String
+                    if (string == null) {
+                        println("Unknown $value")
                     } else {
-                        append(ids, value, page)
+                        if (string.contains(",")) {
+                            value.split(",").forEach {
+                                append(ids, it.trim(), page)
+                            }
+                        } else {
+                            append(ids, value, page)
+                        }
                     }
                 }
             }
         }
     }
+
     private fun append(ids: MutableMap<Int, WikiPage>, value: String, page: WikiPage) {
         val id = value.toIntOrNull()
         if (id != null) {

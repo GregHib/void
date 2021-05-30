@@ -13,13 +13,10 @@ object ItemDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = ItemDecoder(koin.get())
-        println(decoder.size)
-        println(decoder.get(1305))
-        for (i in 0 until decoder.size) {
+        println(decoder.last)
+        for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.params?.containsKey(687) == true) {
-                println("$i ${def.name} ${def.params?.get(687)}")
-            }
+            println(def.name)
         }
     }
 }

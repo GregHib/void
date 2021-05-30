@@ -9,6 +9,8 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
+import world.gregs.voidps.tools.anyInlineValue
+import world.gregs.voidps.tools.inlineValue
 import world.gregs.voidps.tools.map.obj.ObjectLinker
 
 internal class ObjectLinkerTest {
@@ -23,7 +25,7 @@ internal class ObjectLinkerTest {
 
     @BeforeEach
     fun setup() {
-        linking = ObjectLinker(mockk())
+        linking = ObjectLinker(mockk(relaxed = true))
         interactOne = mockk(relaxed = true)
         interactTwo = mockk(relaxed = true)
         sizeOne = mockk(relaxed = true)
@@ -39,15 +41,15 @@ internal class ObjectLinkerTest {
 
     @Test
     fun `Can't interact with one then no delta`() {
-        every { interactOne.reached(any(), any()) } returns false
+        every { interactOne.reached(anyInlineValue(), any()) } returns false
         val delta = linking.deltaBetween(one, two)
         assertNull(delta)
     }
 
     @Test
     fun `Can't interact with two then no delta`() {
-        every { interactOne.reached(any(), any()) } returns true
-        every { interactTwo.reached(any(), any()) } returns false
+        every { interactOne.reached(anyInlineValue(), any()) } returns true
+        every { interactTwo.reached(anyInlineValue(), any()) } returns false
         val delta = linking.deltaBetween(one, two)
         assertNull(delta)
     }
@@ -62,14 +64,14 @@ internal class ObjectLinkerTest {
      */
     @Test
     fun `Small objects link on the same side`() {
-        every { one.tile } returns Tile(1, 1)
-        every { two.tile } returns Tile(1, 501)
+        every { one.tile } returns inlineValue(Tile(1, 1))
+        every { two.tile } returns inlineValue(Tile(1, 501))
         every { sizeOne.width } returns 1
         every { sizeTwo.width } returns 1
         every { sizeOne.height } returns 1
         every { sizeTwo.height } returns 1
-        every { interactOne.reached(any(), any()) } returns true
-        every { interactTwo.reached(any(), any()) } returns true
+        every { interactOne.reached(anyInlineValue(), any()) } returns true
+        every { interactTwo.reached(anyInlineValue(), any()) } returns true
 
         val delta = linking.deltaBetween(one, two)
         assertNotNull(delta)
@@ -88,14 +90,14 @@ internal class ObjectLinkerTest {
      */
     @Test
     fun `Small objects link on first walkable side`() {
-        every { one.tile } returns Tile(1, 1)
-        every { two.tile } returns Tile(1, 501)
+        every { one.tile } returns inlineValue(Tile(1, 1))
+        every { two.tile } returns inlineValue(Tile(1, 501))
         every { sizeOne.width } returns 1
         every { sizeTwo.width } returns 1
         every { sizeOne.height } returns 1
         every { sizeTwo.height } returns 1
-        every { interactOne.reached(any(), any()) } returns false
-        every { interactTwo.reached(any(), any()) } returns false
+        every { interactOne.reached(anyInlineValue(), any()) } returns false
+        every { interactTwo.reached(anyInlineValue(), any()) } returns false
         every { interactOne.reached(Tile(1, 2), any()) } returns true
         every { interactOne.reached(Tile(1, 0), any()) } returns true
         every { interactTwo.reached(Tile(2, 501), any()) } returns true
@@ -118,14 +120,14 @@ internal class ObjectLinkerTest {
      */
     @Test
     fun `Rectangle objects link on opposite horizontal side`() {
-        every { one.tile } returns Tile(1, 1)
-        every { two.tile } returns Tile(1, 501)
+        every { one.tile } returns inlineValue(Tile(1, 1))
+        every { two.tile } returns inlineValue(Tile(1, 501))
         every { sizeOne.width } returns 2
         every { sizeTwo.width } returns 2
         every { sizeOne.height } returns 1
         every { sizeTwo.height } returns 1
-        every { interactOne.reached(any(), any()) } returns false
-        every { interactTwo.reached(any(), any()) } returns false
+        every { interactOne.reached(anyInlineValue(), any()) } returns false
+        every { interactTwo.reached(anyInlineValue(), any()) } returns false
         every { interactOne.reached(Tile(0, 1), any()) } returns true
         every { interactTwo.reached(Tile(3, 501), any()) } returns true
 
@@ -148,14 +150,14 @@ internal class ObjectLinkerTest {
      */
     @Test
     fun `Rectangle objects link on opposite vertical side`() {
-        every { one.tile } returns Tile(1, 1)
-        every { two.tile } returns Tile(2, 1)
+        every { one.tile } returns inlineValue(Tile(1, 1))
+        every { two.tile } returns inlineValue(Tile(2, 1))
         every { sizeOne.width } returns 2
         every { sizeTwo.width } returns 2
         every { sizeOne.height } returns 2
         every { sizeTwo.height } returns 2
-        every { interactOne.reached(any(), any()) } returns false
-        every { interactTwo.reached(any(), any()) } returns false
+        every { interactOne.reached(anyInlineValue(), any()) } returns false
+        every { interactTwo.reached(anyInlineValue(), any()) } returns false
         every { interactOne.reached(Tile(2, 0), any()) } returns true
         every { interactTwo.reached(Tile(3, 3), any()) } returns true
 

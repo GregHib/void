@@ -10,7 +10,7 @@ data class AreaSound(
     override var tile: Tile,
     override val id: Int,
     val radius: Int,
-    val rotation: Int,
+    val repeat: Int,
     val delay: Int,
     val volume: Int,
     val speed: Int,

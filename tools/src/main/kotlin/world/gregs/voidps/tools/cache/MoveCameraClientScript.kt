@@ -1,4 +1,4 @@
-package world.gregs.voidps.tools
+package world.gregs.voidps.tools.cache
 
 import com.displee.cache.CacheLibrary
 import world.gregs.voidps.cache.Indices

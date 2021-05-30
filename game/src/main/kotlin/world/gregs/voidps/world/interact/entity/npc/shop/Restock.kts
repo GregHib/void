@@ -1,12 +1,12 @@
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.utility.inject
@@ -20,7 +20,6 @@ import kotlin.math.max
  * Every [restockTimeTicks] all players shops and [GeneralStores] update their stock by 10%
  */
 val containerDefs: ContainerDefinitions by inject()
-val itemDefs: ItemDefinitions by inject()
 val restockTimeTicks = TimeUnit.SECONDS.toTicks(60)
 
 on<Registered> { player: Player ->
@@ -32,6 +31,21 @@ on<Registered> { player: Player ->
                 continue
             }
             restock(def, container)
+        }
+    }
+}
+
+on<Unregistered> { player: Player ->
+    val iterator = player.containers.iterator()
+    while (iterator.hasNext()) {
+        val (name, container) = iterator.next()
+        val def = containerDefs.get(name)
+        if (!def["shop", false]) {
+            continue
+        }
+        val amounts = def.amounts ?: continue
+        if (container.getItems().withIndex().all { (index, item) -> item.amount == amounts.getOrNull(index) }) {
+            iterator.remove()
         }
     }
 }

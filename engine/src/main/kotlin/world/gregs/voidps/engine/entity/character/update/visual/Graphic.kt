@@ -8,6 +8,12 @@ import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.utility.func.toInt
 import world.gregs.voidps.utility.get
 
+/**
+ * @param id graphic id
+ * @param delay delay to start graphic 30 = 1 tick
+ * @param height 0..255 start height off the ground
+ * @param rotation 0..7
+ */
 data class Graphic(
     var id: Int = -1,
     var delay: Int = 0,

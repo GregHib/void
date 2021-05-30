@@ -90,7 +90,7 @@ object ItemDefinitionPipeline {
             add(ItemExchangeLimits())
             add(ItemNoted(decoder))
         }
-        repeat(decoder.size) { id ->
+        repeat(decoder.last) { id ->
             if (debugId >= 0 && id != debugId) {
                 return@repeat
             }
@@ -130,7 +130,7 @@ object ItemDefinitionPipeline {
         val pages = mutableMapOf<Int, PageCollector>()
         val incomplete = mutableListOf<PageCollector>()
 
-        repeat(decoder.size) { id ->
+        repeat(decoder.last) { id ->
             if (debugId >= 0 && id != debugId) {
                 return@repeat
             }
@@ -203,7 +203,11 @@ object ItemDefinitionPipeline {
                     output[page.title.toLowerCase()] = map[""] as? String ?: return@forEach
                 } else {
                     val list = template.second as List<*>
-                    output[page.title.toLowerCase()] = list.last() as String
+                    if (list.last() is String) {
+                        output[page.title.toLowerCase()] = list.last() as String
+                    } else {
+                        println("Unknown ${list.last()}")
+                    }
                 }
             } else if (text.contains("{{disambig}}", true)) {
                 val item = page.content.filterIsInstance<WtListItem>().first()

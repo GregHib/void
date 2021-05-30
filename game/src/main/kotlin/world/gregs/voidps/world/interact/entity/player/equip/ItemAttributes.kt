@@ -48,3 +48,5 @@ fun ItemDefinition.isSkillCape(): Boolean = getInt(258, -1) == 1
 fun ItemDefinition.isTrimmedSkillCape(): Boolean = getInt(259, -1) == 1
 
 fun ItemDefinition.quest(): Int = getInt(743, -1)
+
+fun ItemDefinition.requiredCombat(): Int = getInt(761, 0)

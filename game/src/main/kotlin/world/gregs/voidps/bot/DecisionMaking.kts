@@ -2,9 +2,7 @@ package world.gregs.voidps.bot
 
 import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.entity.*
@@ -36,32 +34,26 @@ on<Registered> { bot: Bot ->
 }
 
 on<World, AiTick> {
-    runBlocking {
-        coroutineScope {
-            players.forEach { player ->
-                if (player.isBot) {
-                    val bot: Bot = player["bot"]
-                    if (!player.contains("task")) {
-                        assign(bot, tasks.assign(bot))
-                    }
-                    launch(Contexts.Updating) {
-                        val events: MutableList<Event> = player["events"]
-                        val iterator = events.iterator()
-                        while (iterator.hasNext()) {
-                            val event = iterator.next()
-                            bot.botEvents.emit(event)
-                            iterator.remove()
-                        }
-                        bot.resume("tick")
-                    }
-                }
+    players.forEach { player ->
+        if (player.isBot) {
+            val bot: Bot = player["bot"]
+            if (!player.contains("task")) {
+                assign(bot, tasks.assign(bot))
             }
+            val events: MutableList<Event> = player["events"]
+            val iterator = events.iterator()
+            while (iterator.hasNext()) {
+                val event = iterator.next()
+                bot.botEvents.emit(event)
+                iterator.remove()
+            }
+            bot.resume("tick")
         }
     }
 }
 
 fun assign(bot: Bot, task: Task) {
-    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
+//    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
     bot["task"] = task.name
     task.spaces--
     scope.launch {

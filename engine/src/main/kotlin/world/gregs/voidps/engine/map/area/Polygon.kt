@@ -12,18 +12,20 @@ open class Polygon(
         assert(xPoints.size == yPoints.size) { "Both point arrays must have equal size." }
     }
 
-    val bounds = Rectangle(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane)
+    val bounds = Cuboid(xPoints.minOf { it }, yPoints.minOf { it }, xPoints.maxOf { it }, yPoints.maxOf { it }, plane)
 
-    override val area: Double = area()
-    override val regions = bounds.regions
+    override val area: Double
+        get() = area()
 
-    override fun contains(tile: Tile): Boolean {
+    override fun toRegions() = bounds.toRegions()
+
+    override fun toChunks() = bounds.toChunks()
+
+    override fun contains(x: Int, y: Int, plane: Int): Boolean {
         val pointCount = xPoints.size
-        if (xPoints.size <= 2 || !bounds.contains(tile)) {
+        if (xPoints.size <= 2 || !bounds.contains(x, y, plane)) {
             return false
         }
-        val x = tile.x
-        val y = tile.y
         var hits = 0
 
         var lastx: Int = xPoints[pointCount - 1]

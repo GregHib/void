@@ -7,10 +7,9 @@ import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.map.area.Area
+import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.area.Polygon
-import world.gregs.voidps.engine.map.area.Rectangle
 import world.gregs.voidps.engine.map.region.Region
-import world.gregs.voidps.engine.map.region.RegionPlane
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.network.encode.playMusicTrack
 import world.gregs.voidps.utility.get
@@ -42,16 +41,16 @@ class MusicTracks {
                     val plane = it["plane"] as? Int ?: -1
                     val region = Region(it["region"] as Int)
                     if (plane != -1) {
-                        RegionPlane(region.x, region.y, plane)
+                        region.toPlane(plane).toCuboid()
                     } else {
-                        region
+                        region.toCuboid()
                     }
                 } else {
                     val x = (it["x"] as List<Int>).toIntArray()
                     val y = (it["y"] as List<Int>).toIntArray()
                     val plane = it["plane"] as? Int ?: 0
                     if (x.size <= 2) {
-                        Rectangle(x.first(), y.first(), x.last(), y.last(), plane)
+                        Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
                     } else {
                         Polygon(x, y, plane)
                     }
@@ -59,11 +58,11 @@ class MusicTracks {
             }
             for (area in areas) {
                 val track = Track(index, area)
-                for (region in area.regions) {
+                for (region in area.toRegions()) {
                     val tracks = map.getOrPut(region) { mutableListOf() }
                     tracks.add(track)
                     // Prioritise shape checks over region checks
-                    tracks.sortBy { it.area is Region }
+                    tracks.sortBy { it.area.toChunks().size.rem(64) == 0  }
                 }
             }
         }

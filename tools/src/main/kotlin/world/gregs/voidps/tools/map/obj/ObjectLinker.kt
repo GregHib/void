@@ -30,9 +30,9 @@ class ObjectLinker(private val collisions: Collisions) {
         var shortest = Int.MAX_VALUE
         var pair: Pair<Tile, Tile>? = null
         for (first in ones) {
-            val firstDelta = one.tile.delta(first)
+            val firstDelta = one.tile.minus(first)
             for (second in twos) {
-                val secondDelta = two.tile.delta(second)
+                val secondDelta = two.tile.minus(second)
                 val dist = firstDelta.distanceTo(secondDelta)
                 if (dist < shortest) {
                     shortest = dist

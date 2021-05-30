@@ -237,12 +237,6 @@ ladder_3:
   id: 133
 bar_2:
   id: 136
-willow:
-  id: 139
-  stump: 5554
-willow_2:
-  id: 142
-  stump: 5554
 compost_heap:
   id: 152
 fountain:
@@ -2552,9 +2546,6 @@ flares_table:
   id: 2203
 flares_table_2:
   id: 2207
-willow_3:
-  id: 2210
-  stump: 5554
 grave_of_scorpius:
   id: 2211
 toy_corner:
@@ -2830,9 +2821,6 @@ signpost_5:
   id: 2370
 signpost_6:
   id: 2371
-willow_4:
-  id: 2372
-  stump: 5554
 specimen_tray:
   id: 2375
 soil:
@@ -6673,7 +6661,16 @@ heather_9:
   id: 5549
 dock_leaf_plant:
   id: 5550
-tree_stump_18:
+willow:
+  id: 5551
+  stump: 5554
+willow_2:
+  id: 5552
+  stump: 5554
+willow_3:
+  id: 5553
+  stump: 5554
+willow_stump:
   id: 5554
 charms_2:
   id: 5559

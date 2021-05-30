@@ -10,8 +10,8 @@ data class AnimationDefinition(
     var loopOffset: Int = -1,
     var interleaveOrder: BooleanArray? = null,
     var priority: Int = 5,
-    var leftHand: Int = -1,
-    var rightHand: Int = -1,
+    var leftHandItem: Int = -1,
+    var rightHandItem: Int = -1,
     var maxLoops: Int = 99,
     var animatingPrecedence: Int = -1,
     var walkingPrecedence: Int = -1,
@@ -63,8 +63,8 @@ data class AnimationDefinition(
             if (!interleaveOrder!!.contentEquals(other.interleaveOrder!!)) return false
         } else if (other.interleaveOrder != null) return false
         if (priority != other.priority) return false
-        if (leftHand != other.leftHand) return false
-        if (rightHand != other.rightHand) return false
+        if (leftHandItem != other.leftHandItem) return false
+        if (rightHandItem != other.rightHandItem) return false
         if (maxLoops != other.maxLoops) return false
         if (animatingPrecedence != other.animatingPrecedence) return false
         if (walkingPrecedence != other.walkingPrecedence) return false
@@ -104,8 +104,8 @@ data class AnimationDefinition(
         result = 31 * result + loopOffset
         result = 31 * result + (interleaveOrder?.contentHashCode() ?: 0)
         result = 31 * result + priority
-        result = 31 * result + leftHand
-        result = 31 * result + rightHand
+        result = 31 * result + leftHandItem
+        result = 31 * result + rightHandItem
         result = 31 * result + maxLoops
         result = 31 * result + animatingPrecedence
         result = 31 * result + walkingPrecedence

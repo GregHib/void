@@ -68,7 +68,7 @@ class ObjectDoorsGates(private val decoder: ObjectDecoder) : Pipeline.Modifier<M
     }
 
     private fun ObjectDecoder.findMatchingModels(definition: ObjectDefinition): List<ObjectDefinition> {
-        return (0 until size).mapNotNull {
+        return (0 until last).mapNotNull {
             val def = getOrNull(it) ?: return@mapNotNull null
             if (definition.id == it) {
                 return@mapNotNull null

@@ -1,24 +1,22 @@
 package world.gregs.voidps.engine.map.chunk
 
+import io.ktor.utils.io.*
 import io.mockk.*
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import world.gregs.voidps.engine.anyValue
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.script.KoinMock
-import world.gregs.voidps.engine.value
 import world.gregs.voidps.network.Client
 import world.gregs.voidps.network.encode.clearChunk
-import world.gregs.voidps.network.encode.updateChunk
-import kotlin.collections.set
 
-internal class ChunkBatcherTest : KoinMock() {
+internal class ChunkBatchesTest : KoinMock() {
 
-    private lateinit var batcher: ChunkBatcher
+    private lateinit var batches: ChunkBatches
     private lateinit var player: Player
     private lateinit var client: Client
+    private lateinit var update: ChunkUpdate
+    private val chunk = Chunk(0)
 
     override val modules = listOf(eventModule)
 
@@ -26,16 +24,82 @@ internal class ChunkBatcherTest : KoinMock() {
     fun setup() {
         player = mockk(relaxed = true)
         client = mockk(relaxed = true)
+        update = mockk(relaxed = true)
+        every { update.visible(any()) } returns true
+        every { update.size } returns 2
+        coEvery { update.encode(any()) } coAnswers {
+            val channel: ByteWriteChannel = arg(0)
+            repeat(3) {
+                channel.writeByte(0)
+            }
+        }
         every { player.client } returns client
-        batcher = spyk(ChunkBatcher())
+        every { client.send(any(), any(), any(), any()) } just Runs
+        batches = spyk(ChunkBatches())
         mockkStatic("world.gregs.voidps.network.encode.ChunkEncodersKt")
     }
 
     @Test
+    fun `Subscriptions are sent updates`() {
+        // Given
+        batches.subscribe(player, chunk)
+        batches.update(chunk, update)
+        // When
+        batches.run()
+        // Then
+        verify {
+            client.send(48, 6, -2, any())
+        }
+    }
+
+    @Test
+    fun `Unsubscribed players aren't sent updates`() {
+        // Given
+        batches.subscribe(player, chunk)
+        batches.update(chunk, update)
+        batches.unsubscribe(player, chunk)
+        // When
+        batches.run()
+        // Then
+        verify(exactly = 0) {
+            client.send(any(), any(), any(), any())
+        }
+    }
+
+    @Test
+    fun `Initial updates are sent on init`() {
+        // Given
+        batches.addInitial(chunk, update)
+        // When
+        batches.sendInitial(player, chunk)
+        // Then
+        verify {
+            client.clearChunk(0, 0, 0)
+            client.send(48, 6, -2, any())
+        }
+    }
+
+    @Test
+    fun `Initial updates removed aren't sent on init`() {
+        // Given
+        batches.addInitial(chunk, update)
+        batches.removeInitial(chunk, update)
+        // When
+        batches.sendInitial(player, chunk)
+        // Then
+        verify {
+            client.clearChunk(0, 0, 0)
+        }
+        verify(exactly = 0) {
+            client.send(any(), any(), any(), any())
+        }
+    }
+
+    /*@Test
     fun `Subscription sends chunk`() {
         // Given
         every { client.updateChunk(any(), any(), any()) } just Runs
-        val result = batcher.createSubscription(player)
+        val result = batches.createSubscription(player)
         val chunk = Chunk(0)
         val message: (Player) -> Unit = mockk(relaxed = true)
         val messages = mutableListOf(message)
@@ -57,7 +121,7 @@ internal class ChunkBatcherTest : KoinMock() {
         every { player.viewport.lastLoadChunk } returns value(lastChunk)
         every { player.viewport.tileSize } returns size
         // When
-        val offset = batcher.getChunkOffset(player, chunk)
+        val offset = batches.getChunkOffset(player, chunk)
         // Then
         assertEquals(7, offset.x)
         assertEquals(7, offset.y)
@@ -68,9 +132,9 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         every { client.updateChunk(any(), any(), any()) } just Runs
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
+        every { batches.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
         // When
-        batcher.sendChunk(player, chunk)
+        batches.sendChunk(player, chunk)
         // Then
         verify {
             client.updateChunk(7, 7, 1)
@@ -82,9 +146,9 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         every { client.clearChunk(any(), any(), any()) } just Runs
         val chunk = Chunk(11, 11, 1)
-        every { batcher.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
+        every { batches.getChunkOffset(player, chunk) } returns value(Chunk(7, 7))
         // When
-        batcher.sendChunkClear(player, chunk)
+        batches.sendChunkClear(player, chunk)
         // Then
         verify {
             client.clearChunk(7, 7, 1)
@@ -98,10 +162,10 @@ internal class ChunkBatcherTest : KoinMock() {
         val subscribers = mutableSetOf<(Chunk, MutableList<(Player) -> Unit>) -> Unit>()
         val chunk = Chunk(11, 11, 1)
         subscribers.add(subscription)
-        every { batcher.getSubscription(player) } returns subscription
-        every { batcher.getSubscribers(chunk) } returns subscribers
+        every { batches.getSubscription(player) } returns subscription
+        every { batches.getSubscribers(chunk) } returns subscribers
         // When
-        batcher.unsubscribe(player, chunk)
+        batches.unsubscribe(player, chunk)
         // Then
         assertFalse(subscribers.contains(subscription))
     }
@@ -110,12 +174,12 @@ internal class ChunkBatcherTest : KoinMock() {
     fun `Subscription created if non-existing`() {
         // Given
         val subscription: (Chunk, List<(Player) -> Unit>) -> Unit = mockk(relaxed = true)
-        every { batcher.createSubscription(player) } returns subscription
+        every { batches.createSubscription(player) } returns subscription
         // When
-        val result = batcher.getSubscription(player)
+        val result = batches.getSubscription(player)
         // Then
         assertNotNull(result)
-        verify { batcher.createSubscription(player) }
+        verify { batches.createSubscription(player) }
     }
 
     @Test
@@ -123,7 +187,7 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         val chunk = Chunk(11, 11, 1)
         // When
-        val result = batcher.getSubscribers(chunk)
+        val result = batches.getSubscribers(chunk)
         // Then
         assertNotNull(result)
     }
@@ -133,7 +197,7 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         val chunk = Chunk(11, 11, 1)
         // When
-        val result = batcher.getBatch(chunk)
+        val result = batches.getBatch(chunk)
         // Then
         assertNotNull(result)
     }
@@ -147,10 +211,10 @@ internal class ChunkBatcherTest : KoinMock() {
         val chunk = Chunk(11, 11, 1)
         val message: (Player) -> Unit = mockk(relaxed = true)
         val messages = mutableListOf(message)
-        batcher.batches[chunk] = messages
-        batcher.subscribers[chunk] = subscribers
+        batches.batches[chunk] = messages
+        batches.subscribers[chunk] = subscribers
         // When
-        batcher.run()
+        batches.run()
         // Then
         verify { subscription.invoke(chunk, messages) }
         assertTrue(messages.isEmpty())
@@ -162,9 +226,9 @@ internal class ChunkBatcherTest : KoinMock() {
         val chunk = Chunk(11, 11, 1)
         val message: (Player) -> Unit = mockk(relaxed = true)
         val batch = mutableListOf<(Player) -> Unit>()
-        every { batcher.getBatch(chunk) } returns batch
+        every { batches.getBatch(chunk) } returns batch
         // When
-        batcher.update(chunk, message)
+        batches.update(chunk, message)
         // Then
         assertTrue(batch.contains(message))
     }
@@ -174,9 +238,9 @@ internal class ChunkBatcherTest : KoinMock() {
         // Given
         val block: (Player, Chunk, MutableList<(Player) -> Unit>) -> Unit = mockk(relaxed = true)
         // When
-        batcher.addInitial(block)
+        batches.addInitial(block)
         // Then
-        assertTrue(batcher.initials.contains(block))
+        assertTrue(batches.initials.contains(block))
     }
 
     @Test
@@ -185,16 +249,16 @@ internal class ChunkBatcherTest : KoinMock() {
         val block: (Player, Chunk, MutableList<(Player) -> Unit>) -> Unit = mockk(relaxed = true)
         val subscription: (Chunk, List<(Player) -> Unit>) -> Unit = mockk(relaxed = true)
         val player: Player = mockk(relaxed = true)
-        batcher.initials.add(block)
-        every { batcher.sendChunkClear(any(), anyValue()) } just Runs
-        every { batcher.getSubscription(player) } returns subscription
+        batches.initials.add(block)
+        every { batches.sendChunkClear(any(), anyValue()) } just Runs
+        every { batches.getSubscription(player) } returns subscription
         val chunk = Chunk(10, 10, 1)
         // When
-        batcher.sendInitial(player, chunk)
+        batches.sendInitial(player, chunk)
         // Then
         verify {
             block.invoke(player, chunk, any())
             subscription.invoke(chunk, any())
         }
-    }
+    }*/
 }

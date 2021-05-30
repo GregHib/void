@@ -31,6 +31,7 @@ object Protocol {
     const val INTERFACE_CUSTOM_HEAD = 95
     const val OBJECT_REMOVE = 58
     const val UPDATE_CHUNK = 41
+    const val BATCH_UPDATE_CHUNK = 48
     const val OBJECT_ANIMATION_SPECIFIC = 17
     const val FLOOR_ITEM_ADD = 63
     const val SCRIPT = 8
@@ -67,6 +68,23 @@ object Protocol {
     const val INTERFACE_COMPONENT_ORIENTATION = 88
     const val DYNAMIC_REGION = 70
     const val JINGLE = 116
+
+    object Batch {
+        const val FLOOR_ITEM_REMOVE = 0
+        const val OBJECT_ADD = 1
+        const val OBJECT_ANIMATION_SPECIFIC = 2
+        const val OBJECT_REMOVE = 3
+        const val FLOOR_ITEM_REVEAL = 4
+        const val PROJECTILE_ADD = 5
+        const val FLOOR_ITEM_ADD = 6
+        const val FLOOR_ITEM_UPDATE = 7
+        const val OBJECT_PRE_FETCH = 8
+        const val PROJECTILE_DISPLACE = 9
+        const val MIDI_AREA = 10
+        const val SOUND_AREA = 11
+        const val GRAPHIC_AREA = 12
+        const val TILE_TEXT = 13
+    }
 }
 
 val protocol: Map<Int, Decoder> = mapOf(

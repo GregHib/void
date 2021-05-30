@@ -1,15 +1,13 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.item.offset
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.encode.addProjectile
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -17,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 val projectiles: Projectiles by inject()
 val scheduler: Scheduler by inject()
 val store: EventHandlerStore by inject()
-val batcher: ChunkBatcher by inject()
+val batches: ChunkBatches by inject()
 
 on<World, ShootProjectile> {
     var index = if (target != null) target.index + 1 else 0
@@ -27,7 +25,10 @@ on<World, ShootProjectile> {
     val projectile = Projectile(id, tile, direction, index, delay, flightTime, startHeight, endHeight, curve, offset)
     store.populate(projectile)
     projectiles.add(projectile)
-    batcher.update(tile.chunk, projectile.toMessage())
+    val update = addProjectile(projectile)
+    projectile["update"] = update
+    batches.update(tile.chunk, update)
+    batches.addInitial(tile.chunk, update)
     decay(projectile)
     projectile.events.emit(Registered)
 }
@@ -51,29 +52,8 @@ fun decay(projectile: Projectile) {
         projectile.flightTime = 0
         projectiles.remove(projectile)
         projectile.events.emit(Unregistered)
-    }
-}
-
-fun Projectile.toMessage(): (Player) -> Unit = { player ->
-    player.client?.addProjectile(
-        tile.offset(3),
-        id,
-        direction.x,
-        direction.y,
-        index,
-        startHeight,
-        endHeight,
-        delay,
-        delay + flightTime,
-        curve,
-        offset
-    )
-}
-
-batcher.addInitial { player, chunk, messages ->
-    projectiles[chunk].forEach {
-        if (it.visible(player)) {
-            messages += it.toMessage()
+        projectile.remove<ChunkUpdate>("update")?.let {
+            batches.removeInitial(projectile.tile.chunk, it)
         }
     }
 }

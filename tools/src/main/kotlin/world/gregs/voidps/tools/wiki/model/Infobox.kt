@@ -19,7 +19,6 @@ object Infobox {
             val version = versionEntry?.key?.removePrefix("id")?.toIntOrNull()
             if (version != null) {
                 function(template, version.toString())
-                return
             }
         }
         function(template, "")

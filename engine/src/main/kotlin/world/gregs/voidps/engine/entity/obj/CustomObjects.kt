@@ -5,11 +5,10 @@ import org.koin.dsl.module
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
 import world.gregs.voidps.engine.data.file.FileLoader
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Unregistered
-import world.gregs.voidps.engine.entity.item.offset
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.chunk.ChunkBatcher
+import world.gregs.voidps.engine.map.chunk.ChunkBatches
+import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.engine.map.collision.GameObjectCollision
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
@@ -27,31 +26,12 @@ val customObjectModule = module {
 class CustomObjects(
     private val objects: Objects,
     private val scheduler: Scheduler,
-    private val batcher: ChunkBatcher,
+    private val batches: ChunkBatches,
     private val factory: GameObjectFactory,
     private val collision: GameObjectCollision,
 ) {
     private val logger = InlineLogger()
     lateinit var spawns: Map<Region, List<GameObject>>
-
-    init {
-        batcher.addInitial { player, chunk, messages ->
-            objects.getRemoved(chunk)?.forEach {
-                if (it.visible(player)) {
-                    messages += { player ->
-                        player.client?.removeObject(it.tile.offset(), it.type, it.rotation)
-                    }
-                }
-            }
-            objects.getAdded(chunk)?.forEach {
-                if (it.visible(player)) {
-                    messages += { player ->
-                        player.client?.addObject(it.tile.offset(), it.id, it.type, it.rotation)
-                    }
-                }
-            }
-        }
-    }
 
     fun load(region: Region) {
         val spawns = spawns[region] ?: return
@@ -99,21 +79,40 @@ class CustomObjects(
     }
 
     private fun despawn(gameObject: GameObject) {
-        batcher.update(gameObject.tile.chunk) { player ->
-            player.client?.removeObject(gameObject.tile.offset(), gameObject.type, gameObject.rotation)
-        }
-        objects.removeTemp(gameObject)
+        val update = removeObject(gameObject)
+        batches.update(gameObject.tile.chunk, update)
+        remove(gameObject, update)
         collision.modifyCollision(gameObject, GameObjectCollision.REMOVE_MASK)
         gameObject.events.emit(Unregistered)
     }
 
-    private fun respawn(gameObject: GameObject) {
-        batcher.update(gameObject.tile.chunk) { player ->
-            player.client?.addObject(gameObject.tile.offset(), gameObject.id, gameObject.type, gameObject.rotation)
+    private fun remove(gameObject: GameObject, update: ChunkUpdate) {
+        gameObject.remove<ChunkUpdate>("update")?.let {
+            batches.removeInitial(gameObject.tile.chunk, it)
         }
-        objects.addTemp(gameObject)
+        if (objects.isOriginal(gameObject)) {
+            batches.addInitial(gameObject.tile.chunk, update)
+            gameObject["update"] = update
+        }
+        objects.removeTemp(gameObject)
+    }
+
+    private fun respawn(gameObject: GameObject) {
+        val update = addObject(gameObject)
+        batches.update(gameObject.tile.chunk, update)
         collision.modifyCollision(gameObject, GameObjectCollision.ADD_MASK)
         gameObject.events.emit(Registered)
+    }
+
+    private fun add(gameObject: GameObject, update: ChunkUpdate) {
+        gameObject.remove<ChunkUpdate>("update")?.let {
+            batches.removeInitial(gameObject.tile.chunk, it)
+        }
+        if (!objects.isOriginal(gameObject)) {
+            batches.addInitial(gameObject.tile.chunk, update)
+            gameObject["update"] = update
+        }
+        objects.addTemp(gameObject)
     }
 
     /**
@@ -149,7 +148,7 @@ class CustomObjects(
         ticks: Int = -1,
         owner: String? = null
     ) {
-        val replacement = factory.spawn(id, tile, type, rotation)
+        val replacement = factory.spawn(id, tile, type, rotation, owner)
 
         switch(original, replacement)
         // Revert
@@ -177,10 +176,11 @@ class CustomObjects(
         secondTile: Tile,
         secondRotation: Int,
         ticks: Int,
-        owner: String? = null
+        firstOwner: String? = null,
+        secondOwner: String? = null
     ) {
-        val firstReplacement = factory.spawn(firstReplacement, firstTile, firstOriginal.type, firstRotation)
-        val secondReplacement = factory.spawn(secondReplacement, secondTile, secondOriginal.type, secondRotation)
+        val firstReplacement = factory.spawn(firstReplacement, firstTile, firstOriginal.type, firstRotation, firstOwner)
+        val secondReplacement = factory.spawn(secondReplacement, secondTile, secondOriginal.type, secondRotation, secondOwner)
         switch(firstOriginal, firstReplacement)
         switch(secondOriginal, secondReplacement)
         // Revert
@@ -200,16 +200,14 @@ class CustomObjects(
     }
 
     private fun switch(original: GameObject, replacement: GameObject) {
+        val removeUpdate = removeObject(original)
         if (original.tile != replacement.tile) {
-            batcher.update(original.tile.chunk) { player ->
-                player.client?.removeObject(original.tile.offset(), original.type, original.rotation)
-            }
+            batches.update(original.tile.chunk, removeUpdate)
         }
-        batcher.update(replacement.tile.chunk) { player ->
-            player.client?.addObject(replacement.tile.offset(), replacement.id, replacement.type, replacement.rotation)
-        }
-        objects.removeTemp(original)
-        objects.addTemp(replacement)
+        val addUpdate = addObject(replacement)
+        batches.update(replacement.tile.chunk, addUpdate)
+        remove(original, removeUpdate)
+        add(replacement, addUpdate)
         collision.modifyCollision(original, GameObjectCollision.REMOVE_MASK)
         original.events.emit(Unregistered)
         collision.modifyCollision(replacement, GameObjectCollision.ADD_MASK)

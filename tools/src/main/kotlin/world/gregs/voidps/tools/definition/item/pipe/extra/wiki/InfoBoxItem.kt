@@ -34,6 +34,10 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     private fun processRs3(extras: MutableMap<String, Any>, id: Int, page: WikiPage, builder: PageCollector) {
         splitByVersion(page, "infobox item", id, false) { template, suffix ->
             template.forEach { (key, value) ->
+                if(value is ArrayList<*>) {
+                    println("Unknown al $value")
+                    return@forEach
+                }
                 if (key.startsWith("weight$suffix")) {
                     extras.putIfAbsent(key.removeSuffix(suffix), (value as? String)?.toDoubleOrNull() ?: 0.0)
                     return@forEach
@@ -56,8 +60,13 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
                         extras.putIfAbsent(key.removeSuffix(suffix).replace("stacksinbank", "bank_stacks"), text.equals("yes", true))
                     }
                     "examine$suffix" -> {
-                        val text = removeLinks(value as String).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()
-                        splitExamine(text, extras, key, suffix, false)
+                        val t = value as? String
+                        if(t == null) {
+                            println("Unknown examine $t")
+                        } else {
+                            val text = removeLinks(t).replace("adrenaline", "recover special").replace(usedInRegex, "").trim()
+                            splitExamine(text, extras, key, suffix, false)
+                        }
                     }
                     "destroy$suffix" -> {
                         val text = removeLinks(value as String)
@@ -111,6 +120,10 @@ class InfoBoxItem(val revision: LocalDate) : Pipeline.Modifier<Extras> {
     private fun processRs2(extras: MutableMap<String, Any>, page: WikiPage) {
         val template = page.getTemplateMap("infobox item") ?: return
         template.forEach { (key, value) ->
+            if (value is ArrayList<*>) {
+                println("Unknown al $value")
+                return@forEach
+            }
             when (key) {
                 "destroy", "examine" -> {
                     val examine = removeLinks(value as String)

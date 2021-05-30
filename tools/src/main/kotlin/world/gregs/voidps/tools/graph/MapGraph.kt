@@ -6,8 +6,7 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area3D
-import world.gregs.voidps.engine.map.area.area
+import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.collision.Collisions
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionReader
@@ -39,17 +38,17 @@ class MapGraph(
 
         val reg = Region(27, 40).toPlane(0)
         runBlocking {
-            for (region in reg.area(width = 33, height = 23)) {
+            for (region in reg.toCuboid(width = 33, height = 23).toRegions()) {
                 // TODO better way of determining empty maps
                 val xtea = xteas[region.id]
                 cache.getFile(5, "l${region.x}_${region.y}", xtea) ?: continue
 
-                reader.loadAsync(region.region).await()
-                for (chunk in region.chunk.area(width = 8, height = 8)) {
+                reader.loadAsync(region).await()
+                for (chunk in region.tile.chunk.toCuboid(width = 8, height = 8).toChunks()) {
                     val time = measureNanoTime {
                         val loaded = objects[chunk]
                         objs.addAll(loaded)
-                        all.addAll(getCenterPoints(strategy, chunk.tile.area(width = 16, height = 16)))
+                        all.addAll(getCenterPoints(strategy, chunk.toCuboid(width = 2, height = 2)))
                     }
                     println("Objects ${objs.size} Points ${all.size} Took ${time}ns")
                 }
@@ -83,7 +82,7 @@ class MapGraph(
     fun getFloodedTiles(
         traversal: TileTraversalStrategy,
         start: Tile,
-        area: Area3D<Tile>
+        area: Cuboid
     ): Map<Tile, Int> {
         val distances = mutableMapOf<Tile, Int>()
         val queue = LinkedList<Tile>()
@@ -116,7 +115,7 @@ class MapGraph(
         return Tile(x / tiles.size, y / tiles.size)
     }
 
-    fun getCenterPoints(traversal: TileTraversalStrategy, area: Area3D<Tile>): List<Tile> {
+    fun getCenterPoints(traversal: TileTraversalStrategy, area: Cuboid): List<Tile> {
         val list = mutableListOf<Tile>()
         val visitedTiles = mutableSetOf<Tile>()
         for (tile in area) {
@@ -147,7 +146,7 @@ class MapGraph(
             val tiles = getFloodedTiles(
                 traversal,
                 start,
-                start.chunk.tile.minus(clusterSize, clusterSize).area(width = cluster, height = cluster)
+                start.chunk.tile.minus(clusterSize, clusterSize).toCuboid(width = cluster, height = cluster)
             )
             val visited = mutableSetOf<Tile>()
             for ((end, distance) in tiles) {

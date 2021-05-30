@@ -53,10 +53,11 @@ class Areas {
         val x = area["x"] as List<Int>
         val y = area["y"] as List<Int>
         val plane = area["plane"] as? Int ?: 0
-        val shape = if (x.size <= 2) {
-            Rectangle(x.first(), y.first(), x.last(), y.last(), plane)
-        } else {
-            Polygon(x.toIntArray(), y.toIntArray(), plane)
+        val shape = when {
+            x.size <= 2 -> Cuboid(x.first(), y.first(), x.last(), y.last(), plane)
+            else -> {
+                Polygon(x.toIntArray(), y.toIntArray(), plane)
+            }
         }
         return MapArea(name, shape, (map["tags"] as? List<String>)?.toSet() ?: emptySet())
     }

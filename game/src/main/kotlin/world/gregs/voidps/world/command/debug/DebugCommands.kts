@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Area2D
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -46,8 +45,8 @@ on<Command>({ prefix == "test" }) { player: Player ->
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->
-    val east = Area2D(Tile(3179, 3433), 15, 14)
-    val west = Area2D(Tile(3250, 3417), 7, 8)
+    val east = Tile(3179, 3433).toCuboid(15, 14)
+    val west = Tile(3250, 3417).toCuboid(7, 8)
     val dijkstra: Dijkstra = get()
     val strategy = object : NodeTargetStrategy() {
         override fun reached(node: Any): Boolean {
@@ -64,7 +63,7 @@ on<Command>({ prefix == "walkToBank" }) { player: Player ->
         while (player.movement.waypoints.isNotEmpty()) {
             val next = player.movement.waypoints.poll()
             suspendCoroutine<Unit> { cont ->
-                val tile = if(first && !player.tile.within(next.end as Tile, 20)) {
+                val tile = if (first && !player.tile.within(next.end as Tile, 20)) {
                     next.start
                 } else {
                     next.end

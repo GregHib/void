@@ -21,7 +21,6 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
@@ -85,7 +84,7 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
     while (player.inventory.isNotFull()) {
         val tree = player.viewport.objects
             .filter { isAvailableTree(map, it, type) }
-            .minByOrNull { tile.distanceTo(Distance.getNearest(it.tile, it.size, tile)) }
+            .minByOrNull { tree -> tile.distanceTo(tree) }
         if (tree == null) {
             await("tick")
             if (player.inventory.spaces < 4) {

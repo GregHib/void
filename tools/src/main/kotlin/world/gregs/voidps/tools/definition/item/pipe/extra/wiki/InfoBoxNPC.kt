@@ -16,6 +16,10 @@ class InfoBoxNPC : Pipeline.Modifier<Extras> {
     private fun process(extras: MutableMap<String, Any>, page: WikiPage?) {
         val template = page?.getTemplateMap("infobox non-player character") ?: return
         template.forEach { (key, value) ->
+            if(value is ArrayList<*>) {
+                println("Unknown al $value")
+                return@forEach
+            }
             when (key) {
                 "examine" -> {
                     val text = removeLinks(value as String)

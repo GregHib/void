@@ -382,8 +382,10 @@ class ItemManualChanges : Pipeline.Modifier<MutableMap<Int, Extras>> {
             if (uid.startsWith("clue_scroll_")) {
                 val examines = extras.count { it.key.startsWith("examine") }
                 val suffix = getSuffixNumber(uid)
-                val index = suffix.rem(examines)
-                content.selectExamine(uid, index)
+                if (examines > 0) {
+                    val index = suffix.rem(examines)
+                    content.selectExamine(uid, index)
+                }
             }
             if (uid.startsWith("enchanted_lyre") && !uid.endsWith("0")) {
                 content.selectExamine(uid, 1)

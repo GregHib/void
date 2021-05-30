@@ -1,25 +1,24 @@
-package world.gregs.voidps.tools
+package world.gregs.voidps.tools.cache
 
 import org.koin.core.context.startKoin
-import world.gregs.voidps.cache.definition.decoder.EnumDecoder
+import world.gregs.voidps.cache.config.decoder.StructDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.map.Tile
+import java.io.File
 
-object StructsDefinitions {
+object DumpStructs {
     @JvmStatic
     fun main(args: Array<String>) {
         val koin = startKoin {
             fileProperties("/tool.properties")
             modules(cacheModule, cacheDefinitionModule)
         }.koin
-        val decoder = EnumDecoder(koin.get())
+        val decoder = StructDecoder(koin.get())
         val builder = StringBuilder()
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             builder.append(def.toString()).append("\n")
         }
-        println(Tile.getId(3088, 3571, 0))
-//        File("enums.txt").writeText(builder.toString())
+        File("structs.txt").writeText(builder.toString())
     }
 }

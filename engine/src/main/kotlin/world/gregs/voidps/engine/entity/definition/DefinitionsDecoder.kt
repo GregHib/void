@@ -13,7 +13,7 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     val decoder: D
 
     val size: Int
-        get() = decoder.size
+        get() = decoder.last
 
     val indices: IntRange
         get() = decoder.indices
