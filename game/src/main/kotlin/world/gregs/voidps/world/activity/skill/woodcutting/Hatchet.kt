@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.activity.skill.woodcutting
 
-import world.gregs.voidps.engine.entity.character.contain.equipment
-import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.has
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -16,7 +15,6 @@ enum class Hatchet(val index: Int) {
     // Regular hatchet indices taken from RS3 "Skilling Chances" spreadsheet
     Bronze_Hatchet(0),
     Iron_Hatchet(1),
-    Dwarven_Army_Axe(1),
     Steel_Hatchet(2),
     Black_Hatchet(3),
     Mithril_Hatchet(4),
@@ -79,7 +77,7 @@ enum class Hatchet(val index: Int) {
         }
 
         fun get(player: Player): Hatchet? {
-            val list = values().filter { hatchet -> hasRequirements(player, hatchet, false) && player.has(hatchet) }
+            val list = values().filter { hatchet -> hasRequirements(player, hatchet, false) && player.has(hatchet.id) }
             return list.maxByOrNull { hatchet -> hatchet.index }
         }
 
@@ -87,9 +85,7 @@ enum class Hatchet(val index: Int) {
             return regular.lastOrNull { hatchet -> hasRequirements(player, hatchet, false) }
         }
 
-        private fun Player.has(hatchet: Hatchet) = inventory.contains(hatchet.id) || equipment.contains(hatchet.id)
-
-        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == Dwarven_Army_Axe.id || name == Inferno_Adze.id
+        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == Inferno_Adze.id
 
         fun isHatchet(item: Item): Boolean = isHatchet(item.name)
 

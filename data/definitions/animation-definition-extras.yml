@@ -377,10 +377,6 @@ iron_hatchet_chop:
   id: 877
 iron_hatchet_chop_ivy:
   id: 2847
-dwarven_army_axe_chop:
-  id: 2794
-dwarven_army_axe_chop_ivy:
-  id: 2833
 steel_hatchet_chop:
   id: 875
 steel_hatchet_chop_ivy:
@@ -439,59 +435,31 @@ black_hatchet_chop_log:
   id: 6364
 inferno_adze_chop_ivy:
   id: 12323
-dwarven_army_axe_dugout_canoe:
-  id: 2837
-dwarven_army_axe_stable_canoe:
-  id: 2838
-dwarven_army_axe_waka_canoe:
-  id: 2839
 dragon_hatchet_chop_canoe_tree:
-  id: 4008
-rune_hatchet_chop_canoe_tree:
-  id: 4011
-adamant_hatchet_chop_canoe_tree:
-  id: 4012
-mithril_hatchet_chop_canoe_tree:
-  id: 4017
-steel_hatchet_chop_canoe_tree:
-  id: 4031
-iron_hatchet_chop_canoe_tree:
-  id: 4036
-bronze_hatchet_chop_canoe_tree:
-  id: 4077
-sacred_clay_hatchet_chop_canoe_tree:
-  id: 4078
-volatile_clay_hatchet_chop_canoe_tree:
-  id: 4137
-inferno_adze_chop_canoe_tree:
-  id: 4402
-dwarven_army_axe_chop_canoe_tree:
-  id: 4405
-dragon_hatchet_chop_canoe_tree_2:
   id: 9992
-rune_hatchet_chop_canoe_tree_2:
+rune_hatchet_chop_canoe_tree:
   id: 9993
-adamant_hatchet_chop_canoe_tree_2:
+adamant_hatchet_chop_canoe_tree:
   id: 9994
-mithril_hatchet_chop_canoe_tree_2:
+mithril_hatchet_chop_canoe_tree:
   id: 9995
-black_hatchet_chop_canoe_tree_2:
+black_hatchet_chop_canoe_tree:
   id: 9996
-steel_hatchet_chop_canoe_tree_2:
+steel_hatchet_chop_canoe_tree:
   id: 9997
-iron_hatchet_chop_canoe_tree_2:
+iron_hatchet_chop_canoe_tree:
   id: 9998
-bronze_hatchet_chop_canoe_tree_2:
+bronze_hatchet_chop_canoe_tree:
   id: 9999
-inferno_adze_chop_canoe_tree_2:
+inferno_adze_chop_one_hand:
   id: 10249
-inferno_adze_chop_canoe_tree_3:
+inferno_adze_chop_canoe_tree:
   id: 10250
 inferno_adze_chop:
   id: 10251
-sacred_clay_hatchet_chop_canoe_tree_2:
+sacred_clay_hatchet_chop_canoe_tree:
   id: 11617
-volatile_clay_hatchet_chop_canoe_tree_2:
+volatile_clay_hatchet_chop_canoe_tree:
   id: 11618
 sacred_clay_hatchet_chop_ivy:
   id: 12324
@@ -539,7 +507,6 @@ sacred_clay_hatchet_chop_2h_tired:
   id: 12348
 volatile_clay_hatchet_chop_2h_tired:
   id: 12349
-
 novite_hatchet_chop:
   id: 13118
 bathus_hatchet_chop:
