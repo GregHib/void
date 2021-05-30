@@ -14033,11 +14033,11 @@ strange_machine_5:
   id: 11550
 chest_46:
   id: 11551
-rocks_167:
+depleted_rocks_1:
   id: 11552
-rocks_168:
+depleted_rocks_2:
   id: 11553
-rocks_169:
+depleted_rocks_3:
   id: 11554
 rocks_170:
   id: 11555
@@ -14468,18 +14468,24 @@ rocks_177:
   id: 11931
 rocks_178:
   id: 11932
-rocks_179:
+tin_rocks_1:
   id: 11933
-rocks_180:
+  rock: 11552
+tin_rocks_2:
   id: 11934
-rocks_181:
+  rock: 11553
+tin_rocks_3:
   id: 11935
-rocks_182:
+  rock: 11554
+copper_rocks_1:
   id: 11936
-rocks_183:
+  rock: 11552
+copper_rocks_2:
   id: 11937
-rocks_184:
+  rock: 11553
+copper_rocks_3:
   id: 11938
+  rock: 11554
 rocks_185:
   id: 11939
 pillar_74:
