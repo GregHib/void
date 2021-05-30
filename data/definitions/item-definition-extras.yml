@@ -88532,7 +88532,7 @@ red_power_crystal:
   examine: "Used to power some ancient device."
   use: "Dungeoneering"
   kept: "Always"
-novite_battleaxe_unbound:
+novite_battleaxe:
   id: 15753
   str: 12.0
   stab: -2.0
@@ -88544,7 +88544,7 @@ novite_battleaxe_unbound:
   weight: 2.721
 novite_battleaxe_noted:
   id: 15754
-bathus_battleaxe_unbound:
+bathus_battleaxe:
   id: 15755
   str: 18.0
   stab: -2.0
@@ -88556,7 +88556,7 @@ bathus_battleaxe_unbound:
   weight: 2.721
 bathus_battleaxe_noted:
   id: 15756
-marmaros_battleaxe_unbound:
+marmaros_battleaxe:
   id: 15757
   str: 22.0
   stab: -2.0
@@ -88568,7 +88568,7 @@ marmaros_battleaxe_unbound:
   weight: 2.721
 marmaros_battleaxe_noted:
   id: 15758
-kratonite_battleaxe_unbound:
+kratonite_battleaxe:
   id: 15759
   str: 32.0
   stab: -2.0
@@ -88580,7 +88580,7 @@ kratonite_battleaxe_unbound:
   weight: 2.721
 kratonite_battleaxe_noted:
   id: 15760
-fractite_battleaxe_unbound:
+fractite_battleaxe:
   id: 15761
   str: 55.0
   stab: 2.0
@@ -88592,7 +88592,7 @@ fractite_battleaxe_unbound:
   weight: 2.721
 fractite_battleaxe_noted:
   id: 15762
-zephyrium_battleaxe_unbound:
+zephyrium_battleaxe:
   id: 15763
   str: 68.0
   stab: -2.0
@@ -88604,7 +88604,7 @@ zephyrium_battleaxe_unbound:
   weight: 2.721
 zephyrium_battleaxe_noted:
   id: 15764
-argonite_battleaxe_unbound:
+argonite_battleaxe:
   id: 15765
   str: 87.0
   stab: -2.0
@@ -88616,7 +88616,7 @@ argonite_battleaxe_unbound:
   weight: 2.721
 argonite_battleaxe_noted:
   id: 15766
-katagon_battleaxe_unbound:
+katagon_battleaxe:
   id: 15767
   str: 103.0
   stab: -2.0
@@ -88628,7 +88628,7 @@ katagon_battleaxe_unbound:
   weight: 2.721
 katagon_battleaxe_noted:
   id: 15768
-gorgonite_battleaxe_unbound:
+gorgonite_battleaxe:
   id: 15769
   str: 121.0
   stab: -2.0
@@ -88640,7 +88640,7 @@ gorgonite_battleaxe_unbound:
   weight: 2.721
 gorgonite_battleaxe_noted:
   id: 15770
-promethium_battleaxe_unbound:
+promethium_battleaxe:
   id: 15771
   str: 132.0
   stab: -2.0
@@ -88652,7 +88652,7 @@ promethium_battleaxe_unbound:
   weight: 2.721
 promethium_battleaxe_noted:
   id: 15772
-primal_battleaxe_unbound:
+primal_battleaxe:
   id: 15773
   str: 140.0
   stab: -2.0
@@ -95098,7 +95098,7 @@ primal_boots_bound:
   material: "metal"
   examine: "Boots made for walking. Also, more importantly, made for armour."
   weight: 1.36
-novite_gauntlets_unbound:
+novite_gauntlets:
   id: 16273
   stab_def: 1.0
   magic: -1.0
@@ -95113,7 +95113,7 @@ novite_gauntlets_unbound:
   weight: 0.453
 novite_gauntlets_noted:
   id: 16274
-bathus_gauntlets_unbound:
+bathus_gauntlets:
   id: 16275
   str: 1.0
   stab_def: 2.0
@@ -95129,7 +95129,7 @@ bathus_gauntlets_unbound:
   weight: 0.453
 bathus_gauntlets_noted:
   id: 16276
-marmaros_gauntlets_unbound:
+marmaros_gauntlets:
   id: 16277
   stab_def: 3.0
   magic: -1.0
@@ -95144,7 +95144,7 @@ marmaros_gauntlets_unbound:
   weight: 0.453
 marmaros_gauntlets_noted:
   id: 16278
-kratonite_gauntlets_unbound:
+kratonite_gauntlets:
   id: 16279
   str: 3.0
   stab_def: 4.0
@@ -95160,7 +95160,7 @@ kratonite_gauntlets_unbound:
   weight: 0.453
 kratonite_gauntlets_noted:
   id: 16280
-fractite_gauntlets_unbound:
+fractite_gauntlets:
   id: 16281
   str: 4.0
   stab_def: 6.0
@@ -95176,7 +95176,7 @@ fractite_gauntlets_unbound:
   weight: 0.453
 fractite_gauntlets_noted:
   id: 16282
-zephyrium_gauntlets_unbound:
+zephyrium_gauntlets:
   id: 16283
   str: 5.0
   stab_def: 7.0
@@ -95192,7 +95192,7 @@ zephyrium_gauntlets_unbound:
   weight: 0.453
 zephyrium_gauntlets_noted:
   id: 16284
-argonite_gauntlets_unbound:
+argonite_gauntlets:
   id: 16285
   str: 6.0
   stab_def: 8.0
@@ -95208,7 +95208,7 @@ argonite_gauntlets_unbound:
   weight: 0.453
 argonite_gauntlets_noted:
   id: 16286
-katagon_gauntlets_unbound:
+katagon_gauntlets:
   id: 16287
   str: 7.0
   stab_def: 9.0
@@ -95224,7 +95224,7 @@ katagon_gauntlets_unbound:
   weight: 0.453
 katagon_gauntlets_noted:
   id: 16288
-gorgonite_gauntlets_unbound:
+gorgonite_gauntlets:
   id: 16289
   str: 8.0
   stab_def: 10.0
@@ -95240,7 +95240,7 @@ gorgonite_gauntlets_unbound:
   weight: 0.453
 gorgonite_gauntlets_noted:
   id: 16290
-promethium_gauntlets_unbound:
+promethium_gauntlets:
   id: 16291
   str: 9.0
   stab_def: 11.0
@@ -95256,7 +95256,7 @@ promethium_gauntlets_unbound:
   weight: 0.453
 promethium_gauntlets_noted:
   id: 16292
-primal_gauntlets_unbound:
+primal_gauntlets:
   id: 16293
   str: 12.0
   stab_def: 12.0
@@ -95272,7 +95272,7 @@ primal_gauntlets_unbound:
   weight: 0.453
 primal_gauntlets_noted:
   id: 16294
-novite_pickaxe_unbound:
+novite_pickaxe:
   id: 16295
   str: 3.0
   stab: 5.0
@@ -95284,7 +95284,7 @@ novite_pickaxe_unbound:
   weight: 2.721
 novite_pickaxe_noted:
   id: 16296
-bathus_pickaxe_unbound:
+bathus_pickaxe:
   id: 16297
   str: 7.0
   stab: 10.0
@@ -95296,7 +95296,7 @@ bathus_pickaxe_unbound:
   weight: 2.721
 bathus_pickaxe_noted:
   id: 16298
-marmaros_pickaxe_unbound:
+marmaros_pickaxe:
   id: 16299
   str: 13.0
   stab: 17.0
@@ -95308,7 +95308,7 @@ marmaros_pickaxe_unbound:
   weight: 2.721
 marmaros_pickaxe_noted:
   id: 16300
-kratonite_pickaxe_unbound:
+kratonite_pickaxe:
   id: 16301
   str: 16.0
   stab: 25.0
@@ -95320,7 +95320,7 @@ kratonite_pickaxe_unbound:
   weight: 2.721
 kratonite_pickaxe_noted:
   id: 16302
-fractite_pickaxe_unbound:
+fractite_pickaxe:
   id: 16303
   str: 22.0
   stab: 33.0
@@ -95332,7 +95332,7 @@ fractite_pickaxe_unbound:
   weight: 2.721
 fractite_pickaxe_noted:
   id: 16304
-zephyrium_pickaxe_unbound:
+zephyrium_pickaxe:
   id: 16305
   str: 32.0
   stab: 40.0
@@ -95344,7 +95344,7 @@ zephyrium_pickaxe_unbound:
   weight: 2.721
 zephyrium_pickaxe_noted:
   id: 16306
-argonite_pickaxe_unbound:
+argonite_pickaxe:
   id: 16307
   str: 44.0
   stab: 45.0
@@ -95356,7 +95356,7 @@ argonite_pickaxe_unbound:
   weight: 2.721
 argonite_pickaxe_noted:
   id: 16308
-katagon_pickaxe_unbound:
+katagon_pickaxe:
   id: 16309
   str: 57.0
   stab: 50.0
@@ -95368,7 +95368,7 @@ katagon_pickaxe_unbound:
   weight: 2.721
 katagon_pickaxe_noted:
   id: 16310
-gorgonite_pickaxe_unbound:
+gorgonite_pickaxe:
   id: 16311
   str: 74.0
   stab: 58.0
@@ -95380,7 +95380,7 @@ gorgonite_pickaxe_unbound:
   weight: 2.721
 gorgonite_pickaxe_noted:
   id: 16312
-promethium_pickaxe_unbound:
+promethium_pickaxe:
   id: 16313
   str: 87.0
   stab: 66.0
@@ -95392,7 +95392,7 @@ promethium_pickaxe_unbound:
   weight: 2.721
 promethium_pickaxe_noted:
   id: 16314
-primal_pickaxe_unbound:
+primal_pickaxe:
   id: 16315
   str: 92.0
   stab: 72.0
@@ -95404,7 +95404,7 @@ primal_pickaxe_unbound:
   weight: 2.721
 primal_pickaxe_noted:
   id: 16316
-tangle_gum_longbow_unbound:
+tangle_gum_longbow:
   id: 16317
   range: 26.0
   slot: "Weapon"
@@ -95413,7 +95413,7 @@ tangle_gum_longbow_unbound:
   weight: 2.267
 tangle_gum_longbow_noted:
   id: 16318
-seeping_elm_longbow_unbound:
+seeping_elm_longbow:
   id: 16319
   range: 37.0
   slot: "Weapon"
@@ -95422,7 +95422,7 @@ seeping_elm_longbow_unbound:
   weight: 2.267
 seeping_elm_longbow_noted:
   id: 16320
-blood_spindle_longbow_unbound:
+blood_spindle_longbow:
   id: 16321
   range: 48.0
   slot: "Weapon"
@@ -95431,7 +95431,7 @@ blood_spindle_longbow_unbound:
   weight: 2.267
 blood_spindle_longbow_noted:
   id: 16322
-utuku_longbow_unbound:
+utuku_longbow:
   id: 16323
   range: 59.0
   slot: "Weapon"
@@ -95440,7 +95440,7 @@ utuku_longbow_unbound:
   weight: 2.267
 utuku_longbow_noted:
   id: 16324
-spinebeam_longbow_unbound:
+spinebeam_longbow:
   id: 16325
   range: 70.0
   slot: "Weapon"
@@ -95449,7 +95449,7 @@ spinebeam_longbow_unbound:
   weight: 2.267
 spinebeam_longbow_noted:
   id: 16326
-bovistrangler_longbow_unbound:
+bovistrangler_longbow:
   id: 16327
   range: 81.0
   slot: "Weapon"
@@ -95458,7 +95458,7 @@ bovistrangler_longbow_unbound:
   weight: 2.267
 bovistrangler_longbow_noted:
   id: 16328
-thigat_longbow_unbound:
+thigat_longbow:
   id: 16329
   range: 93.0
   slot: "Weapon"
@@ -95467,7 +95467,7 @@ thigat_longbow_unbound:
   weight: 2.267
 thigat_longbow_noted:
   id: 16330
-corpsethorn_longbow_unbound:
+corpsethorn_longbow:
   id: 16331
   range: 108.0
   slot: "Weapon"
@@ -95476,7 +95476,7 @@ corpsethorn_longbow_unbound:
   weight: 2.267
 corpsethorn_longbow_noted:
   id: 16332
-entgallow_longbow_unbound:
+entgallow_longbow:
   id: 16333
   range: 123.0
   slot: "Weapon"
@@ -95485,7 +95485,7 @@ entgallow_longbow_unbound:
   weight: 2.267
 entgallow_longbow_noted:
   id: 16334
-grave_creeper_longbow_unbound:
+grave_creeper_longbow:
   id: 16335
   range: 138.0
   slot: "Weapon"
@@ -95494,7 +95494,7 @@ grave_creeper_longbow_unbound:
   weight: 2.267
 grave_creeper_longbow_noted:
   id: 16336
-sagittarian_longbow_unbound:
+sagittarian_longbow:
   id: 16337
   range: 158.0
   slot: "Weapon"
@@ -95503,7 +95503,7 @@ sagittarian_longbow_unbound:
   weight: 2.267
 sagittarian_longbow_noted:
   id: 16338
-novite_boots_unbound:
+novite_boots:
   id: 16339
   stab_def: 3.0
   magic: -3.0
@@ -95518,7 +95518,7 @@ novite_boots_unbound:
   weight: 1.36
 novite_boots_noted:
   id: 16340
-bathus_boots_unbound:
+bathus_boots:
   id: 16341
   stab_def: 4.0
   magic: -3.0
@@ -95533,7 +95533,7 @@ bathus_boots_unbound:
   weight: 1.36
 bathus_boots_noted:
   id: 16342
-marmaros_boots_unbound:
+marmaros_boots:
   id: 16343
   str: 1.0
   stab_def: 5.0
@@ -95549,7 +95549,7 @@ marmaros_boots_unbound:
   weight: 1.36
 marmaros_boots_noted:
   id: 16344
-kratonite_boots_unbound:
+kratonite_boots:
   id: 16345
   str: 2.0
   stab_def: 7.0
@@ -95565,7 +95565,7 @@ kratonite_boots_unbound:
   weight: 1.36
 kratonite_boots_noted:
   id: 16346
-fractite_boots_unbound:
+fractite_boots:
   id: 16347
   str: 3.0
   stab_def: 9.0
@@ -95581,7 +95581,7 @@ fractite_boots_unbound:
   weight: 1.36
 fractite_boots_noted:
   id: 16348
-zephyrium_boots_unbound:
+zephyrium_boots:
   id: 16349
   str: 4.0
   stab_def: 11.0
@@ -95597,7 +95597,7 @@ zephyrium_boots_unbound:
   weight: 1.36
 zephyrium_boots_noted:
   id: 16350
-argonite_boots_unbound:
+argonite_boots:
   id: 16351
   str: 5.0
   stab_def: 13.0
@@ -95613,7 +95613,7 @@ argonite_boots_unbound:
   weight: 1.36
 argonite_boots_noted:
   id: 16352
-katagon_boots_unbound:
+katagon_boots:
   id: 16353
   str: 6.0
   stab_def: 15.0
@@ -95629,7 +95629,7 @@ katagon_boots_unbound:
   weight: 1.36
 katagon_boots_noted:
   id: 16354
-gorgonite_boots_unbound:
+gorgonite_boots:
   id: 16355
   str: 7.0
   stab_def: 17.0
@@ -95645,7 +95645,7 @@ gorgonite_boots_unbound:
   weight: 1.36
 gorgonite_boots_noted:
   id: 16356
-promethium_boots_unbound:
+promethium_boots:
   id: 16357
   str: 8.0
   stab_def: 19.0
@@ -95661,7 +95661,7 @@ promethium_boots_unbound:
   weight: 1.36
 promethium_boots_noted:
   id: 16358
-primal_boots_unbound:
+primal_boots:
   id: 16359
   str: 10.0
   stab_def: 21.0
@@ -95677,7 +95677,7 @@ primal_boots_unbound:
   weight: 1.36
 primal_boots_noted:
   id: 16360
-novite_hatchet_unbound:
+novite_hatchet:
   id: 16361
   str: 3.0
   stab: -2.0
@@ -95689,7 +95689,7 @@ novite_hatchet_unbound:
   weight: 1.36
 novite_hatchet_noted:
   id: 16362
-bathus_hatchet_unbound:
+bathus_hatchet:
   id: 16363
   str: 7.0
   stab: -2.0
@@ -95701,7 +95701,7 @@ bathus_hatchet_unbound:
   weight: 1.36
 bathus_hatchet_noted:
   id: 16364
-marmaros_hatchet_unbound:
+marmaros_hatchet:
   id: 16365
   str: 13.0
   stab: -2.0
@@ -95713,7 +95713,7 @@ marmaros_hatchet_unbound:
   weight: 1.36
 marmaros_hatchet_noted:
   id: 16366
-kratonite_hatchet_unbound:
+kratonite_hatchet:
   id: 16367
   str: 16.0
   stab: -2.0
@@ -95725,7 +95725,7 @@ kratonite_hatchet_unbound:
   weight: 1.36
 kratonite_hatchet_noted:
   id: 16368
-fractite_hatchet_unbound:
+fractite_hatchet:
   id: 16369
   str: 23.0
   stab: -2.0
@@ -95737,7 +95737,7 @@ fractite_hatchet_unbound:
   weight: 1.36
 fractite_hatchet_noted:
   id: 16370
-zephyrium_hatchet_unbound:
+zephyrium_hatchet:
   id: 16371
   str: 33.0
   stab: -2.0
@@ -95749,7 +95749,7 @@ zephyrium_hatchet_unbound:
   weight: 1.36
 zephyrium_hatchet_noted:
   id: 16372
-argonite_hatchet_unbound:
+argonite_hatchet:
   id: 16373
   str: 45.0
   stab: -2.0
@@ -95761,7 +95761,7 @@ argonite_hatchet_unbound:
   weight: 1.36
 argonite_hatchet_noted:
   id: 16374
-katagon_hatchet_unbound:
+katagon_hatchet:
   id: 16375
   str: 59.0
   stab: -2.0
@@ -95773,7 +95773,7 @@ katagon_hatchet_unbound:
   weight: 1.36
 katagon_hatchet_noted:
   id: 16376
-gorgonite_hatchet_unbound:
+gorgonite_hatchet:
   id: 16377
   str: 76.0
   stab: -2.0
@@ -95785,7 +95785,7 @@ gorgonite_hatchet_unbound:
   weight: 1.36
 gorgonite_hatchet_noted:
   id: 16378
-promethium_hatchet_unbound:
+promethium_hatchet:
   id: 16379
   str: 90.0
   stab: -2.0
@@ -95797,7 +95797,7 @@ promethium_hatchet_unbound:
   weight: 1.36
 promethium_hatchet_noted:
   id: 16380
-primal_hatchet_unbound:
+primal_hatchet:
   id: 16381
   str: 95.0
   stab: -2.0
@@ -95809,7 +95809,7 @@ primal_hatchet_unbound:
   weight: 1.36
 primal_hatchet_noted:
   id: 16382
-novite_longsword_unbound:
+novite_longsword:
   id: 16383
   str: 10.0
   stab: 10.0
@@ -95823,7 +95823,7 @@ novite_longsword_unbound:
   weight: 2.721
 novite_longsword_noted:
   id: 16384
-bathus_longsword_unbound:
+bathus_longsword:
   id: 16385
   str: 15.0
   stab: 17.0
@@ -95837,7 +95837,7 @@ bathus_longsword_unbound:
   weight: 2.721
 bathus_longsword_noted:
   id: 16386
-marmaros_longsword_unbound:
+marmaros_longsword:
   id: 16387
   str: 19.0
   stab: 26.0
@@ -95851,7 +95851,7 @@ marmaros_longsword_unbound:
   weight: 2.721
 marmaros_longsword_noted:
   id: 16388
-kratonite_longsword_unbound:
+kratonite_longsword:
   id: 16389
   str: 28.0
   stab: 34.0
@@ -95865,7 +95865,7 @@ kratonite_longsword_unbound:
   weight: 2.721
 kratonite_longsword_noted:
   id: 16390
-fractite_longsword_unbound:
+fractite_longsword:
   id: 16391
   str: 49.0
   stab: 42.0
@@ -95879,7 +95879,7 @@ fractite_longsword_unbound:
   weight: 2.721
 fractite_longsword_noted:
   id: 16392
-zephyrium_longsword_unbound:
+zephyrium_longsword:
   id: 16393
   str: 63.0
   stab: 51.0
@@ -95893,7 +95893,7 @@ zephyrium_longsword_unbound:
   weight: 2.721
 zephyrium_longsword_noted:
   id: 16394
-argonite_longsword_unbound:
+argonite_longsword:
   id: 16395
   str: 80.0
   stab: 57.0
@@ -95907,7 +95907,7 @@ argonite_longsword_unbound:
   weight: 2.721
 argonite_longsword_noted:
   id: 16396
-katagon_longsword_unbound:
+katagon_longsword:
   id: 16397
   str: 97.0
   stab: 63.0
@@ -95921,7 +95921,7 @@ katagon_longsword_unbound:
   weight: 2.721
 katagon_longsword_noted:
   id: 16398
-gorgonite_longsword_unbound:
+gorgonite_longsword:
   id: 16399
   str: 114.0
   stab: 71.0
@@ -95935,7 +95935,7 @@ gorgonite_longsword_unbound:
   weight: 2.721
 gorgonite_longsword_noted:
   id: 16400
-promethium_longsword_unbound:
+promethium_longsword:
   id: 16401
   str: 125.0
   stab: 80.0
@@ -95949,7 +95949,7 @@ promethium_longsword_unbound:
   weight: 2.721
 promethium_longsword_noted:
   id: 16402
-primal_longsword_unbound:
+primal_longsword:
   id: 16403
   str: 134.0
   stab: 87.0
@@ -95963,7 +95963,7 @@ primal_longsword_unbound:
   weight: 2.721
 primal_longsword_noted:
   id: 16404
-novite_maul_unbound:
+novite_maul:
   id: 16405
   str: 25.0
   stab: -4.0
@@ -95978,7 +95978,7 @@ novite_maul_unbound:
   weight: 4.989
 novite_maul_noted:
   id: 16406
-bathus_maul_unbound:
+bathus_maul:
   id: 16407
   str: 37.0
   stab: -4.0
@@ -95993,7 +95993,7 @@ bathus_maul_unbound:
   weight: 4.989
 bathus_maul_noted:
   id: 16408
-marmaros_maul_unbound:
+marmaros_maul:
   id: 16409
   str: 45.0
   stab: -4.0
@@ -96008,7 +96008,7 @@ marmaros_maul_unbound:
   weight: 4.989
 marmaros_maul_noted:
   id: 16410
-kratonite_maul_unbound:
+kratonite_maul:
   id: 16411
   str: 57.0
   stab: -4.0
@@ -96023,7 +96023,7 @@ kratonite_maul_unbound:
   weight: 4.989
 kratonite_maul_noted:
   id: 16412
-fractite_maul_unbound:
+fractite_maul:
   id: 16413
   str: 82.0
   stab: -4.0
@@ -96038,7 +96038,7 @@ fractite_maul_unbound:
   weight: 4.989
 fractite_maul_noted:
   id: 16414
-zephyrium_maul_unbound:
+zephyrium_maul:
   id: 16415
   str: 97.0
   stab: -4.0
@@ -96053,7 +96053,7 @@ zephyrium_maul_unbound:
   weight: 4.989
 zephyrium_maul_noted:
   id: 16416
-argonite_maul_unbound:
+argonite_maul:
   id: 16417
   str: 114.0
   stab: -4.0
@@ -96068,7 +96068,7 @@ argonite_maul_unbound:
   weight: 4.989
 argonite_maul_noted:
   id: 16418
-katagon_maul_unbound:
+katagon_maul:
   id: 16419
   str: 127.0
   stab: -4.0
@@ -96083,7 +96083,7 @@ katagon_maul_unbound:
   weight: 4.989
 katagon_maul_noted:
   id: 16420
-gorgonite_maul_unbound:
+gorgonite_maul:
   id: 16421
   str: 145.0
   stab: -4.0
@@ -96098,7 +96098,7 @@ gorgonite_maul_unbound:
   weight: 4.989
 gorgonite_maul_noted:
   id: 16422
-promethium_maul_unbound:
+promethium_maul:
   id: 16423
   str: 160.0
   stab: -4.0
@@ -96112,7 +96112,7 @@ promethium_maul_unbound:
   weight: 4.989
 promethium_maul_noted:
   id: 16424
-primal_maul_unbound:
+primal_maul:
   id: 16425
   str: 166.0
   stab: -4.0
@@ -96127,27 +96127,27 @@ primal_maul_unbound:
   weight: 4.989
 primal_maul_noted:
   id: 16426
-novite_arrows_unbound:
+novite_arrows:
   id: 16427
   range_str: 4.0
   slot: "Arrows"
   examine: "Bow ammunition"
-bathus_arrows_unbound:
+bathus_arrows:
   id: 16432
   range_str: 8.0
   slot: "Arrows"
   examine: "Bow ammunition."
-marmaros_arrows_unbound:
+marmaros_arrows:
   id: 16437
   range_str: 13.0
   slot: "Arrows"
   examine: "Bow ammunition."
-kratonite_arrows_unbound:
+kratonite_arrows:
   id: 16442
   range_str: 17.0
   slot: "Arrows"
   examine: "Bow ammunition."
-fractite_arrows_unbound:
+fractite_arrows:
   id: 16447
   range_str: 19.0
   slot: "Arrows"
@@ -96159,27 +96159,27 @@ zephyrium_arrows_2:
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-argonite_arrows_unbound:
+argonite_arrows:
   id: 16457
   range_str: 24.0
   slot: "Arrows"
   examine: "Bow ammunition."
-katagon_arrows_unbound:
+katagon_arrows:
   id: 16462
   range_str: 28.0
   slot: "Arrows"
   examine: "Bow ammunition."
-gorgonite_arrows_unbound:
+gorgonite_arrows:
   id: 16467
   range_str: 32.0
   slot: "Arrows"
   examine: "Bow ammunition."
-promethium_arrows_unbound:
+promethium_arrows:
   id: 16472
   range_str: 37.0
   slot: "Arrows"
   examine: "Bow ammunition."
-sagittarian_arrows_unbound:
+sagittarian_arrows:
   id: 16477
   range_str: 46.0
   slot: "Arrows"
@@ -96415,7 +96415,7 @@ sagittarian_arrows_p++:
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
-novite_plateskirt_unbound:
+novite_plateskirt:
   id: 16647
   stab_def: 9.0
   magic: -18.0
@@ -96430,7 +96430,7 @@ novite_plateskirt_unbound:
   weight: 8.164
 novite_plateskirt_noted:
   id: 16648
-bathus_plateskirt_unbound:
+bathus_plateskirt:
   id: 16649
   stab_def: 17.0
   magic: -18.0
@@ -96445,7 +96445,7 @@ bathus_plateskirt_unbound:
   weight: 8.164
 bathus_plateskirt_noted:
   id: 16650
-marmaros_plateskirt_unbound:
+marmaros_plateskirt:
   id: 16651
   stab_def: 25.0
   magic: -18.0
@@ -96460,7 +96460,7 @@ marmaros_plateskirt_unbound:
   weight: 8.164
 marmaros_plateskirt_noted:
   id: 16652
-kratonite_plateskirt_unbound:
+kratonite_plateskirt:
   id: 16653
   stab_def: 34.0
   magic: -18.0
@@ -96475,7 +96475,7 @@ kratonite_plateskirt_unbound:
   weight: 8.164
 kratonite_plateskirt_noted:
   id: 16654
-fractite_plateskirt_unbound:
+fractite_plateskirt:
   id: 16655
   stab_def: 44.0
   magic: -18.0
@@ -96490,7 +96490,7 @@ fractite_plateskirt_unbound:
   weight: 8.164
 fractite_plateskirt_noted:
   id: 16656
-zephyrium_plateskirt_unbound:
+zephyrium_plateskirt:
   id: 16657
   stab_def: 55.0
   magic: -18.0
@@ -96505,7 +96505,7 @@ zephyrium_plateskirt_unbound:
   weight: 8.164
 zephyrium_plateskirt_noted:
   id: 16658
-argonite_plateskirt_unbound:
+argonite_plateskirt:
   id: 16659
   stab_def: 65.0
   magic: -18.0
@@ -96520,7 +96520,7 @@ argonite_plateskirt_unbound:
   weight: 8.164
 argonite_plateskirt_noted:
   id: 16660
-katagon_plateskirt_unbound:
+katagon_plateskirt:
   id: 16661
   stab_def: 76.0
   magic: -18.0
@@ -96535,7 +96535,7 @@ katagon_plateskirt_unbound:
   weight: 8.164
 katagon_plateskirt_noted:
   id: 16662
-gorgonite_plateskirt_unbound:
+gorgonite_plateskirt:
   id: 16663
   stab_def: 87.0
   magic: -18.0
@@ -96550,7 +96550,7 @@ gorgonite_plateskirt_unbound:
   weight: 8.164
 gorgonite_plateskirt_noted:
   id: 16664
-promethium_plateskirt_unbound:
+promethium_plateskirt:
   id: 16665
   stab_def: 98.0
   magic: -18.0
@@ -96565,7 +96565,7 @@ promethium_plateskirt_unbound:
   weight: 8.164
 promethium_plateskirt_noted:
   id: 16666
-primal_plateskirt_unbound:
+primal_plateskirt:
   id: 16667
   stab_def: 109.0
   magic: -18.0
@@ -96580,7 +96580,7 @@ primal_plateskirt_unbound:
   weight: 8.164
 primal_plateskirt_noted:
   id: 16668
-novite_platelegs_unbound:
+novite_platelegs:
   id: 16669
   stab_def: 16.0
   magic: -21.0
@@ -96595,7 +96595,7 @@ novite_platelegs_unbound:
   weight: 9.071
 novite_platelegs_noted:
   id: 16670
-bathus_platelegs_unbound:
+bathus_platelegs:
   id: 16671
   stab_def: 30.0
   magic: -21.0
@@ -96610,7 +96610,7 @@ bathus_platelegs_unbound:
   weight: 9.071
 bathus_platelegs_noted:
   id: 16672
-marmaros_platelegs_unbound:
+marmaros_platelegs:
   id: 16673
   stab_def: 43.0
   magic: -21.0
@@ -96625,7 +96625,7 @@ marmaros_platelegs_unbound:
   weight: 9.071
 marmaros_platelegs_noted:
   id: 16674
-kratonite_platelegs_unbound:
+kratonite_platelegs:
   id: 16675
   stab_def: 58.0
   magic: -21.0
@@ -96640,7 +96640,7 @@ kratonite_platelegs_unbound:
   weight: 9.071
 kratonite_platelegs_noted:
   id: 16676
-fractite_platelegs_unbound:
+fractite_platelegs:
   id: 16677
   stab_def: 74.0
   magic: -21.0
@@ -96655,7 +96655,7 @@ fractite_platelegs_unbound:
   weight: 9.071
 fractite_platelegs_noted:
   id: 16678
-zephyrium_platelegs_unbound:
+zephyrium_platelegs:
   id: 16679
   stab_def: 91.0
   magic: -21.0
@@ -96670,7 +96670,7 @@ zephyrium_platelegs_unbound:
   weight: 9.071
 zephyrium_platelegs_noted:
   id: 16680
-argonite_platelegs_unbound:
+argonite_platelegs:
   id: 16681
   stab_def: 107.0
   magic: -21.0
@@ -96685,7 +96685,7 @@ argonite_platelegs_unbound:
   weight: 9.071
 argonite_platelegs_noted:
   id: 16682
-katagon_platelegs_unbound:
+katagon_platelegs:
   id: 16683
   stab_def: 126.0
   magic: -21.0
@@ -96700,7 +96700,7 @@ katagon_platelegs_unbound:
   weight: 9.071
 katagon_platelegs_noted:
   id: 16684
-gorgonite_platelegs_unbound:
+gorgonite_platelegs:
   id: 16685
   stab_def: 145.0
   magic: -21.0
@@ -96715,7 +96715,7 @@ gorgonite_platelegs_unbound:
   weight: 9.071
 gorgonite_platelegs_noted:
   id: 16686
-promethium_platelegs_unbound:
+promethium_platelegs:
   id: 16687
   stab_def: 164.0
   magic: -21.0
@@ -96730,7 +96730,7 @@ promethium_platelegs_unbound:
   weight: 9.071
 promethium_platelegs_noted:
   id: 16688
-primal_platelegs_unbound:
+primal_platelegs:
   id: 16689
   stab_def: 182.0
   magic: -21.0
@@ -96745,7 +96745,7 @@ primal_platelegs_unbound:
   weight: 9.071
 primal_platelegs_noted:
   id: 16690
-novite_full_helm_unbound:
+novite_full_helm:
   id: 16691
   stab_def: 5.0
   magic: -6.0
@@ -96761,7 +96761,7 @@ novite_full_helm_unbound:
   weight: 2.721
 novite_full_helm_noted:
   id: 16692
-bathus_full_helm_unbound:
+bathus_full_helm:
   id: 16693
   stab_def: 9.0
   magic: -6.0
@@ -96777,7 +96777,7 @@ bathus_full_helm_unbound:
   weight: 2.721
 bathus_full_helm_noted:
   id: 16694
-marmaros_full_helm_unbound:
+marmaros_full_helm:
   id: 16695
   stab_def: 17.0
   magic: -6.0
@@ -96793,7 +96793,7 @@ marmaros_full_helm_unbound:
   weight: 2.721
 marmaros_full_helm_noted:
   id: 16696
-kratonite_full_helm_unbound:
+kratonite_full_helm:
   id: 16697
   stab_def: 23.0
   magic: -6.0
@@ -96809,7 +96809,7 @@ kratonite_full_helm_unbound:
   weight: 2.721
 kratonite_full_helm_noted:
   id: 16698
-fractite_full_helm_unbound:
+fractite_full_helm:
   id: 16699
   stab_def: 29.0
   magic: -6.0
@@ -96825,7 +96825,7 @@ fractite_full_helm_unbound:
   weight: 2.721
 fractite_full_helm_noted:
   id: 16700
-zephyrium_full_helm_unbound:
+zephyrium_full_helm:
   id: 16701
   stab_def: 36.0
   magic: -6.0
@@ -96840,7 +96840,7 @@ zephyrium_full_helm_unbound:
   weight: 2.721
 zephyrium_full_helm_noted:
   id: 16702
-argonite_full_helm_unbound:
+argonite_full_helm:
   id: 16703
   stab_def: 43.0
   magic: -6.0
@@ -96856,7 +96856,7 @@ argonite_full_helm_unbound:
   weight: 2.721
 argonite_full_helm_noted:
   id: 16704
-katagon_full_helm_unbound:
+katagon_full_helm:
   id: 16705
   stab_def: 50.0
   magic: -6.0
@@ -96872,7 +96872,7 @@ katagon_full_helm_unbound:
   weight: 2.721
 katagon_full_helm_noted:
   id: 16706
-gorgonite_full_helm_unbound:
+gorgonite_full_helm:
   id: 16707
   stab_def: 58.0
   magic: -6.0
@@ -96888,7 +96888,7 @@ gorgonite_full_helm_unbound:
   weight: 2.721
 gorgonite_full_helm_noted:
   id: 16708
-promethium_full_helm_unbound:
+promethium_full_helm:
   id: 16709
   stab_def: 67.0
   magic: -6.0
@@ -96904,7 +96904,7 @@ promethium_full_helm_unbound:
   weight: 2.721
 promethium_full_helm_noted:
   id: 16710
-primal_full_helm_unbound:
+primal_full_helm:
   id: 16711
   stab_def: 74.0
   magic: -6.0
@@ -96920,7 +96920,7 @@ primal_full_helm_unbound:
   weight: 2.721
 primal_full_helm_noted:
   id: 16712
-novite_chainbody_unbound:
+novite_chainbody:
   id: 16713
   stab_def: 9.0
   slash_def: 14.0
@@ -96933,7 +96933,7 @@ novite_chainbody_unbound:
   weight: 6.803
 novite_chainbody_noted:
   id: 16714
-bathus_chainbody_unbound:
+bathus_chainbody:
   id: 16715
   stab_def: 19.0
   magic: -15.0
@@ -96947,7 +96947,7 @@ bathus_chainbody_unbound:
   weight: 6.803
 bathus_chainbody_noted:
   id: 16716
-marmaros_chainbody_unbound:
+marmaros_chainbody:
   id: 16717
   stab_def: 29.0
   magic: -15.0
@@ -96961,7 +96961,7 @@ marmaros_chainbody_unbound:
   weight: 6.803
 marmaros_chainbody_noted:
   id: 16718
-kratonite_chainbody_unbound:
+kratonite_chainbody:
   id: 16719
   stab_def: 39.0
   magic: -15.0
@@ -96975,7 +96975,7 @@ kratonite_chainbody_unbound:
   weight: 6.803
 kratonite_chainbody_noted:
   id: 16720
-fractite_chainbody_unbound:
+fractite_chainbody:
   id: 16721
   stab_def: 50.0
   magic: -15.0
@@ -96989,7 +96989,7 @@ fractite_chainbody_unbound:
   weight: 6.803
 fractite_chainbody_noted:
   id: 16722
-zephyrium_chainbody_unbound:
+zephyrium_chainbody:
   id: 16723
   stab_def: 62.0
   magic: -15.0
@@ -97003,7 +97003,7 @@ zephyrium_chainbody_unbound:
   weight: 6.803
 zephyrium_chainbody_noted:
   id: 16724
-argonite_chainbody_unbound:
+argonite_chainbody:
   id: 16725
   stab_def: 74.0
   magic: -15.0
@@ -97017,7 +97017,7 @@ argonite_chainbody_unbound:
   weight: 6.803
 argonite_chainbody_noted:
   id: 16726
-katagon_chainbody_unbound:
+katagon_chainbody:
   id: 16727
   stab_def: 87.0
   magic: -15.0
@@ -97031,7 +97031,7 @@ katagon_chainbody_unbound:
   weight: 6.803
 katagon_chainbody_noted:
   id: 16728
-gorgonite_chainbody_unbound:
+gorgonite_chainbody:
   id: 16729
   stab_def: 100.0
   magic: -15.0
@@ -97045,7 +97045,7 @@ gorgonite_chainbody_unbound:
   weight: 6.803
 gorgonite_chainbody_noted:
   id: 16730
-promethium_chainbody_unbound:
+promethium_chainbody:
   id: 16731
   stab_def: 113.0
   magic: -15.0
@@ -97059,7 +97059,7 @@ promethium_chainbody_unbound:
   weight: 6.803
 promethium_chainbody_noted:
   id: 16732
-primal_chainbody_unbound:
+primal_chainbody:
   id: 16733
   stab_def: 125.0
   magic: -15.0
@@ -97074,7 +97074,7 @@ primal_chainbody_unbound:
   weight: 6.803
 primal_chainbody_noted:
   id: 16734
-salve_hood_unbound:
+salve_hood:
   id: 16735
   stab: -3.0
   stab_def: 1.0
@@ -97091,7 +97091,7 @@ salve_hood_unbound:
   weight: 0.453
 salve_hood_noted:
   id: 16736
-wildercress_hood_unbound:
+wildercress_hood:
   id: 16737
   stab: -3.0
   stab_def: 2.0
@@ -97108,7 +97108,7 @@ wildercress_hood_unbound:
   weight: 0.453
 wildercress_hood_noted:
   id: 16738
-blightleaf_hood_unbound:
+blightleaf_hood:
   id: 16739
   stab: -3.0
   stab_def: 4.0
@@ -97125,7 +97125,7 @@ blightleaf_hood_unbound:
   weight: 0.453
 blightleaf_hood_noted:
   id: 16740
-roseblood_hood_unbound:
+roseblood_hood:
   id: 16741
   stab: -3.0
   stab_def: 5.0
@@ -97142,7 +97142,7 @@ roseblood_hood_unbound:
   weight: 0.453
 roseblood_hood_noted:
   id: 16742
-bryll_hood_unbound:
+bryll_hood:
   id: 16743
   stab: -3.0
   stab_def: 6.0
@@ -97159,7 +97159,7 @@ bryll_hood_unbound:
   weight: 0.453
 bryll_hood_noted:
   id: 16744
-duskweed_hood_unbound:
+duskweed_hood:
   id: 16745
   stab: -3.0
   stab_def: 7.0
@@ -97176,7 +97176,7 @@ duskweed_hood_unbound:
   weight: 0.453
 duskweed_hood_noted:
   id: 16746
-soulbell_hood_unbound:
+soulbell_hood:
   id: 16747
   stab: -3.0
   stab_def: 8.0
@@ -97193,7 +97193,7 @@ soulbell_hood_unbound:
   weight: 0.453
 soulbell_hood_noted:
   id: 16748
-ectohood_unbound:
+ectohood:
   id: 16749
   stab: -3.0
   stab_def: 9.0
@@ -97210,7 +97210,7 @@ ectohood_unbound:
   weight: 0.453
 ectohood_noted:
   id: 16750
-runic_hood_unbound:
+runic_hood:
   id: 16751
   stab: -3.0
   stab_def: 10.0
@@ -97227,7 +97227,7 @@ runic_hood_unbound:
   weight: 0.453
 runic_hood_noted:
   id: 16752
-spiritbloom_hood_unbound:
+spiritbloom_hood:
   id: 16753
   stab: -3.0
   stab_def: 12.0
@@ -97244,7 +97244,7 @@ spiritbloom_hood_unbound:
   weight: 0.453
 spiritbloom_hood_noted:
   id: 16754
-celestial_hood_unbound:
+celestial_hood:
   id: 16755
   stab: -3.0
   stab_def: 14.0
@@ -97261,7 +97261,7 @@ celestial_hood_unbound:
   weight: 0.453
 celestial_hood_noted:
   id: 16756
-novite_dagger_unbound:
+novite_dagger:
   id: 16757
   str: 4.0
   stab: 5.0
@@ -97323,7 +97323,7 @@ novite_dagger_p++:
   kept: "Always"
 novite_dagger_p++_noted:
   id: 16764
-bathus_dagger_unbound:
+bathus_dagger:
   id: 16765
   str: 8.0
   stab: 10.0
@@ -97385,7 +97385,7 @@ bathus_dagger_p++:
   kept: "Always"
 bathus_dagger_p++_noted:
   id: 16772
-marmaros_dagger_unbound:
+marmaros_dagger:
   id: 16773
   str: 14.0
   stab: 18.0
@@ -97447,7 +97447,7 @@ marmaros_dagger_p++:
   kept: "Always"
 marmaros_dagger_p++_noted:
   id: 16780
-kratonite_dagger_unbound:
+kratonite_dagger:
   id: 16781
   str: 18.0
   stab: 26.0
@@ -97509,7 +97509,7 @@ kratonite_dagger_p++:
   kept: "Always"
 kratonite_dagger_p++_noted:
   id: 16788
-fractite_dagger_unbound:
+fractite_dagger:
   id: 16789
   str: 27.0
   stab: 33.0
@@ -97571,7 +97571,7 @@ fractite_dagger_p++:
   kept: "Always"
 fractite_dagger_p++_noted:
   id: 16796
-zephyrium_dagger_unbound:
+zephyrium_dagger:
   id: 16797
   str: 40.0
   stab: 40.0
@@ -97633,7 +97633,7 @@ zephyrium_dagger_p++:
   kept: "Always"
 zephyrium_dagger_p++_noted:
   id: 16804
-argonite_dagger_unbound:
+argonite_dagger:
   id: 16805
   str: 51.0
   stab: 46.0
@@ -97695,7 +97695,7 @@ argonite_dagger_p++:
   kept: "Always"
 argonite_dagger_p++_noted:
   id: 16812
-katagon_dagger_unbound:
+katagon_dagger:
   id: 16813
   str: 66.0
   stab: 52.0
@@ -97757,7 +97757,7 @@ katagon_dagger_p++:
   kept: "Always"
 katagon_dagger_p++_noted:
   id: 16820
-gorgonite_dagger_unbound:
+gorgonite_dagger:
   id: 16821
   str: 83.0
   stab: 59.0
@@ -97819,7 +97819,7 @@ gorgonite_dagger_p++:
   kept: "Always"
 gorgonite_dagger_p++_noted:
   id: 16828
-promethium_dagger_unbound:
+promethium_dagger:
   id: 16829
   str: 97.0
   stab: 68.0
@@ -97881,7 +97881,7 @@ promethium_dagger_p++:
   kept: "Always"
 promethium_dagger_p++_noted:
   id: 16836
-primal_dagger_unbound:
+primal_dagger:
   id: 16837
   str: 102.0
   stab: 74.0
@@ -97943,7 +97943,7 @@ primal_dagger_p++:
   kept: "Always"
 primal_dagger_p++_noted:
   id: 16844
-salve_robe_bottom_unbound:
+salve_robe_bottom:
   id: 16845
   stab: -5.0
   stab_def: 3.0
@@ -97959,7 +97959,7 @@ salve_robe_bottom_unbound:
   weight: 0.907
 salve_robe_bottom_noted:
   id: 16846
-wildercress_robe_bottom_unbound:
+wildercress_robe_bottom:
   id: 16847
   stab: -5.0
   stab_def: 6.0
@@ -97975,7 +97975,7 @@ wildercress_robe_bottom_unbound:
   weight: 0.907
 wildercress_robe_bottom_noted:
   id: 16848
-blightleaf_robe_bottom_unbound:
+blightleaf_robe_bottom:
   id: 16849
   stab: -5.0
   stab_def: 9.0
@@ -97991,7 +97991,7 @@ blightleaf_robe_bottom_unbound:
   weight: 0.907
 blightleaf_robe_bottom_noted:
   id: 16850
-roseblood_robe_bottom_unbound:
+roseblood_robe_bottom:
   id: 16851
   stab: -5.0
   stab_def: 12.0
@@ -98007,7 +98007,7 @@ roseblood_robe_bottom_unbound:
   weight: 0.907
 roseblood_robe_bottom_noted:
   id: 16852
-bryll_robe_bottom_unbound:
+bryll_robe_bottom:
   id: 16853
   stab: -5.0
   stab_def: 16.0
@@ -98023,7 +98023,7 @@ bryll_robe_bottom_unbound:
   weight: 0.907
 bryll_robe_bottom_noted:
   id: 16854
-duskweed_robe_bottom_unbound:
+duskweed_robe_bottom:
   id: 16855
   stab: -5.0
   stab_def: 20.0
@@ -98039,7 +98039,7 @@ duskweed_robe_bottom_unbound:
   weight: 0.907
 duskweed_robe_bottom_noted:
   id: 16856
-soulbell_robe_bottom_unbound:
+soulbell_robe_bottom:
   id: 16857
   stab: -5.0
   stab_def: 24.0
@@ -98055,7 +98055,7 @@ soulbell_robe_bottom_unbound:
   weight: 0.907
 soulbell_robe_bottom_noted:
   id: 16858
-ectorobe_bottom_unbound:
+ectorobe_bottom:
   id: 16859
   stab: -5.0
   stab_def: 28.0
@@ -98071,7 +98071,7 @@ ectorobe_bottom_unbound:
   weight: 0.907
 ectorobe_bottom_noted:
   id: 16860
-runic_robe_bottom_unbound:
+runic_robe_bottom:
   id: 16861
   stab: -5.0
   stab_def: 32.0
@@ -98087,7 +98087,7 @@ runic_robe_bottom_unbound:
   weight: 0.907
 runic_robe_bottom_noted:
   id: 16862
-spiritbloom_robe_bottom_unbound:
+spiritbloom_robe_bottom:
   id: 16863
   stab: -5.0
   stab_def: 36.0
@@ -98103,7 +98103,7 @@ spiritbloom_robe_bottom_unbound:
   weight: 0.907
 spiritbloom_robe_bottom_noted:
   id: 16864
-celestial_robe_bottom_unbound:
+celestial_robe_bottom:
   id: 16865
   stab: -5.0
   stab_def: 40.0
@@ -98119,7 +98119,7 @@ celestial_robe_bottom_unbound:
   weight: 0.907
 celestial_robe_bottom_noted:
   id: 16866
-tangle_gum_shortbow_unbound:
+tangle_gum_shortbow:
   id: 16867
   range: 7.0
   slot: "Weapon"
@@ -98128,7 +98128,7 @@ tangle_gum_shortbow_unbound:
   weight: 1.814
 tangle_gum_shortbow_noted:
   id: 16868
-seeping_elm_shortbow_unbound:
+seeping_elm_shortbow:
   id: 16869
   range: 10.0
   slot: "Weapon"
@@ -98137,7 +98137,7 @@ seeping_elm_shortbow_unbound:
   weight: 1.814
 seeping_elm_shortbow_noted:
   id: 16870
-blood_spindle_shortbow_unbound:
+blood_spindle_shortbow:
   id: 16871
   range: 13.0
   slot: "Weapon"
@@ -98146,7 +98146,7 @@ blood_spindle_shortbow_unbound:
   weight: 1.814
 blood_spindle_shortbow_noted:
   id: 16872
-utuku_shortbow_unbound:
+utuku_shortbow:
   id: 16873
   range: 15.0
   slot: "Weapon"
@@ -98155,7 +98155,7 @@ utuku_shortbow_unbound:
   weight: 1.814
 utuku_shortbow_noted:
   id: 16874
-spinebeam_shortbow_unbound:
+spinebeam_shortbow:
   id: 16875
   range: 19.0
   slot: "Weapon"
@@ -98164,7 +98164,7 @@ spinebeam_shortbow_unbound:
   weight: 1.814
 spinebeam_shortbow_noted:
   id: 16876
-bovistrangler_shortbow_unbound:
+bovistrangler_shortbow:
   id: 16877
   range: 30.0
   slot: "Weapon"
@@ -98173,7 +98173,7 @@ bovistrangler_shortbow_unbound:
   weight: 1.814
 bovistrangler_shortbow_noted:
   id: 16878
-thigat_shortbow_unbound:
+thigat_shortbow:
   id: 16879
   range: 36.0
   slot: "Weapon"
@@ -98182,7 +98182,7 @@ thigat_shortbow_unbound:
   weight: 1.814
 thigat_shortbow_noted:
   id: 16880
-corpsethorn_shortbow_unbound:
+corpsethorn_shortbow:
   id: 16881
   range: 43.0
   slot: "Weapon"
@@ -98191,7 +98191,7 @@ corpsethorn_shortbow_unbound:
   weight: 1.814
 corpsethorn_shortbow_noted:
   id: 16882
-entgallow_shortbow_unbound:
+entgallow_shortbow:
   id: 16883
   range: 50.0
   slot: "Weapon"
@@ -98200,7 +98200,7 @@ entgallow_shortbow_unbound:
   weight: 1.814
 entgallow_shortbow_noted:
   id: 16884
-grave_creeper_shortbow_unbound:
+grave_creeper_shortbow:
   id: 16885
   range: 57.0
   slot: "Weapon"
@@ -98209,7 +98209,7 @@ grave_creeper_shortbow_unbound:
   weight: 1.814
 grave_creeper_shortbow_noted:
   id: 16886
-sagittarian_shortbow_unbound:
+sagittarian_shortbow:
   id: 16887
   range: 65.0
   slot: "Weapon"
@@ -98218,7 +98218,7 @@ sagittarian_shortbow_unbound:
   weight: 1.814
 sagittarian_shortbow_noted:
   id: 16888
-novite_2h_sword_unbound:
+novite_2h_sword:
   id: 16889
   str: 24.0
   stab: -4.0
@@ -98233,7 +98233,7 @@ novite_2h_sword_unbound:
   weight: 3.628
 novite_2h_sword_noted:
   id: 16890
-bathus_2h_sword_unbound:
+bathus_2h_sword:
   id: 16891
   str: 35.0
   stab: -4.0
@@ -98248,7 +98248,7 @@ bathus_2h_sword_unbound:
   weight: 3.628
 bathus_2h_sword_noted:
   id: 16892
-marmaros_2h_sword_unbound:
+marmaros_2h_sword:
   id: 16893
   str: 43.0
   stab: -4.0
@@ -98263,7 +98263,7 @@ marmaros_2h_sword_unbound:
   weight: 3.628
 marmaros_2h_sword_noted:
   id: 16894
-kratonite_2h_sword_unbound:
+kratonite_2h_sword:
   id: 16895
   str: 55.0
   stab: -4.0
@@ -98278,7 +98278,7 @@ kratonite_2h_sword_unbound:
   weight: 3.628
 kratonite_2h_sword_noted:
   id: 16896
-fractite_2h_sword_unbound:
+fractite_2h_sword:
   id: 16897
   str: 80.0
   stab: -4.0
@@ -98293,7 +98293,7 @@ fractite_2h_sword_unbound:
   weight: 3.628
 fractite_2h_sword_noted:
   id: 16898
-zephyrium_2h_sword_unbound:
+zephyrium_2h_sword:
   id: 16899
   str: 94.0
   stab: -4.0
@@ -98308,7 +98308,7 @@ zephyrium_2h_sword_unbound:
   weight: 3.628
 zephyrium_2h_sword_noted:
   id: 16900
-argonite_2h_sword_unbound:
+argonite_2h_sword:
   id: 16901
   str: 110.0
   stab: -4.0
@@ -98323,7 +98323,7 @@ argonite_2h_sword_unbound:
   weight: 3.628
 argonite_2h_sword_noted:
   id: 16902
-katagon_2h_sword_unbound:
+katagon_2h_sword:
   id: 16903
   str: 123.0
   stab: -4.0
@@ -98338,7 +98338,7 @@ katagon_2h_sword_unbound:
   weight: 3.628
 katagon_2h_sword_noted:
   id: 16904
-gorgonite_2h_sword_unbound:
+gorgonite_2h_sword:
   id: 16905
   str: 141.0
   stab: -4.0
@@ -98353,7 +98353,7 @@ gorgonite_2h_sword_unbound:
   weight: 3.628
 gorgonite_2h_sword_noted:
   id: 16906
-promethium_2h_sword_unbound:
+promethium_2h_sword:
   id: 16907
   str: 157.0
   stab: -4.0
@@ -98368,7 +98368,7 @@ promethium_2h_sword_unbound:
   weight: 3.628
 promethium_2h_sword_noted:
   id: 16908
-primal_2h_sword_unbound:
+primal_2h_sword:
   id: 16909
   str: 162.0
   stab: -4.0
@@ -98383,7 +98383,7 @@ primal_2h_sword_unbound:
   weight: 3.628
 primal_2h_sword_noted:
   id: 16910
-salve_shoes_unbound:
+salve_shoes:
   id: 16911
   stab: -2.0
   stab_def: 1.0
@@ -98399,7 +98399,7 @@ salve_shoes_unbound:
   weight: 0.453
 salve_shoes_noted:
   id: 16912
-wildercress_shoes_unbound:
+wildercress_shoes:
   id: 16913
   stab: -2.0
   stab_def: 2.0
@@ -98415,7 +98415,7 @@ wildercress_shoes_unbound:
   weight: 0.453
 wildercress_shoes_noted:
   id: 16914
-blightleaf_shoes_unbound:
+blightleaf_shoes:
   id: 16915
   stab: -2.0
   stab_def: 3.0
@@ -98431,7 +98431,7 @@ blightleaf_shoes_unbound:
   weight: 0.453
 blightleaf_shoes_noted:
   id: 16916
-roseblood_shoes_unbound:
+roseblood_shoes:
   id: 16917
   stab: -2.0
   stab_def: 4.0
@@ -98447,7 +98447,7 @@ roseblood_shoes_unbound:
   weight: 0.453
 roseblood_shoes_noted:
   id: 16918
-bryll_shoes_unbound:
+bryll_shoes:
   id: 16919
   stab: -2.0
   stab_def: 5.0
@@ -98463,7 +98463,7 @@ bryll_shoes_unbound:
   weight: 0.453
 bryll_shoes_noted:
   id: 16920
-duskweed_shoes_unbound:
+duskweed_shoes:
   id: 16921
   stab: -2.0
   stab_def: 6.0
@@ -98479,7 +98479,7 @@ duskweed_shoes_unbound:
   weight: 0.453
 duskweed_shoes_noted:
   id: 16922
-soulbell_shoes_unbound:
+soulbell_shoes:
   id: 16923
   stab: -2.0
   stab_def: 7.0
@@ -98495,7 +98495,7 @@ soulbell_shoes_unbound:
   weight: 0.453
 soulbell_shoes_noted:
   id: 16924
-ectoshoes_unbound:
+ectoshoes:
   id: 16925
   stab: -2.0
   stab_def: 8.0
@@ -98511,7 +98511,7 @@ ectoshoes_unbound:
   weight: 0.453
 ectoshoes_noted:
   id: 16926
-runic_shoes_unbound:
+runic_shoes:
   id: 16927
   stab: -2.0
   stab_def: 9.0
@@ -98527,7 +98527,7 @@ runic_shoes_unbound:
   weight: 0.453
 runic_shoes_noted:
   id: 16928
-spiritbloom_shoes_unbound:
+spiritbloom_shoes:
   id: 16929
   stab: -2.0
   stab_def: 10.0
@@ -98543,7 +98543,7 @@ spiritbloom_shoes_unbound:
   weight: 0.453
 spiritbloom_shoes_noted:
   id: 16930
-celestial_shoes_unbound:
+celestial_shoes:
   id: 16931
   stab: -2.0
   stab_def: 11.0
@@ -98559,7 +98559,7 @@ celestial_shoes_unbound:
   weight: 0.453
 celestial_shoes_noted:
   id: 16932
-anti-dragon_shield_dungeoneering_unbound:
+anti-dragon_shield_dungeoneering:
   id: 16933
   stab_def: 7.0
   slash_def: 9.0
@@ -98572,7 +98572,7 @@ anti-dragon_shield_dungeoneering_unbound:
   weight: 5.443
 anti-dragon_shield_noted_2:
   id: 16934
-novite_rapier_unbound:
+novite_rapier:
   id: 16935
   str: 7.0
   stab: 7.0
@@ -98585,7 +98585,7 @@ novite_rapier_unbound:
   weight: 1.814
 novite_rapier_noted:
   id: 16936
-bathus_rapier_unbound:
+bathus_rapier:
   id: 16937
   str: 11.0
   stab: 13.0
@@ -98598,7 +98598,7 @@ bathus_rapier_unbound:
   weight: 1.814
 bathus_rapier_noted:
   id: 16938
-marmaros_rapier_unbound:
+marmaros_rapier:
   id: 16939
   str: 16.0
   stab: 22.0
@@ -98611,7 +98611,7 @@ marmaros_rapier_unbound:
   weight: 1.814
 marmaros_rapier_noted:
   id: 16940
-kratonite_rapier_unbound:
+kratonite_rapier:
   id: 16941
   str: 24.0
   stab: 30.0
@@ -98624,7 +98624,7 @@ kratonite_rapier_unbound:
   weight: 1.814
 kratonite_rapier_noted:
   id: 16942
-fractite_rapier_unbound:
+fractite_rapier:
   id: 16943
   str: 38.0
   stab: 38.0
@@ -98638,7 +98638,7 @@ fractite_rapier_unbound:
   weight: 1.814
 fractite_rapier_noted:
   id: 16944
-zephyrium_rapier_unbound:
+zephyrium_rapier:
   id: 16945
   str: 52.0
   stab: 47.0
@@ -98651,7 +98651,7 @@ zephyrium_rapier_unbound:
   weight: 1.814
 zephyrium_rapier_noted:
   id: 16946
-argonite_rapier_unbound:
+argonite_rapier:
   id: 16947
   str: 63.0
   stab: 53.0
@@ -98664,7 +98664,7 @@ argonite_rapier_unbound:
   weight: 1.814
 argonite_rapier_noted:
   id: 16948
-katagon_rapier_unbound:
+katagon_rapier:
   id: 16949
   str: 79.0
   stab: 59.0
@@ -98677,7 +98677,7 @@ katagon_rapier_unbound:
   weight: 1.814
 katagon_rapier_noted:
   id: 16950
-gorgonite_rapier_unbound:
+gorgonite_rapier:
   id: 16951
   str: 96.0
   stab: 67.0
@@ -98690,7 +98690,7 @@ gorgonite_rapier_unbound:
   weight: 1.814
 gorgonite_rapier_noted:
   id: 16952
-promethium_rapier_unbound:
+promethium_rapier:
   id: 16953
   str: 107.0
   stab: 76.0
@@ -98703,7 +98703,7 @@ promethium_rapier_unbound:
   weight: 1.814
 promethium_rapier_noted:
   id: 16954
-primal_rapier_unbound:
+primal_rapier:
   id: 16955
   str: 109.0
   stab: 83.0
@@ -98823,7 +98823,7 @@ catalytic_warstaff:
   examine: "This staff makes destructive spells more powerful."
 catalytic_warstaff_noted:
   id: 16970
-gorgonite_kiteshield_unbound:
+gorgonite_kiteshield:
   id: 16971
   stab_def: 56.0
   magic: -8.0
@@ -98866,7 +98866,7 @@ spinebeam_shortbow:
   kept: "Always"
 spinebeam_shortbow_noted_2:
   id: 16976
-tangle_gum_staff_unbound:
+tangle_gum_staff:
   id: 16977
   str: 3.0
   slash: -1.0
@@ -98878,7 +98878,7 @@ tangle_gum_staff_unbound:
   weight: 1.814
 tangle_gum_staff_noted:
   id: 16978
-seeping_elm_staff_unbound:
+seeping_elm_staff:
   id: 16979
   str: 3.0
   slash: -1.0
@@ -98890,7 +98890,7 @@ seeping_elm_staff_unbound:
   weight: 1.814
 seeping_elm_staff_noted:
   id: 16980
-blood_spindle_staff_unbound:
+blood_spindle_staff:
   id: 16981
   str: 3.0
   slash: -1.0
@@ -98902,7 +98902,7 @@ blood_spindle_staff_unbound:
   weight: 1.814
 blood_spindle_staff_noted:
   id: 16982
-utuku_staff_unbound:
+utuku_staff:
   id: 16983
   str: 3.0
   slash: -1.0
@@ -98914,7 +98914,7 @@ utuku_staff_unbound:
   weight: 1.814
 utuku_staff_noted:
   id: 16984
-spinebeam_staff_unbound:
+spinebeam_staff:
   id: 16985
   str: 3.0
   slash: -1.0
@@ -98926,7 +98926,7 @@ spinebeam_staff_unbound:
   weight: 1.814
 spinebeam_staff_noted:
   id: 16986
-bovistrangler_staff_unbound:
+bovistrangler_staff:
   id: 16987
   str: 3.0
   slash: -1.0
@@ -98938,7 +98938,7 @@ bovistrangler_staff_unbound:
   weight: 1.814
 bovistrangler_staff_noted:
   id: 16988
-thigat_staff_unbound:
+thigat_staff:
   id: 16989
   str: 3.0
   slash: -1.0
@@ -98950,7 +98950,7 @@ thigat_staff_unbound:
   weight: 1.814
 thigat_staff_noted:
   id: 16990
-corpsethorn_staff_unbound:
+corpsethorn_staff:
   id: 16991
   str: 3.0
   slash: -1.0
@@ -98962,7 +98962,7 @@ corpsethorn_staff_unbound:
   weight: 1.814
 corpsethorn_staff_noted:
   id: 16992
-entgallow_staff_unbound:
+entgallow_staff:
   id: 16993
   str: 3.0
   slash: -1.0
@@ -98974,7 +98974,7 @@ entgallow_staff_unbound:
   weight: 1.814
 entgallow_staff_noted:
   id: 16994
-grave_creeper_staff_unbound:
+grave_creeper_staff:
   id: 16995
   str: 3.0
   slash: -1.0
@@ -98986,7 +98986,7 @@ grave_creeper_staff_unbound:
   weight: 1.814
 grave_creeper_staff_noted:
   id: 16996
-water_staff_dungeoneering_unbound:
+water_staff_dungeoneering:
   id: 16997
   str: 4.0
   slash: -1.0
@@ -98998,7 +98998,7 @@ water_staff_dungeoneering_unbound:
   weight: 1.814
 water_staff_noted:
   id: 16998
-empowered_water_staff_unbound:
+empowered_water_staff:
   id: 16999
   magic_damage: 10
   str: 8.0
@@ -99011,7 +99011,7 @@ empowered_water_staff_unbound:
   weight: 1.814
 empowered_water_staff_noted:
   id: 17000
-earth_staff_dungeoneering_unbound:
+earth_staff_dungeoneering:
   id: 17001
   str: 4.0
   slash: -1.0
@@ -99023,7 +99023,7 @@ earth_staff_dungeoneering_unbound:
   weight: 1.814
 earth_staff_noted:
   id: 17002
-empowered_earth_staff_unbound:
+empowered_earth_staff:
   id: 17003
   magic_damage: 10
   str: 8.0
@@ -99036,7 +99036,7 @@ empowered_earth_staff_unbound:
   weight: 1.814
 empowered_earth_staff_noted:
   id: 17004
-fire_staff_dungeoneering_unbound:
+fire_staff_dungeoneering:
   id: 17005
   str: 4.0
   slash: -1.0
@@ -99048,7 +99048,7 @@ fire_staff_dungeoneering_unbound:
   weight: 1.814
 fire_staff_noted:
   id: 17006
-empowered_fire_staff_unbound:
+empowered_fire_staff:
   id: 17007
   magic_damage: 10
   str: 8.0
@@ -99061,7 +99061,7 @@ empowered_fire_staff_unbound:
   weight: 1.814
 empowered_fire_staff_noted:
   id: 17008
-air_staff_dungeoneering_unbound:
+air_staff_dungeoneering:
   id: 17009
   str: 4.0
   slash: -1.0
@@ -99073,7 +99073,7 @@ air_staff_dungeoneering_unbound:
   weight: 1.814
 air_staff_noted:
   id: 17010
-empowered_air_staff_unbound:
+empowered_air_staff:
   id: 17011
   magic_damage: 10
   str: 8.0
@@ -99086,7 +99086,7 @@ empowered_air_staff_unbound:
   weight: 1.814
 empowered_air_staff_noted:
   id: 17012
-catalytic_staff_unbound:
+catalytic_staff:
   id: 17013
   magic_damage: 15
   str: 7.0
@@ -99099,7 +99099,7 @@ catalytic_staff_unbound:
   weight: 1.814
 catalytic_staff_noted_2:
   id: 17014
-empowered_catalytic_staff_unbound:
+empowered_catalytic_staff:
   id: 17015
   magic_damage: 20
   str: 15.0
@@ -99112,7 +99112,7 @@ empowered_catalytic_staff_unbound:
   weight: 1.814
 empowered_catalytic_staff_noted:
   id: 17016
-celestial_catalytic_staff_unbound:
+celestial_catalytic_staff:
   id: 17017
   magic_damage: 30
   str: 20.0
@@ -99125,7 +99125,7 @@ celestial_catalytic_staff_unbound:
   weight: 1.814
 celestial_catalytic_staff_noted:
   id: 17018
-novite_warhammer_unbound:
+novite_warhammer:
   id: 17019
   str: 9.0
   stab: -4.0
@@ -99136,7 +99136,7 @@ novite_warhammer_unbound:
   weight: 3.175
 novite_warhammer_noted:
   id: 17020
-bathus_warhammer_unbound:
+bathus_warhammer:
   id: 17021
   str: 14.0
   stab: -4.0
@@ -99147,7 +99147,7 @@ bathus_warhammer_unbound:
   weight: 3.175
 bathus_warhammer_noted:
   id: 17022
-marmaros_warhammer_unbound:
+marmaros_warhammer:
   id: 17023
   str: 18.0
   stab: -4.0
@@ -99158,7 +99158,7 @@ marmaros_warhammer_unbound:
   weight: 3.175
 marmaros_warhammer_noted:
   id: 17024
-kratonite_warhammer_unbound:
+kratonite_warhammer:
   id: 17025
   str: 27.0
   stab: -4.0
@@ -99169,7 +99169,7 @@ kratonite_warhammer_unbound:
   weight: 3.175
 kratonite_warhammer_noted:
   id: 17026
-fractite_warhammer_unbound:
+fractite_warhammer:
   id: 17027
   str: 48.0
   stab: -4.0
@@ -99180,7 +99180,7 @@ fractite_warhammer_unbound:
   weight: 3.175
 fractite_warhammer_noted:
   id: 17028
-zephyrium_warhammer_unbound:
+zephyrium_warhammer:
   id: 17029
   str: 62.0
   stab: -4.0
@@ -99191,7 +99191,7 @@ zephyrium_warhammer_unbound:
   weight: 3.175
 zephyrium_warhammer_noted:
   id: 17030
-argonite_warhammer_unbound:
+argonite_warhammer:
   id: 17031
   str: 79.0
   stab: -4.0
@@ -99202,7 +99202,7 @@ argonite_warhammer_unbound:
   weight: 3.175
 argonite_warhammer_noted:
   id: 17032
-katagon_warhammer_unbound:
+katagon_warhammer:
   id: 17033
   str: 96.0
   stab: -4.0
@@ -99213,7 +99213,7 @@ katagon_warhammer_unbound:
   weight: 3.175
 katagon_warhammer_noted:
   id: 17034
-gorgonite_warhammer_unbound:
+gorgonite_warhammer:
   id: 17035
   str: 112.0
   stab: -4.0
@@ -99224,7 +99224,7 @@ gorgonite_warhammer_unbound:
   weight: 3.175
 gorgonite_warhammer_noted:
   id: 17036
-promethium_warhammer_unbound:
+promethium_warhammer:
   id: 17037
   str: 123.0
   stab: -4.0
@@ -99235,7 +99235,7 @@ promethium_warhammer_unbound:
   weight: 3.175
 promethium_warhammer_noted:
   id: 17038
-primal_warhammer_unbound:
+primal_warhammer:
   id: 17039
   str: 132.0
   stab: -4.0
@@ -99246,7 +99246,7 @@ primal_warhammer_unbound:
   weight: 3.175
 primal_warhammer_noted:
   id: 17040
-protoleather_coif_unbound:
+protoleather_coif:
   id: 17041
   stab: -3.0
   stab_def: 2.0
@@ -99265,7 +99265,7 @@ protoleather_coif_unbound:
   weight: 0.9
 protoleather_coif_noted:
   id: 17042
-subleather_coif_unbound:
+subleather_coif:
   id: 17043
   stab: -3.0
   stab_def: 3.0
@@ -99284,7 +99284,7 @@ subleather_coif_unbound:
   weight: 0.9
 subleather_coif_noted:
   id: 17044
-paraleather_coif_unbound:
+paraleather_coif:
   id: 17045
   stab: -3.0
   stab_def: 5.0
@@ -99303,7 +99303,7 @@ paraleather_coif_unbound:
   weight: 0.9
 paraleather_coif_noted:
   id: 17046
-archleather_coif_unbound:
+archleather_coif:
   id: 17047
   stab: -3.0
   stab_def: 7.0
@@ -99322,7 +99322,7 @@ archleather_coif_unbound:
   weight: 0.9
 archleather_coif_noted:
   id: 17048
-dromoleather_coif_unbound:
+dromoleather_coif:
   id: 17049
   stab: -3.0
   stab_def: 8.0
@@ -99341,7 +99341,7 @@ dromoleather_coif_unbound:
   weight: 0.9
 dromoleather_coif_noted:
   id: 17050
-spinoleather_coif_unbound:
+spinoleather_coif:
   id: 17051
   stab: -3.0
   stab_def: 11.0
@@ -99360,7 +99360,7 @@ spinoleather_coif_unbound:
   weight: 0.9
 spinoleather_coif_noted:
   id: 17052
-gallileather_coif_unbound:
+gallileather_coif:
   id: 17053
   stab: -3.0
   stab_def: 13.0
@@ -99379,7 +99379,7 @@ gallileather_coif_unbound:
   weight: 0.9
 gallileather_coif_noted:
   id: 17054
-stegoleather_coif_unbound:
+stegoleather_coif:
   id: 17055
   stab: -3.0
   stab_def: 15.0
@@ -99398,7 +99398,7 @@ stegoleather_coif_unbound:
   weight: 0.9
 stegoleather_coif_noted:
   id: 17056
-megaleather_coif_unbound:
+megaleather_coif:
   id: 17057
   stab: -3.0
   stab_def: 17.0
@@ -99417,7 +99417,7 @@ megaleather_coif_unbound:
   weight: 0.9
 megaleather_coif_noted:
   id: 17058
-tyrannoleather_coif_unbound:
+tyrannoleather_coif:
   id: 17059
   stab: -3.0
   stab_def: 19.0
@@ -99436,7 +99436,7 @@ tyrannoleather_coif_unbound:
   weight: 0.9
 tyrannoleather_coif_noted:
   id: 17060
-sagittarian_coif_unbound:
+sagittarian_coif:
   id: 17061
   stab: -3.0
   stab_def: 21.0
@@ -99455,7 +99455,7 @@ sagittarian_coif_unbound:
   weight: 0.9
 sagittarian_coif_noted:
   id: 17062
-novite_spear_unbound:
+novite_spear:
   id: 17063
   str: 16.0
   stab: 19.0
@@ -99521,7 +99521,7 @@ novite_spear_p++:
   kept: "Always"
 novite_spear_p++_noted:
   id: 17070
-bathus_spear_unbound:
+bathus_spear:
   id: 17071
   str: 25.0
   stab: 31.0
@@ -99587,7 +99587,7 @@ bathus_spear_p++:
   kept: "Always"
 bathus_spear_p++_noted:
   id: 17078
-marmaros_spear_unbound:
+marmaros_spear:
   id: 17079
   str: 31.0
   stab: 51.0
@@ -99653,7 +99653,7 @@ marmaros_spear_p++:
   kept: "Always"
 marmaros_spear_p++_noted:
   id: 17086
-kratonite_spear_unbound:
+kratonite_spear:
   id: 17087
   str: 43.0
   stab: 69.0
@@ -99719,7 +99719,7 @@ kratonite_spear_p++:
   kept: "Always"
 kratonite_spear_p++_noted:
   id: 17094
-fractite_spear_unbound:
+fractite_spear:
   id: 17095
   str: 67.0
   stab: 80.0
@@ -99785,7 +99785,7 @@ fractite_spear_p++:
   kept: "Always"
 fractite_spear_p++_noted:
   id: 17102
-zephyrium_spear_unbound:
+zephyrium_spear:
   id: 17103
   str: 78.0
   stab: 88.0
@@ -99851,7 +99851,7 @@ zephyrium_spear_p++:
   kept: "Always"
 zephyrium_spear_p++_noted:
   id: 17110
-argonite_spear_unbound:
+argonite_spear:
   id: 17111
   str: 96.0
   stab: 102.0
@@ -99917,7 +99917,7 @@ argonite_spear_p++:
   kept: "Always"
 argonite_spear_p++_noted:
   id: 17118
-katagon_spear_unbound:
+katagon_spear:
   id: 17119
   str: 112.0
   stab: 107.0
@@ -99983,7 +99983,7 @@ katagon_spear_p++:
   kept: "Always"
 katagon_spear_p++_noted:
   id: 17126
-gorgonite_spear_unbound:
+gorgonite_spear:
   id: 17127
   str: 128.0
   stab: 110.0
@@ -100049,7 +100049,7 @@ gorgonite_spear_p++:
   kept: "Always"
 gorgonite_spear_p++_noted:
   id: 17134
-promethium_spear_unbound:
+promethium_spear:
   id: 17135
   str: 139.0
   stab: 122.0
@@ -100115,7 +100115,7 @@ promethium_spear_p++:
   kept: "Always"
 promethium_spear_p++_noted:
   id: 17142
-primal_spear_unbound:
+primal_spear:
   id: 17143
   str: 145.0
   stab: 132.0
@@ -100181,7 +100181,7 @@ primal_spear_p++:
   use: "Dungeoneering"
 primal_spear_p++_noted:
   id: 17150
-salve_gloves_unbound:
+salve_gloves:
   id: 17151
   stab: -1.0
   stab_def: 1.0
@@ -100196,7 +100196,7 @@ salve_gloves_unbound:
   weight: 0.2
 salve_gloves_noted:
   id: 17152
-wildercress_gloves_unbound:
+wildercress_gloves:
   id: 17153
   stab: -1.0
   stab_def: 2.0
@@ -100212,7 +100212,7 @@ wildercress_gloves_unbound:
   weight: 0.2
 wildercress_gloves_noted:
   id: 17154
-blightleaf_gloves_unbound:
+blightleaf_gloves:
   id: 17155
   stab: -1.0
   stab_def: 2.0
@@ -100228,7 +100228,7 @@ blightleaf_gloves_unbound:
   weight: 0.2
 blightleaf_gloves_noted:
   id: 17156
-roseblood_gloves_unbound:
+roseblood_gloves:
   id: 17157
   stab: -1.0
   stab_def: 3.0
@@ -100244,7 +100244,7 @@ roseblood_gloves_unbound:
   weight: 0.2
 roseblood_gloves_noted:
   id: 17158
-bryll_gloves_unbound:
+bryll_gloves:
   id: 17159
   stab: -1.0
   stab_def: 4.0
@@ -100260,7 +100260,7 @@ bryll_gloves_unbound:
   weight: 0.2
 bryll_gloves_noted:
   id: 17160
-duskweed_gloves_unbound:
+duskweed_gloves:
   id: 17161
   stab: -1.0
   stab_def: 5.0
@@ -100276,7 +100276,7 @@ duskweed_gloves_unbound:
   weight: 0.2
 duskweed_gloves_noted:
   id: 17162
-soulbell_gloves_unbound:
+soulbell_gloves:
   id: 17163
   stab: -1.0
   stab_def: 6.0
@@ -100292,7 +100292,7 @@ soulbell_gloves_unbound:
   weight: 0.2
 soulbell_gloves_noted:
   id: 17164
-ectogloves_unbound:
+ectogloves:
   id: 17165
   stab: -1.0
   stab_def: 7.0
@@ -100308,7 +100308,7 @@ ectogloves_unbound:
   weight: 0.2
 ectogloves_noted:
   id: 17166
-runic_gloves_unbound:
+runic_gloves:
   id: 17167
   stab: -1.0
   stab_def: 8.0
@@ -100324,7 +100324,7 @@ runic_gloves_unbound:
   weight: 0.2
 runic_gloves_noted:
   id: 17168
-spiritbloom_gloves_unbound:
+spiritbloom_gloves:
   id: 17169
   stab: -1.0
   stab_def: 9.0
@@ -100340,7 +100340,7 @@ spiritbloom_gloves_unbound:
   weight: 0.2
 spiritbloom_gloves_noted:
   id: 17170
-celestial_gloves_unbound:
+celestial_gloves:
   id: 17171
   stab: -1.0
   stab_def: 10.0
@@ -100356,7 +100356,7 @@ celestial_gloves_unbound:
   weight: 0.2
 celestial_gloves_noted:
   id: 17172
-protoleather_body_unbound:
+protoleather_body:
   id: 17173
   stab: -10.0
   stab_def: 7.0
@@ -100375,7 +100375,7 @@ protoleather_body_unbound:
   weight: 4.989
 protoleather_body_noted:
   id: 17174
-subleather_body_unbound:
+subleather_body:
   id: 17175
   stab: -10.0
   stab_def: 14.0
@@ -100394,7 +100394,7 @@ subleather_body_unbound:
   weight: 4.989
 subleather_body_noted:
   id: 17176
-paraleather_body_unbound:
+paraleather_body:
   id: 17177
   stab: -10.0
   stab_def: 14.0
@@ -100413,7 +100413,7 @@ paraleather_body_unbound:
   weight: 4.989
 paraleather_body_noted:
   id: 17178
-archleather_body_unbound:
+archleather_body:
   id: 17179
   stab: -10.0
   stab_def: 28.0
@@ -100432,7 +100432,7 @@ archleather_body_unbound:
   weight: 4.989
 archleather_body_noted:
   id: 17180
-dromoleather_body_unbound:
+dromoleather_body:
   id: 17181
   stab: -10.0
   stab_def: 28.0
@@ -100451,7 +100451,7 @@ dromoleather_body_unbound:
   weight: 4.989
 dromoleather_body_noted:
   id: 17182
-spinoleather_body_unbound:
+spinoleather_body:
   id: 17183
   stab: -10.0
   stab_def: 43.0
@@ -100470,7 +100470,7 @@ spinoleather_body_unbound:
   weight: 4.989
 spinoleather_body_noted:
   id: 17184
-gallileather_body_unbound:
+gallileather_body:
   id: 17185
   stab: -10.0
   stab_def: 51.0
@@ -100489,7 +100489,7 @@ gallileather_body_unbound:
   weight: 4.989
 gallileather_body_noted:
   id: 17186
-stegoleather_body_unbound:
+stegoleather_body:
   id: 17187
   stab: -10.0
   stab_def: 60.0
@@ -100508,7 +100508,7 @@ stegoleather_body_unbound:
   weight: 4.989
 stegoleather_body_noted:
   id: 17188
-megaleather_body_unbound:
+megaleather_body:
   id: 17189
   stab: -10.0
   stab_def: 69.0
@@ -100527,7 +100527,7 @@ megaleather_body_unbound:
   weight: 4.989
 megaleather_body_noted:
   id: 17190
-tyrannoleather_body_unbound:
+tyrannoleather_body:
   id: 17191
   stab: -10.0
   stab_def: 78.0
@@ -100546,7 +100546,7 @@ tyrannoleather_body_unbound:
   weight: 4.989
 tyrannoleather_body_noted:
   id: 17192
-sagittarian_body_unbound:
+sagittarian_body:
   id: 17193
   stab: -10.0
   stab_def: 87.0
@@ -100564,7 +100564,7 @@ sagittarian_body_unbound:
   weight: 4.989
 sagittarian_body_noted:
   id: 17194
-protoleather_vambraces_unbound:
+protoleather_vambraces:
   id: 17195
   stab: -2.0
   stab_def: 1.0
@@ -100580,7 +100580,7 @@ protoleather_vambraces_unbound:
   weight: 0.27
 protoleather_vambraces_noted:
   id: 17196
-subleather_vambraces_unbound:
+subleather_vambraces:
   id: 17197
   stab: -2.0
   stab_def: 1.0
@@ -100598,7 +100598,7 @@ subleather_vambraces_unbound:
   weight: 0.27
 subleather_vambraces_noted:
   id: 17198
-paraleather_vambraces_unbound:
+paraleather_vambraces:
   id: 17199
   stab: -2.0
   stab_def: 2.0
@@ -100616,7 +100616,7 @@ paraleather_vambraces_unbound:
   weight: 0.27
 paraleather_vambraces_noted:
   id: 17200
-archleather_vambraces_unbound:
+archleather_vambraces:
   id: 17201
   stab: -2.0
   stab_def: 3.0
@@ -100634,7 +100634,7 @@ archleather_vambraces_unbound:
   weight: 0.27
 archleather_vambraces_noted:
   id: 17202
-dromoleather_vambraces_unbound:
+dromoleather_vambraces:
   id: 17203
   stab: -2.0
   stab_def: 3.0
@@ -100652,7 +100652,7 @@ dromoleather_vambraces_unbound:
   weight: 0.27
 dromoleather_vambraces_noted:
   id: 17204
-spinoleather_vambraces_unbound:
+spinoleather_vambraces:
   id: 17205
   stab: -2.0
   stab_def: 4.0
@@ -100670,7 +100670,7 @@ spinoleather_vambraces_unbound:
   weight: 0.27
 spinoleather_vambraces_noted:
   id: 17206
-gallileather_vambraces_unbound:
+gallileather_vambraces:
   id: 17207
   stab: -2.0
   stab_def: 5.0
@@ -100688,7 +100688,7 @@ gallileather_vambraces_unbound:
   weight: 0.27
 gallileather_vambraces_noted:
   id: 17208
-stegoleather_vambraces_unbound:
+stegoleather_vambraces:
   id: 17209
   stab: -2.0
   stab_def: 6.0
@@ -100706,7 +100706,7 @@ stegoleather_vambraces_unbound:
   weight: 0.27
 stegoleather_vambraces_noted:
   id: 17210
-megaleather_vambraces_unbound:
+megaleather_vambraces:
   id: 17211
   stab: -2.0
   stab_def: 7.0
@@ -100724,7 +100724,7 @@ megaleather_vambraces_unbound:
   weight: 0.27
 megaleather_vambraces_noted:
   id: 17212
-tyrannoleather_vambraces_unbound:
+tyrannoleather_vambraces:
   id: 17213
   stab: -2.0
   stab_def: 8.0
@@ -100742,7 +100742,7 @@ tyrannoleather_vambraces_unbound:
   weight: 0.27
 tyrannoleather_vambraces_noted:
   id: 17214
-sagittarian_vambraces_unbound:
+sagittarian_vambraces:
   id: 17215
   stab: -2.0
   stab_def: 9.0
@@ -100760,7 +100760,7 @@ sagittarian_vambraces_unbound:
   weight: 0.27
 sagittarian_vambraces_noted:
   id: 17216
-salve_robe_top_unbound:
+salve_robe_top:
   id: 17217
   stab: -7.0
   stab_def: 4.0
@@ -100776,7 +100776,7 @@ salve_robe_top_unbound:
   weight: 1.36
 salve_robe_top_noted:
   id: 17218
-wildercress_robe_top_unbound:
+wildercress_robe_top:
   id: 17219
   stab: -7.0
   stab_def: 8.0
@@ -100792,7 +100792,7 @@ wildercress_robe_top_unbound:
   weight: 1.36
 wildercress_robe_top_noted:
   id: 17220
-blightleaf_robe_top_unbound:
+blightleaf_robe_top:
   id: 17221
   stab: -7.0
   stab_def: 12.0
@@ -100808,7 +100808,7 @@ blightleaf_robe_top_unbound:
   weight: 1.36
 blightleaf_robe_top_noted:
   id: 17222
-roseblood_robe_top_unbound:
+roseblood_robe_top:
   id: 17223
   stab: -7.0
   stab_def: 16.0
@@ -100824,7 +100824,7 @@ roseblood_robe_top_unbound:
   weight: 1.36
 roseblood_robe_top_noted:
   id: 17224
-bryll_robe_top_unbound:
+bryll_robe_top:
   id: 17225
   stab: -7.0
   stab_def: 21.0
@@ -100840,7 +100840,7 @@ bryll_robe_top_unbound:
   weight: 1.36
 bryll_robe_top_noted:
   id: 17226
-duskweed_robe_top_unbound:
+duskweed_robe_top:
   id: 17227
   stab: -7.0
   stab_def: 26.0
@@ -100856,7 +100856,7 @@ duskweed_robe_top_unbound:
   weight: 1.36
 duskweed_robe_top_noted:
   id: 17228
-soulbell_robe_top_unbound:
+soulbell_robe_top:
   id: 17229
   stab: -7.0
   stab_def: 31.0
@@ -100872,7 +100872,7 @@ soulbell_robe_top_unbound:
   weight: 1.36
 soulbell_robe_top_noted:
   id: 17230
-ectorobe_top_unbound:
+ectorobe_top:
   id: 17231
   stab: -7.0
   stab_def: 36.0
@@ -100888,7 +100888,7 @@ ectorobe_top_unbound:
   weight: 1.36
 ectorobe_top_noted:
   id: 17232
-runic_robe_top_unbound:
+runic_robe_top:
   id: 17233
   stab: -7.0
   stab_def: 51.0
@@ -100904,7 +100904,7 @@ runic_robe_top_unbound:
   weight: 1.36
 runic_robe_top_noted:
   id: 17234
-spiritbloom_robe_top_unbound:
+spiritbloom_robe_top:
   id: 17235
   stab: -7.0
   stab_def: 46.0
@@ -100920,7 +100920,7 @@ spiritbloom_robe_top_unbound:
   weight: 1.36
 spiritbloom_robe_top_noted:
   id: 17236
-celestial_robe_top_unbound:
+celestial_robe_top:
   id: 17237
   stab: -7.0
   stab_def: 51.0
@@ -100936,7 +100936,7 @@ celestial_robe_top_unbound:
   weight: 1.36
 celestial_robe_top_noted:
   id: 17238
-novite_platebody_unbound:
+novite_platebody:
   id: 17239
   stab_def: 20.0
   magic: -30.0
@@ -100951,7 +100951,7 @@ novite_platebody_unbound:
   weight: 9.979
 novite_platebody_noted:
   id: 17240
-bathus_platebody_unbound:
+bathus_platebody:
   id: 17241
   stab_def: 37.0
   magic: -30.0
@@ -100966,7 +100966,7 @@ bathus_platebody_unbound:
   weight: 9.979
 bathus_platebody_noted:
   id: 17242
-marmaros_platebody_unbound:
+marmaros_platebody:
   id: 17243
   stab_def: 57.0
   magic: -30.0
@@ -100981,7 +100981,7 @@ marmaros_platebody_unbound:
   weight: 9.979
 marmaros_platebody_noted:
   id: 17244
-kratonite_platebody_unbound:
+kratonite_platebody:
   id: 17245
   stab_def: 78.0
   magic: -30.0
@@ -100995,7 +100995,7 @@ kratonite_platebody_unbound:
   weight: 9.979
 kratonite_platebody_noted:
   id: 17246
-fractite_platebody_unbound:
+fractite_platebody:
   id: 17247
   stab_def: 100.0
   magic: -30.0
@@ -101010,7 +101010,7 @@ fractite_platebody_unbound:
   weight: 9.979
 fractite_platebody_noted:
   id: 17248
-zephyrium_platebody_unbound:
+zephyrium_platebody:
   id: 17249
   stab_def: 123.0
   magic: -30.0
@@ -101025,7 +101025,7 @@ zephyrium_platebody_unbound:
   weight: 9.979
 zephyrium_platebody_noted:
   id: 17250
-argonite_platebody_unbound:
+argonite_platebody:
   id: 17251
   stab_def: 145.0
   magic: -30.0
@@ -101040,7 +101040,7 @@ argonite_platebody_unbound:
   weight: 9.979
 argonite_platebody_noted:
   id: 17252
-katagon_platebody_unbound:
+katagon_platebody:
   id: 17253
   stab_def: 171.0
   magic: -30.0
@@ -101055,7 +101055,7 @@ katagon_platebody_unbound:
   weight: 9.979
 katagon_platebody_noted:
   id: 17254
-gorgonite_platebody_unbound:
+gorgonite_platebody:
   id: 17255
   stab_def: 197.0
   magic: -30.0
@@ -101070,7 +101070,7 @@ gorgonite_platebody_unbound:
   weight: 9.979
 gorgonite_platebody_noted:
   id: 17256
-promethium_platebody_unbound:
+promethium_platebody:
   id: 17257
   stab_def: 223.0
   magic: -30.0
@@ -101085,7 +101085,7 @@ promethium_platebody_unbound:
   weight: 9.979
 promethium_platebody_noted:
   id: 17258
-primal_platebody_unbound:
+primal_platebody:
   id: 17259
   stab_def: 247.0
   magic: -30.0
@@ -101100,7 +101100,7 @@ primal_platebody_unbound:
   weight: 9.979
 primal_platebody_noted:
   id: 17260
-silver_precision_bracelet_unbound:
+silver_precision_bracelet:
   id: 17261
   stab: 4.0
   slash: 7.0
@@ -101115,7 +101115,7 @@ silver_precision_bracelet_unbound:
   weight: 0.18
 silver_precision_bracelet_noted:
   id: 17262
-golden_precision_bracelet_unbound:
+golden_precision_bracelet:
   id: 17263
   stab: 12.0
   slash: 17.0
@@ -101130,7 +101130,7 @@ golden_precision_bracelet_unbound:
   weight: 0.18
 golden_precision_bracelet_noted:
   id: 17264
-sunstriker_boots_unbound:
+sunstriker_boots:
   id: 17265
   stab: 1.0
   stab_def: 3.0
@@ -101147,7 +101147,7 @@ sunstriker_boots_unbound:
   weight: 3.628
 sunstriker_boots_noted:
   id: 17266
-marksman_boots_unbound:
+marksman_boots:
   id: 17267
   stab: 2.0
   stab_def: 6.0
@@ -101164,7 +101164,7 @@ marksman_boots_unbound:
   weight: 3.628
 marksman_boots_noted:
   id: 17268
-incantors_boots_unbound:
+incantors_boots:
   id: 17269
   stab: 1.0
   stab_def: 5.0
@@ -101180,7 +101180,7 @@ incantors_boots_unbound:
   weight: 0.453
 incantors_boots_noted:
   id: 17270
-sorcerers_boots_unbound:
+sorcerers_boots:
   id: 17271
   stab: 2.0
   stab_def: 7.0
@@ -101196,7 +101196,7 @@ sorcerers_boots_unbound:
   weight: 0.453
 sorcerers_boots_noted:
   id: 17272
-flameburst_defender_unbound:
+flameburst_defender:
   id: 17273
   str: 5.0
   stab: 9.0
@@ -101213,7 +101213,7 @@ flameburst_defender_unbound:
   weight: 0.453
 flameburst_defender_noted:
   id: 17274
-frostbite_dagger_unbound:
+frostbite_dagger:
   id: 17275
   str: 29.0
   stab: 32.0
@@ -101228,7 +101228,7 @@ frostbite_dagger_unbound:
   weight: 0.453
 frostbite_dagger_noted:
   id: 17276
-hailstorm_dagger_unbound:
+hailstorm_dagger:
   id: 17277
   str: 69.0
   stab: 50.0
@@ -101243,7 +101243,7 @@ hailstorm_dagger_unbound:
   weight: 0.453
 hailstorm_dagger_noted:
   id: 17278
-shadow_silk_hood_unbound:
+shadow_silk_hood:
   id: 17279
   stab: -2.0
   stab_def: 10.0
@@ -101261,7 +101261,7 @@ shadow_silk_hood_unbound:
   weight: 0.453
 shadow_silk_hood_noted:
   id: 17280
-absorption_boots_unbound:
+absorption_boots:
   id: 17281
   stab: -2.0
   stab_def: 5.0
@@ -101278,7 +101278,7 @@ absorption_boots_unbound:
   weight: 3.628
 absorption_boots_noted:
   id: 17282
-grounding_boots_unbound:
+grounding_boots:
   id: 17283
   stab: -2.0
   stab_def: 8.0
@@ -101295,7 +101295,7 @@ grounding_boots_unbound:
   weight: 3.628
 grounding_boots_noted:
   id: 17284
-protectors_ward_unbound:
+protectors_ward:
   id: 17285
   stab_def: 40.0
   slash_def: 53.0
@@ -101308,7 +101308,7 @@ protectors_ward_unbound:
   weight: 0.907
 protectors_ward_noted:
   id: 17286
-guardians_ward_unbound:
+guardians_ward:
   id: 17287
   stab_def: 55.0
   slash_def: 72.0
@@ -101321,7 +101321,7 @@ guardians_ward_unbound:
   weight: 0.907
 guardians_ward_noted:
   id: 17288
-seekers_charm_dungeoneering_unbound:
+seekers_charm_dungeoneering:
   id: 17289
   str: -4.0
   stab: -3.0
@@ -101335,7 +101335,7 @@ seekers_charm_dungeoneering_unbound:
   weight: 0.13
 seekers_charm_noted:
   id: 17290
-blood_necklace_unbound:
+blood_necklace:
   id: 17291
   str: 11.0
   stab: 11.0
@@ -101353,7 +101353,7 @@ blood_necklace_unbound:
   weight: 0.11
 blood_necklace_noted:
   id: 17292
-doomcore_staff_unbound:
+doomcore_staff:
   id: 17293
   magic_damage: 25
   str: -5.0
@@ -101368,7 +101368,7 @@ doomcore_staff_unbound:
   weight: 6.0
 doomcore_staff_noted:
   id: 17294
-hexhunter_bow_dungeoneering_unbound:
+hexhunter_bow_dungeoneering:
   id: 17295
   magic: -2.0
   range: 45.0
@@ -101379,7 +101379,7 @@ hexhunter_bow_dungeoneering_unbound:
   weight: 1.814
 hexhunter_bow_noted:
   id: 17296
-protoleather_boots_unbound:
+protoleather_boots:
   id: 17297
   stab: -2.0
   stab_def: 1.0
@@ -101397,7 +101397,7 @@ protoleather_boots_unbound:
   weight: 4.082
 protoleather_boots_noted:
   id: 17298
-subleather_boots_unbound:
+subleather_boots:
   id: 17299
   stab: -2.0
   stab_def: 2.0
@@ -101415,7 +101415,7 @@ subleather_boots_unbound:
   weight: 4.082
 subleather_boots_noted:
   id: 17300
-paraleather_boots_unbound:
+paraleather_boots:
   id: 17301
   stab: -2.0
   stab_def: 2.0
@@ -101433,7 +101433,7 @@ paraleather_boots_unbound:
   weight: 4.082
 paraleather_boots_noted:
   id: 17302
-archleather_boots_unbound:
+archleather_boots:
   id: 17303
   stab: -2.0
   stab_def: 3.0
@@ -101451,7 +101451,7 @@ archleather_boots_unbound:
   weight: 4.082
 archleather_boots_noted:
   id: 17304
-dromoleather_boots_unbound:
+dromoleather_boots:
   id: 17305
   stab: -2.0
   stab_def: 3.0
@@ -101469,7 +101469,7 @@ dromoleather_boots_unbound:
   weight: 4.082
 dromoleather_boots_noted:
   id: 17306
-spinoleather_boots_unbound:
+spinoleather_boots:
   id: 17307
   stab: -2.0
   stab_def: 5.0
@@ -101487,7 +101487,7 @@ spinoleather_boots_unbound:
   weight: 4.082
 spinoleather_boots_noted:
   id: 17308
-gallileather_boots_unbound:
+gallileather_boots:
   id: 17309
   stab: -2.0
   stab_def: 6.0
@@ -101505,7 +101505,7 @@ gallileather_boots_unbound:
   weight: 4.082
 gallileather_boots_noted:
   id: 17310
-stegoleather_boots_unbound:
+stegoleather_boots:
   id: 17311
   stab: -2.0
   stab_def: 7.0
@@ -101523,7 +101523,7 @@ stegoleather_boots_unbound:
   weight: 4.082
 stegoleather_boots_noted:
   id: 17312
-megaleather_boots_unbound:
+megaleather_boots:
   id: 17313
   stab: -2.0
   stab_def: 8.0
@@ -101541,7 +101541,7 @@ megaleather_boots_unbound:
   weight: 4.082
 megaleather_boots_noted:
   id: 17314
-tyrannoleather_boots_unbound:
+tyrannoleather_boots:
   id: 17315
   stab: -2.0
   stab_def: 9.0
@@ -101559,7 +101559,7 @@ tyrannoleather_boots_unbound:
   weight: 4.082
 tyrannoleather_boots_noted:
   id: 17316
-sagittarian_boots_unbound:
+sagittarian_boots:
   id: 17317
   stab: -2.0
   stab_def: 10.0
@@ -101577,7 +101577,7 @@ sagittarian_boots_unbound:
   weight: 4.082
 sagittarian_boots_noted:
   id: 17318
-protoleather_chaps_unbound:
+protoleather_chaps:
   id: 17319
   stab: -7.0
   stab_def: 4.0
@@ -101595,7 +101595,7 @@ protoleather_chaps_unbound:
   weight: 4.082
 protoleather_chaps_noted:
   id: 17320
-subleather_chaps_unbound:
+subleather_chaps:
   id: 17321
   stab: -7.0
   stab_def: 8.0
@@ -101613,7 +101613,7 @@ subleather_chaps_unbound:
   weight: 4.082
 subleather_chaps_noted:
   id: 17322
-paraleather_chaps_unbound:
+paraleather_chaps:
   id: 17323
   stab: -7.0
   stab_def: 11.0
@@ -101631,7 +101631,7 @@ paraleather_chaps_unbound:
   weight: 4.082
 paraleather_chaps_noted:
   id: 17324
-archleather_chaps_unbound:
+archleather_chaps:
   id: 17325
   stab: -7.0
   stab_def: 15.0
@@ -101649,7 +101649,7 @@ archleather_chaps_unbound:
   weight: 4.082
 archleather_chaps_noted:
   id: 17326
-dromoleather_chaps_unbound:
+dromoleather_chaps:
   id: 17327
   stab: -7.0
   stab_def: 16.0
@@ -101667,7 +101667,7 @@ dromoleather_chaps_unbound:
   weight: 4.082
 dromoleather_chaps_noted:
   id: 17328
-spinoleather_chaps_unbound:
+spinoleather_chaps:
   id: 17329
   stab: -7.0
   stab_def: 24.0
@@ -101685,7 +101685,7 @@ spinoleather_chaps_unbound:
   weight: 4.082
 spinoleather_chaps_noted:
   id: 17330
-gallileather_chaps_unbound:
+gallileather_chaps:
   id: 17331
   stab: -7.0
   stab_def: 24.0
@@ -101703,7 +101703,7 @@ gallileather_chaps_unbound:
   weight: 4.082
 gallileather_chaps_noted:
   id: 17332
-stegoleather_chaps_unbound:
+stegoleather_chaps:
   id: 17333
   stab: -7.0
   stab_def: 34.0
@@ -101721,7 +101721,7 @@ stegoleather_chaps_unbound:
   weight: 4.082
 stegoleather_chaps_noted:
   id: 17334
-megaleather_chaps_unbound:
+megaleather_chaps:
   id: 17335
   stab: -7.0
   stab_def: 39.0
@@ -101739,7 +101739,7 @@ megaleather_chaps_unbound:
   weight: 4.082
 megaleather_chaps_noted:
   id: 17336
-tyrannoleather_chaps_unbound:
+tyrannoleather_chaps:
   id: 17337
   stab: -7.0
   stab_def: 44.0
@@ -101757,7 +101757,7 @@ tyrannoleather_chaps_unbound:
   weight: 4.082
 tyrannoleather_chaps_noted:
   id: 17338
-sagittarian_chaps_unbound:
+sagittarian_chaps:
   id: 17339
   stab: -7.0
   stab_def: 49.0
@@ -101775,7 +101775,7 @@ sagittarian_chaps_unbound:
   weight: 4.082
 sagittarian_chaps_noted:
   id: 17340
-novite_kiteshield_unbound:
+novite_kiteshield:
   id: 17341
   stab_def: 5.0
   magic: -8.0
@@ -101790,7 +101790,7 @@ novite_kiteshield_unbound:
   weight: 5.443
 novite_kiteshield_noted:
   id: 17342
-bathus_kiteshield_unbound:
+bathus_kiteshield:
   id: 17343
   stab_def: 9.0
   magic: -8.0
@@ -101805,7 +101805,7 @@ bathus_kiteshield_unbound:
   weight: 5.443
 bathus_kiteshield_noted:
   id: 17344
-marmaros_kiteshield_unbound:
+marmaros_kiteshield:
   id: 17345
   stab_def: 16.0
   magic: -8.0
@@ -101820,7 +101820,7 @@ marmaros_kiteshield_unbound:
   weight: 5.443
 marmaros_kiteshield_noted:
   id: 17346
-kratonite_kiteshield_unbound:
+kratonite_kiteshield:
   id: 17347
   stab_def: 22.0
   magic: -8.0
@@ -101835,7 +101835,7 @@ kratonite_kiteshield_unbound:
   weight: 5.443
 kratonite_kiteshield_noted:
   id: 17348
-fractite_kiteshield_unbound:
+fractite_kiteshield:
   id: 17349
   stab_def: 28.0
   magic: -8.0
@@ -101850,7 +101850,7 @@ fractite_kiteshield_unbound:
   weight: 5.443
 fractite_kiteshield_noted:
   id: 17350
-zephyrium_kiteshield_unbound:
+zephyrium_kiteshield:
   id: 17351
   stab_def: 35.0
   magic: -8.0
@@ -101865,7 +101865,7 @@ zephyrium_kiteshield_unbound:
   weight: 5.443
 zephyrium_kiteshield_noted:
   id: 17352
-argonite_kiteshield_unbound:
+argonite_kiteshield:
   id: 17353
   stab_def: 42.0
   magic: -8.0
@@ -101880,7 +101880,7 @@ argonite_kiteshield_unbound:
   weight: 5.443
 argonite_kiteshield_noted:
   id: 17354
-katagon_kiteshield_unbound:
+katagon_kiteshield:
   id: 17355
   stab_def: 49.0
   magic: -8.0
@@ -101912,7 +101912,7 @@ gorgonite_kiteshield:
   kept: "Always"
 gorgonite_kiteshield_noted_2:
   id: 17358
-promethium_kiteshield_unbound:
+promethium_kiteshield:
   id: 17359
   stab_def: 63.0
   magic: -8.0
@@ -101927,7 +101927,7 @@ promethium_kiteshield_unbound:
   weight: 5.443
 promethium_kiteshield_noted:
   id: 17360
-primal_kiteshield_unbound:
+primal_kiteshield:
   id: 17361
   stab_def: 70.0
   magic: -8.0
@@ -114239,14 +114239,14 @@ celestial_surgebox_bound:
   slot: "Shield"
   examine: "It could explode at any moment."
   weight: 0.025
-magical_blastbox_unbound:
+magical_blastbox:
   id: 19867
   magic: 5.0
   magic_def: 5.0
   slot: "Shield"
   examine: "It's brimming with power."
   weight: 0.025
-celestial_surgebox_unbound:
+celestial_surgebox:
   id: 19868
   magic: 7.0
   magic_def: 7.0
