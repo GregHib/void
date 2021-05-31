@@ -5,19 +5,21 @@ import world.gregs.voidps.world.activity.skill.Id
 import world.gregs.voidps.world.activity.skill.mining.ore.Ore
 
 interface Rock : Id {
-    val ore: Ore
+    val ores: List<Ore>
     val level: Int
-    val xp: Double
+    val respawnDelay: Int
 
     companion object {
 
         private val rocks: Array<Rock> = arrayOf(
-            *RegularRock.values()
+            *RegularRock.values(),
+            GraniteRock,
+            SandstoneRock
         )
 
         fun get(gameObject: GameObject): Rock? {
             val id = gameObject.stringId
-            return rocks.firstOrNull { rock -> id.startsWith("${rock.id}_rocks", true) }
+            return rocks.firstOrNull { rock -> id.startsWith(rock.id, true) }
         }
     }
 }

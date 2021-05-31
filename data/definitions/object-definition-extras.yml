@@ -3256,11 +3256,11 @@ ladder_30:
   id: 2605
 wall_7:
   id: 2606
-rocks_32:
+gold_rocks_grey_1:
   id: 2609
-rocks_33:
+gold_rocks_grey_2:
   id: 2610
-rocks_34:
+gold_rocks_grey_3:
   id: 2611
 stool_5:
   id: 2614
@@ -3995,9 +3995,9 @@ rocks_43:
   id: 3040
 rocks_44:
   id: 3041
-rocks_45:
+clay_rocks_broken_1:
   id: 3042
-rocks_46:
+tin_rocks_broken_1:
   id: 3043
 furnace_2:
   id: 3044
@@ -4339,7 +4339,7 @@ lever_25:
   id: 3417
 machinery:
   id: 3422
-rocks_54:
+depleted_rocks_broken_1:
   id: 3431
 door_102:
   id: 3434
@@ -6870,53 +6870,53 @@ crates_10:
   id: 5748
 workbench_5:
   id: 5762
-rocks_62:
+depleted_rocks_dark_1:
   id: 5763
-rocks_63:
+depleted_rocks_dark_2:
   id: 5764
-rocks_64:
+depleted_rocks_dark_3:
   id: 5765
-rocks_65:
+clay_rocks_dark_1:
   id: 5766
-rocks_66:
+clay_rocks_dark_2:
   id: 5767
-rocks_67:
+gold_rocks_dark_1:
   id: 5768
-rocks_68:
+gold_rocks_dark_2:
   id: 5769
-rocks_69:
+coal_rocks_dark_1:
   id: 5770
-rocks_70:
+coal_rocks_dark_2:
   id: 5771
-rocks_71:
+coal_rocks_dark_3:
   id: 5772
-rocks_72:
+iron_rocks_dark_1:
   id: 5773
-rocks_73:
+iron_rocks_dark_2:
   id: 5774
-rocks_74:
+iron_rocks_dark_3:
   id: 5775
-rocks_75:
+tin_rocks_dark_1:
   id: 5776
-rocks_76:
+tin_rocks_dark_2:
   id: 5777
-rocks_77:
+tin_rocks_dark_3:
   id: 5778
-rocks_78:
+copper_rocks_dark_1:
   id: 5779
-rocks_79:
+copper_rocks_dark_2:
   id: 5780
-rocks_80:
+copper_rocks_dark_3:
   id: 5781
-rocks_81:
+adamantite_rocks_dark_1:
   id: 5782
-rocks_82:
+adamantite_rocks_dark_3:
   id: 5783
-rocks_83:
+mithril_rocks_dark_1:
   id: 5784
-rocks_84:
+mithril_rocks_dark_2:
   id: 5785
-rocks_85:
+mithril_rocks_dark_3:
   id: 5786
 small_obelisk:
   id: 5787
@@ -7779,11 +7779,11 @@ green_tears_2:
   id: 6666
 absence_of_tears_2:
   id: 6667
-rocks_86:
+blurite_rocks_black_1:
   id: 6669
-rocks_87:
+blurite_rocks_black_2:
   id: 6670
-rocks_88:
+blurite_rocks_black_3:
   id: 6671
 rocks_89:
   id: 6672
@@ -7991,17 +7991,17 @@ bone_arch_7:
   id: 6937
 bone_arch_8:
   id: 6938
-rocks_91:
+iron_rocks_black_1:
   id: 6943
-rocks_92:
+iron_rocks_black_2:
   id: 6944
-rocks_93:
+silver_rocks_black_1:
   id: 6945
-rocks_94:
+silver_rocks_black_2:
   id: 6946
-rocks_95:
+coal_rocks_black_1:
   id: 6947
-rocks_96:
+coal_rocks_black_2:
   id: 6948
 boulder_7:
   id: 6950
@@ -14033,17 +14033,17 @@ strange_machine_5:
   id: 11550
 chest_46:
   id: 11551
-depleted_rocks_1:
+depleted_light_rocks_1:
   id: 11552
-depleted_rocks_2:
+depleted_light_rocks_2:
   id: 11553
-depleted_rocks_3:
+depleted_light_rocks_3:
   id: 11554
-rocks_170:
+depleted_mud_rocks_1:
   id: 11555
-rocks_171:
+depleted_mud_rocks_2:
   id: 11556
-rocks_172:
+depleted_mud_rocks_3:
   id: 11557
 tunnel_15:
   id: 11571
@@ -14462,12 +14462,15 @@ elder_evil_tree_2:
 elder_evil_tree_3:
   id: 11924
   stump: 12712
-rocks_176:
+coal_rocks_1:
   id: 11930
-rocks_177:
+  rock: 11552
+coal_rocks_2:
   id: 11931
-rocks_178:
+  rock: 11553
+coal_rocks_3:
   id: 11932
+  rock: 11554
 tin_rocks_1:
   id: 11933
   rock: 11552
@@ -14486,18 +14489,24 @@ copper_rocks_2:
 copper_rocks_3:
   id: 11938
   rock: 11554
-rocks_185:
+adamantite_rocks_1:
   id: 11939
-pillar_74:
+  rock: 11552
+adamantite_rocks_2:
   id: 11940
-rocks_186:
+  rock: 11553
+adamantite_rocks_3:
   id: 11941
-rocks_187:
+  rock: 11554
+mithril_rocks_1:
   id: 11942
-rocks_188:
+  rock: 11552
+mithril_rocks_2:
   id: 11943
-rocks_189:
+  rock: 11553
+mithril_rocks_3:
   id: 11944
+  rock: 11554
 pillar_75:
   id: 11945
 rocks_190:
@@ -18193,11 +18202,11 @@ obelisk_14:
   id: 14830
 obelisk_15:
   id: 14831
-rocks_209:
+depleted_black_rocks_1:
   id: 14832
-rocks_210:
+depleted_black_rocks_2:
   id: 14833
-rocks_211:
+depleted_black_rocks_3:
   id: 14834
 fallen_tree_7:
   id: 14835
@@ -22780,11 +22789,11 @@ rocks_306:
   id: 19001
 rocks_307:
   id: 19002
-rocks_308:
+depleted_sand_rocks_1:
   id: 19003
-rocks_309:
+depleted_sand_rocks_2:
   id: 19004
-rocks_310:
+depleted_sand_rocks_3:
   id: 19005
 root_54:
   id: 19006
@@ -31693,11 +31702,11 @@ rocks_384:
   id: 29216
 rocks_385:
   id: 29217
-rocks_386:
+depleted_grey_rocks_1:
   id: 29218
-rocks_387:
+depleted_grey_rocks_2:
   id: 29219
-rocks_388:
+depleted_grey_rocks_3:
   id: 29220
 rocks_389:
   id: 29221
@@ -36749,22 +36758,30 @@ shelves_139:
   id: 37300
 shelves_140:
   id: 37301
-rocks_455:
+silver_rocks_1:
   id: 37304
-rocks_456:
+  rock: 11552
+silver_rocks_2:
   id: 37305
-rocks_457:
+  rock: 11553
+silver_rocks_3:
   id: 37306
-rocks_458:
+  rock: 11554
+iron_rocks_1:
   id: 37307
-rocks_459:
+  rock: 11552
+iron_rocks_2:
   id: 37308
-rocks_460:
+  rock: 11553
+iron_rocks_3:
   id: 37309
-rocks_461:
+  rock: 11554
+gold_rocks_1:
   id: 37310
-rocks_462:
+  rock: 11552
+gold_rocks_2:
   id: 37312
+  rock: 11554
 pillar_129:
   id: 37315
 anvil_21:

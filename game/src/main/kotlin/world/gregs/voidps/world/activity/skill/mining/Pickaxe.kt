@@ -14,35 +14,37 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
-enum class Pickaxe {
-    Bronze_Pickaxe,
-    Iron_Pickaxe,
-    Steel_Pickaxe,
-    Mithril_Pickaxe,
-    Adamant_Pickaxe,
-    Rune_Pickaxe,
-    Inferno_Adze,
-    Sacred_Clay_Pickaxe,
-    Volatile_Clay_Pickaxe,
-    Dragon_Pickaxe,
+enum class Pickaxe(val delay: Int) {
+    Bronze_Pickaxe(8),
+    Iron_Pickaxe(7),
+    Steel_Pickaxe(6),
+    Mithril_Pickaxe(5),
+    Adamant_Pickaxe(4),
+    Rune_Pickaxe(3),
+    Inferno_Adze(2),
+    Sacred_Clay_Pickaxe(3),
+    Volatile_Clay_Pickaxe(3),
+    Dragon_Pickaxe(2),
+
     // Stealing creation
-    Pickaxe_Class_1,
-    Pickaxe_Class_2,
-    Pickaxe_Class_3,
-    Pickaxe_Class_4,
-    Pickaxe_Class_5,
+    Pickaxe_Class_1(6),
+    Pickaxe_Class_2(5),
+    Pickaxe_Class_3(4),
+    Pickaxe_Class_4(3),
+    Pickaxe_Class_5(2),
+
     // Dungeoneering
-    Novite_Pickaxe,
-    Bathus_Pickaxe,
-    Marmaros_Pickaxe,
-    Kratonite_Pickaxe,
-    Fractite_Pickaxe,
-    Zephyrium_Pickaxe,
-    Argonite_Pickaxe,
-    Katagon_Pickaxe,
-    Gorgonite_Pickaxe,
-    Promethium_Pickaxe,
-    Primal_Pickaxe;
+    Novite_Pickaxe(7),
+    Bathus_Pickaxe(7),
+    Marmaros_Pickaxe(6),
+    Kratonite_Pickaxe(6),
+    Fractite_Pickaxe(5),
+    Zephyrium_Pickaxe(5),
+    Argonite_Pickaxe(4),
+    Katagon_Pickaxe(4),
+    Gorgonite_Pickaxe(3),
+    Promethium_Pickaxe(3),
+    Primal_Pickaxe(2);
 
     val id: String = name.toLowerCase()
 
