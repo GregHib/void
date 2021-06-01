@@ -10,5 +10,5 @@ object GraniteRock : Rock {
     )
     override val level = 45
     override val respawnDelay: Int = 8
-    override val id: String = "granite_rocks"
+    override val id: String = "granite"
 }
