@@ -46,10 +46,10 @@ on<World, Startup> {
         val type = RegularTree.values().firstOrNull { area.tags.contains(it.id) }
         val range = when (type) {
             RegularTree.Willow -> 30 until 45
-            RegularTree.Maple_Tree -> 45 until 60
+            RegularTree.MapleTree -> 45 until 60
             RegularTree.Yew -> 60 until 68
             RegularTree.Ivy -> 68 until 75
-            RegularTree.Magic_Tree -> 75..99
+            RegularTree.MagicTree -> 75..99
             else -> 0 until 30
         }
         val task = Task(

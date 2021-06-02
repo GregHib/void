@@ -1,17 +1,19 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-@Suppress("EnumEntryName")
-enum class PyreLog : Log {
-    Pyre_Logs,
-    Oak_Pyre_Logs,
-    Willow_Pyre_Logs,
-    Teak_Pyre_Logs,
-    Arctic_Pyre_Logs,
-    Maple_Pyre_Logs,
-    Mahogany_Pyre_Logs,
-    Eucalyptus_Pyre_Logs,
-    Yew_Pyre_Logs,
-    Magic_Pyre_Logs;
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
-    override val id: String = name.toLowerCase()
+enum class PyreLog : Log {
+    PyreLogs,
+    OakPyreLogs,
+    WillowPyreLogs,
+    TeakPyreLogs,
+    ArcticPyreLogs,
+    MaplePyreLogs,
+    MahoganyPyreLogs,
+    EucalyptusPyreLogs,
+    YewPyreLogs,
+    MagicPyreLogs;
+
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

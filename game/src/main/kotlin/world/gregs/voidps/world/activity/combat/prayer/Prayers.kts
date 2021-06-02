@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.has
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -35,7 +36,7 @@ on<Registered> { player: Player ->
 }
 
 on<PrayerActivate> { player: Player ->
-    val id = prayer.replace(" ", "_").toLowerCase()
+    val id = prayer.toUnderscoreCase()
     if (curses) {
         player.setAnimation("activate_$id")
         player.setGraphic("activate_$id")

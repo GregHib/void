@@ -1,8 +1,9 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.tree
 
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.world.activity.skill.woodcutting.log.JadinkoRoot
 
-@Suppress("EnumEntryName")
 enum class JadinkoRoots(
     override val log: JadinkoRoot,
     override val level: Int,
@@ -13,8 +14,8 @@ enum class JadinkoRoots(
     override val highDifference: IntRange,
     override val respawnDelay: IntRange
 ) : Tree {
-    Straight_Jade_Roots(JadinkoRoot.Straight_Root, 83, 80.5, 1.00, 0..0, 0..0, 0..0, 0..0),
-    Curly_Jade_Roots(JadinkoRoot.Curly_Root, 83, 80.8, 1.00, 0..0, 0..0, 0..0, 0..0);
+    StraightJadeRoots(JadinkoRoot.StraightRoot, 83, 80.5, 1.00, 0..0, 0..0, 0..0, 0..0),
+    CurlyJadeRoots(JadinkoRoot.CurlyRoot, 83, 80.8, 1.00, 0..0, 0..0, 0..0, 0..0);
 
-    override val id: String = name.toLowerCase()
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

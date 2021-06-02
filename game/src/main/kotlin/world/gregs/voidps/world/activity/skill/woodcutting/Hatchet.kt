@@ -7,43 +7,44 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
-@Suppress("EnumEntryName")
 enum class Hatchet(val index: Int) {
     // Regular hatchet indices taken from RS3 "Skilling Chances" spreadsheet
-    Bronze_Hatchet(0),
-    Iron_Hatchet(1),
-    Steel_Hatchet(2),
-    Black_Hatchet(3),
-    Mithril_Hatchet(4),
-    Adamant_Hatchet(5),
-    Rune_Hatchet(6),
-    Dragon_Hatchet(7),
-    Sacred_Clay_Hatchet(6),
-    Volatile_Clay_Hatchet(6),
-    Inferno_Adze(7),
+    BronzeHatchet(0),
+    IronHatchet(1),
+    SteelHatchet(2),
+    BlackHatchet(3),
+    MithrilHatchet(4),
+    AdamantHatchet(5),
+    RuneHatchet(6),
+    DragonHatchet(7),
+    SacredClayHatchet(6),
+    VolatileClayHatchet(6),
+    InfernoAdze(7),
     // Stealing creation
-    Hatchet_Class_1(0),
-    Hatchet_Class_2(1),
-    Hatchet_Class_3(2),
-    Hatchet_Class_4(3),
-    Hatchet_Class_5(4),
+    HatchetClass1(0),
+    HatchetClass2(1),
+    HatchetClass3(2),
+    HatchetClass4(3),
+    HatchetClass5(4),
     // Dungeoneering hatchet indices made up
-    Novite_Hatchet(0),
-    Bathus_Hatchet(1),
-    Marmaros_Hatchet(2),
-    Kratonite_Hatchet(3),
-    Fractite_Hatchet(4),
-    Zephyrium_Hatchet(5),
-    Argonite_Hatchet(6),
-    Katagon_Hatchet(7),
-    Gorgonite_Hatchet(8),
-    Promethium_Hatchet(9),
-    Primal_Hatchet(10);
+    NoviteHatchet(0),
+    BathusHatchet(1),
+    MarmarosHatchet(2),
+    KratoniteHatchet(3),
+    FractiteHatchet(4),
+    ZephyriumHatchet(5),
+    ArgoniteHatchet(6),
+    KatagonHatchet(7),
+    GorgoniteHatchet(8),
+    PromethiumHatchet(9),
+    PrimalHatchet(10);
 
-    val id: String = name.toLowerCase()
+    val id: String = name.toTitleCase().toUnderscoreCase()
 
     fun calculateChance(treeHatchetDifferences: IntRange): Int {
         return (0 until index).sumBy { calculateHatchetChance(it, treeHatchetDifferences) }
@@ -51,8 +52,8 @@ enum class Hatchet(val index: Int) {
 
     val requiredLevel: Int
         get() = when (this) {
-            Inferno_Adze -> 61
-            Sacred_Clay_Hatchet, Volatile_Clay_Hatchet -> 50
+            InfernoAdze -> 61
+            SacredClayHatchet, VolatileClayHatchet -> 50
             else -> get<ItemDefinitions>().get(id).requiredLevel()
         }
 
@@ -72,7 +73,7 @@ enum class Hatchet(val index: Int) {
                 }
                 return false
             }
-            if (hatchet == Inferno_Adze && !player.has(Skill.Firemaking, 92, message)) {
+            if (hatchet == InfernoAdze && !player.has(Skill.Firemaking, 92, message)) {
                 return false
             }
             if (!player.has(Skill.Woodcutting, hatchet.requiredLevel, message)) {
@@ -90,12 +91,12 @@ enum class Hatchet(val index: Int) {
             return regular.lastOrNull { hatchet -> hasRequirements(player, hatchet, false) }
         }
 
-        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == Inferno_Adze.id
+        fun isHatchet(name: String): Boolean = name.endsWith("hatchet") || name == InfernoAdze.id
 
         fun isHatchet(item: Item): Boolean = isHatchet(item.name)
 
         fun get(name: String): Hatchet? {
-            val name = name.replace(" ", "_").toLowerCase()
+            val name = name.toUnderscoreCase()
             for (hatchet in values()) {
                 if (name == hatchet.id) {
                     return hatchet

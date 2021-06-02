@@ -28,6 +28,7 @@ import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
@@ -191,7 +192,7 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 on<Command>({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.replace(" ", "_"))
+        player.playSound(content.toUnderscoreCase())
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -200,7 +201,7 @@ on<Command>({ prefix == "sound" }) { player: Player ->
 on<Command>({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content.replace(" ", "_"))
+        player.playMidi(content.toUnderscoreCase())
     } else {
         player.client?.playMIDI(id)
     }
@@ -209,7 +210,7 @@ on<Command>({ prefix == "midi" }) { player: Player ->
 on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.replace(" ", "_"))
+        player.playJingle(content.toUnderscoreCase())
     } else {
         player.client?.playJingle(id)
     }

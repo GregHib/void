@@ -49,12 +49,36 @@ fun Int.nearby(size: Int): IntRange {
     return this - size..this + size
 }
 
-fun String?.toUnderscoreCase(): String {
-    var formatted = this
-    formatted = formatted?.replace(" ", "_")
-    return formatted?.toLowerCase() ?: ""
+/**
+ * PascalCase123 to Title Case 123
+ */
+fun String.toTitleCase(): String {
+    val formatted = StringBuilder()
+    var first = true
+    var isInt = true
+    for (char in this) {
+        if (!first && (char.isUpperCase() || (char.isDigit() && !isInt))) {
+            formatted.append(" ")
+            isInt = true
+        } else if(!char.isDigit()) {
+            isInt = false
+        }
+        formatted.append(char)
+        first = false
+    }
+    return formatted.toString()
 }
 
+/**
+ * Title Case to underscore_case
+ */
+fun String?.toUnderscoreCase(): String {
+    return this?.replace(" ", "_")?.toLowerCase() ?: ""
+}
+
+/**
+ * underscore_case or Title Case to camelCase
+ */
 fun String?.toCamelCase(): String {
     if (this == null) {
         return ""
@@ -77,6 +101,9 @@ fun String?.toCamelCase(): String {
     return formatted.toString()
 }
 
+/**
+ * underscore_case or Title Case to PascalCase
+ */
 fun String?.toPascalCase(): String {
     if (this == null) {
         return ""

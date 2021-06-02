@@ -1,9 +1,11 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-@Suppress("EnumEntryName")
-enum class JadinkoRoot : Log {
-    Straight_Root,
-    Curly_Root;
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
-    override val id: String = name.toLowerCase()
+enum class JadinkoRoot : Log {
+    StraightRoot,
+    CurlyRoot;
+
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

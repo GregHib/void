@@ -1,9 +1,11 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-@Suppress("EnumEntryName")
-enum class CursedLog : Log {
-    Cursed_Willow_Logs,
-    Cursed_Magic_Logs;
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
-    override val id: String = name.toLowerCase()
+enum class CursedLog : Log {
+    CursedWillowLogs,
+    CursedMagicLogs;
+
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

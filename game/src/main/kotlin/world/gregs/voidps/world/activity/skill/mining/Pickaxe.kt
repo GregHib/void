@@ -12,51 +12,53 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
 
 enum class Pickaxe(val delay: Int) {
-    Bronze_Pickaxe(8),
-    Iron_Pickaxe(7),
-    Steel_Pickaxe(6),
-    Mithril_Pickaxe(5),
-    Adamant_Pickaxe(4),
-    Rune_Pickaxe(3),
-    Inferno_Adze(2),
-    Sacred_Clay_Pickaxe(3),
-    Volatile_Clay_Pickaxe(3),
-    Dragon_Pickaxe(2),
+    BronzePickaxe(8),
+    IronPickaxe(7),
+    SteelPickaxe(6),
+    MithrilPickaxe(5),
+    AdamantPickaxe(4),
+    RunePickaxe(3),
+    InfernoAdze(2),
+    SacredClayPickaxe(3),
+    VolatileClayPickaxe(3),
+    DragonPickaxe(2),
 
     // Stealing creation
-    Pickaxe_Class_1(6),
-    Pickaxe_Class_2(5),
-    Pickaxe_Class_3(4),
-    Pickaxe_Class_4(3),
-    Pickaxe_Class_5(2),
+    PickaxeClass1(6),
+    PickaxeClass2(5),
+    PickaxeClass3(4),
+    PickaxeClass4(3),
+    PickaxeClass5(2),
 
     // Dungeoneering
-    Novite_Pickaxe(7),
-    Bathus_Pickaxe(7),
-    Marmaros_Pickaxe(6),
-    Kratonite_Pickaxe(6),
-    Fractite_Pickaxe(5),
-    Zephyrium_Pickaxe(5),
-    Argonite_Pickaxe(4),
-    Katagon_Pickaxe(4),
-    Gorgonite_Pickaxe(3),
-    Promethium_Pickaxe(3),
-    Primal_Pickaxe(2);
+    NovitePickaxe(7),
+    BathusPickaxe(7),
+    MarmarosPickaxe(6),
+    KratonitePickaxe(6),
+    FractitePickaxe(5),
+    ZephyriumPickaxe(5),
+    ArgonitePickaxe(4),
+    KatagonPickaxe(4),
+    GorgonitePickaxe(3),
+    PromethiumPickaxe(3),
+    PrimalPickaxe(2);
 
-    val id: String = name.toLowerCase()
+    val id: String = name.toTitleCase().toLowerCase()
 
     val requiredLevel: Int
         get() = when (this) {
-            Inferno_Adze -> 41
-            Sacred_Clay_Pickaxe, Volatile_Clay_Pickaxe -> 50
-            Pickaxe_Class_2 -> 20
-            Pickaxe_Class_3 -> 40
-            Pickaxe_Class_4 -> 60
-            Pickaxe_Class_5 -> 80
+            InfernoAdze -> 41
+            SacredClayPickaxe, VolatileClayPickaxe -> 50
+            PickaxeClass2 -> 20
+            PickaxeClass3 -> 40
+            PickaxeClass4 -> 60
+            PickaxeClass5 -> 80
             else -> get<ItemDefinitions>().get(id).requiredLevel()
         }
 
@@ -74,7 +76,7 @@ enum class Pickaxe(val delay: Int) {
                 }
                 return false
             }
-            if (pickaxe == Inferno_Adze && !player.has(Skill.Firemaking, 92, message)) {
+            if (pickaxe == InfernoAdze && !player.has(Skill.Firemaking, 92, message)) {
                 return false
             }
             if (!player.has(Skill.Mining, pickaxe.requiredLevel, message)) {
@@ -89,7 +91,7 @@ enum class Pickaxe(val delay: Int) {
         }
 
         fun get(name: String): Pickaxe? {
-            val name = name.replace(" ", "_").toLowerCase()
+            val name = name.toUnderscoreCase()
             for (pickaxe in values()) {
                 if (name == pickaxe.id) {
                     return pickaxe
