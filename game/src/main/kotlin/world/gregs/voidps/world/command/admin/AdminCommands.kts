@@ -107,7 +107,7 @@ on<Command>({ prefix == "item" }) { player: Player ->
         Int.MAX_VALUE
     } else {
         amount.toSILong().toInt()
-    })
+    }, coerce = true)
     println(player.inventory.result)
 }
 
