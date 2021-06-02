@@ -39,6 +39,23 @@ nodes:
         object: 45476
         tile: [ 3234, 3203 ]
         option: "Open"
+      - &graveyard-exit [ 3244, 3190 ]
+    swamp:
+      - &swamp-path [ 3241, 3176 ]
+      - &swamp-cross-roads [ 3239, 3160 ]
+      - &swamp-copper-mine [ 3228, 3148 ]
+      - &swamp-tin-mine [ 3225, 3147 ]
+      - &swamp-east-mine [ 3221, 3156 ]
+      - &swamp-urhney-house [ 3201, 3155 ]
+      - &swamp-water-altar [ 3181, 3153 ]
+      - &swamp-south [ 3161, 3151 ]
+      - &swamp-west-mine [ 3148, 3149 ]
+      - &swamp-west-mithril-mine [ 3146, 3147 ]
+      - &swamp-west-coal-mine [ 3146, 3150 ]
+      - &swamp-west-1 [ 3146, 3167 ]
+      - &swamp-west-2 [ 3143, 3186 ]
+      - &swamp-west-camp [ 3142, 3203 ]
+      - &swamp-west-wall [ 3136, 3219 ]
     bridge:
       - &lum-bridge-west [ 3236, 3225 ]
       - &lum-bridge-east [ 3253, 3225 ]
@@ -63,7 +80,7 @@ nodes:
       - &lumbridge-west-path [ 3172, 3239 ]
       - &lumbridge-ham-path [ 3157, 3234 ]
       - &lumbridge-tree-patch [ 3193, 3236 ]
-      - &lumbridge-swap-north-wall [ 3153, 3216 ]
+      - &lumbridge-swamp-north-wall [ 3153, 3216 ]
     draynor:
       - &draynor-east-path [ 3138, 3227 ]
       - &draynor-jail-path-south [ 3119, 3228 ]
@@ -201,6 +218,49 @@ edges:
           - <<: *bobs-door
           - type: "walk"
             tile: *gate-south
+      - from: *south-village
+        to: *graveyard-exit
+    swamp:
+      - from: *graveyard-exit
+        to: *swamp-path
+      - from: *swamp-path
+        to: *swamp-cross-roads
+      - from: *swamp-cross-roads
+        to: *swamp-copper-mine
+      - from: *swamp-copper-mine
+        to: *swamp-tin-mine
+      - from: *swamp-copper-mine
+        to: *swamp-east-mine
+      - from: *swamp-cross-roads
+        to: *swamp-east-mine
+      - from: *swamp-east-mine
+        to: *swamp-urhney-house
+      - from: *swamp-urhney-house
+        to: *swamp-water-altar
+      - from: *swamp-water-altar
+        to: *swamp-south
+      - from: *swamp-south
+        to: *swamp-west-mine
+      - from: *swamp-west-mine
+        to: *swamp-west-mithril-mine
+      - from: *swamp-west-mine
+        to: *swamp-west-coal-mine
+      - from: *swamp-west-mine
+        to: *swamp-west-1
+      - from: *swamp-west-1
+        to: *swamp-west-2
+      - from: *swamp-west-2
+        to: *swamp-west-camp
+      - from: *swamp-west-camp
+        to: *swamp-west-wall
+      - from: *swamp-west-camp
+        to: *lumbridge-swamp-north-wall
+      - from: *swamp-west-wall
+        to: *lumbridge-swamp-north-wall
+      - from: *swamp-west-wall
+        to: *draynor-east-path
+      - from: *swamp-west-wall
+        to: *draynor-jail-path-south
     bridge:
       - from: *gate-north
         to: *lum-bridge-west
@@ -253,7 +313,7 @@ edges:
       - from: *lumbridge-west-path
         to: *lumbridge-yew-trees-west
       - from: *lumbridge-yew-trees-west
-        to: *lumbridge-swap-north-wall
+        to: *lumbridge-swamp-north-wall
       - from: *lumbridge-ham-path
         to: *draynor-east-path
     draynor:
@@ -286,4 +346,4 @@ edges:
       - from: *draynor-jail-path-west
         to: *draynor-south
       - from: *draynor-east-path
-        to: *lumbridge-swap-north-wall
+        to: *lumbridge-swamp-north-wall

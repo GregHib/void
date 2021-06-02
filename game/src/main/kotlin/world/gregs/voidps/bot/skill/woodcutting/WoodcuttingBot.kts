@@ -43,15 +43,7 @@ on<ActionFinished>({ type == ActionType.Woodcutting }) { bot: Bot ->
 on<World, Startup> {
     for (area in areas.getTagged("trees")) {
         val spaces = area.tags.firstOrNull { it.startsWith("spaces_") }?.removePrefix("spaces_")?.toIntOrNull() ?: 1
-        val type = when {
-            area.tags.contains("willow") -> RegularTree.Willow
-            area.tags.contains("maple") -> RegularTree.Maple_Tree
-            area.tags.contains("yew") -> RegularTree.Yew
-            area.tags.contains("ivy") -> RegularTree.Ivy
-            area.tags.contains("magic") -> RegularTree.Magic_Tree
-            else -> null
-        }
-
+        val type = RegularTree.values().firstOrNull { area.tags.contains(it.id) }
         val range = when (type) {
             RegularTree.Willow -> 30 until 45
             RegularTree.Maple_Tree -> 45 until 60

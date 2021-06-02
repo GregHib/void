@@ -282,10 +282,11 @@ data class Container(
      * Note: Will never add items outside of the given [index]
      * @param id The item to add
      * @param amount The stack amount or individual count
-     *  @param moved If this action is part of a larger movement transaction
+     * @param moved If this action is part of a larger movement transaction
+     * @param coerce Limit amount to container [spaces] and ignore the overflow
      * @return Whether an item was successfully added
      */
-    fun add(index: Int, id: String, amount: Int = 1, moved: Boolean = false): Boolean {
+    fun add(index: Int, id: String, amount: Int = 1, moved: Boolean = false, coerce: Boolean = false): Boolean {
         if (!inBounds(index) || !isValidInput(id, amount, index)) {
             return result(ContainerResult.Invalid)
         }
@@ -299,10 +300,13 @@ data class Container(
         val combined = stack + amount
 
         if (combined > 1 && !stackable(id)) {
-            return add(id, amount)
+            return add(id, amount, coerce = coerce)
         }
 
         if (stack xor combined and (amount xor combined) < 0) {
+            if (coerce) {
+                return set(index, id, Int.MAX_VALUE, moved = moved)
+            }
             return result(ContainerResult.Overflow)
         }
 
@@ -314,10 +318,11 @@ data class Container(
      * Adds any number of items stacked or otherwise
      * @param id The id of the item(s) to add
      * @param amount The stack amount or individual count
-     *  @param moved If this action is part of a movement transaction
+     * @param moved If this action is part of a movement transaction
+     * @param coerce Limit amount to container [spaces] and ignore the overflow
      * @return Whether an item was successfully added
      */
-    fun add(id: String, amount: Int = 1, moved: Boolean = false): Boolean {
+    fun add(id: String, amount: Int = 1, moved: Boolean = false, coerce: Boolean = false): Boolean {
         if (!isValidInput(id, amount)) {
             return result(ContainerResult.Invalid)
         }
@@ -326,8 +331,10 @@ data class Container(
             if (index != -1) {
                 val stack = items[index].amount
                 val combined = stack + amount
-
                 if (stack xor combined and (amount xor combined) < 0) {
+                    if (coerce) {
+                        return set(index, id, Int.MAX_VALUE, moved = moved)
+                    }
                     return result(ContainerResult.Overflow)
                 }
                 set(index, id, combined, moved = moved)
@@ -340,10 +347,13 @@ data class Container(
                 set(index, id, amount, moved = moved)
             }
         } else {
+            var amount = amount
+            if (coerce) {
+                amount = amount.coerceAtMost(spaces)
+            }
             if (spaces < amount) {
                 return result(ContainerResult.Full)
             }
-
             repeat(amount) {
                 val index = freeIndex()
                 set(index, id, amount = 1, update = false, moved = moved)

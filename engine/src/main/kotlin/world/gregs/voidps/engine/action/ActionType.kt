@@ -18,6 +18,8 @@ sealed class ActionType : CancellationException() {
     object Bank : ActionType()
     object Equipping : ActionType()
     object Woodcutting : ActionType()
+    object Mining : ActionType()
+    object Prospecting : ActionType()
     object Shopping : ActionType()
     object Resting : ActionType()
     object Emote : ActionType()

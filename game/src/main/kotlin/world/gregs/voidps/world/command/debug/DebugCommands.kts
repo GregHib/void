@@ -91,8 +91,9 @@ on<Command>({ prefix == "obj" }) { player: Player ->
         val type = 10
         if (id != null) {
             val rotation = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            spawnObject(id, player.tile.addY(2), 10, rotation, 10, null)
-            spawnObject(id, player.tile.addY(2), 22, rotation, 10, null)
+            spawnObject(id, player.tile.addY(1), 0, rotation, 10, null)
+            spawnObject(id, player.tile.addY(1), 10, rotation, 10, null)
+            spawnObject(id, player.tile.addY(1), 22, rotation, 10, null)
         } else {
             val definitions = get<ObjectDefinitions>()
             val id = definitions.getId(content)

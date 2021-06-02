@@ -403,6 +403,21 @@ internal class ContainerTest {
     }
 
     @Test
+    fun `Coerce over integer max at index success`() {
+        // Given
+        val index = 0
+        val id = "1"
+        items[index] = Item(id, Int.MAX_VALUE)
+        // When
+        assertTrue(container.add(index, id, 1, coerce = true))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+        verify {
+            container.set(index, id, Int.MAX_VALUE)
+        }
+    }
+
+    @Test
     fun `Adding more than one unstackable item at index adds normally`() {
         // Given
         val index = 0
@@ -534,6 +549,22 @@ internal class ContainerTest {
         assertFalse(container.add(id, amount))
         // Then
         assertEquals(ContainerResult.Full, container.result)
+    }
+
+    @Test
+    fun `Coerce unstackable item overflow to remaining spaces`() {
+        // Given
+        val id = "1"
+        val amount = 2
+        every { container.spaces } returns amount - 1
+        every { container.stackable(id) } returns false
+        // When
+        assertTrue(container.add(id, amount, coerce = true))
+        // Then
+        assertEquals(ContainerResult.Success, container.result)
+        verify {
+            container.set(0, id, 1, false)
+        }
     }
 
     @Test

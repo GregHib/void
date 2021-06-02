@@ -23,6 +23,11 @@ lumbridge_east_trees:
     x: [ 3260, 3267 ]
     y: [ 3214, 3226 ]
   tags: [ trees, regular, oak ]
+lumbridge_cow_trees:
+  area:
+    x: [ 3254, 3264 ]
+    y: [ 3249, 3254 ]
+  tags: [ trees, regular, oak ]
 bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]
@@ -65,3 +70,28 @@ drayor_bank:
     x: [ 3088, 3097 ]
     y: [ 3240, 3246 ]
   tags: [ bank ]
+lumbridge_east_copper_mine:
+  area:
+    x: [ 3227, 3231 ]
+    y: [ 3143, 3149 ]
+  tags: [ mine, copper ]
+lumbridge_east_tin_mine:
+  area:
+    x: [ 3222, 3226 ]
+    y: [ 3145, 3149 ]
+  tags: [ mine, tin ]
+lumbridge_west_coal_mine:
+  area:
+    x: [ 3143, 3147 ]
+    y: [ 3148, 3154 ]
+  tags: [ mine, coal ]
+lumbridge_west_mithril_mine:
+  area:
+    x: [ 3143, 3149 ]
+    y: [ 3143, 3147 ]
+  tags: [ mine, mithril ]
+lumbridge_west_adamantite_mine:
+  area:
+    x: [ 3147, 3149 ]
+    y: [ 3145, 3149 ]
+  tags: [ mine, adamantite ]

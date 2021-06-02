@@ -43,25 +43,17 @@ data class Graphic(
 
 const val PLAYER_GRAPHIC_0_MASK = 0x20
 const val PLAYER_GRAPHIC_1_MASK = 0x200
-const val PLAYER_GRAPHIC_2_MASK = 0x40000
-const val PLAYER_GRAPHIC_3_MASK = 0x80000
 
 private fun getPlayerMask(index: Int) = when (index) {
     1 -> PLAYER_GRAPHIC_1_MASK
-    2 -> PLAYER_GRAPHIC_2_MASK
-    3 -> PLAYER_GRAPHIC_3_MASK
     else -> PLAYER_GRAPHIC_0_MASK
 }
 
 const val NPC_GRAPHIC_0_MASK = 0x20
 const val NPC_GRAPHIC_1_MASK = 0x400
-const val NPC_GRAPHIC_2_MASK = 0x100000
-const val NPC_GRAPHIC_3_MASK = 0x20000
 
 private fun getNPCMask(index: Int) = when (index) {
     1 -> NPC_GRAPHIC_1_MASK
-    2 -> NPC_GRAPHIC_2_MASK
-    3 -> NPC_GRAPHIC_3_MASK
     else -> NPC_GRAPHIC_0_MASK
 }
 
@@ -74,7 +66,7 @@ fun Character.flagGraphic(index: Int) = visuals.flag(mask(this, index))
 fun Character.getGraphic(index: Int = 0) = visuals.getOrPut(mask(this, index)) { Graphic() }
 
 private fun Visuals.getIndex(indexer: (Int) -> Int): Int {
-    for (i in 0 until 4) {
+    for (i in 0 until 2) {
         if (!flagged(indexer(i))) {
             return i
         }
