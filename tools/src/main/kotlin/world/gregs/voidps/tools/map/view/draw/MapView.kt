@@ -60,8 +60,8 @@ class MapView(private val nav: NavigationGraph?, private val areaFile: String) :
     init {
         layout = FlowLayout(FlowLayout.LEFT)
         SwingUtilities.invokeLater {
-            centreOn(3087, flipMapY(3500))
-            options.updatePosition(3087, 3500, 0)
+            centreOn(3221, flipMapY(3218))
+            options.updatePosition(3221, 3218, 0)
         }
 //        addMouseListener(click)
         addMouseListener(drag)

@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.equip.requiredLevel
@@ -61,6 +62,10 @@ enum class Pickaxe(val delay: Int) {
 
     companion object {
 
+        fun hasRequirements(player: Player, pickaxe: Item?, message: Boolean = false): Boolean {
+            return hasRequirements(player, get(pickaxe?.name ?: return false) ?: return false, message)
+        }
+
         fun hasRequirements(player: Player, pickaxe: Pickaxe?, message: Boolean = false): Boolean {
             if (pickaxe == null) {
                 if (message) {
@@ -81,6 +86,16 @@ enum class Pickaxe(val delay: Int) {
         fun get(player: Player): Pickaxe? {
             val list = values().filter { pickaxe -> hasRequirements(player, pickaxe, false) && player.has(pickaxe.id) }
             return list.maxByOrNull { it.ordinal }
+        }
+
+        fun get(name: String): Pickaxe? {
+            val name = name.replace(" ", "_").toLowerCase()
+            for (pickaxe in values()) {
+                if (name == pickaxe.id) {
+                    return pickaxe
+                }
+            }
+            return null
         }
 
         @JvmStatic
