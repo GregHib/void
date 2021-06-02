@@ -18,7 +18,8 @@ interface Rock : Id {
             *RegularRock.values(),
             GraniteRock,
             SandstoneRock,
-            PureEssence
+            PureEssence,
+            GemRock
         )
 
         fun get(player: Player, gameObject: GameObject): Rock? {
