@@ -38,7 +38,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     break
                 }
 
-                val rock = Rock.get(obj)
+                val rock = Rock.get(player, obj)
                 if (rock == null || !player.has(Skill.Mining, rock.level, true)) {
                     break
                 }
@@ -88,7 +88,7 @@ val definitions: ObjectDefinitions by inject()
 fun deplete(rock: Rock, obj: GameObject): Boolean {
     val depleted = obj.stringId.replace(rock.id, "depleted")
     val id = definitions.getIdOrNull(depleted)
-    if (id != null) {
+    if (id != null && rock.respawnDelay >= 0) {
         obj.replace(id, ticks = rock.respawnDelay)
         return true
     }
@@ -104,7 +104,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
         withContext(NonCancellable) {
             player.message("You examine the rock for ores...")
             delay(4)
-            val ore = Rock.get(obj)?.ores?.firstOrNull()
+            val ore = Rock.get(player, obj)?.ores?.firstOrNull()
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {
