@@ -54,7 +54,7 @@ on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player
                     player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
                     first = false
                 }
-                player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}")
+                player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}", walk = false, run = false)
                 delay(4)
                 if (success(player.levels.get(Skill.Woodcutting), hatchet, tree)) {
                     player.experience.add(Skill.Woodcutting, tree.xp)

@@ -53,7 +53,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
                     first = false
                 }
                 player.face(obj)
-                player.setAnimation("${pickaxe.id}_swing_low")
+                player.setAnimation("${pickaxe.id}_swing_low", walk = false, run = false)
                 delay(pickaxe.delay)
                 for (ore in rock.ores) {
                     if (success(player.levels.get(Skill.Mining), ore.chance)) {
