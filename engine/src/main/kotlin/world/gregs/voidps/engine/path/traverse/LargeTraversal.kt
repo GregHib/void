@@ -14,7 +14,7 @@ import world.gregs.voidps.engine.path.traverse.MediumTraversal.Companion.getSout
  */
 class LargeTraversal(private val type: TraversalType, collidesWithEntities: Boolean, val size: Size, private val collisions: Collisions) : TileTraversalStrategy {
 
-    private val extra = if (collidesWithEntities) CollisionFlag.ENTITY else 0
+    private val extra = if (collidesWithEntities) CollisionFlag.ENTITY else -1
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
         if (direction == Direction.NONE) {

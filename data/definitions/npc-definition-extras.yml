@@ -308,3 +308,9 @@ celestial_mage:
   id: 11228
 sagittarian_ranger:
   id: 11229
+fishing_spot_small_net_bait:
+  id: 327
+  examine: "It looks like there might be fish swimming in the water."
+fishing_spot_lure_bait:
+  id: 309
+  examine: "It looks like there might be fish swimming in the water."

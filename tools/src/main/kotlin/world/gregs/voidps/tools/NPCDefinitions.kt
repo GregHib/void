@@ -19,8 +19,8 @@ object NPCDefinitions {
         println(decoder.last)
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("gatekeeper", true)) {
-                println("$i ${def.name} ${def.modelIds?.toList()} ${def.options.toList()} ${def.modifiedColours?.toList()}")
+            if (def.name.contains("fishing spot", true)) {
+                println("$i ${def.name} ${def.options.toList()}")
                 list.add(def)
             }
         }

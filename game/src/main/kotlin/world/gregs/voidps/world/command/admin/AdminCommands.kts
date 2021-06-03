@@ -1,6 +1,6 @@
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCSpawns
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -14,9 +14,6 @@ import world.gregs.voidps.engine.entity.definition.*
 import world.gregs.voidps.engine.entity.item.FloorItemSpawns
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.stop
-import world.gregs.voidps.engine.entity.toggle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -87,6 +84,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
             """.trimIndent())
         npcs.add(content, player.tile, Direction.NORTH)
     }
+    npc?.events?.emit(Registered)
 //    npc?.movement?.frozen = true
 }
 
