@@ -54,6 +54,10 @@ data class NPCs(
 
     fun add(name: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(name)
+        if (def.id == -1) {
+            logger.warn { "No npc found for name $name" }
+            return null
+        }
         val npc = NPC(def.id, tile, getSize(def))
         store.populate(npc)
         npc.movement.traversal = getTraversal(def)
