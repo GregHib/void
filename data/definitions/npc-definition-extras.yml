@@ -46,6 +46,28 @@ cow:
   style: "crush"
   examine: "Converts grass to beef."
   category: "cow"
+chicken:
+  id: 41
+  att: 1
+  str: 1
+  def: 1
+  mage: 1
+  speed: 4
+  range: 1
+  dstab: -42
+  attbns: -47
+  strbns: -42
+  dslash: -42
+  dcrush: -42
+  dmagic: -42
+  drange: -42
+  hitpoints: 30
+  poisonous: false
+  immune_poison: false
+  slayxp: 3.0
+  style: "stab"
+  examine: "Yep. Definitely a chicken."
+  category: "bird"
 cow_brown:
   id: 397
   copy: cow
