@@ -50,13 +50,13 @@ fun Int.nearby(size: Int): IntRange {
 }
 
 /**
- * PascalCase123 to Title Case 123
+ * PascalCase123 or underscore_case to Title Case 123
  */
 fun String.toTitleCase(): String {
     val formatted = StringBuilder()
     var first = true
     var isInt = true
-    for (char in this) {
+    for (char in replace("_", " ")) {
         if (!first && (char.isUpperCase() || (char.isDigit() && !isInt))) {
             formatted.append(" ")
             isInt = true

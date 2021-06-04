@@ -20,6 +20,7 @@ import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.mining.ore.Ore
 import world.gregs.voidps.world.activity.skill.mining.rock.Rock
@@ -76,7 +77,7 @@ on<ObjectOption>({ option == "Mine" }) { player: Player ->
 fun addOre(player: Player, ore: Ore): Boolean {
     val added = player.inventory.add(ore.id)
     if (added) {
-        player.message("You manage to mine some ${ore.id.replace("_", " ").toLowerCase()}.")
+        player.message("You manage to mine some ${ore.id.toTitleCase().toLowerCase()}.")
     } else {
         player.inventoryFull()
     }
@@ -108,7 +109,7 @@ on<ObjectOption>({ option == "Prospect" }) { player: Player ->
             if (ore == null) {
                 player.message("This rock contains no ore.")
             } else {
-                player.message("This rock contains ${ore.id.replace("_", " ")}.")
+                player.message("This rock contains ${ore.id.toTitleCase().toLowerCase()}.")
             }
         }
     }

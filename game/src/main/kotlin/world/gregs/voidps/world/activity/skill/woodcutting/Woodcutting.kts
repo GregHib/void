@@ -18,6 +18,7 @@ import world.gregs.voidps.engine.entity.obj.replace
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math
+import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.RegularTree
 import world.gregs.voidps.world.activity.skill.woodcutting.tree.Tree
@@ -85,7 +86,7 @@ fun addLog(player: Player, tree: Tree): Boolean {
     val log = tree.log ?: return true
     val added = player.inventory.add(log.id)
     if (added) {
-        player.message("You get some ${log.id.replace("_", " ").toLowerCase()}.")
+        player.message("You get some ${log.id.toTitleCase().toLowerCase()}.")
     } else {
         player.inventoryFull()
     }

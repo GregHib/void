@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
@@ -53,7 +54,7 @@ on<World, Startup> {
             else -> 0 until 30
         }
         val task = Task(
-            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".toTitleCase(),
             block = {
                 while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
                     cutTrees(area, type)

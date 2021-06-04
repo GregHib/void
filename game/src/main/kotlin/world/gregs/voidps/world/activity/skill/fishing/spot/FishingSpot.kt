@@ -1,12 +1,13 @@
 package world.gregs.voidps.world.activity.skill.fishing.spot
 
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.world.activity.skill.Id
 import world.gregs.voidps.world.activity.skill.fishing.fish.Catch
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
-interface FishingSpot {
-    val tackle: Map<String, List<Triple<Tackle, Bait, Set<Catch>>>>
+interface FishingSpot : Id {
+    val tackle: Map<String, Triple<List<Tackle>, List<Bait>, List<Catch>>>
 
     companion object {
         private val spots = listOf(
@@ -14,7 +15,7 @@ interface FishingSpot {
         )
 
         fun get(npc: NPC): FishingSpot? {
-            return spots.firstOrNull { npc.name.startsWith(it.name) }
+            return spots.firstOrNull { npc.name.startsWith("fishing_spot_${it.id}") }
         }
     }
 }

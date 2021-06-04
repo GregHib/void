@@ -7,6 +7,7 @@ import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.encode.sendContainerItems
+import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.get
 
 fun Player.sendContainer(name: String, secondary: Boolean = false) {
@@ -69,7 +70,7 @@ fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
     if (inventory.remove(currency, amount)) {
         return true
     }
-    message("You don't have enough ${currency.replace("_", " ")}.")
+    message("You don't have enough ${currency.toTitleCase()}.")
     return false
 }
 

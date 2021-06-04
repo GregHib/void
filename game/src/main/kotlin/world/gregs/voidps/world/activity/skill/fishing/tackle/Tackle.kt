@@ -12,7 +12,8 @@ enum class Tackle : Id {
     LobsterPot,
     Harpoon,
     BigFishingNet,
-    BarbarianRod;
+    BarbarianRod,
+    BarbTailHarpoon;
 
     override val id: String = name.toTitleCase().toUnderscoreCase()
 
