@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.entity.item
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.cancel
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
@@ -12,10 +13,14 @@ import world.gregs.voidps.engine.entity.remove
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
 import world.gregs.voidps.engine.map.chunk.ChunkUpdate
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.path.TraversalType
 import world.gregs.voidps.engine.path.strat.PointTargetStrategy
+import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import world.gregs.voidps.network.encode.addFloorItem
 import world.gregs.voidps.network.encode.removeFloorItem
 import world.gregs.voidps.network.encode.revealFloorItem
@@ -26,8 +31,31 @@ class FloorItems(
     private val scheduler: Scheduler,
     private val store: EventHandlerStore,
     private val batches: ChunkBatches,
+    collisions: Collisions,
     override val chunks: MutableMap<Chunk, MutableList<FloorItem>> = mutableMapOf()
 ) : BatchList<FloorItem> {
+
+    private val small = SmallTraversal(TraversalType.Land, false, collisions)
+    private val logger = InlineLogger()
+
+    fun add(
+        name: String,
+        amount: Int,
+        area: Area,
+        revealTicks: Int = -1,
+        disappearTicks: Int = -1,
+        owner: Player? = null
+    ): FloorItem? {
+        val tile = area.random(small)
+        if (tile == null) {
+            logger.warn { "No free tile in item spawn area $area" }
+            return null
+        }
+        val item = addItem(name, amount, tile, revealTicks, disappearTicks, owner) ?: return null
+        item["area"] = area
+        item.events.emit(Registered)
+        return item
+    }
 
     /**
      * Spawns a floor item
@@ -47,6 +75,18 @@ class FloorItems(
         disappearTicks: Int = -1,
         owner: Player? = null
     ): FloorItem? {
+        val item = addItem(name, amount, tile, revealTicks, disappearTicks, owner)
+        item?.events?.emit(Registered)
+        return item
+    }
+
+    private fun addItem(
+        name: String,
+        amount: Int,
+        tile: Tile,
+        revealTicks: Int = -1,
+        disappearTicks: Int = -1,
+        owner: Player? = null): FloorItem? {
         val definition = decoder.get(name)
         if (definition.stackable == 1) {
             val existing = getExistingStack(tile, name)
@@ -65,7 +105,6 @@ class FloorItems(
         batches.update(tile.chunk, update)
         reveal(item, revealTicks, owner?.index ?: -1)
         disappear(item, disappearTicks)
-        item.events.emit(Registered)
         return item
     }
 
@@ -127,7 +166,7 @@ class FloorItems(
                 delay(ticks)
                 if (item.state != FloorItemState.Removed) {
                     item.state = FloorItemState.Public
-                    batches.update(item.tile.chunk, revealFloorItem(item ,owner))
+                    batches.update(item.tile.chunk, revealFloorItem(item, owner))
                 }
             }
         }

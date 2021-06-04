@@ -2,7 +2,6 @@ import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.npc.NPCSpawns
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
@@ -11,8 +10,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
-import world.gregs.voidps.engine.entity.item.FloorItemSpawns
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -228,26 +225,6 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
-        "floor items" -> {
-            val items: FloorItems = get()
-            items.chunks.forEach { (_, set) ->
-                set.forEach {
-                    items.remove(it)
-                }
-            }
-            val spawns: FloorItemSpawns = get()
-            spawns.load()
-            reloadRegions = true
-        }
-        "npcs" -> {
-            val npcs: NPCs = get()
-            npcs.forEach {
-                npcs.remove(it)
-            }
-            val spawns: NPCSpawns = get()
-            spawns.load()
-            reloadRegions = true
-        }
         "objects" -> {
             val objects: CustomObjects = get()
             objects.spawns.forEach { (_, set) ->
@@ -259,7 +236,12 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             reloadRegions = true
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
-        "areas" -> get<Areas>().load()
+        "areas", "npcs", "floor items" -> {
+            val areas: Areas = get()
+            areas.load()
+            areas.clear()
+            reloadRegions = true
+        }
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers" -> get<ContainerDefinitions>().load()
