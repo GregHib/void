@@ -8,7 +8,7 @@ import java.util.*
 class PlayerTrackingSet(
     val tickMax: Int,
     override val maximum: Int,
-    override val radius: Int = VIEW_RADIUS,
+    override val radius: Int = VIEW_RADIUS - 1,
     override val add: LinkedHashSet<Player> = LinkedHashSet(),
     override val remove: MutableSet<Player> = mutableSetOf(),
     override val current: MutableSet<Player> = TreeSet(),// Ordered locals

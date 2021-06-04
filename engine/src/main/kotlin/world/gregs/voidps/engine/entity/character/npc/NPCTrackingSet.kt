@@ -8,7 +8,7 @@ import world.gregs.voidps.engine.map.Delta
 class NPCTrackingSet(
     val tickMax: Int,
     override val maximum: Int,
-    override val radius: Int = VIEW_RADIUS,
+    override val radius: Int = VIEW_RADIUS - 1,
     override val add: LinkedHashSet<NPC> = LinkedHashSet(),
     override val remove: MutableSet<NPC> = mutableSetOf(),
     override val current: LinkedHashSet<NPC> = LinkedHashSet()
