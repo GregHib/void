@@ -282,4 +282,4 @@
     y: [ 3241, 3255 ]
   spawns:
     - name: fishing_spot_lure_bait
-      limit: 5
+      limit: 2
