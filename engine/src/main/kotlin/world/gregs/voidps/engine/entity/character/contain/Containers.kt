@@ -17,7 +17,7 @@ fun Player.sendContainer(name: String, secondary: Boolean = false) {
 }
 
 fun Player.sendContainer(container: Container, secondary: Boolean = false) {
-    sendContainerItems(container.id, container.getItems().map { it.id }.toIntArray(), container.getItems().map { it.amount }.toIntArray(), secondary)
+    sendContainerItems(container.id, container.getItems().map { if (it.id == -1 && it.amount > 0) 0 else it.id }.toIntArray(), container.getItems().map { it.amount }.toIntArray(), secondary)
 }
 
 fun Player.hasContainer(name: String): Boolean {
