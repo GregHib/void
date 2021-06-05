@@ -30,7 +30,7 @@ suspend fun Bot.buy(item: String, amount: Int = 1) {
     val shop = player.shopContainer()
     val index = shop.indexOf(item)
     if (index == -1) {
-        return// fail
+        throw IllegalArgumentException("Shop doesn't contain item '$item'")
     }
     val slot = index * 6
     var remaining = amount

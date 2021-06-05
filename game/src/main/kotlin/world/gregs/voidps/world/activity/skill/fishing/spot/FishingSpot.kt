@@ -7,7 +7,7 @@ import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
 interface FishingSpot : Id {
-    val tackle: Map<String, Triple<List<Tackle>, List<Bait>, List<Catch>>>
+    val tackle: Map<String, Pair<List<Tackle>, Map<Bait, List<Catch>>>>
 
     companion object {
         private val spots = listOf(

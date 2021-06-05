@@ -9,33 +9,36 @@ import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
 enum class RegularFishingSpot(
-    override val tackle: Map<String, Triple<List<Tackle>, List<Bait>, List<Catch>>>
+    override val tackle: Map<String, Pair<List<Tackle>, Map<Bait, List<Catch>>>>
 ) : FishingSpot {
     SmallNetBait(
-        "Net" to Triple(listOf(Tackle.SmallFishingNet), listOf(Bait.None), listOf(RegularFish.Shrimps, RegularFish.Anchovies)),
-        "Bait" to Triple(listOf(Tackle.FishingRod), listOf(Bait.FishingBait), listOf(RegularFish.Sardine, RegularFish.Herring))
+        "Net" to Pair(listOf(Tackle.SmallFishingNet), mapOf(Bait.None to listOf(RegularFish.Shrimps, RegularFish.Anchovies))),
+        "Bait" to Pair(listOf(Tackle.FishingRod), mapOf(Bait.FishingBait to listOf(RegularFish.Sardine, RegularFish.Herring)))
     ),
     Crayfish(
-        "Cage" to Triple(listOf(Tackle.CrayfishCage), listOf(Bait.None), listOf(RegularFish.Crayfish))
+        "Cage" to Pair(listOf(Tackle.CrayfishCage), mapOf(Bait.None to listOf(RegularFish.Crayfish)))
     ),
     LureBait(
-        "Lure" to Triple(listOf(Tackle.FlyFishingRod), listOf(Bait.Feathers, Bait.StripyFeathers), listOf(RegularFish.RainbowFish)),
-        "Bait" to Triple(listOf(Tackle.FishingRod), listOf(Bait.FishingBait), listOf(RegularFish.Pike))
+        "Lure" to Pair(listOf(Tackle.FlyFishingRod), linkedMapOf(
+            Bait.Feather to listOf(RegularFish.Trout, RegularFish.Salmon),
+            Bait.StripyFeather to listOf(RegularFish.RainbowFish)
+        )),
+        "Bait" to Pair(listOf(Tackle.FishingRod), mapOf(Bait.FishingBait to listOf(RegularFish.Pike)))
     ),
     CageHarpoon(
-        "Cage" to Triple(listOf(Tackle.LobsterPot), listOf(Bait.None), listOf(RegularFish.Lobster)),
-        "Harpoon" to Triple(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), listOf(Bait.None), listOf(RegularFish.Tuna, RegularFish.Swordfish))
+        "Cage" to Pair(listOf(Tackle.LobsterPot), mapOf(Bait.None to listOf(RegularFish.Lobster))),
+        "Harpoon" to Pair(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), mapOf(Bait.None to listOf(RegularFish.Tuna, RegularFish.Swordfish)))
     ),
     BigNetHarpoon(
-        "Net" to Triple(listOf(Tackle.BigFishingNet), listOf(Bait.None), listOf(RegularFish.Mackerel, RegularFish.Cod, RegularFish.Bass, *Junk.values(), RegularFish.BigBass)),
-        "Harpoon" to Triple(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), listOf(Bait.None), listOf(RegularFish.Shark))
+        "Net" to Pair(listOf(Tackle.BigFishingNet), mapOf(Bait.None to listOf(RegularFish.Mackerel, RegularFish.Cod, RegularFish.Bass, *Junk.values(), RegularFish.BigBass))),
+        "Harpoon" to Pair(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), mapOf(Bait.None to listOf(RegularFish.Shark)))
     ),
     SmallNetHarpoon(
-        "Net" to Triple(listOf(Tackle.SmallFishingNet), listOf(Bait.None), listOf(RegularFish.Monkfish)),
-        "Harpoon" to Triple(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), listOf(Bait.None), listOf(RegularFish.Tuna, RegularFish.Swordfish))
+        "Net" to Pair(listOf(Tackle.SmallFishingNet), mapOf(Bait.None to listOf(RegularFish.Monkfish))),
+        "Harpoon" to Pair(listOf(Tackle.Harpoon, Tackle.BarbTailHarpoon), mapOf(Bait.None to listOf(RegularFish.Tuna, RegularFish.Swordfish)))
     );
 
     override val id: String = name.toTitleCase().toUnderscoreCase()
 
-    constructor(vararg pairs: Pair<String, Triple<List<Tackle>, List<Bait>, List<Catch>>>) : this(pairs.associate { it.first to it.second })
+    constructor(vararg pairs: Pair<String, Pair<List<Tackle>, Map<Bait, List<Catch>>>>) : this(pairs.toMap())
 }

@@ -7,8 +7,8 @@ import world.gregs.voidps.world.activity.skill.Id
 enum class Bait : Id {
     None,
     FishingBait,
-    Feathers,
-    StripyFeathers,
+    Feather,
+    StripyFeather,
     FishOffcuts,
     Roe,
     Caviar,

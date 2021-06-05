@@ -56,6 +56,7 @@ nodes:
       - &swamp-west-2 [ 3143, 3186 ]
       - &swamp-west-camp [ 3142, 3203 ]
       - &swamp-west-wall [ 3136, 3219 ]
+      - &swamp-fishing-spot [ 3244, 3157 ]
     bridge:
       - &lum-bridge-west [ 3236, 3225 ]
       - &lum-bridge-east [ 3253, 3225 ]
@@ -64,8 +65,10 @@ nodes:
       - &lum-bridge-north [ 3235, 3261 ]
     goblins:
       - &lum-goblins [ 3254, 3239 ]
+      - &lum-goblins-river [ 3245, 3238 ]
       - &lum-goblin-trees-east [ 3258, 3250 ]
       - &lum-goblin-path-north [ 3251, 3252 ]
+      - &lum-goblin-fishing-spot [ 3240, 3249 ]
     west-village:
       - &general-store-east [ 3222, 3241 ]
       - &general-store [ 3217, 3241 ]
@@ -77,6 +80,7 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3246 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
+      - &lumbridge-fishing-shop [ 3195, 3251 ]
       - &lumbridge-west-path [ 3172, 3239 ]
       - &lumbridge-ham-path [ 3157, 3234 ]
       - &lumbridge-tree-patch [ 3193, 3236 ]
@@ -233,6 +237,8 @@ edges:
         to: *swamp-east-mine
       - from: *swamp-cross-roads
         to: *swamp-east-mine
+      - from: *swamp-cross-roads
+        to: *swamp-fishing-spot
       - from: *swamp-east-mine
         to: *swamp-urhney-house
       - from: *swamp-urhney-house
@@ -272,13 +278,23 @@ edges:
         to: *lumbridge-trees-east
     goblins:
       - from: *lum-bridge-east
+        to: *lum-goblins-river
+      - from: *lum-bridge-east
         to: *lum-goblins
       - from: *lum-goblins
         to: *lum-goblin-trees-east
       - from: *lum-goblins
+        to: *lum-goblins-river
+      - from: *lum-goblins
         to: *lum-goblin-path-north
       - from: *lum-goblin-path-north
         to: *lum-bridge-north
+      - from: *lum-bridge-north
+        to: *lum-goblin-fishing-spot
+      - from: *lum-goblin-path-north
+        to: *lum-goblin-fishing-spot
+      - from: *lum-goblin-fishing-spot
+        to: *lum-goblins-river
     west-village:
       - from: *unstable-house
         to: *general-store-east
@@ -306,6 +322,8 @@ edges:
         to: *lumbridge-west-path
       - from: *lumbridge-fishing-shop-entrance
         to: *lumbridge-tree-patch
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-fishing-shop
       - from: *lumbridge-west-path
         to: *lumbridge-ham-path
       - from: *lumbridge-west-path

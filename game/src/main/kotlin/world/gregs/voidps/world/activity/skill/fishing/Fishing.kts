@@ -21,6 +21,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.world.activity.skill.fishing.fish.Catch
 import world.gregs.voidps.world.activity.skill.fishing.spot.FishingSpot
@@ -43,10 +44,10 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
                 }
 
                 val spot = FishingSpot.get(npc) ?: break
-                val (tackles, baits, catches) = spot.tackle[option] ?: break
+                val (tackles, data) = spot.tackle[option] ?: break
 
-                val level = catches.minOf { catch -> catch.level }
-                if (!player.has(Skill.Fishing, level, true)) {
+                val lowestLevel = data.values.minOf { it.minOf { catch -> catch.level } }
+                if (!player.has(Skill.Fishing, lowestLevel, true)) {
                     break
                 }
 
@@ -56,14 +57,16 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
                     break@fishing
                 }
 
-                val bait = baits.firstOrNull { bait -> bait == Bait.None || player.has(bait.id) }
-                if (bait == null) {
-                    player.message("You don't have any ${baits.first().id.toTitleCase()}.")
+                val bait = data.keys.firstOrNull { bait -> bait == Bait.None || player.has(bait.id) }
+                val catches = data[bait]
+                if (bait == null || catches == null) {
+                    player.message("You don't have any ${data.keys.first().id.toTitleCase().plural(2)}.")
                     break
                 }
 
                 player.face(npc)
-                player.setAnimation("fish_${if (!first && tackle.name.contains("rod", true)) "rod" else tackle.id}", walk = false, run = false)
+                val rod = tackle == Tackle.FishingRod || tackle == Tackle.FlyFishingRod || tackle == Tackle.BarbarianRod
+                player.setAnimation("fish_${if (rod) if (first) "fishing_rod" else "rod" else tackle.id}", walk = false, run = false)
                 if (first) {
                     player.message(when (tackle) {
                         Tackle.SmallFishingNet, Tackle.BigFishingNet -> "You cast out your net..."
@@ -76,7 +79,8 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
                 }
                 delay(3)
                 for (catch in catches) {
-                    if (success(player.levels.get(Skill.Fishing), catch.chance)) {
+                    val level = player.levels.get(Skill.Fishing)
+                    if (level >= catch.level && success(level, catch.chance)) {
                         if (bait != Bait.None && !player.inventory.remove(bait.id)) {
                             break@fishing
                         }

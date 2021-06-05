@@ -363,6 +363,7 @@ lumbridge_swamp_fishing_area:
   area:
     x: [ 3240, 3247 ]
     y: [ 3142, 3157 ]
+  tags: [ fish, small_net_bait, spaces_8 ]
   npcs:
     - name: fishing_spot_small_net_bait
       limit: 5
@@ -370,8 +371,16 @@ lumbridge_swamp_fishing_area:
     - name: small_fishing_net
 lumbridge_river_fishing_area:
   area:
-    x: [ 3238, 3239 ]
+    x: [ 3238, 3240 ]
     y: [ 3241, 3255 ]
+  tags: [ fish, lure_bait, spaces_3 ]
   npcs:
     - name: fishing_spot_lure_bait
       limit: 2
+hanks_fishing_shop:
+  area:
+    x: [ 3191, 3198 ]
+    y: [ 3251, 3255 ]
+  tags: [ shop, small_fishing_net, fishing_rod, fly_fishing_rod, crayfish_cage, fishing_bait, feather ]
+  npcs:
+    - name: hank
