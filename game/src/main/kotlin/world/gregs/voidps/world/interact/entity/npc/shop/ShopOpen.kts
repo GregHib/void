@@ -1,3 +1,4 @@
+import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
@@ -45,6 +46,7 @@ StringMapVariable(532, Variable.Type.VARP, values = currencies).register("shop_c
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()
+val logger = InlineLogger()
 
 on<NPCOption>({ npc.def.has("shop") && option == "Trade" }) { player: Player ->
     npc.turn(player)
@@ -110,13 +112,15 @@ fun openShopContainer(player: Player, name: String): Container {
 
 fun fillShop(container: Container, name: String) {
     val def = containerDefs.get(name)
+    if (def.has("shop")) {
+        logger.warn { "Invalid shop definition $name" }
+    }
+    val ids = def.ids ?: return
+    val amounts = def.amounts ?: return
     for (i in 0 until def.length) {
-        val id = itemDefs.getName(def.ids?.getOrNull(i) ?: -1)
-        if (id.isBlank()) {
-            continue
-        }
-        val amount = def.amounts?.getOrNull(i) ?: 0
-        container.add(id, amount)
+        val id = itemDefs.getNameOrNull(ids.getOrNull(i) ?: continue) ?: continue
+        val amount = amounts.getOrNull(i) ?: 0
+        container.set(i, id, amount)
     }
 }
 

@@ -285,7 +285,8 @@ uglugs_stuffsies:
 vigrs_warhammers:
   id: 261
 lumbridge_fishing_supplies:
-  id: 262
+  id: 562
+  shop: true
 quality_armour_shop:
   id: 263
 gunsliks_assorted_items:
