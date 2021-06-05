@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.map.collision.flag
 /**
  * Checks if within interact range of a targeted decoration
  */
-data class DecorationTargetStrategy(
+class DecorationTargetStrategy(
     private val collisions: Collisions,
     private val gameObject: GameObject
 ) : TileTargetStrategy {
