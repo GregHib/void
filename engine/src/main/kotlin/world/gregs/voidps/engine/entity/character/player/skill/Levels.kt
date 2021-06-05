@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.Events
-import kotlin.math.floor
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.pow
@@ -107,17 +106,17 @@ class Levels(
 
     companion object {
         private fun getLevel(experience: Double): Int {
-            var points = 0
-            var output: Int
-            for (level in 1..99) {
-                points += floor(level + 300.0 * 2.0.pow(level / 7.0)).toInt()
-                output = points / 4
-                if (output - 1 >= experience) {
-                    return level
-                }
-            }
-            return 99
+            var total = 0
+            return (1..99).firstOrNull { level ->
+                total += experience(level)
+                total / 4 - 1 >= experience
+            } ?: 99
         }
+
+        fun getExperience(level: Int): Int = (1 until level)
+            .sumBy(::experience) / 4
+
+        private fun experience(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
 
         fun createLevels(experience: Experience): IntArray {
             return Skill.all.map { skill -> getLevel(experience.get(skill)) }.toIntArray()

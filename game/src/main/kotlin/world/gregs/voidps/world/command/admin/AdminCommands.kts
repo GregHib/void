@@ -1,5 +1,7 @@
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCs
@@ -7,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -145,11 +148,34 @@ on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
     }
+    delay(player, 1) {
+        player.clearVar<Skill>("skill_stat_flash")
+    }
+}
+
+on<Command>({ prefix == "setlevel" }) { player: Player ->
+    val split = content.split(" ")
+    val skill = Skill.valueOf(split[0].capitalize())
+    val level = split[1].toInt()
+    val target = if (split.size > 2) {
+        val name = content.removeSuffix("${split[0]} ${split[1]} ")
+        players.indexed.first { it?.name.equals(name) }
+    } else {
+        player
+    }
+    player.experience.set(skill, Levels.getExperience(level).toDouble())
+    if (level > 99) {
+        player.levels.boost(skill, level - 99)
+    }
+    delay(player, 1) {
+        player.clearVar<Skill>("skill_stat_flash")
+    }
 }
 
 on<Command>({ prefix == "reset" }) { player: Player ->
     player.setVar("life_points", 100)
     for ((index, skill) in Skill.all.withIndex()) {
+        player.levels.setOffset(skill, 0)
         player.experience.set(skill, Experience.defaultExperience[index])
     }
 }
