@@ -1,12 +1,14 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.bank.*
+import world.gregs.voidps.bot.bank.closeBank
+import world.gregs.voidps.bot.bank.depositAll
+import world.gregs.voidps.bot.bank.openBank
+import world.gregs.voidps.bot.bank.withdraw
+import world.gregs.voidps.bot.buyItem
+import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.shop.buy
-import world.gregs.voidps.bot.shop.closeShop
-import world.gregs.voidps.bot.shop.openShop
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
@@ -135,7 +137,7 @@ suspend fun Bot.setupInventory() {
     if (bestOwned == null || bestOwned.index < 7) {
         val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
         if (bestShop != null && bestOwned?.index ?: -1 < bestShop.index) {
-            buyHatchet(bestShop)
+            buyItem(bestShop.id)
             return
         }
     }
@@ -157,13 +159,6 @@ suspend fun Bot.setupInventory() {
     closeBank()
 }
 
-suspend fun Bot.buyHatchet(hatchet: Hatchet) {
-    withdrawCoins()
-    openShop("bobs_axe_shop")
-    buy(hatchet.id)
-    closeShop()
-}
-
 fun Bot.hasUsableHatchet(): Boolean {
     if (Hatchet.hasRequirements(player, player.equipped(EquipSlot.Weapon))) {
         return true
@@ -172,16 +167,6 @@ fun Bot.hasUsableHatchet(): Boolean {
         return true
     }
     if (player.bank.getItems().any { Hatchet.hasRequirements(player, it) }) {
-        return true
-    }
-    return false
-}
-
-fun Bot.hasCoins(amount: Int): Boolean {
-    if (player.inventory.contains("coins") && player.inventory.getCount("coins") >= amount) {
-        return true
-    }
-    if (player.bank.contains("coins") && player.bank.getCount("coins") >= amount) {
         return true
     }
     return false

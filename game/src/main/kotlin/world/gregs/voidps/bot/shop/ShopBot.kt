@@ -3,6 +3,7 @@ package world.gregs.voidps.bot.shop
 import world.gregs.voidps.bot.closeInterface
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
+import world.gregs.voidps.bot.navigation.goToNearest
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.map.area.Areas
@@ -16,8 +17,17 @@ suspend fun Bot.openShop(name: String): NPC {
     return openShop(get<Areas>()[name]!!)
 }
 
+suspend fun Bot.openNearestShop(name: String): NPC {
+    goToNearest(name)
+    return openShop()
+}
+
 suspend fun Bot.openShop(map: MapArea): NPC {
     goToArea(map)
+    return openShop()
+}
+
+private suspend fun Bot.openShop(): NPC {
     val shop = player.viewport.npcs.current.first { it.def.options.contains("Trade") }
     player.instructions.emit(InteractNPC(npcIndex = shop.index, option = shop.def.options.indexOfFirst { it == "Trade" } + 1))
     await("shop")

@@ -1,12 +1,11 @@
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.*
+import world.gregs.voidps.bot.buyItem
+import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.shop.buy
-import world.gregs.voidps.bot.shop.closeShop
-import world.gregs.voidps.bot.shop.openShop
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
@@ -117,10 +116,10 @@ suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     val (tackles, _) = spot.tackle[option] ?: return
 
     if (!tackles.any { tackle -> player.has(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.name } }) {
-        buyTackle(tackles)
+        buyItem(tackles.first().id)
     }
     if (bait != Bait.None && !player.has(bait.id) && player.bank.getItems().none { item -> bait.id == item.name }) {
-        buyBait(bait)
+        buyItem(bait.id, 100)
     }
 
     val hasTackle = tackles.any { tackle -> player.has(tackle.id) }
@@ -139,53 +138,13 @@ suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     val bait = player.bank.getItems()
         .firstOrNull { item -> bait.id == item.name }
     if (bait != null) {
-        withdraw(bait.name)
+        withdrawAll(bait.name)
     }
     closeBank()
-}
-
-suspend fun Bot.buyTackle(tackles: List<Tackle>) {
-    withdrawCoins()
-    openShop("hanks_fishing_shop")
-    buy(tackles.first().id)
-    closeShop()
-}
-
-suspend fun Bot.buyBait(bait: Bait) {
-    withdrawCoins()
-    openShop("hanks_fishing_shop")
-    buy(bait.id, 100)
-    closeShop()
-}
-
-fun Bot.getBait(pair: Pair<List<Tackle>, Map<Bait, List<Catch>>>): Bait {
-    val (_, data) = pair
-    var highest = 0
-    var bestBait = Bait.None
-    for ((bait, catches) in data) {
-        val lowest = catches.minOf { it.level }
-        if (player.has(Skill.Fishing, lowest, message = false)) {
-            if (lowest > highest) {
-                bestBait = bait
-                highest = lowest
-            }
-        }
-    }
-    return bestBait
 }
 
 fun Bot.hasUsableTackleAndBait(tackles: List<Tackle>, bait: Bait, catches: List<Catch>): Boolean {
     return tackles.any { tackle -> player.has(tackle.id, banked = true) } &&
             player.has(bait.id, banked = true) &&
             catches.any { catch -> player.has(Skill.Fishing, catch.level, message = false) }
-}
-
-fun Bot.hasCoins(amount: Int): Boolean {
-    if (player.inventory.contains("coins") && player.inventory.getCount("coins") >= amount) {
-        return true
-    }
-    if (player.bank.contains("coins") && player.bank.getCount("coins") >= amount) {
-        return true
-    }
-    return false
 }

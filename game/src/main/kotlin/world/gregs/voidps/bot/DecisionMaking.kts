@@ -53,7 +53,7 @@ on<World, AiTick> {
 }
 
 fun assign(bot: Bot, task: Task) {
-//    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
+    logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
     bot["task"] = task.name
     task.spaces--
     scope.launch {

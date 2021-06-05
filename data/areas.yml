@@ -32,7 +32,7 @@ bobs_axe_shop:
   area:
     x: [ 3227, 3233 ]
     y: [ 3201, 3205 ]
-  tags: [ shop, bronze_hatchet, iron_hatchet, steel_hatchet, black_hatchet, mithril_hatchet, adamant_hatchet, rune_hatchet ]
+  tags: [ shop, bronze_pickaxe, bronze_hatchet, iron_hatchet, steel_hatchet ]
   npcs:
     - name: bob
 lumbridge_castle_bank:
