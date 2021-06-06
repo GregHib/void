@@ -58,7 +58,7 @@ nodes:
       - &swamp-west-2 [ 3143, 3186 ]
       - &swamp-west-camp [ 3142, 3203 ]
       - &swamp-west-wall [ 3136, 3219 ]
-      - &swamp-fishing-spot [ 3244, 3157 ]
+      - &swamp-fishing-spot [ 3243, 3155 ]
     bridge:
       - &lum-bridge-west [ 3236, 3225 ]
       - &lum-bridge-east [ 3253, 3225 ]
