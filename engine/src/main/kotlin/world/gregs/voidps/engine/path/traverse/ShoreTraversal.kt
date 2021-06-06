@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.path.TraversalType
 class ShoreTraversal(private val collisions: Collisions) : TileTraversalStrategy {
 
     override fun blocked(x: Int, y: Int, plane: Int, direction: Direction): Boolean {
-        if (collisions.check(x, y, plane, CollisionFlag.ENTITY) || !collisions.check(x, y, plane, Direction.NONE.block(TraversalType.Land))) {
+        if (collisions.check(x, y, plane, CollisionFlag.ENTITY) || collisions.check(x, y, plane, CollisionFlag.LAND) || !collisions.check(x, y, plane, CollisionFlag.FLOOR)) {
             return true
         }
         if (isLand(x, y, plane, Direction.NORTH)) {
