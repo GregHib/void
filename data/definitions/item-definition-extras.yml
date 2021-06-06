@@ -53329,7 +53329,7 @@ dashing_kebbit_fur:
   examine: "Nature's equivalent of go-faster stripes."
 dashing_kebbit_fur_noted:
   id: 10128
-barb-tail_harpoon:
+barb_tail_harpoon:
   id: 10129
   price: 47
   limit: 100
@@ -53340,7 +53340,7 @@ barb-tail_harpoon:
   crush: -4.0
   slot: "Weapon"
   examine: "A mighty Hunter weapon. One previous owner."
-barb-tail_harpoon_noted:
+barb_tail_harpoon_noted:
   id: 10130
 strung_rabbit_foot:
   id: 10132

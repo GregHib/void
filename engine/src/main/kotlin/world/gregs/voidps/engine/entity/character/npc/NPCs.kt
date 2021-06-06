@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.path.strat.DistanceTargetStrategy
 import world.gregs.voidps.engine.path.strat.RectangleTargetStrategy
 import world.gregs.voidps.engine.path.traverse.LargeTraversal
 import world.gregs.voidps.engine.path.traverse.MediumTraversal
+import world.gregs.voidps.engine.path.traverse.ShoreTraversal
 import world.gregs.voidps.engine.path.traverse.SmallTraversal
 import java.util.*
 
@@ -40,18 +41,23 @@ data class NPCs(
     fun add(name: String, area: Area, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(name)
         val traversal = getTraversal(def)
-        val tile = if (area.area == 0.0) area.random() else area.random(traversal)
+        val tile = if (area.area <= 0.0) area.random() else area.random(traversal)
         if (tile == null) {
             logger.warn { "No free area found for npc spawn $name $area" }
             return null
         }
-        return add(name, tile, direction)?.apply {
-            this["area"] = area
-        }
+        val npc = add(name, tile, direction) ?: return null
+        npc["area"] = area
+        npc.events.emit(Registered)
+        return npc
     }
 
     fun add(name: String, tile: Tile, direction: Direction = Direction.NONE): NPC? {
         val def = definitions.get(name)
+        if (def.id == -1) {
+            logger.warn { "No npc found for name $name" }
+            return null
+        }
         val npc = NPC(def.id, tile, getSize(def))
         store.populate(npc)
         npc.movement.traversal = getTraversal(def)
@@ -65,13 +71,13 @@ data class NPCs(
         npc.turn(dir.delta.x, dir.delta.y)
         collisions.add(npc)
         super.add(npc)
-        npc.events.emit(Registered)
         return npc
     }
 
-    private fun getTraversal(definition: NPCDefinition) = when (definition.size) {
-        1 -> SmallTraversal(TraversalType.Land, true, collisions)
-        2 -> MediumTraversal(TraversalType.Land, true, collisions)
+    private fun getTraversal(definition: NPCDefinition) = when {
+        definition.name.equals("fishing spot", true) -> ShoreTraversal(collisions)
+        definition.size == 1 -> SmallTraversal(TraversalType.Land, true, collisions)
+        definition.size == 2 -> MediumTraversal(TraversalType.Land, true, collisions)
         else -> LargeTraversal(TraversalType.Land, true, getSize(definition), collisions)
     }
 

@@ -9,10 +9,8 @@ import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
-import world.gregs.voidps.engine.entity.character.npc.npcSpawnModule
 import world.gregs.voidps.engine.entity.character.player.login.loginQueueModule
 import world.gregs.voidps.engine.entity.definition.definitionsModule
-import world.gregs.voidps.engine.entity.item.floorItemSpawnModule
 import world.gregs.voidps.engine.entity.list.entityListModule
 import world.gregs.voidps.engine.entity.obj.customObjectModule
 import world.gregs.voidps.engine.entity.obj.objectFactoryModule
@@ -56,9 +54,7 @@ fun getGameModules() = listOf(
     lineOfSightModule,
     navModule,
     customObjectModule,
-    npcSpawnModule,
     stairsModule,
-    floorItemSpawnModule,
     musicModule,
     areasModule,
     taskModule

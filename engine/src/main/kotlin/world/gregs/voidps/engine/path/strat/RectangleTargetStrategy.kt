@@ -16,7 +16,7 @@ import kotlin.math.min
  * Checks if within interact range of a rectangle
  * Used for NPCs of differing sizes
  */
-data class RectangleTargetStrategy(
+class RectangleTargetStrategy(
     private val collisions: Collisions,
     private val entity: Entity,
     val blockFlag: Int = 0

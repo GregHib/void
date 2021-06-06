@@ -105,6 +105,6 @@ class ViewportUpdating : Runnable {
 
         // View radius could be controlled per tracking set to give a nicer linear
         // expanding square when loading areas with more than max entities
-        const val VIEW_RADIUS = 20
+        const val VIEW_RADIUS = 15
     }
 }

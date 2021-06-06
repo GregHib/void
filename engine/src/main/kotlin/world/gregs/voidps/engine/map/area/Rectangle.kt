@@ -49,7 +49,7 @@ data class Rectangle(
         return x in minX..maxX && y in minY..maxY
     }
 
-    override fun random() = Tile(if (minX == maxX) minX else Random.nextInt(minX, maxX), if (minY == maxY) minY else Random.nextInt(minY, maxY), 0)
+    override fun random() = Tile(if (minX == maxX) minX else Random.nextInt(minX, maxX + 1), if (minY == maxY) minY else Random.nextInt(minY, maxY + 1), 0)
 
 
     override fun toString(): String {

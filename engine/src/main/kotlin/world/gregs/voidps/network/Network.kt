@@ -40,7 +40,7 @@ class Network(
         val selector = ActorSelectorManager(dispatcher)
         val supervisor = SupervisorJob()
         val exceptionHandler = CoroutineExceptionHandler { _, throwable ->
-            logger.warn { throwable.message }
+            logger.error(throwable) { "Connection error" }
         }
         val scope = CoroutineScope(coroutineContext + supervisor + exceptionHandler)
         with(scope) {

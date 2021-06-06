@@ -9,6 +9,7 @@ import world.gregs.voidps.network.Client.Companion.string
 import world.gregs.voidps.network.Protocol.CHAT
 import world.gregs.voidps.network.writeSmart
 import world.gregs.voidps.network.writeString
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
 /**
  * A chat box message to display
@@ -18,7 +19,7 @@ import world.gregs.voidps.network.writeString
  * @param text The chat message text
  */
 fun Player.message(text: String, type: ChatType = ChatType.Game, tile: Int = 0, name: String? = null) {
-    val formatted = name?.toLowerCase()?.replace(" ", "_")
+    val formatted = name?.toUnderscoreCase()
     val mask = getMask(name, formatted)
     client?.send(CHAT, getLength(type.id, text, name, mask, formatted), BYTE) {
         writeSmart(type.id)

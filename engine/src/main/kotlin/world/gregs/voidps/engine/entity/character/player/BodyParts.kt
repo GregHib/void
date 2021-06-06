@@ -11,7 +11,7 @@ class BodyParts(
 ) {
     private val parts = IntArray(12)
 
-    fun get(index: Int) = parts.getOrNull(index) ?: -1
+    fun get(index: Int) = parts.getOrNull(index) ?: 0
 
     fun updateConnected(part: BodyPart): Boolean {
         var updated = update(part)
@@ -31,7 +31,7 @@ class BodyParts(
         val item = equipment.getItem(part.slot.index)
         val before = parts[part.ordinal]
         parts[part.ordinal] = when {
-            showItem(part, item) -> item.def["equip", -1] or 0x8000
+            showItem(part, item) -> if (item.def.has("equip")) item.def["equip", -1] or 0x8000 else 0
             showBodyPart(part, item) -> looks[part.index] or 0x100
             else -> 0
         }

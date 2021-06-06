@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -8,14 +9,17 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
-import world.gregs.voidps.engine.map.area.Areas
+import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
+import world.gregs.voidps.engine.path.traverse.ShoreTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.get
+import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
@@ -30,18 +34,22 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
-    val map = get<Areas>().getValue("lumbridge_fishing_shop_trees")
-    println(map.area.area)
-    println(map.area.random())
-    val strategy = object : NodeTargetStrategy() {
-        override fun reached(node: Any): Boolean {
-            println("Check $node")
-            return node is Tile && node in map.area
+}
+
+on<Command>({ prefix == "showcol" }) { player: Player ->
+    val area = player.tile.toCuboid(10)
+    val collisions: Collisions = get()
+    val shore = ShoreTraversal(collisions)
+    for (tile in area) {
+        if (!shore.blocked(tile, Direction.NONE)) {//collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.FLOOR)) {//
+            areaGraphic(2000, tile)
         }
     }
-    player.movement.waypoints.clear()
-    val result = get<Dijkstra>().find(player, strategy, EdgeTraversal())
-    println(result)
+}
+
+on<Command>({ prefix == "col" }) { player: Player ->
+    val collisions: Collisions = get()
+    println(collisions[player.tile.x, player.tile.y, player.tile.plane])
 }
 
 on<Command>({ prefix == "walkToBank" }) { player: Player ->

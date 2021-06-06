@@ -69,8 +69,7 @@ suspend fun Character.freeze(block: suspend () -> Unit) {
 fun Player.cantReach(target: Any): Boolean = cantReach(getStrategy(target))
 
 fun Player.cantReach(strategy: TileTargetStrategy): Boolean {
-    return movement.result is PathResult.Failure ||
-            (movement.result is PathResult.Partial && !strategy.reached(tile, size))
+    return movement.result is PathResult.Failure || (movement.result is PathResult.Partial && !strategy.reached(tile, size))
 }
 
 suspend fun Player.walkTo(target: Any, watch: Character? = null, action: () -> Unit) {

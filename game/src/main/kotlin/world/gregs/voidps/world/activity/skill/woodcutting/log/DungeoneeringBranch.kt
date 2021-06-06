@@ -1,17 +1,19 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-@Suppress("EnumEntryName")
-enum class DungeoneeringBranch : Log {
-    Tangle_Gum_Branches,
-    Seeping_Elm_Branches,
-    Blood_Spindle_Branches,
-    Utuku_Branches,
-    Spinebeam_Branches,
-    Bovistrangler_Branches,
-    Thigat_Branches,
-    Corpsethorn_Branches,
-    Entgallow_Branches,
-    Grave_creeper_Branches;
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
-    override val id: String = name.toLowerCase()
+enum class DungeoneeringBranch : Log {
+    TangleGumBranches,
+    SeepingElmBranches,
+    BloodSpindleBranches,
+    UtukuBranches,
+    SpinebeamBranches,
+    BovistranglerBranches,
+    ThigatBranches,
+    CorpsethornBranches,
+    EntgallowBranches,
+    GravecreeperBranches;
+
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

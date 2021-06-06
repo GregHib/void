@@ -22,6 +22,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.world.interact.dialogue.type.statement
 import world.gregs.voidps.world.interact.entity.effect.transform
 import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
@@ -99,7 +100,7 @@ on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
 }
 
 on<InterfaceOption>({ name == "emotes" }) { player: Player ->
-    val id = option.replace(" ", "_").toLowerCase()
+    val id = option.toUnderscoreCase()
     if (componentId > 23 && !unlocked(player, id, option)) {
         return@on
     }

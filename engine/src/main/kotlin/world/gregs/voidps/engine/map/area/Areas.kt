@@ -2,18 +2,79 @@ package world.gregs.voidps.engine.map.area
 
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.Entity
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.npc.NPCs
+import world.gregs.voidps.engine.entity.item.FloorItem
+import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.event.EventHandler
+import world.gregs.voidps.engine.flatGroupBy
+import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
 
 val areasModule = module {
-    single(createdAtStart = true) { Areas().load() }
+    single(createdAtStart = true) { Areas(get(), get()).load() }
 }
 
-class Areas {
+class Areas(
+    private val npcs: NPCs?,
+    private val items: FloorItems?
+) {
 
     private var named: Map<String, MapArea> = mutableMapOf()
     private var tagged: Map<String, Set<MapArea>> = mutableMapOf()
+    private lateinit var spawns: Map<Region, List<MapArea>>
+    private val respawns = mutableMapOf<Entity, EventHandler>()
+
+    fun load(region: Region) {
+        if (npcs == null || items == null) {
+            return
+        }
+        val areas = spawns[region] ?: return
+        for (area in areas) {
+            if (area.loaded) {
+                continue
+            }
+            area.loaded = true
+            for (spawn in area.npcs) {
+                repeat(spawn.limit) {
+                    npcs.add(spawn.name, area.area, spawn.direction)
+                }
+            }
+            for (spawn in area.items) {
+                repeat(spawn.limit) {
+                    drop(area, spawn)
+                }
+            }
+        }
+    }
+
+    fun clear() {
+        if (npcs == null || items == null) {
+            return
+        }
+        respawns.forEach { (entity, handler) ->
+            entity.events.remove(handler)
+        }
+        respawns.clear()
+        npcs.forEach { npcs.remove(it) }
+        items.chunks.forEach { (_, set) ->
+            set.forEach { items.remove(it) }
+        }
+    }
+
+    private fun drop(area: MapArea, spawn: MapArea.Spawn) {
+        val item = items?.add(spawn.name, spawn.amount, area.area, revealTicks = 0) ?: return
+        respawns[item] = item.events.on<FloorItem, Unregistered> {
+            delay(spawn.delay) {
+                drop(area, spawn)
+            }
+        }
+    }
 
     operator fun get(name: String): MapArea? {
         return named[name]
@@ -27,7 +88,7 @@ class Areas {
         return tagged[tag] ?: emptySet()
     }
 
-    fun load(loader: FileLoader = get(), path: String = getProperty("areaPath")) : Areas {
+    fun load(loader: FileLoader = get(), path: String = getProperty("areaPath")): Areas {
         timedLoad("map area") {
             val data: Map<String, Map<String, Any>> = loader.load(path)
             val areas = data.mapValues { (key, value) -> toArea(key, value) }
@@ -41,6 +102,7 @@ class Areas {
             }
             this.named = areas
             this.tagged = tagged
+            this.spawns = areas.values.toTypedArray().flatGroupBy { it.area.toRegions() }
             areas.size
         }
         return this
@@ -59,10 +121,31 @@ class Areas {
                 Polygon(x.toIntArray(), y.toIntArray(), plane)
             }
         }
-        return MapArea(name, shape, (map["tags"] as? List<String>)?.toSet() ?: emptySet())
+        return MapArea(
+            name = name,
+            area = shape,
+            tags = (map["tags"] as? List<String>)?.toSet() ?: emptySet(),
+            npcs = toSpawn(map["npcs"] as? List<Map<String, Any>>),
+            items = toSpawn(map["items"] as? List<Map<String, Any>>)
+        )
+    }
+
+    private fun toSpawn(data: List<Map<String, Any>>?): List<MapArea.Spawn> {
+        val list = mutableListOf<MapArea.Spawn>()
+        for (map in data ?: return emptyList()) {
+            list.add(MapArea.Spawn(
+                name = map["name"] as String,
+                weight = map["weight"] as? Int ?: 1,
+                limit = map["limit"] as? Int ?: 1,
+                amount = map["amount"] as? Int ?: 1,
+                delay = map["delay"] as? Int ?: 60,
+                direction = Direction.valueOf(map["direction"] as? String ?: "NONE")
+            ))
+        }
+        return list
     }
 
     companion object {
-        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptySet())
+        private val empty = MapArea("", Rectangle(0, 0, 0, 0), emptySet(), emptyList(), emptyList())
     }
 }

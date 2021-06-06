@@ -1,12 +1,14 @@
 package world.gregs.voidps.world.activity.skill.woodcutting.log
 
-@Suppress("EnumEntryName")
-enum class ColouredLog : Log {
-    Blue_Logs,
-    Green_Logs,
-    Purple_Logs,
-    Red_Logs,
-    White_Logs;
+import world.gregs.voidps.utility.func.toTitleCase
+import world.gregs.voidps.utility.func.toUnderscoreCase
 
-    override val id: String = name.toLowerCase()
+enum class ColouredLog : Log {
+    BlueLogs,
+    GreenLogs,
+    PurpleLogs,
+    RedLogs,
+    WhiteLogs;
+
+    override val id: String = name.toTitleCase().toUnderscoreCase()
 }

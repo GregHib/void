@@ -1506,7 +1506,7 @@ toplevel_full:
     logout: 172
     adviser: 171
     compass: 170
-    world_map: 177
+    world_map: 178
     xp_orb: 224
     combat_styles: 35
     task_system: 36

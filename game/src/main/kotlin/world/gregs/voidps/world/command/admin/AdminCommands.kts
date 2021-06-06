@@ -1,22 +1,19 @@
+import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.delay
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
-import world.gregs.voidps.engine.entity.character.npc.NPCSpawns
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
+import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
-import world.gregs.voidps.engine.entity.item.FloorItemSpawns
-import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.obj.CustomObjects
-import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.stop
-import world.gregs.voidps.engine.entity.toggle
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
 import world.gregs.voidps.engine.map.nav.NavigationGraph
@@ -28,6 +25,7 @@ import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.func.toSILong
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
@@ -86,6 +84,7 @@ on<Command>({ prefix == "npc" }) { player: Player ->
             """.trimIndent())
         npcs.add(content, player.tile, Direction.NORTH)
     }
+    npc?.events?.emit(Registered)
 //    npc?.movement?.frozen = true
 }
 
@@ -149,11 +148,34 @@ on<Command>({ prefix == "master" }) { player: Player ->
     for (skill in Skill.all) {
         player.experience.set(skill, 14000000.0)
     }
+    delay(player, 1) {
+        player.clearVar<Skill>("skill_stat_flash")
+    }
+}
+
+on<Command>({ prefix == "setlevel" }) { player: Player ->
+    val split = content.split(" ")
+    val skill = Skill.valueOf(split[0].capitalize())
+    val level = split[1].toInt()
+    val target = if (split.size > 2) {
+        val name = content.removeSuffix("${split[0]} ${split[1]} ")
+        players.indexed.first { it?.name.equals(name) }
+    } else {
+        player
+    }
+    player.experience.set(skill, Levels.getExperience(level).toDouble())
+    if (level > 99) {
+        player.levels.boost(skill, level - 99)
+    }
+    delay(player, 1) {
+        player.clearVar<Skill>("skill_stat_flash")
+    }
 }
 
 on<Command>({ prefix == "reset" }) { player: Player ->
     player.setVar("life_points", 100)
     for ((index, skill) in Skill.all.withIndex()) {
+        player.levels.setOffset(skill, 0)
         player.experience.set(skill, Experience.defaultExperience[index])
     }
 }
@@ -191,7 +213,7 @@ on<Command>({ prefix == "restore" }) { player: Player ->
 on<Command>({ prefix == "sound" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playSound(content.replace(" ", "_"))
+        player.playSound(content.toUnderscoreCase())
     } else {
         player.client?.playSoundEffect(id)
     }
@@ -200,7 +222,7 @@ on<Command>({ prefix == "sound" }) { player: Player ->
 on<Command>({ prefix == "midi" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playMidi(content.replace(" ", "_"))
+        player.playMidi(content.toUnderscoreCase())
     } else {
         player.client?.playMIDI(id)
     }
@@ -209,7 +231,7 @@ on<Command>({ prefix == "midi" }) { player: Player ->
 on<Command>({ prefix == "jingle" }) { player: Player ->
     val id = content.toIntOrNull()
     if (id == null) {
-        player.playJingle(content.replace(" ", "_"))
+        player.playJingle(content.toUnderscoreCase())
     } else {
         player.client?.playJingle(id)
     }
@@ -229,26 +251,6 @@ on<Command>({ prefix == "reload" }) { player: Player ->
     when (content) {
         "stairs" -> get<Stairs>().load()
         "tracks", "songs" -> get<MusicTracks>().load()
-        "floor items" -> {
-            val items: FloorItems = get()
-            items.chunks.forEach { (_, set) ->
-                set.forEach {
-                    items.remove(it)
-                }
-            }
-            val spawns: FloorItemSpawns = get()
-            spawns.load()
-            reloadRegions = true
-        }
-        "npcs" -> {
-            val npcs: NPCs = get()
-            npcs.forEach {
-                npcs.remove(it)
-            }
-            val spawns: NPCSpawns = get()
-            spawns.load()
-            reloadRegions = true
-        }
         "objects" -> {
             val objects: CustomObjects = get()
             objects.spawns.forEach { (_, set) ->
@@ -260,7 +262,12 @@ on<Command>({ prefix == "reload" }) { player: Player ->
             reloadRegions = true
         }
         "nav graph", "ai graph" -> get<NavigationGraph>().load()
-        "areas" -> get<Areas>().load()
+        "areas", "npcs", "floor items" -> {
+            val areas: Areas = get()
+            areas.load()
+            areas.clear()
+            reloadRegions = true
+        }
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers" -> get<ContainerDefinitions>().load()

@@ -1,12 +1,12 @@
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.bank.*
+import world.gregs.voidps.ai.weightedSample
+import world.gregs.voidps.bot.*
+import world.gregs.voidps.bot.bank.closeBank
+import world.gregs.voidps.bot.bank.depositAll
+import world.gregs.voidps.bot.bank.openBank
+import world.gregs.voidps.bot.bank.withdraw
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.shop.buy
-import world.gregs.voidps.bot.shop.closeShop
-import world.gregs.voidps.bot.shop.openShop
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
@@ -26,6 +26,7 @@ import world.gregs.voidps.engine.map.area.MapArea
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.network.instruct.InteractObject
 import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
@@ -46,14 +47,14 @@ on<World, Startup> {
         val type = RegularTree.values().firstOrNull { area.tags.contains(it.id) }
         val range = when (type) {
             RegularTree.Willow -> 30 until 45
-            RegularTree.Maple_Tree -> 45 until 60
+            RegularTree.MapleTree -> 45 until 60
             RegularTree.Yew -> 60 until 68
             RegularTree.Ivy -> 68 until 75
-            RegularTree.Magic_Tree -> 75..99
+            RegularTree.MagicTree -> 75..99
             else -> 0 until 30
         }
         val task = Task(
-            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".replace("_", " "),
+            name = "cut ${(type ?: RegularTree.Tree).name.plural(2).toLowerCase()} at ${area.name}".toTitleCase(),
             block = {
                 while (player.levels.getMax(Skill.Woodcutting) < range.last + 1) {
                     cutTrees(area, type)
@@ -74,9 +75,10 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
     setupInventory()
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val tree = player.viewport.objects
+        val trees = player.viewport.objects
             .filter { isAvailableTree(map, it, type) }
-            .minByOrNull { tree -> tile.distanceTo(tree) }
+            .map { tree -> tree to tile.distanceTo(tree) }
+        val tree = weightedSample(trees, invert = true)
         if (tree == null) {
             await("tick")
             if (player.inventory.spaces < 4) {
@@ -97,7 +99,7 @@ fun Bot.isAvailableTree(map: MapArea, obj: GameObject, type: Tree?): Boolean {
         return false
     }
     val tree = Tree.get(obj) ?: return false
-    if (type != null && type != tree) {
+    if (type != null && type != tree && type != RegularTree.Oak && tree != RegularTree.Tree) {
         return false
     }
     return player.has(Skill.Woodcutting, tree.level, false)
@@ -134,7 +136,8 @@ suspend fun Bot.setupInventory() {
     if (bestOwned == null || bestOwned.index < 7) {
         val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
         if (bestShop != null && bestOwned?.index ?: -1 < bestShop.index) {
-            buyHatchet(bestShop)
+            buyItem(bestShop.id)
+            equip(bestShop.id)
             return
         }
     }
@@ -152,15 +155,9 @@ suspend fun Bot.setupInventory() {
             .filter { Hatchet.hasRequirements(player, it, false) }
             .maxByOrNull { it.ordinal }!!
         withdraw(bestHatchet.id)
+        equip(bestHatchet.id)
     }
     closeBank()
-}
-
-suspend fun Bot.buyHatchet(hatchet: Hatchet) {
-    withdrawCoins()
-    openShop("bobs_axe_shop")
-    buy(hatchet.id)
-    closeShop()
 }
 
 fun Bot.hasUsableHatchet(): Boolean {
@@ -171,16 +168,6 @@ fun Bot.hasUsableHatchet(): Boolean {
         return true
     }
     if (player.bank.getItems().any { Hatchet.hasRequirements(player, it) }) {
-        return true
-    }
-    return false
-}
-
-fun Bot.hasCoins(amount: Int): Boolean {
-    if (player.inventory.contains("coins") && player.inventory.getCount("coins") >= amount) {
-        return true
-    }
-    if (player.bank.contains("coins") && player.bank.getCount("coins") >= amount) {
         return true
     }
     return false

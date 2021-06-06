@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.map.collision.flag
  * Checks if within interact range of a wall
  * e.g On the correct side to view a painting on a wall
  */
-data class WallTargetStrategy(
+class WallTargetStrategy(
     private val collisions: Collisions,
     private val gameObject: GameObject
 ) : TileTargetStrategy {

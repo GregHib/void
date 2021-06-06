@@ -46,6 +46,28 @@ cow:
   style: "crush"
   examine: "Converts grass to beef."
   category: "cow"
+chicken:
+  id: 41
+  att: 1
+  str: 1
+  def: 1
+  mage: 1
+  speed: 4
+  range: 1
+  dstab: -42
+  attbns: -47
+  strbns: -42
+  dslash: -42
+  dcrush: -42
+  dmagic: -42
+  drange: -42
+  hitpoints: 30
+  poisonous: false
+  immune_poison: false
+  slayxp: 3.0
+  style: "stab"
+  examine: "Yep. Definitely a chicken."
+  category: "bird"
 cow_brown:
   id: 397
   copy: cow
@@ -308,3 +330,17 @@ celestial_mage:
   id: 11228
 sagittarian_ranger:
   id: 11229
+fishing_spot_small_net_bait:
+  id: 327
+  examine: "It looks like there might be fish swimming in the water."
+fishing_spot_lure_bait:
+  id: 309
+  examine: "It looks like there might be fish swimming in the water."
+fishing_spot_crayfish:
+  id: 7862
+  examine: "It looks like there might be fish swimming in the water."
+hank:
+  id: 8864
+  race: "Human"
+  shop: lumbridge_fishing_supplies
+  examine: "A product of a consumerist society."

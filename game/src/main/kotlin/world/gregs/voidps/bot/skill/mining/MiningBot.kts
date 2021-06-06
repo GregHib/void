@@ -1,12 +1,12 @@
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
-import world.gregs.voidps.bot.bank.*
+import world.gregs.voidps.ai.weightedSample
+import world.gregs.voidps.bot.*
+import world.gregs.voidps.bot.bank.closeBank
+import world.gregs.voidps.bot.bank.depositAll
+import world.gregs.voidps.bot.bank.openBank
+import world.gregs.voidps.bot.bank.withdraw
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
-import world.gregs.voidps.bot.shop.buy
-import world.gregs.voidps.bot.shop.closeShop
-import world.gregs.voidps.bot.shop.openShop
 import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
@@ -77,9 +77,10 @@ suspend fun Bot.mineRocks(map: MapArea, type: Rock) {
     setupInventory()
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val rock = player.viewport.objects
+        val rocks = player.viewport.objects
             .filter { isAvailableRock(map, it, type) }
-            .minByOrNull { rock -> tile.distanceTo(rock) }
+            .map { rock -> rock to tile.distanceTo(rock) }
+        val rock = weightedSample(rocks, invert = true)
         if (rock == null) {
             await("tick")
             if (player.inventory.spaces < 4) {
@@ -137,7 +138,8 @@ suspend fun Bot.setupInventory() {
     if (bestOwned == null || bestOwned.delay > 2) {
         val bestShop = getBestUsableShopPickaxe("bobs_brilliant_axes")
         if (bestShop != null && bestOwned?.delay ?: 10 > bestShop.delay) {
-            buyPickaxe(bestShop)
+            buyItem(bestShop.id)
+            equip(bestShop.id)
             return
         }
     }
@@ -155,15 +157,9 @@ suspend fun Bot.setupInventory() {
             .filter { Pickaxe.hasRequirements(player, it, false) }
             .minByOrNull { it.delay }!!
         withdraw(bestPickaxe.id)
+        equip(bestPickaxe.id)
     }
     closeBank()
-}
-
-suspend fun Bot.buyPickaxe(pickaxe: Pickaxe) {
-    withdrawCoins()
-    openShop("bobs_axe_shop")
-    buy(pickaxe.id)
-    closeShop()
 }
 
 fun Bot.hasUsablePickaxe(): Boolean {
@@ -174,16 +170,6 @@ fun Bot.hasUsablePickaxe(): Boolean {
         return true
     }
     if (player.bank.getItems().any { Pickaxe.hasRequirements(player, it) }) {
-        return true
-    }
-    return false
-}
-
-fun Bot.hasCoins(amount: Int): Boolean {
-    if (player.inventory.contains("coins") && player.inventory.getCount("coins") >= amount) {
-        return true
-    }
-    if (player.bank.contains("coins") && player.bank.getCount("coins") >= amount) {
         return true
     }
     return false
