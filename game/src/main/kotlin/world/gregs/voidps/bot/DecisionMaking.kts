@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
-import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.bank.bank
 
@@ -22,9 +21,8 @@ val scope = CoroutineScope(Contexts.Game)
 val logger = InlineLogger("Bot")
 
 on<Registered> { bot: Bot ->
-    if (bot.contains("task")) {
+    if (bot.contains("task") && !bot.contains("task_started")) {
         val name: String = bot["task"]
-        val tasks: TaskManager = get()
         val task = tasks.get(name)
         if (task == null) {
             bot.clear("task")
@@ -38,7 +36,7 @@ on<World, AiTick> {
     players.forEach { player ->
         if (player.isBot) {
             val bot: Bot = player["bot"]
-            if (!player.contains("task")) {
+            if (!bot.contains("task")) {
                 assign(bot, tasks.assign(bot))
             }
             val events: MutableList<Event> = player["events"]
@@ -56,6 +54,7 @@ on<World, AiTick> {
 fun assign(bot: Bot, task: Task) {
     logger.debug { "Task assigned: ${bot.player.name} - ${task.name}" }
     bot["task"] = task.name
+    bot["task_started"] = true
     task.spaces--
     scope.launch {
         try {

@@ -17,7 +17,7 @@ lumbridge_west_trees:
   area:
     x: [ 3186, 3197 ]
     y: [ 3238, 3250 ]
-  tags: [ trees, regular, oak ]
+  tags: [ trees, regular, oak, spaces_2 ]
 lumbridge_east_trees:
   area:
     x: [ 3260, 3267 ]
