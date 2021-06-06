@@ -51,9 +51,9 @@ on<World, Startup> {
                     type == RegularFishingSpot.SmallNetBait && key == "Bait" -> 5 until 20
                     type == RegularFishingSpot.LureBait && key == "Lure" -> if (bait == Bait.Feather) 20 until 40 else 38 until 40
                     type == RegularFishingSpot.LureBait && key == "Bait" -> 25 until 35
+                    type == RegularFishingSpot.Crayfish && key == "Cage" -> 0 until 15
                     key == "Cage" -> 40 until 50
                     key == "Harpoon" -> 35 until 99
-                    type == RegularFishingSpot.Crayfish && key == "Cage" -> 0 until 15
                     type == RegularFishingSpot.SmallNetHarpoon && key == "Net" -> 62 until 99
                     type == RegularFishingSpot.BigNetHarpoon && key == "Harpoon" -> 76 until 99
                     else -> continue

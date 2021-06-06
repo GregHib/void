@@ -338,6 +338,8 @@ edges:
         to: *lumbridge-west-fire
       - from: *lumbridge-west-fire
         to: *lumbridge-pond-south
+      - from: *lumbridge-pond-north
+        to: *lumbridge-pond-south
       - from: *lumbridge-west-fire
         to: *lumbridge-west-path
       - from: *lumbridge-west-path
