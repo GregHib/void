@@ -80,7 +80,7 @@ on<World, Startup> {
 suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait) {
     setupInventory(type, option, bait)
     goToArea(map)
-    while (player.inventory.isNotFull() && player.has(bait.id)) {
+    while (player.inventory.isNotFull() && (bait == Bait.None || player.has(bait.id))) {
         val spot = player.viewport.npcs.current
             .filter { isAvailableSpot(map, it, type, option, bait) }
             .minByOrNull { spot -> tile.distanceTo(spot) }
@@ -123,7 +123,7 @@ suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     }
 
     val hasTackle = tackles.any { tackle -> player.has(tackle.id) }
-    val hasBait = player.has(bait.id)
+    val hasBait = bait == Bait.None || player.has(bait.id)
     if (hasTackle && hasBait && player.inventory.spaces > 10) {
         return
     }
