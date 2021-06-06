@@ -70,7 +70,7 @@ data class Cuboid(
     }
 
 
-    fun toRectangles(): List<Rectangle> = (minPlane..maxPlane).map { plane -> Rectangle(minX, minY, maxX, maxY/*, plane*/) }
+    fun toRectangles(): List<Rectangle> = (minPlane..maxPlane).map { Rectangle(minX, minY, maxX, maxY) }
 
     override fun contains(x: Int, y: Int, plane: Int): Boolean {
         return plane in minPlane..maxPlane && x in minX..maxX && y in minY..maxY
@@ -79,7 +79,7 @@ data class Cuboid(
     override fun random() = Tile(random(minX, maxX), random(minY, maxY), random(minPlane, maxPlane))
 
     companion object {
-        fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second)
+        fun random(first: Int, second: Int) = if (first == second) first else Random.nextInt(first, second + 1)
     }
 
     override fun toString(): String {
