@@ -1,3 +1,4 @@
+import world.gregs.voidps.ai.weightedSample
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.*
@@ -81,9 +82,10 @@ suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait
     setupInventory(type, option, bait)
     goToArea(map)
     while (player.inventory.isNotFull() && (bait == Bait.None || player.has(bait.id))) {
-        val spot = player.viewport.npcs.current
+        val spots = player.viewport.npcs.current
             .filter { isAvailableSpot(map, it, type, option, bait) }
-            .minByOrNull { spot -> tile.distanceTo(spot) }
+            .map { it to tile.distanceTo(it) }
+        val spot = weightedSample(spots, invert = true)
         if (spot == null) {
             await("tick")
             if (player.inventory.spaces < 4) {

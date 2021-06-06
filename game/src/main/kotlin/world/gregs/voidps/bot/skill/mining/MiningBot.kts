@@ -1,3 +1,4 @@
+import world.gregs.voidps.ai.weightedSample
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.closeBank
@@ -79,9 +80,10 @@ suspend fun Bot.mineRocks(map: MapArea, type: Rock) {
     setupInventory()
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val rock = player.viewport.objects
+        val rocks = player.viewport.objects
             .filter { isAvailableRock(map, it, type) }
-            .minByOrNull { rock -> tile.distanceTo(rock) }
+            .map { rock -> rock to tile.distanceTo(rock) }
+        val rock = weightedSample(rocks, invert = true)
         if (rock == null) {
             await("tick")
             if (player.inventory.spaces < 4) {
@@ -157,8 +159,13 @@ suspend fun Bot.setupInventory() {
             .filter { Pickaxe.hasRequirements(player, it, false) }
             .minByOrNull { it.delay }!!
         withdraw(bestPickaxe.id)
+        equip(bestPickaxe.id)
     }
     closeBank()
+}
+
+fun equip(item: String) {
+
 }
 
 fun Bot.hasUsablePickaxe(): Boolean {

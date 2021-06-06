@@ -72,27 +72,27 @@ drayor_bank:
     x: [ 3088, 3097 ]
     y: [ 3240, 3246 ]
   tags: [ bank ]
-lumbridge_east_copper_mine:
+lumbridge_swamp_east_copper_mine:
   area:
     x: [ 3227, 3231 ]
     y: [ 3143, 3149 ]
-  tags: [ mine, copper ]
-lumbridge_east_tin_mine:
+  tags: [ mine, copper, spaces_2 ]
+lumbridge_swamp_east_tin_mine:
   area:
     x: [ 3222, 3226 ]
     y: [ 3145, 3149 ]
-  tags: [ mine, tin ]
-lumbridge_west_coal_mine:
+  tags: [ mine, tin, spaces_2 ]
+lumbridge_swamp_west_coal_mine:
   area:
     x: [ 3143, 3147 ]
     y: [ 3148, 3154 ]
-  tags: [ mine, coal ]
-lumbridge_west_mithril_mine:
+  tags: [ mine, coal, spaces_2 ]
+lumbridge_swamp_west_mithril_mine:
   area:
     x: [ 3143, 3149 ]
     y: [ 3143, 3147 ]
   tags: [ mine, mithril ]
-lumbridge_west_adamantite_mine:
+lumbridge_swamp_west_adamantite_mine:
   area:
     x: [ 3147, 3149 ]
     y: [ 3145, 3149 ]

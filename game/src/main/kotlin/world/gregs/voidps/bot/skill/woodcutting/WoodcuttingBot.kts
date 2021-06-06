@@ -1,3 +1,4 @@
+import world.gregs.voidps.ai.weightedSample
 import world.gregs.voidps.bot.Task
 import world.gregs.voidps.bot.TaskManager
 import world.gregs.voidps.bot.bank.closeBank
@@ -77,9 +78,10 @@ suspend fun Bot.cutTrees(map: MapArea, type: Tree? = null) {
     setupInventory()
     goToArea(map)
     while (player.inventory.isNotFull()) {
-        val tree = player.viewport.objects
+        val trees = player.viewport.objects
             .filter { isAvailableTree(map, it, type) }
-            .minByOrNull { tree -> tile.distanceTo(tree) }
+            .map { tree -> tree to tile.distanceTo(tree) }
+        val tree = weightedSample(trees, invert = true)
         if (tree == null) {
             await("tick")
             if (player.inventory.spaces < 4) {
