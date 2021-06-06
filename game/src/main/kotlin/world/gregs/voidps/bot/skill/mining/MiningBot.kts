@@ -1,12 +1,9 @@
 import world.gregs.voidps.ai.weightedSample
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.closeBank
 import world.gregs.voidps.bot.bank.depositAll
 import world.gregs.voidps.bot.bank.openBank
 import world.gregs.voidps.bot.bank.withdraw
-import world.gregs.voidps.bot.buyItem
-import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -142,6 +139,7 @@ suspend fun Bot.setupInventory() {
         val bestShop = getBestUsableShopPickaxe("bobs_brilliant_axes")
         if (bestShop != null && bestOwned?.delay ?: 10 > bestShop.delay) {
             buyItem(bestShop.id)
+            equip(bestShop.id)
             return
         }
     }
@@ -162,10 +160,6 @@ suspend fun Bot.setupInventory() {
         equip(bestPickaxe.id)
     }
     closeBank()
-}
-
-fun equip(item: String) {
-
 }
 
 fun Bot.hasUsablePickaxe(): Boolean {

@@ -8,6 +8,9 @@ import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.contains
+import world.gregs.voidps.engine.entity.definition.ItemDefinitions
+import world.gregs.voidps.network.instruct.InteractInterface
+import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.activity.bank.bank
 
 val Player.isBot: Boolean
@@ -28,4 +31,12 @@ suspend fun Bot.buyItem(item: String, amount: Int = 1) {
     openNearestShop(item)
     buy(item, amount)
     closeShop()
+}
+
+fun Bot.equip(item: String) {
+    val id = get<ItemDefinitions>().getIdOrNull(item) ?: return
+    val index = player.inventory.indexOf(item)
+    if (index != -1) {
+        player.instructions.tryEmit(InteractInterface(interfaceId = 149, componentId = 0, itemId = id, itemSlot = index, option = 1))
+    }
 }

@@ -1,12 +1,9 @@
 import world.gregs.voidps.ai.weightedSample
-import world.gregs.voidps.bot.Task
-import world.gregs.voidps.bot.TaskManager
+import world.gregs.voidps.bot.*
 import world.gregs.voidps.bot.bank.closeBank
 import world.gregs.voidps.bot.bank.depositAll
 import world.gregs.voidps.bot.bank.openBank
 import world.gregs.voidps.bot.bank.withdraw
-import world.gregs.voidps.bot.buyItem
-import world.gregs.voidps.bot.hasCoins
 import world.gregs.voidps.bot.navigation.await
 import world.gregs.voidps.bot.navigation.goToArea
 import world.gregs.voidps.bot.navigation.resume
@@ -140,6 +137,7 @@ suspend fun Bot.setupInventory() {
         val bestShop = getBestUsableShopHatchet("bobs_brilliant_axes")
         if (bestShop != null && bestOwned?.index ?: -1 < bestShop.index) {
             buyItem(bestShop.id)
+            equip(bestShop.id)
             return
         }
     }
@@ -157,6 +155,7 @@ suspend fun Bot.setupInventory() {
             .filter { Hatchet.hasRequirements(player, it, false) }
             .maxByOrNull { it.ordinal }!!
         withdraw(bestHatchet.id)
+        equip(bestHatchet.id)
     }
     closeBank()
 }
