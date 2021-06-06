@@ -384,3 +384,27 @@ hanks_fishing_shop:
   tags: [ shop, small_fishing_net, fishing_rod, fly_fishing_rod, crayfish_cage, fishing_bait, feather ]
   npcs:
     - name: hank
+draynor_fishing_area:
+  area:
+    x: [ 3085, 3086 ]
+    y: [ 3227, 3231 ]
+  tags: [ fish, lure_bait, spaces_5 ]
+  npcs:
+    - name: fishing_spot_small_net_bait
+      limit: 4
+lumbridge_pond_fishing_area:
+  area:
+    x: [ 3168, 3174 ]
+    y: [ 3265, 3275 ]
+  tags: [ fish, crayfish, spaces_2 ]
+  npcs:
+    - name: fishing_spot_crayfish
+      limit: 3
+lumbridge_south_river_fishing_area:
+  area:
+    x: [ 3258, 3259 ]
+    y: [ 3203, 3207 ]
+  tags: [ fish, crayfish, spaces_2 ]
+  npcs:
+    - name: fishing_spot_crayfish
+      limit: 3

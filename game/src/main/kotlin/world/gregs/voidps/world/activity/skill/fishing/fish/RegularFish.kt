@@ -9,7 +9,7 @@ enum class RegularFish(
     override val chance: IntRange,
 ) : Catch {
     Shrimps(1, 10.0, 48..256),
-    Crayfish(1, 10.0, 1..1),
+    Crayfish(1, 10.0, 48..256),
     Sardine(5, 20.0, 32..192),
     Karambwanji(5, 5.0, 100..250),
     Herring(10, 30.0, 24..128),

@@ -33,6 +33,8 @@ nodes:
     south-village:
       - &south-village [ 3236, 3205 ]
       - &church [ 3243, 3209 ]
+      - &behind-church [ 3250, 3212 ]
+      - &church-fishing-spot [ 3258, 3206 ]
       - &bobs-axes [ 3231, 3203 ]
       - &bobs-door
         type: "object"
@@ -80,6 +82,9 @@ nodes:
       - &lum-village-trees-west [ 3226, 3245 ]
       - &lumbridge-task-building [ 3204, 3246 ]
       - &lumbridge-fishing-shop-entrance [ 3194, 3247 ]
+      - &lumbridge-west-fire [ 3177, 3256 ]
+      - &lumbridge-pond-south [ 3171, 3265 ]
+      - &lumbridge-pond-north [ 3171, 3275 ]
       - &lumbridge-fishing-shop [ 3195, 3251 ]
       - &lumbridge-west-path [ 3172, 3239 ]
       - &lumbridge-ham-path [ 3157, 3234 ]
@@ -94,6 +99,7 @@ nodes:
       - &draynor-stalls [ 3079, 3249 ]
       - &draynor-pigsty [ 3071, 3266 ]
       - &draynor-willow-trees [ 3086, 3237 ]
+      - &draynor-fishing-spot [ 3086, 3231 ]
       - &draynor-south [ 3097, 3235 ]
       - &draynor-bank-trees [ 3099, 3246 ]
       - &draynor-west-trees [ 3072, 3250 ]
@@ -208,6 +214,10 @@ edges:
         to: *church
       - from: *south-village
         to: *church
+      - from: *gate-south
+        to: *behind-church
+      - from: *behind-church
+        to: *church-fishing-spot
       - from: *south-village
         to: *bobs-axes
         cost: 5
@@ -324,6 +334,12 @@ edges:
         to: *lumbridge-tree-patch
       - from: *lumbridge-fishing-shop-entrance
         to: *lumbridge-fishing-shop
+      - from: *lumbridge-fishing-shop-entrance
+        to: *lumbridge-west-fire
+      - from: *lumbridge-west-fire
+        to: *lumbridge-pond-south
+      - from: *lumbridge-west-fire
+        to: *lumbridge-west-path
       - from: *lumbridge-west-path
         to: *lumbridge-ham-path
       - from: *lumbridge-west-path
@@ -360,6 +376,10 @@ edges:
       - from: *draynor-bank
         to: *draynor-willow-trees
       - from: *draynor-willow-trees
+        to: *draynor-south
+      - from: *draynor-willow-trees
+        to: *draynor-fishing-spot
+      - from: *draynor-fishing-spot
         to: *draynor-south
       - from: *draynor-jail-path-west
         to: *draynor-south
