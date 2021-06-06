@@ -96,6 +96,9 @@ enum class Hatchet(val index: Int) {
         fun isHatchet(item: Item): Boolean = isHatchet(item.name)
 
         fun get(name: String): Hatchet? {
+            if (name.isBlank()) {
+                return null
+            }
             val name = name.toUnderscoreCase()
             for (hatchet in values()) {
                 if (name == hatchet.id) {

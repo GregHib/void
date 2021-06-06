@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.AiTick
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.bank.bank
 
 val players: Players by inject()
 val tasks: TaskManager by inject()
@@ -57,7 +58,11 @@ fun assign(bot: Bot, task: Task) {
     bot["task"] = task.name
     task.spaces--
     scope.launch {
-        task.block.invoke(bot)
+        try {
+            task.block.invoke(bot)
+        } catch (t: Throwable) {
+            logger.warn(t) { "Task cancelled for ${bot.player.bank}" }
+        }
         bot.clear("task")
         task.spaces++
     }

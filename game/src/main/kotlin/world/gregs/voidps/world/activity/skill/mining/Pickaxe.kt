@@ -49,7 +49,7 @@ enum class Pickaxe(val delay: Int) {
     PromethiumPickaxe(3),
     PrimalPickaxe(2);
 
-    val id: String = name.toTitleCase().toLowerCase()
+    val id: String = name.toTitleCase().toUnderscoreCase()
 
     val requiredLevel: Int
         get() = when (this) {
@@ -91,6 +91,9 @@ enum class Pickaxe(val delay: Int) {
         }
 
         fun get(name: String): Pickaxe? {
+            if (name.isBlank()) {
+                return null
+            }
             val name = name.toUnderscoreCase()
             for (pickaxe in values()) {
                 if (name == pickaxe.id) {
