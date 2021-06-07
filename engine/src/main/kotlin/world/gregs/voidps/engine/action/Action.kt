@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.action
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
@@ -119,9 +120,15 @@ class Action(
         return true
     }
 
+    val logger = InlineLogger()
+
     suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true) {
         val ms = setAnimation(name, speed, stand, force, walk, run)
-        delay(TimeUnit.MILLISECONDS.toTicks(ms))
+        if (ms == -1L) {
+            logger.warn { "No animation delay $name" }
+        } else {
+            delay(TimeUnit.MILLISECONDS.toTicks(ms))
+        }
     }
 }
 

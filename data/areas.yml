@@ -408,3 +408,108 @@ lumbridge_south_river_fishing_area:
   npcs:
     - name: fishing_spot_crayfish
       limit: 3
+lumbridge_teleport:
+  area:
+    x: [ 3221, 3222 ]
+    y: [ 3217, 3220 ]
+  tags: [ teleport ]
+varrock_teleport:
+  area:
+    x: [ 3212, 3213 ]
+    y: [ 3428, 3429 ]
+  tags: [ teleport ]
+falador_teleport:
+  area:
+    x: [ 2963, 2967 ]
+    y: [ 3379, 3383 ]
+  tags: [ teleport ]
+camelot_teleport:
+  area:
+    x: [ 2756, 2758 ]
+    y: [ 3476, 3479 ]
+  tags: [ teleport ]
+ardougne_teleport:
+  area:
+    x: [ 2660, 2664 ]
+    y: [ 3304, 3308 ]
+  tags: [ teleport ]
+watchtower_teleport:
+  area:
+    x: [ 2545, 2548 ]
+    y: [ 3113, 3116 ]
+  tags: [ teleport ]
+runecrafting_guild_teleport:
+  area:
+    x: [ 1695, 1697 ]
+    y: [ 5463, 5465 ]
+  tags: [ teleport ]
+air_altar_teleport:
+  area:
+    x: [ 3124, 3125 ]
+    y: [ 3406, 3407 ]
+  tags: [ teleport ]
+mind_altar_teleport:
+  area:
+    x: [ 2979, 2980 ]
+    y: [ 3512, 3513 ]
+  tags: [ teleport ]
+water_altar_teleport:
+  area:
+    x: [ 3182, 3183 ]
+    y: [ 3162, 3163 ]
+  tags: [ teleport ]
+earth_altar_teleport:
+  area:
+    x: [ 3304, 3304 ]
+    y: [ 3475, 3476 ]
+  tags: [ teleport ]
+fire_altar_teleport:
+  area:
+    x: [ 3309, 3311 ]
+    y: [ 3251, 3253 ]
+  tags: [ teleport ]
+body_altar_teleport:
+  area:
+    x: [ 3050, 3051 ]
+    y: [ 3442, 3443 ]
+  tags: [ teleport ]
+cosmic_altar_teleport:
+  area:
+    x: [ 2406, 2408 ]
+    y: [ 4382, 3484 ]
+  tags: [ teleport ]
+nature_altar_teleport:
+  area:
+    x: [ 2864, 2866 ]
+    y: [ 3022, 3024 ]
+  tags: [ teleport ]
+law_altar_teleport:
+  area:
+    x: [ 2856, 2857 ]
+    y: [ 3378, 3379 ]
+  tags: [ teleport ]
+death_altar_teleport:
+  area:
+    x: [ 1863, 1864 ]
+    y: [ 4637, 4640 ]
+  tags: [ teleport ]
+blood_altar_teleport:
+  area:
+    x: [ 3558, 3559 ]
+    y: [ 9777, 9778 ]
+  tags: [ teleport ]
+astral_altar_teleport:
+  area:
+    x: [ 2150, 2152 ]
+    y: [ 3860, 3863 ]
+  tags: [ teleport ]
+trollheim_teleport:
+  area:
+    x: [ 2886, 2890 ]
+    y: [ 3667, 3669 ]
+  tags: [ teleport ]
+mobilising_armies_teleport:
+  area:
+    x: [ 2412, 2415 ]
+    y: [ 2847, 2849 ]
+  tags: [ teleport ]

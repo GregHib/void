@@ -969,3 +969,51 @@ barehand_tuna_2:
   id: 6711
 fish_crayfish_cage:
   id: 10009
+home_tele_1:
+  id: 1722
+home_tele_2:
+  id: 1723
+home_tele_3:
+  id: 1724
+home_tele_4:
+  id: 1725
+home_tele_5:
+  id: 2798
+home_tele_6:
+  id: 2799
+home_tele_7:
+  id: 2800
+home_tele_8:
+  id: 3195
+home_tele_9:
+  id: 4643
+home_tele_10:
+  id: 4645
+home_tele_11:
+  id: 4646
+home_tele_12:
+  id: 4847
+home_tele_13:
+  id: 4848
+home_tele_14:
+  id: 4849
+home_tele_15:
+  id: 4850
+home_tele_16:
+  id: 4851
+home_tele_17:
+  id: 4852
+teleport_modern:
+  id: 8939
+teleport_land_modern:
+  id: 8941
+teleport_ancient:
+  id: 9599
+teleport_lunar:
+  id: 9606
+teleport_land_lunar:
+  id: 9013
+teleport_tablet:
+  id: 9597
+teleport_land_tablet:
+  id: 9598

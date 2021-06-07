@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
@@ -40,6 +41,9 @@ import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.Stairs
 
+val areas: Areas by inject()
+val players: Players by inject()
+
 on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
     if (content.contains(",")) {
         val params = content.split(",")
@@ -49,15 +53,14 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
         player.tele(x, y, plane)
     } else {
         val parts = content.split(" ")
-        if (parts.size == 1) {
-            player.tele(Region(parts[0].toInt()).tile.add(32, 32))
-        } else {
-            player.tele(parts[0].toInt(), parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
+        val int = parts[0].toIntOrNull()
+        when {
+            int == null -> player.tele(areas.getValue(content).area)
+            parts.size == 1 -> player.tele(Region(int).tile.add(32, 32))
+            else -> player.tele(int, parts[1].toInt(), if (parts.size > 2) parts[2].toInt() else 0)
         }
     }
 }
-
-val players: Players by inject()
 
 on<Command>({ prefix == "teletome" }) { player: Player ->
     val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
@@ -200,6 +203,18 @@ on<Command>({ prefix == "curses" }) { player: Player ->
     player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
 }
 
+on<Command>({ prefix == "ancients" }) { player: Player ->
+    player.open("ancient_spellbook")
+}
+
+on<Command>({ prefix == "lunar" }) { player: Player ->
+    player.open("lunar_spellbook")
+}
+
+on<Command>({ prefix == "regular" }) { player: Player ->
+    player.open("modern_spellbook")
+}
+
 on<Command>({ prefix == "pray" }) { player: Player ->
     player.levels.clearOffset(Skill.Prayer)
 }
@@ -271,7 +286,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "object defs" -> get<ObjectDefinitions>().load()
         "anim defs", "anims" -> get<AnimationDefinitions>().load()
         "container defs", "containers" -> get<ContainerDefinitions>().load()
-        "graphic defs", "graphics" -> get<GraphicDefinitions>().load()
+        "graphic defs", "graphics", "gfx" -> get<GraphicDefinitions>().load()
         "npc defs" -> get<NPCDefinitions>().load()
         "item defs" -> get<ItemDefinitions>().load()
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()

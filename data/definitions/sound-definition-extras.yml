@@ -130,3 +130,9 @@ pickup_item:
   id: 2582
 prayer_drain:
   id: 2672
+teleport:
+  id: 200
+teleport_land:
+  id: 201
+teleport_tablet:
+  id: 965
