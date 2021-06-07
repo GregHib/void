@@ -107,7 +107,7 @@ magic_gold_feather:
   examine: "It will point the way for me."
   use: "Quest"
   kept: "Wilderness"
-holy_grail_item:
+holy_grail:
   id: 19
   tradeable: false
   weight: 0.085
@@ -1220,7 +1220,7 @@ fish_food:
   destroy: "Hopefully, there is some more in Draynor Manor."
   examine: "Keeps pet fish strong and healthy."
   kept: "Wilderness"
-poison_item:
+poison:
   id: 273
   tradeable: false
   weight: 0.02
@@ -3560,7 +3560,7 @@ book_on_chemicals:
   aka: "Volatile chemicals - Experimental Test Notes"
   examine: "It's about chemicals, judging from its cover."
   kept: "Wilderness"
-cup_of_tea_discontinued_item:
+cup_of_tea_discontinued:
   id: 712
   limit: 1000
   edible: true
@@ -4085,7 +4085,7 @@ crest_part_johnathon:
   examine: "A fragment of the Fitzharmon family crest."
   use: "Quest"
   kept: "Wilderness"
-family_crest_item:
+family_crest:
   id: 782
   tradeable: false
   weight: 4.535
@@ -8428,19 +8428,19 @@ farmers_fork:
   kept: "Reclaim"
 farmers_fork_noted:
   id: 1412
-halberd_item:
+halberd:
   id: 1413
   weight: 4.535
   examine: "A halberd."
 halberd_noted:
   id: 1414
-warhammer_item:
+warhammer:
   id: 1415
   weight: 1.814
   examine: "A warhammer."
 warhammer_noted:
   id: 1416
-javelin_item:
+javelin:
   id: 1417
   weight: 1.36
   examine: "A javelin."
@@ -8704,7 +8704,7 @@ weapon_poison_2:
   id: 1465
   weight: 0.025
   examine: "A vial of weapon poison."
-sea_slug_item:
+sea_slug:
   id: 1466
   tradeable: false
   weight: 0.226
@@ -10767,7 +10767,7 @@ prototype_dart_tip:
   examine: "A prototype dart tip - it looks deadly."
   use: "Quest"
   kept: "Wilderness"
-shantay_pass_item:
+shantay_pass:
   id: 1854
   tradeable: false
   examine: "Allows you to pass through the Shantay pass into the Kharid Desert."
@@ -21475,7 +21475,7 @@ dummy:
   examine: "Lets you find incredibly dangerous traps without suffering."
   use: "Quest"
   kept: "Wilderness"
-monkey_item:
+monkey:
   id: 4033
   bankable: false
   tradeable: false
@@ -22305,7 +22305,7 @@ abyssal_whip_2:
   weight: 0.453
   slash: 82.0
   examine: "A weapon from the Abyss."
-stick_item:
+stick:
   id: 4179
   tradeable: false
   weight: 0.01
@@ -30418,7 +30418,7 @@ initiate_hauberk_noted:
   id: 5612
 initiate_cuisse_noted:
   id: 5613
-magic_carpet_item:
+magic_carpet:
   id: 5614
   tradeable: false
   weight: 0.005
@@ -32789,7 +32789,7 @@ rotten_apples:
   weight: 15.0
   examine: "A barrel full of rotten apples."
   kept: "Wilderness"
-apple_barrel_item:
+apple_barrel:
   id: 6094
   tradeable: false
   weight: 15.0
@@ -41939,7 +41939,7 @@ hoop:
   examine: "Try to throw it over the stick."
 hoop_noted:
   id: 7683
-dart_item:
+dart:
   id: 7684
   bankable: false
   weight: 1.36
@@ -43629,7 +43629,7 @@ beam:
   examine: "A wooden beam."
   use: "Quest"
   kept: "Wilderness"
-crawling_hand_item:
+crawling_hand_2:
   id: 7975
   tradeable: false
   weight: 10.0
@@ -43803,50 +43803,50 @@ morytania_painting:
   weight: 1.0
   examine: "A painting of the spooky forests of Morytania."
   kept: "Reclaim"
-small_map_item:
+small_map:
   id: 8004
   tradeable: false
   weight: 1.0
   examine: "A small map of Gielinor."
   kept: "Reclaim"
-medium_map_item:
+medium_map:
   id: 8005
   tradeable: false
   weight: 1.0
   examine: "A medium map of Gielinor."
   kept: "Reclaim"
-large_map_item:
+large_map:
   id: 8006
   tradeable: false
   weight: 1.0
   examine: "A large map of Gielinor."
   kept: "Reclaim"
-varrock_teleport_item:
+varrock_teleport:
   id: 8007
   price: 592
   limit: 1000
   examine: "A tablet containing a magic spell."
-lumbridge_teleport_item:
+lumbridge_teleport:
   id: 8008
   price: 606
   limit: 1000
   examine: "A tablet containing a magic spell."
-falador_teleport_item:
+falador_teleport:
   id: 8009
   price: 590
   limit: 1000
   examine: "A tablet containing a magic spell."
-camelot_teleport_item:
+camelot_teleport:
   id: 8010
   price: 536
   limit: 1000
   examine: "A tablet containing a magic spell."
-ardougne_teleport_item:
+ardougne_teleport:
   id: 8011
   price: 715
   limit: 1000
   examine: "A tablet containing a magic spell."
-watchtower_teleport_item:
+watchtower_teleport:
   id: 8012
   price: 676
   limit: 1000
@@ -43856,12 +43856,12 @@ teleport_to_house:
   price: 579
   limit: 1000
   examine: "A tablet containing a magic spell."
-bones_to_bananas_item:
+bones_to_bananas:
   id: 8014
   price: 366
   limit: 200
   examine: "A tablet containing a magic spell."
-bones_to_peaches_item:
+bones_to_peaches:
   id: 8015
   price: 700
   limit: 200
@@ -44832,19 +44832,19 @@ karamja:
   id: 8292
 isafdar:
   id: 8293
-small_map:
+small_map_2:
   id: 8294
   tradeable: false
   weight: 1.0
   examine: "A small map of Gielinor."
   kept: "Reclaim"
-medium_map:
+medium_map_2:
   id: 8295
   tradeable: false
   weight: 1.0
   examine: "A medium map of Gielinor."
   kept: "Reclaim"
-large_map:
+large_map_2:
   id: 8296
   tradeable: false
   weight: 1.0
@@ -47254,7 +47254,7 @@ iron_key_ham:
   weight: 0.01
   examine: "You stole this key from a guard in the HAM cave."
   kept: "Wilderness"
-zanik_item:
+zanik:
   id: 8870
   tradeable: false
   weight: 30.0
@@ -47344,7 +47344,7 @@ bone_bolts:
   range_str: 49.0
   slot: "Arrows"
   examine: "Good if you have a bone crossbow!"
-zanik:
+zanik_2:
   id: 8887
   tradeable: false
   weight: 30.0
@@ -50748,7 +50748,7 @@ picture_72:
   kept: "Wilderness"
 torch_noted:
   id: 9701
-stick:
+stick_2:
   id: 9702
   tradeable: false
   weight: 0.01
@@ -55714,7 +55714,7 @@ empty_sack_animal_magnetism:
   destroy: "Destroy"
   examine: "A sack with no cows in it."
   kept: "Wilderness"
-undead_chicken_item:
+undead_chicken:
   id: 10487
   tradeable: false
   str: -10.0
@@ -59398,7 +59398,7 @@ bell_jar:
   examine: "A bell jar for covering things."
   use: "Quest"
   kept: "Wilderness"
-wolf_whistle_item:
+wolf_whistle:
   id: 10896
   tradeable: false
   weight: 0.001
@@ -61009,7 +61009,7 @@ arrowheads_varrock_museum:
   weight: 0.001
   examine: "Rusty and very old."
   kept: "Reclaim"
-jewellery_item:
+jewellery:
   id: 11177
   tradeable: false
   weight: 0.001
@@ -73470,7 +73470,7 @@ icefiend_net:
   examine: "Professor Arblenap gave you this net to catch the baby icefiends on Ice Mountain."
   use: "Quest"
   kept: "Wilderness"
-baby_icefiend_item:
+baby_icefiend:
   id: 13231
   tradeable: false
   weight: 1.0
@@ -82933,14 +82933,14 @@ swordfish_hunt_for_red_raktuber:
   examine: "En garde."
   use: "Quest"
   kept: "Wilderness"
-penguin_item:
+penguin:
   id: 14832
   tradeable: false
   weight: 1.5
   destroy: "Release"
   examine: "A captured penguin."
   kept: "Vanish"
-kgp_agent_item:
+kgp_agent:
   id: 14833
   tradeable: false
   weight: 1.5
@@ -86828,7 +86828,7 @@ statue_of_dahmaroc_list:
   weight: 0.005
   examine: "A list of the pieces I've added to the strange statue in Varrock Museum."
   kept: "Reclaim"
-statue_plinth_item:
+statue_plinth:
   id: 15521
   tradeable: false
   weight: 10.0
@@ -102334,70 +102334,70 @@ thread_the_fremennik_trials:
   examine: "Some blue thread."
   use: "Quest"
   kept: "Vanish"
-salve_nettles_item:
+salve_nettles:
   id: 17448
   examine: "This can be spun and woven to form salve cloth."
   use: "Dungeoneering"
   kept: "Always"
 salve_nettles_noted:
   id: 17449
-wildercress_item:
+wildercress:
   id: 17450
   examine: "This can be spun and woven to form wildercress cloth."
   use: "Dungeoneering"
   kept: "Always"
 wildercress_noted:
   id: 17451
-blightleaf_item:
+blightleaf:
   id: 17452
   examine: "This can be spun and woven to form blightleaf cloth."
   use: "Dungeoneering"
   kept: "Always"
 blightleaf_noted:
   id: 17453
-roseblood_item:
+roseblood:
   id: 17454
   examine: "This can be spun and woven to form roseblood cloth."
   use: "Dungeoneering"
   kept: "Always"
 roseblood_noted:
   id: 17455
-bryll_item:
+bryll:
   id: 17456
   examine: "This can be spun and woven to form bryll cloth."
   use: "Dungeoneering"
   kept: "Always"
 bryll_noted:
   id: 17457
-duskweed_item:
+duskweed:
   id: 17458
   examine: "This can be spun and woven to form duskweed cloth."
   use: "Dungeoneering"
   kept: "Always"
 duskweed_noted:
   id: 17459
-soulbell_item:
+soulbell:
   id: 17460
   examine: "This can be spun and woven to form soulbell cloth."
   use: "Dungeoneering"
   kept: "Always"
 soulbell_noted:
   id: 17461
-ectograss_item:
+ectograss:
   id: 17462
   examine: "This can be spun and woven to form ectocloth."
   use: "Dungeoneering"
   kept: "Always"
 ectograss_noted:
   id: 17463
-runeleaf_item:
+runeleaf:
   id: 17464
   examine: "This can be spun and woven to form runic cloth."
   use: "Dungeoneering"
   kept: "Always"
 runeleaf_noted:
   id: 17465
-spiritbloom_item:
+spiritbloom:
   id: 17466
   examine: "This can be spun and woven to form spiritbloom cloth."
   use: "Dungeoneering"
@@ -107137,7 +107137,7 @@ tooth_extractor:
   examine: "Also called a BITE ."
   use: "Quest"
   kept: "Wilderness"
-gnarly_item:
+gnarly:
   id: 18674
   tradeable: false
   weight: 2.0
@@ -107900,7 +107900,7 @@ mabels_ring:
   examine: "It doesn't look very valuable, but Mabel likes it."
   use: "Quest"
   kept: "Wilderness"
-twig_item:
+twig:
   id: 18804
   tradeable: false
   weight: 0.01
@@ -107908,7 +107908,7 @@ twig_item:
   examine: "A completely ordinary twig."
   use: "Quest"
   kept: "Wilderness"
-dummy_item:
+dummy_2:
   id: 18805
   tradeable: false
   weight: 2.0
@@ -113545,7 +113545,7 @@ dororans_engraved_ring:
   examine: "This ring is engraved 'Gudrun the Fair, Gudrun the Fiery'."
   use: "Quest"
   kept: "Wilderness"
-gunnars_ground_item:
+gunnars_ground:
   id: 19772
   tradeable: false
   weight: 0.001
