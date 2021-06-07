@@ -124,3 +124,7 @@ open_gate:
   id: 71
 fell_tree:
   id: 2734
+drop_item:
+  id: 2739
+pickup_item:
+  id: 2582

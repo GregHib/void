@@ -152,6 +152,7 @@ class FloorItems(
             }
             if (super.remove(entity)) {
                 entity.events.emit(Unregistered)
+                return true
             }
         }
         return false
