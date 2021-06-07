@@ -60,7 +60,7 @@ on<InterfaceOption>({ name == "inventory" && component == "container" }) { playe
         return@on
     }
     player.events.emit(
-        ContainerAction(
+        ContainerOption(
             name,
             item,
             itemIndex,

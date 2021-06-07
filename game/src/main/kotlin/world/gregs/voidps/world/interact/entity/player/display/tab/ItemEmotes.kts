@@ -17,24 +17,24 @@ import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.player.cure
-import world.gregs.voidps.world.interact.entity.player.equip.ContainerAction
+import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
 
-on<ContainerAction>({ item.name == "toy_kite" && option == "Fly" }) { player: Player ->
+on<ContainerOption>({ item.name == "toy_kite" && option == "Fly" }) { player: Player ->
     emote(player) {
         player.playAnimation("emote_fly_kite")
     }
 }
 
-on<ContainerAction>({ container == "worn_equipment" && item.name == "reindeer_hat" && option == "Emote" }) { player: Player ->
+on<ContainerOption>({ container == "worn_equipment" && item.name == "reindeer_hat" && option == "Emote" }) { player: Player ->
     emote(player) {
         player.setGraphic("emote_reindeer")
         player.playAnimation("emote_reindeer")
     }
 }
 
-on<ContainerAction>({ container == "inventory" && item.name == "prayer_book" && option == "Recite-prayer" }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && item.name == "prayer_book" && option == "Recite-prayer" }) { player: Player ->
     emote(player) {
         if (player.has("poison")) {
             val poisonDamage = player.getOrNull<Int>("poison_damage") ?: return@emote
@@ -57,13 +57,13 @@ on<ContainerAction>({ container == "inventory" && item.name == "prayer_book" && 
     }
 }
 
-on<ContainerAction>({ item.name == "rubber_chicken" && option == "Dance" }) { player: Player ->
+on<ContainerOption>({ item.name == "rubber_chicken" && option == "Dance" }) { player: Player ->
     emote(player) {
         player.playAnimation("emote_chicken_dance")
     }
 }
 
-on<ContainerAction>({ container == "inventory" && item.name == "spinning_plate" && option == "Spin" }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && item.name == "spinning_plate" && option == "Spin" }) { player: Player ->
     emote(player) {
         val drop = Random.nextBoolean()
         repeat(if (drop) 7 else 10) {
@@ -80,7 +80,7 @@ on<ContinueDialogue>({ name == "snow_globe" && component == "continue" }) { play
     player.dialogues.resume(true)
 }
 
-on<ContainerAction>({ container == "inventory" && item.name == "snow_globe" && option == "Shake" }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && item.name == "snow_globe" && option == "Shake" }) { player: Player ->
     emote(player) {
         player.message("You shake the snow globe.")
         player.playAnimation("emote_shake_snow_globe")
@@ -103,7 +103,7 @@ on<ContainerAction>({ container == "inventory" && item.name == "snow_globe" && o
     }
 }
 
-on<ContainerAction>({ container == "inventory" && item.name == "yo-yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && item.name == "yo-yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
     emote(player) {
         player.playAnimation("emote_yoyo_${option.toLowerCase()}")
     }
