@@ -128,3 +128,5 @@ drop_item:
   id: 2739
 pickup_item:
   id: 2582
+prayer_drain:
+  id: 2672
