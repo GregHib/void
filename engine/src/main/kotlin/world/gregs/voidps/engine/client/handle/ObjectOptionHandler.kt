@@ -38,6 +38,7 @@ class ObjectOptionHandler : Handler<InteractObject>() {
         }
 
         sync {
+
             val selectedOption = options[index]
             val click = ObjectClick(target, selectedOption)
             player.events.emit(click)

@@ -8,7 +8,6 @@ import world.gregs.voidps.engine.entity.character.update.Visual
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
-import world.gregs.voidps.engine.path.PathResult
 
 data class MovementType(var type: PlayerMoveType = PlayerMoveType.None) : Visual {
     override fun needsReset(character: Character): Boolean {
@@ -48,11 +47,12 @@ fun Player.tele(delta: Delta) {
     }
 }
 
+fun Player.move(tile: Tile) = move(tile.delta(this.tile))
+
 fun Player.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
     movement.strategy = null
-    movement.result = PathResult.Failure
     movement.previousTile = tile
     if (movement.delta != Delta.EMPTY) {
         movementType = PlayerMoveType.Teleport

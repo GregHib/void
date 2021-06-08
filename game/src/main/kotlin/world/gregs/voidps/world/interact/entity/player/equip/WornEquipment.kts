@@ -37,7 +37,7 @@ on<InterfaceOption>({ name == "worn_equipment" && option == "*" }) { player: Pla
         return@on
     }
     val slot = EquipSlot.by(component)
-    player.events.emit(ContainerAction(name, item, slot.index, equipOption))
+    player.events.emit(ContainerOption(name, item, slot.index, equipOption))
 }
 
 fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
@@ -50,8 +50,4 @@ fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
         9 -> "Examine"
         else -> null
     }
-}
-
-on<InterfaceOption>({ name == "inventory" && component == "container" && optionId == 9 }) { player: Player ->
-    player.events.emit(ContainerAction(name, item, itemIndex, "Examine"))
 }

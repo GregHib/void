@@ -61,8 +61,8 @@ class MusicTracks {
                 for (region in area.toRegions()) {
                     val tracks = map.getOrPut(region) { mutableListOf() }
                     tracks.add(track)
-                    // Prioritise shape checks over region checks
-                    tracks.sortBy { it.area.toChunks().size.rem(64) == 0  }
+                    // Prioritise smaller shape checks over larger region checks
+                    tracks.sortBy { it.area.area }
                 }
             }
         }

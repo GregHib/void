@@ -9,7 +9,7 @@ data class EffectStart(val effect: String) : Event
 data class EffectStop(val effect: String) : Event
 
 fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
-    if (has(effect)) {
+    if (hasEffect(effect)) {
         stop(effect)
     }
     this["${effect}_effect", persist] = ticks
@@ -31,7 +31,15 @@ fun Entity.stop(effect: String) {
     }
 }
 
-fun Entity.has(effect: String): Boolean = contains("${effect}_effect")
+fun Entity.hasEffect(effect: String): Boolean = contains("${effect}_effect")
+
+fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = true): Boolean {
+    if (hasEffect(effect)) {
+        return true
+    }
+    start(effect, ticks, persist)
+    return false
+}
 
 fun Entity.remaining(effect: String): Long {
     val expected: Long = getOrNull("${effect}_tick") ?: return -1
@@ -57,7 +65,7 @@ fun Entity.restart(effect: String) {
 }
 
 fun Entity.toggle(effect: String, persist: Boolean = false) {
-    if (has(effect)) {
+    if (hasEffect(effect)) {
         stop(effect)
     } else {
         start(effect, persist = persist)

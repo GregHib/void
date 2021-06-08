@@ -34,7 +34,7 @@ inline class Chunk(val id: Int) {
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(tile, width * 8 - 1, height * 8 - 1, 0)
 
-    fun toCuboid(radius: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8 - 1, (radius * 2 + 1) * 8 - 1, 0)
+    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 8 - 1, (radius * 2 + 1) * 8 - 1, 0)
 
     companion object {
         fun createSafe(x: Int, y: Int, plane: Int) = Chunk(x and 0xfff, y and 0xfff, plane and 0x3)

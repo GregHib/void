@@ -89,7 +89,7 @@ inline class Tile(val id: Int) {
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width - 1, height - 1, 0)
 
-    fun toCuboid(radius: Int = 1) = Cuboid(minus(radius, radius), (radius * 2 + 1) - 1, (radius * 2 + 1) - 1, 0)
+    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius), (radius * 2 + 1) - 1, (radius * 2 + 1) - 1, 0)
 
     override fun toString(): String {
         return "Tile($x, $y, $plane)"

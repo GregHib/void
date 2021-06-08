@@ -1,11 +1,9 @@
 package world.gregs.voidps.engine.entity.character.move
 
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
 import world.gregs.voidps.engine.action.ActionType
-import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -38,7 +36,7 @@ data class Movement(
     var moving = false
     var strategy: TileTargetStrategy? = null
     var action: (() -> Unit)? = null
-    var result: PathResult = PathResult.Failure
+    var result: PathResult? = null
     var length: Int = 0
 
     lateinit var traversal: TileTraversalStrategy
@@ -77,11 +75,12 @@ suspend fun Player.walkTo(target: Any, watch: Character? = null, action: () -> U
 }
 
 suspend fun Player.walkTo(strategy: TileTargetStrategy, watch: Character? = null, action: () -> Unit) {
-    GlobalScope.launch(Contexts.Game) {
+    delay {
         this@walkTo.action.cancelAndJoin()
         watch(watch)
         dialogues.clear()
         movement.clear()
+        movement.result = null
         movement.strategy = strategy
         movement.action = action
     }
@@ -93,6 +92,7 @@ fun Character.avoid(target: Character) {
     action(ActionType.Movement) {
         try {
             movement.clear()
+            movement.result = null
             movement.strategy = strategy
             watch(target)
             val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)

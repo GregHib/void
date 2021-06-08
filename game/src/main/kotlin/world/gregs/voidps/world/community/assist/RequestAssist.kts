@@ -72,7 +72,7 @@ on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
 }
 
 fun requestingTooQuickly(player: Player): Boolean {
-    if (player.has("recent_assist_request")) {
+    if (player.hasEffect("recent_assist_request")) {
         val time = TICKS.toSeconds(player.remaining("recent_assist_request"))
         player.message("You have only just made an assistance request", ChatType.GameAssist)
         player.message("You have to wait $time ${"second".plural(time)} before making a new request.", ChatType.GameAssist)

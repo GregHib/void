@@ -73,7 +73,7 @@ val Player.equipment: Container
 val Player.beastOfBurden: Container
     get() = container("beast_of_burden")
 
-fun Player.has(item: String) = inventory.contains(item) || equipment.contains(item)
+fun Player.hasItem(item: String) = inventory.contains(item) || equipment.contains(item)
 
 fun Player.purchase(amount: Int, currency: String = "coins"): Boolean {
     if (inventory.remove(currency, amount)) {

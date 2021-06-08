@@ -35,16 +35,16 @@ internal class EffectsTest {
 
     @Test
     fun `No active effects`() {
-        assertFalse(entity.has("unknown_effect"))
+        assertFalse(entity.hasEffect("unknown_effect"))
     }
 
     @Test
     fun `Start and stop effect`() {
         val effect = "effect"
         entity.start(effect)
-        assertTrue(entity.has(effect))
+        assertTrue(entity.hasEffect(effect))
         entity.stop(effect)
-        assertFalse(entity.has(effect))
+        assertFalse(entity.hasEffect(effect))
         verifyOrder {
             events.emit(EffectStart(effect))
             events.emit(EffectStop(effect))
@@ -56,7 +56,7 @@ internal class EffectsTest {
         val effect = "effect"
         entity.start(effect)
         entity.start(effect)
-        assertTrue(entity.has(effect))
+        assertTrue(entity.hasEffect(effect))
         verifyOrder {
             events.emit(EffectStart(effect))
             events.emit(EffectStop(effect))
@@ -69,9 +69,9 @@ internal class EffectsTest {
         val effect = "effect"
         GameLoop.tick = 10
         entity.start(effect, 2)
-        assertTrue(entity.has(effect))
+        assertTrue(entity.hasEffect(effect))
         task.invoke(12)
-        assertFalse(entity.has(effect))
+        assertFalse(entity.hasEffect(effect))
     }
 
     @Test
@@ -129,10 +129,10 @@ internal class EffectsTest {
     @Test
     fun `Toggle effect`() {
         val effect = "effect"
-        assertFalse(entity.has(effect))
+        assertFalse(entity.hasEffect(effect))
         entity.toggle(effect)
-        assertTrue(entity.has(effect))
+        assertTrue(entity.hasEffect(effect))
         entity.toggle(effect)
-        assertFalse(entity.has(effect))
+        assertFalse(entity.hasEffect(effect))
     }
 }

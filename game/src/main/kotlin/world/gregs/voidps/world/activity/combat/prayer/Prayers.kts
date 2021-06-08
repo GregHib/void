@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppea
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.has
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
@@ -48,7 +48,7 @@ on<PrayerActivate> { player: Player ->
 }
 
 fun startPrayerDrain(player: Player) {
-    if (!player.has("prayer_drain")) {
+    if (!player.hasEffect("prayer_drain")) {
         player.start("prayer_drain")
     }
 }
@@ -62,7 +62,7 @@ on<PrayerDeactivate> { player: Player ->
 fun stopPrayerDrain(player: Player, curses: Boolean) {
     val key = if (curses) ACTIVE_CURSES else ACTIVE_PRAYERS
     val activePrayers = player.getVar(key, 0)
-    if (activePrayers == 0 && player.has("prayer_drain")) {
+    if (activePrayers == 0 && player.hasEffect("prayer_drain")) {
         player.stop("prayer_drain")
     }
 }

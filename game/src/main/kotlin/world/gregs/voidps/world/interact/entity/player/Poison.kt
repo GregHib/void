@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.has
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
@@ -27,7 +27,7 @@ private fun immune(character: Character): Boolean {
     if (character is NPC && character.def["immune_poison", false]) {
         return true
     }
-    if (character.has("anti-poison")) {
+    if (character.hasEffect("anti-poison")) {
         return true
     }
     return false

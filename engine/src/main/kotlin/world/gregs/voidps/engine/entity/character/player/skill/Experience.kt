@@ -32,13 +32,14 @@ class Experience(
     }
 
     fun add(skill: Skill, experience: Double) {
-        if (experience > 0.0) {
-            if (blocked.contains(skill)) {
-                events.emit(BlockedExperience(skill, experience))
-            } else {
-                val current = get(skill)
-                set(skill, current + experience)
-            }
+        if (experience <= 0.0) {
+            return
+        }
+        if (blocked.contains(skill)) {
+            events.emit(BlockedExperience(skill, experience))
+        } else {
+            val current = get(skill)
+            set(skill, current + experience)
         }
     }
 

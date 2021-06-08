@@ -19,7 +19,7 @@ object NPCDefinitions {
         println(decoder.last)
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.name.contains("fishing spot", true)) {
+            if (def.name.contains("hans", true)) {
                 println("$i ${def.name} ${def.options.toList()}")
                 list.add(def)
             }

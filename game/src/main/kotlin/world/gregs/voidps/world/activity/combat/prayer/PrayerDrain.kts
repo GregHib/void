@@ -10,6 +10,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
     player["prayer_drain_tick_job"] = delay(player, 1, loop = true) {
@@ -22,6 +23,7 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
             player.levels.drain(Skill.Prayer, 1)
             prayerDrainCounter -= prayerDrainResistance
             if (player.levels.get(Skill.Prayer) == 0) {
+                player.playSound("prayer_drain")
                 player.message("You have run out of Prayer points; you can recharge at an altar.")
                 player.clearVar<String>(player.getActivePrayerVarKey())
                 player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)

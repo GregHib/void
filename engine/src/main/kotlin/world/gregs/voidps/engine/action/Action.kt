@@ -1,10 +1,12 @@
 package world.gregs.voidps.engine.action
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.*
 import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.event.Events
+import world.gregs.voidps.network.Instruction
 import world.gregs.voidps.utility.toTicks
 import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
@@ -22,12 +24,14 @@ class Action(
 
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
+    var instruction: Instruction? = null
     var job: Job? = null
     var completion: (() -> Unit)? = null
 
     val isActive: Boolean
         get() = continuation?.isActive ?: true
     var type: ActionType = ActionType.None
+    private val logger = InlineLogger()
 
     /**
      * Whether there is currently an action which is paused
@@ -80,7 +84,7 @@ class Action(
      * @param type For the current action to decide whether to finish or cancel early
      * @param action The suspendable action function
      */
-    fun run(type: ActionType = ActionType.Misc, action: suspend Action.() -> Unit) = scope.launch {
+    fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
         this@Action.cancelAndJoin()
         this@Action.type = type
         events.emit(ActionStarted(type))
@@ -121,7 +125,11 @@ class Action(
 
     suspend fun Character.playAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true) {
         val ms = setAnimation(name, speed, stand, force, walk, run)
-        delay(TimeUnit.MILLISECONDS.toTicks(ms))
+        if (ms == -1L) {
+            logger.warn { "No animation delay $name" }
+        } else {
+            delay(TimeUnit.MILLISECONDS.toTicks(ms))
+        }
     }
 }
 

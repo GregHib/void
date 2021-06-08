@@ -6,10 +6,11 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.contain.ContainerResult
-import world.gregs.voidps.engine.entity.character.contain.has
+import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.inventoryFull
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCOption
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
@@ -19,6 +20,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.plural
@@ -29,6 +32,10 @@ import world.gregs.voidps.world.activity.skill.fishing.tackle.Bait
 import world.gregs.voidps.world.activity.skill.fishing.tackle.Tackle
 
 val logger = InlineLogger()
+
+on<NPCClick>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
+    cancel = player.hasEffect("skilling_delay")
+}
 
 on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
     player.action(ActionType.Fishing) {
@@ -51,13 +58,13 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
                     break
                 }
 
-                val tackle = tackles.firstOrNull { tackle -> player.has(tackle.id) }
+                val tackle = tackles.firstOrNull { tackle -> player.hasItem(tackle.id) }
                 if (tackle == null) {
                     player.message("You need a ${tackles.first().id.toTitleCase()} to catch these fish.")
                     break@fishing
                 }
 
-                val bait = data.keys.firstOrNull { bait -> bait == Bait.None || player.has(bait.id) }
+                val bait = data.keys.firstOrNull { bait -> bait == Bait.None || player.hasItem(bait.id) }
                 val catches = data[bait]
                 if (bait == null || catches == null) {
                     player.message("You don't have any ${data.keys.first().id.toTitleCase().plural(2)}.")
@@ -75,20 +82,20 @@ on<NPCOption>({ npc.name.startsWith("fishing_spot") }) { player: Player ->
                         Tackle.LobsterPot -> "You attempt to catch a lobster."
                         Tackle.Harpoon, Tackle.BarbTailHarpoon -> "You start harpooning fish."
                     }, ChatType.GameFilter)
+                    player.start("skilling_delay", 5)
                     first = false
                 }
-                delay(3)
+                delay(5)
                 for (catch in catches) {
                     val level = player.levels.get(Skill.Fishing)
                     if (level >= catch.level && success(level, catch.chance)) {
                         if (bait != Bait.None && !player.inventory.remove(bait.id)) {
                             break@fishing
                         }
-                        if (catch.xp > 0.0) {
-                            player.experience.add(Skill.Fishing, catch.xp)
-                        }
+                        player.experience.add(Skill.Fishing, catch.xp)
 
                         addCatch(player, catch)
+                        break
                     }
                 }
             }

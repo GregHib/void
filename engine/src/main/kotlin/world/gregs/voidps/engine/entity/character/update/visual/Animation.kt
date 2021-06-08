@@ -45,12 +45,12 @@ fun Character.flagAnimation() = visuals.flag(mask(this))
 
 fun Character.getAnimation() = visuals.getOrPut(mask(this)) { Animation() }
 
-fun Character.setAnimation(name: String, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
-    return setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return -1, speed, force, stand, walk, run)
+fun Character.setAnimation(name: String, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
+    return setAnimation(get<AnimationDefinitions>().getIdOrNull(name) ?: return -1, speed, override, stand, force, walk, run)
 }
 
-fun Character.setAnimation(id: Int, speed: Int = 0, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
-    val time = setAnimation(getAnimation(), id, speed, stand, force, walk, run)
+fun Character.setAnimation(id: Int, speed: Int = 0, override: Boolean = false, stand: Boolean = true, force: Boolean = true, walk: Boolean = true, run: Boolean = true): Long {
+    val time = setAnimation(getAnimation(), id, speed, override, stand, force, walk, run)
     flagAnimation()
     return time
 }
@@ -60,10 +60,10 @@ fun Character.clearAnimation() {
     flagAnimation()
 }
 
-private fun setAnimation(anim: Animation, id: Int, speed: Int, stand: Boolean, force: Boolean, walk: Boolean, run: Boolean): Long {
+private fun setAnimation(anim: Animation, id: Int, speed: Int, override: Boolean = false, stand: Boolean, force: Boolean, walk: Boolean, run: Boolean): Long {
     val definition = get<AnimationDefinitions>().get(id)
     val priority = definition.priority
-    if (priority <= anim.priority) {
+    if (!override && priority < anim.priority) {
         return -1
     }
     if (stand) {

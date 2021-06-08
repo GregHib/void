@@ -35,7 +35,7 @@ inline class Region(val id: Int) {
 
     fun toRectangle(radius: Int) = Rectangle(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1)
 
-    fun toCuboid(radius: Int = 1) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1, 3)
+    fun toCuboid(radius: Int) = Cuboid(minus(radius, radius).tile, (radius * 2 + 1) * 64 - 1, (radius * 2 + 1) * 64 - 1, 3)
 
     companion object {
         fun createSafe(x: Int, y: Int) = Region(x and 0xff, y and 0xff)

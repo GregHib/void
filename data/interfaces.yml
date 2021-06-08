@@ -309,6 +309,15 @@ modern_spellbook:
     sort_level: 15
     sort_combat: 16
     sort_tele: 17
+    lumbridge_home_teleport: 24
+    mobilising_armies_teleport: 37
+    varrock_teleport: 40
+    lumbridge_teleport: 43
+    falador_teleport: 46
+    camelot_teleport: 51
+    ardougne_teleport: 57
+    watchtower_teleport: 62
+    trollheim_teleport: 69
 
 ancient_spellbook:
   id: 193

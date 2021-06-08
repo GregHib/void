@@ -13,7 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ContainerAction>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
     val def = item.def
 
     if (failedToRemoveOtherHand(player, def)) {
@@ -27,7 +27,7 @@ on<ContainerAction>({ container == "inventory" && (option == "Wield" || option =
     playEquipSound(player, def, slot)
 }
 
-on<ContainerAction>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
+on<ContainerOption>({ container == "worn_equipment" && option == "Remove" }) { player: Player ->
     if (player.equipment.move(slot, player.inventory)) {
         val slot = item.def["slot", EquipSlot.None]
         playEquipSound(player, item.def, slot)
