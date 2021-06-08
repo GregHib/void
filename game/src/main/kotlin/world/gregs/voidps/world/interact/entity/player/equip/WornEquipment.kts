@@ -51,7 +51,3 @@ fun getEquipmentOption(itemDef: ItemDefinition, optionId: Int): String? {
         else -> null
     }
 }
-
-on<InterfaceOption>({ name == "inventory" && component == "container" && optionId == 9 }) { player: Player ->
-    player.events.emit(ContainerOption(name, item, itemIndex, "Examine"))
-}
