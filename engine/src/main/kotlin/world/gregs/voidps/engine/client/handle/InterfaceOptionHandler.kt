@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.client.handle
 
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
+import world.gregs.voidps.engine.client.ui.InterfaceClick
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.equipment
@@ -93,6 +94,20 @@ class InterfaceOptionHandler : Handler<InteractInterface>() {
 
         val selectedOption = options.getOrNull(option) ?: ""
         sync {
+            val click = InterfaceClick(
+                id,
+                name,
+                componentId,
+                componentName,
+                option,
+                selectedOption,
+                item,
+                itemSlot
+            )
+            player.events.emit(click)
+            if (click.cancel) {
+                return@sync
+            }
             player.events.emit(
                 InterfaceOption(
                     id,

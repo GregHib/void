@@ -36,7 +36,7 @@ on<ContainerOption>({ container == "worn_equipment" && item.name == "reindeer_ha
 
 on<ContainerOption>({ container == "inventory" && item.name == "prayer_book" && option == "Recite-prayer" }) { player: Player ->
     emote(player) {
-        if (player.has("poison")) {
+        if (player.hasEffect("poison")) {
             val poisonDamage = player.getOrNull<Int>("poison_damage") ?: return@emote
             var points = (poisonDamage - 20) / 2
             var decrease = poisonDamage

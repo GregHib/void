@@ -12,9 +12,12 @@ import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.clearAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.obj.GameObject
+import world.gregs.voidps.engine.entity.obj.ObjectClick
 import world.gregs.voidps.engine.entity.obj.ObjectOption
 import world.gregs.voidps.engine.entity.obj.replace
+import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.Math
@@ -29,6 +32,10 @@ val players: Players by inject()
 
 val minPlayers = 0
 val maxPlayers = 2000
+
+on<ObjectClick>({ option == "Chop down" || option == "Chop" }) { player: Player ->
+    cancel = player.hasEffect("skilling_delay")
+}
 
 on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player ->
     player.action(ActionType.Woodcutting) {
@@ -53,6 +60,7 @@ on<ObjectOption>({ option == "Chop down" || option == "Chop" }) { player: Player
 
                 if (first) {
                     player.message("You swing your hatchet at the ${if (ivy) "ivy" else "tree"}.")
+                    player.start("skilling_delay", 4)
                     first = false
                 }
                 player.setAnimation("${hatchet.id}_chop${if (ivy) "_ivy" else ""}", walk = false, run = false)

@@ -54,7 +54,7 @@ suspend fun damage(player: Player) {
 }
 
 on<Command>({ prefix == "poison" }) { player: Player ->
-    if (player.has("poison")) {
+    if (player.hasEffect("poison")) {
         player.stop("poison")
     } else {
         player.poison(content.toIntOrNull() ?: 100)

@@ -138,11 +138,11 @@ on<ObjectOption>({ obj.def.isDoor() && option == "Open" }) { player: Player ->
 }
 
 fun stuck(player: Player): Boolean {
-    if (player.has("stuck_door")) {
+    if (player.hasEffect("stuck_door")) {
         player.message("The door seems to be stuck.")
         return true
     }
-    if (player.has("recently_opened_door")) {
+    if (player.hasEffect("recently_opened_door")) {
         if (player.inc("door_slam_count") >= doorStuckCount) {
             player.start("stuck_door", TimeUnit.MINUTES.toTicks(1))
             return true

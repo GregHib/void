@@ -10,7 +10,7 @@ import world.gregs.voidps.bot.navigation.resume
 import world.gregs.voidps.engine.action.ActionFinished
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.World
-import world.gregs.voidps.engine.entity.character.contain.has
+import world.gregs.voidps.engine.entity.character.contain.hasItem
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
@@ -81,7 +81,7 @@ on<World, Startup> {
 suspend fun Bot.fish(map: MapArea, type: FishingSpot, option: String, bait: Bait) {
     setupInventory(type, option, bait)
     goToArea(map)
-    while (player.inventory.isNotFull() && (bait == Bait.None || player.has(bait.id))) {
+    while (player.inventory.isNotFull() && (bait == Bait.None || player.hasItem(bait.id))) {
         val spots = player.viewport.npcs.current
             .filter { isAvailableSpot(map, it, type, option, bait) }
             .map { it to tile.distanceTo(it) }
@@ -117,15 +117,15 @@ fun Bot.isAvailableSpot(map: MapArea, npc: NPC, type: FishingSpot, option: Strin
 suspend fun Bot.setupInventory(spot: FishingSpot, option: String, bait: Bait) {
     val (tackles, _) = spot.tackle[option] ?: return
 
-    if (!tackles.any { tackle -> player.has(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.name } }) {
+    if (!tackles.any { tackle -> player.hasItem(tackle.id) } && player.bank.getItems().none { item -> tackles.any { tackle -> tackle.id == item.name } }) {
         buyItem(tackles.first().id)
     }
-    if (bait != Bait.None && !player.has(bait.id) && player.bank.getItems().none { item -> bait.id == item.name }) {
+    if (bait != Bait.None && !player.hasItem(bait.id) && player.bank.getItems().none { item -> bait.id == item.name }) {
         buyItem(bait.id, 100)
     }
 
-    val hasTackle = tackles.any { tackle -> player.has(tackle.id) }
-    val hasBait = bait == Bait.None || player.has(bait.id)
+    val hasTackle = tackles.any { tackle -> player.hasItem(tackle.id) }
+    val hasBait = bait == Bait.None || player.hasItem(bait.id)
     if (hasTackle && hasBait && player.inventory.spaces > 10) {
         return
     }

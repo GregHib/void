@@ -9,7 +9,8 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.has
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.hasOrStart
 import world.gregs.voidps.engine.entity.remaining
 import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
@@ -26,9 +27,12 @@ import java.util.concurrent.TimeUnit
 val areas: Areas by inject()
 
 on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home_teleport" && option == "Cast" }) { player: Player ->
-    if (player.has("home_teleport_timeout")) {
+    if (player.hasEffect("home_teleport_timeout")) {
         val remaining = TICKS.toMinutes(player.remaining("home_teleport_timeout"))
         player.message("You have to wait $remaining ${"minute".plural(remaining)} before trying this again.")
+        return@on
+    }
+    if (player.hasOrStart("teleport_delay", 17)) {
         return@on
     }
     player.action(ActionType.Teleport) {
@@ -37,7 +41,7 @@ on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home
             player.playAnimation("home_tele_${it + 1}")
         }
         withContext(NonCancellable) {
-            val lumbridge = areas.getValue("lumbridge")
+            val lumbridge = areas.getValue("lumbridge_teleport")
             player.move(lumbridge.area.random())
             player.start("home_teleport_timeout", TimeUnit.MINUTES.toTicks(30), persist = true)
         }
@@ -45,7 +49,10 @@ on<InterfaceOption>({ name == "modern_spellbook" && component == "lumbridge_home
 }
 
 
-on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && option == "Cast" }) { player: Player ->
+on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_teleport") && !component.contains("home") && option == "Cast" }) { player: Player ->
+    if (player.hasOrStart("teleport_delay", 2)) {
+        return@on
+    }
     player.teleport {
         val book = name.removeSuffix("_spellbook")
         player.playSound("teleport")
@@ -61,6 +68,9 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && component.endsWith("_telepo
 }
 
 on<ContainerOption>({ item.name.endsWith("_teleport") }) { player: Player ->
+    if (player.hasOrStart("teleport_delay", 2)) {
+        return@on
+    }
     player.teleport {
         if (player.inventory.remove(item.name)) {
             player.playSound("teleport_tablet")
