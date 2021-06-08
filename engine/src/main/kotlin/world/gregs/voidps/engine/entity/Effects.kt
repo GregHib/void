@@ -8,9 +8,10 @@ import world.gregs.voidps.engine.event.Event
 data class EffectStart(val effect: String) : Event
 data class EffectStop(val effect: String) : Event
 
-fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
-    if (hasEffect(effect)) {
-        stop(effect)
+fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false) {
+    val had = hasEffect(effect)
+    if (had) {
+        stop(effect, quiet)
     }
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
@@ -19,14 +20,16 @@ fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false) {
             stop(effect)
         }
     }
-    events.emit(EffectStart(effect))
+    if (!(had && quiet)) {
+        events.emit(EffectStart(effect))
+    }
 }
 
-fun Entity.stop(effect: String) {
+fun Entity.stop(effect: String, quiet: Boolean = false) {
     val stopped = clear("${effect}_effect")
     clear("${effect}_tick")
     remove<Job>("${effect}_job")?.cancel()
-    if (stopped) {
+    if (stopped && !quiet) {
         events.emit(EffectStop(effect))
     }
 }

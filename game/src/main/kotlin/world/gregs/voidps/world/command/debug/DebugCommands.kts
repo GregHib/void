@@ -1,7 +1,6 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
@@ -9,7 +8,9 @@ import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
@@ -41,7 +42,7 @@ on<Command>({ prefix == "showcol" }) { player: Player ->
     val collisions: Collisions = get()
     val shore = ShoreTraversal(collisions)
     for (tile in area) {
-        if (!shore.blocked(tile, Direction.NONE)) {//collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.FLOOR)) {//
+        if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
             areaGraphic(2000, tile)
         }
     }

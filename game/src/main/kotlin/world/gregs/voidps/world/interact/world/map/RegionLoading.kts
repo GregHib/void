@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.chunk.ReloadChunk
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
 import world.gregs.voidps.utility.inject
-import kotlin.math.abs
 
 /**
  * Keeps track of when players enter and move between regions
@@ -91,9 +91,8 @@ fun needsRegionChange(player: Player) = !inViewOfChunk(player, player.viewport.l
 
 fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
     val viewport = player.viewport
-    val radius: Int = calculateChunkUpdateRadius(viewport)
-    val delta = player.tile.chunk.delta(chunk)
-    return abs(delta.x) < radius && abs(delta.y) < radius
+    val radius: Int = calculateChunkUpdateRadius(viewport) - 1
+    return Distance.within(player.tile.chunk.x, player.tile.chunk.y, chunk.x, chunk.y, radius)
 }
 
 fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)
