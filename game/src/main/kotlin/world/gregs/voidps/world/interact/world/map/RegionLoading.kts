@@ -1,6 +1,7 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -45,21 +46,26 @@ on<RegionLogin>({ it.client != null }) { player: Player ->
     Collision map loading
  */
 on<Registered> { player: Player ->
-    maps.load(player.tile.region)
+    load(player)
 }
 
 on<Moved> { player: Player ->
-    maps.load(player.tile.region)
+    load(player)
 }
 
 on<Moved> { npc: NPC ->
-    maps.load(npc.tile.region)
+    load(npc)
+}
+
+fun load(character: Character) {
+    character.tile.region.add(-1, -1).toRectangle(3, 3).toRegions().forEach {
+        maps.load(it)
+    }
 }
 
 /*
     Player regions
  */
-
 on<Registered> { player: Player ->
     playerRegions[player.index - 1] = player.tile.regionPlane.id
 }
@@ -67,10 +73,10 @@ on<Registered> { player: Player ->
 on<Unregistered> { player: Player ->
     playerRegions[player.index - 1] = 0
 }
+
 /*
     Region updating
  */
-
 on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
