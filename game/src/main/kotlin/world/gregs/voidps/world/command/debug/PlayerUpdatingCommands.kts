@@ -100,7 +100,7 @@ on<Command>({ prefix == "watch" }) { player: Player ->
 }
 
 on<Command>({ prefix == "shoot" }) { player: Player ->
-    player.shoot(15, player.tile.addY(10))
+    player.shoot("15", player.tile.addY(10))
 }
 
 on<Command>({ prefix == "face" }) { player: Player ->

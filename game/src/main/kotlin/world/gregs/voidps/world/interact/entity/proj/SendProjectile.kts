@@ -22,7 +22,18 @@ on<World, ShootProjectile> {
     if (target is Player) {
         index = -index
     }
-    val projectile = Projectile(id, tile, direction, index, delay, flightTime, startHeight, endHeight, curve, offset)
+    val projectile = Projectile(
+        id = id,
+        tile = tile,
+        direction = direction,
+        index = index,
+        delay = delay,
+        flightTime = flightTime,
+        startHeight = startHeight,
+        endHeight = endHeight,
+        curve = curve,
+        offset = offset
+    )
     store.populate(projectile)
     projectiles.add(projectile)
     val update = addProjectile(projectile)
@@ -47,6 +58,7 @@ fun decay(projectile: Projectile) {
         // probably not worth the effort
         repeat(projectile.flightTime / 30) {
             delay(1)
+            println("Reduce flight time")
             projectile.flightTime -= 30
         }
         projectile.flightTime = 0

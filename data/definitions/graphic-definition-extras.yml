@@ -378,3 +378,9 @@ teleport_lunar:
   id: 1685
 teleport_tablet:
   id: 1680
+bronze_arrow_fire:
+  id: 19
+bronze_arrow:
+  id: 10
+crossbow_bolt:
+  id: 27

@@ -1019,3 +1019,5 @@ teleport_land_tablet:
   id: 9598
 bow_shoot:
   id: 426
+crossbow_shoot:
+  id: 4230

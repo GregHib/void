@@ -46,6 +46,7 @@ cow:
   style: "crush"
   examine: "Converts grass to beef."
   category: "cow"
+  height: 30
 chicken:
   id: 41
   att: 1
@@ -96,6 +97,7 @@ cow_calf:
   style: "crush"
   examine: "Young, but still beefy."
   category: "cow"
+  height: 15
 goblin_mohawk_blue:
   id: 4262
   att: 1
