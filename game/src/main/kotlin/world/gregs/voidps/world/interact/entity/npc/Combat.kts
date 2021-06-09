@@ -2,7 +2,6 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -10,6 +9,10 @@ import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.remaining
+import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
@@ -51,11 +54,7 @@ fun canAttack(player: Player, npc: NPC): Boolean {
     val strategy = CombatTargetStrategy(npc, maxDistance, closeCombat)
     if (!isWithinAttackDistance(player.tile.x, player.tile.y, player.tile.plane, npc, maxDistance, closeCombat)) {
         player.dialogues.clear()
-        player.movement.clear()
-        player.movement.result = null
-        player.movement.strategy = strategy
-        player["in_combat"] = false
-        player.movement.action = {
+        player.movement.set(strategy) {
             if (player.cantReach(strategy) || player.movement.result == null) {
                 player.message("You can't reach that.")
             } else if (player.movement.result is PathResult.Success) {

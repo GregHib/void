@@ -15,7 +15,6 @@ import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.path.traverse.ShoreTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
@@ -40,7 +39,6 @@ on<Command>({ prefix == "test" }) { player: Player ->
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val shore = ShoreTraversal(collisions)
     for (tile in area) {
         if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
             areaGraphic(2000, tile)
