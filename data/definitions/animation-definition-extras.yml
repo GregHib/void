@@ -1055,5 +1055,7 @@ rat_attack:
   id: 2705
 rat_hit:
   id: 2706
-rat_death:
-  id: 2707
+player_punch:
+  id: 422
+player_kick:
+  id: 423

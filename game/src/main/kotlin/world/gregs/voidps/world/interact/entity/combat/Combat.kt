@@ -20,13 +20,17 @@ val Character.height: Int
 
 fun rangeHit(player: Player, target: Character, damage: Int = Random.nextInt(100 + 1).coerceAtLeast(0)) {
     delay(target, 2) {
-        target.hit(player, damage, Hit.Mark.Range)
-        target.levels.drain(Skill.Constitution, damage)
-        target["killer"] = player
-        val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
-        player.playSound("${name}_hit", delay = 40)
-        target.setAnimation("${name}_hit")
+        hit(player, target, damage, Hit.Mark.Range)
     }
+}
+
+fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {
+    target.hit(player, damage, type)
+    target.levels.drain(Skill.Constitution, damage)
+    target["killer"] = player
+    val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
+    player.playSound("${name}_hit", delay = 40)
+    target.setAnimation("${name}_hit")
 }
 
 val ItemDefinition.ammo: Set<String>?

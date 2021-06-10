@@ -32,8 +32,7 @@ fun attack(player: Player, target: Character) {
     }
     player.action(ActionType.Combat) {
         val moveHandler = target.events.on<NPC, Moved> {
-            val style = player.getVar("attack_style", 0)
-            withinRange(player, target, style)
+            withinRange(player, target)
         }
         val deathHandler = target.events.on<NPC, Died> {
             cancel(ActionType.Combat)
@@ -44,8 +43,7 @@ fun attack(player: Player, target: Character) {
                 if (player.hasEffect("skilling_delay")) {
                     delay(player.remaining("skilling_delay").toInt())
                 }
-                val style = player.getVar("attack_style", 0)
-                if (!withinRange(player, target, style)) {
+                if (!withinRange(player, target)) {
                     await<Unit>(Suspension.Movement)
                 }
                 if (!canAttack(player, target)) {
@@ -70,7 +68,8 @@ fun canAttack(player: Player, target: Character): Boolean {
     return true
 }
 
-fun withinRange(player: Player, target: Character, style: Int): Boolean {
+fun withinRange(player: Player, target: Character): Boolean {
+    val style = player.getVar("attack_style", 0)
     val type = player["attack_type", "melee"]
     val longRange = type == "ranged" && style == 2
     val maxDistance = (player["attack_range", 1] + if (longRange) 2 else 0).coerceAtMost(10)

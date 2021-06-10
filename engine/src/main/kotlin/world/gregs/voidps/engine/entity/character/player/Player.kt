@@ -112,10 +112,7 @@ class Player(
     var changeValue: Int = -1
 
     @JsonIgnore
-    var attackSwing: (suspend (Character) -> Int) = {
-        // TODO punching
-        4
-    }
+    lateinit var attackSwing: (suspend (Character) -> Int)
 
     fun setCombatSwing(block: suspend (Character) -> Int) {
         attackSwing = block
