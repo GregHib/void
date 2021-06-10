@@ -43,10 +43,14 @@ class Levels(
         return offsets[skill] ?: 0
     }
 
-    fun setOffset(skill: Skill, level: Int) {
-        val previous = get(skill)
-        offsets[skill] = level
-        notify(skill, previous)
+    fun setOffset(skill: Skill, offset: Int) {
+        if (offset == 0) {
+            clearOffset(skill)
+        } else {
+            val previous = get(skill)
+            offsets[skill] = offset
+            notify(skill, previous)
+        }
     }
 
     fun clearOffset(skill: Skill) {
