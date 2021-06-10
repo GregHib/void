@@ -378,9 +378,113 @@ teleport_lunar:
   id: 1685
 teleport_tablet:
   id: 1680
-bronze_arrow_fire:
+bronze_arrow_shoot:
   id: 19
 bronze_arrow:
   id: 10
+iron_arrow_shoot:
+  id: 18
+iron_arrow:
+  id: 9
+steel_arrow_shoot:
+  id: 18
+steel_arrow:
+  id: 9
+mithril_arrow_shoot:
+  id: 21
+mithril_arrow:
+  id: 12
+adamant_arrow_shoot:
+  id: 22
+adamant_arrow:
+  id: 13
+rune_arrow_shoot:
+  id: 24
+rune_arrow:
+  id: 15
+ice_arrow_shoot:
+  id: 25
+ice_arrow:
+  id: 16
+broad_arrow_shoot:
+  id: 325
+broad_arrow:
+  id: 326
+dragon_arrow_shoot:
+  id: 1111
+dragon_arrow:
+  id: 1120
+training_arrow_shoot:
+  id: 806
+training_arrow:
+  id: 805
 crossbow_bolt:
   id: 27
+bone_bolts:
+  id: 696
+barbed_bolts:
+  id: 696
+brutal_shoot:
+  id: 403
+brutal:
+  id: 404
+ogre_arrow_shoot:
+  id: 243
+ogre_arrow:
+  id: 242
+guthix_arrows_shoot:
+  id: 95
+guthix_arrows:
+  id: 98
+saradomin_arrows_shoot:
+  id: 96
+saradomin_arrows:
+  id: 99
+zamorak_arrows_shoot:
+  id: 97
+zamorak_arrows:
+  id: 100
+novite_arrows_shoot:
+  id: 2466
+novite_arrows:
+  id: 2467
+bathus_arrows_shoot:
+  id: 2468
+bathus_arrows:
+  id: 2469
+marmaros_arrows_shoot:
+  id: 2470
+marmaros_arrows:
+  id: 2471
+kratonite_arrows_shoot:
+  id: 2472
+kratonite_arrows:
+  id: 2473
+fractite_arrows_shoot:
+  id: 2474
+fractite_arrows:
+  id: 2475
+zephyrium_arrows_shoot:
+  id: 2476
+zephyrium_arrows:
+  id: 2477
+argonite_arrows_shoot:
+  id: 2478
+argonite_arrows:
+  id: 2479
+katagon_arrows_shoot:
+  id: 2480
+katagon_arrows:
+  id: 2481
+gorgonite_arrows_shoot:
+  id: 2482
+gorgonite_arrows:
+  id: 2483
+promethium_arrows_shoot:
+  id: 2484
+promethium_arrows:
+  id: 2485
+sagittarian_arrows_shoot:
+  id: 2486
+sagittarian_arrows:
+  id: 2487

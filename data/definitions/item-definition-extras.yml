@@ -3936,6 +3936,8 @@ phoenix_crossbow:
   tradeable: false
   weight: 3.628
   range: 6.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   destroy: "You can get another from the Phoenix Gang's weapon stash."
   examine: "Second-rate crossbow; former property of the Phoenix Gang."
@@ -4464,6 +4466,8 @@ crossbow:
   limit: 100
   weight: 2.0
   range: 6.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "This fires crossbow bolts."
   kept: "Wilderness"
@@ -4475,10 +4479,13 @@ longbow:
   limit: 5000
   weight: 1.814
   range: 8.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow ]
 longbow_noted:
   id: 840
 shortbow:
@@ -4491,6 +4498,7 @@ shortbow:
   type: "TwoHanded"
   examine: "Short but effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow ]
 shortbow_noted:
   id: 842
 oak_shortbow:
@@ -4503,6 +4511,7 @@ oak_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow ]
 oak_shortbow_noted:
   id: 844
 oak_longbow:
@@ -4513,8 +4522,11 @@ oak_longbow:
   range: 14.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
+  attack_speed: 6
   examine: "A nice sturdy bow made out of oak."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow ]
 oak_longbow_noted:
   id: 846
 willow_longbow:
@@ -4525,8 +4537,11 @@ willow_longbow:
   range: 20.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
+  attack_speed: 6
   examine: "A nice sturdy bow made out of willow."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow ]
 willow_longbow_noted:
   id: 848
 willow_shortbow:
@@ -4539,6 +4554,7 @@ willow_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow ]
 willow_shortbow_noted:
   id: 850
 maple_longbow:
@@ -4547,9 +4563,12 @@ maple_longbow:
   limit: 5000
   weight: 1.814
   range: 29.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of maple."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow ]
 maple_longbow_noted:
   id: 852
 maple_shortbow:
@@ -4561,6 +4580,7 @@ maple_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of Maple, still effective."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow ]
 maple_shortbow_noted:
   id: 854
 yew_longbow:
@@ -4569,9 +4589,12 @@ yew_longbow:
   limit: 5000
   weight: 1.814
   range: 47.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows ]
 yew_longbow_noted:
   id: 856
 yew_shortbow:
@@ -4583,6 +4606,7 @@ yew_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of yew, still effective."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows ]
 yew_shortbow_noted:
   id: 858
 magic_longbow:
@@ -4591,9 +4615,12 @@ magic_longbow:
   limit: 5000
   weight: 1.814
   range: 69.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
 magic_longbow_noted:
   id: 860
 magic_shortbow:
@@ -4605,6 +4632,7 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Short and magical, but still effective."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
 magic_shortbow_noted:
   id: 862
 iron_knife:
@@ -16081,8 +16109,10 @@ ogre_bow:
   range: 38.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
   examine: "More powerful than a normal bow, useful against large game birds."
   kept: "Reclaim"
+  ammo: [ ogre_arrow ]
 battered_book:
   id: 2886
   tradeable: false
@@ -22534,6 +22564,8 @@ new_crystal_bow:
   limit: 2
   range: 104.0
   range_str: 72.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22545,6 +22577,8 @@ crystal_bow:
   limit: 2
   range: 100.0
   range_str: 70.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22554,6 +22588,8 @@ crystal_bow_9_10:
   limit: 2
   range: 96.0
   range_str: 68.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22563,6 +22599,8 @@ crystal_bow_8_10:
   limit: 2
   range: 92.0
   range_str: 66.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22572,6 +22610,8 @@ crystal_bow_7_10:
   limit: 2
   range: 88.0
   range_str: 64.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22581,6 +22621,8 @@ crystal_bow_6_10:
   limit: 2
   range: 84.0
   range_str: 62.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22590,6 +22632,8 @@ crystal_bow_5_10:
   limit: 2
   range: 80.0
   range_str: 60.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22599,6 +22643,8 @@ crystal_bow_4_10:
   limit: 2
   range: 76.0
   range_str: 58.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22608,6 +22654,8 @@ crystal_bow_3_10:
   limit: 2
   range: 72.0
   range_str: 56.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22617,6 +22665,8 @@ crystal_bow_2_10:
   limit: 2
   range: 68.0
   range_str: 54.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22626,6 +22676,8 @@ crystal_bow_1_10:
   limit: 2
   range: 64.0
   range_str: 52.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -25710,10 +25762,13 @@ karils_crossbow:
   price: 179700
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
   weight: 3.628
+  ammo: [ bolt_rack ]
 karils_crossbow_noted:
   id: 4735
 karils_top:
@@ -26080,9 +26135,12 @@ comp_ogre_bow:
   limit: 100
   weight: 1.814
   range: 38.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A composite ogre bow."
+  ammo: [ bronze_brutal, iron_brutal, steel_brutal, black_brutal, mithril_brutal, adamant_brutal, rune_brutal ]
 comp_ogre_bow_noted:
   id: 4828
 book_of_h.a.m:
@@ -27322,6 +27380,8 @@ karils_crossbow_100:
   id: 4934
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27330,6 +27390,8 @@ karils_crossbow_75:
   id: 4935
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27338,6 +27400,8 @@ karils_crossbow_50:
   id: 4936
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27346,6 +27410,8 @@ karils_crossbow_25:
   id: 4937
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27355,6 +27421,8 @@ karils_crossbow_broken:
   price: 102400
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -36324,9 +36392,11 @@ seercull:
   limit: 100
   weight: 1.36
   range: 69.0
+  attack_range: 8
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
 seercull_noted:
   id: 6725
 mud_battlestaff_noted:
@@ -47335,6 +47405,9 @@ dorgeshuun_crossbow:
   range: 42.0
   slot: "Weapon"
   examine: "This fires crossbow bolts."
+  attack_range: 6
+  attack_speed: 6
+  ammo: [ bronze_bolts, iron_bolt, bone_bolts ]
 dorgeshuun_cbow_noted:
   id: 8881
 bone_bolts:
@@ -48868,9 +48941,12 @@ bronze_crossbow:
   limit: 1000
   weight: 2.0
   range: 18.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts ]
 bronze_crossbow_noted:
   id: 9175
 blurite_crossbow:
@@ -48878,17 +48954,23 @@ blurite_crossbow:
   tradeable: false
   weight: 2.0
   range: 30.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts ]
 iron_crossbow:
   id: 9177
   price: 38
   limit: 1000
   weight: 2.0
   range: 42.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts ]
 iron_crossbow_noted:
   id: 9178
 steel_crossbow:
@@ -48897,8 +48979,11 @@ steel_crossbow:
   limit: 1000
   weight: 2.0
   range: 54.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts ]
 steel_crossbow_noted:
   id: 9180
 mithril_crossbow:
@@ -48907,8 +48992,11 @@ mithril_crossbow:
   limit: 1000
   weight: 2.0
   range: 66.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts ]
 mith_crossbow_noted:
   id: 9182
 adamant_crossbow:
@@ -48917,8 +49005,11 @@ adamant_crossbow:
   limit: 1000
   weight: 2.0
   range: 78.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts ]
 adamant_crossbow_noted:
   id: 9184
 rune_crossbow:
@@ -48927,8 +49018,11 @@ rune_crossbow:
   limit: 100
   weight: 2.0
   range: 90.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts, runite_bolts, onyx_bolts, broad-tipped_bolts ]
 rune_crossbow_noted:
   id: 9186
 jade_bolt_tips:
@@ -53481,6 +53575,8 @@ hunters_crossbow:
   limit: 100
   weight: 5.0
   range: 55.0
+  attack_range: 7
+  attack_speed: 4
   slot: "Weapon"
   examine: "A weapon made of bone and wood."
 hunters_crossbow_noted:
@@ -54236,6 +54332,8 @@ willow_composite_bow:
   limit: 2
   weight: 1.8
   range: 22.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from willow."
@@ -54247,6 +54345,8 @@ yew_composite_bow:
   limit: 2
   weight: 1.8
   range: 49.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from yew."
@@ -54258,6 +54358,8 @@ magic_composite_bow:
   limit: 2
   weight: 1.8
   range: 71.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
@@ -61302,10 +61404,13 @@ dark_bow:
   price: 279300
   limit: 10
   weight: 1.814
+  attack_range: 10
+  attack_speed: 9
   range: 95.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, dragon_arrow ]
 dark_bow_noted:
   id: 11236
 dragon_arrowtips:
@@ -72428,8 +72533,11 @@ black_crossbow:
   limit: 2
   weight: 5.0
   range: 60.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A black crossbow."
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts ]
 black_crossbow_noted:
   id: 13082
 black_bolts:
@@ -78900,6 +79008,7 @@ sacred_clay_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The sacred clay weapon has transformed into a bow."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
   weight: 2.0
 pickaxe_class_1:
   id: 14122
@@ -81876,18 +81985,24 @@ zaniks_crossbow:
   tradeable: false
   weight: 0.001
   range: 78.0
+  attack_range: 6
+  attack_speed: 6
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts, runite_bolts, onyx_bolts, bone_bolts ]
 crossbow_the_chosen_commander:
   id: 14685
   limit: 100
   tradeable: false
   weight: 2.267
   range: 6.0
+  attack_range: 6
+  attack_speed: 6
   examine: "I noticed my crossbow on a high ledge."
   use: "Quest"
   kept: "Reclaim"
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts, runite_bolts, onyx_bolts, bone_bolts ]
 zaniks_crossbow_upgraded:
   id: 14686
   prayer: -5
@@ -81895,10 +82010,13 @@ zaniks_crossbow_upgraded:
   weight: 0.001
   range: 78.0
   slot: "Weapon"
+  attack_range: 7
+  attack_speed: 6
   destroy: "You can get it back from Oldak in Dorgesh-Kaan."
   examine: "Zanik's crossbow has been upgraded."
   use: "Quest"
   kept: "Vanish"
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts, runite_bolts, onyx_bolts, bone_bolts ]
 energy_projectors:
   id: 14687
   tradeable: false
@@ -88672,6 +88790,7 @@ tangle_gum_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows ]
 seeping_elm_shortbow_bound:
   id: 15776
   tradeable: false
@@ -88680,6 +88799,7 @@ seeping_elm_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows ]
 blood_spindle_shortbow_bound:
   id: 15777
   tradeable: false
@@ -88688,6 +88808,7 @@ blood_spindle_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 utuku_shortbow_bound:
   id: 15778
   tradeable: false
@@ -88696,6 +88817,7 @@ utuku_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 spinebeam_shortbow_bound:
   id: 15779
   tradeable: false
@@ -88704,6 +88826,7 @@ spinebeam_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 bovistrangler_shortbow_bound:
   id: 15780
   tradeable: false
@@ -88712,6 +88835,7 @@ bovistrangler_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 thigat_shortbow_bound:
   id: 15781
   tradeable: false
@@ -88720,6 +88844,7 @@ thigat_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 corpsethorn_shortbow_bound:
   id: 15782
   tradeable: false
@@ -88728,6 +88853,7 @@ corpsethorn_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 entgallow_shortbow_bound:
   id: 15783
   tradeable: false
@@ -88736,6 +88862,7 @@ entgallow_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distances."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 grave_creeper_shortbow_bound:
   id: 15784
   tradeable: false
@@ -88744,6 +88871,7 @@ grave_creeper_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 sagittarian_shortbow_bound:
   id: 15785
   tradeable: false
@@ -88752,6 +88880,7 @@ sagittarian_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 salve_shoes_bound:
   id: 15786
   tradeable: false
@@ -89501,6 +89630,7 @@ hexhunter_bow_dungeoneering_bound:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 salve_robe_top_bound:
   id: 15837
   tradeable: false
@@ -90455,6 +90585,7 @@ tangle_gum_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows ]
 seeping_elm_longbow_bound:
   id: 15904
   tradeable: false
@@ -90463,6 +90594,7 @@ seeping_elm_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows ]
 blood_spindle_longbow_bound:
   id: 15905
   tradeable: false
@@ -90471,6 +90603,7 @@ blood_spindle_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 utuku_longbow_bound:
   id: 15906
   tradeable: false
@@ -90479,6 +90612,7 @@ utuku_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 spinebeam_longbow_bound:
   id: 15907
   tradeable: false
@@ -90487,6 +90621,7 @@ spinebeam_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 bovistrangler_longbow_bound:
   id: 15908
   tradeable: false
@@ -90495,6 +90630,7 @@ bovistrangler_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 thigat_longbow_bound:
   id: 15909
   tradeable: false
@@ -90503,6 +90639,7 @@ thigat_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 corpsethorn_longbow_bound:
   id: 15910
   tradeable: false
@@ -90511,6 +90648,7 @@ corpsethorn_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 entgallow_longbow_bound:
   id: 15911
   tradeable: false
@@ -90519,6 +90657,7 @@ entgallow_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 grave_creeper_longbow_bound:
   id: 15912
   tradeable: false
@@ -90527,6 +90666,7 @@ grave_creeper_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 sagittarian_longbow_bound:
   id: 15913
   tradeable: false
@@ -90535,6 +90675,7 @@ sagittarian_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 novite_full_helm_bound:
   id: 15914
   tradeable: false
@@ -95407,100 +95548,133 @@ primal_pickaxe_noted:
 tangle_gum_longbow:
   id: 16317
   range: 26.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows ]
 tangle_gum_longbow_noted:
   id: 16318
 seeping_elm_longbow:
   id: 16319
   range: 37.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows ]
 seeping_elm_longbow_noted:
   id: 16320
 blood_spindle_longbow:
   id: 16321
   range: 48.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 blood_spindle_longbow_noted:
   id: 16322
 utuku_longbow:
   id: 16323
   range: 59.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 utuku_longbow_noted:
   id: 16324
 spinebeam_longbow:
   id: 16325
   range: 70.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_longbow_noted:
   id: 16326
 bovistrangler_longbow:
   id: 16327
   range: 81.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 bovistrangler_longbow_noted:
   id: 16328
 thigat_longbow:
   id: 16329
   range: 93.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 thigat_longbow_noted:
   id: 16330
 corpsethorn_longbow:
   id: 16331
   range: 108.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
   weight: 2.267
 corpsethorn_longbow_noted:
   id: 16332
 entgallow_longbow:
   id: 16333
   range: 123.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 entgallow_longbow_noted:
   id: 16334
 grave_creeper_longbow:
   id: 16335
   range: 138.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 grave_creeper_longbow_noted:
   id: 16336
 sagittarian_longbow:
   id: 16337
   range: 158.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 sagittarian_longbow_noted:
   id: 16338
 novite_boots:
@@ -98126,6 +98300,7 @@ tangle_gum_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows ]
 tangle_gum_shortbow_noted:
   id: 16868
 seeping_elm_shortbow:
@@ -98135,6 +98310,7 @@ seeping_elm_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows ]
 seeping_elm_shortbow_noted:
   id: 16870
 blood_spindle_shortbow:
@@ -98144,6 +98320,7 @@ blood_spindle_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 blood_spindle_shortbow_noted:
   id: 16872
 utuku_shortbow:
@@ -98153,6 +98330,7 @@ utuku_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 utuku_shortbow_noted:
   id: 16874
 spinebeam_shortbow:
@@ -98162,6 +98340,7 @@ spinebeam_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_shortbow_noted:
   id: 16876
 bovistrangler_shortbow:
@@ -98171,6 +98350,7 @@ bovistrangler_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 bovistrangler_shortbow_noted:
   id: 16878
 thigat_shortbow:
@@ -98180,6 +98360,7 @@ thigat_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 thigat_shortbow_noted:
   id: 16880
 corpsethorn_shortbow:
@@ -98189,6 +98370,7 @@ corpsethorn_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 corpsethorn_shortbow_noted:
   id: 16882
 entgallow_shortbow:
@@ -98198,6 +98380,7 @@ entgallow_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 entgallow_shortbow_noted:
   id: 16884
 grave_creeper_shortbow:
@@ -98207,6 +98390,7 @@ grave_creeper_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 grave_creeper_shortbow_noted:
   id: 16886
 sagittarian_shortbow:
@@ -98216,6 +98400,7 @@ sagittarian_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 sagittarian_shortbow_noted:
   id: 16888
 novite_2h_sword:
@@ -98864,6 +99049,7 @@ spinebeam_shortbow:
   examine: "A small bow, only effective at short distance."
   use: "Dungeoneering"
   kept: "Always"
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_shortbow_noted_2:
   id: 16976
 tangle_gum_staff:
@@ -101368,7 +101554,7 @@ doomcore_staff:
   weight: 6.0
 doomcore_staff_noted:
   id: 17294
-hexhunter_bow_dungeoneering:
+hexhunter_bow:
   id: 17295
   magic: -2.0
   range: 45.0
@@ -101377,6 +101563,7 @@ hexhunter_bow_dungeoneering:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 hexhunter_bow_noted:
   id: 17296
 protoleather_boots:
@@ -105906,8 +106093,11 @@ chaotic_crossbow:
   bank_stacks: false
   range: 120.0
   slot: "Weapon"
+  attack_range: 7
+  attack_speed: 6
   examine: "A small crossbow, only effective at short distance."
   weight: 1.814
+  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts, mithril_bolts, sapphire_bolts, emerald_bolts, ruby_bolts, adamant_bolts, diamond_bolts, runite_bolts, onyx_bolts, broad-tipped_bolts ]
 chaotic_crossbow_broken:
   id: 18358
   range: 120.0
@@ -109070,9 +109260,12 @@ saradomin_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows ]
 saradomin_bow_noted:
   id: 19144
 saradomin_bow_lent:
@@ -109084,9 +109277,12 @@ guthix_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, guthix_arrows ]
 guthix_bow_noted:
   id: 19147
 guthix_bow_lent:
@@ -109098,9 +109294,12 @@ zamorak_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, zamorak_arrows ]
 zamorak_bow_noted:
   id: 19150
 zamorak_bow_lent:
@@ -116032,6 +116231,9 @@ zaryte_bow:
   bank_stacks: false
   range: 120.0
   range_str: 115.0
+  attack_range: 7
+  attack_speed: 5
+  attack_speed: 
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."

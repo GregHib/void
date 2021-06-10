@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.data.file
 
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.fasterxml.jackson.module.kotlin.readValue
+import com.github.michaelbull.logging.InlineLogger
 import org.koin.dsl.module
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,6 +12,7 @@ class PlayerStorage(private val path: String) : StorageStrategy<Player> {
 
     private val mapper = jacksonObjectMapper()
     private val writer = mapper.writerWithDefaultPrettyPrinter()
+    private val logger = InlineLogger()
 
     private fun path(name: String) = "$path\\$name.json"
 
@@ -20,7 +22,7 @@ class PlayerStorage(private val path: String) : StorageStrategy<Player> {
             try {
                 return mapper.readValue(file)
             } catch (e: Exception) {
-                e.printStackTrace()
+                logger.error(e) { "Error reading file $name" }
             }
         }
         return null
