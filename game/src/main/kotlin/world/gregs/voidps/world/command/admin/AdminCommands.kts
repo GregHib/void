@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.delay
@@ -166,20 +167,21 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     } else {
         player
     }
-    player.experience.set(skill, Levels.getExperience(level).toDouble())
-    if (level > 99) {
-        player.levels.boost(skill, level - 99)
-    }
-    delay(player, 1) {
-        player.clearVar<Skill>("skill_stat_flash")
+    if (target == null) {
+        println("Unable to find target.")
+    } else {
+        target.experience.set(skill, Levels.getExperience(level).toDouble())
+        player.levels.clearOffset(skill)
+        delay(player, 1) {
+            target.removeVar("skill_stat_flash", skill)
+        }
     }
 }
 
 on<Command>({ prefix == "reset" }) { player: Player ->
-    player.setVar("life_points", 100)
     for ((index, skill) in Skill.all.withIndex()) {
-        player.levels.setOffset(skill, 0)
         player.experience.set(skill, Experience.defaultExperience[index])
+        player.levels.clearOffset(skill)
     }
 }
 

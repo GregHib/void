@@ -4,11 +4,13 @@ import org.koin.dsl.module
 import org.mindrot.jbcrypt.BCrypt
 import world.gregs.voidps.engine.client.ui.InterfaceOptions
 import world.gregs.voidps.engine.client.ui.Interfaces
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.ContainerUpdate
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOptions
 import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
 import world.gregs.voidps.engine.entity.character.player.skill.LevelChanged
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 import world.gregs.voidps.engine.entity.definition.ContainerDefinitions
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
@@ -62,11 +64,14 @@ class PlayerFactory(
         }
         player.events.on<Player, GrantExp> {
             val level = player.levels.get(skill)
-            player.client?.skillLevel(skill.ordinal, level, to.toInt())
+            player.client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) level / 10 else level, to.toInt())
         }
         player.events.on<Player, LevelChanged> {
             val exp = player.experience.get(skill)
-            player.client?.skillLevel(skill.ordinal, to, exp.toInt())
+            player.client?.skillLevel(skill.ordinal, if (skill == Skill.Constitution) to / 10 else to, exp.toInt())
+            if (skill == Skill.Constitution) {
+                player.setVar("life_points", player.levels.get(Skill.Constitution))
+            }
         }
         player.interactTarget = RectangleTargetStrategy(collisions, player)
         player.followTarget = FollowTargetStrategy(player)
