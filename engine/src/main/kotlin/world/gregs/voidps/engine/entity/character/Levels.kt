@@ -32,7 +32,7 @@ class Levels(
     }
 
     fun getMax(skill: Skill): Int {
-        return if (skill == Skill.Constitution) level.getMaxLevel(skill) * 10 else level.getMaxLevel(skill)
+        return level.getMaxLevel(skill)
     }
 
     fun getOffset(skill: Skill): Int {
@@ -49,6 +49,12 @@ class Levels(
         }
     }
 
+    fun clear() {
+        for (key in offsets.keys) {
+            clearOffset(key)
+        }
+    }
+
     fun clearOffset(skill: Skill) {
         val previous = get(skill)
         offsets.remove(skill)
@@ -56,45 +62,24 @@ class Levels(
     }
 
     fun restore(skill: Skill, amount: Int = 0, multiplier: Double = 0.0) {
-        if (skill == Skill.Constitution) {
-            val offset = multiply(getMax(skill) * 10, multiplier)
-            val boost = calculateAmount(amount, offset)
-            val minimumBoost = min(0, getOffset(skill))
-            modify(skill, boost, minimumBoost, 0)
-        } else {
-            val offset = multiply(getMax(skill), multiplier)
-            val boost = calculateAmount(amount, offset)
-            val minimumBoost = min(0, getOffset(skill))
-            modify(skill, boost, minimumBoost, 0)
-        }
+        val offset = multiply(getMax(skill), multiplier)
+        val boost = calculateAmount(amount, offset)
+        val minimumBoost = min(0, getOffset(skill))
+        modify(skill, boost, minimumBoost, 0)
     }
 
     fun boost(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = false) {
-        if (skill == Skill.Constitution) {
-            val offset = multiply(minimumLevel(skill) * 10, multiplier)
-            val boost = calculateAmount(amount, offset)
-            val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL * 10, getOffset(skill) + boost) else max(getOffset(skill), boost)
-            modify(skill, boost, 0, maximumBoost)
-        } else {
-            val offset = multiply(minimumLevel(skill), multiplier)
-            val boost = calculateAmount(amount, offset)
-            val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getOffset(skill) + boost) else max(getOffset(skill), boost)
-            modify(skill, boost, 0, maximumBoost)
-        }
+        val offset = multiply(minimumLevel(skill), multiplier)
+        val boost = calculateAmount(amount, offset)
+        val maximumBoost = if (stack) min(MAXIMUM_BOOST_LEVEL, getOffset(skill) + boost) else max(getOffset(skill), boost)
+        modify(skill, boost, 0, maximumBoost)
     }
 
     fun drain(skill: Skill, amount: Int = 0, multiplier: Double = 0.0, stack: Boolean = true) {
-        if (skill == Skill.Constitution) {
-            val offset = multiply(maximumLevel(skill) * 10, multiplier)
-            val drain = calculateAmount(amount, offset)
-            val minimumDrain = if (stack) max(-getMax(skill) * 10, getOffset(skill) - drain) else min(getOffset(skill), -drain)
-            modify(skill, -drain, minimumDrain, 0)
-        } else {
-            val offset = multiply(maximumLevel(skill), multiplier)
-            val drain = calculateAmount(amount, offset)
-            val minimumDrain = if (stack) max(-getMax(skill), getOffset(skill) - drain) else min(getOffset(skill), -drain)
-            modify(skill, -drain, minimumDrain, 0)
-        }
+        val offset = multiply(maximumLevel(skill), multiplier)
+        val drain = calculateAmount(amount, offset)
+        val minimumDrain = if (stack) max(-getMax(skill), getOffset(skill) - drain) else min(getOffset(skill), -drain)
+        modify(skill, -drain, minimumDrain, 0)
     }
 
     private fun notify(skill: Skill, previous: Int) {

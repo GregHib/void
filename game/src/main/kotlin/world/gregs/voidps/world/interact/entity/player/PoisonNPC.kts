@@ -2,7 +2,7 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.update.visual.Hit
-import world.gregs.voidps.engine.entity.character.update.visual.addHit
+import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.player.cure
 
@@ -26,9 +26,6 @@ fun damage(npc: NPC) {
         npc.cure()
         return
     }
-
-    val hp = 0// TODO
-    val max = npc.def["hitpoints", 0] * 10
     npc["poison_damage"] = damage - 2
-    npc.addHit(Hit(damage, Hit.Mark.Poison, (((hp - damage) / max.toDouble()) * 255).toInt()))
+    npc.hit(npc, damage, Hit.Mark.Poison)
 }

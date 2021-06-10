@@ -136,3 +136,39 @@ teleport_land:
   id: 201
 teleport_tablet:
   id: 965
+cow_hit:
+  id: 371
+cow_death:
+  id: 370
+cow_attack:
+  id: 369
+calf_hit:
+  id: 368
+calf_death:
+  id: 367
+calf_attack:
+  id: 366
+chicken_hit:
+  id: 357
+chicken_death:
+  id: 356
+chicken_attack:
+  id: 355
+goblin_hit:
+  id: 470
+goblin_death:
+  id: 471
+goblin_attack:
+  id: 469
+big_spider_attack:
+  id: 3605
+big_spider_hit:
+  id: 3607
+big_spider_death:
+  id: 3606
+rat_attack:
+  id: 710
+rat_hit:
+  id: 713
+rat_death:
+  id: 711

@@ -96,7 +96,7 @@ cow_calf:
   slayxp: 6.0
   style: "crush"
   examine: "Young, but still beefy."
-  category: "cow"
+  category: "calf"
   height: 15
 goblin_mohawk_blue:
   id: 4262
@@ -171,7 +171,7 @@ giant_spider:
   slayxp: 5.0
   style: "stab"
   examine: "I think this spider has been genetically modified."
-  category: "spider"
+  category: "big_spider"
 bob:
   id: 519
   race: "Human"

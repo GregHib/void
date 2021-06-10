@@ -58,7 +58,6 @@ fun decay(projectile: Projectile) {
         // probably not worth the effort
         repeat(projectile.flightTime / 30) {
             delay(1)
-            println("Reduce flight time")
             projectile.flightTime -= 30
         }
         projectile.flightTime = 0

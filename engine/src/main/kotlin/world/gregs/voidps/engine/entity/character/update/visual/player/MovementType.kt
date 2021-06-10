@@ -35,26 +35,26 @@ var Player.movementType: PlayerMoveType
         }
     }
 
-fun Player.tele(tile: Tile) = tele(tile.delta(this.tile))
+fun Character.tele(tile: Tile) = tele(tile.delta(this.tile))
 
-fun Player.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
+fun Character.tele(x: Int = tile.x, y: Int = tile.y, plane: Int = tile.plane) = tele(Delta(x - tile.x, y - tile.y, plane - tile.plane))
 
-fun Player.tele(area: Area) = tele(area.random())
+fun Character.tele(area: Area) = tele(area.random())
 
-fun Player.tele(delta: Delta) {
+fun Character.tele(delta: Delta) {
     action.run(ActionType.Teleport) {
         move(delta)
     }
 }
 
-fun Player.move(tile: Tile) = move(tile.delta(this.tile))
+fun Character.move(tile: Tile) = move(tile.delta(this.tile))
 
-fun Player.move(delta: Delta) {
+fun Character.move(delta: Delta) {
     movement.clear()
     movement.delta = delta
     movement.strategy = null
     movement.previousTile = tile
-    if (movement.delta != Delta.EMPTY) {
+    if (this is Player && movement.delta != Delta.EMPTY) {
         movementType = PlayerMoveType.Teleport
     }
 }

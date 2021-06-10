@@ -46,11 +46,10 @@ on<Command>({ prefix == "under" }) { player: Player ->
 }
 
 on<Command>({ prefix == "anim" }) { player: Player ->
-    val id = content.toIntOrNull()
-    when (id) {
-        null -> player.setAnimation(content)
+    when (val id = content.toIntOrNull()) {
+        null -> player.setAnimation(content, override = true)
         -1 -> player.clearAnimation()
-        else -> player.setAnimation(id)// 863
+        else -> player.setAnimation(id, override = true)// 863
     }
 }
 

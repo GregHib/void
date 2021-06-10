@@ -1021,3 +1021,39 @@ bow_shoot:
   id: 426
 crossbow_shoot:
   id: 4230
+cow_hit:
+  id: 150
+cow_death:
+  id: 244
+cow_attack:
+  id: 245
+calf_hit:
+  id: 150
+calf_death:
+  id: 244
+calf_attack:
+  id: 245
+chicken_attack:
+  id: 5387
+chicken_hit:
+  id: 5388
+chicken_death:
+  id: 5389
+goblin_attack:
+  id: 6184
+goblin_hit:
+  id: 6183
+goblin_death:
+  id: 6182
+big_spider_attack:
+  id: 5327
+big_spider_hit:
+  id: 5328
+big_spider_death:
+  id: 5329
+rat_attack:
+  id: 2705
+rat_hit:
+  id: 2706
+rat_death:
+  id: 2707

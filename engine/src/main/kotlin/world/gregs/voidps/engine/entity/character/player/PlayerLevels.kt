@@ -11,7 +11,7 @@ class PlayerLevels(
 
     override fun getMaxLevel(skill: Skill): Int {
         val exp = experience.get(skill)
-        return getLevel(exp)
+        return if (skill == Skill.Constitution) getLevel(exp) * 10 else getLevel(exp)
     }
 
     companion object {
