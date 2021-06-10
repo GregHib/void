@@ -15,6 +15,7 @@ interface Character : Entity, Comparable<Character> {
     var change: LocalChange?
     val movement: Movement
     val action: Action
+    val levels: Levels
     var interactTarget: TileTargetStrategy
 
     override fun compareTo(other: Character): Int {

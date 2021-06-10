@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerLevels
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -170,7 +170,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     if (target == null) {
         println("Unable to find target.")
     } else {
-        target.experience.set(skill, Levels.getExperience(level).toDouble())
+        target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
         player.levels.clearOffset(skill)
         delay(player, 1) {
             target.removeVar("skill_stat_flash", skill)

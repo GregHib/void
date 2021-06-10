@@ -14,10 +14,6 @@ import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poison
 
-on<Registered> { player: Player ->
-
-}
-
 on<EffectStart>({ effect == "poison" }) { player: Player ->
     player.message(Colour.Green.wrap("You have been poisoned."))
     delay(0) {

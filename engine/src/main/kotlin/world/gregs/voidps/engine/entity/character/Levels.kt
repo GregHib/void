@@ -1,33 +1,30 @@
-package world.gregs.voidps.engine.entity.character.player.skill
+package world.gregs.voidps.engine.entity.character
 
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
-import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.*
 import world.gregs.voidps.engine.event.Events
 import kotlin.math.max
 import kotlin.math.min
-import kotlin.math.pow
 
 class Levels(
     @JsonProperty("levelOffsets")
     val offsets: MutableMap<Skill, Int> = mutableMapOf(),
 ) {
+
+    interface Level {
+        fun getMaxLevel(skill: Skill): Int
+    }
+
     @JsonIgnore
-    lateinit var experience: Experience
+    private lateinit var level: Level
 
     @JsonIgnore
     private lateinit var events: Events
 
-    fun link(experience: Experience, events: Events) {
-        this.experience = experience
+    fun link(events: Events, level: Level) {
         this.events = events
-        events.on<Player, GrantExp> {
-            val previousLevel = getLevel(from)
-            val currentLevel = getLevel(to)
-            if (currentLevel > previousLevel) {
-                events.emit(Leveled(skill, previousLevel, currentLevel))
-            }
-        }
+        this.level = level
     }
 
     fun get(skill: Skill): Int {
@@ -35,8 +32,7 @@ class Levels(
     }
 
     fun getMax(skill: Skill): Int {
-        val exp = experience.get(skill)
-        return if (skill == Skill.Constitution) getLevel(exp) * 10 else getLevel(exp)
+        return if (skill == Skill.Constitution) level.getMaxLevel(skill) * 10 else level.getMaxLevel(skill)
     }
 
     fun getOffset(skill: Skill): Int {
@@ -129,23 +125,6 @@ class Levels(
     private fun calculateAmount(amount: Int, offset: Int) = max(0, amount) + offset
 
     companion object {
-        private fun getLevel(experience: Double): Int {
-            var total = 0
-            return (1..99).firstOrNull { level ->
-                total += experience(level)
-                total / 4 - 1 >= experience
-            } ?: 99
-        }
-
-        fun getExperience(level: Int): Int = (1 until level)
-            .sumBy(::experience) / 4
-
-        private fun experience(level: Int) = (level + 300.0 * 2.0.pow(level / 7.0)).toInt()
-
-        fun createLevels(experience: Experience): IntArray {
-            return Skill.all.map { skill -> getLevel(experience.get(skill)) }.toIntArray()
-        }
-
         private const val MAXIMUM_BOOST_LEVEL = 24
     }
 }
