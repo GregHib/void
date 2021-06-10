@@ -108,7 +108,7 @@ fun playEquipSound(player: Player, item: ItemDefinition, slot: EquipSlot) {
         EquipSlot.Legs -> if (material == "metal") "equip_legs" else "equip_clothes"
         EquipSlot.Feet -> if (material == "metal") "equip_feet" else "equip_clothes"
         EquipSlot.Hands -> if (material == "metal") "equip_hands" else "equip_clothes"
-        EquipSlot.Arrows -> if (material == "metal") "equip_bolts" else "equip_range"
+        EquipSlot.Ammo -> if (material == "metal") "equip_bolts" else "equip_range"
         EquipSlot.Ring -> if (name == "beacon ring") "equip_surok_ring" else "equip_clothes"
         else -> "equip_clothes"
     }

@@ -446,7 +446,7 @@ ice_arrows:
   id: 78
   tradeable: false
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An ice arrow."
   kept: "Reclaim"
 lever_temple_of_ikov:
@@ -2810,7 +2810,7 @@ bronze_fire_arrows_unlit:
   price: 208
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with bronze heads and oil-soaked cloth."
 picture_8:
   id: 599
@@ -4745,48 +4745,48 @@ bronze_bolts:
   price: 7
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 bronze_bolts_p:
   id: 878
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 opal_bolts:
   id: 879
   price: 7
   limit: 25000
   range_str: 14.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Opal tipped Bronze crossbow bolts."
 pearl_bolts:
   id: 880
   price: 40
   limit: 25000
   range_str: 48.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Pearl tipped Iron crossbow bolts."
 barbed_bolts:
   id: 881
   price: 34
   limit: 10000
   range_str: 12.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Great if you have a crossbow!"
 bronze_arrow:
   id: 882
   price: 11
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 bronze_arrow_p:
   id: 883
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow:
@@ -4794,71 +4794,71 @@ iron_arrow:
   price: 13
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 iron_arrow_p:
   id: 885
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow:
   id: 886
   price: 20
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p:
   id: 887
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow:
   id: 888
   price: 27
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 mithril_arrow_p:
   id: 889
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow:
   id: 890
   price: 96
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 adamant_arrow_p:
   id: 891
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow:
   id: 892
   price: 184
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 rune_arrow_p:
   id: 893
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_fire_arrows_lit:
   id: 942
   price: 271
   limit: 10000
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, bronze-headed fire arrow."
 worm:
   id: 943
@@ -13991,70 +13991,70 @@ iron_fire_arrows_unlit:
   price: 321
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with iron heads and oil-soaked cloth."
 iron_fire_arrows_lit:
   id: 2533
   price: 276
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, iron-headed fire arrow."
 steel_fire_arrows_unlit:
   id: 2534
   price: 308
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with steel heads and oil-soaked cloth."
 steel_fire_arrows_lit:
   id: 2535
   price: 308
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, steel-headed fire arrow."
 mithril_fire_arrows_unlit:
   id: 2536
   price: 12
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads and oil-soaked cloth."
 mithril_fire_arrows_lit:
   id: 2537
   price: 86
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, mithril-headed fire arrow."
 adamant_fire_arrows_unlit:
   id: 2538
   price: 102
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads and oil-soaked cloth."
 adamant_fire_arrows_lit:
   id: 2539
   price: 108
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, adamant-headed fire arrow."
 rune_fire_arrows_unlit:
   id: 2540
   price: 415
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads and oil-soaked cloth."
 rune_fire_arrows_lit:
   id: 2541
   price: 536
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, rune-headed fire arrow."
 ring_of_recoil:
   id: 2550
@@ -16047,7 +16047,7 @@ ogre_arrow:
   price: 192
   limit: 1000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A large ogre arrow with a bone tip."
 ogre_bellows:
   id: 2871
@@ -22235,7 +22235,7 @@ broad_arrow:
   id: 4160
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrow with a wider than normal tip."
   kept: "Reclaim"
 bag_of_salt:
@@ -22304,22 +22304,22 @@ slayers_staff_noted:
 broad_arrows_2:
   id: 4172
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_3:
   id: 4173
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_4:
   id: 4174
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_5:
   id: 4175
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 picture_47:
   id: 4177
@@ -25816,7 +25816,7 @@ bolt_rack:
   price: 200
   limit: 10000
   range_str: 55.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Must need a special type of crossbow to use this."
 torags_helm:
@@ -25976,49 +25976,49 @@ bronze_brutal:
   price: 49
   limit: 1000
   range_str: 11.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt bronze arrow...ouch"
 iron_brutal:
   id: 4778
   price: 19
   limit: 1000
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt iron arrow...ouch"
 steel_brutal:
   id: 4783
   price: 24
   limit: 1000
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt steel arrow...ouch"
 black_brutal:
   id: 4788
   price: 65
   limit: 1000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt black arrow...ouch"
 mithril_brutal:
   id: 4793
   price: 79
   limit: 1000
   range_str: 34.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt mithril arrow...ouch"
 adamant_brutal:
   id: 4798
   price: 147
   limit: 1000
   range_str: 45.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt adamantite arrow...ouch"
 rune_brutal:
   id: 4803
   price: 173
   limit: 1000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt rune arrow...ouch"
 black_prism:
   id: 4808
@@ -30503,75 +30503,75 @@ bronze_arrow_p+:
   id: 5616
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow_p+:
   id: 5617
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p+:
   id: 5618
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow_p+:
   id: 5619
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow_p+:
   id: 5620
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow_p+:
   id: 5621
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_arrow_p++:
   id: 5622
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow_p++:
   id: 5623
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p++:
   id: 5624
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow_p++:
   id: 5625
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow_p++:
   id: 5626
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow_p++:
   id: 5627
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_dart_p+:
   id: 5628
@@ -32639,13 +32639,13 @@ bronze_bolts_p+:
   id: 6061
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 bronze_bolts_p++:
   id: 6062
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 spirit_tree:
   id: 6063
@@ -47415,7 +47415,7 @@ bone_bolts:
   price: 13
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Good if you have a bone crossbow!"
 zanik_2:
   id: 8887
@@ -48883,7 +48883,7 @@ blurite_bolts:
   id: 9139
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -48892,7 +48892,7 @@ iron_bolts:
   price: 40
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts:
@@ -48900,7 +48900,7 @@ steel_bolts:
   price: 85
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts:
@@ -48908,7 +48908,7 @@ mithril_bolts:
   price: 125
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts:
@@ -48916,7 +48916,7 @@ adamant_bolts:
   price: 202
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts:
@@ -48924,7 +48924,7 @@ runite_bolts:
   price: 894
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts:
@@ -48932,7 +48932,7 @@ silver_bolts:
   price: 10
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 bronze_crossbow:
@@ -49070,14 +49070,14 @@ opal_bolts_e:
   price: 18
   limit: 25000
   range_str: 14.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted opal-tipped bronze crossbow bolts."
 jade_bolts_e:
   id: 9237
   tradeable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted jade-tipped blurite crossbow bolts."
   kept: "Reclaim"
@@ -49085,7 +49085,7 @@ pearl_bolts_e:
   id: 9238
   price: 41
   limit: 25000
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted pearl-tipped iron crossbow bolts."
 topaz_bolts_e:
@@ -49093,7 +49093,7 @@ topaz_bolts_e:
   price: 57
   limit: 25000
   range_str: 66.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted red topaz-tipped steel crossbow bolts."
 sapphire_bolts_e:
@@ -49101,7 +49101,7 @@ sapphire_bolts_e:
   price: 105
   limit: 25000
   range_str: 83.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted sapphire-tipped mithril crossbow bolts."
 emerald_bolts_e:
@@ -49109,7 +49109,7 @@ emerald_bolts_e:
   price: 269
   limit: 25000
   range_str: 85.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted emerald-tipped mithril crossbow bolts."
 ruby_bolts_e:
@@ -49117,7 +49117,7 @@ ruby_bolts_e:
   price: 422
   limit: 25000
   range_str: 103.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted ruby-tipped adamantite crossbow bolts."
 diamond_bolts_e:
@@ -49125,7 +49125,7 @@ diamond_bolts_e:
   price: 983
   limit: 25000
   range_str: 105.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted diamond-tipped adamantite crossbow bolts."
 dragon_bolts_e:
@@ -49133,7 +49133,7 @@ dragon_bolts_e:
   price: 3736
   limit: 25000
   range_str: 117.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted dragonstone-tipped runite crossbow bolts."
 onyx_bolts_e:
@@ -49141,14 +49141,14 @@ onyx_bolts_e:
   price: 8843
   limit: 25000
   range_str: 120.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted onyx-tipped runite crossbow bolts."
 blurite_bolts_p:
   id: 9286
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49156,49 +49156,49 @@ iron_bolts_p:
   id: 9287
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p:
   id: 9288
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts_p:
   id: 9289
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p:
   id: 9290
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p:
   id: 9291
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p:
   id: 9292
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 blurite_bolts_p+:
   id: 9293
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49206,7 +49206,7 @@ iron_bolts_p+:
   id: 9294
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p+:
@@ -49214,7 +49214,7 @@ steel_bolts_p+:
   limit: 10000
   tradeable: false
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Some poisoned steel bolts."
   kept: "Reclaim"
@@ -49222,35 +49222,35 @@ mithril_bolts_p+:
   id: 9296
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p+:
   id: 9297
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p+:
   id: 9298
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p+:
   id: 9299
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 blurite_bolts_p++:
   id: 9300
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49258,49 +49258,49 @@ iron_bolts_p++:
   id: 9301
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p++:
   id: 9302
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts_p++:
   id: 9303
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p++:
   id: 9304
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p++:
   id: 9305
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p++:
   id: 9306
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 jade_bolts:
   id: 9335
   tradeable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Jade tipped Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49309,7 +49309,7 @@ topaz_bolts:
   price: 72
   limit: 25000
   range_str: 66.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Topaz tipped Steel crossbow bolts."
 sapphire_bolts:
@@ -49317,7 +49317,7 @@ sapphire_bolts:
   price: 99
   limit: 25000
   range_str: 83.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Sapphire tipped Mithril crossbow bolts."
 emerald_bolts:
@@ -49325,7 +49325,7 @@ emerald_bolts:
   price: 185
   limit: 25000
   range_str: 85.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Emerald tipped Mithril crossbow bolts."
 ruby_bolts:
@@ -49333,7 +49333,7 @@ ruby_bolts:
   price: 387
   limit: 25000
   range_str: 103.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Ruby tipped Adamantite crossbow bolts."
 diamond_bolts:
@@ -49341,7 +49341,7 @@ diamond_bolts:
   price: 923
   limit: 25000
   range_str: 105.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Diamond tipped Adamantite crossbow bolts."
 dragon_bolts:
@@ -49349,7 +49349,7 @@ dragon_bolts:
   price: 3682
   limit: 25000
   range_str: 117.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Dragonstone tipped Runite crossbow bolts."
 onyx_bolts:
@@ -49357,7 +49357,7 @@ onyx_bolts:
   price: 8717
   limit: 10000
   range_str: 120.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Onyx tipped Runite crossbow bolts."
 bronze_bolts_unf:
@@ -49423,7 +49423,7 @@ mithril_grapple:
   price: 1484
   limit: 1000
   weight: 0.001
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A mithril grapple tipped bolt with a rope."
 bronze_limbs:
   id: 9420
@@ -50891,7 +50891,7 @@ training_arrows:
   id: 9706
   tradeable: false
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Standard training arrows."
   kept: "Reclaim"
   use: "Limited"
@@ -53481,28 +53481,28 @@ guam_tar:
   price: 20
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with a green tinge."
 marrentill_tar:
   id: 10143
   price: 14
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with an orange tinge."
 tarromin_tar:
   id: 10144
   price: 66
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with a red tinge."
 harralander_tar:
   id: 10145
   price: 87
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A dark, thick, foul-smelling, tar-like substance."
 orange_salamander:
   id: 10146
@@ -53586,14 +53586,14 @@ kebbit_bolts:
   price: 25
   limit: 1000
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bolts made from the spikes of a prickly kebbit."
 long_kebbit_bolts:
   id: 10159
   price: 233
   limit: 1000
   range_str: 38.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bolts made from the spikes of a razor-backed kebbit."
 orange_salamander_noted:
   id: 10160
@@ -61331,39 +61331,39 @@ dragon_arrow:
   price: 1643
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_fire_arrows_unlit:
   id: 11217
   price: 2328
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with dragon heads and oil-soaked cloth."
 dragon_fire_arrows_lit:
   id: 11222
   price: 2445
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Dragon-headed fire arrow."
 dragon_arrow_p:
   id: 11227
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p+:
   id: 11228
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p++:
   id: 11229
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_dart:
   id: 11230
@@ -72545,28 +72545,28 @@ black_bolts:
   price: 78
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p:
   id: 13084
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p+:
   id: 13085
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p++:
   id: 13086
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_cane:
@@ -73731,7 +73731,7 @@ broad-tipped_bolts:
   price: 89
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
@@ -76327,7 +76327,7 @@ performance_arrow:
   id: 13722
   bankable: false
   tradeable: false
-  slot: "Arrows"
+  slot: "Ammo"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "Arrows with bronze heads."
   kept: "Vanish"
@@ -79354,31 +79354,31 @@ arrows_class_1:
   id: 14202
   bankable: false
   range_str: 15.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_2:
   id: 14203
   bankable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_3:
   id: 14204
   bankable: false
   range_str: 45.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_4:
   id: 14205
   bankable: false
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_5:
   id: 14206
   bankable: false
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 prayer_potion_stealing_creation_5:
   id: 14207
@@ -85161,7 +85161,7 @@ hand_cannon_shot:
   price: 181
   limit: 10000
   range_str: 150.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The bag contains shot and powder for the hand cannon."
 commander_veldaban:
   id: 15244
@@ -91161,295 +91161,295 @@ novite_arrows_bound:
   id: 15947
   tradeable: false
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition"
 bathus_arrows_bound:
   id: 15948
   tradeable: false
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 marmaros_arrows_bound:
   id: 15949
   tradeable: false
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 kratonite_arrows_bound:
   id: 15950
   tradeable: false
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 fractite_arrows_bound:
   id: 15951
   tradeable: false
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 zephyrium_arrows_b:
   id: 15952
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 argonite_arrows_bound:
   id: 15953
   tradeable: false
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 katagon_arrows_bound:
   id: 15954
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 gorgonite_arrows_bound:
   id: 15955
   tradeable: false
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 promethium_arrows_bound:
   id: 15956
   tradeable: false
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 sagittarian_arrows_bound:
   id: 15957
   tradeable: false
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p_b:
   id: 15958
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p_b:
   id: 15959
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p_b:
   id: 15960
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p_b:
   id: 15961
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p_b:
   id: 15962
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p_b:
   id: 15963
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p_b:
   id: 15964
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p_b:
   id: 15965
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p_b:
   id: 15966
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p_b:
   id: 15967
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p_b:
   id: 15968
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p+_b:
   id: 15969
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p+_b:
   id: 15970
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p+_b:
   id: 15971
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p+_b:
   id: 15972
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p+_b:
   id: 15973
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p+_b:
   id: 15974
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p+_b:
   id: 15975
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p+_b:
   id: 15976
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p+_b:
   id: 15977
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p+_b:
   id: 15978
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p+_b:
   id: 15979
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p++_b:
   id: 15980
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p++_b:
   id: 15981
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p++_b:
   id: 15982
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p++_b:
   id: 15983
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p++_b:
   id: 15984
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p++_b:
   id: 15985
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p++_b:
   id: 15986
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p++_b:
   id: 15987
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p++_b:
   id: 15988
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p++_b:
   id: 15989
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p++_b:
   id: 15990
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
@@ -96304,288 +96304,288 @@ primal_maul_noted:
 novite_arrows:
   id: 16427
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition"
 bathus_arrows:
   id: 16432
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 marmaros_arrows:
   id: 16437
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 kratonite_arrows:
   id: 16442
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 fractite_arrows:
   id: 16447
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 zephyrium_arrows_2:
   id: 16452
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows:
   id: 16457
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 katagon_arrows:
   id: 16462
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 gorgonite_arrows:
   id: 16467
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 promethium_arrows:
   id: 16472
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 sagittarian_arrows:
   id: 16477
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p:
   id: 16482
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p:
   id: 16487
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p:
   id: 16492
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p:
   id: 16497
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p:
   id: 16502
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows:
   id: 16507
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p:
   id: 16512
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p:
   id: 16517
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p:
   id: 16522
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p:
   id: 16527
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p:
   id: 16532
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p+:
   id: 16537
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p+:
   id: 16542
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p+:
   id: 16547
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p+:
   id: 16552
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p+:
   id: 16557
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p+:
   id: 16562
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p+:
   id: 16567
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p+:
   id: 16572
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p+:
   id: 16577
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p+:
   id: 16582
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p+:
   id: 16587
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p++:
   id: 16592
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p++:
   id: 16597
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p++:
   id: 16602
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p++:
   id: 16607
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p++:
   id: 16612
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p++:
   id: 16617
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p++:
   id: 16622
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p++:
   id: 16627
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p++:
   id: 16632
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p++:
   id: 16637
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p++:
   id: 16642
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
@@ -109308,19 +109308,19 @@ saradomin_arrows:
   id: 19152
   price: 745
   limit: 1000
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Saradomin."
 guthix_arrows:
   id: 19157
   price: 701
   limit: 1000
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Guthix."
 zamorak_arrows:
   id: 19162
   price: 883
   limit: 1000
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Zamorak."
 black_platebody_h1:
   id: 19167

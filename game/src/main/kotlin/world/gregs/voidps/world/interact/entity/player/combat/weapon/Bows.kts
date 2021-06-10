@@ -31,7 +31,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player["attack_range"] = weapon.def.getOrNull("attack_range") as? Int ?: 7
     player["attack_type"] = "ranged"
     player.setCombatSwing { target ->
-        val ammo = player.equipped(EquipSlot.Arrows)
+        val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.isEmpty()) {
             player.message("There is no ammo left in your quiver.")
             return@setCombatSwing -1
