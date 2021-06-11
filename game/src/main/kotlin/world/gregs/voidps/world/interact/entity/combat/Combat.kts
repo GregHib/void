@@ -3,34 +3,33 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.remaining
-import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.inject
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
     attack(player, npc)
 }
 
+val npcs: NPCs by inject()
+
 fun attack(player: Player, target: Character) {
-    if (player.action.type == ActionType.Combat && player.hasEffect("skilling_delay")) {
-        return
-    }
     player.action(ActionType.Combat) {
+        player["target"] = target
         val moveHandler = target.events.on<NPC, Moved> {
             withinRange(player, target)
         }
@@ -56,6 +55,7 @@ fun attack(player: Player, target: Character) {
                 player.start("skilling_delay", nextDelay, quiet = true)
             }
         } finally {
+            player.clear("target")
             target.events.remove(moveHandler)
             target.events.remove(deathHandler)
             player.watch(null)
@@ -64,6 +64,12 @@ fun attack(player: Player, target: Character) {
 }
 
 fun canAttack(player: Player, target: Character): Boolean {
+    if (npcs.getAtIndex(target.index) == null) {
+        return false
+    }
+    if (target.action.type == ActionType.Death) {
+        return false
+    }
     // PVP area, slayer requirements, in combat etc..
     return true
 }

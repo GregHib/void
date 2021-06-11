@@ -60,7 +60,7 @@ fun Player.maximumRangedHit(target: Character): Int {
     val special = getVar("special_attack", false)
     val equipmentStrength = get("range_str", 0)
     return if (isWeaponOutlier(special, weapon.name)) {
-        val bonus = if (weapon.name == "rune_thrownaxe" || (weapon.name == "magic_short_bow" && target is Player)) 1 else 0
+        val bonus = if (weapon.name == "rune_thrownaxe" || (weapon.name == "magic_shortbow" && target is Player)) 1 else 0
         (0.5 + (levels.get(Skill.Range) + 10) * (equipmentStrength + 64) / 640).toInt() + bonus
     } else {
         val specialAttackMultiplier = 1.0// spec + diamond bolts = onyx

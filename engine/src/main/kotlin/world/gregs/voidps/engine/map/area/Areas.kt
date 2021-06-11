@@ -42,7 +42,7 @@ class Areas(
             area.loaded = true
             for (spawn in area.npcs) {
                 repeat(spawn.limit) {
-                    npcs.add(spawn.name, area.area, spawn.direction)
+                    npcs.add(spawn.name, area.area, spawn.direction, spawn.delay)
                 }
             }
             for (spawn in area.items) {
