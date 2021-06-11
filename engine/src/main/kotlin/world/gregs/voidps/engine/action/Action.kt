@@ -25,6 +25,7 @@ class Action(
     var continuation: CancellableContinuation<*>? = null
     var suspension: Suspension? = null
     var instruction: Instruction? = null
+    var wait: Job? = null
     var job: Job? = null
     var completion: (() -> Unit)? = null
 
@@ -85,6 +86,8 @@ class Action(
      * @param action The suspendable action function
      */
     fun run(type: ActionType, action: suspend Action.() -> Unit) = scope.launch {
+        wait?.cancel()
+        wait = this.coroutineContext.job
         this@Action.cancelAndJoin()
         this@Action.type = type
         events.emit(ActionStarted(type))
