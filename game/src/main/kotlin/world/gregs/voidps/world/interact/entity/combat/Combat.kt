@@ -11,6 +11,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.Hit
 import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
@@ -40,25 +41,25 @@ fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {
 }
 
 
-fun Player.gearBonus(target: Character): Double {
-    var gearBonus = 1.0
-    if (hasSlayerTask && isTask(target) && target.isUndead && equipped(EquipSlot.Amulet).name == "salve_amulet_e") {
-        gearBonus *= 7 / 6
-    } else if (hasSlayerTask && isTask(target) && equipped(EquipSlot.Hat).name.startsWith("full_slayer_helmet")) {
-        gearBonus *= 1.15
+fun Player.slayGearBonus(target: Character): Double {
+    if (!hasSlayerTask || !isTask(target)) {
+        return 1.0
     }
-    return gearBonus
+    return when {
+        target.isUndead && equipped(EquipSlot.Amulet).name == "salve_amulet_e" -> 7.0 / 6.0
+        equipped(EquipSlot.Hat).name.startsWith("full_slayer_helmet") -> 1.15
+        else -> 1.0
+    }
 }
+
+fun isWeaponOutlier(special: Boolean, name: String): Boolean =
+    (special && name.startsWith("magic") || name == "seercull" || name == "rune_thrownaxe") || name == "ogre_bow"
 
 fun Player.maximumRangedHit(target: Character): Int {
     val weapon = equipped(EquipSlot.Weapon)
-    val skipBonuses = (getVar("special_attack", false) &&
-            weapon.name.startsWith("magic") ||
-            weapon.name == "seercull" ||
-            weapon.name == "rune_thrownaxe")
-            || weapon.name == "ogre_bow"
+    val special = getVar("special_attack", false)
     val equipmentStrength = get("range_str", 0)
-    return if (skipBonuses) {
+    return if (isWeaponOutlier(special, weapon.name)) {
         val bonus = if (weapon.name == "rune_thrownaxe" || (weapon.name == "magic_short_bow" && target is Player)) 1 else 0
         (0.5 + (levels.get(Skill.Range) + 10) * (equipmentStrength + 64) / 640).toInt() + bonus
     } else {
@@ -66,7 +67,7 @@ fun Player.maximumRangedHit(target: Character): Int {
         val prayerMultiplier = 1.0
         val boltSpecMultiplier = 1.0// dragon e, pearl + opal
         val antiFire = 1.0// 0.0 if immune
-        ((0.5 + (effectiveAttack * (equipmentStrength + 64)) / 640) * gearBonus(target) * specialAttackMultiplier * prayerMultiplier * boltSpecMultiplier * antiFire).toInt()
+        ((0.5 + (effectiveAttack * (equipmentStrength + 64)) / 640) * slayGearBonus(target) * specialAttackMultiplier * prayerMultiplier * boltSpecMultiplier * antiFire).toInt()
     }
 }
 
@@ -78,15 +79,11 @@ val Player.effectiveAttack: Double
     }
 
 fun Player.effectiveDefLevel(target: Character): Int {
-    return if (target is Player) {
-        target.levels.get(Skill.Defence) + if (attackStyle == "Defensive") 3 else if (attackStyle == "Controlled") 1 else 0
-    } else {
-        target.levels.get(Skill.Defence) + 9
-    }
+    return target.levels.get(Skill.Defence) + if (target is Player) if (attackStyle == "Defensive") 3 else if (attackStyle == "Controlled") 1 else 0 else 9
 }
 
 fun Player.attackChance(target: Character): Double {
-    val gearBonus = gearBonus(target)
+    val gearBonus = slayGearBonus(target)
     val rangedBonus = get("range", 0)
     val specialAttackMultiplier = 1.0
     return effectiveAttack * (rangedBonus + 64) * gearBonus * specialAttackMultiplier
@@ -98,9 +95,12 @@ fun Player.defenceChance(target: Character): Int {
 }
 
 fun Player.voidMultiplier(): Double {
+    if (equipped(EquipSlot.Hat).name != "void_ranger_helm") {
+        return 1.0
+    }
     return when {
-        wearingVoid && equipped(EquipSlot.Hat).name == "void_ranger_helm" -> 1.1
-        wearingEliteVoid && equipped(EquipSlot.Hat).name == "void_ranger_helm" -> 1.125
+        hasEffect("void_set") -> 1.1
+        hasEffect("elite_void_set") -> 1.125
         else -> 1.0
     }
 }
@@ -114,16 +114,6 @@ fun Player.hitChance(target: Character): Double {
         attackerChance / (2 * (defenderChance + 1))
     }
 }
-
-val Player.wearingVoid: Boolean
-    get() = equipped(EquipSlot.Chest).name == "void_knight_top" &&
-            equipped(EquipSlot.Legs).name == "void_knight_robe" &&
-            equipped(EquipSlot.Hands).name == "void_knight_gloves"
-
-val Player.wearingEliteVoid: Boolean
-    get() = equipped(EquipSlot.Chest).name.startsWith("elite_void_knight_top") &&
-            equipped(EquipSlot.Legs).name.startsWith("elite_void_knight_robe") &&
-            equipped(EquipSlot.Hands).name.startsWith("elite_void_knight_gloves")
 
 val ItemDefinition.ammo: Set<String>?
     get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()
