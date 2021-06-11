@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.event.on
 
 IntVariable(43, Variable.Type.VARP, true, 0).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
+BooleanVariable(301, Variable.Type.VARP).register("special_attack")
 
 on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "style1")
@@ -23,6 +24,6 @@ on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }
     player.setVar("attack_style", index - 1)
 }
 
-on<InterfaceOption>({ name == "combat_styles" && component == "retaliate" && option == "Auto Retaliate" }) { player: Player ->
-    player.toggleVar("auto_retaliate")
+on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
+    player.toggleVar("special_attack")
 }
