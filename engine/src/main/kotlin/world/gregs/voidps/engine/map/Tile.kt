@@ -13,7 +13,6 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.utility.get
 
@@ -60,7 +59,7 @@ inline class Tile(val id: Int) {
     fun delta(direction: Direction) = delta(direction.delta)
 
     fun withinSight(other: Tile): Boolean {
-        return get<BresenhamsLine>().withinSight(this, other) is PathResult.Success
+        return get<BresenhamsLine>().withinSight(this, other)
     }
 
     fun distanceTo(entity: Entity) = when (entity) {
