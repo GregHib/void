@@ -51,38 +51,35 @@ fun Player.gearBonus(target: Character): Double {
 }
 
 fun Player.maximumRangedHit(target: Character): Int {
-    val exception = true/*
-    special attacks
-        * Magic longbow
-        * Magic shortbow
-        * Magic composite bow
-        * Seercull
-        * Rune thrownaxe
-    normal attack
-        * Ogre bow s
-*/
+    val weapon = equipped(EquipSlot.Weapon)
+    val skipBonuses = (getVar("special_attack", false) &&
+            weapon.name.startsWith("magic") ||
+            weapon.name == "seercull" ||
+            weapon.name == "rune_thrownaxe")
+            || weapon.name == "ogre_bow"
     val equipmentStrength = get("range_str", 0)
-    if (exception) {
-        val extras = 0// +1 if using rune thrownaxe or magic shortbow in pvp
-        return (0.5 + (levels.get(Skill.Range) + 10) * (equipmentStrength + 64) / 640).toInt() + extras
+    return if (skipBonuses) {
+        val bonus = if (weapon.name == "rune_thrownaxe" || (weapon.name == "magic_short_bow" && target is Player)) 1 else 0
+        (0.5 + (levels.get(Skill.Range) + 10) * (equipmentStrength + 64) / 640).toInt() + bonus
     } else {
         val specialAttackMultiplier = 1.0// spec + diamond bolts = onyx
         val prayerMultiplier = 1.0
         val boltSpecMultiplier = 1.0// dragon e, pearl + opal
         val antiFire = 1.0// 0.0 if immune
-        return ((0.5 + (effectiveAttack * (equipmentStrength + 64)) / 640) * gearBonus(target) * specialAttackMultiplier * prayerMultiplier * boltSpecMultiplier * antiFire).toInt()
+        ((0.5 + (effectiveAttack * (equipmentStrength + 64)) / 640) * gearBonus(target) * specialAttackMultiplier * prayerMultiplier * boltSpecMultiplier * antiFire).toInt()
     }
 }
 
 val Player.effectiveAttack: Double
     get() {
-        val accurate = if (attackStyle == 0) 3 else 0
-        return (levels.get(Skill.Range) + accurate + 8.0) * voidMultiplier()
+        val accurate = if (attackStyle == "Accurate") 3 else 0
+        val prayerMultiplier = 1.0
+        return (levels.get(Skill.Range) * prayerMultiplier + accurate + 8.0) * voidMultiplier()
     }
 
 fun Player.effectiveDefLevel(target: Character): Int {
     return if (target is Player) {
-        target.levels.get(Skill.Defence) + if (attackStyle == 2) 3 else 1// todo 3 if def, 1 if control, 0 else
+        target.levels.get(Skill.Defence) + if (attackStyle == "Defensive") 3 else if (attackStyle == "Controlled") 1 else 0
     } else {
         target.levels.get(Skill.Defence) + 9
     }
@@ -131,5 +128,8 @@ val Player.wearingEliteVoid: Boolean
 val ItemDefinition.ammo: Set<String>?
     get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()
 
-val Player.attackStyle: Int
-    get() = getVar("attack_style")
+val Player.attackStyle: String
+    get() = get("attack_style")
+
+val Player.attackType: String
+    get() = get("attack_type")

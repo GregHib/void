@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.ammo
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
+import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.combat.rangeHit
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -29,7 +29,7 @@ fun isCrossbow(item: Item) = item.name.endsWith("crossbow")
 
 fun updateWeapon(player: Player, weapon: Item) {
     player["attack_range"] = weapon.def.getOrNull("attack_range") as? Int ?: 7
-    player["attack_type"] = "ranged"
+    player["combat_style"] = "ranged"
     player.setCombatSwing { target ->
         val ammo = player.equipped(EquipSlot.Ammo)
         if (ammo.isEmpty()) {
@@ -48,6 +48,6 @@ fun updateWeapon(player: Player, weapon: Item) {
         player.shoot(name = bolt, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
         rangeHit(player, target)
         val speed = weapon.def.getOrNull("attack_speed") as? Int ?: 4
-        if (player.attackStyle == 1) speed - 1 else speed
+        if (player.attackType == "Rapid") speed - 1 else speed
     }
 }

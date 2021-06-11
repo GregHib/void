@@ -16,7 +16,9 @@ object ItemDefinitions {
         println(decoder.last)
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            println(def.name)
+            if(def.params?.containsKey(686) == true) {
+                println("$i ${def.name} ${def.params?.get(686)}")
+            }
         }
     }
 }

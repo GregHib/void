@@ -70,7 +70,7 @@ fun canAttack(player: Player, target: Character): Boolean {
 
 fun withinRange(player: Player, target: Character): Boolean {
     val style = player.getVar("attack_style", 0)
-    val type = player["attack_type", "melee"]
+    val type = player["combat_style", "melee"]
     val longRange = type == "ranged" && style == 2
     val maxDistance = (player["attack_range", 1] + if (longRange) 2 else 0).coerceAtMost(10)
     val closeCombat = maxDistance == 1
