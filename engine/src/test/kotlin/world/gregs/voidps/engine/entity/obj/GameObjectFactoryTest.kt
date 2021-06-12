@@ -43,7 +43,7 @@ internal class GameObjectFactoryTest : KoinMock() {
         // When
         val gameObject = factory.spawn(1, Tile.EMPTY, type, 0)
         // Then
-        assertEquals(WallTargetStrategy(collisions, gameObject), gameObject.interactTarget)
+        assert(gameObject.interactTarget is WallTargetStrategy)
     }
 
     @ParameterizedTest
@@ -52,10 +52,7 @@ internal class GameObjectFactoryTest : KoinMock() {
         // When
         val gameObject = factory.spawn(1, Tile.EMPTY, type, 0)
         // Then
-        assertEquals(
-            DecorationTargetStrategy(collisions, gameObject),
-            gameObject.interactTarget
-        )
+        assert(gameObject.interactTarget is DecorationTargetStrategy)
     }
 
     @ParameterizedTest
@@ -64,10 +61,7 @@ internal class GameObjectFactoryTest : KoinMock() {
         // When
         val gameObject = factory.spawn(1, Tile.EMPTY, type, 0)
         // Then
-        assertEquals(
-            RectangleTargetStrategy(collisions, gameObject, 1),
-            gameObject.interactTarget
-        )
+        assert(gameObject.interactTarget is RectangleTargetStrategy)
     }
 
     @ParameterizedTest

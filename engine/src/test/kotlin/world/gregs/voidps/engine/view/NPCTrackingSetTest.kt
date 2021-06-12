@@ -5,9 +5,11 @@ import io.mockk.mockk
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCTrackingSet
+import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.event.eventModule
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
@@ -16,7 +18,9 @@ import world.gregs.voidps.engine.script.KoinMock
 internal class NPCTrackingSetTest : KoinMock() {
     lateinit var set: NPCTrackingSet
 
-    override val modules = listOf(eventModule)
+    override val modules = listOf(eventModule, module {
+        single(createdAtStart = true) { mockk<NPCDefinitions>(relaxed = true) }
+    })
 
     @BeforeEach
     fun setup() {

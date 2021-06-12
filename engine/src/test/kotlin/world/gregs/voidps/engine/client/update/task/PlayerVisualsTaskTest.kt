@@ -134,7 +134,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0x8)
-            encoder.encode(any(), any())
+            encoder.encodeVisual(any(), any())
             visuals.update = any()
         }
     }
@@ -173,7 +173,7 @@ internal class PlayerVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), addMasks.sum())
-            encoder.encode(any(), any())
+            encoder.encodeVisual(any(), any())
             visuals.addition = any()
         }
     }

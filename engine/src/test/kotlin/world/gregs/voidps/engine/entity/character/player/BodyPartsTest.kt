@@ -44,7 +44,7 @@ internal class BodyPartsTest {
 
     @Test
     fun `Get out of bounds body part value`() {
-        assertEquals(-1, body.get(13))
+        assertEquals(0, body.get(13))
     }
 
     @Test
@@ -52,6 +52,7 @@ internal class BodyPartsTest {
         val item = item("123")
         every { equipment.getItem(1) } returns item
         every { item.def["type", EquipType.None] } returns EquipType.None
+        every { item.def.has("equip") } returns true
         every { item.def["equip", -1] } returns 2
         body.update(BodyPart.Cape)
         assertEquals(2 or 0x8000, body.get(1))
@@ -72,6 +73,7 @@ internal class BodyPartsTest {
     fun `Update missing item and look sets to zero`() {
         // Given
         val item = item("123")
+        every { item.def.has("equip") } returns false
         every { item.def["equip", -1] } returns 0
         every { item.def["type", EquipType.None] } returns EquipType.None
         every { equipment.getItem(10) } returns item
