@@ -1,17 +1,13 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -35,8 +31,9 @@ on<Registered> { player: Player ->
     player.sendVar("magic_bonus")
 }
 
-on<PrayerActivate> { player: Player ->
-    val id = prayer.toUnderscoreCase()
+on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
+    val id = effect.removePrefix("prayer_")
+    val curses = player.isCurses()
     if (curses) {
         player.setAnimation("activate_$id")
         player.setGraphic("activate_$id")
@@ -53,8 +50,9 @@ fun startPrayerDrain(player: Player) {
     }
 }
 
-on<PrayerDeactivate> { player: Player ->
+on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
     player.playSound("deactivate_prayer")
+    val curses = player.isCurses()
     stopPrayerDrain(player, curses)
     updateOverheadIcon(player, curses)
 }
