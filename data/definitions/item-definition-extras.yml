@@ -4620,7 +4620,7 @@ magic_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_longbow_noted:
   id: 860
 magic_shortbow:
@@ -4632,7 +4632,7 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Short and magical, but still effective."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_shortbow_noted:
   id: 862
 iron_knife:
@@ -36396,7 +36396,7 @@ seercull:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 seercull_noted:
   id: 6725
 mud_battlestaff_noted:
@@ -61410,7 +61410,7 @@ dark_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, dragon_arrow ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, dragon_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 dark_bow_noted:
   id: 11236
 dragon_arrowtips:
@@ -109265,7 +109265,7 @@ saradomin_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 saradomin_bow_noted:
   id: 19144
 saradomin_bow_lent:
@@ -109282,7 +109282,7 @@ guthix_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, guthix_arrows ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 guthix_bow_noted:
   id: 19147
 guthix_bow_lent:
@@ -109299,7 +109299,7 @@ zamorak_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, zamorak_arrows ]
+  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 zamorak_bow_noted:
   id: 19150
 zamorak_bow_lent:
@@ -109308,18 +109308,21 @@ saradomin_arrows:
   id: 19152
   price: 745
   limit: 1000
+  range_str: 60.0
   slot: "Ammo"
   examine: "Arrows imbued with the power of Saradomin."
 guthix_arrows:
   id: 19157
   price: 701
   limit: 1000
+  range_str: 60.0
   slot: "Ammo"
   examine: "Arrows imbued with the power of Guthix."
 zamorak_arrows:
   id: 19162
   price: 883
   limit: 1000
+  range_str: 60.0
   slot: "Ammo"
   examine: "Arrows imbued with the power of Zamorak."
 black_platebody_h1:
