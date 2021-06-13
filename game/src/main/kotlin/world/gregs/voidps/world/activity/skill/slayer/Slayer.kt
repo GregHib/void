@@ -9,6 +9,6 @@ val Character.isUndead: Boolean
 val Player.hasSlayerTask: Boolean
     get() = false
 
-fun Player.isTask(character: Character): Boolean {
+fun Player.isTask(character: Character?): Boolean {
     return false
 }

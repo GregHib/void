@@ -45,6 +45,6 @@ fun updateWeapon(player: Player, weapon: Item) {
         player.shoot(name = ammo.name, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
         rangeHit(player, target)
         val speed = weapon.def.getOrNull("attack_speed") as? Int ?: 4
-        if (player.attackType == "Rapid") speed - 1 else speed
+        if (player.attackType == "rapid") speed - 1 else speed
     }
 }

@@ -19,6 +19,7 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.utility.func.plural
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
 import java.util.concurrent.TimeUnit
 
@@ -28,7 +29,7 @@ BooleanVariable(301, Variable.Type.VARP).register("special_attack")
 
 val decoder: ClientScriptDecoder by inject()
 
-val styles = mutableMapOf<Int, Array<Pair<String, String>>>()
+val styles = mutableMapOf<Int, Array<Triple<String, String, String>>>()
 val logger = InlineLogger()
 
 on<World, Startup> {
@@ -57,9 +58,10 @@ on<World, Startup> {
     logger.info { "${styles.size} combat ${"style".plural(styles.size)} loaded in ${TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - start)}ms." }
 }
 
-fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Array<Pair<String, String>> {
+fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Array<Triple<String, String, String>> {
     val types = mutableListOf<String>()
     val styles = mutableListOf<String>()
+    val combatStyle = mutableListOf<String>()
     var index: Int = index
     var last = -1
     while (index < instructions.lastIndex) {
@@ -67,9 +69,11 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
         when (instruction) {
             PUSH_STRING -> strings[index]?.also { string ->
                 if (last == GOTO || last == MERGE_STRINGS) {
-                    types.add(string)
+                    types.add(string.toUnderscoreCase())
                 } else if (last == PUSH_INT) {
-                    styles.add(string)
+                    styles.add(string.toUnderscoreCase())
+                } else if(last == PUSH_STRING && strings[index - 1] == "<br>" && !string.endsWith("XP")) {
+                    combatStyle.add(string.toUnderscoreCase())
                 }
             }
             CALL_CS2 -> break
@@ -77,7 +81,7 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
         last = instruction
         index++
     }
-    return types.mapIndexed { i, s -> s to styles[i] }.toTypedArray()
+    return types.mapIndexed { i, s -> Triple(s, styles[i], combatStyle.getOrNull(i) ?: "") }.toTypedArray()
 }
 
 on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
@@ -102,6 +106,7 @@ fun updateStyles(player: Player, index: Int) {
     val style = styles?.getOrNull(index)
     player["attack_type"] = style?.first ?: ""
     player["attack_style"] = style?.second ?: ""
+    player["combat_style"] = style?.third ?: ""
 }
 
 on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->

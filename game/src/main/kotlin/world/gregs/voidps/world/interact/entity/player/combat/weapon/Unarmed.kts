@@ -25,7 +25,7 @@ fun updateWeapon(player: Player) {
     player["attack_range"] = 1
     player["combat_style"] = "melee"
     player.setCombatSwing { target ->
-        player.setAnimation(if (player.attackType == "Kick") "player_kick" else "player_punch")
+        player.setAnimation(if (player.attackType == "kick") "player_kick" else "player_punch")
         hit(player, target, Random.nextInt(100 + 1).coerceAtLeast(0), Hit.Mark.Melee)
         4
     }

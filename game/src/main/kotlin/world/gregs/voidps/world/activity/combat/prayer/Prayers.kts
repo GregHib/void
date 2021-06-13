@@ -18,7 +18,7 @@ IntVariable(6859, Variable.Type.VARBIT, defaultValue = 30).register("defence_bon
 IntVariable(6860, Variable.Type.VARBIT, defaultValue = 30).register("range_bonus")
 IntVariable(6861, Variable.Type.VARBIT, defaultValue = 30).register("magic_bonus")
 
-BooleanVariable(6839, Variable.Type.VARBIT).register("being_leeched")
+BooleanVariable(6839, Variable.Type.VARBIT).register("leech")
 IntVariable(6844, Variable.Type.VARBIT).register("leech_attack_bonus")
 IntVariable(6845, Variable.Type.VARBIT).register("leech_strength_bonus")
 IntVariable(6846, Variable.Type.VARBIT).register("leech_defence_bonus")
