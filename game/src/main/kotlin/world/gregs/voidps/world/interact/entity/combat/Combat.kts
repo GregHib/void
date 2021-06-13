@@ -12,13 +12,17 @@ import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.combat.getMaximumHit
+import world.gregs.voidps.world.interact.entity.combat.hitChance
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
@@ -95,4 +99,11 @@ fun withinRange(player: Player, target: Character): Boolean {
         return false
     }
     return true
+}
+
+on<Command>({ prefix == "maxhit" }) { player: Player ->
+    player.message("Max hit")
+    player.message("Ranged: ${getMaximumHit(player, null, Skill.Range)} Melee: ${getMaximumHit(player, null, Skill.Strength)} Magic: ${getMaximumHit(player, null, Skill.Magic)}")
+    player.message("Hit chance")
+    player.message("Ranged: ${hitChance(player, null, Skill.Range)} Melee: ${hitChance(player, null, Skill.Strength)} Magic: ${hitChance(player, null, Skill.Magic)}")
 }

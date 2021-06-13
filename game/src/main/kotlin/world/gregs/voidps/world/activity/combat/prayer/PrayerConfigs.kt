@@ -1,7 +1,9 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.get
 
 object PrayerConfigs {
     const val PRAYERS = "prayers"
@@ -20,3 +22,11 @@ object PrayerConfigs {
 fun Player.getActivePrayerVarKey(): String = if (isCurses()) PrayerConfigs.ACTIVE_CURSES else PrayerConfigs.ACTIVE_PRAYERS
 
 fun Player.isCurses(): Boolean = getVar(PrayerConfigs.PRAYERS, "") == "curses"
+
+fun Character.getPrayerBonus(key: String): Double {
+    return if (this is Player) {
+        1.0 + (getVar(key, 30) - 30) / 100.0
+    } else {
+        get(key, 1.0)
+    }
+}

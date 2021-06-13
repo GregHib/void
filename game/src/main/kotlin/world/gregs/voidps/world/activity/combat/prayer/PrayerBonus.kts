@@ -4,9 +4,17 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.EffectStart
 import world.gregs.voidps.engine.entity.EffectStop
+import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.get
+import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-
+import world.gregs.voidps.world.interact.entity.combat.EffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
     on<EffectStart>({ this.effect == effect }) { player: Player ->
@@ -50,3 +58,29 @@ set("prayer_leech_strength", "strength_bonus", 5)
 set("prayer_turmoil", "attack_bonus", 15)
 set("prayer_turmoil", "strength_bonus", 23)
 set("prayer_turmoil", "defence_bonus", 15)
+
+fun isFamiliar(target: Character?): Boolean = target != null && target is NPC
+
+fun usingProtectionPrayer(source: Character, target: Character?, skill: Skill): Boolean {
+    return target != null && (skill == Skill.Strength && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
+            skill == Skill.Range && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("deflect_missiles")) ||
+            skill == Skill.Magic && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("deflect_magic")) ||
+            isFamiliar(source) && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("deflect_summoning")))
+}
+
+on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = Priority.MEDIUM) { _: Player ->
+    damage = floor(damage * if (target is Player) 0.6 else 0.0)
+}
+
+on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = Priority.MEDIUM) { _: NPC ->
+    damage = 0.0
+}
+
+on<EffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
+    val bonus = 1.0 + (player.getVar("${skill.name.toLowerCase()}_bonus", 30) - 30) / 100.0
+    level = floor(level * bonus)
+}
+
+on<EffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
+    level = floor(level * npc["${skill.name.toLowerCase()}_bonus", 1.0])
+}
