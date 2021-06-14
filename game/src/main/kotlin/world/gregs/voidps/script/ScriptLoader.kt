@@ -2,8 +2,6 @@ package world.gregs.voidps.script
 
 import com.github.michaelbull.logging.InlineLogger
 import io.github.classgraph.ClassGraph
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.dsl.module
 import world.gregs.voidps.utility.func.plural
 import kotlin.system.measureTimeMillis
@@ -14,7 +12,7 @@ val scriptModule = module {
     }
 }
 
-fun loadScripts(scriptModule: String) = GlobalScope.launch {
+fun loadScripts(scriptModule: String) {
     val logger = InlineLogger()
     var scripts = 0
     val time = measureTimeMillis {
