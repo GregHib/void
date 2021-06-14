@@ -14,9 +14,9 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
@@ -54,18 +54,66 @@ import kotlin.random.nextInt
     goal
 
     player.hit(target, weapon (or null for spell))
-    TODO how to get Skill from the weapon? Could be done by style interface?
  */
 
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
 
-fun rangeHit(player: Player, target: Character, damage: Int = Random.nextInt(100 + 1).coerceAtLeast(0)) {
-    player.exp(Skill.Range, if (player.attackType == "long_range") damage * 0.2 else damage * 0.4)
-    player.exp(Skill.Defence, if (player.attackType == "long_range") damage * 0.2 else 0.0)
-    player.exp(Skill.Constitution, damage * 0.199)
-    delay(target, 2) {
-        hit(player, target, damage, Hit.Mark.Range)
+
+private fun getWeaponSkill(player: Player, weapon: Item?): Skill {
+    if (player.spell.isNotBlank()) {
+        return Skill.Magic
+    }
+    return when (weapon?.def?.weaponStyle()) {
+        13, 16, 17, 18, 19 -> Skill.Range
+        20 -> if (player.attackType == "aim_and_fire") Skill.Range else Skill.Attack
+        21 -> when (player.attackType) {
+            "flare" -> Skill.Range
+            "blaze" -> Skill.Magic
+            else -> Skill.Attack
+        }
+        else -> Skill.Attack
+    }
+}
+
+fun Player.hit(target: Character, weapon: Item?, skill: Skill = getWeaponSkill(this, weapon)) {
+    val damage = hit(this, target, skill, weapon)
+    if (skill == Skill.Magic) {
+        val base = 0.0
+        if (getVar("defensive_cast", false)) {
+            exp(skill, base + damage / 7.5)
+            exp(Skill.Defence, damage / 10.0)
+        } else {
+            exp(skill, base + damage / 5.0)
+        }
+    } else if (skill == Skill.Range) {
+        if (attackType == "long_range") {
+            exp(skill, damage / 5.0)
+            exp(Skill.Defence, damage / 5.0)
+        } else {
+            exp(skill, damage / 2.5)
+        }
+    } else if (skill == Skill.Attack) {
+        when (attackStyle) {
+            "accurate" -> exp(skill, damage / 2.5)
+            "aggressive" -> exp(Skill.Strength, damage / 2.5)
+            "controlled" -> {
+                exp(Skill.Attack, damage / 7.5)
+                exp(Skill.Strength, damage / 7.5)
+                exp(Skill.Defence, damage / 7.5)
+            }
+            "defensive" -> exp(Skill.Defence, damage / 2.5)
+        }
+    }
+    exp(Skill.Constitution, damage / 7.5)
+    delay(target, if (skill == Skill.Attack) 0 else 2) {
+        val mark = when (skill) {
+            Skill.Range -> Hit.Mark.Range
+            Skill.Attack -> Hit.Mark.Melee
+            Skill.Magic -> Hit.Mark.Magic
+            else -> Hit.Mark.Missed
+        }
+        hit(this, target, damage, mark)
     }
 }
 
@@ -79,11 +127,11 @@ fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {
 }
 
 
-fun usingSalamander(source: Character, skill: Skill): Boolean = source is Player && skill == Skill.Magic && !source.contains("spell") && source.equipped(EquipSlot.Weapon).name.endsWith("salamander")
+fun usingSalamander(source: Character, weapon: Item?): Boolean = !source.contains("spell") && weapon?.name?.endsWith("salamander") == true
 
-fun getStrengthBonus(source: Character, skill: Skill): Int {
-    return if (usingSalamander(source, skill)) {
-        when ((source as Player).equipped(EquipSlot.Weapon).name) {
+fun getStrengthBonus(source: Character, skill: Skill, weapon: Item?): Int {
+    return if (skill == Skill.Magic && usingSalamander(source, weapon)) {
+        when (weapon?.name) {
             "green_salamander" -> 56
             "orange_salamander" -> 59
             "red_salamander" -> 77
@@ -95,20 +143,20 @@ fun getStrengthBonus(source: Character, skill: Skill): Int {
     }
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, skill: Skill): Int {
-    return 0
-}
-
-fun getMaximumHit(source: Character, target: Character? = null, skill: Skill): Int {
-    val strengthBonus = getStrengthBonus(source, skill) + 64
-    val baseMaxHit = if (skill == Skill.Magic && !usingSalamander(source, skill)) {
+fun getMaximumHit(source: Character, target: Character? = null, skill: Skill, weapon: Item?): Int {
+    val strengthBonus = getStrengthBonus(source, skill, weapon) + 64
+    val baseMaxHit = if (skill == Skill.Magic && !usingSalamander(source, weapon)) {
         source["spell_damage", 0.0]
     } else {
-        0.5 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 640
+        0.5 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
     }
-    val modifier = HitDamageModifier(target, skill, strengthBonus, baseMaxHit)
+    val modifier = HitDamageModifier(target, skill, strengthBonus, baseMaxHit, weapon)
     source.events.emit(modifier)
     return modifier.damage.toInt()
+}
+
+fun getMinimumHit(source: Character, target: Character? = null, skill: Skill, weapon: Item?): Int {
+    return 0
 }
 
 fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
@@ -118,7 +166,7 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
     return mod.level.toInt()
 }
 
-fun getChance(source: Character, target: Character?, skill: Skill): Int {
+fun getChance(source: Character, target: Character?, skill: Skill, weapon: Item?): Int {
     val offense = source == target
     var level = if (target == null) 8 else getEffectiveLevel(target, if (skill == Skill.Magic && offense && target is Player) Skill.Defence else skill, offense)
     val override = HitChanceLevelOverride(target, skill, !offense, level)
@@ -127,14 +175,14 @@ fun getChance(source: Character, target: Character?, skill: Skill): Int {
     val style = if (skill == Skill.Range) "range" else if (skill == Skill.Magic) "magic" else target?.combatStyle ?: ""
     val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val chance = level * (equipmentBonus + 64.0)
-    val modifier = HitChanceModifier(target, skill, offense, chance)
+    val modifier = HitChanceModifier(target, skill, offense, chance, weapon)
     source.events.emit(modifier)
     return modifier.chance.toInt()
 }
 
-fun hitChance(source: Character, target: Character?, skill: Skill): Double {
-    val attackerChance = getChance(source, source, skill)
-    val defenderChance = getChance(source, target, skill)
+fun hitChance(source: Character, target: Character?, skill: Skill, weapon: Item?): Double {
+    val attackerChance = getChance(source, source, skill, weapon)
+    val defenderChance = getChance(source, target, skill, weapon)
     return if (attackerChance > defenderChance) {
         1.0 - (defenderChance + 2.0) / (2.0 * (attackerChance + 1.0))
     } else {
@@ -142,11 +190,11 @@ fun hitChance(source: Character, target: Character?, skill: Skill): Double {
     }
 }
 
-fun hit(player: Player, target: Character?, skill: Skill): Int {
-    val chance = hitChance(player, target, skill)
+fun hit(player: Player, target: Character?, skill: Skill, weapon: Item?): Int {
+    val chance = hitChance(player, target, skill, weapon)
     return if (Random.nextDouble() < chance) {
-        val maxHit = getMaximumHit(player, target, skill)
-        val minHit = getMinimumHit(player, target, skill)
+        val maxHit = getMaximumHit(player, target, if (skill == Skill.Attack) Skill.Strength else skill, weapon)
+        val minHit = getMinimumHit(player, target, if (skill == Skill.Attack) Skill.Strength else skill, weapon)
         Random.nextInt(minHit..maxHit)
     } else {
         0

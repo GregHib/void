@@ -24,11 +24,13 @@ import world.gregs.voidps.engine.tick.Startup
 import world.gregs.voidps.utility.func.plural
 import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import java.util.concurrent.TimeUnit
 
 IntVariable(43, Variable.Type.VARP).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
 BooleanVariable(301, Variable.Type.VARP).register("special_attack")
+IntVariable(300, Variable.Type.VARP, true, 1000).register("special_energy")
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
 val decoder: ClientScriptDecoder by inject()
@@ -94,6 +96,7 @@ on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "style3")
     player.interfaceOptions.unlockAll(name, "style4")
     player.sendVar("attack_style")
+    player.sendVar("special_energy")
     player.sendVar("auto_retaliate")
     refreshStyle(player)
 }
@@ -124,8 +127,8 @@ fun refreshStyle(player: Player) {
 }
 
 fun getWeaponStyleType(player: Player): Int {
-    val key = player.equipped(EquipSlot.Weapon).def.params?.get(686) as? Int
-    return if (styles.containsKey(key) && key != null) key else 0
+    val key = player.equipped(EquipSlot.Weapon).def.weaponStyle()
+    return if (styles.containsKey(key)) key else 0
 }
 
 on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->

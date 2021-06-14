@@ -1,3 +1,4 @@
+import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.Priority
@@ -15,5 +16,9 @@ on<EffectiveLevelModifier>(priority = Priority.MEDIUM) { player: Player ->
     } else if (skill == Skill.Strength && player.attackStyle == "aggressive") {
         level += 3
     }
+    level += 8
+}
+
+on<EffectiveLevelModifier>(priority = Priority.MEDIUM) { _: NPC ->
     level += 8
 }

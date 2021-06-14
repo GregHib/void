@@ -14,6 +14,8 @@ import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.watch
+import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
@@ -102,8 +104,9 @@ fun withinRange(player: Player, target: Character): Boolean {
 }
 
 on<Command>({ prefix == "maxhit" }) { player: Player ->
+    val weapon = player.equipped(EquipSlot.Weapon)
     player.message("Max hit")
-    player.message("Ranged: ${getMaximumHit(player, null, Skill.Range)} Melee: ${getMaximumHit(player, null, Skill.Strength)} Magic: ${getMaximumHit(player, null, Skill.Magic)}")
+    player.message("Ranged: ${getMaximumHit(player, null, Skill.Range, weapon)} Melee: ${getMaximumHit(player, null, Skill.Strength, weapon)} Magic: ${getMaximumHit(player, null, Skill.Magic, weapon)}")
     player.message("Hit chance")
-    player.message("Ranged: ${hitChance(player, null, Skill.Range)} Melee: ${hitChance(player, null, Skill.Strength)} Magic: ${hitChance(player, null, Skill.Magic)}")
+    player.message("Ranged: ${hitChance(player, null, Skill.Range, weapon)} Melee: ${hitChance(player, null, Skill.Strength, weapon)} Magic: ${hitChance(player, null, Skill.Magic, weapon)}")
 }

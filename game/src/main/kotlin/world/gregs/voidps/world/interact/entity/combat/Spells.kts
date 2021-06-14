@@ -15,6 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.combat.spell
 import kotlin.math.floor
 
+BooleanVariable(2668, Variable.Type.VARBIT, persistent = true).register("defensive_cast")
+
 fun isArenaSpell(spell: String): Boolean = spell == "saradomin_strike" || spell == "claws_of_guthix" || spell == "flames_of_zamorak"
 
 on<HitDamageModifier>(

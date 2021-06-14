@@ -8,4 +8,9 @@ import world.gregs.voidps.engine.event.Event
  * Overrides the effective level used in hit chance calculation
  * @param defence whether calculating the attacker or defender [skill] defence level
  */
-data class HitChanceLevelOverride(val target: Character?, val skill: Skill, val defence: Boolean, var level: Int) : Event
+data class HitChanceLevelOverride(
+    val target: Character?,
+    val skill: Skill,
+    val defence: Boolean,
+    var level: Int
+) : Event

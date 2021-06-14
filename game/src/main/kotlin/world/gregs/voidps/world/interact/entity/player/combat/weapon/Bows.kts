@@ -14,7 +14,7 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.height
-import world.gregs.voidps.world.interact.entity.combat.rangeHit
+import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 on<Registered>({ isBow(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
@@ -43,7 +43,7 @@ fun updateWeapon(player: Player, weapon: Item) {
         player.setAnimation("bow_shoot")
         player.setGraphic("${ammo.name}_shoot", height = 100)
         player.shoot(name = ammo.name, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
-        rangeHit(player, target)
+        player.hit(target, weapon)
         val speed = weapon.def.getOrNull("attack_speed") as? Int ?: 4
         if (player.attackType == "rapid") speed - 1 else speed
     }
