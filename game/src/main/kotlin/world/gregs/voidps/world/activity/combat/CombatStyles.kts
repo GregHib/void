@@ -12,7 +12,10 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.clear
+import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
@@ -23,10 +26,11 @@ import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
 import java.util.concurrent.TimeUnit
 
-IntVariable(43, Variable.Type.VARP, true, 0).register("attack_style")
+IntVariable(43, Variable.Type.VARP).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
 BooleanVariable(301, Variable.Type.VARP).register("special_attack")
 
+val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
 val decoder: ClientScriptDecoder by inject()
 
 val styles = mutableMapOf<Int, Array<Triple<String, String, String>>>()
@@ -72,7 +76,7 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
                     types.add(string.toUnderscoreCase())
                 } else if (last == PUSH_INT) {
                     styles.add(string.toUnderscoreCase())
-                } else if(last == PUSH_STRING && strings[index - 1] == "<br>" && !string.endsWith("XP")) {
+                } else if (last == PUSH_STRING && strings[index - 1] == "<br>" && !string.endsWith("XP")) {
                     combatStyle.add(string.toUnderscoreCase())
                 }
             }
@@ -91,22 +95,37 @@ on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "style4")
     player.sendVar("attack_style")
     player.sendVar("auto_retaliate")
-    updateStyles(player, player.getVar("attack_style"))
+    refreshStyle(player)
+}
+
+on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->
+    refreshStyle(player)
 }
 
 on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }) { player: Player ->
-    val index = component.replace("style", "").toIntOrNull() ?: return@on
-    player.setVar("attack_style", index - 1)
-    updateStyles(player, index - 1)
+    val index = component.removePrefix("style").toIntOrNull() ?: return@on
+    val type = getWeaponStyleType(player)
+    if (index == 1) {
+        player.clear("attack_style_${names[type]}")
+    } else {
+        player["attack_style_${names[type]}", true] = index - 1
+    }
+    refreshStyle(player)
 }
 
-fun updateStyles(player: Player, index: Int) {
-    val type = player.equipped(EquipSlot.Weapon).def.params?.get(686)
-    val styles = styles[if (styles.containsKey(type)) type else 0]
-    val style = styles?.getOrNull(index)
+fun refreshStyle(player: Player) {
+    val type = getWeaponStyleType(player)
+    val index = player["attack_style_${names[type]}", 0]
+    val style = styles[type]?.getOrNull(index)
+    player.setVar("attack_style", index)
     player["attack_type"] = style?.first ?: ""
     player["attack_style"] = style?.second ?: ""
     player["combat_style"] = style?.third ?: ""
+}
+
+fun getWeaponStyleType(player: Player): Int {
+    val key = player.equipped(EquipSlot.Weapon).def.params?.get(686) as? Int
+    return if (styles.containsKey(key) && key != null) key else 0
 }
 
 on<InterfaceOption>({ name == "combat_styles" && component == "special_attack_bar" && option == "Use" }) { player: Player ->
