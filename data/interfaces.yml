@@ -322,6 +322,8 @@ modern_spellbook:
 ancient_spellbook:
   id: 193
   type: spellbook_tab
+  components:
+    defensive_cast: 18
 
 container_continue:
   id: 200
@@ -1002,6 +1004,8 @@ tutorial_text2:
 lunar_spellbook:
   id: 430
   type: spellbook_tab
+  components:
+    defensive_cast: 20
 
 enchant_crossbow_bolts:
   id: 432
@@ -1854,6 +1858,8 @@ dungeon_party_invite:
 dungeoneering_spellbook:
   id: 950
   type: spellbook_tab
+  components:
+    defensive_cast: 2
 
 text_box_chat:
   id: 1018

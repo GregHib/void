@@ -1,3 +1,7 @@
+import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.BooleanVariable
+import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -42,3 +46,6 @@ fun getPlayerMagicDefence(defenceLevel: Int, target: Character): Int {
     return (floor(defenceLevel * 0.3) + level).toInt()
 }
 
+on<InterfaceOption>({ name.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
+    player.toggleVar(component)
+}

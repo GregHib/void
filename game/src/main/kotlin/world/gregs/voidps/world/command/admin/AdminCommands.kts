@@ -209,7 +209,7 @@ on<Command>({ prefix == "ancients" }) { player: Player ->
     player.open("ancient_spellbook")
 }
 
-on<Command>({ prefix == "lunar" }) { player: Player ->
+on<Command>({ prefix == "lunars" }) { player: Player ->
     player.open("lunar_spellbook")
 }
 
