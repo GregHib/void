@@ -1,8 +1,8 @@
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.Variable
+import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
@@ -34,6 +34,28 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    println(player.getVar<Int>("range_bonus"))
+    println(player.clearVar<Boolean>("turmoil"))
+    println((32 / player.levels.get(Skill.Range).toDouble() * 100).toInt())
+    player.setVar("defence_bonus", 32)// + 2 / 100 * player.levels.get(Skill.Range))
+    /*
+       script_1709 = getStandardBonus()
+       script_1710 = getBonusWithTurmoil()
+       script_1711 = getBonus()
+        script_1697 = get boost varbit - 30
+        script_1713 = leeches
+        script_1712 = sap/drain
+        script_1714 = arg1 is what percentage of skill level
+        script_1718 = skill percentage of arg1
+     */
+//    val attackLeech = if (targetAttack > 99) Math.floor(99 * .15) else Math.floor(targetAttack * .15)
+//    val finalAttackBonus = Math.floor(attackLeech * 100 / playerAttack)
+//
+//    val strengthLeech = if (targetStrength > 99) Math.floor(99 * .10) else Math.floor(targetStrength * .10)
+//    val finalStrengthBonus = Math.floor(strengthLeech * 100 / playerStrength)
+//
+//    val defenceLeech = if (targetDefence > 99) Math.floor(99 * .15) else Math.floor(targetDefence * .15)
+//    val finalDefenceBonus = Math.floor(defenceLeech * 100 / playerDefence)
 }
 
 on<Command>({ prefix == "showcol" }) { player: Player ->

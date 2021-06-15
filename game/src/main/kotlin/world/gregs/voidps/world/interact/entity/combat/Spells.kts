@@ -43,7 +43,7 @@ on<HitChanceLevelOverride>({ skill == Skill.Magic && defence && target is Player
 }
 
 fun getPlayerMagicDefence(defenceLevel: Int, target: Character): Int {
-    var level = floor(target.levels.get(Skill.Magic) * target.getPrayerBonus("magic_bonus"))
+    var level = floor(target.levels.get(Skill.Magic) * target.getPrayerBonus(Skill.Magic))
     level = floor(level * 0.7)
     return (floor(defenceLevel * 0.3) + level).toInt()
 }

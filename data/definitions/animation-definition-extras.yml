@@ -1059,3 +1059,9 @@ player_punch:
   id: 422
 player_kick:
   id: 423
+sap:
+  id: 12569
+leech:
+  id: 12575
+deflect:
+  id: 12573

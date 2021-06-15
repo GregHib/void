@@ -59,7 +59,6 @@ import kotlin.random.nextInt
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
 
-
 private fun getWeaponSkill(player: Player, weapon: Item?): Skill {
     if (player.spell.isNotBlank()) {
         return Skill.Magic
@@ -78,34 +77,7 @@ private fun getWeaponSkill(player: Player, weapon: Item?): Skill {
 
 fun Player.hit(target: Character, weapon: Item?, skill: Skill = getWeaponSkill(this, weapon)) {
     val damage = hit(this, target, skill, weapon)
-    if (skill == Skill.Magic) {
-        val base = 0.0
-        if (getVar("defensive_cast", false)) {
-            exp(skill, base + damage / 7.5)
-            exp(Skill.Defence, damage / 10.0)
-        } else {
-            exp(skill, base + damage / 5.0)
-        }
-    } else if (skill == Skill.Range) {
-        if (attackType == "long_range") {
-            exp(skill, damage / 5.0)
-            exp(Skill.Defence, damage / 5.0)
-        } else {
-            exp(skill, damage / 2.5)
-        }
-    } else if (skill == Skill.Attack) {
-        when (attackStyle) {
-            "accurate" -> exp(skill, damage / 2.5)
-            "aggressive" -> exp(Skill.Strength, damage / 2.5)
-            "controlled" -> {
-                exp(Skill.Attack, damage / 7.5)
-                exp(Skill.Strength, damage / 7.5)
-                exp(Skill.Defence, damage / 7.5)
-            }
-            "defensive" -> exp(Skill.Defence, damage / 2.5)
-        }
-    }
-    exp(Skill.Constitution, damage / 7.5)
+    grant(this, skill, damage)
     delay(target, if (skill == Skill.Attack) 0 else 2) {
         val mark = when (skill) {
             Skill.Range -> Hit.Mark.Range
@@ -113,8 +85,41 @@ fun Player.hit(target: Character, weapon: Item?, skill: Skill = getWeaponSkill(t
             Skill.Magic -> Hit.Mark.Magic
             else -> Hit.Mark.Missed
         }
+        events.emit(CombatDamage(target, skill, damage))
         hit(this, target, damage, mark)
+        target.events.emit(CombatHit(this, skill, damage))
     }
+}
+
+private fun grant(player: Player, skill: Skill, damage: Int) {
+    if (skill == Skill.Magic) {
+        val base = 0.0
+        if (player.getVar("defensive_cast", false)) {
+            player.exp(skill, base + damage / 7.5)
+            player.exp(Skill.Defence, damage / 10.0)
+        } else {
+            player.exp(skill, base + damage / 5.0)
+        }
+    } else if (skill == Skill.Range) {
+        if (player.attackType == "long_range") {
+            player.exp(skill, damage / 5.0)
+            player.exp(Skill.Defence, damage / 5.0)
+        } else {
+            player.exp(skill, damage / 2.5)
+        }
+    } else if (skill == Skill.Attack) {
+        when (player.attackStyle) {
+            "accurate" -> player.exp(skill, damage / 2.5)
+            "aggressive" -> player.exp(Skill.Strength, damage / 2.5)
+            "controlled" -> {
+                player.exp(Skill.Attack, damage / 7.5)
+                player.exp(Skill.Strength, damage / 7.5)
+                player.exp(Skill.Defence, damage / 7.5)
+            }
+            "defensive" -> player.exp(Skill.Defence, damage / 2.5)
+        }
+    }
+    player.exp(Skill.Constitution, damage / 7.5)
 }
 
 fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {

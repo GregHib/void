@@ -488,3 +488,55 @@ sagittarian_arrows_shoot:
   id: 2486
 sagittarian_arrows:
   id: 2487
+cast_sap_attack:
+  id: 2214
+proj_sap_attack:
+  id: 2215
+land_sap_attack:
+  id: 2216
+cast_sap_range:
+  id: 2217
+proj_sap_range:
+  id: 2218
+land_sap_range:
+  id: 2219
+cast_sap_magic:
+  id: 2220
+proj_sap_magic:
+  id: 2221
+land_sap_magic:
+  id: 2222
+deflect_defence:
+  id: 2227
+deflect_magic:
+  id: 2228
+deflect_range:
+  id: 2229
+deflect_strength:
+  id: 2229
+deflect_attack:
+  id: 2230
+proj_leech_attack:
+  id: 2231
+land_leech_attack:
+  id: 2232
+proj_leech_strength:
+  id: 2248
+land_leech_strength:
+  id: 2250
+proj_leech_defence:
+  id: 2244
+land_leech_defence:
+  id: 2246
+proj_leech_range:
+  id: 2236
+land_leech_range:
+  id: 2238
+proj_leech_magic:
+  id: 2240
+land_leech_magic:
+  id: 2242
+soul_split:
+  id: 2263
+soul_split_hit:
+  id: 2264

@@ -1,27 +1,28 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.getVar
-import world.gregs.voidps.engine.client.variable.setVar
-import world.gregs.voidps.engine.entity.EffectStart
-import world.gregs.voidps.engine.entity.EffectStop
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.hasEffect
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
+import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.EffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
     on<EffectStart>({ this.effect == effect }) { player: Player ->
-        player.setVar(bonus, player.getVar(bonus, 0) + value, refresh = false)
+        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] + value / 100.0
     }
     on<EffectStop>({ this.effect == effect }) { player: Player ->
-        player.setVar(bonus, player.getVar(bonus, 0) - value, refresh = false)
+        player["base_${bonus}_bonus"] = player["base_${bonus}_bonus", 1.0] - value / 100.0
     }
 }
 
@@ -68,6 +69,11 @@ fun usingProtectionPrayer(source: Character, target: Character?, skill: Skill): 
             isFamiliar(source) && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("deflect_summoning")))
 }
 
+on<CombatHit>({ usingProtectionPrayer(source, it, skill) }) { player: Player ->
+    player.setAnimation("deflect")
+    player.setGraphic("deflect_${skill.name.toLowerCase()}")
+}
+
 on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = Priority.MEDIUM) { _: Player ->
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
@@ -77,7 +83,16 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = P
 }
 
 on<EffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
-    val bonus = 1.0 + (player.getVar("${skill.name.toLowerCase()}_bonus", 30) - 30) / 100.0
+    var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
+    if (player.equipped(EquipSlot.Amulet).name == "amulet_of_zealots") {
+        bonus = floor(1.0 + (bonus - 1.0) * 2)
+    }
+    if (player.getVar("turmoil", false)) {
+        bonus += player.getVar("turmoil_${skill.name.toLowerCase()}_bonus", 0).toDouble()
+    } else {
+        bonus += player.getLeech(skill) * 100.0 / player.levels.getMax(skill) / 100.0
+        bonus -= player.getDrain(skill) / 100.0
+    }
     level = floor(level * bonus)
 }
 
