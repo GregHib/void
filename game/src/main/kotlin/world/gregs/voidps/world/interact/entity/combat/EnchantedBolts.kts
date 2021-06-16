@@ -31,8 +31,9 @@ on<HitDamageModifier>({ player -> type == "range" && player.hasEffect("sea_curse
     damage += floor(player.levels.get(Skill.Range) * if (isFirey(target)) 1.0 / 15.0 else 0.05)
 }
 
-on<HitDamageModifier>({ player -> type == "range" && player.hasEffect("dragons_breath") && !isFirey(target) && target?.hasEffect("anti-fire") != true }, Priority.LOW) { player: Player ->
+on<HitDamageModifier>({ player -> type == "range" && player.hasEffect("dragons_breath") && !isFirey(target) }, Priority.LOW) { player: Player ->
     damage = floor(damage * (player.levels.get(Skill.Range) * 0.2))
+    type = "dragonfire"
 }
 
 on<HitDamageModifier>({ player -> type == "range" && player.hasEffect("blood_forfeit") }, Priority.LOW) { player: Player ->

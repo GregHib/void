@@ -13,8 +13,11 @@ import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
+import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.utility.func.toInt
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -200,12 +203,23 @@ fun hitChance(source: Character, target: Character?, type: String, weapon: Item?
     }
 }
 
+private fun Player.hasFullVeracs(): Boolean {
+    return notBroken(equipped(EquipSlot.Hat).name,"veracs_helm") &&
+            notBroken(equipped(EquipSlot.Hat).name,"veracs_flail") &&
+            notBroken(equipped(EquipSlot.Hat).name,"veracs_brassard") &&
+            notBroken(equipped(EquipSlot.Hat).name,"veracs_plateskirt")
+}
+
+private fun notBroken(name: String, prefix: String): Boolean {
+    return name.startsWith(prefix) && !name.endsWith("broken")
+}
+
 fun hit(player: Player, target: Character?, type: String, weapon: Item?): Int {
-    val chance = hitChance(player, target, type, weapon)
-    return if (Random.nextDouble() < chance) {
+    val veracs = player.hasFullVeracs() && Random.nextDouble() < 0.25
+    return if (veracs || Random.nextDouble() < hitChance(player, target, type, weapon)) {
         val maxHit = getMaximumHit(player, target, type, weapon)
         val minHit = getMinimumHit(player, target, type, weapon)
-        Random.nextInt(minHit..maxHit)
+        Random.nextInt(minHit..maxHit) + veracs.toInt()
     } else {
         0
     }
