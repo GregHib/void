@@ -506,6 +506,12 @@ proj_sap_magic:
   id: 2221
 land_sap_magic:
   id: 2222
+cast_sap_spirit:
+  id: 2223
+proj_sap_spirit:
+  id: 2224
+land_sap_spirit:
+  id: 2225
 deflect_defence:
   id: 2227
 deflect_magic:
@@ -540,3 +546,15 @@ soul_split:
   id: 2263
 soul_split_hit:
   id: 2264
+cast_leech_energy:
+  id: 2251
+proj_leech_energy:
+  id: 2252
+land_leech_energy:
+  id: 2254
+cast_leech_special_attack:
+  id: 2255
+proj_leech_special_attack:
+  id: 2256
+land_leech_special_attack:
+  id: 2258

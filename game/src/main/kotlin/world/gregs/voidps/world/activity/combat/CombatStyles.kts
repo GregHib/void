@@ -30,7 +30,7 @@ import java.util.concurrent.TimeUnit
 IntVariable(43, Variable.Type.VARP).register("attack_style")
 NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
 BooleanVariable(301, Variable.Type.VARP).register("special_attack")
-IntVariable(300, Variable.Type.VARP, true, 1000).register("special_energy")
+IntVariable(300, Variable.Type.VARP, true, 1000).register("special_attack_energy")
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
 val decoder: ClientScriptDecoder by inject()
@@ -96,7 +96,7 @@ on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "style3")
     player.interfaceOptions.unlockAll(name, "style4")
     player.sendVar("attack_style")
-    player.sendVar("special_energy")
+    player.sendVar("special_attack_energy")
     player.sendVar("auto_retaliate")
     refreshStyle(player)
 }

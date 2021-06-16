@@ -221,8 +221,5 @@ val Character.attackType: String
 val Character.combatStyle: String
     get() = get("combat_style", "")
 
-val Player.specialAttack: Boolean
-    get() = getVar("special_attack", false)
-
 val Character.spell: String
     get() = get("spell", "")

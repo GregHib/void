@@ -4,7 +4,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitChanceModifier
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
 
 on<HitChanceModifier>({ player -> offense && skill == Skill.Attack && player.specialAttack && weapon?.def?.has("spec_acc_multiplier") == true }, Priority.HIGH) { player: Player ->

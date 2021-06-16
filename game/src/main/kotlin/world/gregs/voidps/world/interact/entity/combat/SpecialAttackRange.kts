@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
-import world.gregs.voidps.world.interact.entity.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
 
 on<HitDamageModifier>({ player -> skill == Skill.Range && player.specialAttack && weapon?.name == "dark_bow" }, Priority.HIGH) { player: Player ->
