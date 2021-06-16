@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.player.appearance
 
 fun ItemDefinition.getInt(key: Long, default: Int): Int = params?.getOrDefault(key, default) as? Int ?: default
 
@@ -23,8 +24,8 @@ fun ItemDefinition.hasRequirements(): Boolean = params?.contains(750L) == true |
 
 fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Boolean {
     for (i in 0 until 10) {
-        val skill = item.requiredSkill(index) ?: break
-        val level = item.requiredLevel(index)
+        val skill = item.requiredSkill(i) ?: break
+        val level = item.requiredLevel(i)
         if (!has(skill, level, message)) {
             return false
         }
@@ -33,6 +34,9 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
         if (!has(skill, skill.maximum())) {
             return false
         }
+    }
+    if (appearance.combatLevel < item.requiredCombat()) {
+        return false
     }
     return true
 }

@@ -16,6 +16,10 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 on<ContainerOption>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
     val def = item.def
 
+    if (!player.hasRequirements(def, true)) {
+        return@on
+    }
+
     if (failedToRemoveOtherHand(player, def)) {
         player.message("Your inventory is full.")
         return@on
