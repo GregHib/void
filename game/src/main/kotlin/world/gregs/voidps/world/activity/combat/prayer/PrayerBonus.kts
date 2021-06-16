@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.item.EquipSlot
@@ -62,23 +61,30 @@ set("prayer_turmoil", "defence_bonus", 15)
 
 fun isFamiliar(target: Character?): Boolean = target != null && target is NPC
 
-fun usingProtectionPrayer(source: Character, target: Character?, skill: Skill): Boolean {
-    return target != null && (skill == Skill.Strength && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
-            skill == Skill.Range && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("deflect_missiles")) ||
-            skill == Skill.Magic && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("deflect_magic")) ||
+fun usingProtectionPrayer(source: Character, target: Character?, type: String): Boolean {
+    return target != null && (type == "melee" && (target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")) ||
+            type == "range" && (target.hasEffect("prayer_protect_from_missiles") || target.hasEffect("deflect_missiles")) ||
+            type == "spell" && (target.hasEffect("prayer_protect_from_magic") || target.hasEffect("deflect_magic")) ||
             isFamiliar(source) && (target.hasEffect("prayer_protect_from_summoning") || target.hasEffect("deflect_summoning")))
 }
 
-on<CombatHit>({ usingProtectionPrayer(source, it, skill) }) { player: Player ->
-    player.setAnimation("deflect")
-    player.setGraphic("deflect_${skill.name.toLowerCase()}")
+fun usingDeflectPrayer(source: Character, target: Character, type: String): Boolean {
+    return (type == "melee" && target.hasEffect("prayer_deflect_melee")) ||
+            (type == "range" && target.hasEffect("deflect_missiles")) ||
+            (type == "spell" && target.hasEffect("deflect_magic")) ||
+            isFamiliar(source) && (target.hasEffect("deflect_summoning"))
 }
 
-on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = Priority.MEDIUM) { _: Player ->
+on<CombatHit>({ usingDeflectPrayer(source, it, type) }) { player: Player ->
+    player.setAnimation("deflect")
+    player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
+}
+
+on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: Player ->
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
 
-on<HitDamageModifier>({ usingProtectionPrayer(it, target, skill) }, priority = Priority.MEDIUM) { _: NPC ->
+on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: NPC ->
     damage = 0.0
 }
 

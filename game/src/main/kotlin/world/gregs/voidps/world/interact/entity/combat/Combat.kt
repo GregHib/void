@@ -11,7 +11,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.exp
 import world.gregs.voidps.engine.entity.character.update.visual.Hit
 import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.contains
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.Item
@@ -59,57 +58,58 @@ import kotlin.random.nextInt
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
 
-private fun getWeaponSkill(player: Player, weapon: Item?): Skill {
+private fun getWeaponType(player: Player, weapon: Item?): String {
     if (player.spell.isNotBlank()) {
-        return Skill.Magic
+        return "spell"
     }
     return when (weapon?.def?.weaponStyle()) {
-        13, 16, 17, 18, 19 -> Skill.Range
-        20 -> if (player.attackType == "aim_and_fire") Skill.Range else Skill.Attack
+        13, 16, 17, 18, 19 -> "range"
+        20 -> if (player.attackType == "aim_and_fire") "range" else "melee"
         21 -> when (player.attackType) {
-            "flare" -> Skill.Range
-            "blaze" -> Skill.Magic
-            else -> Skill.Attack
+            "flare" -> "range"
+            "blaze" -> "blaze"
+            else -> "melee"
         }
-        else -> Skill.Attack
+        else -> "melee"
     }
 }
 
-fun Player.hit(target: Character, weapon: Item?, skill: Skill = getWeaponSkill(this, weapon)) {
-    val damage = hit(this, target, skill, weapon)
-    grant(this, skill, damage)
-    delay(target, if (skill == Skill.Attack) 0 else 2) {
-        val mark = when (skill) {
-            Skill.Range -> Hit.Mark.Range
-            Skill.Attack -> Hit.Mark.Melee
-            Skill.Magic -> Hit.Mark.Magic
+fun Player.hit(target: Character, weapon: Item?, type: String = getWeaponType(this, weapon)) {
+    val damage = hit(this, target, type, weapon)
+    grant(this, type, damage)
+    delay(target, if (type == "melee") 0 else 2) {
+        val mark = when (type) {
+            "range" -> Hit.Mark.Range
+            "melee" -> Hit.Mark.Melee
+            "magic" -> Hit.Mark.Magic
+            "dragonfire" -> Hit.Mark.Regular
             else -> Hit.Mark.Missed
         }
-        events.emit(CombatDamage(target, skill, damage))
+        events.emit(CombatDamage(target, type, damage))
         hit(this, target, damage, mark)
-        target.events.emit(CombatHit(this, skill, damage))
+        target.events.emit(CombatHit(this, type, damage))
     }
 }
 
-private fun grant(player: Player, skill: Skill, damage: Int) {
-    if (skill == Skill.Magic) {
+private fun grant(player: Player, type: String, damage: Int) {
+    if (type == "spell" || type == "blaze") {
         val base = 0.0
         if (player.getVar("defensive_cast", false)) {
-            player.exp(skill, base + damage / 7.5)
+            player.exp(Skill.Magic, base + damage / 7.5)
             player.exp(Skill.Defence, damage / 10.0)
         } else {
-            player.exp(skill, base + damage / 5.0)
+            player.exp(Skill.Magic, base + damage / 5.0)
         }
-    } else if (skill == Skill.Range) {
+    } else if (type == "range") {
         if (player.attackType == "long_range") {
-            player.exp(skill, damage / 5.0)
+            player.exp(Skill.Range, damage / 5.0)
             player.exp(Skill.Defence, damage / 5.0)
         } else {
-            player.exp(skill, damage / 2.5)
+            player.exp(Skill.Range, damage / 2.5)
         }
-    } else if (skill == Skill.Attack) {
+    } else if (type == "melee") {
         when (player.attackStyle) {
-            "accurate" -> player.exp(skill, damage / 2.5)
+            "accurate" -> player.exp(Skill.Attack, damage / 2.5)
             "aggressive" -> player.exp(Skill.Strength, damage / 2.5)
             "controlled" -> {
                 player.exp(Skill.Attack, damage / 7.5)
@@ -131,11 +131,8 @@ fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {
     target.setAnimation("${name}_hit")
 }
 
-
-fun usingSalamander(source: Character, weapon: Item?): Boolean = !source.contains("spell") && weapon?.name?.endsWith("salamander") == true
-
-fun getStrengthBonus(source: Character, skill: Skill, weapon: Item?): Int {
-    return if (skill == Skill.Magic && usingSalamander(source, weapon)) {
+fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
+    return if (type == "blaze") {
         when (weapon?.name) {
             "green_salamander" -> 56
             "orange_salamander" -> 59
@@ -144,23 +141,27 @@ fun getStrengthBonus(source: Character, skill: Skill, weapon: Item?): Int {
             else -> 0
         }
     } else {
-        source[if (skill == Skill.Range) "range_str" else "str", 0]
+        source[if (type == "range") "range_str" else "str", 0]
     }
 }
 
-fun getMaximumHit(source: Character, target: Character? = null, skill: Skill, weapon: Item?): Int {
-    val strengthBonus = getStrengthBonus(source, skill, weapon) + 64
-    val baseMaxHit = if (skill == Skill.Magic && !usingSalamander(source, weapon)) {
+fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?): Int {
+    val strengthBonus = getStrengthBonus(source, type, weapon) + 64
+    val baseMaxHit = if (type == "spell") {
         source["spell_damage", 0.0]
     } else {
-        0.5 + (getEffectiveLevel(source, skill, accuracy = false) * strengthBonus) / 64
+        0.5 + (getEffectiveLevel(source, when (type) {
+            "range" -> Skill.Range
+            "spell", "blaze" -> Skill.Magic
+            else -> Skill.Strength
+        }, accuracy = false) * strengthBonus) / 64
     }
-    val modifier = HitDamageModifier(target, skill, strengthBonus, baseMaxHit, weapon)
+    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon)
     source.events.emit(modifier)
     return modifier.damage.toInt()
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, skill: Skill, weapon: Item?): Int {
+fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?): Int {
     return 0
 }
 
@@ -171,23 +172,27 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
     return mod.level.toInt()
 }
 
-fun getChance(source: Character, target: Character?, skill: Skill, weapon: Item?): Int {
+fun getChance(source: Character, target: Character?, type: String, weapon: Item?): Int {
     val offense = source == target
-    var level = if (target == null) 8 else getEffectiveLevel(target, if (skill == Skill.Magic && offense && target is Player) Skill.Defence else skill, offense)
-    val override = HitChanceLevelOverride(target, skill, !offense, level)
+    var level = if (target == null) 8 else getEffectiveLevel(target, when (type) {
+        "range" -> Skill.Range
+        "spell", "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
+        else -> Skill.Attack
+    }, offense)
+    val override = HitChanceLevelOverride(target, type, !offense, level)
     source.events.emit(override)
     level = override.level
-    val style = if (skill == Skill.Range) "range" else if (skill == Skill.Magic) "magic" else target?.combatStyle ?: ""
+    val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
     val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val chance = level * (equipmentBonus + 64.0)
-    val modifier = HitChanceModifier(target, skill, offense, chance, weapon)
+    val modifier = HitChanceModifier(target, type, offense, chance, weapon)
     source.events.emit(modifier)
     return modifier.chance.toInt()
 }
 
-fun hitChance(source: Character, target: Character?, skill: Skill, weapon: Item?): Double {
-    val attackerChance = getChance(source, source, skill, weapon)
-    val defenderChance = getChance(source, target, skill, weapon)
+fun hitChance(source: Character, target: Character?, type: String, weapon: Item?): Double {
+    val attackerChance = getChance(source, source, type, weapon)
+    val defenderChance = getChance(source, target, type, weapon)
     return if (attackerChance > defenderChance) {
         1.0 - (defenderChance + 2.0) / (2.0 * (attackerChance + 1.0))
     } else {
@@ -195,11 +200,11 @@ fun hitChance(source: Character, target: Character?, skill: Skill, weapon: Item?
     }
 }
 
-fun hit(player: Player, target: Character?, skill: Skill, weapon: Item?): Int {
-    val chance = hitChance(player, target, skill, weapon)
+fun hit(player: Player, target: Character?, type: String, weapon: Item?): Int {
+    val chance = hitChance(player, target, type, weapon)
     return if (Random.nextDouble() < chance) {
-        val maxHit = getMaximumHit(player, target, if (skill == Skill.Attack) Skill.Strength else skill, weapon)
-        val minHit = getMinimumHit(player, target, if (skill == Skill.Attack) Skill.Strength else skill, weapon)
+        val maxHit = getMaximumHit(player, target, type, weapon)
+        val minHit = getMinimumHit(player, target, type, weapon)
         Random.nextInt(minHit..maxHit)
     } else {
         0

@@ -1,6 +1,5 @@
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
@@ -12,19 +11,19 @@ import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
 
 on<HitChanceModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
-    chance = floor(chance * getSlayerMultiplier(player, target, skill, false))
+    chance = floor(chance * getSlayerMultiplier(player, target, type, false))
 }
 
 on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->
-    damage = floor(damage * getSlayerMultiplier(player, target, skill, true))
+    damage = floor(damage * getSlayerMultiplier(player, target, type, true))
 }
 
-fun getSlayerMultiplier(player: Player, target: Character?, skill: Skill, damage: Boolean): Double {
+fun getSlayerMultiplier(player: Player, target: Character?, type: String, damage: Boolean): Double {
     if (!player.hasSlayerTask || !player.isTask(target)) {
         return 1.0
     }
     val helm = player.equipped(EquipSlot.Hat).name
-    if (skill == Skill.Strength) {
+    if (type == "melee") {
         val amulet = player.equipped(EquipSlot.Amulet).name
         if (amulet == "salve_amulet_e") {
             return 1.2
@@ -34,10 +33,10 @@ fun getSlayerMultiplier(player: Player, target: Character?, skill: Skill, damage
         }
     }
 
-    if (skill == Skill.Range && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
+    if (type == "range" && (helm == "focus_sight" || helm.startsWith("full_slayer_helmet"))) {
         return 1.15
     }
-    if (damage && skill == Skill.Magic && (helm == "hexcrest" || helm.startsWith("full_slayer_helmet"))) {
+    if (damage && type == "spell" && (helm == "hexcrest" || helm.startsWith("full_slayer_helmet"))) {
         return 1.15
     }
     return 1.0

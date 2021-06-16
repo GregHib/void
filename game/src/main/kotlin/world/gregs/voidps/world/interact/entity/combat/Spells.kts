@@ -20,25 +20,25 @@ BooleanVariable(2668, Variable.Type.VARBIT, persistent = true).register("defensi
 fun isArenaSpell(spell: String): Boolean = spell == "saradomin_strike" || spell == "claws_of_guthix" || spell == "flames_of_zamorak"
 
 on<HitDamageModifier>(
-    { player -> skill == Skill.Magic && player.hasEffect("charge") && isArenaSpell(player.spell) },
+    { player -> type == "spell" && player.hasEffect("charge") && isArenaSpell(player.spell) },
     priority = Priority.HIGHEST
 ) { _: Player ->
     damage += 100.0
 }
 
-on<HitChanceLevelOverride>({ skill == Skill.Magic && defence && target is NPC }, priority = Priority.HIGH) { _: Player ->
-    level = (target as NPC).levels.get(skill)
+on<HitChanceLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Player ->
+    level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitChanceLevelOverride>({ skill == Skill.Magic && defence && target is NPC }, priority = Priority.HIGH) { _: NPC ->
-    level = (target as NPC).levels.get(skill)
+on<HitChanceLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: NPC ->
+    level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitChanceLevelOverride>({ skill == Skill.Magic && defence && target is Player }, priority = Priority.LOW) { _: Player ->
+on<HitChanceLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Player ->
     this.level = getPlayerMagicDefence(level, target as Player)
 }
 
-on<HitChanceLevelOverride>({ skill == Skill.Magic && defence && target is Player }, priority = Priority.LOW) { _: NPC ->
+on<HitChanceLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: NPC ->
     this.level = getPlayerMagicDefence(level, target as Player)
 }
 
