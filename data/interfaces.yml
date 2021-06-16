@@ -967,7 +967,7 @@ worn_equipment:
         Option5: 4
         Option6: 5
         Examine: 9
-    arrows:
+    ammo:
       id: 38
       container: worn_equipment
       options:
