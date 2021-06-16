@@ -4,7 +4,9 @@ enum class Priority {
     LOWEST,
     LOWER,
     LOW,
+    LOWISH,
     MEDIUM,
+    HIGHISH,
     HIGH,
     HIGHER,
     HIGHEST
