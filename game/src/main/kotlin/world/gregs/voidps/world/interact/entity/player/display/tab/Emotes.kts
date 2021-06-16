@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -93,10 +94,13 @@ val all = setOf("flap",
 )
 
 on<InterfaceOpened>({ name == "emotes" }) { player: Player ->
-    player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
     for (emote in all) {
         player.sendVar("unlocked_emote_$emote")
     }
+}
+
+on<InterfaceRefreshed>({ name == "emotes" }) { player: Player ->
+    player.interfaceOptions.unlockAll("emotes", "emotes", 0..190)
 }
 
 on<InterfaceOption>({ name == "emotes" }) { player: Player ->

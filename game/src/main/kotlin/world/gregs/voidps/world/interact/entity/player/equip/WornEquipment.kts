@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.ui.InterfaceOption
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.event.on
 
 
-on<InterfaceOpened>({ name == "worn_equipment" }) { player: Player ->
+on<InterfaceRefreshed>({ name == "worn_equipment" }) { player: Player ->
     player.sendContainer(name)
 }
 

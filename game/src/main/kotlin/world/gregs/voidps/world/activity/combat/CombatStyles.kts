@@ -10,6 +10,7 @@ import world.gregs.voidps.cache.definition.data.Instructions.PUSH_STRING
 import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -91,14 +92,17 @@ fun getStyles(index: Int, instructions: IntArray, strings: Array<String?>): Arra
 }
 
 on<InterfaceOpened>({ name == "combat_styles" }) { player: Player ->
-    player.interfaceOptions.unlockAll(name, "style1")
-    player.interfaceOptions.unlockAll(name, "style2")
-    player.interfaceOptions.unlockAll(name, "style3")
-    player.interfaceOptions.unlockAll(name, "style4")
     player.sendVar("attack_style")
     player.sendVar("special_attack_energy")
     player.sendVar("auto_retaliate")
     refreshStyle(player)
+}
+
+on<InterfaceRefreshed>({ name == "combat_styles" }) { player: Player ->
+    player.interfaceOptions.unlockAll(name, "style1")
+    player.interfaceOptions.unlockAll(name, "style2")
+    player.interfaceOptions.unlockAll(name, "style3")
+    player.interfaceOptions.unlockAll(name, "style4")
 }
 
 on<ItemChanged>({ index == EquipSlot.Weapon.index }) { player: Player ->

@@ -3,7 +3,7 @@ package world.gregs.voidps.world.interact.entity.player.equip
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -14,7 +14,7 @@ import world.gregs.voidps.utility.inject
 val logger = InlineLogger()
 val decoder: ItemDefinitions by inject()
 
-on<InterfaceOpened>({ name == "inventory" }) { player: Player ->
+on<InterfaceRefreshed>({ name == "inventory" }) { player: Player ->
     player.interfaceOptions.unlockAll(name, "container", 0 until 28)
     player.interfaceOptions.unlock(name, "container", 28 until 56, "Drag")
     player.sendContainer(name)

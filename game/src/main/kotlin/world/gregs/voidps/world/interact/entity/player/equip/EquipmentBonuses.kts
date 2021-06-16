@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -58,7 +59,7 @@ on<InterfaceOpened>({ name == "equipment_bonuses" }) { player: Player ->
     }
 }
 
-on<InterfaceOpened>({ name == "equipment_side" }) { player: Player ->
+on<InterfaceRefreshed>({ name == "equipment_side" }) { player: Player ->
     player.interfaceOptions.send("equipment_side", "container")
     player.interfaceOptions.unlockAll("equipment_side", "container", 0 until 28)
 }

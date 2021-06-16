@@ -2,7 +2,7 @@ import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
-import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
+import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.StringMapVariable
 import world.gregs.voidps.engine.client.variable.Variable
@@ -91,7 +91,7 @@ on<OpenShop> { player: Player ->
     }
 }
 
-on<InterfaceOpened>({ name == "shop_side" }) { player: Player ->
+on<InterfaceRefreshed>({ name == "shop_side" }) { player: Player ->
     player.interfaceOptions.send("shop_side", "container")
     player.interfaceOptions.unlockAll("shop_side", "container", 0 until 28)
 }
