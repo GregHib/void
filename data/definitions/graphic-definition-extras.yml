@@ -562,3 +562,5 @@ magic_longbow_special:
   id: 250
 special_attack_arrow:
   id: 249
+magic_shortbow_special:
+  id: 256

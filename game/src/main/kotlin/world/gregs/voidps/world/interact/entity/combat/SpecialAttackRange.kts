@@ -15,7 +15,7 @@ on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && wea
 fun isWeaponOutlier(special: Boolean, name: String?): Boolean = (special && name?.startsWith("magic") == true || name == "seercull" || name == "rune_thrownaxe") || name == "ogre_bow"
 
 on<HitDamageModifier>({ player -> type == "range" && isWeaponOutlier(player.specialAttack, weapon?.name) }, Priority.HIGH) { player: Player ->
-    damage = 0.5 + (player.levels.get(Skill.Range) + 10) * strengthBonus / 640
+    damage = 0.5 + (player.levels.get(Skill.Range) + 10) * strengthBonus / 64
     if (weapon?.name == "rune_thrownaxe" || (weapon?.name == "magic_shortbow" && target is Player)) {
         damage += 1.0
     }
