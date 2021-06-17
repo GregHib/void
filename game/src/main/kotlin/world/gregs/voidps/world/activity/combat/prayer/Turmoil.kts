@@ -6,10 +6,10 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.HitChanceLevelOverride
+import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
 import kotlin.math.floor
 
-on<HitChanceLevelOverride>({ defence && it.hasEffect("prayer_turmoil") }, Priority.HIGH) { player: Player ->
+on<HitEffectiveLevelOverride>({ defence && it.hasEffect("prayer_turmoil") }, Priority.HIGH) { player: Player ->
     if (!player.getVar("turmoil", false)) {
         player.toggleVar("turmoil")
     }
@@ -20,6 +20,6 @@ on<HitChanceLevelOverride>({ defence && it.hasEffect("prayer_turmoil") }, Priori
     }
 }
 
-on<HitChanceLevelOverride>({ defence && !it.hasEffect("prayer_turmoil") && it.getVar("turmoil", false) }, Priority.HIGH) { player: Player ->
+on<HitEffectiveLevelOverride>({ defence && !it.hasEffect("prayer_turmoil") && it.getVar("turmoil", false) }, Priority.HIGH) { player: Player ->
     player.toggleVar("turmoil")
 }

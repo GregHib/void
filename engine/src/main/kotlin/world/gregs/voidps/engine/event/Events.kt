@@ -34,8 +34,11 @@ class Events(
         all?.invoke(event)
         events[event::class]
             ?.sortedByDescending { it.priority }
-            ?.filter { it.condition(event, entity) }
-            ?.forEach { it.block(event, entity) }
+            ?.forEach {
+                if (it.condition(event, entity)) {
+                    it.block(event, entity)
+                }
+            }
     }
 
     companion object {

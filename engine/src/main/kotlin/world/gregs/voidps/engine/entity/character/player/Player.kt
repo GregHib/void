@@ -111,13 +111,6 @@ class Player(
     @JsonIgnore
     var changeValue: Int = -1
 
-    @JsonIgnore
-    lateinit var attackSwing: (suspend (Character) -> Int)
-
-    fun setCombatSwing(block: suspend (Character) -> Int) {
-        attackSwing = block
-    }
-
     fun start() {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events

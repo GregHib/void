@@ -5,12 +5,13 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 /**
- * Hit chance modifier
- * @param chance chance of hitting 0.0-1.0
+ * Hit offensive and defence rating modifier
+ * @param offense whether calculating the attacker or defender rating
  */
-data class HitChanceModifier(
+data class HitBonusModifier(
     val target: Character?,
     val type: String,
-    var chance: Double,
+    val offense: Boolean,
+    var bonus: Double,
     val weapon: Item?
 ) : Event

@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.getPrayerBonus
-import world.gregs.voidps.world.interact.entity.combat.HitChanceLevelOverride
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
 import world.gregs.voidps.world.interact.entity.combat.spell
 import kotlin.math.floor
 
@@ -26,19 +26,19 @@ on<HitDamageModifier>(
     damage += 100.0
 }
 
-on<HitChanceLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Player ->
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Player ->
     level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitChanceLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: NPC ->
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: NPC ->
     level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitChanceLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Player ->
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Player ->
     this.level = getPlayerMagicDefence(level, target as Player)
 }
 
-on<HitChanceLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: NPC ->
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: NPC ->
     this.level = getPlayerMagicDefence(level, target as Player)
 }
 

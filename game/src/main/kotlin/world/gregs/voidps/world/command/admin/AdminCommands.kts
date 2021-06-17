@@ -33,6 +33,8 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
@@ -201,6 +203,10 @@ on<Command>({ prefix == "rest" }) { player: Player ->
     player["energy"] = MAX_ENERGY
 }
 
+on<Command>({ prefix == "spec" }) { player: Player ->
+    player.specialAttackEnergy = MAX_SPECIAL_ATTACK
+}
+
 on<Command>({ prefix == "curses" }) { player: Player ->
     player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
 }
@@ -307,4 +313,8 @@ on<Command>({ prefix == "reload" }) { player: Player ->
 
 on<Command>({ prefix == "shop" }) { player: Player ->
     player.events.emit(OpenShop(content))
+}
+
+on<Command>({ prefix == "debug" }) { player: Player ->
+    player["debug"] = !player["debug", false]
 }

@@ -17,7 +17,6 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.utility.func.toInt
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -77,7 +76,7 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
     }
 }
 
-fun Player.hit(target: Character, weapon: Item?, type: String = getWeaponType(this, weapon)) {
+fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon)) {
     val damage = hit(this, target, type, weapon)
     grant(this, type, damage)
     delay(target, if (type == "melee") 0 else 2) {
@@ -88,7 +87,7 @@ fun Player.hit(target: Character, weapon: Item?, type: String = getWeaponType(th
             "dragonfire" -> Hit.Mark.Regular
             else -> Hit.Mark.Missed
         }
-        events.emit(CombatDamage(target, type, damage))
+        events.emit(CombatDamage(target, type, damage, weapon))
         hit(this, target, damage, mark)
         target.events.emit(CombatHit(this, type, damage))
     }
@@ -175,51 +174,65 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
     return mod.level.toInt()
 }
 
-fun getChance(source: Character, target: Character?, type: String, weapon: Item?): Int {
+fun getBonus(source: Character, target: Character?, type: String, weapon: Item?): Int {
     val offense = source == target
     var level = if (target == null) 8 else getEffectiveLevel(target, when (type) {
         "range" -> Skill.Range
         "spell", "blaze" -> if (offense && target is Player) Skill.Defence else Skill.Magic
         else -> Skill.Attack
     }, offense)
-    val override = HitChanceLevelOverride(target, type, !offense, level)
+    val override = HitEffectiveLevelOverride(target, type, !offense, level)
     source.events.emit(override)
     level = override.level
     val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
     val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val chance = level * (equipmentBonus + 64.0)
-    val modifier = HitChanceModifier(target, type, offense, chance, weapon)
+    val modifier = HitBonusModifier(target, type, offense, chance, weapon)
     source.events.emit(modifier)
-    return modifier.chance.toInt()
+    return modifier.bonus.toInt()
 }
 
 fun hitChance(source: Character, target: Character?, type: String, weapon: Item?): Double {
-    val attackerChance = getChance(source, source, type, weapon)
-    val defenderChance = getChance(source, target, type, weapon)
-    return if (attackerChance > defenderChance) {
+    val attackerChance = getBonus(source, source, type, weapon)
+    val defenderChance = getBonus(source, target, type, weapon)
+    val chance = if (attackerChance > defenderChance) {
         1.0 - (defenderChance + 2.0) / (2.0 * (attackerChance + 1.0))
     } else {
         attackerChance / (2.0 * (defenderChance + 1.0))
     }
+
+    val modifier = HitChanceModifier(target, type, chance, weapon)
+    source.events.emit(modifier)
+    return modifier.chance
+}
+
+fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?): Boolean {
+    val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.name == "verac" else false
+    val veracs = verac && Random.nextDouble() < 0.25
+    if (veracs) {
+        println("Veracs")
+        return true
+    }
+
+    return Random.nextDouble() < hitChance(source, target, type, weapon)
 }
 
 private fun Player.hasFullVeracs(): Boolean {
-    return notBroken(equipped(EquipSlot.Hat).name,"veracs_helm") &&
-            notBroken(equipped(EquipSlot.Hat).name,"veracs_flail") &&
-            notBroken(equipped(EquipSlot.Hat).name,"veracs_brassard") &&
-            notBroken(equipped(EquipSlot.Hat).name,"veracs_plateskirt")
+    return notBroken(equipped(EquipSlot.Hat).name, "veracs_helm") &&
+            notBroken(equipped(EquipSlot.Hat).name, "veracs_flail") &&
+            notBroken(equipped(EquipSlot.Hat).name, "veracs_brassard") &&
+            notBroken(equipped(EquipSlot.Hat).name, "veracs_plateskirt")
 }
 
 private fun notBroken(name: String, prefix: String): Boolean {
     return name.startsWith(prefix) && !name.endsWith("broken")
 }
 
-fun hit(player: Player, target: Character?, type: String, weapon: Item?): Int {
-    val veracs = player.hasFullVeracs() && Random.nextDouble() < 0.25
-    return if (veracs || Random.nextDouble() < hitChance(player, target, type, weapon)) {
-        val maxHit = getMaximumHit(player, target, type, weapon)
-        val minHit = getMinimumHit(player, target, type, weapon)
-        Random.nextInt(minHit..maxHit) + veracs.toInt()
+fun hit(source: Character, target: Character?, type: String, weapon: Item?): Int {
+    return if (successfulHit(source, target, type, weapon)) {
+        val maxHit = getMaximumHit(source, target, type, weapon)
+        val minHit = getMinimumHit(source, target, type, weapon)
+        Random.nextInt(minHit..maxHit)
     } else {
         0
     }
@@ -242,3 +255,6 @@ val Character.combatStyle: String
 
 val Character.spell: String
     get() = get("spell", "")
+
+val Player.weapon: Item
+    get() = get("weapon", Item.EMPTY)

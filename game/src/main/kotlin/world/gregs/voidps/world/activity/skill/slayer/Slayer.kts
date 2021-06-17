@@ -6,12 +6,12 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.skill.slayer.hasSlayerTask
 import world.gregs.voidps.world.activity.skill.slayer.isTask
-import world.gregs.voidps.world.interact.entity.combat.HitChanceModifier
+import world.gregs.voidps.world.interact.entity.combat.HitBonusModifier
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import kotlin.math.floor
 
-on<HitChanceModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
-    chance = floor(chance * getSlayerMultiplier(player, target, type, false))
+on<HitBonusModifier>({ offense }, priority = Priority.HIGH) { player: Player ->
+    bonus = floor(bonus * getSlayerMultiplier(player, target, type, false))
 }
 
 on<HitDamageModifier>(priority = Priority.HIGHER) { player: Player ->
