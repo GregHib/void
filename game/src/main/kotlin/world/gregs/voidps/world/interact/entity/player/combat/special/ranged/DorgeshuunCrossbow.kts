@@ -8,7 +8,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpeci
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isCrossbow(weapon: Item?) = weapon != null && weapon.name == "dorgeshuun_crossbow"
+fun isCrossbow(weapon: Item) = weapon.name == "dorgeshuun_crossbow"
 
 on<CombatSwing>({ player -> player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 750)) {

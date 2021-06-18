@@ -14,7 +14,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow")
+fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull"
 
 fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow"
 

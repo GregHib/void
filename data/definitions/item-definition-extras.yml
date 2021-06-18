@@ -36409,6 +36409,7 @@ seercull:
   weight: 1.36
   range: 69.0
   attack_range: 8
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."

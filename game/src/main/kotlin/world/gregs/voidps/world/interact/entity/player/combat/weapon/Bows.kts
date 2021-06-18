@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-fun isBow(item: Item) = item.name.endsWith("bow") && !item.name.endsWith("crossbow")
+fun isBow(item: Item) = (item.name.endsWith("bow") && !item.name.endsWith("crossbow")) || item.name == "seercull"
 
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")

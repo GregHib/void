@@ -612,3 +612,9 @@ zaniks_crossbow_special:
   id: 1714
 zaniks_crossbow_bolt:
   id: 1497
+seercull_special_shoot:
+  id: 472
+seercull_special_arrow:
+  id: 473
+seercull_special_hit:
+  id: 474
