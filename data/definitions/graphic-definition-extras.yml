@@ -410,10 +410,8 @@ broad_arrow_shoot:
   id: 325
 broad_arrow:
   id: 326
-dragon_arrow_shoot:
-  id: 1111
 dragon_arrow:
-  id: 1120
+  id: 1115
 training_arrow_shoot:
   id: 806
 training_arrow:
@@ -564,3 +562,35 @@ special_attack_arrow:
   id: 249
 magic_shortbow_special:
   id: 256
+bronze_arrow_double_shot:
+  id: 1104
+iron_arrow_double_shot:
+  id: 1104
+steel_arrow_double_shot:
+  id: 1104
+mithril_arrow_double_shot:
+  id: 1104
+adamant_arrow_double_shot:
+  id: 1104
+rune_arrow_double_shot:
+  id: 1104
+ice_arrow_double_shot:
+  id: 1104
+dragon_arrow_double_shot:
+  id: 1111
+broad_arrow_double_shot:
+  id: 1104
+descent_of_arrow:
+  id: 1120
+descent_of_dragons_head:
+  id: 1099
+arrow_smoke:
+  id: 1101
+arrow_smoke_2:
+  id: 1101
+zaryte_arrow:
+  id: 1066
+descent_of_darkness_hit:
+  id: 1103
+descent_of_dragons_hit:
+  id: 1100

@@ -6,10 +6,10 @@ import world.gregs.voidps.engine.event.Event
 class CombatSwing(
     val target: Character
 ) : Event {
-    var delay: Int = -1
+    var delay: Int? = null
 
     fun swung(): Boolean {
-        return delay > 0
+        return delay != null
     }
 
 }

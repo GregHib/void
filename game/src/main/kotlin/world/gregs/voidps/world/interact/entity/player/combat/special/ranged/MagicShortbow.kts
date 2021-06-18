@@ -30,5 +30,4 @@ on<CombatSwing>({ player -> player.specialAttack && isMagicShort(player.weapon) 
     player.shoot(name = "special_attack_arrow", target = target, delay = 55, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
     player.hit(target)
-    player.specialAttack = false
 }

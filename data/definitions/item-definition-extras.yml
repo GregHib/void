@@ -61429,6 +61429,7 @@ dark_bow:
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
   ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, dragon_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo_required: 2
 dark_bow_noted:
   id: 11236
 dragon_arrowtips:

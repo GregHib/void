@@ -57,7 +57,7 @@ fun attack(player: Player, target: Character) {
                 val swing = CombatSwing(target)
                 player.events.emit(swing)
                 val nextDelay = swing.delay
-                if (nextDelay < 0) {
+                if (nextDelay == null || nextDelay < 0) {
                     break
                 }
                 player.start("skilling_delay", nextDelay, quiet = true)

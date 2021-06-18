@@ -1,16 +1,11 @@
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import kotlin.math.floor
-
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && weapon?.name == "dark_bow" }, Priority.HIGH) { player: Player ->
-    damage = floor(damage * if (player.equipped(EquipSlot.Ammo).name == "dragon_arrow") 1.50 else 1.30)
-}
 
 fun isWeaponOutlier(special: Boolean, name: String?): Boolean = (special && name?.startsWith("magic") == true || name == "seercull" || name == "rune_thrownaxe") || name == "ogre_bow"
 
@@ -23,4 +18,8 @@ on<HitDamageModifier>({ player -> type == "range" && isWeaponOutlier(player.spec
 
 on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && weapon?.name?.endsWith("morrigans_throwing_axe") == true }, Priority.LOW) { _: Player ->
     damage = floor(damage * 1.2)
+}
+
+on<CombatSwing>({ player -> player.specialAttack }, Priority.LOWEST) { player: Player ->
+    player.specialAttack = false
 }

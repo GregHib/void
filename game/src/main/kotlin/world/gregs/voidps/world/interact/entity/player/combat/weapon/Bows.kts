@@ -24,16 +24,16 @@ on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.ind
 
 fun updateWeapon(player: Player, weapon: Item) {
     player["attack_range"] = weapon.def.getOrNull("attack_range") as? Int ?: 7
-    player["weapon"] = weapon
+    player.weapon = weapon
 }
 
 fun isBow(item: Item) = item.name.endsWith("bow") && !item.name.endsWith("crossbow")
 
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")
-    val ammo = player.equipped(EquipSlot.Ammo)
-    player.setGraphic("${ammo.name}_shoot", height = 100)
-    player.shoot(name = ammo.name, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
+    val ammo = player.ammo.name
+    player.setGraphic("${ammo}_shoot", height = 100)
+    player.shoot(name = ammo, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed

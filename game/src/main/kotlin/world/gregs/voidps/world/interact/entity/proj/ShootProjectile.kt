@@ -91,7 +91,28 @@ fun Character.shoot(
     curve: Int = ShootProjectile.DEFAULT_CURVE,
     offset: Int = ShootProjectile.DEFAULT_OFFSET
 ) {
-    val id = get<GraphicDefinitions>().getIdOrNull(name) ?: return
+    shoot(
+        get<GraphicDefinitions>().getIdOrNull(name) ?: return,
+        direction,
+        delay,
+        flightTime,
+        height,
+        endHeight,
+        curve,
+        offset
+    )
+}
+
+fun Character.shoot(
+    id: Int,
+    direction: Tile,
+    delay: Int = ShootProjectile.DEFAULT_DELAY,
+    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
+    height: Int = ShootProjectile.DEFAULT_HEIGHT,
+    endHeight: Int = height,
+    curve: Int = ShootProjectile.DEFAULT_CURVE,
+    offset: Int = ShootProjectile.DEFAULT_OFFSET
+) {
     World.events.emit(
         ShootProjectile(
             id = id,

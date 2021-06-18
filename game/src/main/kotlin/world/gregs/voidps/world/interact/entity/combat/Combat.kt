@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -78,6 +79,7 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
 
 fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon)) {
     val damage = hit(this, target, type, weapon)
+    val special = specialAttack
     grant(this, type, damage)
     delay(target, if (type == "melee") 0 else 2) {
         val mark = when (type) {
@@ -87,9 +89,9 @@ fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = ge
             "dragonfire" -> Hit.Mark.Regular
             else -> Hit.Mark.Missed
         }
-        events.emit(CombatDamage(target, type, damage, weapon))
+        events.emit(CombatDamage(target, type, damage, weapon, special))
         hit(this, target, damage, mark)
-        target.events.emit(CombatHit(this, type, damage))
+        target.events.emit(CombatHit(this, type, damage, weapon, special))
     }
 }
 
@@ -256,5 +258,10 @@ val Character.combatStyle: String
 val Character.spell: String
     get() = get("spell", "")
 
-val Player.weapon: Item
+var Player.weapon: Item
     get() = get("weapon", Item.EMPTY)
+    set(value) = set("weapon", value)
+
+var Player.ammo: Item
+    get() = get("ammo", Item.EMPTY)
+    set(value) = set("ammo", value)

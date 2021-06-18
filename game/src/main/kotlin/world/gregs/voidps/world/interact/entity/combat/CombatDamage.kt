@@ -7,4 +7,10 @@ import world.gregs.voidps.engine.event.Event
 /**
  * Damage done to [target]
  */
-data class CombatDamage(val target: Character, val type: String, val damage: Int, val weapon: Item?) : Event
+data class CombatDamage(
+    val target: Character,
+    val type: String,
+    val damage: Int,
+    val weapon: Item?,
+    val special: Boolean
+) : Event
