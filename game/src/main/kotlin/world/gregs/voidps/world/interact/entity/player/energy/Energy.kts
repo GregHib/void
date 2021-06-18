@@ -29,7 +29,7 @@ on<EffectStart>({ effect == "energy" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "energy" }) { player: Player ->
-    player.getOrNull<Job>("energy_tick_job")?.cancel()
+    player.remove<Job>("energy_tick_job")?.cancel()
 }
 
 fun getDrainAmount(player: Player): Int {

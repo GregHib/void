@@ -35,7 +35,7 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
 }
 
 on<EffectStop>({ effect == "prayer_drain" }) { player: Player ->
-    player.getOrNull<Job>("prayer_drain_tick_job")?.cancel()
+    player.remove<Job>("prayer_drain_tick_job")?.cancel()
 }
 
 val prayerDrainEffects = mapOf(

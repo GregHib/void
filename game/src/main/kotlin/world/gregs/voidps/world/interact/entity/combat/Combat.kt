@@ -82,16 +82,7 @@ fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = ge
     val special = specialAttack
     grant(this, type, damage)
     delay(target, if (type == "melee") 0 else 2) {
-        val mark = when (type) {
-            "range" -> Hit.Mark.Range
-            "melee" -> Hit.Mark.Melee
-            "magic" -> Hit.Mark.Magic
-            "dragonfire" -> Hit.Mark.Regular
-            else -> Hit.Mark.Missed
-        }
-        events.emit(CombatDamage(target, type, damage, weapon, special))
-        hit(this, target, damage, mark)
-        target.events.emit(CombatHit(this, type, damage, weapon, special))
+        hit(this, target, damage, type, weapon, special)
     }
 }
 
@@ -126,13 +117,23 @@ private fun grant(player: Player, type: String, damage: Int) {
     player.exp(Skill.Constitution, damage / 7.5)
 }
 
-fun hit(player: Player, target: Character, damage: Int, type: Hit.Mark) {
-    target.hit(player, damage, type)
+fun hit(source: Character, target: Character, damage: Int, type: String, weapon: Item?, special: Boolean) {
+    source.events.emit(CombatDamage(target, type, damage, weapon, special))
+    target.hit(source, damage, when (type) {
+        "range" -> Hit.Mark.Range
+        "melee" -> Hit.Mark.Melee
+        "magic" -> Hit.Mark.Magic
+        "dragonfire" -> Hit.Mark.Regular
+        else -> Hit.Mark.Missed
+    })
     target.levels.drain(Skill.Constitution, damage)
-    target["killer"] = player
+    target["killer"] = source
     val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
-    player.playSound("${name}_hit", delay = 40)
+    if (source is Player) {
+        source.playSound("${name}_hit", delay = 40)
+    }
     target.setAnimation("${name}_hit")
+    target.events.emit(CombatHit(source, type, damage, weapon, special))
 }
 
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {

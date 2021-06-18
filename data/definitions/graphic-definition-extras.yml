@@ -618,3 +618,11 @@ seercull_special_arrow:
   id: 473
 seercull_special_hit:
   id: 474
+zamorak_bow_special_hit:
+  id: 127
+saradomin_bow_special_hit:
+  id: 128
+guthix_bow_special_hit:
+  id: 129
+saradomin_bow_restoration:
+  id: 93

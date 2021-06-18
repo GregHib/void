@@ -15,10 +15,9 @@ object GraphicDefinitions {
         val decoder = GraphicDecoder(koin.get())
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.animationId == 366) {
+            if (def.modelId == 26300) {
                 println(def)
             }
         }
-        // 472 seercull special
     }
 }

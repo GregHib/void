@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.action.Contexts
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.utility.get
 import java.util.concurrent.ScheduledExecutorService
 import java.util.concurrent.TimeUnit
@@ -102,6 +103,17 @@ fun delay(ticks: Int = 0, loop: Boolean = false, task: suspend (Long) -> Unit) =
  * Executes a task after [ticks], cancelling if player logs out
  */
 inline fun <reified T : Entity> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
+    val job = delay(ticks, loop, task)
+    entity.events.on<T, Unregistered> {
+        job.cancel()
+    }
+    return job
+}
+
+/**
+ * Executes a task after [ticks], cancelling if the character is unregistered
+ */
+inline fun <reified T : Character> delay(entity: T, ticks: Int = 0, loop: Boolean = false, noinline task: suspend (Long) -> Unit): Job {
     val job = delay(ticks, loop, task)
     entity.events.on<T, Unregistered> {
         job.cancel()

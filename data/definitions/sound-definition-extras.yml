@@ -172,3 +172,5 @@ rat_hit:
   id: 713
 rat_death:
   id: 711
+god_bow_special_hit:
+  id: 9513

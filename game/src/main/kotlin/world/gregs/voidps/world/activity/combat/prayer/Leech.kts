@@ -56,7 +56,7 @@ fun restore(player: Player, skill: Skill, leech: Int) {
 
 
 on<EffectStop>({ effect == "prayer_bonus_drain" }) { player: Player ->
-    player.getOrNull<Job>("prayer_bonus_tick_job")?.cancel()
+    player.remove<Job>("prayer_bonus_tick_job")?.cancel()
 }
 
 fun getLevel(target: Character, skill: Skill): Int {
