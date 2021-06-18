@@ -14193,7 +14193,7 @@ ranger_boots:
 ranger_boots_noted:
   id: 2578
 wizard_boots:
-  id: 10689
+  id: 2579
   limit: 2
   weight: 0.453
   magic: 4.0
@@ -37839,10 +37839,8 @@ infinity_bottoms:
   examine: "Mystical robes."
 infinity_bottoms_noted:
   id: 6925
-bones_to_peaches:
+bones_to_peaches_spell:
   id: 6926
-  aka: "BTP tabs"
-  examine: "A tablet containing a magic spell."
 sandy_hand:
   id: 6945
   tradeable: false
@@ -44707,7 +44705,7 @@ spiral_staircase:
   examine: "I can climb up or go down these stairs."
 marble_spiral:
   id: 8259
-crawling_hand_2:
+crawling_hand_3:
   id: 8260
   tradeable: false
   weight: 10.0
@@ -57802,7 +57800,7 @@ enchanted_top_2:
   summoning_def: 20.0
   slot: "Chest"
   examine: "Enchanted wizard robes."
-wizard_boots:
+wizard_boots_2:
   id: 10689
   limit: 2
   weight: 0.453
@@ -63821,7 +63819,7 @@ white_goblin_mail:
   kept: "Wilderness"
 grubfoot:
   id: 11792
-zanik_2:
+zanik_3:
   id: 11793
   tradeable: false
   weight: 30.0
@@ -81897,14 +81895,14 @@ evil_tree_kindling:
   kept: "Reclaim"
 captain_undak:
   id: 14668
-zanik_3:
+zanik_4:
   id: 14669
   tradeable: false
   weight: 30.0
   examine: "She's dead, but the mark on her forehead is glowing brightly."
   use: "Quest"
   kept: "Wilderness"
-zanik_4:
+zanik_5:
   id: 14670
   tradeable: false
   weight: 30.0
@@ -98936,7 +98934,7 @@ primal_rapier:
   weight: 1.814
 primal_rapier_noted:
   id: 16956
-fractite_rapier:
+fractite_rapier_2:
   id: 16957
   str: 38.0
   stab: 38.0
@@ -98952,7 +98950,7 @@ fractite_rapier:
   kept: "Always"
 fractite_rapier_noted_2:
   id: 16958
-gorgonite_rapier:
+gorgonite_rapier_2:
   id: 16959
   str: 96.0
   stab: 67.0
@@ -98967,7 +98965,7 @@ gorgonite_rapier:
   kept: "Always"
 gorgonite_rapier_noted_2:
   id: 16960
-fractite_longsword:
+fractite_longsword_2:
   id: 16961
   str: 49.0
   stab: 42.0
@@ -98983,7 +98981,7 @@ fractite_longsword:
   kept: "Always"
 fractite_longsword_noted_2:
   id: 16962
-gorgonite_longsword:
+gorgonite_longsword_2:
   id: 16963
   str: 114.0
   stab: 71.0
@@ -98999,7 +98997,7 @@ gorgonite_longsword:
   kept: "Always"
 gorgonite_longsword_noted_2:
   id: 16964
-gorgonite_maul:
+gorgonite_maul_2:
   id: 16965
   str: 145.0
   stab: -4.0
@@ -99058,7 +99056,7 @@ gorgonite_kiteshield:
   weight: 5.443
 gorgonite_kiteshield_noted:
   id: 16972
-fractite_2h_sword:
+fractite_2h_sword_2:
   id: 16973
   str: 80.0
   stab: -4.0
@@ -99075,7 +99073,7 @@ fractite_2h_sword:
   kept: "Always"
 fractite_2h_sword_noted_2:
   id: 16974
-spinebeam_shortbow:
+spinebeam_shortbow_2:
   id: 16975
   weight: 1.814
   range: 19.0
@@ -99307,7 +99305,7 @@ empowered_air_staff:
   weight: 1.814
 empowered_air_staff_noted:
   id: 17012
-catalytic_staff:
+catalytic_staff_2:
   id: 17013
   magic_damage: 15
   str: 7.0
@@ -102117,7 +102115,7 @@ katagon_kiteshield:
   weight: 5.443
 katagon_kiteshield_noted:
   id: 17356
-gorgonite_kiteshield:
+gorgonite_kiteshield_2:
   id: 17357
   stab_def: 56.0
   weight: 5.443
@@ -108133,7 +108131,7 @@ twig:
   examine: "A completely ordinary twig."
   use: "Quest"
   kept: "Wilderness"
-dummy_2:
+dummy_3:
   id: 18805
   tradeable: false
   weight: 2.0
@@ -116271,7 +116269,6 @@ zaryte_bow:
   range_str: 115.0
   attack_range: 7
   attack_speed: 5
-  attack_speed: 
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."
