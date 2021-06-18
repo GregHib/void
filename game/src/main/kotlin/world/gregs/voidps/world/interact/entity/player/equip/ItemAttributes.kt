@@ -31,7 +31,7 @@ fun Player.hasRequirements(item: ItemDefinition, message: Boolean = false): Bool
         }
     }
     item.getMaxedSkill()?.let { skill ->
-        if (!has(skill, skill.maximum())) {
+        if (!has(skill, skill.maximum(), message)) {
             return false
         }
     }

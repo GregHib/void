@@ -594,3 +594,9 @@ descent_of_darkness_hit:
   id: 1103
 descent_of_dragons_hit:
   id: 1100
+bone_bolts_spec:
+  id: 698
+zaniks_crossbow_special:
+  id: 1714
+zaniks_crossbow_bolt:
+  id: 1497

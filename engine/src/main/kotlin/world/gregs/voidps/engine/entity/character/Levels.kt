@@ -50,9 +50,10 @@ class Levels(
     }
 
     fun clear() {
-        for (key in offsets.keys) {
-            clearOffset(key)
+        for (skill in offsets.keys) {
+            notify(skill, get(skill))
         }
+        offsets.clear()
     }
 
     fun clearOffset(skill: Skill) {
