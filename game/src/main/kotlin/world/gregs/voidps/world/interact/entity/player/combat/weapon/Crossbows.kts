@@ -30,7 +30,7 @@ fun updateAttackRange(player: Player, weapon: Item) {
 fun isCrossbow(item: Item) = item.name.endsWith("crossbow")
 
 on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LOW) { player: Player ->
-    val ammo = player.ammo.name
+    val ammo = player.ammo
     if (ammo.endsWith("brutal")) {
         player.setGraphic("brutal_shoot")
     }

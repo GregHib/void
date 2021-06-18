@@ -262,6 +262,6 @@ var Player.weapon: Item
     get() = get("weapon", Item.EMPTY)
     set(value) = set("weapon", value)
 
-var Player.ammo: Item
-    get() = get("ammo", Item.EMPTY)
+var Player.ammo: String
+    get() = get("ammo", "")
     set(value) = set("ammo", value)

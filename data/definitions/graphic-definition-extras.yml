@@ -442,6 +442,14 @@ zamorak_arrows_shoot:
   id: 97
 zamorak_arrows:
   id: 100
+fire_arrows_unlit_shoot:
+  id: 26
+fire_arrows_unlit:
+  id: 17
+fire_arrows_lit_shoot:
+  id: 26
+fire_arrows_lit:
+  id: 17
 novite_arrows_shoot:
   id: 2466
 novite_arrows:
@@ -580,6 +588,10 @@ dragon_arrow_double_shot:
   id: 1111
 broad_arrow_double_shot:
   id: 1104
+fire_arrows_unlit_double_shot:
+  id: 1113
+fire_arrows_lit_double_shot:
+  id: 1114
 descent_of_arrow:
   id: 1120
 descent_of_dragons_head:

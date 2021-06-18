@@ -4485,7 +4485,7 @@ longbow:
   type: "TwoHanded"
   examine: "A nice sturdy bow."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit ]
 longbow_noted:
   id: 840
 shortbow:
@@ -4498,7 +4498,7 @@ shortbow:
   type: "TwoHanded"
   examine: "Short but effective."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit ]
 shortbow_noted:
   id: 842
 oak_shortbow:
@@ -4511,7 +4511,7 @@ oak_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit ]
 oak_shortbow_noted:
   id: 844
 oak_longbow:
@@ -4526,7 +4526,7 @@ oak_longbow:
   attack_speed: 6
   examine: "A nice sturdy bow made out of oak."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit ]
 oak_longbow_noted:
   id: 846
 willow_longbow:
@@ -4541,7 +4541,7 @@ willow_longbow:
   attack_speed: 6
   examine: "A nice sturdy bow made out of willow."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_longbow_noted:
   id: 848
 willow_shortbow:
@@ -4554,7 +4554,7 @@ willow_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_shortbow_noted:
   id: 850
 maple_longbow:
@@ -4568,7 +4568,7 @@ maple_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of maple."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
 maple_longbow_noted:
   id: 852
 maple_shortbow:
@@ -4580,7 +4580,7 @@ maple_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of Maple, still effective."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
 maple_shortbow_noted:
   id: 854
 yew_longbow:
@@ -4594,7 +4594,7 @@ yew_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_longbow_noted:
   id: 856
 yew_shortbow:
@@ -4606,7 +4606,7 @@ yew_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of yew, still effective."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_shortbow_noted:
   id: 858
 magic_longbow:
@@ -4620,7 +4620,7 @@ magic_longbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_longbow_noted:
   id: 860
 magic_shortbow:
@@ -4632,7 +4632,7 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Short and magical, but still effective."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_shortbow_noted:
   id: 862
 iron_knife:
@@ -36412,7 +36412,7 @@ seercull:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 seercull_noted:
   id: 6725
 mud_battlestaff_noted:
@@ -61426,7 +61426,7 @@ dark_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, dragon_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, dragon_arrow, dragon_fire_arrows_lit, dragon_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
   ammo_required: 2
 dark_bow_noted:
   id: 11236
@@ -79041,7 +79041,7 @@ sacred_clay_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The sacred clay weapon has transformed into a bow."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, ice_arrows, broad_arrow ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow ]
   weight: 2.0
 pickaxe_class_1:
   id: 14122
@@ -109298,7 +109298,7 @@ saradomin_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 saradomin_bow_noted:
   id: 19144
 saradomin_bow_lent:
@@ -109315,7 +109315,7 @@ guthix_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 guthix_bow_noted:
   id: 19147
 guthix_bow_lent:
@@ -109332,7 +109332,7 @@ zamorak_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
-  ammo: [ bronze_arrow, iron_arrow, steel_arrow, mithril_arrow, adamant_arrow, rune_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 zamorak_bow_noted:
   id: 19150
 zamorak_bow_lent:

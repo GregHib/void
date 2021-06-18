@@ -13,21 +13,21 @@ import kotlin.math.floor
 
 
 on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && weapon?.name == "dark_bow" }, Priority.HIGH) { player: Player ->
-    val dragon = player.ammo.name == "dragon_arrow"
+    val dragon = player.ammo == "dragon_arrow"
     damage = floor(damage * if (dragon) 1.50 else 1.30).coerceAtLeast(if (dragon) 80.0 else 50.0)
 }
 
 fun isDarkBow(weapon: Item?) = weapon != null && weapon.name.startsWith("dark_bow")
 
 on<CombatSwing>({ player -> player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
-    val dragon = player.ammo.name == "dragon_arrow"
+    val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
         return@on
     }
     player.setAnimation("bow_shoot")
-    player.setGraphic("${player.ammo.name}_double_shot", height = 100)
+    player.setGraphic("${player.ammo}_double_shot", height = 100)
 
     player.shoot("descent_of_arrow", target, true)
     player.shoot("arrow_smoke", target, true)
@@ -46,12 +46,12 @@ on<CombatSwing>({ player -> player.specialAttack && isDarkBow(player.weapon) }, 
 
 on<CombatHit>({ source is Player && isDarkBow(weapon) && special }) { character: Character ->
     source as Player
-    character.setGraphic("descent_of_${if (source.ammo.name == "dragon_arrow") "dragons" else "darkness"}_hit", height = 50 + character.height)
+    character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit", height = 50 + character.height)
 }
 
 on<CombatSwing>({ player -> !swung() && isDarkBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     player.setAnimation("bow_shoot")
-    val ammo = player.ammo.name
+    val ammo = player.ammo
     player.setGraphic("${ammo}_double_shot", height = 100)
     player.shoot(ammo, target, true)
     player.shoot(ammo, target, false)

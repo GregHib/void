@@ -31,7 +31,7 @@ fun isBow(item: Item) = item.name.endsWith("bow") && !item.name.endsWith("crossb
 
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")
-    val ammo = player.ammo.name
+    val ammo = player.ammo
     player.setGraphic("${ammo}_shoot", height = 100)
     player.shoot(name = ammo, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
