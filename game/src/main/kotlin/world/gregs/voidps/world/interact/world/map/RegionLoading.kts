@@ -3,7 +3,6 @@ import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
@@ -49,12 +48,8 @@ on<Registered> { player: Player ->
     load(player)
 }
 
-on<Moved> { player: Player ->
-    load(player)
-}
-
-on<Moved> { npc: NPC ->
-    load(npc)
+on<Moved> { character: Character ->
+    load(character)
 }
 
 fun load(character: Character) {

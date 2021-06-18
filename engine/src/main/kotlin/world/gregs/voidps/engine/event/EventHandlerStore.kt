@@ -3,12 +3,14 @@ package world.gregs.voidps.engine.event
 import org.koin.dsl.module
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Bot
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.item.FloorItem
 import world.gregs.voidps.utility.get
 import kotlin.reflect.KClass
+import kotlin.reflect.full.superclasses
 
 val eventModule = module {
     single { EventHandlerStore() }
@@ -21,13 +23,18 @@ class EventHandlerStore {
 
     private val handlers = mutableMapOf<KClass<out Entity>, MutableMap<KClass<out Event>, MutableList<EventHandler>>>()
 
-    fun <T : Entity> populate(clazz: KClass<T>, events: Events) {
+    fun populate(clazz: KClass<out Entity>, events: Events) {
         for ((key, values) in get(clazz)) {
             events.addAll(key, values)
         }
     }
 
-    fun <T : Entity> populate(entity: T) = populate(entity::class, entity.events)
+    fun <T : Entity> populate(entity: T) {
+        populate(entity::class, entity.events)
+        for (superclass in entity::class.superclasses) {
+            populate(superclass as KClass<out Entity>, entity.events)
+        }
+    }
 
     fun get(entity: KClass<out Entity>): Map<KClass<out Event>, List<EventHandler>> {
         return handlers[entity] ?: emptyMap()
@@ -48,6 +55,9 @@ inline fun <reified E : Event> on(noinline condition: E.(Player) -> Boolean = { 
 
 @JvmName("onNPC")
 inline fun <reified E : Event> on(noinline condition: E.(NPC) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(NPC) -> Unit) = on<NPC, E>(condition, priority, block)
+
+@JvmName("onCharacter")
+inline fun <reified E : Event> on(noinline condition: E.(Character) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(Character) -> Unit) = on<Character, E>(condition, priority, block)
 
 @JvmName("onItem")
 inline fun <reified E : Event> on(noinline condition: E.(FloorItem) -> Boolean = { true }, priority: Priority = Priority.MEDIUM, noinline block: E.(FloorItem) -> Unit) = on<FloorItem, E>(condition, priority, block)
