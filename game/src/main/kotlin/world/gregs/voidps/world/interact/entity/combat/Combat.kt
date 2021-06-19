@@ -77,11 +77,12 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
     }
 }
 
-fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon)) {
+fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2) {
     val damage = hit(this, target, type, weapon)
     val special = specialAttack
     grant(this, type, damage)
-    delay(target, if (type == "melee") 0 else 2) {
+
+    delay(target, delay) {
         hit(this, target, damage, type, weapon, special)
     }
 }
@@ -117,7 +118,7 @@ private fun grant(player: Player, type: String, damage: Int) {
     player.exp(Skill.Constitution, damage / 7.5)
 }
 
-fun hit(source: Character, target: Character, damage: Int, type: String, weapon: Item?, special: Boolean) {
+fun hit(source: Character, target: Character, damage: Int, type: String, weapon: Item? = null, special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, special))
     target.hit(source, damage, when (type) {
         "range" -> Hit.Mark.Range

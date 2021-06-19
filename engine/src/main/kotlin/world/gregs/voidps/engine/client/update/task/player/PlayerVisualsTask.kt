@@ -40,7 +40,7 @@ class PlayerVisualsTask(
      * Encodes all flagged visuals into one reusable [Visuals.update]
      */
     fun encodeUpdate(visuals: Visuals) {
-        val writer = BufferWriter()
+        val writer = BufferWriter(128)
         writeFlag(writer, visuals.flag)
         encoders.forEach { encoder ->
             if (!visuals.flagged(encoder.mask)) {

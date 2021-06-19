@@ -17,7 +17,7 @@ var Player.specialAttackEnergy: Int
 
 fun drainSpecialEnergy(player: Player, amount: Int): Boolean {
     if (player.specialAttackEnergy < amount) {
-        player.message("Not enough spec energy.")
+        player.message("You don't have enough power left.")
         player.specialAttack = false
         return false
     }

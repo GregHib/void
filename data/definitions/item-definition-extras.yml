@@ -87146,7 +87146,7 @@ strange_rock_fletching:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while fletching bows, crossbows and sagaies."
+  examine: "A rock found while fletching bows, crossbows and stocks."
   kept: "Wilderness"
 strange_rock_12:
   id: 15545

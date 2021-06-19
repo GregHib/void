@@ -1069,3 +1069,5 @@ magic_shortbow_special:
   id: 1074
 zaniks_crossbow_special:
   id: 11359
+throw_dart:
+  id: 582

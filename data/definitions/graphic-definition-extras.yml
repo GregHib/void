@@ -626,3 +626,31 @@ guthix_bow_special_hit:
   id: 129
 saradomin_bow_restoration:
   id: 93
+bronze_dart_throw:
+  id: 1234
+bronze_dart:
+  id: 226
+iron_dart_throw:
+  id: 1235
+iron_dart:
+  id: 227
+steel_dart_throw:
+  id: 1236
+steel_dart:
+  id: 228
+mithril_dart_throw:
+  id: 1238
+mithril_dart:
+  id: 229
+adamant_dart_throw:
+  id: 1239
+adamant_dart:
+  id: 230
+rune_dart_throw:
+  id: 1240
+rune_dart:
+  id: 231
+dragon_dart_throw:
+  id: 1242
+dragon_dart:
+  id: 1122

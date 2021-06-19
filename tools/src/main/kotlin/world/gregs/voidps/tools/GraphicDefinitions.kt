@@ -13,9 +13,10 @@ object GraphicDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = GraphicDecoder(koin.get())
+        println(decoder.get(1123))
         for (i in decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
-            if (def.modelId == 26300) {
+            if (def.modelId == 26301) {
                 println(def)
             }
         }
