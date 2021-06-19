@@ -26,7 +26,7 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) }, Priority.HIGH) { p
     val required = player["required_ammo", 1]
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ""
-    if (!player.equipment.remove(ammo.name, required)) {
+    if (ammo.amount < required) {
         player.message("There is no ammo left in your quiver.")
         delay = -1
         return@on
@@ -35,6 +35,12 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) }, Priority.HIGH) { p
     val weapon = player.weapon
     if (weapon.def.ammo?.contains(ammo.name) != true) {
         player.message("You can't use that ammo with your bow.")
+        delay = -1
+        return@on
+    }
+
+    if (!player.equipment.remove(ammo.name, required)) {
+        player.message("There is not enough ammo left in your quiver.")
         delay = -1
         return@on
     }

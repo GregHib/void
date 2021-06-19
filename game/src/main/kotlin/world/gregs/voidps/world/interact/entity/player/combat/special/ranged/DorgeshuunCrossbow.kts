@@ -10,7 +10,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isCrossbow(weapon: Item) = weapon.name == "dorgeshuun_crossbow"
 
-on<CombatSwing>({ player -> player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 750)) {
         return@on
     }

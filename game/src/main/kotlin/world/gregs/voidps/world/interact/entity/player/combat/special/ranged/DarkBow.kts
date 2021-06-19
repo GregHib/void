@@ -9,6 +9,7 @@ import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.floor
 
 
@@ -19,7 +20,7 @@ on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && wea
 
 fun isDarkBow(weapon: Item?) = weapon != null && weapon.name.startsWith("dark_bow")
 
-on<CombatSwing>({ player -> player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
@@ -28,6 +29,8 @@ on<CombatSwing>({ player -> player.specialAttack && isDarkBow(player.weapon) }, 
     }
     player.setAnimation("bow_shoot")
     player.setGraphic("${player.ammo}_double_shot", height = 100)
+    player.playSound("dark_bow_special")
+    player.playSound("descent_of_${if (dragon) "dragons" else "darkness"}")
 
     player.shoot("descent_of_arrow", target, true)
     player.shoot("arrow_smoke", target, true)
@@ -46,6 +49,8 @@ on<CombatSwing>({ player -> player.specialAttack && isDarkBow(player.weapon) }, 
 
 on<CombatHit>({ source is Player && isDarkBow(weapon) && special }) { character: Character ->
     source as Player
+    source.playSound("descent_of_darkness")
+    source.playSound("descent_of_darkness", delay = 20)
     character.setGraphic("descent_of_${if (source.ammo == "dragon_arrow") "dragons" else "darkness"}_hit", height = 50 + character.height)
 }
 

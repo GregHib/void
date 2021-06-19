@@ -34,7 +34,7 @@ fun updateAttackRange(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ player -> isDart(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.weapon
     player.ammo = ""

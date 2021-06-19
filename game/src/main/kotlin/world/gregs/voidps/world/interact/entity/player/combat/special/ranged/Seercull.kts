@@ -15,6 +15,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIA
 import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
+import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isSeercull(weapon: Item?) = weapon != null && weapon.name == "seercull"
 
@@ -22,7 +23,7 @@ on<HitChanceModifier>({ player -> player != target && type == "range" && player.
     chance = 1.0
 }
 
-on<CombatSwing>({ player -> player.specialAttack && isSeercull(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.specialAttack && isSeercull(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
@@ -30,6 +31,7 @@ on<CombatSwing>({ player -> player.specialAttack && isSeercull(player.weapon) },
     }
     player.setAnimation("bow_shoot")
     player.setGraphic("seercull_special_shoot", height = 100)
+    player.playSound("seercull_special")
     player.shoot(name = "seercull_special_arrow", target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
 }

@@ -31,7 +31,7 @@ on<CombatDamage>({ isCrossbow(weapon) && special }) { _: Player ->
     target.levels.drain(Skill.Defence, damage / 10)
 }
 
-on<CombatSwing>({ player -> player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 500)) {
         return@on
     }

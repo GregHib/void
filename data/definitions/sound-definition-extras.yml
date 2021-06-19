@@ -174,3 +174,19 @@ rat_death:
   id: 711
 god_bow_special_hit:
   id: 9513
+magic_longbow_special:
+  id: 2536
+magic_shortbow_special:
+  id: 2545
+seercull_special:
+  id: 2546
+dark_bow_special:
+  id: 3731
+descent_of_dragons:
+  id: 3733
+descent_of_darkness:
+  id: 3737
+morrigans_javelin_special:
+  id: 2699
+morrigans_throwing_axe_special:
+  id: 2706

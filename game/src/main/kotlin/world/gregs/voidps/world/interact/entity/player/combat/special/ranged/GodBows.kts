@@ -19,7 +19,7 @@ import kotlin.math.floor
 
 fun isGodBow(weapon: Item?) = weapon != null && (weapon.name == "saradomin_bow" || weapon.name == "guthix_bow" || weapon.name == "zamorak_bow")
 
-on<CombatSwing>({ player -> player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
+on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.weapon) }, Priority.MEDIUM) { player: Player ->
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 550)) {
@@ -64,7 +64,7 @@ on<EffectStart>({ effect == "restorative_shot" }) { player: Player ->
         }
         val restore = Math.interpolate(amount, 10, 60, 1, 380).coerceAtMost(amount)
         player["restoration"] = amount - restore
-        player.levels.boost(Skill.Constitution, restore)
+        player.levels.restore(Skill.Constitution, restore)
         player.setGraphic("saradomin_bow_restoration")
     }
 }
