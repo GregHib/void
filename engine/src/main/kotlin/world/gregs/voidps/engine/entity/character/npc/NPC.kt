@@ -2,6 +2,7 @@ package world.gregs.voidps.engine.entity.character.npc
 
 import world.gregs.voidps.cache.definition.data.NPCDefinition
 import world.gregs.voidps.engine.action.Action
+import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.Values
 import world.gregs.voidps.engine.entity.character.Character
@@ -59,7 +60,7 @@ data class NPC(
         levels.link(events, NPCLevels(def))
         events.on<NPC, LevelChanged> {
             if (skill == Skill.Constitution) {
-                if (to <= 0) {
+                if (to <= 0 && action.type != ActionType.Death) {
                     events.emit(Died)
                 }
             }

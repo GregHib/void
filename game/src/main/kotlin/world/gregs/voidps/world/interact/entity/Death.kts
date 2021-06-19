@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.stopAllEffects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.utility.func.toUnderscoreCase
@@ -24,6 +25,7 @@ on<Died> { npc: NPC ->
         val killer: Player? = npc.getOrNull("killer")
         killer?.playSound("${name}_death", delay = 40)
         npc.playAnimation("${name}_death")
+        npc.stopAllEffects()
         npcs.remove(npc)
         val area: Area? = npc.getOrNull("area")
         if (area != null) {

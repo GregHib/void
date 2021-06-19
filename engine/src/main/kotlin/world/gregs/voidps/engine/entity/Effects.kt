@@ -34,6 +34,12 @@ fun Entity.stop(effect: String, quiet: Boolean = false) {
     }
 }
 
+fun Entity.stopAllEffects(quiet: Boolean = false) {
+    values.keys().filter { it.endsWith("_effect") }.forEach {
+        stop(it.removeSuffix("_effect"), quiet)
+    }
+}
+
 fun Entity.hasEffect(effect: String): Boolean = contains("${effect}_effect")
 
 fun Entity.hasOrStart(effect: String, ticks: Int = -1, persist: Boolean = true): Boolean {

@@ -1071,3 +1071,11 @@ zaniks_crossbow_special:
   id: 11359
 throw_dart:
   id: 582
+throw_javelin:
+  id: 10501
+throw_morrigans_throwing_axe:
+  id: 10504
+throw_throwing_axe:
+  id: 9055
+throw_knife:
+  id: 9055
