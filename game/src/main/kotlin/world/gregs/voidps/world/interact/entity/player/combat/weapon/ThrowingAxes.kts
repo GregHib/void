@@ -51,6 +51,5 @@ on<CombatSwing>({ player -> !swung() && isThrowingAxe(player.weapon) }, Priority
     player.setGraphic("${ammo}_throw", height = 100)
     player.shoot(name = ammo, target = target, delay = 40, height = if (ammo.contains("morrigans")) 50 else 43, endHeight = target.height, curve = 8)
     player.hit(target)
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
+    delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

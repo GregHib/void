@@ -49,6 +49,5 @@ on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.LOW
     player.setAnimation("throw_javelin")
     player.shoot(name = ammo, target = target, delay = 40, height = 45, endHeight = target.height, curve = 8)
     player.hit(target)
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
+    delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }

@@ -52,6 +52,5 @@ on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.LOW) {
     player.setGraphic("${ammo}_throw", height = 100)
     player.shoot(name = ammo, target = target, delay = 30, height = 45, endHeight = target.height, curve = 4)
     player.hit(target, delay = if (player.attackType == "rapid") 1 else 2)
-    val speed = player.weapon.def["attack_speed", 4]
-    delay = if (player.attackType == "rapid") speed - 1 else speed
+    delay = player["attack_speed", 4] - if (player.attackType == "rapid") 1 else 0
 }
