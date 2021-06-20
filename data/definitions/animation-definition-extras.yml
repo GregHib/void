@@ -1079,7 +1079,5 @@ throw_morrigans_throwing_axe:
   id: 10501
 throw_morrigans_throwing_axe_special:
   id: 10504
-throw_throwing_axe:
+throw_projectile:
   id: 929
-throw_knife:
-  id: 806

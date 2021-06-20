@@ -698,3 +698,31 @@ rune_throwing_axe:
 #  id: 1856
 morrigans_throwing_axe:
   id: 1839
+bronze_knife_throw:
+  id: 219
+bronze_knife:
+  id: 212
+iron_knife_throw:
+  id: 220
+iron_knife:
+  id: 213
+steel_knife_throw:
+  id: 221
+steel_knife:
+  id: 214
+black_knife_throw:
+  id: 222
+black_knife:
+  id: 215
+mithril_knife_throw:
+  id: 223
+mithril_knife:
+  id: 216
+adamant_knife_throw:
+  id: 224
+adamant_knife:
+  id: 217
+rune_knife_throw:
+  id: 225
+rune_knife:
+  id: 218
