@@ -15,7 +15,7 @@ import kotlin.math.floor
 
 fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.name.startsWith("morrigans_throwing_axe"))
 
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && isThrowingAxe(weapon) }, Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && isThrowingAxe(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 1.2)
 }
 
@@ -36,6 +36,5 @@ on<CombatHit>({ isThrowingAxe(weapon) && special }) { character: Character ->
     if (damage <= 0) {
         return@on
     }
-    character.start("hamstring")
-    // TODO
+    character.start("hamstring", 100)
 }
