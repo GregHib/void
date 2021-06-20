@@ -122,7 +122,7 @@ on<CombatSwing>({ player -> player["debug", false] }, Priority.HIGHEST) { player
     player.message("---- Swing (${player.name}) -> (${target.name}) -----")
 }
 
-on<EffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
+on<HitEffectiveLevelModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
     val message = "${if (accuracy) "Accuracy" else "Damage"} effective level: $level (${skill.name.toLowerCase()})"
     player.message(message)
     logger.debug { message }
@@ -134,8 +134,8 @@ on<HitEffectiveLevelOverride>({ player -> player["debug", false] }, Priority.LOW
     logger.debug { message }
 }
 
-on<HitBonusModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
-    val message = "${if (offense) "Offensive" else "Defensive"} rating: $bonus ($type)"
+on<HitRatingModifier>({ player -> player["debug", false] }, Priority.LOWEST) { player: Player ->
+    val message = "${if (offense) "Offensive" else "Defensive"} rating: $rating ($type)"
     player.message(message)
     logger.debug { message }
 }

@@ -9,7 +9,7 @@ import world.gregs.voidps.engine.entity.start
 import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.EffectiveLevelModifier
+import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import kotlin.math.floor
 
 on<ItemChanged>({ container == "worn_equipment" && isSetSlot(index) && it.hasEffect("void_set") && !isVoid(item) }) { player: Player ->
@@ -46,7 +46,7 @@ fun isHelm(item: Item): Boolean = when (item.name) {
     else -> false
 }
 
-on<EffectiveLevelModifier>({ it.hasEffect("void_set") || it.hasEffect("elite_void_set") }, priority = Priority.LOW) { player: Player ->
+on<HitEffectiveLevelModifier>({ it.hasEffect("void_set") || it.hasEffect("elite_void_set") }, priority = Priority.LOW) { player: Player ->
     val mage = accuracy && skill == Skill.Magic && player.equipped(EquipSlot.Hat).name == "void_mage_helm"
     level = floor(level * if (mage) 1.3 else 1.1)
 }

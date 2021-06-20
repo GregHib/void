@@ -26,26 +26,15 @@ on<HitDamageModifier>(
     damage += 100.0
 }
 
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Player ->
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: Character ->
     level = (target as NPC).levels.get(Skill.Magic)
 }
 
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is NPC }, priority = Priority.HIGH) { _: NPC ->
-    level = (target as NPC).levels.get(Skill.Magic)
-}
-
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Player ->
-    this.level = getPlayerMagicDefence(level, target as Player)
-}
-
-on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: NPC ->
-    this.level = getPlayerMagicDefence(level, target as Player)
-}
-
-fun getPlayerMagicDefence(defenceLevel: Int, target: Character): Int {
+on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }, priority = Priority.LOW) { _: Character ->
+    target as Player
     var level = floor(target.levels.get(Skill.Magic) * target.getPrayerBonus(Skill.Magic))
     level = floor(level * 0.7)
-    return (floor(defenceLevel * 0.3) + level).toInt()
+    this.level = (floor(this.level * 0.3) + level).toInt()
 }
 
 on<InterfaceOption>({ name.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->

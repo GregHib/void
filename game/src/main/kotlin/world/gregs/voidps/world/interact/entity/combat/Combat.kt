@@ -173,12 +173,12 @@ fun getMinimumHit(source: Character, target: Character? = null, type: String, we
 
 fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
     val level = source.levels.get(skill).toDouble()
-    val mod = EffectiveLevelModifier(skill, accuracy, level)
+    val mod = HitEffectiveLevelModifier(skill, accuracy, level)
     source.events.emit(mod)
     return mod.level.toInt()
 }
 
-fun getBonus(source: Character, target: Character?, type: String, weapon: Item?): Int {
+fun getRating(source: Character, target: Character?, type: String, weapon: Item?): Int {
     val offense = source == target
     var level = if (target == null) 8 else getEffectiveLevel(target, when (type) {
         "range" -> Skill.Range
@@ -190,19 +190,19 @@ fun getBonus(source: Character, target: Character?, type: String, weapon: Item?)
     level = override.level
     val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
     val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
-    val chance = level * (equipmentBonus + 64.0)
-    val modifier = HitBonusModifier(target, type, offense, chance, weapon)
+    val rating = level * (equipmentBonus + 64.0)
+    val modifier = HitRatingModifier(target, type, offense, rating, weapon)
     source.events.emit(modifier)
-    return modifier.bonus.toInt()
+    return modifier.rating.toInt()
 }
 
 fun hitChance(source: Character, target: Character?, type: String, weapon: Item?): Double {
-    val attackerChance = getBonus(source, source, type, weapon)
-    val defenderChance = getBonus(source, target, type, weapon)
-    val chance = if (attackerChance > defenderChance) {
-        1.0 - (defenderChance + 2.0) / (2.0 * (attackerChance + 1.0))
+    val offensiveRating = getRating(source, source, type, weapon)
+    val defensiveRating = getRating(source, target, type, weapon)
+    val chance = if (offensiveRating > defensiveRating) {
+        1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
     } else {
-        attackerChance / (2.0 * (defenderChance + 1.0))
+        offensiveRating / (2.0 * (defensiveRating + 1.0))
     }
 
     val modifier = HitChanceModifier(target, type, chance, weapon)

@@ -8,10 +8,10 @@ import world.gregs.voidps.engine.event.Event
  * Hit offensive and defence rating modifier
  * @param offense whether calculating the attacker or defender rating
  */
-data class HitBonusModifier(
+data class HitRatingModifier(
     val target: Character?,
     val type: String,
     val offense: Boolean,
-    var bonus: Double,
+    var rating: Double,
     val weapon: Item?
 ) : Event

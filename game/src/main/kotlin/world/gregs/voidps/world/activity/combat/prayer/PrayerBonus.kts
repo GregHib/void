@@ -13,8 +13,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.skill.summoning.isFamiliar
 import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.EffectiveLevelModifier
 import world.gregs.voidps.world.interact.entity.combat.HitDamageModifier
+import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelModifier
 import kotlin.math.floor
 
 fun set(effect: String, bonus: String, value: Int) {
@@ -87,7 +87,7 @@ on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Pr
     damage = 0.0
 }
 
-on<EffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
+on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     var bonus = player["base_${skill.name.toLowerCase()}_bonus", 1.0]
     if (player.equipped(EquipSlot.Amulet).name == "amulet_of_zealots") {
         bonus = floor(1.0 + (bonus - 1.0) * 2)
@@ -101,6 +101,6 @@ on<EffectiveLevelModifier>(priority = Priority.HIGH) { player: Player ->
     level = floor(level * bonus)
 }
 
-on<EffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
+on<HitEffectiveLevelModifier>(priority = Priority.HIGH) { npc: NPC ->
     level = floor(level * npc["${skill.name.toLowerCase()}_bonus", 1.0])
 }
