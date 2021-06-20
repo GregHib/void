@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
@@ -48,7 +47,6 @@ on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.HIG
 on<CombatSwing>({ player -> !swung() && isJavelin(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
     player.setAnimation("throw_javelin")
-    player.setGraphic("${ammo}_throw")
     player.shoot(name = ammo, target = target, delay = 40, height = 45, endHeight = target.height, curve = 8)
     player.hit(target)
     val speed = player.weapon.def["attack_speed", 4]

@@ -654,28 +654,16 @@ dragon_dart_throw:
   id: 1242
 dragon_dart:
   id: 1122
-bronze_javelin_throw:
-  id: 206
 bronze_javelin:
   id: 200
-iron_javelin_throw:
-  id: 207
 iron_javelin:
   id: 201
-steel_javelin_throw:
-  id: 208
 steel_javelin:
   id: 202
-mithril_javelin_throw:
-  id: 209
 mithril_javelin:
   id: 203
-adamant_javelin_throw:
-  id: 210
 adamant_javelin:
   id: 204
-rune_javelin_throw:
-  id: 211
 rune_javelin:
   id: 205
 morrigans_javelin:
