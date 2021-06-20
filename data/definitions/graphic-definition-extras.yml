@@ -682,3 +682,31 @@ morrigans_javelin:
   id: 1837
 morrigans_javelin_special:
   id: 1836
+bronze_throwing_axe_throw:
+  id: 43
+bronze_throwing_axe:
+  id: 36
+iron_throwing_axe_throw:
+  id: 42
+iron_throwing_axe:
+  id: 35
+steel_throwing_axe_throw:
+  id: 44
+steel_throwing_axe:
+  id: 37
+mithril_throwing_axe_throw:
+  id: 45
+mithril_throwing_axe:
+  id: 38
+adamant_throwing_axe_throw:
+  id: 46
+adamant_throwing_axe:
+  id: 39
+rune_throwing_axe_throw:
+  id: 48
+rune_throwing_axe:
+  id: 41
+#morrigans_throwing_axe_throw:
+#  id: 1856
+morrigans_throwing_axe:
+  id: 1839

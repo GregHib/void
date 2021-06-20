@@ -1059,6 +1059,8 @@ player_punch:
   id: 422
 player_kick:
   id: 423
+player_death:
+  id: 9055
 sap:
   id: 12569
 leech:
@@ -1074,8 +1076,10 @@ throw_dart:
 throw_javelin:
   id: 10501
 throw_morrigans_throwing_axe:
+  id: 10501
+throw_morrigans_throwing_axe_special:
   id: 10504
 throw_throwing_axe:
-  id: 9055
+  id: 929
 throw_knife:
-  id: 9055
+  id: 806
