@@ -40,14 +40,8 @@ on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
     } else {
         player.playSound("activate_$id")
     }
-    startPrayerDrain(player)
+    player.hasOrStart("prayer_drain")
     updateOverheadIcon(player, curses)
-}
-
-fun startPrayerDrain(player: Player) {
-    if (!player.hasEffect("prayer_drain")) {
-        player.start("prayer_drain")
-    }
 }
 
 on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
