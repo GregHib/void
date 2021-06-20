@@ -39,11 +39,3 @@ on<HitDamageModifier>({ player -> type == "melee" && weapon?.name?.startsWith("d
     val max = player.levels.getMax(Skill.Constitution) / 100.0
     damage = floor(damage * (1 + lost * max))
 }
-
-on<HitDamageModifier>({ type == "melee" && weapon?.name?.endsWith("vestas_longsword") == true }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.2)
-}
-
-on<HitDamageModifier>({ type == "melee" && weapon?.name?.endsWith("statiuss_warhammer") == true }, Priority.LOW) { _: Player ->
-    damage = floor(damage * 1.2)
-}
