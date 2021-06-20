@@ -1081,3 +1081,7 @@ throw_morrigans_throwing_axe_special:
   id: 10504
 throw_projectile:
   id: 929
+hand_cannon_shoot:
+  id: 12153
+hand_cannon_explode:
+  id: 12175

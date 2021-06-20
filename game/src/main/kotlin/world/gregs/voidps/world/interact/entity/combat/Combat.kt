@@ -118,13 +118,17 @@ private fun grant(player: Player, type: String, damage: Int) {
     player.exp(Skill.Constitution, damage / 7.5)
 }
 
-fun hit(source: Character, target: Character, damage: Int, type: String, weapon: Item? = null, special: Boolean = false) {
+fun Character.hit(damage: Int, type: String = "damage") {
+    hit(this, this, damage, type)
+}
+
+fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, special))
     target.hit(source, damage, when (type) {
         "range" -> Hit.Mark.Range
         "melee" -> Hit.Mark.Melee
         "magic" -> Hit.Mark.Magic
-        "dragonfire" -> Hit.Mark.Regular
+        "dragonfire", "damage" -> Hit.Mark.Regular
         else -> Hit.Mark.Missed
     })
     target.levels.drain(Skill.Constitution, damage)

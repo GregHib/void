@@ -85191,6 +85191,7 @@ hand_cannon:
   range: 90.0
   slot: "Weapon"
   type: "TwoHanded"
+  ammo: [ hand_cannon_shot ]
   examine: "A miniature dwarven cannon."
 hand_cannon_noted:
   id: 15242
