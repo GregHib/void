@@ -726,9 +726,11 @@ rune_knife_throw:
   id: 225
 rune_knife:
   id: 218
-hand_cannon_shot:
-  id: 2143
 hand_cannon_shoot:
   id: 2138
 hand_cannon_explode:
   id: 2140
+hand_cannon_special:
+  id: 2141
+hand_cannon_shot:
+  id: 2143

@@ -12,13 +12,12 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.math.floor
 
+fun isDarkBow(weapon: Item?) = weapon != null && weapon.name.startsWith("dark_bow")
 
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && weapon?.name == "dark_bow" }, Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && isDarkBow(weapon) }, Priority.HIGH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
     damage = floor(damage * if (dragon) 1.50 else 1.30).coerceAtLeast(if (dragon) 80.0 else 50.0)
 }
-
-fun isDarkBow(weapon: Item?) = weapon != null && weapon.name.startsWith("dark_bow")
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isDarkBow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     val dragon = player.ammo == "dragon_arrow"
