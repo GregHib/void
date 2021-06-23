@@ -98,6 +98,7 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
         "range" -> Hit.Mark.Range
         "melee" -> Hit.Mark.Melee
         "magic" -> Hit.Mark.Magic
+        "poison" -> Hit.Mark.Poison
         "dragonfire", "damage" -> Hit.Mark.Regular
         else -> Hit.Mark.Missed
     })

@@ -5,14 +5,14 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.character.player.skill.Skill
-import world.gregs.voidps.engine.entity.character.update.visual.Hit
-import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
+import world.gregs.voidps.world.interact.entity.combat.CombatDamage
+import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poison
+import kotlin.random.Random
 
 on<EffectStart>({ effect == "poison" }) { character: Character ->
     if (character is Player) {
@@ -47,8 +47,18 @@ suspend fun damage(character: Character) {
         character.awaitInterfaces()
     }
     character["poison_damage"] = damage - 2
-    character.hit(character, damage, Hit.Mark.Poison)
-    character.levels.drain(Skill.Constitution, damage)
+    hit(character["poison_source", character], character, damage, "poison")
+}
+
+fun isPoisoned(name: String?) = name != null && (name.endsWith("_p") || name.endsWith("_p+") || name.endsWith("_p++") || name == "emerald_bolts_e")
+
+on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.name) }) { player: Player ->
+    val poison = 20 + weapon!!.name.count { it == '+' } * 10
+    if (type == "range" && Random.nextDouble() < 0.125) {
+        target.poison(if (weapon.name == "emerald_bolts_e") 50 else poison)
+    } else if (type == "melee" && Random.nextDouble() < 0.25) {
+        target.poison(poison + 20)
+    }
 }
 
 on<Command>({ prefix == "poison" }) { player: Player ->
