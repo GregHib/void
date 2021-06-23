@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.weapon
 
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.item.EquipSlot
@@ -12,6 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.ammo
+import world.gregs.voidps.world.interact.entity.combat.removeAmmo
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
 fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull" || item.name == "hand_cannon"
@@ -39,11 +39,8 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) }, Priority.HIGH) { p
         return@on
     }
 
-    if (!player.equipment.remove(ammo.name, required)) {
-        player.message("There is not enough ammo left in your quiver.")
-        delay = -1
-        return@on
-    }
+    removeAmmo(player, target, ammo.name, required)
+
     // Ammo is kept track of as EquipSlot.Ammo could've been used up
     player.ammo = when {
         ammo.name.endsWith("fire_arrows_lit") -> "fire_arrows_lit"

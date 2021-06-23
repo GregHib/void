@@ -33,6 +33,7 @@ on<CombatDamage>({ isCrossbow(weapon) && special }) { _: Player ->
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 500)) {
+        delay = -1
         return@on
     }
     player.setAnimation("zaniks_crossbow_special")

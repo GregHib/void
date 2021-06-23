@@ -20,6 +20,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isMagicLong(play
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed
     if (!drainSpecialEnergy(player, 350)) {
+        delay = -1
         return@on
     }
     player.setAnimation("bow_shoot")

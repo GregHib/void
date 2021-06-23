@@ -12,6 +12,7 @@ fun isCrossbow(weapon: Item) = weapon.name == "dorgeshuun_crossbow"
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isCrossbow(player.weapon) }, Priority.HIGHISH) { player: Player ->
     if (!drainSpecialEnergy(player, 750)) {
+        delay = -1
         return@on
     }
     player.setAnimation("crossbow_shoot")

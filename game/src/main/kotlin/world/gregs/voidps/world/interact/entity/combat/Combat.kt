@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -14,49 +15,18 @@ import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
+import world.gregs.voidps.network.encode.message
+import world.gregs.voidps.utility.get
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import kotlin.random.Random
 import kotlin.random.nextInt
-
-/*
-    Combat lifecycle
-
-    A) calculate chance
-        equipmentBonus
-        effectiveLevel
-            level
-            bonus
-            stance + 8
-            EffectiveLevelModifier/void
-        EffectiveOverride
-        calculate chance
-        HitChanceModifier (e.g slayer task boosts, special attack)
-
-    1. start swing
-    2. calculate attacker chance (A)
-    3. calculate defender chance (A)
-    4. roll chances
-    5. calculate max hit
-        strength bonus
-        base max hit
-        DamageBaseModifier (slayer tasks, special pt 1)
-        protection prayers
-        DamageModifier  (passive effects, special pt 2, area effects)
-    6. roll damage
-    7. apply spirit shield modifiers?
-    10. end swing
-
-
-    goal
-
-    player.hit(target, weapon (or null for spell))
- */
 
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
@@ -243,6 +213,40 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?): Int
         Random.nextInt(minHit..maxHit)
     } else {
         0
+    }
+}
+
+fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
+    when {
+        player.equipped(EquipSlot.Cape).name == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
+        player.equipped(EquipSlot.Cape).name == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)
+        player.equipped(EquipSlot.Cape).name == "avas_alerter" -> remove(player, target, ammo, required, 0.8, 0.0)
+        else -> {
+            delay {
+                player.equipment.remove(ammo, required)
+                if (!player.equipment.contains(ammo)) {
+                    player.message("That was your last one!")
+                }
+                get<FloorItems>().add(ammo, 1, target.tile)
+            }
+        }
+    }
+}
+
+private fun exceptions(ammo: String) = ammo == "silver_bolts" || ammo == "bone_bolts"
+
+private fun remove(player: Player, target: Character, ammo: String, required: Int, recoverChance: Double, dropChance: Double) {
+    val random = Random.nextDouble()
+    if (random > recoverChance) {
+        delay {
+            player.equipment.remove(ammo, required)
+            if (!player.equipment.contains(ammo)) {
+                player.message("That was your last one!")
+            }
+            if (random > 1.0 - dropChance) {
+                get<FloorItems>().add(ammo, 1, target.tile)
+            }
+        }
     }
 }
 

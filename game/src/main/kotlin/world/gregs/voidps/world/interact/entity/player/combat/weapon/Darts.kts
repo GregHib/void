@@ -2,7 +2,6 @@ package world.gregs.voidps.world.interact.entity.player.combat.weapon
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
-import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
@@ -13,7 +12,6 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
@@ -38,16 +36,12 @@ on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.HIGH) 
     val required = player["required_ammo", 1]
     val ammo = player.weapon.name
     player.ammo = ""
-    if (!player.equipment.remove(ammo, required)) {
-        player.message("That was your last one!")
-        delay = -1
-        return@on
-    }
-    player.ammo = ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
+    removeAmmo(player, target, ammo, required)
+    player.ammo = ammo
 }
 
 on<CombatSwing>({ player -> !swung() && isDart(player.weapon) }, Priority.LOW) { player: Player ->
-    val ammo = player.ammo
+    val ammo = player.ammo.removeSuffix("_p++").removeSuffix("_p+").removeSuffix("_p")
     player.setAnimation("throw_dart")
     player.setGraphic("${ammo}_throw", height = 100)
     player.shoot(name = ammo, target = target, delay = 30, height = 45, endHeight = target.height, curve = 4)
