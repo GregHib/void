@@ -112,7 +112,7 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
     target.events.emit(CombatHit(source, type, damage, weapon, special))
 }
 
-fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling")
+fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling") && !item.name.endsWith("chinchompa")
 
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
@@ -124,7 +124,7 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
             else -> 0
         }
     } else if (type == "range" && source is Player && weapon != null && (weapon.name == source.ammo || !ammoRequired(weapon))) {
-        weapon.def["range_str"]
+        weapon.def["range_str", 0]
     } else {
         source[if (type == "range") "range_str" else "str", 0]
     }
@@ -260,6 +260,9 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
         }
     }
 }
+
+val Character.inMultiCombat: Boolean
+    get() = false
 
 val ItemDefinition.ammo: Set<String>?
     get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()

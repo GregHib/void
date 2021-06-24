@@ -48,6 +48,7 @@ on<CombatSwing>({ player -> !ammoRequired(player.weapon) }, Priority.HIGH) { pla
     player.ammo = when {
         player.weapon.name == "zaryte_bow" -> "zaryte_arrow"
         player.weapon.name.endsWith("sling") -> "sling_rock"
+        player.weapon.name.endsWith("chinchompa") -> player.weapon.name
         player.weapon.name.startsWith("crystal_bow") -> "special_arrow"
         else -> return@on
     }
