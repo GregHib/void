@@ -62,9 +62,7 @@ class Areas(
         }
         respawns.clear()
         npcs.forEach { npcs.remove(it) }
-        items.chunks.forEach { (_, set) ->
-            set.forEach { items.remove(it) }
-        }
+        items.clear()
     }
 
     private fun drop(area: MapArea, spawn: MapArea.Spawn) {
