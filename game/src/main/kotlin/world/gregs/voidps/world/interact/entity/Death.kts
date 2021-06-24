@@ -1,15 +1,13 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.entity.Direction
+import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
-import world.gregs.voidps.engine.entity.get
-import world.gregs.voidps.engine.entity.getOrNull
-import world.gregs.voidps.engine.entity.stopAllEffects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.utility.func.toUnderscoreCase
@@ -18,12 +16,18 @@ import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val npcs: NPCs by inject()
 
+on<Registered> { character: Character ->
+    character["damage_dealers"] = mutableMapOf<Character, Int>()
+}
+
 on<Died> { npc: NPC ->
     npc.action(ActionType.Death) {
         delay(2)
         val name = npc.def["category", npc.def.name.toUnderscoreCase()]
-        val killer: Player? = npc.getOrNull("killer")
-        killer?.playSound("${name}_death", delay = 40)
+        val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
+        val dealer = damageDealers.maxByOrNull { it.value }
+        val killer = dealer?.key
+        (killer as? Player)?.playSound("${name}_death", delay = 40)
         npc.playAnimation("${name}_death")
         npc.stopAllEffects()
         npcs.remove(npc)
@@ -40,6 +44,7 @@ on<Died> { npc: NPC ->
                 }
             }
             if (tile != null) {
+                damageDealers.clear()
                 npc.levels.clear()
                 npc.move(tile)
                 npc.turn(npc["respawn_direction", Direction.NORTH], update = false)

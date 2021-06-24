@@ -25,6 +25,11 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import kotlin.collections.ArrayList
+import kotlin.collections.MutableMap
+import kotlin.collections.Set
+import kotlin.collections.set
+import kotlin.collections.toSet
 import kotlin.math.floor
 import kotlin.random.Random
 import kotlin.random.nextInt
@@ -110,6 +115,8 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
     if (soak <= 0) {
         soak = -1
     }
+    val dealers = target.get<MutableMap<Character, Int>>("damage_dealers")
+    dealers[source] = dealers.getOrDefault(source, 0) + damage
     target.hit(
         source = source,
         amount = damage,
@@ -125,7 +132,6 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
         soak = soak
     )
     target.levels.drain(Skill.Constitution, damage)
-    target["killer"] = source
     val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
     if (source is Player) {
         source.playSound("${name}_hit", delay = 40)
