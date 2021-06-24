@@ -564,9 +564,9 @@ proj_leech_special_attack:
   id: 2256
 land_leech_special_attack:
   id: 2258
-magic_longbow_special:
+special_arrow_shoot:
   id: 250
-special_attack_arrow:
+special_arrow:
   id: 249
 magic_shortbow_special:
   id: 256

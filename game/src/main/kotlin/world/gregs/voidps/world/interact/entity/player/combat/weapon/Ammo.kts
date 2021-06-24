@@ -22,7 +22,7 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(playe
     player["required_ammo"] = player.weapon.def["ammo_required", 1]
 }
 
-on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) }, Priority.HIGH) { player: Player ->
+on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
     val required = player["required_ammo", 1]
     val ammo = player.equipped(EquipSlot.Ammo)
     player.ammo = ""
@@ -46,5 +46,13 @@ on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) }, Priority.HIGH) { p
         ammo.name.endsWith("fire_arrows_lit") -> "fire_arrows_lit"
         ammo.name.endsWith("fire_arrows_unlit") -> "fire_arrows_unlit"
         else -> ammo.name
+    }
+}
+
+on<CombatSwing>({ player -> !ammoRequired(player.weapon) }, Priority.HIGH) { player: Player ->
+    player.ammo = when {
+        player.weapon.name == "zaryte_bow" -> "zaryte_arrow"
+        player.weapon.name.startsWith("crystal_bow") -> "special_arrow"
+        else -> return@on
     }
 }

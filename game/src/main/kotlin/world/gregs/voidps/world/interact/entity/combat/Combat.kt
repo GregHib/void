@@ -122,7 +122,10 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
             else -> 0
         }
     } else {
-        source[if (type == "range") "range_str" else "str", 0]
+        when (weapon?.name) {
+            "zaryte_bow", "crystal_bow" -> weapon.def["range_str"]
+            else -> source[if (type == "range") "range_str" else "str", 0]
+        }
     }
 }
 
