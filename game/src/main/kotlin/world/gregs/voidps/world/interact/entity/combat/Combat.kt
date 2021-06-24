@@ -221,6 +221,12 @@ fun hit(source: Character, target: Character?, type: String, weapon: Item?): Int
 }
 
 fun removeAmmo(player: Player, target: Character, ammo: String, required: Int) {
+    if (ammo == "bolt_rack") {
+        delay {
+            player.equipment.remove(ammo, required)
+        }
+        return
+    }
     when {
         player.equipped(EquipSlot.Cape).name == "avas_attractor" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.6, 0.2)
         player.equipped(EquipSlot.Cape).name == "avas_accumulator" && !exceptions(ammo) -> remove(player, target, ammo, required, 0.72, 0.08)

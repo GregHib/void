@@ -16,6 +16,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
@@ -42,6 +44,24 @@ fun updateAttackRange(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
+on<CombatSwing>({ player -> isHandCannon(player.weapon) }, Priority.HIGH) { player: Player ->
+    val ammo = player.equipped(EquipSlot.Ammo)
+    val weapon = player.weapon
+    if (weapon.def.ammo?.contains(ammo.name) != true) {
+        player.message("You can't use that ammo with your bow.")
+        delay = -1
+        return@on
+    }
+
+    if (!player.equipment.remove(ammo.name, if (player.specialAttack) 2 else 1)) {
+        player.message("There is no ammo left in your quiver.")
+        delay = -1
+        return@on
+    }
+
+    player.ammo = ammo.name
+}
+
 on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
@@ -52,6 +72,10 @@ on<CombatSwing>({ player -> !swung() && isHandCannon(player.weapon) }, Priority.
 }
 
 on<CombatSwing>({ player -> !swung() && player.specialAttack && isHandCannon(player.weapon) }, Priority.HIGHISH) { player: Player ->
+    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
+        delay = -1
+        return@on
+    }
     player.setAnimation("hand_cannon_shoot")
     player.setGraphic("hand_cannon_shoot")
     player.shoot(name = player.ammo, target = target, delay = 40, height = 21, endHeight = target.height, curve = 8)
