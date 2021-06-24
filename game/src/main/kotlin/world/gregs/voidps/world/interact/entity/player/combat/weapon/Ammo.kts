@@ -9,14 +9,9 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.ammo
-import world.gregs.voidps.world.interact.entity.combat.removeAmmo
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 
 fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull"
-
-fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling")
 
 on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGHEST) { player: Player ->
     player["required_ammo"] = player.weapon.def["ammo_required", 1]

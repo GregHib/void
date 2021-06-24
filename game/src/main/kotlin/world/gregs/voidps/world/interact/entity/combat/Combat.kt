@@ -112,6 +112,8 @@ fun hit(source: Character, target: Character, damage: Int, type: String = "damag
     target.events.emit(CombatHit(source, type, damage, weapon, special))
 }
 
+fun ammoRequired(item: Item) = !item.name.startsWith("crystal_bow") && item.name != "zaryte_bow" && !item.name.endsWith("sling")
+
 fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     return if (type == "blaze") {
         when (weapon?.name) {
@@ -121,11 +123,10 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
             "black_salamander" -> 92
             else -> 0
         }
+    } else if (type == "range" && source is Player && weapon != null && (weapon.name == source.ammo || !ammoRequired(weapon))) {
+        weapon.def["range_str"]
     } else {
-        when (weapon?.name) {
-            "zaryte_bow", "crystal_bow" -> weapon.def["range_str"]
-            else -> source[if (type == "range") "range_str" else "str", 0]
-        }
+        source[if (type == "range") "range_str" else "str", 0]
     }
 }
 
