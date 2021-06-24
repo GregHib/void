@@ -1087,3 +1087,5 @@ hand_cannon_special:
   id: 12174
 hand_cannon_explode:
   id: 12175
+karils_crossbow_shoot:
+  id: 2075

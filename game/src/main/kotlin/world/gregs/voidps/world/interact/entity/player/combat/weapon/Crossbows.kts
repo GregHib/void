@@ -38,7 +38,7 @@ on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LO
     if (ammo.endsWith("brutal")) {
         player.setGraphic("brutal_shoot")
     }
-    player.setAnimation("crossbow_shoot")
+    player.setAnimation(if (player.weapon.name == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
     val bolt = when {
         ammo == "barbed_bolts" || ammo == "bone_bolts" -> ammo
         ammo.endsWith("brutal") -> "brutal_bolt"
