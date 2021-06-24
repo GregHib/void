@@ -754,3 +754,7 @@ magical_poison:
   id: 752
 sea_curse:
   id: 750
+training_arrows_shoot:
+  id: 806
+training_arrows:
+  id: 805

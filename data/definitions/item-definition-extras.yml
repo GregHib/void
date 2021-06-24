@@ -50902,6 +50902,7 @@ training_bow:
   examine: "Light and flexible; good for a beginner."
   kept: "Reclaim"
   use: "Limited"
+  ammo: [ training_arrows ]
 training_arrows:
   id: 9706
   tradeable: false
