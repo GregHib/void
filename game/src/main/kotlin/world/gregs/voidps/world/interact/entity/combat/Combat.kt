@@ -25,6 +25,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
+import kotlin.math.floor
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -94,14 +95,35 @@ fun Character.hit(damage: Int, type: String = "damage") {
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, special))
-    target.hit(source, damage, when (type) {
-        "range" -> Hit.Mark.Range
-        "melee" -> Hit.Mark.Melee
-        "magic" -> Hit.Mark.Magic
-        "poison" -> Hit.Mark.Poison
-        "dragonfire", "damage" -> Hit.Mark.Regular
-        else -> Hit.Mark.Missed
-    })
+    var damage = damage
+    var soak = 0
+    if (damage > 200) {
+        val percent = when (type) {
+            "melee" -> target["absorb_melee", 0] / 100.0
+            "range" -> target["absorb_range", 0] / 100.0
+            "magic" -> target["absorb_magic", 0] / 100.0
+            else -> 0.0
+        }
+        soak = floor((damage - 200) * percent).toInt()
+        damage -= soak
+    }
+    if (soak <= 0) {
+        soak = -1
+    }
+    target.hit(
+        source = source,
+        amount = damage,
+        mark = when (type) {
+            "range" -> Hit.Mark.Range
+            "melee" -> Hit.Mark.Melee
+            "magic" -> Hit.Mark.Magic
+            "poison" -> Hit.Mark.Poison
+            "dragonfire", "damage" -> Hit.Mark.Regular
+            else -> Hit.Mark.Missed
+        },
+        critical = (type == "melee" || type == "magic" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+        soak = soak
+    )
     target.levels.drain(Skill.Constitution, damage)
     target["killer"] = source
     val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"

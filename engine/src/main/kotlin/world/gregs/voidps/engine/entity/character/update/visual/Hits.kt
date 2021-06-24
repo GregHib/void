@@ -38,9 +38,9 @@ fun Character.addHit(hit: Hit) {
     flagHits()
 }
 
-fun Character.hit(source: Character, amount: Int, mark: Hit.Mark, delay: Int = 0, critical: Boolean = false) {
+fun Character.hit(source: Character, amount: Int, mark: Hit.Mark, delay: Int = 0, critical: Boolean = false, soak: Int = -1) {
     val health = levels.get(Skill.Constitution)
     val max = levels.getMax(Skill.Constitution).toDouble()
     val percentage = (((health - amount).coerceAtLeast(0) / max) * 255).toInt()
-    addHit(Hit(amount, mark, percentage, delay, critical, source = if (source is NPC) -source.index else source.index))
+    addHit(Hit(amount, mark, percentage, delay, critical, if (source is NPC) -source.index else source.index, soak))
 }
