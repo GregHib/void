@@ -66,12 +66,12 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
 }
 
 on<Command>({ prefix == "teletome" }) { player: Player ->
-    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    val other = players.get(content) ?: return@on
     other.tele(player.tile)
 }
 
 on<Command>({ prefix == "teleto" }) { player: Player ->
-    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    val other = players.get(content) ?: return@on
     player.tele(other.tile)
 }
 
@@ -121,7 +121,7 @@ on<Command>({ prefix == "give" }) { player: Player ->
     val id = definitions.getNameOrNull(parts.first().toIntOrNull() ?: -1) ?: parts.first().toLowerCase()
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
-    val target = players.indexed.filterNotNull().firstOrNull { it.name == name }
+    val target = players.get(name)
     if (target == null) {
         player.message("Couldn't find player $target")
     } else {
@@ -165,7 +165,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     val level = split[1].toInt()
     val target = if (split.size > 2) {
         val name = content.removeSuffix("${split[0]} ${split[1]} ")
-        players.indexed.first { it?.name.equals(name) }
+        players.get(name)
     } else {
         player
     }

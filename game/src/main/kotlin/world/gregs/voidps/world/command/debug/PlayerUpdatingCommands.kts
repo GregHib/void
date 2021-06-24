@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 
-on<Command>({ prefix == "kill" }) { player: Player ->
+on<Command>({ prefix == "kill" }) { _: Player ->
     players.indexed.forEachIndexed { index, bot ->
         if (bot != null && bot.name.startsWith("Bot")) {
             players.remove(bot.tile, bot)
@@ -35,7 +35,7 @@ on<Command>({ prefix == "kill" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "players" }) { player: Player ->
+on<Command>({ prefix == "players" }) { _: Player ->
     println("Players: ${players.indexed.filterNotNull().size}")
 }
 
@@ -100,7 +100,7 @@ on<Command>({ prefix == "time" }) { player: Player ->
 }
 
 on<Command>({ prefix == "watch" }) { player: Player ->
-    val bot = players.indexed.firstOrNull { it != null && it.name == content }
+    val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
     }
