@@ -1,21 +1,23 @@
 package world.gregs.voidps.world.interact.entity.player
 
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
-import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.equipped
-import world.gregs.voidps.engine.entity.set
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 
-fun Character.poison(damage: Int) {
+fun Character.poison(source: Character, damage: Int) {
     if (immune(this)) {
         return
     }
     this["poison_damage", true] = damage
-    start("poison")
+    this["poison_source"] = source
+    this["poison_source_handler"] = source.events.on<Character, Unregistered> {
+        clear("poison_source")
+        clear("poison_source_handler")
+    }
+    start("poison", persist = true)
 }
 
 fun Character.cure() = stop("poison")

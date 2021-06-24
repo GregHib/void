@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.event.EventHandler
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
@@ -14,12 +15,18 @@ import world.gregs.voidps.world.interact.entity.player.cure
 import world.gregs.voidps.world.interact.entity.player.poison
 import kotlin.random.Random
 
+on<Registered> { player: Player ->
+    player.restart("poison")
+}
+
 on<EffectStart>({ effect == "poison" }) { character: Character ->
-    if (character is Player) {
-        character.message(Colour.Green.wrap("You have been poisoned."))
-    }
-    delay(0) {
-        damage(character)
+    if (!restart) {
+        if (character is Player) {
+            character.message(Colour.Green.wrap("You have been poisoned."))
+        }
+        delay(0) {
+            damage(character)
+        }
     }
     character["poison_job"] = delay(character, 30, loop = true) {
         damage(character)
@@ -35,6 +42,11 @@ on<EffectStop>({ effect == "poison" }) { character: Character ->
     }
     character.clear("poison_job")
     character.clear("poison_damage")
+    val source: Character? = character.remove("poison_source")
+    val handler: EventHandler? = character.remove("poison_source_handler")
+    if (source != null && handler != null) {
+        source.events.remove(handler)
+    }
 }
 
 suspend fun damage(character: Character) {
@@ -55,9 +67,9 @@ fun isPoisoned(name: String?) = name != null && (name.endsWith("_p") || name.end
 on<CombatDamage>({ damage > 0 && isPoisoned(weapon?.name) }) { player: Player ->
     val poison = 20 + weapon!!.name.count { it == '+' } * 10
     if (type == "range" && Random.nextDouble() < 0.125) {
-        target.poison(if (weapon.name == "emerald_bolts_e") 50 else poison)
+        target.poison(player, if (weapon.name == "emerald_bolts_e") 50 else poison)
     } else if (type == "melee" && Random.nextDouble() < 0.25) {
-        target.poison(poison + 20)
+        target.poison(player, poison + 20)
     }
 }
 
@@ -65,6 +77,6 @@ on<Command>({ prefix == "poison" }) { player: Player ->
     if (player.hasEffect("poison")) {
         player.stop("poison")
     } else {
-        player.poison(content.toIntOrNull() ?: 100)
+        player.poison(player, content.toIntOrNull() ?: 100)
     }
 }

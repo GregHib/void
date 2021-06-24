@@ -5,14 +5,18 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.event.Event
 
-data class EffectStart(val effect: String) : Event
+data class EffectStart(val effect: String, val restart: Boolean) : Event
 data class EffectStop(val effect: String) : Event
 
-fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false) {
+fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false, restart: Boolean = false) {
     val had = hasEffect(effect)
     if (had) {
         stop(effect, quiet)
     }
+    startEffect(effect, ticks, persist, had && quiet, restart)
+}
+
+private fun Entity.startEffect(effect: String, ticks: Int, persist: Boolean, quiet: Boolean, restart: Boolean) {
     this["${effect}_effect", persist] = ticks
     if (ticks >= 0) {
         this["${effect}_tick"] = GameLoop.tick + ticks
@@ -20,8 +24,8 @@ fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quie
             stop(effect)
         }
     }
-    if (!(had && quiet)) {
-        events.emit(EffectStart(effect))
+    if (!quiet) {
+        events.emit(EffectStart(effect, restart))
     }
 }
 
@@ -70,7 +74,7 @@ fun Entity.save(effect: String) {
 
 fun Entity.restart(effect: String) {
     val ticks: Int = getOrNull("${effect}_effect") ?: return
-    start(effect, ticks, true)
+    startEffect(effect, ticks, persist = true, quiet = false, restart = true)
 }
 
 fun Entity.toggle(effect: String, persist: Boolean = false) {

@@ -69,7 +69,7 @@ on<CombatHit>({ char -> type == "range" && char.hasEffect("clear_mind") }) { cha
 
 on<CombatHit>({ char -> type == "range" && char.hasEffect("magical_poison") }) { character: Character ->
     if (!character.hasEffect("poison")) {
-        character.poison(50)
+        character.poison(source, 50)
     }
 }
 
