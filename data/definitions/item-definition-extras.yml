@@ -17302,7 +17302,6 @@ granite_shield:
   range_def: 65.0
   summoning_def: 50.0
   slot: "Shield"
-  material: "metal"
   examine: "A solid stone shield."
 shaikahan_bones:
   id: 3123
@@ -36999,7 +36998,6 @@ granite_legs:
   range_def: 68.0
   summoning_def: 20.0
   slot: "Legs"
-  material: "metal"
   examine: "These look pretty heavy."
 wyvern_bonemeal:
   id: 6810
@@ -56630,7 +56628,6 @@ granite_helm:
   range_def: 39.0
   summoning_def: 9.0
   slot: "Hat"
-  material: "metal"
   type: "Hair"
   examine: "A stone helmet."
 granite_helm_noted:
