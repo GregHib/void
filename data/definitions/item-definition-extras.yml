@@ -47422,7 +47422,7 @@ dorgeshuun_crossbow:
   examine: "This fires crossbow bolts."
   attack_range: 6
   attack_speed: 6
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolt, pearl_bolts, pearl_bolts_e, bone_bolts ]
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, bone_bolts ]
 dorgeshuun_cbow_noted:
   id: 8881
 bone_bolts:
@@ -48998,7 +48998,7 @@ steel_crossbow:
   attack_speed: 6
   slot: "Weapon"
   examine: "A steel crossbow."
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e ]
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e ]
 steel_crossbow_noted:
   id: 9180
 mithril_crossbow:
@@ -49011,7 +49011,7 @@ mithril_crossbow:
   attack_speed: 6
   slot: "Weapon"
   examine: "A mithril crossbow."
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e ]
 mith_crossbow_noted:
   id: 9182
 adamant_crossbow:
@@ -49024,7 +49024,7 @@ adamant_crossbow:
   attack_speed: 6
   slot: "Weapon"
   examine: "An adamant crossbow."
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts_e, emerald_bolts, ruby_bolts_e, ruby_bolts, adamant_bolts, diamond_bolts, diamond_bolts_e ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts_e, emerald_bolts, ruby_bolts_e, ruby_bolts, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e ]
 adamant_crossbow_noted:
   id: 9184
 rune_crossbow:
@@ -49037,7 +49037,7 @@ rune_crossbow:
   attack_speed: 6
   slot: "Weapon"
   examine: "A rune crossbow."
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, diamond_bolts, diamond_bolts_e, runite_bolts, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
 rune_crossbow_noted:
   id: 9186
 jade_bolt_tips:
@@ -72566,7 +72566,7 @@ black_crossbow:
   attack_speed: 6
   slot: "Weapon"
   examine: "A black crossbow."
-  ammo: [ bronze_bolts, opal_bolts, iron_bolts, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, topaz_bolts, black_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, black_bolts ]
 black_crossbow_noted:
   id: 13082
 black_bolts:
@@ -82029,7 +82029,7 @@ zaniks_crossbow:
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, diamond_bolts, diamond_bolts_e, runite_bolts, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 crossbow_the_chosen_commander:
   id: 14685
   limit: 100
@@ -82041,7 +82041,7 @@ crossbow_the_chosen_commander:
   examine: "I noticed my crossbow on a high ledge."
   use: "Quest"
   kept: "Reclaim"
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, diamond_bolts, diamond_bolts_e, runite_bolts, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 zaniks_crossbow_upgraded:
   id: 14686
   prayer: -5
@@ -82055,7 +82055,7 @@ zaniks_crossbow_upgraded:
   examine: "Zanik's crossbow has been upgraded."
   use: "Quest"
   kept: "Vanish"
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, diamond_bolts, diamond_bolts_e, runite_bolts, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 energy_projectors:
   id: 14687
   tradeable: false
@@ -106137,7 +106137,7 @@ chaotic_crossbow:
   attack_speed: 6
   examine: "A small crossbow, only effective at short distance."
   weight: 1.814
-  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, diamond_bolts, diamond_bolts_e, runite_bolts, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
 chaotic_crossbow_broken:
   id: 18358
   range: 120.0
