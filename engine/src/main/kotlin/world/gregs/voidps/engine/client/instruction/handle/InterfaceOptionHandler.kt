@@ -27,11 +27,11 @@ class InterfaceOptionHandler : InstructionHandler<InteractInterface>() {
     override fun validate(player: Player, instruction: InteractInterface) {
         var (interfaceId, componentId, itemId, itemSlot, option) = instruction
 
-        if (!player.interfaces.contains(interfaceDefinitions.get(interfaceId).stringId)) {
+        val id = interfaceDefinitions.get(interfaceId).stringId
+        if (!player.interfaces.contains(id)) {
             logger.info { "Interface $interfaceId not found for player $player" }
             return
         }
-        val id = interfaceDefinitions.get(interfaceId).stringId
         val definition = interfaceDefinitions.get(id)
         val component = definition.getComponentId(componentId)
         val componentDefinition = definition.components?.get(componentId)
