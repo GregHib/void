@@ -770,3 +770,7 @@ red_chinchompa:
   id: 909
 chinchompa_hit:
   id: 2739
+rune_throwing_axe_special_throw:
+  id: 257
+rune_throwing_axe_special:
+  id: 258

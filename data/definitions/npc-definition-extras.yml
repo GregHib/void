@@ -62,6 +62,7 @@ chicken:
   dcrush: -42
   dmagic: -42
   drange: -42
+  height: 15
   hitpoints: 30
   poisonous: false
   immune_poison: false

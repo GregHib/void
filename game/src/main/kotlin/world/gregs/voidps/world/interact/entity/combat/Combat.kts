@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.Moved
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
-import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.item.EquipSlot
@@ -22,7 +21,6 @@ import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.player.combat.special.specialAttack
 
@@ -30,8 +28,6 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
     attack(player, npc)
 }
-
-val npcs: NPCs by inject()
 
 fun attack(player: Player, target: Character) {
     player.action(ActionType.Combat) {
@@ -69,17 +65,6 @@ fun attack(player: Player, target: Character) {
             player.watch(null)
         }
     }
-}
-
-fun canAttack(player: Player, target: Character): Boolean {
-    if (npcs.getAtIndex(target.index) == null) {
-        return false
-    }
-    if (target.action.type == ActionType.Death) {
-        return false
-    }
-    // PVP area, slayer requirements, in combat etc..
-    return true
 }
 
 fun withinRange(player: Player, target: Character): Boolean {

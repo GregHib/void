@@ -1,11 +1,13 @@
 package world.gregs.voidps.world.interact.entity.combat
 
 import world.gregs.voidps.cache.definition.data.ItemDefinition
+import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.equipment
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.player.skill.exp
@@ -25,17 +27,24 @@ import world.gregs.voidps.world.interact.entity.player.combat.special.specialAtt
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
-import kotlin.collections.ArrayList
-import kotlin.collections.MutableMap
-import kotlin.collections.Set
 import kotlin.collections.set
-import kotlin.collections.toSet
 import kotlin.math.floor
 import kotlin.random.Random
 import kotlin.random.nextInt
 
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
+
+fun canAttack(player: Player, target: Character): Boolean {
+    if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
+        return false
+    }
+    if (target.action.type == ActionType.Death) {
+        return false
+    }
+    // PVP area, slayer requirements, in combat etc..
+    return true
+}
 
 private fun getWeaponType(player: Player, weapon: Item?): String {
     if (player.spell.isNotBlank()) {
@@ -53,9 +62,8 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
     }
 }
 
-fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2) {
+fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
     val damage = hit(this, target, type, weapon)
-    val special = specialAttack
     grant(this, type, damage)
 
     delay(target, delay) {
