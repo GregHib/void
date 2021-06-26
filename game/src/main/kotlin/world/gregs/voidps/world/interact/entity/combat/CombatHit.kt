@@ -6,6 +6,8 @@ import world.gregs.voidps.engine.event.Event
 
 /**
  * Damage done by [source]
+ * @param type the combat type, typically: melee, range or magic
+ * @param damage the damage inflicted by the [source]
  */
 data class CombatHit(
     val source: Character,

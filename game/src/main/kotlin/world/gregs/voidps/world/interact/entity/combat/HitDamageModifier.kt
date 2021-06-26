@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 /**
- * Modify max hit damage
+ * Modify the potential maximum hit
+ * @param type the combat type, typically: melee, range or magic
+ * @param damage the maximum hit possible on [target] using [weapon]
  */
 data class HitDamageModifier(
     val target: Character?,

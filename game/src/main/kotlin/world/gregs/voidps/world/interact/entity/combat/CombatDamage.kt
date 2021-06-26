@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Event
 
 /**
- * Damage done to [target]
+ * Damage done to a [target]
+ * @param type the combat type, typically: melee, range or magic
+ * @param damage the damage inflicted upon the [target]
  */
 data class CombatDamage(
     val target: Character,
