@@ -27,13 +27,14 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-fun isBow(item: Item) = (item.name.endsWith("bow") && !item.name.endsWith("crossbow")) || item.name == "seercull"
+fun isBow(item: Item) = (item.name.endsWith("bow") && !item.name.endsWith("crossbow")) || item.name == "seercull" || item.name.endsWith("longbow_sighted")
 
 on<CombatSwing>({ player -> !swung() && isBow(player.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("bow_shoot")
     val ammo = player.ammo
-    player.setGraphic("${ammo}_shoot", height = 100)
-    player.shoot(name = ammo, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
+    val height = if (ammo.contains("ogre")) 60 else if (ammo.endsWith("brutal")) 75 else 100
+    player.setGraphic(if (ammo.endsWith("brutal")) "brutal_shoot" else "${ammo}_shoot", height = height)
+    player.shoot(name = if (ammo.endsWith("brutal")) "brutal_arrow" else ammo, target = target, delay = 40, height = if (ammo.contains("ogre") || ammo.endsWith("brutal")) 40 else 43, endHeight = target.height, curve = 8)
     player.hit(target)
     val speed = player.weapon.def["attack_speed", 4]
     delay = if (player.attackType == "rapid") speed - 1 else speed

@@ -424,7 +424,7 @@ barbed_bolts:
   id: 696
 brutal_shoot:
   id: 403
-brutal_bolt:
+brutal_arrow:
   id: 404
 ogre_arrow_shoot:
   id: 243

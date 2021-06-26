@@ -26151,7 +26151,7 @@ comp_ogre_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A composite ogre bow."
-  ammo: [ bronze_brutal, iron_brutal, steel_brutal, black_brutal, mithril_brutal, adamant_brutal, rune_brutal ]
+  ammo: [ bronze_brutal, iron_brutal, steel_brutal, black_brutal, mithril_brutal, adamant_brutal, rune_brutal, ogre_arrow ]
 comp_ogre_bow_noted:
   id: 4828
 book_of_h.a.m:
@@ -54351,6 +54351,7 @@ willow_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from willow."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_composite_bow_noted:
   id: 10281
 yew_composite_bow:
@@ -54364,6 +54365,7 @@ yew_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from yew."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_composite_bow_noted:
   id: 10283
 magic_composite_bow:
@@ -54377,6 +54379,7 @@ magic_composite_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_composite_bow_noted:
   id: 10285
 rune_helm_h1:
@@ -105876,18 +105879,24 @@ maple_longbow_sighted:
   tradeable: false
   weight: 1.814
   range: 110.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
   kept: "Reclaim"
 magic_longbow_sighted:
   id: 18332
   tradeable: false
   weight: 1.814
   range: 140.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
   kept: "Reclaim"
 arcane_pulse_necklace:
   id: 18333

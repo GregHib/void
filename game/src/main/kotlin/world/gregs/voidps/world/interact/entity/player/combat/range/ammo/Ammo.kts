@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull"
+fun isBowOrCrossbow(item: Item) = item.name.endsWith("bow") || item.name == "seercull" || item.name.endsWith("longbow_sighted")
 
 on<CombatSwing>({ player -> isBowOrCrossbow(player.weapon) && ammoRequired(player.weapon) }, Priority.HIGHEST) { player: Player ->
     player["required_ammo"] = player.weapon.def["ammo_required", 1]

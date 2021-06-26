@@ -35,15 +35,8 @@ fun isCrossbow(item: Item) = item.name.endsWith("crossbow")
 
 on<CombatSwing>({ player -> !swung() && isCrossbow(player.weapon) }, Priority.LOW) { player: Player ->
     val ammo = player.ammo
-    if (ammo.endsWith("brutal")) {
-        player.setGraphic("brutal_shoot")
-    }
     player.setAnimation(if (player.weapon.name == "karils_crossbow") "karils_crossbow_shoot" else "crossbow_shoot")
-    val bolt = when {
-        ammo == "barbed_bolts" || ammo == "bone_bolts" -> ammo
-        ammo.endsWith("brutal") -> "brutal_bolt"
-        else -> "crossbow_bolt"
-    }
+    val bolt = if (ammo == "barbed_bolts" || ammo == "bone_bolts") ammo else "crossbow_bolt"
     handleCrossbowEffects(player, ammo, target)
     player.shoot(name = bolt, target = target, delay = 40, height = 43, endHeight = target.height, curve = 8)
     player.hit(target)
