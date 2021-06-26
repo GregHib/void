@@ -63,7 +63,8 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
 }
 
 fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
-    val damage = hit(this, target, type, weapon)
+    var damage = hit(this, target, type, weapon)
+    damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     grant(this, type, damage)
 
     delay(target, delay) {
@@ -179,6 +180,7 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
     }
     val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon)
     source.events.emit(modifier)
+    source["max_hit"] = modifier.damage.toInt()
     return modifier.damage.toInt()
 }
 
