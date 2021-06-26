@@ -31,6 +31,10 @@ data class CombatTargetStrategy(
          * @param walls ranged, magic or halberds
          */
         fun isWithinAttackDistance(x: Int, y: Int, plane: Int, target: Character, attackDistance: Int, walls: Boolean): Boolean {
+            // under
+            if (x >= target.tile.x && x < target.tile.x + target.size.width && y >= target.tile.y && y < target.tile.y + target.size.height) {
+                return false
+            }
             val targetX = getNearest(target.tile.x, target.size.width, x)
             val targetY = getNearest(target.tile.y, target.size.height, y)
             if (Distance.chebyshev(x, y, targetX, targetY) > attackDistance) {
@@ -38,6 +42,21 @@ data class CombatTargetStrategy(
             }
             if (!get<BresenhamsLine>().withinSight(x, y, plane, targetX, targetY, target.tile.plane, walls)) {
                 return false
+            }
+            // diagonal
+            if (attackDistance <= 1) {
+                if (x > target.tile.x && y > target.tile.y) {// ne
+                    return false
+                }
+                if (x < target.tile.x && y > target.tile.y) {// nw
+                    return false
+                }
+                if (x > target.tile.x && y < target.tile.y) {// se
+                    return false
+                }
+                if (x < target.tile.x && y < target.tile.y) {// sw
+                    return false
+                }
             }
             return true
         }
