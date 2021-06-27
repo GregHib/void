@@ -50,11 +50,12 @@ class GameLoop(
 //        }
     }
 
-    private fun loopTickStages() = runBlocking(Contexts.Game) {
+    private fun loopTickStages() {
         for (stage in stages) {
             val took = measureNanoTime {
-                stage.run()
-                yield()
+                runBlocking(Contexts.Game) {
+                    stage.run()
+                }
             }
             val millis = TimeUnit.NANOSECONDS.toMillis(took)
             if (millis >= MILLI_THRESHOLD) {
