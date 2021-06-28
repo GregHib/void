@@ -53592,6 +53592,9 @@ hunters_crossbow:
   attack_range: 7
   attack_speed: 4
   slot: "Weapon"
+  attack_speed: 4
+  attack_range: 8
+  ammo: [ kebbit_bolts, long_kebbit_bolts ]
   examine: "A weapon made of bone and wood."
 hunters_crossbow_noted:
   id: 10157
