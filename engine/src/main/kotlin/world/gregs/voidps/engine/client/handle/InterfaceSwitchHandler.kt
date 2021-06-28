@@ -26,22 +26,21 @@ class InterfaceSwitchHandler : Handler<MoveContainerItem>() {
         val to = interfaceExists(player, toId, toComponentId) ?: return
         val toName = definitions.getName(toId)
         val toComponentName = to.getComponentName(toComponentId)
-
         sync {
             player.events.emit(
                 InterfaceSwitch(
-                    fromId,
-                    fromName,
-                    fromComponentId,
-                    fromComponentName,
-                    fromType,
-                    fromSlot,
-                    toId,
-                    toName,
-                    toComponentId,
-                    toComponentName,
-                    toType,
-                    toSlot
+                    id = fromId,
+                    name = fromName,
+                    componentId = fromComponentId,
+                    component = fromComponentName,
+                    fromItemId = fromType,
+                    fromSlot = fromSlot,
+                    toId = toId,
+                    toName = toName,
+                    toComponentId = toComponentId,
+                    toComponent = toComponentName,
+                    toItemId = toType,
+                    toSlot = toSlot
                 )
             )
         }

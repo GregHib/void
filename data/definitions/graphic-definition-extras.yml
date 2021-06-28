@@ -378,3 +378,399 @@ teleport_lunar:
   id: 1685
 teleport_tablet:
   id: 1680
+bronze_arrow_shoot:
+  id: 19
+bronze_arrow:
+  id: 10
+iron_arrow_shoot:
+  id: 18
+iron_arrow:
+  id: 9
+steel_arrow_shoot:
+  id: 18
+steel_arrow:
+  id: 9
+mithril_arrow_shoot:
+  id: 21
+mithril_arrow:
+  id: 12
+adamant_arrow_shoot:
+  id: 22
+adamant_arrow:
+  id: 13
+rune_arrow_shoot:
+  id: 24
+rune_arrow:
+  id: 15
+ice_arrow_shoot:
+  id: 25
+ice_arrow:
+  id: 16
+broad_arrow_shoot:
+  id: 325
+broad_arrow:
+  id: 326
+dragon_arrow:
+  id: 1115
+training_arrow_shoot:
+  id: 806
+training_arrow:
+  id: 805
+crossbow_bolt:
+  id: 27
+bone_bolts:
+  id: 696
+barbed_bolts:
+  id: 696
+brutal_shoot:
+  id: 403
+brutal_arrow:
+  id: 404
+ogre_arrow_shoot:
+  id: 243
+ogre_arrow:
+  id: 242
+guthix_arrows_shoot:
+  id: 95
+guthix_arrows:
+  id: 98
+saradomin_arrows_shoot:
+  id: 96
+saradomin_arrows:
+  id: 99
+zamorak_arrows_shoot:
+  id: 97
+zamorak_arrows:
+  id: 100
+fire_arrows_unlit_shoot:
+  id: 26
+fire_arrows_unlit:
+  id: 17
+fire_arrows_lit_shoot:
+  id: 26
+fire_arrows_lit:
+  id: 17
+novite_arrows_shoot:
+  id: 2466
+novite_arrows:
+  id: 2467
+bathus_arrows_shoot:
+  id: 2468
+bathus_arrows:
+  id: 2469
+marmaros_arrows_shoot:
+  id: 2470
+marmaros_arrows:
+  id: 2471
+kratonite_arrows_shoot:
+  id: 2472
+kratonite_arrows:
+  id: 2473
+fractite_arrows_shoot:
+  id: 2474
+fractite_arrows:
+  id: 2475
+zephyrium_arrows_shoot:
+  id: 2476
+zephyrium_arrows:
+  id: 2477
+argonite_arrows_shoot:
+  id: 2478
+argonite_arrows:
+  id: 2479
+katagon_arrows_shoot:
+  id: 2480
+katagon_arrows:
+  id: 2481
+gorgonite_arrows_shoot:
+  id: 2482
+gorgonite_arrows:
+  id: 2483
+promethium_arrows_shoot:
+  id: 2484
+promethium_arrows:
+  id: 2485
+sagittarian_arrows_shoot:
+  id: 2486
+sagittarian_arrows:
+  id: 2487
+cast_sap_attack:
+  id: 2214
+proj_sap_attack:
+  id: 2215
+land_sap_attack:
+  id: 2216
+cast_sap_range:
+  id: 2217
+proj_sap_range:
+  id: 2218
+land_sap_range:
+  id: 2219
+cast_sap_magic:
+  id: 2220
+proj_sap_magic:
+  id: 2221
+land_sap_magic:
+  id: 2222
+cast_sap_spirit:
+  id: 2223
+proj_sap_spirit:
+  id: 2224
+land_sap_spirit:
+  id: 2225
+deflect_defence:
+  id: 2227
+deflect_magic:
+  id: 2228
+deflect_range:
+  id: 2229
+deflect_strength:
+  id: 2229
+deflect_attack:
+  id: 2230
+proj_leech_attack:
+  id: 2231
+land_leech_attack:
+  id: 2232
+proj_leech_strength:
+  id: 2248
+land_leech_strength:
+  id: 2250
+proj_leech_defence:
+  id: 2244
+land_leech_defence:
+  id: 2246
+proj_leech_range:
+  id: 2236
+land_leech_range:
+  id: 2238
+proj_leech_magic:
+  id: 2240
+land_leech_magic:
+  id: 2242
+soul_split:
+  id: 2263
+soul_split_hit:
+  id: 2264
+cast_leech_energy:
+  id: 2251
+proj_leech_energy:
+  id: 2252
+land_leech_energy:
+  id: 2254
+cast_leech_special_attack:
+  id: 2255
+proj_leech_special_attack:
+  id: 2256
+land_leech_special_attack:
+  id: 2258
+special_arrow_shoot:
+  id: 250
+special_arrow:
+  id: 249
+magic_shortbow_special:
+  id: 256
+bronze_arrow_double_shot:
+  id: 1104
+iron_arrow_double_shot:
+  id: 1104
+steel_arrow_double_shot:
+  id: 1104
+mithril_arrow_double_shot:
+  id: 1104
+adamant_arrow_double_shot:
+  id: 1104
+rune_arrow_double_shot:
+  id: 1104
+ice_arrow_double_shot:
+  id: 1104
+dragon_arrow_double_shot:
+  id: 1111
+broad_arrow_double_shot:
+  id: 1104
+fire_arrows_unlit_double_shot:
+  id: 1113
+fire_arrows_lit_double_shot:
+  id: 1114
+descent_of_arrow:
+  id: 1120
+descent_of_dragons_head:
+  id: 1099
+arrow_smoke:
+  id: 1101
+arrow_smoke_2:
+  id: 1101
+zaryte_arrow:
+  id: 1066
+descent_of_darkness_hit:
+  id: 1103
+descent_of_dragons_hit:
+  id: 1100
+bone_bolts_spec:
+  id: 698
+zaniks_crossbow_special:
+  id: 1714
+zaniks_crossbow_bolt:
+  id: 1497
+seercull_special_shoot:
+  id: 472
+seercull_special_arrow:
+  id: 473
+seercull_special_hit:
+  id: 474
+zamorak_bow_special_hit:
+  id: 127
+saradomin_bow_special_hit:
+  id: 128
+guthix_bow_special_hit:
+  id: 129
+saradomin_bow_restoration:
+  id: 93
+bronze_dart_throw:
+  id: 1234
+bronze_dart:
+  id: 226
+iron_dart_throw:
+  id: 1235
+iron_dart:
+  id: 227
+steel_dart_throw:
+  id: 1236
+steel_dart:
+  id: 228
+mithril_dart_throw:
+  id: 1238
+mithril_dart:
+  id: 229
+adamant_dart_throw:
+  id: 1239
+adamant_dart:
+  id: 230
+rune_dart_throw:
+  id: 1240
+rune_dart:
+  id: 231
+dragon_dart_throw:
+  id: 1242
+dragon_dart:
+  id: 1122
+bronze_javelin:
+  id: 200
+iron_javelin:
+  id: 201
+steel_javelin:
+  id: 202
+mithril_javelin:
+  id: 203
+adamant_javelin:
+  id: 204
+rune_javelin:
+  id: 205
+morrigans_javelin:
+  id: 1837
+morrigans_javelin_special:
+  id: 1836
+bronze_throwing_axe_throw:
+  id: 43
+bronze_throwing_axe:
+  id: 36
+iron_throwing_axe_throw:
+  id: 42
+iron_throwing_axe:
+  id: 35
+steel_throwing_axe_throw:
+  id: 44
+steel_throwing_axe:
+  id: 37
+mithril_throwing_axe_throw:
+  id: 45
+mithril_throwing_axe:
+  id: 38
+adamant_throwing_axe_throw:
+  id: 46
+adamant_throwing_axe:
+  id: 39
+rune_throwing_axe_throw:
+  id: 48
+rune_throwing_axe:
+  id: 41
+#morrigans_throwing_axe_throw:
+#  id: 1856
+morrigans_throwing_axe:
+  id: 1839
+bronze_knife_throw:
+  id: 219
+bronze_knife:
+  id: 212
+iron_knife_throw:
+  id: 220
+iron_knife:
+  id: 213
+steel_knife_throw:
+  id: 221
+steel_knife:
+  id: 214
+black_knife_throw:
+  id: 222
+black_knife:
+  id: 215
+mithril_knife_throw:
+  id: 223
+mithril_knife:
+  id: 216
+adamant_knife_throw:
+  id: 224
+adamant_knife:
+  id: 217
+rune_knife_throw:
+  id: 225
+rune_knife:
+  id: 218
+hand_cannon_shoot:
+  id: 2138
+hand_cannon_explode:
+  id: 2140
+hand_cannon_special:
+  id: 2141
+hand_cannon_shot:
+  id: 2143
+armour_piercing:
+  id: 758
+blood_forfeit:
+  id: 754
+clear_mind:
+  id: 751
+down_to_earth:
+  id: 757
+dragons_breath:
+  id: 756
+earths_fury:
+  id: 755
+life_leech:
+  id: 753
+lucky_lightning:
+  id: 749
+magical_poison:
+  id: 752
+sea_curse:
+  id: 750
+training_arrows_shoot:
+  id: 806
+training_arrows:
+  id: 805
+sling_rock_shoot:
+  id: 33
+sling_rock:
+  id: 32
+toktz-xil-ul:
+  id: 442
+chinchompa:
+  id: 908
+red_chinchompa:
+  id: 909
+chinchompa_hit:
+  id: 2739
+rune_throwing_axe_special_throw:
+  id: 257
+rune_throwing_axe_special:
+  id: 258

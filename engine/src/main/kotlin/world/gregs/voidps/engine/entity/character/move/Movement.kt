@@ -41,6 +41,13 @@ data class Movement(
 
     lateinit var traversal: TileTraversalStrategy
 
+    fun set(strategy: TileTargetStrategy, action: (() -> Unit)? = null) {
+        clear()
+        result = null
+        this.strategy = strategy
+        this.action = action
+    }
+
     fun clear() {
         waypoints.clear()
         steps.clear()
@@ -79,10 +86,7 @@ suspend fun Player.walkTo(strategy: TileTargetStrategy, watch: Character? = null
         this@walkTo.action.cancelAndJoin()
         watch(watch)
         dialogues.clear()
-        movement.clear()
-        movement.result = null
-        movement.strategy = strategy
-        movement.action = action
+        movement.set(strategy, action)
     }
 }
 
@@ -91,9 +95,7 @@ fun Character.avoid(target: Character) {
     val pathfinder: AvoidAlgorithm = get()
     action(ActionType.Movement) {
         try {
-            movement.clear()
-            movement.result = null
-            movement.strategy = strategy
+            movement.set(strategy)
             watch(target)
             val result = pathfinder.find(tile, size, movement, strategy, movement.traversal)
             if (result is PathResult.Success) {

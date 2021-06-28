@@ -42,7 +42,7 @@ class Areas(
             area.loaded = true
             for (spawn in area.npcs) {
                 repeat(spawn.limit) {
-                    npcs.add(spawn.name, area.area, spawn.direction)
+                    npcs.add(spawn.name, area.area, spawn.direction, spawn.delay)
                 }
             }
             for (spawn in area.items) {
@@ -62,9 +62,7 @@ class Areas(
         }
         respawns.clear()
         npcs.forEach { npcs.remove(it) }
-        items.chunks.forEach { (_, set) ->
-            set.forEach { items.remove(it) }
-        }
+        items.clear()
     }
 
     private fun drop(area: MapArea, spawn: MapArea.Spawn) {

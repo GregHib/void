@@ -13,11 +13,13 @@ object AnimationDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = AnimationDecoder(koin.get())
-        var count = 0
-        println(decoder.get(877))
+        println(decoder.get(806))
+        val frames = decoder.get(806).primaryFrames
         for (i in 0 until decoder.last) {
             val def = decoder.getOrNull(i) ?: continue
+            if(def.primaryFrames.contentEquals(frames)) {
+                println(def)
+            }
         }
-        println(count)
     }
 }

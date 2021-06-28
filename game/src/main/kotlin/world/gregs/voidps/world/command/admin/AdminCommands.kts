@@ -1,5 +1,6 @@
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.variable.clearVar
+import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.delay
@@ -7,10 +8,10 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.contain.inventory
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerLevels
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.chat.ChatType
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.Levels
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
@@ -32,6 +33,8 @@ import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
+import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.effect.skull
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.music.MusicTracks
@@ -63,12 +66,12 @@ on<Command>({ prefix == "tele" || prefix == "tp" }) { player: Player ->
 }
 
 on<Command>({ prefix == "teletome" }) { player: Player ->
-    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    val other = players.get(content) ?: return@on
     other.tele(player.tile)
 }
 
 on<Command>({ prefix == "teleto" }) { player: Player ->
-    val other = players.indexed.firstOrNull { it?.name.equals(content, true) } ?: return@on
+    val other = players.get(content) ?: return@on
     player.tele(other.tile)
 }
 
@@ -118,7 +121,7 @@ on<Command>({ prefix == "give" }) { player: Player ->
     val id = definitions.getNameOrNull(parts.first().toIntOrNull() ?: -1) ?: parts.first().toLowerCase()
     val amount = parts[1]
     val name = content.removePrefix("${parts[0]} ${parts[1]} ")
-    val target = players.indexed.filterNotNull().firstOrNull { it.name == name }
+    val target = players.get(name)
     if (target == null) {
         player.message("Couldn't find player $target")
     } else {
@@ -162,24 +165,25 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
     val level = split[1].toInt()
     val target = if (split.size > 2) {
         val name = content.removeSuffix("${split[0]} ${split[1]} ")
-        players.indexed.first { it?.name.equals(name) }
+        players.get(name)
     } else {
         player
     }
-    player.experience.set(skill, Levels.getExperience(level).toDouble())
-    if (level > 99) {
-        player.levels.boost(skill, level - 99)
-    }
-    delay(player, 1) {
-        player.clearVar<Skill>("skill_stat_flash")
+    if (target == null) {
+        println("Unable to find target.")
+    } else {
+        target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
+        player.levels.clearOffset(skill)
+        delay(player, 1) {
+            target.removeVar("skill_stat_flash", skill)
+        }
     }
 }
 
 on<Command>({ prefix == "reset" }) { player: Player ->
-    player.setVar("life_points", 100)
     for ((index, skill) in Skill.all.withIndex()) {
-        player.levels.setOffset(skill, 0)
         player.experience.set(skill, Experience.defaultExperience[index])
+        player.levels.clearOffset(skill)
     }
 }
 
@@ -199,6 +203,10 @@ on<Command>({ prefix == "rest" }) { player: Player ->
     player["energy"] = MAX_ENERGY
 }
 
+on<Command>({ prefix == "spec" }) { player: Player ->
+    player.specialAttackEnergy = MAX_SPECIAL_ATTACK
+}
+
 on<Command>({ prefix == "curses" }) { player: Player ->
     player.setVar(PRAYERS, if (player.isCurses()) "normal" else "curses")
 }
@@ -207,7 +215,7 @@ on<Command>({ prefix == "ancients" }) { player: Player ->
     player.open("ancient_spellbook")
 }
 
-on<Command>({ prefix == "lunar" }) { player: Player ->
+on<Command>({ prefix == "lunars" }) { player: Player ->
     player.open("lunar_spellbook")
 }
 
@@ -305,4 +313,8 @@ on<Command>({ prefix == "reload" }) { player: Player ->
 
 on<Command>({ prefix == "shop" }) { player: Player ->
     player.events.emit(OpenShop(content))
+}
+
+on<Command>({ prefix == "debug" }) { player: Player ->
+    player["debug"] = !player["debug", false]
 }

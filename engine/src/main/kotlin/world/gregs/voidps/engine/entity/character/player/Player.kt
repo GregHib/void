@@ -20,12 +20,14 @@ import world.gregs.voidps.engine.data.serializer.PlayerBuilder
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.entity.character.player.login.LoginQueue
 import world.gregs.voidps.engine.entity.character.player.req.Requests
 import world.gregs.voidps.engine.entity.character.player.skill.Experience
-import world.gregs.voidps.engine.entity.character.player.skill.Levels
+import world.gregs.voidps.engine.entity.character.player.skill.GrantExp
+import world.gregs.voidps.engine.entity.character.player.skill.Leveled
 import world.gregs.voidps.engine.entity.character.update.LocalChange
 import world.gregs.voidps.engine.entity.character.update.Visuals
 import world.gregs.voidps.engine.entity.character.update.visual.player.*
@@ -66,7 +68,7 @@ class Player(
     val dialogues: Dialogues = Dialogues(),
     val experience: Experience = Experience(),
     @get:JsonUnwrapped
-    val levels: Levels = Levels(),
+    override val levels: Levels = Levels(),
     @JsonIgnore
     var client: Client? = null,
     var name: String = "",
@@ -112,7 +114,14 @@ class Player(
     fun start() {
         movement.previousTile = tile.add(Direction.WEST.delta)
         experience.events = events
-        levels.link(experience, events)
+        levels.link(events, PlayerLevels(experience))
+        events.on<Player, GrantExp> {
+            val previousLevel = PlayerLevels.getLevel(from)
+            val currentLevel = PlayerLevels.getLevel(to)
+            if (currentLevel > previousLevel) {
+                events.emit(Leveled(skill, previousLevel, currentLevel))
+            }
+        }
         variables.link(this, get())
     }
 

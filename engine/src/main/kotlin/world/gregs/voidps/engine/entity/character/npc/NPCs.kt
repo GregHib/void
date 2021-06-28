@@ -4,15 +4,12 @@ import com.github.michaelbull.logging.InlineLogger
 import it.unimi.dsi.fastutil.ints.Int2ObjectOpenHashMap
 import it.unimi.dsi.fastutil.objects.ObjectLinkedOpenHashSet
 import world.gregs.voidps.cache.definition.data.NPCDefinition
-import world.gregs.voidps.engine.entity.Direction
-import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.Size
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.IndexAllocator
 import world.gregs.voidps.engine.entity.character.update.visual.npc.turn
 import world.gregs.voidps.engine.entity.definition.NPCDefinitions
 import world.gregs.voidps.engine.entity.list.MAX_NPCS
 import world.gregs.voidps.engine.entity.list.PooledMapList
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
@@ -38,7 +35,7 @@ data class NPCs(
     override val indexed: Array<NPC?> = arrayOfNulls(MAX_NPCS)
     private val logger = InlineLogger()
 
-    fun add(name: String, area: Area, direction: Direction = Direction.NONE): NPC? {
+    fun add(name: String, area: Area, direction: Direction = Direction.NONE, delay: Int = 60): NPC? {
         val def = definitions.get(name)
         val traversal = getTraversal(def)
         val tile = if (area.area <= 0.0) area.random() else area.random(traversal)
@@ -48,6 +45,10 @@ data class NPCs(
         }
         val npc = add(name, tile, direction) ?: return null
         npc["area"] = area
+        if (delay >= 0) {
+            npc["respawn_delay"] = delay
+            npc["respawn_direction"] = direction
+        }
         npc.events.emit(Registered)
         return npc
     }

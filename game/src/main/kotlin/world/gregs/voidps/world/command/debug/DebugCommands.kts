@@ -1,20 +1,22 @@
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.variable.IntVariable
 import world.gregs.voidps.engine.client.variable.Variable
-import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
+import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.definition.ObjectDefinitions
 import world.gregs.voidps.engine.entity.obj.Objects
 import world.gregs.voidps.engine.entity.obj.spawnObject
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.collision.CollisionFlag
 import world.gregs.voidps.engine.map.collision.Collisions
+import world.gregs.voidps.engine.map.collision.check
 import world.gregs.voidps.engine.map.collision.get
 import world.gregs.voidps.engine.path.algorithm.Dijkstra
 import world.gregs.voidps.engine.path.strat.NodeTargetStrategy
 import world.gregs.voidps.engine.path.traverse.EdgeTraversal
-import world.gregs.voidps.engine.path.traverse.ShoreTraversal
 import world.gregs.voidps.engine.sync
 import world.gregs.voidps.network.encode.sendContainerItems
 import world.gregs.voidps.network.instruct.Command
@@ -34,14 +36,17 @@ IntVariable(743, Variable.Type.VARBIT).register("seven")
 IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
+    player.setAnimation(12152)
+    player.setGraphic(2138)
+//    player.setAnimation(12174)
+//    player.setGraphic(2141)
 }
 
 on<Command>({ prefix == "showcol" }) { player: Player ->
     val area = player.tile.toCuboid(10)
     val collisions: Collisions = get()
-    val shore = ShoreTraversal(collisions)
     for (tile in area) {
-        if (!shore.blocked(tile, Direction.NONE)) {//collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.FLOOR)) {//
+        if (collisions.check(tile.x, tile.y, tile.plane, CollisionFlag.SKY_BLOCK_WEST or CollisionFlag.IGNORED)) {
             areaGraphic(2000, tile)
         }
     }

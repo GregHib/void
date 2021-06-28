@@ -10,7 +10,7 @@ data class ClientScriptDefinition(
     var intVariableCount: Int = 0,
     var stringArgumentCount: Int = 0,
     var longArgumentCount: Int = 0,
-    var aHashTableArray9503: Array<List<Pair<Int, Int>>>? = null,
+    var switchStatementIndices: Array<List<Pair<Int, Int>>>? = null,
     var name: String? = null,
     var instructions: IntArray = intArrayOf(),
     var stringOperands: Array<String?>? = null,
@@ -30,10 +30,10 @@ data class ClientScriptDefinition(
         if (intVariableCount != other.intVariableCount) return false
         if (stringArgumentCount != other.stringArgumentCount) return false
         if (longArgumentCount != other.longArgumentCount) return false
-        if (aHashTableArray9503 != null) {
-            if (other.aHashTableArray9503 == null) return false
-            if (!aHashTableArray9503!!.contentEquals(other.aHashTableArray9503!!)) return false
-        } else if (other.aHashTableArray9503 != null) return false
+        if (switchStatementIndices != null) {
+            if (other.switchStatementIndices == null) return false
+            if (!switchStatementIndices!!.contentEquals(other.switchStatementIndices!!)) return false
+        } else if (other.switchStatementIndices != null) return false
         if (name != other.name) return false
         if (!instructions.contentEquals(other.instructions)) return false
         if (stringOperands != null) {
@@ -60,7 +60,7 @@ data class ClientScriptDefinition(
         result = 31 * result + intVariableCount
         result = 31 * result + stringArgumentCount
         result = 31 * result + longArgumentCount
-        result = 31 * result + (aHashTableArray9503?.contentHashCode() ?: 0)
+        result = 31 * result + (switchStatementIndices?.contentHashCode() ?: 0)
         result = 31 * result + (name?.hashCode() ?: 0)
         result = 31 * result + instructions.contentHashCode()
         result = 31 * result + (stringOperands?.contentHashCode() ?: 0)

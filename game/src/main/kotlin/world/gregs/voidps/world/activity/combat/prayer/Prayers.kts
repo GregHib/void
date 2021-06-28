@@ -1,17 +1,13 @@
 package world.gregs.voidps.world.activity.combat.prayer
 
 import world.gregs.voidps.engine.client.variable.*
-import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.player.flagAppearance
 import world.gregs.voidps.engine.entity.character.update.visual.player.headIcon
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.hasEffect
-import world.gregs.voidps.engine.entity.start
-import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -22,10 +18,10 @@ IntVariable(6859, Variable.Type.VARBIT, defaultValue = 30).register("defence_bon
 IntVariable(6860, Variable.Type.VARBIT, defaultValue = 30).register("range_bonus")
 IntVariable(6861, Variable.Type.VARBIT, defaultValue = 30).register("magic_bonus")
 
-BooleanVariable(6839, Variable.Type.VARBIT).register("being_leeched")
-IntVariable(6844, Variable.Type.VARBIT).register("leech_attack_bonus")
-IntVariable(6845, Variable.Type.VARBIT).register("leech_strength_bonus")
-IntVariable(6846, Variable.Type.VARBIT).register("leech_defence_bonus")
+BooleanVariable(6839, Variable.Type.VARBIT).register("turmoil")
+IntVariable(6844, Variable.Type.VARBIT).register("turmoil_attack_bonus")
+IntVariable(6845, Variable.Type.VARBIT).register("turmoil_strength_bonus")
+IntVariable(6846, Variable.Type.VARBIT).register("turmoil_defence_bonus")
 
 on<Registered> { player: Player ->
     player.sendVar("attack_bonus")
@@ -35,26 +31,22 @@ on<Registered> { player: Player ->
     player.sendVar("magic_bonus")
 }
 
-on<PrayerActivate> { player: Player ->
-    val id = prayer.toUnderscoreCase()
+on<EffectStart>({ effect.startsWith("prayer_") }) { player: Player ->
+    val id = effect.removePrefix("prayer_")
+    val curses = player.isCurses()
     if (curses) {
         player.setAnimation("activate_$id")
         player.setGraphic("activate_$id")
     } else {
         player.playSound("activate_$id")
     }
-    startPrayerDrain(player)
+    player.hasOrStart("prayer_drain")
     updateOverheadIcon(player, curses)
 }
 
-fun startPrayerDrain(player: Player) {
-    if (!player.hasEffect("prayer_drain")) {
-        player.start("prayer_drain")
-    }
-}
-
-on<PrayerDeactivate> { player: Player ->
+on<EffectStop>({ effect.startsWith("prayer_") }) { player: Player ->
     player.playSound("deactivate_prayer")
+    val curses = player.isCurses()
     stopPrayerDrain(player, curses)
     updateOverheadIcon(player, curses)
 }

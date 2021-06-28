@@ -136,3 +136,79 @@ teleport_land:
   id: 201
 teleport_tablet:
   id: 965
+cow_hit:
+  id: 371
+cow_death:
+  id: 370
+cow_attack:
+  id: 369
+calf_hit:
+  id: 368
+calf_death:
+  id: 367
+calf_attack:
+  id: 366
+chicken_hit:
+  id: 357
+chicken_death:
+  id: 356
+chicken_attack:
+  id: 355
+goblin_hit:
+  id: 470
+goblin_death:
+  id: 471
+goblin_attack:
+  id: 469
+big_spider_attack:
+  id: 3605
+big_spider_hit:
+  id: 3607
+big_spider_death:
+  id: 3606
+rat_attack:
+  id: 710
+rat_hit:
+  id: 713
+rat_death:
+  id: 711
+god_bow_special_hit:
+  id: 9513
+magic_longbow_special:
+  id: 2536
+magic_shortbow_special:
+  id: 2545
+seercull_special:
+  id: 2546
+dark_bow_special:
+  id: 3731
+descent_of_dragons:
+  id: 3733
+descent_of_darkness:
+  id: 3737
+morrigans_javelin_special:
+  id: 2699
+morrigans_throwing_axe_special:
+  id: 2706
+armour_piercing:
+  id: 2910
+blood_forfeit:
+  id: 2911
+clear_mind:
+  id: 2912
+down_to_earth:
+  id: 2914
+dragons_breath:
+  id: 2915
+earths_fury:
+  id: 2916
+life_leech:
+  id: 2917
+lucky_lightning:
+  id: 2918
+magical_poison:
+  id: 2919
+sea_curse:
+  id: 2920
+chinchompa_explode:
+  id: 360

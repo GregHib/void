@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.collision.Collisions
-import world.gregs.voidps.engine.path.PathResult
 
 internal class BresenhamsLineTest {
 
@@ -27,7 +26,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(0, 0)
         // Then
-        assertTrue(los.withinSight(tile, other) is PathResult.Success)
+        assertTrue(los.withinSight(tile, other))
     }
 
     @Test
@@ -35,7 +34,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(0, 0, 1)
         // Then
-        assertFalse(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 
     @Test
@@ -45,7 +44,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
-        assertTrue(los.withinSight(tile, other) is PathResult.Success)
+        assertTrue(los.withinSight(tile, other))
     }
 
     @Test
@@ -55,11 +54,11 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 0)
         // Then
-        assertFalse(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 
     @Test
-    fun `Has line of sight over distant bush`() {
+    fun `No line of sight over distant ignored bush`() {
         for(x in 2..4) {
             for(y in 2..4) {
                 data[Tile.getId(x, y)] = 1048576
@@ -69,7 +68,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(5, 5)
         // Then
-        assertTrue(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 
     @Test
@@ -81,7 +80,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
         // Then
-        assertTrue(los.withinSight(tile, other) is PathResult.Success)
+        assertTrue(los.withinSight(tile, other))
     }
 
     @Test
@@ -93,7 +92,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(1, 2)
         // Then
-        assertFalse(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 
     /**
@@ -117,7 +116,7 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 3)
         val other = Tile(4, 0)
         // Then
-        assertFalse(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 
     /**
@@ -142,6 +141,6 @@ internal class BresenhamsLineTest {
         val tile = Tile(0, 0)
         val other = Tile(3, 4)
         // Then
-        assertFalse(los.withinSight(tile, other) is PathResult.Success)
+        assertFalse(los.withinSight(tile, other))
     }
 }

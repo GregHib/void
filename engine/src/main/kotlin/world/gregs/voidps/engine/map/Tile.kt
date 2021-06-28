@@ -13,10 +13,8 @@ import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.region.Region
 import world.gregs.voidps.engine.map.region.RegionPlane
-import world.gregs.voidps.engine.path.PathResult
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.utility.get
-import kotlin.math.abs
 
 @JsonSerialize(using = TileSerializer::class)
 @JsonDeserialize(using = TileDeserializer::class)
@@ -61,7 +59,7 @@ inline class Tile(val id: Int) {
     fun delta(direction: Direction) = delta(direction.delta)
 
     fun withinSight(other: Tile): Boolean {
-        return get<BresenhamsLine>().withinSight(this, other) is PathResult.Success
+        return get<BresenhamsLine>().withinSight(this, other)
     }
 
     fun distanceTo(entity: Entity) = when (entity) {
@@ -80,11 +78,11 @@ inline class Tile(val id: Int) {
     }
 
     fun within(other: Tile, radius: Int): Boolean {
-        return plane == other.plane && abs(x - other.x) <= radius && abs(y - other.y) <= radius
+        return Distance.within(x, y, plane, other.x, other.y, other.plane, radius)
     }
 
     fun within(x: Int, y: Int, plane: Int, radius: Int): Boolean {
-        return this.plane == plane && abs(this.x - x) <= radius && abs(this.y - y) <= radius
+        return Distance.within(this.x, this.y, this.plane, x, y, plane, radius)
     }
 
     fun toCuboid(width: Int = 1, height: Int = 1) = Cuboid(this, width - 1, height - 1, 0)

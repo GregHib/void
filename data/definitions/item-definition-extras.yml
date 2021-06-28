@@ -446,7 +446,7 @@ ice_arrows:
   id: 78
   tradeable: false
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An ice arrow."
   kept: "Reclaim"
 lever_temple_of_ikov:
@@ -2810,7 +2810,7 @@ bronze_fire_arrows_unlit:
   price: 208
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with bronze heads and oil-soaked cloth."
 picture_8:
   id: 599
@@ -3936,6 +3936,8 @@ phoenix_crossbow:
   tradeable: false
   weight: 3.628
   range: 6.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   destroy: "You can get another from the Phoenix Gang's weapon stash."
   examine: "Second-rate crossbow; former property of the Phoenix Gang."
@@ -4464,6 +4466,8 @@ crossbow:
   limit: 100
   weight: 2.0
   range: 6.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "This fires crossbow bolts."
   kept: "Wilderness"
@@ -4475,10 +4479,13 @@ longbow:
   limit: 5000
   weight: 1.814
   range: 8.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit ]
 longbow_noted:
   id: 840
 shortbow:
@@ -4491,6 +4498,7 @@ shortbow:
   type: "TwoHanded"
   examine: "Short but effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit ]
 shortbow_noted:
   id: 842
 oak_shortbow:
@@ -4503,6 +4511,7 @@ oak_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit ]
 oak_shortbow_noted:
   id: 844
 oak_longbow:
@@ -4513,8 +4522,11 @@ oak_longbow:
   range: 14.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
+  attack_speed: 6
   examine: "A nice sturdy bow made out of oak."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit ]
 oak_longbow_noted:
   id: 846
 willow_longbow:
@@ -4525,8 +4537,11 @@ willow_longbow:
   range: 20.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
+  attack_speed: 6
   examine: "A nice sturdy bow made out of willow."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_longbow_noted:
   id: 848
 willow_shortbow:
@@ -4539,6 +4554,7 @@ willow_shortbow:
   type: "TwoHanded"
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_shortbow_noted:
   id: 850
 maple_longbow:
@@ -4547,9 +4563,12 @@ maple_longbow:
   limit: 5000
   weight: 1.814
   range: 29.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of maple."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
 maple_longbow_noted:
   id: 852
 maple_shortbow:
@@ -4561,6 +4580,7 @@ maple_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of Maple, still effective."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
 maple_shortbow_noted:
   id: 854
 yew_longbow:
@@ -4569,9 +4589,12 @@ yew_longbow:
   limit: 5000
   weight: 1.814
   range: 47.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy bow made out of yew."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_longbow_noted:
   id: 856
 yew_shortbow:
@@ -4583,6 +4606,7 @@ yew_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A shortbow made out of yew, still effective."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_shortbow_noted:
   id: 858
 magic_longbow:
@@ -4591,9 +4615,12 @@ magic_longbow:
   limit: 5000
   weight: 1.814
   range: 69.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_longbow_noted:
   id: 860
 magic_shortbow:
@@ -4605,6 +4632,7 @@ magic_shortbow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Short and magical, but still effective."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_shortbow_noted:
   id: 862
 iron_knife:
@@ -4717,48 +4745,48 @@ bronze_bolts:
   price: 7
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 bronze_bolts_p:
   id: 878
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 opal_bolts:
   id: 879
   price: 7
   limit: 25000
   range_str: 14.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Opal tipped Bronze crossbow bolts."
 pearl_bolts:
   id: 880
   price: 40
   limit: 25000
   range_str: 48.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Pearl tipped Iron crossbow bolts."
 barbed_bolts:
   id: 881
   price: 34
   limit: 10000
   range_str: 12.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Great if you have a crossbow!"
 bronze_arrow:
   id: 882
   price: 11
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 bronze_arrow_p:
   id: 883
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow:
@@ -4766,71 +4794,71 @@ iron_arrow:
   price: 13
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 iron_arrow_p:
   id: 885
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow:
   id: 886
   price: 20
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p:
   id: 887
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow:
   id: 888
   price: 27
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 mithril_arrow_p:
   id: 889
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow:
   id: 890
   price: 96
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 adamant_arrow_p:
   id: 891
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow:
   id: 892
   price: 184
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 rune_arrow_p:
   id: 893
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_fire_arrows_lit:
   id: 942
   price: 271
   limit: 10000
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, bronze-headed fire arrow."
 worm:
   id: 943
@@ -6861,6 +6889,8 @@ dragon_dagger:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 dragon_dagger_noted:
   id: 1216
 black_dagger:
@@ -6986,6 +7016,8 @@ dragon_dagger_p:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 dragon_dagger_p_noted:
   id: 1232
 black_dagger_p:
@@ -7571,6 +7603,7 @@ dragon_longsword:
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
+  spec_dmg_multiplier: 1.25
 dragon_longsword_noted:
   id: 1306
 bronze_2h_sword:
@@ -8575,6 +8608,8 @@ dragon_mace:
   crush: 60.0
   slot: "Weapon"
   examine: "A spiky mace."
+  spec_dmg_multiplier: 1.50
+  spec_acc_multiplier: 1.25
 dragon_mace_noted:
   id: 1435
 rune_essence:
@@ -13963,70 +13998,70 @@ iron_fire_arrows_unlit:
   price: 321
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with iron heads and oil-soaked cloth."
 iron_fire_arrows_lit:
   id: 2533
   price: 276
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, iron-headed fire arrow."
 steel_fire_arrows_unlit:
   id: 2534
   price: 308
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with steel heads and oil-soaked cloth."
 steel_fire_arrows_lit:
   id: 2535
   price: 308
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, steel-headed fire arrow."
 mithril_fire_arrows_unlit:
   id: 2536
   price: 12
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads and oil-soaked cloth."
 mithril_fire_arrows_lit:
   id: 2537
   price: 86
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, mithril-headed fire arrow."
 adamant_fire_arrows_unlit:
   id: 2538
   price: 102
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads and oil-soaked cloth."
 adamant_fire_arrows_lit:
   id: 2539
   price: 108
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, adamant-headed fire arrow."
 rune_fire_arrows_unlit:
   id: 2540
   price: 415
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads and oil-soaked cloth."
 rune_fire_arrows_lit:
   id: 2541
   price: 536
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An easy to make, rune-headed fire arrow."
 ring_of_recoil:
   id: 2550
@@ -14158,7 +14193,7 @@ ranger_boots:
 ranger_boots_noted:
   id: 2578
 wizard_boots:
-  id: 10689
+  id: 2579
   limit: 2
   weight: 0.453
   magic: 4.0
@@ -16019,7 +16054,7 @@ ogre_arrow:
   price: 192
   limit: 1000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A large ogre arrow with a bone tip."
 ogre_bellows:
   id: 2871
@@ -16081,8 +16116,10 @@ ogre_bow:
   range: 38.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 10
   examine: "More powerful than a normal bow, useful against large game birds."
   kept: "Reclaim"
+  ammo: [ ogre_arrow ]
 battered_book:
   id: 2886
   tradeable: false
@@ -17153,6 +17190,8 @@ rune_claws:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 combination:
   id: 3102
   tradeable: false
@@ -17263,7 +17302,6 @@ granite_shield:
   range_def: 65.0
   summoning_def: 50.0
   slot: "Shield"
-  material: "metal"
   examine: "A solid stone shield."
 shaikahan_bones:
   id: 3123
@@ -17861,6 +17899,7 @@ dragon_halberd:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
+  spec_dmg_multiplier: 1.1
 dragon_halberd_noted:
   id: 3205
 kings_message:
@@ -22137,6 +22176,7 @@ abyssal_whip:
   slash: 82.0
   slot: "Weapon"
   examine: "A weapon from the Abyss."
+  spec_acc_multiplier: 1.25
 abyssal_whip_noted:
   id: 4152
 granite_maul:
@@ -22205,7 +22245,7 @@ broad_arrow:
   id: 4160
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrow with a wider than normal tip."
   kept: "Reclaim"
 bag_of_salt:
@@ -22274,22 +22314,22 @@ slayers_staff_noted:
 broad_arrows_2:
   id: 4172
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_3:
   id: 4173
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_4:
   id: 4174
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 broad_arrows_5:
   id: 4175
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with a wider than normal tip."
 picture_47:
   id: 4177
@@ -22534,6 +22574,8 @@ new_crystal_bow:
   limit: 2
   range: 104.0
   range_str: 72.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22545,6 +22587,8 @@ crystal_bow:
   limit: 2
   range: 100.0
   range_str: 70.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22554,6 +22598,8 @@ crystal_bow_9_10:
   limit: 2
   range: 96.0
   range_str: 68.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22563,6 +22609,8 @@ crystal_bow_8_10:
   limit: 2
   range: 92.0
   range_str: 66.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22572,6 +22620,8 @@ crystal_bow_7_10:
   limit: 2
   range: 88.0
   range_str: 64.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22581,6 +22631,8 @@ crystal_bow_6_10:
   limit: 2
   range: 84.0
   range_str: 62.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22590,6 +22642,8 @@ crystal_bow_5_10:
   limit: 2
   range: 80.0
   range_str: 60.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22599,6 +22653,8 @@ crystal_bow_4_10:
   limit: 2
   range: 76.0
   range_str: 58.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22608,6 +22664,8 @@ crystal_bow_3_10:
   limit: 2
   range: 72.0
   range_str: 56.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22617,6 +22675,8 @@ crystal_bow_2_10:
   limit: 2
   range: 68.0
   range_str: 54.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -22626,6 +22686,8 @@ crystal_bow_1_10:
   limit: 2
   range: 64.0
   range_str: 52.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A nice sturdy magical bow."
@@ -24834,6 +24896,7 @@ dragon_scimitar:
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
+  spec_acc_multiplier: 1.25
 dragon_scimitar_noted:
   id: 4588
 keys:
@@ -25710,10 +25773,13 @@ karils_crossbow:
   price: 179700
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
   weight: 3.628
+  ammo: [ bolt_rack ]
 karils_crossbow_noted:
   id: 4735
 karils_top:
@@ -25761,7 +25827,7 @@ bolt_rack:
   price: 200
   limit: 10000
   range_str: 55.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Must need a special type of crossbow to use this."
 torags_helm:
@@ -25921,49 +25987,49 @@ bronze_brutal:
   price: 49
   limit: 1000
   range_str: 11.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt bronze arrow...ouch"
 iron_brutal:
   id: 4778
   price: 19
   limit: 1000
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt iron arrow...ouch"
 steel_brutal:
   id: 4783
   price: 24
   limit: 1000
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt steel arrow...ouch"
 black_brutal:
   id: 4788
   price: 65
   limit: 1000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt black arrow...ouch"
 mithril_brutal:
   id: 4793
   price: 79
   limit: 1000
   range_str: 34.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt mithril arrow...ouch"
 adamant_brutal:
   id: 4798
   price: 147
   limit: 1000
   range_str: 45.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt adamantite arrow...ouch"
 rune_brutal:
   id: 4803
   price: 173
   limit: 1000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Blunt rune arrow...ouch"
 black_prism:
   id: 4808
@@ -26080,9 +26146,12 @@ comp_ogre_bow:
   limit: 100
   weight: 1.814
   range: 38.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A composite ogre bow."
+  ammo: [ bronze_brutal, iron_brutal, steel_brutal, black_brutal, mithril_brutal, adamant_brutal, rune_brutal, ogre_arrow ]
 comp_ogre_bow_noted:
   id: 4828
 book_of_h.a.m:
@@ -27322,6 +27391,8 @@ karils_crossbow_100:
   id: 4934
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27330,6 +27401,8 @@ karils_crossbow_75:
   id: 4935
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27338,6 +27411,8 @@ karils_crossbow_50:
   id: 4936
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27346,6 +27421,8 @@ karils_crossbow_25:
   id: 4937
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -27355,6 +27432,8 @@ karils_crossbow_broken:
   price: 102400
   limit: 10
   range: 84.0
+  attack_range: 8
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "Karil the Tainted's repeating crossbow."
@@ -30435,75 +30514,75 @@ bronze_arrow_p+:
   id: 5616
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow_p+:
   id: 5617
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p+:
   id: 5618
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow_p+:
   id: 5619
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow_p+:
   id: 5620
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow_p+:
   id: 5621
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_arrow_p++:
   id: 5622
   limit: 10000
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
   kept: "Wilderness"
 iron_arrow_p++:
   id: 5623
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 steel_arrow_p++:
   id: 5624
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Ammunition for shieldbows and shortbows."
 mithril_arrow_p++:
   id: 5625
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with mithril heads."
 adamant_arrow_p++:
   id: 5626
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with adamant heads."
 rune_arrow_p++:
   id: 5627
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with rune heads."
 bronze_dart_p+:
   id: 5628
@@ -30892,6 +30971,8 @@ dragon_dagger_p+:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 dragon_dagger_p+_noted:
   id: 5681
 black_dagger_p+:
@@ -31016,6 +31097,8 @@ dragon_dagger_p++:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 dragon_dagger_p++_noted:
   id: 5699
 black_dagger_p++:
@@ -32571,13 +32654,13 @@ bronze_bolts_p+:
   id: 6061
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 bronze_bolts_p++:
   id: 6062
   limit: 10000
   range_str: 10.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
 spirit_tree:
   id: 6063
@@ -36324,9 +36407,12 @@ seercull:
   limit: 100
   weight: 1.36
   range: 69.0
+  attack_range: 8
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An ancient Fremennik bow that was once used to battle the Moon Clan."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 seercull_noted:
   id: 6725
 mud_battlestaff_noted:
@@ -36912,7 +36998,6 @@ granite_legs:
   range_def: 68.0
   summoning_def: 20.0
   slot: "Legs"
-  material: "metal"
   examine: "These look pretty heavy."
 wyvern_bonemeal:
   id: 6810
@@ -37753,10 +37838,8 @@ infinity_bottoms:
   examine: "Mystical robes."
 infinity_bottoms_noted:
   id: 6925
-bones_to_peaches:
+bones_to_peaches_spell:
   id: 6926
-  aka: "BTP tabs"
-  examine: "A tablet containing a magic spell."
 sandy_hand:
   id: 6945
   tradeable: false
@@ -44621,7 +44704,7 @@ spiral_staircase:
   examine: "I can climb up or go down these stairs."
 marble_spiral:
   id: 8259
-crawling_hand_2:
+crawling_hand_3:
   id: 8260
   tradeable: false
   weight: 10.0
@@ -47335,6 +47418,9 @@ dorgeshuun_crossbow:
   range: 42.0
   slot: "Weapon"
   examine: "This fires crossbow bolts."
+  attack_range: 6
+  attack_speed: 6
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, bone_bolts ]
 dorgeshuun_cbow_noted:
   id: 8881
 bone_bolts:
@@ -47342,7 +47428,7 @@ bone_bolts:
   price: 13
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Good if you have a bone crossbow!"
 zanik_2:
   id: 8887
@@ -48810,7 +48896,7 @@ blurite_bolts:
   id: 9139
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -48819,7 +48905,7 @@ iron_bolts:
   price: 40
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts:
@@ -48827,7 +48913,7 @@ steel_bolts:
   price: 85
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts:
@@ -48835,7 +48921,7 @@ mithril_bolts:
   price: 125
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts:
@@ -48843,7 +48929,7 @@ adamant_bolts:
   price: 202
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts:
@@ -48851,7 +48937,7 @@ runite_bolts:
   price: 894
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts:
@@ -48859,7 +48945,7 @@ silver_bolts:
   price: 10
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 bronze_crossbow:
@@ -48868,9 +48954,12 @@ bronze_crossbow:
   limit: 1000
   weight: 2.0
   range: 18.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze crossbow."
   kept: "Wilderness"
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e ]
 bronze_crossbow_noted:
   id: 9175
 blurite_crossbow:
@@ -48878,17 +48967,23 @@ blurite_crossbow:
   tradeable: false
   weight: 2.0
   range: 30.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A blurite crossbow."
   kept: "Wilderness"
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e ]
 iron_crossbow:
   id: 9177
   price: 38
   limit: 1000
   weight: 2.0
   range: 42.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron crossbow."
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, pearl_bolts, pearl_bolts_e ]
 iron_crossbow_noted:
   id: 9178
 steel_crossbow:
@@ -48897,8 +48992,11 @@ steel_crossbow:
   limit: 1000
   weight: 2.0
   range: 54.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel crossbow."
+  ammo: [ bronze_bolts, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e ]
 steel_crossbow_noted:
   id: 9180
 mithril_crossbow:
@@ -48907,8 +49005,11 @@ mithril_crossbow:
   limit: 1000
   weight: 2.0
   range: 66.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril crossbow."
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e ]
 mith_crossbow_noted:
   id: 9182
 adamant_crossbow:
@@ -48917,8 +49018,11 @@ adamant_crossbow:
   limit: 1000
   weight: 2.0
   range: 78.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant crossbow."
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts_e, emerald_bolts, ruby_bolts_e, ruby_bolts, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e ]
 adamant_crossbow_noted:
   id: 9184
 rune_crossbow:
@@ -48927,8 +49031,11 @@ rune_crossbow:
   limit: 100
   weight: 2.0
   range: 90.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune crossbow."
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
 rune_crossbow_noted:
   id: 9186
 jade_bolt_tips:
@@ -48976,14 +49083,14 @@ opal_bolts_e:
   price: 18
   limit: 25000
   range_str: 14.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted opal-tipped bronze crossbow bolts."
 jade_bolts_e:
   id: 9237
   tradeable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted jade-tipped blurite crossbow bolts."
   kept: "Reclaim"
@@ -48991,7 +49098,7 @@ pearl_bolts_e:
   id: 9238
   price: 41
   limit: 25000
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted pearl-tipped iron crossbow bolts."
 topaz_bolts_e:
@@ -48999,7 +49106,7 @@ topaz_bolts_e:
   price: 57
   limit: 25000
   range_str: 66.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted red topaz-tipped steel crossbow bolts."
 sapphire_bolts_e:
@@ -49007,7 +49114,7 @@ sapphire_bolts_e:
   price: 105
   limit: 25000
   range_str: 83.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted sapphire-tipped mithril crossbow bolts."
 emerald_bolts_e:
@@ -49015,7 +49122,7 @@ emerald_bolts_e:
   price: 269
   limit: 25000
   range_str: 85.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted emerald-tipped mithril crossbow bolts."
 ruby_bolts_e:
@@ -49023,7 +49130,7 @@ ruby_bolts_e:
   price: 422
   limit: 25000
   range_str: 103.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted ruby-tipped adamantite crossbow bolts."
 diamond_bolts_e:
@@ -49031,7 +49138,7 @@ diamond_bolts_e:
   price: 983
   limit: 25000
   range_str: 105.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted diamond-tipped adamantite crossbow bolts."
 dragon_bolts_e:
@@ -49039,7 +49146,7 @@ dragon_bolts_e:
   price: 3736
   limit: 25000
   range_str: 117.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted dragonstone-tipped runite crossbow bolts."
 onyx_bolts_e:
@@ -49047,14 +49154,14 @@ onyx_bolts_e:
   price: 8843
   limit: 25000
   range_str: 120.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Enchanted onyx-tipped runite crossbow bolts."
 blurite_bolts_p:
   id: 9286
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49062,49 +49169,49 @@ iron_bolts_p:
   id: 9287
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p:
   id: 9288
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts_p:
   id: 9289
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p:
   id: 9290
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p:
   id: 9291
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p:
   id: 9292
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 blurite_bolts_p+:
   id: 9293
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49112,7 +49219,7 @@ iron_bolts_p+:
   id: 9294
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p+:
@@ -49120,7 +49227,7 @@ steel_bolts_p+:
   limit: 10000
   tradeable: false
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Some poisoned steel bolts."
   kept: "Reclaim"
@@ -49128,35 +49235,35 @@ mithril_bolts_p+:
   id: 9296
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p+:
   id: 9297
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p+:
   id: 9298
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p+:
   id: 9299
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 blurite_bolts_p++:
   id: 9300
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49164,49 +49271,49 @@ iron_bolts_p++:
   id: 9301
   limit: 25000
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Iron ammunition for crossbows."
 steel_bolts_p++:
   id: 9302
   limit: 10000
   range_str: 64.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Steel ammunition for crossbows."
 mithril_bolts_p++:
   id: 9303
   limit: 10000
   range_str: 82.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Mithril crossbow bolts."
 adamant_bolts_p++:
   id: 9304
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Adamantite crossbow bolts."
 runite_bolts_p++:
   id: 9305
   limit: 10000
   range_str: 115.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Runite crossbow bolts."
 silver_bolts_p++:
   id: 9306
   limit: 10000
   range_str: 36.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Silver crossbow bolts."
 jade_bolts:
   id: 9335
   tradeable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Jade tipped Blurite crossbow bolts."
   kept: "Reclaim"
@@ -49215,7 +49322,7 @@ topaz_bolts:
   price: 72
   limit: 25000
   range_str: 66.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Topaz tipped Steel crossbow bolts."
 sapphire_bolts:
@@ -49223,7 +49330,7 @@ sapphire_bolts:
   price: 99
   limit: 25000
   range_str: 83.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Sapphire tipped Mithril crossbow bolts."
 emerald_bolts:
@@ -49231,7 +49338,7 @@ emerald_bolts:
   price: 185
   limit: 25000
   range_str: 85.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Emerald tipped Mithril crossbow bolts."
 ruby_bolts:
@@ -49239,7 +49346,7 @@ ruby_bolts:
   price: 387
   limit: 25000
   range_str: 103.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Ruby tipped Adamantite crossbow bolts."
 diamond_bolts:
@@ -49247,7 +49354,7 @@ diamond_bolts:
   price: 923
   limit: 25000
   range_str: 105.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Diamond tipped Adamantite crossbow bolts."
 dragon_bolts:
@@ -49255,7 +49362,7 @@ dragon_bolts:
   price: 3682
   limit: 25000
   range_str: 117.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Dragonstone tipped Runite crossbow bolts."
 onyx_bolts:
@@ -49263,7 +49370,7 @@ onyx_bolts:
   price: 8717
   limit: 10000
   range_str: 120.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Onyx tipped Runite crossbow bolts."
 bronze_bolts_unf:
@@ -49329,7 +49436,7 @@ mithril_grapple:
   price: 1484
   limit: 1000
   weight: 0.001
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A mithril grapple tipped bolt with a rope."
 bronze_limbs:
   id: 9420
@@ -50793,11 +50900,12 @@ training_bow:
   examine: "Light and flexible; good for a beginner."
   kept: "Reclaim"
   use: "Limited"
+  ammo: [ training_arrows ]
 training_arrows:
   id: 9706
   tradeable: false
   range_str: 7.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Standard training arrows."
   kept: "Reclaim"
   use: "Limited"
@@ -53387,28 +53495,28 @@ guam_tar:
   price: 20
   limit: 10000
   range_str: 16.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with a green tinge."
 marrentill_tar:
   id: 10143
   price: 14
   limit: 10000
   range_str: 22.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with an orange tinge."
 tarromin_tar:
   id: 10144
   price: 66
   limit: 10000
   range_str: 31.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A thick, foul-smelling, tar-like substance with a red tinge."
 harralander_tar:
   id: 10145
   price: 87
   limit: 10000
   range_str: 49.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "A dark, thick, foul-smelling, tar-like substance."
 orange_salamander:
   id: 10146
@@ -53481,6 +53589,8 @@ hunters_crossbow:
   limit: 100
   weight: 5.0
   range: 55.0
+  attack_range: 7
+  attack_speed: 4
   slot: "Weapon"
   examine: "A weapon made of bone and wood."
 hunters_crossbow_noted:
@@ -53490,14 +53600,14 @@ kebbit_bolts:
   price: 25
   limit: 1000
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bolts made from the spikes of a prickly kebbit."
 long_kebbit_bolts:
   id: 10159
   price: 233
   limit: 1000
   range_str: 38.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bolts made from the spikes of a razor-backed kebbit."
 orange_salamander_noted:
   id: 10160
@@ -54236,9 +54346,12 @@ willow_composite_bow:
   limit: 2
   weight: 1.8
   range: 22.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from willow."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit ]
 willow_composite_bow_noted:
   id: 10281
 yew_composite_bow:
@@ -54247,9 +54360,12 @@ yew_composite_bow:
   limit: 2
   weight: 1.8
   range: 49.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from yew."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows ]
 yew_composite_bow_noted:
   id: 10283
 magic_composite_bow:
@@ -54258,9 +54374,12 @@ magic_composite_bow:
   limit: 2
   weight: 1.8
   range: 71.0
+  attack_range: 10
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow made from magic logs."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 magic_composite_bow_noted:
   id: 10285
 rune_helm_h1:
@@ -56512,7 +56631,6 @@ granite_helm:
   range_def: 39.0
   summoning_def: 9.0
   slot: "Hat"
-  material: "metal"
   type: "Hair"
   examine: "A stone helmet."
 granite_helm_noted:
@@ -57684,7 +57802,7 @@ enchanted_top_2:
   summoning_def: 20.0
   slot: "Chest"
   examine: "Enchanted wizard robes."
-wizard_boots:
+wizard_boots_2:
   id: 10689
   limit: 2
   weight: 0.453
@@ -59344,6 +59462,8 @@ barrelchest_anchor:
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
   weight: 30.0
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 barrelchest_anchor_2:
   id: 10888
   str: 100.0
@@ -61229,39 +61349,39 @@ dragon_arrow:
   price: 1643
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_fire_arrows_unlit:
   id: 11217
   price: 2328
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Arrows with dragon heads and oil-soaked cloth."
 dragon_fire_arrows_lit:
   id: 11222
   price: 2445
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Dragon-headed fire arrow."
 dragon_arrow_p:
   id: 11227
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p+:
   id: 11228
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_arrow_p++:
   id: 11229
   limit: 10000
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "An arrow made using a dragon's talon."
 dragon_dart:
   id: 11230
@@ -61302,10 +61422,14 @@ dark_bow:
   price: 279300
   limit: 10
   weight: 1.814
+  attack_range: 10
+  attack_speed: 9
   range: 95.0
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow from a darker dimension."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, dragon_arrow, dragon_fire_arrows_lit, dragon_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
+  ammo_required: 2
 dark_bow_noted:
   id: 11236
 dragon_arrowtips:
@@ -62967,6 +63091,8 @@ armadyl_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A beautiful, heavy sword."
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 armadyl_godsword_noted:
   id: 11695
 bandos_godsword:
@@ -62983,6 +63109,8 @@ bandos_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A brutally heavy sword."
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 bandos_godsword_noted:
   id: 11697
 saradomin_godsword:
@@ -62999,6 +63127,8 @@ saradomin_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A gracious, heavy sword."
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 saradomin_godsword_noted:
   id: 11699
 zamorak_godsword:
@@ -63015,6 +63145,8 @@ zamorak_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A terrifying, heavy sword."
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 zamorak_godsword_noted:
   id: 11701
 armadyl_hilt:
@@ -63244,6 +63376,8 @@ saradomin_sword:
   material: "metal"
   type: "TwoHanded"
   examine: "The incredible blade of an Icyene."
+  spec_dmg_multiplier: 1.1
+  spec_acc_multiplier: 2.0
 saradomin_sword_noted:
   id: 11731
 dragon_boots:
@@ -63687,7 +63821,7 @@ white_goblin_mail:
   kept: "Wilderness"
 grubfoot:
   id: 11792
-zanik_2:
+zanik_3:
   id: 11793
   tradeable: false
   weight: 30.0
@@ -72428,8 +72562,11 @@ black_crossbow:
   limit: 2
   weight: 5.0
   range: 60.0
+  attack_range: 7
+  attack_speed: 6
   slot: "Weapon"
   examine: "A black crossbow."
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, blurite_bolts, jade_bolts, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, black_bolts ]
 black_crossbow_noted:
   id: 13082
 black_bolts:
@@ -72437,28 +72574,28 @@ black_bolts:
   price: 78
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p:
   id: 13084
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p+:
   id: 13085
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_bolts_p++:
   id: 13086
   limit: 100
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "Black crossbow bolts."
 black_cane:
@@ -73623,7 +73760,7 @@ broad-tipped_bolts:
   price: 89
   limit: 10000
   range_str: 100.0
-  slot: "Arrows"
+  slot: "Ammo"
   material: "metal"
   examine: "For use against turoth and kurasks."
 ring_of_slaying_8:
@@ -76219,7 +76356,7 @@ performance_arrow:
   id: 13722
   bankable: false
   tradeable: false
-  slot: "Arrows"
+  slot: "Ammo"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "Arrows with bronze heads."
   kept: "Vanish"
@@ -77273,6 +77410,7 @@ vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
+  spec_dmg_multiplier: 1.2
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
 vestas_longsword_noted:
@@ -77301,6 +77439,7 @@ statiuss_warhammer:
   slash: -4.0
   crush: 123.0
   slot: "Weapon"
+  spec_dmg_multiplier: 1.2
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
 statiuss_warhammer_noted:
@@ -77593,6 +77732,7 @@ corrupt_vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
+  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_vestas_longsword_noted:
@@ -77621,6 +77761,7 @@ corrupt_statiuss_warhammer:
   slash: -4.0
   crush: 123.0
   slot: "Weapon"
+  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_statiuss_warhammer_noted:
@@ -78193,6 +78334,8 @@ corrupt_dragon_dagger:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 0.453
+  spec_dmg_multiplier: 1.15
+  spec_acc_multiplier: 1.15
 corrupt_dragon_dagger_noted:
   id: 13977
 corrupt_dragon_dagger_degraded:
@@ -78223,6 +78366,7 @@ corrupt_dragon_scimitar:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
+  spec_acc_multiplier: 1.25
 corrupt_dragon_scimitar_noted:
   id: 13980
 corrupt_dragon_scimitar_degraded:
@@ -78254,6 +78398,7 @@ corrupt_dragon_longsword:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
+  spec_dmg_multiplier: 1.25
 corrupt_dragon_longsword_noted:
   id: 13983
 corrupt_dragon_longsword_degraded:
@@ -78284,6 +78429,8 @@ corrupt_dragon_mace:
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
+  spec_dmg_multiplier: 1.50
+  spec_acc_multiplier: 1.25
 corrupt_dragon_mace_noted:
   id: 13986
 corrupt_dragon_mace_degraded:
@@ -78900,6 +79047,7 @@ sacred_clay_bow:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "The sacred clay weapon has transformed into a bow."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow ]
   weight: 2.0
 pickaxe_class_1:
   id: 14122
@@ -79245,31 +79393,31 @@ arrows_class_1:
   id: 14202
   bankable: false
   range_str: 15.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_2:
   id: 14203
   bankable: false
   range_str: 30.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_3:
   id: 14204
   bankable: false
   range_str: 45.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_4:
   id: 14205
   bankable: false
   range_str: 60.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 arrows_class_5:
   id: 14206
   bankable: false
   range_str: 75.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The sacred clay has transformed into a wood-like substance."
 prayer_potion_stealing_creation_5:
   id: 14207
@@ -81753,14 +81901,14 @@ evil_tree_kindling:
   kept: "Reclaim"
 captain_undak:
   id: 14668
-zanik_3:
+zanik_4:
   id: 14669
   tradeable: false
   weight: 30.0
   examine: "She's dead, but the mark on her forehead is glowing brightly."
   use: "Quest"
   kept: "Wilderness"
-zanik_4:
+zanik_5:
   id: 14670
   tradeable: false
   weight: 30.0
@@ -81876,18 +82024,24 @@ zaniks_crossbow:
   tradeable: false
   weight: 0.001
   range: 78.0
+  attack_range: 6
+  attack_speed: 6
   slot: "Weapon"
   examine: "The crossbow that defeated the avatar of Bandos."
   kept: "Reclaim"
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 crossbow_the_chosen_commander:
   id: 14685
   limit: 100
   tradeable: false
   weight: 2.267
   range: 6.0
+  attack_range: 6
+  attack_speed: 6
   examine: "I noticed my crossbow on a high ledge."
   use: "Quest"
   kept: "Reclaim"
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 zaniks_crossbow_upgraded:
   id: 14686
   prayer: -5
@@ -81895,10 +82049,13 @@ zaniks_crossbow_upgraded:
   weight: 0.001
   range: 78.0
   slot: "Weapon"
+  attack_range: 7
+  attack_speed: 6
   destroy: "You can get it back from Oldak in Dorgesh-Kaan."
   examine: "Zanik's crossbow has been upgraded."
   use: "Quest"
   kept: "Vanish"
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, bone_bolts ]
 energy_projectors:
   id: 14687
   tradeable: false
@@ -85035,6 +85192,7 @@ hand_cannon:
   range: 90.0
   slot: "Weapon"
   type: "TwoHanded"
+  ammo: [ hand_cannon_shot ]
   examine: "A miniature dwarven cannon."
 hand_cannon_noted:
   id: 15242
@@ -85043,7 +85201,7 @@ hand_cannon_shot:
   price: 181
   limit: 10000
   range_str: 150.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "The bag contains shot and powder for the hand cannon."
 commander_veldaban:
   id: 15244
@@ -86994,7 +87152,7 @@ strange_rock_fletching:
   tradeable: false
   weight: 1.0
   destroy: "You will need to practice your non-combat skills to regain a piece of rock."
-  examine: "A rock found while fletching bows, crossbows and sagaies."
+  examine: "A rock found while fletching bows, crossbows and stocks."
   kept: "Wilderness"
 strange_rock_12:
   id: 15545
@@ -88672,6 +88830,7 @@ tangle_gum_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows ]
 seeping_elm_shortbow_bound:
   id: 15776
   tradeable: false
@@ -88680,6 +88839,7 @@ seeping_elm_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows ]
 blood_spindle_shortbow_bound:
   id: 15777
   tradeable: false
@@ -88688,6 +88848,7 @@ blood_spindle_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 utuku_shortbow_bound:
   id: 15778
   tradeable: false
@@ -88696,6 +88857,7 @@ utuku_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 spinebeam_shortbow_bound:
   id: 15779
   tradeable: false
@@ -88704,6 +88866,7 @@ spinebeam_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 bovistrangler_shortbow_bound:
   id: 15780
   tradeable: false
@@ -88712,6 +88875,7 @@ bovistrangler_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 thigat_shortbow_bound:
   id: 15781
   tradeable: false
@@ -88720,6 +88884,7 @@ thigat_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 corpsethorn_shortbow_bound:
   id: 15782
   tradeable: false
@@ -88728,6 +88893,7 @@ corpsethorn_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 entgallow_shortbow_bound:
   id: 15783
   tradeable: false
@@ -88736,6 +88902,7 @@ entgallow_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distances."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 grave_creeper_shortbow_bound:
   id: 15784
   tradeable: false
@@ -88744,6 +88911,7 @@ grave_creeper_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 sagittarian_shortbow_bound:
   id: 15785
   tradeable: false
@@ -88752,6 +88920,7 @@ sagittarian_shortbow_bound:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 salve_shoes_bound:
   id: 15786
   tradeable: false
@@ -89501,6 +89670,7 @@ hexhunter_bow_dungeoneering_bound:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 salve_robe_top_bound:
   id: 15837
   tradeable: false
@@ -90455,6 +90625,7 @@ tangle_gum_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows ]
 seeping_elm_longbow_bound:
   id: 15904
   tradeable: false
@@ -90463,6 +90634,7 @@ seeping_elm_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows ]
 blood_spindle_longbow_bound:
   id: 15905
   tradeable: false
@@ -90471,6 +90643,7 @@ blood_spindle_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 utuku_longbow_bound:
   id: 15906
   tradeable: false
@@ -90479,6 +90652,7 @@ utuku_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 spinebeam_longbow_bound:
   id: 15907
   tradeable: false
@@ -90487,6 +90661,7 @@ spinebeam_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 bovistrangler_longbow_bound:
   id: 15908
   tradeable: false
@@ -90495,6 +90670,7 @@ bovistrangler_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 thigat_longbow_bound:
   id: 15909
   tradeable: false
@@ -90503,6 +90679,7 @@ thigat_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 corpsethorn_longbow_bound:
   id: 15910
   tradeable: false
@@ -90511,6 +90688,7 @@ corpsethorn_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 entgallow_longbow_bound:
   id: 15911
   tradeable: false
@@ -90519,6 +90697,7 @@ entgallow_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 grave_creeper_longbow_bound:
   id: 15912
   tradeable: false
@@ -90527,6 +90706,7 @@ grave_creeper_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 sagittarian_longbow_bound:
   id: 15913
   tradeable: false
@@ -90535,6 +90715,7 @@ sagittarian_longbow_bound:
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 novite_full_helm_bound:
   id: 15914
   tradeable: false
@@ -91020,295 +91201,295 @@ novite_arrows_bound:
   id: 15947
   tradeable: false
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition"
 bathus_arrows_bound:
   id: 15948
   tradeable: false
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 marmaros_arrows_bound:
   id: 15949
   tradeable: false
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 kratonite_arrows_bound:
   id: 15950
   tradeable: false
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 fractite_arrows_bound:
   id: 15951
   tradeable: false
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 zephyrium_arrows_b:
   id: 15952
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 argonite_arrows_bound:
   id: 15953
   tradeable: false
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 katagon_arrows_bound:
   id: 15954
   tradeable: false
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 gorgonite_arrows_bound:
   id: 15955
   tradeable: false
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 promethium_arrows_bound:
   id: 15956
   tradeable: false
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 sagittarian_arrows_bound:
   id: 15957
   tradeable: false
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p_b:
   id: 15958
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p_b:
   id: 15959
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p_b:
   id: 15960
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p_b:
   id: 15961
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p_b:
   id: 15962
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p_b:
   id: 15963
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p_b:
   id: 15964
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p_b:
   id: 15965
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p_b:
   id: 15966
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p_b:
   id: 15967
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p_b:
   id: 15968
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p+_b:
   id: 15969
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p+_b:
   id: 15970
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p+_b:
   id: 15971
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p+_b:
   id: 15972
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p+_b:
   id: 15973
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p+_b:
   id: 15974
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p+_b:
   id: 15975
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p+_b:
   id: 15976
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p+_b:
   id: 15977
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p+_b:
   id: 15978
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p+_b:
   id: 15979
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p++_b:
   id: 15980
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p++_b:
   id: 15981
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p++_b:
   id: 15982
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p++_b:
   id: 15983
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p++_b:
   id: 15984
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p++_b:
   id: 15985
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p++_b:
   id: 15986
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p++_b:
   id: 15987
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p++_b:
   id: 15988
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p++_b:
   id: 15989
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p++_b:
   id: 15990
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
@@ -95407,100 +95588,133 @@ primal_pickaxe_noted:
 tangle_gum_longbow:
   id: 16317
   range: 26.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows ]
 tangle_gum_longbow_noted:
   id: 16318
 seeping_elm_longbow:
   id: 16319
   range: 37.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows ]
 seeping_elm_longbow_noted:
   id: 16320
 blood_spindle_longbow:
   id: 16321
   range: 48.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 blood_spindle_longbow_noted:
   id: 16322
 utuku_longbow:
   id: 16323
   range: 59.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 utuku_longbow_noted:
   id: 16324
 spinebeam_longbow:
   id: 16325
   range: 70.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_longbow_noted:
   id: 16326
 bovistrangler_longbow:
   id: 16327
   range: 81.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 bovistrangler_longbow_noted:
   id: 16328
 thigat_longbow:
   id: 16329
   range: 93.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 thigat_longbow_noted:
   id: 16330
 corpsethorn_longbow:
   id: 16331
   range: 108.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
   weight: 2.267
 corpsethorn_longbow_noted:
   id: 16332
 entgallow_longbow:
   id: 16333
   range: 123.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 entgallow_longbow_noted:
   id: 16334
 grave_creeper_longbow:
   id: 16335
   range: 138.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 grave_creeper_longbow_noted:
   id: 16336
 sagittarian_longbow:
   id: 16337
   range: 158.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A sturdy longbow."
   weight: 2.267
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 sagittarian_longbow_noted:
   id: 16338
 novite_boots:
@@ -96130,288 +96344,288 @@ primal_maul_noted:
 novite_arrows:
   id: 16427
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition"
 bathus_arrows:
   id: 16432
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 marmaros_arrows:
   id: 16437
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 kratonite_arrows:
   id: 16442
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 fractite_arrows:
   id: 16447
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 zephyrium_arrows_2:
   id: 16452
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows:
   id: 16457
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 katagon_arrows:
   id: 16462
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 gorgonite_arrows:
   id: 16467
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 promethium_arrows:
   id: 16472
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 sagittarian_arrows:
   id: 16477
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
 novite_arrows_p:
   id: 16482
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p:
   id: 16487
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p:
   id: 16492
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p:
   id: 16497
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p:
   id: 16502
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows:
   id: 16507
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p:
   id: 16512
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p:
   id: 16517
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p:
   id: 16522
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p:
   id: 16527
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p:
   id: 16532
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p+:
   id: 16537
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p+:
   id: 16542
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p+:
   id: 16547
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p+:
   id: 16552
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p+:
   id: 16557
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p+:
   id: 16562
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p+:
   id: 16567
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p+:
   id: 16572
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p+:
   id: 16577
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p+:
   id: 16582
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p+:
   id: 16587
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 novite_arrows_p++:
   id: 16592
   range_str: 4.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 bathus_arrows_p++:
   id: 16597
   range_str: 8.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 marmaros_arrows_p++:
   id: 16602
   range_str: 13.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 kratonite_arrows_p++:
   id: 16607
   range_str: 17.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 fractite_arrows_p++:
   id: 16612
   range_str: 19.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 zephyrium_arrows_p++:
   id: 16617
   range_str: 21.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 argonite_arrows_p++:
   id: 16622
   range_str: 24.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 katagon_arrows_p++:
   id: 16627
   range_str: 28.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 gorgonite_arrows_p++:
   id: 16632
   range_str: 32.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 promethium_arrows_p++:
   id: 16637
   range_str: 37.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
 sagittarian_arrows_p++:
   id: 16642
   range_str: 46.0
-  slot: "Arrows"
+  slot: "Ammo"
   examine: "Bow ammunition."
   use: "Dungeoneering"
   kept: "Always"
@@ -98126,6 +98340,7 @@ tangle_gum_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows ]
 tangle_gum_shortbow_noted:
   id: 16868
 seeping_elm_shortbow:
@@ -98135,6 +98350,7 @@ seeping_elm_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows ]
 seeping_elm_shortbow_noted:
   id: 16870
 blood_spindle_shortbow:
@@ -98144,6 +98360,7 @@ blood_spindle_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows ]
 blood_spindle_shortbow_noted:
   id: 16872
 utuku_shortbow:
@@ -98153,6 +98370,7 @@ utuku_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows ]
 utuku_shortbow_noted:
   id: 16874
 spinebeam_shortbow:
@@ -98162,6 +98380,7 @@ spinebeam_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_shortbow_noted:
   id: 16876
 bovistrangler_shortbow:
@@ -98171,6 +98390,7 @@ bovistrangler_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows ]
 bovistrangler_shortbow_noted:
   id: 16878
 thigat_shortbow:
@@ -98180,6 +98400,7 @@ thigat_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows ]
 thigat_shortbow_noted:
   id: 16880
 corpsethorn_shortbow:
@@ -98189,6 +98410,7 @@ corpsethorn_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows ]
 corpsethorn_shortbow_noted:
   id: 16882
 entgallow_shortbow:
@@ -98198,6 +98420,7 @@ entgallow_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows ]
 entgallow_shortbow_noted:
   id: 16884
 grave_creeper_shortbow:
@@ -98207,6 +98430,7 @@ grave_creeper_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows ]
 grave_creeper_shortbow_noted:
   id: 16886
 sagittarian_shortbow:
@@ -98216,6 +98440,7 @@ sagittarian_shortbow:
   type: "TwoHanded"
   examine: "A small bow, only effective at short distance."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 sagittarian_shortbow_noted:
   id: 16888
 novite_2h_sword:
@@ -98716,7 +98941,7 @@ primal_rapier:
   weight: 1.814
 primal_rapier_noted:
   id: 16956
-fractite_rapier:
+fractite_rapier_2:
   id: 16957
   str: 38.0
   stab: 38.0
@@ -98732,7 +98957,7 @@ fractite_rapier:
   kept: "Always"
 fractite_rapier_noted_2:
   id: 16958
-gorgonite_rapier:
+gorgonite_rapier_2:
   id: 16959
   str: 96.0
   stab: 67.0
@@ -98747,7 +98972,7 @@ gorgonite_rapier:
   kept: "Always"
 gorgonite_rapier_noted_2:
   id: 16960
-fractite_longsword:
+fractite_longsword_2:
   id: 16961
   str: 49.0
   stab: 42.0
@@ -98763,7 +98988,7 @@ fractite_longsword:
   kept: "Always"
 fractite_longsword_noted_2:
   id: 16962
-gorgonite_longsword:
+gorgonite_longsword_2:
   id: 16963
   str: 114.0
   stab: 71.0
@@ -98779,7 +99004,7 @@ gorgonite_longsword:
   kept: "Always"
 gorgonite_longsword_noted_2:
   id: 16964
-gorgonite_maul:
+gorgonite_maul_2:
   id: 16965
   str: 145.0
   stab: -4.0
@@ -98838,7 +99063,7 @@ gorgonite_kiteshield:
   weight: 5.443
 gorgonite_kiteshield_noted:
   id: 16972
-fractite_2h_sword:
+fractite_2h_sword_2:
   id: 16973
   str: 80.0
   stab: -4.0
@@ -98855,7 +99080,7 @@ fractite_2h_sword:
   kept: "Always"
 fractite_2h_sword_noted_2:
   id: 16974
-spinebeam_shortbow:
+spinebeam_shortbow_2:
   id: 16975
   weight: 1.814
   range: 19.0
@@ -98864,6 +99089,7 @@ spinebeam_shortbow:
   examine: "A small bow, only effective at short distance."
   use: "Dungeoneering"
   kept: "Always"
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
 spinebeam_shortbow_noted_2:
   id: 16976
 tangle_gum_staff:
@@ -99086,7 +99312,7 @@ empowered_air_staff:
   weight: 1.814
 empowered_air_staff_noted:
   id: 17012
-catalytic_staff:
+catalytic_staff_2:
   id: 17013
   magic_damage: 15
   str: 7.0
@@ -101368,7 +101594,7 @@ doomcore_staff:
   weight: 6.0
 doomcore_staff_noted:
   id: 17294
-hexhunter_bow_dungeoneering:
+hexhunter_bow:
   id: 17295
   magic: -2.0
   range: 45.0
@@ -101377,6 +101603,7 @@ hexhunter_bow_dungeoneering:
   type: "TwoHanded"
   examine: "It is stronger against targets with magical powers."
   weight: 1.814
+  ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows, zephyrium_arrows, argonite_arrows, katagon_arrows, gorgonite_arrows, promethium_arrows, sagittarian_arrows ]
 hexhunter_bow_noted:
   id: 17296
 protoleather_boots:
@@ -101895,7 +102122,7 @@ katagon_kiteshield:
   weight: 5.443
 katagon_kiteshield_noted:
   id: 17356
-gorgonite_kiteshield:
+gorgonite_kiteshield_2:
   id: 17357
   stab_def: 56.0
   weight: 5.443
@@ -105652,18 +105879,24 @@ maple_longbow_sighted:
   tradeable: false
   weight: 1.814
   range: 110.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit ]
   kept: "Reclaim"
 magic_longbow_sighted:
   id: 18332
   tradeable: false
   weight: 1.814
   range: 140.0
+  attack_range: 10
+  attack_speed: 6
   slot: "Weapon"
   type: "TwoHanded"
   examine: "It has a sight on it that should improve its performance."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, ice_arrows, broad_arrow, saradomin_arrows, guthix_arrows, zamorak_arrows ]
   kept: "Reclaim"
 arcane_pulse_necklace:
   id: 18333
@@ -105906,8 +106139,11 @@ chaotic_crossbow:
   bank_stacks: false
   range: 120.0
   slot: "Weapon"
+  attack_range: 7
+  attack_speed: 6
   examine: "A small crossbow, only effective at short distance."
   weight: 1.814
+  ammo: [ bronze_bolts, bronze_bolts_p, bronze_bolts_p+, bronze_bolts_p++, opal_bolts, opal_bolts_e, iron_bolts, iron_bolts_p, iron_bolts_p+, iron_bolts_p++, pearl_bolts, pearl_bolts_e, blurite_bolts, jade_bolts, jade_bolts_e, steel_bolts, steel_bolts_p, steel_bolts_p+, steel_bolts_p++, topaz_bolts, topaz_bolts_e, black_bolts, mithril_bolts, mithril_bolts_p, mithril_bolts_p+, mithril_bolts_p++, sapphire_bolts, sapphire_bolts_e, emerald_bolts, emerald_bolts_e, ruby_bolts, ruby_bolts_e, adamant_bolts, adamant_bolts_p, adamant_bolts_p+, adamant_bolts_p++, diamond_bolts, diamond_bolts_e, runite_bolts, runite_bolts_p, runite_bolts_p+, runite_bolts_p++, dragon_bolts, dragon_bolts_e, onyx_bolts, onyx_bolts_e, broad-tipped_bolts ]
 chaotic_crossbow_broken:
   id: 18358
   range: 120.0
@@ -107908,7 +108144,7 @@ twig:
   examine: "A completely ordinary twig."
   use: "Quest"
   kept: "Wilderness"
-dummy_2:
+dummy_3:
   id: 18805
   tradeable: false
   weight: 2.0
@@ -109070,9 +109306,12 @@ saradomin_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Saradomin."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 saradomin_bow_noted:
   id: 19144
 saradomin_bow_lent:
@@ -109084,9 +109323,12 @@ guthix_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Guthix."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 guthix_bow_noted:
   id: 19147
 guthix_bow_lent:
@@ -109098,9 +109340,12 @@ zamorak_bow:
   prayer: 4
   weight: 1.814
   range: 80.0
+  attack_speed: 6
+  attack_range: 10
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bow imbued with the power of Zamorak."
+  ammo: [ bronze_arrow, bronze_fire_arrows_lit, bronze_fire_arrows_unlit, iron_arrow, iron_fire_arrows_lit, iron_fire_arrows_unlit, steel_arrow, steel_fire_arrows_lit, steel_fire_arrows_unlit, mithril_arrow, mithril_fire_arrows_lit, mithril_fire_arrows_unlit, adamant_arrow, adamant_fire_arrows_lit, adamant_fire_arrows_unlit, rune_arrow, rune_fire_arrows_lit, rune_fire_arrows_unlit, saradomin_arrows, guthix_arrows, zamorak_arrows ]
 zamorak_bow_noted:
   id: 19150
 zamorak_bow_lent:
@@ -109109,19 +109354,22 @@ saradomin_arrows:
   id: 19152
   price: 745
   limit: 1000
-  slot: "Arrows"
+  range_str: 60.0
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Saradomin."
 guthix_arrows:
   id: 19157
   price: 701
   limit: 1000
-  slot: "Arrows"
+  range_str: 60.0
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Guthix."
 zamorak_arrows:
   id: 19162
   price: 883
   limit: 1000
-  slot: "Arrows"
+  range_str: 60.0
+  slot: "Ammo"
   examine: "Arrows imbued with the power of Zamorak."
 black_platebody_h1:
   id: 19167
@@ -116032,6 +116280,8 @@ zaryte_bow:
   bank_stacks: false
   range: 120.0
   range_str: 115.0
+  attack_range: 7
+  attack_speed: 5
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A powerful bow imbued with the fury of Zaros."

@@ -16,10 +16,10 @@ fun addProjectile(projectile: Projectile): ChunkUpdate = object : ChunkUpdate {
     override suspend fun encode(writer: ByteWriteChannel) = writer.run {
         writeByte(Protocol.Batch.PROJECTILE_ADD)
         writeByte(projectile.tile.offset(3))
-        writeByte(projectile.id)
         writeByte(projectile.direction.x)
-        writeShort(projectile.direction.y)
+        writeByte(projectile.direction.y)
         writeShort(projectile.index)
+        writeShort(projectile.id)
         writeByte(projectile.startHeight)
         writeByte(projectile.endHeight)
         writeShort(projectile.delay)

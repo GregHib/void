@@ -52,6 +52,21 @@ internal class EffectsTest {
     }
 
     @Test
+    fun `Restarting quietly doesn't re-emit`() {
+        val effect = "effect"
+        entity.start(effect)
+        assertTrue(entity.hasEffect(effect))
+        entity.start(effect, quiet = true)
+        assertTrue(entity.hasEffect(effect))
+        verify(exactly = 1) {
+            events.emit(EffectStart(effect))
+        }
+        verify(exactly = 0) {
+            events.emit(EffectStop(effect))
+        }
+    }
+
+    @Test
     fun `Starting twice will reset effect timer`() {
         val effect = "effect"
         entity.start(effect)

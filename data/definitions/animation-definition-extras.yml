@@ -1017,3 +1017,83 @@ teleport_tablet:
   id: 9597
 teleport_land_tablet:
   id: 9598
+bow_shoot:
+  id: 426
+crossbow_shoot:
+  id: 4230
+cow_hit:
+  id: 150
+cow_death:
+  id: 244
+cow_attack:
+  id: 245
+calf_hit:
+  id: 150
+calf_death:
+  id: 244
+calf_attack:
+  id: 245
+chicken_attack:
+  id: 5387
+chicken_hit:
+  id: 5388
+chicken_death:
+  id: 5389
+goblin_attack:
+  id: 6184
+goblin_hit:
+  id: 6183
+goblin_death:
+  id: 6182
+big_spider_attack:
+  id: 5327
+big_spider_hit:
+  id: 5328
+big_spider_death:
+  id: 5329
+rat_attack:
+  id: 2705
+rat_hit:
+  id: 2706
+player_punch:
+  id: 422
+player_kick:
+  id: 423
+player_death:
+  id: 9055
+sap:
+  id: 12569
+leech:
+  id: 12575
+deflect:
+  id: 12573
+magic_shortbow_special:
+  id: 1074
+zaniks_crossbow_special:
+  id: 11359
+throw_dart:
+  id: 582
+throw_javelin:
+  id: 10501
+throw_morrigans_throwing_axe:
+  id: 10501
+throw_morrigans_throwing_axe_special:
+  id: 10504
+throw_projectile:
+  id: 929
+hand_cannon_shoot:
+  id: 12152
+hand_cannon_special:
+  id: 12174
+hand_cannon_explode:
+  id: 12175
+karils_crossbow_shoot:
+  id: 2075
+sling_rock:
+  id: 14867
+toktz-xil-ul:
+  id: 3353
+throw_chinchompa:
+  id: 2779
+rune_throwing_axe_special:
+  id: 1068

@@ -11,6 +11,8 @@ class Values(
     @JsonIgnore
     val temporary = mutableMapOf<String, Any>()
 
+    fun keys(): Set<String> = keys.union(temporary.keys)
+
     override fun get(key: String): Any? = if (map.containsKey(key)) {
         map[key]
     } else {

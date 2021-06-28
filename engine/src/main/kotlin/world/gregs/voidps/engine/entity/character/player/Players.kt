@@ -13,4 +13,10 @@ data class Players(
     ),
     override val pool: LinkedList<ObjectLinkedOpenHashSet<Player?>> = LinkedList(),
     override val indexed: Array<Player?> = arrayOfNulls(MAX_PLAYERS)
-) : PooledMapList<Player>
+) : PooledMapList<Player> {
+
+    fun get(name: String): Player? {
+        return indexed.firstOrNull { it?.name == name }
+    }
+
+}

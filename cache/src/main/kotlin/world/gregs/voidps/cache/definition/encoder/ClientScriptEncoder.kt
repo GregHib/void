@@ -37,7 +37,7 @@ class ClientScriptEncoder(private val revision634: Boolean = false) : Definition
             writeShort(definition.longArgumentCount)
         }
         val position = position()
-        val table = definition.aHashTableArray9503
+        val table = definition.switchStatementIndices
         if (table.isNullOrEmpty()) {
             writeByte(0)
         } else {

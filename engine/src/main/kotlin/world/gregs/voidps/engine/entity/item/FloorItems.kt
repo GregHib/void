@@ -57,6 +57,22 @@ class FloorItems(
         return item
     }
 
+    fun clear() {
+        chunks.forEach { (_, set) ->
+            set.forEach { item ->
+                if (item.state != FloorItemState.Removed) {
+                    item.state = FloorItemState.Removed
+                    batches.update(item.tile.chunk, removeFloorItem(item))
+                    item.remove<ChunkUpdate>("update")?.let {
+                        batches.removeInitial(item.tile.chunk, it)
+                    }
+                    item.events.emit(Unregistered)
+                }
+            }
+        }
+        chunks.clear()
+    }
+
     /**
      * Spawns a floor item
      * Note: Not concerned with where the item is coming from

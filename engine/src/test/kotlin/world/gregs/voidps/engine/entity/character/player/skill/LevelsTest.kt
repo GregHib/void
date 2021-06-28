@@ -6,7 +6,9 @@ import io.mockk.verify
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import world.gregs.voidps.engine.entity.character.Levels
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.PlayerLevels
 import world.gregs.voidps.engine.event.Events
 
 internal class LevelsTest {
@@ -21,13 +23,13 @@ internal class LevelsTest {
         events = spyk(Events(mockk<Player>(relaxed = true)))
         levels = Levels()
         exp.events = events
-        levels.link(exp, events)
+        levels.link(events, PlayerLevels(exp))
     }
 
     @Test
     fun `Get skill level`() {
         assertEquals(1, levels.get(Skill.Attack))
-        assertEquals(10, levels.get(Skill.Constitution))
+        assertEquals(100, levels.get(Skill.Constitution))
     }
 
     @Test
@@ -99,6 +101,13 @@ internal class LevelsTest {
     }
 
     @Test
+    fun `Boost constitution level`() {
+        exp.set(Skill.Constitution, 1154.0)
+        levels.boost(Skill.Constitution, amount = 40)
+        assertEquals(140, levels.get(Skill.Constitution))
+    }
+
+    @Test
     fun `Drain by fixed level`() {
         exp.set(Skill.Attack, 1154.0)
         levels.drain(Skill.Attack, amount = 4)
@@ -151,6 +160,13 @@ internal class LevelsTest {
     }
 
     @Test
+    fun `Drain constitution level`() {
+        exp.set(Skill.Constitution, 1154.0)
+        levels.drain(Skill.Constitution, amount = 40)
+        assertEquals(60, levels.get(Skill.Constitution))
+    }
+
+    @Test
     fun `Restore by fixed level`() {
         exp.set(Skill.Attack, 1154.0)
         levels.setOffset(Skill.Attack, -9)
@@ -179,6 +195,14 @@ internal class LevelsTest {
         levels.setOffset(Skill.Attack, -2)
         levels.restore(Skill.Attack, amount = 5)
         assertEquals(10, levels.get(Skill.Attack))
+    }
+
+    @Test
+    fun `Restore constitution level`() {
+        exp.set(Skill.Constitution, 1154.0)
+        levels.setOffset(Skill.Constitution, -90)
+        levels.restore(Skill.Constitution, amount = 40)
+        assertEquals(50, levels.get(Skill.Constitution))
     }
 
     @Test

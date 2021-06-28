@@ -7,10 +7,9 @@ import world.gregs.voidps.engine.entity.character.move.running
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.network.encode.sendRunEnergy
 import world.gregs.voidps.utility.Math
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
-import world.gregs.voidps.world.interact.entity.player.energy.energyPercent
+import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 
 on<EffectStart>({ effect == "energy" }) { player: Player ->
     player["energy_tick_job"] = delay(player, 1, loop = true) {
@@ -23,19 +22,22 @@ on<EffectStart>({ effect == "energy" }) { player: Player ->
         }
         if (change != 0) {
             val updated = (energy + change).coerceIn(0, MAX_ENERGY)
-            setEnergy(player, updated)
+            player.runEnergy = updated
             walkWhenOutOfEnergy(player, updated)
         }
     }
 }
 
 on<EffectStop>({ effect == "energy" }) { player: Player ->
-    player.getOrNull<Job>("energy_tick_job")?.cancel()
+    player.remove<Job>("energy_tick_job")?.cancel()
 }
 
 fun getDrainAmount(player: Player): Int {
     val weight = player["weight", 0].coerceIn(0, 64)
-    val decrement = 67 + ((67 * weight) / 64)
+    var decrement = 67 + ((67 * weight) / 64)
+    if (player.hasEffect("hamstring")) {
+        decrement *= 4
+    }
     return -decrement
 }
 
@@ -47,11 +49,6 @@ fun getRestoreAmount(player: Player): Int {
         "music" -> Math.interpolate(agility, 240, 400, 1, 99)
         else -> Math.interpolate(agility, 27, 157, 1, 99)
     }
-}
-
-fun setEnergy(player: Player, energy: Int) {
-    player["energy", true] = energy
-    player.sendRunEnergy(player.energyPercent())
 }
 
 fun walkWhenOutOfEnergy(player: Player, energy: Int) {

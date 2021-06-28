@@ -28,6 +28,20 @@ object Distance {
     }
 
     /**
+     * Check whether [x1], [y1], [plane1] is less than or equal to [radius] from [x2], [y2], [plane2]
+     */
+    fun within(x1: Int, y1: Int, plane1: Int, x2: Int, y2: Int, plane2: Int, radius: Int): Boolean {
+        return plane1 == plane2 && within(x1, y1, x2, y2, radius)
+    }
+
+    /**
+     * Check whether [x1], [y1] is less than or equal to [radius] from [x2], [y2]
+     */
+    fun within(x1: Int, y1: Int, x2: Int, y2: Int, radius: Int): Boolean {
+        return abs(x1 - x2) <= radius && abs(y1 - y2) <= radius
+    }
+
+    /**
      * @return the distance between the two points [x1], [y1] - [x2], [y2] assuming diagonals are twice the cost of cardinal directions
      */
     fun manhattan(x1: Int, y1: Int, x2: Int, y2: Int): Int {

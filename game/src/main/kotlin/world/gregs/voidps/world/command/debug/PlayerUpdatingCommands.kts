@@ -18,7 +18,7 @@ import world.gregs.voidps.world.interact.entity.proj.shoot
 
 val players: Players by inject()
 
-on<Command>({ prefix == "kill" }) { player: Player ->
+on<Command>({ prefix == "kill" }) { _: Player ->
     players.indexed.forEachIndexed { index, bot ->
         if (bot != null && bot.name.startsWith("Bot")) {
             players.remove(bot.tile, bot)
@@ -35,7 +35,7 @@ on<Command>({ prefix == "kill" }) { player: Player ->
     }
 }
 
-on<Command>({ prefix == "players" }) { player: Player ->
+on<Command>({ prefix == "players" }) { _: Player ->
     println("Players: ${players.indexed.filterNotNull().size}")
 }
 
@@ -46,11 +46,10 @@ on<Command>({ prefix == "under" }) { player: Player ->
 }
 
 on<Command>({ prefix == "anim" }) { player: Player ->
-    val id = content.toIntOrNull()
-    when (id) {
-        null -> player.setAnimation(content)
+    when (val id = content.toIntOrNull()) {
+        null -> player.setAnimation(content, override = true)
         -1 -> player.clearAnimation()
-        else -> player.setAnimation(id)// 863
+        else -> player.setAnimation(id, override = true)// 863
     }
 }
 
@@ -60,6 +59,14 @@ on<Command>({ prefix == "gfx" }) { player: Player ->
         null -> player.setGraphic(content)
         -1 -> player.clearGraphic()
         else -> player.setGraphic(id)// 93
+    }
+}
+
+on<Command>({ prefix == "proj" }) { player: Player ->
+    val id = content.toIntOrNull()
+    when(id) {
+        null -> player.shoot(content, player.tile.add(0, 5), delay = 0, flightTime = 400)
+        else -> player.shoot(id, player.tile.add(0, 5), delay = 0, flightTime = 400)
     }
 }
 
@@ -93,14 +100,14 @@ on<Command>({ prefix == "time" }) { player: Player ->
 }
 
 on<Command>({ prefix == "watch" }) { player: Player ->
-    val bot = players.indexed.firstOrNull { it != null && it.name == content }
+    val bot = players.get(content)
     if (bot != null) {
         player.watch(bot)
     }
 }
 
 on<Command>({ prefix == "shoot" }) { player: Player ->
-    player.shoot(15, player.tile.addY(10))
+    player.shoot("15", player.tile.addY(10))
 }
 
 on<Command>({ prefix == "face" }) { player: Player ->

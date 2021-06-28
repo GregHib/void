@@ -47,7 +47,7 @@ class ClientScriptDecoder(cache: world.gregs.voidps.cache.Cache, private val rev
                     hashtable.add(buffer.readInt() to buffer.readInt())
                 }
             }
-            aHashTableArray9503 = list.toTypedArray()
+            switchStatementIndices = list.toTypedArray()
         }
         buffer.position(0)
         name = buffer.readString()

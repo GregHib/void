@@ -2,9 +2,11 @@ package world.gregs.voidps.world.interact.entity.proj
 
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.definition.GraphicDefinitions
 import world.gregs.voidps.engine.event.Event
 import world.gregs.voidps.engine.map.Delta
 import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.utility.get
 
 data class ShootProjectile(
     val id: Int,
@@ -31,16 +33,16 @@ data class ShootProjectile(
         offset: Int = DEFAULT_OFFSET,
         sourceSize: Int = 1
     ) : this(
-        id,
-        tile,
-        target.tile.delta(tile),
-        target,
-        delay,
-        flightTime,
-        startHeight,
-        endHeight,
-        curve,
-        sourceSize * 64 + offset
+        id = id,
+        tile = tile,
+        direction = target.tile.delta(tile),
+        target = target,
+        delay = delay,
+        flightTime = flightTime,
+        startHeight = startHeight,
+        endHeight = endHeight,
+        curve = curve,
+        offset = sourceSize * 64 + offset
     )
 
     companion object {
@@ -53,7 +55,7 @@ data class ShootProjectile(
 }
 
 fun Character.shoot(
-    id: Int,
+    name: String,
     target: Character,
     delay: Int = ShootProjectile.DEFAULT_DELAY,
     flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
@@ -62,6 +64,7 @@ fun Character.shoot(
     curve: Int = ShootProjectile.DEFAULT_CURVE,
     offset: Int = ShootProjectile.DEFAULT_OFFSET
 ) {
+    val id = get<GraphicDefinitions>().getIdOrNull(name) ?: return
     World.events.emit(
         ShootProjectile(
             id = id,
@@ -75,6 +78,28 @@ fun Character.shoot(
             curve = curve,
             offset = size.width * 64 + offset
         )
+    )
+}
+
+fun Character.shoot(
+    name: String,
+    direction: Tile,
+    delay: Int = ShootProjectile.DEFAULT_DELAY,
+    flightTime: Int = ShootProjectile.DEFAULT_FLIGHT,
+    height: Int = ShootProjectile.DEFAULT_HEIGHT,
+    endHeight: Int = height,
+    curve: Int = ShootProjectile.DEFAULT_CURVE,
+    offset: Int = ShootProjectile.DEFAULT_OFFSET
+) {
+    shoot(
+        get<GraphicDefinitions>().getIdOrNull(name) ?: return,
+        direction,
+        delay,
+        flightTime,
+        height,
+        endHeight,
+        curve,
+        offset
     )
 }
 

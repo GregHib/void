@@ -131,7 +131,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0x8)
-            encoder.encode(any(), any())
+            encoder.encodeVisual(any(), any())
             visuals.update = any()
         }
     }
@@ -170,7 +170,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), 0)
-            encoder.encode(any(), any())
+            encoder.encodeVisual(any(), any())
             visuals.addition = any()
         }
     }
@@ -189,7 +189,7 @@ internal class NPCVisualsTaskTest : KoinMock() {
         // Then
         verifyOrder {
             updateTask.writeFlag(any(), addMasks.sum())
-            encoder.encode(any(), any())
+            encoder.encodeVisual(any(), any())
             visuals.addition = any()
         }
     }

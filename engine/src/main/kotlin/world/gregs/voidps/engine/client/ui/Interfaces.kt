@@ -71,7 +71,7 @@ class Interfaces(
     fun refresh() {
         openInterfaces.forEach { name ->
             sendOpen(name)
-            notifyRefreshed(definitions.getId(name), name)
+            notifyRefresh(name)
         }
     }
 
@@ -84,9 +84,10 @@ class Interfaces(
         if (openInterfaces.add(name)) {
             sendOpen(name)
             events.emit(InterfaceOpened(definitions.getId(name), name))
+            notifyRefresh(name)
             return true
         }
-        notifyRefreshed(definitions.getId(name), name)
+        notifyRefresh(name)
         return false
     }
 
@@ -130,8 +131,8 @@ class Interfaces(
         client?.closeInterface(definitions.getId(parent), getIndex(name))
     }
 
-    private fun notifyRefreshed(id: Int, name: String) {
-        events.emit(InterfaceRefreshed(id, name))
+    private fun notifyRefresh(name: String) {
+        events.emit(InterfaceRefreshed(definitions.getId(name), name))
     }
 
     companion object {

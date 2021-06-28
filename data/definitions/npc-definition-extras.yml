@@ -46,6 +46,7 @@ cow:
   style: "crush"
   examine: "Converts grass to beef."
   category: "cow"
+  height: 30
 chicken:
   id: 41
   att: 1
@@ -61,6 +62,7 @@ chicken:
   dcrush: -42
   dmagic: -42
   drange: -42
+  height: 15
   hitpoints: 30
   poisonous: false
   immune_poison: false
@@ -95,7 +97,8 @@ cow_calf:
   slayxp: 6.0
   style: "crush"
   examine: "Young, but still beefy."
-  category: "cow"
+  category: "calf"
+  height: 15
 goblin_mohawk_blue:
   id: 4262
   att: 1
@@ -169,7 +172,7 @@ giant_spider:
   slayxp: 5.0
   style: "stab"
   examine: "I think this spider has been genetically modified."
-  category: "spider"
+  category: "big_spider"
 bob:
   id: 519
   race: "Human"

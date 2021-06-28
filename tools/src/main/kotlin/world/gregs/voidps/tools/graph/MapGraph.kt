@@ -5,6 +5,7 @@ import world.gregs.voidps.cache.Cache
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.entity.obj.Objects
+import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Cuboid
 import world.gregs.voidps.engine.map.collision.Collisions
@@ -18,7 +19,6 @@ import world.gregs.voidps.utility.func.isDoor
 import java.io.DataOutputStream
 import java.io.File
 import java.util.*
-import kotlin.math.abs
 import kotlin.math.sqrt
 import kotlin.system.measureNanoTime
 
@@ -165,7 +165,7 @@ class MapGraph(
         return set
     }
 
-    fun outOfView(start: Tile, end: Tile) = abs(start.x - end.x) >= 15 || abs(start.y - end.y) >= 15
+    fun outOfView(start: Tile, end: Tile) = Distance.within(start.x, start.y, end.x, end.y, 15)
 
     fun getUnlinkedPoints(
         points: Set<Tile>,

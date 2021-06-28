@@ -1,6 +1,6 @@
 package world.gregs.voidps.engine.entity.character
 
-import kotlin.math.abs
+import world.gregs.voidps.engine.map.Distance
 
 interface CharacterTrackingSet<T : Character> {
 
@@ -56,7 +56,7 @@ interface CharacterTrackingSet<T : Character> {
             if (total >= maximum) {
                 return false
             }
-            if (withinView(entity.tile.x, entity.tile.y, x, y, radius)) {
+            if (Distance.within(entity.tile.x, entity.tile.y, x, y, radius)) {
                 track(entity, self)
             }
         }
@@ -80,10 +80,4 @@ interface CharacterTrackingSet<T : Character> {
      * Force refreshes all entities
      */
     fun refresh(self: T? = null)
-
-    companion object {
-        private fun withinView(x: Int, y: Int, x2: Int, y2: Int, radius: Int): Boolean {
-            return abs(x - x2) <= radius && abs(y - y2) <= radius
-        }
-    }
 }

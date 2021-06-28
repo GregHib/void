@@ -1,13 +1,14 @@
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.Unregistered
 import world.gregs.voidps.engine.entity.World
+import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.Moved
-import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.Players
 import world.gregs.voidps.engine.entity.character.player.Viewport
 import world.gregs.voidps.engine.entity.list.MAX_PLAYERS
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.engine.map.Distance
 import world.gregs.voidps.engine.map.chunk.Chunk
 import world.gregs.voidps.engine.map.chunk.DynamicChunks
 import world.gregs.voidps.engine.map.chunk.ReloadChunk
@@ -18,7 +19,6 @@ import world.gregs.voidps.engine.map.region.Xteas
 import world.gregs.voidps.network.encode.dynamicMapRegion
 import world.gregs.voidps.network.encode.mapRegion
 import world.gregs.voidps.utility.inject
-import kotlin.math.abs
 
 /**
  * Keeps track of when players enter and move between regions
@@ -45,21 +45,22 @@ on<RegionLogin>({ it.client != null }) { player: Player ->
     Collision map loading
  */
 on<Registered> { player: Player ->
-    maps.load(player.tile.region)
+    load(player)
 }
 
-on<Moved> { player: Player ->
-    maps.load(player.tile.region)
+on<Moved> { character: Character ->
+    load(character)
 }
 
-on<Moved> { npc: NPC ->
-    maps.load(npc.tile.region)
+fun load(character: Character) {
+    character.tile.region.add(-1, -1).toRectangle(3, 3).toRegions().forEach {
+        maps.load(it)
+    }
 }
 
 /*
     Player regions
  */
-
 on<Registered> { player: Player ->
     playerRegions[player.index - 1] = player.tile.regionPlane.id
 }
@@ -67,10 +68,10 @@ on<Registered> { player: Player ->
 on<Unregistered> { player: Player ->
     playerRegions[player.index - 1] = 0
 }
+
 /*
     Region updating
  */
-
 on<Moved>({ from.regionPlane != to.regionPlane }) { player: Player ->
     playerRegions[player.index - 1] = to.regionPlane.id
 }
@@ -91,9 +92,8 @@ fun needsRegionChange(player: Player) = !inViewOfChunk(player, player.viewport.l
 
 fun inViewOfChunk(player: Player, chunk: Chunk): Boolean {
     val viewport = player.viewport
-    val radius: Int = calculateChunkUpdateRadius(viewport)
-    val delta = player.tile.chunk.delta(chunk)
-    return abs(delta.x) < radius && abs(delta.y) < radius
+    val radius: Int = calculateChunkUpdateRadius(viewport) - 1
+    return Distance.within(player.tile.chunk.x, player.tile.chunk.y, chunk.x, chunk.y, radius)
 }
 
 fun crossedDynamicBoarder(player: Player) = player.viewport.dynamic != inDynamicView(player)

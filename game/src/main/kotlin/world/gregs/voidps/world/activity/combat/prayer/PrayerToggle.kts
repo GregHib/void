@@ -1,11 +1,12 @@
 import world.gregs.voidps.engine.client.variable.*
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.start
+import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.on
+import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.activity.combat.prayer.PrayerActivate
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
-import world.gregs.voidps.world.activity.combat.prayer.PrayerDeactivate
 
 val variables: VariableStore by inject()
 
@@ -16,17 +17,17 @@ on<VariableSet>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Pla
     for (id in variable.values) {
         val value = variable.getValue(id) ?: continue
         if (from.has(value) && !to.has(value)) {
-            player.events.emit(PrayerDeactivate(id, key == ACTIVE_CURSES))
+            player.stop("prayer_${id.toUnderscoreCase()}")
         } else if (!from.has(value) && to.has(value)) {
-            player.events.emit(PrayerActivate(id, key == ACTIVE_CURSES))
+            player.start("prayer_${id.toUnderscoreCase()}")
         }
     }
 }
 
 on<VariableAdded>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    player.events.emit(PrayerActivate(value as String, key == ACTIVE_CURSES))
+    player.start("prayer_${(value as String).toUnderscoreCase()}")
 }
 
 on<VariableRemoved>({ key == ACTIVE_PRAYERS || key == ACTIVE_CURSES }) { player: Player ->
-    player.events.emit(PrayerDeactivate(value as String, key == ACTIVE_CURSES))
+    player.stop("prayer_${(value as String).toUnderscoreCase()}")
 }
