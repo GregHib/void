@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -35,7 +35,7 @@ import kotlin.random.nextInt
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
 
-fun canAttack(player: Player, target: Character): Boolean {
+fun canAttack(player: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
         return false
     }
@@ -46,14 +46,14 @@ fun canAttack(player: Player, target: Character): Boolean {
     return true
 }
 
-private fun getWeaponType(player: Player, weapon: Item?): String {
-    if (player.spell.isNotBlank()) {
+private fun getWeaponType(source: Character, weapon: Item?): String {
+    if (source.spell.isNotBlank()) {
         return "spell"
     }
     return when (weapon?.def?.weaponStyle()) {
         13, 16, 17, 18, 19 -> "range"
-        20 -> if (player.attackType == "aim_and_fire") "range" else "melee"
-        21 -> when (player.attackType) {
+        20 -> if (source.attackType == "aim_and_fire") "range" else "melee"
+        21 -> when (source.attackType) {
             "flare" -> "range"
             "blaze" -> "blaze"
             else -> "melee"
@@ -62,15 +62,29 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
     }
 }
 
-fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
+fun Character.hit(
+    target: Character,
+    weapon: Item? = (this as? Player)?.weapon,
+    type: String = getWeaponType(this, weapon),
+    delay: Int = if (type == "melee") 0 else 2,
+    special: Boolean = (this as? Player)?.specialAttack ?: false
+) {
     val damage = hit(this, target, type, weapon)
     hit(target, damage, weapon, type, delay, special)
 }
 
-fun Player.hit(target: Character, damage: Int, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
+fun Character.hit(
+    target: Character,
+    damage: Int,
+    weapon: Item? = (this as? Player)?.weapon,
+    type: String = getWeaponType(this, weapon),
+    delay: Int = if (type == "melee") 0 else 2,
+    special: Boolean = (this as? Player)?.specialAttack ?: false
+) {
     val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
-    grant(this, type, damage)
-
+    if (this is Player) {
+        grant(this, type, damage)
+    }
     delay(target, delay) {
         hit(this, target, damage, type, weapon, special)
     }
