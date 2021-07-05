@@ -1,0 +1,683 @@
+allotment_seed_drop_table:
+  drops:
+    - name: potato_seed
+      quantity: 1-4
+      chance: 64/128
+    - name: onion_seed
+      quantity: 1-3
+      chance: 32/128
+    - name: cabbage_seed
+      quantity: 1-3
+      chance: 16/128
+    - name: tomato_seed
+      quantity: 1-2
+      chance: 8/128
+    - name: sweetcorn_seed
+      quantity: 1-2
+      chance: 4/128
+    - name: strawberry_seed
+      amount: 1
+      chance: 2/128
+    - name: watermelon_seed
+      amount: 1
+      chance: 1/128
+    - name: snape_grass_seed
+      amount: 1
+      chance: 1/128
+general_seeds:
+  # TODO npc combatLevel * 10
+  drops:
+    - table: allotment_seed_subtable
+      chance: 485/0
+    - table: hops_seed_subtable
+      chance: 728/0
+    - table: flower_seed_subtable
+      chance: 850/0
+    - table: bush_seed_subtable
+      chance: 947/0
+    - table: herb_seed_subtable
+      chance: 995/0
+    - table: special_seed_subtable
+      chance: 1000/0
+allotment_seed_subtable:
+  drops:
+    - name: potato_seed
+      amount: 4
+      chance: 368/1008
+    - name: onion_seed
+      amount: 4
+      chance: 276/1008
+    - name: cabbage_seed
+      amount: 4
+      chance: 184/1008
+    - name: tomato_seed
+      amount: 3
+      chance: 92/1008
+    - name: sweetcorn_seed
+      amount: 3
+      chance: 46/1008
+    - name: strawberry_seed
+      amount: 2
+      chance: 23/1008
+    - name: watermelon_seed
+      amount: 2
+      chance: 11/1008
+    - name: snape_grass_seed
+      amount: 2
+      chance: 8/1008
+hops_seed_subtable:
+  total: 1000
+  drops:
+    - name: barley_seed
+      amount: 4
+      chance: 229/1000
+    - name: hammerstone_seed
+      amount: 3
+      chance: 228/1000
+    - name: asgarnian_seed
+      amount: 3
+      chance: 172/1000
+    - name: jute_seed
+      amount: 2
+      chance: 171/1000
+    - name: yanillian_seed
+      amount: 2
+      chance: 114/1000
+    - name: krandorian_seed
+      amount: 2
+      chance: 57/1000
+    - name: wildblood_seed
+      amount: 1
+      chance: 29/1000
+flower_seed_subtable:
+  drops:
+    - name: marigold_seed
+      amount: 1
+      chance: 376/1000
+    - name: nasturtium_seed
+      amount: 1
+      chance: 249/1000
+    - name: rosemary_seed
+      amount: 1
+      chance: 161/1000
+    - name: woad_seed
+      amount: 1
+      chance: 119/1000
+    - name: limpwurt_seed
+      amount: 1
+      chance: 95/1000
+bush_seed_subtable:
+  drops:
+    - name: redberry_seed
+      amount: 1
+      chance: 400/1000
+    - name: cadavaberry_seed
+      amount: 1
+      chance: 280/1000
+    - name: dwellberry_seed
+      amount: 1
+      chance: 200/1000
+    - name: jangerberry_seed
+      amount: 1
+      chance: 80/1000
+    - name: whiteberry_seed
+      amount: 1
+      chance: 29/1000
+    - name: poison_ivy_seed
+      amount: 1
+      chance: 11/1000
+herb_seed_subtable:
+  drops:
+    - name: guam_seed
+      amount: 1
+      chance: 320/1000
+    - name: marrentill_seed
+      amount: 1
+      chance: 218/1000
+    - name: tarromin_seed
+      amount: 1
+      chance: 149/1000
+    - name: harralander_seed
+      amount: 1
+      chance: 101/1000
+    - name: ranarr_seed
+      amount: 1
+      chance: 69/1000
+    - name: toadflax_seed
+      amount: 1
+      chance: 47/1000
+    - name: irit_seed
+      amount: 1
+      chance: 32/1000
+    - name: avantoe_seed
+      amount: 1
+      chance: 22/1000
+    - name: kwuarm_seed
+      amount: 1
+      chance: 15/1000
+    - name: snapdragon_seed
+      amount: 1
+      chance: 10/1000
+    - name: cadantine_seed
+      amount: 1
+      chance: 7/1000
+    - name: lantadyme_seed
+      amount: 1
+      chance: 5/1000
+    - name: dwarf_weed_seed
+      amount: 1
+      chance: 3/1000
+    - name: torstol_seed
+      amount: 1
+      chance: 2/1000
+special_seed_subtable:
+  drops:
+    - name: mushroom_spore
+      amount: 1
+      chance: 500/1100
+    - name: belladonna_seed
+      amount: 1
+      chance: 300/1100
+    - name: cactus_seed
+      amount: 1
+      chance: 200/1100
+    - name: potato_cactus_seed
+      amount: 1
+      chance: 100/1100
+rare_seed_drop_table:
+  drops:
+    - name: toadflax_seed
+      amount: 1
+      chance: 47/238
+    - name: irit_seed
+      amount: 1
+      chance: 32/238
+    - name: belladonna_seed
+      amount: 1
+      chance: 31/238
+    - name: avantoe_seed
+      amount: 1
+      chance: 22/238
+    - name: poison_ivy_seed
+      amount: 1
+      chance: 22/238
+    - name: cactus_seed
+      amount: 1
+      chance: 21/238
+    - name: kwuarm_seed
+      amount: 1
+      chance: 15/238
+    - name: potato_cactus_seed
+      amount: 1
+      chance: 15/238
+    - name: snapdragon_seed
+      amount: 1
+      chance: 10/238
+    - name: cadantine_seed
+      amount: 1
+      chance: 7/238
+    - name: lantadyme_seed
+      amount: 1
+      chance: 5/238
+    - name: snape_grass_seed
+      amount: 3
+      chance: 4/238
+    - name: dwarf_weed_seed
+      amount: 1
+      chance: 3/238
+    - name: torstol_seed
+      amount: 1
+      chance: 2/238
+tree_herb_seed_drop_table:
+  drops:
+    - name: ranarr_seed
+      amount: 1
+      chance: 30/250
+    - name: snapdragon_seed
+      amount: 1
+      chance: 28/250
+    - name: torstol_seed
+      amount: 1
+      chance: 22/250
+    - name: watermelon_seed
+      amount: 15
+      chance: 21/250
+    - name: willow_seed
+      amount: 1
+      chance: 20/250
+    - name: mahogany_seed
+      amount: 1
+      chance: 18/250
+    - name: maple_seed
+      amount: 1
+      chance: 18/250
+    - name: teak_seed
+      amount: 1
+      chance: 18/250
+    - name: yew_seed
+      amount: 1
+      chance: 18/250
+    - name: papaya_tree_seed
+      amount: 1
+      chance: 14/250
+    - name: magic_seed
+      amount: 1
+      chance: 11/250
+    - name: palm_tree_seed
+      amount: 1
+      chance: 10/250
+    - name: spirit_seed
+      amount: 1
+      chance: 4/250
+    - name: dragonfruit_tree_seed
+      amount: 1
+      chance: 6/250
+    - name: celastrus_seed
+      amount: 1
+      chance: 4/250
+    - name: redwood_tree_seed
+      amount: 1
+      chance: 4/250
+uncommon_seed_drop_table:
+  drops:
+    - name: limpwurt_seed
+      amount: 1
+      chance: 137/1048
+    - name: strawberry_seed
+      amount: 1
+      chance: 131/1048
+    - name: marrentill_seed
+      amount: 1
+      chance: 125/1048
+    - name: jangerberry_seed
+      amount: 1
+      chance: 92/1048
+    - name: tarromin_seed
+      amount: 1
+      chance: 85/1048
+    - name: wildblood_seed
+      amount: 1
+      chance: 83/1048
+    - name: watermelon_seed
+      amount: 1
+      chance: 63/1048
+    - name: harralander_seed
+      amount: 1
+      chance: 56/1048
+    - name: snape_grass_seed
+      amount: 1
+      chance: 40/1048
+    - name: ranarr_seed
+      amount: 1
+      chance: 39/1048
+    - name: whiteberry_seed
+      amount: 1
+      chance: 34/1048
+    - name: mushroom_spore
+      amount: 1
+      chance: 29/1048
+    - name: toadflax_seed
+      amount: 1
+      chance: 27/1048
+    - name: belladonna_seed
+      amount: 1
+      chance: 18/1048
+    - name: irit_seed
+      amount: 1
+      chance: 18/1048
+    - name: poison_ivy_seed
+      amount: 1
+      chance: 13/1048
+    - name: avantoe_seed
+      amount: 1
+      chance: 12/1048
+    - name: cactus_seed
+      amount: 1
+      chance: 12/1048
+    - name: kwuarm_seed
+      amount: 1
+      chance: 9/1048
+    - name: potato_cactus_seed
+      amount: 1
+      chance: 8/1048
+    - name: snapdragon_seed
+      amount: 1
+      chance: 5/1048
+    - name: cadantine_seed
+      amount: 1
+      chance: 4/1048
+    - name: lantadyme_seed
+      amount: 1
+      chance: 3/1048
+    - name: dwarf_weed_seed
+      amount: 1
+      chance: 2/1048
+    - name: torstol_seed
+      amount: 1
+      chance: 1/1048
+herb_drop_table:
+  drops:
+    - name: grimy_guam_leaf
+      amount: 1
+      chance: 32/128
+    - name: grimy_marrentill
+      amount: 1
+      chance: 24/128
+    - name: grimy_tarromin
+      amount: 1
+      chance: 18/128
+    - name: grimy_harralander
+      amount: 1
+      chance: 14/128
+    - name: grimy_ranarr_weed
+      amount: 1
+      chance: 11/128
+    - name: grimy_irit_leaf
+      amount: 1
+      chance: 8/128
+    - name: grimy_avantoe
+      amount: 1
+      chance: 6/128
+    - name: grimy_kwuarm
+      amount: 1
+      chance: 5/128
+    - name: grimy_cadantine
+      amount: 1
+      chance: 4/128
+    - name: grimy_lantadyme
+      amount: 1
+      chance: 3/128
+    - name: grimy_dwarf_weed
+      amount: 1
+      chance: 3/128
+useful_herb_drop_table:
+  drops:
+    - name: grimy_avantoe_noted
+      amount: 1
+      chance: 5/16
+    - name: grimy_snapdragon_noted
+      amount: 1
+      chance: 4/16
+    - name: grimy_ranarr_weed_noted
+      amount: 1
+      chance: 4/16
+    - name: grimy_torstol_noted
+      amount: 1
+      chance: 3/16
+runes_and_ammunition:
+  drops:
+    - name: nature_rune
+      amount: 67
+      chance: 3/128
+    - name: adamant_javelin
+      amount: 20
+      chance: 2/128
+    - name: death_rune
+      amount: 45
+      chance: 2/128
+    - name: law_rune
+      amount: 45
+      chance: 2/128
+    - name: rune_arrow
+      amount: 42
+      chance: 2/128
+    - name: steel_arrow
+      amount: 150
+      chance: 2/128
+weapons_and_armour:
+  drops:
+    - name: rune_2h_sword
+      amount: 1
+      chance: 3/128
+    - name: rune_battleaxe
+      amount: 1
+      chance: 3/128
+    - name: rune_sq_shield
+      amount: 1
+      chance: 2/128
+    - name: dragon_med_helm
+      amount: 1
+      chance: 1/128
+    - name: rune_kiteshield
+      amount: 1
+      chance: 1/128
+other:
+  drops:
+    - name: coins
+      amount: 3000
+      chance: 21/128
+    - name: loop_half_of_key
+      amount: 1
+      chance: 20/128
+    - name: tooth_half_of_key
+      amount: 1
+      chance: 20/128
+    - name: runite_bar
+      amount: 1
+      chance: 5/128
+    - name: dragonstone
+      amount: 1
+      chance: 2/128
+    - name: silver_ore_noted
+      amount: 100
+      chance: 2/128
+subtables:
+  drops:
+    - name: gem_drop_table
+      amount: 1
+      chance: 20/128
+    - name: mega-rare_drop_table
+      amount: 1
+      chance: 15/128
+gem_drop_table:
+  drops:
+    - name: nothing
+      amount: 0
+      chance: 63/128
+    - name: uncut_sapphire
+      amount: 1
+      chance: 32/128
+    - name: uncut_emerald
+      amount: 1
+      chance: 16/128
+    - name: uncut_ruby
+      amount: 1
+      chance: 8/128
+    - name: talisman
+      amount: 1
+      chance: 3/128
+    - name: uncut_diamond
+      amount: 1
+      chance: 2/128
+    - name: rune_javelin
+      amount: 5
+      chance: 1/128
+    - name: loop_half_of_key
+      amount: 1
+      chance: 1/128
+    - name: tooth_half_of_key
+      amount: 1
+      chance: 1/128
+    - name: mega-rare_drop_table
+      amount: 1
+      chance: 1/128
+talisman_drop_table:
+  drops:
+    - name: air_talisman
+      amount: 1
+      chance: 10/70
+    - name: body_talisman
+      amount: 1
+      chance: 10/70
+    - name: earth_talisman
+      amount: 1
+      chance: 10/70
+    - name: fire_talisman
+      amount: 1
+      chance: 10/70
+    - name: mind_talisman
+      amount: 1
+      chance: 10/70
+    - name: water_talisman
+      amount: 1
+      chance: 10/70
+    - name: cosmic_talisman
+      amount: 1
+      chance: 4/70
+    - name: chaos_talisman
+      amount: 1
+      chance: 3/70
+    - name: nature_talisman
+      amount: 1
+      chance: 3/70
+superior_drop_table:
+  drops:
+    - name: dust_battlestaff
+      amount: 1
+      chance: 3/8
+    - name: mist_battlestaff
+      amount: 1
+      chance: 3/8
+mega-rare_drop_table:
+  total: 128
+  drops:
+    - name: nothing
+      amount: 0
+      chance: 113
+    - name: rune_spear
+      amount: 1
+      chance: 8
+    - name: shield_left_half
+      amount: 1
+      chance: 4
+    - name: dragon_spear
+      amount: 1
+      chance: 3
+cow_drop_table:
+  drops:
+    - table:
+        chance: 1/1
+        drops:
+          - name: cowhide
+            amount: 1
+            chance: 1/1
+          - name: raw_beef
+            amount: 1
+            chance: 1/1
+          - name: bones
+            amount: 1
+            chance: 1/1
+    - table:
+        chance: 1/1
+        drops:
+          - name: easy_clue_scroll
+            amount: 1
+            chance: 1/128
+chicken_drop_table:
+  drops:
+    - table:
+        chance: 1/1
+        drops:
+          - name: raw_chicken
+            amount: 1
+            chance: 1/1
+          - name: bones
+            amount: 1
+            chance: 1/1
+    - table:
+        chance: 1/1
+        drops:
+          - name: feather
+            amount: 5
+            chance: 64/128
+          - name: feather
+            amount: 15
+            chance: 32/128
+    - table:
+        chance: 1/1
+        drops:
+          - name: easy_clue_scroll
+            amount: 1
+            chance: 1/300
+rat_drop_table:
+  drops:
+    - table:
+        chance: 1/1
+        drops:
+          - name: bones
+            amount: 1
+            chance: 1/1
+    - table:
+        chance: 1/1
+        drops:
+          - name: rat_bone
+            amount: 1
+            chance: 1/4
+goblin_drop_table:
+  drops:
+    - table:
+        chance: 1/1
+        drops:
+          - name: bones
+            amount: 1
+            chance: 1/1
+    - table:
+        chance: 1/1
+        drops:
+          - name: bronze_sq_shield
+            amount: 1
+            chance: 3/128
+          - name: bronze_spear
+            amount: 1
+            chance: 4/128
+          - name: body_rune
+            amount: 7
+            chance: 5/128
+          - name: water_rune
+            amount: 6
+            chance: 6/128
+          - name: earth_rune
+            amount: 4
+            chance: 3/128
+          - name: bronze_bolts
+            amount: 8
+            chance: 3/128
+          - name: coins
+            amount: 5
+            chance: 28/128
+          - name: coins
+            amount: 9
+            chance: 3/128
+          - name: coins
+            amount: 15
+            chance: 3/128
+          - name: coins
+            amount: 20
+            chance: 2/128
+          - name: coins
+            amount: 1
+            chance: 1/128
+          - name: nothing
+            amount: 0
+            chance: 38/128
+          - name: hammer
+            amount: 1
+            chance: 15/128
+          - name: goblin_book
+            amount: 1
+            chance: 2/128
+          - name: goblin_mail
+            amount: 1
+            chance: 5/128
+          - name: chefs_hat
+            amount: 1
+            chance: 3/128
+          - name: beer
+            amount: 1
+            chance: 2/128
+          - name: brass_necklace
+            amount: 1
+            chance: 1/128
+          - name: air_talisman
+            amount: 1
+            chance: 1/128
