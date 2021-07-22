@@ -1097,3 +1097,75 @@ throw_chinchompa:
   id: 2779
 rune_throwing_axe_special:
   id: 1068
+dagger_stab:
+  id: 13049
+dagger_slash:
+  id: 395
+dagger_block:
+  id: 403
+longsword_chop:
+  id: 12311
+longsword_slash:
+  id: 15071
+longsword_lunge:
+  id: 12310
+longsword_block:
+  id: 15074
+sword_stab:
+  id: 13049
+sword_slash:
+  id: 13048
+block:
+  id: 424
+2h_sword_slash:
+  id: 7050
+2h_sword_block:
+  id: 7041
+scimitar_slash:
+  id: 15071
+scimitar_block:
+  id: 15074
+spear_block:
+  id: 430
+spear_swipe:
+  id: 440
+spear_pound:
+  id: 429
+spear_lunge:
+  id: 428
+mace_block:
+  id: 403
+mace_pound:
+  id: 401
+mace_spike:
+  id: 400
+claw_chop:
+  id: 393
+claw_slash:
+  id: 395
+claw_lunge:
+  id: 396
+claw_block:
+  id: 397
+pickaxe_spike:
+  id: 400
+pickaxe_smash:
+  id: 401
+pickaxe_impale:
+  id: 402
+pickaxe_block:
+  id: 403
+warhammer_block:
+  id: 397
+warhammer_pound:
+  id: 393
+warhammer_pummel:
+  id: 395
+hatchet_block:
+  id: 397
+hatchet_chop:
+  id: 393
+hatchet_hack:
+  id: 395
+hatchet_smash:
+  id: 401
