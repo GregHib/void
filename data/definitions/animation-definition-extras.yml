@@ -1169,3 +1169,99 @@ hatchet_hack:
   id: 395
 hatchet_smash:
   id: 401
+guthans_spear_attack:
+  id: 2080
+guthans_spear_block:
+  id: 12008
+veracs_flail_attack:
+  id: 2062
+veracs_flail_block:
+  id: 2063
+torags_hammers_attack:
+  id: 2068
+dharoks_greataxe_attack:
+  id: 2066
+dharoks_greataxe_smash:
+  id: 2067
+dharoks_greataxe_block:
+  id: 2063
+boxing_gloves_attack:
+  id: 3678
+boxing_gloves_block:
+  id: 3679
+whip_flick:
+  id: 11968
+whip_slash:
+  id: 11969
+whip_deflect:
+  id: 11970
+whip_block:
+  id: 11974
+anchor_attack:
+  id: 5865
+anchor_block:
+  id: 5866
+granite_maul_attack:
+  id: 1665
+granite_maul_block:
+  id: 1666
+tzhaar_ket_om_attack:
+  id: 1665
+tzhaar_ket_om_block:
+  id: 1666
+godsword_attack:
+  id: 11979
+godsword_smash:
+  id: 11980
+godsword_block:
+  id: 11981
+godsword_hit:
+  id: 12022
+zamorakian_spear_pound:
+  id: 12005
+zamorakian_spear_swipe:
+  id: 12006
+zamorakian_spear_lunge:
+  id: 12007
+zamorakian_spear_block:
+  id: 12008
+maul_attack:
+  id: 13691
+maul_block:
+  id: 13042
+vestas_longsword_attack:
+  id: 12311
+vestas_longsword_lunge:
+  id: 12310
+vestas_longsword_block:
+  id: 388
+korasis_sword_chop:
+  id: 12028
+korasis_sword_slash:
+  id: 12029
+korasis_sword_block:
+  id: 12030
+staff_attack:
+  id: 419
+staff_block:
+  id: 420
+staff_of_light_jab:
+  id: 13040
+staff_of_light_swipe:
+  id: 15071
+staff_of_light_fend:
+  id: 15072
+staff_of_light_block:
+  id: 13043
+dragon_dagger_attack:
+  id: 376
+dragon_dagger_slash:
+  id: 377
+dragon_dagger_block:
+  id: 403
+defender_block:
+  id: 4177
+book_block:
+  id: 420
+shield_block:
+  id: 1156

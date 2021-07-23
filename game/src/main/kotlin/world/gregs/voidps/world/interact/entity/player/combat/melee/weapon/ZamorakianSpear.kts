@@ -12,13 +12,13 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isSword(item: Item?) = item != null && (item.name.endsWith("sword") || item.name.endsWith("rapier"))
+fun isZSpear(item: Item?) = item != null && item.name.startsWith("zamorakian_spear")
 
-on<Registered>({ isSword(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isZSpear(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isSword(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isZSpear(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,10 +27,10 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isSword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("sword_${
+on<CombatSwing>({ !swung() && isZSpear(it.weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("zamorakian_spear_${
         when (player.attackType) {
-            "slash", "block" -> "slash"
+            "block" -> "lunge"
             else -> player.attackType
         }
     }")
@@ -38,6 +38,6 @@ on<CombatSwing>({ !swung() && isSword(it.weapon) }, Priority.LOW) { player: Play
     delay = 4
 }
 
-on<CombatHit>({ isSword(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("block")
+on<CombatHit>({ isZSpear(weapon) }) { player: Player ->
+    player.setAnimation("zamorakian_spear_block")
 }

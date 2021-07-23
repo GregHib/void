@@ -10,15 +10,18 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isSword(item: Item?) = item != null && (item.name.endsWith("sword") || item.name.endsWith("rapier"))
+fun isToragsHammers(item: Item?) = item != null && item.name.startsWith("torags_hammers")
 
-on<Registered>({ isSword(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isToragsHammers(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isSword(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isToragsHammers(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,17 +30,12 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isSword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("sword_${
-        when (player.attackType) {
-            "slash", "block" -> "slash"
-            else -> player.attackType
-        }
-    }")
+on<CombatSwing>({ !swung() && isToragsHammers(it.weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("torags_hammers_attack")
     player.hit(target)
-    delay = 4
+    delay = 5
 }
 
-on<CombatHit>({ isSword(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isToragsHammers(weapon) }) { player: Player ->
     player.setAnimation("block")
 }

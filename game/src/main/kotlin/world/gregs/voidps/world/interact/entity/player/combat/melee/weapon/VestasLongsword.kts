@@ -12,13 +12,13 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isSword(item: Item?) = item != null && (item.name.endsWith("sword") || item.name.endsWith("rapier"))
+fun isVestas(item: Item?) = item != null && item.name.startsWith("vestas_longsword")
 
-on<Registered>({ isSword(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isVestas(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isSword(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isVestas(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,17 +27,17 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isSword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("sword_${
+on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("vestas_longsword_${
         when (player.attackType) {
-            "slash", "block" -> "slash"
-            else -> player.attackType
+            "lunge" -> "lunge"
+            else -> "attack"
         }
     }")
     player.hit(target)
-    delay = 4
+    delay = 5
 }
 
-on<CombatHit>({ isSword(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("block")
+on<CombatHit>({ isVestas(weapon) }) { player: Player ->
+    player.setAnimation("vestas_longsword_block")
 }
