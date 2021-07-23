@@ -45,13 +45,13 @@ data class CombatTargetStrategy(
             }
             // diagonal
             if (attackDistance <= 1) {
-                if (x > target.tile.x && y > target.tile.y) {// ne
+                if (x > target.tile.x + target.size.width - 1 && y > target.tile.y + target.size.height - 1) {// ne
                     return false
                 }
-                if (x < target.tile.x && y > target.tile.y) {// nw
+                if (x < target.tile.x && y > target.tile.y + target.size.height - 1) {// nw
                     return false
                 }
-                if (x > target.tile.x && y < target.tile.y) {// se
+                if (x > target.tile.x + target.size.width - 1 && y < target.tile.y) {// se
                     return false
                 }
                 if (x < target.tile.x && y < target.tile.y) {// sw
