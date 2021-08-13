@@ -31,7 +31,12 @@ fun updateWeapon(player: Player, weapon: Item) {
 }
 
 on<CombatSwing>({ !swung() && isGreatAxe(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("dharoks_greataxe_attack")
+    player.setAnimation("dharoks_greataxe_${
+        when (player.attackType) {
+            "smash" -> "smash"
+            else -> "attack"
+        }
+    }")
     player.hit(target)
     delay = 7
 }

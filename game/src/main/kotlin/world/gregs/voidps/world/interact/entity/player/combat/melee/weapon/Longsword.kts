@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isLongsword(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isLongsword(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("longsword_${
         when (player.attackType) {
             "slash", "block" -> "slash"

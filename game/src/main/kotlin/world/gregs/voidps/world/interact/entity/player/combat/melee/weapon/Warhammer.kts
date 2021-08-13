@@ -30,8 +30,8 @@ fun updateWeapon(player: Player, weapon: Item) {
 on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("warhammer_${
         when (player.attackType) {
-            "block" -> "pound"
-            else -> player.attackType
+            "pummel" -> "pummel" 
+            else -> "pound"
         }
     }")
     player.hit(target)

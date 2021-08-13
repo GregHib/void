@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isMace(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isMace(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("mace_${
         when (player.attackType) {
             "pummel", "block" -> "pound"

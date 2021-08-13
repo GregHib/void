@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isDagger(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isDagger(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("dagger_${
         when (player.attackType) {
             "lunge", "slash" -> "slash"

@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 
 fun isWarSpear(item: Item?) = item != null && item.name.startsWith("guthans_warspear")
 
@@ -31,7 +28,12 @@ fun updateWeapon(player: Player, weapon: Item) {
 }
 
 on<CombatSwing>({ !swung() && isWarSpear(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("guthans_spear_attack")
+    player.setAnimation("guthans_spear_${
+        when (player.attackType) {
+            "swipe" -> "swipe"
+            else -> "attack"
+        }
+    }")
     player.hit(target)
     delay = 5
 }

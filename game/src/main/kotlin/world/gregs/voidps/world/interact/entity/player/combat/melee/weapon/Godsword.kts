@@ -28,12 +28,7 @@ fun updateWeapon(player: Player, weapon: Item) {
 }
 
 on<CombatSwing>({ !swung() && isGodsword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("godsword_${
-        when (player.attackType) {
-            "chop" -> "slash"
-            else -> player.attackType
-        }
-    }")
+    player.setAnimation("godsword_${player.attackType}")
     player.hit(target)
     delay = 6
 }

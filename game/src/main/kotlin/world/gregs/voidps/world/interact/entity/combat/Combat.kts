@@ -9,6 +9,7 @@ import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
@@ -47,6 +48,7 @@ fun attack(player: Player, target: Character) {
                     break
                 }
                 val swing = CombatSwing(target)
+                player.face(target)
                 player.events.emit(swing)
                 val nextDelay = swing.delay
                 if (nextDelay == null || nextDelay < 0) {

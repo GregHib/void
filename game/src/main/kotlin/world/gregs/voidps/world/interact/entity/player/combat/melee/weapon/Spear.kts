@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isSpear(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isSpear(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("spear_${
         when (player.attackType) {
             "block" -> "lunge"

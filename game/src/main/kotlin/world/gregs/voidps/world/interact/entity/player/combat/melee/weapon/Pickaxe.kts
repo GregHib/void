@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isPickaxe(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isPickaxe(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("pickaxe_${
         when (player.attackType) {
             "block" -> "spike"

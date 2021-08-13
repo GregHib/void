@@ -12,13 +12,13 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isWarhammer(item: Item?) = item != null && item.name.endsWith("warhammer")
+fun isHatchet(item: Item?) = item != null && item.name.endsWith("hatchet")
 
-on<Registered>({ isWarhammer(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isHatchet(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isWarhammer(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isHatchet(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,8 +27,8 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("warhammer_${
+on<CombatSwing>({ !swung() && isHatchet(it.weapon) }, Priority.LOWER) { player: Player ->
+    player.setAnimation("hatchet_${
         when (player.attackType) {
             "block" -> "chop"
             else -> player.attackType
@@ -38,6 +38,6 @@ on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOW) { player: 
     delay = 6
 }
 
-on<CombatHit>({ isWarhammer(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("warhammer_block")
+on<CombatHit>({ isHatchet(weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("hatchet_block")
 }

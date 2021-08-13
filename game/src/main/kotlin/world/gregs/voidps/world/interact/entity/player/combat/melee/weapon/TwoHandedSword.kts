@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 
 fun is2hSword(item: Item?) = item != null && item.name.endsWith("2h_sword")
 
@@ -31,11 +28,11 @@ fun updateWeapon(player: Player, weapon: Item) {
 }
 
 on<CombatSwing>({ !swung() && is2hSword(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("2h_sword_slash")
+    player.setAnimation("2h_sword_${player.attackType}")
     player.hit(target)
     delay = 7
 }
 
 on<CombatHit>({ is2hSword(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("2h_sword_block")
+    player.setAnimation("2h_sword_hit")
 }

@@ -1117,12 +1117,20 @@ sword_slash:
   id: 13048
 block:
   id: 424
+2h_sword_chop:
+  id: 7042
 2h_sword_slash:
-  id: 7050
-2h_sword_block:
   id: 7041
+2h_sword_smash:
+  id: 7048
+2h_sword_block:
+  id: 7049
+2h_sword_hit:
+  id: 7050
 scimitar_slash:
   id: 15071
+scimitar_lunge:
+  id: 15072
 scimitar_block:
   id: 15074
 spear_block:
@@ -1171,6 +1179,8 @@ hatchet_smash:
   id: 401
 guthans_spear_attack:
   id: 2080
+guthans_spear_swipe:
+  id: 2081
 guthans_spear_block:
   id: 12008
 veracs_flail_attack:
@@ -1191,7 +1201,7 @@ boxing_gloves_block:
   id: 3679
 whip_flick:
   id: 11968
-whip_slash:
+whip_lash:
   id: 11969
 whip_deflect:
   id: 11970
@@ -1209,7 +1219,9 @@ tzhaar_ket_om_attack:
   id: 1665
 tzhaar_ket_om_block:
   id: 1666
-godsword_attack:
+godsword_chop:
+  id: 11978
+godsword_slash:
   id: 11979
 godsword_smash:
   id: 11980

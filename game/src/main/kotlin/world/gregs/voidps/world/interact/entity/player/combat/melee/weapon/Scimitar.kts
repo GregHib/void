@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 
 fun isScimitar(item: Item?) = item != null && item.name.endsWith("scimitar")
 
@@ -30,8 +27,13 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isScimitar(it.weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("scimitar_slash")
+on<CombatSwing>({ !swung() && isScimitar(it.weapon) }, Priority.LOWER) { player: Player ->
+    player.setAnimation("scimitar_${
+        when (player.attackType) {
+            "lunge" -> "lunge"
+            else -> "slash"
+        }
+    }")
     player.hit(target)
     delay = 4
 }

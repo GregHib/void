@@ -30,7 +30,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isStaff(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isStaff(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("staff_attack")
     player.hit(target)
     delay = 4
