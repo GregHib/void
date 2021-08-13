@@ -22176,7 +22176,6 @@ abyssal_whip:
   slash: 82.0
   slot: "Weapon"
   examine: "A weapon from the Abyss."
-  spec_acc_multiplier: 1.25
 abyssal_whip_noted:
   id: 4152
 granite_maul:

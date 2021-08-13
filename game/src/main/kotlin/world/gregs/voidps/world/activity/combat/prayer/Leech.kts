@@ -111,7 +111,7 @@ on<CombatDamage>({ it.hasEffect("prayer_leech_energy") && target is Player }) { 
         return@on
     }
     val amount = MAX_ENERGY / 10
-    target.runEnergy = (energy - amount).coerceAtLeast(0)
+    target.runEnergy = energy - amount
     cast(player, target, false, "energy")
 
     energy = player.runEnergy
@@ -119,7 +119,7 @@ on<CombatDamage>({ it.hasEffect("prayer_leech_energy") && target is Player }) { 
         drainMessage(player, "run_energy")
         return@on
     }
-    target.runEnergy = (energy + amount).coerceAtMost(MAX_ENERGY)
+    target.runEnergy = energy + amount
     boostMessage(player, "Run Energy")
 }
 

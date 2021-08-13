@@ -774,3 +774,5 @@ rune_throwing_axe_special_throw:
   id: 257
 rune_throwing_axe_special:
   id: 258
+energy_drain:
+  id: 2108
