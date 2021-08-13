@@ -27,7 +27,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("warhammer_${
         when (player.attackType) {
             "pummel" -> "pummel" 
