@@ -63080,8 +63080,6 @@ armadyl_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A beautiful, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 armadyl_godsword_noted:
   id: 11695
 bandos_godsword:
