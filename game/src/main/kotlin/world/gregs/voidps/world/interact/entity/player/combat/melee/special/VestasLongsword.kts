@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.melee.weapon
+package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -11,8 +11,11 @@ import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
+import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 
-fun isVestas(item: Item?) = item != null && item.name.startsWith("vestas_longsword")
+fun isVestas(item: Item?) = item != null && item.name.endsWith("vestas_longsword")
 
 on<Registered>({ isVestas(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
@@ -40,4 +43,18 @@ on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Pla
 
 on<CombatHit>({ isVestas(weapon) }) { player: Player ->
     player.setAnimation("vestas_longsword_block")
+}
+
+// Special attack
+
+specialDamageMultiplier(1.2, ::isVestas)
+
+on<CombatSwing>({ !swung() && it.specialAttack && isVestas(it.weapon) }) { player: Player ->
+    if (player.specialAttack && !drainSpecialEnergy(player, 250)) {
+        delay = -1
+        return@on
+    }
+    player.setAnimation("vestas_longsword_feint")
+    player.hit(target)
+    delay = 5
 }

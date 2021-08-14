@@ -53588,8 +53588,6 @@ hunters_crossbow:
   limit: 100
   weight: 5.0
   range: 55.0
-  attack_range: 7
-  attack_speed: 4
   slot: "Weapon"
   attack_speed: 4
   attack_range: 8
@@ -77412,7 +77410,6 @@ vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
 vestas_longsword_noted:
@@ -77733,7 +77730,6 @@ corrupt_vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_vestas_longsword_noted:
@@ -77762,7 +77758,6 @@ corrupt_statiuss_warhammer:
   slash: -4.0
   crush: 123.0
   slot: "Weapon"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_statiuss_warhammer_noted:
