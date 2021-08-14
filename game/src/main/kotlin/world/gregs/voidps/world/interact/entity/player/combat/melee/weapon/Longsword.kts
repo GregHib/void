@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isLongsword(item: Item?) = item != null && item.name.endsWith("longsword")
+fun isLongsword(item: Item?) = item != null && (item.name.endsWith("longsword") || item.name.startsWith("excalibur") || item.name.startsWith("enhanced_excalibur"))
 
 on<Registered>({ isLongsword(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
