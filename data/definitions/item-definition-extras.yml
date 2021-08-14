@@ -6889,8 +6889,6 @@ dragon_dagger:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_noted:
   id: 1216
 black_dagger:
@@ -7016,8 +7014,6 @@ dragon_dagger_p:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p_noted:
   id: 1232
 black_dagger_p:
@@ -30970,8 +30966,6 @@ dragon_dagger_p+:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p+_noted:
   id: 5681
 black_dagger_p+:
@@ -31096,8 +31090,6 @@ dragon_dagger_p++:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p++_noted:
   id: 5699
 black_dagger_p++:
@@ -78330,8 +78322,6 @@ corrupt_dragon_dagger:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 0.453
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 corrupt_dragon_dagger_noted:
   id: 13977
 corrupt_dragon_dagger_degraded:

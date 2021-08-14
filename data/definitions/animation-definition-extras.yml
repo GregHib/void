@@ -1271,6 +1271,8 @@ dragon_dagger_slash:
   id: 377
 dragon_dagger_block:
   id: 403
+dragon_dagger_special:
+  id: 1062
 defender_block:
   id: 4177
 book_block:
