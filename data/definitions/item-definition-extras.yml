@@ -7599,7 +7599,6 @@ dragon_longsword:
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
-  spec_dmg_multiplier: 1.25
 dragon_longsword_noted:
   id: 1306
 bronze_2h_sword:
@@ -78384,7 +78383,6 @@ corrupt_dragon_longsword:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_dmg_multiplier: 1.25
 corrupt_dragon_longsword_noted:
   id: 13983
 corrupt_dragon_longsword_degraded:

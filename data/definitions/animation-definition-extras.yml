@@ -1271,7 +1271,7 @@ dragon_dagger_slash:
   id: 377
 dragon_dagger_block:
   id: 403
-dragon_dagger_special:
+puncture:
   id: 1062
 defender_block:
   id: 4177
@@ -1287,3 +1287,5 @@ rampage:
   id: 1056
 slice_and_dice:
   id: 10961
+cleave:
+  id: 12033
