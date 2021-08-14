@@ -13,9 +13,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 
-fun isDClaws(weapon: Item?) = weapon != null && weapon.name == "dragon_claws"
+fun isDragonClaws(weapon: Item?) = weapon != null && weapon.name == "dragon_claws"
 
-on<CombatSwing>({ !swung() && isDClaws(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isDragonClaws(it.weapon) }, Priority.LOW) { player: Player ->
     if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@on

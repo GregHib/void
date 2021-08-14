@@ -18,13 +18,13 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 
-fun isDagger(item: Item?) = item != null && (item.name.startsWith("dragon_dagger") || item.name.startsWith("corrupt_dragon_dagger"))
+fun isDragonDagger(item: Item?) = item != null && (item.name.startsWith("dragon_dagger") || item.name.startsWith("corrupt_dragon_dagger"))
 
-on<Registered>({ isDagger(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isDragonDagger(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isDagger(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isDragonDagger(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -33,7 +33,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && !it.specialAttack && isDagger(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_${
         when (player.attackType) {
             "slash" -> "slash"
@@ -44,17 +44,17 @@ on<CombatSwing>({ !swung() && !it.specialAttack && isDagger(it.weapon) }, Priori
     delay = 4
 }
 
-on<CombatHit>({ isDagger(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isDragonDagger(weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_block")
 }
 
 // Special attack
 
-specialAccuracyMultiplier(1.15, ::isDagger)
+specialAccuracyMultiplier(1.15, ::isDragonDagger)
 
-specialDamageMultiplier(1.15, ::isDagger)
+specialDamageMultiplier(1.15, ::isDragonDagger)
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDagger(it.weapon) }) { player: Player ->
+on<CombatSwing>({ !swung() && it.specialAttack && isDragonDagger(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {
         delay = -1
         return@on

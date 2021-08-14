@@ -8603,8 +8603,6 @@ dragon_mace:
   crush: 60.0
   slot: "Weapon"
   examine: "A spiky mace."
-  spec_dmg_multiplier: 1.50
-  spec_acc_multiplier: 1.25
 dragon_mace_noted:
   id: 1435
 rune_essence:
@@ -78413,8 +78411,6 @@ corrupt_dragon_mace:
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_dmg_multiplier: 1.50
-  spec_acc_multiplier: 1.25
 corrupt_dragon_mace_noted:
   id: 13986
 corrupt_dragon_mace_degraded:

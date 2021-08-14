@@ -8,22 +8,24 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 
-fun isDragonLongsword(item: Item?) = item != null && (item.name.startsWith("dragon_longsword") || item.name.startsWith("corrupt_dragon_longsword"))
+fun isDragonMace(item: Item?) = item != null && (item.name.startsWith("dragon_mace") || item.name.startsWith("corrupt_dragon_mace"))
 
-specialDamageMultiplier(1.25, ::isDragonLongsword)
+specialAccuracyMultiplier(1.25, ::isDragonMace)
+specialDamageMultiplier(1.5, ::isDragonMace)
 
-on<CombatSwing>({ !swung() && it.specialAttack && isDragonLongsword(it.weapon) }) { player: Player ->
+on<CombatSwing>({ !swung() && it.specialAttack && isDragonMace(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 4)) {
         delay = -1
         return@on
     }
-    player.setAnimation("cleave")
-    player.setGraphic("cleave", height = 100)
+    player.setAnimation("shatter")
+    player.setGraphic("shatter", height = 100)
     player.hit(target)
-    delay = 5
+    delay = 4
 }

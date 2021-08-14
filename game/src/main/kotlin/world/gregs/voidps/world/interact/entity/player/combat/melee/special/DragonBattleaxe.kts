@@ -13,9 +13,9 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 
-fun isDragonBAxe(weapon: Item?) = weapon != null && weapon.name.endsWith("dragon_battleaxe")
+fun isDragonBattleaxe(weapon: Item?) = weapon != null && weapon.name.endsWith("dragon_battleaxe")
 
-on<VariableSet>({ key == "special_attack" && to == true && isDragonBAxe(it.weapon) }) { player: Player ->
+on<VariableSet>({ key == "special_attack" && to == true && isDragonBattleaxe(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK)) {
         return@on
     }
