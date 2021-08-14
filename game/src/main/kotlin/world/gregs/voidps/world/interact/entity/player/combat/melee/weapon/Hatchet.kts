@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isHatchet(item: Item?) = item != null && item.name.endsWith("hatchet")
+fun isHatchet(item: Item?) = item != null && (item.name.endsWith("hatchet") || item.name.endsWith("battleaxe"))
 
 on<Registered>({ isHatchet(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
@@ -35,7 +35,7 @@ on<CombatSwing>({ !swung() && isHatchet(it.weapon) }, Priority.LOWER) { player: 
         }
     }")
     player.hit(target)
-    delay = 6
+    delay = if (player.weapon.name.endsWith("battleaxe")) 6 else 5
 }
 
 on<CombatHit>({ isHatchet(weapon) }, Priority.LOW) { player: Player ->
