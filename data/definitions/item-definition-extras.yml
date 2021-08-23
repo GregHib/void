@@ -24888,7 +24888,6 @@ dragon_scimitar:
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
-  spec_acc_multiplier: 1.25
 dragon_scimitar_noted:
   id: 4588
 keys:
@@ -78347,7 +78346,6 @@ corrupt_dragon_scimitar:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_acc_multiplier: 1.25
 corrupt_dragon_scimitar_noted:
   id: 13980
 corrupt_dragon_scimitar_degraded:
