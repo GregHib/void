@@ -63,8 +63,12 @@ private fun getWeaponType(player: Player, weapon: Item?): String {
 }
 
 fun Player.hit(target: Character, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
-    var damage = hit(this, target, type, weapon)
-    damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
+    val damage = hit(this, target, type, weapon)
+    hit(target, damage, weapon, type, delay, special)
+}
+
+fun Player.hit(target: Character, damage: Int, weapon: Item? = this.weapon, type: String = getWeaponType(this, weapon), delay: Int = if (type == "melee") 0 else 2, special: Boolean = specialAttack) {
+    val damage = damage.coerceAtMost(target.levels.get(Skill.Constitution))
     grant(this, type, damage)
 
     delay(target, delay) {
