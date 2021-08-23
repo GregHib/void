@@ -27,19 +27,19 @@ on<CombatSwing>({ !swung() && isDragonClaws(it.weapon) }, Priority.LOW) { player
     val weapon = player.weapon
     var (hit1, hit2, hit3, hit4) = intArrayOf(0, 0, 0, 0)
     val maxHit = getMaximumHit(player, target, "melee", weapon)
-    if (successfulHit(player, target, "melee", weapon)) {
+    if (successfulHit(player, target, "melee", weapon, special = true)) {
         hit1 = nextInt(maxHit / 2, maxHit - 10)
         hit2 = hit1 / 2
         hit3 = hit2 / 2
         hit4 = hit3 + if (nextBoolean()) 10 else 0
-    } else if (successfulHit(player, target, "melee", weapon)) {
+    } else if (successfulHit(player, target, "melee", weapon, special = true)) {
         hit2 = nextDouble(maxHit * 0.375, maxHit * 0.875).toInt()
         hit3 = hit2 / 2
         hit4 = hit3 + if (nextBoolean()) 10 else 0
-    } else if (successfulHit(player, target, "melee", weapon)) {
+    } else if (successfulHit(player, target, "melee", weapon, special = true)) {
         hit3 = nextDouble(maxHit * 0.25, maxHit * 0.75).toInt()
         hit4 = hit3 + if (nextBoolean()) 10 else 0
-    } else if (successfulHit(player, target, "melee", weapon)) {
+    } else if (successfulHit(player, target, "melee", weapon, special = true)) {
         hit4 = nextDouble(maxHit * 0.25, maxHit * 1.25).toInt()
     } else {
         hit3 = if (nextBoolean()) 10 else 0

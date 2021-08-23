@@ -13,5 +13,6 @@ data class HitChanceModifier(
     val target: Character?,
     val type: String,
     var chance: Double,
-    val weapon: Item?
+    val weapon: Item?,
+    val special: Boolean
 ) : Event

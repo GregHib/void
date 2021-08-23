@@ -19,7 +19,7 @@ fun hasActivePrayer(player: Player) = player.values.temporary.any { (key, value)
 
 fun hasGodArmour(player: Player) = false
 
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && weapon?.name == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "range" && special && weapon?.name == "zaniks_crossbow" }, Priority.HIGH) { _: Player ->
     if (target is NPC) {
         damage += Random.nextInt(30..150)
     } else if (target is Player && (hasActivePrayer(target) || hasGodArmour(target))) {

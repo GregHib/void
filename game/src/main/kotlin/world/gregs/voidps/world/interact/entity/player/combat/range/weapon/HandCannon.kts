@@ -26,7 +26,7 @@ import kotlin.random.nextInt
 
 fun isHandCannon(item: Item?) = item != null && item.name == "hand_cannon"
 
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && isHandCannon(weapon) }, Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * Random.nextDouble(0.3, 2.0))
 }
 

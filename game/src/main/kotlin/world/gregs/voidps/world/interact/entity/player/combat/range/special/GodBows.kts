@@ -33,7 +33,7 @@ on<CombatSwing>({ player -> !swung() && player.specialAttack && isGodBow(player.
     player.hit(target)
 }
 
-on<HitDamageModifier>({ type == "range" && weapon?.name == "guthix_bow" && it.specialAttack }, Priority.HIGH) { _: Player ->
+on<HitDamageModifier>({ type == "range" && weapon?.name == "guthix_bow" && special }, Priority.HIGH) { _: Player ->
     damage = floor(damage * 1.5)
 }
 

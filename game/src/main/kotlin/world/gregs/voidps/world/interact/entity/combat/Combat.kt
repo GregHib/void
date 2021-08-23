@@ -171,7 +171,7 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     }
 }
 
-fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?): Int {
+fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
     val baseMaxHit = if (type == "spell") {
         source["spell_damage", 0.0]
@@ -182,13 +182,13 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             else -> Skill.Strength
         }, accuracy = false) * strengthBonus) / 64
     }
-    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon)
+    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, special)
     source.events.emit(modifier)
     source["max_hit"] = modifier.damage.toInt()
     return modifier.damage.toInt()
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?): Int {
+fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean): Int {
     return 0
 }
 
@@ -199,7 +199,7 @@ fun getEffectiveLevel(source: Character, skill: Skill, accuracy: Boolean): Int {
     return mod.level.toInt()
 }
 
-fun getRating(source: Character, target: Character?, type: String, weapon: Item?): Int {
+fun getRating(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Int {
     val offense = source == target
     var level = if (target == null) 8 else getEffectiveLevel(target, when (type) {
         "range" -> Skill.Range
@@ -212,33 +212,33 @@ fun getRating(source: Character, target: Character?, type: String, weapon: Item?
     val style = if (type == "range") "range" else if (type == "spell") "magic" else target?.combatStyle ?: ""
     val equipmentBonus = target?.getOrNull(if (offense) style else "${style}_def") ?: 0
     val rating = level * (equipmentBonus + 64.0)
-    val modifier = HitRatingModifier(target, type, offense, rating, weapon)
+    val modifier = HitRatingModifier(target, type, offense, rating, weapon, special)
     source.events.emit(modifier)
     return modifier.rating.toInt()
 }
 
-fun hitChance(source: Character, target: Character?, type: String, weapon: Item?): Double {
-    val offensiveRating = getRating(source, source, type, weapon)
-    val defensiveRating = getRating(source, target, type, weapon)
+fun hitChance(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean = false): Double {
+    val offensiveRating = getRating(source, source, type, weapon, special)
+    val defensiveRating = getRating(source, target, type, weapon, special)
     val chance = if (offensiveRating > defensiveRating) {
         1.0 - (defensiveRating + 2.0) / (2.0 * (offensiveRating + 1.0))
     } else {
         offensiveRating / (2.0 * (defensiveRating + 1.0))
     }
 
-    val modifier = HitChanceModifier(target, type, chance, weapon)
+    val modifier = HitChanceModifier(target, type, chance, weapon, special)
     source.events.emit(modifier)
     return modifier.chance
 }
 
-fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?): Boolean {
+fun successfulHit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
     val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.name == "verac" else false
     val veracs = verac && Random.nextDouble() < 0.25
     if (veracs) {
         return true
     }
 
-    return Random.nextDouble() < hitChance(source, target, type, weapon)
+    return Random.nextDouble() < hitChance(source, target, type, weapon, special)
 }
 
 private fun Player.hasFullVeracs(): Boolean {
@@ -252,10 +252,10 @@ private fun notBroken(name: String, prefix: String): Boolean {
     return name.startsWith(prefix) && !name.endsWith("broken")
 }
 
-fun hit(source: Character, target: Character?, type: String, weapon: Item?): Int {
-    return if (successfulHit(source, target, type, weapon)) {
-        val maxHit = getMaximumHit(source, target, type, weapon)
-        val minHit = getMinimumHit(source, target, type, weapon)
+fun hit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean = false): Int {
+    return if (successfulHit(source, target, type, weapon, special)) {
+        val maxHit = getMaximumHit(source, target, type, weapon, special)
+        val minHit = getMinimumHit(source, target, type, weapon, special)
         Random.nextInt(minHit..maxHit)
     } else {
         0
