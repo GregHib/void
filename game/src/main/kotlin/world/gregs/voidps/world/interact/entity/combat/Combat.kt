@@ -235,7 +235,6 @@ fun successfulHit(source: Character, target: Character?, type: String, weapon: I
     val verac = if (source is Player) source.hasFullVeracs() else if (source is NPC) source.name == "verac" else false
     val veracs = verac && Random.nextDouble() < 0.25
     if (veracs) {
-        println("Veracs")
         return true
     }
 

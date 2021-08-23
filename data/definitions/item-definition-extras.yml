@@ -63362,8 +63362,6 @@ saradomin_sword:
   material: "metal"
   type: "TwoHanded"
   examine: "The incredible blade of an Icyene."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 saradomin_sword_noted:
   id: 11731
 dragon_boots:
