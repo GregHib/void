@@ -63109,8 +63109,6 @@ saradomin_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A gracious, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 saradomin_godsword_noted:
   id: 11699
 zamorak_godsword:
