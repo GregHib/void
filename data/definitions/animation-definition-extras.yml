@@ -1141,6 +1141,12 @@ spear_pound:
   id: 429
 spear_lunge:
   id: 428
+halberd_jab:
+  id: 428
+halberd_fend:
+  id: 429
+halberd_swipe:
+  id: 440
 mace_block:
   id: 403
 mace_pound:
@@ -1313,3 +1319,5 @@ healing_blade:
   id: 12019
 ice_cleave:
   id: 7070
+sweep:
+  id: 1203

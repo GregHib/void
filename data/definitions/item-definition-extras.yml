@@ -17892,7 +17892,6 @@ dragon_halberd:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
-  spec_dmg_multiplier: 1.1
 dragon_halberd_noted:
   id: 3205
 kings_message:

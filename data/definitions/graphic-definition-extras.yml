@@ -812,3 +812,5 @@ ice_cleave:
   id: 1221
 ice_cleave_hit:
   id: 2104
+sweep:
+  id: 282
