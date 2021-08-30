@@ -816,3 +816,7 @@ sweep:
   id: 282
 powerstab:
   id: 1225
+shove:
+  id: 253
+shove_stun:
+  id: 254

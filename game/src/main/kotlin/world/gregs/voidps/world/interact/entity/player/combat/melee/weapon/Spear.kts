@@ -12,13 +12,15 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isSpear(item: Item?) = item != null && (item.name.endsWith("spear") || item.name.endsWith("hasta"))
+fun isWeapon(item: Item?) = item != null && (isSpear(item) || item.name.endsWith("hasta"))
 
-on<Registered>({ isSpear(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+fun isSpear(item: Item?) = item != null && (item.name.endsWith("spear") || item.name.endsWith("spear_p") || item.name.endsWith("spear_p+") || item.name.endsWith("spear_p++"))
+
+on<Registered>({ isWeapon(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isSpear(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isWeapon(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,7 +29,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isSpear(it.weapon) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("spear_${
         when (player.attackType) {
             "block" -> "lunge"
@@ -38,6 +40,6 @@ on<CombatSwing>({ !swung() && isSpear(it.weapon) }, Priority.LOWER) { player: Pl
     delay = 4
 }
 
-on<CombatHit>({ isSpear(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isWeapon(weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("spear_block")
 }

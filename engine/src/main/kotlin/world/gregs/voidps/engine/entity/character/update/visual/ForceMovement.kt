@@ -4,12 +4,12 @@ import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
-import world.gregs.voidps.engine.map.Tile
+import world.gregs.voidps.engine.map.Delta
 
 data class ForceMovement(
-    var start: Tile = Tile.EMPTY,
+    var start: Delta = Delta.EMPTY,
     var startDelay: Int = 0,
-    var end: Tile = Tile.EMPTY,
+    var end: Delta = Delta.EMPTY,
     var endDelay: Int = 0,
     var direction: Direction = Direction.NONE
 ) : Visual
@@ -32,9 +32,9 @@ fun Character.getForceMovement() = visuals.getOrPut(mask(this)) { ForceMovement(
  * @param direction The cardinal direction to face during movement
  */
 fun Character.setForceMovement(
-    endDelta: Tile = Tile.EMPTY,
+    endDelta: Delta = Delta.EMPTY,
     endDelay: Int = 0,
-    startDelta: Tile = Tile(0),
+    startDelta: Delta = Delta.EMPTY,
     startDelay: Int = 0,
     direction: Direction = Direction.NONE
 ) {
@@ -44,9 +44,9 @@ fun Character.setForceMovement(
 
 private fun setForceMovement(
     move: ForceMovement,
-    start: Tile,
+    start: Delta,
     startDelay: Int,
-    end: Tile,
+    end: Delta,
     endDelay: Int,
     direction: Direction
 ) {
