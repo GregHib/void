@@ -59450,8 +59450,6 @@ barrelchest_anchor:
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
   weight: 30.0
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 barrelchest_anchor_2:
   id: 10888
   str: 100.0
