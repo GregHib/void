@@ -63093,8 +63093,6 @@ bandos_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A brutally heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 bandos_godsword_noted:
   id: 11697
 saradomin_godsword:

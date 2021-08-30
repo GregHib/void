@@ -1,7 +1,6 @@
 package world.gregs.voidps.world.interact.entity.player.combat.melee.special
 
 import world.gregs.voidps.engine.entity.Registered
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
@@ -19,6 +18,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialAccuracyMultiplier
 import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDamageMultiplier
+import world.gregs.voidps.world.interact.entity.player.combat.melee.specialDrainByDamage
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
@@ -52,6 +52,7 @@ on<CombatHit>({ isAnchor(weapon) }) { player: Player ->
 
 specialAccuracyMultiplier(2.0, ::isAnchor)
 specialDamageMultiplier(1.1, ::isAnchor)
+specialDrainByDamage(::isAnchor, Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
 
 on<CombatSwing>({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
@@ -62,23 +63,4 @@ on<CombatSwing>({ !swung() && it.specialAttack && isAnchor(it.weapon) }) { playe
     player.setGraphic("sunder")
     player.hit(target)
     delay = 6
-}
-
-val skills = listOf(Skill.Defence, Skill.Strength, Skill.Prayer, Skill.Attack, Skill.Magic, Skill.Range)
-
-on<CombatHit>({ isAnchor(weapon) && special }) { character: Character ->
-    var drain = damage / 10
-    if (drain > 0) {
-        for (skill in skills) {
-            val current = character.levels.get(skill)
-            if (current <= 1) {
-                continue
-            }
-            character.levels.drain(skill, drain)
-            drain -= current
-            if (drain <= 0) {
-                break
-            }
-        }
-    }
 }
