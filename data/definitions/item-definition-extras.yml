@@ -63125,8 +63125,6 @@ zamorak_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A terrifying, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 zamorak_godsword_noted:
   id: 11701
 armadyl_hilt:

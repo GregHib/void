@@ -808,3 +808,7 @@ warstrike:
   id: 2114
 healing_blade:
   id: 2109
+ice_cleave:
+  id: 1221
+ice_cleave_hit:
+  id: 2104
