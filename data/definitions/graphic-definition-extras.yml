@@ -822,3 +822,5 @@ shove_stun:
   id: 254
 quick_smash:
   id: 340
+clobber:
+  id: 479
