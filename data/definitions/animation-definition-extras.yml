@@ -1357,3 +1357,19 @@ banner_attack:
   id: 1428
 banner_hit:
   id: 1429
+mjolnir_attack:
+  id: 414
+mjolnir_hit:
+  id: 415
+net_lunge:
+  id: 428
+net_swipe:
+  id: 440
+net_pound:
+  id: 429
+net_block:
+  id: 428
+net_hit:
+  id: 430
+mouse_toy_attack:
+  id: 1658
