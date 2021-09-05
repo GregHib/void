@@ -82,7 +82,7 @@ fun showInfo(player: Player, item: Item, index: Int, name: String, sample: Boole
             player.setVar("info_right", "")
             player.setVar("item_info_requirement_title", "")
         }
-        player.setVar("item_info_price", if(sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
+        player.setVar("item_info_price", if (sample) -1 else if (item.amount < 1) item.amount else Price.getPrice(player, item.id, index, item.amount))
         if (!sample) {
             val handler = player.events.on<Player, ItemChanged>({ container == name && this.index == index }) {
                 player.setVar("item_info_price", if (this.item.amount == 0) 0 else Price.getPrice(player, item.id, index, this.item.amount))
@@ -126,7 +126,7 @@ fun setRequirements(player: Player, def: ItemDefinition) {
 
 fun getStat(definitions: ItemDefinition, key: String): String {
     val value = definitions[key, 0]
-    return Colour.Yellow.wrap(if (value > 0) "+$value" else value.toString())
+    return Colour.Yellow { if (value > 0) "+$value" else value.toString() }
 }
 
 fun attackStatsColumn(def: ItemDefinition): String = """
@@ -136,7 +136,7 @@ fun attackStatsColumn(def: ItemDefinition): String = """
         ${getStat(def, "crush")}
         ${getStat(def, "magic")}
         ${getStat(def, "range")}
-        ${Colour.Yellow.wrap("---")}
+        ${Colour.Yellow { "---" }}
         Strength
         Ranged Strength
         Magic Damage
