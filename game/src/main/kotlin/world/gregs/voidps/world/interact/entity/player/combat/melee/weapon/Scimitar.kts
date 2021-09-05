@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isScimitar(item: Item?) = item != null && item.name.endsWith("scimitar")
+fun isScimitar(item: Item?) = item != null && (item.name.endsWith("scimitar") || item.name == "brine_sabre")
 
 on<Registered>({ isScimitar(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
