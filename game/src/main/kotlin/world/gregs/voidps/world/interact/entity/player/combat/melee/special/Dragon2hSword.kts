@@ -10,8 +10,8 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 fun isDragon2hSword(item: Item?) = item != null && item.name.startsWith("dragon_2h_sword")
 

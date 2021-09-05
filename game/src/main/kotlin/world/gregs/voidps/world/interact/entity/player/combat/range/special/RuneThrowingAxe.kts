@@ -15,6 +15,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.algorithm.BresenhamsLine
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
 fun isThrowingAxe(weapon: Item?) = weapon != null && (weapon.name == "rune_throwing_axe")

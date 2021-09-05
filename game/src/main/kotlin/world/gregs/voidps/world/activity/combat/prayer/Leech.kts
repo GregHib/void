@@ -14,8 +14,8 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatDamage
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
