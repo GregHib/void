@@ -12,7 +12,8 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun is2hSword(item: Item?) = item != null && item.name.endsWith("2h_sword")
+fun is2hSword(item: Item?) = item != null && (item.name.endsWith("2h_sword") || item.name == "shadow_sword" || isFunWeapon(item))
+fun isFunWeapon(item: Item) = item.name == "giants_hand" || item.name == "spatula"
 
 on<Registered>({ is2hSword(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))

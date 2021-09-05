@@ -12,13 +12,16 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isDagger(item: Item?) = item != null && (item.name.endsWith("dagger") || item.name.endsWith("dagger_p") || item.name.endsWith("dagger_p+") || item.name.endsWith("dagger_p++"))
+fun isWeapon(item: Item?) = item != null && (isDagger(item) || isHarpoon(item) || isFunWeapon(item))
+fun isDagger(item: Item) = item.name.endsWith("dagger") || item.name.endsWith("dagger_p") || item.name.endsWith("dagger_p+") || item.name.endsWith("dagger_p++") || item.name == "wolfbane" || item.name == "keris"
+fun isHarpoon(item: Item) = item.name.endsWith("harpoon") || item.name.startsWith("harpoon")
+fun isFunWeapon(item: Item) = item.name == "egg_whisk" || item.name == "magic_secateurs" || item.name == "cattleprod"
 
-on<Registered>({ isDagger(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isWeapon(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isDagger(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isWeapon(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,7 +30,7 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isDagger(it.weapon) }, Priority.LOWER) { player: Player ->
+on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("dagger_${
         when (player.attackType) {
             "lunge", "slash" -> "slash"
@@ -38,6 +41,6 @@ on<CombatSwing>({ !swung() && isDagger(it.weapon) }, Priority.LOWER) { player: P
     delay = 4
 }
 
-on<CombatHit>({ isDagger(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isWeapon(weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dagger_block")
 }

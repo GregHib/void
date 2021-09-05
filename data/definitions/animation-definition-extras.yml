@@ -1337,3 +1337,23 @@ impale:
   id: 923
 spear_wall:
   id: 10499
+scythe_reap:
+  id: 437
+scythe_chop:
+  id: 440
+scythe_jab:
+  id: 438
+scythe_block:
+  id: 440
+scythe_hit:
+  id: 436
+easter_carrot_whack:
+  id: 11547
+flail_whack:
+  id: 9047
+flail_hit:
+  id: 9048
+banner_attack:
+  id: 1428
+banner_hit:
+  id: 1429

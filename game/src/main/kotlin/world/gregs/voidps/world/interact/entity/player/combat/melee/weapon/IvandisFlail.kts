@@ -10,15 +10,18 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isScimitar(item: Item?) = item != null && (item.name.endsWith("scimitar") || item.name.endsWith("cutlass") || item.name == "brine_sabre" || item.name.endsWith("machete") || item.name.startsWith("silver_sickle"))
+fun isIvandisFlail(item: Item?) = item != null && item.name.startsWith("ivandis_flail")
 
-on<Registered>({ isScimitar(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isIvandisFlail(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isScimitar(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isIvandisFlail(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -27,17 +30,12 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isScimitar(it.weapon) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("scimitar_${
-        when (player.attackType) {
-            "lunge" -> "lunge"
-            else -> "slash"
-        }
-    }")
+on<CombatSwing>({ !swung() && isIvandisFlail(it.weapon) }, Priority.LOWER) { player: Player ->
+    player.setAnimation("flail_whack")
     player.hit(target)
-    delay = 4
+    delay = 5
 }
 
-on<CombatHit>({ isScimitar(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("scimitar_block")
+on<CombatHit>({ isIvandisFlail(weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("flail_hit")
 }

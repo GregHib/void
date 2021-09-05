@@ -12,14 +12,13 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isMace(item: Item?) = item != null && (item.name.endsWith("mace") || item.name.endsWith("cane") || isFunWeapon(item))
-fun isFunWeapon(item: Item) = item.name == "frying_pan" || item.name == "rolling_pin" || item.name == "meat_tenderiser" || item.name == "undead_chicken"
+fun isScythe(item: Item?) = item != null && item.name == "scythe"
 
-on<Registered>({ isMace(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isScythe(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isMace(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isScythe(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -28,17 +27,12 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isMace(it.weapon) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("mace_${
-        when (player.attackType) {
-            "pummel", "block", "bash", "focus" -> "pound"
-            else -> player.attackType
-        }
-    }")
+on<CombatSwing>({ !swung() && isScythe(it.weapon) }, Priority.LOWER) { player: Player ->
+    player.setAnimation("scythe_${player.attackType}")
     player.hit(target)
-    delay = 4
+    delay = 6
 }
 
-on<CombatHit>({ isMace(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("mace_block")
+on<CombatHit>({ isScythe(weapon) }, Priority.LOW) { player: Player ->
+    player.setAnimation("scythe_hit")
 }

@@ -8,11 +8,11 @@ import world.gregs.voidps.world.interact.entity.player.equip.ContainerOption
 
 val logger = InlineLogger()
 
-on<ContainerOption>({ container == "inventory" && option == "Destroy" }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && (option == "Destroy" || option == "Dismiss" || option == "Release") }) { player: Player ->
     if(item.isNotEmpty() && item.amount > 0) {
         player.dialogue {
             val destroy = destroy("""
-                Are you sure you want to destroy ${item.def.name}?
+                Are you sure you want to ${option.toLowerCase()} ${item.def.name}?
                 You won't be able to reclaim it.
             """, item.name)
             if(destroy) {

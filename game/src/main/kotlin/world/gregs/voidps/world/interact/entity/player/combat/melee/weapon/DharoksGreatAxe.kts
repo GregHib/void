@@ -15,7 +15,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 import kotlin.math.floor
 
-fun isGreatAxe(item: Item?) = item != null && item.name.startsWith("dharoks_greataxe")
+fun isGreatAxe(item: Item?) = item != null && (item.name.startsWith("dharoks_greataxe") || item.name == "balmung")
 
 on<Registered>({ isGreatAxe(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))

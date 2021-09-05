@@ -12,9 +12,11 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isWeapon(item: Item?) = item != null && (isSpear(item) || item.name.endsWith("hasta"))
+fun isWeapon(item: Item?) = item != null && (isSpear(item) || isHastae(item))
 
-fun isSpear(item: Item?) = item != null && (item.name.endsWith("spear") || item.name.endsWith("spear_p") || item.name.endsWith("spear_p+") || item.name.endsWith("spear_p++"))
+fun isHastae(item: Item) = item.name.endsWith("hasta") || item.name.endsWith("hasta_p") || item.name.endsWith("hasta_p+") || item.name.endsWith("hasta_p++")
+
+fun isSpear(item: Item) = item.name.endsWith("spear") || item.name.endsWith("spear_p") || item.name.endsWith("spear_p+") || item.name.endsWith("spear_p++")
 
 on<Registered>({ isWeapon(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
