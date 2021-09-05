@@ -3,8 +3,11 @@ package world.gregs.voidps.engine.entity.character.update.visual.npc
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.Entity
 import world.gregs.voidps.engine.entity.character.npc.NPC
+import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.Visual
+import world.gregs.voidps.engine.entity.obj.GameObject
 import world.gregs.voidps.engine.map.Delta
+import world.gregs.voidps.engine.map.Distance
 import kotlin.math.atan2
 
 data class Turn(
@@ -22,7 +25,13 @@ fun NPC.getTurn() = visuals.getOrPut(TURN_MASK) { Turn() }
 fun NPC.flagTurn() = visuals.flag(TURN_MASK)
 
 fun NPC.turn(entity: Entity, update: Boolean = true) {
-    val delta = entity.tile.delta(tile)
+    val tile = when (entity) {
+        is GameObject -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        is NPC -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        is Player -> Distance.getNearest(entity.tile, entity.size, this.tile)
+        else -> entity.tile
+    }
+    val delta = tile.delta(tile)
     if (delta != Delta.EMPTY) {
         turn(delta.x, delta.y, update)
     }

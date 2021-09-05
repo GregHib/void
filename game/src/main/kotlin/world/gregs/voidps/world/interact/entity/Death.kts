@@ -1,3 +1,5 @@
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.withContext
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.entity.*
@@ -22,33 +24,35 @@ on<Registered> { character: Character ->
 
 on<Died> { npc: NPC ->
     npc.action(ActionType.Death) {
-        delay(2)
-        val name = npc.def["category", npc.def.name.toUnderscoreCase()]
-        val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
-        val dealer = damageDealers.maxByOrNull { it.value }
-        val killer = dealer?.key
-        (killer as? Player)?.playSound("${name}_death", delay = 40)
-        npc.playAnimation("${name}_death")
-        npc.stopAllEffects()
-        npcs.remove(npc)
-        val area: Area? = npc.getOrNull("area")
-        if (area != null) {
-            delay(npc["respawn_delay", 60])
-            var tile = area.random(npc.movement.traversal)
-            var increment = 1
-            while (tile == null) {
-                delay(increment++)
-                tile = area.random(npc.movement.traversal)
-                if (increment > 10) {
-                    break
+        withContext(NonCancellable) {
+            delay(2)
+            val name = npc.def["category", npc.def.name.toUnderscoreCase()]
+            val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
+            val dealer = damageDealers.maxByOrNull { it.value }
+            val killer = dealer?.key
+            (killer as? Player)?.playSound("${name}_death", delay = 40)
+            npc.playAnimation("${name}_death")
+            npc.stopAllEffects()
+            npcs.remove(npc)
+            val area: Area? = npc.getOrNull("area")
+            if (area != null) {
+                delay(npc["respawn_delay", 60])
+                var tile = area.random(npc.movement.traversal)
+                var increment = 1
+                while (tile == null) {
+                    delay(increment++)
+                    tile = area.random(npc.movement.traversal)
+                    if (increment > 10) {
+                        break
+                    }
                 }
-            }
-            if (tile != null) {
-                damageDealers.clear()
-                npc.levels.clear()
-                npc.move(tile)
-                npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
-                npcs.add(npc)
+                if (tile != null) {
+                    damageDealers.clear()
+                    npc.levels.clear()
+                    npc.move(tile)
+                    npc.turn(npc["respawn_direction", Direction.NORTH], update = false)
+                    npcs.add(npc)
+                }
             }
         }
     }

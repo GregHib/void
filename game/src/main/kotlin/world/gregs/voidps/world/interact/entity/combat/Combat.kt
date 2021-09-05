@@ -23,7 +23,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.get
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
 import world.gregs.voidps.world.interact.entity.sound.playSound
@@ -40,6 +40,9 @@ fun canAttack(player: Character, target: Character): Boolean {
         return false
     }
     if (target.action.type == ActionType.Death) {
+        return false
+    }
+    if (target.movement.frozen) {
         return false
     }
     // PVP area, slayer requirements, in combat etc..

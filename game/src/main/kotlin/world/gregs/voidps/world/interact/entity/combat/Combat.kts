@@ -4,11 +4,11 @@ import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
-import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.event.on
@@ -26,18 +26,16 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
 }
 
 on<CombatHit>({ type != "poison" && (it is Player && it.getVar("auto_retaliate", false) || it is NPC) }) { character: Character ->
-    if (character.action.type != ActionType.Combat) {
-        character.attack(source)
-    }
+    character.attack(source)
 }
 
 fun Character.attack(target: Character) {
+    if (levels.get(Skill.Constitution) <= 0) {
+        return
+    }
     val source = this
     action(ActionType.Combat) {
         source["target"] = target
-        val deathHandler = target.events.on<Character, Died> {
-            cancel(ActionType.Combat)
-        }
         try {
             watch(target)
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
@@ -53,7 +51,7 @@ fun Character.attack(target: Character) {
                     break
                 }
                 val swing = CombatSwing(target)
-//                face(target)
+                face(target)
                 events.emit(swing)
                 val nextDelay = swing.delay
                 if (nextDelay == null || nextDelay < 0) {
@@ -63,7 +61,6 @@ fun Character.attack(target: Character) {
             }
         } finally {
             clear("target")
-            target.events.remove(deathHandler)
             watch(null)
         }
     }
