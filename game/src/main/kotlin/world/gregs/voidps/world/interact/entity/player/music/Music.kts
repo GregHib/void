@@ -92,7 +92,7 @@ fun Player.hasUnlocked(musicIndex: Int) = hasVar("unlocked_music_${musicIndex / 
 fun autoPlay(player: Player, track: MusicTracks.Track) {
     val index = track.index
     if (player.unlockTrack(index)) {
-        player.message(Colour.Red.wrap("You have unlocked a new music track: ${musicName(index)}."))
+        player.message(Colour.Red { "You have unlocked a new music track: ${musicName(index)}." })
     }
     if (!player["playing_song", false]) {
         player.playTrack(index)

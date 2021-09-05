@@ -19,6 +19,8 @@ sealed class Colour(val int: Int) {
 
     val string = Integer.toHexString(int)
 
+    operator fun invoke(block: () -> String): String = wrap(block.invoke())
+
     fun wrap(text: String): String {
         val builder = StringBuilder()
         builder.append("<col=$string>").append(text).append("</col>")
