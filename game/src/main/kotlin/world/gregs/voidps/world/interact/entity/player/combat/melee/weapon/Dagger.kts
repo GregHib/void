@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isDagger(item: Item?) = item != null && item.name.endsWith("dagger")
+fun isDagger(item: Item?) = item != null && (item.name.endsWith("dagger") || item.name.endsWith("dagger_p") || item.name.endsWith("dagger_p+") || item.name.endsWith("dagger_p++"))
 
 on<Registered>({ isDagger(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))

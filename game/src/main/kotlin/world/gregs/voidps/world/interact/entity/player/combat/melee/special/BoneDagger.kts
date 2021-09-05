@@ -28,7 +28,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isBoneDagger(it.weapon) }) { p
         return@on
     }
     player.setAnimation("backstab")
-    player.setGraphic("backstab", height = 100)
+    player.setGraphic("backstab")
     player.hit(target)
     delay = 4
 }
