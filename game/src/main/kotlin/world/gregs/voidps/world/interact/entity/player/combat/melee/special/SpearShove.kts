@@ -19,7 +19,7 @@ import world.gregs.voidps.world.interact.entity.player.combat.range.special.drai
 import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
 import java.util.concurrent.TimeUnit
 
-fun isDragonSpear(item: Item?) = item != null && item.name.startsWith("dragon_spear")
+fun isDragonSpear(item: Item?) = item != null && (item.name.startsWith("dragon_spear") || item.name.startsWith("zamorakian_spear"))
 
 on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { player: Player ->
     if (target.size.width > 1 || target.size.height > 1) {
@@ -46,7 +46,6 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
         target.start("bind_immunity", 5)
     }
     val actual = player.tile
-    // FIXME issue with combat swing being called before reaching the final tile allows shoving diagonally
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta
     if (!target.movement.traversal.blocked(target.tile, direction)) {
