@@ -1375,3 +1375,5 @@ net_hit:
   id: 430
 mouse_toy_attack:
   id: 1658
+power_of_light:
+  id: 12804

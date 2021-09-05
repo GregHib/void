@@ -834,3 +834,7 @@ impale:
   id: 274
 spear_wall:
   id: 1835
+power_of_light:
+  id: 2319
+power_of_light_hit:
+  id: 2320
