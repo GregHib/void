@@ -17183,8 +17183,6 @@ rune_claws:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 combination:
   id: 3102
   tradeable: false
