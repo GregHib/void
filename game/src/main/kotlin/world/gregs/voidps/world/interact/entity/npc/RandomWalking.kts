@@ -16,7 +16,7 @@ import kotlin.random.Random
 on<Registered> { npc: NPC ->
     val walkMask = npc.def.walkMask.toInt()
     if (walkMask and 0x1 != 0 && walkMask and 0x2 != 0) {
-        npc.events.on<NPC, ActionFinished>({ (type == ActionType.Death || type == ActionType.Combat) && it.levels.get(Skill.Constitution) > 0 }) {
+        npc.events.on<NPC, ActionFinished>({ type == ActionType.Death && it.levels.get(Skill.Constitution) > 0 }) {
             randomWalk(npc)
         }
         randomWalk(npc)

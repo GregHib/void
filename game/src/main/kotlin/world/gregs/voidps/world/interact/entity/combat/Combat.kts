@@ -2,6 +2,7 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
 import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.move.cantReach
@@ -25,14 +26,16 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
     player.attack(npc)
 }
 
-on<CombatHit>({ type != "poison" && (it is Player && it.getVar("auto_retaliate", false) || it is NPC) }) { character: Character ->
-    character.attack(source)
+on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC }) { character: Character ->
+    if (character.levels.get(Skill.Constitution) <= 0) {
+        return@on
+    }
+    delay(character, 1) {
+        character.attack(source)
+    }
 }
 
 fun Character.attack(target: Character) {
-    if (levels.get(Skill.Constitution) <= 0) {
-        return
-    }
     val source = this
     action(ActionType.Combat) {
         source["target"] = target

@@ -5,7 +5,7 @@ import world.gregs.voidps.engine.GameLoop
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.event.Event
 
-data class EffectStart(val effect: String, val restart: Boolean) : Event
+data class EffectStart(val effect: String, val ticks: Int, val restart: Boolean) : Event
 data class EffectStop(val effect: String) : Event
 
 fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false, restart: Boolean = false) {
@@ -25,7 +25,7 @@ private fun Entity.startEffect(effect: String, ticks: Int, persist: Boolean, qui
         }
     }
     if (!quiet) {
-        events.emit(EffectStart(effect, restart))
+        events.emit(EffectStart(effect, ticks, restart))
     }
 }
 

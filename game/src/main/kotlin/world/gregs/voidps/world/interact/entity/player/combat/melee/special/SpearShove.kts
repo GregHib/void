@@ -13,6 +13,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.toTicks
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
 import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
@@ -45,6 +46,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonSpear(it.weapon) }) { 
     delay(duration) {
         target.start("bind_immunity", 5)
     }
+    player.hit(target, -1)// Hit with no damage so target can auto-retaliate
     val actual = player.tile
     val direction = target.tile.delta(actual).toDirection()
     val delta = direction.delta

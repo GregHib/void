@@ -130,38 +130,40 @@ fun Character.hit(damage: Int, type: String = "damage") {
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, special))
-    var damage = damage
-    var soak = 0
-    if (damage > 200) {
-        val percent = when (type) {
-            "melee" -> target["absorb_melee", 0] / 100.0
-            "range" -> target["absorb_range", 0] / 100.0
-            "magic" -> target["absorb_magic", 0] / 100.0
-            else -> 0.0
+    if (damage >= 0) {
+        var damage = damage
+        var soak = 0
+        if (damage > 200) {
+            val percent = when (type) {
+                "melee" -> target["absorb_melee", 0] / 100.0
+                "range" -> target["absorb_range", 0] / 100.0
+                "magic" -> target["absorb_magic", 0] / 100.0
+                else -> 0.0
+            }
+            soak = floor((damage - 200) * percent).toInt()
+            damage -= soak
         }
-        soak = floor((damage - 200) * percent).toInt()
-        damage -= soak
+        if (soak <= 0) {
+            soak = -1
+        }
+        val dealers = target.get<MutableMap<Character, Int>>("damage_dealers")
+        dealers[source] = dealers.getOrDefault(source, 0) + damage
+        target.hit(
+            source = source,
+            amount = damage,
+            mark = when (type) {
+                "range" -> Hit.Mark.Range
+                "melee" -> Hit.Mark.Melee
+                "magic" -> Hit.Mark.Magic
+                "poison" -> Hit.Mark.Poison
+                "dragonfire", "damage" -> Hit.Mark.Regular
+                else -> Hit.Mark.Missed
+            },
+            critical = (type == "melee" || type == "magic" || type == "range") && damage > (source["max_hit", 0] * 0.9),
+            soak = soak
+        )
+        target.levels.drain(Skill.Constitution, damage)
     }
-    if (soak <= 0) {
-        soak = -1
-    }
-    val dealers = target.get<MutableMap<Character, Int>>("damage_dealers")
-    dealers[source] = dealers.getOrDefault(source, 0) + damage
-    target.hit(
-        source = source,
-        amount = damage,
-        mark = when (type) {
-            "range" -> Hit.Mark.Range
-            "melee" -> Hit.Mark.Melee
-            "magic" -> Hit.Mark.Magic
-            "poison" -> Hit.Mark.Poison
-            "dragonfire", "damage" -> Hit.Mark.Regular
-            else -> Hit.Mark.Missed
-        },
-        critical = (type == "melee" || type == "magic" || type == "range") && damage > (source["max_hit", 0] * 0.9),
-        soak = soak
-    )
-    target.levels.drain(Skill.Constitution, damage)
     val name = (target as? NPC)?.def?.getOrNull("category") ?: "player"
     if (source is Player) {
         source.playSound("${name}_hit", delay = 40)
