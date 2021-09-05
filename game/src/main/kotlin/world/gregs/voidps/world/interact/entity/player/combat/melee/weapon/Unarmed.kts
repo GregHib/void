@@ -13,12 +13,17 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.attackType
 import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
 on<Registered>({ it.equipped(EquipSlot.Weapon).isEmpty() }) { player: Player ->
     updateWeapon(player)
 }
 
 on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && item.isEmpty() }) { player: Player ->
+    updateWeapon(player)
+}
+
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && oldItem == it.weapon }, Priority.LOWER) { player: Player ->
     updateWeapon(player)
 }
 
