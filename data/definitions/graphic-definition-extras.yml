@@ -824,3 +824,7 @@ quick_smash:
   id: 340
 clobber:
   id: 479
+disrupt:
+  id: 1729
+disrupt_hit:
+  id: 1730
