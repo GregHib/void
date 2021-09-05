@@ -34,7 +34,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isSaradominSword(it.weapon) })
     delay = 4
 }
 
-on<CombatHit>({ isSaradominSword(weapon) && special }) { character: Character ->
+on<CombatHit>({ isSaradominSword(weapon) && special && type == "melee" }) { character: Character ->
     character.setGraphic("saradomins_lightning")
 }
 
