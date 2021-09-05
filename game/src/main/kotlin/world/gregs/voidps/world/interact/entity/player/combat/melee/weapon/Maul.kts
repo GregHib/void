@@ -15,7 +15,8 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isMaul(item: Item?) = item != null && item.name.endsWith("maul")
+fun isMaul(item: Item?) = item != null && (item.name.endsWith("maul") || isTzhaarKetOm(item))
+fun isTzhaarKetOm(item: Item) = item.name == "tzhaar-ket-om"
 
 on<Registered>({ isMaul(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
@@ -33,7 +34,7 @@ fun updateWeapon(player: Player, weapon: Item) {
 on<CombatSwing>({ !swung() && isMaul(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("maul_attack")
     player.hit(target)
-    delay = 6
+    delay = if (isTzhaarKetOm(player.weapon)) 7 else 6
 }
 
 on<CombatHit>({ isMaul(it.weapon) }, Priority.LOW) { player: Player ->

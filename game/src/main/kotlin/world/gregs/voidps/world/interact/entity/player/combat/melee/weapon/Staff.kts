@@ -15,7 +15,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isStaff(item: Item?) = item != null && (item.name.startsWith("staff") || item.name.endsWith("wand") || item.name.endsWith("crozier"))
+fun isStaff(item: Item?) = item != null && (item.name.startsWith("staff") || item.name.endsWith("wand") || item.name.endsWith("crozier") || item.name == "toktz-mej-tal")
 
 on<Registered>({ isStaff(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))

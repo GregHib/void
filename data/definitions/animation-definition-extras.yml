@@ -1223,10 +1223,6 @@ granite_maul_attack:
   id: 1665
 granite_maul_block:
   id: 1666
-tzhaar_ket_om_attack:
-  id: 1665
-tzhaar_ket_om_block:
-  id: 1666
 godsword_chop:
   id: 11978
 godsword_slash:
@@ -1248,7 +1244,7 @@ zamorakian_spear_block:
 maul_attack:
   id: 13691
 maul_block:
-  id: 13042
+  id: 1666
 vestas_longsword_attack:
   id: 12311
 vestas_longsword_lunge:
