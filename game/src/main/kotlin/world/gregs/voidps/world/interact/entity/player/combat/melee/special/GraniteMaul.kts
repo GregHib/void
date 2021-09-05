@@ -20,6 +20,7 @@ fun isGraniteMaul(weapon: Item?) = weapon != null && weapon.name.startsWith("gra
 
 on<CombatSwing>({ !swung() && it.specialAttack && isGraniteMaul(it.weapon) }) { player: Player ->
     if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
+        delay = -1
         return@on
     }
     player.setAnimation("quick_smash")

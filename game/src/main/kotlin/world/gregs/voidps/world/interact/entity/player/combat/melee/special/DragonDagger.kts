@@ -59,7 +59,7 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDragonDagger(it.weapon) }) {
         delay = -1
         return@on
     }
-    player.setAnimation("dragon_dagger_special")
+    player.setAnimation("puncture")
     player.setGraphic("puncture", height = 100)
     player.hit(target)
     player.hit(target)

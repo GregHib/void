@@ -16,8 +16,8 @@ import kotlin.random.Random.Default.nextInt
 
 fun isDragonClaws(weapon: Item?) = weapon != null && weapon.name == "dragon_claws"
 
-on<CombatSwing>({ !swung() && isDragonClaws(it.weapon) }, Priority.LOW) { player: Player ->
-    if (player.specialAttack && !drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
+on<CombatSwing>({ !swung() && it.specialAttack && isDragonClaws(it.weapon) }, Priority.LOW) { player: Player ->
+    if (!drainSpecialEnergy(player, MAX_SPECIAL_ATTACK / 2)) {
         delay = -1
         return@on
     }
