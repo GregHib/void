@@ -44,7 +44,7 @@ on<CombatSwing>({ !swung() && !it.specialAttack && isDragonDagger(it.weapon) }, 
     delay = 4
 }
 
-on<CombatHit>({ isDragonDagger(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isDragonDagger(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dragon_dagger_block")
 }
 

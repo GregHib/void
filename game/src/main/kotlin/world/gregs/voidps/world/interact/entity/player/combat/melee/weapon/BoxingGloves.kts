@@ -36,6 +36,6 @@ on<CombatSwing>({ !swung() && isBoxingGloves(it.weapon) }, Priority.LOW) { playe
     delay = 4
 }
 
-on<CombatHit>({ isBoxingGloves(weapon) }) { player: Player ->
+on<CombatHit>({ isBoxingGloves(it.weapon) }) { player: Player ->
     player.setAnimation("boxing_gloves_block")
 }

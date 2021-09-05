@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
@@ -34,8 +33,4 @@ on<CombatSwing>({ !swung() && isToragsHammers(it.weapon) }, Priority.LOW) { play
     player.setAnimation("torags_hammers_attack")
     player.hit(target)
     delay = 5
-}
-
-on<CombatHit>({ isToragsHammers(weapon) }) { player: Player ->
-    player.setAnimation("block")
 }

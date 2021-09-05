@@ -10,10 +10,7 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.attackType
-import world.gregs.voidps.world.interact.entity.combat.hit
-import world.gregs.voidps.world.interact.entity.combat.weapon
+import world.gregs.voidps.world.interact.entity.combat.*
 
 on<Registered>({ it.equipped(EquipSlot.Weapon).isEmpty() }) { player: Player ->
     updateWeapon(player)
@@ -36,4 +33,8 @@ on<CombatSwing>({ !swung() }, Priority.LOWEST) { player: Player ->
     player.setAnimation(if (player.attackType == "kick") "player_kick" else "player_punch")
     player.hit(target, null)
     delay = 4
+}
+
+on<CombatHit>(priority = Priority.HIGHEST) { player: Player ->
+    player.setAnimation("block")
 }

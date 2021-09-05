@@ -45,7 +45,7 @@ on<CombatSwing>({ !swung() && isWhip(it.weapon) }, Priority.LOW) { player: Playe
     delay = 4
 }
 
-on<CombatDamage>({ isWhip(weapon) }) { player: Player ->
+on<CombatHit>({ isWhip(it.weapon) }) { player: Player ->
     player.setAnimation("whip_block")
 }
 

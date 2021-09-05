@@ -41,7 +41,7 @@ on<CombatSwing>({ !swung() && isGreatAxe(it.weapon) }, Priority.LOW) { player: P
     delay = 7
 }
 
-on<CombatHit>({ isGreatAxe(weapon) }) { player: Player ->
+on<CombatHit>({ isGreatAxe(it.weapon) }) { player: Player ->
     player.setAnimation("dharoks_greataxe_block")
 }
 

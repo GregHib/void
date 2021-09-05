@@ -15,13 +15,13 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isKetOm(item: Item?) = item != null && item.name == "tzhaar-ket-om"
+fun isTzhaarKetOm(item: Item?) = item != null && item.name == "tzhaar-ket-om"
 
-on<Registered>({ isKetOm(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isTzhaarKetOm(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isKetOm(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isTzhaarKetOm(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -30,12 +30,12 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isKetOm(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isTzhaarKetOm(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("tzhaar_ket_om_attack")
     player.hit(target)
     delay = 7
 }
 
-on<CombatHit>({ isKetOm(weapon) }) { player: Player ->
+on<CombatHit>({ isTzhaarKetOm(it.weapon) }) { player: Player ->
     player.setAnimation("tzhaar_ket_om_block")
 }

@@ -10,10 +10,13 @@ import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
-import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.combat.CombatSwing
+import world.gregs.voidps.world.interact.entity.combat.attackType
+import world.gregs.voidps.world.interact.entity.combat.hit
+import world.gregs.voidps.world.interact.entity.combat.weapon
 
 fun isWeapon(item: Item?) = item != null && (isSword(item) || item.name.endsWith("rapier") || isFunWeapon(item))
-fun isSword(item: Item) = item.name.endsWith("sword") && item.name != "shadow_sword"
+fun isSword(item: Item) = item.name.endsWith("sword") && item.name != "shadow_sword" && !item.name.endsWith("2h_sword")
 fun isFunWeapon(item: Item) = item.name == "spork" || item.name == "kitchen_knife"
 
 on<Registered>({ isWeapon(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
@@ -38,8 +41,4 @@ on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: P
     }")
     player.hit(target)
     delay = 4
-}
-
-on<CombatHit>({ isWeapon(weapon) }, Priority.LOW) { player: Player ->
-    player.setAnimation("block")
 }

@@ -33,6 +33,6 @@ on<CombatSwing>({ !swung() && isNet(it.weapon) }, Priority.LOWER) { player: Play
     delay = 4
 }
 
-on<CombatHit>({ isNet(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isNet(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("net_hit")
 }

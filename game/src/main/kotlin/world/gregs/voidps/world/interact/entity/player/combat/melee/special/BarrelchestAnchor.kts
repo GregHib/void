@@ -44,7 +44,7 @@ on<CombatSwing>({ !swung() && isAnchor(it.weapon) }, Priority.LOW) { player: Pla
     delay = 6
 }
 
-on<CombatHit>({ isAnchor(weapon) }) { player: Player ->
+on<CombatHit>({ isAnchor(it.weapon) }) { player: Player ->
     player.setAnimation("anchor_block")
 }
 

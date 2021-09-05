@@ -15,13 +15,13 @@ import world.gregs.voidps.world.interact.entity.combat.CombatSwing
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
-fun isHammer(item: Item?) = item != null && item.name == "golden_hammer"
+fun isGoldenHammer(item: Item?) = item != null && item.name == "golden_hammer"
 
-on<Registered>({ isHammer(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
+on<Registered>({ isGoldenHammer(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateWeapon(player, player.equipped(EquipSlot.Weapon))
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isHammer(item) }) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && isGoldenHammer(item) }) { player: Player ->
     updateWeapon(player, item)
 }
 
@@ -30,12 +30,12 @@ fun updateWeapon(player: Player, weapon: Item) {
     player.weapon = weapon
 }
 
-on<CombatSwing>({ !swung() && isHammer(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatSwing>({ !swung() && isGoldenHammer(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("tzhaar_ket_om_attack")
     player.hit(target)
     delay = 6
 }
 
-on<CombatHit>({ isHammer(weapon) }) { player: Player ->
+on<CombatHit>({ isGoldenHammer(it.weapon) }) { player: Player ->
     player.setAnimation("tzhaar_ket_om_block")
 }

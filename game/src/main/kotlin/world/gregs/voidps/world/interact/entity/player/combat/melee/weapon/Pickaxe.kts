@@ -38,6 +38,6 @@ on<CombatSwing>({ !swung() && isPickaxe(it.weapon) }, Priority.LOWER) { player: 
     delay = 5
 }
 
-on<CombatHit>({ isPickaxe(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isPickaxe(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("pickaxe_block")
 }

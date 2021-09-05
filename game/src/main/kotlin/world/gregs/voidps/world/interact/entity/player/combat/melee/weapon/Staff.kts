@@ -36,6 +36,6 @@ on<CombatSwing>({ !swung() && isStaff(it.weapon) }, Priority.LOWER) { player: Pl
     delay = 4
 }
 
-on<CombatHit>({ isStaff(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isStaff(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("staff_block")
 }

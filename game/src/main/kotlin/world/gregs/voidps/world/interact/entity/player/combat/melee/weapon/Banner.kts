@@ -36,6 +36,6 @@ on<CombatSwing>({ !swung() && isBanner(it.weapon) }, Priority.LOWER) { player: P
     delay = 4
 }
 
-on<CombatHit>({ isBanner(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isBanner(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("banner_hit")
 }

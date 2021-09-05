@@ -33,6 +33,6 @@ on<CombatSwing>({ !swung() && isGodsword(it.weapon) }, Priority.LOW) { player: P
     delay = 6
 }
 
-on<CombatHit>({ isGodsword(weapon) }) { player: Player ->
+on<CombatHit>({ isGodsword(it.weapon) }) { player: Player ->
     player.setAnimation("godsword_hit")
 }

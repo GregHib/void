@@ -36,6 +36,6 @@ on<CombatSwing>({ !swung() && isFlail(it.weapon) }, Priority.LOW) { player: Play
     delay = 5
 }
 
-on<CombatHit>({ isFlail(weapon) }) { player: Player ->
+on<CombatHit>({ isFlail(it.weapon) }) { player: Player ->
     player.setAnimation("veracs_flail_block")
 }

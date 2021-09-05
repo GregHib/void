@@ -41,7 +41,7 @@ on<CombatSwing>({ !swung() && isVestas(it.weapon) }, Priority.LOW) { player: Pla
     delay = 5
 }
 
-on<CombatHit>({ isVestas(weapon) }) { player: Player ->
+on<CombatHit>({ isVestas(it.weapon) }) { player: Player ->
     player.setAnimation("vestas_longsword_block")
 }
 

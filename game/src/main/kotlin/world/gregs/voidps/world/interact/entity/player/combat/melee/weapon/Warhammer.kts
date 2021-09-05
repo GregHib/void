@@ -40,6 +40,6 @@ on<CombatSwing>({ !swung() && isWarhammer(it.weapon) }, Priority.LOWER) { player
     delay = 6
 }
 
-on<CombatHit>({ isWarhammer(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isWarhammer(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("warhammer_block")
 }

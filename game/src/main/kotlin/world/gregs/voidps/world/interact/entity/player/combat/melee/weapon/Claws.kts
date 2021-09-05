@@ -38,6 +38,6 @@ on<CombatSwing>({ !swung() && isClaws(it.weapon) }, Priority.LOWER) { player: Pl
     delay = 4
 }
 
-on<CombatHit>({ isClaws(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isClaws(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("claw_block")
 }

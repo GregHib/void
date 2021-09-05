@@ -40,6 +40,6 @@ on<CombatSwing>({ !swung() && isLongsword(it.weapon) }, Priority.LOWER) { player
     delay = 5
 }
 
-on<CombatHit>({ isLongsword(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isLongsword(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("longsword_block")
 }

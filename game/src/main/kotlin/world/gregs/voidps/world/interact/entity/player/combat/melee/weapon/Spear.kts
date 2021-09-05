@@ -42,6 +42,6 @@ on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: P
     delay = 4
 }
 
-on<CombatHit>({ isWeapon(weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ isWeapon(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("spear_block")
 }
