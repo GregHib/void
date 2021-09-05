@@ -20,7 +20,7 @@ on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.ind
     updateWeapon(player)
 }
 
-on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && oldItem == it.weapon }, Priority.LOWER) { player: Player ->
+on<ItemChanged>({ container == "worn_equipment" && index == EquipSlot.Weapon.index && oldItem == it.weapon }, Priority.LOWISH) { player: Player ->
     updateWeapon(player)
 }
 
