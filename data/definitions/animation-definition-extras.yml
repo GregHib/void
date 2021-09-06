@@ -1,1375 +1,688 @@
 # Dialogue expressions
-expression_sad:
-  id: 9760
-expression_sad_old:
-  id: 609
-expression_dwell:
-  id: 9757
-expression_teary:
-  id: 9769
-expression_upset:
-  id: 9761
-expression_upset_old:
-  id: 610
-expression_cry:
-  id: 9768
-expression_wail:
-  id: 9765
-expression_afraid:
-  id: 9773
-expression_afraid_old:
-  id: 596
-expression_shock:
-  id: 9750
-expression_surprised:
-  id: 9746
-expression_surprised_old:
-  id: 571
-expression_disbelief:
-  id: 9753
-expression_scared:
-  id: 9777
-expression_angry:
-  id: 9781
-expression_angry_old:
-  id: 615
-expression_furious:
-  id: 9785
-expression_furious_old:
-  id: 614
-expression_mad:
-  id: 9789
-expression_talking:
-  id: 9803
-expression_talking_old:
-  id: 588
-expression_talk:
-  id: 9806
-expression_talk_old:
-  id: 590
-expression_think:
-  id: 9830
-expression_think_old:
-  id: 557
-expression_suspicious:
-  id: 9836
-expression_suspicious_old:
-  id: 592
-expression_sceptic:
-  id: 9834
-expression_sceptic_old:
-  id: 563
-expression_happy:
-  id: 9843
-expression_laugh:
-  id: 9840
-expression_laugh_old:
-  id: 605
-expression_laughing:
-  id: 9851
-expression_hysterics:
-  id: 9841
-expression_hysterics_old:
-  id: 606
-expression_cheerful:
-  id: 9847
-expression_cheerful_old:
-  id: 567
-expression_shake:
-  id: 9745
-expression_shake_old:
-  id: 570
-expression_disagree:
-  id: 9814
-expression_admit:
-  id: 9815
-expression_admit_old:
-  id: 579
-expression_uncertain:
-  id: 9811
-expression_uncertain_old:
-  id: 575
-expression_unsure:
-  id: 9828
-expression_unsure_old:
-  id: 555
-expression_disregard:
-  id: 9827
-expression_disregard_old:
-  id: 554
-expression_disdain:
-  id: 9832
-expression_unamused:
-  id: 9833
-expression_unamused_old:
-  id: 562
-expression_silent:
-  id: 9804
-expression_silent_old:
-  id: 589
-expression_eyes_closed:
-  id: 9877
-expression_asleep:
-  id: 9802
-expression_conflicted:
-  id: 9835
-expression_conflicted_old:
-  id: 600
-expression_chicken:
-  id: 9793
-expression_goofy:
-  id: 9878
-expression_evil_laugh:
-  id: 9842
-expression_evil_laugh_old:
-  id: 607
-expression_gatekeeper_happy:
-  id: 14074
-expression_gatekeeper_sad:
-  id: 14075
-expression_gatekeeper_suspicious:
-  id: 14076
-expression_gatekeeper_tired:
-  id: 14077
-expression_gatekeeper_cry:
-  id: 14078
+expression_sad: 9760
+expression_sad_old: 609
+expression_dwell: 9757
+expression_teary: 9769
+expression_upset: 9761
+expression_upset_old: 610
+expression_cry: 9768
+expression_wail: 9765
+expression_afraid: 9773
+expression_afraid_old: 596
+expression_shock: 9750
+expression_surprised: 9746
+expression_surprised_old: 571
+expression_disbelief: 9753
+expression_scared: 9777
+expression_angry: 9781
+expression_angry_old: 615
+expression_furious: 9785
+expression_furious_old: 614
+expression_mad: 9789
+expression_talking: 9803
+expression_talking_old: 588
+expression_talk: 9806
+expression_talk_old: 590
+expression_think: 9830
+expression_think_old: 557
+expression_suspicious: 9836
+expression_suspicious_old: 592
+expression_sceptic: 9834
+expression_sceptic_old: 563
+expression_happy: 9843
+expression_laugh: 9840
+expression_laugh_old: 605
+expression_laughing: 9851
+expression_hysterics: 9841
+expression_hysterics_old: 606
+expression_cheerful: 9847
+expression_cheerful_old: 567
+expression_shake: 9745
+expression_shake_old: 570
+expression_disagree: 9814
+expression_admit: 9815
+expression_admit_old: 579
+expression_uncertain: 9811
+expression_uncertain_old: 575
+expression_unsure: 9828
+expression_unsure_old: 555
+expression_disregard: 9827
+expression_disregard_old: 554
+expression_disdain: 9832
+expression_unamused: 9833
+expression_unamused_old: 562
+expression_silent: 9804
+expression_silent_old: 589
+expression_eyes_closed: 9877
+expression_asleep: 9802
+expression_conflicted: 9835
+expression_conflicted_old: 600
+expression_chicken: 9793
+expression_goofy: 9878
+expression_evil_laugh: 9842
+expression_evil_laugh_old: 607
+expression_gatekeeper_happy: 14074
+expression_gatekeeper_sad: 14075
+expression_gatekeeper_suspicious: 14076
+expression_gatekeeper_tired: 14077
+expression_gatekeeper_cry: 14078
 # End expressions
-activate_protect_item:
-  id: 12567
-activate_berserker:
-  id: 12589
-activate_turmoil:
-  id: 12565
-climb_down:
-  id: 827
-climb_up:
-  id: 828
-assist:
-  id: 7299
-emote_yes:
-  id: 855
-emote_no:
-  id: 856
-emote_bow:
-  id: 858
-emote_enhanced_bow:
-  id: 5312
-emote_angry:
-  id: 859
-emote_enhanced_angry:
-  id: 5315
-emote_think:
-  id: 857
-emote_wave:
-  id: 863
-emote_shrug:
-  id: 2113
-emote_cheer:
-  id: 862
-emote_beckon:
-  id: 864
-emote_laugh:
-  id: 861
-emote_jump_for_joy:
-  id: 2109
-emote_yawn:
-  id: 2111
-emote_enhanced_yawn:
-  id: 5313
-emote_dance:
-  id: 866
-emote_enhanced_dance:
-  id: 5316
-emote_jig:
-  id: 2106
-emote_twirl:
-  id: 2107
-emote_headbang:
-  id: 2108
-emote_cry:
-  id: 860
-emote_blow_kiss:
-  id: 1374
-emote_panic:
-  id: 2105
-emote_raspberry:
-  id: 2110
-emote_clap:
-  id: 865
-emote_salute:
-  id: 2112
-emote_goblin_bow:
-  id: 2127
-emote_goblin_salute:
-  id: 2128
-emote_glass_box:
-  id: 1131
-emote_climb_rope:
-  id: 1130
-emote_lean:
-  id: 1129
-emote_glass_wall:
-  id: 1128
-emote_idea:
-  id: 4276
-emote_stomp:
-  id: 4278
-emote_flap:
-  id: 4280
-emote_slap_head:
-  id: 4275
-emote_zombie_walk:
-  id: 3544
-emote_zombie_dance:
-  id: 3543
-emote_zombie_hand:
-  id: 7272
-emote_scared:
-  id: 2836
-emote_bunny_hop:
-  id: 6111
-emote_snowman_dance:
-  id: 7531
-emote_air_guitar:
-  id: 2414
-emote_safety_first:
-  id: 8770
-emote_explore:
-  id: 9990
-emote_trick:
-  id: 10530
-emote_freeze:
-  id: 11044
-emote_turkey_transform:
-  id: 10994
-emote_turkey_return:
-  id: 10995
-emote_turkey_dance:
-  id: 10996
-emote_around_the_world_in_eggty_days:
-  id: 11542
-emote_dramatic_point:
-  id: 12658
-emote_faint:
-  id: 14165
-emote_puppet_master:
-  id: 14869
-emote_seal_of_approval:
-  id: 15104
-emote_seal_stand:
-  id: 15105
-emote_seal_clap:
-  id: 15106
-emote_seal_clap_short:
-  id: 15107
-emote_seal_return:
-  id: 15108
-emote_taskmaster:
-  id: 15033
-emote_dungeoneering_start:
-  id: 13190
-emote_dungeoneering_melee:
-  id: 13192
-emote_dungeoneering_mage:
-  id: 13193
-emote_dungeoneering_range:
-  id: 13194
-emote_attack:
-  id: 4959
-emote_defence:
-  id: 4961
-emote_strength:
-  id: 4981
-emote_constitution:
-  id: 14242
-emote_ranged:
-  id: 4973
-emote_prayer:
-  id: 4979
-emote_magic:
-  id: 4939
-emote_cooking:
-  id: 4955
-emote_woodcutting:
-  id: 4957
-emote_fletching:
-  id: 4937
-emote_fishing:
-  id: 4951
-emote_firemaking:
-  id: 4975
-emote_crafting:
-  id: 4949
-emote_smithing:
-  id: 4943
-emote_mining:
-  id: 4941
-emote_herblore:
-  id: 4969
-emote_agility:
-  id: 4977
-emote_thieving:
-  id: 4965
-emote_slayer:
-  id: 4967
-emote_farming:
-  id: 4963
-emote_runecrafting:
-  id: 4947
-emote_hunter:
-  id: 5158
-emote_construction:
-  id: 4953
-emote_summoning:
-  id: 8525
-emote_quest_point:
-  id: 4945
-emote_dung_master_bow:
-  id: 14588
-# 14588
-emote_dung_master_spell:
-  id: 14609
-emote_dung_master_sword:
-  id: 14610
-emote_fly_kite:
-  id: 8990
-emote_reindeer:
-  id: 5059
-emote_recite_prayer:
-  id: 5864
-emote_chicken_dance:
-  id: 6400
-emote_spinning_plate:
-  id: 1902
-emote_spinning_plate_take:
-  id: 1904
-emote_spinning_plate_drop:
-  id: 1906
-emote_yoyo_play:
-  id: 1457
-emote_yoyo_loop:
-  id: 1458
-emote_yoyo_walk:
-  id: 1459
-emote_yoyo_crazy:
-  id: 1460
-emote_shake_snow_globe:
-  id: 2926
-emote_trample_snow:
-  id: 7528
-rest_legs_out:
-  id: 2716
-stand_legs_out:
-  id: 2921
-rest_arms_back:
-  id: 5713
-stand_arms_back:
-  id: 5748
-rest_arms_crossed:
-  id: 11786
-stand_arms_crossed:
-  id: 11788
-bronze_hatchet_chop:
-  id: 879
-bronze_hatchet_chop_ivy:
-  id: 12282
-iron_hatchet_chop:
-  id: 877
-iron_hatchet_chop_ivy:
-  id: 2847
-steel_hatchet_chop:
-  id: 875
-steel_hatchet_chop_ivy:
-  id: 880
-black_hatchet_chop:
-  id: 873
-black_hatchet_chop_ivy:
-  id: 878
-mithril_hatchet_chop:
-  id: 871
-mithril_hatchet_chop_ivy:
-  id: 876
-adamant_hatchet_chop:
-  id: 869
-adamant_hatchet_chop_ivy:
-  id: 874
-rune_hatchet_chop:
-  id: 867
-rune_hatchet_chop_ivy:
-  id: 872
-dragon_hatchet_chop:
-  id: 2846
-dragon_hatchet_chop_ivy:
-  id: 870
-sacred_clay_hatchet_chop:
-  id: 1905
-volatile_clay_hatchet_chop:
-  id: 1907
-dragon_hatchet_chop_ivy_stop:
-  id: 3260
-rune_hatchet_chop_ivy_stop:
-  id: 3261
-adamant_hatchet_chop_ivy_stop:
-  id: 3262
-mithril_hatchet_chop_ivy_stop:
-  id: 3263
-black_hatchet_chop_ivy_stop:
-  id: 3284
-steel_hatchet_chop_ivy_stop:
-  id: 3292
-iron_hatchet_chop_ivy_stop:
-  id: 3323
-bronze_hatchet_chop_ivy_stop:
-  id: 3324
-inferno_adze_chop_ivy_stop:
-  id: 3325
-sacred_clay_hatchet_chop_ivy_stop:
-  id: 3326
-volatile_clay_hatchet_chop_ivy_stop:
-  id: 3394
-blessed_hatchet_chop:
-  id: 5383
-rune_hatchet_chop_floor:
-  id: 5781
-black_hatchet_chop_log:
-  id: 6364
-inferno_adze_chop_ivy:
-  id: 12323
-dragon_hatchet_chop_canoe_tree:
-  id: 9992
-rune_hatchet_chop_canoe_tree:
-  id: 9993
-adamant_hatchet_chop_canoe_tree:
-  id: 9994
-mithril_hatchet_chop_canoe_tree:
-  id: 9995
-black_hatchet_chop_canoe_tree:
-  id: 9996
-steel_hatchet_chop_canoe_tree:
-  id: 9997
-iron_hatchet_chop_canoe_tree:
-  id: 9998
-bronze_hatchet_chop_canoe_tree:
-  id: 9999
-inferno_adze_chop_one_hand:
-  id: 10249
-inferno_adze_chop_canoe_tree:
-  id: 10250
-inferno_adze_chop:
-  id: 10251
-sacred_clay_hatchet_chop_canoe_tree:
-  id: 11617
-volatile_clay_hatchet_chop_canoe_tree:
-  id: 11618
-sacred_clay_hatchet_chop_ivy:
-  id: 12324
-volatile_clay_hatchet_chop_ivy:
-  id: 12325
-bronze_hatchet_chop_tired:
-  id: 12329
-iron_hatchet_chop_tired:
-  id: 12330
-steel_hatchet_chop_tired:
-  id: 12331
-black_hatchet_chop_tired:
-  id: 12332
-mithril_hatchet_chop_tired:
-  id: 12333
-adamant_hatchet_chop_tired:
-  id: 12334
-rune_hatchet_chop_tired:
-  id: 12335
-dragon_hatchet_chop_tired:
-  id: 12336
-inferno_adze_chop_tired:
-  id: 12337
-sacred_clay_hatchet_chop_tired:
-  id: 12338
-volatile_clay_hatchet_chop_tired:
-  id: 12339
-rune_hatchet_chop_2h_tired:
-  id: 12340
-adamant_hatchet_chop_2h_tired:
-  id: 12341
-mithril_hatchet_chop_2h_tired:
-  id: 12342
-steel_hatchet_chop_2h_tired:
-  id: 12343
-iron_hatchet_chop_2h_tired:
-  id: 12344
-bronze_hatchet_chop_2h_tired1:
-  id: 12345
-dragon_hatchet_chop_2h_tired:
-  id: 12346
-inferno_adze_chop_2h_tired:
-  id: 12347
-sacred_clay_hatchet_chop_2h_tired:
-  id: 12348
-volatile_clay_hatchet_chop_2h_tired:
-  id: 12349
-novite_hatchet_chop:
-  id: 13118
-bathus_hatchet_chop:
-  id: 13119
-marmaros_hatchet_chop:
-  id: 13120
-kratonite_hatchet_chop:
-  id: 13121
-fractite_hatchet_chop:
-  id: 13122
-zephyrium_hatchet_chop:
-  id: 13123
-argonite_hatchet_chop:
-  id: 13124
-katagon_hatchet_chop:
-  id: 13125
-gorgonite_hatchet_chop:
-  id: 13126
-promethium_hatchet_chop:
-  id: 13127
-primal_hatchet_chop:
-  id: 13128
-novite_hatchet_barricade:
-  id: 13129
-bathus_hatchet_barricade:
-  id: 13130
-marmaros_hatchet_barricade:
-  id: 13131
-kratonite_hatchet_barricade:
-  id: 13132
-fractite_hatchet_barricade:
-  id: 13133
-zephyrium_hatchet_barricade:
-  id: 13134
-argonite_hatchet_barricade:
-  id: 13135
-katagon_hatchet_barricade:
-  id: 13136
-gorgonite_hatchet_barricade:
-  id: 13137
-promethium_hatchet_barricade:
-  id: 13138
-primal_hatchet_barricade:
-  id: 13139
-novite_hatchet_fail:
-  id: 13140
-bathus_hatchet_fail:
-  id: 13141
-marmaros_hatchet_fail:
-  id: 13142
-kratonite_hatchet_fail:
-  id: 13143
-fractite_hatchet_fail:
-  id: 13144
-zephyrium_hatchet_fail:
-  id: 13145
-argonite_hatchet_fail:
-  id: 13146
-katagon_hatchet_fail:
-  id: 13147
-gorgonite_hatchet_fail:
-  id: 13148
-promethium_hatchet_fail:
-  id: 13149
-primal_hatchet_fail:
-  id: 13150
-rune_hatchet_dugout_canoe:
-  id: 6738
-adamant_hatchet_dugout_canoe:
-  id: 6739
-mithril_hatchet_dugout_canoe:
-  id: 6740
-black_hatchet_dugout_canoe:
-  id: 6741
-steel_hatchet_dugout_canoe:
-  id: 6742
-iron_hatchet_dugout_canoe:
-  id: 6743
-bronze_hatchet_dugout_canoe:
-  id: 6744
-dragon_hatchet_dugout_canoe:
-  id: 6745
-bronze_hatchet_log_canoe:
-  id: 10071
-iron_hatchet_log_canoe:
-  id: 10072
-steel_hatchet_log_canoe:
-  id: 10073
-black_hatchet_log_canoe:
-  id: 10074
-mithril_hatchet_log_canoe:
-  id: 10075
-adamant_hatchet_log_canoe:
-  id: 10076
-rune_hatchet_log_canoe:
-  id: 10077
-dragon_hatchet_log_canoe:
-  id: 10078
-sacred_clay_hatchet_dugout_canoe:
-  id: 11060
-volatile_clay_hatchet_dugout_canoe:
-  id: 11061
-bronze_hatchet_waka_canoe:
-  id: 11594
-rune_hatchet_waka_canoe:
-  id: 11595
-adamant_hatchet_waka_canoe:
-  id: 11596
-mithril_hatchet_waka_canoe:
-  id: 11597
-black_hatchet_waka_canoe:
-  id: 11598
-steel_hatchet_waka_canoe:
-  id: 11599
-iron_hatchet_waka_canoe:
-  id: 11600
-dragon_hatchet_waka_canoe:
-  id: 11601
-sacred_clay_hatchet_waka_canoe:
-  id: 11602
-volatile_clay_hatchet_waka_canoe:
-  id: 11603
-inferno_adze_waka_canoe:
-  id: 11604
-sacred_clay_hatchet_log_canoe:
-  id: 12318
-volatile_clay_hatchet_log_canoe:
-  id: 12319
-hatchet_class_1_chop:
-  id: 10603
-hatchet_class_2_chop:
-  id: 10604
-hatchet_class_3_chop:
-  id: 10605
-hatchet_class_4_chop:
-  id: 10606
-hatchet_class_5_chop:
-  id: 10607
-rune_pickaxe_swing_low:
-  id: 624
-bronze_pickaxe_swing_low:
-  id: 625
-iron_pickaxe_swing_low:
-  id: 626
-steel_pickaxe_swing_low:
-  id: 627
-adamant_pickaxe_swing_low:
-  id: 628
-mithril_pickaxe_swing_low:
-  id: 629
-bronze_pickaxe_chop:
-  id: 1511
-rune_pickaxe_stuck:
-  id: 4760
-bronze_pickaxe_stuck:
-  id: 4761
-iron_pickaxe_stuck:
-  id: 4762
-steel_pickaxe_stuck:
-  id: 4763
-adamant_pickaxe_stuck:
-  id: 4764
-mithril_pickaxe_stuck:
-  id: 4765
-dragon_pickaxe_stuck:
-  id: 4766
-bronze_pickaxe_quick:
-  id: 6102
-rune_pickaxe_smash_low_old:
-  id: 6746
-bronze_pickaxe_smash_low_old:
-  id: 6747
-iron_pickaxe_smash_low_old:
-  id: 6748
-steel_pickaxe_smash_low_old:
-  id: 6749
-adamant_pickaxe_smash_low_old:
-  id: 6750
-mithril_pickaxe_smash_low_old:
-  id: 6751
-rune_pickaxe_fail:
-  id: 6752
-bronze_pickaxe_fail:
-  id: 6753
-iron_pickaxe_fail:
-  id: 6754
-steel_pickaxe_fail:
-  id: 6755
-adamant_pickaxe_fail:
-  id: 6756
-mithril_pickaxe_fail:
-  id: 6757
-dragon_pickaxe_fail:
-  id: 6758
-bronze_pickaxe_fast:
-  id: 8836
-iron_pickaxe_fast:
-  id: 8837
-steel_pickaxe_fast:
-  id: 8838
-adamant_pickaxe_fast:
-  id: 8839
-mithril_pickaxe_fast:
-  id: 8840
-rune_pickaxe_fast:
-  id: 8841
-bronze_pickaxe_explode:
-  id: 9360
-iron_pickaxe_explode:
-  id: 9361
-steel_pickaxe_explode:
-  id: 9362
-mithril_pickaxe_explode:
-  id: 9363
-adamant_pickaxe_explode:
-  id: 9364
-rune_pickaxe_explode:
-  id: 9365
-bronze_pickaxe_smash_low:
-  id: 10001
-iron_pickaxe_smash_low:
-  id: 10002
-steel_pickaxe_smash_low:
-  id: 10003
-mithril_pickaxe_smash_low:
-  id: 10004
-adamant_pickaxe_smash_low:
-  id: 10005
-rune_pickaxe_smash_low:
-  id: 10006
-dragon_pickaxe_smash_low:
-  id: 10007
-rune_pickaxe_swing_medium:
-  id: 10335
-bronze_pickaxe_swing_medium:
-  id: 10336
-iron_pickaxe_swing_medium:
-  id: 10337
-steel_pickaxe_swing_medium:
-  id: 10338
-mithril_pickaxe_swing_medium:
-  id: 10339
-adamant_pickaxe_swing_medium:
-  id: 10340
-inferno_adze_swing_medium:
-  id: 10341
-rune_pickaxe_swing_high:
-  id: 10342
-bronze_pickaxe_swing_high:
-  id: 10343
-iron_pickaxe_swing_high:
-  id: 10344
-steel_pickaxe_swing_high:
-  id: 10345
-mithril_pickaxe_swing_high:
-  id: 10346
-adamant_pickaxe_swing_high:
-  id: 10347
-inferno_adze_swing_high:
-  id: 10348
-pickaxe_class_1_swing:
-  id: 10608
-pickaxe_class_2_swing:
-  id: 10609
-pickaxe_class_3_swing:
-  id: 10610
-pickaxe_class_4_swing:
-  id: 10611
-pickaxe_class_5_swing:
-  id: 10612
-sacred_clay_pickaxe_2:
-  id: 11019
-sacred_clay_pickaxe_3:
-  id: 11020
-sacred_clay_pickaxe_4:
-  id: 11021
-sacred_clay_pickaxe_5:
-  id: 11022
-sacred_clay_pickaxe_6:
-  id: 11023
-sacred_clay_pickaxe_7:
-  id: 11024
-sacred_clay_pickaxe_8:
-  id: 11025
-sacred_clay_pickaxe_9:
-  id: 11026
-sacred_clay_pickaxe_explode:
-  id: 11068
-volatile_clay_pickaxe_explode:
-  id: 11069
-dragon_pickaxe_6:
-  id: 12169
-dragon_pickaxe_explode:
-  id: 12187
-dragon_pickaxe_8:
-  id: 12188
-dragon_pickaxe_swing_low:
-  id: 12189
-dragon_pickaxe_swing_medium:
-  id: 12190
-dragon_pickaxe_swing_high:
-  id: 12191
-bronze_pickaxe_random:
-  id: 12278
-steel_pickaxe_12:
-  id: 12455
-novite_pickaxe_swing:
-  id: 13074
-bathus_pickaxe_swing:
-  id: 13075
-marmaros_pickaxe_swing:
-  id: 13076
-kratonite_pickaxe_swing:
-  id: 13077
-fractite_pickaxe_swing:
-  id: 13078
-zephyrium_pickaxe_swing:
-  id: 13079
-argonite_pickaxe_swing:
-  id: 13080
-katagon_pickaxe_swing:
-  id: 13081
-gorgonite_pickaxe_swing:
-  id: 13082
-promethium_pickaxe_swing:
-  id: 13083
-primal_pickaxe_swing:
-  id: 13084
-novite_pickaxe_smash:
-  id: 13085
-bathus_pickaxe_smash:
-  id: 13086
-marmaros_pickaxe_smash:
-  id: 13087
-kratonite_pickaxe_smash:
-  id: 13088
-fractite_pickaxe_smash:
-  id: 13089
-zephyrium_pickaxe_smash:
-  id: 13090
-argonite_pickaxe_smash:
-  id: 13091
-katagon_pickaxe_smash:
-  id: 13092
-gorgonite_pickaxe_smash:
-  id: 13093
-promethium_pickaxe_smash:
-  id: 13094
-primal_pickaxe_smash:
-  id: 13095
-novite_pickaxe_fail:
-  id: 13096
-bathus_pickaxe_fail:
-  id: 13097
-marmaros_pickaxe_fail:
-  id: 13098
-kratonite_pickaxe_fail:
-  id: 13099
-fractite_pickaxe_fail:
-  id: 13100
-zephyrium_pickaxe_fail:
-  id: 13101
-argonite_pickaxe_fail:
-  id: 13102
-katagon_pickaxe_fail:
-  id: 13103
-gorgonite_pickaxe_fail:
-  id: 13104
-promethium_pickaxe_fail:
-  id: 13105
-primal_pickaxe_fail:
-  id: 13106
-novite_pickaxe_swing_chip:
-  id: 13107
-bathus_pickaxe_swing_chip:
-  id: 13108
-marmaros_pickaxe_swing_chip:
-  id: 13109
-kratonite_pickaxe_swing_chip:
-  id: 13110
-fractite_pickaxe_swing_chip:
-  id: 13111
-zephyrium_pickaxe_swing_chip:
-  id: 13112
-argonite_pickaxe_swing_chip:
-  id: 13113
-katagon_pickaxe_swing_chip:
-  id: 13114
-gorgonite_pickaxe_swing_chip:
-  id: 13115
-promethium_pickaxe_swing_chip:
-  id: 13116
-primal_pickaxe_swing_chip:
-  id: 13117
-rune_pickaxe_chip_right:
-  id: 14358
-bronze_pickaxe_chip_right:
-  id: 14359
-iron_pickaxe_chip_right:
-  id: 14360
-steel_pickaxe_chip_right:
-  id: 14361
-adamant_pickaxe_chip_right:
-  id: 14362
-mithril_pickaxe_chip_right:
-  id: 14363
-dragon_pickaxe_chip_right:
-  id: 14364
-sacred_clay_pickaxe_chip_right:
-  id: 14365
-inferno_adze_chip_right:
-  id: 14366
-bronze_pickaxe_smash:
-  id: 15242
-iron_pickaxe_smash:
-  id: 15243
-steel_pickaxe_smash:
-  id: 15244
-mithril_pickaxe_smash:
-  id: 15245
-adamant_pickaxe_smash:
-  id: 15246
-rune_pickaxe_smash:
-  id: 15247
-dragon_pickaxe_smash:
-  id: 15248
-sacred_clay_pickaxe_smash:
-  id: 15249
-inferno_adze_smash:
-  id: 15250
-rune_pickaxe_4:
-  id: 4941
-fish_harpoon:
-  id: 618
-fish_lobster_pot:
-  id: 619
-fish_big_fishing_net:
-  id: 620
-fish_small_fishing_net:
-  id: 621
-fish_fishing_rod:
-  id: 622
-fish_rod:
-  id: 623
-fish_karambwan_vessel:
-  id: 1193
-fish_barb-tail_harpoon:
-  id: 5108
-barehand_shark:
-  id: 6705
-barehand_shark_2:
-  id: 6706
-barehand_swordfish:
-  id: 6707
-barehand_swordfish_2:
-  id: 6708
-barehand_tuna:
-  id: 6710
-barehand_tuna_2:
-  id: 6711
-fish_crayfish_cage:
-  id: 10009
-home_tele_1:
-  id: 1722
-home_tele_2:
-  id: 1723
-home_tele_3:
-  id: 1724
-home_tele_4:
-  id: 1725
-home_tele_5:
-  id: 2798
-home_tele_6:
-  id: 2799
-home_tele_7:
-  id: 2800
-home_tele_8:
-  id: 3195
-home_tele_9:
-  id: 4643
-home_tele_10:
-  id: 4645
-home_tele_11:
-  id: 4646
-home_tele_12:
-  id: 4847
-home_tele_13:
-  id: 4848
-home_tele_14:
-  id: 4849
-home_tele_15:
-  id: 4850
-home_tele_16:
-  id: 4851
-home_tele_17:
-  id: 4852
-teleport_modern:
-  id: 8939
-teleport_land_modern:
-  id: 8941
-teleport_ancient:
-  id: 9599
-teleport_lunar:
-  id: 9606
-teleport_land_lunar:
-  id: 9013
-teleport_tablet:
-  id: 9597
-teleport_land_tablet:
-  id: 9598
-bow_shoot:
-  id: 426
-crossbow_shoot:
-  id: 4230
-cow_hit:
-  id: 5850
-cow_death:
-  id: 5851
-cow_attack:
-  id: 5849
-cow_eat_grass:
-  id: 5854
-calf_hit:
-  id: 150
-calf_death:
-  id: 244
-calf_attack:
-  id: 245
-chicken_attack:
-  id: 5387
-chicken_hit:
-  id: 5388
-chicken_death:
-  id: 5389
-goblin_attack:
-  id: 6184
-goblin_hit:
-  id: 6183
-goblin_death:
-  id: 6182
-big_spider_attack:
-  id: 5327
-big_spider_hit:
-  id: 5328
-big_spider_death:
-  id: 5329
-rat_attack:
-  id: 2705
-rat_hit:
-  id: 2706
-player_punch:
-  id: 422
-player_kick:
-  id: 423
-player_death:
-  id: 836
-sap:
-  id: 12569
-leech:
-  id: 12575
-deflect:
-  id: 12573
-magic_shortbow_special:
-  id: 1074
-zaniks_crossbow_special:
-  id: 11359
-throw_dart:
-  id: 582
-throw_javelin:
-  id: 10501
-throw_morrigans_throwing_axe:
-  id: 10501
-throw_morrigans_throwing_axe_special:
-  id: 10504
-throw_projectile:
-  id: 929
-hand_cannon_shoot:
-  id: 12152
-hand_cannon_special:
-  id: 12174
-hand_cannon_explode:
-  id: 12175
-karils_crossbow_shoot:
-  id: 2075
-sling_rock:
-  id: 14867
-toktz-xil-ul:
-  id: 3353
-throw_chinchompa:
-  id: 2779
-rune_throwing_axe_special:
-  id: 1068
-dagger_stab:
-  id: 13049
-dagger_slash:
-  id: 395
-dagger_block:
-  id: 403
-longsword_chop:
-  id: 12311
-longsword_slash:
-  id: 15071
-longsword_lunge:
-  id: 12310
-longsword_block:
-  id: 15074
-sword_stab:
-  id: 13049
-sword_slash:
-  id: 13048
-block:
-  id: 424
-2h_sword_chop:
-  id: 7042
-2h_sword_slash:
-  id: 7041
-2h_sword_smash:
-  id: 7048
-2h_sword_block:
-  id: 7049
-2h_sword_hit:
-  id: 7050
-scimitar_slash:
-  id: 15071
-scimitar_lunge:
-  id: 15072
-scimitar_block:
-  id: 15074
-spear_block:
-  id: 430
-spear_swipe:
-  id: 440
-spear_pound:
-  id: 429
-spear_lunge:
-  id: 428
-halberd_jab:
-  id: 428
-halberd_fend:
-  id: 429
-halberd_swipe:
-  id: 440
-mace_block:
-  id: 403
-mace_pound:
-  id: 401
-mace_spike:
-  id: 400
-claw_chop:
-  id: 393
-claw_slash:
-  id: 395
-claw_lunge:
-  id: 396
-claw_block:
-  id: 397
-pickaxe_spike:
-  id: 400
-pickaxe_smash:
-  id: 401
-pickaxe_impale:
-  id: 402
-pickaxe_block:
-  id: 403
-warhammer_block:
-  id: 397
-warhammer_pound:
-  id: 393
-warhammer_pummel:
-  id: 395
-hatchet_block:
-  id: 397
-hatchet_chop:
-  id: 393
-hatchet_hack:
-  id: 395
-hatchet_smash:
-  id: 401
-guthans_spear_attack:
-  id: 2080
-guthans_spear_swipe:
-  id: 2081
-guthans_spear_block:
-  id: 12008
-veracs_flail_attack:
-  id: 2062
-veracs_flail_block:
-  id: 2063
-torags_hammers_attack:
-  id: 2068
-dharoks_greataxe_attack:
-  id: 2066
-dharoks_greataxe_smash:
-  id: 2067
-dharoks_greataxe_block:
-  id: 2063
-boxing_gloves_attack:
-  id: 3678
-boxing_gloves_block:
-  id: 3679
-whip_flick:
-  id: 11968
-whip_lash:
-  id: 11969
-whip_deflect:
-  id: 11970
-whip_block:
-  id: 11974
-anchor_attack:
-  id: 5865
-anchor_block:
-  id: 5866
-granite_maul_attack:
-  id: 1665
-granite_maul_block:
-  id: 1666
-godsword_chop:
-  id: 11978
-godsword_slash:
-  id: 11979
-godsword_smash:
-  id: 11980
-godsword_block:
-  id: 11981
-godsword_hit:
-  id: 12022
-zamorakian_spear_pound:
-  id: 12005
-zamorakian_spear_swipe:
-  id: 12006
-zamorakian_spear_lunge:
-  id: 12007
-zamorakian_spear_block:
-  id: 12008
-maul_attack:
-  id: 13691
-maul_block:
-  id: 1666
-vestas_longsword_attack:
-  id: 12311
-vestas_longsword_lunge:
-  id: 12310
-vestas_longsword_block:
-  id: 388
-korasis_sword_chop:
-  id: 12028
-korasis_sword_slash:
-  id: 12029
-korasis_sword_block:
-  id: 12030
-staff_attack:
-  id: 419
-staff_block:
-  id: 420
-staff_of_light_jab:
-  id: 13040
-staff_of_light_swipe:
-  id: 15071
-staff_of_light_fend:
-  id: 15072
-staff_of_light_block:
-  id: 13043
-dragon_dagger_attack:
-  id: 376
-dragon_dagger_slash:
-  id: 377
-dragon_dagger_block:
-  id: 403
-puncture:
-  id: 1062
-defender_block:
-  id: 4177
-book_block:
-  id: 420
-shield_block:
-  id: 1156
-statius_warhammer_smash:
-  id: 10505
-vestas_longsword_feint:
-  id: 10502
-rampage:
-  id: 1056
-slice_and_dice:
-  id: 10961
-cleave:
-  id: 12033
-shatter:
-  id: 1060
-the_judgement:
-  id: 11989
-sanctuary:
-  id: 1168
-sever:
-  id: 12031
-saradomins_lightning:
-  id: 11993
-favour_of_the_war_god:
-  id: 6147
-liquify:
-  id: 6118
-backstab:
-  id: 4198
-sunder:
-  id: 5870
-warstrike:
-  id: 11991
-healing_blade:
-  id: 12019
-ice_cleave:
-  id: 7070
-sweep:
-  id: 1203
-powerstab:
-  id: 7078
-shove:
-  id: 1064
-quick_smash:
-  id: 1667
-clobber:
-  id: 2876
-disrupt:
-  id: 14788
-weaken:
-  id: 2890
-impale:
-  id: 923
-spear_wall:
-  id: 10499
-scythe_reap:
-  id: 437
-scythe_chop:
-  id: 440
-scythe_jab:
-  id: 438
-scythe_block:
-  id: 440
-scythe_hit:
-  id: 436
-easter_carrot_whack:
-  id: 11547
-flail_whack:
-  id: 9047
-flail_hit:
-  id: 9048
-banner_attack:
-  id: 1428
-banner_hit:
-  id: 1429
-mjolnir_attack:
-  id: 414
-mjolnir_hit:
-  id: 415
-net_lunge:
-  id: 428
-net_swipe:
-  id: 440
-net_pound:
-  id: 429
-net_block:
-  id: 428
-net_hit:
-  id: 430
-mouse_toy_attack:
-  id: 1658
-power_of_light:
-  id: 12804
+activate_protect_item: 12567
+activate_berserker: 12589
+activate_turmoil: 12565
+climb_down: 827
+climb_up: 828
+assist: 7299
+emote_yes: 855
+emote_no: 856
+emote_bow: 858
+emote_enhanced_bow: 5312
+emote_angry: 859
+emote_enhanced_angry: 5315
+emote_think: 857
+emote_wave: 863
+emote_shrug: 2113
+emote_cheer: 862
+emote_beckon: 864
+emote_laugh: 861
+emote_jump_for_joy: 2109
+emote_yawn: 2111
+emote_enhanced_yawn: 5313
+emote_dance: 866
+emote_enhanced_dance: 5316
+emote_jig: 2106
+emote_twirl: 2107
+emote_headbang: 2108
+emote_cry: 860
+emote_blow_kiss: 1374
+emote_panic: 2105
+emote_raspberry: 2110
+emote_clap: 865
+emote_salute: 2112
+emote_goblin_bow: 2127
+emote_goblin_salute: 2128
+emote_glass_box: 1131
+emote_climb_rope: 1130
+emote_lean: 1129
+emote_glass_wall: 1128
+emote_idea: 4276
+emote_stomp: 4278
+emote_flap: 4280
+emote_slap_head: 4275
+emote_zombie_walk: 3544
+emote_zombie_dance: 3543
+emote_zombie_hand: 7272
+emote_scared: 2836
+emote_bunny_hop: 6111
+emote_snowman_dance: 7531
+emote_air_guitar: 2414
+emote_safety_first: 8770
+emote_explore: 9990
+emote_trick: 10530
+emote_freeze: 11044
+emote_turkey_transform: 10994
+emote_turkey_return: 10995
+emote_turkey_dance: 10996
+emote_around_the_world_in_eggty_days: 11542
+emote_dramatic_point: 12658
+emote_faint: 14165
+emote_puppet_master: 14869
+emote_seal_of_approval: 15104
+emote_seal_stand: 15105
+emote_seal_clap: 15106
+emote_seal_clap_short: 15107
+emote_seal_return: 15108
+emote_taskmaster: 15033
+emote_dungeoneering_start: 13190
+emote_dungeoneering_melee: 13192
+emote_dungeoneering_mage: 13193
+emote_dungeoneering_range: 13194
+emote_attack: 4959
+emote_defence: 4961
+emote_strength: 4981
+emote_constitution: 14242
+emote_ranged: 4973
+emote_prayer: 4979
+emote_magic: 4939
+emote_cooking: 4955
+emote_woodcutting: 4957
+emote_fletching: 4937
+emote_fishing: 4951
+emote_firemaking: 4975
+emote_crafting: 4949
+emote_smithing: 4943
+emote_mining: 4941
+emote_herblore: 4969
+emote_agility: 4977
+emote_thieving: 4965
+emote_slayer: 4967
+emote_farming: 4963
+emote_runecrafting: 4947
+emote_hunter: 5158
+emote_construction: 4953
+emote_summoning: 8525
+emote_quest_point: 4945
+emote_dung_master_bow: 14588
+emote_dung_master_spell: 14609
+emote_dung_master_sword: 14610
+emote_fly_kite: 8990
+emote_reindeer: 5059
+emote_recite_prayer: 5864
+emote_chicken_dance: 6400
+emote_spinning_plate: 1902
+emote_spinning_plate_take: 1904
+emote_spinning_plate_drop: 1906
+emote_yoyo_play: 1457
+emote_yoyo_loop: 1458
+emote_yoyo_walk: 1459
+emote_yoyo_crazy: 1460
+emote_shake_snow_globe: 2926
+emote_trample_snow: 7528
+rest_legs_out: 2716
+stand_legs_out: 2921
+rest_arms_back: 5713
+stand_arms_back: 5748
+rest_arms_crossed: 11786
+stand_arms_crossed: 11788
+bronze_hatchet_chop: 879
+bronze_hatchet_chop_ivy: 12282
+iron_hatchet_chop: 877
+iron_hatchet_chop_ivy: 2847
+steel_hatchet_chop: 875
+steel_hatchet_chop_ivy: 880
+black_hatchet_chop: 873
+black_hatchet_chop_ivy: 878
+mithril_hatchet_chop: 871
+mithril_hatchet_chop_ivy: 876
+adamant_hatchet_chop: 869
+adamant_hatchet_chop_ivy: 874
+rune_hatchet_chop: 867
+rune_hatchet_chop_ivy: 872
+dragon_hatchet_chop: 2846
+dragon_hatchet_chop_ivy: 870
+sacred_clay_hatchet_chop: 1905
+volatile_clay_hatchet_chop: 1907
+dragon_hatchet_chop_ivy_stop: 3260
+rune_hatchet_chop_ivy_stop: 3261
+adamant_hatchet_chop_ivy_stop: 3262
+mithril_hatchet_chop_ivy_stop: 3263
+black_hatchet_chop_ivy_stop: 3284
+steel_hatchet_chop_ivy_stop: 3292
+iron_hatchet_chop_ivy_stop: 3323
+bronze_hatchet_chop_ivy_stop: 3324
+inferno_adze_chop_ivy_stop: 3325
+sacred_clay_hatchet_chop_ivy_stop: 3326
+volatile_clay_hatchet_chop_ivy_stop: 3394
+blessed_hatchet_chop: 5383
+rune_hatchet_chop_floor: 5781
+black_hatchet_chop_log: 6364
+inferno_adze_chop_ivy: 12323
+dragon_hatchet_chop_canoe_tree: 9992
+rune_hatchet_chop_canoe_tree: 9993
+adamant_hatchet_chop_canoe_tree: 9994
+mithril_hatchet_chop_canoe_tree: 9995
+black_hatchet_chop_canoe_tree: 9996
+steel_hatchet_chop_canoe_tree: 9997
+iron_hatchet_chop_canoe_tree: 9998
+bronze_hatchet_chop_canoe_tree: 9999
+inferno_adze_chop_one_hand: 10249
+inferno_adze_chop_canoe_tree: 10250
+inferno_adze_chop: 10251
+sacred_clay_hatchet_chop_canoe_tree: 11617
+volatile_clay_hatchet_chop_canoe_tree: 11618
+sacred_clay_hatchet_chop_ivy: 12324
+volatile_clay_hatchet_chop_ivy: 12325
+bronze_hatchet_chop_tired: 12329
+iron_hatchet_chop_tired: 12330
+steel_hatchet_chop_tired: 12331
+black_hatchet_chop_tired: 12332
+mithril_hatchet_chop_tired: 12333
+adamant_hatchet_chop_tired: 12334
+rune_hatchet_chop_tired: 12335
+dragon_hatchet_chop_tired: 12336
+inferno_adze_chop_tired: 12337
+sacred_clay_hatchet_chop_tired: 12338
+volatile_clay_hatchet_chop_tired: 12339
+rune_hatchet_chop_2h_tired: 12340
+adamant_hatchet_chop_2h_tired: 12341
+mithril_hatchet_chop_2h_tired: 12342
+steel_hatchet_chop_2h_tired: 12343
+iron_hatchet_chop_2h_tired: 12344
+bronze_hatchet_chop_2h_tired1: 12345
+dragon_hatchet_chop_2h_tired: 12346
+inferno_adze_chop_2h_tired: 12347
+sacred_clay_hatchet_chop_2h_tired: 12348
+volatile_clay_hatchet_chop_2h_tired: 12349
+novite_hatchet_chop: 13118
+bathus_hatchet_chop: 13119
+marmaros_hatchet_chop: 13120
+kratonite_hatchet_chop: 13121
+fractite_hatchet_chop: 13122
+zephyrium_hatchet_chop: 13123
+argonite_hatchet_chop: 13124
+katagon_hatchet_chop: 13125
+gorgonite_hatchet_chop: 13126
+promethium_hatchet_chop: 13127
+primal_hatchet_chop: 13128
+novite_hatchet_barricade: 13129
+bathus_hatchet_barricade: 13130
+marmaros_hatchet_barricade: 13131
+kratonite_hatchet_barricade: 13132
+fractite_hatchet_barricade: 13133
+zephyrium_hatchet_barricade: 13134
+argonite_hatchet_barricade: 13135
+katagon_hatchet_barricade: 13136
+gorgonite_hatchet_barricade: 13137
+promethium_hatchet_barricade: 13138
+primal_hatchet_barricade: 13139
+novite_hatchet_fail: 13140
+bathus_hatchet_fail: 13141
+marmaros_hatchet_fail: 13142
+kratonite_hatchet_fail: 13143
+fractite_hatchet_fail: 13144
+zephyrium_hatchet_fail: 13145
+argonite_hatchet_fail: 13146
+katagon_hatchet_fail: 13147
+gorgonite_hatchet_fail: 13148
+promethium_hatchet_fail: 13149
+primal_hatchet_fail: 13150
+rune_hatchet_dugout_canoe: 6738
+adamant_hatchet_dugout_canoe: 6739
+mithril_hatchet_dugout_canoe: 6740
+black_hatchet_dugout_canoe: 6741
+steel_hatchet_dugout_canoe: 6742
+iron_hatchet_dugout_canoe: 6743
+bronze_hatchet_dugout_canoe: 6744
+dragon_hatchet_dugout_canoe: 6745
+bronze_hatchet_log_canoe: 10071
+iron_hatchet_log_canoe: 10072
+steel_hatchet_log_canoe: 10073
+black_hatchet_log_canoe: 10074
+mithril_hatchet_log_canoe: 10075
+adamant_hatchet_log_canoe: 10076
+rune_hatchet_log_canoe: 10077
+dragon_hatchet_log_canoe: 10078
+sacred_clay_hatchet_dugout_canoe: 11060
+volatile_clay_hatchet_dugout_canoe: 11061
+bronze_hatchet_waka_canoe: 11594
+rune_hatchet_waka_canoe: 11595
+adamant_hatchet_waka_canoe: 11596
+mithril_hatchet_waka_canoe: 11597
+black_hatchet_waka_canoe: 11598
+steel_hatchet_waka_canoe: 11599
+iron_hatchet_waka_canoe: 11600
+dragon_hatchet_waka_canoe: 11601
+sacred_clay_hatchet_waka_canoe: 11602
+volatile_clay_hatchet_waka_canoe: 11603
+inferno_adze_waka_canoe: 11604
+sacred_clay_hatchet_log_canoe: 12318
+volatile_clay_hatchet_log_canoe: 12319
+hatchet_class_1_chop: 10603
+hatchet_class_2_chop: 10604
+hatchet_class_3_chop: 10605
+hatchet_class_4_chop: 10606
+hatchet_class_5_chop: 10607
+rune_pickaxe_swing_low: 624
+bronze_pickaxe_swing_low: 625
+iron_pickaxe_swing_low: 626
+steel_pickaxe_swing_low: 627
+adamant_pickaxe_swing_low: 628
+mithril_pickaxe_swing_low: 629
+bronze_pickaxe_chop: 1511
+rune_pickaxe_stuck: 4760
+bronze_pickaxe_stuck: 4761
+iron_pickaxe_stuck: 4762
+steel_pickaxe_stuck: 4763
+adamant_pickaxe_stuck: 4764
+mithril_pickaxe_stuck: 4765
+dragon_pickaxe_stuck: 4766
+bronze_pickaxe_quick: 6102
+rune_pickaxe_smash_low_old: 6746
+bronze_pickaxe_smash_low_old: 6747
+iron_pickaxe_smash_low_old: 6748
+steel_pickaxe_smash_low_old: 6749
+adamant_pickaxe_smash_low_old: 6750
+mithril_pickaxe_smash_low_old: 6751
+rune_pickaxe_fail: 6752
+bronze_pickaxe_fail: 6753
+iron_pickaxe_fail: 6754
+steel_pickaxe_fail: 6755
+adamant_pickaxe_fail: 6756
+mithril_pickaxe_fail: 6757
+dragon_pickaxe_fail: 6758
+bronze_pickaxe_fast: 8836
+iron_pickaxe_fast: 8837
+steel_pickaxe_fast: 8838
+adamant_pickaxe_fast: 8839
+mithril_pickaxe_fast: 8840
+rune_pickaxe_fast: 8841
+bronze_pickaxe_explode: 9360
+iron_pickaxe_explode: 9361
+steel_pickaxe_explode: 9362
+mithril_pickaxe_explode: 9363
+adamant_pickaxe_explode: 9364
+rune_pickaxe_explode: 9365
+bronze_pickaxe_smash_low: 10001
+iron_pickaxe_smash_low: 10002
+steel_pickaxe_smash_low: 10003
+mithril_pickaxe_smash_low: 10004
+adamant_pickaxe_smash_low: 10005
+rune_pickaxe_smash_low: 10006
+dragon_pickaxe_smash_low: 10007
+rune_pickaxe_swing_medium: 10335
+bronze_pickaxe_swing_medium: 10336
+iron_pickaxe_swing_medium: 10337
+steel_pickaxe_swing_medium: 10338
+mithril_pickaxe_swing_medium: 10339
+adamant_pickaxe_swing_medium: 10340
+inferno_adze_swing_medium: 10341
+rune_pickaxe_swing_high: 10342
+bronze_pickaxe_swing_high: 10343
+iron_pickaxe_swing_high: 10344
+steel_pickaxe_swing_high: 10345
+mithril_pickaxe_swing_high: 10346
+adamant_pickaxe_swing_high: 10347
+inferno_adze_swing_high: 10348
+pickaxe_class_1_swing: 10608
+pickaxe_class_2_swing: 10609
+pickaxe_class_3_swing: 10610
+pickaxe_class_4_swing: 10611
+pickaxe_class_5_swing: 10612
+sacred_clay_pickaxe_2: 11019
+sacred_clay_pickaxe_3: 11020
+sacred_clay_pickaxe_4: 11021
+sacred_clay_pickaxe_5: 11022
+sacred_clay_pickaxe_6: 11023
+sacred_clay_pickaxe_7: 11024
+sacred_clay_pickaxe_8: 11025
+sacred_clay_pickaxe_9: 11026
+sacred_clay_pickaxe_explode: 11068
+volatile_clay_pickaxe_explode: 11069
+dragon_pickaxe_6: 12169
+dragon_pickaxe_explode: 12187
+dragon_pickaxe_8: 12188
+dragon_pickaxe_swing_low: 12189
+dragon_pickaxe_swing_medium: 12190
+dragon_pickaxe_swing_high: 12191
+bronze_pickaxe_random: 12278
+steel_pickaxe_12: 12455
+novite_pickaxe_swing: 13074
+bathus_pickaxe_swing: 13075
+marmaros_pickaxe_swing: 13076
+kratonite_pickaxe_swing: 13077
+fractite_pickaxe_swing: 13078
+zephyrium_pickaxe_swing: 13079
+argonite_pickaxe_swing: 13080
+katagon_pickaxe_swing: 13081
+gorgonite_pickaxe_swing: 13082
+promethium_pickaxe_swing: 13083
+primal_pickaxe_swing: 13084
+novite_pickaxe_smash: 13085
+bathus_pickaxe_smash: 13086
+marmaros_pickaxe_smash: 13087
+kratonite_pickaxe_smash: 13088
+fractite_pickaxe_smash: 13089
+zephyrium_pickaxe_smash: 13090
+argonite_pickaxe_smash: 13091
+katagon_pickaxe_smash: 13092
+gorgonite_pickaxe_smash: 13093
+promethium_pickaxe_smash: 13094
+primal_pickaxe_smash: 13095
+novite_pickaxe_fail: 13096
+bathus_pickaxe_fail: 13097
+marmaros_pickaxe_fail: 13098
+kratonite_pickaxe_fail: 13099
+fractite_pickaxe_fail: 13100
+zephyrium_pickaxe_fail: 13101
+argonite_pickaxe_fail: 13102
+katagon_pickaxe_fail: 13103
+gorgonite_pickaxe_fail: 13104
+promethium_pickaxe_fail: 13105
+primal_pickaxe_fail: 13106
+novite_pickaxe_swing_chip: 13107
+bathus_pickaxe_swing_chip: 13108
+marmaros_pickaxe_swing_chip: 13109
+kratonite_pickaxe_swing_chip: 13110
+fractite_pickaxe_swing_chip: 13111
+zephyrium_pickaxe_swing_chip: 13112
+argonite_pickaxe_swing_chip: 13113
+katagon_pickaxe_swing_chip: 13114
+gorgonite_pickaxe_swing_chip: 13115
+promethium_pickaxe_swing_chip: 13116
+primal_pickaxe_swing_chip: 13117
+rune_pickaxe_chip_right: 14358
+bronze_pickaxe_chip_right: 14359
+iron_pickaxe_chip_right: 14360
+steel_pickaxe_chip_right: 14361
+adamant_pickaxe_chip_right: 14362
+mithril_pickaxe_chip_right: 14363
+dragon_pickaxe_chip_right: 14364
+sacred_clay_pickaxe_chip_right: 14365
+inferno_adze_chip_right: 14366
+bronze_pickaxe_smash: 15242
+iron_pickaxe_smash: 15243
+steel_pickaxe_smash: 15244
+mithril_pickaxe_smash: 15245
+adamant_pickaxe_smash: 15246
+rune_pickaxe_smash: 15247
+dragon_pickaxe_smash: 15248
+sacred_clay_pickaxe_smash: 15249
+inferno_adze_smash: 15250
+rune_pickaxe_4: 4941
+fish_harpoon: 618
+fish_lobster_pot: 619
+fish_big_fishing_net: 620
+fish_small_fishing_net: 621
+fish_fishing_rod: 622
+fish_rod: 623
+fish_karambwan_vessel: 1193
+fish_barb-tail_harpoon: 5108
+barehand_shark: 6705
+barehand_shark_2: 6706
+barehand_swordfish: 6707
+barehand_swordfish_2: 6708
+barehand_tuna: 6710
+barehand_tuna_2: 6711
+fish_crayfish_cage: 10009
+home_tele_1: 1722
+home_tele_2: 1723
+home_tele_3: 1724
+home_tele_4: 1725
+home_tele_5: 2798
+home_tele_6: 2799
+home_tele_7: 2800
+home_tele_8: 3195
+home_tele_9: 4643
+home_tele_10: 4645
+home_tele_11: 4646
+home_tele_12: 4847
+home_tele_13: 4848
+home_tele_14: 4849
+home_tele_15: 4850
+home_tele_16: 4851
+home_tele_17: 4852
+teleport_modern: 8939
+teleport_land_modern: 8941
+teleport_ancient: 9599
+teleport_lunar: 9606
+teleport_land_lunar: 9013
+teleport_tablet: 9597
+teleport_land_tablet: 9598
+bow_shoot: 426
+crossbow_shoot: 4230
+cow_hit: 5850
+cow_death: 5851
+cow_attack: 5849
+cow_eat_grass: 5854
+calf_hit: 150
+calf_death: 244
+calf_attack: 245
+chicken_attack: 5387
+chicken_hit: 5388
+chicken_death: 5389
+goblin_attack: 6184
+goblin_hit: 6183
+goblin_death: 6182
+big_spider_attack: 5327
+big_spider_hit: 5328
+big_spider_death: 5329
+rat_attack: 2705
+rat_hit: 2706
+player_punch: 422
+player_kick: 423
+player_death: 836
+sap: 12569
+leech: 12575
+deflect: 12573
+magic_shortbow_special: 1074
+zaniks_crossbow_special: 11359
+throw_dart: 582
+throw_javelin: 10501
+throw_morrigans_throwing_axe: 10501
+throw_morrigans_throwing_axe_special: 10504
+throw_projectile: 929
+hand_cannon_shoot: 12152
+hand_cannon_special: 12174
+hand_cannon_explode: 12175
+karils_crossbow_shoot: 2075
+sling_rock: 14867
+toktz-xil-ul: 3353
+throw_chinchompa: 2779
+rune_throwing_axe_special: 1068
+dagger_stab: 13049
+dagger_slash: 395
+dagger_block: 403
+longsword_chop: 12311
+longsword_slash: 15071
+longsword_lunge: 12310
+longsword_block: 15074
+sword_stab: 13049
+sword_slash: 13048
+block: 424
+2h_sword_chop: 7042
+2h_sword_slash: 7041
+2h_sword_smash: 7048
+2h_sword_block: 7049
+2h_sword_hit: 7050
+scimitar_slash: 15071
+scimitar_lunge: 15072
+scimitar_block: 15074
+spear_block: 430
+spear_swipe: 440
+spear_pound: 429
+spear_lunge: 428
+halberd_jab: 428
+halberd_fend: 429
+halberd_swipe: 440
+mace_block: 403
+mace_pound: 401
+mace_spike: 400
+claw_chop: 393
+claw_slash: 395
+claw_lunge: 396
+claw_block: 397
+pickaxe_spike: 400
+pickaxe_smash: 401
+pickaxe_impale: 402
+pickaxe_block: 403
+warhammer_block: 397
+warhammer_pound: 393
+warhammer_pummel: 395
+hatchet_block: 397
+hatchet_chop: 393
+hatchet_hack: 395
+hatchet_smash: 401
+guthans_spear_attack: 2080
+guthans_spear_swipe: 2081
+guthans_spear_block: 12008
+veracs_flail_attack: 2062
+veracs_flail_block: 2063
+torags_hammers_attack: 2068
+dharoks_greataxe_attack: 2066
+dharoks_greataxe_smash: 2067
+dharoks_greataxe_block: 2063
+boxing_gloves_attack: 3678
+boxing_gloves_block: 3679
+whip_flick: 11968
+whip_lash: 11969
+whip_deflect: 11970
+whip_block: 11974
+anchor_attack: 5865
+anchor_block: 5866
+granite_maul_attack: 1665
+granite_maul_block: 1666
+godsword_chop: 11978
+godsword_slash: 11979
+godsword_smash: 11980
+godsword_block: 11981
+godsword_hit: 12022
+zamorakian_spear_pound: 12005
+zamorakian_spear_swipe: 12006
+zamorakian_spear_lunge: 12007
+zamorakian_spear_block: 12008
+maul_attack: 13691
+maul_block: 1666
+vestas_longsword_attack: 12311
+vestas_longsword_lunge: 12310
+vestas_longsword_block: 388
+korasis_sword_chop: 12028
+korasis_sword_slash: 12029
+korasis_sword_block: 12030
+staff_attack: 419
+staff_block: 420
+staff_of_light_jab: 13040
+staff_of_light_swipe: 15071
+staff_of_light_fend: 15072
+staff_of_light_block: 13043
+dragon_dagger_attack: 376
+dragon_dagger_slash: 377
+dragon_dagger_block: 403
+puncture: 1062
+defender_block: 4177
+book_block: 420
+shield_block: 1156
+statius_warhammer_smash: 10505
+vestas_longsword_feint: 10502
+rampage: 1056
+slice_and_dice: 10961
+cleave: 12033
+shatter: 1060
+the_judgement: 11989
+sanctuary: 1168
+sever: 12031
+saradomins_lightning: 11993
+favour_of_the_war_god: 6147
+liquify: 6118
+backstab: 4198
+sunder: 5870
+warstrike: 11991
+healing_blade: 12019
+ice_cleave: 7070
+sweep: 1203
+powerstab: 7078
+shove: 1064
+quick_smash: 1667
+clobber: 2876
+disrupt: 14788
+weaken: 2890
+impale: 923
+spear_wall: 10499
+scythe_reap: 437
+scythe_chop: 440
+scythe_jab: 438
+scythe_block: 440
+scythe_hit: 436
+easter_carrot_whack: 11547
+flail_whack: 9047
+flail_hit: 9048
+banner_attack: 1428
+banner_hit: 1429
+mjolnir_attack: 414
+mjolnir_hit: 415
+net_lunge: 428
+net_swipe: 440
+net_pound: 429
+net_block: 428
+net_hit: 430
+mouse_toy_attack: 1658
+power_of_light: 12804

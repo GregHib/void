@@ -21,8 +21,10 @@ class AnimationDefinitions(
         return this
     }
 
-    fun load(data: Map<String, Map<String, Any>>): Int {
+    fun load(data: Map<String, Any>): Int {
         extras = data
+            .mapValues { (_, value) -> if (value is Int) mapOf<String, Any>("id" to value) else value as Map<String, Any> }
+            .toMap()
         names = extras.map { it.value["id"] as Int to it.key }.toMap()
         return names.size
     }
