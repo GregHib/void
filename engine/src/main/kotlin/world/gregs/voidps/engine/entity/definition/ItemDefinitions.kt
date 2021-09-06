@@ -36,8 +36,16 @@ class ItemDefinitions(
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        this.extras = data.mapValues { entry ->
-            entry.value.mapValues {
+        this.extras = data.mapValues { (_, value) ->
+            val copy = data[value["copy"]]
+            val value = if (copy != null) {
+                val mut = copy.toMutableMap()
+                mut["id"] = value["id"] as Int
+                mut
+            } else {
+                value
+            }
+            value.mapValues {
                 when (it.key) {
                     "slot" -> EquipSlot.valueOf(it.value as String)
                     "type" -> EquipType.valueOf(it.value as String)
@@ -45,7 +53,7 @@ class ItemDefinitions(
                     else -> it.value
                 }
             }.toMutableMap().apply {
-                this["equip"] = equipmentIndices.getOrDefault(entry.value["id"] as Int, -1)
+                this["equip"] = equipmentIndices.getOrDefault(value["id"] as Int, -1)
             }
         }.toMap()
         names = data.map { it.value["id"] as Int to it.key }.toMap()
