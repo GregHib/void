@@ -11,7 +11,7 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.network.instruct.Command
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 
 on<Command>({ prefix == "maxhit" }) { player: Player ->
     val debug = player["debug", false]

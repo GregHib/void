@@ -15,32 +15,66 @@ object ItemInfoBoxDumper {
 
         val items = mutableMapOf<String, String>()
 
-        val wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\runescapewiki-latest-pages-articles-2011-08-14.xml")
+        val wiki = Wiki.load("${System.getProperty("user.home")}\\Downloads\\Old+School+RuneScape+Wiki-20210824214429.xml")
 
         var stop = false
         val names = mutableListOf<String>()
         wiki.pages.filter { it.namespace.key == 0 }.forEach { page ->
-            if(stop) {
+            if (stop) {
                 return@forEach
             }
             val text = page.revision.text
-            if (text.contains("infobox item", true)) {
-                names.add(page.title)
-//                val template = page.templates.firstOrNull { it.first.contains("infobox item", true) }
-//                if (template != null) {
-//                    items[page.title] = getWikiText(page.title)
-//                    println("Scraped ${page.title}")
-//                    if(items.size > 10) {
-//                        stop = true
+            if (text.contains("ItemSpawnLine", true)) {
+                val list = page.getTemplateMaps("ItemSpawnLine")
+                for (map in list) {
+                    if (!map.containsKey("")) {
+//                        println(map)
+                        continue
+                    }
+                    val coords = map[""] as String
+                    val parts = coords.split(",")
+                    val x = parts.firstOrNull() ?: -1
+                    val y = parts.getOrNull(1) ?: -1
+                    var quantity = parts.getOrNull(2) ?: "1"
+                    if (quantity.contains(":")) {
+                        quantity = quantity.split(":").last()
+                    }
+                    var respawn = parts.getOrNull(3) ?: "-1"
+                    if (respawn.contains(":")) {
+                        respawn = respawn.split(":").last()
+                    }
+                    if (respawn.contains("(on table)")) {
+                        respawn = parts[4].split(":").last()
+                    }
+                    println("$x,$y,$quantity,$respawn")
+//                    if (coords.contains("qty:")) {
+//                        val parts = coords.split(",qty:")
+//                        coords = parts.first()
+//                        quantity = parts[1].toInt()
 //                    }
-//                } else {
-//                    println("Cant find ${page.title} ${page.templates.map { it.first }}")
-//                }
+//                    for ((key, value) in map) {
+//                        println("$key=$value")
+//                    }
+                }
+            }
+            if (text.contains("infobox item", true)) {
+                val map = page.getTemplateMaps("infobox item").first()
+                if (map.containsKey("id")) {
+                    println("${map["id"]},${map["respawn"]}")
+                } else if (map.containsKey("id1")) {
+                    repeat(4) {
+                        if (map.containsKey("id$it")) {
+                            println("${map["id$it"]},${map["respawn"]}")
+                        }
+                    }
+                } else {
+                    names.add("${page.title},${map["respawn"]}")
+                }
+                println()
             }
         }
 
 
-        println(names.size)
         names.forEach {
             println(it)
         }

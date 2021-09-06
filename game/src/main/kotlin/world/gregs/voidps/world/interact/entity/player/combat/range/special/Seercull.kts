@@ -13,12 +13,15 @@ import world.gregs.voidps.engine.entity.stop
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isSeercull(weapon: Item?) = weapon != null && weapon.name == "seercull"
 
-on<HitChanceModifier>({ player -> player != target && type == "range" && player.specialAttack && isSeercull(weapon) }, Priority.HIGHEST) { _: Player ->
+on<HitChanceModifier>({ type == "range" && special && isSeercull(weapon) }, Priority.HIGHEST) { _: Player ->
     chance = 1.0
 }
 

@@ -50,23 +50,30 @@ fun Int.nearby(size: Int): IntRange {
 }
 
 /**
- * PascalCase123 or underscore_case to Title Case 123
+ * Converts string to Title Case - All words are [capitalize]d with spaces between words and digits
  */
 fun String.toTitleCase(): String {
-    val formatted = StringBuilder()
-    var first = true
-    var isInt = true
-    for (char in replace("_", " ")) {
-        if (!first && (char.isUpperCase() || (char.isDigit() && !isInt))) {
-            formatted.append(" ")
-            isInt = true
-        } else if(!char.isDigit()) {
-            isInt = false
+    val first = 0.toChar()
+    var previous = first
+    return buildString {
+        for (char in this@toTitleCase) {
+            append(when {
+                char == '_' -> ' '
+                previous == first && !char.isDigit() && char.isLowerCase() -> char.toUpperCase()
+                previous != first && char.isLowerCase() && (previous == '_' || previous == ' ') -> char.toUpperCase()
+                previous != first && previous != '_' && previous != ' ' && (
+                        char.isUpperCase() && !previous.isUpperCase() ||
+                                char.isDigit() && !previous.isDigit() ||
+                                (!char.isDigit() && char != '_' && char != ' ' && previous.isDigit())
+                        ) -> {
+                    append(' ')
+                    char.toUpperCase()
+                }
+                else -> char
+            })
+            previous = char
         }
-        formatted.append(char)
-        first = false
     }
-    return formatted.toString()
 }
 
 /**
@@ -102,28 +109,26 @@ fun String?.toCamelCase(): String {
 }
 
 /**
- * underscore_case or Title Case to PascalCase
+ * Converts string to PascalCase - words are separated by capital letters, no spaces or underscores
+ * @param digitise whether lower case letters immediately following digits should be capitalised
  */
-fun String?.toPascalCase(): String {
+fun String?.toPascalCase(digitise: Boolean = true): String {
     if (this == null) {
         return ""
     }
-    val formatted = StringBuilder()
-    val text = replace("_", " ").toLowerCase()
-    var word = false
-    for (i in indices) {
-        val char = text[i]
-        formatted.append(
-            if (i == 0 || word) {
-                word = false
-                char.toUpperCase()
-            } else {
-                char
-            }
-        )
-        if (char == ' ') {
-            word = true
+    val first = 0.toChar()
+    var previous = first
+    return buildString {
+        for (char in this@toPascalCase) {
+            append(when {
+                char == ' ' || char == '_' -> {
+                    previous = char
+                    continue
+                }
+                (previous == first || previous == ' ' || previous == '_' || (digitise && previous.isDigit())) && char.isLowerCase() -> char.toUpperCase()
+                else -> char
+            })
+            previous = char
         }
     }
-    return formatted.toString()
 }

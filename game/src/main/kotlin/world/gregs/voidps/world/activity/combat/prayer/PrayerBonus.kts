@@ -8,6 +8,7 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.item.EquipSlot
+import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -74,12 +75,22 @@ fun usingDeflectPrayer(source: Character, target: Character, type: String): Bool
             source.isFamiliar && (target.hasEffect("deflect_summoning"))
 }
 
+fun hitThroughProtectionPrayer(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean): Boolean {
+    if (target == null || weapon == null) {
+        return false
+    }
+    if (special && weapon.name == "ancient_mace" && type == "melee") {
+        return target.hasEffect("prayer_protect_from_melee") || target.hasEffect("prayer_deflect_melee")
+    }
+    return false
+}
+
 on<CombatHit>({ usingDeflectPrayer(source, it, type) }) { player: Player ->
     player.setAnimation("deflect")
     player.setGraphic("deflect_${if (type == "spell") "magic" else if (type == "melee") "attack" else type}")
 }
 
-on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) }, priority = Priority.MEDIUM) { _: Player ->
+on<HitDamageModifier>({ usingProtectionPrayer(it, target, type) && !hitThroughProtectionPrayer(it, target, type, weapon, special) }, priority = Priority.MEDIUM) { _: Player ->
     damage = floor(damage * if (target is Player) 0.6 else 0.0)
 }
 

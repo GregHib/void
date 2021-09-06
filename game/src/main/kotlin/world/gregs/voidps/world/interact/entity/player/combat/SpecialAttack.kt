@@ -1,4 +1,4 @@
-package world.gregs.voidps.world.interact.entity.player.combat.range.special
+package world.gregs.voidps.world.interact.entity.player.combat
 
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar

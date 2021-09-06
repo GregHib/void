@@ -4,8 +4,8 @@ import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import kotlin.math.min
 
 on<EffectStart>({ effect == "restore_special_energy" }) { player: Player ->

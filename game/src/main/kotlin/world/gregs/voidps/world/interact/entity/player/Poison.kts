@@ -22,7 +22,7 @@ on<Registered> { player: Player ->
 on<EffectStart>({ effect == "poison" }) { character: Character ->
     if (!restart) {
         if (character is Player) {
-            character.message(Colour.Green.wrap("You have been poisoned."))
+            character.message(Colour.Green { "You have been poisoned." })
         }
         delay(0) {
             damage(character)

@@ -16,9 +16,9 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.drainSpecialEnergy
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttack
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import kotlin.math.floor
 import kotlin.random.Random
@@ -26,7 +26,7 @@ import kotlin.random.nextInt
 
 fun isHandCannon(item: Item?) = item != null && item.name == "hand_cannon"
 
-on<HitDamageModifier>({ player -> type == "range" && player.specialAttack && isHandCannon(weapon) }, Priority.HIGH) { player: Player ->
+on<HitDamageModifier>({ type == "range" && special && isHandCannon(weapon) }, Priority.HIGH) { _: Player ->
     damage = floor(damage * Random.nextDouble(0.3, 2.0))
 }
 

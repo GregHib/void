@@ -1022,11 +1022,13 @@ bow_shoot:
 crossbow_shoot:
   id: 4230
 cow_hit:
-  id: 150
+  id: 5850
 cow_death:
-  id: 244
+  id: 5851
 cow_attack:
-  id: 245
+  id: 5849
+cow_eat_grass:
+  id: 5854
 calf_hit:
   id: 150
 calf_death:
@@ -1060,7 +1062,7 @@ player_punch:
 player_kick:
   id: 423
 player_death:
-  id: 9055
+  id: 836
 sap:
   id: 12569
 leech:
@@ -1097,3 +1099,277 @@ throw_chinchompa:
   id: 2779
 rune_throwing_axe_special:
   id: 1068
+dagger_stab:
+  id: 13049
+dagger_slash:
+  id: 395
+dagger_block:
+  id: 403
+longsword_chop:
+  id: 12311
+longsword_slash:
+  id: 15071
+longsword_lunge:
+  id: 12310
+longsword_block:
+  id: 15074
+sword_stab:
+  id: 13049
+sword_slash:
+  id: 13048
+block:
+  id: 424
+2h_sword_chop:
+  id: 7042
+2h_sword_slash:
+  id: 7041
+2h_sword_smash:
+  id: 7048
+2h_sword_block:
+  id: 7049
+2h_sword_hit:
+  id: 7050
+scimitar_slash:
+  id: 15071
+scimitar_lunge:
+  id: 15072
+scimitar_block:
+  id: 15074
+spear_block:
+  id: 430
+spear_swipe:
+  id: 440
+spear_pound:
+  id: 429
+spear_lunge:
+  id: 428
+halberd_jab:
+  id: 428
+halberd_fend:
+  id: 429
+halberd_swipe:
+  id: 440
+mace_block:
+  id: 403
+mace_pound:
+  id: 401
+mace_spike:
+  id: 400
+claw_chop:
+  id: 393
+claw_slash:
+  id: 395
+claw_lunge:
+  id: 396
+claw_block:
+  id: 397
+pickaxe_spike:
+  id: 400
+pickaxe_smash:
+  id: 401
+pickaxe_impale:
+  id: 402
+pickaxe_block:
+  id: 403
+warhammer_block:
+  id: 397
+warhammer_pound:
+  id: 393
+warhammer_pummel:
+  id: 395
+hatchet_block:
+  id: 397
+hatchet_chop:
+  id: 393
+hatchet_hack:
+  id: 395
+hatchet_smash:
+  id: 401
+guthans_spear_attack:
+  id: 2080
+guthans_spear_swipe:
+  id: 2081
+guthans_spear_block:
+  id: 12008
+veracs_flail_attack:
+  id: 2062
+veracs_flail_block:
+  id: 2063
+torags_hammers_attack:
+  id: 2068
+dharoks_greataxe_attack:
+  id: 2066
+dharoks_greataxe_smash:
+  id: 2067
+dharoks_greataxe_block:
+  id: 2063
+boxing_gloves_attack:
+  id: 3678
+boxing_gloves_block:
+  id: 3679
+whip_flick:
+  id: 11968
+whip_lash:
+  id: 11969
+whip_deflect:
+  id: 11970
+whip_block:
+  id: 11974
+anchor_attack:
+  id: 5865
+anchor_block:
+  id: 5866
+granite_maul_attack:
+  id: 1665
+granite_maul_block:
+  id: 1666
+godsword_chop:
+  id: 11978
+godsword_slash:
+  id: 11979
+godsword_smash:
+  id: 11980
+godsword_block:
+  id: 11981
+godsword_hit:
+  id: 12022
+zamorakian_spear_pound:
+  id: 12005
+zamorakian_spear_swipe:
+  id: 12006
+zamorakian_spear_lunge:
+  id: 12007
+zamorakian_spear_block:
+  id: 12008
+maul_attack:
+  id: 13691
+maul_block:
+  id: 1666
+vestas_longsword_attack:
+  id: 12311
+vestas_longsword_lunge:
+  id: 12310
+vestas_longsword_block:
+  id: 388
+korasis_sword_chop:
+  id: 12028
+korasis_sword_slash:
+  id: 12029
+korasis_sword_block:
+  id: 12030
+staff_attack:
+  id: 419
+staff_block:
+  id: 420
+staff_of_light_jab:
+  id: 13040
+staff_of_light_swipe:
+  id: 15071
+staff_of_light_fend:
+  id: 15072
+staff_of_light_block:
+  id: 13043
+dragon_dagger_attack:
+  id: 376
+dragon_dagger_slash:
+  id: 377
+dragon_dagger_block:
+  id: 403
+puncture:
+  id: 1062
+defender_block:
+  id: 4177
+book_block:
+  id: 420
+shield_block:
+  id: 1156
+statius_warhammer_smash:
+  id: 10505
+vestas_longsword_feint:
+  id: 10502
+rampage:
+  id: 1056
+slice_and_dice:
+  id: 10961
+cleave:
+  id: 12033
+shatter:
+  id: 1060
+the_judgement:
+  id: 11989
+sanctuary:
+  id: 1168
+sever:
+  id: 12031
+saradomins_lightning:
+  id: 11993
+favour_of_the_war_god:
+  id: 6147
+liquify:
+  id: 6118
+backstab:
+  id: 4198
+sunder:
+  id: 5870
+warstrike:
+  id: 11991
+healing_blade:
+  id: 12019
+ice_cleave:
+  id: 7070
+sweep:
+  id: 1203
+powerstab:
+  id: 7078
+shove:
+  id: 1064
+quick_smash:
+  id: 1667
+clobber:
+  id: 2876
+disrupt:
+  id: 14788
+weaken:
+  id: 2890
+impale:
+  id: 923
+spear_wall:
+  id: 10499
+scythe_reap:
+  id: 437
+scythe_chop:
+  id: 440
+scythe_jab:
+  id: 438
+scythe_block:
+  id: 440
+scythe_hit:
+  id: 436
+easter_carrot_whack:
+  id: 11547
+flail_whack:
+  id: 9047
+flail_hit:
+  id: 9048
+banner_attack:
+  id: 1428
+banner_hit:
+  id: 1429
+mjolnir_attack:
+  id: 414
+mjolnir_hit:
+  id: 415
+net_lunge:
+  id: 428
+net_swipe:
+  id: 440
+net_pound:
+  id: 429
+net_block:
+  id: 428
+net_hit:
+  id: 430
+mouse_toy_attack:
+  id: 1658
+power_of_light:
+  id: 12804

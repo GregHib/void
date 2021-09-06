@@ -14,8 +14,8 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.func.toTitleCase
 import world.gregs.voidps.world.activity.combat.prayer.*
 import world.gregs.voidps.world.interact.entity.combat.CombatDamage
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.MAX_SPECIAL_ATTACK
-import world.gregs.voidps.world.interact.entity.player.combat.range.special.specialAttackEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.MAX_SPECIAL_ATTACK
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttackEnergy
 import world.gregs.voidps.world.interact.entity.player.energy.MAX_ENERGY
 import world.gregs.voidps.world.interact.entity.player.energy.runEnergy
 import world.gregs.voidps.world.interact.entity.proj.shoot
@@ -111,7 +111,7 @@ on<CombatDamage>({ it.hasEffect("prayer_leech_energy") && target is Player }) { 
         return@on
     }
     val amount = MAX_ENERGY / 10
-    target.runEnergy = (energy - amount).coerceAtLeast(0)
+    target.runEnergy = energy - amount
     cast(player, target, false, "energy")
 
     energy = player.runEnergy
@@ -119,7 +119,7 @@ on<CombatDamage>({ it.hasEffect("prayer_leech_energy") && target is Player }) { 
         drainMessage(player, "run_energy")
         return@on
     }
-    target.runEnergy = (energy + amount).coerceAtMost(MAX_ENERGY)
+    target.runEnergy = energy + amount
     boostMessage(player, "Run Energy")
 }
 

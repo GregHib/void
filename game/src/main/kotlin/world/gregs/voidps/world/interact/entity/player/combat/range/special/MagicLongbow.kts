@@ -7,12 +7,14 @@ import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
+import world.gregs.voidps.world.interact.entity.player.combat.drainSpecialEnergy
+import world.gregs.voidps.world.interact.entity.player.combat.specialAttack
 import world.gregs.voidps.world.interact.entity.proj.shoot
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 fun isMagicLong(weapon: Item?) = weapon != null && (weapon.name.startsWith("magic_longbow") || weapon.name.startsWith("magic_composite_bow"))
 
-on<HitChanceModifier>({ player -> player != target && type == "range" && player.specialAttack && isMagicLong(weapon) }, Priority.HIGHEST) { _: Player ->
+on<HitChanceModifier>({ type == "range" && special && isMagicLong(weapon) }, Priority.HIGHEST) { _: Player ->
     chance = 1.0
 }
 

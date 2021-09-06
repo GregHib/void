@@ -6889,8 +6889,6 @@ dragon_dagger:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_noted:
   id: 1216
 black_dagger:
@@ -7016,8 +7014,6 @@ dragon_dagger_p:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p_noted:
   id: 1232
 black_dagger_p:
@@ -7603,7 +7599,6 @@ dragon_longsword:
   slot: "Weapon"
   material: "metal"
   examine: "A very powerful sword."
-  spec_dmg_multiplier: 1.25
 dragon_longsword_noted:
   id: 1306
 bronze_2h_sword:
@@ -8608,8 +8603,6 @@ dragon_mace:
   crush: 60.0
   slot: "Weapon"
   examine: "A spiky mace."
-  spec_dmg_multiplier: 1.50
-  spec_acc_multiplier: 1.25
 dragon_mace_noted:
   id: 1435
 rune_essence:
@@ -17190,8 +17183,6 @@ rune_claws:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A pair of rune claws."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 combination:
   id: 3102
   tradeable: false
@@ -17899,7 +17890,6 @@ dragon_halberd:
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
-  spec_dmg_multiplier: 1.1
 dragon_halberd_noted:
   id: 3205
 kings_message:
@@ -22176,7 +22166,6 @@ abyssal_whip:
   slash: 82.0
   slot: "Weapon"
   examine: "A weapon from the Abyss."
-  spec_acc_multiplier: 1.25
 abyssal_whip_noted:
   id: 4152
 granite_maul:
@@ -24896,7 +24885,6 @@ dragon_scimitar:
   slot: "Weapon"
   material: "metal"
   examine: "A vicious, curved sword."
-  spec_acc_multiplier: 1.25
 dragon_scimitar_noted:
   id: 4588
 keys:
@@ -30971,8 +30959,6 @@ dragon_dagger_p+:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p+_noted:
   id: 5681
 black_dagger_p+:
@@ -31097,8 +31083,6 @@ dragon_dagger_p++:
   slot: "Weapon"
   material: "metal"
   examine: "A powerful dagger."
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 dragon_dagger_p++_noted:
   id: 5699
 black_dagger_p++:
@@ -53589,8 +53573,6 @@ hunters_crossbow:
   limit: 100
   weight: 5.0
   range: 55.0
-  attack_range: 7
-  attack_speed: 4
   slot: "Weapon"
   attack_speed: 4
   attack_range: 8
@@ -59465,8 +59447,6 @@ barrelchest_anchor:
   destroy2: "If you drop the Anchor it will be destroyed, and you will need to get a new one from Brother Tranquillity, then pay Smith to re-forge it."
   kept: "Reclaim"
   weight: 30.0
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 barrelchest_anchor_2:
   id: 10888
   str: 100.0
@@ -63094,8 +63074,6 @@ armadyl_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A beautiful, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 armadyl_godsword_noted:
   id: 11695
 bandos_godsword:
@@ -63112,8 +63090,6 @@ bandos_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A brutally heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 bandos_godsword_noted:
   id: 11697
 saradomin_godsword:
@@ -63130,8 +63106,6 @@ saradomin_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A gracious, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 saradomin_godsword_noted:
   id: 11699
 zamorak_godsword:
@@ -63148,8 +63122,6 @@ zamorak_godsword:
   material: "metal"
   type: "TwoHanded"
   examine: "A terrifying, heavy sword."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 zamorak_godsword_noted:
   id: 11701
 armadyl_hilt:
@@ -63379,8 +63351,6 @@ saradomin_sword:
   material: "metal"
   type: "TwoHanded"
   examine: "The incredible blade of an Icyene."
-  spec_dmg_multiplier: 1.1
-  spec_acc_multiplier: 2.0
 saradomin_sword_noted:
   id: 11731
 dragon_boots:
@@ -77413,7 +77383,6 @@ vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
 vestas_longsword_noted:
@@ -77442,7 +77411,6 @@ statiuss_warhammer:
   slash: -4.0
   crush: 123.0
   slot: "Weapon"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades in combat, and will turn to dust."
   weight: 1.814
 statiuss_warhammer_noted:
@@ -77735,7 +77703,6 @@ corrupt_vestas_longsword:
   crush_def: 3.0
   slot: "Weapon"
   material: "metal"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_vestas_longsword_noted:
@@ -77764,7 +77731,6 @@ corrupt_statiuss_warhammer:
   slash: -4.0
   crush: 123.0
   slot: "Weapon"
-  spec_dmg_multiplier: 1.2
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
 corrupt_statiuss_warhammer_noted:
@@ -78337,8 +78303,6 @@ corrupt_dragon_dagger:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 0.453
-  spec_dmg_multiplier: 1.15
-  spec_acc_multiplier: 1.15
 corrupt_dragon_dagger_noted:
   id: 13977
 corrupt_dragon_dagger_degraded:
@@ -78369,7 +78333,6 @@ corrupt_dragon_scimitar:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_acc_multiplier: 1.25
 corrupt_dragon_scimitar_noted:
   id: 13980
 corrupt_dragon_scimitar_degraded:
@@ -78401,7 +78364,6 @@ corrupt_dragon_longsword:
   material: "metal"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_dmg_multiplier: 1.25
 corrupt_dragon_longsword_noted:
   id: 13983
 corrupt_dragon_longsword_degraded:
@@ -78432,8 +78394,6 @@ corrupt_dragon_mace:
   slot: "Weapon"
   examine: "This item degrades while worn, and will turn to dust."
   weight: 1.814
-  spec_dmg_multiplier: 1.50
-  spec_acc_multiplier: 1.25
 corrupt_dragon_mace_noted:
   id: 13986
 corrupt_dragon_mace_degraded:

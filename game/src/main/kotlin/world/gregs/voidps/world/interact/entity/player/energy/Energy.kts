@@ -21,9 +21,8 @@ on<EffectStart>({ effect == "energy" }) { player: Player ->
             else -> 0
         }
         if (change != 0) {
-            val updated = (energy + change).coerceIn(0, MAX_ENERGY)
-            player.runEnergy = updated
-            walkWhenOutOfEnergy(player, updated)
+            player.runEnergy = energy + change
+            walkWhenOutOfEnergy(player, player.runEnergy)
         }
     }
 }

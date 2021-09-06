@@ -13,7 +13,9 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
-on<ContainerOption>({ container == "inventory" && (option == "Wield" || option == "Wear") }) { player: Player ->
+fun canWear(option: String) = option == "Wield" || option == "Wear" || option == "Hold" || option == "Equip"
+
+on<ContainerOption>({ container == "inventory" && canWear(option) }) { player: Player ->
     val def = item.def
 
     if (!player.hasRequirements(def, true)) {

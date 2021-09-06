@@ -774,3 +774,67 @@ rune_throwing_axe_special_throw:
   id: 257
 rune_throwing_axe_special:
   id: 258
+energy_drain:
+  id: 2108
+statius_warhammer_smash:
+  id: 1840
+rampage:
+  id: 246
+slice_and_dice:
+  id: 1950
+puncture:
+  id: 252
+cleave:
+  id: 2117
+shatter:
+  id: 251
+the_judgement:
+  id: 2113
+sanctuary:
+  id: 247
+sever:
+  id: 2118
+saradomins_lightning:
+  id: 1194
+favour_of_the_war_god:
+  id: 1052
+liquify:
+  id: 1048
+backstab:
+  id: 704
+sunder:
+  id: 1027
+warstrike:
+  id: 2114
+healing_blade:
+  id: 2109
+ice_cleave:
+  id: 1221
+ice_cleave_hit:
+  id: 2104
+sweep:
+  id: 282
+powerstab:
+  id: 1225
+shove:
+  id: 253
+shove_stun:
+  id: 254
+quick_smash:
+  id: 340
+clobber:
+  id: 479
+disrupt:
+  id: 1729
+disrupt_hit:
+  id: 1730
+weaken:
+  id: 483
+impale:
+  id: 274
+spear_wall:
+  id: 1835
+power_of_light:
+  id: 2319
+power_of_light_hit:
+  id: 2320

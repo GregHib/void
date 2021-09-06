@@ -50,10 +50,11 @@ class Levels(
     }
 
     fun clear() {
-        for (skill in offsets.keys) {
+        val keys = offsets.keys.toList()
+        offsets.clear()
+        for (skill in keys) {
             notify(skill, get(skill))
         }
-        offsets.clear()
     }
 
     fun clearOffset(skill: Skill) {

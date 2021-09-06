@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.entity.Size
 import world.gregs.voidps.engine.entity.character.move.Movement
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.path.PathResult
+import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isUnder
 import world.gregs.voidps.engine.path.strat.TileTargetStrategy
 import world.gregs.voidps.engine.path.traverse.TileTraversalStrategy
 
@@ -23,8 +24,34 @@ class AxisAlignment : TilePathAlgorithm {
     ): PathResult {
         var delta = strategy.tile.delta(tile)
         var current = tile
-
         var reached = strategy.reached(current, size)
+
+        fun step(direction: Direction) {
+            delta = delta.minus(direction.delta)
+            current = current.add(direction.delta)
+            movement.steps.add(direction)
+            reached = strategy.reached(current, size)
+        }
+
+        // Step out if stuck under
+        if (!reached && isUnder(tile, size, strategy.tile, strategy.size)) {
+            var valid: Direction = Direction.NONE
+            for (direction in Direction.cardinal) {
+                if (!traversal.blocked(current, direction)) {
+                    valid = direction
+                    if (!isUnder(current.add(direction), size, strategy.tile, strategy.size)) {
+                        step(direction)
+                        valid = Direction.NONE
+                        break
+                    }
+                }
+            }
+            if (valid != Direction.NONE) {
+                step(valid)
+            }
+        }
+
+        // Align axis
         while (!reached) {
             var direction = delta.toDirection()
             if (traversal.blocked(current, direction)) {
@@ -43,10 +70,7 @@ class AxisAlignment : TilePathAlgorithm {
             if (direction == Direction.NONE) {
                 break
             }
-            delta = delta.minus(direction.delta)
-            current = current.add(direction.delta)
-            movement.steps.add(direction)
-            reached = strategy.reached(current, size)
+            step(direction)
         }
 
         return when {

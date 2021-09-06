@@ -120,6 +120,10 @@ on<InterfaceOption>({ name == "combat_styles" && component.startsWith("style") }
     refreshStyle(player)
 }
 
+on<InterfaceOption>({ name == "combat_styles" && component == "retaliate" }) { player: Player ->
+    player.toggleVar("auto_retaliate")
+}
+
 fun refreshStyle(player: Player) {
     val type = getWeaponStyleType(player)
     val index = player["attack_style_${names[type]}", 0]

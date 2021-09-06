@@ -10,7 +10,7 @@ class NPCPrimaryGraphicEncoder : VisualEncoder<Graphic>(NPC_GRAPHIC_0_MASK) {
     override fun encode(writer: Writer, visual: Graphic) {
         writer.apply {
             writeShortLittle(visual.id)
-            writeIntInverse(visual.packedDelayHeight)
+            writeIntMiddle(visual.packedDelayHeight)
             writeByte(visual.packedRotationRefresh)
         }
     }
