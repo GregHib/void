@@ -3600,7 +3600,7 @@ cadava_berries:
   weight: 0.007
   examine: "Poisonous berries."
 cadava_berries_noted: 754
-message_romeo_&_juliet:
+message_romeo_and_juliet:
   id: 755
   tradeable: false
   weight: 0.02
@@ -10259,25 +10259,25 @@ chopped_ugthanki:
   weight: 0.2
   examine: "Strips of ugthanki meat in a bowl."
 chopped_ugthanki_noted: 1874
-onion_&_tomato:
+onion_and_tomato:
   id: 1875
   price: 30
   limit: 1000
   edible: true
   weight: 0.3
   examine: "A mixture of chopped onions and tomatoes in a bowl."
-onion_&_tomato_noted: 1876
-ugthanki_&_onion:
+onion_and_tomato_noted: 1876
+ugthanki_and_onion:
   id: 1877
   weight: 0.3
   examine: "A mixture of chopped onions and ugthanki meat in a bowl."
   use: "Removed"
-ugthanki_&_onion_noted: 1878
-ugthanki_&_tomato:
+ugthanki_and_onion_noted: 1878
+ugthanki_and_tomato:
   id: 1879
   weight: 0.3
   examine: "A mixture of chopped tomatoes and ugthanki meat in a bowl."
-ugthanki_&_tomato_noted: 1880
+ugthanki_and_tomato_noted: 1880
 kebab_mix:
   id: 1881
   price: 412
@@ -10348,7 +10348,7 @@ chocolate_cake_2_3:
   limit: 1000
   weight: 0.2
   examine: "Someone has eaten a big chunk of this cake."
-"2_3_chocolate_cake_noted": 1900
+2_3_chocolate_cake_noted: 1900
 chocolate_cake_slice:
   id: 1901
   price: 13
@@ -10876,7 +10876,7 @@ premade_blurberry_special:
   edible: true
   weight: 0.45
   examine: "A premade Blurberry Special"
-premade_blurb_sp._noted: 2029
+premade_blurb_sp_noted: 2029
 premade_chocolate_saturday:
   id: 2030
   price: 15
@@ -11820,7 +11820,7 @@ plain_pizza_half:
   limit: 1000
   weight: 0.4
   examine: "Half of this plain pizza has been eaten."
-"1_2_plain_pizza_noted": 2292
+1_2_plain_pizza_noted: 2292
 meat_pizza:
   id: 2293
   price: 385
@@ -11834,7 +11834,7 @@ meat_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this meat pizza has been eaten."
-"1_2_meat_pizza_noted": 2296
+1_2_meat_pizza_noted: 2296
 anchovy_pizza:
   id: 2297
   price: 488
@@ -11848,7 +11848,7 @@ anchovy_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this anchovy pizza has been eaten."
-"1_2_anchovy_pizza_noted": 2300
+1_2_anchovy_pizza_noted: 2300
 pineapple_pizza:
   id: 2301
   price: 709
@@ -11862,7 +11862,7 @@ pineapple_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this pineapple pizza has been eaten."
-"1_2_papple_pizza_noted": 2304
+1_2_papple_pizza_noted: 2304
 burnt_pizza:
   id: 2305
   examine: "Oh dear!"
@@ -19177,7 +19177,7 @@ full_bucket_the_fremennik_trials:
   examine: "This bucket is completely full. It has a 5 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"4_5ths_full_bucket":
+4_5ths_full_bucket:
   id: 3723
   bankable: false
   tradeable: false
@@ -19186,7 +19186,7 @@ full_bucket_the_fremennik_trials:
   examine: "This bucket is eighty percent full. It has a 5 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"3_5ths_full_bucket":
+3_5ths_full_bucket:
   id: 3724
   bankable: false
   tradeable: false
@@ -19195,7 +19195,7 @@ full_bucket_the_fremennik_trials:
   examine: "This bucket is sixty percent full. It has a 5 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"2_5ths_full_bucket":
+2_5ths_full_bucket:
   id: 3725
   bankable: false
   tradeable: false
@@ -19204,7 +19204,7 @@ full_bucket_the_fremennik_trials:
   examine: "This bucket is forty percent full. It has a 5 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"1_5ths_full_bucket":
+1_5ths_full_bucket:
   id: 3726
   bankable: false
   tradeable: false
@@ -19240,7 +19240,7 @@ full_jug:
   examine: "This jug is completely full. It has a 3 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"2_3rds_full_jug":
+2_3rds_full_jug:
   id: 3730
   bankable: false
   tradeable: false
@@ -19249,7 +19249,7 @@ full_jug:
   examine: "This jug is two thirds full. It has a 3 painted on its side."
   use: "Quest"
   kept: "Vanish"
-"1_3rds_full_jug":
+1_3rds_full_jug:
   id: 3731
   bankable: false
   tradeable: false
@@ -20320,7 +20320,7 @@ monkey_skull:
   weight: 0.5
   examine: "It's a very ancient skull from some kind of ape."
   kept: "Reclaim"
-"10th_squad_sigil":
+10th_squad_sigil:
   id: 4035
   tradeable: false
   weight: 0.085
@@ -23466,7 +23466,7 @@ schematic_complete:
   examine: "The assembled schematic for modifying the dwarven multicannon."
   use: "Quest"
   kept: "Wilderness"
-cannon_ball_between_a_rock...:
+cannon_ball_between_a_rock:
   id: 4579
   tradeable: false
   weight: 20.0
@@ -24767,7 +24767,7 @@ comp_ogre_bow:
   examine: "A composite ogre bow."
   ammo: [ bronze_brutal, iron_brutal, steel_brutal, black_brutal, mithril_brutal, adamant_brutal, rune_brutal, ogre_arrow ]
 comp_ogre_bow_noted: 4828
-book_of_h.a.m:
+book_of_ham:
   id: 4829
   tradeable: false
   weight: 1.0
@@ -28784,7 +28784,7 @@ alchemical_notes:
   examine: "Looks like a pretty boring read."
   use: "Quest"
   kept: "Vanish"
-???_mixture_hot:
+mixture_hot:
   id: 5589
   bankable: false
   tradeable: false
@@ -28792,7 +28792,7 @@ alchemical_notes:
   examine: "A very hot vial of something or other. The label says 'Cupric Sulphate'."
   use: "Quest"
   kept: "Vanish"
-???_mixture_warm:
+mixture_warm:
   id: 5590
   bankable: false
   tradeable: false
@@ -28800,7 +28800,7 @@ alchemical_notes:
   examine: "A very warm vial of something or other. It's a bit lumpy."
   use: "Quest"
   kept: "Vanish"
-???_mixture_horrible:
+mixture_horrible:
   id: 5591
   bankable: false
   tradeable: false
@@ -33998,7 +33998,7 @@ white_kiteshield:
   material: "metal"
   examine: "A large metal shield."
 white_kiteshield_noted: 6634
-commorb_wanted!:
+commorb_wanted:
   id: 6635
   tradeable: false
   weight: 0.001
@@ -34271,7 +34271,7 @@ guam_in_a_box:
   weight: 0.028
   examine: "ground guam and ground seaweed.' Well, I have the guam leaf..."
   kept: "Reclaim"
-guam_in_a_box?:
+guam_in_a_box:
   id: 6678
   examine: "Ground Guam and Ground Seaweed.' Well, I have the Guam Leaf..."
 seaweed_in_a_box:
@@ -34280,7 +34280,7 @@ seaweed_in_a_box:
   weight: 0.028
   examine: "ground guam and ground seaweed.' Well, I have the seaweed..."
   kept: "Reclaim"
-seaweed_in_a_box?:
+seaweed_in_a_box:
   id: 6680
   examine: "Ground Guam and Ground Seaweed.' Well, I have the Seaweed..."
 ground_guam:
@@ -36363,14 +36363,14 @@ egg_and_tomato:
   weight: 0.5
   examine: "A bowl of scrambled eggs and tomato."
 egg_and_tomato_noted: 7065
-mushroom_&_onion:
+mushroom_and_onion:
   id: 7066
   price: 365
   limit: 1000
   edible: true
   weight: 0.5
   examine: "A bowl of fried mushroom and onions."
-mushroom_&_onion_noted: 7067
+mushroom_and_onion_noted: 7067
 tuna_and_corn:
   id: 7068
   price: 385
@@ -41670,7 +41670,7 @@ keldagrim_portrait:
   weight: 1.0
   examine: "A painting of the statue of King Alvis of Keldagrim."
   kept: "Reclaim"
-misc._portrait:
+misc_portrait:
   id: 7998
   tradeable: false
   weight: 1.0
@@ -41790,7 +41790,7 @@ enchant_diamond:
   price: 369
   limit: 200
   examine: "A tablet containing a magic spell."
-enchant_dragonstn.:
+enchant_dragonstn:
   id: 8020
   price: 296
   limit: 200
@@ -41845,7 +41845,7 @@ large_teak_bed:
   id: 8035
   weight: 1.0
   examine: "A ready-to-assemble large teak bed."
-"4-poster":
+4_poster:
   id: 8036
   weight: 1.0
   examine: "A ready-to-assemble four-poster bed."
@@ -42177,7 +42177,7 @@ clay_attack_stone:
   id: 8153
   examine: "See how much damage you can do to it!"
 attack_stone: 8154
-marble_att._stone:
+marble_att_stone:
   id: 8155
   examine: "Try to damage it!"
 magical_balance_1: 8156
@@ -43604,13 +43604,13 @@ large_teak_bed_flatpack:
   weight: 1.0
   examine: "A ready-to-assemble large teak bed."
 large_teak_bed_noted: 8585
-"4-poster_flatpack":
+4_poster_flatpack:
   id: 8586
   price: 1623
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble four-poster bed."
-"4-poster_noted": 8587
+4_poster_noted: 8587
 gilded_4_poster_flatpack:
   id: 8588
   price: 304000
@@ -44918,13 +44918,13 @@ shot:
   weight: 0.453
   examine: "Just landed shot."
   kept: "Reclaim"
-"18lb_shot":
+18lb_shot:
   id: 8858
   tradeable: false
   weight: 8.164
   examine: "Just landed 18lb shot."
   kept: "Reclaim"
-"22lb_shot":
+22lb_shot:
   id: 8859
   tradeable: false
   weight: 9.979
@@ -48051,7 +48051,7 @@ large_ornate_key:
   examine: "A key to some large, strange door."
   use: "Quest"
   kept: "Wilderness"
-haemalchemy_vol._1:
+haemalchemy_vol_1:
   id: 9652
   tradeable: false
   weight: 2.0
@@ -53465,7 +53465,7 @@ poisoned_egg:
   weight: 0.02
   examine: "A poisoned yellow egg. Pass to the Attacker for spikes to be added."
   kept: "Reclaim"
-spiked_&_poisoned_egg:
+spiked_and_poisoned_egg:
   id: 10536
   bankable: false
   tradeable: false
@@ -53886,7 +53886,7 @@ keris_p++:
   destroy: "You can obtain another from Osman, or from Emir Ali Mirza after completing the 'Phite Club quest."
   examine: "A mystical-feeling dagger."
   kept: "Reclaim"
-parchment_contact!:
+parchment_contact:
   id: 10585
   tradeable: false
   weight: 0.02
@@ -54647,7 +54647,7 @@ slayer_cape_2:
   slot: "Cape"
   examine: "The cape worn by Slayer masters."
   kept: "Reclaim"
-construct._cape:
+construct_cape:
   id: 10654
   stab_def: 9.0
   slash_def: 9.0
@@ -57107,7 +57107,7 @@ fingers:
   weight: 0.001
   examine: "Wall beast fingers in a white fern sauce."
   kept: "Reclaim"
-grubs_à_la_mode:
+grubs_a_la_mode:
   id: 10966
   edible: true
   tradeable: false
@@ -62253,13 +62253,13 @@ beaver_pouch:
   weight: 0.02
   examine: "I can summon a beaver familiar with this."
 beaver_pouch_noted: 12022
-karam._overlord_pouch:
+karam_overlord_pouch:
   id: 12023
   price: 2508
   limit: 5000
   weight: 0.02
   examine: "I can summon a karamthulhu overlord familiar with this."
-karam._overlord_pouch_noted: 12024
+karam_overlord_pouch_noted: 12024
 hydra_pouch:
   id: 12025
   price: 2242
@@ -62511,49 +62511,49 @@ spirit_cockatrice_pouch:
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit cockatrice familiar with this."
-sp._cockatrice_pouch_noted: 12096
+sp_cockatrice_pouch_noted: 12096
 spirit_guthatrice_pouch:
   id: 12097
   price: 1504
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit guthatrice familiar with this."
-sp._guthatrice_pouch_noted: 12098
+sp_guthatrice_pouch_noted: 12098
 spirit_saratrice_pouch:
   id: 12099
   price: 1506
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit saratrice familiar with this."
-sp._saratrice_pouch_noted: 12100
+sp_saratrice_pouch_noted: 12100
 spirit_zamatrice_pouch:
   id: 12101
   price: 1517
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit zamatrice familiar with this."
-sp._zamatrice_pouch_noted: 12102
+sp_zamatrice_pouch_noted: 12102
 spirit_pengatrice_pouch:
   id: 12103
   price: 1528
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit pengatrice familiar with this."
-sp._pengatrice_pouch_noted: 12104
+sp_pengatrice_pouch_noted: 12104
 spirit_coraxatrice_pouch:
   id: 12105
   price: 4576
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit coraxatrice familiar with this."
-sp._coraxatrice_pouch_noted: 12106
+sp_coraxatrice_pouch_noted: 12106
 spirit_vulatrice_pouch:
   id: 12107
   price: 4829
   limit: 5000
   weight: 0.02
   examine: "I can summon a spirit vulatrice familiar with this."
-sp._vulatrice_pouch_noted: 12108
+sp_vulatrice_pouch_noted: 12108
 cockatrice_egg:
   id: 12109
   price: 789
@@ -62656,14 +62656,14 @@ evil_turnip_2_3:
   limit: 5000
   weight: 0.007
   examine: "Most of an evil turnip."
-"2_3_evil_turnip_noted": 12137
+2_3_evil_turnip_noted: 12137
 evil_turnip_1_3:
   id: 12138
   price: 19
   limit: 5000
   weight: 0.005
   examine: "A bit of an evil turnip."
-"1_3_evil_turnip_noted": 12139
+1_3_evil_turnip_noted: 12139
 summoning_potion_4:
   id: 12140
   price: 5369
@@ -63563,7 +63563,7 @@ stranger_plant_pouchu:
   examine: "An uncharged Summoning pouch. Can be converted to its charged counterpart."
   kept: "Vanish"
   use: "Limited"
-sp._cockatrice_pouchu:
+sp_cockatrice_pouchu:
   id: 12266
   limit: 10000
   tradeable: false
@@ -63572,7 +63572,7 @@ sp._cockatrice_pouchu:
   examine: "An uncharged Summoning pouch. Can be converted to its charged counterpart."
   kept: "Vanish"
   use: "Limited"
-karam._overlord_pouchu:
+karam_overlord_pouchu:
   id: 12267
   limit: 10000
   tradeable: false
@@ -72849,7 +72849,7 @@ tightrope_101:
   examine: "Shows you the moves you need to succeed!"
   kept: "Vanish"
 tightrope_101_noted: 13708
-balls_level_10_approx.:
+balls_level_10_approx:
   id: 13709
   tradeable: false
   weight: 0.5
@@ -72858,7 +72858,7 @@ balls_level_10_approx.:
   examine: "An Agility level of 10 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-plates_level_20_approx.:
+plates_level_20_approx:
   id: 13710
   tradeable: false
   weight: 0.5
@@ -72867,7 +72867,7 @@ plates_level_20_approx.:
   examine: "An Agility level of 20 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-eggs_level_30_approx.:
+eggs_level_30_approx:
   id: 13711
   tradeable: false
   weight: 0.5
@@ -72876,7 +72876,7 @@ eggs_level_30_approx.:
   examine: "An Agility level of 30 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-knives_level_40_approx.:
+knives_level_40_approx:
   id: 13712
   tradeable: false
   weight: 0.5
@@ -72885,7 +72885,7 @@ knives_level_40_approx.:
   examine: "An Agility level of 40 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-spades_level_50_approx.:
+spades_level_50_approx:
   id: 13713
   tradeable: false
   weight: 0.5
@@ -72894,7 +72894,7 @@ spades_level_50_approx.:
   examine: "An Agility level of 50 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-tuna_level_60_approx.:
+tuna_level_60_approx:
   id: 13714
   tradeable: false
   weight: 0.5
@@ -72903,7 +72903,7 @@ tuna_level_60_approx.:
   examine: "An Agility level of 60 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-soap_level_70_approx.:
+soap_level_70_approx:
   id: 13715
   tradeable: false
   weight: 0.5
@@ -72912,7 +72912,7 @@ soap_level_70_approx.:
   examine: "An Agility level of 70 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-cannon_balls_level_80_approx.:
+cannon_balls_level_80_approx:
   id: 13716
   tradeable: false
   weight: 0.5
@@ -72921,7 +72921,7 @@ cannon_balls_level_80_approx.:
   examine: "An Agility level of 80 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-torches_level_90_approx.:
+torches_level_90_approx:
   id: 13717
   tradeable: false
   weight: 0.5
@@ -72930,7 +72930,7 @@ torches_level_90_approx.:
   examine: "An Agility level of 90 is advised when juggling these."
   kept: "Vanish"
   use: "Removed"
-chinchompas_level_99_approx.:
+chinchompas_level_99_approx:
   id: 13718
   tradeable: false
   weight: 0.5
@@ -74566,21 +74566,21 @@ corrupt_morrigans_javelin:
   range_str: 145.0
   slot: "Weapon"
   examine: "A vicious javelin."
-c._morrigans_javelin_p:
+c_morrigans_javelin_p:
   id: 13954
   limit: 100
   range: 105.0
   range_str: 145.0
   slot: "Weapon"
   examine: "A vicious javelin."
-c._morrigans_javelin_p+:
+c_morrigans_javelin_p+:
   id: 13955
   limit: 100
   range: 105.0
   range_str: 145.0
   slot: "Weapon"
   examine: "A vicious javelin."
-c._morrigans_javelin_p++:
+c_morrigans_javelin_p++:
   id: 13956
   limit: 100
   range: 105.0
@@ -75183,7 +75183,7 @@ wrapped_candy:
   examine: "Sugary bliss."
   kept: "Reclaim"
   use: "Removed"
-armadyl_communiqué:
+armadyl_communique:
   id: 14085
   tradeable: false
   weight: 0.05
@@ -84804,7 +84804,7 @@ kalgerion_notes_part_3:
   examine: "An unknown mage's notes on the Kal'Gerion demons."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_1:
+m_and_thok_letter_part_1:
   id: 15744
   tradeable: false
   weight: 1.0
@@ -84812,7 +84812,7 @@ m._and_thok_letter_part_1:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_2:
+m_and_thok_letter_part_2:
   id: 15745
   tradeable: false
   weight: 1.0
@@ -84820,7 +84820,7 @@ m._and_thok_letter_part_2:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_3:
+m_and_thok_letter_part_3:
   id: 15746
   tradeable: false
   weight: 1.0
@@ -84828,7 +84828,7 @@ m._and_thok_letter_part_3:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_4:
+m_and_thok_letter_part_4:
   id: 15747
   tradeable: false
   weight: 1.0
@@ -84836,7 +84836,7 @@ m._and_thok_letter_part_4:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_5:
+m_and_thok_letter_part_5:
   id: 15748
   tradeable: false
   weight: 1.0
@@ -84844,7 +84844,7 @@ m._and_thok_letter_part_5:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_6:
+m_and_thok_letter_part_6:
   id: 15749
   tradeable: false
   weight: 1.0
@@ -99672,7 +99672,7 @@ little_bloodrager_pouch:
   examine: "I can summon a little bloodrager with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_bloodrager_pouch:
+naive_bloodrager_pouch:
   id: 17937
   weight: 0.02
   examine: "I can summon a nave bloodrager with this."
@@ -99732,7 +99732,7 @@ little_stormbringer_pouch:
   examine: "I can summon a little stormbringer with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_stormbringer_pouch:
+naive_stormbringer_pouch:
   id: 17947
   weight: 0.02
   examine: "I can summon a nave stormbringer with this."
@@ -99792,7 +99792,7 @@ little_hoardstalker_pouch:
   examine: "I can summon a little hoardstalker with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_hoardstalker_pouch:
+naive_hoardstalker_pouch:
   id: 17957
   weight: 0.02
   examine: "I can summon a nave hoardstalker with this."
@@ -99852,7 +99852,7 @@ little_skinweaver_pouch:
   examine: "I can summon a little skinweaver with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_skinweaver_pouch:
+naive_skinweaver_pouch:
   id: 17967
   weight: 0.02
   examine: "I can summon a nave skinweaver with this."
@@ -99912,7 +99912,7 @@ little_worldbearer_pouch:
   examine: "I can summon a little worldbearer with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_worldbearer_pouch:
+naive_worldbearer_pouch:
   id: 17977
   weight: 0.02
   examine: "I can summon a nave worldbearer with this."
@@ -99972,7 +99972,7 @@ little_deathslinger_pouch:
   examine: "I can summon a little deathslinger with this."
   use: "Dungeoneering"
   kept: "Always"
-naïve_deathslinger_pouch:
+naive_deathslinger_pouch:
   id: 17987
   weight: 0.02
   examine: "I can summon a naïve deathslinger with this."
@@ -100522,166 +100522,166 @@ cave_moray_potato:
   use: "Dungeoneering"
   kept: "Always"
 cave_moray_potato_noted: 18118
-heim_crab_&_gissel_potato:
+heim_crab_and_gissel_potato:
   id: 18119
   edible: true
   weight: 0.5
   examine: "Mmm...a gissel potato full of tasty heim crab. Delicious!"
   use: "Dungeoneering"
   kept: "Always"
-heim_crab_&_gissel_potato_noted: 18120
-red-eye_&_gissel_potato:
+heim_crab_and_gissel_potato_noted: 18120
+red_eye_and_gissel_potato:
   id: 18121
   edible: true
   weight: 0.5
   examine: "Yum...a gissel potato filled with tasty red-eye fish!"
   use: "Dungeoneering"
   kept: "Always"
-red-eye_&_gissel_potato_noted: 18122
-dusk_eel_&_gissel_potato:
+red_eye_and_gissel_potato_noted: 18122
+dusk_eel_and_gissel_potato:
   id: 18123
   edible: true
   weight: 0.5
   examine: "Nice...a gissel potato loaded with delicious dusk eel."
   use: "Dungeoneering"
   kept: "Always"
-dusk_eel_&_gissel_potato_noted: 18124
-flatfish_&_gissel_potato:
+dusk_eel_and_gissel_potato_noted: 18124
+flatfish_and_gissel_potato:
   id: 18125
   edible: true
   weight: 0.5
   examine: "Yum...a gissel potato filled with some tasty flatfish. Lovely!"
   use: "Dungeoneering"
   kept: "Always"
-flatfish_&_gissel_potato_noted: 18126
-short-fin_&_gissel_potato:
+flatfish_and_gissel_potato_noted: 18126
+short_fin_and_gissel_potato:
   id: 18127
   edible: true
   weight: 0.5
   examine: "Nice...a gissel potato crammed with delicious short-fin. Tasty!"
   use: "Dungeoneering"
   kept: "Always"
-short-fin_&_gissel_potato_noted: 18128
-snipper_&_gissel_potato:
+short_fin_and_gissel_potato_noted: 18128
+snipper_and_gissel_potato:
   id: 18129
   edible: true
   weight: 0.5
   examine: "Sweet...a gissel potato loaded with snipper fish. Yummy!"
   use: "Dungeoneering"
   kept: "Always"
-snipper_&_gissel_potato_noted: 18130
-bouldabass_&_gissel_potato:
+snipper_and_gissel_potato_noted: 18130
+bouldabass_and_gissel_potato:
   id: 18131
   edible: true
   weight: 0.5
   examine: "Yum...a gissel potato filled with some Bouldabass. Nice!"
   use: "Dungeoneering"
   kept: "Always"
-bouldabass_&_gissel_potato_noted: 18132
-salve_eel_&_gissel_potato:
+bouldabass_and_gissel_potato_noted: 18132
+salve_eel_and_gissel_potato:
   id: 18133
   edible: true
   weight: 0.5
   examine: "Yum...a gissel potato crammed full of salve eel. Tasty!"
   use: "Dungeoneering"
   kept: "Always"
-salve_eel_&_gissel_potato_noted: 18134
-blue_crab_&_gissel_potato:
+salve_eel_and_gissel_potato_noted: 18134
+blue_crab_and_gissel_potato:
   id: 18135
   edible: true
   weight: 0.5
   examine: "Mmm...a gissel potato full of blue crab."
   use: "Dungeoneering"
   kept: "Always"
-blue_crab_&_gissel_potato_noted: 18136
-moray_&_gissel_potato:
+blue_crab_and_gissel_potato_noted: 18136
+moray_and_gissel_potato:
   id: 18137
   edible: true
   weight: 0.5
   examine: "Mmm...a gissel potato fully loaded with delicious Moray."
   use: "Dungeoneering"
   kept: "Always"
-moray_&_gissel_potato_noted: 18138
-heim_crab_&_edicap_potato:
+moray_and_gissel_potato_noted: 18138
+heim_crab_and_edicap_potato:
   id: 18139
   edible: true
   weight: 0.5
   examine: "Mmm...an edicap potato full of tasty heim crab. Delicious!"
   use: "Dungeoneering"
   kept: "Always"
-heim_crab_&_edicap_potato_noted: 18140
-red-eye_&_edicap_potato:
+heim_crab_and_edicap_potato_noted: 18140
+red_eye_and_edicap_potato:
   id: 18141
   edible: true
   weight: 0.5
   examine: "Yum...an edicap potato filled with tasty red-eye fish!"
   use: "Dungeoneering"
   kept: "Always"
-red-eye_&_edicap_potato_noted: 18142
-dusk_eel_&_edicap_potato:
+red_eye_and_edicap_potato_noted: 18142
+dusk_eel_and_edicap_potato:
   id: 18143
   edible: true
   weight: 0.5
   examine: "Nice...an edicap potato loaded with delicious dusk eel."
   use: "Dungeoneering"
   kept: "Always"
-dusk_eel_&_edicap_potato_noted: 18144
-flatfish_&_edicap_potato:
+dusk_eel_and_edicap_potato_noted: 18144
+flatfish_and_edicap_potato:
   id: 18145
   edible: true
   weight: 0.5
   examine: "Yum...an edicap potato filled with some tasty flatfish. Lovely!"
   use: "Dungeoneering"
   kept: "Always"
-flatfish_&_edicap_potato_noted: 18146
-short-fin_&_edicap_potato:
+flatfish_and_edicap_potato_noted: 18146
+short_fin_and_edicap_potato:
   id: 18147
   edible: true
   weight: 0.5
   examine: "Nice...an edicap potato crammed with delicious short-fin. Tasty!"
   use: "Dungeoneering"
   kept: "Always"
-short-fin_&_edicap_potato_noted: 18148
-snipper_&_edicap_potato:
+short_fin_and_edicap_potato_noted: 18148
+snipper_and_edicap_potato:
   id: 18149
   edible: true
   weight: 0.5
   examine: "Sweet...an edicap potato loaded with snipper fish. Yummy!"
   use: "Dungeoneering"
   kept: "Always"
-snipper_&_edicap_potato_noted: 18150
-bouldabass_&_edicap_potato:
+snipper_and_edicap_potato_noted: 18150
+bouldabass_and_edicap_potato:
   id: 18151
   edible: true
   weight: 0.5
   examine: "Yum...an edicap potato filled with some Bouldabass. Nice!"
   use: "Dungeoneering"
   kept: "Always"
-bouldabass_&_edicap_potato_noted: 18152
-salve_eel_&_edicap_potato:
+bouldabass_and_edicap_potato_noted: 18152
+salve_eel_and_edicap_potato:
   id: 18153
   edible: true
   weight: 0.5
   examine: "Yum...an edicap potato crammed full of salve eel. Tasty!"
   use: "Dungeoneering"
   kept: "Always"
-salve_eel_&_edicap_potato_noted: 18154
-blue_crab_&_edicap_potato:
+salve_eel_and_edicap_potato_noted: 18154
+blue_crab_and_edicap_potato:
   id: 18155
   edible: true
   weight: 0.5
   examine: "Mmm...an edicap potato full of blue crab."
   use: "Dungeoneering"
   kept: "Always"
-blue_crab_&_edicap_potato_noted: 18156
-moray_&_edicap_potato:
+blue_crab_and_edicap_potato_noted: 18156
+moray_and_edicap_potato:
   id: 18157
   edible: true
   weight: 0.5
   examine: "Mmm...an edicap potato fully loaded with delicious Moray."
   use: "Dungeoneering"
   kept: "Always"
-moray_&_edicap_potato_noted: 18158
+moray_and_edicap_potato_noted: 18158
 heim_crab:
   id: 18159
   edible: true
@@ -108512,7 +108512,7 @@ stalker_notes_part_4:
   examine: "An unknown mage's notes on the stalkers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_7:
+m_and_thok_letter_part_7:
   id: 19688
   tradeable: false
   weight: 1.0
@@ -108520,7 +108520,7 @@ m._and_thok_letter_part_7:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_8:
+m_and_thok_letter_part_8:
   id: 19689
   tradeable: false
   weight: 1.0
@@ -109496,7 +109496,7 @@ stalker_notes_part_5:
   examine: "An unknown mage's notes on the stalkers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_9:
+m_and_thok_letter_part_9:
   id: 19858
   tradeable: false
   weight: 1.0
@@ -109504,7 +109504,7 @@ m._and_thok_letter_part_9:
   examine: "A letter left behind by wandering adventurers."
   use: "Dungeoneering"
   kept: "Always"
-m._and_thok_letter_part_10:
+m_and_thok_letter_part_10:
   id: 19859
   tradeable: false
   weight: 1.0
@@ -110641,7 +110641,7 @@ keldagrim_key_6:
   examine: "A duplicate of one of the six keys to Keldagrim's records chamber."
   use: "Quest"
   kept: "Wilderness"
-"10th_anniversary_cake_no_candles":
+10th_anniversary_cake_no_candles:
   id: 20111
   edible: true
   tradeable: false
@@ -110649,7 +110649,7 @@ keldagrim_key_6:
   examine: "Put some 10th Anniversary candles on it."
   kept: "Reclaim"
   use: "Limited"
-"10th_anniversary_cake_unlit":
+10th_anniversary_cake_unlit:
   id: 20112
   edible: true
   tradeable: false
@@ -110658,7 +110658,7 @@ keldagrim_key_6:
   examine: "Light the candles."
   kept: "Reclaim"
   use: "Limited"
-"10th_anniversary_cake":
+10th_anniversary_cake:
   id: 20113
   edible: true
   tradeable: false
@@ -110667,7 +110667,7 @@ keldagrim_key_6:
   examine: "Celebrating 10 years of Gielinor."
   kept: "Wilderness"
   use: "Limited"
-"10th_anniversary_candles":
+10th_anniversary_candles:
   id: 20114
   tradeable: false
   examine: "Put 10 of these on a 10th Anniversary cake."

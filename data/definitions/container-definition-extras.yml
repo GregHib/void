@@ -19,7 +19,7 @@ nardah_general_store: 17
 valaines_shop_of_champions: 18
 flynns_mace_market: 19
 brians_battleaxe_bazaar: 21
-waynes_chains_-_chainmail_specialist: 22
+waynes_chains_chainmail_specialist: 22
 dwarven_shopping_store: 23
 lumbridge_general_store:
   id: 24
@@ -38,7 +38,7 @@ oziachs_armour: 35
 jukats_dragon_sword_shop: 36
 irksols_ruby_rings: 37
 zanaris_general_store: 38
-gaiuss_two-handed_shop: 39
+gaiuss_two_handed_shop: 39
 jatixs_herblore_shop: 40
 bandit_duty_free: 41
 tonys_pizza_bases: 42
@@ -57,11 +57,11 @@ fishing_guild_shop: 60
 khazard_general_store: 61
 bolkoys_village_shop: 62
 fancy_clothes_store: 63
-magic_guild_store_-_runes_and_staves: 64
+magic_guild_store_runes_and_staves: 64
 jiminuas_jungle_store: 65
 king_lathass_armoury: 66
 frenitas_cookery_shop: 67
-pickaxe-is-mine: 68
+pickaxe_is_mine: 68
 ye_olde_tea_shoppe: 69
 dals_general_ogre_supplies: 70
 frincoss_fabulous_herb_store: 71
@@ -96,7 +96,7 @@ bank:
   stack: Always
 blurberrys_bar: 99
 giannes_restaurant: 100
-lundails_arena-side_rune_shop: 131
+lundails_arena_side_rune_shop: 131
 mage_arena_staves: 132
 oblis_general_store: 138
 west_ardougne_general_store: 139
@@ -128,7 +128,7 @@ ifabas_general_store: 227
 ranging_guild_ticket_exchange:
   id: 228
   currency: archery_ticket
-magic_guild_store_-_mystic_robes: 232
+magic_guild_store_mystic_robes: 232
 port_phasmatys_general_store: 235
 williams_wilderness_cape_shop: 236
 ians_wilderness_cape_shop: 237
@@ -143,12 +143,12 @@ sams_wilderness_cape_shop: 245
 brians_archery_supplies: 250
 dagas_scimitar_smithy: 251
 alis_discount_wares: 252
-the_asp_&_snake_bar: 253
+the_asp_and_snake_bar: 253
 pollnivneach_general_store: 254
 bandit_bargains: 255
 rasolo_the_wandering_merchant: 256
 the_big_heist_lodge: 257
-ak-haranus_exotic_shop: 259
+ak_haranus_exotic_shop: 259
 uglugs_stuffsies: 260
 vigrs_warhammers: 261
 lumbridge_fishing_supplies:
@@ -178,13 +178,13 @@ gabootys_tai_bwo_wannai_drinky_store:
   currency: trading_sticks
 ore_seller: 318
 armour_store: 319
-tzhaar-hur-tels_equipment_store:
+tzhaar_hur_tels_equipment_store:
   id: 325
   currency: tokkul
-tzhaar-hur-leks_ore_and_gem_store:
+tzhaar_hur_leks_ore_and_gem_store:
   id: 326
   currency: tokkul
-tzhaar-mej-rohs_rune_store:
+tzhaar_mej_rohs_rune_store:
   id: 327
   currency: tokkul
 white_knight_master_armoury: 333
@@ -196,7 +196,7 @@ mage_training_arena: 347
 smithing_smiths_shop: 348
 harpoon_joes_house_of_rum: 349
 two_feet_charleys_fish_shop: 350
-dodgy_mikes_second-hand_clothing: 351
+dodgy_mikes_second_hand_clothing: 351
 pie_shop: 352
 culinaromancers_chest: 365
 aurels_supplies: 383
@@ -232,8 +232,8 @@ aarons_archery_appendages_skillcape: 457
 aarons_archery_appendages_trimmed: 458
 runecrafting_skillcape_skillcape: 459
 runecrafting_skillcape_trimmed: 460
-magic_guild_store_-_mystic_robes_skillcape: 461
-magic_guild_store_-_mystic_robes_trimmed: 462
+magic_guild_store_mystic_robes_skillcape: 461
+magic_guild_store_mystic_robes_trimmed: 462
 leprechaun_larrys_farming_supplies: 465
 alecks_hunter_emporium: 483
 avas_odds_and_ends: 489
@@ -250,7 +250,7 @@ ore_store: 507
 contraband_yak_produce: 508
 miltogs_lamps: 511
 reldaks_leather_armour: 512
-dorgesh-kaan_general_supplies: 513
+dorgesh_kaan_general_supplies: 513
 collection_box_1: 523
 collection_box_2: 524
 collection_box_3: 525

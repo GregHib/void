@@ -64,11 +64,11 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
 
         fun removeTags(text: String) = text.replace(tagRegex, "")
 
-        private val chars = "[\"',()]".toRegex()
-        private val underscoreChars = "[ /]".toRegex()
+        private val chars = "[\"',()?.!]".toRegex()
+        private val underscoreChars = "[ /-]".toRegex()
 
         // TODO remove exclamations
-        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&#39;", "")
+        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }
 

@@ -39,7 +39,7 @@ treasure_pile: 875
 gyr_falcon: 927
 chocolate_kebbit: 930
 imp: 932
-sabre-toothed_kyatt: 938
+sabre_toothed_kyatt: 938
 spined_larupia: 940
 horned_graahk: 942
 rabbit_snare: 946
@@ -47,7 +47,7 @@ kebbit: 951
 metal_bird: 964
 mutant_tarn: 1004
 molanisk: 1033
-"10th_anniversary_cake": 1065
+10th_anniversary_cake: 1065
 sergeant_grimspike: 1205
 goblin: 1259
 heimland_games_souvenir: 1283
@@ -60,7 +60,7 @@ kitten: 1615
 barrier: 1752
 macaw: 1778
 dark_energy_core: 1828
-hazelmere's_hat: 1928
+hazelmeres_hat: 1928
 light_creature: 1933
 jack_frost: 1971
 ghost: 1997
@@ -94,7 +94,7 @@ knight_diana: 2695
 knight_bernard: 2696
 knight_ami: 2697
 wise_old_man: 2743
-_flesh-spoiler_spawn: 2765
+flesh_spoiler_spawn: 2765
 hobgoblin_geomancer: 2777
 strange_bones: 2838
 shadow_spider: 2843
@@ -380,7 +380,7 @@ training_arrows_shoot: 806
 training_arrows: 805
 sling_rock_shoot: 33
 sling_rock: 32
-toktz-xil-ul: 442
+toktz_xil_ul: 442
 chinchompa: 908
 red_chinchompa: 909
 chinchompa_hit: 2739

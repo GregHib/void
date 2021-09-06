@@ -476,7 +476,7 @@ fish_small_fishing_net: 621
 fish_fishing_rod: 622
 fish_rod: 623
 fish_karambwan_vessel: 1193
-fish_barb-tail_harpoon: 5108
+fish_barb_tail_harpoon: 5108
 barehand_shark: 6705
 barehand_shark_2: 6706
 barehand_swordfish: 6707
@@ -546,7 +546,7 @@ hand_cannon_special: 12174
 hand_cannon_explode: 12175
 karils_crossbow_shoot: 2075
 sling_rock: 14867
-toktz-xil-ul: 3353
+toktz_xil_ul: 3353
 throw_chinchompa: 2779
 rune_throwing_axe_special: 1068
 dagger_stab: 13049
