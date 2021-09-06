@@ -5,6 +5,7 @@ import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
+import world.gregs.voidps.engine.entity.character.Died
 import world.gregs.voidps.engine.entity.character.move.cantReach
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.npc.NPCClick
@@ -16,14 +17,19 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.world.interact.entity.combat.CombatHit
-import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.attackStyle
-import world.gregs.voidps.world.interact.entity.combat.canAttack
+import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
     player.attack(npc)
+}
+
+on<CombatSwing> { character: Character ->
+    target.start("in_combat", 16, restart = true)
+    if (target.inSingleCombat) {
+        target.attackers.clear()
+    }
+    target.attackers.add(character)
 }
 
 on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC }) { character: Character ->
@@ -39,6 +45,9 @@ fun Character.attack(target: Character) {
     val source = this
     action(ActionType.Combat) {
         source["target"] = target
+        val handler = target.events.on<Character, Died> {
+            source.stop("in_combat")
+        }
         try {
             watch(target)
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
@@ -63,6 +72,7 @@ fun Character.attack(target: Character) {
                 start("skilling_delay", nextDelay, quiet = true)
             }
         } finally {
+            target.events.remove(handler)
             clear("target")
             watch(null)
         }

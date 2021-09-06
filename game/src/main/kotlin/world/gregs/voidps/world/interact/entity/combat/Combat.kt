@@ -16,6 +16,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.hit
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
+import world.gregs.voidps.engine.entity.hasEffect
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.FloorItems
 import world.gregs.voidps.engine.entity.item.Item
@@ -35,7 +36,7 @@ import kotlin.random.nextInt
 val Character.height: Int
     get() = (this as? NPC)?.def?.getOrNull("height") as? Int ?: ShootProjectile.DEFAULT_HEIGHT
 
-fun canAttack(player: Character, target: Character): Boolean {
+fun canAttack(source: Character, target: Character): Boolean {
     if (target is NPC && get<NPCs>().getAtIndex(target.index) == null) {
         return false
     }
@@ -43,6 +44,14 @@ fun canAttack(player: Character, target: Character): Boolean {
         return false
     }
     if (target.movement.frozen) {
+        return false
+    }
+    if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
+        (source as? Player)?.message("That ${target::class.simpleName?.toLowerCase()} is already under attack.")
+        return false
+    }
+    if (source.inSingleCombat && source.hasEffect("in_combat") && !source.attackers.contains(target)) {
+        (source as? Player)?.message("You are already in combat.")
         return false
     }
     // PVP area, slayer requirements, in combat etc..
@@ -321,8 +330,14 @@ private fun remove(player: Player, target: Character, ammo: String, required: In
     }
 }
 
+val Character.attackers: MutableList<Character>
+    get() = get("attackers")
+
 val Character.inMultiCombat: Boolean
     get() = false
+
+val Character.inSingleCombat: Boolean
+    get() = !inMultiCombat
 
 val ItemDefinition.ammo: Set<String>?
     get() = (getOrNull("ammo") as? ArrayList<String>)?.toSet()

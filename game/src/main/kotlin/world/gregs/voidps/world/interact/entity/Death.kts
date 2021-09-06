@@ -14,12 +14,14 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Area
 import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.interact.entity.combat.attackers
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val npcs: NPCs by inject()
 
 on<Registered> { character: Character ->
     character["damage_dealers"] = mutableMapOf<Character, Int>()
+    character["attackers"] = mutableListOf<Character>()
 }
 
 on<Died> { npc: NPC ->
@@ -27,6 +29,7 @@ on<Died> { npc: NPC ->
         withContext(NonCancellable) {
             delay(2)
             val name = npc.def["category", npc.def.name.toUnderscoreCase()]
+            npc.attackers.clear()
             val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
             val dealer = damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key

@@ -8,6 +8,13 @@ import world.gregs.voidps.engine.event.Event
 data class EffectStart(val effect: String, val ticks: Int = -1, val restart: Boolean = false) : Event
 data class EffectStop(val effect: String) : Event
 
+/**
+ * Starts an effect
+ * @param ticks Number of game ticks to last before the effect is removed
+ * @param persist whether the effect should be saved after logout
+ * @param quiet whether [EffectStart] & [EffectStop] events should be emitted
+ * @param restart [EffectStart] value to identify whether an effect should be re-applied
+ */
 fun Entity.start(effect: String, ticks: Int = -1, persist: Boolean = false, quiet: Boolean = false, restart: Boolean = false) {
     val had = hasEffect(effect)
     if (had) {
