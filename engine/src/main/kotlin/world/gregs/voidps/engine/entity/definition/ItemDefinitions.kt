@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -29,7 +30,7 @@ class ItemDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item definition") {
-            load(loader.load<Map<String, Map<String, Any>>>(path))
+            load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }
