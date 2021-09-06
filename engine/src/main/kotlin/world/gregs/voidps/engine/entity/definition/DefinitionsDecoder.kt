@@ -55,6 +55,11 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     }
 
     companion object {
+
+        internal fun Map<String, Any>.mapIds(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
+            if (value is Int) mapOf("id" to value) else value as Map<String, Any>
+        }.toMap()
+
         private val tagRegex = "<.*?>".toRegex()
 
         fun removeTags(text: String) = text.replace(tagRegex, "")
