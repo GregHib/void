@@ -13,7 +13,7 @@ object YamlSorter {
     @JvmStatic
     fun main(args: Array<String>) {
         val loader = FileLoader()
-        val path = "./data/definitions/music-definition-extras.yml"
+        val path = "./data/definitions/musics.yml"
         val data: Map<String, Map<String, Any>> = loader.load(path)
         loader.save(path, data.toList().sortedBy { it.second["id"] as Int }.toMap())
     }
