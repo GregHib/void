@@ -11,7 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.weapon
 
 fun isMaul(item: Item?) = item != null && (item.name.endsWith("maul") || isTzhaarKetOm(item))
-fun isTzhaarKetOm(item: Item) = item.name == "tzhaar-ket-om"
+fun isTzhaarKetOm(item: Item) = item.name == "tzhaar_ket_om"
 
 on<CombatSwing>({ !swung() && isMaul(it.weapon) }, Priority.LOWER) { player: Player ->
     player.setAnimation("maul_attack")
