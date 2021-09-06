@@ -1482,8 +1482,7 @@ raw_cod_noted: 342
 burnt_fish_trout:
   id: 343
   examine: "Oops!"
-burnt_fish_noted_2:
-  id: 344
+burnt_fish_noted_2: 344
 raw_herring:
   id: 345
   price: 32
@@ -1532,8 +1531,7 @@ mackerel_noted: 356
 burnt_fish_herring:
   id: 357
   examine: "Oops!"
-burnt_fish_noted_3:
-  id: 358
+burnt_fish_noted_3: 358
 raw_tuna:
   id: 359
   price: 67
@@ -1567,13 +1565,11 @@ bass_noted: 366
 burnt_fish_tuna:
   id: 367
   examine: "Oops!"
-burnt_fish_noted_4:
-  id: 368
+burnt_fish_noted_4: 368
 burnt_fish_sardine:
   id: 369
   examine: "Oops!"
-burnt_fish_noted_5:
-  id: 370
+burnt_fish_noted_5: 370
 raw_swordfish:
   id: 371
   price: 176
@@ -1815,8 +1811,7 @@ priest_gown_bottom:
   slot: "Legs"
   examine: "Bottom half of a priest suit."
   kept: "Wilderness"
-priest_gown_noted_2:
-  id: 429
+priest_gown_noted_2: 429
 doctors_gown:
   id: 430
   tradeable: false
@@ -2028,8 +2023,7 @@ broken_pickaxe_iron:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_pickaxe_noted_2:
-  id: 471
+broken_pickaxe_noted_2: 471
 broken_pickaxe_steel:
   id: 472
   bankable: false
@@ -2037,8 +2031,7 @@ broken_pickaxe_steel:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_pickaxe_noted_3:
-  id: 473
+broken_pickaxe_noted_3: 473
 broken_pickaxe_mithril:
   id: 474
   bankable: false
@@ -2046,8 +2039,7 @@ broken_pickaxe_mithril:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_pickaxe_noted_4:
-  id: 475
+broken_pickaxe_noted_4: 475
 broken_pickaxe_adamant:
   id: 476
   bankable: false
@@ -2055,8 +2047,7 @@ broken_pickaxe_adamant:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_pickaxe_noted_5:
-  id: 477
+broken_pickaxe_noted_5: 477
 broken_pickaxe_rune:
   id: 478
   bankable: false
@@ -2064,8 +2055,7 @@ broken_pickaxe_rune:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_pickaxe_noted_6:
-  id: 479
+broken_pickaxe_noted_6: 479
 pickaxe_head_bronze:
   id: 480
   bankable: false
@@ -2079,40 +2069,35 @@ pickaxe_head_iron:
   weight: 1.814
   examine: "Useless."
   use: "Removed"
-pickaxe_head_noted_2:
-  id: 483
+pickaxe_head_noted_2: 483
 pickaxe_head_steel:
   id: 484
   bankable: false
   weight: 1.814
   examine: "Useless."
   use: "Removed"
-pickaxe_head_noted_3:
-  id: 485
+pickaxe_head_noted_3: 485
 pickaxe_head_mithril:
   id: 486
   bankable: false
   weight: 1.814
   examine: "Useless."
   use: "Removed"
-pickaxe_head_noted_4:
-  id: 487
+pickaxe_head_noted_4: 487
 pickaxe_head_adamant:
   id: 488
   bankable: false
   weight: 1.814
   examine: "Useless."
   use: "Removed"
-pickaxe_head_noted_5:
-  id: 489
+pickaxe_head_noted_5: 489
 pickaxe_head_rune:
   id: 490
   bankable: false
   weight: 1.814
   examine: "Useless."
   use: "Removed"
-pickaxe_head_noted_6:
-  id: 491
+pickaxe_head_noted_6: 491
 hatchet_handle:
   id: 492
   bankable: false
@@ -2136,8 +2121,7 @@ broken_hatchet_iron:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_2:
-  id: 497
+broken_hatchet_noted_2: 497
 broken_hatchet_steel:
   id: 498
   bankable: false
@@ -2145,8 +2129,7 @@ broken_hatchet_steel:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_3:
-  id: 499
+broken_hatchet_noted_3: 499
 broken_hatchet_black:
   id: 500
   bankable: false
@@ -2154,8 +2137,7 @@ broken_hatchet_black:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_4:
-  id: 501
+broken_hatchet_noted_4: 501
 broken_hatchet_mithril:
   id: 502
   bankable: false
@@ -2163,8 +2145,7 @@ broken_hatchet_mithril:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_5:
-  id: 503
+broken_hatchet_noted_5: 503
 broken_hatchet_adamant:
   id: 504
   bankable: false
@@ -2172,8 +2153,7 @@ broken_hatchet_adamant:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_6:
-  id: 505
+broken_hatchet_noted_6: 505
 broken_hatchet_rune:
   id: 506
   bankable: false
@@ -2181,8 +2161,7 @@ broken_hatchet_rune:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_7:
-  id: 507
+broken_hatchet_noted_7: 507
 hatchet_head_bronze:
   id: 508
   bankable: false
@@ -2196,48 +2175,42 @@ hatchet_head_iron:
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_2:
-  id: 511
+hatchet_head_noted_2: 511
 hatchet_head_steel:
   id: 512
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_3:
-  id: 513
+hatchet_head_noted_3: 513
 hatchet_head_black:
   id: 514
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_4:
-  id: 515
+hatchet_head_noted_4: 515
 hatchet_head_mithril:
   id: 516
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_5:
-  id: 517
+hatchet_head_noted_5: 517
 hatchet_head_adamant:
   id: 518
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_6:
-  id: 519
+hatchet_head_noted_6: 519
 hatchet_head_rune:
   id: 520
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_7:
-  id: 521
+hatchet_head_noted_7: 521
 enchanted_beef:
   id: 522
   tradeable: false
@@ -2324,8 +2297,7 @@ druids_robe_top:
   slot: "Chest"
   examine: "I feel closer to the gods when I am wearing this."
   kept: "Wilderness"
-druids_robe_noted_2:
-  id: 541
+druids_robe_noted_2: 541
 monks_robe_bottom:
   id: 542
   price: 110
@@ -2345,8 +2317,7 @@ monks_robe_top:
   slot: "Chest"
   examine: "I feel closer to the gods when I am wearing this."
   kept: "Wilderness"
-monks_robe_noted_2:
-  id: 545
+monks_robe_noted_2: 545
 shade_robe_top:
   id: 546
   prayer: 5
@@ -2551,8 +2522,7 @@ bailing_bucket_full:
   id: 585
   weight: 5.0
   examine: "It's a bailing bucket full of salty water."
-bailing_bucket_noted_2:
-  id: 586
+bailing_bucket_noted_2: 586
 orb_of_protection:
   id: 587
   tradeable: false
@@ -2598,8 +2568,7 @@ lit_torch:
   weight: 0.5
   examine: "A lit home-made torch."
   kept: "Wilderness"
-torch:
-  id: 595
+torch: 595
 unlit_torch:
   id: 596
   price: 1
@@ -4772,8 +4741,7 @@ machete:
   slot: "Weapon"
   examine: "A jungle specific slashing device."
 machete_noted: 976
-cooking_pot:
-  id: 977
+cooking_pot: 977
 cooking_pot_noted: 978
 disk_of_returning:
   id: 981
@@ -4939,8 +4907,7 @@ black_wizard_hat:
   slot: "Hat"
   type: "Hair"
   examine: "A silly pointed hat."
-wizard_hat_noted_2:
-  id: 1018
+wizard_hat_noted_2: 1018
 cape_black:
   id: 1019
   price: 197
@@ -4951,8 +4918,7 @@ cape_black:
   range_def: 2.0
   slot: "Cape"
   examine: "A warm black cape."
-cape_noted_2:
-  id: 1020
+cape_noted_2: 1020
 cape_blue:
   id: 1021
   price: 234
@@ -4963,8 +4929,7 @@ cape_blue:
   range_def: 2.0
   slot: "Cape"
   examine: "A thick blue cape."
-cape_noted_3:
-  id: 1022
+cape_noted_3: 1022
 cape_yellow:
   id: 1023
   price: 435
@@ -4975,8 +4940,7 @@ cape_yellow:
   range_def: 2.0
   slot: "Cape"
   examine: "A thick yellow cape."
-cape_noted_4:
-  id: 1024
+cape_noted_4: 1024
 eye_patch:
   id: 1025
   price: 86
@@ -4995,8 +4959,7 @@ cape_green:
   range_def: 2.0
   slot: "Cape"
   examine: "A thick green cape."
-cape_noted_5:
-  id: 1028
+cape_noted_5: 1028
 cape_purple:
   id: 1029
   price: 807
@@ -5007,8 +4970,7 @@ cape_purple:
   range_def: 2.0
   slot: "Cape"
   examine: "A thick purple cape."
-cape_noted_6:
-  id: 1030
+cape_noted_6: 1030
 cape_orange:
   id: 1031
   price: 1019
@@ -5019,8 +4981,7 @@ cape_orange:
   range_def: 2.0
   slot: "Cape"
   examine: "A thick orange cape."
-cape_noted_7:
-  id: 1032
+cape_noted_7: 1032
 zamorak_robe_bottom:
   id: 1033
   price: 2719
@@ -5043,8 +5004,7 @@ zamorak_robe_top:
   summoning_def: 3.0
   slot: "Chest"
   examine: "A robe worn by worshippers of Zamorak."
-zamorak_robe_noted_2:
-  id: 1036
+zamorak_robe_noted_2: 1036
 bunny_ears:
   id: 1037
   tradeable: false
@@ -9371,8 +9331,7 @@ gold_amulet:
   slot: "Amulet"
   examine: "A plain gold amulet."
   kept: "Wilderness"
-gold_amulet_noted_2:
-  id: 1693
+gold_amulet_noted_2: 1693
 sapphire_amulet:
   id: 1694
   price: 436
@@ -9380,8 +9339,7 @@ sapphire_amulet:
   weight: 0.007
   slot: "Amulet"
   examine: "I wonder if I can get this enchanted."
-sapphire_amulet_noted_2:
-  id: 1695
+sapphire_amulet_noted_2: 1695
 emerald_amulet:
   id: 1696
   price: 650
@@ -9389,8 +9347,7 @@ emerald_amulet:
   weight: 0.007
   slot: "Amulet"
   examine: "I wonder if I can get this enchanted."
-emerald_amulet_noted_2:
-  id: 1697
+emerald_amulet_noted_2: 1697
 ruby_amulet:
   id: 1698
   price: 1125
@@ -9399,8 +9356,7 @@ ruby_amulet:
   slot: "Amulet"
   destroy: "No"
   examine: "I wonder if I can get this enchanted."
-ruby_amulet_noted_2:
-  id: 1699
+ruby_amulet_noted_2: 1699
 diamond_amulet:
   id: 1700
   price: 2043
@@ -9408,8 +9364,7 @@ diamond_amulet:
   weight: 0.007
   slot: "Amulet"
   examine: "I wonder if I can get this enchanted."
-diamond_amulet_noted_2:
-  id: 1701
+diamond_amulet_noted_2: 1701
 dragonstone_amulet:
   id: 1702
   price: 32300
@@ -9417,8 +9372,7 @@ dragonstone_amulet:
   weight: 0.007
   slot: "Amulet"
   examine: "I wonder if I can get this enchanted."
-dragonstone_ammy_noted_2:
-  id: 1703
+dragonstone_ammy_noted_2: 1703
 amulet_of_glory:
   id: 1704
   price: 33500
@@ -10346,8 +10300,7 @@ ugthanki_kebab:
   edible: true
   weight: 0.5
   examine: "A fresh kebab made from ugthanki meat."
-ugthanki_kebab_noted_2:
-  id: 1886
+ugthanki_kebab_noted_2: 1886
 cake_tin:
   id: 1887
   price: 39
@@ -10395,8 +10348,7 @@ chocolate_cake_2_3:
   limit: 1000
   weight: 0.2
   examine: "Someone has eaten a big chunk of this cake."
-"2_3_chocolate_cake_noted":
-  id: 1900
+"2_3_chocolate_cake_noted": 1900
 chocolate_cake_slice:
   id: 1901
   price: 13
@@ -10674,8 +10626,7 @@ cabbage_draynor_manor:
   weight: 0.35
   examine: "Yuck, a cabbage from Draynor Manor. I don't like cabbage."
   kept: "Wilderness"
-cabbage_noted_2:
-  id: 1968
+cabbage_noted_2: 1968
 spinach_roll:
   id: 1969
   edible: true
@@ -10825,8 +10776,7 @@ incomplete_stew_meat:
   weight: 1.2
   examine: "I need to add some potato too."
   use: "Removed"
-incomplete_stew_noted_2:
-  id: 2000
+incomplete_stew_noted_2: 2000
 uncooked_stew:
   id: 2001
   price: 385
@@ -10986,15 +10936,13 @@ unfinished_cocktail_pineapple_punch_lime:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_2:
-  id: 2045
+picture_noted_2: 2045
 unfinished_cocktail_pineapple_punch_pineapple:
   id: 2046
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_3:
-  id: 2047
+picture_noted_3: 2047
 pineapple_punch:
   id: 2048
   price: 281
@@ -11009,15 +10957,13 @@ unfinished_cocktail_wizard_blizzard_mixed:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_4:
-  id: 2051
+picture_noted_4: 2051
 unfinished_cocktail_wizard_blizzard_pineapple:
   id: 2052
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_5:
-  id: 2053
+picture_noted_5: 2053
 wizard_blizzard:
   id: 2054
   price: 712
@@ -11032,29 +10978,25 @@ unfinished_cocktail_blurberry_special_mixed:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_6:
-  id: 2057
+picture_noted_6: 2057
 unfinished_cocktail_blurberry_special_orange:
   id: 2058
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_7:
-  id: 2059
+picture_noted_7: 2059
 unfinished_cocktail_blurberry_special_lemon:
   id: 2060
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_8:
-  id: 2061
+picture_noted_8: 2061
 unfinished_cocktail_blurberry_special_lime:
   id: 2062
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_9:
-  id: 2063
+picture_noted_9: 2063
 blurberry_special:
   id: 2064
   price: 2047
@@ -11068,29 +11010,25 @@ unfinished_cocktail_choc_saturday_mixed:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_10:
-  id: 2067
+picture_noted_10: 2067
 unfinished_cocktail_choc_saturday_chocolate_bar:
   id: 2068
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_11:
-  id: 2069
+picture_noted_11: 2069
 unfinished_cocktail_choc_saturday_heated:
   id: 2070
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_12:
-  id: 2071
+picture_noted_12: 2071
 unfinished_cocktail_choc_saturday_cream:
   id: 2072
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_13:
-  id: 2073
+picture_noted_13: 2073
 chocolate_saturday:
   id: 2074
   price: 265
@@ -11104,15 +11042,13 @@ unfinished_cocktail_short_green_guy_mixed:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_14:
-  id: 2077
+picture_noted_14: 2077
 unfinished_cocktail_short_green_guy_lime:
   id: 2078
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_15:
-  id: 2079
+picture_noted_15: 2079
 short_green_guy:
   id: 2080
   price: 557
@@ -11128,8 +11064,7 @@ unfinished_cocktail_fruit_blast:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_16:
-  id: 2083
+picture_noted_16: 2083
 fruit_blast:
   id: 2084
   price: 1249
@@ -11144,22 +11079,19 @@ unfinished_cocktail_drunk_dragon_mixed:
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_17:
-  id: 2087
+picture_noted_17: 2087
 unfinished_cocktail_drunk_dragon_pineapple:
   id: 2088
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_18:
-  id: 2089
+picture_noted_18: 2089
 unfinished_cocktail_drunk_dragon_cream:
   id: 2090
   weight: 0.4
   examine: "This cocktail is just missing those little finishing touches."
   use: "Removed"
-picture_noted_19:
-  id: 2091
+picture_noted_19: 2091
 drunk_dragon:
   id: 2092
   price: 396
@@ -11171,23 +11103,19 @@ drunk_dragon_noted: 2093
 picture_2:
   id: 2094
   examine: "I'm not completely sure what this contains."
-picture_noted_20:
-  id: 2095
+picture_noted_20: 2095
 picture_3:
   id: 2096
   examine: "I'm not completely sure what this contains."
-picture_noted_21:
-  id: 2097
+picture_noted_21: 2097
 picture_4:
   id: 2098
   examine: "I'm not completely sure what this contains."
-picture_noted_22:
-  id: 2099
+picture_noted_22: 2099
 picture_5:
   id: 2100
   examine: "I'm not completely sure what this contains."
-picture_noted_23:
-  id: 2101
+picture_noted_23: 2101
 lemon:
   id: 2102
   price: 16
@@ -11399,8 +11327,7 @@ equa_toads_legs:
   weight: 0.15
   examine: "They're a gnome delicacy apparently."
   use: "Removed"
-picture_noted_24:
-  id: 2155
+picture_noted_24: 2155
 spicy_toads_legs:
   id: 2156
   edible: true
@@ -11467,8 +11394,7 @@ odd_gnomebowl:
   weight: 0.25
   examine: "This gnome bowl doesn't look very appetising."
   use: "Removed"
-picture_noted_25:
-  id: 2174
+picture_noted_25: 2174
 burnt_gnomebowl:
   id: 2175
   examine: "This gnome bowl has been burnt to a cinder."
@@ -11490,22 +11416,19 @@ unfinished_bowl_chocolate_bomb_baked:
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
   use: "Removed"
-picture_noted_26:
-  id: 2180
+picture_noted_26: 2180
 unfinished_bowl_chocolate_bomb_cream:
   id: 2181
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
   use: "Removed"
-picture_noted_27:
-  id: 2182
+picture_noted_27: 2182
 unfinished_bowl_chocolate_bomb_2_cream:
   id: 2183
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
   use: "Removed"
-picture_noted_28:
-  id: 2184
+picture_noted_28: 2184
 chocolate_bomb:
   id: 2185
   price: 2539
@@ -11527,8 +11450,7 @@ unfinished_bowl_worm_hole:
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
   use: "Removed"
-picture_noted_29:
-  id: 2190
+picture_noted_29: 2190
 worm_hole:
   id: 2191
   price: 390
@@ -11542,8 +11464,7 @@ unfinished_bowl_veg_ball:
   weight: 0.3
   examine: "This dish is just missing those little finishing touches."
   use: "Removed"
-picture_noted_30:
-  id: 2194
+picture_noted_30: 2194
 veg_ball:
   id: 2195
   price: 420
@@ -11580,8 +11501,7 @@ unfinished_crunchy_worm:
   weight: 0.3
   examine: "These crunchies are just missing those little finishing touches."
   use: "Removed"
-picture_noted_31:
-  id: 2204
+picture_noted_31: 2204
 worm_crunchies:
   id: 2205
   price: 235
@@ -11595,8 +11515,7 @@ unfinished_crunchy_chocolate_chip:
   weight: 0.3
   examine: "These crunchies are just missing those little finishing touches."
   use: "Removed"
-picture_noted_32:
-  id: 2208
+picture_noted_32: 2208
 chocchip_crunchies:
   id: 2209
   price: 688
@@ -11610,8 +11529,7 @@ unfinished_crunchy_spicy:
   weight: 0.3
   examine: "These crunchies are just missing those little finishing touches."
   use: "Removed"
-picture_noted_33:
-  id: 2212
+picture_noted_33: 2212
 spicy_crunchies:
   id: 2213
   price: 100
@@ -11625,8 +11543,7 @@ unfinished_crunchy_toad:
   weight: 0.3
   examine: "These crunchies are just missing those little finishing touches."
   use: "Removed"
-picture_noted_34:
-  id: 2216
+picture_noted_34: 2216
 toad_crunchies:
   id: 2217
   price: 262
@@ -11745,8 +11662,7 @@ odd_batta:
   weight: 0.25
   examine: "This batta doesn't look very appetising."
   use: "Removed"
-picture_noted_35:
-  id: 2246
+picture_noted_35: 2246
 burnt_batta:
   id: 2247
   examine: "This batta has been burnt to a cinder."
@@ -11768,8 +11684,7 @@ unfinished_batta_worm:
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-picture_noted_36:
-  id: 2252
+picture_noted_36: 2252
 worm_batta:
   id: 2253
   price: 155
@@ -11791,8 +11706,7 @@ unfinished_batta_cheese+tom:
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-picture_noted_37:
-  id: 2258
+picture_noted_37: 2258
 cheese+tom_batta:
   id: 2259
   price: 242
@@ -11812,50 +11726,43 @@ unfinished_batta_fruit_lime:
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_2:
-  id: 2264
+unfinished_batta_noted_2: 2264
 unfinished_batta_fruit_orange:
   id: 2265
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_3:
-  id: 2266
+unfinished_batta_noted_3: 2266
 unfinished_batta_fruit_pineapple:
   id: 2267
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_4:
-  id: 2268
+unfinished_batta_noted_4: 2268
 unfinished_batta_fruit_lime_orange:
   id: 2269
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_5:
-  id: 2270
+unfinished_batta_noted_5: 2270
 unfinished_batta_fruit_lime_pineapple:
   id: 2271
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_6:
-  id: 2272
+unfinished_batta_noted_6: 2272
 unfinished_batta_fruit_orange_pineapple:
   id: 2273
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-unfinished_batta_noted_7:
-  id: 2274
+unfinished_batta_noted_7: 2274
 unfinished_batta_fruit_lime_orange_pineapple:
   id: 2275
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-picture_noted_38:
-  id: 2276
+picture_noted_38: 2276
 fruit_batta:
   id: 2277
   price: 295
@@ -11869,8 +11776,7 @@ unfinished_batta_vegetable:
   weight: 0.25
   examine: "This batta is just missing those little finishing touches."
   use: "Removed"
-picture_noted_39:
-  id: 2280
+picture_noted_39: 2280
 vegetable_batta:
   id: 2281
   price: 223
@@ -11914,8 +11820,7 @@ plain_pizza_half:
   limit: 1000
   weight: 0.4
   examine: "Half of this plain pizza has been eaten."
-"1_2_plain_pizza_noted":
-  id: 2292
+"1_2_plain_pizza_noted": 2292
 meat_pizza:
   id: 2293
   price: 385
@@ -11929,8 +11834,7 @@ meat_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this meat pizza has been eaten."
-"1_2_meat_pizza_noted":
-  id: 2296
+"1_2_meat_pizza_noted": 2296
 anchovy_pizza:
   id: 2297
   price: 488
@@ -11944,8 +11848,7 @@ anchovy_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this anchovy pizza has been eaten."
-"1_2_anchovy_pizza_noted":
-  id: 2300
+"1_2_anchovy_pizza_noted": 2300
 pineapple_pizza:
   id: 2301
   price: 709
@@ -11959,8 +11862,7 @@ pineapple_pizza_half:
   limit: 1000
   weight: 0.45
   examine: "Half of this pineapple pizza has been eaten."
-"1_2_papple_pizza_noted":
-  id: 2304
+"1_2_papple_pizza_noted": 2304
 burnt_pizza:
   id: 2305
   examine: "Oh dear!"
@@ -12825,8 +12727,7 @@ flowers_mixed:
   crush: -50.0
   slot: "Weapon"
   examine: "A posy of red, yellow and blue flowers."
-flowers_noted_2:
-  id: 2473
+flowers_noted_2: 2473
 white_flowers:
   id: 2474
   price: 21000
@@ -13109,16 +13010,14 @@ raw_shrimps_2:
   limit: 20000
   weight: 0.12
   examine: "I should try cooking this."
-raw_shrimps_noted_2:
-  id: 2515
+raw_shrimps_noted_2: 2515
 pot_of_flour_2:
   id: 2516
   limit: 1000
   weight: 1.36
   examine: "There is flour in this pot."
   kept: "Wilderness"
-pot_of_flour_noted_2:
-  id: 2517
+pot_of_flour_noted_2: 2517
 rotten_tomato:
   id: 2518
   weight: 0.08
@@ -13135,22 +13034,19 @@ toy_horsey_white:
   weight: 0.05
   examine: "An inexpensive white toy horse."
   kept: "Wilderness"
-toy_horsey_noted_2:
-  id: 2523
+toy_horsey_noted_2: 2523
 toy_horsey_black:
   id: 2524
   weight: 0.05
   examine: "An inexpensive black toy horse."
   kept: "Wilderness"
-toy_horsey_noted_3:
-  id: 2525
+toy_horsey_noted_3: 2525
 toy_horsey_grey:
   id: 2526
   weight: 0.05
   examine: "An inexpensive grey toy horse."
   kept: "Wilderness"
-toy_horsey_noted_4:
-  id: 2527
+toy_horsey_noted_4: 2527
 lamp:
   id: 2528
   bankable: false
@@ -13170,8 +13066,7 @@ bones_2:
   weight: 0.5
   examine: "Bones are for burying."
   kept: "Wilderness"
-bones_noted_2:
-  id: 2531
+bones_noted_2: 2531
 iron_fire_arrows_unlit:
   id: 2532
   price: 321
@@ -15342,8 +15237,7 @@ boots_red:
   crush_def: 1.0
   slot: "Feet"
   examine: "Very stylish!"
-boots_noted_2:
-  id: 2905
+boots_noted_2: 2905
 robe_top_red:
   id: 2906
   price: 992
@@ -15353,8 +15247,7 @@ robe_top_red:
   crush_def: 2.0
   slot: "Chest"
   examine: "Some fine werewolf clothing."
-robe_top_noted_2:
-  id: 2907
+robe_top_noted_2: 2907
 robe_bottoms_red:
   id: 2908
   price: 586
@@ -15364,8 +15257,7 @@ robe_bottoms_red:
   crush_def: 2.0
   slot: "Legs"
   examine: "Made by werewolves for werewolves."
-robe_bottoms_noted_2:
-  id: 2909
+robe_bottoms_noted_2: 2909
 hat_red:
   id: 2910
   price: 1524
@@ -15375,8 +15267,7 @@ hat_red:
   magic_def: 3.0
   slot: "Hat"
   examine: "A silly pointed hat."
-hat_noted_2:
-  id: 2911
+hat_noted_2: 2911
 gloves_red:
   id: 2912
   price: 1007
@@ -15386,8 +15277,7 @@ gloves_red:
   crush_def: 2.0
   slot: "Hands"
   examine: "These gloves from Canifis will keep my hands warm!"
-gloves_noted_2:
-  id: 2913
+gloves_noted_2: 2913
 boots_yellow:
   id: 2914
   price: 1065
@@ -15397,8 +15287,7 @@ boots_yellow:
   crush_def: 1.0
   slot: "Feet"
   examine: "Very stylish!"
-boots_noted_3:
-  id: 2915
+boots_noted_3: 2915
 robe_top_yellow:
   id: 2916
   price: 943
@@ -15408,8 +15297,7 @@ robe_top_yellow:
   crush_def: 2.0
   slot: "Chest"
   examine: "Some fine werewolf clothing."
-robe_top_noted_3:
-  id: 2917
+robe_top_noted_3: 2917
 robe_bottoms_yellow:
   id: 2918
   price: 590
@@ -15419,8 +15307,7 @@ robe_bottoms_yellow:
   crush_def: 2.0
   slot: "Legs"
   examine: "Made by werewolves for werewolves."
-robe_bottoms_noted_3:
-  id: 2919
+robe_bottoms_noted_3: 2919
 hat_yellow:
   id: 2920
   price: 880
@@ -15430,8 +15317,7 @@ hat_yellow:
   magic_def: 3.0
   slot: "Hat"
   examine: "A silly pointed hat."
-hat_noted_3:
-  id: 2921
+hat_noted_3: 2921
 gloves_yellow:
   id: 2922
   price: 1827
@@ -15441,8 +15327,7 @@ gloves_yellow:
   crush_def: 2.0
   slot: "Hands"
   examine: "These gloves from Canifis will keep my hands warm!"
-gloves_noted_3:
-  id: 2923
+gloves_noted_3: 2923
 boots_teal:
   id: 2924
   price: 1094
@@ -15452,8 +15337,7 @@ boots_teal:
   crush_def: 1.0
   slot: "Feet"
   examine: "Very stylish!"
-boots_noted_4:
-  id: 2925
+boots_noted_4: 2925
 robe_top_teal:
   id: 2926
   price: 419
@@ -15463,8 +15347,7 @@ robe_top_teal:
   crush_def: 2.0
   slot: "Chest"
   examine: "Some fine werewolf clothing."
-robe_top_noted_4:
-  id: 2927
+robe_top_noted_4: 2927
 robe_bottoms_teal:
   id: 2928
   price: 672
@@ -15474,8 +15357,7 @@ robe_bottoms_teal:
   crush_def: 2.0
   slot: "Legs"
   examine: "Made by werewolves for werewolves."
-robe_bottoms_noted_4:
-  id: 2929
+robe_bottoms_noted_4: 2929
 hat_teal:
   id: 2930
   price: 1012
@@ -15485,8 +15367,7 @@ hat_teal:
   magic_def: 3.0
   slot: "Hat"
   examine: "A silly pointed hat."
-hat_noted_4:
-  id: 2931
+hat_noted_4: 2931
 gloves_teal:
   id: 2932
   price: 809
@@ -15496,8 +15377,7 @@ gloves_teal:
   crush_def: 2.0
   slot: "Hands"
   examine: "These gloves from Canifis will keep my hands warm!"
-gloves_noted_4:
-  id: 2933
+gloves_noted_4: 2933
 boots_purple:
   id: 2934
   price: 1204
@@ -15507,8 +15387,7 @@ boots_purple:
   crush_def: 1.0
   slot: "Feet"
   examine: "Very stylish!"
-boots_noted_5:
-  id: 2935
+boots_noted_5: 2935
 robe_top_purple:
   id: 2936
   price: 786
@@ -15518,8 +15397,7 @@ robe_top_purple:
   crush_def: 2.0
   slot: "Chest"
   examine: "Some fine werewolf clothing."
-robe_top_noted_5:
-  id: 2937
+robe_top_noted_5: 2937
 robe_bottoms_purple:
   id: 2938
   price: 994
@@ -15529,8 +15407,7 @@ robe_bottoms_purple:
   crush_def: 2.0
   slot: "Legs"
   examine: "Made by werewolves for werewolves."
-robe_bottoms_noted_5:
-  id: 2939
+robe_bottoms_noted_5: 2939
 hat_purple:
   id: 2940
   price: 1008
@@ -15540,8 +15417,7 @@ hat_purple:
   magic_def: 3.0
   slot: "Hat"
   examine: "A silly pointed hat."
-hat_noted_5:
-  id: 2941
+hat_noted_5: 2941
 gloves_purple:
   id: 2942
   price: 609
@@ -15551,8 +15427,7 @@ gloves_purple:
   crush_def: 2.0
   slot: "Hands"
   examine: "These gloves from Canifis will keep my hands warm!"
-gloves_noted_5:
-  id: 2943
+gloves_noted_5: 2943
 golden_key:
   id: 2944
   tradeable: false
@@ -16567,8 +16442,7 @@ karambwan_vessel_full:
   weight: 3.15
   examine: "This Karambwan Vessel is loaded with Karambwanji."
   use: "Quest"
-karambwan_vessel_noted_2:
-  id: 3160
+karambwan_vessel_noted_2: 3160
 crafting_manual:
   id: 3161
   tradeable: false
@@ -16746,8 +16620,7 @@ left-handed_banana:
   slot: "Shield"
   examine: "Mmm this looks tasty."
   kept: "Reclaim"
-picture_noted_40:
-  id: 3178
+picture_noted_40: 3178
 small_ninja_monkey_bones:
   id: 3179
   limit: 100
@@ -17093,8 +16966,7 @@ picture_22:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_41:
-  id: 3232
+picture_noted_41: 3232
 picture_23:
   id: 3233
   tradeable: false
@@ -17102,8 +16974,7 @@ picture_23:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_42:
-  id: 3234
+picture_noted_42: 3234
 picture_24:
   id: 3235
   tradeable: false
@@ -17111,8 +16982,7 @@ picture_24:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_43:
-  id: 3236
+picture_noted_43: 3236
 picture_25:
   id: 3237
   tradeable: false
@@ -17120,8 +16990,7 @@ picture_25:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_44:
-  id: 3238
+picture_noted_44: 3238
 bark:
   id: 3239
   price: 17
@@ -17153,8 +17022,7 @@ watchman:
 paladin:
   id: 3255
   examine: "A holy warrior."
-gnome:
-  id: 3257
+gnome: 3257
 hero:
   id: 3259
   examine: "Heroic!"
@@ -17329,8 +17197,7 @@ myre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, swamp-coloured, Mort Myre snail shell helmet."
-myre_snelm_noted_2:
-  id: 3338
+myre_snelm_noted_2: 3338
 bloodntar_snelm_pointed:
   id: 3339
   price: 1004
@@ -17346,8 +17213,7 @@ bloodntar_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, red-and-black, Mort Myre snail shell helmet."
-bloodntar_snelm_noted_2:
-  id: 3340
+bloodntar_snelm_noted_2: 3340
 ochre_snelm_pointed:
   id: 3341
   price: 65
@@ -17363,8 +17229,7 @@ ochre_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "An easy-to-make, pointed, muddy-yellow, Mort Myre snail shell helmet."
-ochre_snelm_noted_2:
-  id: 3342
+ochre_snelm_noted_2: 3342
 bruise_blue_snelm_pointed:
   id: 3343
   price: 259
@@ -17380,8 +17245,7 @@ bruise_blue_snelm_pointed:
   slot: "Hat"
   type: "Hair"
   examine: "A pointed, moody-blue, Mort Myre snail shell helmet."
-bruise_blue_snelm_noted_2:
-  id: 3344
+bruise_blue_snelm_noted_2: 3344
 blamish_myre_shell_round:
   id: 3345
   price: 135
@@ -17423,32 +17287,28 @@ blamish_myre_shell_pointed:
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, 'myre'-coloured, Mort Myre snail shell; looks protective."
-blamish_myre_shell_noted_2:
-  id: 3356
+blamish_myre_shell_noted_2: 3356
 blamish_red_shell_pointed:
   id: 3357
   price: 900
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, red, Mort Myre snail shell; looks protective."
-blamish_red_shell_noted_2:
-  id: 3358
+blamish_red_shell_noted_2: 3358
 blamish_ochre_shell_pointed:
   id: 3359
   price: 173
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, ochre, Mort Myre snail shell; looks protective."
-blamish_ochre_shell_noted_2:
-  id: 3360
+blamish_ochre_shell_noted_2: 3360
 blamish_blue_shell_pointed:
   id: 3361
   price: 1259
   limit: 100
   weight: 10.0
   examine: "An easy-to-make, blue, Mort Myre snail shell; looks protective."
-blamish_blue_shell_noted_2:
-  id: 3362
+blamish_blue_shell_noted_2: 3362
 thin_snail:
   id: 3363
   price: 648
@@ -19070,8 +18930,7 @@ picture_33:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-fremennik:
-  id: 3686
+fremennik: 3686
 unstrung_lyre:
   id: 3688
   tradeable: false
@@ -19675,8 +19534,7 @@ fremennik_cloak_brown:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_2:
-  id: 3762
+fremennik_cloak_noted_2: 3762
 fremennik_cloak_lavender:
   id: 3763
   price: 554
@@ -19687,8 +19545,7 @@ fremennik_cloak_lavender:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_3:
-  id: 3764
+fremennik_cloak_noted_3: 3764
 fremennik_cloak_green:
   id: 3765
   price: 995
@@ -19699,8 +19556,7 @@ fremennik_cloak_green:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_4:
-  id: 3766
+fremennik_cloak_noted_4: 3766
 fremennik_shirt_brown:
   id: 3767
   price: 98
@@ -19720,8 +19576,7 @@ fremennik_shirt_grey:
   crush_def: 2.0
   slot: "Chest"
   examine: "The latest in Fremennik fashion."
-fremennik_shirt_noted_2:
-  id: 3770
+fremennik_shirt_noted_2: 3770
 fremennik_shirt_tan:
   id: 3771
   price: 247
@@ -19731,8 +19586,7 @@ fremennik_shirt_tan:
   crush_def: 2.0
   slot: "Chest"
   examine: "The latest in Fremennik fashion."
-fremennik_shirt_noted_3:
-  id: 3772
+fremennik_shirt_noted_3: 3772
 fremennik_shirt_red:
   id: 3773
   price: 518
@@ -19742,8 +19596,7 @@ fremennik_shirt_red:
   crush_def: 2.0
   slot: "Chest"
   examine: "The latest in Fremennik fashion."
-fremennik_shirt_noted_4:
-  id: 3774
+fremennik_shirt_noted_4: 3774
 fremennik_shirt_blue:
   id: 3775
   price: 457
@@ -19753,8 +19606,7 @@ fremennik_shirt_blue:
   crush_def: 2.0
   slot: "Chest"
   examine: "The latest in Fremennik fashion."
-fremennik_shirt_noted_5:
-  id: 3776
+fremennik_shirt_noted_5: 3776
 fremennik_cloak_red:
   id: 3777
   price: 736
@@ -19765,8 +19617,7 @@ fremennik_cloak_red:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_5:
-  id: 3778
+fremennik_cloak_noted_5: 3778
 fremennik_cloak_grey:
   id: 3779
   price: 784
@@ -19777,8 +19628,7 @@ fremennik_cloak_grey:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_6:
-  id: 3780
+fremennik_cloak_noted_6: 3780
 fremennik_cloak_gold:
   id: 3781
   price: 621
@@ -19789,8 +19639,7 @@ fremennik_cloak_gold:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_7:
-  id: 3782
+fremennik_cloak_noted_7: 3782
 fremennik_cloak_teal:
   id: 3783
   price: 518
@@ -19801,8 +19650,7 @@ fremennik_cloak_teal:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_8:
-  id: 3784
+fremennik_cloak_noted_8: 3784
 fremennik_cloak_purple:
   id: 3785
   price: 451
@@ -19813,8 +19661,7 @@ fremennik_cloak_purple:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_9:
-  id: 3786
+fremennik_cloak_noted_9: 3786
 fremennik_cloak_pink:
   id: 3787
   price: 463
@@ -19825,8 +19672,7 @@ fremennik_cloak_pink:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_10:
-  id: 3788
+fremennik_cloak_noted_10: 3788
 fremennik_cloak_black:
   id: 3789
   price: 954
@@ -19837,8 +19683,7 @@ fremennik_cloak_black:
   range_def: 2.0
   slot: "Cape"
   examine: "The latest fashion in Rellekka."
-fremennik_cloak_noted_11:
-  id: 3790
+fremennik_cloak_noted_11: 3790
 fremennik_boots:
   id: 3791
   price: 296
@@ -19886,8 +19731,7 @@ gloves_fremennik:
   crush_def: 2.0
   slot: "Hands"
   examine: "These will keep my hands warm!"
-gloves_noted_6:
-  id: 3800
+gloves_noted_6: 3800
 keg_of_beer:
   id: 3801
   price: 2048
@@ -19903,8 +19747,7 @@ beer_tankard:
   edible: true
   weight: 0.55
   examine: "Frothy and alcoholic."
-beer_noted_2:
-  id: 3804
+beer_noted_2: 3804
 tankard:
   id: 3805
   weight: 0.05
@@ -20818,8 +20661,7 @@ dark_mystic_hat:
   slot: "Hat"
   type: "Hair"
   examine: "A dark magical hat."
-mystic_hat_noted_2:
-  id: 4100
+mystic_hat_noted_2: 4100
 dark_mystic_robe_top:
   id: 4101
   price: 71900
@@ -20832,8 +20674,7 @@ dark_mystic_robe_top:
   summoning_def: 20.0
   slot: "Chest"
   examine: "The upper half of a dark magical robe."
-mystic_robe_top_noted_2:
-  id: 4102
+mystic_robe_top_noted_2: 4102
 dark_mystic_robe_bottom:
   id: 4103
   price: 47600
@@ -20846,8 +20687,7 @@ dark_mystic_robe_bottom:
   summoning_def: 15.0
   slot: "Legs"
   examine: "The lower half of a dark magical robe."
-mystic_robe_bottom_noted_2:
-  id: 4104
+mystic_robe_bottom_noted_2: 4104
 dark_mystic_gloves:
   id: 4105
   price: 5811
@@ -20857,8 +20697,7 @@ dark_mystic_gloves:
   magic_def: 3.0
   slot: "Hands"
   examine: "Dark magical gloves."
-mystic_gloves_noted_2:
-  id: 4106
+mystic_gloves_noted_2: 4106
 dark_mystic_boots:
   id: 4107
   price: 103400
@@ -20869,8 +20708,7 @@ dark_mystic_boots:
   summoning_def: 3.0
   slot: "Feet"
   examine: "Dark magical boots."
-mystic_boots_noted_2:
-  id: 4108
+mystic_boots_noted_2: 4108
 light_mystic_hat:
   id: 4109
   price: 8845
@@ -20884,8 +20722,7 @@ light_mystic_hat:
   slot: "Hat"
   type: "Hair"
   examine: "A bright magical hat."
-mystic_hat_noted_3:
-  id: 4110
+mystic_hat_noted_3: 4110
 light_mystic_robe_top:
   id: 4111
   price: 74900
@@ -20898,8 +20735,7 @@ light_mystic_robe_top:
   summoning_def: 20.0
   slot: "Chest"
   examine: "The upper half of a bright magical robe."
-mystic_robe_top_noted_3:
-  id: 4112
+mystic_robe_top_noted_3: 4112
 light_mystic_robe_bottom:
   id: 4113
   price: 47300
@@ -20912,8 +20748,7 @@ light_mystic_robe_bottom:
   summoning_def: 15.0
   slot: "Legs"
   examine: "The lower half of a bright magical robe."
-mystic_robe_bottom_noted_3:
-  id: 4114
+mystic_robe_bottom_noted_3: 4114
 light_mystic_gloves:
   id: 4115
   price: 274000
@@ -20923,8 +20758,7 @@ light_mystic_gloves:
   magic_def: 3.0
   slot: "Hands"
   examine: "Bright magical gloves."
-mystic_gloves_noted_3:
-  id: 4116
+mystic_gloves_noted_3: 4116
 light_mystic_boots:
   id: 4117
   price: 12300
@@ -20935,8 +20769,7 @@ light_mystic_boots:
   summoning_def: 3.0
   slot: "Feet"
   examine: "Bright magical boots."
-mystic_boots_noted_3:
-  id: 4118
+mystic_boots_noted_3: 4118
 bronze_boots:
   id: 4119
   price: 130
@@ -21067,8 +20900,7 @@ infernal_mage:
 bloodveld:
   id: 4141
   examine: "The tongue of evil."
-jelly:
-  id: 4142
+jelly: 4142
 turoth:
   id: 4143
   examine: "He's one big leg short!"
@@ -21484,8 +21316,7 @@ tinderbox_22:
   weight: 0.035
   examine: "Useful for lighting a fire."
   kept: "Wilderness"
-elf_crystal:
-  id: 4211
+elf_crystal: 4211
 new_crystal_bow:
   id: 4212
   limit: 2
@@ -22033,8 +21864,7 @@ raw_undead_beef:
   weight: 0.283
   examine: "This raw beef is rancid."
   kept: "Wilderness"
-raw_beef_noted_2:
-  id: 4288
+raw_beef_noted_2: 4288
 raw_undead_chicken:
   id: 4289
   price: 307
@@ -22042,8 +21872,7 @@ raw_undead_chicken:
   weight: 0.17
   examine: "This raw chicken is rancid."
   kept: "Wilderness"
-raw_chicken_noted_2:
-  id: 4290
+raw_chicken_noted_2: 4290
 cooked_undead_chicken:
   id: 4291
   price: 57
@@ -22052,8 +21881,7 @@ cooked_undead_chicken:
   weight: 0.141
   examine: "This cooked chicken looks disgusting."
   kept: "Wilderness"
-cooked_chicken_noted_2:
-  id: 4292
+cooked_chicken_noted_2: 4292
 cooked_undead_meat:
   id: 4293
   price: 69
@@ -22062,8 +21890,7 @@ cooked_undead_meat:
   weight: 0.283
   examine: "I wouldn't eat that if I were you."
   kept: "Wilderness"
-cooked_meat_noted_2:
-  id: 4294
+cooked_meat_noted_2: 4294
 ham_shirt:
   id: 4298
   price: 22
@@ -22930,8 +22757,7 @@ herb_tea_mix_guam:
   examine: "An unfinished herb tea made up of water and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_2:
-  id: 4467
+herb_tea_mix_noted_2: 4467
 herb_tea_mix_marrentill:
   id: 4468
   tradeable: false
@@ -22939,8 +22765,7 @@ herb_tea_mix_marrentill:
   examine: "An unfinished herb tea made up of water and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_3:
-  id: 4469
+herb_tea_mix_noted_3: 4469
 herb_tea_mix_harralander_and_marrentill:
   id: 4470
   tradeable: false
@@ -22948,8 +22773,7 @@ herb_tea_mix_harralander_and_marrentill:
   examine: "An unfinished herb tea made up of water, harralander and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_4:
-  id: 4471
+herb_tea_mix_noted_4: 4471
 herb_tea_mix_harralander_and_guam:
   id: 4472
   tradeable: false
@@ -22957,8 +22781,7 @@ herb_tea_mix_harralander_and_guam:
   examine: "An unfinished herb tea made up of water, harralander and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_5:
-  id: 4473
+herb_tea_mix_noted_5: 4473
 herb_tea_mix_2_guams:
   id: 4474
   tradeable: false
@@ -22966,8 +22789,7 @@ herb_tea_mix_2_guams:
   examine: "An unfinished herb tea made up of water and 2 doses of guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_6:
-  id: 4475
+herb_tea_mix_noted_6: 4475
 herb_tea_mix_guam_and_marrentill:
   id: 4476
   tradeable: false
@@ -22975,8 +22797,7 @@ herb_tea_mix_guam_and_marrentill:
   examine: "An unfinished herb tea made up of water, guam and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_7:
-  id: 4477
+herb_tea_mix_noted_7: 4477
 herb_tea_mix_harralander_marrentill_and_guam:
   id: 4478
   tradeable: false
@@ -22984,8 +22805,7 @@ herb_tea_mix_harralander_marrentill_and_guam:
   examine: "An unfinished herb tea made up of water, harralander, marrentill and guam."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_8:
-  id: 4479
+herb_tea_mix_noted_8: 4479
 herb_tea_mix_2_guams_and_marrentill:
   id: 4480
   tradeable: false
@@ -22993,8 +22813,7 @@ herb_tea_mix_2_guams_and_marrentill:
   examine: "An unfinished herb tea made up of water, 2 doses of guam and marrentill."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_9:
-  id: 4481
+herb_tea_mix_noted_9: 4481
 herb_tea_mix_2_guams_and_harralander:
   id: 4482
   tradeable: false
@@ -23002,8 +22821,7 @@ herb_tea_mix_2_guams_and_harralander:
   examine: "An unfinished herb tea made up of water, 2 doses of guam and harralander."
   kept: "Reclaim"
   use: "Limited"
-herb_tea_mix_noted_10:
-  id: 4483
+herb_tea_mix_noted_10: 4483
 safety_guarantee:
   id: 4484
   tradeable: false
@@ -23106,8 +22924,7 @@ rope_2:
   slot: "Weapon"
   examine: "A coil of rope."
   kept: "Wilderness"
-rope_noted_2:
-  id: 4499
+rope_noted_2: 4499
 pole_3:
   id: 4500
   tradeable: false
@@ -23373,8 +23190,7 @@ oil_lamp_empty:
   weight: 0.453
   examine: "An oil lamp with no oil in it."
   kept: "Wilderness"
-oil_lamp_noted_2:
-  id: 4526
+oil_lamp_noted_2: 4526
 candle_lantern_empty:
   id: 4527
   price: 3
@@ -23390,8 +23206,7 @@ candle_lantern_white:
   weight: 0.907
   examine: "A candle in a glass cage."
   kept: "Wilderness"
-candle_lantern_noted_2:
-  id: 4530
+candle_lantern_noted_2: 4530
 candle_lantern_lit_white:
   id: 4531
   tradeable: false
@@ -23403,8 +23218,7 @@ candle_lantern_black:
   weight: 0.907
   examine: "A candle in a glass cage."
   kept: "Wilderness"
-candle_lantern_noted_3:
-  id: 4533
+candle_lantern_noted_3: 4533
 candle_lantern_lit_black:
   id: 4534
   tradeable: false
@@ -23426,8 +23240,7 @@ oil_lantern_oil:
   weight: 0.907
   examine: "An unlit oil lantern."
   kept: "Wilderness"
-oil_lantern_noted_2:
-  id: 4538
+oil_lantern_noted_2: 4538
 oil_lantern:
   id: 4539
   tradeable: false
@@ -23462,8 +23275,7 @@ bullseye_lantern_empty:
   weight: 1.36
   examine: "You need to add lamp oil before you can use it."
   kept: "Wilderness"
-bullseye_lantern_noted_2:
-  id: 4547
+bullseye_lantern_noted_2: 4547
 bullseye_lantern_oil:
   id: 4548
   price: 1568
@@ -23471,8 +23283,7 @@ bullseye_lantern_oil:
   weight: 1.36
   examine: "A sturdy steel lantern."
   kept: "Wilderness"
-bullseye_lantern_noted_3:
-  id: 4549
+bullseye_lantern_noted_3: 4549
 bullseye_lantern_lit:
   id: 4550
   tradeable: false
@@ -27211,8 +27022,7 @@ woven_top_tan:
   weight: 0.07
   slot: "Chest"
   examine: "Yellow top, too small for me."
-woven_top_noted_2:
-  id: 5027
+woven_top_noted_2: 5027
 woven_top_blue:
   id: 5028
   price: 1457
@@ -27220,8 +27030,7 @@ woven_top_blue:
   weight: 0.07
   slot: "Chest"
   examine: "Blue top, very tiny."
-woven_top_noted_3:
-  id: 5029
+woven_top_noted_3: 5029
 shirt_brown:
   id: 5030
   price: 870
@@ -27237,8 +27046,7 @@ shirt_tan:
   weight: 0.07
   slot: "Chest"
   examine: "Tiny!"
-shirt_noted_2:
-  id: 5033
+shirt_noted_2: 5033
 shirt_lilac:
   id: 5034
   price: 1316
@@ -27246,8 +27054,7 @@ shirt_lilac:
   weight: 0.07
   slot: "Chest"
   examine: "Tiny!"
-shirt_noted_3:
-  id: 5035
+shirt_noted_3: 5035
 trousers_brown:
   id: 5036
   price: 752
@@ -27263,8 +27070,7 @@ trousers_lilac:
   weight: 1.0
   slot: "Legs"
   examine: "A pair of long dwarven trousers... long for dwarves, of course."
-trousers_noted_2:
-  id: 5039
+trousers_noted_2: 5039
 trousers_blue:
   id: 5040
   price: 454
@@ -27272,8 +27078,7 @@ trousers_blue:
   weight: 1.0
   slot: "Legs"
   examine: "A pair of long dwarven trousers... long for dwarves, of course."
-trousers_noted_3:
-  id: 5041
+trousers_noted_3: 5041
 shorts_brown:
   id: 5042
   price: 1108
@@ -27289,8 +27094,7 @@ shorts_tan:
   weight: 0.1
   slot: "Legs"
   examine: "Yellow shorts. Far too small for you."
-shorts_noted_2:
-  id: 5045
+shorts_noted_2: 5045
 shorts_blue:
   id: 5046
   price: 2501
@@ -27298,8 +27102,7 @@ shorts_blue:
   weight: 0.1
   slot: "Legs"
   examine: "Blue shorts, these would look great on dwarves!"
-shorts_noted_3:
-  id: 5047
+shorts_noted_3: 5047
 skirt_brown:
   id: 5048
   price: 692
@@ -27315,8 +27118,7 @@ skirt_lilac:
   weight: 0.08
   slot: "Legs"
   examine: "Lilac skirt."
-skirt_noted_2:
-  id: 5051
+skirt_noted_2: 5051
 skirt_blue:
   id: 5052
   price: 925
@@ -27324,8 +27126,7 @@ skirt_blue:
   weight: 0.08
   slot: "Legs"
   examine: "A blue skirt."
-skirt_noted_3:
-  id: 5053
+skirt_noted_3: 5053
 dwarf_the_giant_dwarf:
   id: 5054
   weight: 10.0
@@ -27420,8 +27221,7 @@ exquisite_clothes:
   examine: "Clothes for the sculptor's model."
   use: "Quest"
   kept: "Wilderness"
-master_farmer:
-  id: 5068
+master_farmer: 5068
 birds_nest_red_egg:
   id: 5070
   tradeable: false
@@ -27534,8 +27334,7 @@ poison_ivy_seed:
   price: 17
   limit: 100
   examine: "A poison ivy bush seed - plant in a bush patch."
-seeds:
-  id: 5171
+seeds: 5171
 cactus_seed:
   id: 5280
   price: 7
@@ -27913,8 +27712,7 @@ plant_pot:
   weight: 0.907
   examine: "A plant pot filled with compost."
   kept: "Wilderness"
-plant_pot_noted_2:
-  id: 5355
+plant_pot_noted_2: 5355
 plant_pot_supercompost:
   id: 5356
   limit: 100
@@ -27923,8 +27721,7 @@ plant_pot_supercompost:
   examine: "A plant pot filled with supercompost."
   kept: "Reclaim"
   use: "Limited"
-plant_pot_noted_3:
-  id: 5357
+plant_pot_noted_3: 5357
 oak_seedling:
   id: 5358
   tradeable: false
@@ -30839,8 +30636,7 @@ coconut_open:
   limit: 1000
   weight: 0.028
   examine: "It's a coconut."
-coconut_noted_2:
-  id: 5977
+coconut_noted_2: 5977
 coconut_shell:
   id: 5978
   price: 55
@@ -31002,40 +30798,35 @@ leaves_oak:
   limit: 100
   weight: 0.028
   examine: "A pile of Oak tree leaves."
-leaves_noted_2:
-  id: 6023
+leaves_noted_2: 6023
 leaves_willow:
   id: 6024
   price: 19
   limit: 100
   weight: 0.028
   examine: "A pile of Willow tree leaves."
-leaves_noted_3:
-  id: 6025
+leaves_noted_3: 6025
 leaves_yew:
   id: 6026
   price: 6
   limit: 100
   weight: 0.028
   examine: "A pile of Yew tree leaves."
-leaves_noted_4:
-  id: 6027
+leaves_noted_4: 6027
 leaves_maple:
   id: 6028
   price: 10
   limit: 100
   weight: 0.028
   examine: "A pile of Maple tree leaves."
-leaves_noted_5:
-  id: 6029
+leaves_noted_5: 6029
 leaves_magic:
   id: 6030
   price: 3
   limit: 100
   weight: 0.028
   examine: "A pile of Magic tree leaves."
-leaves_noted_6:
-  id: 6031
+leaves_noted_6: 6031
 compost:
   id: 6032
   price: 184
@@ -31153,8 +30944,7 @@ bronze_bolts_p++:
   range_str: 10.0
   slot: "Ammo"
   examine: "Bronze ammunition for crossbows."
-spirit_tree:
-  id: 6063
+spirit_tree: 6063
 bloody_mourner_top:
   id: 6064
   tradeable: false
@@ -31422,8 +31212,7 @@ new_key:
   weight: 0.01
   examine: "This key is newly cut."
   kept: "Wilderness"
-elf:
-  id: 6105
+elf: 6105
 ghostly_boots:
   id: 6106
   tradeable: false
@@ -32245,8 +32034,7 @@ broodoo_shield_orange_10:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_10_noted_2:
-  id: 6238
+broodoo_shield_10_noted_2: 6238
 broodoo_shield_orange_9:
   id: 6239
   prayer: 5
@@ -32262,8 +32050,7 @@ broodoo_shield_orange_9:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_9_noted_2:
-  id: 6240
+broodoo_shield_9_noted_2: 6240
 broodoo_shield_orange_8:
   id: 6241
   prayer: 5
@@ -32279,8 +32066,7 @@ broodoo_shield_orange_8:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_8_noted_2:
-  id: 6242
+broodoo_shield_8_noted_2: 6242
 broodoo_shield_orange_7:
   id: 6243
   prayer: 5
@@ -32296,8 +32082,7 @@ broodoo_shield_orange_7:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_7_noted_2:
-  id: 6244
+broodoo_shield_7_noted_2: 6244
 broodoo_shield_orange_6:
   id: 6245
   prayer: 5
@@ -32313,8 +32098,7 @@ broodoo_shield_orange_6:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_6_noted_2:
-  id: 6246
+broodoo_shield_6_noted_2: 6246
 broodoo_shield_orange_5:
   id: 6247
   prayer: 5
@@ -32330,8 +32114,7 @@ broodoo_shield_orange_5:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_5_noted_2:
-  id: 6248
+broodoo_shield_5_noted_2: 6248
 broodoo_shield_orange_4:
   id: 6249
   prayer: 5
@@ -32347,8 +32130,7 @@ broodoo_shield_orange_4:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_4_noted_2:
-  id: 6250
+broodoo_shield_4_noted_2: 6250
 broodoo_shield_orange_3:
   id: 6251
   prayer: 5
@@ -32364,8 +32146,7 @@ broodoo_shield_orange_3:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_3_noted_2:
-  id: 6252
+broodoo_shield_3_noted_2: 6252
 broodoo_shield_orange_2:
   id: 6253
   prayer: 5
@@ -32381,8 +32162,7 @@ broodoo_shield_orange_2:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_2_noted_2:
-  id: 6254
+broodoo_shield_2_noted_2: 6254
 broodoo_shield_orange_1:
   id: 6255
   prayer: 5
@@ -32398,8 +32178,7 @@ broodoo_shield_orange_1:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_1_noted_2:
-  id: 6256
+broodoo_shield_1_noted_2: 6256
 broodoo_shield_orange:
   id: 6257
   price: 3396
@@ -32417,8 +32196,7 @@ broodoo_shield_orange:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_noted_2:
-  id: 6258
+broodoo_shield_noted_2: 6258
 broodoo_shield_blue_10:
   id: 6259
   price: 1656
@@ -32435,8 +32213,7 @@ broodoo_shield_blue_10:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_10_noted_3:
-  id: 6260
+broodoo_shield_10_noted_3: 6260
 broodoo_shield_blue_9:
   id: 6261
   prayer: 5
@@ -32452,8 +32229,7 @@ broodoo_shield_blue_9:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_9_noted_3:
-  id: 6262
+broodoo_shield_9_noted_3: 6262
 broodoo_shield_blue_8:
   id: 6263
   prayer: 5
@@ -32469,8 +32245,7 @@ broodoo_shield_blue_8:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_8_noted_3:
-  id: 6264
+broodoo_shield_8_noted_3: 6264
 broodoo_shield_blue_7:
   id: 6265
   prayer: 5
@@ -32486,8 +32261,7 @@ broodoo_shield_blue_7:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_7_noted_3:
-  id: 6266
+broodoo_shield_7_noted_3: 6266
 broodoo_shield_blue_6:
   id: 6267
   prayer: 5
@@ -32503,8 +32277,7 @@ broodoo_shield_blue_6:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_6_noted_3:
-  id: 6268
+broodoo_shield_6_noted_3: 6268
 broodoo_shield_blue_5:
   id: 6269
   prayer: 5
@@ -32520,8 +32293,7 @@ broodoo_shield_blue_5:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_5_noted_3:
-  id: 6270
+broodoo_shield_5_noted_3: 6270
 broodoo_shield_blue_4:
   id: 6271
   prayer: 5
@@ -32537,8 +32309,7 @@ broodoo_shield_blue_4:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_4_noted_3:
-  id: 6272
+broodoo_shield_4_noted_3: 6272
 broodoo_shield_blue_3:
   id: 6273
   prayer: 5
@@ -32554,8 +32325,7 @@ broodoo_shield_blue_3:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_3_noted_3:
-  id: 6274
+broodoo_shield_3_noted_3: 6274
 broodoo_shield_blue_2:
   id: 6275
   prayer: 5
@@ -32571,8 +32341,7 @@ broodoo_shield_blue_2:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_2_noted_3:
-  id: 6276
+broodoo_shield_2_noted_3: 6276
 broodoo_shield_blue_1:
   id: 6277
   prayer: 5
@@ -32588,8 +32357,7 @@ broodoo_shield_blue_1:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_1_noted_3:
-  id: 6278
+broodoo_shield_1_noted_3: 6278
 broodoo_shield_blue:
   id: 6279
   price: 3950
@@ -32607,8 +32375,7 @@ broodoo_shield_blue:
   slot: "Shield"
   examine: "A scary broodoo shield."
   weight: 5.443
-broodoo_shield_noted_3:
-  id: 6280
+broodoo_shield_noted_3: 6280
 thatch_spar_light:
   id: 6281
   price: 2
@@ -32676,8 +32443,7 @@ spider_on_stick:
   edible: true
   weight: 0.65
   examine: "A nicely roasted spider threaded onto a skewer stick."
-spider_on_stick_noted_2:
-  id: 6298
+spider_on_stick_noted_2: 6298
 spider_on_shaft:
   id: 6299
   price: 80
@@ -32685,8 +32451,7 @@ spider_on_shaft:
   edible: true
   weight: 0.9
   examine: "A nicely roasted spider threaded onto an arrow shaft."
-spider_on_shaft_noted_2:
-  id: 6300
+spider_on_shaft_noted_2: 6300
 burnt_spider:
   id: 6301
   examine: "A badly burnt spider threaded onto a charred skewer stick."
@@ -32695,8 +32460,7 @@ spider_on_shaft_burnt:
   id: 6303
   limit: 1000
   examine: "A badly burnt spider threaded onto a charred arrow shaft."
-spider_on_shaft_noted_3:
-  id: 6304
+spider_on_shaft_noted_3: 6304
 skewer_stick:
   id: 6305
   price: 1
@@ -32879,8 +32643,7 @@ tribal_mask_orange:
   aka: "Broodoo mask"
   slot: "Hat"
   examine: "A ceremonial wooden mask."
-tribal_mask_noted_2:
-  id: 6338
+tribal_mask_noted_2: 6338
 tribal_mask_blue:
   id: 6339
   price: 1263
@@ -32889,8 +32652,7 @@ tribal_mask_blue:
   aka: "Broodoo mask"
   slot: "Hat"
   examine: "A ceremonial wooden mask."
-tribal_mask_noted_3:
-  id: 6340
+tribal_mask_noted_3: 6340
 tribal_top_brown:
   id: 6341
   price: 3435
@@ -32938,8 +32700,7 @@ tribal_top_blue:
   weight: 1.0
   slot: "Chest"
   examine: "Local dress."
-tribal_top_noted_2:
-  id: 6352
+tribal_top_noted_2: 6352
 villager_robe_blue:
   id: 6353
   price: 1468
@@ -32947,8 +32708,7 @@ villager_robe_blue:
   weight: 2.0
   slot: "Legs"
   examine: "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
-villager_robe_noted_2:
-  id: 6354
+villager_robe_noted_2: 6354
 villager_hat_blue:
   id: 6355
   price: 2579
@@ -32956,8 +32716,7 @@ villager_hat_blue:
   weight: 0.907
   slot: "Hat"
   examine: "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
-villager_hat_noted_2:
-  id: 6356
+villager_hat_noted_2: 6356
 villager_sandals_blue:
   id: 6357
   price: 900
@@ -32965,8 +32724,7 @@ villager_sandals_blue:
   weight: 0.68
   slot: "Feet"
   examine: "A brightly coloured pair of local sandals."
-villager_sandals_noted_2:
-  id: 6358
+villager_sandals_noted_2: 6358
 villager_armband_blue:
   id: 6359
   price: 731
@@ -32974,8 +32732,7 @@ villager_armband_blue:
   weight: 0.68
   slot: "Hands"
   examine: "A light blue armband, as worn by the Tai Bwo Wannai locals."
-villager_armband_noted_2:
-  id: 6360
+villager_armband_noted_2: 6360
 tribal_top_yellow:
   id: 6361
   price: 2748
@@ -32983,8 +32740,7 @@ tribal_top_yellow:
   weight: 1.0
   slot: "Chest"
   examine: "Local dress."
-tribal_top_noted_3:
-  id: 6362
+tribal_top_noted_3: 6362
 villager_robe_yellow:
   id: 6363
   price: 451
@@ -32992,8 +32748,7 @@ villager_robe_yellow:
   weight: 2.0
   slot: "Legs"
   examine: "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
-villager_robe_noted_3:
-  id: 6364
+villager_robe_noted_3: 6364
 villager_hat_yellow:
   id: 6365
   price: 2277
@@ -33001,8 +32756,7 @@ villager_hat_yellow:
   weight: 0.907
   slot: "Hat"
   examine: "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
-villager_hat_noted_3:
-  id: 6366
+villager_hat_noted_3: 6366
 villager_sandals_yellow:
   id: 6367
   price: 1465
@@ -33010,8 +32764,7 @@ villager_sandals_yellow:
   weight: 0.68
   slot: "Feet"
   examine: "A brightly coloured pair of local sandals."
-villager_sandals_noted_3:
-  id: 6368
+villager_sandals_noted_3: 6368
 villager_armband_yellow:
   id: 6369
   price: 850
@@ -33019,8 +32772,7 @@ villager_armband_yellow:
   weight: 0.68
   slot: "Hands"
   examine: "A dark blue armband, as worn by the Tai Bwo Wannai locals."
-villager_armband_noted_3:
-  id: 6370
+villager_armband_noted_3: 6370
 tribal_top_pink:
   id: 6371
   price: 3117
@@ -33028,8 +32780,7 @@ tribal_top_pink:
   weight: 1.0
   slot: "Chest"
   examine: "Local dress."
-tribal_top_noted_4:
-  id: 6372
+tribal_top_noted_4: 6372
 villager_robe_pink:
   id: 6373
   price: 316
@@ -33037,8 +32788,7 @@ villager_robe_pink:
   weight: 2.0
   slot: "Legs"
   examine: "A brightly coloured robe prized by the Tai Bwo Wannai peoples."
-villager_robe_noted_4:
-  id: 6374
+villager_robe_noted_4: 6374
 villager_hat_pink:
   id: 6375
   price: 2958
@@ -33046,8 +32796,7 @@ villager_hat_pink:
   weight: 0.907
   slot: "Hat"
   examine: "A brightly coloured hat prized by the Tai Bwo Wannai peoples."
-villager_hat_noted_4:
-  id: 6376
+villager_hat_noted_4: 6376
 villager_sandals_pink:
   id: 6377
   price: 1880
@@ -33055,8 +32804,7 @@ villager_sandals_pink:
   weight: 0.68
   slot: "Feet"
   examine: "A brightly coloured pair of local sandals."
-villager_sandals_noted_4:
-  id: 6378
+villager_sandals_noted_4: 6378
 villager_armband_pink:
   id: 6379
   price: 1632
@@ -33064,8 +32812,7 @@ villager_armband_pink:
   weight: 0.68
   slot: "Hands"
   examine: "A white armband, as worn by the Tai Bwo Wannai locals."
-villager_armband_noted_4:
-  id: 6380
+villager_armband_noted_4: 6380
 picture_65:
   id: 6381
   tradeable: false
@@ -33104,8 +32851,7 @@ desert_top_overcoat:
   weight: 0.005
   slot: "Chest"
   examine: "Good for those cold desert nights."
-desert_top_noted_2:
-  id: 6389
+desert_top_noted_2: 6389
 desert_legs:
   id: 6390
   price: 424
@@ -33155,8 +32901,7 @@ menap_headgear_red:
   slot: "Hat"
   type: "Hair"
   examine: "Good for keeping the sun off my neck."
-menap_headgear_noted_2:
-  id: 6401
+menap_headgear_noted_2: 6401
 menaphite_top_red:
   id: 6402
   price: 482
@@ -33164,8 +32909,7 @@ menaphite_top_red:
   weight: 0.005
   slot: "Chest"
   examine: "Colourful."
-menaphite_top_noted_2:
-  id: 6403
+menaphite_top_noted_2: 6403
 menaphite_robe_red:
   id: 6404
   price: 441
@@ -33173,8 +32917,7 @@ menaphite_robe_red:
   weight: 0.005
   slot: "Legs"
   examine: "A cool light Menaphite robe."
-menaphite_robe_noted_2:
-  id: 6405
+menaphite_robe_noted_2: 6405
 menap_action_kilt_red:
   id: 6406
   price: 249
@@ -33182,8 +32925,7 @@ menap_action_kilt_red:
   weight: 0.005
   slot: "Legs"
   examine: "Look at those nobbily knees."
-menap_action_kilt_noted_2:
-  id: 6407
+menap_action_kilt_noted_2: 6407
 oak_blackjack_o:
   id: 6408
   price: 793
@@ -33827,8 +33569,7 @@ onyx_amulet:
   weight: 0.007
   slot: "Amulet"
   examine: "I wonder if I can get this enchanted."
-onyx_amulet_noted_2:
-  id: 6582
+onyx_amulet_noted_2: 6582
 ring_of_stone:
   id: 6583
   price: 1400000
@@ -34837,16 +34578,14 @@ broken_hatchet_dragon:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-broken_hatchet_noted_8:
-  id: 6742
+broken_hatchet_noted_8: 6742
 hatchet_head_dragon:
   id: 6743
   bankable: false
   weight: 0.1
   examine: "Useless."
   use: "Removed"
-hatchet_head_noted_8:
-  id: 6744
+hatchet_head_noted_8: 6744
 silverlight_dyed:
   id: 6745
   tradeable: false
@@ -36160,8 +35899,7 @@ infinity_bottoms:
   slot: "Legs"
   examine: "Mystical robes."
 infinity_bottoms_noted: 6925
-bones_to_peaches_spell:
-  id: 6926
+bones_to_peaches_spell: 6926
 sandy_hand:
   id: 6945
   tradeable: false
@@ -36284,8 +36022,7 @@ cape_pink:
   range_def: 2.0
   slot: "Cape"
   examine: "Use pink dye on a cape and this is what you get!"
-cape_noted_8:
-  id: 6960
+cape_noted_8: 6960
 baguette:
   id: 6961
   limit: 1000
@@ -36720,8 +36457,7 @@ sweetcorn_bowl:
   id: 7088
   weight: 0.5
   examine: "A bowl of cooked sweetcorn."
-sweetcorn_noted_2:
-  id: 7089
+sweetcorn_noted_2: 7089
 burnt_egg:
   id: 7090
   examine: "A bowl of burnt, overcooked egg."
@@ -36822,8 +36558,7 @@ pirate_shirt_red:
   weight: 1.0
   slot: "Chest"
   examine: "A sea worthy shirt."
-stripy_pirate_shirt_noted_2:
-  id: 7123
+stripy_pirate_shirt_noted_2: 7123
 pirate_bandana_red:
   id: 7124
   price: 290
@@ -36832,8 +36567,7 @@ pirate_bandana_red:
   slot: "Hat"
   type: "Hair"
   examine: "Essential pirate wear."
-pirate_bandana_noted_2:
-  id: 7125
+pirate_bandana_noted_2: 7125
 pirate_leggings_red:
   id: 7126
   price: 184
@@ -36841,8 +36575,7 @@ pirate_leggings_red:
   weight: 1.0
   slot: "Legs"
   examine: "A sea worthy pair of trousers."
-pirate_leggings_noted_2:
-  id: 7127
+pirate_leggings_noted_2: 7127
 pirate_shirt_blue:
   id: 7128
   price: 882
@@ -36850,8 +36583,7 @@ pirate_shirt_blue:
   weight: 1.0
   slot: "Chest"
   examine: "A sea worthy shirt."
-stripy_pirate_shirt_noted_3:
-  id: 7129
+stripy_pirate_shirt_noted_3: 7129
 pirate_bandana_blue:
   id: 7130
   price: 165
@@ -36860,8 +36592,7 @@ pirate_bandana_blue:
   slot: "Hat"
   type: "Hair"
   examine: "Essential pirate wear."
-pirate_bandana_noted_3:
-  id: 7131
+pirate_bandana_noted_3: 7131
 pirate_leggings_blue:
   id: 7132
   price: 348
@@ -36869,8 +36600,7 @@ pirate_leggings_blue:
   weight: 1.0
   slot: "Legs"
   examine: "A sea worthy pair of trousers."
-pirate_leggings_noted_3:
-  id: 7133
+pirate_leggings_noted_3: 7133
 pirate_shirt_brown:
   id: 7134
   price: 470
@@ -36878,8 +36608,7 @@ pirate_shirt_brown:
   weight: 1.0
   slot: "Chest"
   examine: "A sea worthy shirt."
-stripy_pirate_shirt_noted_4:
-  id: 7135
+stripy_pirate_shirt_noted_4: 7135
 pirate_bandana_brown:
   id: 7136
   price: 500
@@ -36888,8 +36617,7 @@ pirate_bandana_brown:
   slot: "Hat"
   type: "Hair"
   examine: "Essential pirate wear."
-pirate_bandana_noted_4:
-  id: 7137
+pirate_bandana_noted_4: 7137
 pirate_leggings_brown:
   id: 7138
   price: 93
@@ -36897,8 +36625,7 @@ pirate_leggings_brown:
   weight: 1.0
   slot: "Legs"
   examine: "A sea worthy pair of trousers."
-pirate_leggings_noted_4:
-  id: 7139
+pirate_leggings_noted_4: 7139
 lucky_cutlass:
   id: 7140
   tradeable: false
@@ -37068,8 +36795,7 @@ part_mud_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_mud_pie_noted_2:
-  id: 7167
+part_mud_pie_noted_2: 7167
 raw_mud_pie:
   id: 7168
   price: 1625
@@ -37098,8 +36824,7 @@ part_garden_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_garden_pie_noted_2:
-  id: 7175
+part_garden_pie_noted_2: 7175
 raw_garden_pie:
   id: 7176
   price: 839
@@ -37134,8 +36859,7 @@ part_fish_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_fish_pie_noted_2:
-  id: 7185
+part_fish_pie_noted_2: 7185
 raw_fish_pie:
   id: 7186
   price: 1046
@@ -37170,8 +36894,7 @@ part_admiral_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_admiral_pie_noted_2:
-  id: 7195
+part_admiral_pie_noted_2: 7195
 raw_admiral_pie:
   id: 7196
   price: 1689
@@ -37204,8 +36927,7 @@ part_wild_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_wild_pie_noted_2:
-  id: 7205
+part_wild_pie_noted_2: 7205
 raw_wild_pie:
   id: 7206
   price: 3687
@@ -37240,8 +36962,7 @@ part_summer_pie_2:
   limit: 1000
   weight: 0.001
   examine: "Still needs one more ingredient."
-part_summer_pie_noted_2:
-  id: 7215
+part_summer_pie_noted_2: 7215
 raw_summer_pie:
   id: 7216
   price: 1844
@@ -37298,8 +37019,7 @@ cooked_chompy_roasted:
   limit: 1000
   weight: 10.0
   examine: "Roasted chompy bird."
-cooked_chompy_noted_2:
-  id: 7229
+cooked_chompy_noted_2: 7229
 skewered_chompy:
   id: 7230
   price: 283
@@ -38288,8 +38008,7 @@ blue_dragonhide_body_g:
   material: "leather"
   type: "Sleeveless"
   examine: "Made from 100% real dragonhide, with colourful trim!"
-dragonhide_body_g_noted_2:
-  id: 7375
+dragonhide_body_g_noted_2: 7375
 blue_dragonhide_body_t:
   id: 7376
   price: 5355
@@ -38309,8 +38028,7 @@ blue_dragonhide_body_t:
   material: "leather"
   type: "Sleeveless"
   examine: "Made from 100% real dragonhide, with colourful trim!"
-dragonhide_body_t_noted_2:
-  id: 7377
+dragonhide_body_t_noted_2: 7377
 green_dragonhide_chaps_g:
   id: 7378
   price: 1100000
@@ -38367,8 +38085,7 @@ blue_dragonhide_chaps_g:
   slot: "Legs"
   material: "leather"
   examine: "Made from 100% real dragonhide, with colourful trim!"
-dragonhide_chaps_g_noted_2:
-  id: 7383
+dragonhide_chaps_g_noted_2: 7383
 blue_dragonhide_chaps_t:
   id: 7384
   price: 2411
@@ -38387,8 +38104,7 @@ blue_dragonhide_chaps_t:
   slot: "Legs"
   material: "leather"
   examine: "Made from 100% real dragonhide, with colourful trim!"
-dragonhide_chaps_t_noted_2:
-  id: 7385
+dragonhide_chaps_t_noted_2: 7385
 wizard_robe_skirt_g:
   id: 7386
   price: 327100
@@ -39180,16 +38896,13 @@ antique_lamp_recipe_for_disaster:
   examine: "I wonder what happens if I rub it..."
   use: "Quest"
   kept: "Vanish"
-evil_dave:
-  id: 7499
+evil_dave: 7499
 dwarf:
   id: 7500
   weight: 10.0
   examine: "Petit."
-goblins:
-  id: 7501
-lumbridge_sage:
-  id: 7502
+goblins: 7501
+lumbridge_sage: 7502
 monkey_11:
   id: 7503
   bankable: false
@@ -39198,14 +38911,10 @@ monkey_11:
   examine: "It's a monkey in your backpack. As you look it pokes you."
   use: "Quest"
   kept: "Wilderness"
-osman:
-  id: 7504
-pirate_pete:
-  id: 7505
-sir_amik_varze:
-  id: 7506
-skrach:
-  id: 7507
+osman: 7504
+pirate_pete: 7505
+sir_amik_varze: 7506
+skrach: 7507
 asgoldian_ale:
   id: 7508
   tradeable: false
@@ -39500,28 +39209,24 @@ fire_rune_3:
   limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
-fire_rune_noted_2:
-  id: 7555
+fire_rune_noted_2: 7555
 water_rune_3:
   id: 7556
   limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
-water_rune_noted_2:
-  id: 7557
+water_rune_noted_2: 7557
 air_rune_3:
   id: 7558
   limit: 25000
   examine: "One of the four basic elemental runes."
   kept: "Wilderness"
-air_rune_noted_2:
-  id: 7559
+air_rune_noted_2: 7559
 chaos_rune_3:
   id: 7560
   limit: 25000
   examine: "Used for low level missile spells."
-chaos_rune_noted_2:
-  id: 7561
+chaos_rune_noted_2: 7561
 tomato_seed_2:
   id: 7562
   limit: 500
@@ -39729,50 +39434,28 @@ zombie_boots:
   slot: "Feet"
   examine: "Thrilling."
   kept: "Wilderness"
-item:
-  id: 7597
-item_2:
-  id: 7598
-item_3:
-  id: 7599
-item_4:
-  id: 7600
-item_5:
-  id: 7601
-item_6:
-  id: 7602
-item_7:
-  id: 7603
-item_8:
-  id: 7604
-item_9:
-  id: 7605
-item_10:
-  id: 7606
-item_11:
-  id: 7607
-item_12:
-  id: 7608
-item_13:
-  id: 7609
-item_14:
-  id: 7610
-item_15:
-  id: 7611
-item_16:
-  id: 7612
-item_17:
-  id: 7613
-item_18:
-  id: 7614
-item_19:
-  id: 7615
-item_20:
-  id: 7616
-item_21:
-  id: 7617
-item_22:
-  id: 7618
+item: 7597
+item_2: 7598
+item_3: 7599
+item_4: 7600
+item_5: 7601
+item_6: 7602
+item_7: 7603
+item_8: 7604
+item_9: 7605
+item_10: 7606
+item_11: 7607
+item_12: 7608
+item_13: 7609
+item_14: 7610
+item_15: 7611
+item_16: 7612
+item_17: 7613
+item_18: 7614
+item_19: 7615
+item_20: 7616
+item_21: 7617
+item_22: 7618
 silvthrill_rod:
   id: 7620
   examine: "A silvery rod of mithril and silver with sapphire on top."
@@ -40070,22 +39753,19 @@ guthix_balance_unf_2:
   price: 81
   examine: "An unfinished potion."
   weight: 0.035
-guthix_balance_unf_noted_2:
-  id: 7655
+guthix_balance_unf_noted_2: 7655
 guthix_balance_unf_3:
   id: 7656
   price: 58
   examine: "An unfinished potion."
   weight: 0.035
-guthix_balance_unf_noted_3:
-  id: 7657
+guthix_balance_unf_noted_3: 7657
 guthix_balance_unf_4:
   id: 7658
   price: 30
   examine: "An unfinished potion."
   weight: 0.035
-guthix_balance_unf_noted_4:
-  id: 7659
+guthix_balance_unf_noted_4: 7659
 guthix_balance_4:
   id: 7660
   price: 168
@@ -40284,85 +39964,72 @@ pot_of_tea_white_4:
   id: 7704
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_4_noted_2:
-  id: 7705
+pot_of_tea_4_noted_2: 7705
 pot_of_tea_white_3:
   id: 7706
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_3_noted_2:
-  id: 7707
+pot_of_tea_3_noted_2: 7707
 pot_of_tea_white_2:
   id: 7708
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_2_noted_2:
-  id: 7709
+pot_of_tea_2_noted_2: 7709
 pot_of_tea_white_1:
   id: 7710
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_1_noted_2:
-  id: 7711
+pot_of_tea_1_noted_2: 7711
 teapot_with_leaves_white:
   id: 7712
   bankable: false
   weight: 1.5
   examine: "Add boiling water to make a tea."
-teapot_with_leaves_noted_2:
-  id: 7713
+teapot_with_leaves_noted_2: 7713
 teapot_white:
   id: 7714
   bankable: false
   weight: 0.453
   examine: "This teapot is empty."
-teapot_noted_2:
-  id: 7715
+teapot_noted_2: 7715
 pot_of_tea_gold_4:
   id: 7716
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_4_noted_3:
-  id: 7717
+pot_of_tea_4_noted_3: 7717
 pot_of_tea_gold_3:
   id: 7718
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_3_noted_3:
-  id: 7719
+pot_of_tea_3_noted_3: 7719
 pot_of_tea_gold_2:
   id: 7720
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_2_noted_3:
-  id: 7721
+pot_of_tea_2_noted_3: 7721
 pot_of_tea_gold_1:
   id: 7722
   examine: "I'd really like a nice cup of tea."
   weight: 1.5
-pot_of_tea_1_noted_3:
-  id: 7723
+pot_of_tea_1_noted_3: 7723
 teapot_with_leaves_gold:
   id: 7724
   bankable: false
   weight: 1.5
   examine: "Add boiling water to make a tea."
-teapot_with_leaves_noted_3:
-  id: 7725
+teapot_with_leaves_noted_3: 7725
 teapot_gold:
   id: 7726
   bankable: false
   weight: 0.453
   examine: "This teapot is empty."
-teapot_noted_3:
-  id: 7727
+teapot_noted_3: 7727
 empty_cup_player-owned_house:
   id: 7728
   bankable: false
   weight: 0.05
   examine: "An empty cup."
-empty_cup_noted_2:
-  id: 7729
+empty_cup_noted_2: 7729
 cup_of_tea_clay:
   id: 7730
   limit: 1000
@@ -40438,8 +40105,7 @@ beer_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
-beer_noted_3:
-  id: 7741
+beer_noted_3: 7741
 beer_glass_player-owned_house:
   id: 7742
   limit: 100
@@ -40447,8 +40113,7 @@ beer_glass_player-owned_house:
   bankable: false
   weight: 0.05
   examine: "I need to fill this with beer."
-beer_glass_noted_2:
-  id: 7743
+beer_glass_noted_2: 7743
 asgarnian_ale_player-owned_house:
   id: 7744
   limit: 100
@@ -40456,8 +40121,7 @@ asgarnian_ale_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "Probably the finest ale in Asgarnia."
-asgarnian_ale_noted_2:
-  id: 7745
+asgarnian_ale_noted_2: 7745
 greenmans_ale_player-owned_house:
   id: 7746
   limit: 100
@@ -40465,8 +40129,7 @@ greenmans_ale_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "A glass of frothy ale."
-greenmans_ale_noted_2:
-  id: 7747
+greenmans_ale_noted_2: 7747
 dragon_bitter_player-owned_house:
   id: 7748
   limit: 100
@@ -40474,16 +40137,14 @@ dragon_bitter_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "A glass of bitter."
-dragon_bitter_noted_2:
-  id: 7749
+dragon_bitter_noted_2: 7749
 moonlight_mead_2:
   id: 7750
   limit: 100
   edible: true
   weight: 0.55
   examine: "A foul smelling brew."
-moonlight_mead_noted_2:
-  id: 7751
+moonlight_mead_noted_2: 7751
 cider_player-owned_house:
   id: 7752
   limit: 100
@@ -40491,8 +40152,7 @@ cider_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "A glass of cider."
-cider_noted_2:
-  id: 7753
+cider_noted_2: 7753
 chefs_delight_player-owned_house:
   id: 7754
   limit: 100
@@ -40500,8 +40160,7 @@ chefs_delight_player-owned_house:
   bankable: false
   weight: 0.55
   examine: "A fruity, full-bodied ale."
-chefs_delight_noted_2:
-  id: 7755
+chefs_delight_noted_2: 7755
 paintbrush:
   id: 7756
   slot: "Weapon"
@@ -40738,8 +40397,7 @@ snake_hide_swamp:
   limit: 10000
   weight: 1.0
   examine: "Scaly but not slimy!"
-snake_hide_noted_2:
-  id: 7802
+snake_hide_noted_2: 7802
 yin_yang_amulet:
   id: 7803
   tradeable: false
@@ -40756,8 +40414,7 @@ picture_68:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_45:
-  id: 7805
+picture_noted_45: 7805
 anger_sword:
   id: 7806
   bankable: false
@@ -41756,8 +41413,7 @@ hatchet_handle_2:
   slot: "Weapon"
   examine: "Useless."
   use: "Removed"
-hatchet_handle_noted_2:
-  id: 7953
+hatchet_handle_noted_2: 7953
 burnt_shrimp:
   id: 7954
   examine: "Oops!"
@@ -42144,8 +41800,7 @@ enchant_onyx:
   price: 30
   limit: 200
   examine: "A tablet containing a magic spell."
-telekinetic_grab:
-  id: 8022
+telekinetic_grab: 8022
 boxing_ring:
   id: 8023
   examine: "A place to train unarmed combat with your friends."
@@ -42358,14 +42013,10 @@ large_statues:
 suit_of_armour:
   id: 8085
   examine: "A dusty old suit of armour."
-minor_head:
-  id: 8087
-medium_head:
-  id: 8088
-major_head:
-  id: 8089
-rune_display_case:
-  id: 8095
+minor_head: 8087
+medium_head: 8088
+major_head: 8089
+rune_display_case: 8095
 rope_bell-pull:
   id: 8099
   examine: "Can summon your servant."
@@ -42387,8 +42038,7 @@ gilded_decoration:
 round_shield:
   id: 8105
   examine: "A shield with a family crest icon on it."
-square_shield:
-  id: 8106
+square_shield: 8106
 kite_shield:
   id: 8107
   examine: "A shield with a picture of ... the examine depends on the crest displayed on the shield, for example, the money crest would have A shield with a picture of a money bag."
@@ -42466,40 +42116,32 @@ decorative_pipe:
 hanging_skeleton:
   id: 8127
   examine: "A rather macabre decoration."
-candles:
-  id: 8128
-torches:
-  id: 8129
+candles: 8128
+torches: 8129
 skull_torches:
   id: 8130
   examine: "Even a dungeon needs light!"
-skeleton_guard:
-  id: 8131
+skeleton_guard: 8131
 guard_dog:
   id: 8132
   examine: "He doesn't seem pleased to see me."
-hobgoblin_guard:
-  id: 8133
+hobgoblin_guard: 8133
 baby_red_dragon:
   id: 8134
   examine: "Young but still dangerous."
-huge_spider:
-  id: 8135
-troll_guard:
-  id: 8136
+huge_spider: 8135
+troll_guard: 8136
 hellhound:
   id: 8137
   examine: "Good doggie..."
-demon:
-  id: 8138
+demon: 8138
 kalphite_soldier:
   id: 8139
   examine: "I don't think insect repellent will work..."
 tok-xil:
   id: 8140
   examine: "I don't like the look of those spines..."
-dagannoth:
-  id: 8141
+dagannoth: 8141
 steel_dragon:
   id: 8142
   examine: "Its scales seem to be made of steel."
@@ -42509,8 +42151,7 @@ spike_trap:
 man_trap:
   id: 8144
   examine: "Watch out!"
-tangle_vine:
-  id: 8145
+tangle_vine: 8145
 marble_trap:
   id: 8146
   examine: "Watch out!"
@@ -42535,17 +42176,13 @@ magic_chest:
 clay_attack_stone:
   id: 8153
   examine: "See how much damage you can do to it!"
-attack_stone:
-  id: 8154
+attack_stone: 8154
 marble_att._stone:
   id: 8155
   examine: "Try to damage it!"
-magical_balance_1:
-  id: 8156
-magical_balance_2:
-  id: 8157
-magical_balance_3:
-  id: 8158
+magical_balance_1: 8156
+magical_balance_2: 8157
+magical_balance_3: 8158
 jester:
   id: 8159
   examine: "A private jester."
@@ -42588,8 +42225,7 @@ imp_statue:
 dungeon_entrance:
   id: 8172
   examine: "What horrors lurk below?"
-tree:
-  id: 8173
+tree: 8173
 nice_tree:
   id: 8174
   examine: "A lovely addition to the garden."
@@ -42857,17 +42493,13 @@ teak_staircase_2:
 teak_staircase_3:
   id: 8254
   examine: "I can climb these stairs."
-marble_staircase:
-  id: 8255
-marble_staircase_2:
-  id: 8256
-marble_staircase_3:
-  id: 8257
+marble_staircase: 8255
+marble_staircase_2: 8256
+marble_staircase_3: 8257
 spiral_staircase:
   id: 8258
   examine: "I can climb up or go down these stairs."
-marble_spiral:
-  id: 8259
+marble_spiral: 8259
 crawling_hand_3:
   id: 8260
   tradeable: false
@@ -43058,27 +42690,21 @@ cape_of_legends_2:
   summoning_def: 7.0
   examine: "The cape worn by members of the Legends' Guild."
   kept: "Wilderness"
-king_arthur:
-  id: 8285
-elena:
-  id: 8286
+king_arthur: 8285
+elena: 8286
 giant_dwarf:
   id: 8287
   examine: "A painting of the statue of King Alvis of Keldagrim."
 miscellanians:
   id: 8288
   examine: "A portrait of Prince Brand and Princess Astrid of Miscellania."
-lumbridge:
-  id: 8289
+lumbridge: 8289
 the_desert:
   id: 8290
   examine: "The Deserts of Kharidian."
-morytania:
-  id: 8291
-karamja:
-  id: 8292
-isafdar:
-  id: 8293
+morytania: 8291
+karamja: 8292
+isafdar: 8293
 small_map_2:
   id: 8294
   tradeable: false
@@ -43125,13 +42751,11 @@ tentacle_pool:
 flame_pit:
   id: 8304
   examine: "Not very pleasant."
-rocnar:
-  id: 8305
+rocnar: 8305
 oak_ladder:
   id: 8306
   examine: "An oak ladder."
-teak_ladder:
-  id: 8307
+teak_ladder: 8307
 mahogany_ladder:
   id: 8308
   examine: "A mahogany ladder."
@@ -43400,44 +43024,25 @@ shield_easel:
 banner_easel:
   id: 8394
   examine: "You can make a banner with your logo on here."
-parlour:
-  id: 8395
-kitchen:
-  id: 8396
-dining_room:
-  id: 8397
-bedroom:
-  id: 8398
-games_room:
-  id: 8399
-combat_room:
-  id: 8400
-hall:
-  id: 8401
-hall_2:
-  id: 8402
-hall_3:
-  id: 8403
-hall_4:
-  id: 8404
-chapel:
-  id: 8405
-workshop:
-  id: 8406
-study:
-  id: 8407
-portal_chamber:
-  id: 8408
-throne_room:
-  id: 8409
-oubliette:
-  id: 8410
-treasure_room:
-  id: 8414
-garden:
-  id: 8415
-formal_garden:
-  id: 8416
+parlour: 8395
+kitchen: 8396
+dining_room: 8397
+bedroom: 8398
+games_room: 8399
+combat_room: 8400
+hall: 8401
+hall_2: 8402
+hall_3: 8403
+hall_4: 8404
+chapel: 8405
+workshop: 8406
+study: 8407
+portal_chamber: 8408
+throne_room: 8409
+oubliette: 8410
+treasure_room: 8414
+garden: 8415
+formal_garden: 8416
 bagged_dead_tree:
   id: 8417
   weight: 10.0
@@ -43795,32 +43400,28 @@ asgarnian_ale_barrel_flatpack:
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Asgarnian Ale."
-asgarnian_ale_noted_3:
-  id: 8521
+asgarnian_ale_noted_3: 8521
 greenmans_ale_barrel_flatpack:
   id: 8522
   price: 10600
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Greenman's Ale."
-greenmans_ale_noted_3:
-  id: 8523
+greenmans_ale_noted_3: 8523
 dragon_bitter_barrel_flatpack:
   id: 8524
   price: 10700
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Dragon Bitter."
-dragon_bitter_noted_3:
-  id: 8525
+dragon_bitter_noted_3: 8525
 chefs_delight_barrel_flatpack:
   id: 8526
   price: 55100
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble barrel of Chef's Delight."
-chefs_delight_noted_3:
-  id: 8527
+chefs_delight_noted_3: 8527
 wood_kitchen_table_flatpack:
   id: 8528
   price: 1
@@ -44009,8 +43610,7 @@ large_teak_bed_noted: 8585
   limit: 100
   weight: 1.0
   examine: "A ready-to-assemble four-poster bed."
-"4-poster_noted":
-  id: 8587
+"4-poster_noted": 8587
 gilded_4-poster_flatpack:
   id: 8588
   price: 304000
@@ -45081,8 +44681,7 @@ saw:
   slot: "Weapon"
   examine: "Good for cutting wood."
 saw_noted: 8795
-thing:
-  id: 8796
+thing: 8796
 picture_69:
   id: 8797
   tradeable: false
@@ -45757,16 +45356,14 @@ blue_flowers_trouble_brewing:
   weight: 0.003
   examine: "Very blue."
   kept: "Vanish"
-blue_flowers_noted_2:
-  id: 8937
+blue_flowers_noted_2: 8937
 red_flowers_trouble_brewing:
   id: 8938
   bankable: false
   weight: 0.003
   examine: "Very red."
   kept: "Vanish"
-red_flowers_noted_2:
-  id: 8939
+red_flowers_noted_2: 8939
 rum_red:
   id: 8940
   tradeable: false
@@ -46115,12 +45712,9 @@ grey_navy_slacks:
   examine: "Not for slackers."
   kept: "Reclaim"
 bandana_and_eyepatch_noted: 8998
-bandana_and_eyepatch_noted_2:
-  id: 8999
-bandana_and_eyepatch_noted_3:
-  id: 9000
-bandana_and_eyepatch_noted_4:
-  id: 9001
+bandana_and_eyepatch_noted_2: 8999
+bandana_and_eyepatch_noted_3: 9000
+bandana_and_eyepatch_noted_4: 9001
 hat_and_eyepatch_noted: 9002
 security_book:
   id: 9003
@@ -47751,8 +47345,7 @@ wizard_blizzard_2:
   weight: 0.5
   examine: "This looks like a strange mix."
   kept: "Wilderness"
-wizard_blizzard_noted_2:
-  id: 9488
+wizard_blizzard_noted_2: 9488
 wizard_blizzard_3:
   id: 9489
   limit: 1000
@@ -47774,8 +47367,7 @@ wizard_blizzard_4:
   weight: 0.5
   examine: "This looks like a strange mix."
   kept: "Wilderness"
-wizard_blizzard_noted_3:
-  id: 9509
+wizard_blizzard_noted_3: 9509
 short_green_guy_2:
   id: 9510
   limit: 1000
@@ -47784,8 +47376,7 @@ short_green_guy_2:
   aka: "SGG"
   examine: "A Short Green Guy... looks good."
   kept: "Wilderness"
-short_green_guy_noted_2:
-  id: 9511
+short_green_guy_noted_2: 9511
 pineapple_punch_2:
   id: 9512
   limit: 1000
@@ -47793,8 +47384,7 @@ pineapple_punch_2:
   weight: 0.5
   examine: "A fresh healthy fruit mix."
   kept: "Wilderness"
-pineapple_punch_noted_2:
-  id: 9513
+pineapple_punch_noted_2: 9513
 fruit_blast_2:
   id: 9514
   limit: 1000
@@ -47802,30 +47392,26 @@ fruit_blast_2:
   weight: 0.5
   examine: "A cool refreshing fruit mix."
   kept: "Wilderness"
-fruit_blast_noted_2:
-  id: 9515
+fruit_blast_noted_2: 9515
 drunk_dragon_2:
   id: 9516
   limit: 1000
   edible: true
   weight: 0.5
   examine: "A warm creamy alcoholic beverage."
-drunk_dragon_noted_2:
-  id: 9517
+drunk_dragon_noted_2: 9517
 choc_saturday:
   id: 9518
   limit: 1000
   examine: "A warm creamy alcoholic beverage"
-choc_saturday_noted_2:
-  id: 9519
+choc_saturday_noted_2: 9519
 blurberry_special_2:
   id: 9520
   limit: 1000
   edible: true
   weight: 0.5
   examine: "Looks good... smells strong."
-blurberry_special_noted_2:
-  id: 9521
+blurberry_special_noted_2: 9521
 batta_tin_2:
   id: 9522
   weight: 0.1
@@ -47835,111 +47421,97 @@ batta_tin_3:
   id: 9524
   weight: 0.1
   examine: "A deep tin used for baking gnome battas in."
-batta_tin_noted_2:
-  id: 9525
+batta_tin_noted_2: 9525
 fruit_batta_2:
   id: 9527
   limit: 1000
   edible: true
   weight: 0.25
   examine: "It actually smells quite good."
-fruit_batta_noted_2:
-  id: 9528
+fruit_batta_noted_2: 9528
 toad_batta_2:
   id: 9529
   limit: 1000
   edible: true
   weight: 0.25
   examine: "It actually smells quite good."
-toad_batta_noted_2:
-  id: 9530
+toad_batta_noted_2: 9530
 worm_batta_2:
   id: 9531
   limit: 1000
   edible: true
   weight: 0.25
   examine: "It actually smells quite good."
-worm_batta_noted_2:
-  id: 9532
+worm_batta_noted_2: 9532
 vegetable_batta_2:
   id: 9533
   limit: 1000
   edible: true
   weight: 0.25
   examine: "Well... it looks healthy."
-vegetable_batta_noted_2:
-  id: 9534
+vegetable_batta_noted_2: 9534
 cheese+tom_batta_2:
   id: 9535
   limit: 1000
   edible: true
   weight: 0.25
   examine: "This smells really good."
-cheese+tom_batta_noted_2:
-  id: 9536
+cheese+tom_batta_noted_2: 9536
 toad_crunchies_2:
   id: 9538
   limit: 1000
   edible: true
   weight: 0.25
   examine: "It actually smells quite good."
-toad_crunchies_noted_2:
-  id: 9539
+toad_crunchies_noted_2: 9539
 spicy_crunchies_2:
   id: 9540
   limit: 1000
   edible: true
   weight: 0.25
   examine: "Yum... smells spicy."
-spicy_crunchies_noted_2:
-  id: 9541
+spicy_crunchies_noted_2: 9541
 worm_crunchies_2:
   id: 9542
   limit: 1000
   edible: true
   weight: 0.25
   examine: "It actually smells quite good."
-worm_crunchies_noted_2:
-  id: 9543
+worm_crunchies_noted_2: 9543
 chocchip_crunchies_2:
   id: 9544
   edible: true
   weight: 0.25
   examine: "Yum... smells good."
-chocchip_crunchies_noted_2:
-  id: 9545
+chocchip_crunchies_noted_2: 9545
 worm_hole_2:
   id: 9547
   limit: 1000
   edible: true
   weight: 0.35
   examine: "It actually smells quite good."
-worm_hole_noted_2:
-  id: 9548
+worm_hole_noted_2: 9548
 veg_ball_2:
   id: 9549
   limit: 1000
   edible: true
   weight: 0.35
   examine: "This looks pretty healthy."
-veg_ball_noted_2:
-  id: 9550
+veg_ball_noted_2: 9550
 tangled_toads_legs_2:
   id: 9551
   limit: 1000
   edible: true
   weight: 0.35
   examine: "It actually smells quite good."
-tangled_toads_legs_noted_2:
-  id: 9552
+tangled_toads_legs_noted_2: 9552
 chocolate_bomb_2:
   id: 9553
   limit: 1000
   edible: true
   weight: 0.35
   examine: "Full of creamy, chocolately goodness."
-chocolate_bomb_noted_2:
-  id: 9554
+chocolate_bomb_noted_2: 9554
 half_made_toad_bowl:
   id: 9558
   tradeable: false
@@ -48097,8 +47669,7 @@ unfinished_worm_crunchy:
   weight: 0.35
   examine: "This worm crunchy needs garnishing with gnome spices."
   kept: "Reclaim"
-batta_tin_noted_3:
-  id: 9585
+batta_tin_noted_3: 9585
 crunchy_tray_noted: 9586
 gnomebowl_mould_noted: 9587
 raw_crunchies_noted: 9588
@@ -49830,8 +49401,7 @@ teak_cape_rack:
   id: 9818
   weight: 1.0
   examine: "A ready-to-assemble teak cape rack.."
-mgany_cape_rack:
-  id: 9819
+mgany_cape_rack: 9819
 gilded_cape_rack:
   id: 9820
   weight: 1.0
@@ -49850,8 +49420,7 @@ oak_costume_box:
 teak_costume_box:
   id: 9824
   examine: "A box for you to keep clothing."
-mahogany_cos_box:
-  id: 9825
+mahogany_cos_box: 9825
 oak_armour_case:
   id: 9826
   weight: 1.0
@@ -49913,8 +49482,7 @@ teak_treas_chest:
 mgany_treas_chest:
   id: 9841
   examine: "Stores your precious belongings."
-costume_room:
-  id: 9842
+costume_room: 9842
 oak_cape_rack_flatpack:
   id: 9843
   price: 8
@@ -50504,18 +50072,12 @@ kebbit_11:
 kebbit_12:
   id: 9964
   examine: "A little bigger than usual..."
-crimson_swift:
-  id: 9965
-copper_longtail:
-  id: 9966
-cerulean_twitch:
-  id: 9967
-golden_warbler:
-  id: 9968
-tropical_wagtail:
-  id: 9969
-giant_eagle:
-  id: 9974
+crimson_swift: 9965
+copper_longtail: 9966
+cerulean_twitch: 9967
+golden_warbler: 9968
+tropical_wagtail: 9969
+giant_eagle: 9974
 rabbit:
   id: 9975
   examine: "Aww, how cute."
@@ -52536,8 +52098,7 @@ bob_shirt_blue:
   weight: 1.0
   slot: "Chest"
   examine: "Always check the second trade screen.'"
-bob_shirt_noted_2:
-  id: 10319
+bob_shirt_noted_2: 10319
 bob_shirt_green:
   id: 10320
   price: 11200
@@ -52545,8 +52106,7 @@ bob_shirt_green:
   weight: 1.0
   slot: "Chest"
   examine: "Never trade in the Wilderness!'"
-bob_shirt_noted_3:
-  id: 10321
+bob_shirt_noted_3: 10321
 bob_shirt_black:
   id: 10322
   price: 12400
@@ -52554,8 +52114,7 @@ bob_shirt_black:
   weight: 1.0
   slot: "Chest"
   examine: "A bank PIN will keep your items secure.'"
-bob_shirt_noted_4:
-  id: 10323
+bob_shirt_noted_4: 10323
 bob_shirt_purple:
   id: 10324
   price: 11200
@@ -52563,8 +52122,7 @@ bob_shirt_purple:
   weight: 1.0
   slot: "Chest"
   examine: "Keep your computer keylogger-free and virus scanned.'"
-bob_shirt_noted_5:
-  id: 10325
+bob_shirt_noted_5: 10325
 purple_firelighter:
   id: 10326
   price: 254
@@ -53760,8 +53318,7 @@ snowball:
   kept: "Reclaim"
   use: "Removed"
 snowball_noted: 10510
-zanaris_choir:
-  id: 10511
+zanaris_choir: 10511
 scroll_barbarian_assault:
   id: 10512
   bankable: false
@@ -54210,8 +53767,7 @@ thingy:
   slot: "Amulet"
   examine: "Mabob."
   use: "Removed"
-picture_noted_46:
-  id: 10568
+picture_noted_46: 10568
 picture_77:
   id: 10569
   tradeable: false
@@ -54220,8 +53776,7 @@ picture_77:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_47:
-  id: 10570
+picture_noted_47: 10570
 picture_78:
   id: 10571
   tradeable: false
@@ -54230,8 +53785,7 @@ picture_78:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_48:
-  id: 10572
+picture_noted_48: 10572
 picture_79:
   id: 10573
   tradeable: false
@@ -54240,8 +53794,7 @@ picture_79:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_49:
-  id: 10574
+picture_noted_49: 10574
 picture_80:
   id: 10575
   tradeable: false
@@ -54250,8 +53803,7 @@ picture_80:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_50:
-  id: 10576
+picture_noted_50: 10576
 picture_81:
   id: 10577
   tradeable: false
@@ -54260,8 +53812,7 @@ picture_81:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_51:
-  id: 10578
+picture_noted_51: 10578
 picture_82:
   id: 10579
   tradeable: false
@@ -54270,8 +53821,7 @@ picture_82:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_52:
-  id: 10580
+picture_noted_52: 10580
 keris:
   id: 10581
   prayer: 2
@@ -56754,8 +56304,7 @@ yak-hide_armour_legs:
   slot: "Legs"
   material: "leather"
   examine: "Leg protection, made from smelly yak-hide."
-yak-hide_armour_noted_2:
-  id: 10825
+yak-hide_armour_noted_2: 10825
 fremennik_round_shield:
   id: 10826
   price: 221
@@ -56969,14 +56518,10 @@ winter_sqirkjuice:
   weight: 0.05
   examine: "Made from 5 winter sq'irks."
   kept: "Reclaim"
-summer_garden:
-  id: 10852
-spring_garden:
-  id: 10853
-autumn_garden:
-  id: 10854
-winter_garden:
-  id: 10855
+summer_garden: 10852
+spring_garden: 10853
+autumn_garden: 10854
+winter_garden: 10855
 sin_seers_note:
   id: 10856
   tradeable: false
@@ -57450,12 +56995,9 @@ lumberjack_top_2:
   destroy: "Are you sure you want to destroy this? You can reclaim it from Diango in Draynor."
   examine: "You'll certainly be alright wearing this."
   kept: "Reclaim"
-run:
-  id: 10947
-sit_up:
-  id: 10948
-star_jump:
-  id: 10949
+run: 10947
+sit_up: 10948
+star_jump: 10949
 skull_staples:
   id: 10950
   examine: "One skull staple."
@@ -58772,8 +58314,7 @@ phoenix_crossbow_2:
   destroy: "You can get another from the Phoenix Gang's weapon stash."
   examine: "Second-rate crossbow; former property of the Phoenix Gang."
   kept: "Wilderness"
-phoenix_crossbow_noted_2:
-  id: 11166
+phoenix_crossbow_noted_2: 11166
 phoenix_crossbow_3:
   id: 11167
   tradeable: false
@@ -58783,8 +58324,7 @@ phoenix_crossbow_3:
   destroy: "You can get another from the Phoenix Gang's weapon stash."
   examine: "Second-rate crossbow; former property of the Phoenix Gang."
   kept: "Wilderness"
-phoenix_crossbow_noted_3:
-  id: 11168
+phoenix_crossbow_noted_3: 11168
 newspaper:
   id: 11169
   aka: "Varrock Herald"
@@ -58794,8 +58334,7 @@ newspaper_2:
   id: 11171
   aka: "Varrock Herald"
   examine: "A collection of written news on paper!"
-newspaper_noted_2:
-  id: 11172
+newspaper_noted_2: 11172
 half_certificate_right:
   id: 11173
   destroy: "Instead of destroying this I should get a friend to help me retrieve the other half."
@@ -59278,8 +58817,7 @@ picture_122:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_53:
-  id: 11270
+picture_noted_53: 11270
 picture_123:
   id: 11271
   tradeable: false
@@ -59287,8 +58825,7 @@ picture_123:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_54:
-  id: 11272
+picture_noted_54: 11272
 impling_scroll:
   id: 11273
   tradeable: false
@@ -59305,8 +58842,7 @@ ham_shirt_2:
   slot: "Chest"
   examine: "The label says 'Vivid Crimson', but it looks like pink to me!"
 mith_grapple_noted: 11275
-mith_grapple_noted_2:
-  id: 11276
+mith_grapple_noted_2: 11276
 cavalier_mask:
   id: 11277
   slot: "Hat"
@@ -60648,8 +60184,7 @@ godsword_shards_1_and_3:
   destroy: "No"
   examine: "Godsword shards 1 and 3."
   use: "Limited"
-godsword_shards_noted_2:
-  id: 11689
+godsword_shards_noted_2: 11689
 godsword_blade:
   id: 11690
   price: 498700
@@ -60664,8 +60199,7 @@ godsword_shards_2_and_3:
   destroy: "No"
   examine: "Godsword shards 2 and 3."
   use: "Limited"
-godsword_shards_noted_3:
-  id: 11693
+godsword_shards_noted_3: 11693
 armadyl_godsword:
   id: 11694
   price: 45600000
@@ -61011,8 +60545,7 @@ picture_124:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_55:
-  id: 11741
+picture_noted_55: 11741
 picture_125:
   id: 11742
   tradeable: false
@@ -61020,8 +60553,7 @@ picture_125:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_56:
-  id: 11743
+picture_noted_56: 11743
 picture_126:
   id: 11744
   tradeable: false
@@ -61029,8 +60561,7 @@ picture_126:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_57:
-  id: 11745
+picture_noted_57: 11745
 a_key_to_a_chest:
   id: 11747
   tradeable: false
@@ -61376,8 +60907,7 @@ white_goblin_mail:
   examine: "Armour designed to fit goblins."
   use: "Quest"
   kept: "Wilderness"
-grubfoot:
-  id: 11792
+grubfoot: 11792
 zanik_3:
   id: 11793
   tradeable: false
@@ -63126,16 +62656,14 @@ evil_turnip_2_3:
   limit: 5000
   weight: 0.007
   examine: "Most of an evil turnip."
-"2_3_evil_turnip_noted":
-  id: 12137
+"2_3_evil_turnip_noted": 12137
 evil_turnip_1_3:
   id: 12138
   price: 19
   limit: 5000
   weight: 0.005
   examine: "A bit of an evil turnip."
-"1_3_evil_turnip_noted":
-  id: 12139
+"1_3_evil_turnip_noted": 12139
 summoning_potion_4:
   id: 12140
   price: 5369
@@ -63550,8 +63078,7 @@ feather_headdress_yellow:
   slot: "Hat"
   type: "FullFace"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
-feather_headdress_noted_2:
-  id: 12214
+feather_headdress_noted_2: 12214
 feather_headdress_charged_yellow:
   id: 12215
   tradeable: false
@@ -63585,8 +63112,7 @@ feather_headdress_red:
   slot: "Hat"
   type: "FullFace"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
-feather_headdress_noted_3:
-  id: 12217
+feather_headdress_noted_3: 12217
 feather_headdress_charged_red:
   id: 12218
   tradeable: false
@@ -63620,8 +63146,7 @@ feather_headdress_stripy:
   slot: "Hat"
   type: "FullFace"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
-feather_headdress_noted_4:
-  id: 12220
+feather_headdress_noted_4: 12220
 feather_headdress_charged_stripy:
   id: 12221
   tradeable: false
@@ -63655,8 +63180,7 @@ feather_headdress_orange:
   slot: "Hat"
   type: "FullFace"
   examine: "It's fun to go to the O-B-E-L-I-S-K!"
-feather_headdress_noted_5:
-  id: 12223
+feather_headdress_noted_5: 12223
 feather_headdress_charged_orange:
   id: 12224
   tradeable: false
@@ -64289,442 +63813,379 @@ pouch_5:
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_2:
-  id: 12296
+pouch_noted_2: 12296
 pouch_6:
   id: 12297
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_3:
-  id: 12298
+pouch_noted_3: 12298
 pouch_7:
   id: 12299
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_4:
-  id: 12300
+pouch_noted_4: 12300
 pouch_8:
   id: 12301
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_5:
-  id: 12302
+pouch_noted_5: 12302
 pouch_9:
   id: 12303
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_6:
-  id: 12304
+pouch_noted_6: 12304
 pouch_10:
   id: 12305
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_7:
-  id: 12306
+pouch_noted_7: 12306
 pouch_11:
   id: 12307
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_8:
-  id: 12308
+pouch_noted_8: 12308
 pouch_12:
   id: 12309
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_9:
-  id: 12310
+pouch_noted_9: 12310
 pouch_13:
   id: 12311
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_10:
-  id: 12312
+pouch_noted_10: 12312
 pouch_14:
   id: 12313
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_11:
-  id: 12314
+pouch_noted_11: 12314
 pouch_15:
   id: 12315
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_12:
-  id: 12316
+pouch_noted_12: 12316
 pouch_16:
   id: 12317
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_13:
-  id: 12318
+pouch_noted_13: 12318
 pouch_17:
   id: 12319
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_14:
-  id: 12320
+pouch_noted_14: 12320
 pouch_18:
   id: 12321
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_15:
-  id: 12322
+pouch_noted_15: 12322
 pouch_19:
   id: 12323
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_16:
-  id: 12324
+pouch_noted_16: 12324
 pouch_20:
   id: 12325
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_17:
-  id: 12326
+pouch_noted_17: 12326
 pouch_21:
   id: 12327
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_18:
-  id: 12328
+pouch_noted_18: 12328
 pouch_22:
   id: 12329
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_19:
-  id: 12330
+pouch_noted_19: 12330
 pouch_23:
   id: 12331
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_20:
-  id: 12332
+pouch_noted_20: 12332
 pouch_24:
   id: 12333
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_21:
-  id: 12334
+pouch_noted_21: 12334
 pouch_25:
   id: 12335
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_22:
-  id: 12336
+pouch_noted_22: 12336
 pouch_26:
   id: 12337
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_23:
-  id: 12338
+pouch_noted_23: 12338
 pouch_27:
   id: 12339
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_24:
-  id: 12340
+pouch_noted_24: 12340
 pouch_28:
   id: 12341
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_25:
-  id: 12342
+pouch_noted_25: 12342
 pouch_29:
   id: 12343
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_26:
-  id: 12344
+pouch_noted_26: 12344
 pouch_30:
   id: 12345
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_27:
-  id: 12346
+pouch_noted_27: 12346
 pouch_31:
   id: 12347
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_28:
-  id: 12348
+pouch_noted_28: 12348
 pouch_32:
   id: 12349
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_29:
-  id: 12350
+pouch_noted_29: 12350
 pouch_33:
   id: 12351
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_30:
-  id: 12352
+pouch_noted_30: 12352
 pouch_34:
   id: 12353
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_31:
-  id: 12354
+pouch_noted_31: 12354
 pouch_35:
   id: 12355
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_32:
-  id: 12356
+pouch_noted_32: 12356
 pouch_36:
   id: 12357
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_33:
-  id: 12358
+pouch_noted_33: 12358
 pouch_37:
   id: 12359
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_34:
-  id: 12360
+pouch_noted_34: 12360
 pouch_38:
   id: 12361
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_35:
-  id: 12362
+pouch_noted_35: 12362
 pouch_39:
   id: 12363
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_36:
-  id: 12364
+pouch_noted_36: 12364
 pouch_40:
   id: 12365
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_37:
-  id: 12366
+pouch_noted_37: 12366
 pouch_41:
   id: 12367
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_38:
-  id: 12368
+pouch_noted_38: 12368
 pouch_42:
   id: 12369
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_39:
-  id: 12370
+pouch_noted_39: 12370
 pouch_43:
   id: 12371
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_40:
-  id: 12372
+pouch_noted_40: 12372
 pouch_44:
   id: 12373
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_41:
-  id: 12374
+pouch_noted_41: 12374
 pouch_45:
   id: 12375
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_42:
-  id: 12376
+pouch_noted_42: 12376
 pouch_46:
   id: 12377
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_43:
-  id: 12378
+pouch_noted_43: 12378
 pouch_47:
   id: 12379
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_44:
-  id: 12380
+pouch_noted_44: 12380
 pouch_48:
   id: 12381
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_45:
-  id: 12382
+pouch_noted_45: 12382
 pouch_49:
   id: 12383
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_46:
-  id: 12384
+pouch_noted_46: 12384
 pouch_50:
   id: 12385
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_47:
-  id: 12386
+pouch_noted_47: 12386
 pouch_51:
   id: 12387
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_48:
-  id: 12388
+pouch_noted_48: 12388
 pouch_52:
   id: 12389
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_49:
-  id: 12390
+pouch_noted_49: 12390
 pouch_53:
   id: 12391
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_50:
-  id: 12392
+pouch_noted_50: 12392
 pouch_54:
   id: 12393
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_51:
-  id: 12394
+pouch_noted_51: 12394
 pouch_55:
   id: 12395
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_52:
-  id: 12396
+pouch_noted_52: 12396
 pouch_56:
   id: 12397
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_53:
-  id: 12398
+pouch_noted_53: 12398
 pouch_57:
   id: 12399
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_54:
-  id: 12400
+pouch_noted_54: 12400
 pouch_58:
   id: 12401
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_55:
-  id: 12402
+pouch_noted_55: 12402
 pouch_59:
   id: 12403
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_56:
-  id: 12404
+pouch_noted_56: 12404
 pouch_60:
   id: 12405
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_57:
-  id: 12406
+pouch_noted_57: 12406
 pouch_61:
   id: 12407
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_58:
-  id: 12408
+pouch_noted_58: 12408
 pouch_62:
   id: 12409
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_59:
-  id: 12410
+pouch_noted_59: 12410
 pouch_63:
   id: 12411
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_60:
-  id: 12412
+pouch_noted_60: 12412
 pouch_64:
   id: 12413
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_61:
-  id: 12414
+pouch_noted_61: 12414
 pouch_65:
   id: 12415
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_62:
-  id: 12416
+pouch_noted_62: 12416
 pouch_66:
   id: 12417
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_63:
-  id: 12418
+pouch_noted_63: 12418
 pouch_67:
   id: 12419
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_64:
-  id: 12420
+pouch_noted_64: 12420
 scroll_2:
   id: 12421
   bankable: false
@@ -65243,10 +64704,8 @@ zamorak_hawk_2:
   id: 12508
   food: "Fishing bait"
   examine: "A stately zamorak hawk."
-guthix_chick:
-  id: 12509
-guthix_bird:
-  id: 12510
+guthix_chick: 12509
+guthix_bird: 12510
 guthix_raptor:
   id: 12511
   npc: 6957
@@ -65428,8 +64887,7 @@ picture_127:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_58:
-  id: 12538
+picture_noted_58: 12538
 grenwall_spikes:
   id: 12539
   price: 1302
@@ -65442,8 +64900,7 @@ picture_128:
   examine: "A picture of a lady called Elena."
   use: "Quest"
   kept: "Wilderness"
-picture_noted_59:
-  id: 12545
+picture_noted_59: 12545
 enchanted_pawya_meat:
   id: 12546
   tradeable: false
@@ -65514,14 +64971,10 @@ baby_platypus_grey:
   skill_req:
     summoning: 10
     hunter: 48
-patrick:
-  id: 12554
-penelope:
-  id: 12555
-peter:
-  id: 12556
-peanut:
-  id: 12557
+patrick: 12554
+penelope: 12555
+peter: 12556
+peanut: 12557
 mud:
   id: 12558
   tradeable: false
@@ -71017,14 +70470,10 @@ pillar:
   examine: "A support pillar."
   use: "Quest"
   kept: "Wilderness"
-splat:
-  id: 13247
-splat_2:
-  id: 13248
-splat_3:
-  id: 13249
-splat_4:
-  id: 13250
+splat: 13247
+splat_2: 13248
+splat_3: 13249
+splat_4: 13250
 ranged_path_key:
   id: 13259
   tradeable: false
@@ -71628,8 +71077,7 @@ pirate_shirt_grey:
   weight: 1.0
   slot: "Chest"
   examine: "A seaworthy grey shirt."
-stripy_pirate_shirt_noted_5:
-  id: 13359
+stripy_pirate_shirt_noted_5: 13359
 pirate_shirt_purple:
   id: 13360
   price: 4076
@@ -71637,8 +71085,7 @@ pirate_shirt_purple:
   weight: 1.0
   slot: "Chest"
   examine: "A seaworthy purple shirt."
-stripy_pirate_shirt_noted_6:
-  id: 13361
+stripy_pirate_shirt_noted_6: 13361
 pirate_shirt_orange:
   id: 13362
   price: 137
@@ -71646,8 +71093,7 @@ pirate_shirt_orange:
   weight: 1.0
   slot: "Chest"
   examine: "A seaworthy orange shirt."
-stripy_pirate_shirt_noted_7:
-  id: 13363
+stripy_pirate_shirt_noted_7: 13363
 pirate_leggings_grey:
   id: 13364
   price: 2046
@@ -71655,8 +71101,7 @@ pirate_leggings_grey:
   weight: 1.0
   slot: "Legs"
   examine: "A seaworthy pair of grey trousers."
-pirate_leggings_noted_5:
-  id: 13365
+pirate_leggings_noted_5: 13365
 pirate_leggings_purple:
   id: 13366
   price: 495
@@ -71664,8 +71109,7 @@ pirate_leggings_purple:
   weight: 1.0
   slot: "Legs"
   examine: "A seaworthy pair of purple trousers."
-pirate_leggings_noted_6:
-  id: 13367
+pirate_leggings_noted_6: 13367
 pirate_leggings_orange:
   id: 13368
   price: 160
@@ -71673,8 +71117,7 @@ pirate_leggings_orange:
   weight: 1.0
   slot: "Legs"
   examine: "A seaworthy pair of orange trousers."
-pirate_leggings_noted_7:
-  id: 13369
+pirate_leggings_noted_7: 13369
 pirate_bandana_grey:
   id: 13370
   price: 530
@@ -71692,8 +71135,7 @@ pirate_bandana_purple:
   slot: "Hat"
   type: "Hair"
   examine: "A purple bandana."
-bandana_noted_2:
-  id: 13373
+bandana_noted_2: 13373
 pirate_bandana_orange:
   id: 13374
   price: 153
@@ -71702,8 +71144,7 @@ pirate_bandana_orange:
   slot: "Hat"
   type: "Hair"
   examine: "An orange bandana."
-bandana_noted_3:
-  id: 13375
+bandana_noted_3: 13375
 bandana_and_eyepatch_grey:
   id: 13376
   weight: 0.15
@@ -73076,8 +72517,7 @@ inferno_adze:
   destroy: "If you destroy your last one, you can reclaim your Inferno Adze by talking to King Roald."
   examine: "risk of fire."
   kept: "Wilderness"
-fire_beacon:
-  id: 13662
+fire_beacon: 13662
 circus_ticket:
   id: 13663
   tradeable: false
@@ -73724,8 +73164,7 @@ cursed_willow_logs:
   examine: "Logs cut from cursed willow roots."
   use: "Quest"
   kept: "Reclaim"
-hartwin:
-  id: 13757
+hartwin: 13757
 grubby_key:
   id: 13758
   tradeable: false
@@ -76425,26 +75864,22 @@ prayer_potion_stealing_creation_4:
   id: 14209
   weight: 0.4
   examine: "Four doses of Prayer restore potion."
-prayer_potion_4_noted_2:
-  id: 14210
+prayer_potion_4_noted_2: 14210
 prayer_potion_stealing_creation_3:
   id: 14211
   weight: 0.3
   examine: "Three doses of Prayer restore potion."
-prayer_potion_3_noted_2:
-  id: 14212
+prayer_potion_3_noted_2: 14212
 prayer_potion_stealing_creation_2:
   id: 14213
   weight: 0.2
   examine: "Two doses of Prayer restore potion."
-prayer_potion_2_noted_2:
-  id: 14214
+prayer_potion_2_noted_2: 14214
 prayer_potion_stealing_creation_1:
   id: 14215
   weight: 0.1
   examine: "One dose of Prayer restore potion."
-prayer_potion_1_noted_2:
-  id: 14216
+prayer_potion_1_noted_2: 14216
 energy_potion_stealing_creation_5:
   id: 14217
   bankable: false
@@ -76455,26 +75890,22 @@ energy_potion_stealing_creation_4:
   id: 14219
   weight: 0.4
   examine: "Four doses of energy potion."
-energy_potion_4_noted_2:
-  id: 14220
+energy_potion_4_noted_2: 14220
 energy_potion_stealing_creation_3:
   id: 14221
   weight: 0.3
   examine: "Three doses of energy potion."
-energy_potion_3_noted_2:
-  id: 14222
+energy_potion_3_noted_2: 14222
 energy_potion_stealing_creation_2:
   id: 14223
   weight: 0.2
   examine: "Two doses of energy potion."
-energy_potion_2_noted_2:
-  id: 14224
+energy_potion_2_noted_2: 14224
 energy_potion_stealing_creation_1:
   id: 14225
   weight: 0.1
   examine: "One dose of energy potion."
-energy_potion_1_noted_2:
-  id: 14226
+energy_potion_1_noted_2: 14226
 super_attack_potion_5:
   id: 14227
   weight: 0.5
@@ -76484,26 +75915,22 @@ super_attack_potion_4:
   id: 14229
   weight: 0.4
   examine: "Four doses of super Attack potion."
-super_attack_4_noted_2:
-  id: 14230
+super_attack_4_noted_2: 14230
 super_attack_potion_3:
   id: 14231
   weight: 0.3
   examine: "Three doses of super Attack potion."
-super_attack_3_noted_2:
-  id: 14232
+super_attack_3_noted_2: 14232
 super_attack_potion_2:
   id: 14233
   weight: 0.2
   examine: "Two doses of super Attack potion."
-super_attack_2_noted_2:
-  id: 14234
+super_attack_2_noted_2: 14234
 super_attack_potion_1:
   id: 14235
   weight: 0.1
   examine: "One dose of super Attack potion."
-super_attack_1_noted_2:
-  id: 14236
+super_attack_1_noted_2: 14236
 super_strength_potion_5:
   id: 14237
   weight: 0.5
@@ -76513,26 +75940,22 @@ super_strength_potion_4:
   id: 14239
   weight: 0.4
   examine: "Four doses of super Strength potion."
-super_strength_4_noted_2:
-  id: 14240
+super_strength_4_noted_2: 14240
 super_strength_potion_3:
   id: 14241
   weight: 0.3
   examine: "Three doses of super Strength potion."
-super_strength_3_noted_2:
-  id: 14242
+super_strength_3_noted_2: 14242
 super_strength_potion_2:
   id: 14243
   weight: 0.2
   examine: "Two doses of super Strength potion."
-super_strength_2_noted_2:
-  id: 14244
+super_strength_2_noted_2: 14244
 super_strength_potion_1:
   id: 14245
   weight: 0.1
   examine: "One dose of super Strength potion."
-super_strength_1_noted_2:
-  id: 14246
+super_strength_1_noted_2: 14246
 ranging_potion_stealing_creation_5:
   id: 14247
   weight: 0.5
@@ -76542,26 +75965,22 @@ ranging_potion_stealing_creation_4:
   id: 14249
   weight: 0.4
   examine: "Four doses of ranging potion."
-ranging_potion_4_noted_2:
-  id: 14250
+ranging_potion_4_noted_2: 14250
 ranging_potion_stealing_creation_3:
   id: 14251
   weight: 0.3
   examine: "Three doses of ranging potion."
-ranging_potion_3_noted_2:
-  id: 14252
+ranging_potion_3_noted_2: 14252
 ranging_potion_stealing_creation_2:
   id: 14253
   weight: 0.2
   examine: "Two doses of ranging potion."
-ranging_potion_2_noted_2:
-  id: 14254
+ranging_potion_2_noted_2: 14254
 ranging_potion_stealing_creation_1:
   id: 14255
   weight: 0.1
   examine: "One dose of ranging potion."
-ranging_potion_1_noted_2:
-  id: 14256
+ranging_potion_1_noted_2: 14256
 defence_potion_stealing_creation_5:
   id: 14257
   weight: 0.5
@@ -76571,26 +75990,22 @@ defence_potion_stealing_creation_4:
   id: 14259
   weight: 0.4
   examine: "Four doses of Defence potion."
-defence_potion_4_noted_2:
-  id: 14260
+defence_potion_4_noted_2: 14260
 defence_potion_stealing_creation_3:
   id: 14261
   weight: 0.3
   examine: "Three doses of Defence potion."
-defence_potion_3_noted_2:
-  id: 14262
+defence_potion_3_noted_2: 14262
 defence_potion_stealing_creation_2:
   id: 14263
   weight: 0.2
   examine: "Two doses of Defence potion."
-defence_potion_2_noted_2:
-  id: 14264
+defence_potion_2_noted_2: 14264
 defence_potion_stealing_creation_1:
   id: 14265
   weight: 0.1
   examine: "One dose of Defence potion."
-defence_potion_1_noted_2:
-  id: 14266
+defence_potion_1_noted_2: 14266
 magic_potion_stealing_creation_5:
   id: 14267
   weight: 0.5
@@ -76600,26 +76015,22 @@ magic_potion_stealing_creation_4:
   id: 14269
   weight: 0.4
   examine: "Four doses of Magic potion."
-magic_potion_4_noted_2:
-  id: 14270
+magic_potion_4_noted_2: 14270
 magic_potion_stealing_creation_3:
   id: 14271
   weight: 0.3
   examine: "Three doses of Magic potion."
-magic_potion_3_noted_2:
-  id: 14272
+magic_potion_3_noted_2: 14272
 magic_potion_stealing_creation_2:
   id: 14273
   weight: 0.2
   examine: "Two doses of Magic potion."
-magic_potion_2_noted_2:
-  id: 14274
+magic_potion_2_noted_2: 14274
 magic_potion_stealing_creation_1:
   id: 14275
   weight: 0.1
   examine: "One dose of Magic potion."
-magic_potion_1_noted_2:
-  id: 14276
+magic_potion_1_noted_2: 14276
 summoning_potion_stealing_creation_5:
   id: 14277
   weight: 0.5
@@ -76629,26 +76040,22 @@ summoning_potion_stealing_creation_4:
   id: 14279
   weight: 0.4
   examine: "Four doses of Summoning potion."
-summoning_potion_4_noted_2:
-  id: 14280
+summoning_potion_4_noted_2: 14280
 summoning_potion_stealing_creation_3:
   id: 14281
   weight: 0.3
   examine: "Three doses of Summoning potion."
-summoning_potion_3_noted_2:
-  id: 14282
+summoning_potion_3_noted_2: 14282
 summoning_potion_stealing_creation_2:
   id: 14283
   weight: 0.2
   examine: "Two doses of Summoning potion."
-summoning_potion_2_noted_2:
-  id: 14284
+summoning_potion_2_noted_2: 14284
 summoning_potion_stealing_creation_1:
   id: 14285
   weight: 0.1
   examine: "One dose of Summoning potion."
-summoning_potion_1_noted_2:
-  id: 14286
+summoning_potion_1_noted_2: 14286
 scimitar_class_1:
   id: 14287
   bankable: false
@@ -77780,10 +77187,8 @@ dagonhai_robe_bottom:
   slot: "Legs"
   examine: "A robe worn by members of the Dagon'hai."
 dagonhai_robe_bottom_noted: 14502
-silif:
-  id: 14503
-silif_2:
-  id: 14504
+silif: 14503
+silif_2: 14504
 teleorb_while_guthix_sleeps:
   id: 14505
   tradeable: false
@@ -78429,8 +77834,7 @@ pouch_68:
   limit: 10000
   examine: "Can be used to create Summoning pouches."
   kept: "Wilderness"
-pouch_noted_65:
-  id: 14621
+pouch_noted_65: 14621
 rise_from_the_ashes_scroll:
   id: 14622
   price: 206
@@ -78796,8 +78200,7 @@ evil_tree_kindling:
   tradeable: false
   examine: "Kindling from an evil tree's root."
   kept: "Reclaim"
-captain_undak:
-  id: 14668
+captain_undak: 14668
 zanik_4:
   id: 14669
   tradeable: false
@@ -79411,8 +78814,7 @@ antique_lamp_the_tale_of_the_muspah:
   examine: "I wonder what happens if I rub it..."
   use: "Quest"
   kept: "Vanish"
-erjolf:
-  id: 14741
+erjolf: 14741
 lily_of_the_valley:
   id: 14742
   tradeable: false
@@ -79678,8 +79080,7 @@ ourg_bones_general_graardor:
   limit: 10000
   weight: 0.8
   examine: "The bones of a mighty ourg."
-ourg_bones_noted_2:
-  id: 14794
+ourg_bones_noted_2: 14794
 wilderness_manual_bounty_worlds:
   id: 14795
   tradeable: false
@@ -79846,8 +79247,7 @@ pot_of_wheat:
   examine: "A perfect foodstuff for those long dead."
   use: "Quest"
   kept: "Wilderness"
-leela:
-  id: 14817
+leela: 14817
 telegram:
   id: 14819
   tradeable: false
@@ -81226,8 +80626,7 @@ notes_k-z:
   destroy: "You will have to get a replacement from Zemouregal's base"
   examine: "Some notes about various Mahjarrat."
   kept: "Wilderness"
-arrav:
-  id: 15118
+arrav: 15118
 rangers_aid:
   id: 15119
   price: 345
@@ -81935,8 +81334,7 @@ berserker_ring_i:
   slot: "Ring"
   examine: "A ring reputed to bring out a berserk fury in its wearer. This has been imbued."
   kept: "Reclaim"
-menagerie:
-  id: 15221
+menagerie: 15221
 garden_habitat:
   id: 15222
   examine: "A nice garden habitat."
@@ -82010,8 +81408,7 @@ hand_cannon_shot:
   range_str: 150.0
   slot: "Ammo"
   examine: "The bag contains shot and powder for the hand cannon."
-commander_veldaban:
-  id: 15244
+commander_veldaban: 15244
 mysterious_slip:
   id: 15245
   tradeable: false
@@ -82310,8 +81707,7 @@ iron_hatchet_2:
   slot: "Weapon"
   examine: "A woodcutter's hatchet."
   kept: "Wilderness"
-iron_hatchet_noted_2:
-  id: 15299
+iron_hatchet_noted_2: 15299
 recover_special_4_4:
   id: 15300
   weight: 0.035
@@ -82488,8 +81884,7 @@ lord_marshal_cap_2:
   destroy: "You'll have to buy another using Thaler."
   examine: "A cap displaying a high rank."
   kept: "Wilderness"
-arianwyn:
-  id: 15340
+arianwyn: 15340
 blank_teleport_crystal:
   id: 15341
   tradeable: false
@@ -82691,8 +82086,7 @@ empty_sack_pack:
   tradeable: false
   examine: "A pack of 50 noted empty sacks."
   kept: "Reclaim"
-statue:
-  id: 15368
+statue: 15368
 roddecks_pipe:
   id: 15373
   tradeable: false
@@ -84205,8 +83599,7 @@ statue_piece:
   slot: "Weapon"
   destroy: "You must complete the entire statue of Dahmaroc to regain a replica piece."
   examine: "An intricately carved replica statue piece."
-statue_2:
-  id: 15583
+statue_2: 15583
 jade_demon_statuette:
   id: 15584
   tradeable: false
@@ -95351,8 +94744,7 @@ anti-dragon_shield_dungeoneering:
   material: "metal"
   examine: "This provides partial protection from dragonbreath attacks."
   weight: 5.443
-anti-dragon_shield_noted_2:
-  id: 16934
+anti-dragon_shield_noted_2: 16934
 novite_rapier:
   id: 16935
   str: 7.0
@@ -95500,8 +94892,7 @@ fractite_rapier_2:
   examine: "A razor-sharp rapier."
   use: "Dungeoneering"
   kept: "Always"
-fractite_rapier_noted_2:
-  id: 16958
+fractite_rapier_noted_2: 16958
 gorgonite_rapier_2:
   id: 16959
   str: 96.0
@@ -95515,8 +94906,7 @@ gorgonite_rapier_2:
   examine: "A razor-sharp rapier."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_rapier_noted_2:
-  id: 16960
+gorgonite_rapier_noted_2: 16960
 fractite_longsword_2:
   id: 16961
   str: 49.0
@@ -95531,8 +94921,7 @@ fractite_longsword_2:
   examine: "A razor-sharp longsword."
   use: "Dungeoneering"
   kept: "Always"
-fractite_longsword_noted_2:
-  id: 16962
+fractite_longsword_noted_2: 16962
 gorgonite_longsword_2:
   id: 16963
   str: 114.0
@@ -95547,8 +94936,7 @@ gorgonite_longsword_2:
   examine: "A razor-sharp longsword."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_longsword_noted_2:
-  id: 16964
+gorgonite_longsword_noted_2: 16964
 gorgonite_maul_2:
   id: 16965
   str: 145.0
@@ -95564,8 +94952,7 @@ gorgonite_maul_2:
   examine: "A maul used to claim life from those who don't deserve it."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_maul_noted_2:
-  id: 16966
+gorgonite_maul_noted_2: 16966
 catalytic_staff:
   id: 16967
   magic_damage: 15
@@ -95620,8 +95007,7 @@ fractite_2h_sword_2:
   examine: "A two-handed sword."
   use: "Dungeoneering"
   kept: "Always"
-fractite_2h_sword_noted_2:
-  id: 16974
+fractite_2h_sword_noted_2: 16974
 spinebeam_shortbow_2:
   id: 16975
   weight: 1.814
@@ -95632,8 +95018,7 @@ spinebeam_shortbow_2:
   use: "Dungeoneering"
   kept: "Always"
   ammo: [ notive_arrows, bathus_arrows, marmaros_arrows, kratonite_arrows, fractite_arrows ]
-spinebeam_shortbow_noted_2:
-  id: 16976
+spinebeam_shortbow_noted_2: 16976
 tangle_gum_staff:
   id: 16977
   str: 3.0
@@ -95847,8 +95232,7 @@ catalytic_staff_2:
   slot: "Weapon"
   examine: "This staff makes destructive spells more powerful."
   weight: 1.814
-catalytic_staff_noted_2:
-  id: 17014
+catalytic_staff_noted_2: 17014
 empowered_catalytic_staff:
   id: 17015
   magic_damage: 20
@@ -98490,8 +97874,7 @@ gorgonite_kiteshield_2:
   examine: "A large metal shield."
   use: "Dungeoneering"
   kept: "Always"
-gorgonite_kiteshield_noted_2:
-  id: 17358
+gorgonite_kiteshield_noted_2: 17358
 promethium_kiteshield:
   id: 17359
   stab_def: 63.0
@@ -98862,8 +98245,7 @@ chisel_dungeoneering:
   examine: "Good for detailed crafting."
   use: "Dungeoneering"
   kept: "Always"
-chisel_noted_2:
-  id: 17445
+chisel_noted_2: 17445
 needle_dungeoneering:
   id: 17446
   limit: 5000
@@ -99019,16 +98401,14 @@ vial_dungeoneering:
   examine: "An empty glass vial."
   use: "Dungeoneering"
   kept: "Always"
-vial_noted_2:
-  id: 17491
+vial_noted_2: 17491
 vial_of_water_dungeoneering:
   id: 17492
   weight: 0.1
   examine: "A glass vial containing water."
   use: "Dungeoneering"
   kept: "Always"
-vial_of_water_noted_2:
-  id: 17493
+vial_of_water_noted_2: 17493
 grimy_sagewort:
   id: 17494
   examine: "A fresh herb."
@@ -99400,8 +98780,7 @@ weapon_poison_dungeoneering:
   examine: "A vial of weapon poison."
   use: "Dungeoneering"
   kept: "Always"
-weapon_poison_noted_2:
-  id: 17597
+weapon_poison_noted_2: 17597
 gatherers_potion:
   id: 17598
   weight: 0.467
@@ -99665,8 +99044,7 @@ bones_dungeoneering:
   examine: "Bones are for burying."
   use: "Dungeoneering"
   kept: "Always"
-bones_noted_3:
-  id: 17671
+bones_noted_3: 17671
 bat_bones_dungeoneering:
   id: 17672
   limit: 10000
@@ -99674,8 +99052,7 @@ bat_bones_dungeoneering:
   examine: "Bones are for burying."
   use: "Dungeoneering"
   kept: "Always"
-bat_bones_noted_2:
-  id: 17673
+bat_bones_noted_2: 17673
 big_bones_dungeoneering:
   id: 17674
   limit: 10000
@@ -99683,8 +99060,7 @@ big_bones_dungeoneering:
   examine: "Bones are for burying."
   use: "Dungeoneering"
   kept: "Always"
-big_bones_noted_2:
-  id: 17675
+big_bones_noted_2: 17675
 dragon_bones_dungeoneering:
   id: 17676
   limit: 10000
@@ -99692,8 +99068,7 @@ dragon_bones_dungeoneering:
   examine: "Bones are for burying."
   use: "Dungeoneering"
   kept: "Always"
-dragon_bones_noted_2:
-  id: 17677
+dragon_bones_noted_2: 17677
 tinderbox_dungeoneering:
   id: 17678
   limit: 5000
@@ -99701,8 +99076,7 @@ tinderbox_dungeoneering:
   examine: "Useful for lighting fires."
   use: "Dungeoneering"
   kept: "Always"
-tinderbox_noted_2:
-  id: 17679
+tinderbox_noted_2: 17679
 ashes_dungeoneering:
   id: 17680
   limit: 10000
@@ -99710,8 +99084,7 @@ ashes_dungeoneering:
   examine: "A heap of ashes."
   use: "Dungeoneering"
   kept: "Always"
-ashes_noted_2:
-  id: 17681
+ashes_noted_2: 17681
 tangle_gum_branches:
   id: 17682
   examine: "There's enough wood here to be of use."
@@ -99928,16 +99301,14 @@ bowstring_dungeoneering:
   weight: 0.014
   examine: "I need an unstrung bow to attach this to."
   use: "Dungeoneering"
-bow_string_noted_2:
-  id: 17753
+bow_string_noted_2: 17753
 knife_dungeoneering:
   id: 17754
   weight: 0.453
   examine: "A dangerous-looking knife."
   use: "Dungeoneering"
   kept: "Always"
-knife_noted_2:
-  id: 17755
+knife_noted_2: 17755
 tangle_gum_trap:
   id: 17756
   weight: 0.226
@@ -100105,8 +99476,7 @@ fly_fishing_rod_dungeoneering:
   examine: "Just add feathers."
   use: "Dungeoneering"
   kept: "Always"
-fly_fishing_rod_noted_2:
-  id: 17795
+fly_fishing_rod_noted_2: 17795
 feather_dungeoneering:
   id: 17796
   limit: 10000
@@ -100239,8 +99609,7 @@ hammer_dungeoneering:
   examine: "Good for hitting things."
   use: "Dungeoneering"
   kept: "Always"
-hammer_noted_2:
-  id: 17884
+hammer_noted_2: 17884
 novite_arrowtips:
   id: 17885
   examine: "I can make some arrows with these."
@@ -101442,8 +100811,7 @@ banana_dungeoneering:
   examine: "Mmm, this looks tasty."
   use: "Dungeoneering"
   kept: "Always"
-banana_noted_2:
-  id: 18200
+banana_noted_2: 18200
 rusty_coins:
   id: 18201
   examine: "They make the world go round."
@@ -102063,8 +101431,7 @@ mercenarys_gloves:
   slot: "Hands"
   examine: "The gloves of a mercenary."
   kept: "Reclaim"
-dungeoneering_experience:
-  id: 18348
+dungeoneering_experience: 18348
 chaotic_rapier:
   id: 18349
   bank_stacks: false
@@ -102864,8 +102231,7 @@ seeker:
 spirit_guardian:
   id: 18506
   examine: "The spiritual remains of a defender of the dungeons."
-stalker:
-  id: 18507
+stalker: 18507
 dungeoneering_cape:
   id: 18508
   tradeable: false
@@ -102955,18 +102321,12 @@ naabe_deathslinger_pouch_noted: 18567
 wise_deathslinger_pouch_noted: 18568
 adept_deathslinger_pouch_noted: 18569
 sachem_deathslinger_pouch_noted: 18570
-pouch_noted_66:
-  id: 18571
-pouch_noted_67:
-  id: 18572
-pouch_noted_68:
-  id: 18573
-pouch_noted_69:
-  id: 18574
-pouch_noted_70:
-  id: 18575
-pouch_noted_71:
-  id: 18576
+pouch_noted_66: 18571
+pouch_noted_67: 18572
+pouch_noted_68: 18573
+pouch_noted_69: 18574
+pouch_noted_70: 18575
+pouch_noted_71: 18576
 kinship_ring:
   id: 18577
   slot: "Ring"
@@ -103046,22 +102406,14 @@ scroll_10:
   destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
   examine: "A recruitment scroll."
   kept: "Reclaim"
-herb:
-  id: 18594
-herb_2:
-  id: 18595
-herb_3:
-  id: 18596
-herb_4:
-  id: 18597
-herb_5:
-  id: 18598
-herb_6:
-  id: 18599
-herb_7:
-  id: 18600
-herb_8:
-  id: 18601
+herb: 18594
+herb_2: 18595
+herb_3: 18596
+herb_4: 18597
+herb_5: 18598
+herb_6: 18599
+herb_7: 18600
+herb_8: 18601
 scroll_11:
   id: 18602
   bankable: false
@@ -103078,22 +102430,14 @@ scroll_12:
   destroy: "You can get another scroll from a table in any of the Barbarian Assault recruitment rooms."
   examine: "A recruitment scroll."
   kept: "Reclaim"
-herb_9:
-  id: 18604
-herb_10:
-  id: 18605
-herb_11:
-  id: 18606
-herb_12:
-  id: 18607
-herb_13:
-  id: 18608
-herb_14:
-  id: 18609
-herb_15:
-  id: 18610
-herb_16:
-  id: 18611
+herb_9: 18604
+herb_10: 18605
+herb_11: 18606
+herb_12: 18607
+herb_13: 18608
+herb_14: 18609
+herb_15: 18610
+herb_16: 18611
 power_crystal_noted: 18635
 perfect_blue_dragon_scale:
   id: 18639
@@ -104087,15 +103431,12 @@ pit_black_demon:
 pit_iron_dragon:
   id: 18796
   examine: "Its scales are made of iron."
-minor_pit_trap:
-  id: 18797
-major_pit_trap:
-  id: 18798
+minor_pit_trap: 18797
+major_pit_trap: 18798
 superior_pit_trap:
   id: 18799
   examine: "Extremely painful."
-dungeon_pit:
-  id: 18800
+dungeon_pit: 18800
 mabels_ring:
   id: 18803
   tradeable: false
@@ -104171,10 +103512,8 @@ yanille_tablet:
   tradeable: false
   examine: "A Teleport to House tablet that has been redirected to Yanille."
   kept: "Reclaim"
-junk:
-  id: 18815
-junk_2:
-  id: 18816
+junk: 18815
+junk_2: 18816
 ring_of_kinship_tank:
   id: 18817
   tradeable: false
@@ -104290,8 +103629,7 @@ frost_dragon_bones:
   limit: 10000
   weight: 1.5
   examine: "Hmm. I doubt a dog would enjoy eating these."
-frost_dragon_bones_noted_2:
-  id: 18833
+frost_dragon_bones_noted_2: 18833
 frost_dragon_bonemeal:
   id: 18834
   tradeable: false
@@ -111190,8 +110528,7 @@ big_rock:
   destroy: "You can get another from the troll settlement near Keldagrim."
   examine: "A big rock."
   kept: "Vanish"
-veldaban:
-  id: 20092
+veldaban: 20092
 pretty_flower:
   id: 20093
   tradeable: false
