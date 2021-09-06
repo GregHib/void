@@ -1,840 +1,420 @@
-possessed_pickaxe:
-  id: 309
-woodcutting_stump:
-  id: 3
-rock:
-  id: 2429
-ogre_bellows:
-  id: 241
-parlour:
-  id: 626
-fire:
-  id: 2136
-evil_root:
-  id: 314
-butterfly:
-  id: 371
-flash_powder:
-  id: 408
-sea_slug:
-  id: 722
-swamp_bubbles:
-  id: 470
-spikes:
-  id: 519
-ghast:
-  id: 532
-mutated_zygomite:
-  id: 578
-cauldron:
-  id: 581
-portal:
-  id: 654
-cake:
-  id: 602
-bubbles:
-  id: 603
-spike_trap:
-  id: 615
-man_trap:
-  id: 616
-tangle_vine:
-  id: 619
-marble_trap:
-  id: 621
-karamthulhu:
-  id: 627
-rabbit:
-  id: 1039
-claw:
-  id: 667
-shot:
-  id: 690
-mist:
-  id: 707
-pickled_brain:
-  id: 723
-twiblick_night_special:
-  id: 727
-torch:
-  id: 789
-slug_goo:
-  id: 796
-dragon_platelegs:
-  id: 836
-my_arm:
-  id: 838
-light_jungle:
-  id: 839
-ug:
-  id: 848
-asgarnian_ale:
-  id: 853
-ugthanki_kebab:
-  id: 854
-treasure_pile:
-  id: 875
-gyr_falcon:
-  id: 927
-chocolate_kebbit:
-  id: 930
-imp:
-  id: 932
-sabre-toothed_kyatt:
-  id: 938
-spined_larupia:
-  id: 940
-horned_graahk:
-  id: 942
-rabbit_snare:
-  id: 946
-kebbit:
-  id: 951
-metal_bird:
-  id: 964
-mutant_tarn:
-  id: 1004
-molanisk:
-  id: 1033
-"10th_anniversary_cake":
-  id: 1065
-sergeant_grimspike:
-  id: 1205
-goblin:
-  id: 1259
-heimland_games_souvenir:
-  id: 1283
-bouquet:
-  id: 1343
-void_shifter:
-  id: 1501
-flag:
-  id: 1541
-king_vargas:
-  id: 1578
-nial_swiftfling:
-  id: 1579
-kitten:
-  id: 1615
-barrier:
-  id: 1752
-macaw:
-  id: 1778
-dark_energy_core:
-  id: 1828
-hazelmere's_hat:
-  id: 1928
-light_creature:
-  id: 1933
-jack_frost:
-  id: 1971
-ghost:
-  id: 1997
-muspah:
-  id: 2029
-penguin:
-  id: 2050
-right_hand:
-  id: 2130
-left_hand:
-  id: 2131
-tail:
-  id: 2132
-living_rock_striker:
-  id: 2139
-guardian_statue:
-  id: 2306
-animation_table:
-  id: 2359
-tome_of_strength:
-  id: 2422
-guardian_sphere:
-  id: 2437
-vile_fish:
-  id: 2522
-frozen_adventurer:
-  id: 2550
-tangle_gum_trap:
-  id: 2561
-seeping_elm_trap:
-  id: 2562
-blood_spindle_trap:
-  id: 2563
-utuku_trap:
-  id: 2564
-spinebeam_trap:
-  id: 2565
-bovistrangler_trap:
-  id: 2566
-thigat_trap:
-  id: 2567
-corpsethorn_trap:
-  id: 2568
-entgallow_trap:
-  id: 2569
-grave_creeper_trap:
-  id: 2570
-fairy_godfather:
-  id: 2658
-medical_table:
-  id: 2669
-commodore_matthias:
-  id: 2693
-commander_korasi:
-  id: 2694
-knight_diana:
-  id: 2695
-knight_bernard:
-  id: 2696
-knight_ami:
-  id: 2697
-wise_old_man:
-  id: 2743
-_flesh-spoiler_spawn:
-  id: 2765
-hobgoblin_geomancer:
-  id: 2777
-strange_bones:
-  id: 2838
-shadow_spider:
-  id: 2843
-camouflaged_jadinko:
-  id: 2920
-diseased_jadinko:
-  id: 2919
-shadow_jadinko:
-  id: 2918
-wilbur:
-  id: 2899
-amphibious_jadinko:
-  id: 2901
-aquatic_jadinko:
-  id: 2903
-cannibal_jadinko:
-  id: 2905
-carrion_jadinko:
-  id: 2907
-draconic_jadinko:
-  id: 2909
-igneous_jadinko:
-  id: 2911
-saradomin_jadinko:
-  id: 2913
-guthix_jadinko:
-  id: 2915
-zamorak_jadinko:
-  id: 2917
-activate_protect_item:
-  id: 2213
-activate_berserker:
-  id: 2266
-activate_turmoil:
-  id: 2226
-assist:
-  id: 1247
-cow_eat_grass:
-  id: 5854
-emote_enhanced_yawn:
-  id: 277
-emote_blow_kiss:
-  id: 1702
-emote_idea:
-  id: 712
-emote_zombie_hand:
-  id: 1244
-emote_air_guitar:
-  id: 1537
-emote_safety_first:
-  id: 1553
-emote_explore:
-  id: 1734
-emote_trick:
-  id: 1864
-emote_freeze:
-  id: 1973
-emote_give_thanks:
-  id: 86
-emote_around_the_world_in_eggty_days:
-  id: 2037
-emote_dramatic_point:
-  id: 780
-emote_puppet_master:
-  id: 2837
-emote_seal_of_approval:
-  id: 1287
-emote_taskmaster:
-  id: 2930
-emote_dungeoneering_start:
-  id: 2442
-emote_attack:
-  id: 823
-emote_defence:
-  id: 824
-emote_strength:
-  id: 828
-emote_constitution:
-  id: 2745
-emote_ranged:
-  id: 832
-emote_prayer:
-  id: 829
-emote_magic:
-  id: 813
-emote_cooking:
-  id: 821
-emote_woodcutting:
-  id: 822
-emote_fletching:
-  id: 812
-emote_fishing:
-  id: 819
-emote_firemaking:
-  id: 831
-emote_crafting:
-  id: 818
-emote_smithing:
-  id: 815
-emote_mining:
-  id: 814
-emote_herblore:
-  id: 835
-emote_agility:
-  id: 830
-emote_thieving:
-  id: 826
-emote_slayer:
-  id: 1656
-emote_farming:
-  id: 825
-emote_runecrafting:
-  id: 817
-emote_hunter:
-  id: 907
-emote_construction:
-  id: 820
-emote_summoning:
-  id: 1515
-emote_quest_point:
-  id: 816
-emote_dung_master_bow:
-  id: 2781
-emote_dung_master_spell:
-  id: 2782
-emote_dung_master_return:
-  id: 2783
-emote_dung_master_hobgoblin:
-  id: 2777
-emote_dung_master_gravecreeper:
-  id: 2778
-emote_dung_master_flesh_spoiler:
-  id: 2779
-emote_dung_master_cursebearer:
-  id: 2780
-emote_reindeer:
-  id: 859
-emote_snow_globe_flurry:
-  id: 1284
-level_up:
-  id: 199
-home_tele_1:
-  id: 775
-home_tele_2:
-  id: 800
-home_tele_3:
-  id: 801
-home_tele_4:
-  id: 803
-home_tele_5:
-  id: 804
-home_tele_6:
-  id: 1703
-home_tele_7:
-  id: 1704
-home_tele_9:
-  id: 1705
-home_tele_10:
-  id: 1706
-home_tele_11:
-  id: 1707
-home_tele_12:
-  id: 1708
-home_tele_13:
-  id: 1709
-home_tele_14:
-  id: 1710
-home_tele_15:
-  id: 1711
-home_tele_16:
-  id: 1712
-home_tele_17:
-  id: 1713
-teleport_modern:
-  id: 1576
-teleport_land_modern:
-  id: 1577
-teleport_ancient:
-  id: 1681
-teleport_lunar:
-  id: 1685
-teleport_tablet:
-  id: 1680
-bronze_arrow_shoot:
-  id: 19
-bronze_arrow:
-  id: 10
-iron_arrow_shoot:
-  id: 18
-iron_arrow:
-  id: 9
-steel_arrow_shoot:
-  id: 18
-steel_arrow:
-  id: 9
-mithril_arrow_shoot:
-  id: 21
-mithril_arrow:
-  id: 12
-adamant_arrow_shoot:
-  id: 22
-adamant_arrow:
-  id: 13
-rune_arrow_shoot:
-  id: 24
-rune_arrow:
-  id: 15
-ice_arrow_shoot:
-  id: 25
-ice_arrow:
-  id: 16
-broad_arrow_shoot:
-  id: 325
-broad_arrow:
-  id: 326
-dragon_arrow:
-  id: 1115
-training_arrow_shoot:
-  id: 806
-training_arrow:
-  id: 805
-crossbow_bolt:
-  id: 27
-bone_bolts:
-  id: 696
-barbed_bolts:
-  id: 696
-brutal_shoot:
-  id: 403
-brutal_arrow:
-  id: 404
-ogre_arrow_shoot:
-  id: 243
-ogre_arrow:
-  id: 242
-guthix_arrows_shoot:
-  id: 95
-guthix_arrows:
-  id: 98
-saradomin_arrows_shoot:
-  id: 96
-saradomin_arrows:
-  id: 99
-zamorak_arrows_shoot:
-  id: 97
-zamorak_arrows:
-  id: 100
-fire_arrows_unlit_shoot:
-  id: 26
-fire_arrows_unlit:
-  id: 17
-fire_arrows_lit_shoot:
-  id: 26
-fire_arrows_lit:
-  id: 17
-novite_arrows_shoot:
-  id: 2466
-novite_arrows:
-  id: 2467
-bathus_arrows_shoot:
-  id: 2468
-bathus_arrows:
-  id: 2469
-marmaros_arrows_shoot:
-  id: 2470
-marmaros_arrows:
-  id: 2471
-kratonite_arrows_shoot:
-  id: 2472
-kratonite_arrows:
-  id: 2473
-fractite_arrows_shoot:
-  id: 2474
-fractite_arrows:
-  id: 2475
-zephyrium_arrows_shoot:
-  id: 2476
-zephyrium_arrows:
-  id: 2477
-argonite_arrows_shoot:
-  id: 2478
-argonite_arrows:
-  id: 2479
-katagon_arrows_shoot:
-  id: 2480
-katagon_arrows:
-  id: 2481
-gorgonite_arrows_shoot:
-  id: 2482
-gorgonite_arrows:
-  id: 2483
-promethium_arrows_shoot:
-  id: 2484
-promethium_arrows:
-  id: 2485
-sagittarian_arrows_shoot:
-  id: 2486
-sagittarian_arrows:
-  id: 2487
-cast_sap_attack:
-  id: 2214
-proj_sap_attack:
-  id: 2215
-land_sap_attack:
-  id: 2216
-cast_sap_range:
-  id: 2217
-proj_sap_range:
-  id: 2218
-land_sap_range:
-  id: 2219
-cast_sap_magic:
-  id: 2220
-proj_sap_magic:
-  id: 2221
-land_sap_magic:
-  id: 2222
-cast_sap_spirit:
-  id: 2223
-proj_sap_spirit:
-  id: 2224
-land_sap_spirit:
-  id: 2225
-deflect_defence:
-  id: 2227
-deflect_magic:
-  id: 2228
-deflect_range:
-  id: 2229
-deflect_strength:
-  id: 2229
-deflect_attack:
-  id: 2230
-proj_leech_attack:
-  id: 2231
-land_leech_attack:
-  id: 2232
-proj_leech_strength:
-  id: 2248
-land_leech_strength:
-  id: 2250
-proj_leech_defence:
-  id: 2244
-land_leech_defence:
-  id: 2246
-proj_leech_range:
-  id: 2236
-land_leech_range:
-  id: 2238
-proj_leech_magic:
-  id: 2240
-land_leech_magic:
-  id: 2242
-soul_split:
-  id: 2263
-soul_split_hit:
-  id: 2264
-cast_leech_energy:
-  id: 2251
-proj_leech_energy:
-  id: 2252
-land_leech_energy:
-  id: 2254
-cast_leech_special_attack:
-  id: 2255
-proj_leech_special_attack:
-  id: 2256
-land_leech_special_attack:
-  id: 2258
-special_arrow_shoot:
-  id: 250
-special_arrow:
-  id: 249
-magic_shortbow_special:
-  id: 256
-bronze_arrow_double_shot:
-  id: 1104
-iron_arrow_double_shot:
-  id: 1104
-steel_arrow_double_shot:
-  id: 1104
-mithril_arrow_double_shot:
-  id: 1104
-adamant_arrow_double_shot:
-  id: 1104
-rune_arrow_double_shot:
-  id: 1104
-ice_arrow_double_shot:
-  id: 1104
-dragon_arrow_double_shot:
-  id: 1111
-broad_arrow_double_shot:
-  id: 1104
-fire_arrows_unlit_double_shot:
-  id: 1113
-fire_arrows_lit_double_shot:
-  id: 1114
-descent_of_arrow:
-  id: 1120
-descent_of_dragons_head:
-  id: 1099
-arrow_smoke:
-  id: 1101
-arrow_smoke_2:
-  id: 1101
-zaryte_arrow:
-  id: 1066
-descent_of_darkness_hit:
-  id: 1103
-descent_of_dragons_hit:
-  id: 1100
-bone_bolts_spec:
-  id: 698
-zaniks_crossbow_special:
-  id: 1714
-zaniks_crossbow_bolt:
-  id: 1497
-seercull_special_shoot:
-  id: 472
-seercull_special_arrow:
-  id: 473
-seercull_special_hit:
-  id: 474
-zamorak_bow_special_hit:
-  id: 127
-saradomin_bow_special_hit:
-  id: 128
-guthix_bow_special_hit:
-  id: 129
-saradomin_bow_restoration:
-  id: 93
-bronze_dart_throw:
-  id: 1234
-bronze_dart:
-  id: 226
-iron_dart_throw:
-  id: 1235
-iron_dart:
-  id: 227
-steel_dart_throw:
-  id: 1236
-steel_dart:
-  id: 228
-mithril_dart_throw:
-  id: 1238
-mithril_dart:
-  id: 229
-adamant_dart_throw:
-  id: 1239
-adamant_dart:
-  id: 230
-rune_dart_throw:
-  id: 1240
-rune_dart:
-  id: 231
-dragon_dart_throw:
-  id: 1242
-dragon_dart:
-  id: 1122
-bronze_javelin:
-  id: 200
-iron_javelin:
-  id: 201
-steel_javelin:
-  id: 202
-mithril_javelin:
-  id: 203
-adamant_javelin:
-  id: 204
-rune_javelin:
-  id: 205
-morrigans_javelin:
-  id: 1837
-morrigans_javelin_special:
-  id: 1836
-bronze_throwing_axe_throw:
-  id: 43
-bronze_throwing_axe:
-  id: 36
-iron_throwing_axe_throw:
-  id: 42
-iron_throwing_axe:
-  id: 35
-steel_throwing_axe_throw:
-  id: 44
-steel_throwing_axe:
-  id: 37
-mithril_throwing_axe_throw:
-  id: 45
-mithril_throwing_axe:
-  id: 38
-adamant_throwing_axe_throw:
-  id: 46
-adamant_throwing_axe:
-  id: 39
-rune_throwing_axe_throw:
-  id: 48
-rune_throwing_axe:
-  id: 41
-#morrigans_throwing_axe_throw:
-#  id: 1856
-morrigans_throwing_axe:
-  id: 1839
-bronze_knife_throw:
-  id: 219
-bronze_knife:
-  id: 212
-iron_knife_throw:
-  id: 220
-iron_knife:
-  id: 213
-steel_knife_throw:
-  id: 221
-steel_knife:
-  id: 214
-black_knife_throw:
-  id: 222
-black_knife:
-  id: 215
-mithril_knife_throw:
-  id: 223
-mithril_knife:
-  id: 216
-adamant_knife_throw:
-  id: 224
-adamant_knife:
-  id: 217
-rune_knife_throw:
-  id: 225
-rune_knife:
-  id: 218
-hand_cannon_shoot:
-  id: 2138
-hand_cannon_explode:
-  id: 2140
-hand_cannon_special:
-  id: 2141
-hand_cannon_shot:
-  id: 2143
-armour_piercing:
-  id: 758
-blood_forfeit:
-  id: 754
-clear_mind:
-  id: 751
-down_to_earth:
-  id: 757
-dragons_breath:
-  id: 756
-earths_fury:
-  id: 755
-life_leech:
-  id: 753
-lucky_lightning:
-  id: 749
-magical_poison:
-  id: 752
-sea_curse:
-  id: 750
-training_arrows_shoot:
-  id: 806
-training_arrows:
-  id: 805
-sling_rock_shoot:
-  id: 33
-sling_rock:
-  id: 32
-toktz-xil-ul:
-  id: 442
-chinchompa:
-  id: 908
-red_chinchompa:
-  id: 909
-chinchompa_hit:
-  id: 2739
-rune_throwing_axe_special_throw:
-  id: 257
-rune_throwing_axe_special:
-  id: 258
-energy_drain:
-  id: 2108
-statius_warhammer_smash:
-  id: 1840
-rampage:
-  id: 246
-slice_and_dice:
-  id: 1950
-puncture:
-  id: 252
-cleave:
-  id: 2117
-shatter:
-  id: 251
-the_judgement:
-  id: 2113
-sanctuary:
-  id: 247
-sever:
-  id: 2118
-saradomins_lightning:
-  id: 1194
-favour_of_the_war_god:
-  id: 1052
-liquify:
-  id: 1048
-backstab:
-  id: 704
-sunder:
-  id: 1027
-warstrike:
-  id: 2114
-healing_blade:
-  id: 2109
-ice_cleave:
-  id: 1221
-ice_cleave_hit:
-  id: 2104
-sweep:
-  id: 282
-powerstab:
-  id: 1225
-shove:
-  id: 253
-shove_stun:
-  id: 254
-quick_smash:
-  id: 340
-clobber:
-  id: 479
-disrupt:
-  id: 1729
-disrupt_hit:
-  id: 1730
-weaken:
-  id: 483
-impale:
-  id: 274
-spear_wall:
-  id: 1835
-power_of_light:
-  id: 2319
-power_of_light_hit:
-  id: 2320
+possessed_pickaxe: 309
+woodcutting_stump: 3
+rock: 2429
+ogre_bellows: 241
+parlour: 626
+fire: 2136
+evil_root: 314
+butterfly: 371
+flash_powder: 408
+sea_slug: 722
+swamp_bubbles: 470
+spikes: 519
+ghast: 532
+mutated_zygomite: 578
+cauldron: 581
+portal: 654
+cake: 602
+bubbles: 603
+spike_trap: 615
+man_trap: 616
+tangle_vine: 619
+marble_trap: 621
+karamthulhu: 627
+rabbit: 1039
+claw: 667
+shot: 690
+mist: 707
+pickled_brain: 723
+twiblick_night_special: 727
+torch: 789
+slug_goo: 796
+dragon_platelegs: 836
+my_arm: 838
+light_jungle: 839
+ug: 848
+asgarnian_ale: 853
+ugthanki_kebab: 854
+treasure_pile: 875
+gyr_falcon: 927
+chocolate_kebbit: 930
+imp: 932
+sabre-toothed_kyatt: 938
+spined_larupia: 940
+horned_graahk: 942
+rabbit_snare: 946
+kebbit: 951
+metal_bird: 964
+mutant_tarn: 1004
+molanisk: 1033
+"10th_anniversary_cake": 1065
+sergeant_grimspike: 1205
+goblin: 1259
+heimland_games_souvenir: 1283
+bouquet: 1343
+void_shifter: 1501
+flag: 1541
+king_vargas: 1578
+nial_swiftfling: 1579
+kitten: 1615
+barrier: 1752
+macaw: 1778
+dark_energy_core: 1828
+hazelmere's_hat: 1928
+light_creature: 1933
+jack_frost: 1971
+ghost: 1997
+muspah: 2029
+penguin: 2050
+right_hand: 2130
+left_hand: 2131
+tail: 2132
+living_rock_striker: 2139
+guardian_statue: 2306
+animation_table: 2359
+tome_of_strength: 2422
+guardian_sphere: 2437
+vile_fish: 2522
+frozen_adventurer: 2550
+tangle_gum_trap: 2561
+seeping_elm_trap: 2562
+blood_spindle_trap: 2563
+utuku_trap: 2564
+spinebeam_trap: 2565
+bovistrangler_trap: 2566
+thigat_trap: 2567
+corpsethorn_trap: 2568
+entgallow_trap: 2569
+grave_creeper_trap: 2570
+fairy_godfather: 2658
+medical_table: 2669
+commodore_matthias: 2693
+commander_korasi: 2694
+knight_diana: 2695
+knight_bernard: 2696
+knight_ami: 2697
+wise_old_man: 2743
+_flesh-spoiler_spawn: 2765
+hobgoblin_geomancer: 2777
+strange_bones: 2838
+shadow_spider: 2843
+camouflaged_jadinko: 2920
+diseased_jadinko: 2919
+shadow_jadinko: 2918
+wilbur: 2899
+amphibious_jadinko: 2901
+aquatic_jadinko: 2903
+cannibal_jadinko: 2905
+carrion_jadinko: 2907
+draconic_jadinko: 2909
+igneous_jadinko: 2911
+saradomin_jadinko: 2913
+guthix_jadinko: 2915
+zamorak_jadinko: 2917
+activate_protect_item: 2213
+activate_berserker: 2266
+activate_turmoil: 2226
+assist: 1247
+cow_eat_grass: 5854
+emote_enhanced_yawn: 277
+emote_blow_kiss: 1702
+emote_idea: 712
+emote_zombie_hand: 1244
+emote_air_guitar: 1537
+emote_safety_first: 1553
+emote_explore: 1734
+emote_trick: 1864
+emote_freeze: 1973
+emote_give_thanks: 86
+emote_around_the_world_in_eggty_days: 2037
+emote_dramatic_point: 780
+emote_puppet_master: 2837
+emote_seal_of_approval: 1287
+emote_taskmaster: 2930
+emote_dungeoneering_start: 2442
+emote_attack: 823
+emote_defence: 824
+emote_strength: 828
+emote_constitution: 2745
+emote_ranged: 832
+emote_prayer: 829
+emote_magic: 813
+emote_cooking: 821
+emote_woodcutting: 822
+emote_fletching: 812
+emote_fishing: 819
+emote_firemaking: 831
+emote_crafting: 818
+emote_smithing: 815
+emote_mining: 814
+emote_herblore: 835
+emote_agility: 830
+emote_thieving: 826
+emote_slayer: 1656
+emote_farming: 825
+emote_runecrafting: 817
+emote_hunter: 907
+emote_construction: 820
+emote_summoning: 1515
+emote_quest_point: 816
+emote_dung_master_bow: 2781
+emote_dung_master_spell: 2782
+emote_dung_master_return: 2783
+emote_dung_master_hobgoblin: 2777
+emote_dung_master_gravecreeper: 2778
+emote_dung_master_flesh_spoiler: 2779
+emote_dung_master_cursebearer: 2780
+emote_reindeer: 859
+emote_snow_globe_flurry: 1284
+level_up: 199
+home_tele_1: 775
+home_tele_2: 800
+home_tele_3: 801
+home_tele_4: 803
+home_tele_5: 804
+home_tele_6: 1703
+home_tele_7: 1704
+home_tele_9: 1705
+home_tele_10: 1706
+home_tele_11: 1707
+home_tele_12: 1708
+home_tele_13: 1709
+home_tele_14: 1710
+home_tele_15: 1711
+home_tele_16: 1712
+home_tele_17: 1713
+teleport_modern: 1576
+teleport_land_modern: 1577
+teleport_ancient: 1681
+teleport_lunar: 1685
+teleport_tablet: 1680
+bronze_arrow_shoot: 19
+bronze_arrow: 10
+iron_arrow_shoot: 18
+iron_arrow: 9
+steel_arrow_shoot: 18
+steel_arrow: 9
+mithril_arrow_shoot: 21
+mithril_arrow: 12
+adamant_arrow_shoot: 22
+adamant_arrow: 13
+rune_arrow_shoot: 24
+rune_arrow: 15
+ice_arrow_shoot: 25
+ice_arrow: 16
+broad_arrow_shoot: 325
+broad_arrow: 326
+dragon_arrow: 1115
+training_arrow_shoot: 806
+training_arrow: 805
+crossbow_bolt: 27
+bone_bolts: 696
+barbed_bolts: 696
+brutal_shoot: 403
+brutal_arrow: 404
+ogre_arrow_shoot: 243
+ogre_arrow: 242
+guthix_arrows_shoot: 95
+guthix_arrows: 98
+saradomin_arrows_shoot: 96
+saradomin_arrows: 99
+zamorak_arrows_shoot: 97
+zamorak_arrows: 100
+fire_arrows_unlit_shoot: 26
+fire_arrows_unlit: 17
+fire_arrows_lit_shoot: 26
+fire_arrows_lit: 17
+novite_arrows_shoot: 2466
+novite_arrows: 2467
+bathus_arrows_shoot: 2468
+bathus_arrows: 2469
+marmaros_arrows_shoot: 2470
+marmaros_arrows: 2471
+kratonite_arrows_shoot: 2472
+kratonite_arrows: 2473
+fractite_arrows_shoot: 2474
+fractite_arrows: 2475
+zephyrium_arrows_shoot: 2476
+zephyrium_arrows: 2477
+argonite_arrows_shoot: 2478
+argonite_arrows: 2479
+katagon_arrows_shoot: 2480
+katagon_arrows: 2481
+gorgonite_arrows_shoot: 2482
+gorgonite_arrows: 2483
+promethium_arrows_shoot: 2484
+promethium_arrows: 2485
+sagittarian_arrows_shoot: 2486
+sagittarian_arrows: 2487
+cast_sap_attack: 2214
+proj_sap_attack: 2215
+land_sap_attack: 2216
+cast_sap_range: 2217
+proj_sap_range: 2218
+land_sap_range: 2219
+cast_sap_magic: 2220
+proj_sap_magic: 2221
+land_sap_magic: 2222
+cast_sap_spirit: 2223
+proj_sap_spirit: 2224
+land_sap_spirit: 2225
+deflect_defence: 2227
+deflect_magic: 2228
+deflect_range: 2229
+deflect_strength: 2229
+deflect_attack: 2230
+proj_leech_attack: 2231
+land_leech_attack: 2232
+proj_leech_strength: 2248
+land_leech_strength: 2250
+proj_leech_defence: 2244
+land_leech_defence: 2246
+proj_leech_range: 2236
+land_leech_range: 2238
+proj_leech_magic: 2240
+land_leech_magic: 2242
+soul_split: 2263
+soul_split_hit: 2264
+cast_leech_energy: 2251
+proj_leech_energy: 2252
+land_leech_energy: 2254
+cast_leech_special_attack: 2255
+proj_leech_special_attack: 2256
+land_leech_special_attack: 2258
+special_arrow_shoot: 250
+special_arrow: 249
+magic_shortbow_special: 256
+bronze_arrow_double_shot: 1104
+iron_arrow_double_shot: 1104
+steel_arrow_double_shot: 1104
+mithril_arrow_double_shot: 1104
+adamant_arrow_double_shot: 1104
+rune_arrow_double_shot: 1104
+ice_arrow_double_shot: 1104
+dragon_arrow_double_shot: 1111
+broad_arrow_double_shot: 1104
+fire_arrows_unlit_double_shot: 1113
+fire_arrows_lit_double_shot: 1114
+descent_of_arrow: 1120
+descent_of_dragons_head: 1099
+arrow_smoke: 1101
+arrow_smoke_2: 1101
+zaryte_arrow: 1066
+descent_of_darkness_hit: 1103
+descent_of_dragons_hit: 1100
+bone_bolts_spec: 698
+zaniks_crossbow_special: 1714
+zaniks_crossbow_bolt: 1497
+seercull_special_shoot: 472
+seercull_special_arrow: 473
+seercull_special_hit: 474
+zamorak_bow_special_hit: 127
+saradomin_bow_special_hit: 128
+guthix_bow_special_hit: 129
+saradomin_bow_restoration: 93
+bronze_dart_throw: 1234
+bronze_dart: 226
+iron_dart_throw: 1235
+iron_dart: 227
+steel_dart_throw: 1236
+steel_dart: 228
+mithril_dart_throw: 1238
+mithril_dart: 229
+adamant_dart_throw: 1239
+adamant_dart: 230
+rune_dart_throw: 1240
+rune_dart: 231
+dragon_dart_throw: 1242
+dragon_dart: 1122
+bronze_javelin: 200
+iron_javelin: 201
+steel_javelin: 202
+mithril_javelin: 203
+adamant_javelin: 204
+rune_javelin: 205
+morrigans_javelin: 1837
+morrigans_javelin_special: 1836
+bronze_throwing_axe_throw: 43
+bronze_throwing_axe: 36
+iron_throwing_axe_throw: 42
+iron_throwing_axe: 35
+steel_throwing_axe_throw: 44
+steel_throwing_axe: 37
+mithril_throwing_axe_throw: 45
+mithril_throwing_axe: 38
+adamant_throwing_axe_throw: 46
+adamant_throwing_axe: 39
+rune_throwing_axe_throw: 48
+rune_throwing_axe: 41
+# morrigans_throwing_axe_throw: 1856
+morrigans_throwing_axe: 1839
+bronze_knife_throw: 219
+bronze_knife: 212
+iron_knife_throw: 220
+iron_knife: 213
+steel_knife_throw: 221
+steel_knife: 214
+black_knife_throw: 222
+black_knife: 215
+mithril_knife_throw: 223
+mithril_knife: 216
+adamant_knife_throw: 224
+adamant_knife: 217
+rune_knife_throw: 225
+rune_knife: 218
+hand_cannon_shoot: 2138
+hand_cannon_explode: 2140
+hand_cannon_special: 2141
+hand_cannon_shot: 2143
+armour_piercing: 758
+blood_forfeit: 754
+clear_mind: 751
+down_to_earth: 757
+dragons_breath: 756
+earths_fury: 755
+life_leech: 753
+lucky_lightning: 749
+magical_poison: 752
+sea_curse: 750
+training_arrows_shoot: 806
+training_arrows: 805
+sling_rock_shoot: 33
+sling_rock: 32
+toktz-xil-ul: 442
+chinchompa: 908
+red_chinchompa: 909
+chinchompa_hit: 2739
+rune_throwing_axe_special_throw: 257
+rune_throwing_axe_special: 258
+energy_drain: 2108
+statius_warhammer_smash: 1840
+rampage: 246
+slice_and_dice: 1950
+puncture: 252
+cleave: 2117
+shatter: 251
+the_judgement: 2113
+sanctuary: 247
+sever: 2118
+saradomins_lightning: 1194
+favour_of_the_war_god: 1052
+liquify: 1048
+backstab: 704
+sunder: 1027
+warstrike: 2114
+healing_blade: 2109
+ice_cleave: 1221
+ice_cleave_hit: 2104
+sweep: 282
+powerstab: 1225
+shove: 253
+shove_stun: 254
+quick_smash: 340
+clobber: 479
+disrupt: 1729
+disrupt_hit: 1730
+weaken: 483
+impale: 274
+spear_wall: 1835
+power_of_light: 2319
+power_of_light_hit: 2320
