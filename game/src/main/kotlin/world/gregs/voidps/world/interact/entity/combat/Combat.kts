@@ -47,6 +47,7 @@ fun Character.attack(target: Character) {
         source["target"] = target
         val handler = target.events.on<Character, Died> {
             source.stop("in_combat")
+            cancel(ActionType.Combat)
         }
         try {
             watch(target)

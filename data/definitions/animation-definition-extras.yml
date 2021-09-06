@@ -1062,7 +1062,7 @@ player_punch:
 player_kick:
   id: 423
 player_death:
-  id: 9055
+  id: 836
 sap:
   id: 12569
 leech:
