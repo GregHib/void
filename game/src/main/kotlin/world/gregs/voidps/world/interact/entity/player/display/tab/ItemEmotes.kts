@@ -103,7 +103,7 @@ on<ContainerOption>({ container == "inventory" && item.name == "snow_globe" && o
     }
 }
 
-on<ContainerOption>({ container == "inventory" && item.name == "yo-yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
+on<ContainerOption>({ container == "inventory" && item.name == "yo_yo" && (option == "Play" || option == "Loop" || option == "Walk" || option == "Crazy") }) { player: Player ->
     emote(player) {
         player.playAnimation("emote_yoyo_${option.toLowerCase()}")
     }
