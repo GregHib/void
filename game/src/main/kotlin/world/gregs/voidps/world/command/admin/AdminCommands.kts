@@ -30,6 +30,7 @@ import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -185,6 +186,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.clearOffset(skill)
     }
+    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, 0)
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
