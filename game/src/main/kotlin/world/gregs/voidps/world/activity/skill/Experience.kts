@@ -14,7 +14,7 @@ on<Registered> { player: Player ->
 }
 
 on<InterfaceOption>({ name == it.gameFrame.name && component == "xp_orb" && option == "Reset XP Total" }) { player: Player ->
-    player.setVar("xp_counter", 0)
+    player.setVar("xp_counter", 0.0)
 }
 
 on<GrantExp> { player: Player ->
