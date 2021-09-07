@@ -13,8 +13,6 @@ import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.utility.inject
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_CURSES
-import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.ACTIVE_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_CURSES
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.QUICK_PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.SELECTING_QUICK_PRAYERS
@@ -35,25 +33,6 @@ val prayerEnumId = 2279
 val curseEnumId = 863
 
 val logger = InlineLogger()
-
-fun loadPrayerNames(enumId: Int): List<String> {
-    val list = mutableListOf<Pair<Int, String>>()
-    enums.get(enumId).map?.forEach { (_, value) ->
-        val strut = structs.get(value as Int).params
-        val name = getPrayerName(strut)!!
-        list.add(value to name)
-    }
-    list.sortBy { it.first }
-    return list.map { it.second }
-}
-
-val prayerNames = loadPrayerNames(prayerEnumId)
-BitwiseVariable(1395, Variable.Type.VARP, values = prayerNames).register(ACTIVE_PRAYERS)
-BitwiseVariable(1397, Variable.Type.VARP, true, values = prayerNames).register(QUICK_PRAYERS)
-
-val curseNames = loadPrayerNames(curseEnumId)
-BitwiseVariable(1582, Variable.Type.VARP, values = curseNames).register(ACTIVE_CURSES)
-BitwiseVariable(1587, Variable.Type.VARP, true, values = curseNames).register(QUICK_CURSES)
 
 val prayerGroups = setOf(
     setOf("Steel Skin", "Piety", "Thick Skin", "Chivalry", "Rock Skin", "Augury", "Rigour"),
@@ -125,7 +104,7 @@ fun Player.togglePrayer(prayerIndex: Int, listKey: String, quick: Boolean) {
 on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "Select Quick Prayers" }) { player: Player ->
     val selecting = player.toggleVar(SELECTING_QUICK_PRAYERS)
     if (selecting) {
-        player.setVar("tab", Tab.PrayerList)
+        player.setVar("tab", Tab.PrayerList.name)
         player.sendVar(player.getQuickVarKey())
         player[TEMP_QUICK_PRAYERS] = player.getVar(player.getQuickVarKey(), 0)
     } else if (player.contains(TEMP_QUICK_PRAYERS)) {
@@ -157,7 +136,7 @@ on<InterfaceOption>({ name == "prayer_orb" && component == "orb" && option == "T
         }
     } else {
         player.playSound("deactivate_prayer")
-        player.clearVar<String>(activePrayers)
+        player.clearVar(activePrayers)
     }
 }
 

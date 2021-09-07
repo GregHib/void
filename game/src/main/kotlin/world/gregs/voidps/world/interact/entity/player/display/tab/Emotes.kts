@@ -9,7 +9,9 @@ import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Direction
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -32,36 +34,6 @@ import world.gregs.voidps.world.interact.entity.player.equip.isSkillCape
 import world.gregs.voidps.world.interact.entity.player.equip.isTrimmedSkillCape
 import world.gregs.voidps.world.interact.entity.sound.playJingle
 import kotlin.random.Random
-
-BooleanVariable(2309, Variable.Type.VARBIT, true).register("unlocked_emote_flap")
-BooleanVariable(2310, Variable.Type.VARBIT, true).register("unlocked_emote_slap_head")
-BooleanVariable(2311, Variable.Type.VARBIT, true).register("unlocked_emote_idea")
-BooleanVariable(2312, Variable.Type.VARBIT, true).register("unlocked_emote_stomp")
-IntBooleanVariable(532, Variable.Type.VARBIT, trueIntValue = 7, persistent = true).register("unlocked_emote_lost_tribe")
-BooleanVariable(1367, Variable.Type.VARBIT, true).register("unlocked_emote_glass_wall")
-BooleanVariable(1368, Variable.Type.VARBIT, true).register("unlocked_emote_glass_box")
-BooleanVariable(1369, Variable.Type.VARBIT, true).register("unlocked_emote_climb_rope")
-BooleanVariable(1370, Variable.Type.VARBIT, true).register("unlocked_emote_lean")
-BooleanVariable(1371, Variable.Type.VARBIT, true).register("unlocked_emote_scared")
-BooleanVariable(1920, Variable.Type.VARBIT, true).register("unlocked_emote_zombie_dance")
-BooleanVariable(1921, Variable.Type.VARBIT, true).register("unlocked_emote_zombie_walk")
-BooleanVariable(2055, Variable.Type.VARBIT, true).register("unlocked_emote_bunny_hop")
-BooleanVariable(2787, Variable.Type.VARBIT, true).register("unlocked_emote_skillcape")
-IntBooleanVariable(4075, Variable.Type.VARBIT, trueIntValue = 12, persistent = true).register("unlocked_emote_zombie_hand")
-BooleanVariable(4202, Variable.Type.VARBIT, true).register("unlocked_emote_snowman_dance")
-BooleanVariable(4394, Variable.Type.VARBIT, true).register("unlocked_emote_air_guitar")
-BooleanVariable(4476, Variable.Type.VARBIT, true).register("unlocked_emote_safety_first")
-BooleanVariable(4884, Variable.Type.VARBIT, true).register("unlocked_emote_explore")
-BooleanVariable(5490, Variable.Type.VARBIT, true).register("unlocked_emote_trick")
-BooleanVariable(5732, Variable.Type.VARBIT, true).register("unlocked_emote_freeze")
-BooleanVariable(5641, Variable.Type.VARBIT, true).register("unlocked_emote_give_thanks")
-IntBooleanVariable(6014, Variable.Type.VARBIT, trueIntValue = 85, persistent = true).register("unlocked_emote_around_the_world_in_eggty_days")
-BooleanVariable(6936, Variable.Type.VARBIT, true).register("unlocked_emote_dramatic_point")
-BooleanVariable(6095, Variable.Type.VARBIT, true).register("unlocked_emote_faint")
-IntBooleanVariable(8300, Variable.Type.VARBIT, trueIntValue = 20, persistent = true).register("unlocked_emote_puppet_master")
-BooleanVariable(8688, Variable.Type.VARBIT, true).register("unlocked_emote_seal_of_approval")
-IntBooleanVariable(8601, Variable.Type.VARBIT, trueIntValue = 417, persistent = true).register("unlocked_emote_taskmaster")
-
 
 val all = setOf("flap",
     "slap_head",

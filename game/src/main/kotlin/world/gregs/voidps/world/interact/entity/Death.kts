@@ -24,6 +24,7 @@ import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.getIntProperty
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.attackers
+import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val npcs: NPCs by inject()
@@ -86,7 +87,7 @@ on<Died> { player: Player ->
             player.attackers.clear()
             val damageDealers: MutableMap<Character, Int> = player["damage_dealers"]
             damageDealers.clear()
-            player.playSound("player_death", delay = 40)
+            player.playJingle("death")
             player.stopAllEffects()
             dropAll(player, player.equipment, tile)
             dropAll(player, player.inventory, tile)

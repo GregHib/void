@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ObjectDefinition
 import world.gregs.voidps.cache.definition.decoder.ObjectDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
@@ -16,7 +17,7 @@ class ObjectDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("objectDefinitionsPath")): ObjectDefinitions {
         timedLoad("object definition") {
-            load(loader.load<Map<String, Map<String, Any>>>(path))
+            load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }

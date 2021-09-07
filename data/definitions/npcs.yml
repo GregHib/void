@@ -339,12 +339,9 @@ turkey:
 seal:
   id: 13255
   examine: "Arf arf."
-primal_warrior:
-  id: 11227
-celestial_mage:
-  id: 11228
-sagittarian_ranger:
-  id: 11229
+primal_warrior: 11227
+celestial_mage: 11228
+sagittarian_ranger: 11229
 fishing_spot_small_net_bait:
   id: 327
   examine: "It looks like there might be fish swimming in the water."

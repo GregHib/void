@@ -14,7 +14,7 @@ suspend fun DialogueContext.levelUp(text: String, skill: Skill) {
         for ((index, line) in lines.withIndex()) {
             player.interfaces.sendText(LEVEL_UP_INTERFACE_NAME, "line${index + 1}", line)
         }
-        player.setVar("level_up_icon", skill)
+        player.setVar("level_up_icon", skill.name)
         return await("level")
     }
 }

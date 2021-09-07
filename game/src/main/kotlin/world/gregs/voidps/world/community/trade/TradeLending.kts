@@ -2,8 +2,6 @@ package world.gregs.voidps.world.community.trade
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.dialogue.dialogue
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
@@ -13,9 +11,6 @@ import world.gregs.voidps.world.interact.dialogue.type.intEntry
 /**
  * Item lending duration modifying
  */
-
-IntVariable(5026, Variable.Type.VARBIT).register("lend_time")
-IntVariable(5070, Variable.Type.VARBIT).register("other_lend_time")
 
 on<InterfaceOption>({ name == "trade_main" && component == "loan_time" && option == "Specify" }) { player: Player ->
     player.dialogue {

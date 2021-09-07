@@ -6,7 +6,8 @@ import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.equipment
@@ -21,14 +22,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import java.math.RoundingMode
 import java.text.DecimalFormat
-
-BooleanVariable(4894, Variable.Type.VARBIT, defaultValue = false).register("equipment_banking")
-IntVariable(779, Variable.Type.VARC, defaultValue = 1426).register("equipment_emote")
-StringVariable(321, Variable.Type.VARCSTR).register("equipment_name")
-StringVariable(322, Variable.Type.VARCSTR).register("equipment_titles")
-StringVariable(323, Variable.Type.VARCSTR).register("equipment_names")
-StringVariable(324, Variable.Type.VARCSTR).register("equipment_stats")
-StringVariable(325, Variable.Type.VARCSTR).register("comparison_stats")
 
 val definitions: ItemDefinitions by inject()
 

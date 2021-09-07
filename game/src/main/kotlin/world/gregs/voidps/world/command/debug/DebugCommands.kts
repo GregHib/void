@@ -1,6 +1,4 @@
 import world.gregs.voidps.engine.action.action
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.entity.character.move.walkTo
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
@@ -25,15 +23,6 @@ import world.gregs.voidps.world.interact.entity.gfx.areaGraphic
 import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.system.measureNanoTime
-
-IntVariable(1109, Variable.Type.VARBIT).register("one")
-IntVariable(1112, Variable.Type.VARBIT).register("two")
-IntVariable(1113, Variable.Type.VARBIT).register("three")
-IntVariable(1241, Variable.Type.VARBIT).register("four")
-IntVariable(1242, Variable.Type.VARBIT).register("five")
-IntVariable(741, Variable.Type.VARBIT).register("six")
-IntVariable(743, Variable.Type.VARBIT).register("seven")
-IntVariable(744, Variable.Type.VARBIT).register("eight")
 
 on<Command>({ prefix == "test" }) { player: Player ->
     player.setAnimation(12152)

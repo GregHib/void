@@ -63,7 +63,7 @@ object ItemDefinitionPipeline {
         val output = buildItemExtras(revisionDate, decoder, cache718, rs2Wiki, pages)
         val map = convertToYaml(output)
         val loader = FileLoader(true)
-        val file = File("item-definition-extras.yml")
+        val file = File("items.yml")
         loader.save(file, map)
         val contents = "# Don't edit; apply changes to the ItemDefinitionPipeline tool's ItemManualChanges class instead.\n${file.readText()}"
         file.writeText(contents)

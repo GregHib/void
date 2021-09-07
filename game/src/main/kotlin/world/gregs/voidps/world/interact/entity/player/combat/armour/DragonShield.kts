@@ -23,7 +23,7 @@ on<HitDamageModifier>({ type == "dragonfire" }, Priority.HIGHISH) { player: Play
     var multiplier = 1.0
 
     val shield = player.equipped(EquipSlot.Shield).name
-    if (shield == "anti-dragon_shield" || shield.startsWith("dragonfire_shield")) {
+    if (shield == "anti_dragon_shield" || shield.startsWith("dragonfire_shield")) {
         multiplier -= if (metal) 0.6 else 0.8
         player.message("Your shield absorbs most of the dragon's fiery breath!", ChatType.GameFilter)
     }

@@ -11,7 +11,9 @@ import world.gregs.voidps.cache.definition.decoder.ClientScriptDecoder
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.setVar
+import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,11 +29,6 @@ import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.player.equip.weaponStyle
 import java.util.concurrent.TimeUnit
-
-IntVariable(43, Variable.Type.VARP).register("attack_style")
-NegativeBooleanVariable(172, Variable.Type.VARP, true).register("auto_retaliate")
-BooleanVariable(301, Variable.Type.VARP).register("special_attack")
-IntVariable(300, Variable.Type.VARP, true, 1000).register("special_attack_energy")
 
 val names = arrayOf("default", "staff", "axe", "sceptre", "pickaxe", "dagger", "sword", "2h", "mace", "claws", "hammer", "whip", "fun", "pie", "spear", "halberd", "bow", "crossbow", "thrown", "chinchompa", "fixed_device", "salamander", "scythe", "flail", "", "trident", "sol")
 val decoder: ClientScriptDecoder by inject()

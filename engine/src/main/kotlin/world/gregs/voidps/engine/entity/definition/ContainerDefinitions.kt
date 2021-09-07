@@ -4,6 +4,7 @@ import world.gregs.voidps.cache.config.data.ContainerDefinition
 import world.gregs.voidps.cache.config.decoder.ContainerDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.contain.StackMode
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
@@ -17,14 +18,14 @@ class ContainerDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("containerDefinitionsPath")): ContainerDefinitions {
         timedLoad("container definition") {
-            load(loader.load<Map<String, Map<String, Any>>>(path))
+            load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        extras = data.mapValues { entry ->
-            entry.value.mapValues { convert(it.key, it.value) }
+        extras = data.mapValues { (_, value) ->
+            value.mapValues { convert(it.key, it.value) }
         }.toMap()
         names = data.map { it.value["id"] as Int to it.key }.toMap()
         return names.size

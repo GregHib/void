@@ -55,15 +55,19 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
     }
 
     companion object {
+
+        internal fun Map<String, Any>.mapIds(): Map<String, Map<String, Any>> = mapValues { (_, value) ->
+            if (value is Int) mapOf("id" to value) else value as Map<String, Any>
+        }.toMap()
+
         private val tagRegex = "<.*?>".toRegex()
 
         fun removeTags(text: String) = text.replace(tagRegex, "")
 
-        private val chars = "[\"',()]".toRegex()
-        private val underscoreChars = "[ /]".toRegex()
+        private val chars = "[\"',()?.!]".toRegex()
+        private val underscoreChars = "[ /-]".toRegex()
 
-        // TODO remove exclamations
-        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&#39;", "")
+        fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }
 
@@ -77,5 +81,6 @@ val definitionsModule = module {
     single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
+    single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
 }

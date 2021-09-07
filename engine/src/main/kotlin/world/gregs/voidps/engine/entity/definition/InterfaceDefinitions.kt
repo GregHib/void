@@ -6,6 +6,7 @@ import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_NAME
 import world.gregs.voidps.engine.entity.character.player.PlayerGameFrame.Companion.GAME_FRAME_RESIZE_NAME
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
@@ -39,7 +40,7 @@ class InterfaceDefinitions(
         typePath: String = getProperty("interfaceTypesPath")
     ): InterfaceDefinitions {
         timedLoad("interface") {
-            load(loader.load(path), loader.load<Map<String, Map<String, Any>>>(typePath))
+            load(loader.load<Map<String, Any>>(path).mapIds(), loader.load(typePath))
         }
         return this
     }

@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.AnimationDefinition
 import world.gregs.voidps.cache.definition.decoder.AnimationDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.timedLoad
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.getProperty
@@ -16,7 +17,7 @@ class AnimationDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("animationDefinitionsPath")): AnimationDefinitions {
         timedLoad("animation definition") {
-            load(loader.load<Map<String, Map<String, Any>>>(path))
+            load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }

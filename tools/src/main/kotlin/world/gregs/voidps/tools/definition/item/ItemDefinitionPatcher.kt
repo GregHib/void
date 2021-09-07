@@ -17,8 +17,8 @@ object ItemDefinitionPatcher {
         }.koin
         val decoder = ItemDecoder(koin.get())
         val loader = FileLoader(true)
-        val current = ItemDefinitions(ItemDecoder(koin.get())).load(loader, "./data/definitions/item-definition-extras.yml")
-        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(loader, "./item-definition-extras.yml")
+        val current = ItemDefinitions(ItemDecoder(koin.get())).load(loader, "./data/definitions/items.yml")
+        val newer = ItemDefinitions(ItemDecoder(koin.get())).load(loader, "./items.yml")
         val map = mutableMapOf<Int, Double>()
         for (id in decoder.indices) {
             val def = current.getOrNull(id) ?: continue

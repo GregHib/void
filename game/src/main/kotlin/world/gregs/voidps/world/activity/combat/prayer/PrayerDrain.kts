@@ -25,7 +25,7 @@ on<EffectStart>({ effect == "prayer_drain" }) { player: Player ->
             if (player.levels.get(Skill.Prayer) == 0) {
                 player.playSound("prayer_drain")
                 player.message("You have run out of Prayer points; you can recharge at an altar.")
-                player.clearVar<String>(player.getActivePrayerVarKey())
+                player.clearVar(player.getActivePrayerVarKey())
                 player.setVar(PrayerConfigs.USING_QUICK_PRAYERS, false)
                 break
             }

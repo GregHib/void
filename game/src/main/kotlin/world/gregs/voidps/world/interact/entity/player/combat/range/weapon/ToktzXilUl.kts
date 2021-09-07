@@ -16,7 +16,7 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.interact.entity.combat.*
 import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isToktz(item: Item?) = item != null && item.name == "toktz-xil-ul"
+fun isToktz(item: Item?) = item != null && item.name == "toktz_xil_ul"
 
 on<Registered>({ isToktz(it.equipped(EquipSlot.Weapon)) }) { player: Player ->
     updateAttackRange(player, player.equipped(EquipSlot.Weapon))

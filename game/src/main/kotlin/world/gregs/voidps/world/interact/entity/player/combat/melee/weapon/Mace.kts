@@ -7,7 +7,7 @@ import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.*
 
-fun isMace(item: Item?) = item != null && (item.name.endsWith("mace") || item.name.endsWith("cane") || isFunWeapon(item) || item.name == "tzhaar-ket-em")
+fun isMace(item: Item?) = item != null && (item.name.endsWith("mace") || item.name.endsWith("cane") || isFunWeapon(item) || item.name == "tzhaar_ket_em")
 fun isFunWeapon(item: Item) = item.name == "frying_pan" || item.name == "rolling_pin" || item.name == "meat_tenderiser" || item.name == "undead_chicken"
 
 on<CombatSwing>({ !swung() && isMace(it.weapon) }, Priority.LOWER) { player: Player ->

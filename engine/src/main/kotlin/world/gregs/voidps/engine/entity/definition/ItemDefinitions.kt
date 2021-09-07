@@ -3,6 +3,7 @@ package world.gregs.voidps.engine.entity.definition
 import world.gregs.voidps.cache.definition.data.ItemDefinition
 import world.gregs.voidps.cache.definition.decoder.ItemDecoder
 import world.gregs.voidps.engine.data.file.FileLoader
+import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.mapIds
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.EquipType
 import world.gregs.voidps.engine.entity.item.ItemKept
@@ -29,14 +30,22 @@ class ItemDefinitions(
 
     fun load(loader: FileLoader = get(), path: String = getProperty("itemDefinitionsPath")): ItemDefinitions {
         timedLoad("item definition") {
-            load(loader.load<Map<String, Map<String, Any>>>(path))
+            load(loader.load<Map<String, Any>>(path).mapIds())
         }
         return this
     }
 
     fun load(data: Map<String, Map<String, Any>>): Int {
-        this.extras = data.mapValues { entry ->
-            entry.value.mapValues {
+        this.extras = data.mapValues { (_, value) ->
+            val copy = data[value["copy"]]
+            val value = if (copy != null) {
+                val mut = copy.toMutableMap()
+                mut["id"] = value["id"] as Int
+                mut
+            } else {
+                value
+            }
+            value.mapValues {
                 when (it.key) {
                     "slot" -> EquipSlot.valueOf(it.value as String)
                     "type" -> EquipType.valueOf(it.value as String)
@@ -44,7 +53,7 @@ class ItemDefinitions(
                     else -> it.value
                 }
             }.toMutableMap().apply {
-                this["equip"] = equipmentIndices.getOrDefault(entry.value["id"] as Int, -1)
+                this["equip"] = equipmentIndices.getOrDefault(value["id"] as Int, -1)
             }
         }.toMap()
         names = data.map { it.value["id"] as Int to it.key }.toMap()

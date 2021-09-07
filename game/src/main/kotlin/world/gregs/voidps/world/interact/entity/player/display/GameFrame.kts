@@ -7,14 +7,10 @@ import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
 import world.gregs.voidps.engine.client.ui.open
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.ListVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-
-ListVariable(168, Variable.Type.VARC, values = Tab.values().toList(), defaultValue = Tab.Inventory).register("tab")
 
 val list = listOf(
     "chat_box",
@@ -64,7 +60,7 @@ fun String.toUnderscoreCase(): String {
 Tab.values().forEach { tab ->
     val name = tab.name.toUnderscoreCase()
     on<InterfaceOption>({ name == it.gameFrame.name && component == name && option == name }) { player: Player ->
-        player.setVar("tab", tab, refresh = false)
+        player.setVar("tab", tab.name, refresh = false)
     }
 }
 

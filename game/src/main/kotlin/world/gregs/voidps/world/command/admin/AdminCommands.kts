@@ -30,6 +30,7 @@ import world.gregs.voidps.utility.func.toSILong
 import world.gregs.voidps.utility.func.toUnderscoreCase
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
+import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs.PRAYERS
 import world.gregs.voidps.world.activity.combat.prayer.isCurses
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
@@ -155,7 +156,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
         player.experience.set(skill, 14000000.0)
     }
     delay(player, 1) {
-        player.clearVar<Skill>("skill_stat_flash")
+        player.clearVar("skill_stat_flash")
     }
 }
 
@@ -175,7 +176,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
         target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
         player.levels.clearOffset(skill)
         delay(player, 1) {
-            target.removeVar("skill_stat_flash", skill)
+            target.removeVar("skill_stat_flash", skill.name)
         }
     }
 }
@@ -185,6 +186,7 @@ on<Command>({ prefix == "reset" }) { player: Player ->
         player.experience.set(skill, Experience.defaultExperience[index])
         player.levels.clearOffset(skill)
     }
+    player.setVar(if (player.isCurses()) PrayerConfigs.QUICK_CURSES else PrayerConfigs.QUICK_PRAYERS, 0)
 }
 
 on<Command>({ prefix == "hide" }) { player: Player ->
@@ -299,6 +301,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "item defs" -> get<ItemDefinitions>().load()
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
+        "vars", "variables" -> get<VariableDefinitions>().load()
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
     }
     if (reloadRegions) {

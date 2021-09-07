@@ -7,7 +7,8 @@ import world.gregs.voidps.engine.action.Suspension
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.closeType
 import world.gregs.voidps.engine.client.ui.sendText
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -35,14 +36,6 @@ import world.gregs.voidps.world.interact.entity.player.display.Tab
  */
 
 val logger = InlineLogger()
-
-BooleanVariable(1042, Variable.Type.VARP).register("offer_modified")
-BooleanVariable(1043, Variable.Type.VARP).register("other_offer_modified")
-
-IntVariable(729, Variable.Type.VARC).register("offer_value")
-IntVariable(697, Variable.Type.VARC).register("other_offer_value")
-
-IntVariable(203, Variable.Type.VARCSTR).register("other_trader_name")
 
 on<PlayerOption>({ option == "Trade with" }) { player: Player ->
     val filter = target["trade_filter", "on"]
@@ -148,7 +141,7 @@ fun sendMain(player: Player, other: Player) {
 }
 
 fun reset(player: Player, other: Player) {
-    player.setVar("tab", Tab.Inventory)
+    player.setVar("tab", Tab.Inventory.name)
     player.setVar("offer_value", 0)
     player.setVar("other_offer_value", 0)
     player.setVar("lend_time", 0)
