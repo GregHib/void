@@ -3,9 +3,6 @@ import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.ui.event.InterfaceRefreshed
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.StringMapVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
@@ -22,27 +19,6 @@ import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.npc.shop.GeneralStores
 import world.gregs.voidps.world.interact.entity.npc.shop.OpenShop
-
-val MAX_SHOP_SIZE = 40
-
-IntVariable(118, Variable.Type.VARP, defaultValue = -1).register("main_container")
-IntVariable(1496, Variable.Type.VARP, defaultValue = -1).register("free_container")
-repeat(MAX_SHOP_SIZE) {
-    IntVariable(946 + it, Variable.Type.VARC).register("amount_$it")
-}
-val currencies = mapOf(
-    "coins" to 995,
-    "tokkul" to 6529,
-    "trading_sticks" to 6306,
-    "archery_ticket" to 1464,
-    "pieces_of_eight" to 8951,
-    "agility_arena_ticket" to 2996,
-    "castle_wars_ticket" to 4067,
-    "runecrafting_guild_token" to 13650,
-    "fist_of_guthix_token" to 12852
-)
-StringMapVariable(743, Variable.Type.VARC, values = currencies).register("item_info_currency")
-StringMapVariable(532, Variable.Type.VARP, values = currencies).register("shop_currency")
 
 val itemDefs: ItemDefinitions by inject()
 val containerDefs: ContainerDefinitions by inject()

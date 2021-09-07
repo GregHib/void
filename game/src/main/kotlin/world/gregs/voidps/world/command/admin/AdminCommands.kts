@@ -155,7 +155,7 @@ on<Command>({ prefix == "master" }) { player: Player ->
         player.experience.set(skill, 14000000.0)
     }
     delay(player, 1) {
-        player.clearVar<Skill>("skill_stat_flash")
+        player.clearVar("skill_stat_flash")
     }
 }
 
@@ -175,7 +175,7 @@ on<Command>({ prefix == "setlevel" }) { player: Player ->
         target.experience.set(skill, PlayerLevels.getExperience(level).toDouble())
         player.levels.clearOffset(skill)
         delay(player, 1) {
-            target.removeVar("skill_stat_flash", skill)
+            target.removeVar("skill_stat_flash", skill.name)
         }
     }
 }
@@ -299,6 +299,7 @@ on<Command>({ prefix == "reload" }) { player: Player ->
         "item defs" -> get<ItemDefinitions>().load()
         "sound", "sounds", "sound effects" -> get<SoundDefinitions>().load()
         "midi" -> get<MidiDefinitions>().load()
+        "vars", "variables" -> get<VariableDefinitions>().load()
         "music", "music effects", "jingles" -> get<JingleDefinitions>().load()
     }
     if (reloadRegions) {

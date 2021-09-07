@@ -32,7 +32,7 @@ internal class LevelUpTest : DialogueTest() {
                 player.open("level_up_dialog")
                 interfaces.sendText("level_up_dialog", "line1", "Congrats")
                 interfaces.sendText("level_up_dialog", "line2", "Level")
-                player.setVar("level_up_icon", Skill.Runecrafting)
+                player.setVar("level_up_icon", Skill.Runecrafting.name)
             }
         }
     }

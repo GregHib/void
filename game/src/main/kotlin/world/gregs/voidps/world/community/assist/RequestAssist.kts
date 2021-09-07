@@ -5,7 +5,9 @@ import world.gregs.voidps.engine.client.ui.awaitInterfaces
 import world.gregs.voidps.engine.client.ui.close
 import world.gregs.voidps.engine.client.ui.sendText
 import world.gregs.voidps.engine.client.ui.sendVisibility
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.sendVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerOption
@@ -48,8 +50,6 @@ val skills = listOf(
     Skill.Herblore
 )
 val logger = InlineLogger()
-
-IntVariable(4103, Variable.Type.VARBIT, true).register("total_xp_earned")
 
 on<PlayerOption>({ option == "Req Assist" }) { player: Player ->
     val filter = target["assist_filter", "on"]

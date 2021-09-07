@@ -67,7 +67,6 @@ interface DefinitionsDecoder<T, D : DefinitionDecoder<T>> : Extras where T : Def
         private val chars = "[\"',()?.!]".toRegex()
         private val underscoreChars = "[ /-]".toRegex()
 
-        // TODO remove exclamations
         fun toIdentifier(name: String) = removeTags(name.toLowerCase().replace(underscoreChars, "_")).replace(chars, "").replace("&", "and").replace("à", "a").replace("é", "e").replace("ï", "i").replace("&#39;", "")
     }
 }
@@ -82,5 +81,6 @@ val definitionsModule = module {
     single(createdAtStart = true) { InterfaceDefinitions(get()).load() }
     single(createdAtStart = true) { SoundDefinitions().load() }
     single(createdAtStart = true) { MidiDefinitions().load() }
+    single(createdAtStart = true) { VariableDefinitions().load() }
     single(createdAtStart = true) { JingleDefinitions().load() }
 }

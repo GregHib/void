@@ -3,12 +3,14 @@ package world.gregs.voidps.engine.client.variable
 import com.fasterxml.jackson.annotation.JsonIgnore
 import com.github.michaelbull.logging.InlineLogger
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.VariableDefinition
+import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc
 import world.gregs.voidps.network.encode.sendVarcStr
 import world.gregs.voidps.network.encode.sendVarp
 
-@Suppress("UNCHECKED_CAST")
+@Suppress("UNCHECKED_CAST", "DuplicatedCode")
 class Variables(
     val variables: MutableMap<String, Any> = mutableMapOf()
 ) {
@@ -19,15 +21,15 @@ class Variables(
     private lateinit var player: Player
 
     @JsonIgnore
-    private lateinit var store: VariableStore
+    private lateinit var definitions: VariableDefinitions
 
-    fun link(player: Player, store: VariableStore) {
+    fun link(player: Player, definitions: VariableDefinitions) {
         this.player = player
-        this.store = store
+        this.definitions = definitions
     }
 
-    fun <T : Any> set(key: String, value: T, refresh: Boolean) {
-        val variable = store.get(key) as? Variable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+    fun set(key: String, value: Any, refresh: Boolean) {
+        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val previous = get(key, variable.defaultValue)
         set(key, variable, value)
         if (refresh) {
@@ -37,26 +39,24 @@ class Variables(
     }
 
     fun send(key: String) {
-        val variable = store.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
+        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         variable.send(key)
     }
 
     fun <T : Any> get(key: String): T {
-        val variable = store.get(key) as Variable<T>
+        val variable = definitions.getValue(key)
         return get(key, variable)
     }
 
     fun <T : Any> get(key: String, default: T): T {
-        val variable = store.get(key) as? Variable<T> ?: return default
+        val variable = definitions.get(key) ?: return default
         return get(key, variable)
     }
 
-    fun <T : Any> add(key: String, id: T, refresh: Boolean) {
-        val variable = store.get(key) as? BitwiseVar<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
-
+    fun add(key: String, id: Any, refresh: Boolean) {
+        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = get(key, variable)
-
+        val value = get(key, variable) as Int
         if (!value.has(power)) {// If isn't already added
             set(key, variable, value + power)// Add
             if (refresh) {
@@ -66,10 +66,10 @@ class Variables(
         }
     }
 
-    fun <T : Any> remove(key: String, id: T, refresh: Boolean) {
-        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+    fun remove(key: String, id: Any, refresh: Boolean) {
+        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val power = variable.getValue(id) ?: return logger.debug { "Invalid bitwise value '$id'" }
-        val value = get(key, variable)
+        val value = get(key, variable) as Int
         if (value.has(power)) {// If is added
             set(key, variable, value - power)// Remove
             if (refresh) {
@@ -79,8 +79,8 @@ class Variables(
         }
     }
 
-    fun <T : Any> clear(key: String, refresh: Boolean) {
-        val variable = store.get(key) as? BitwiseVariable<T> ?: return logger.debug { "Cannot find variable for key '$key'" }
+    fun clear(key: String, refresh: Boolean) {
+        val variable = definitions.get(key) ?: return logger.debug { "Cannot find variable for key '$key'" }
         val previous = get(key, variable.defaultValue)
         set(key, variable, variable.defaultValue)
         if (refresh) {
@@ -92,45 +92,45 @@ class Variables(
     /**
      * @return whether [id] is active for [key]
      */
-    fun <T : Any> has(key: String, id: T): Boolean {
-        val variable = store.get(key) as? BitwiseVariable<T> ?: return false
+    fun has(key: String, id: Any): Boolean {
+        val variable = definitions.get(key) ?: return false
         val power = variable.getValue(id) ?: return false
-        val value = get(key, variable)
+        val value = get(key, variable) as Int
         return value.has(power)
     }
 
     /**
      * @return whether [id] is a valid value in [key]
      */
-    fun <T : Any> contains(key: String, id: T): Boolean {
-        val variable = store.get(key) as? BitwiseVariable<T> ?: return false
+    fun contains(key: String, id: Any): Boolean {
+        val variable = definitions.get(key) ?: return false
         variable.getValue(id) ?: return false
         return true
     }
 
-    internal fun <T : Any> Variable<T>.send(key: String) {
-        val value = get(key, this)
+    internal fun VariableDefinition.send(key: String) {
+        val value = get(key, defaultValue)
         when (type) {
-            Variable.Type.VARP -> player.sendVarp(id, toInt(value))
-            Variable.Type.VARBIT -> player.sendVarbit(id, toInt(value))
-            Variable.Type.VARC -> player.sendVarc(id, toInt(value))
-            Variable.Type.VARCSTR -> player.sendVarcStr(id, value as String)
+            VariableType.Varp -> player.sendVarp(id, format.toInt(this, value))
+            VariableType.Varbit -> player.sendVarbit(id, format.toInt(this, value))
+            VariableType.Varc -> player.sendVarc(id, format.toInt(this, value))
+            VariableType.Varcstr -> player.sendVarcStr(id, value as String)
         }
     }
 
-    private fun store(variable: Variable<*>): MutableMap<String, Any> = if (variable.persistent) variables else temporaryVariables
+    private fun store(variable: VariableDefinition): MutableMap<String, Any> = if (variable.persistent) variables else temporaryVariables
 
     /**
      * Gets Player variables current value or [variable] default
      */
-    private fun <T : Any> get(key: String, variable: Variable<T>): T {
-        return store(variable)[key] as? T ?: variable.defaultValue
+    private fun <T : Any> get(key: String, variable: VariableDefinition): T {
+        return store(variable)[key] as? T ?: variable.defaultValue as T
     }
 
     /**
      * Sets Player variables value, removes if [variable] default
      */
-    private fun <T : Any> set(key: String, variable: Variable<T>, value: T) {
+    private fun set(key: String, variable: VariableDefinition, value: Any) {
         if (value == variable.defaultValue) {
             store(variable).remove(key)
         } else {
@@ -148,19 +148,19 @@ class Variables(
  */
 fun Int.has(power: Int) = (this and power) != 0
 
-fun <T : Any> Player.setVar(key: String, value: T, refresh: Boolean = true) =
+fun Player.setVar(key: String, value: Any, refresh: Boolean = true) =
     variables.set(key, value, refresh)
 
 fun Player.sendVar(key: String) = variables.send(key)
 
-fun <T : Any> Player.addVar(key: String, value: T, refresh: Boolean = true) =
+fun Player.addVar(key: String, value: Any, refresh: Boolean = true) =
     variables.add(key, value, refresh)
 
-fun <T : Any> Player.removeVar(key: String, value: T, refresh: Boolean = true) =
+fun Player.removeVar(key: String, value: Any, refresh: Boolean = true) =
     variables.remove(key, value, refresh)
 
-fun <T : Any> Player.clearVar(key: String, refresh: Boolean = true) =
-    variables.clear<T>(key, refresh)
+fun Player.clearVar(key: String, refresh: Boolean = true) =
+    variables.clear(key, refresh)
 
 fun Player.toggleVar(key: String, refresh: Boolean = true): Boolean {
     val value = variables.get(key, false)
@@ -180,11 +180,11 @@ fun Player.decVar(key: String, refresh: Boolean = true): Int {
     return value - 1
 }
 
-fun <T : Any> Player.containsVar(key: String, id: T): Boolean {
+fun Player.containsVar(key: String, id: Any): Boolean {
     return variables.contains(key, id)
 }
 
-fun <T : Any> Player.hasVar(key: String, id: T): Boolean {
+fun Player.hasVar(key: String, id: Any): Boolean {
     return variables.has(key, id)
 }
 

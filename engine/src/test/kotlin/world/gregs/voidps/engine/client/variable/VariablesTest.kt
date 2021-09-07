@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import world.gregs.voidps.engine.entity.character.player.Player
+import world.gregs.voidps.engine.entity.definition.VariableDefinition
+import world.gregs.voidps.engine.entity.definition.VariableDefinitions
 import world.gregs.voidps.engine.event.Events
 import world.gregs.voidps.network.encode.sendVarbit
 import world.gregs.voidps.network.encode.sendVarc
@@ -13,9 +15,9 @@ import world.gregs.voidps.network.encode.sendVarp
 
 internal class VariablesTest {
 
-    private lateinit var store: VariableStore
+    private lateinit var definitions: VariableDefinitions
     private lateinit var variables: Variables
-    private lateinit var variable: Variable<Int>
+    private lateinit var variable: VariableDefinition
     private lateinit var player: Player
     private lateinit var events: Events
     private lateinit var map: MutableMap<String, Any>
@@ -25,7 +27,9 @@ internal class VariablesTest {
         map = mutableMapOf()
         variable = mockk(relaxed = true)
         every { variable.persistent } returns true
-        store = mockk(relaxed = true)
+        every { variable.defaultValue } returns 0
+        every { variable.format } returns VariableFormat.INT
+        definitions = mockk(relaxed = true)
         variables = spyk(Variables(map))
         events = mockk(relaxed = true)
         player = mockk(relaxed = true)
@@ -39,8 +43,8 @@ internal class VariablesTest {
         every { player.sendVarcStr(any(), any()) } just Runs
         every { player.variables } returns variables
         every { player.events } returns events
-        every { store.get(key) } returns variable
-        variables.link(player, store)
+        every { definitions.get(key) } returns variable
+        variables.link(player, definitions)
     }
 
     @Test
@@ -86,7 +90,7 @@ internal class VariablesTest {
     @Test
     fun `Send varp`() {
         // Given
-        every { variable.type } returns Variable.Type.VARP
+        every { variable.type } returns VariableType.Varp
         // When
         variables.send(key)
         // Then
@@ -96,7 +100,7 @@ internal class VariablesTest {
     @Test
     fun `Send varbit`() {
         // Given
-        every { variable.type } returns Variable.Type.VARBIT
+        every { variable.type } returns VariableType.Varbit
         // When
         variables.send(key)
         // Then
@@ -106,7 +110,7 @@ internal class VariablesTest {
     @Test
     fun `Send varc`() {
         // Given
-        every { variable.type } returns Variable.Type.VARC
+        every { variable.type } returns VariableType.Varc
         // When
         variables.send(key)
         // Then
@@ -116,10 +120,10 @@ internal class VariablesTest {
     @Test
     fun `Send varcstr`() {
         // Given
-        val variable = mockk<Variable<String>>(relaxed = true)
-        every { variable.type } returns Variable.Type.VARCSTR
+        val variable = mockk<VariableDefinition>(relaxed = true)
+        every { variable.type } returns VariableType.Varcstr
         every { variable.defaultValue } returns "nothing"
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.send(key)
         // Then
@@ -148,9 +152,9 @@ internal class VariablesTest {
 
     @Test
     fun `Get no variable`() {
-        every { store.get(key) } returns null
+        every { definitions.get(key) } returns null
         // Given
-        store.clear()
+//        definitions.clear()
         // When
         val result = variables.get(key, -1)
         // Then
@@ -160,9 +164,9 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 0
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
@@ -176,9 +180,9 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise two`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 1
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.add(key, "Second", true)
         // Then
@@ -192,9 +196,9 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise existing`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 1
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", true)
         // Then
@@ -205,9 +209,9 @@ internal class VariablesTest {
     @Test
     fun `Add bitwise no refresh`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 0
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.add(key, "First", false)
         // Then
@@ -218,9 +222,9 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 3
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", true)
         // Then
@@ -234,9 +238,9 @@ internal class VariablesTest {
     @Test
     fun `Remove bitwise no refresh`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", true, listOf("First", "Second"))
         map[key] = 3
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then
@@ -247,9 +251,9 @@ internal class VariablesTest {
     @Test
     fun `Persistence uses different variable map`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = false)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, "First", false, listOf("First", "Second"))
         variables.temporaryVariables[key] = 3
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
         variables.remove(key, "First", false)
         // Then
@@ -260,11 +264,11 @@ internal class VariablesTest {
     @Test
     fun `Clear bitwise of multiple values`() {
         // Given
-        val variable = BitwiseVariable(0, Variable.Type.VARP, values = listOf("First", "Second"), persistent = true)
+        val variable = VariableDefinition(0, VariableType.Varp, VariableFormat.BITWISE, 0, true, listOf("First", "Second"))
         map[key] = 3
-        every { store.get(key) } returns variable
+        every { definitions.get(key) } returns variable
         // When
-        variables.clear<String>(key, true)
+        variables.clear(key, true)
         // Then
         assertNull(map[key])
         verifyOrder {

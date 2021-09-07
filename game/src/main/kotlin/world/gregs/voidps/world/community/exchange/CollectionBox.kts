@@ -1,7 +1,5 @@
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceOpened
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.container
 import world.gregs.voidps.engine.entity.character.contain.inventory
@@ -13,9 +11,6 @@ import world.gregs.voidps.network.encode.message
 import world.gregs.voidps.world.community.trade.lend.Loan
 import world.gregs.voidps.world.community.trade.lend.Loan.getTimeRemaining
 import world.gregs.voidps.world.community.trade.lent
-
-IntVariable(1267, Variable.Type.VARP).register("lent_item")
-IntVariable(1269, Variable.Type.VARP).register("lent_item_amount")
 
 on<InterfaceOpened>({ name == "collection_box" }) { player: Player ->
     val lentItem: String? = player.getOrNull("lent_item")

@@ -5,9 +5,6 @@ import world.gregs.voidps.engine.client.Colour
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.event.InterfaceClosed
 import world.gregs.voidps.engine.client.ui.open
-import world.gregs.voidps.engine.client.variable.IntVariable
-import world.gregs.voidps.engine.client.variable.StringVariable
-import world.gregs.voidps.engine.client.variable.Variable
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
@@ -27,17 +24,6 @@ import world.gregs.voidps.world.interact.entity.player.equip.*
 /**
  * The item information side panel which shows a shop items requirements, stats and price
  */
-IntVariable(741, Variable.Type.VARC).register("info_item")
-StringVariable(25, Variable.Type.VARCSTR).register("item_info_examine")
-StringVariable(26, Variable.Type.VARCSTR).register("item_info_requirement")
-StringVariable(34, Variable.Type.VARCSTR).register("item_info_requirement_title")
-StringVariable(35, Variable.Type.VARCSTR).register("info_left")
-StringVariable(36, Variable.Type.VARCSTR).register("info_middle")
-StringVariable(52, Variable.Type.VARCSTR).register("info_right")
-IntVariable(1242, Variable.Type.VARC).register("info_colour")
-IntVariable(1241, Variable.Type.VARC).register("info_title_colour")
-IntVariable(744, Variable.Type.VARC).register("item_info_price")
-
 val enums: EnumDecoder by inject()
 val structs: StructDecoder by inject()
 val messages = enums.get(1434).map!!

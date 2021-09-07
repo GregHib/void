@@ -2,20 +2,16 @@ package world.gregs.voidps.world.activity.bank
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.ui.InterfaceSwitch
-import world.gregs.voidps.engine.client.variable.*
+import world.gregs.voidps.engine.client.variable.decVar
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.incVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.entity.Registered
 import world.gregs.voidps.engine.entity.character.contain.Container
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.event.on
-
-ListVariable(304, Variable.Type.VARP, persistent = true, values = listOf(
-    "swap",
-    "insert"
-)).register("bank_item_mode")
-IntVariable(1038, Variable.Type.VARC).register("bank_spaces_used_free")
-IntVariable(192, Variable.Type.VARC).register("bank_spaces_used_member")
 
 on<Registered> { player: Player ->
     player.events.on<Player, ItemChanged>({ container == "bank" }) {

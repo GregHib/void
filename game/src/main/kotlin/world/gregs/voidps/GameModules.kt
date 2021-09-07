@@ -5,7 +5,6 @@ import world.gregs.voidps.engine.action.schedulerModule
 import world.gregs.voidps.engine.client.cacheConfigModule
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.client.variable.variablesModule
 import world.gregs.voidps.engine.data.file.fileLoaderModule
 import world.gregs.voidps.engine.data.file.jsonPlayerModule
 import world.gregs.voidps.engine.data.playerLoaderModule
@@ -46,7 +45,6 @@ fun getGameModules() = listOf(
     pathFindModule,
     schedulerModule,
     batchedChunkModule,
-    variablesModule,
     instanceModule,
     instancePoolModule,
     definitionsModule,
