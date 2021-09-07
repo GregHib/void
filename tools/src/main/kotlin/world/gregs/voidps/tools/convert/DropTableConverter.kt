@@ -1,71 +1,13 @@
 package world.gregs.voidps.tools.convert
 
-import com.fasterxml.jackson.annotation.JsonIgnore
-import com.fasterxml.jackson.core.JsonGenerator
-import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.ObjectMapper
-import com.fasterxml.jackson.databind.SerializerProvider
-import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.dataformat.yaml.YAMLGenerator
 import world.gregs.voidps.engine.entity.definition.DefinitionsDecoder.Companion.toIdentifier
+import world.gregs.voidps.engine.entity.item.drop.DropTable
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 
 object DropTableConverter {
-
-    interface Drop
-
-    class RangeSerializer : JsonSerializer<IntRange>() {
-        override fun serialize(value: IntRange, jsonGenerator: JsonGenerator, serializerProvider: SerializerProvider) {
-            jsonGenerator.writeObject("${value.first}-${value.last}")
-        }
-    }
-
-    class ChanceSerializer : JsonSerializer<IntRange>() {
-        override fun serialize(value: IntRange, jsonGenerator: JsonGenerator, serializerProvider: SerializerProvider) {
-            jsonGenerator.writeObject("${value.first}/${value.last}")
-        }
-    }
-
-    data class QuantityDrop(
-        val name: String,
-        @get:JsonSerialize(using = RangeSerializer::class)
-        val quantity: IntRange,
-        @get:JsonSerialize(using = ChanceSerializer::class)
-        val chance: IntRange,
-    ) : Drop
-
-    data class AmountDrop(
-        val name: String,
-        val amount: Int,
-        @get:JsonSerialize(using = ChanceSerializer::class)
-        val chance: IntRange,
-    ) : Drop
-
-    data class DropTable(
-        @JsonIgnore
-        val name: String,
-        val drops: List<Drop>
-    ) : Drop {
-        class Builder {
-            private var name: String? = null
-            private val drops = mutableListOf<Drop>()
-
-            fun withName(name: String): Builder {
-                this.name = name
-                return this
-            }
-
-            fun addDrop(drop: Drop): Builder {
-                this.drops.add(drop)
-                return this
-            }
-
-            fun build(): DropTable {
-                assert(name != null) { "Drop table name cannot be null." }
-                return DropTable(name!!, drops)
-            }
-        }
-    }
 
     @Suppress("USELESS_CAST")
     @JvmStatic
@@ -84,9 +26,10 @@ object DropTableConverter {
 {{DropsTableBottom}}
         """.trimIndent()
         val builder = DropTable.Builder()
+        var name = ""
         for (line in string.lines()) {
             if (line.startsWith("=")) {
-                builder.withName(toIdentifier(line.replace("=", "")))
+                name = toIdentifier(line.replace("=", ""))
             } else if (line.startsWith("{{DropsLine|")) {
                 process(builder, line)
             }
@@ -99,7 +42,7 @@ object DropTableConverter {
 
         val table = builder.build()
 
-        println(mapper.writeValueAsString(mapOf(table.name to table)))
+        println(mapper.writeValueAsString(mapOf(name to table)))
     }
 
     fun process(builder: DropTable.Builder, string: String) {
@@ -136,11 +79,13 @@ object DropTableConverter {
             name = "${name}_noted"
         }
 
-        if (quantity.contains("-")) {
-            val (low, high) = quantity.split("-")
-            builder.addDrop(QuantityDrop(name, low.toInt()..high.toInt(), chance.toInt()..total.toInt()))
+        val (low, high) = if (quantity.contains("-")) {
+            quantity.split("-")
         } else {
-            builder.addDrop(AmountDrop(name, quantity.removeSuffix(" (noted)").toInt(), chance.toInt()..total.toInt()))
+            val amount = quantity.removeSuffix(" (noted)")
+            listOf(amount, amount)
         }
+        builder.withRoll(total.toInt())
+        builder.addDrop(ItemDrop(name, low.toInt()..high.toInt(), chance.toInt()))
     }
 }

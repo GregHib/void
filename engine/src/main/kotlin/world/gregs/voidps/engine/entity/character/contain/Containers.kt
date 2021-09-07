@@ -50,17 +50,16 @@ fun Player.container(name: String, def: ContainerDefinition, secondary: Boolean 
     return containers.getOrPut(if (secondary) "_$name" else name) {
         Container(items = Array(def.length) { Item("", if (shop) -1 else 0) })
     }.apply {
-        if (!setup) {
-            minimumAmounts = IntArray(capacity) { if (shop) -1 else 0 }
-            id = def.id
-            this.name = if (secondary) "_$name" else name
-            capacity = def.length
-            stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal]
-            definitions = get()
-            this.events.add(this@container.events)
-            this.secondary = secondary
-            this.setup = true
-        }
+        Container.setup(
+            container = this,
+            id = def.id,
+            capacity = def.length,
+            secondary = secondary,
+            name = if (secondary) "_$name" else name,
+            minimumAmount = if (shop) -1 else 0,
+            stackMode = if (shop) StackMode.Always else def["stack", StackMode.Normal],
+            events = this@container.events
+        )
     }
 }
 
