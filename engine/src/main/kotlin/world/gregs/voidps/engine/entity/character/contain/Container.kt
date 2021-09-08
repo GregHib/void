@@ -463,6 +463,13 @@ data class Container(
         return null
     }
 
+    fun sortedByDescending(block: (Item) -> Int) {
+        val all = this.items.sortedByDescending(block)
+        all.forEachIndexed { index, item ->
+            this.items[index] = item
+        }
+    }
+
     fun sort() {
         val all = LinkedList<Item>()
         for ((index, item) in this.items.withIndex().reversed()) {

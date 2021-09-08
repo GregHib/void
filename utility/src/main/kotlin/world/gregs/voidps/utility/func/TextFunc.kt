@@ -1,6 +1,7 @@
 package world.gregs.voidps.utility.func
 
 import org.jetbrains.kotlin.util.suffixIfNot
+import java.text.DecimalFormat
 
 fun String.plural(count: Int, plural: String = "s") = plural(count.toLong(), plural)
 
@@ -19,6 +20,12 @@ fun Long.toSIPrefix(): String {
         this >= 0x3e8 -> "${this / 0x3e8}K"
         else -> toString()
     }
+}
+
+val dec = DecimalFormat("#,###")
+
+fun Long.toDigitGroupString(): String {
+    return dec.format(this)
 }
 
 fun Int.toSIPrefix() = toLong().toSIPrefix()

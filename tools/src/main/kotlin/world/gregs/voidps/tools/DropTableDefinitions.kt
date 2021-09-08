@@ -12,7 +12,7 @@ import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 
-object DropTables {
+object DropTableDefinitions {
     @JvmStatic
     fun main(args: Array<String>) {
         val koin = startKoin {
@@ -26,7 +26,7 @@ object DropTables {
 
         val list = mutableListOf<ItemDrop>()
         repeat(1000000) {
-            table.role(list)
+            table.role(list = list)
         }
         val container = Container.setup(100, stackMode = StackMode.Always)
         list.forEach {

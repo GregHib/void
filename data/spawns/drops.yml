@@ -441,7 +441,8 @@ mega_rare_drop_table:
 cow_drop_table:
   type: all
   drops:
-    - drops:
+    - type: all
+      drops:
         - name: cowhide
         - name: raw_beef
         - name: bones
@@ -452,7 +453,8 @@ cow_drop_table:
 chicken_drop_table:
   type: all
   drops:
-    - drops:
+    - type: all
+      drops:
         - name: raw_chicken
         - name: bones
     - roll: 128

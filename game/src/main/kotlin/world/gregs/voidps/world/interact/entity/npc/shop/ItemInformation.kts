@@ -10,7 +10,6 @@ import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Level.has
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.get
 import world.gregs.voidps.engine.entity.getOrNull
 import world.gregs.voidps.engine.entity.item.EquipSlot
 import world.gregs.voidps.engine.entity.item.Item
@@ -31,7 +30,7 @@ val requirementMessages = enums.get(1435).map!!
 val quests = enums.get(2252).map!!
 
 on<InterfaceOption>({ name == "shop" && option == "Info" }) { player: Player ->
-    val shop: String = player["shop"]
+    val shop: String = player.getOrNull("shop") ?: return@on
     val sample = component == "sample"
     val actualIndex = itemIndex / (if (sample) 4 else 6)
     val container = player.shopContainer(sample)

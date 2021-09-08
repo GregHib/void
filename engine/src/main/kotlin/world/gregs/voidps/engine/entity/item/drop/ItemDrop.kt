@@ -10,11 +10,15 @@ data class ItemDrop(
     val name: String,
     @get:JsonSerialize(using = RangeSerializer::class)
     val amount: IntRange,
-    override val chance: Int,
+    val chance: Int = 1,
 ) : Drop {
 
+    init {
+        assert(chance > 0) { "Item must have a positive chance." }
+    }
+
     fun toItem(): Item {
-        if (name == "nothing" || name == "") {
+        if (name == "nothing" || name.isBlank()) {
             return Item.EMPTY
         }
         return Item(name, amount.random())

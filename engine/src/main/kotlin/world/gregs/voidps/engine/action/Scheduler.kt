@@ -1,5 +1,6 @@
 package world.gregs.voidps.engine.action
 
+import com.github.michaelbull.logging.InlineLogger
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.suspendCancellableCoroutine
@@ -17,7 +18,6 @@ class Scheduler : CoroutineScope {
 
     fun launch(block: suspend CoroutineScope.() -> Unit) = launch(context = Contexts.Game, block = block)
 
-
     private val list = mutableListOf<suspend (Long) -> Unit>()
 
     fun sync(block: suspend (Long) -> Unit) {
@@ -28,11 +28,18 @@ class Scheduler : CoroutineScope {
         val it = list.iterator()
         while (it.hasNext()) {
             val next = it.next()
-            next.invoke(GameLoop.tick)
+            try {
+                next.invoke(GameLoop.tick)
+            } catch (e: Throwable) {
+                logger.warn(e) { "Error in game loop sync task" }
+            }
             it.remove()
         }
     }
 
+    companion object {
+        private val logger = InlineLogger()
+    }
 }
 
 @Suppress("unused")

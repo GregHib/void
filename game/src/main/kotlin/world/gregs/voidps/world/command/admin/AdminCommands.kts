@@ -1,11 +1,19 @@
-import world.gregs.voidps.engine.client.ui.open
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import world.gregs.voidps.engine.action.ActionType
+import world.gregs.voidps.engine.action.action
+import world.gregs.voidps.engine.client.ui.*
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.removeVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.data.StorageStrategy
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.character.contain.Container
+import world.gregs.voidps.engine.entity.character.contain.StackMode
 import world.gregs.voidps.engine.entity.character.contain.inventory
+import world.gregs.voidps.engine.entity.character.contain.sendContainer
 import world.gregs.voidps.engine.entity.character.npc.NPCs
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.PlayerLevels
@@ -15,6 +23,8 @@ import world.gregs.voidps.engine.entity.character.player.skill.Experience
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.tele
 import world.gregs.voidps.engine.entity.definition.*
+import world.gregs.voidps.engine.entity.item.drop.DropTables
+import world.gregs.voidps.engine.entity.item.drop.ItemDrop
 import world.gregs.voidps.engine.entity.obj.CustomObjects
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.area.Areas
@@ -26,8 +36,7 @@ import world.gregs.voidps.network.encode.playJingle
 import world.gregs.voidps.network.encode.playMIDI
 import world.gregs.voidps.network.encode.playSoundEffect
 import world.gregs.voidps.network.instruct.Command
-import world.gregs.voidps.utility.func.toSILong
-import world.gregs.voidps.utility.func.toUnderscoreCase
+import world.gregs.voidps.utility.func.*
 import world.gregs.voidps.utility.get
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.activity.combat.prayer.PrayerConfigs
@@ -44,6 +53,8 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playMidi
 import world.gregs.voidps.world.interact.entity.sound.playSound
 import world.gregs.voidps.world.interact.world.Stairs
+import java.util.concurrent.TimeUnit
+import kotlin.system.measureTimeMillis
 
 val areas: Areas by inject()
 val players: Players by inject()
@@ -320,4 +331,88 @@ on<Command>({ prefix == "shop" }) { player: Player ->
 
 on<Command>({ prefix == "debug" }) { player: Player ->
     player["debug"] = !player["debug", false]
+}
+
+val tables: DropTables by inject()
+
+class ContainerDelegate(
+    private val container: Container,
+    private val list: MutableList<ItemDrop> = mutableListOf()
+) : MutableList<ItemDrop> by list {
+    override fun add(element: ItemDrop): Boolean {
+        container.add(element.name, element.amount.random())
+        return true
+    }
+}
+
+on<Command>({ prefix == "sim" }) { player: Player ->
+    val parts = content.split(" ")
+    val name = parts.first()
+    val count = parts.last().toSIInt()
+    val table = tables.get(name) ?: tables.get("${name}_drop_table")
+    val title = "${count.toSIPrefix()} '${name.removeSuffix("_drop_table")}' drop table rolls"
+    if (table == null) {
+        player.message("No drop table found for '$name'")
+        return@on
+    }
+    if (count < 0) {
+        player.message("Simulation count has to be more than 0.")
+        return@on
+    }
+    if (count > 100000) {
+        player.message("Calculating...")
+    }
+    val shopId = 3
+    val job = GlobalScope.async {
+        val container = Container.setup(capacity = 40, id = shopId, name = title, stackMode = StackMode.Always)
+        coroutineScope {
+            val time = measureTimeMillis {
+                val divisor = 1000000
+                val sections = count / divisor
+                (0..sections)
+                    .map {
+                        async {
+                            val temp = Container.setup(capacity = 40, stackMode = StackMode.Always)
+                            val list = ContainerDelegate(temp)
+                            for (i in 0L until if (it == sections) count.rem(divisor) else divisor) {
+                                table.role(list = list)
+                            }
+                            temp
+                        }
+                    }.forEach {
+                        it.await().moveAll(container)
+                    }
+            }
+            if (time > 0) {
+                val seconds = TimeUnit.MILLISECONDS.toSeconds(time)
+                player.message("Simulation took ${if (seconds > 1) "${seconds}s" else "${time}ms"}")
+            }
+        }
+        container.sortedByDescending { it.amount }
+        container
+    }
+    player.action(ActionType.Shopping) {
+        try {
+            val container = await(job)
+            var value = 0L
+            for (item in container.getItems()) {
+                if (item.isNotEmpty()) {
+                    value += item.amount * item.def.cost.toLong()
+                }
+            }
+            player.interfaces.open("shop")
+            player.setVar("free_container", -1)
+            player.setVar("main_container", shopId)
+            player.interfaceOptions.unlock("shop", "stock", 0 until container.capacity * 6, "Info")
+            for ((index, item) in container.getItems().withIndex()) {
+                player.setVar("amount_$index", item.amount)
+            }
+            player.sendContainer(container)
+            player.interfaces.sendVisibility("shop", "store", false)
+            player.interfaces.sendText("shop", "title", "$title - ${value.toDigitGroupString()}gp (${value.toSIPrefix()})")
+            awaitInterface("shop")
+        } finally {
+            player.close("shop")
+        }
+    }
 }
