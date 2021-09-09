@@ -105,7 +105,7 @@ cow_calf:
   slayxp: 6.0
   style: "crush"
   examine: "Young, but still beefy."
-  category: "calf"
+  category: "cow"
   height: 15
 goblin_mohawk_blue:
   id: 4262

@@ -17,6 +17,7 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.player.move
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
 import world.gregs.voidps.engine.entity.item.FloorItems
+import world.gregs.voidps.engine.entity.item.drop.DropTables
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.Tile
 import world.gregs.voidps.engine.map.area.Area
@@ -28,6 +29,8 @@ import world.gregs.voidps.world.interact.entity.sound.playJingle
 import world.gregs.voidps.world.interact.entity.sound.playSound
 
 val npcs: NPCs by inject()
+val floorItems: FloorItems by inject()
+val tables: DropTables by inject()
 
 on<Registered> { character: Character ->
     character["damage_dealers"] = mutableMapOf<Character, Int>()
@@ -37,14 +40,20 @@ on<Registered> { character: Character ->
 on<Died> { npc: NPC ->
     npc.action(ActionType.Death) {
         withContext(NonCancellable) {
-            delay(2)
-            val name = npc.def["category", npc.def.name.toUnderscoreCase()]
-            npc.attackers.clear()
             val damageDealers: MutableMap<Character, Int> = npc["damage_dealers"]
             val dealer = damageDealers.maxByOrNull { it.value }
             val killer = dealer?.key
+            val tile = npc.tile
+            val name = npc.def["category", npc.def.name.toUnderscoreCase()]
+            npc.setAnimation("${name}_death")
             (killer as? Player)?.playSound("${name}_death", delay = 40)
-            npc.playAnimation("${name}_death")
+            delay(4)
+            val table = tables.get("${name}_drop_table")
+            val list = table?.role()// TODO combatLevel * 10
+            list?.reversed()?.forEach {
+                floorItems.add(it.name, it.amount.random(), tile, revealTicks = 60, disappearTicks = 120, owner = if (killer is Player) killer else null)
+            }
+            npc.attackers.clear()
             npc.stopAllEffects()
             npcs.remove(npc)
             val area: Area? = npc.getOrNull("area")
@@ -70,8 +79,6 @@ on<Died> { npc: NPC ->
         }
     }
 }
-
-val floorItems: FloorItems by inject()
 val x = getIntProperty("homeX", 0)
 val y = getIntProperty("homeY", 0)
 val plane = getIntProperty("homePlane", 0)
