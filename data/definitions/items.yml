@@ -4940,6 +4940,7 @@ white_apron:
   limit: 100
   weight: 0.453
   slot: "Chest"
+  type: "Sleeveless"
   examine: "A mostly clean apron."
 white_apron_noted: 1006
 cape_red:
@@ -9706,6 +9707,7 @@ brown_apron:
   limit: 100
   weight: 0.453
   slot: "Chest"
+  type: "Sleeveless"
   examine: "A mostly clean apron."
 brown_apron_noted: 1758
 ball_of_wool:
