@@ -101,7 +101,7 @@ on<CombatDamage>({ !special && isChinchompa(weapon) && target.inMultiCombat }) {
         (if (target is Player) players[tile] else npcs[tile])?.forEach {
             if (it != null && remaining > 0 && it != target) {
                 // Use special to identify the original target so we don't try apply aoe damage again
-                hit(player, it, Random.nextInt(0..damage), type, weapon, true)
+                hit(player, it, Random.nextInt(0..damage), type, weapon, spell, true)
                 remaining--
             }
         }

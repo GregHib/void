@@ -686,3 +686,11 @@ net_block: 428
 net_hit: 430
 mouse_toy_attack: 1658
 power_of_light: 12804
+wind_spell: 10546
+wind_spell_staff: 14221
+water_spell: 10542
+water_spell_staff: 14220
+earth_spell: 14209
+earth_spell_staff: 14222
+fire_spell: 2791
+fire_spell_staff: 14223

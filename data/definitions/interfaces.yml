@@ -247,14 +247,57 @@ modern_spellbook:
     sort_combat: 16
     sort_tele: 17
     lumbridge_home_teleport: 24
+    wind_rush: 98
+    wind_strike: 25
+    confuse: 26
+    enchant_crossbow_bolt: 27
+    water_strike: 28
+    earth_strike: 30
     mobilising_armies_teleport: 37
+    weaken: 31
+    fire_strike: 32
+    bones_to_bananas: 33
+    wind_bolt: 34
+    curse: 35
+    bind: 36
+    water_bolt: 39
     varrock_teleport: 40
+    earth_bolt: 42
     lumbridge_teleport: 43
+    telekinetic_grab: 44
+    fire_bolt: 45
     falador_teleport: 46
+    crumble_undead: 47
+    teleport_to_house: 48
+    wind_blast: 49
     camelot_teleport: 51
+    water_blast: 52
+    iban_blast: 54
+    snare: 55
+    magic_dart: 56
     ardougne_teleport: 57
+    earth_blast: 58
     watchtower_teleport: 62
+    fire_blast: 63
+    bones_to_peaches: 65
+    saradomin_strike: 66
+    claws_of_guthix: 67
+    flames_of_zamorak: 68
     trollheim_teleport: 69
+    wind_wave: 70
+    water_wave: 73
+    vulnerability: 75
+    earth_wave: 77
+    enfeeble: 78
+    fire_wave: 80
+    entangle: 81
+    stun: 82
+    charge: 83
+    wind_surge: 84
+    teleport_block: 86
+    water_surge: 87
+    earth_surge: 89
+    fire_surge: 91
 ancient_spellbook:
   id: 193
   type: spellbook_tab

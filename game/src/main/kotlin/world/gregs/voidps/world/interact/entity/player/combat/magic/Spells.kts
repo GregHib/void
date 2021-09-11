@@ -1,6 +1,8 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
 import world.gregs.voidps.engine.client.ui.InterfaceOption
+import world.gregs.voidps.engine.client.variable.getVar
+import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
@@ -25,4 +27,33 @@ on<HitEffectiveLevelOverride>({ type == "spell" && defence && target is Player }
 
 on<InterfaceOption>({ name.endsWith("_spellbook") && component == "defensive_cast" && option == "Defensive Casting" }) { player: Player ->
     player.toggleVar(component)
+}
+
+on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { player: Player ->
+    val value = when {
+        component.endsWith("_strike") -> 3
+        component.endsWith("_bolt") -> 11
+        component.endsWith("_blast") -> 19
+        component.endsWith("_wave") -> 27
+        component.endsWith("_surge") -> 47
+        else -> 0
+    }
+    val type = when {
+        component.startsWith("wind") -> 0
+        component.startsWith("water") -> 2
+        component.startsWith("earth") -> 4
+        component.startsWith("fire") -> 6
+        component == "crumble_undead" -> 35
+        component == "magic_dart" -> 37
+        component == "claws_of_guthix" -> 39
+        component == "saradomin_strike" -> 41 - 3
+        component == "flames_of_zamorak" -> 43
+        component == "iban_blast" -> 45 - 19
+        else -> 0
+    }
+    if (player.getVar<Int>("autocast") == value + type) {
+        player.setVar("autocast", 0)
+    } else {
+        player.setVar("autocast", value + type)
+    }
 }

@@ -4,7 +4,6 @@ import org.koin.core.context.startKoin
 import world.gregs.voidps.cache.definition.decoder.InterfaceDecoder
 import world.gregs.voidps.engine.client.cacheDefinitionModule
 import world.gregs.voidps.engine.client.cacheModule
-import world.gregs.voidps.engine.client.ui.Interface
 
 object InterfaceDefinitions {
     @JvmStatic
@@ -14,11 +13,13 @@ object InterfaceDefinitions {
             modules(cacheModule, cacheDefinitionModule)
         }.koin
         val decoder = InterfaceDecoder(koin.get())
-        for (i in decoder.indices) {
+        for (i in listOf(192/*, 193, 430, 950*/)) {//decoder.indices) {
             val def = decoder.getOrNull(i) ?: continue
             for ((id, comp) in def.components ?: continue) {
-                if(comp.containers != null) {
-                    println("${Interface.getId(comp.id)} ${Interface.getComponentId(comp.id)} $id ${comp.containers?.toList()}")
+                if(comp.anObjectArray4758 != null) {
+                    println(comp)
+//                if (comp.containers != null) {
+//                    println("${comp.id} ${def.id} ${Interface.getId(comp.id)} ${Interface.getComponentId(comp.id)} $id ${comp.anObjectArray4758?.toList()}")
                 }
             }
         }
