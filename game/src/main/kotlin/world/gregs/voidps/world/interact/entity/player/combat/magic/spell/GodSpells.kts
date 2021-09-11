@@ -2,24 +2,19 @@ package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
-import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.interact.entity.combat.CombatSwing
-import world.gregs.voidps.world.interact.entity.combat.height
 import world.gregs.voidps.world.interact.entity.combat.hit
 import world.gregs.voidps.world.interact.entity.combat.spell
-import world.gregs.voidps.world.interact.entity.proj.shoot
 
-fun isSpell(spell: String) = spell == "iban_blast"
+fun isSpell(spell: String) = spell == "claws_of_guthix" || spell == "flames_of_zamorak" || spell == "saradomin_strike"
 
 on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("iban_blast")
-    player.setGraphic("iban_blast_cast", height = 100)
-    player.shoot(name = player.spell, target = target, delay = 43, height = player.height + 14, endHeight = target.height + 2, offset = 1)
-    player["spell_damage"] = 250.0
-    player["spell_experience"] = 30.0
+    player.setAnimation("cast_god_spell")
+    player["spell_damage"] = 200.0
+    player["spell_experience"] = 35.0
     player.hit(target)
     delay = 5
 }

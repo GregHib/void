@@ -8,9 +8,11 @@ import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
+import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.getPrayerBonus
+import world.gregs.voidps.world.interact.entity.combat.CombatHit
 import world.gregs.voidps.world.interact.entity.combat.HitEffectiveLevelOverride
 import kotlin.math.floor
 
@@ -56,4 +58,9 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
     } else {
         player.setVar("autocast", value + type)
     }
+}
+
+
+on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
+    character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak") 0 else 100)
 }

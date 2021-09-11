@@ -1,6 +1,5 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic.spell
 
-import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setAnimation
@@ -21,10 +20,6 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER)
     player["spell_experience"] = 30.0
     player.hit(target)
     delay = 5
-}
-
-on<CombatHit>({ isSpell(spell) }) { character: Character ->
-    character.setGraphic("${spell}_hit", height = 100)
 }
 
 on<HitDamageModifier>({ isSpell(spell) }) { player: Player ->
