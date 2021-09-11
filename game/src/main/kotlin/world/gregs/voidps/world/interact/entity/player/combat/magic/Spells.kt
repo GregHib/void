@@ -10,8 +10,9 @@ fun Character.cast(
     target: Character,
     delay: Int = 52,
     height: Int = this.height - 4,
+    endHeight: Int = target.height,
     curve: Int = ShootProjectile.DEFAULT_CURVE
-) = shoot(name = name, target = target, delay = delay, height = height, endHeight = target.height, curve = curve)
+) = shoot(name = name, target = target, delay = delay, height = height, endHeight = endHeight, curve = curve)
 
 fun getElementalSpellDamage(spell: String): Double {
     val base = when {

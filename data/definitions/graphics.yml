@@ -472,3 +472,12 @@ fire_wave_hit: 2740
 fire_surge_1: 2736
 fire_surge_2: 2735
 fire_surge_hit: 2741
+crumble_undead_cast: 145
+crumble_undead: 146
+crumble_undead_hit: 147
+iban_blast_cast: 87
+iban_blast: 88
+iban_blast_hit: 89
+magic_dart_cast: 327
+magic_dart: 328
+magic_dart_hit: 329

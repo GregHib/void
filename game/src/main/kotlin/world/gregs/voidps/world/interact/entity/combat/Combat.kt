@@ -82,7 +82,7 @@ fun Character.hit(
     spell: String = (this as? Player)?.spell ?: "",
     special: Boolean = (this as? Player)?.specialAttack ?: false
 ) {
-    val damage = hit(this, target, type, weapon)
+    val damage = hit(this, target, type, weapon, spell)
     hit(target, damage, weapon, type, delay, spell, special)
 }
 
@@ -201,7 +201,7 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
     }
 }
 
-fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean = false): Int {
+fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
     val baseMaxHit = if (type == "spell") {
         source["spell_damage", 0.0]
@@ -212,13 +212,13 @@ fun getMaximumHit(source: Character, target: Character? = null, type: String, we
             else -> Skill.Strength
         }, accuracy = false) * strengthBonus) / 64
     }
-    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, special)
+    val modifier = HitDamageModifier(target, type, strengthBonus, baseMaxHit, weapon, spell, special)
     source.events.emit(modifier)
     source["max_hit"] = modifier.damage.toInt()
     return modifier.damage.toInt()
 }
 
-fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, special: Boolean): Int {
+fun getMinimumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String, special: Boolean): Int {
     return 0
 }
 
@@ -282,10 +282,10 @@ private fun notBroken(name: String, prefix: String): Boolean {
     return name.startsWith(prefix) && !name.endsWith("broken")
 }
 
-fun hit(source: Character, target: Character?, type: String, weapon: Item?, special: Boolean = false): Int {
+fun hit(source: Character, target: Character?, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     return if (successfulHit(source, target, type, weapon, special)) {
-        val maxHit = getMaximumHit(source, target, type, weapon, special)
-        val minHit = getMinimumHit(source, target, type, weapon, special)
+        val maxHit = getMaximumHit(source, target, type, weapon, spell, special)
+        val minHit = getMinimumHit(source, target, type, weapon, spell, special)
         Random.nextInt(minHit..maxHit)
     } else {
         0
