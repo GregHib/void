@@ -493,6 +493,8 @@ weaken_hit: 107
 curse_cast: 108
 curse: 109
 curse_hit: 110
-snare_cast: 177
-snare: 178
+bind_cast: 177
+bind: 178
+bind_hit: 181
 snare_hit: 180
+entangle_hit: 179
