@@ -413,7 +413,7 @@ quick_smash: 340
 clobber: 479
 disrupt: 1729
 disrupt_hit: 1730
-weaken: 483
+darklight_weaken: 483
 impale: 274
 spear_wall: 1835
 power_of_light: 2319
@@ -484,3 +484,15 @@ magic_dart_hit: 329
 saradomin_strike_hit: 76
 claws_of_guthix_hit: 77
 flames_of_zamorak_hit: 78
+confuse_cast: 102
+confuse: 103
+confuse_hit: 104
+weaken_cast: 105
+weaken: 106
+weaken_hit: 107
+curse_cast: 108
+curse: 109
+curse_hit: 110
+snare_cast: 177
+snare: 178
+snare_hit: 180

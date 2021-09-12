@@ -664,7 +664,7 @@ shove: 1064
 quick_smash: 1667
 clobber: 2876
 disrupt: 14788
-weaken: 2890
+darklight_weaken: 2890
 impale: 923
 spear_wall: 10499
 scythe_reap: 437
@@ -698,3 +698,11 @@ crumble_undead: 724
 iban_blast: 708
 magic_dart: 1575
 cast_god_spell: 811
+weaken: 717
+weaken_staff: 1164
+confuse: 716
+confuse_staff: 1163
+curse: 718
+curse_staff: 1165
+snare: 724
+snare_staff: 1161

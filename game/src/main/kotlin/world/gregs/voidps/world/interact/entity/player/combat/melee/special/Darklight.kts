@@ -27,8 +27,8 @@ on<CombatSwing>({ !swung() && it.specialAttack && isDarklight(it.weapon) }) { pl
         delay = -1
         return@on
     }
-    player.setAnimation("weaken")
-    player.setGraphic("weaken")
+    player.setAnimation("darklight_weaken")
+    player.setGraphic("darklight_weaken")
     player.hit(target)
     delay = 5
 }
