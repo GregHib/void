@@ -498,3 +498,12 @@ bind: 178
 bind_hit: 181
 snare_hit: 180
 entangle_hit: 179
+vulnerability_cast: 167
+vulnerability: 168
+vulnerability_hit: 169
+enfeeble_cast: 170
+enfeeble: 171
+enfeeble_hit: 172
+stun_cast: 173
+stun: 174
+stun_hit: 348
