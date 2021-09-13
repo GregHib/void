@@ -62,5 +62,5 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
 
 
 on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
-    character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak") 0 else 100)
+    character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak" || spell == "teleport_block") 0 else 100)
 }

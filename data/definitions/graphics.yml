@@ -507,3 +507,6 @@ enfeeble_hit: 172
 stun_cast: 173
 stun: 174
 stun_hit: 348
+teleport_block_cast: 1841
+teleport_block: 1842
+teleport_block_hit: 1843

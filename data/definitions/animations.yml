@@ -712,3 +712,4 @@ enfeeble: 728
 enfeeble_staff: 1168
 stun: 729
 stun_staff: 1166
+teleport_block_cast: 10503
