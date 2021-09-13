@@ -1,7 +1,7 @@
 import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.action.action
 import world.gregs.voidps.engine.client.ui.awaitDialogues
-import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNPC
+import world.gregs.voidps.engine.client.ui.interact.InterfaceOnNpcClick
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.delay
 import world.gregs.voidps.engine.entity.*
@@ -32,7 +32,8 @@ on<NPCClick>({ option == "Attack" }) { player: Player ->
 val definitions: InterfaceDefinitions by inject()
 val itemDefs: ItemDefinitions by inject()
 
-on<InterfaceOnNPC>({ name.endsWith("_spellbook") }) { player: Player ->
+on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
+    cancel = true
     player.spell = component
     player["attack_range"] = 8
     player["attack_speed"] = 5

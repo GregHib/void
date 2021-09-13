@@ -20,7 +20,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER)
     player.setAnimation("curse${staff}")
     player.setGraphic("curse_cast", height = 100)
     player.shoot(name = player.spell, target = target, delay = 43, height = player.height + 4, endHeight = target.height, curve = 16)
-    player["spell_damage"] = 0.0
+    player["spell_damage"] = -1.0
     player["spell_experience"] = 29.0
     player.hit(target)
     delay = 5

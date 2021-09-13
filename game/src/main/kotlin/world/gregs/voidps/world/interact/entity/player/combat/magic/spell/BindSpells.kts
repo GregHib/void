@@ -25,7 +25,7 @@ on<CombatSwing>({ player -> !swung() && isSpell(player.spell) }, Priority.LOWER)
     player["spell_damage"] = when (player.spell) {
         "snare" -> 20.0
         "entangle" -> 50.0
-        else -> 0.0
+        else -> -1.0
     }
     player["spell_experience"] = when (player.spell) {
         "snare" -> 60.5

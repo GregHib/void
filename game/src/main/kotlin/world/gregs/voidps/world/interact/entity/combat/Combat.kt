@@ -138,14 +138,14 @@ fun Character.hit(damage: Int, type: String = "damage") {
 
 fun hit(source: Character, target: Character, damage: Int, type: String = "damage", weapon: Item? = null, spell: String = "", special: Boolean = false) {
     source.events.emit(CombatDamage(target, type, damage, weapon, spell, special))
-    if (damage >= 0) {
+    if (damage >= 0 && !(type == "spell" && source["spell_damage", 0.0] == -1.0)) {
         var damage = damage
         var soak = 0
         if (damage > 200) {
             val percent = when (type) {
                 "melee" -> target["absorb_melee", 0] / 100.0
                 "range" -> target["absorb_range", 0] / 100.0
-                "magic" -> target["absorb_magic", 0] / 100.0
+                "spell" -> target["absorb_magic", 0] / 100.0
                 else -> 0.0
             }
             soak = floor((damage - 200) * percent).toInt()
@@ -201,7 +201,8 @@ fun getStrengthBonus(source: Character, type: String, weapon: Item?): Int {
 fun getMaximumHit(source: Character, target: Character? = null, type: String, weapon: Item?, spell: String = "", special: Boolean = false): Int {
     val strengthBonus = getStrengthBonus(source, type, weapon) + 64
     val baseMaxHit = if (type == "spell") {
-        source["spell_damage", 0.0]
+        val damage = source["spell_damage", 0.0]
+        if (damage == -1.0) 0.0 else damage
     } else {
         0.5 + (getEffectiveLevel(source, when (type) {
             "range" -> Skill.Range
