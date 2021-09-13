@@ -43,9 +43,6 @@ fun canAttack(source: Character, target: Character): Boolean {
     if (target.action.type == ActionType.Death) {
         return false
     }
-    if (target.movement.frozen) {
-        return false
-    }
     if (target.inSingleCombat && target.hasEffect("in_combat") && !target.attackers.contains(source)) {
         (source as? Player)?.message("That ${target::class.simpleName?.toLowerCase()} is already under attack.")
         return false
@@ -357,7 +354,7 @@ val Character.combatStyle: String
     get() = get("combat_style", "")
 
 var Character.spell: String
-    get() = get("spell", "")
+    get() = get("spell", get("autocast", ""))
     set(value) = set("spell", value)
 
 var Player.weapon: Item
