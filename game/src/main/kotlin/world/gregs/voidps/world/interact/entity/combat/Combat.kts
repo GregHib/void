@@ -16,7 +16,6 @@ import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
 import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
 import world.gregs.voidps.engine.entity.definition.ItemDefinitions
-import world.gregs.voidps.engine.entity.item.Item
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
@@ -37,7 +36,6 @@ on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
     player.spell = component
     player["attack_range"] = 8
     player["attack_speed"] = 5
-    player.weapon = Item.EMPTY
     /*val component = definitions.get(name).components?.get(componentId) ?: return@on
     val array = component.anObjectArray4758 ?: return@on
     val magicLevel = array[5] as Int

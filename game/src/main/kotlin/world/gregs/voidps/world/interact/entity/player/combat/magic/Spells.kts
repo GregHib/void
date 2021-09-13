@@ -89,6 +89,6 @@ on<CombatSwing>({ it.spell.isNotBlank() }, Priority.LOWEST) { character: Charact
     if (character.spell.isBlank()) {
         character.clear("spell_damage")
         character.clear("spell_experience")
-        character["attack_range"] = 1
+        character["attack_range"] = 1// FIXME should be 1 tick before a single spell switches back to melee and tries to run closer.
     }
 }
