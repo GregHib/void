@@ -3790,6 +3790,8 @@ bronze_throwing_axe:
   limit: 1000
   range: 4.0
   range_str: 5.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 iron_throwing_axe:
@@ -3798,6 +3800,8 @@ iron_throwing_axe:
   limit: 1000
   range: 5.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 steel_throwing_axe:
@@ -3806,6 +3810,8 @@ steel_throwing_axe:
   limit: 1000
   range: 8.0
   range_str: 11.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 mithril_throwing_axe:
@@ -3814,6 +3820,8 @@ mithril_throwing_axe:
   limit: 1000
   range: 12.0
   range_str: 16.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 adamant_throwing_axe:
@@ -3822,6 +3830,8 @@ adamant_throwing_axe:
   limit: 1000
   range: 17.0
   range_str: 23.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 rune_throwing_axe:
@@ -3830,6 +3840,8 @@ rune_throwing_axe:
   limit: 1000
   range: 26.0
   range_str: 36.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A finely balanced throwing axe."
 bronze_dart:
@@ -3838,6 +3850,8 @@ bronze_dart:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart:
@@ -3846,6 +3860,8 @@ iron_dart:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart:
@@ -3854,6 +3870,8 @@ steel_dart:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart:
@@ -3862,6 +3880,8 @@ mithril_dart:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart:
@@ -3870,6 +3890,8 @@ adamant_dart:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart:
@@ -3878,6 +3900,8 @@ rune_dart:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p:
@@ -3885,6 +3909,8 @@ bronze_dart_p:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p:
@@ -3892,6 +3918,8 @@ iron_dart_p:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p:
@@ -3899,6 +3927,8 @@ steel_dart_p:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 mithril_dart_p:
@@ -3906,6 +3936,8 @@ mithril_dart_p:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p:
@@ -3913,6 +3945,8 @@ adamant_dart_p:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p:
@@ -3920,6 +3954,8 @@ rune_dart_p:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 poisoned_dart_p:
@@ -3961,6 +3997,8 @@ bronze_javelin:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin:
@@ -3969,6 +4007,8 @@ iron_javelin:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin:
@@ -3977,6 +4017,8 @@ steel_javelin:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin:
@@ -3985,6 +4027,8 @@ mithril_javelin:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin:
@@ -3993,6 +4037,8 @@ adamant_javelin:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin:
@@ -4001,6 +4047,8 @@ rune_javelin:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_javelin_p:
@@ -4008,6 +4056,8 @@ bronze_javelin_p:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p:
@@ -4015,6 +4065,8 @@ iron_javelin_p:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p:
@@ -4022,6 +4074,8 @@ steel_javelin_p:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p:
@@ -4029,6 +4083,8 @@ mithril_javelin_p:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p:
@@ -4036,6 +4092,8 @@ adamant_javelin_p:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p:
@@ -4043,6 +4101,8 @@ rune_javelin_p:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 crossbow:
@@ -4085,6 +4145,8 @@ shortbow:
   range: 8.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "Short but effective."
   kept: "Wilderness"
   ammo:
@@ -4103,6 +4165,8 @@ oak_shortbow:
   range: 14.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of oak, still effective."
   kept: "Wilderness"
   ammo:
@@ -4173,6 +4237,8 @@ willow_shortbow:
   range: 20.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of willow, still effective."
   kept: "Wilderness"
   ammo:
@@ -4225,6 +4291,8 @@ maple_shortbow:
   range: 29.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of Maple, still effective."
   ammo:
     - "bronze_arrow"
@@ -4283,6 +4351,8 @@ yew_shortbow:
   range: 47.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A shortbow made out of yew, still effective."
   ammo:
     - "bronze_arrow"
@@ -4349,6 +4419,8 @@ magic_shortbow:
   range: 69.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "Short and magical, but still effective."
   ammo:
     - "bronze_arrow"
@@ -4381,6 +4453,8 @@ iron_knife:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife:
@@ -4389,6 +4463,8 @@ bronze_knife:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife:
@@ -4397,6 +4473,8 @@ steel_knife:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife:
@@ -4405,6 +4483,8 @@ mithril_knife:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife:
@@ -4413,6 +4493,8 @@ adamant_knife:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife:
@@ -4421,6 +4503,8 @@ rune_knife:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife:
@@ -4429,6 +4513,8 @@ black_knife:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p:
@@ -4436,6 +4522,8 @@ bronze_knife_p:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p:
@@ -4443,6 +4531,8 @@ iron_knife_p:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p:
@@ -4450,6 +4540,8 @@ steel_knife_p:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p:
@@ -4457,6 +4549,8 @@ mithril_knife_p:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p:
@@ -4464,6 +4558,8 @@ black_knife_p:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p:
@@ -4471,6 +4567,8 @@ adamant_knife_p:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p:
@@ -4478,6 +4576,8 @@ rune_knife_p:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_bolts:
@@ -15269,6 +15369,8 @@ black_dart:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 black_dart_p:
@@ -15276,6 +15378,8 @@ black_dart_p:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 bronze_claws:
@@ -27541,6 +27645,8 @@ bronze_dart_p+:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p+:
@@ -27548,6 +27654,8 @@ iron_dart_p+:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p+:
@@ -27555,6 +27663,8 @@ steel_dart_p+:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p+:
@@ -27562,6 +27672,8 @@ black_dart_p+:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p+:
@@ -27569,6 +27681,8 @@ mithril_dart_p+:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p+:
@@ -27576,6 +27690,8 @@ adamant_dart_p+:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p+:
@@ -27583,6 +27699,8 @@ rune_dart_p+:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_dart_p++:
@@ -27590,6 +27708,8 @@ bronze_dart_p++:
   limit: 1500
   range: 3.0
   range_str: 1.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a bronze tip."
 iron_dart_p++:
@@ -27597,6 +27717,8 @@ iron_dart_p++:
   limit: 1500
   range: 4.0
   range_str: 3.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an iron tip."
 steel_dart_p++:
@@ -27604,6 +27726,8 @@ steel_dart_p++:
   limit: 1500
   range: 5.0
   range_str: 4.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a steel tip."
 black_dart_p++:
@@ -27611,6 +27735,8 @@ black_dart_p++:
   limit: 1500
   range: 7.0
   range_str: 6.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a black tip."
 mithril_dart_p++:
@@ -27618,6 +27744,8 @@ mithril_dart_p++:
   limit: 1500
   range: 8.0
   range_str: 7.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a mithril tip."
 adamant_dart_p++:
@@ -27625,6 +27753,8 @@ adamant_dart_p++:
   limit: 1500
   range: 11.0
   range_str: 10.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with an adamant tip."
 rune_dart_p++:
@@ -27632,6 +27762,8 @@ rune_dart_p++:
   limit: 1000
   range: 15.0
   range_str: 14.0
+  attack_range: 3
+  attack_speed: 3
   slot: "Weapon"
   examine: "A deadly throwing dart with a rune tip."
 bronze_javelin_p+:
@@ -27639,6 +27771,8 @@ bronze_javelin_p+:
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze tipped javelin."
 iron_javelin_p+:
@@ -27646,6 +27780,8 @@ iron_javelin_p+:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p+:
@@ -27653,6 +27789,8 @@ steel_javelin_p+:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p+:
@@ -27660,6 +27798,8 @@ mithril_javelin_p+:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p+:
@@ -27667,6 +27807,8 @@ adamant_javelin_p+:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p+:
@@ -27674,13 +27816,17 @@ rune_javelin_p+:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
-bronze_javn_p++:
+bronze_javelin_p++:
   id: 5648
   limit: 1000
   range: 5.0
   range_str: 6.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A bronze-tipped javelin."
 iron_javelin_p++:
@@ -27688,6 +27834,8 @@ iron_javelin_p++:
   limit: 1000
   range: 8.0
   range_str: 10.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An iron tipped javelin."
 steel_javelin_p++:
@@ -27695,6 +27843,8 @@ steel_javelin_p++:
   limit: 1000
   range: 12.0
   range_str: 12.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A steel tipped javelin."
 mithril_javelin_p++:
@@ -27702,6 +27852,8 @@ mithril_javelin_p++:
   limit: 1000
   range: 17.0
   range_str: 18.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A mithril tipped javelin."
 adamant_javelin_p++:
@@ -27709,6 +27861,8 @@ adamant_javelin_p++:
   limit: 1000
   range: 24.0
   range_str: 28.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "An adamant tipped javelin."
 rune_javelin_p++:
@@ -27716,6 +27870,8 @@ rune_javelin_p++:
   limit: 1000
   range: 38.0
   range_str: 42.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A rune tipped javelin."
 bronze_knife_p+:
@@ -27723,6 +27879,8 @@ bronze_knife_p+:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p+:
@@ -27730,6 +27888,8 @@ iron_knife_p+:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p+:
@@ -27737,6 +27897,8 @@ steel_knife_p+:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p+:
@@ -27744,6 +27906,8 @@ mithril_knife_p+:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p+:
@@ -27751,6 +27915,8 @@ black_knife_p+:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p+:
@@ -27758,6 +27924,8 @@ adamant_knife_p+:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p+:
@@ -27765,6 +27933,8 @@ rune_knife_p+:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 bronze_knife_p++:
@@ -27772,6 +27942,8 @@ bronze_knife_p++:
   limit: 10000
   range: 4.0
   range_str: 3.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_knife_p++:
@@ -27779,6 +27951,8 @@ iron_knife_p++:
   limit: 10000
   range: 5.0
   range_str: 4.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 steel_knife_p++:
@@ -27786,6 +27960,8 @@ steel_knife_p++:
   limit: 10000
   range: 8.0
   range_str: 7.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 mithril_knife_p++:
@@ -27793,6 +27969,8 @@ mithril_knife_p++:
   limit: 10000
   range: 11.0
   range_str: 10.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 black_knife_p++:
@@ -27800,6 +27978,8 @@ black_knife_p++:
   limit: 10000
   range: 10.0
   range_str: 8.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 adamant_knife_p++:
@@ -27807,6 +27987,8 @@ adamant_knife_p++:
   limit: 10000
   range: 15.0
   range_str: 14.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 rune_knife_p++:
@@ -27814,6 +27996,8 @@ rune_knife_p++:
   limit: 10000
   range: 25.0
   range_str: 24.0
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   examine: "A finely balanced throwing knife."
 iron_dagger_p+:
@@ -31647,6 +31831,8 @@ toktz_xil_ul:
   limit: 100
   range: 69.0
   range_str: 49.0
+  attack_range: 7
+  attack_speed: 4
   aka: "Obsidian throwing ring"
   slot: "Weapon"
   examine: "A razor sharp ring of obsidian."
@@ -47834,6 +48020,8 @@ chinchompa:
   aka: "Grey chinchompa"
   slot: "Weapon"
   destroy: "Release"
+  attack_range: 9
+  attack_speed: 4
   examine: "Handle with care."
   kept: "Wilderness"
 red_chinchompa:
@@ -47844,6 +48032,8 @@ red_chinchompa:
   range_str: 15.0
   slot: "Weapon"
   destroy: "Release"
+  attack_range: 9
+  attack_speed: 4
   examine: "Even more volatile than its vegetarian counterpart."
   kept: "Wilderness"
 kyatt_legs:
@@ -68688,6 +68878,8 @@ performance_shortbow:
   weight: 1.36
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   destroy: "You can get another one from the equipment box for this performance."
   examine: "Short, but effective."
   kept: "Vanish"
@@ -68696,6 +68888,8 @@ performance_knife:
   id: 13720
   bankable: false
   tradeable: false
+  attack_range: 4
+  attack_speed: 3
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing knife."
@@ -68705,6 +68899,8 @@ performance_throwing_axe:
   id: 13721
   bankable: false
   tradeable: false
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   destroy: "You can get another one from the equipment box for this performance."
   examine: "A finely balanced throwing axe."
@@ -69386,6 +69582,8 @@ morrigans_javelin:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p:
@@ -69393,6 +69591,8 @@ morrigans_javelin_p:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p+:
@@ -69400,6 +69600,8 @@ morrigans_javelin_p+:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_javelin_p++:
@@ -69407,6 +69609,8 @@ morrigans_javelin_p++:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 morrigans_throwing_axe:
@@ -69415,6 +69619,8 @@ morrigans_throwing_axe:
   limit: 500
   range: 93.0
   range_str: 117.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A vicious throwing axe."
 statiuss_platebody:
@@ -70296,6 +70502,8 @@ corrupt_morrigans_javelin:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p:
@@ -70303,6 +70511,8 @@ c_morrigans_javelin_p:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p+:
@@ -70310,6 +70520,8 @@ c_morrigans_javelin_p+:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 c_morrigans_javelin_p++:
@@ -70317,6 +70529,8 @@ c_morrigans_javelin_p++:
   limit: 100
   range: 105.0
   range_str: 145.0
+  attack_range: 5
+  attack_speed: 6
   slot: "Weapon"
   examine: "A vicious javelin."
 corrupt_morrigans_throwing_axe:
@@ -70325,6 +70539,8 @@ corrupt_morrigans_throwing_axe:
   limit: 500
   range: 93.0
   range_str: 117.0
+  attack_range: 4
+  attack_speed: 5
   slot: "Weapon"
   examine: "A vicious throwing axe."
 corrupt_dragon_chainbody:
@@ -76828,6 +77044,8 @@ hand_cannon:
   range: 90.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 9
+  attack_speed: 6
   ammo:
     - "hand_cannon_shot"
   examine: "A miniature dwarven cannon."
@@ -78892,6 +79110,8 @@ kayles_sling:
   weight: 0.25
   range: 5.0
   range_str: 6.5
+  attack_range: 4
+  attack_speed: 4
   slot: "Weapon"
   type: "TwoHanded"
   destroy: "You can get another from Xenia/Ilona in Lumbridge."
@@ -89158,6 +89378,8 @@ tangle_gum_shortbow:
   range: 7.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89168,6 +89390,8 @@ seeping_elm_shortbow:
   range: 10.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -89179,6 +89403,8 @@ blood_spindle_shortbow:
   range: 13.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89191,6 +89417,8 @@ utuku_shortbow:
   range: 15.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89204,6 +89432,8 @@ spinebeam_shortbow:
   range: 19.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at a short distance."
   weight: 1.814
   ammo:
@@ -89218,6 +89448,8 @@ bovistrangler_shortbow:
   range: 30.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89233,6 +89465,8 @@ thigat_shortbow:
   range: 36.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89249,6 +89483,8 @@ corpsethorn_shortbow:
   range: 43.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89266,6 +89502,8 @@ entgallow_shortbow:
   range: 50.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89284,6 +89522,8 @@ grave_creeper_shortbow:
   range: 57.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -89303,6 +89543,8 @@ sagittarian_shortbow:
   range: 65.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
   ammo:
@@ -96434,6 +96676,8 @@ gravite_shortbow:
   range: 47.0
   slot: "Weapon"
   type: "TwoHanded"
+  attack_range: 7
+  attack_speed: 4
   examine: "A small bow, only effective at short distance."
   weight: 1.814
 gravite_shortbow_broken_broken:
