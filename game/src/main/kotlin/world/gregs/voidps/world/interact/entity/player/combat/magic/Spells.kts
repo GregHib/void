@@ -1,18 +1,18 @@
 package world.gregs.voidps.world.interact.entity.player.combat.magic
 
+import world.gregs.voidps.engine.action.ActionType
 import world.gregs.voidps.engine.client.ui.InterfaceOption
 import world.gregs.voidps.engine.client.variable.clearVar
 import world.gregs.voidps.engine.client.variable.getVar
 import world.gregs.voidps.engine.client.variable.setVar
 import world.gregs.voidps.engine.client.variable.toggleVar
+import world.gregs.voidps.engine.entity.*
 import world.gregs.voidps.engine.entity.character.Character
 import world.gregs.voidps.engine.entity.character.contain.ItemChanged
 import world.gregs.voidps.engine.entity.character.npc.NPC
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
-import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.world.activity.combat.prayer.getPrayerBonus
@@ -76,16 +76,12 @@ on<CombatHit>({ spell.isNotBlank() }) { character: Character ->
     character.setGraphic("${spell}_hit", height = if (spell == "flames_of_zamorak" || spell == "teleport_block") 0 else 100)
 }
 
-on<CombatSwing>({ it.spell.isBlank() }, Priority.HIGHER) { character: Character ->
+on<CombatSwing>({ (delay ?: -1) >= 0 && it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
+    character.clear("spell")
     character.clear("spell_damage")
     character.clear("spell_experience")
-}
-
-on<CombatSwing>({ it.spell.isNotBlank() }, Priority.LOWEST) { character: Character ->
-    character.clear("spell")
-    if (character.spell.isBlank()) {
-        character.clear("spell_damage")
-        character.clear("spell_experience")
-        character["attack_range"] = 1// FIXME should be 1 tick before a single spell switches back to melee and tries to run closer.
+    if (character is Player && !character.contains("autocast")) {
+        character["attack_range"] = character.weapon.def["attack_range", 1]
+        character.action.cancel(ActionType.Combat)
     }
 }

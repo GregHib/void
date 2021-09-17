@@ -14,46 +14,28 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.player.face
 import world.gregs.voidps.engine.entity.character.update.visual.watch
-import world.gregs.voidps.engine.entity.definition.InterfaceDefinitions
-import world.gregs.voidps.engine.entity.definition.ItemDefinitions
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy
 import world.gregs.voidps.engine.path.strat.CombatTargetStrategy.Companion.isWithinAttackDistance
 import world.gregs.voidps.network.encode.message
-import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.combat.*
 
 on<NPCClick>({ option == "Attack" }) { player: Player ->
     cancel = true
-    player.attack(npc)
+    player.attack(npc) {
+        player.clear("spell")
+        player.clear("spell_damage")
+        player.clear("spell_experience")
+    }
 }
-
-val definitions: InterfaceDefinitions by inject()
-val itemDefs: ItemDefinitions by inject()
 
 on<InterfaceOnNpcClick>({ name.endsWith("_spellbook") }) { player: Player ->
     cancel = true
-    player.spell = component
-    player["attack_range"] = 8
-    player["attack_speed"] = 5
-    /*val component = definitions.get(name).components?.get(componentId) ?: return@on
-    val array = component.anObjectArray4758 ?: return@on
-    val magicLevel = array[5] as Int
-
-    if (!player.has(Skill.Magic, magicLevel, message = true)) {
-        return@on
+    player.attack(npc) {
+        player.spell = component
+        player["attack_range"] = 8
+        player["attack_speed"] = 5
     }
-    val requiredItems = mutableListOf<Item>()
-
-    val item1 = Item(itemDefs.getName(array[8] as Int), array[9] as Int)
-    player.inventory.indexOf(item1.name)
-    if(player.inventory.remove(item1.name, item1.amount)) {
-
-    }
-    val item2 = Item(itemDefs.getName(array[10] as Int), array[11] as Int)
-    val item3 = Item(itemDefs.getName(array[12] as Int), array[13] as Int)
-    val item4 = Item(itemDefs.getName(array[14] as Int), array[15] as Int)*/
-    player.attack(npc)
 }
 
 on<CombatSwing> { character: Character ->
@@ -73,7 +55,7 @@ on<CombatHit>({ it is Player && it.getVar("auto_retaliate", false) || it is NPC 
     }
 }
 
-fun Character.attack(target: Character) {
+fun Character.attack(target: Character, block: () -> Unit = {}) {
     val source = this
     action(ActionType.Combat) {
         source["target"] = target
@@ -83,17 +65,20 @@ fun Character.attack(target: Character) {
         }
         try {
             watch(target)
+            var first = true
             while (isActive && (source is NPC || source is Player && source.awaitDialogues())) {
                 if (!withinRange(source, target)) {
                     delay()
                     continue
-                }
-                if (source.remaining("skilling_delay") > 0L) {
+                } else if (source.remaining("skilling_delay") > 0L) {
                     delay()
                     continue
-                }
-                if (!canAttack(source, target)) {
+                } else if (!canAttack(source, target)) {
                     break
+                }
+                if (first) {
+                    block.invoke()
+                    first = false
                 }
                 val swing = CombatSwing(target)
                 face(target)
