@@ -15916,6 +15916,7 @@ bronze_halberd:
   magic: -4.0
   slash_def: 1.0
   crush_def: 2.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A bronze halberd."
@@ -15933,6 +15934,7 @@ iron_halberd:
   magic: -4.0
   slash_def: 1.0
   crush_def: 2.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An iron halberd."
@@ -15950,6 +15952,7 @@ steel_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A steel halberd."
@@ -15967,6 +15970,7 @@ black_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A black halberd."
@@ -15983,6 +15987,7 @@ mithril_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 4.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A mithril halberd."
@@ -15999,6 +16004,7 @@ adamant_halberd:
   magic: -4.0
   slash_def: 3.0
   crush_def: 4.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "An adamant halberd."
@@ -16015,6 +16021,7 @@ rune_halberd:
   magic: -4.0
   slash_def: 4.0
   crush_def: 5.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A rune halberd."
@@ -16031,6 +16038,7 @@ dragon_halberd:
   magic: -4.0
   slash_def: 4.0
   crush_def: 5.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A dragon halberd."
@@ -32112,6 +32120,7 @@ white_halberd:
   magic: -4.0
   slash_def: 2.0
   crush_def: 3.0
+  attack_range: 2
   slot: "Weapon"
   type: "TwoHanded"
   examine: "A white halberd."

@@ -12,8 +12,6 @@ import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.character.player.skill.Skill
 import world.gregs.voidps.engine.entity.character.update.visual.setGraphic
 import world.gregs.voidps.engine.entity.clear
-import world.gregs.voidps.engine.entity.item.EquipSlot
-import world.gregs.voidps.engine.entity.item.equipped
 import world.gregs.voidps.engine.entity.set
 import world.gregs.voidps.engine.event.Priority
 import world.gregs.voidps.engine.event.on
@@ -61,8 +59,7 @@ on<InterfaceOption>({ name.endsWith("_spellbook") && option == "Autocast" }) { p
     if (player.getVar<Int>("autocast") == value + type) {
         player.clear("autocast")
         player.clearVar("autocast")
-        player.weapon = player.equipped(EquipSlot.Weapon)
-        player["attack_range"] = 1// FIXME if player already has bow or halberd equipped then this will be wrong
+        player["attack_range"] = player.weapon.def["attack_range", 1]
     } else {
         player["autocast"] = component
         player["attack_range"] = 8
