@@ -159,11 +159,10 @@ emote_summoning: 1515
 emote_quest_point: 816
 emote_dung_master_bow:
   id: 2781
-  height: 100
+  height: 60
 emote_dung_master_spell: 2782
 emote_dung_master_return:
   id: 2783
-  delay: 60
 emote_dung_master_hobgoblin: 2777
 emote_dung_master_gravecreeper: 2778
 emote_dung_master_flesh_spoiler: 2779
@@ -194,115 +193,115 @@ teleport_lunar: 1685
 teleport_tablet: 1680
 bronze_arrow_shoot:
   id: 19
-  height: 100
+  height: 60
 bronze_arrow: 10
 iron_arrow_shoot:
   id: 18
-  height: 100
+  height: 60
 iron_arrow: 9
 steel_arrow_shoot:
   id: 18
-  height: 100
+  height: 60
 steel_arrow: 9
 mithril_arrow_shoot:
   id: 21
-  height: 100
+  height: 60
 mithril_arrow: 12
 adamant_arrow_shoot:
   id: 22
-  height: 100
+  height: 60
 adamant_arrow: 13
 rune_arrow_shoot:
   id: 24
-  height: 100
+  height: 60
 rune_arrow: 15
 ice_arrow_shoot:
   id: 25
-  height: 100
+  height: 60
 ice_arrow: 16
 broad_arrow_shoot:
   id: 325
-  height: 100
+  height: 60
 broad_arrow: 326
 dragon_arrow: 1115
 training_arrow_shoot:
   id: 806
-  height: 100
+  height: 60
 training_arrow: 805
 crossbow_bolt: 27
 bone_bolts: 696
 barbed_bolts: 696
 brutal_shoot:
   id: 403
-  height: 75
+  height: 35
 brutal_arrow: 404
 ogre_arrow_shoot:
   id: 243
-  height: 60
+  height: 20
 ogre_arrow: 242
 guthix_arrows_shoot:
   id: 95
-  height: 100
+  height: 60
 guthix_arrows: 98
 saradomin_arrows_shoot:
   id: 96
-  height: 100
+  height: 60
 saradomin_arrows: 99
 zamorak_arrows_shoot:
   id: 97
-  height: 100
+  height: 60
 zamorak_arrows: 100
 fire_arrows_unlit_shoot:
   id: 26
-  height: 100
+  height: 60
 fire_arrows_unlit: 17
 fire_arrows_lit_shoot:
   id: 26
-  height: 100
+  height: 60
 fire_arrows_lit: 17
 novite_arrows_shoot:
   id: 2466
-  height: 100
+  height: 60
 novite_arrows: 2467
 bathus_arrows_shoot:
   id: 2468
-  height: 100
+  height: 60
 bathus_arrows: 2469
 marmaros_arrows_shoot:
   id: 2470
-  height: 100
+  height: 60
 marmaros_arrows: 2471
 kratonite_arrows_shoot:
   id: 2472
-  height: 100
+  height: 60
 kratonite_arrows: 2473
 fractite_arrows_shoot:
   id: 2474
-  height: 100
+  height: 60
 fractite_arrows: 2475
 zephyrium_arrows_shoot:
   id: 2476
-  height: 100
+  height: 60
 zephyrium_arrows: 2477
 argonite_arrows_shoot:
   id: 2478
-  height: 100
+  height: 60
 argonite_arrows: 2479
 katagon_arrows_shoot:
   id: 2480
-  height: 100
+  height: 60
 katagon_arrows: 2481
 gorgonite_arrows_shoot:
   id: 2482
-  height: 100
+  height: 60
 gorgonite_arrows: 2483
 promethium_arrows_shoot:
   id: 2484
-  height: 100
+  height: 60
 promethium_arrows: 2485
 sagittarian_arrows_shoot:
   id: 2486
-  height: 100
+  height: 60
 sagittarian_arrows: 2487
 cast_sap_attack: 2214
 proj_sap_attack: 2215
@@ -341,44 +340,44 @@ proj_leech_special_attack: 2256
 land_leech_special_attack: 2258
 special_arrow_shoot:
   id: 250
-  height: 100
+  height: 60
 special_arrow: 249
 magic_shortbow_special:
   id: 256
-  height: 100
+  height: 60
 bronze_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 iron_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 steel_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 mithril_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 adamant_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 rune_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 ice_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 dragon_arrow_double_shot:
   id: 1111
-  height: 100
+  height: 60
 broad_arrow_double_shot:
   id: 1104
-  height: 100
+  height: 60
 fire_arrows_unlit_double_shot:
   id: 1113
-  height: 100
+  height: 60
 fire_arrows_lit_double_shot:
   id: 1114
-  height: 100
+  height: 60
 descent_of_arrow: 1120
 descent_of_dragons_head: 1099
 arrow_smoke: 1101
@@ -391,7 +390,7 @@ zaniks_crossbow_special: 1714
 zaniks_crossbow_bolt: 1497
 seercull_special_shoot:
   id: 472
-  height: 100
+  height: 60
 seercull_special_arrow: 473
 seercull_special_hit: 474
 zamorak_bow_special_hit: 127
@@ -400,31 +399,31 @@ guthix_bow_special_hit: 129
 saradomin_bow_restoration: 93
 bronze_dart_throw:
   id: 1234
-  height: 100
+  height: 60
 bronze_dart: 226
 iron_dart_throw:
   id: 1235
-  height: 100
+  height: 60
 iron_dart: 227
 steel_dart_throw:
   id: 1236
-  height: 100
+  height: 60
 steel_dart: 228
 mithril_dart_throw:
   id: 1238
-  height: 100
+  height: 60
 mithril_dart: 229
 adamant_dart_throw:
   id: 1239
-  height: 100
+  height: 60
 adamant_dart: 230
 rune_dart_throw:
   id: 1240
-  height: 100
+  height: 60
 rune_dart: 231
 dragon_dart_throw:
   id: 1242
-  height: 100
+  height: 60
 dragon_dart: 1122
 bronze_javelin: 200
 iron_javelin: 201
@@ -435,60 +434,60 @@ rune_javelin: 205
 morrigans_javelin: 1837
 morrigans_javelin_special:
   id: 1836
-  height: 100
+  height: 60
 bronze_throwing_axe_throw:
   id: 43
-  height: 100
+  height: 60
 bronze_throwing_axe: 36
 iron_throwing_axe_throw:
   id: 42
-  height: 100
+  height: 60
 iron_throwing_axe: 35
 steel_throwing_axe_throw:
   id: 44
-  height: 100
+  height: 60
 steel_throwing_axe: 37
 mithril_throwing_axe_throw:
   id: 45
-  height: 100
+  height: 60
 mithril_throwing_axe: 38
 adamant_throwing_axe_throw:
   id: 46
-  height: 100
+  height: 60
 adamant_throwing_axe: 39
 rune_throwing_axe_throw:
   id: 48
-  height: 100
+  height: 60
 rune_throwing_axe: 41
 # morrigans_throwing_axe_throw: 1856
 morrigans_throwing_axe: 1839
 bronze_knife_throw:
   id: 219
-  height: 100
+  height: 60
 bronze_knife: 212
 iron_knife_throw:
   id: 220
-  height: 100
+  height: 60
 iron_knife: 213
 steel_knife_throw:
   id: 221
-  height: 100
+  height: 60
 steel_knife: 214
 black_knife_throw:
   id: 222
-  height: 100
+  height: 60
 black_knife: 215
 mithril_knife_throw:
   id: 223
-  height: 100
+  height: 60
 mithril_knife: 216
 adamant_knife_throw:
   id: 224
-  height: 100
+  height: 60
 adamant_knife: 217
 rune_knife_throw:
   id: 225
-  height: 100
+  height: 60
 rune_knife: 218
 hand_cannon_shoot: 2138
 hand_cannon_explode: 2140
@@ -506,42 +505,44 @@ magical_poison: 752
 sea_curse: 750
 training_arrows_shoot:
   id: 806
-  height: 100
+  height: 60
 training_arrows: 805
 sling_rock: 32
 toktz_xil_ul: 442
 chinchompa: 908
 red_chinchompa: 909
-chinchompa_hit: 2739
+chinchompa_hit:
+  id: 2739
+  height: 50
 rune_throwing_axe_special_throw:
   id: 257
-  height: 100
+  height: 60
 rune_throwing_axe_special: 258
 energy_drain:
   id: 2108
-  height: 100
+  height: 60
 statius_warhammer_smash: 1840
 rampage: 246
 slice_and_dice: 1950
 puncture:
   id: 252
-  height: 100
+  height: 60
 cleave:
   id: 2117
-  height: 100
+  height: 60
 shatter:
   id: 251
-  height: 100
+  height: 60
 the_judgement: 2113
 sanctuary: 247
 sever:
   id: 2118
-  height: 100
+  height: 60
 saradomins_lightning: 1194
 favour_of_the_war_god: 1052
 liquify:
   id: 1048
-  height: 100
+  height: 60
 backstab: 704
 sunder: 1027
 warstrike: 2114
@@ -550,22 +551,22 @@ ice_cleave: 1221
 ice_cleave_hit: 2104
 sweep:
   id: 282
-  height: 100
+  height: 60
 powerstab: 1225
 shove:
   id: 253
-  height: 100
+  height: 60
 shove_stun: 254
 quick_smash:
   id: 340
-  height: 100
+  height: 60
 clobber: 479
 disrupt: 1729
 disrupt_hit: 1730
 darklight_weaken: 483
 impale:
   id: 274
-  height: 100
+  height: 60
 spear_wall: 1835
 power_of_light: 2319
 power_of_light_hit: 2320
@@ -573,185 +574,185 @@ wind_spell_cast: 457
 wind_rush: 458
 wind_rush_hit:
   id: 463
-  height: 100
+  height: 60
 wind_strike: 458
 wind_strike_hit:
   id: 463
-  height: 100
+  height: 60
 wind_bolt: 459
 wind_bolt_hit:
   id: 464
-  height: 100
+  height: 60
 wind_blast: 460
 wind_blast_hit:
   id: 1863
-  height: 100
+  height: 60
 wind_wave: 461
 wind_wave_hit:
   id: 2699
-  height: 100
+  height: 60
 wind_surge: 461
 wind_surge_hit:
   id: 2700
-  height: 100
+  height: 60
 water_spell_cast: 2701
 water_spell_staff_cast: 2702
 water_strike: 2703
 water_strike_hit:
   id: 2708
-  height: 100
+  height: 60
 water_bolt: 2704
 water_bolt_hit:
   id: 2709
-  height: 100
+  height: 60
 water_blast: 2705
 water_blast_hit:
   id: 2710
-  height: 100
+  height: 60
 water_wave: 2706
 water_wave_hit:
   id: 2711
-  height: 100
+  height: 60
 water_surge: 2707
 water_surge_hit:
   id: 2711
-  height: 100
+  height: 60
 earth_strike_cast: 2713
 earth_strike: 2718
 earth_strike_hit:
   id: 2723
-  height: 100
+  height: 60
 earth_bolt_cast: 2714
 earth_bolt: 2719
 earth_bolt_hit:
   id: 2724
-  height: 100
+  height: 60
 earth_blast_cast: 2715
 earth_blast: 2720
 earth_blast_hit:
   id: 2725
-  height: 100
+  height: 60
 earth_wave_cast: 2716
 earth_wave: 2721
 earth_wave_hit:
   id: 2726
-  height: 100
+  height: 60
 earth_surge_cast: 2717
 earth_surge: 2722
 earth_surge_hit:
   id: 2727
-  height: 100
+  height: 60
 fire_spell_cast: 2728
 fire_strike: 2729
 fire_strike_hit:
   id: 2737
-  height: 100
+  height: 60
 fire_bolt: 2730
 fire_bolt_hit:
   id: 2738
-  height: 100
+  height: 60
 fire_blast_1: 2732
 fire_blast_2: 2733
 fire_blast_hit:
   id: 2739
-  height: 100
+  height: 60
 fire_wave_1: 2734
 fire_wave_2: 2735
 fire_wave_hit:
   id: 2740
-  height: 100
+  height: 60
 fire_surge_1: 2736
 fire_surge_2: 2735
 fire_surge_hit:
   id: 2741
-  height: 100
+  height: 60
 crumble_undead_cast:
   id: 145
-  height: 100
+  height: 60
 crumble_undead: 146
 crumble_undead_hit:
   id: 147
-  height: 100
+  height: 60
 iban_blast_cast:
   id: 87
-  height: 100
+  height: 60
 iban_blast: 88
 iban_blast_hit:
   id: 89
-  height: 100
+  height: 60
 magic_dart_cast:
   id: 327
-  height: 100
+  height: 60
 magic_dart: 328
 magic_dart_hit:
   id: 329
-  height: 100
+  height: 60
 saradomin_strike_hit:
   id: 76
-  height: 100
+  height: 60
 claws_of_guthix_hit:
   id: 77
-  height: 100
+  height: 60
 flames_of_zamorak_hit:
   id: 78
-  height: 100
+  height: 60
 confuse_cast:
   id: 102
-  height: 100
+  height: 60
 confuse: 103
 confuse_hit:
   id: 104
-  height: 100
+  height: 60
 weaken_cast:
   id: 105
-  height: 100
+  height: 60
 weaken: 106
 weaken_hit:
   id: 107
-  height: 100
+  height: 60
 curse_cast:
   id: 108
-  height: 100
+  height: 60
 curse: 109
 curse_hit:
   id: 110
-  height: 100
+  height: 60
 bind_cast:
   id: 177
-  height: 100
+  height: 60
 bind: 178
 bind_hit:
   id: 181
-  height: 100
+  height: 60
 snare_hit:
   id: 180
-  height: 100
+  height: 60
 entangle_hit:
   id: 179
-  height: 100
+  height: 60
 vulnerability_cast:
   id: 167
-  height: 100
+  height: 60
 vulnerability: 168
 vulnerability_hit:
   id: 169
-  height: 100
+  height: 60
 enfeeble_cast:
   id: 170
-  height: 100
+  height: 60
 enfeeble: 171
 enfeeble_hit:
   id: 172
-  height: 100
+  height: 60
 stun_cast:
   id: 173
-  height: 100
+  height: 60
 stun: 174
 stun_hit:
   id: 348
-  height: 100
+  height: 60
 teleport_block_cast: 1841
 teleport_block: 1842
 teleport_block_hit:
   id: 1843
-  height: 100
+  height: 60

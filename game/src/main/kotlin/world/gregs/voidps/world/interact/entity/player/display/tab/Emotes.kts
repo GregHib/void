@@ -271,7 +271,7 @@ suspend fun Action.playDungeoneeringMasterCapeEmote(player: Player) {
     player.playAnimation("emote_dung_master_spell")
 
     player.transform("primal_warrior")
-    player.setGraphic("emote_dung_master_return")
+    player.setGraphic("emote_dung_master_return", delay = 60)
     tile = player.tile.add(direction)
     rotation = direction.inverse().rotate(7)
     areaGraphic("emote_dung_master_flesh_spoiler", tile, rotation = rotation)

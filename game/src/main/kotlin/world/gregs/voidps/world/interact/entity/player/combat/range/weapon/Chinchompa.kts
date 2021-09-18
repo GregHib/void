@@ -67,7 +67,7 @@ on<CombatSwing>({ player -> !swung() && isChinchompa(player.weapon) }, Priority.
 on<CombatHit>({ source is Player && isChinchompa(weapon) }) { character: Character ->
     source as Player
     source.playSound("chinchompa_explode", delay = 40)
-    character.setGraphic("chinchompa_hit", height = 50 + character.height)
+    character.setGraphic("chinchompa_hit")
 }
 
 val players: Players by inject()
