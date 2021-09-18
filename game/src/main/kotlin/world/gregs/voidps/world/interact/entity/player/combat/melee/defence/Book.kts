@@ -11,6 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 
 fun isBook(item: Item?) = item != null && item.name.endsWith("book")
 
-on<CombatHit>({ isBook(it.equipped(EquipSlot.Shield)) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("book_block", override = true)
+on<CombatHit>({ !blocked && isBook(it.equipped(EquipSlot.Shield)) }, Priority.HIGH) { player: Player ->
+    player.setAnimation("book_block")
+    blocked = true
 }

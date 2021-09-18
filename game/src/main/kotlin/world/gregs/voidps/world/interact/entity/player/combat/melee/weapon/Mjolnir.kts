@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isMjolnir(it.weapon) }, Priority.LOWER) { player: 
     delay = 6
 }
 
-on<CombatHit>({ isMjolnir(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isMjolnir(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("mjolnir_hit")
+    blocked = true
 }

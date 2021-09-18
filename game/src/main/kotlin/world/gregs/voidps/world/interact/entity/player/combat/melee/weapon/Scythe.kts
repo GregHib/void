@@ -15,6 +15,7 @@ on<CombatSwing>({ !swung() && isScythe(it.weapon) }, Priority.LOWER) { player: P
     delay = 6
 }
 
-on<CombatHit>({ isScythe(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isScythe(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("scythe_hit")
+    blocked = true
 }

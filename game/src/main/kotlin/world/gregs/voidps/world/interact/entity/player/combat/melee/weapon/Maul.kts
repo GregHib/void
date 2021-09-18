@@ -19,6 +19,7 @@ on<CombatSwing>({ !swung() && isMaul(it.weapon) }, Priority.LOWER) { player: Pla
     delay = if (isTzhaarKetOm(player.weapon)) 7 else 6
 }
 
-on<CombatHit>({ isMaul(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isMaul(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("maul_block")
+    blocked = true
 }

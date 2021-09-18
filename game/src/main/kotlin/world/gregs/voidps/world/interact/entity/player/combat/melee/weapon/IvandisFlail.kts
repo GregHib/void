@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isIvandisFlail(it.weapon) }, Priority.LOWER) { pla
     delay = 5
 }
 
-on<CombatHit>({ isIvandisFlail(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isIvandisFlail(it.weapon) }) { player: Player ->
     player.setAnimation("flail_hit")
+    blocked = true
 }

@@ -20,6 +20,7 @@ on<CombatSwing>({ !swung() && isZamorakianSpear(it.weapon) }, Priority.LOW) { pl
     delay = 4
 }
 
-on<CombatHit>({ isZamorakianSpear(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isZamorakianSpear(it.weapon) }) { player: Player ->
     player.setAnimation("zamorakian_spear_block")
+    blocked = true
 }

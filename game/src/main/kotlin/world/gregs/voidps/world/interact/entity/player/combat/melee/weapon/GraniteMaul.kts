@@ -18,6 +18,7 @@ on<CombatSwing>({ !swung() && isMaul(it.weapon) }, Priority.LOW) { player: Playe
     delay = 7
 }
 
-on<CombatHit>({ isMaul(it.weapon) }) { player: Player ->
+on<CombatHit>({ !blocked && isMaul(it.weapon) }) { player: Player ->
     player.setAnimation("granite_maul_block")
+    blocked = true
 }

@@ -20,6 +20,7 @@ on<CombatSwing>({ !swung() && isHatchet(it.weapon) }, Priority.LOWER) { player: 
     delay = if (player.weapon.name.endsWith("battleaxe")) 6 else 5
 }
 
-on<CombatHit>({ isHatchet(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isHatchet(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("hatchet_block")
+    blocked = true
 }

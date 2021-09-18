@@ -11,6 +11,7 @@ import world.gregs.voidps.world.interact.entity.combat.CombatHit
 
 fun isDefender(item: Item?) = item != null && item.name.endsWith("defender")
 
-on<CombatHit>({ isDefender(it.equipped(EquipSlot.Shield)) }, Priority.LOWER) { player: Player ->
-    player.setAnimation("defender_block", override = true)
+on<CombatHit>({ !blocked && isDefender(it.equipped(EquipSlot.Shield)) }, Priority.HIGH) { player: Player ->
+    player.setAnimation("defender_block")
+    blocked = true
 }

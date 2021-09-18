@@ -23,6 +23,7 @@ on<CombatSwing>({ !swung() && isWeapon(it.weapon) }, Priority.LOWER) { player: P
     delay = 4
 }
 
-on<CombatHit>({ isWeapon(it.weapon) }, Priority.LOW) { player: Player ->
+on<CombatHit>({ !blocked && isWeapon(it.weapon) }, Priority.LOW) { player: Player ->
     player.setAnimation("dagger_block")
+    blocked = true
 }
