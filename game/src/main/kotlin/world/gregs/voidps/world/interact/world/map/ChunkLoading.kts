@@ -32,7 +32,7 @@ on<Moved>({ from.chunk != to.chunk }) { player: Player ->
 
 fun load(player: Player) {
     forEachChunk(player, player.tile) { chunk ->
-        if(batches.subscribe(player, chunk)) {
+        if (batches.subscribe(player, chunk)) {
             batches.sendInitial(player, chunk)
         }
     }

@@ -1,13 +1,14 @@
 import world.gregs.voidps.engine.action.Scheduler
 import world.gregs.voidps.engine.action.delay
-import world.gregs.voidps.engine.entity.*
+import world.gregs.voidps.engine.entity.Registered
+import world.gregs.voidps.engine.entity.Unregistered
+import world.gregs.voidps.engine.entity.World
 import world.gregs.voidps.engine.entity.character.player.Player
 import world.gregs.voidps.engine.entity.proj.Projectile
 import world.gregs.voidps.engine.entity.proj.Projectiles
 import world.gregs.voidps.engine.event.EventHandlerStore
 import world.gregs.voidps.engine.event.on
 import world.gregs.voidps.engine.map.chunk.ChunkBatches
-import world.gregs.voidps.engine.map.chunk.ChunkUpdate
 import world.gregs.voidps.network.encode.addProjectile
 import world.gregs.voidps.utility.inject
 import world.gregs.voidps.world.interact.entity.proj.ShootProjectile
@@ -36,10 +37,7 @@ on<World, ShootProjectile> {
     )
     store.populate(projectile)
     projectiles.add(projectile)
-    val update = addProjectile(projectile)
-    projectile["update"] = update
-    batches.update(tile.chunk, update)
-    batches.addInitial(tile.chunk, update)
+    batches.update(tile.chunk, addProjectile(projectile))
     decay(projectile)
     projectile.events.emit(Registered)
 }
@@ -54,8 +52,6 @@ fun decay(projectile: Projectile) {
             projectile.delay -= 30
         }
         projectile.delay = 0
-        // Could do something complex here to move the projectile if it changes chunk
-        // probably not worth the effort
         repeat(projectile.flightTime / 30) {
             delay(1)
             projectile.flightTime -= 30
@@ -63,8 +59,5 @@ fun decay(projectile: Projectile) {
         projectile.flightTime = 0
         projectiles.remove(projectile)
         projectile.events.emit(Unregistered)
-        projectile.remove<ChunkUpdate>("update")?.let {
-            batches.removeInitial(projectile.tile.chunk, it)
-        }
     }
 }
